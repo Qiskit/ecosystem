@@ -2,8 +2,8 @@
 
 ## Introduction
 
-The ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
-The goal of this ecosystem is to recognize, support and accelerate development of quantum technologies using Qiskit.
+The Ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
+The goal of the Ecosystem is to recognize, support and accelerate development of quantum technologies using Qiskit.
 
 ## System Design and Architecture 
 
