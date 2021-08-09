@@ -8,8 +8,7 @@
       <img alt="Qiskit" src="https://qiskit.org/images/qiskit-logo.png" width="70" />
     </a>
   </p>
-
- <h3 align="center">Ecosystem</h3>
+  <h3 align="center">Ecosystem</h3>
 </p>
 
 
@@ -31,7 +30,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad set of community developers and researchers.
+The ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
 The goal of this ecosystem is to recognize, support and accelerate development of quantum technologies using Qiskit.
 
 
