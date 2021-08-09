@@ -10,11 +10,6 @@
   </p>
 
  <h3 align="center">Ecosystem</h3>
-
-  <p align="center">
-    Repository for automation of Qiskit issues and prs monitoring.
-    <br />
-  </p>
 </p>
 
 
