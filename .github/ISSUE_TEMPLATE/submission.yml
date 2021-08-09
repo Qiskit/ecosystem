@@ -1,0 +1,80 @@
+name: Project submission
+description: Ecosystem project submission
+title: "[Submission]: "
+labels: []
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Provide information about your project.
+  - type: input
+    id: repo
+    attributes:
+      label: Github repo
+      description: Link to your github repo with project you want to submit
+      placeholder: https://github.com/Qiskit/qiskit-terra
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Short description of the project.
+      placeholder: Tell us about your work!
+      value: "..."
+    validations:
+      required: true
+  - type: input
+    id: contacts
+    attributes:
+      label: Email
+      description: Your contact information
+      placeholder: awesome_person@awesome_main.com
+    validations:
+      required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Short description of alternative projects.
+      placeholder: There are no alternatives to this project!
+    validations:
+      required: false
+  - type: dropdown
+    id: license
+    attributes:
+      label: License
+      description: License for your project
+      options:
+        - Apache License 2.0
+        - MIT license
+        - BSD 3-Clause "New" or "Revised" license
+        - BSD 2-Clause "Simplified" or "FreeBSD" license
+        - GNU General Public License (GPL)
+        - GNU Library or "Lesser" General Public License (LGPL)
+        - Mozilla Public License 2.0
+        - Common Development and Distribution License
+        - Eclipse Public License version 2.0
+    validations:
+      required: true
+  - type: textarea
+    id: affiliations
+    attributes:
+      label: Affiliations
+      description: Affiliations of the project.
+      placeholder: None
+    validations:
+      required: false
+  - type: dropdown
+    id: tags
+    attributes:
+      label: Tags
+      multiple: true
+      options:
+        - tool
+        - plugin
+        - tutorial
+        - paper-implementation
+        - fork
