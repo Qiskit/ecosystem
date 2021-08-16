@@ -1,7 +1,8 @@
 """Tests for entities."""
 import os
 from unittest import TestCase
-from ecosystem import MainRepository, Controller
+from ecosystem.entities import MainRepository
+from ecosystem.controller import Controller
 
 
 class TestController(TestCase):
