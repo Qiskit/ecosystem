@@ -37,7 +37,9 @@ class TestController(TestCase):
 
         # insert entry
         controller.insert(main_repo)
-        self.assertEqual(main_repo, controller.get_all_main()[0])
+        fetched_repo = controller.get_all_main()[0]
+        self.assertEqual(main_repo, fetched_repo)
+        self.assertEqual(main_repo.labels, fetched_repo.labels)
 
         # delete entry
         controller.delete(main_repo)

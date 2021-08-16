@@ -13,6 +13,19 @@ class Tier:
     CANDIDATE: str = "CANDIDATE"
 
 
+class TestType:
+    """Test types for specific repository.
+
+    Types:
+    - STABLE_COMPATIBLE - compatibility of repository with stable branch of qiskit-terra
+    - DEV_COMPATIBLE - compatibility if repository with dev/main branch of qiskit-terra
+    - STANDARD - regular tests that comes with repo
+    """
+    STABLE_COMPATIBLE: str = "STABLE_COMPATIBLE"
+    DEV_COMPATIBLE: str = "DEV_COMPATIBLE"
+    STANDARD: str = "STANDARD"
+
+
 class Repository(ABC):
     """Main repository class."""
 
@@ -28,7 +41,9 @@ class Repository(ABC):
                  labels: Optional[List[str]] = None,
                  created_at: Optional[int] = None,
                  updated_at: Optional[int] = None,
-                 tier: Optional[str] = None):
+                 tier: Optional[str] = None,
+                 tests_to_run: List[str] = None,
+                 tests_passed: List[str] = None):
         """Repository controller.
 
         Args:
@@ -41,6 +56,8 @@ class Repository(ABC):
             labels: labels
             created_at: creation date
             updated_at: update date
+            tests_to_run: tests need to be executed against repo
+            tests_passed: tests passed by repo
         """
         self.name = name
         self.url = url
@@ -51,6 +68,8 @@ class Repository(ABC):
         self.labels = labels if labels is not None else []
         self.created_at = created_at if created_at is not None else datetime.now().timestamp()
         self.updated_at = updated_at if updated_at is not None else datetime.now().timestamp()
+        self.tests_to_run = tests_to_run if tests_to_run else []
+        self.tests_passed = tests_passed if tests_passed else []
         if tier:
             self.tier = tier
 

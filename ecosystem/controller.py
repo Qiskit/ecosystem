@@ -3,7 +3,7 @@ from typing import Optional, List
 
 from tinydb import TinyDB, Query
 
-from ecosystem.entities import Repository, MainRepository, Tier
+from .entities import Repository, MainRepository, Tier
 
 
 class Controller:
