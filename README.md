@@ -1,4 +1,4 @@
-# Ecosystem [![Tests](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml)
+# Ecosystem ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet) [![Tests](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml)
 
 <!-- PROJECT LOGO -->
 <br />
@@ -20,6 +20,7 @@
       <a href="#about-the-project">About The Project</a>
     </li>
     <li><a href="#join-the-ecosystem">Join the Ecosystem</a></li>
+    <li><a href="#members">Members</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
   </ol>
@@ -39,6 +40,23 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 
 To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
+
+## Members ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
+
+### Main ![ecosystem-main](https://img.shields.io/badge/Qiskit-Main-blueviolet)
+
+|  Name | Description  |
+|---|---|
+|https://github.com/Qiskit/qiskit|![core](https://img.shields.io/badge/meta-gray.svg) <br/> Qiskit is an open-source SDK for working with quantum computers at the level of circuits, algorithms, and application modules. Qiskit is made up of elements that work together to enable quantum computing. This is a simple meta-package to install the elements of Qiskit altogether.|
+|https://github.com/Qiskit/qiskit-terra | ![core](https://img.shields.io/badge/circuit-gray.svg) ![core](https://img.shields.io/badge/pulse-gray.svg) <br/>Terra is the foundation on which the rest of Qiskit is built.  |
+|https://github.com/Qiskit/qiskit-aer |![core](https://img.shields.io/badge/simulation-gray.svg) <br/> Aer provides high-performance quantum computing simulators with realistic noise models. |
+|https://github.com/Qiskit/qiskit-optimization|![core](https://img.shields.io/badge/optimization-gray.svg) ![core](https://img.shields.io/badge/algorithms-gray.svg) <br/>Qiskit Optimization is an open-source framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit.|
+|https://github.com/Qiskit/qiskit-metal|![core](https://img.shields.io/badge/hardware-gray.svg) ![core](https://img.shields.io/badge/design-gray.svg) <br/> Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease. |
+|https://github.com/Qiskit/qiskit-machine-learning |![core](https://img.shields.io/badge/algorithms-gray.svg) ![core](https://img.shields.io/badge/ml-gray.svg) <br/> The Machine Learning package contains sample datasets and quantum ML algorithms.  |
+|https://github.com/Qiskit/qiskit-nature |![core](https://img.shields.io/badge/algorithms-gray.svg) ![core](https://img.shields.io/badge/physics-gray.svg) ![core](https://img.shields.io/badge/chemistry-gray.svg) <br/> Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations |
+|https://github.com/Qiskit/qiskit-finance|![core](https://img.shields.io/badge/algorithms-gray.svg) ![core](https://img.shields.io/badge/finance-gray.svg) <br/> Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments. | |
+|https://github.com/Qiskit/qiskit-tutorials|![core](https://img.shields.io/badge/education-gray.svg) ![core](https://img.shields.io/badge/community-gray.svg) <br/>Collection of Jupyter notebooks aimed at teaching people who want to use Qiskit for writing quantum computing programs, and executing them on one of several backends.| |
+|https://github.com/Qiskit/qiskit.org| ![core](https://img.shields.io/badge/community-gray.svg) ![core](https://img.shields.io/badge/web-gray.svg) <br/> Qiskit's website |
 
 <!-- ROADMAP -->
 ## Roadmap
