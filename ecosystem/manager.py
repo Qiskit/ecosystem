@@ -3,7 +3,7 @@ import os
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from ecosystem import Controller
+from .controller import Controller
 
 
 class Manager:
@@ -14,14 +14,14 @@ class Manager:
     def __init__(self):
         """Manager class."""
         current_dir = os.path.abspath(os.getcwd())
-        resources_dir = "{}/ecosystem/resources".format(current_dir)
+        self.resources_dir = "{}/ecosystem/resources".format(current_dir)
 
         self.env = Environment(
             loader=PackageLoader("ecosystem"),
             autoescape=select_autoescape()
         )
         self.readme_template = self.env.get_template("readme.md")
-        self.controller = Controller(path=resources_dir)
+        self.controller = Controller(path=self.resources_dir)
 
     def generate_readme(self) -> str:
         """Generates entire readme for ecosystem repository.
