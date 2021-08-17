@@ -55,7 +55,8 @@ def _cleanup(directory: Optional[str] = None):
         shutil.rmtree(directory)
 
 
-def basic_tests(repo: str, resources_dir: str) -> Dict[str, CommandExecutionSummary]:
+def basic_tests(repo: str, resources_dir: str,
+                tox_python: str) -> Dict[str, CommandExecutionSummary]:
     """Run all tests for repository."""
     name = repo.split("/")[-1]
 
@@ -68,7 +69,7 @@ def basic_tests(repo: str, resources_dir: str) -> Dict[str, CommandExecutionSumm
     # execute steps: clone repo and run tests
     clone_res = _clone_repo(repo, directory=directory)
     tox_exists_res = _check_tox_ini(cloned_repo_directory)
-    tests_res = _run_tox(cloned_repo_directory, "py39")
+    tests_res = _run_tox(cloned_repo_directory, tox_python)
     # TODO: figure out why linter is failing with `File contains utf-8 header` # pylint: disable=fixme
     # _run_tox(cloned_repo_directory, "lint", file=file)
 
