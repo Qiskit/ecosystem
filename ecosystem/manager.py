@@ -4,6 +4,7 @@ import os
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
+from .shell import basic_tests
 
 
 class Manager:
@@ -31,6 +32,11 @@ class Manager:
         """
         main_repos = self.controller.get_all_main()
         return self.readme_template.render(main_repos=main_repos)
+
+    def basic_test(self, repo: str):
+        """Perform general checks for repository."""
+        res = basic_tests(repo, resources_dir=self.resources_dir)
+        print(res)
 
     def __repr__(self):
         return "Manager(CLI entrypoint)"
