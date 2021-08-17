@@ -28,6 +28,6 @@ jobs:
         pip install -r requirements-dev.txt
     # test runs
     - name: Standard test for Qiskit-nature
-      run: python manager.py basic_test https://github.com/Qiskit/qiskit-nature --tox_python=py38
+      run: python manager.py basic_test https://github.com/Qiskit/qiskit-nature --tox_python=py39
     - name: State of members.json file
       run: cat ecosystem/resources/members.json
