@@ -2,6 +2,7 @@
 import inspect
 from abc import ABC
 from datetime import datetime
+import pprint
 from typing import Optional, List
 
 
@@ -24,6 +25,11 @@ class TestType:
     STABLE_COMPATIBLE: str = "STABLE_COMPATIBLE"
     DEV_COMPATIBLE: str = "DEV_COMPATIBLE"
     STANDARD: str = "STANDARD"
+
+    @classmethod
+    def all(cls):
+        """Return all test types"""
+        return [cls.STANDARD, cls.DEV_COMPATIBLE, cls.STABLE_COMPATIBLE]
 
 
 class Repository(ABC):
@@ -88,6 +94,12 @@ class Repository(ABC):
                 and self.url == other.url
                 and self.description == other.description
                 and self.licence == other.licence)
+
+    def __repr__(self):
+        return pprint.pformat(self.to_dict(), indent=4)
+
+    def __str__(self):
+        return f"Repository({self.tier} | {self.name} | {self.url})"
 
 
 class MainRepository(Repository):

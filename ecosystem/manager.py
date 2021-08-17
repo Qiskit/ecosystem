@@ -4,6 +4,7 @@ import os
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
+from .entities import Tier, TestType
 from .shell import basic_tests
 
 
@@ -33,9 +34,29 @@ class Manager:
         main_repos = self.controller.get_all_main()
         return self.readme_template.render(main_repos=main_repos)
 
-    def basic_test(self, repo: str):
-        """Perform general checks for repository."""
-        basic_tests(repo, resources_dir=self.resources_dir)
+    def basic_test(self, repo_url: str,
+                   tier: str = Tier.MAIN):
+        """Perform general checks for repository.
+
+        Args:
+            tier: repository tier
+            repo_url: repository url
+        """
+        try:
+            basic_tests_result = basic_tests(repo_url,
+                                             resources_dir=self.resources_dir)
+            # if all steps of test are successful
+            if all(c.code == 0 for c in basic_tests_result.values()):
+                # update repo entry and assign successful tests
+                self.controller.add_repo_test_passed(repo_url=repo_url,
+                                                     test_passed=TestType.STANDARD,
+                                                     tier=tier)
+        except Exception as exception: # pylint: disable=broad-except)
+            print(f"Exception {exception}")
+            # remove from passed tests if anything went wrong
+            self.controller.remove_repo_test_passed(repo_url=repo_url,
+                                                    test_remove=TestType.STANDARD,
+                                                    tier=tier)
 
     def __repr__(self):
         return "Manager(CLI entrypoint)"

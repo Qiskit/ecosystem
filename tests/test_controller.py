@@ -1,7 +1,7 @@
 """Tests for entities."""
 import os
 from unittest import TestCase
-from ecosystem.entities import MainRepository
+from ecosystem.entities import MainRepository, TestType
 from ecosystem.controller import Controller
 
 
@@ -45,3 +45,56 @@ class TestController(TestCase):
         # delete entry
         controller.delete(main_repo)
         self.assertEqual([], controller.get_all_main())
+
+    def test_add_and_remove_repo_test_passed(self):
+        """Tests addition of passed test to repo."""
+        self._delete_members_json()
+        main_repo = MainRepository(name="mock-qiskit-terra",
+                                   url="https://github.com/MockQiskit/mock-qiskit.terra",
+                                   description="Mock description for repo.",
+                                   licence="Apache 2.0",
+                                   labels=["mock", "tests"])
+        controller = Controller(self.path)
+        controller.insert(main_repo)
+
+        controller.add_repo_test_passed(repo_url=main_repo.url,
+                                        test_passed=TestType.STANDARD,
+                                        tier=main_repo.tier)
+        fetched_repo = controller.get_by_url(main_repo.url, tier=main_repo.tier)
+        self.assertEqual(fetched_repo.tests_passed, [TestType.STANDARD])
+
+        controller.remove_repo_test_passed(repo_url=main_repo.url,
+                                           test_remove=TestType.STANDARD,
+                                           tier=main_repo.tier)
+        fetched_repo = controller.get_by_url(main_repo.url, tier=main_repo.tier)
+        self.assertEqual(fetched_repo.tests_passed, [])
+
+    def test_update_repo_tests_passed(self):
+        """Tests repository tests passed field."""
+        self._delete_members_json()
+
+        url = "https://github.com/MockQiskit/mock-qiskit.terra"
+        main_repo = MainRepository(name="mock-qiskit-terra",
+                                   url=url,
+                                   description="Mock description for repo.",
+                                   licence="Apache 2.0",
+                                   labels=["mock", "tests"])
+        controller = Controller(self.path)
+        controller.insert(main_repo)
+
+        controller.update_repo_tests_passed(main_repo, [TestType.STANDARD])
+        fetched_repo = controller.get_by_url(url, main_repo.tier)
+        self.assertEqual(len(fetched_repo.tests_passed), 1)
+        self.assertEqual(fetched_repo.tests_passed, [TestType.STANDARD])
+
+        controller.update_repo_tests_passed(main_repo, [TestType.STANDARD,
+                                                        TestType.DEV_COMPATIBLE])
+        fetched_repo = controller.get_by_url(url, main_repo.tier)
+        self.assertEqual(len(fetched_repo.tests_passed), 2)
+        self.assertEqual(fetched_repo.tests_passed, [TestType.STANDARD,
+                                                     TestType.DEV_COMPATIBLE])
+
+        controller.update_repo_tests_passed(main_repo, [])
+        fetched_repo = controller.get_by_url(url, main_repo.tier)
+        self.assertEqual(len(fetched_repo.tests_passed), 0)
+        self.assertEqual(fetched_repo.tests_passed, [])
