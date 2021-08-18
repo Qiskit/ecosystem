@@ -1,4 +1,4 @@
-name: Test main members
+name: Test main tier of ecosystem
 
 on: [push]
 
@@ -38,6 +38,9 @@ jobs:
 
     - name: State of members.json file
       run: cat ecosystem/resources/members.json
+
+    - name: Generate new readme
+      run:  python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
       if: ${{ success() }}
