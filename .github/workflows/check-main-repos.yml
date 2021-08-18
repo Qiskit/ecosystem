@@ -10,6 +10,9 @@ jobs:
       matrix:
         python-version: [3.9]
     steps:
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
@@ -26,8 +29,23 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
+
     # test runs
     - name: Standard test for Qiskit-nature
       run: python manager.py basic_test https://github.com/Qiskit/qiskit-nature --tox_python=py39
+    - name: Standard test for Qiskit-finance
+      run: python manager.py basic_test https://github.com/Qiskit/qiskit-finance --tox_python=py39
+
     - name: State of members.json file
       run: cat ecosystem/resources/members.json
+
+    - name: Commit changes and create Pull Request
+      if: ${{ success() }}
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: Scheduled tests run for ${{ steps.date.outputs.date }}.
+        title: Scheduled tests run for ${{ steps.date.outputs.date }}.
+        body: Scheduled tests run for ${{ steps.date.outputs.date }}.
+        branch: scheduler-tests-${{ steps.date.outputs.date }}
+        base: main

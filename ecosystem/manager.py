@@ -1,5 +1,6 @@
 """Manager class for controlling all CLI functions."""
 import os
+from typing import Optional
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
@@ -15,8 +16,8 @@ class Manager:
 
     def __init__(self):
         """Manager class."""
-        current_dir = os.path.abspath(os.getcwd())
-        self.resources_dir = "{}/ecosystem/resources".format(current_dir)
+        self.current_dir = os.path.abspath(os.getcwd())
+        self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
 
         self.env = Environment(
             loader=PackageLoader("ecosystem"),
@@ -25,14 +26,17 @@ class Manager:
         self.readme_template = self.env.get_template("readme.md")
         self.controller = Controller(path=self.resources_dir)
 
-    def generate_readme(self) -> str:
+    def generate_readme(self, path: Optional[str] = None):
         """Generates entire readme for ecosystem repository.
 
         Returns:
             str: generated readme
         """
+        path = path if path is not None else self.current_dir
         main_repos = self.controller.get_all_main()
-        return self.readme_template.render(main_repos=main_repos)
+        readme_content = self.readme_template.render(main_repos=main_repos)
+        with open(f"{path}/README.md", "w") as file:
+            file.write(readme_content)
 
     def basic_test(self, repo_url: str,
                    tier: str = Tier.MAIN,
@@ -58,7 +62,7 @@ class Manager:
                 self.controller.remove_repo_test_passed(repo_url=repo_url,
                                                         test_remove=TestType.STANDARD,
                                                         tier=tier)
-        except Exception as exception: # pylint: disable=broad-except)
+        except Exception as exception:  # pylint: disable=broad-except)
             print(f"Exception {exception}")
             # remove from passed tests if anything went wrong
             self.controller.remove_repo_test_passed(repo_url=repo_url,
