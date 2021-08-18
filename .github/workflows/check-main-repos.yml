@@ -1,6 +1,9 @@
 name: Test main tier of ecosystem
 
-on: [push]
+on:
+  schedule:
+    - cron:  '5 8 * * 2' # each Tuesday at 8 05
+  workflow_dispatch:
 
 jobs:
   tests:
@@ -10,9 +13,9 @@ jobs:
       matrix:
         python-version: [3.9]
     steps:
-    - name: Get current date
+    - name: Get current datetime
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M')"
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
@@ -39,16 +42,13 @@ jobs:
     - name: State of members.json file
       run: cat ecosystem/resources/members.json
 
-    - name: Generate new readme
-      run:  python manager.py generate_readme
-
     - name: Commit changes and create Pull Request
       if: ${{ success() }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
-        commit-message: Scheduled tests run for ${{ steps.date.outputs.date }}.
-        title: Scheduled tests run for ${{ steps.date.outputs.date }}.
-        body: Scheduled tests run for ${{ steps.date.outputs.date }}.
-        branch: scheduler-tests-${{ steps.date.outputs.date }}
+        commit-message: Default tests run for ${{ steps.date.outputs.date }}.
+        title: Default tests run for ${{ steps.date.outputs.date }}.
+        body: Default tests run for ${{ steps.date.outputs.date }}.
+        branch: default-tests-${{ steps.date.outputs.date }}
         base: main
