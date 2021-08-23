@@ -3,7 +3,7 @@ import os
 import shutil
 from unittest import TestCase
 
-from ecosystem.shell import _execute_command, _clone_repo
+from ecosystem.tester import _execute_command, _clone_repo
 from ecosystem.entities import CommandExecutionSummary
 
 

@@ -1,12 +1,12 @@
 """Manager class for controlling all CLI functions."""
 import os
-from typing import Optional
+from typing import Optional, List
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
 from .entities import Tier, TestType
-from .shell import basic_tests, stable_tests
+from .tester import run_tests
 
 
 class Manager:
@@ -24,8 +24,7 @@ class Manager:
             autoescape=select_autoescape()
         )
         self.readme_template = self.env.get_template("readme.md")
-        self.stable_rox_template = self.env.get_template("stable_tox.ini")
-        self.dev_tox_template = self.env.get_template("dev_tox.ini")
+        self.tox_template = self.env.get_template("tox.ini")
         self.controller = Controller(path=self.resources_dir)
 
     def generate_readme(self, path: Optional[str] = None):
@@ -40,90 +39,79 @@ class Manager:
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
 
-    def basic_test(self, repo_url: str,
-                   tier: str = Tier.MAIN,
-                   tox_python: str = "py39"):
-        """Perform general checks for repository.
+    def _run(self,
+             repo_url: str,
+             tier: str,
+             test_type: str,
+             tox_python: str,
+             dependencies: Optional[List[str]] = None):
+        """Run tests on repository.
 
         Args:
-            tox_python: version of python to run tox
-            tier: repository tier
             repo_url: repository url
+            tier: tier of membership
+            tox_python: tox env to run tests on
+            dependencies: list of extra dependencies to install
         """
         try:
-            basic_tests_result = basic_tests(repo_url,
-                                             resources_dir=self.resources_dir,
-                                             tox_python=tox_python)
+            if dependencies is not None:
+                dev_tests_results = run_tests(
+                    repo_url,
+                    resources_dir=self.resources_dir,
+                    tox_python=tox_python,
+                    template_and_deps=(self.tox_template, dependencies))
+            else:
+                dev_tests_results = run_tests(
+                    repo_url,
+                    resources_dir=self.resources_dir,
+                    tox_python=tox_python)
             # if all steps of test are successful
-            if all(c.ok for c in basic_tests_result.values()):
+            if all(c.ok for c in dev_tests_results.values()):
                 # update repo entry and assign successful tests
                 self.controller.add_repo_test_passed(repo_url=repo_url,
-                                                     test_passed=TestType.STANDARD,
+                                                     test_passed=test_type,
                                                      tier=tier)
             else:
                 self.controller.remove_repo_test_passed(repo_url=repo_url,
-                                                        test_remove=TestType.STANDARD,
+                                                        test_remove=test_type,
                                                         tier=tier)
         except Exception as exception:  # pylint: disable=broad-except)
             print(f"Exception {exception}")
             # remove from passed tests if anything went wrong
             self.controller.remove_repo_test_passed(repo_url=repo_url,
-                                                    test_remove=TestType.STANDARD,
+                                                    test_remove=test_type,
                                                     tier=tier)
+
+    def basic_test(self, repo_url: str,
+                   tier: str = Tier.MAIN,
+                   tox_python: str = "py39"):
+        """Perform general checks for repository."""
+        return self._run(repo_url=repo_url,
+                         tier=tier,
+                         test_type=TestType.STANDARD,
+                         tox_python=tox_python)
 
     def stable_compatibility_tests(self,
                                    repo_url: str,
                                    tier: str = Tier.MAIN,
                                    tox_python: str = "py39"):
         """Runs tests against stable version of Qiskit."""
-        try:
-            stable_tests_results = stable_tests(repo_url,
-                                                resources_dir=self.resources_dir,
-                                                tox_python=tox_python,
-                                                template=self.stable_rox_template)
-            # if all steps of test are successful
-            if all(c.ok for c in stable_tests_results.values()):
-                # update repo entry and assign successful tests
-                self.controller.add_repo_test_passed(repo_url=repo_url,
-                                                     test_passed=TestType.STABLE_COMPATIBLE,
-                                                     tier=tier)
-            else:
-                self.controller.remove_repo_test_passed(repo_url=repo_url,
-                                                        test_remove=TestType.STABLE_COMPATIBLE,
-                                                        tier=tier)
-        except Exception as exception:  # pylint: disable=broad-except)
-            print(f"Exception {exception}")
-            # remove from passed tests if anything went wrong
-            self.controller.remove_repo_test_passed(repo_url=repo_url,
-                                                    test_remove=TestType.STABLE_COMPATIBLE,
-                                                    tier=tier)
+        return self._run(repo_url=repo_url,
+                         tier=tier,
+                         test_type=TestType.STABLE_COMPATIBLE,
+                         tox_python=tox_python,
+                         dependencies=["qiskit"])
 
-    def main_compatibility_tests(self,
-                                 repo_url: str,
-                                 tier: str = Tier.MAIN,
-                                 tox_python: str = "py39"):
-        """Runs tests against stable version of Qiskit."""
-        try:
-            stable_tests_results = stable_tests(repo_url,
-                                                resources_dir=self.resources_dir,
-                                                tox_python=tox_python,
-                                                template=self.dev_tox_template)
-            # if all steps of test are successful
-            if all(c.ok for c in stable_tests_results.values()):
-                # update repo entry and assign successful tests
-                self.controller.add_repo_test_passed(repo_url=repo_url,
-                                                     test_passed=TestType.STABLE_COMPATIBLE,
-                                                     tier=tier)
-            else:
-                self.controller.remove_repo_test_passed(repo_url=repo_url,
-                                                        test_remove=TestType.STABLE_COMPATIBLE,
-                                                        tier=tier)
-        except Exception as exception:  # pylint: disable=broad-except)
-            print(f"Exception {exception}")
-            # remove from passed tests if anything went wrong
-            self.controller.remove_repo_test_passed(repo_url=repo_url,
-                                                    test_remove=TestType.STABLE_COMPATIBLE,
-                                                    tier=tier)
+    def dev_compatibility_tests(self,
+                                repo_url: str,
+                                tier: str = Tier.MAIN,
+                                tox_python: str = "py39"):
+        """Runs tests against dev version of Qiskit (main branch)."""
+        return self._run(repo_url=repo_url,
+                         tier=tier,
+                         test_type=TestType.DEV_COMPATIBLE,
+                         tox_python=tox_python,
+                         dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
     def __repr__(self):
         return "Manager(CLI entrypoint)"

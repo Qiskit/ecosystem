@@ -2,7 +2,7 @@
 import os
 import shutil
 import subprocess
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Tuple
 import setuptools
 
 from jinja2 import Template
@@ -58,9 +58,23 @@ def _cleanup(directory: Optional[str] = None):
         shutil.rmtree(directory)
 
 
-def basic_tests(repo: str, resources_dir: str,
-                tox_python: str) -> Dict[str, CommandExecutionSummary]:
-    """Run all tests for repository."""
+def run_tests(repo: str,
+              resources_dir: str,
+              tox_python: str,
+              template_and_deps: Optional[Tuple[Template, List[str]]] = None) \
+        -> Dict[str, CommandExecutionSummary]:
+    """Run tests for specified repository.
+
+    Args:
+        repo: repository url
+              ex: https://github.com/Qiskit/qiskit-nature
+        resources_dir: directory to clone repo and run tests in
+        tox_python: tox env for running tests
+        template_and_deps: template for tox file and list of dependencies to install in tox
+
+    Returns:
+        dict of executed step names and results of execution.
+    """
     name = repo.split("/")[-1]
 
     directory = "{}/cloned_repos_directory".format(resources_dir)
@@ -69,35 +83,6 @@ def basic_tests(repo: str, resources_dir: str,
     _cleanup(directory)
     os.makedirs(directory)
 
-    # execute steps: clone repo and run tests
-    clone_res = _clone_repo(repo, directory=directory)
-    tox_exists_res = _check_tox_ini(cloned_repo_directory)
-    tests_res = _run_tox(cloned_repo_directory, tox_python)
-    # TODO: figure out why linter is failing with `File contains utf-8 header` # pylint: disable=fixme
-    # _run_tox(cloned_repo_directory, "lint", file=file)
-
-    _cleanup(cloned_repo_directory)
-
-    return {
-        "repo clone": clone_res,
-        "check for tox file": tox_exists_res,
-        "tests result": tests_res
-    }
-
-
-def stable_tests(repo: str,
-                 resources_dir: str,
-                 tox_python: str,
-                 template: Template) -> Dict[str, CommandExecutionSummary]:
-    """Runs tests against stable version of Qiskit."""
-    name = repo.split("/")[-1]
-
-    directory = "{}/cloned_repos_directory".format(resources_dir)
-    cloned_repo_directory = f"{directory}/{name}"
-
-    _cleanup(directory)
-    os.makedirs(directory)
-    # execute steps: clone repo and run tests
     clone_res = _clone_repo(repo, directory=directory)
     tox_exists_res = _check_tox_ini(cloned_repo_directory)
 
@@ -106,15 +91,18 @@ def stable_tests(repo: str,
         "check for tox file": tox_exists_res
     }
 
-    if clone_res.ok and tox_exists_res:
-        # rename old tox file
-        os.rename(f"{cloned_repo_directory}/tox.ini",
-                  f"{cloned_repo_directory}/default_tox.ini")
+    if clone_res.ok and tox_exists_res.ok:
+        if template_and_deps is not None:
+            tox_template, dependencies = template_and_deps
+            # rename old tox file
+            os.rename(f"{cloned_repo_directory}/tox.ini",
+                      f"{cloned_repo_directory}/default_tox.ini")
 
-        # create new tox file for stable tests
-        packages = setuptools.find_packages(cloned_repo_directory)
-        with open(f"{cloned_repo_directory}/tox.ini", "w") as tox_file:
-            tox_file.write(template.render(packages=packages))
+            # create new tox file for stable tests
+            packages = setuptools.find_packages(cloned_repo_directory)
+            with open(f"{cloned_repo_directory}/tox.ini", "w") as tox_file:
+                tox_file.write(tox_template.render(packages=packages,
+                                                   dependencies=dependencies))
 
         res["stable tests results"] = _run_tox(cloned_repo_directory, tox_python)
 
