@@ -25,6 +25,7 @@ class Manager:
         )
         self.readme_template = self.env.get_template("readme.md")
         self.stable_rox_template = self.env.get_template("stable_tox.ini")
+        self.dev_tox_template = self.env.get_template("dev_tox.ini")
         self.controller = Controller(path=self.resources_dir)
 
     def generate_readme(self, path: Optional[str] = None):
@@ -70,16 +71,43 @@ class Manager:
                                                     test_remove=TestType.STANDARD,
                                                     tier=tier)
 
-    def stable_test(self,
-                    repo_url: str,
-                    tier: str = Tier.MAIN,
-                    tox_python: str = "py39"):
+    def stable_compatibility_tests(self,
+                                   repo_url: str,
+                                   tier: str = Tier.MAIN,
+                                   tox_python: str = "py39"):
         """Runs tests against stable version of Qiskit."""
         try:
             stable_tests_results = stable_tests(repo_url,
                                                 resources_dir=self.resources_dir,
                                                 tox_python=tox_python,
                                                 template=self.stable_rox_template)
+            # if all steps of test are successful
+            if all(c.ok for c in stable_tests_results.values()):
+                # update repo entry and assign successful tests
+                self.controller.add_repo_test_passed(repo_url=repo_url,
+                                                     test_passed=TestType.STABLE_COMPATIBLE,
+                                                     tier=tier)
+            else:
+                self.controller.remove_repo_test_passed(repo_url=repo_url,
+                                                        test_remove=TestType.STABLE_COMPATIBLE,
+                                                        tier=tier)
+        except Exception as exception:  # pylint: disable=broad-except)
+            print(f"Exception {exception}")
+            # remove from passed tests if anything went wrong
+            self.controller.remove_repo_test_passed(repo_url=repo_url,
+                                                    test_remove=TestType.STABLE_COMPATIBLE,
+                                                    tier=tier)
+
+    def main_compatibility_tests(self,
+                                 repo_url: str,
+                                 tier: str = Tier.MAIN,
+                                 tox_python: str = "py39"):
+        """Runs tests against stable version of Qiskit."""
+        try:
+            stable_tests_results = stable_tests(repo_url,
+                                                resources_dir=self.resources_dir,
+                                                tox_python=tox_python,
+                                                template=self.dev_tox_template)
             # if all steps of test are successful
             if all(c.ok for c in stable_tests_results.values()):
                 # update repo entry and assign successful tests
