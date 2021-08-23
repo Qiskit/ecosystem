@@ -6,7 +6,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
 from .entities import Tier, TestType
-from .shell import basic_tests
+from .shell import basic_tests, stable_tests
 
 
 class Manager:
@@ -24,6 +24,7 @@ class Manager:
             autoescape=select_autoescape()
         )
         self.readme_template = self.env.get_template("readme.md")
+        self.stable_rox_template = self.env.get_template("stable_tox.ini")
         self.controller = Controller(path=self.resources_dir)
 
     def generate_readme(self, path: Optional[str] = None):
@@ -53,7 +54,7 @@ class Manager:
                                              resources_dir=self.resources_dir,
                                              tox_python=tox_python)
             # if all steps of test are successful
-            if all(c.code == 0 for c in basic_tests_result.values()):
+            if all(c.ok for c in basic_tests_result.values()):
                 # update repo entry and assign successful tests
                 self.controller.add_repo_test_passed(repo_url=repo_url,
                                                      test_passed=TestType.STANDARD,
@@ -67,6 +68,33 @@ class Manager:
             # remove from passed tests if anything went wrong
             self.controller.remove_repo_test_passed(repo_url=repo_url,
                                                     test_remove=TestType.STANDARD,
+                                                    tier=tier)
+
+    def stable_test(self,
+                    repo_url: str,
+                    tier: str = Tier.MAIN,
+                    tox_python: str = "py39"):
+        """Runs tests against stable version of Qiskit."""
+        try:
+            stable_tests_results = stable_tests(repo_url,
+                                                resources_dir=self.resources_dir,
+                                                tox_python=tox_python,
+                                                template=self.stable_rox_template)
+            # if all steps of test are successful
+            if all(c.ok for c in stable_tests_results.values()):
+                # update repo entry and assign successful tests
+                self.controller.add_repo_test_passed(repo_url=repo_url,
+                                                     test_passed=TestType.STABLE_COMPATIBLE,
+                                                     tier=tier)
+            else:
+                self.controller.remove_repo_test_passed(repo_url=repo_url,
+                                                        test_remove=TestType.STABLE_COMPATIBLE,
+                                                        tier=tier)
+        except Exception as exception:  # pylint: disable=broad-except)
+            print(f"Exception {exception}")
+            # remove from passed tests if anything went wrong
+            self.controller.remove_repo_test_passed(repo_url=repo_url,
+                                                    test_remove=TestType.STABLE_COMPATIBLE,
                                                     tier=tier)
 
     def __repr__(self):

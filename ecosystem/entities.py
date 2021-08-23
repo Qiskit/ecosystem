@@ -128,6 +128,11 @@ class CommandExecutionSummary:
         """Return warning messages."""
         return [log for log in self.logs if "warn" in log.lower()]
 
+    @property
+    def ok(self):  # pylint: disable=invalid-name
+        """If command finished with success."""
+        return self.code == 0
+
     @classmethod
     def empty(cls) -> 'CommandExecutionSummary':
         """Returns empty summary."""
