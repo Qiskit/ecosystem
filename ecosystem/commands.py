@@ -8,6 +8,7 @@ import setuptools
 from jinja2 import Template
 
 from ecosystem.entities import CommandExecutionSummary
+from ecosystem.logging import logger
 
 
 def _execute_command(command: List[str],
@@ -19,12 +20,13 @@ def _execute_command(command: List[str],
         logs = []
         while True:
             output = str(process.stdout.readline())
-            print(output.strip())
+            logger.info(output.strip())
             logs.append(output.strip())
             return_code = process.poll()
             if return_code is not None:
-                print('RETURN CODE', return_code)
+                logger.info('RETURN CODE: %s}', return_code)
                 for output in process.stdout.readlines():
+                    logger.info(str(output).strip())
                     logs.append(str(output).strip())
 
                 return CommandExecutionSummary(code=return_code,

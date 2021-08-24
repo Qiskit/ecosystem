@@ -6,7 +6,8 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
 from .entities import Tier, TestType
-from .tester import run_tests
+from .commands import run_tests
+from .logging import logger
 
 
 class Manager:
@@ -72,19 +73,20 @@ class Manager:
                                                      test_passed=test_type,
                                                      tier=tier)
             else:
+                logger.warning("Some commands failed. Check logs.")
                 self.controller.remove_repo_test_passed(repo_url=repo_url,
                                                         test_remove=test_type,
                                                         tier=tier)
         except Exception as exception:  # pylint: disable=broad-except)
-            print(f"Exception {exception}")
+            logger.error("Exception: %s", exception)
             # remove from passed tests if anything went wrong
             self.controller.remove_repo_test_passed(repo_url=repo_url,
                                                     test_remove=test_type,
                                                     tier=tier)
 
-    def basic_test(self, repo_url: str,
-                   tier: str = Tier.MAIN,
-                   tox_python: str = "py39"):
+    def standard_tests(self, repo_url: str,
+                       tier: str = Tier.MAIN,
+                       tox_python: str = "py39"):
         """Perform general checks for repository."""
         return self._run(repo_url=repo_url,
                          tier=tier,

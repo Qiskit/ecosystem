@@ -3,11 +3,11 @@ import os
 import shutil
 from unittest import TestCase
 
-from ecosystem.tester import _execute_command, _clone_repo
+from ecosystem.commands import _execute_command, _clone_repo
 from ecosystem.entities import CommandExecutionSummary
 
 
-class TestShell(TestCase):
+class TestCommands(TestCase):
     """Tests shell commands."""
     def setUp(self) -> None:
         self.path = "./resources"
