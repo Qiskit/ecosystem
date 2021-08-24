@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
+  compatibility_tests:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 2
@@ -18,7 +18,7 @@ jobs:
       run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M')"
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     - name: Set up tox env
@@ -33,11 +33,23 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    # test runs
+    # test runs with standard tests
     - name: Standard test for Qiskit-nature
-      run: python manager.py basic_test https://github.com/Qiskit/qiskit-nature --tox_python=py39
+      run: python manager.py standard_tests https://github.com/Qiskit/qiskit-nature --tox_python=py39
     - name: Standard test for Qiskit-finance
-      run: python manager.py basic_test https://github.com/Qiskit/qiskit-finance --tox_python=py39
+      run: python manager.py standard_tests https://github.com/Qiskit/qiskit-finance --tox_python=py39
+
+    # test runs with stable version of Qiskit
+    - name: Stable version of Qiskit test for Qiskit-nature
+      run: python manager.py stable_compatibility_tests https://github.com/Qiskit/qiskit-nature --tox_python=py39
+    - name: Stable version of Qiskit test for Qiskit-finance
+      run: python manager.py stable_compatibility_tests https://github.com/Qiskit/qiskit-finance --tox_python=py39
+
+    # test runs with dev version of Qiskit
+    - name: Dev version of Qiskit test for Qiskit-nature
+      run: python manager.py dev_compatibility_tests https://github.com/Qiskit/qiskit-nature --tox_python=py39
+    - name: Dev version of Qiskit test for Qiskit-finance
+      run: python manager.py dev_compatibility_tests https://github.com/Qiskit/qiskit-finance --tox_python=py39
 
     - name: State of members.json file
       run: cat ecosystem/resources/members.json
