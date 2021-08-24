@@ -2,6 +2,7 @@
 import inspect
 from abc import ABC
 from datetime import datetime
+import pprint
 from typing import Optional, List
 
 
@@ -24,6 +25,11 @@ class TestType:
     STABLE_COMPATIBLE: str = "STABLE_COMPATIBLE"
     DEV_COMPATIBLE: str = "DEV_COMPATIBLE"
     STANDARD: str = "STANDARD"
+
+    @classmethod
+    def all(cls):
+        """Return all test types"""
+        return [cls.STANDARD, cls.DEV_COMPATIBLE, cls.STABLE_COMPATIBLE]
 
 
 class Repository(ABC):
@@ -89,7 +95,48 @@ class Repository(ABC):
                 and self.description == other.description
                 and self.licence == other.licence)
 
+    def __repr__(self):
+        return pprint.pformat(self.to_dict(), indent=4)
+
+    def __str__(self):
+        return f"Repository({self.tier} | {self.name} | {self.url})"
+
 
 class MainRepository(Repository):
     """Main tier repository."""
     tier = Tier.MAIN
+
+
+class CommandExecutionSummary:
+    """Utils for command execution results."""
+
+    def __init__(self,
+                 code: int,
+                 logs: List[str],
+                 summary: Optional[str] = None):
+        """CommandExecutionSummary class."""
+        self.code = code
+        self.logs = logs
+        if summary:
+            self.summary = summary
+        elif len(self.logs) > 0:
+            self.summary = "".join(self.logs[-3:])
+        else:
+            self.summary = summary
+
+    def get_warning_logs(self) -> List[str]:
+        """Return warning messages."""
+        return [log for log in self.logs if "warn" in log.lower()]
+
+    @property
+    def ok(self):  # pylint: disable=invalid-name
+        """If command finished with success."""
+        return self.code == 0
+
+    @classmethod
+    def empty(cls) -> 'CommandExecutionSummary':
+        """Returns empty summary."""
+        return cls(0, [])
+
+    def __repr__(self):
+        return f"CommandExecutionSummary(code: {self.code} | {self.summary})"
