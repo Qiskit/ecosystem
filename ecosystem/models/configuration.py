@@ -1,0 +1,62 @@
+"""Configuration for ecosystem repository."""
+import json
+import pprint
+from typing import Optional, List
+
+from ecosystem.entities import JsonSerializable
+
+
+class Languages:
+    """Supported configuration languages."""
+    PYTHON: str = "python"
+
+    def all(self) -> List[str]:
+        """Return all supported languages."""
+        return [self.PYTHON]
+
+    def __repr__(self):
+        return "Languages({})".format(",".join(self.all()))
+
+
+class RepositoryConfiguration(JsonSerializable):
+    """Configuration for ecosystem repository."""
+
+    def __init__(self,
+                 language: str = Languages.PYTHON,
+                 dependencies_files: Optional[List[str]] = None,
+                 extra_dependencies: Optional[List[str]] = None,
+                 tests_command: Optional[List[str]] = None,
+                 styles_check_command: Optional[List[str]] = None):
+        """Configuration for ecosystem repository.
+
+        Args:
+            language: repository language
+            dependencies_files: list of dependencies files paths relative to root of repo
+                ex: for python `requirements.txt`
+            extra_dependencies: list of extra dependencies for project to install during tests run
+                ex: for python it might be `qiskit==0.19`
+            tests_command: list of commands to run tests
+                ex: for python `python -m unittest -v`
+            styles_check_command: list of commands to run style checks
+                ex: for python `pylint -rn ecosystem tests`
+        """
+        self.language = language
+        self.dependencies_files = dependencies_files or []
+        self.extra_dependencies = extra_dependencies or []
+        self.tests_command = tests_command or []
+        self.styles_check_command = styles_check_command or []
+
+    def save(self, path: str):
+        """Saves configuration as json file."""
+        with open(path, "w") as json_file:
+            json.dump(self.to_dict(), json_file, indent=4)
+
+    @classmethod
+    def load(cls, path: str) -> 'RepositoryConfiguration':
+        """Loads json file into object."""
+        with open(path, "r") as json_file:
+            return json.load(json_file,
+                             object_hook=lambda d: RepositoryConfiguration(**d))
+
+    def __repr__(self):
+        return pprint.pformat(self.to_dict(), indent=4)

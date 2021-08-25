@@ -32,7 +32,20 @@ class TestType:
         return [cls.STANDARD, cls.DEV_COMPATIBLE, cls.STABLE_COMPATIBLE]
 
 
-class Repository(ABC):
+class JsonSerializable(ABC):
+    """Classes that can be serialized as json."""
+    def to_dict(self) -> dict:
+        """Converts repo to dict."""
+        result = dict()
+        for name, value in inspect.getmembers(self):
+            if not name.startswith('_') and \
+                    not inspect.ismethod(value) and not inspect.isfunction(value) and \
+                    hasattr(self, name):
+                result[name] = value
+        return result
+
+
+class Repository(JsonSerializable):
     """Main repository class."""
 
     tier: str
@@ -78,16 +91,6 @@ class Repository(ABC):
         self.tests_passed = tests_passed if tests_passed else []
         if tier:
             self.tier = tier
-
-    def to_dict(self) -> dict:
-        """Converts repo to dict."""
-        result = dict()
-        for name, value in inspect.getmembers(self):
-            if not name.startswith('_') and \
-                    not inspect.ismethod(value) and not inspect.isfunction(value) and \
-                    hasattr(self, name):
-                result[name] = value
-        return result
 
     def __eq__(self, other: 'Repository'):
         return (self.tier == other.tier
