@@ -116,10 +116,12 @@ class Manager:
                          tox_python=tox_python,
                          dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
-    def stable_tests(self, repo_url: str):
+    def stable_tests(self, repo_url: str,
+                     python_version: str = "py39"):
         """Runs tests against stable version of qiskit."""
         runner = PythonRunner(repo_url,
                               working_directory=self.resources_dir,
-                              ecosystem_deps=["qiskit"])
+                              ecosystem_deps=["qiskit"],
+                              python_version=python_version)
         terra_version, _ = runner.run()
         return terra_version

@@ -77,7 +77,7 @@ class PythonRunner(Runner):
         super().__init__(repo=repo,
                          working_directory=working_directory)
         self.python_version = python_version
-        self.ecosystem_deps = ecosystem_deps or []
+        self.ecosystem_deps = ecosystem_deps or ["qiskit"]
 
     def workload(self) -> Tuple[str, CommandExecutionSummary]:
         """Runs checks for python repository.
@@ -93,6 +93,7 @@ class PythonRunner(Runner):
         """
         # check for configuration file
         if os.path.exists(f"{self.cloned_repo_directory}/qe_config.json"):
+            self.logger.info("Configuration file exists.")
             loaded_config = RepositoryConfiguration.load(
                 f"{self.cloned_repo_directory}/qe_config.json")
             repo_config = cast(PythonRepositoryConfiguration, loaded_config)

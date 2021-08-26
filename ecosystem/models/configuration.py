@@ -6,6 +6,7 @@ from typing import Optional, List
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from ecosystem.entities import JsonSerializable
+from ecosystem.utils import QiskitEcosystemException
 
 
 class Languages:
@@ -28,7 +29,7 @@ class RepositoryConfiguration(JsonSerializable):
                  dependencies_files: Optional[List[str]] = None,
                  extra_dependencies: Optional[List[str]] = None,
                  tests_command: Optional[List[str]] = None,
-                 styles_check_command: Optional[List[str]] = None,):
+                 styles_check_command: Optional[List[str]] = None, ):
         """Configuration for ecosystem repository.
 
         Args:
@@ -57,8 +58,17 @@ class RepositoryConfiguration(JsonSerializable):
     def load(cls, path: str) -> 'RepositoryConfiguration':
         """Loads json file into object."""
         with open(path, "r") as json_file:
-            return json.load(json_file,
-                             object_hook=lambda d: RepositoryConfiguration(**d))
+            config: RepositoryConfiguration = json.load(
+                json_file, object_hook=lambda d: RepositoryConfiguration(**d))
+            if config.language == Languages.PYTHON:
+                return PythonRepositoryConfiguration(
+                    dependencies_files=config.dependencies_files,
+                    extra_dependencies=config.extra_dependencies,
+                    tests_command=config.tests_command,
+                    styles_check_command=config.styles_check_command)
+            else:
+                raise QiskitEcosystemException("Unsupported language configuration type: %s",
+                                               config.language)
 
     def __repr__(self):
         return pprint.pformat(self.to_dict(), indent=4)
@@ -66,6 +76,7 @@ class RepositoryConfiguration(JsonSerializable):
 
 class PythonRepositoryConfiguration(RepositoryConfiguration):
     """Repository configuration for python based projects."""
+
     def __init__(self,
                  dependencies_files: Optional[List[str]] = None,
                  extra_dependencies: Optional[List[str]] = None,
@@ -86,12 +97,12 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     def default(cls) -> 'PythonRepositoryConfiguration':
         """Returns default python repository configuration."""
         return PythonRepositoryConfiguration(dependencies_files=[
-                                                 "requirements.txt"
-                                             ],
-                                             tests_command=[
-                                                 "pip check",
-                                                 "pytest -W error::DeprecationWarning"
-                                             ])
+            "requirements.txt"
+        ],
+            tests_command=[
+                "pip check",
+                "pytest -W error::DeprecationWarning"
+            ])
 
     def render_tox_file(self, ecosystem_deps: List[str] = None):
         """Renders tox template from configuration."""

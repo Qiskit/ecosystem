@@ -7,24 +7,42 @@ from ecosystem.controllers.runner import PythonRunner
 
 class TestPythonRunner(unittest.TestCase):
     """Tests for Python runner."""
+
     def setUp(self) -> None:
         current_directory = os.path.dirname(os.path.abspath(__file__))
-        self.project_dir = f"{current_directory}/resources/python_repository"
+        self.simple_project_dir = f"{current_directory}/" \
+                                  f"resources/simple_python_repository"
+        self.configured_project_dir = f"{current_directory}/" \
+                                      f"resources/configured_python_repository"
 
     def tearDown(self) -> None:
         files_to_delete = ["tox.ini", "terra_version.txt"]
-        for file in files_to_delete:
-            if os.path.exists(f"{self.project_dir}/{file}"):
-                os.remove(f"{self.project_dir}/{file}")
+        for directory in [self.simple_project_dir,
+                          self.configured_project_dir]:
+            for file in files_to_delete:
+                if os.path.exists(f"{directory}/{file}"):
+                    os.remove(f"{directory}/{file}")
 
-    def test_runner(self):
+    def test_runner_on_simple_repo(self):
         """Simple runner test."""
         runner = PythonRunner("test",
-                              working_directory=self.project_dir,
+                              working_directory=self.simple_project_dir,
                               ecosystem_deps=["qiskit"])
 
-        runner.cloned_repo_directory = self.project_dir
+        runner.cloned_repo_directory = self.simple_project_dir
         terra_version, result = runner.workload()
 
         self.assertFalse(result.ok)
+        self.assertTrue(terra_version)
+
+    def test_runner_on_configured_repo(self):
+        """Configured repo runner test."""
+        runner = PythonRunner("test",
+                              working_directory=self.configured_project_dir,
+                              ecosystem_deps=["qiskit"])
+
+        runner.cloned_repo_directory = self.configured_project_dir
+        terra_version, result = runner.workload()
+
+        self.assertTrue(result.ok)
         self.assertTrue(terra_version)
