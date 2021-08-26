@@ -3,6 +3,8 @@ import json
 import pprint
 from typing import Optional, List
 
+from jinja2 import Environment, PackageLoader, select_autoescape
+
 from ecosystem.entities import JsonSerializable
 
 
@@ -26,7 +28,7 @@ class RepositoryConfiguration(JsonSerializable):
                  dependencies_files: Optional[List[str]] = None,
                  extra_dependencies: Optional[List[str]] = None,
                  tests_command: Optional[List[str]] = None,
-                 styles_check_command: Optional[List[str]] = None):
+                 styles_check_command: Optional[List[str]] = None,):
         """Configuration for ecosystem repository.
 
         Args:
@@ -60,3 +62,39 @@ class RepositoryConfiguration(JsonSerializable):
 
     def __repr__(self):
         return pprint.pformat(self.to_dict(), indent=4)
+
+
+class PythonRepositoryConfiguration(RepositoryConfiguration):
+    """Repository configuration for python based projects."""
+    def __init__(self,
+                 dependencies_files: Optional[List[str]] = None,
+                 extra_dependencies: Optional[List[str]] = None,
+                 tests_command: Optional[List[str]] = None,
+                 styles_check_command: Optional[List[str]] = None):
+        super().__init__(language=Languages.PYTHON,
+                         dependencies_files=dependencies_files,
+                         extra_dependencies=extra_dependencies,
+                         tests_command=tests_command,
+                         styles_check_command=styles_check_command)
+        env = Environment(
+            loader=PackageLoader("ecosystem"),
+            autoescape=select_autoescape()
+        )
+        self.tox_template = env.get_template("configured_tox.ini")
+
+    @classmethod
+    def default(cls) -> 'PythonRepositoryConfiguration':
+        """Returns default python repository configuration."""
+        return PythonRepositoryConfiguration(dependencies_files=[
+                                                 "requirements.txt"
+                                             ],
+                                             tests_command=[
+                                                 "pip check",
+                                                 "pytest -W error::DeprecationWarning"
+                                             ])
+
+    def render_tox_file(self, ecosystem_deps: List[str] = None):
+        """Renders tox template from configuration."""
+        ecosystem_deps = ecosystem_deps or []
+        return self.tox_template.render({**self.to_dict(),
+                                         **{'ecosystem_deps': ecosystem_deps}})

@@ -5,9 +5,10 @@ from typing import Optional, List
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
+from .controllers.runner import PythonRunner
 from .entities import Tier, TestType
 from .commands import run_tests
-from .logging import logger
+from .utils import logger
 
 
 class Manager:
@@ -115,5 +116,10 @@ class Manager:
                          tox_python=tox_python,
                          dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
-    def __repr__(self):
-        return "Manager(CLI entrypoint)"
+    def stable_tests(self, repo_url: str):
+        """Runs tests against stable version of qiskit."""
+        runner = PythonRunner(repo_url,
+                              working_directory=self.resources_dir,
+                              ecosystem_deps=["qiskit"])
+        terra_version, _ = runner.run()
+        return terra_version

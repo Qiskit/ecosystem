@@ -8,7 +8,7 @@ import setuptools
 from jinja2 import Template
 
 from ecosystem.entities import CommandExecutionSummary
-from ecosystem.logging import logger
+from ecosystem.utils import logger
 
 
 def _execute_command(command: List[str],

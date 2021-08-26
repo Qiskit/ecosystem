@@ -1,3 +1,3 @@
 """Models for ecosystem."""
 
-from .configuration import RepositoryConfiguration
+from .configuration import RepositoryConfiguration, PythonRepositoryConfiguration
