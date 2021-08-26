@@ -49,6 +49,15 @@ class Runner:
         """Runs chain of commands to check repository."""
         result = {}
         self.set_up()
+
+        # clone repository
+        self.logger.info("Cloning repository.")
+        clone_res = _clone_repo(self.repo, directory=self.working_directory)
+
+        if not clone_res.ok:
+            raise QiskitEcosystemException(
+                f"Something went wrong with cloning {self.repo} repository.")
+
         try:
             result = self.workload()
         except Exception as exception:  # pylint: disable=broad-except)
@@ -82,15 +91,6 @@ class PythonRunner(Runner):
 
         Returns: execution summary of steps
         """
-
-        # clone repository
-        self.logger.info("Cloning repository.")
-        clone_res = _clone_repo(self.repo, directory=self.working_directory)
-
-        if not clone_res.ok:
-            raise QiskitEcosystemException(
-                f"Something went wrong with cloning {self.repo} repository.")
-
         # check for configuration file
         if os.path.exists(f"{self.cloned_repo_directory}/qe_config.json"):
             loaded_config = RepositoryConfiguration.load(
@@ -119,7 +119,7 @@ class PythonRunner(Runner):
         if os.path.exists(f"{self.cloned_repo_directory}/terra_version.txt"):
             with open(f"{self.cloned_repo_directory}/terra_version.txt", "r") as version_file:
                 terra_version = version_file.read()
-                self.logger.info(f"Terra version: {terra_version}")
+                self.logger.info("Terra version: %s", terra_version)
         else:
             self.logger.warning("There in no terra version file...")
 

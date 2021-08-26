@@ -9,7 +9,7 @@ class TestCaseWithResources(unittest.TestCase):
     path: str
 
     def setUp(self) -> None:
-        self.path = "./resources"
+        self.path = "./resources/tests_tmp_data"
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
