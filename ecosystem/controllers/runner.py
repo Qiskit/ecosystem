@@ -101,7 +101,6 @@ class PythonRunner(Runner):
             repo_config = PythonRepositoryConfiguration.default()
 
         # check for existing tox file
-        self.logger.info(f"Creating tox file {self.cloned_repo_directory}/tox.ini")
         if os.path.exists(f"{self.cloned_repo_directory}/tox.ini"):
             self.logger.info("Tox file exists.")
             os.rename(f"{self.cloned_repo_directory}/tox.ini",

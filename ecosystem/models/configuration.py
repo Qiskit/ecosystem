@@ -60,15 +60,15 @@ class RepositoryConfiguration(JsonSerializable):
         with open(path, "r") as json_file:
             config: RepositoryConfiguration = json.load(
                 json_file, object_hook=lambda d: RepositoryConfiguration(**d))
-            if config.language == Languages.PYTHON:
+            if config.language == Languages.PYTHON:  # pylint: disable=no-else-return
                 return PythonRepositoryConfiguration(
                     dependencies_files=config.dependencies_files,
                     extra_dependencies=config.extra_dependencies,
                     tests_command=config.tests_command,
                     styles_check_command=config.styles_check_command)
             else:
-                raise QiskitEcosystemException("Unsupported language configuration type: %s",
-                                               config.language)
+                raise QiskitEcosystemException(
+                    f"Unsupported language configuration type: {config.language}")
 
     def __repr__(self):
         return pprint.pformat(self.to_dict(), indent=4)
