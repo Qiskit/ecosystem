@@ -41,15 +41,15 @@ jobs:
 
     # test runs with stable version of Qiskit
     - name: Stable version of Qiskit test for Qiskit-nature
-      run: python manager.py stable_compatibility_tests https://github.com/Qiskit/qiskit-nature --tox_python=py39
+      run: python manager.py python_stable_tests https://github.com/Qiskit/qiskit-nature --tox_python=py39
     - name: Stable version of Qiskit test for Qiskit-finance
-      run: python manager.py stable_compatibility_tests https://github.com/Qiskit/qiskit-finance --tox_python=py39
+      run: python manager.py python_stable_tests https://github.com/Qiskit/qiskit-finance --tox_python=py39
 
     # test runs with dev version of Qiskit
     - name: Dev version of Qiskit test for Qiskit-nature
-      run: python manager.py dev_compatibility_tests https://github.com/Qiskit/qiskit-nature --tox_python=py39
+      run: python manager.py python_dev_tests https://github.com/Qiskit/qiskit-nature --tox_python=py39
     - name: Dev version of Qiskit test for Qiskit-finance
-      run: python manager.py dev_compatibility_tests https://github.com/Qiskit/qiskit-finance --tox_python=py39
+      run: python manager.py python_dev_tests https://github.com/Qiskit/qiskit-finance --tox_python=py39
 
     - name: State of members.json file
       run: cat ecosystem/resources/members.json
