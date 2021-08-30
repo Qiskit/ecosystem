@@ -114,12 +114,16 @@ class PythonRunner(Runner):
             tox_file.write(repo_config.render_tox_file(
                 ecosystem_deps=self.ecosystem_deps))
 
+        terra_version = "-"
+        if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):
+            self.logger.error("No setup.py file for repository %s", self.repo)
+            return terra_version, []
+
         # run tox
         tox_tests_res = _run_tox(directory=self.cloned_repo_directory,
                                  env=self.python_version)
 
         # get terra version from file
-        terra_version = "-"
         if os.path.exists(f"{self.cloned_repo_directory}/terra_version.txt"):
             with open(f"{self.cloned_repo_directory}/terra_version.txt", "r") as version_file:
                 terra_version = version_file.read()

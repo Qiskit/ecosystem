@@ -1,6 +1,6 @@
 """Manager class for controlling all CLI functions."""
 import os
-from typing import Optional
+from typing import Optional, List
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
@@ -41,27 +41,65 @@ class Manager:
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
 
-    def stable_tests(self, repo_url: str,
-                     tier: str = Tier.MAIN,
-                     python_version: str = "py39",):
-        """Runs tests against stable version of qiskit."""
+    def _run_python_tests(self,
+                          repo_url: str,
+                          tier: str,
+                          python_version: str,
+                          test_type: str,
+                          ecosystem_deps: Optional[List[str]] = None):
+        """Runs tests using python runner.
+
+        Args:
+            repo_url: repository url
+            tier: tier of project
+            python_version: ex: py36, py37 etc
+            test_type: [dev, stable]
+            ecosystem_deps: extra dependencies to install for tests
+        """
+        ecosystem_deps = ecosystem_deps or []
         runner = PythonRunner(repo_url,
                               working_directory=self.resources_dir,
-                              ecosystem_deps=["qiskit"],
+                              ecosystem_deps=ecosystem_deps,
                               python_version=python_version)
         terra_version, results = runner.run()
-
-        test_result = TestResult(passed=all(r.ok for r in results),
-                                 terra_version=terra_version,
-                                 test_type=TestType.STABLE_COMPATIBLE)
-        # save test res to db
-        result = self.controller.add_repo_test_result(repo_url=repo_url,
-                                                      tier=tier,
-                                                      test_result=test_result)
-        # print report
-        if result is None:
-            self.logger.warning("Test result was not saved."
-                                "There is not repo for url %s", repo_url)
-        self.logger.info("Test results: %s", test_result)
+        if len(results) > 0:
+            test_result = TestResult(passed=all(r.ok for r in results),
+                                     terra_version=terra_version,
+                                     test_type=test_type)
+            # save test res to db
+            result = self.controller.add_repo_test_result(repo_url=repo_url,
+                                                          tier=tier,
+                                                          test_result=test_result)
+            # print report
+            if result is None:
+                self.logger.warning("Test result was not saved."
+                                    "There is not repo for url %s", repo_url)
+            self.logger.info("Test results: %s", test_result)
+        else:
+            self.logger.warning("Runner returned 0 results.")
 
         return terra_version
+
+    def python_dev_tests(self,
+                         repo_url: str,
+                         tier: str = Tier.MAIN,
+                         python_version: str = "py39"):
+        """Runs tests against dev version of qiskit."""
+        return self._run_python_tests(
+            repo_url=repo_url,
+            tier=tier,
+            python_version=python_version,
+            test_type=TestType.DEV_COMPATIBLE,
+            ecosystem_deps=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
+
+    def python_stable_tests(self,
+                            repo_url: str,
+                            tier: str = Tier.MAIN,
+                            python_version: str = "py39"):
+        """Runs tests against stable version of qiskit."""
+        return self._run_python_tests(
+            repo_url=repo_url,
+            tier=tier,
+            python_version=python_version,
+            test_type=TestType.STABLE_COMPATIBLE,
+            ecosystem_deps=["qiskit"])
