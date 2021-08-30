@@ -96,9 +96,10 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     @classmethod
     def default(cls) -> 'PythonRepositoryConfiguration':
         """Returns default python repository configuration."""
-        return PythonRepositoryConfiguration(dependencies_files=[
-            "requirements.txt"
-        ],
+        return PythonRepositoryConfiguration(
+            dependencies_files=[
+                "requirements.txt"
+            ],
             tests_command=[
                 "pip check",
                 "pytest -W error::DeprecationWarning"

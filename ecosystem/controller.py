@@ -1,9 +1,9 @@
 """Entrypoint for CLI."""
 from typing import Optional, List
 
-from tinydb import TinyDB, Query, where
+from tinydb import TinyDB, Query
 
-from .entities import Repository, MainRepository, Tier
+from .entities import Repository, Tier, TestResult
 
 
 class Controller:
@@ -23,52 +23,35 @@ class Controller:
         table = self.database.table(repo.tier)
         return table.insert(repo.to_dict())
 
-    def get_all_main(self) -> List[MainRepository]:
+    def get_all_main(self) -> List[Repository]:
         """Returns all repositories from database."""
         table = self.database.table(Tier.MAIN)
-        return [MainRepository(**r) for r in table.all()]
+        return [Repository.from_dict(r) for r in table.all()]
 
     def get_by_url(self, url: str, tier: str) -> Optional[Repository]:
         """Returns repository by URL."""
         res = self.database.table(tier).get(Query().url == url)
-        return MainRepository(**res) if res else None
+        return Repository.from_dict(res) if res else None
 
-    def update_repo_tests_passed(self, repo: Repository,
-                                 tests_passed: List[str]) -> List[int]:
-        """Updates repository passed tests."""
-        table = self.database.table(repo.tier)
-        return table.update({"tests_passed": tests_passed},
-                            where('name') == repo.name)
-
-    def add_repo_test_passed(self,
-                             repo_url: str,
-                             test_passed: str,
-                             tier: str):
-        """Adds passed test if is not there yet."""
+    def add_repo_test_result(self, repo_url: str,
+                             tier: str,
+                             test_result: TestResult) -> Optional[List[int]]:
+        """Adds test result for repository."""
         table = self.database.table(tier)
-        repo = self.get_by_url(repo_url, tier)
-        if repo:
-            tests_passed = repo.tests_passed
-            if test_passed not in tests_passed:
-                tests_passed.append(test_passed)
-                return table.update({"tests_passed": tests_passed},
-                                    where('name') == repo.name)
-        return [0]
+        repository = Query()
 
-    def remove_repo_test_passed(self,
-                                repo_url: str,
-                                test_remove: str,
-                                tier: str):
-        """Remove passed tests."""
-        table = self.database.table(tier)
-        repo = self.get_by_url(repo_url, tier)
-        if repo:
-            tests_passed = repo.tests_passed
-            if test_remove in tests_passed:
-                tests_passed.remove(test_remove)
-                return table.update({"tests_passed": tests_passed},
-                                    where('name') == repo.name)
-        return [0]
+        fetched_repo_json = table.get(repository.url == repo_url)
+        if fetched_repo_json is not None:
+            fetched_repo = Repository.from_dict(fetched_repo_json)
+            fetched_test_results = fetched_repo.tests_results
+
+            new_test_results = [tr for tr in fetched_test_results
+                                if tr.test_type != test_result.test_type or
+                                tr.terra_version != test_result.terra_version] + [test_result]
+            fetched_repo.tests_results = new_test_results
+
+            return table.upsert(fetched_repo.to_dict(), repository.url == repo_url)
+        return None
 
     def delete(self, repo: Repository) -> List[int]:
         """Deletes entry."""

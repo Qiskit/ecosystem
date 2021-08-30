@@ -39,17 +39,15 @@ class Runner:
             shutil.rmtree(self.cloned_repo_directory)
 
     @abstractmethod
-    def workload(self) -> Tuple[str, CommandExecutionSummary]:
+    def workload(self) -> Tuple[str, List[CommandExecutionSummary]]:
         """Runs workload of commands to check repository.
 
         Returns: tuple (qiskit_version, CommandExecutionSummary)
         """
 
-    def run(self) -> Tuple[str, CommandExecutionSummary]:
+    def run(self) -> Tuple[str, List[CommandExecutionSummary]]:
         """Runs chain of commands to check repository."""
-        result = {}
         self.set_up()
-
         # clone repository
         self.logger.info("Cloning repository.")
         clone_res = _clone_repo(self.repo, directory=self.working_directory)
@@ -61,6 +59,7 @@ class Runner:
         try:
             result = self.workload()
         except Exception as exception:  # pylint: disable=broad-except)
+            result = ("-", CommandExecutionSummary(1, [], summary=str(exception)))
             self.logger.error(exception)
         self.tear_down()
         return result
@@ -73,13 +72,15 @@ class PythonRunner(Runner):
                  repo: Union[str, Repository],
                  working_directory: Optional[str] = None,
                  ecosystem_deps: Optional[List[str]] = None,
-                 python_version: str = "py39"):
+                 python_version: str = "py39",
+                 repo_config: Optional[RepositoryConfiguration] = None):
         super().__init__(repo=repo,
                          working_directory=working_directory)
         self.python_version = python_version
         self.ecosystem_deps = ecosystem_deps or ["qiskit"]
+        self.repo_config = repo_config
 
-    def workload(self) -> Tuple[str, CommandExecutionSummary]:
+    def workload(self) -> Tuple[str, List[CommandExecutionSummary]]:
         """Runs checks for python repository.
 
         Steps:
@@ -92,7 +93,9 @@ class PythonRunner(Runner):
         Returns: execution summary of steps
         """
         # check for configuration file
-        if os.path.exists(f"{self.cloned_repo_directory}/qe_config.json"):
+        if self.repo_config is not None:
+            repo_config = self.repo_config
+        elif os.path.exists(f"{self.cloned_repo_directory}/qe_config.json"):
             self.logger.info("Configuration file exists.")
             loaded_config = RepositoryConfiguration.load(
                 f"{self.cloned_repo_directory}/qe_config.json")
@@ -116,6 +119,7 @@ class PythonRunner(Runner):
                                  env=self.python_version)
 
         # get terra version from file
+        terra_version = "-"
         if os.path.exists(f"{self.cloned_repo_directory}/terra_version.txt"):
             with open(f"{self.cloned_repo_directory}/terra_version.txt", "r") as version_file:
                 terra_version = version_file.read()
@@ -123,4 +127,4 @@ class PythonRunner(Runner):
         else:
             self.logger.warning("There in no terra version file...")
 
-        return terra_version, tox_tests_res
+        return terra_version, [tox_tests_res]

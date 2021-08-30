@@ -12,10 +12,12 @@ from ecosystem.utils import logger
 
 
 def _execute_command(command: List[str],
-                     cwd: Optional[str] = None) -> CommandExecutionSummary:
+                     cwd: Optional[str] = None,
+                     name: Optional[str] = None) -> CommandExecutionSummary:
     """Executes specified command as subprocess in a directory."""
     with subprocess.Popen(command,
                           stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE,
                           cwd=cwd) as process:
         logs = []
         while True:
@@ -30,7 +32,8 @@ def _execute_command(command: List[str],
                     logs.append(str(output).strip())
 
                 return CommandExecutionSummary(code=return_code,
-                                               logs=logs)
+                                               logs=logs,
+                                               name=name)
 
 
 def _clone_repo(repo: str, directory: str) -> CommandExecutionSummary:
@@ -51,7 +54,8 @@ def _run_tox(directory: str, env: str) -> CommandExecutionSummary:
     """Run tox test."""
     return _execute_command(["tox", "-e{}".format(env),
                              "--workdir", directory],
-                            cwd=directory)
+                            cwd=directory,
+                            name="tox")
 
 
 def _cleanup(directory: Optional[str] = None):
