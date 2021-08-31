@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Get current datetime
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M')"
+      run: echo "::set-output name=date::$(date +'%Y_%m_%d_%H_%M')"
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
@@ -32,12 +32,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-
-    # test runs with standard tests
-    - name: Standard test for Qiskit-nature
-      run: python manager.py standard_tests https://github.com/Qiskit/qiskit-nature --tox_python=py39
-    - name: Standard test for Qiskit-finance
-      run: python manager.py standard_tests https://github.com/Qiskit/qiskit-finance --tox_python=py39
 
     # test runs with stable version of Qiskit
     - name: Stable version of Qiskit test for Qiskit-nature
