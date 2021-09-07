@@ -13,7 +13,10 @@ from ecosystem.utils import QiskitEcosystemException
 
 
 class Runner:
-    """Runner for repository checks."""
+    """Runner for repository checks.
+
+    General class to run workflow for repository.
+    """
 
     def __init__(self,
                  repo: Union[str, Repository],
@@ -49,7 +52,7 @@ class Runner:
         """Runs chain of commands to check repository."""
         self.set_up()
         # clone repository
-        self.logger.info("Cloning repository.")
+        self.logger.info("Cloning repository: %s", self.repo)
         clone_res = _clone_repo(self.repo, directory=self.working_directory)
 
         if not clone_res.ok:

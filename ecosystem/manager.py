@@ -13,6 +13,11 @@ from .utils import logger
 class Manager:
     """Manager class.
     Entrypoint for all CLI commands.
+
+    Each public method of this class is CLI command
+    and arguments for method are options/flags for this command.
+
+    Ex: `python manager.py generate_readme --path=<SOME_DIRECTORY>`
     """
 
     def __init__(self):
@@ -74,7 +79,7 @@ class Manager:
             if result is None:
                 self.logger.warning("Test result was not saved."
                                     "There is not repo for url %s", repo_url)
-            self.logger.info("Test results: %s", test_result)
+            self.logger.info("Test results for %s: %s", repo_url, test_result)
         else:
             self.logger.warning("Runner returned 0 results.")
 
