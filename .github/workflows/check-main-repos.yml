@@ -1,8 +1,6 @@
 name: Test main tier of ecosystem
 
 on:
-  schedule:
-    - cron:  '5 8 * * 2' # each Tuesday at 8 05
   workflow_dispatch:
 
 jobs:
