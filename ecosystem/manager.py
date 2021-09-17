@@ -1,5 +1,6 @@
 """Manager class for controlling all CLI functions."""
 import os
+import re
 from typing import Optional, List
 
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -114,6 +115,29 @@ class Manager:
                          test_type=TestType.DEV_COMPATIBLE,
                          tox_python=tox_python,
                          dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
+
+    def parse_submission_issue(self,
+                               body_of_issue: str):
+        """ Parse issue body. """
+        github_pattern = r"https://github.com/([\w\-\_]+)/([\w\-\_]+)"
+        github_info_res = re.findall(github_pattern, body_of_issue)
+
+        if len(github_info_res) > 0:
+            account, repo = github_info_res[0]
+        else:
+            account = None
+            repo = body_of_issue.split("### Github repo")[1].split("### Description")[0].strip()
+
+        description = body_of_issue.split("### Description")[1].split("### Email")[0].strip()
+        email = body_of_issue.split("### Email")[1].split("### Alternatives")[0].strip()
+        alternatives = body_of_issue.split("### Alternatives")[1].split("### License")[0].strip()
+        license = body_of_issue.split("### License")[1].split("### Affiliations")[0].strip()
+        affiliations = body_of_issue.split("### Affiliations")[1].split("### Tags")[0].strip()
+        tags = body_of_issue.split("### Tags")[1].strip()
+
+        issue_parse = [account, repo, description, email, alternatives, license, affiliations, tags]
+
+        return issue_parse
 
     def __repr__(self):
         return "Manager(CLI entrypoint)"
