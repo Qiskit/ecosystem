@@ -126,21 +126,17 @@ class Manager:
         github_info_res = re.findall(github_pattern, body_of_issue)
 
         if len(github_info_res) > 0:
-            account, repo = github_info_res[0]
+            self.account, self.repo = github_info_res[0]
         else:
-            account = None
-            repo = parse[1]
+            self.account = None
+            self.repo = parse[1]
 
-        description = parse[3]
-        email = parse[5]
-        alternatives = parse[7]
-        license = parse[9]
-        affiliations = parse[11]
-        tags = parse[13]
-
-        issue_parse = [account, repo, description, email, alternatives, license, affiliations, tags]
-
-        return issue_parse
+        self.description = parse[3]
+        self.email = parse[5]
+        self.alternatives = parse[7]
+        self.license = parse[9]
+        self.affiliations = parse[11]
+        self.tags = parse[13]
 
     def __repr__(self):
         return "Manager(CLI entrypoint)"
