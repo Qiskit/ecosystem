@@ -6,7 +6,7 @@ from typing import Optional, List
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
-from .entities import Tier, TestType
+from .entities import Tier, TestType, Repository
 from .commands import run_tests
 from .logging import logger
 
@@ -116,27 +116,18 @@ class Manager:
                          tox_python=tox_python,
                          dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
-    def parse_submission_issue(self,
-                               body_of_issue: str) -> Repository:
+    def parse_submission_issue(self, body_of_issue: str) -> Repository:
         """ Parse issue body. """
 
         parse = re.findall(r'^([\s\S]*?)(?:\n{2,}|\Z)', body_of_issue, re.M)
 
-        github_pattern = r"https://github.com/([\w\-\_]+)/([\w\-\_]+)"
-        github_info_res = re.findall(github_pattern, body_of_issue)
-
-        if len(github_info_res) > 0:
-            self.account, self.repo = github_info_res[0]
-        else:
-            self.account = None
-            self.repo = parse[1]
-
+        self.url = parse[1]
         self.description = parse[3]
-        self.email = parse[5]
+        self.contact_info = parse[5]
         self.alternatives = parse[7]
         self.license = parse[9]
         self.affiliations = parse[11]
-        self.tags = parse[13]
+        self.labels = parse[13].split(",")
 
     def __repr__(self):
         return "Manager(CLI entrypoint)"
