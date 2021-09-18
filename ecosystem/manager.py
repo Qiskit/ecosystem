@@ -121,6 +121,9 @@ class Manager:
 
         parse = re.findall(r'^([\s\S]*?)(?:\n{2,}|\Z)', body_of_issue, re.M)
 
+        repo_name = parse[1].split("/")
+
+        self.name = repo_name[-1]
         self.url = parse[1]
         self.description = parse[3]
         self.contact_info = parse[5]
