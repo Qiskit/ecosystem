@@ -131,8 +131,7 @@ class Manager:
         licence = parse[9]
         affiliations = parse[11]
 
-        labels_pattern = r"([\w\]+)([\w\-\_]+)"
-        labels = re.findall(labels_pattern, parse[13])
+        labels = re.findall(r"([\w\]+)([\w\-\_]+)", parse[13])
 
         repo = Repository(name, url, description, licence, contact_info, alternatives, affiliations, labels)
         return repo
