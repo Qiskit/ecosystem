@@ -1,7 +1,7 @@
 """Tests for manager."""
 from unittest import TestCase
 from ecosystem.entities import Repository
-from ecosystem.manager import parse_submission_issue
+from ecosystem.manager import Manager
 
 
 class TestManager(TestCase):
@@ -36,9 +36,9 @@ _No response_
 ### Tags
 
 tool, tutorial"""
-        parsed_result = parse_submission_issue(issue_body)
+        parsed_result = Manager.parse_submission_issue(issue_body)
 
-        self.assertTrue(isinstance(Repository, parse_submission_issue))
+        self.assertTrue(isinstance(Repository, parsed_result))
         self.assertEqual(parsed_result.name, "awesome")
         self.assertEqual(parsed_result.url, "http://github.com/awesome/awesome")
         self.assertEqual(parsed_result.description, "An awesome repo for awesome project")
