@@ -116,21 +116,26 @@ class Manager:
                          tox_python=tox_python,
                          dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
-    def parse_submission_issue(self, body_of_issue: str) -> Repository:
+    def parse_submission_issue(body_of_issue: str) -> Repository:
         """ Parse issue body. """
 
         parse = re.findall(r'^([\s\S]*?)(?:\n{2,}|\Z)', body_of_issue, re.M)
 
         repo_name = parse[1].split("/")
 
-        self.name = repo_name[-1]
-        self.url = parse[1]
-        self.description = parse[3]
-        self.contact_info = parse[5]
-        self.alternatives = parse[7]
-        self.license = parse[9]
-        self.affiliations = parse[11]
-        self.labels = parse[13].split(",")
+        name = repo_name[-1]
+        url = parse[1]
+        description = parse[3]
+        contact_info = parse[5]
+        alternatives = parse[7]
+        licence = parse[9]
+        affiliations = parse[11]
+
+        labels_pattern = r"([\w\]+)([\w\-\_]+)"
+        labels = re.findall(labels_pattern, parse[13])
+
+        repo = Repository(name, url, description, licence, contact_info, alternatives, affiliations, labels)
+        return repo
 
     def __repr__(self):
         return "Manager(CLI entrypoint)"
