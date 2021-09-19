@@ -1,6 +1,6 @@
 name: Ecosystem repo tests and style checks
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   lint:
