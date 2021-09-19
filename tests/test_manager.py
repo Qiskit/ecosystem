@@ -7,36 +7,14 @@ from ecosystem.manager import Manager
 class TestManager(TestCase):
     """Test class for manager functions."""
 
+    def setUp(self) -> None:
+        with open("ressources/issue.md", "r") as issue_body_file:
+            self.issue_body = issue_body_file.read()
+
     def test_issue_parsing(self):
         """"Tests issue parsing function"""
-        issue_body = """### Github repo
-
-http://github.com/awesome/awesome
-
-### Description
-
-An awesome repo for awesome project
-
-### Email
-
-toto@gege.com
-
-### Alternatives
-
-tititata
-
-### License
-
-Apache License 2.0
-
-### Affiliations
-
-_No response_
-
-### Tags
-
-tool, tutorial"""
-        parsed_result = Manager.parse_submission_issue(issue_body)
+        self.setUp()
+        parsed_result = Manager.handle_submission(self.issue_body)
 
         self.assertTrue(isinstance(parsed_result, Repository))
         self.assertEqual(parsed_result.name, "awesome")

@@ -11,6 +11,27 @@ from .commands import run_tests
 from .logging import logger
 
 
+def parse_submission_issue(body_of_issue: str) -> Repository:
+    """ Parse issue body. """
+
+    parse = re.findall(r'^([\s\S]*?)(?:\n{2,}|\Z)', body_of_issue, re.M)
+
+    repo_name = parse[1].split("/")
+
+    name = repo_name[-1]
+    url = parse[1]
+    description = parse[3]
+    contact_info = parse[5]
+    alternatives = parse[7]
+    licence = parse[9]
+    affiliations = parse[11]
+
+    labels = re.findall(r"([\w\]+)([\w\-\_]+)", parse[13])
+
+    repo = Repository(name, url, description, licence, contact_info, alternatives, affiliations, labels)
+    return repo
+
+
 class Manager:
     """Manager class.
     Entrypoint for all CLI commands.
@@ -116,24 +137,9 @@ class Manager:
                          tox_python=tox_python,
                          dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
-    def parse_submission_issue(body_of_issue: str) -> Repository:
-        """ Parse issue body. """
+    def handle_submission(issue_text: str):
+        repo = parse_submission_issue(issue_text)
 
-        parse = re.findall(r'^([\s\S]*?)(?:\n{2,}|\Z)', body_of_issue, re.M)
-
-        repo_name = parse[1].split("/")
-
-        name = repo_name[-1]
-        url = parse[1]
-        description = parse[3]
-        contact_info = parse[5]
-        alternatives = parse[7]
-        licence = parse[9]
-        affiliations = parse[11]
-
-        labels = re.findall(r"([\w\]+)([\w\-\_]+)", parse[13])
-
-        repo = Repository(name, url, description, licence, contact_info, alternatives, affiliations, labels)
         return repo
 
     def __repr__(self):
