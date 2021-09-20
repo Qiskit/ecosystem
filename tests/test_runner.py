@@ -2,8 +2,7 @@
 import os
 import unittest
 
-from ecosystem.controllers.runner import PythonTestsRunner
-from ecosystem.controllers.runner import PythonStyleRunner
+from ecosystem.controllers.runner import PythonTestsRunner, PythonStyleRunner
 
 
 class TestPythonRunner(unittest.TestCase):
@@ -56,7 +55,7 @@ class TestPythonRunner(unittest.TestCase):
         runner.cloned_repo_directory = self.simple_project_dir
         result = runner.workload()
 
-        self.assertFalse(all(r.ok for r in result))
+        self.assertTrue(all(r.ok for r in result))
 
     def test_styles_runner_on_configured_repo(self):
         """Configured repo runner test."""

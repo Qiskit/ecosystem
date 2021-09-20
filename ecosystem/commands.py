@@ -50,6 +50,15 @@ def _check_tox_ini(directory: str) -> CommandExecutionSummary:
     return CommandExecutionSummary.empty()
 
 
+def _check_pylintrc_file(directory: str) -> CommandExecutionSummary:
+    """Checks for .pylintrc file existance."""
+    if not os.path.isfile("{}/.pylintrc".format(directory)):
+        return CommandExecutionSummary(code=1,
+                                       logs=[],
+                                       summary="No .pylintrc file in project.")
+    return CommandExecutionSummary.empty()
+
+
 def _run_tox(directory: str, env: str) -> CommandExecutionSummary:
     """Run tox test."""
     return _execute_command(["tox", "-e{}".format(env),
@@ -59,7 +68,7 @@ def _run_tox(directory: str, env: str) -> CommandExecutionSummary:
 
 
 def _run_lint(directory: str) -> CommandExecutionSummary:
-    """Run tox test."""
+    """Run lint test."""
     return _execute_command(["tox", "-elint",
                              "--workdir", directory],
                             cwd=directory,
@@ -119,6 +128,57 @@ def run_tests(repo: str,
                                                    dependencies=dependencies))
 
         res["stable tests results"] = _run_tox(cloned_repo_directory, tox_python)
+
+    _cleanup(directory)
+
+    return res
+
+
+def run_lint(repo: str,
+             resources_dir: str,
+             template_and_deps: Optional[Tuple[Template, List[str]]] = None) \
+        -> Dict[str, CommandExecutionSummary]:
+    """Run tests for specified repository.
+
+    Args:
+        repo: repository url
+              ex: https://github.com/Qiskit/qiskit-nature
+        resources_dir: directory to clone repo and run tests in
+        template_and_deps: template for tox file and list of dependencies to install in tox
+
+    Returns:
+        dict of executed step names and results of execution.
+    """
+    name = repo.split("/")[-1]
+
+    directory = "{}/cloned_repos_directory".format(resources_dir)
+    cloned_repo_directory = f"{directory}/{name}"
+
+    _cleanup(directory)
+    os.makedirs(directory)
+
+    clone_res = _clone_repo(repo, directory=directory)
+    pylintrc_exists_res = _check_pylintrc_file(cloned_repo_directory)
+
+    res = {
+        "repo clone": clone_res,
+        "check for .pylintrc file": pylintrc_exists_res
+    }
+
+    if clone_res.ok and pylintrc_exists_res.ok:
+        if template_and_deps is not None:
+            tox_template, dependencies = template_and_deps
+            # rename old tox file
+            os.rename(f"{cloned_repo_directory}/.pylintrc",
+                      f"{cloned_repo_directory}/default_pylintrc")
+
+            # create new tox file for stable tests
+            packages = setuptools.find_packages(cloned_repo_directory)
+            with open(f"{cloned_repo_directory}/.pylintrc", "w") as tox_file:
+                tox_file.write(tox_template.render(packages=packages,
+                                                   dependencies=dependencies))
+
+        res["stable tests results"] = _run_lint(cloned_repo_directory)
 
     _cleanup(directory)
 
