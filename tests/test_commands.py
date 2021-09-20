@@ -1,22 +1,13 @@
 """Tests for shell commands."""
 import os
-import shutil
-from unittest import TestCase
 
 from ecosystem.commands import _execute_command, _clone_repo
 from ecosystem.entities import CommandExecutionSummary
+from .common import TestCaseWithResources
 
 
-class TestCommands(TestCase):
+class TestCommands(TestCaseWithResources):
     """Tests shell commands."""
-    def setUp(self) -> None:
-        self.path = "./resources"
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
-
-    def tearDown(self) -> None:
-        if os.path.exists(self.path):
-            shutil.rmtree(self.path)
 
     def test_execute_command(self):
         """Tests command execution."""

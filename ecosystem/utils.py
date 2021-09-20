@@ -3,6 +3,10 @@ import logging
 import os
 
 
+class QiskitEcosystemException(Exception):
+    """Exceptions for qiskit ecosystem."""
+
+
 class OneLineExceptionFormatter(logging.Formatter):
     """Exception formatter"""
     def formatException(self, ei):

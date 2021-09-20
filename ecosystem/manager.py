@@ -5,14 +5,19 @@ from typing import Optional, List
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
-from .entities import Tier, TestType
-from .commands import run_tests
-from .logging import logger
+from .controllers.runner import PythonRunner
+from .entities import Tier, TestType, TestResult
+from .utils import logger
 
 
 class Manager:
     """Manager class.
     Entrypoint for all CLI commands.
+
+    Each public method of this class is CLI command
+    and arguments for method are options/flags for this command.
+
+    Ex: `python manager.py generate_readme --path=<SOME_DIRECTORY>`
     """
 
     def __init__(self):
@@ -27,6 +32,7 @@ class Manager:
         self.readme_template = self.env.get_template("readme.md")
         self.tox_template = self.env.get_template("tox.ini")
         self.controller = Controller(path=self.resources_dir)
+        self.logger = logger
 
     def generate_readme(self, path: Optional[str] = None):
         """Generates entire readme for ecosystem repository.
@@ -40,80 +46,65 @@ class Manager:
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
 
-    def _run(self,
-             repo_url: str,
-             tier: str,
-             test_type: str,
-             tox_python: str,
-             dependencies: Optional[List[str]] = None):
-        """Run tests on repository.
+    def _run_python_tests(self,
+                          repo_url: str,
+                          tier: str,
+                          python_version: str,
+                          test_type: str,
+                          ecosystem_deps: Optional[List[str]] = None):
+        """Runs tests using python runner.
 
         Args:
             repo_url: repository url
-            tier: tier of membership
-            tox_python: tox env to run tests on
-            dependencies: list of extra dependencies to install
+            tier: tier of project
+            python_version: ex: py36, py37 etc
+            test_type: [dev, stable]
+            ecosystem_deps: extra dependencies to install for tests
         """
-        try:
-            if dependencies is not None:
-                dev_tests_results = run_tests(
-                    repo_url,
-                    resources_dir=self.resources_dir,
-                    tox_python=tox_python,
-                    template_and_deps=(self.tox_template, dependencies))
-            else:
-                dev_tests_results = run_tests(
-                    repo_url,
-                    resources_dir=self.resources_dir,
-                    tox_python=tox_python)
-            # if all steps of test are successful
-            if all(c.ok for c in dev_tests_results.values()):
-                # update repo entry and assign successful tests
-                self.controller.add_repo_test_passed(repo_url=repo_url,
-                                                     test_passed=test_type,
-                                                     tier=tier)
-            else:
-                logger.warning("Some commands failed. Check logs.")
-                self.controller.remove_repo_test_passed(repo_url=repo_url,
-                                                        test_remove=test_type,
-                                                        tier=tier)
-        except Exception as exception:  # pylint: disable=broad-except)
-            logger.error("Exception: %s", exception)
-            # remove from passed tests if anything went wrong
-            self.controller.remove_repo_test_passed(repo_url=repo_url,
-                                                    test_remove=test_type,
-                                                    tier=tier)
+        ecosystem_deps = ecosystem_deps or []
+        runner = PythonRunner(repo_url,
+                              working_directory=self.resources_dir,
+                              ecosystem_deps=ecosystem_deps,
+                              python_version=python_version)
+        terra_version, results = runner.run()
+        if len(results) > 0:
+            test_result = TestResult(passed=all(r.ok for r in results),
+                                     terra_version=terra_version,
+                                     test_type=test_type)
+            # save test res to db
+            result = self.controller.add_repo_test_result(repo_url=repo_url,
+                                                          tier=tier,
+                                                          test_result=test_result)
+            # print report
+            if result is None:
+                self.logger.warning("Test result was not saved."
+                                    "There is not repo for url %s", repo_url)
+            self.logger.info("Test results for %s: %s", repo_url, test_result)
+        else:
+            self.logger.warning("Runner returned 0 results.")
 
-    def standard_tests(self, repo_url: str,
-                       tier: str = Tier.MAIN,
-                       tox_python: str = "py39"):
-        """Perform general checks for repository."""
-        return self._run(repo_url=repo_url,
-                         tier=tier,
-                         test_type=TestType.STANDARD,
-                         tox_python=tox_python)
+        return terra_version
 
-    def stable_compatibility_tests(self,
-                                   repo_url: str,
-                                   tier: str = Tier.MAIN,
-                                   tox_python: str = "py39"):
-        """Runs tests against stable version of Qiskit."""
-        return self._run(repo_url=repo_url,
-                         tier=tier,
-                         test_type=TestType.STABLE_COMPATIBLE,
-                         tox_python=tox_python,
-                         dependencies=["qiskit"])
+    def python_dev_tests(self,
+                         repo_url: str,
+                         tier: str = Tier.MAIN,
+                         python_version: str = "py39"):
+        """Runs tests against dev version of qiskit."""
+        return self._run_python_tests(
+            repo_url=repo_url,
+            tier=tier,
+            python_version=python_version,
+            test_type=TestType.DEV_COMPATIBLE,
+            ecosystem_deps=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
-    def dev_compatibility_tests(self,
-                                repo_url: str,
-                                tier: str = Tier.MAIN,
-                                tox_python: str = "py39"):
-        """Runs tests against dev version of Qiskit (main branch)."""
-        return self._run(repo_url=repo_url,
-                         tier=tier,
-                         test_type=TestType.DEV_COMPATIBLE,
-                         tox_python=tox_python,
-                         dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
-
-    def __repr__(self):
-        return "Manager(CLI entrypoint)"
+    def python_stable_tests(self,
+                            repo_url: str,
+                            tier: str = Tier.MAIN,
+                            python_version: str = "py39"):
+        """Runs tests against stable version of qiskit."""
+        return self._run_python_tests(
+            repo_url=repo_url,
+            tier=tier,
+            python_version=python_version,
+            test_type=TestType.STABLE_COMPATIBLE,
+            ecosystem_deps=["qiskit"])
