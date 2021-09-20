@@ -120,10 +120,6 @@ class Manager:
             test_type=TestType.DEV_COMPATIBLE,
             ecosystem_deps=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
-    def handle_submission(self, issue_text: str):
-        """Handles submission workflow."""
-        return parse_submission_issue(issue_text)
-
     def python_stable_tests(self,
                             repo_url: str,
                             tier: str = Tier.MAIN,
