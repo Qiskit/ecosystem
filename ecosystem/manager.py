@@ -121,10 +121,8 @@ class Manager:
             ecosystem_deps=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
     def handle_submission(self, issue_text: str):
-        """Lots of stuff ; still ongoing"""
-        self.repo = parse_submission_issue(issue_text)
-
-        return self.repo
+        """Handles submission workflow."""
+        return parse_submission_issue(issue_text)
 
     def python_stable_tests(self,
                             repo_url: str,
