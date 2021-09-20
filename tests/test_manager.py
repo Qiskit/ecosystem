@@ -8,7 +8,7 @@ class TestManager(TestCase):
     """Test class for manager functions."""
 
     def setUp(self) -> None:
-        with open("tests/ressources/issue.md", "r") as issue_body_file:
+        with open("tests/resources/issue.md", "r") as issue_body_file:
             self.issue_body = issue_body_file.read()
 
     def test_issue_parsing(self):
