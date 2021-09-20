@@ -167,16 +167,16 @@ def run_lint(repo: str,
 
     if clone_res.ok and pylintrc_exists_res.ok:
         if template_and_deps is not None:
-            tox_template, dependencies = template_and_deps
+            pylintrc_template, dependencies = template_and_deps
             # rename old tox file
             os.rename(f"{cloned_repo_directory}/.pylintrc",
                       f"{cloned_repo_directory}/default_pylintrc")
 
             # create new tox file for stable tests
             packages = setuptools.find_packages(cloned_repo_directory)
-            with open(f"{cloned_repo_directory}/.pylintrc", "w") as tox_file:
-                tox_file.write(tox_template.render(packages=packages,
-                                                   dependencies=dependencies))
+            with open(f"{cloned_repo_directory}/.pylintrc", "w") as pylintrc_file:
+                pylintrc_file.write(pylintrc_template.render(packages=packages,
+                                                             dependencies=dependencies))
 
         res["stable tests results"] = _run_lint(cloned_repo_directory)
 

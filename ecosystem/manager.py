@@ -54,6 +54,7 @@ class Manager:
         )
         self.readme_template = self.env.get_template("readme.md")
         self.tox_template = self.env.get_template("tox.ini")
+        self.pylintrc_template = self.env.get_template(".pylintrc")
         self.controller = Controller(path=self.resources_dir)
         self.logger = logger
 

@@ -105,10 +105,10 @@ class StyleResult(JsonSerializable):
     @classmethod
     def from_dict(cls, dictionary: dict):
         return StyleResult(passed=dictionary.get("passed"),
-                           style_type=dictionary.get("test_type"))
+                           style_type=dictionary.get("style_type"))
 
     def to_string(self) -> str:
-        """Test result as string."""
+        """Style result as string."""
         return self._STYLE_PASSED if self.passed else self._STYLE_FAILED
 
     def __eq__(self, other: 'StyleResult'):
@@ -134,7 +134,8 @@ class Repository(JsonSerializable):
                  created_at: Optional[int] = None,
                  updated_at: Optional[int] = None,
                  tier: str = Tier.MAIN,
-                 tests_results: Optional[List[TestResult]] = None):
+                 tests_results: Optional[List[TestResult]] = None,
+                 styles_results: Optional[List[TestResult]] = None):
         """Repository controller.
 
         Args:
@@ -149,6 +150,7 @@ class Repository(JsonSerializable):
             created_at: creation date
             updated_at: update date
             tests_results: tests passed by repo
+            styles_results: styles passed by repo
         """
         self.name = name
         self.url = url
@@ -161,6 +163,7 @@ class Repository(JsonSerializable):
         self.created_at = created_at if created_at is not None else datetime.now().timestamp()
         self.updated_at = updated_at if updated_at is not None else datetime.now().timestamp()
         self.tests_results = tests_results if tests_results else []
+        self.styles_results = styles_results if styles_results else []
         self.tier = tier
 
     @classmethod
@@ -168,6 +171,10 @@ class Repository(JsonSerializable):
         tests_results = []
         if "tests_results" in dictionary:
             tests_results = [TestResult.from_dict(r) for r in dictionary.get("tests_results", [])]
+        styles_results = []
+        if "styles_results" in dictionary:
+            styles_results = [StyleResult.from_dict(r)
+                              for r in dictionary.get("styles_results", [])]
 
         return Repository(name=dictionary.get("name"),
                           url=dictionary.get("url"),
@@ -177,7 +184,8 @@ class Repository(JsonSerializable):
                           alternatives=dictionary.get("alternatives"),
                           labels=dictionary.get("labels"),
                           tier=dictionary.get("tier"),
-                          tests_results=tests_results)
+                          tests_results=tests_results,
+                          styles_results=styles_results)
 
     def __eq__(self, other: 'Repository'):
         return (self.tier == other.tier
