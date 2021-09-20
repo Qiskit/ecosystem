@@ -101,6 +101,7 @@ class Repository(JsonSerializable):
                  licence: str,
                  contact_info: Optional[str] = None,
                  alternatives: Optional[str] = None,
+                 affiliations: Optional[str] = None,
                  labels: Optional[List[str]] = None,
                  created_at: Optional[int] = None,
                  updated_at: Optional[int] = None,
@@ -115,6 +116,7 @@ class Repository(JsonSerializable):
             licence: licence
             contact_info: contact information
             alternatives: alternatives to project
+            affiliations : affiliations of the project
             labels: labels
             created_at: creation date
             updated_at: update date
@@ -126,6 +128,7 @@ class Repository(JsonSerializable):
         self.licence = licence
         self.contact_info = contact_info
         self.alternatives = alternatives
+        self.affiliations = affiliations
         self.labels = labels if labels is not None else []
         self.created_at = created_at if created_at is not None else datetime.now().timestamp()
         self.updated_at = updated_at if updated_at is not None else datetime.now().timestamp()

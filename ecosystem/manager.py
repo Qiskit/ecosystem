@@ -1,13 +1,36 @@
 """Manager class for controlling all CLI functions."""
 import os
+import re
 from typing import Optional, List
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from .controller import Controller
 from .controllers.runner import PythonRunner
-from .entities import Tier, TestType, TestResult
+from .entities import Tier, TestType, TestResult, Repository
 from .utils import logger
+
+
+def parse_submission_issue(body_of_issue: str) -> Repository:
+    """Parse issue body."""
+
+    parse = re.findall(r'^([\s\S]*?)(?:\n{2,}|\Z)', body_of_issue, re.M)
+
+    repo_name = parse[1].split("/")
+
+    name = repo_name[-1]
+    url = parse[1]
+    description = parse[3]
+    contact_info = parse[5]
+    alternatives = parse[7]
+    licence = parse[9]
+    affiliations = parse[11]
+
+    labels = re.findall(r"([\w\]+)([\w\-\_]+)", parse[13])
+
+    repo = Repository(name, url, description, licence,
+                      contact_info, alternatives, affiliations, labels)
+    return repo
 
 
 class Manager:
