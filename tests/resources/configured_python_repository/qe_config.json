@@ -1,0 +1,13 @@
+{
+    "dependencies_files": [
+        "requirements.txt",
+        "requirements-dev.txt"
+    ],
+    "extra_dependencies": [
+        "pytest"
+    ],
+    "language": "python",
+    "tests_command": [
+        "pytest"
+    ]
+}

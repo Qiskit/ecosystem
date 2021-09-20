@@ -1,8 +1,7 @@
 """Classes and controllers for json storage."""
-import inspect
+import pprint
 from abc import ABC
 from datetime import datetime
-import pprint
 from typing import Optional, List
 
 
@@ -32,10 +31,68 @@ class TestType:
         return [cls.STANDARD, cls.DEV_COMPATIBLE, cls.STABLE_COMPATIBLE]
 
 
-class Repository(ABC):
-    """Main repository class."""
+class JsonSerializable(ABC):
+    """Classes that can be serialized as json."""
 
-    tier: str
+    @classmethod
+    def from_dict(cls, dictionary: dict):
+        """Converts dict to object."""
+
+    def to_dict(self) -> dict:
+        """Converts repo to dict."""
+        result = {}
+        for key, val in self.__dict__.items():
+            if key.startswith("_"):
+                continue
+            element = []
+            if isinstance(val, list):
+                for item in val:
+                    if isinstance(item, JsonSerializable):
+                        element.append(item.to_dict())
+                    else:
+                        element.append(item)
+            elif isinstance(val, JsonSerializable):
+                element = val.to_dict()
+            else:
+                element = val
+            result[key] = element
+        return result
+
+
+class TestResult(JsonSerializable):
+    """Tests status."""
+    _TEST_PASSED: str = "passed"
+    _TEST_FAILED: str = "failed"
+
+    def __init__(self,
+                 passed: bool,
+                 terra_version: str,
+                 test_type: str):
+        self.test_type = test_type
+        self.passed = passed
+        self.terra_version = terra_version
+
+    @classmethod
+    def from_dict(cls, dictionary: dict):
+        return TestResult(passed=dictionary.get("passed"),
+                          terra_version=dictionary.get("terra_version"),
+                          test_type=dictionary.get("test_type"))
+
+    def to_string(self) -> str:
+        """Test result as string."""
+        return self._TEST_PASSED if self.passed else self._TEST_FAILED
+
+    def __eq__(self, other: 'TestResult'):
+        return self.passed == other.passed \
+               and self.test_type == other.test_type \
+               and self.terra_version == other.terra_version
+
+    def __repr__(self):
+        return f"TestResult({self.passed}, {self.test_type}, {self.terra_version})"
+
+
+class Repository(JsonSerializable):
+    """Main repository class."""
 
     def __init__(self,
                  name: str,
@@ -48,9 +105,8 @@ class Repository(ABC):
                  labels: Optional[List[str]] = None,
                  created_at: Optional[int] = None,
                  updated_at: Optional[int] = None,
-                 tier: Optional[str] = None,
-                 tests_to_run: List[str] = None,
-                 tests_passed: List[str] = None):
+                 tier: str = Tier.MAIN,
+                 tests_results: Optional[List[TestResult]] = None):
         """Repository controller.
 
         Args:
@@ -64,8 +120,7 @@ class Repository(ABC):
             labels: labels
             created_at: creation date
             updated_at: update date
-            tests_to_run: tests need to be executed against repo
-            tests_passed: tests passed by repo
+            tests_results: tests passed by repo
         """
         self.name = name
         self.url = url
@@ -77,20 +132,24 @@ class Repository(ABC):
         self.labels = labels if labels is not None else []
         self.created_at = created_at if created_at is not None else datetime.now().timestamp()
         self.updated_at = updated_at if updated_at is not None else datetime.now().timestamp()
-        self.tests_to_run = tests_to_run if tests_to_run else []
-        self.tests_passed = tests_passed if tests_passed else []
-        if tier:
-            self.tier = tier
+        self.tests_results = tests_results if tests_results else []
+        self.tier = tier
 
-    def to_dict(self) -> dict:
-        """Converts repo to dict."""
-        result = dict()
-        for name, value in inspect.getmembers(self):
-            if not name.startswith('_') and \
-                    not inspect.ismethod(value) and not inspect.isfunction(value) and \
-                    hasattr(self, name):
-                result[name] = value
-        return result
+    @classmethod
+    def from_dict(cls, dictionary: dict):
+        tests_results = []
+        if "tests_results" in dictionary:
+            tests_results = [TestResult.from_dict(r) for r in dictionary.get("tests_results", [])]
+
+        return Repository(name=dictionary.get("name"),
+                          url=dictionary.get("url"),
+                          description=dictionary.get("description"),
+                          licence=dictionary.get("licence"),
+                          contact_info=dictionary.get("contact_info"),
+                          alternatives=dictionary.get("alternatives"),
+                          labels=dictionary.get("labels"),
+                          tier=dictionary.get("tier"),
+                          tests_results=tests_results)
 
     def __eq__(self, other: 'Repository'):
         return (self.tier == other.tier
@@ -105,19 +164,16 @@ class Repository(ABC):
         return f"Repository({self.tier} | {self.name} | {self.url})"
 
 
-class MainRepository(Repository):
-    """Main tier repository."""
-    tier = Tier.MAIN
-
-
 class CommandExecutionSummary:
     """Utils for command execution results."""
 
     def __init__(self,
                  code: int,
                  logs: List[str],
-                 summary: Optional[str] = None):
+                 summary: Optional[str] = None,
+                 name: Optional[str] = None):
         """CommandExecutionSummary class."""
+        self.name = name or ""
         self.code = code
         self.logs = logs
         if summary:
@@ -142,4 +198,4 @@ class CommandExecutionSummary:
         return cls(0, [])
 
     def __repr__(self):
-        return f"CommandExecutionSummary(code: {self.code} | {self.summary})"
+        return f"CommandExecutionSummary({self.name} | code: {self.code} | {self.summary})"

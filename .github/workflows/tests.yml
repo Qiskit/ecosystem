@@ -1,6 +1,6 @@
 name: Ecosystem repo tests and style checks
 
-on: [push]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   lint:
@@ -20,7 +20,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      max-parallel: 2
       matrix:
         python-version: [3.9]
     steps:
