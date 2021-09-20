@@ -56,13 +56,3 @@ class TestPythonRunner(unittest.TestCase):
         result = runner.workload()
 
         self.assertTrue(all(r.ok for r in result))
-
-    def test_styles_runner_on_configured_repo(self):
-        """Configured repo runner test."""
-        runner = PythonStyleRunner("test",
-                                   working_directory=self.configured_project_dir)
-
-        runner.cloned_repo_directory = self.configured_project_dir
-        result = runner.workload()
-
-        self.assertTrue(all(r.ok for r in result))
