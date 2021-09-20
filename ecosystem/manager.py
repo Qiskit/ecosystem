@@ -12,7 +12,7 @@ from .logging import logger
 
 
 def parse_submission_issue(body_of_issue: str) -> Repository:
-    """ Parse issue body. """
+    """Parse issue body."""
 
     parse = re.findall(r'^([\s\S]*?)(?:\n{2,}|\Z)', body_of_issue, re.M)
 
@@ -28,7 +28,8 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
 
     labels = re.findall(r"([\w\]+)([\w\-\_]+)", parse[13])
 
-    repo = Repository(name, url, description, licence, contact_info, alternatives, affiliations, labels)
+    repo = Repository(name, url, description, licence,
+                      contact_info, alternatives, affiliations, labels)
     return repo
 
 
@@ -49,6 +50,7 @@ class Manager:
         self.readme_template = self.env.get_template("readme.md")
         self.tox_template = self.env.get_template("tox.ini")
         self.controller = Controller(path=self.resources_dir)
+        self.repo = Repository
 
     def generate_readme(self, path: Optional[str] = None):
         """Generates entire readme for ecosystem repository.
@@ -137,10 +139,11 @@ class Manager:
                          tox_python=tox_python,
                          dependencies=["git+https://github.com/Qiskit/qiskit-terra.git@main"])
 
-    def handle_submission(issue_text: str):
-        repo = parse_submission_issue(issue_text)
+    def handle_submission(self, issue_text: str):
+        """Lots of stuff ; still ongoing"""
+        self.repo = parse_submission_issue(issue_text)
 
-        return repo
+        return self.repo
 
     def __repr__(self):
         return "Manager(CLI entrypoint)"

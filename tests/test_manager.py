@@ -1,20 +1,19 @@
 """Tests for manager."""
 from unittest import TestCase
 from ecosystem.entities import Repository
-from ecosystem.manager import Manager
+from ecosystem.manager import parse_submission_issue
 
 
 class TestManager(TestCase):
     """Test class for manager functions."""
 
     def setUp(self) -> None:
-        with open("ressources/issue.md", "r") as issue_body_file:
+        with open("tests/ressources/issue.md", "r") as issue_body_file:
             self.issue_body = issue_body_file.read()
 
     def test_issue_parsing(self):
         """"Tests issue parsing function"""
-        self.setUp()
-        parsed_result = Manager.handle_submission(self.issue_body)
+        parsed_result = parse_submission_issue(self.issue_body)
 
         self.assertTrue(isinstance(parsed_result, Repository))
         self.assertEqual(parsed_result.name, "awesome")
