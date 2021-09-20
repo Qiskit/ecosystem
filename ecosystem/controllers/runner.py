@@ -5,7 +5,7 @@ from abc import abstractmethod
 from logging import Logger
 from typing import Optional, Union, cast, List, Tuple
 
-from ecosystem.commands import _clone_repo, _run_tox
+from ecosystem.commands import _clone_repo, _run_tox, _run_lint
 from ecosystem.entities import CommandExecutionSummary, Repository
 from ecosystem.utils import logger as ecosystem_logger
 from ecosystem.models import RepositoryConfiguration, PythonRepositoryConfiguration
@@ -68,8 +68,8 @@ class Runner:
         return result
 
 
-class PythonRunner(Runner):
-    """Runners for Python repositories."""
+class PythonTestsRunner(Runner):
+    """Runners for testing Python repositories."""
 
     def __init__(self,
                  repo: Union[str, Repository],
@@ -84,7 +84,7 @@ class PythonRunner(Runner):
         self.repo_config = repo_config
 
     def workload(self) -> Tuple[str, List[CommandExecutionSummary]]:
-        """Runs checks for python repository.
+        """Runs tests checks for python repository.
 
         Steps:
         - check for configuration file
@@ -135,3 +135,38 @@ class PythonRunner(Runner):
             self.logger.warning("There in no terra version file...")
 
         return terra_version, [tox_tests_res]
+
+
+class PythonStyleRunner(Runner):
+    """Runners for styling Python repositories."""
+
+    def __init__(self,
+                 repo: Union[str, Repository],
+                 working_directory: Optional[str] = None,
+                 ecosystem_deps: Optional[List[str]] = None,
+                 repo_config: Optional[RepositoryConfiguration] = None):
+        super().__init__(repo=repo,
+                         working_directory=working_directory)
+        self.ecosystem_deps = ecosystem_deps or ["qiskit"]
+        self.repo_config = repo_config
+
+    def workload(self) -> List[CommandExecutionSummary]:
+        """Runs styles checks for python repository.
+
+        Steps:
+        - optional: check for .pylintrc file
+        - run lint
+        - form report
+
+        Returns: execution summary of steps
+        """
+        # check for existing .pylintrc file
+        if os.path.exists(f"{self.cloned_repo_directory}/.pylintrc"):
+            self.logger.info(".pylintrc file exists.")
+            os.rename(f"{self.cloned_repo_directory}/.pylintrc",
+                      f"{self.cloned_repo_directory}/.pylintrc_default")
+
+        # run tox
+        tox_lint_res = _run_lint(directory=self.cloned_repo_directory)
+
+        return [tox_lint_res]

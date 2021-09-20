@@ -58,6 +58,14 @@ def _run_tox(directory: str, env: str) -> CommandExecutionSummary:
                             name="tox")
 
 
+def _run_lint(directory: str) -> CommandExecutionSummary:
+    """Run tox test."""
+    return _execute_command(["tox", "-elint",
+                             "--workdir", directory],
+                            cwd=directory,
+                            name="tox")
+
+
 def _cleanup(directory: Optional[str] = None):
     """Removes temp directory."""
     if directory and os.path.exists(directory):

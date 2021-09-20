@@ -91,6 +91,34 @@ class TestResult(JsonSerializable):
         return f"TestResult({self.passed}, {self.test_type}, {self.terra_version})"
 
 
+class StyleResult(JsonSerializable):
+    """Tests status."""
+    _STYLE_PASSED: str = "passed"
+    _STYLE_FAILED: str = "failed"
+
+    def __init__(self,
+                 passed: bool,
+                 style_type: str):
+        self.style_type = style_type
+        self.passed = passed
+
+    @classmethod
+    def from_dict(cls, dictionary: dict):
+        return StyleResult(passed=dictionary.get("passed"),
+                           style_type=dictionary.get("test_type"))
+
+    def to_string(self) -> str:
+        """Test result as string."""
+        return self._STYLE_PASSED if self.passed else self._STYLE_FAILED
+
+    def __eq__(self, other: 'StyleResult'):
+        return self.passed == other.passed \
+               and self.style_type == other.style_type
+
+    def __repr__(self):
+        return f"TestResult({self.passed}, {self.style_type}"
+
+
 class Repository(JsonSerializable):
     """Main repository class."""
 

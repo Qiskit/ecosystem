@@ -2,7 +2,8 @@
 import os
 import unittest
 
-from ecosystem.controllers.runner import PythonRunner
+from ecosystem.controllers.runner import PythonTestsRunner
+from ecosystem.controllers.runner import PythonStyleRunner
 
 
 class TestPythonRunner(unittest.TestCase):
@@ -23,11 +24,11 @@ class TestPythonRunner(unittest.TestCase):
                 if os.path.exists(f"{directory}/{file}"):
                     os.remove(f"{directory}/{file}")
 
-    def test_runner_on_simple_repo(self):
+    def test_tests_runner_on_simple_repo(self):
         """Simple runner test."""
-        runner = PythonRunner("test",
-                              working_directory=self.simple_project_dir,
-                              ecosystem_deps=["qiskit"])
+        runner = PythonTestsRunner("test",
+                                   working_directory=self.simple_project_dir,
+                                   ecosystem_deps=["qiskit"])
 
         runner.cloned_repo_directory = self.simple_project_dir
         terra_version, result = runner.workload()
@@ -35,14 +36,34 @@ class TestPythonRunner(unittest.TestCase):
         self.assertFalse(all(r.ok for r in result))
         self.assertTrue(terra_version)
 
-    def test_runner_on_configured_repo(self):
+    def test_tests_runner_on_configured_repo(self):
         """Configured repo runner test."""
-        runner = PythonRunner("test",
-                              working_directory=self.configured_project_dir,
-                              ecosystem_deps=["qiskit"])
+        runner = PythonTestsRunner("test",
+                                   working_directory=self.configured_project_dir,
+                                   ecosystem_deps=["qiskit"])
 
         runner.cloned_repo_directory = self.configured_project_dir
         terra_version, result = runner.workload()
 
         self.assertTrue(all(r.ok for r in result))
         self.assertTrue(terra_version)
+
+    def test_styles_runner_on_simple_repo(self):
+        """Simple runner test."""
+        runner = PythonStyleRunner("test",
+                                   working_directory=self.simple_project_dir)
+
+        runner.cloned_repo_directory = self.simple_project_dir
+        result = runner.workload()
+
+        self.assertFalse(all(r.ok for r in result))
+
+    def test_styles_runner_on_configured_repo(self):
+        """Configured repo runner test."""
+        runner = PythonStyleRunner("test",
+                                   working_directory=self.configured_project_dir)
+
+        runner.cloned_repo_directory = self.configured_project_dir
+        result = runner.workload()
+
+        self.assertTrue(all(r.ok for r in result))
