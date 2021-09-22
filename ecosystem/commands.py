@@ -58,6 +58,14 @@ def _run_tox(directory: str, env: str) -> CommandExecutionSummary:
                             name="tox")
 
 
+def _run_lint(directory: str) -> CommandExecutionSummary:
+    """Run lint test."""
+    return _execute_command(["tox", "-elint",
+                             "--workdir", directory],
+                            cwd=directory,
+                            name="tox")
+
+
 def _cleanup(directory: Optional[str] = None):
     """Removes temp directory."""
     if directory and os.path.exists(directory):
@@ -111,6 +119,55 @@ def run_tests(repo: str,
                                                    dependencies=dependencies))
 
         res["stable tests results"] = _run_tox(cloned_repo_directory, tox_python)
+
+    _cleanup(directory)
+
+    return res
+
+
+def run_lint(repo: str,
+             resources_dir: str,
+             template_and_deps: Optional[Tuple[Template, List[str]]] = None) \
+        -> Dict[str, CommandExecutionSummary]:
+    """Run tests for specified repository.
+
+    Args:
+        repo: repository url
+              ex: https://github.com/Qiskit/qiskit-nature
+        resources_dir: directory to clone repo and run tests in
+        template_and_deps: template for tox file and list of dependencies to install in tox
+
+    Returns:
+        dict of executed step names and results of execution.
+    """
+    name = repo.split("/")[-1]
+
+    directory = "{}/cloned_repos_directory".format(resources_dir)
+    cloned_repo_directory = f"{directory}/{name}"
+
+    _cleanup(directory)
+    os.makedirs(directory)
+
+    clone_res = _clone_repo(repo, directory=directory)
+
+    res = {
+        "repo clone": clone_res,
+    }
+
+    if clone_res.ok:
+        if template_and_deps is not None:
+            pylintrc_template, dependencies = template_and_deps
+            # rename old tox file
+            os.rename(f"{cloned_repo_directory}/.pylintrc",
+                      f"{cloned_repo_directory}/default_pylintrc")
+
+            # create new tox file for stable tests
+            packages = setuptools.find_packages(cloned_repo_directory)
+            with open(f"{cloned_repo_directory}/.pylintrc", "w") as pylintrc_file:
+                pylintrc_file.write(pylintrc_template.render(packages=packages,
+                                                             dependencies=dependencies))
+
+        res["stable tests results"] = _run_lint(cloned_repo_directory)
 
     _cleanup(directory)
 
