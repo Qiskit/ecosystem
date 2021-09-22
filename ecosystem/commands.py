@@ -50,15 +50,6 @@ def _check_tox_ini(directory: str) -> CommandExecutionSummary:
     return CommandExecutionSummary.empty()
 
 
-def _check_pylintrc_file(directory: str) -> CommandExecutionSummary:
-    """Checks for .pylintrc file existance."""
-    if not os.path.isfile("{}/.pylintrc".format(directory)):
-        return CommandExecutionSummary(code=1,
-                                       logs=[],
-                                       summary="No .pylintrc file in project.")
-    return CommandExecutionSummary.empty()
-
-
 def _run_tox(directory: str, env: str) -> CommandExecutionSummary:
     """Run tox test."""
     return _execute_command(["tox", "-e{}".format(env),
@@ -158,14 +149,12 @@ def run_lint(repo: str,
     os.makedirs(directory)
 
     clone_res = _clone_repo(repo, directory=directory)
-    pylintrc_exists_res = _check_pylintrc_file(cloned_repo_directory)
 
     res = {
         "repo clone": clone_res,
-        "check for .pylintrc file": pylintrc_exists_res
     }
 
-    if clone_res.ok and pylintrc_exists_res.ok:
+    if clone_res.ok:
         if template_and_deps is not None:
             pylintrc_template, dependencies = template_and_deps
             # rename old tox file
