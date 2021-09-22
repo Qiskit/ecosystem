@@ -154,19 +154,38 @@ class PythonStyleRunner(Runner):
         """Runs styles checks for python repository.
 
         Steps:
+	- check for configuration file
         - optional: check for .pylintrc file
+	- optional: render .pylintrc file
         - run lint
         - form report
 
         Returns: execution summary of steps
         """
+
+        # check for configuration file
+        if self.repo_config is not None:
+            repo_config = self.repo_config
+        elif os.path.exists(f"{self.cloned_repo_directory}/qe_config.json"):
+            self.logger.info("Configuration file exists.")
+            loaded_config = RepositoryConfiguration.load(
+                f"{self.cloned_repo_directory}/qe_config.json")
+            repo_config = cast(PythonRepositoryConfiguration, loaded_config)
+        else:
+            repo_config = PythonRepositoryConfiguration.default()
+
         # check for existing .pylintrc file
         if os.path.exists(f"{self.cloned_repo_directory}/.pylintrc"):
             self.logger.info(".pylintrc file exists.")
             os.rename(f"{self.cloned_repo_directory}/.pylintrc",
                       f"{self.cloned_repo_directory}/.pylintrc_default")
 
-        # run tox
+        # render new tox file for tests
+        with open(f"{self.cloned_repo_directory}/.pylintrc", "w") as lint_file:
+            lint_file.write(repo_config.render_lint_file(
+                ecosystem_deps=self.ecosystem_deps))
+
+        # run lint
         tox_lint_res = _run_lint(directory=self.cloned_repo_directory)
 
         return [tox_lint_res]

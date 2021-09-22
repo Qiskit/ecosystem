@@ -92,6 +92,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             autoescape=select_autoescape()
         )
         self.tox_template = env.get_template("configured_tox.ini")
+        self.lint_template = env.get_template(".pylintrc")
 
     @classmethod
     def default(cls) -> 'PythonRepositoryConfiguration':
@@ -109,4 +110,10 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         """Renders tox template from configuration."""
         ecosystem_deps = ecosystem_deps or []
         return self.tox_template.render({**self.to_dict(),
+                                         **{'ecosystem_deps': ecosystem_deps}})
+
+    def render_lint_file(self, ecosystem_deps: List[str] = None):
+        """Renders .pylintrc template from configuration."""
+        ecosystem_deps = ecosystem_deps or []
+        return self.lint_template.render({**self.to_dict(),
                                          **{'ecosystem_deps': ecosystem_deps}})
