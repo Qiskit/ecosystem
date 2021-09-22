@@ -5,8 +5,8 @@ from typing import Optional, List
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from ecosystem.entities import JsonSerializable
-from ecosystem.utils import QiskitEcosystemException
+from ecosystem.utils.utils import QiskitEcosystemException
+from .utils import JsonSerializable
 
 
 class Languages:
@@ -112,8 +112,6 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         return self.tox_template.render({**self.to_dict(),
                                          **{'ecosystem_deps': ecosystem_deps}})
 
-    def render_lint_file(self, ecosystem_deps: List[str] = None):
+    def render_lint_file(self):
         """Renders .pylintrc template from configuration."""
-        ecosystem_deps = ecosystem_deps or []
-        return self.lint_template.render({**self.to_dict(),
-                                         **{'ecosystem_deps': ecosystem_deps}})
+        return self.lint_template.render()

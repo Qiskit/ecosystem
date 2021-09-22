@@ -1,8 +1,9 @@
 """Tests for entities."""
 import os
 from unittest import TestCase
-from ecosystem.entities import Repository, TestResult, TestType
-from ecosystem.controller import Controller
+from ecosystem.models import TestResult, TestType
+from ecosystem.daos import JsonDAO
+from ecosystem.models.repository import Repository
 
 
 def get_main_repo() -> Repository:
@@ -16,11 +17,11 @@ def get_main_repo() -> Repository:
                           TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)])
 
 
-class TestController(TestCase):
+class TestJsonDao(TestCase):
     """Tests repository related functions."""
 
     def setUp(self) -> None:
-        self.path = "./resources"
+        self.path = "../resources"
         self.members_path = "{}/members.json".format(self.path)
         self._delete_members_json()
         if not os.path.exists(self.path):
@@ -41,7 +42,7 @@ class TestController(TestCase):
         self._delete_members_json()
 
         main_repo = get_main_repo()
-        controller = Controller(self.path)
+        controller = JsonDAO(self.path)
 
         # insert entry
         controller.insert(main_repo)
@@ -57,7 +58,7 @@ class TestController(TestCase):
     def test_add_test_result(self):
         """Tests adding result to repo."""
         self._delete_members_json()
-        controller = Controller(self.path)
+        controller = JsonDAO(self.path)
 
         main_repo = get_main_repo()
         controller.insert(main_repo)

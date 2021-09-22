@@ -2,8 +2,8 @@
 import os
 
 from ecosystem.commands import _execute_command, _clone_repo
-from ecosystem.entities import CommandExecutionSummary
-from .common import TestCaseWithResources
+from ecosystem.models import CommandExecutionSummary
+from tests.common import TestCaseWithResources
 
 
 class TestCommands(TestCaseWithResources):
