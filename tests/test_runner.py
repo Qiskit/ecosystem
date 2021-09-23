@@ -6,6 +6,7 @@ from ecosystem.controllers.runner import PythonTestsRunner, PythonStyleRunner, P
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
+
 class TestPythonRunner(unittest.TestCase):
     """Tests for Python runner."""
 
@@ -17,7 +18,7 @@ class TestPythonRunner(unittest.TestCase):
                                       f"resources/configured_python_repository"
 
     def tearDown(self) -> None:
-        files_to_delete = []	#["tox.ini", "terra_version.txt"]
+        files_to_delete = ["tox.ini", "terra_version.txt"]
         for directory in [self.simple_project_dir,
                           self.configured_project_dir]:
             for file in files_to_delete:
@@ -48,6 +49,14 @@ class TestPythonRunner(unittest.TestCase):
         self.assertTrue(all(r.ok for r in result))
         self.assertTrue(terra_version)
 
+        runner_coverage = PythonCoverageRunner("test",
+                                               working_directory=self.configured_project_dir)
+
+        runner_coverage.cloned_repo_directory = self.configured_project_dir
+        result_coverage = runner_coverage.workload()
+
+        self.assertTrue(all(r.ok for r in result_coverage))
+
     def test_styles_runner_on_configured_repo(self):
         """Simple runner test."""
         runner = PythonStyleRunner("lint",
@@ -55,16 +64,6 @@ class TestPythonRunner(unittest.TestCase):
                                    ecosystem_deps=["qiskit"])
 
         runner.cloned_repo_directory = self.configured_project_dir
-        result = runner.workload()
-
-        self.assertTrue(all(r.ok for r in result))
-
-    def test_coverage_runner_on_simple_repo(self):
-        """Simple runner test."""
-        runner = PythonCoverageRunner("coverage",
-                                      working_directory=self.simple_project_dir)
-
-        runner.cloned_repo_directory = self.simple_project_dir
         result = runner.workload()
 
         self.assertTrue(all(r.ok for r in result))
