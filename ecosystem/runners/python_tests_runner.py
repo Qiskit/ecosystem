@@ -2,7 +2,7 @@
 import os
 from typing import Optional, Union, cast, List, Tuple
 
-from ecosystem.commands import _run_tox
+from ecosystem.commands import RunToxCommand
 from ecosystem.models import (RepositoryConfiguration, PythonRepositoryConfiguration,
                               CommandExecutionSummary)
 from ecosystem.models.repository import Repository
@@ -64,8 +64,8 @@ class PythonTestsRunner(Runner):
             return terra_version, []
 
         # run tox
-        tox_tests_res = _run_tox(directory=self.cloned_repo_directory,
-                                 env=self.python_version)
+        tox_tests_res = RunToxCommand.execute(directory=self.cloned_repo_directory,
+                                              env=self.python_version)
 
         # get terra version from file
         if os.path.exists(f"{self.cloned_repo_directory}/terra_version.txt"):

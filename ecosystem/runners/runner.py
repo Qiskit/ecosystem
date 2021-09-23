@@ -5,7 +5,7 @@ from abc import abstractmethod
 from logging import Logger
 from typing import Optional, Union, List, Tuple
 
-from ecosystem.commands import _clone_repo
+from ecosystem.commands import CloneRepoCommand
 from ecosystem.models import CommandExecutionSummary, RepositoryConfiguration
 from ecosystem.models.repository import Repository
 from ecosystem.utils import QiskitEcosystemException
@@ -55,7 +55,8 @@ class Runner:
         self.set_up()
         # clone repository
         self.logger.info("Cloning repository: %s", self.repo)
-        clone_res = _clone_repo(self.repo, directory=self.working_directory)
+        clone_res = CloneRepoCommand.execute(repo=self.repo,
+                                             directory=self.working_directory)
 
         if not clone_res.ok:
             raise QiskitEcosystemException(
