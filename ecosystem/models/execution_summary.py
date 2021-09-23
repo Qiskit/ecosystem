@@ -4,11 +4,14 @@ from typing import List, Optional
 
 class CommandExecutionSummary:
     """Utils for command execution results."""
-    def __init__(self,
-                 code: int,
-                 logs: List[str],
-                 summary: Optional[str] = None,
-                 name: Optional[str] = None):
+
+    def __init__(
+        self,
+        code: int,
+        logs: List[str],
+        summary: Optional[str] = None,
+        name: Optional[str] = None,
+    ):
         """CommandExecutionSummary class."""
         self.name = name or ""
         self.code = code
@@ -30,9 +33,11 @@ class CommandExecutionSummary:
         return self.code == 0
 
     @classmethod
-    def empty(cls) -> 'CommandExecutionSummary':
+    def empty(cls) -> "CommandExecutionSummary":
         """Returns empty summary."""
         return cls(0, [])
 
     def __repr__(self):
-        return f"CommandExecutionSummary({self.name} | code: {self.code} | {self.summary})"
+        return (
+            f"CommandExecutionSummary({self.name} | code: {self.code} | {self.summary})"
+        )

@@ -11,6 +11,7 @@ from .utils import JsonSerializable
 
 class Languages:
     """Supported configuration languages."""
+
     PYTHON: str = "python"
 
     def all(self) -> List[str]:
@@ -24,12 +25,14 @@ class Languages:
 class RepositoryConfiguration(JsonSerializable):
     """Configuration for ecosystem repository."""
 
-    def __init__(self,
-                 language: str = Languages.PYTHON,
-                 dependencies_files: Optional[List[str]] = None,
-                 extra_dependencies: Optional[List[str]] = None,
-                 tests_command: Optional[List[str]] = None,
-                 styles_check_command: Optional[List[str]] = None, ):
+    def __init__(
+        self,
+        language: str = Languages.PYTHON,
+        dependencies_files: Optional[List[str]] = None,
+        extra_dependencies: Optional[List[str]] = None,
+        tests_command: Optional[List[str]] = None,
+        styles_check_command: Optional[List[str]] = None,
+    ):
         """Configuration for ecosystem repository.
 
         Args:
@@ -55,20 +58,23 @@ class RepositoryConfiguration(JsonSerializable):
             json.dump(self.to_dict(), json_file, indent=4)
 
     @classmethod
-    def load(cls, path: str) -> 'RepositoryConfiguration':
+    def load(cls, path: str) -> "RepositoryConfiguration":
         """Loads json file into object."""
         with open(path, "r") as json_file:
             config: RepositoryConfiguration = json.load(
-                json_file, object_hook=lambda d: RepositoryConfiguration(**d))
+                json_file, object_hook=lambda d: RepositoryConfiguration(**d)
+            )
             if config.language == Languages.PYTHON:  # pylint: disable=no-else-return
                 return PythonRepositoryConfiguration(
                     dependencies_files=config.dependencies_files,
                     extra_dependencies=config.extra_dependencies,
                     tests_command=config.tests_command,
-                    styles_check_command=config.styles_check_command)
+                    styles_check_command=config.styles_check_command,
+                )
             else:
                 raise QiskitEcosystemException(
-                    f"Unsupported language configuration type: {config.language}")
+                    f"Unsupported language configuration type: {config.language}"
+                )
 
     def __repr__(self):
         return pprint.pformat(self.to_dict(), indent=4)
@@ -77,40 +83,40 @@ class RepositoryConfiguration(JsonSerializable):
 class PythonRepositoryConfiguration(RepositoryConfiguration):
     """Repository configuration for python based projects."""
 
-    def __init__(self,
-                 dependencies_files: Optional[List[str]] = None,
-                 extra_dependencies: Optional[List[str]] = None,
-                 tests_command: Optional[List[str]] = None,
-                 styles_check_command: Optional[List[str]] = None):
-        super().__init__(language=Languages.PYTHON,
-                         dependencies_files=dependencies_files,
-                         extra_dependencies=extra_dependencies,
-                         tests_command=tests_command,
-                         styles_check_command=styles_check_command)
+    def __init__(
+        self,
+        dependencies_files: Optional[List[str]] = None,
+        extra_dependencies: Optional[List[str]] = None,
+        tests_command: Optional[List[str]] = None,
+        styles_check_command: Optional[List[str]] = None,
+    ):
+        super().__init__(
+            language=Languages.PYTHON,
+            dependencies_files=dependencies_files,
+            extra_dependencies=extra_dependencies,
+            tests_command=tests_command,
+            styles_check_command=styles_check_command,
+        )
         env = Environment(
-            loader=PackageLoader("ecosystem"),
-            autoescape=select_autoescape()
+            loader=PackageLoader("ecosystem"), autoescape=select_autoescape()
         )
         self.tox_template = env.get_template("configured_tox.ini")
         self.lint_template = env.get_template(".pylintrc")
 
     @classmethod
-    def default(cls) -> 'PythonRepositoryConfiguration':
+    def default(cls) -> "PythonRepositoryConfiguration":
         """Returns default python repository configuration."""
         return PythonRepositoryConfiguration(
-            dependencies_files=[
-                "requirements.txt"
-            ],
-            tests_command=[
-                "pip check",
-                "pytest -W error::DeprecationWarning"
-            ])
+            dependencies_files=["requirements.txt"],
+            tests_command=["pip check", "pytest -W error::DeprecationWarning"],
+        )
 
     def render_tox_file(self, ecosystem_deps: List[str] = None):
         """Renders tox template from configuration."""
         ecosystem_deps = ecosystem_deps or []
-        return self.tox_template.render({**self.to_dict(),
-                                         **{'ecosystem_deps': ecosystem_deps}})
+        return self.tox_template.render(
+            {**self.to_dict(), **{"ecosystem_deps": ecosystem_deps}}
+        )
 
     def render_lint_file(self):
         """Renders .pylintrc template from configuration."""

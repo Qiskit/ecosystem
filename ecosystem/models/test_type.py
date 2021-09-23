@@ -10,6 +10,7 @@ class TestType:
     - DEV_COMPATIBLE - compatibility if repository with dev/main branch of qiskit-terra
     - STANDARD - regular tests that comes with repo
     """
+
     STABLE_COMPATIBLE: str = "STABLE_COMPATIBLE"
     DEV_COMPATIBLE: str = "DEV_COMPATIBLE"
     STANDARD: str = "STANDARD"

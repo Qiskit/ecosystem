@@ -9,6 +9,7 @@ class QiskitEcosystemException(Exception):
 
 class OneLineExceptionFormatter(logging.Formatter):
     """Exception formatter"""
+
     def formatException(self, ei):
         result = super().formatException(ei)
         return repr(result)
