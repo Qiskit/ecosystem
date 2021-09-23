@@ -4,6 +4,8 @@ import unittest
 
 from ecosystem.controllers.runner import PythonTestsRunner, PythonStyleRunner, PythonCoverageRunner
 
+unittest.TestLoader.sortTestMethodsUsing = None
+
 class TestPythonRunner(unittest.TestCase):
     """Tests for Python runner."""
 
