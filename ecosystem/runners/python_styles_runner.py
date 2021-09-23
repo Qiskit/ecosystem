@@ -2,7 +2,7 @@
 import os
 from typing import Optional, Union, cast, List, Tuple
 
-from ecosystem.commands import _run_lint
+from ecosystem.commands import RunToxCommand
 from ecosystem.models import (RepositoryConfiguration, PythonRepositoryConfiguration,
                               CommandExecutionSummary)
 from ecosystem.models.repository import Repository
@@ -64,6 +64,7 @@ class PythonStyleRunner(Runner):
             tox_file.write(repo_config.render_tox_file(ecosystem_deps=[]))
 
         # run lint
-        tox_lint_res = _run_lint(directory=self.cloned_repo_directory)
+        tox_lint_res = RunToxCommand.execute(directory=self.cloned_repo_directory,
+                                             env="lint")
 
         return "-", [tox_lint_res]
