@@ -2,7 +2,8 @@
 
 import unittest
 
-from ecosystem.entities import Repository, TestResult, TestType
+from ecosystem.models import TestResult, TestType
+from ecosystem.models.repository import Repository
 
 
 class TestRepository(unittest.TestCase):

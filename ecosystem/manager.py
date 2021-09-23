@@ -1,36 +1,15 @@
 """Manager class for controlling all CLI functions."""
 import os
-import re
 from typing import Optional, List
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from .controller import Controller
-from .controllers.runner import PythonTestsRunner, PythonStyleRunner
-from .entities import Tier, TestType, TestResult, StyleResult, Repository
-from .utils import logger
-
-
-def parse_submission_issue(body_of_issue: str) -> Repository:
-    """Parse issue body."""
-
-    parse = re.findall(r'^([\s\S]*?)(?:\n{2,}|\Z)', body_of_issue, re.M)
-
-    repo_name = parse[1].split("/")
-
-    name = repo_name[-1]
-    url = parse[1]
-    description = parse[3]
-    contact_info = parse[5]
-    alternatives = parse[7]
-    licence = parse[9]
-    affiliations = parse[11]
-
-    labels = re.findall(r"([\w\]+)([\w\-\_]+)", parse[13])
-
-    repo = Repository(name, url, description, licence,
-                      contact_info, alternatives, affiliations, labels)
-    return repo
+from ecosystem.daos import JsonDAO
+from ecosystem.models import TestResult, Tier, TestType
+from ecosystem.models.test_results import StyleResult
+from ecosystem.runners import PythonTestsRunner
+from ecosystem.runners.python_styles_runner import PythonStyleRunner
+from ecosystem.utils import logger
 
 
 class Manager:
@@ -55,7 +34,7 @@ class Manager:
         self.readme_template = self.env.get_template("readme.md")
         self.tox_template = self.env.get_template("tox.ini")
         self.pylintrc_template = self.env.get_template(".pylintrc")
-        self.controller = Controller(path=self.resources_dir)
+        self.controller = JsonDAO(path=self.resources_dir)
         self.logger = logger
 
     def generate_readme(self, path: Optional[str] = None):
@@ -112,21 +91,17 @@ class Manager:
     def _run_python_styles(self,
                            repo_url: str,
                            tier: str,
-                           style_type: str,
-                           ecosystem_deps: Optional[List[str]] = None):
+                           style_type: str):
         """Runs tests using python runner.
 
         Args:
             repo_url: repository url
             tier: tier of project
             style_type: [dev, stable]
-            ecosystem_deps: extra dependencies to install for tests
         """
-        ecosystem_deps = ecosystem_deps or []
         runner = PythonStyleRunner(repo_url,
-                                   working_directory=self.resources_dir,
-                                   ecosystem_deps=ecosystem_deps)
-        results = runner.run()
+                                   working_directory=self.resources_dir)
+        _, results = runner.run()
         if len(results) > 0:
             style_result = StyleResult(passed=all(r.ok for r in results),
                                        style_type=style_type)

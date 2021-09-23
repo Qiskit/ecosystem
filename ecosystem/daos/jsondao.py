@@ -1,16 +1,17 @@
-"""Entrypoint for CLI."""
+"""DAO for json db."""
 from typing import Optional, List
 
 from tinydb import TinyDB, Query
 
-from .entities import Repository, Tier, TestResult, StyleResult
+from ecosystem.models import Tier, TestResult, StyleResult
+from ecosystem.models.repository import Repository
 
 
-class Controller:
-    """Controller for repo database."""
+class JsonDAO:
+    """JsonDAO for repo database."""
 
     def __init__(self, path: Optional[str] = None):
-        """Controller for repository database.
+        """JsonDAO for repository database.
 
         Args:
             path: path to store database in

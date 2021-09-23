@@ -1,14 +1,17 @@
 """Tests for manager."""
+import os
 from unittest import TestCase
-from ecosystem.entities import Repository
-from ecosystem.manager import parse_submission_issue
+
+from ecosystem.models.repository import Repository
+from ecosystem.utils import parse_submission_issue
 
 
-class TestManager(TestCase):
+class TestUtils(TestCase):
     """Test class for manager functions."""
 
     def setUp(self) -> None:
-        with open("tests/resources/issue.md", "r") as issue_body_file:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        with open("{}/../resources/issue.md".format(current_dir), "r") as issue_body_file:
             self.issue_body = issue_body_file.read()
 
     def test_issue_parsing(self):
