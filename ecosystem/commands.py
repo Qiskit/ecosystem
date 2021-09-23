@@ -66,6 +66,14 @@ def _run_lint(directory: str) -> CommandExecutionSummary:
                             name="tox")
 
 
+def _run_coverage(directory: str) -> CommandExecutionSummary:
+    """Run lint test."""
+    return _execute_command(["tox", "-ecoverage",
+                             "--workdir", directory],
+                            cwd=directory,
+                            name="tox")
+
+
 def _cleanup(directory: Optional[str] = None):
     """Removes temp directory."""
     if directory and os.path.exists(directory):

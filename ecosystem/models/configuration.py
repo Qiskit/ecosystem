@@ -106,11 +106,12 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
                 "pytest -W error::DeprecationWarning"
             ])
 
-    def render_tox_file(self, ecosystem_deps: List[str] = None):
+    def render_tox_file(self, directory: str, ecosystem_deps: List[str] = None):
         """Renders tox template from configuration."""
         ecosystem_deps = ecosystem_deps or []
         return self.tox_template.render({**self.to_dict(),
-                                         **{'ecosystem_deps': ecosystem_deps}})
+                                         **{'ecosystem_deps': ecosystem_deps},
+                                         **{'directory': directory}})
 
     def render_lint_file(self, ecosystem_deps: List[str] = None):
         """Renders .pylintrc template from configuration."""

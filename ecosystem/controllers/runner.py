@@ -5,7 +5,7 @@ from abc import abstractmethod
 from logging import Logger
 from typing import Optional, Union, cast, List, Tuple
 
-from ecosystem.commands import _clone_repo, _run_tox, _run_lint
+from ecosystem.commands import _clone_repo, _run_tox, _run_lint, _run_coverage
 from ecosystem.entities import CommandExecutionSummary, Repository
 from ecosystem.utils import logger as ecosystem_logger
 from ecosystem.models import RepositoryConfiguration, PythonRepositoryConfiguration
@@ -115,7 +115,7 @@ class PythonTestsRunner(Runner):
         # render new tox file for tests
         with open(f"{self.cloned_repo_directory}/tox.ini", "w") as tox_file:
             tox_file.write(repo_config.render_tox_file(
-                ecosystem_deps=self.ecosystem_deps))
+                ecosystem_deps=self.ecosystem_deps, directory=self.cloned_repo_directory))
 
         terra_version = "-"
         if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):
@@ -154,9 +154,9 @@ class PythonStyleRunner(Runner):
         """Runs styles checks for python repository.
 
         Steps:
-	- check for configuration file
+        - check for configuration file
         - optional: check for .pylintrc file
-	- optional: render .pylintrc file
+        - optional: render .pylintrc file
         - run lint
         - form report
 
@@ -189,3 +189,30 @@ class PythonStyleRunner(Runner):
         tox_lint_res = _run_lint(directory=self.cloned_repo_directory)
 
         return [tox_lint_res]
+
+
+class PythonCoverageRunner(Runner):
+    """Runners for styling Python repositories."""
+
+    def __init__(self,
+                 repo: Union[str, Repository],
+                 working_directory: Optional[str] = None,
+                 repo_config: Optional[RepositoryConfiguration] = None):
+        super().__init__(repo=repo,
+                         working_directory=working_directory)
+        self.repo_config = repo_config
+
+    def workload(self) -> List[CommandExecutionSummary]:
+        """Runs styles checks for python repository.
+
+        Steps:
+        - run coverage
+        - form report
+
+        Returns: execution summary of steps
+        """
+
+        # run coverage
+        tox_coverage_res = _run_coverage(directory=self.cloned_repo_directory)
+
+        return [tox_coverage_res]
