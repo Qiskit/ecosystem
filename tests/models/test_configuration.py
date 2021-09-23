@@ -9,11 +9,12 @@ class TestRepositoryConfiguration(TestCaseWithResources):
 
     def test_save_and_load(self):
         """Tests saving and loading of configuration,"""
-        config = RepositoryConfiguration(dependencies_files=["requirements.txt",
-                                                             "requirements-dev.txt"],
-                                         extra_dependencies=["qiskit"],
-                                         tests_command=["python -m unittest -v"],
-                                         styles_check_command=["pylint -rn ecosystem tests"])
+        config = RepositoryConfiguration(
+            dependencies_files=["requirements.txt", "requirements-dev.txt"],
+            extra_dependencies=["qiskit"],
+            tests_command=["python -m unittest -v"],
+            styles_check_command=["pylint -rn ecosystem tests"],
+        )
         save_path = f"{self.path}/config.json"
         config.save(save_path)
 
@@ -23,7 +24,9 @@ class TestRepositoryConfiguration(TestCaseWithResources):
         self.assertEqual(config.tests_command, recovered_config.tests_command)
         self.assertEqual(config.dependencies_files, recovered_config.dependencies_files)
         self.assertEqual(config.extra_dependencies, recovered_config.extra_dependencies)
-        self.assertEqual(config.styles_check_command, recovered_config.styles_check_command)
+        self.assertEqual(
+            config.styles_check_command, recovered_config.styles_check_command
+        )
 
     def test_python_configuration(self):
         """Tests python configurations."""

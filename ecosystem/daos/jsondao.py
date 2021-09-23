@@ -17,7 +17,7 @@ class JsonDAO:
             path: path to store database in
         """
         self.path = path if path is not None else "./"
-        self.database = TinyDB('{}/members.json'.format(self.path), indent=4)
+        self.database = TinyDB("{}/members.json".format(self.path), indent=4)
 
     def insert(self, repo: Repository) -> int:
         """Inserts repository into database."""
@@ -34,9 +34,9 @@ class JsonDAO:
         res = self.database.table(tier).get(Query().url == url)
         return Repository.from_dict(res) if res else None
 
-    def add_repo_test_result(self, repo_url: str,
-                             tier: str,
-                             test_result: TestResult) -> Optional[List[int]]:
+    def add_repo_test_result(
+        self, repo_url: str, tier: str, test_result: TestResult
+    ) -> Optional[List[int]]:
         """Adds test result for repository."""
         table = self.database.table(tier)
         repository = Query()
@@ -46,17 +46,20 @@ class JsonDAO:
             fetched_repo = Repository.from_dict(fetched_repo_json)
             fetched_test_results = fetched_repo.tests_results
 
-            new_test_results = [tr for tr in fetched_test_results
-                                if tr.test_type != test_result.test_type or
-                                tr.terra_version != test_result.terra_version] + [test_result]
+            new_test_results = [
+                tr
+                for tr in fetched_test_results
+                if tr.test_type != test_result.test_type
+                or tr.terra_version != test_result.terra_version
+            ] + [test_result]
             fetched_repo.tests_results = new_test_results
 
             return table.upsert(fetched_repo.to_dict(), repository.url == repo_url)
         return None
 
-    def add_repo_style_result(self, repo_url: str,
-                              tier: str,
-                              style_result: StyleResult) -> Optional[List[int]]:
+    def add_repo_style_result(
+        self, repo_url: str, tier: str, style_result: StyleResult
+    ) -> Optional[List[int]]:
         """Adds style result for repository."""
         table = self.database.table(tier)
         repository = Query()
@@ -66,8 +69,11 @@ class JsonDAO:
             fetched_repo = Repository.from_dict(fetched_repo_json)
             fetched_style_results = fetched_repo.styles_results
 
-            new_style_results = [tr for tr in fetched_style_results
-                                 if tr.style_type != style_result.style_type] + [style_result]
+            new_style_results = [
+                tr
+                for tr in fetched_style_results
+                if tr.style_type != style_result.style_type
+            ] + [style_result]
             fetched_repo.styles_results = new_style_results
 
             return table.upsert(fetched_repo.to_dict(), repository.url == repo_url)

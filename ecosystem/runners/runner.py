@@ -18,11 +18,13 @@ class Runner:
     General class to run workflow for repository.
     """
 
-    def __init__(self,
-                 repo: Union[str, Repository],
-                 working_directory: Optional[str] = None,
-                 repo_config: Optional[RepositoryConfiguration] = None,
-                 logger: Optional[Logger] = None):
+    def __init__(
+        self,
+        repo: Union[str, Repository],
+        working_directory: Optional[str] = None,
+        repo_config: Optional[RepositoryConfiguration] = None,
+        logger: Optional[Logger] = None,
+    ):
         self.repo: str = repo.url if isinstance(repo, Repository) else repo
         self.working_directory = f"{working_directory}/cloned_repo_directory" or "./"
         self.logger = logger or ecosystem_logger
@@ -32,15 +34,13 @@ class Runner:
 
     def set_up(self):
         """Preparation step before running workload."""
-        if self.cloned_repo_directory and \
-                os.path.exists(self.cloned_repo_directory):
+        if self.cloned_repo_directory and os.path.exists(self.cloned_repo_directory):
             shutil.rmtree(self.cloned_repo_directory)
         os.makedirs(self.cloned_repo_directory)
 
     def tear_down(self):
         """Execution after workload is finished."""
-        if self.cloned_repo_directory and \
-                os.path.exists(self.cloned_repo_directory):
+        if self.cloned_repo_directory and os.path.exists(self.cloned_repo_directory):
             shutil.rmtree(self.cloned_repo_directory)
 
     @abstractmethod
@@ -55,12 +55,14 @@ class Runner:
         self.set_up()
         # clone repository
         self.logger.info("Cloning repository: %s", self.repo)
-        clone_res = CloneRepoCommand.execute(repo=self.repo,
-                                             directory=self.working_directory)
+        clone_res = CloneRepoCommand.execute(
+            repo=self.repo, directory=self.working_directory
+        )
 
         if not clone_res.ok:
             raise QiskitEcosystemException(
-                f"Something went wrong with cloning {self.repo} repository.")
+                f"Something went wrong with cloning {self.repo} repository."
+            )
 
         try:
             result = self.workload()

@@ -8,13 +8,14 @@ from ecosystem.models.repository import Repository
 
 def get_main_repo() -> Repository:
     """Return main mock repo."""
-    return Repository(name="mock-qiskit-terra-with-success-dev-test",
-                      url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
-                      description="Mock description for repo. wsdt",
-                      licence="Apache 2.0",
-                      labels=["mock", "tests", "wsdt"],
-                      tests_results=[
-                          TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)])
+    return Repository(
+        name="mock-qiskit-terra-with-success-dev-test",
+        url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
+        description="Mock description for repo. wsdt",
+        licence="Apache 2.0",
+        labels=["mock", "tests", "wsdt"],
+        tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
+    )
 
 
 class TestJsonDao(TestCase):
@@ -62,22 +63,29 @@ class TestJsonDao(TestCase):
 
         main_repo = get_main_repo()
         controller.insert(main_repo)
-        res = controller.add_repo_test_result(main_repo.url,
-                                              main_repo.tier,
-                                              TestResult(False, "0.18.1",
-                                                         TestType.DEV_COMPATIBLE))
+        res = controller.add_repo_test_result(
+            main_repo.url,
+            main_repo.tier,
+            TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE),
+        )
         self.assertEqual(res, [1])
         recovered_repo = controller.get_by_url(main_repo.url, tier=main_repo.tier)
-        self.assertEqual(recovered_repo.tests_results, [TestResult(False, "0.18.1",
-                                                                   TestType.DEV_COMPATIBLE)])
+        self.assertEqual(
+            recovered_repo.tests_results,
+            [TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
+        )
 
-        res = controller.add_repo_test_result(main_repo.url,
-                                              main_repo.tier,
-                                              TestResult(True, "0.18.2",
-                                                         TestType.DEV_COMPATIBLE))
+        res = controller.add_repo_test_result(
+            main_repo.url,
+            main_repo.tier,
+            TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
+        )
         self.assertEqual(res, [1])
         recovered_repo = controller.get_by_url(main_repo.url, tier=main_repo.tier)
-        self.assertEqual(recovered_repo.tests_results, [TestResult(False, "0.18.1",
-                                                                   TestType.DEV_COMPATIBLE),
-                                                        TestResult(True, "0.18.2",
-                                                                   TestType.DEV_COMPATIBLE)])
+        self.assertEqual(
+            recovered_repo.tests_results,
+            [
+                TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE),
+                TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
+            ],
+        )

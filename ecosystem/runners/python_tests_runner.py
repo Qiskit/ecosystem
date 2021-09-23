@@ -3,8 +3,11 @@ import os
 from typing import Optional, Union, cast, List, Tuple
 
 from ecosystem.commands import RunToxCommand
-from ecosystem.models import (RepositoryConfiguration, PythonRepositoryConfiguration,
-                              CommandExecutionSummary)
+from ecosystem.models import (
+    RepositoryConfiguration,
+    PythonRepositoryConfiguration,
+    CommandExecutionSummary,
+)
 from ecosystem.models.repository import Repository
 from ecosystem.runners.runner import Runner
 
@@ -12,15 +15,17 @@ from ecosystem.runners.runner import Runner
 class PythonTestsRunner(Runner):
     """Runners for testing Python repositories."""
 
-    def __init__(self,
-                 repo: Union[str, Repository],
-                 working_directory: Optional[str] = None,
-                 ecosystem_deps: Optional[List[str]] = None,
-                 python_version: str = "py39",
-                 repo_config: Optional[RepositoryConfiguration] = None):
-        super().__init__(repo=repo,
-                         working_directory=working_directory,
-                         repo_config=repo_config)
+    def __init__(
+        self,
+        repo: Union[str, Repository],
+        working_directory: Optional[str] = None,
+        ecosystem_deps: Optional[List[str]] = None,
+        python_version: str = "py39",
+        repo_config: Optional[RepositoryConfiguration] = None,
+    ):
+        super().__init__(
+            repo=repo, working_directory=working_directory, repo_config=repo_config
+        )
         self.python_version = python_version
         self.ecosystem_deps = ecosystem_deps or ["qiskit"]
 
@@ -42,7 +47,8 @@ class PythonTestsRunner(Runner):
         elif os.path.exists(f"{self.cloned_repo_directory}/qe_config.json"):
             self.logger.info("Configuration file exists.")
             loaded_config = RepositoryConfiguration.load(
-                f"{self.cloned_repo_directory}/qe_config.json")
+                f"{self.cloned_repo_directory}/qe_config.json"
+            )
             repo_config = cast(PythonRepositoryConfiguration, loaded_config)
         else:
             repo_config = PythonRepositoryConfiguration.default()
@@ -50,13 +56,16 @@ class PythonTestsRunner(Runner):
         # check for existing tox file
         if os.path.exists(f"{self.cloned_repo_directory}/tox.ini"):
             self.logger.info("Tox file exists.")
-            os.rename(f"{self.cloned_repo_directory}/tox.ini",
-                      f"{self.cloned_repo_directory}/tox_default.ini")
+            os.rename(
+                f"{self.cloned_repo_directory}/tox.ini",
+                f"{self.cloned_repo_directory}/tox_default.ini",
+            )
 
         # render new tox file for tests
         with open(f"{self.cloned_repo_directory}/tox.ini", "w") as tox_file:
-            tox_file.write(repo_config.render_tox_file(
-                ecosystem_deps=self.ecosystem_deps))
+            tox_file.write(
+                repo_config.render_tox_file(ecosystem_deps=self.ecosystem_deps)
+            )
 
         terra_version = "-"
         if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):
@@ -64,12 +73,15 @@ class PythonTestsRunner(Runner):
             return terra_version, []
 
         # run tox
-        tox_tests_res = RunToxCommand.execute(directory=self.cloned_repo_directory,
-                                              env=self.python_version)
+        tox_tests_res = RunToxCommand.execute(
+            directory=self.cloned_repo_directory, env=self.python_version
+        )
 
         # get terra version from file
         if os.path.exists(f"{self.cloned_repo_directory}/terra_version.txt"):
-            with open(f"{self.cloned_repo_directory}/terra_version.txt", "r") as version_file:
+            with open(
+                f"{self.cloned_repo_directory}/terra_version.txt", "r"
+            ) as version_file:
                 terra_version = version_file.read()
                 self.logger.info("Terra version: %s", terra_version)
         else:

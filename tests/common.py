@@ -6,6 +6,7 @@ import unittest
 
 class TestCaseWithResources(unittest.TestCase):
     """Test case with additional resources folder."""
+
     path: str
 
     def setUp(self) -> None:
