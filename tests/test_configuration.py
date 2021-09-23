@@ -9,11 +9,12 @@ class TestRepositoryConfiguration(TestCaseWithResources):
 
     def test_save_and_load(self):
         """Tests saving and loading of configuration,"""
-        config = RepositoryConfiguration(dependencies_files=["requirements.txt",
-                                                             "requirements-dev.txt"],
-                                         extra_dependencies=["qiskit"],
-                                         tests_command=["coverage run --source=. --omit=py39/*,setup.py -m pytest"],
-                                         styles_check_command=["pylint -rn ecosystem tests"])
+        config = RepositoryConfiguration(
+            dependencies_files=["requirements.txt", "requirements-dev.txt"],
+            extra_dependencies=["qiskit"],
+            tests_command=["coverage run --source=. --omit=py39/*,setup.py -m pytest"],
+            styles_check_command=["pylint -rn ecosystem tests"])
+
         save_path = f"{self.path}/config.json"
         config.save(save_path)
 

@@ -103,7 +103,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             ],
             tests_command=[
                 "pip check",
-                "pytest -W error::DeprecationWarning"
+                "coverage run --source=. --omit=py39/*,setup.py -m pytest -W error::DeprecationWarning"
             ])
 
     def render_tox_file(self, directory: str = None, ecosystem_deps: List[str] = None):
