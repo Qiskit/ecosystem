@@ -14,8 +14,10 @@ class TestRepositoryConfiguration(TestCaseWithResources):
             extra_dependencies=["qiskit"],
             tests_command=["python -m unittest -v"],
             styles_check_command=["pylint -rn ecosystem tests"],
-            coverages_check_command=["coverage3 -m pytest",
-                                     "coverage3 report --fail-under=80"],
+            coverages_check_command=[
+                "coverage3 -m pytest",
+                "coverage3 report --fail-under=80",
+            ],
         )
         save_path = f"{self.path}/config.json"
         config.save(save_path)

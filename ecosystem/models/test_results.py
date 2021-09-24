@@ -77,7 +77,7 @@ class CoverageResult(JsonSerializable):
     def from_dict(cls, dictionary: dict):
         return CoverageResult(
             passed=dictionary.get("passed"),
-            coverage_type=dictionary.get("coverage_type")
+            coverage_type=dictionary.get("coverage_type"),
         )
 
     def to_string(self) -> str:
@@ -85,8 +85,7 @@ class CoverageResult(JsonSerializable):
         return self._COVERAGE_PASSED if self.passed else self._COVERAGE_FAILED
 
     def __eq__(self, other: "CoverageResult"):
-        return self.passed == other.passed \
-               and self.coverage_type == other.coverage_type
+        return self.passed == other.passed and self.coverage_type == other.coverage_type
 
     def __repr__(self):
         return f"TestResult({self.passed}, {self.coverage_type}"
