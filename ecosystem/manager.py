@@ -6,9 +6,10 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 
 from ecosystem.daos import JsonDAO
 from ecosystem.models import TestResult, Tier, TestType
-from ecosystem.models.test_results import StyleResult
+from ecosystem.models.test_results import StyleResult, CoverageResult
 from ecosystem.runners import PythonTestsRunner
 from ecosystem.runners.python_styles_runner import PythonStyleRunner
+from ecosystem.runners.python_coverages_runner import PythonCoverageRunner
 from ecosystem.utils import logger
 
 
@@ -32,6 +33,7 @@ class Manager:
         )
         self.readme_template = self.env.get_template("readme.md")
         self.pylintrc_template = self.env.get_template(".pylintrc")
+        self.coveragerc_template = self.env.get_template(".coveragerc")
         self.controller = JsonDAO(path=self.resources_dir)
         self.logger = logger
 
@@ -119,6 +121,34 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, style_result)
+        else:
+            self.logger.warning("Runner returned 0 results.")
+
+    def _run_python_coverages(self, repo_url: str, tier: str, coverage_type: str):
+        """Runs tests using python runner.
+
+        Args:
+            repo_url: repository url
+            tier: tier of project
+            coverage_type: [dev, stable]
+        """
+        runner = PythonCoverageRunner(repo_url, working_directory=self.resources_dir)
+        _, results = runner.run()
+        if len(results) > 0:
+            coverage_result = CoverageResult(
+                passed=all(r.ok for r in results), coverage_type=coverage_type
+            )
+            # save test res to db
+            result = self.controller.add_repo_coverage_result(
+                repo_url=repo_url, tier=tier, coverage_result=coverage_result
+            )
+            # print report
+            if result is None:
+                self.logger.warning(
+                    "Test result was not saved." "There is not repo for url %s",
+                    repo_url,
+                )
+            self.logger.info("Test results for %s: %s", repo_url, coverage_result)
         else:
             self.logger.warning("Runner returned 0 results.")
 

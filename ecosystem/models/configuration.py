@@ -32,6 +32,7 @@ class RepositoryConfiguration(JsonSerializable):
         extra_dependencies: Optional[List[str]] = None,
         tests_command: Optional[List[str]] = None,
         styles_check_command: Optional[List[str]] = None,
+        coverages_check_command: Optional[List[str]] = None,
     ):
         """Configuration for ecosystem repository.
 
@@ -45,12 +46,15 @@ class RepositoryConfiguration(JsonSerializable):
                 ex: for python `python -m unittest -v`
             styles_check_command: list of commands to run style checks
                 ex: for python `pylint -rn ecosystem tests`
+            coverages_check_command: list of commands to run coverage checks
+                ex: for python `coverage3 -m unittest -v && coverage report`
         """
         self.language = language
         self.dependencies_files = dependencies_files or []
         self.extra_dependencies = extra_dependencies or []
         self.tests_command = tests_command or []
         self.styles_check_command = styles_check_command or []
+        self.coverages_check_command = coverages_check_command or []
 
     def save(self, path: str):
         """Saves configuration as json file."""
@@ -70,6 +74,7 @@ class RepositoryConfiguration(JsonSerializable):
                     extra_dependencies=config.extra_dependencies,
                     tests_command=config.tests_command,
                     styles_check_command=config.styles_check_command,
+                    coverages_check_command=config.coverages_check_command,
                 )
             else:
                 raise QiskitEcosystemException(
@@ -89,6 +94,8 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         extra_dependencies: Optional[List[str]] = None,
         tests_command: Optional[List[str]] = None,
         styles_check_command: Optional[List[str]] = None,
+        coverages_check_command: Optional[List[str]] = None,
+
     ):
         super().__init__(
             language=Languages.PYTHON,
@@ -96,12 +103,14 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             extra_dependencies=extra_dependencies,
             tests_command=tests_command,
             styles_check_command=styles_check_command,
+            coverages_check_command=coverages_check_command,
         )
         env = Environment(
             loader=PackageLoader("ecosystem"), autoescape=select_autoescape()
         )
         self.tox_template = env.get_template("configured_tox.ini")
         self.lint_template = env.get_template(".pylintrc")
+        self.cov_template = env.get_template(".coveragerc")
 
     @classmethod
     def default(cls) -> "PythonRepositoryConfiguration":
@@ -109,6 +118,8 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         return PythonRepositoryConfiguration(
             dependencies_files=["requirements.txt"],
             tests_command=["pip check", "pytest -W error::DeprecationWarning"],
+            styles_check_command=["pylint -rn . tests"],
+            coverages_check_command=["coverage3 -m pytest", "coverage3 report --fail-under=80"],
         )
 
     def render_tox_file(self, ecosystem_deps: List[str] = None):

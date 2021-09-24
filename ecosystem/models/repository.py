@@ -3,7 +3,7 @@ import pprint
 from datetime import datetime
 from typing import Optional, List
 
-from .test_results import TestResult, StyleResult
+from .test_results import TestResult, StyleResult, CoverageResult
 from .tier import Tier
 from .utils import JsonSerializable
 
@@ -26,6 +26,7 @@ class Repository(JsonSerializable):
         tier: str = Tier.MAIN,
         tests_results: Optional[List[TestResult]] = None,
         styles_results: Optional[List[TestResult]] = None,
+        coverages_results: Optional[List[TestResult]] = None,
     ):
         """Repository controller.
 
@@ -42,6 +43,7 @@ class Repository(JsonSerializable):
             updated_at: update date
             tests_results: tests passed by repo
             styles_results: styles passed by repo
+            coverages_results: coverages passed by repo
         """
         self.name = name
         self.url = url
@@ -59,6 +61,7 @@ class Repository(JsonSerializable):
         )
         self.tests_results = tests_results if tests_results else []
         self.styles_results = styles_results if styles_results else []
+        self.coverages_results = coverages_results if coverages_results else []
         self.tier = tier
 
     @classmethod
@@ -73,6 +76,11 @@ class Repository(JsonSerializable):
             styles_results = [
                 StyleResult.from_dict(r) for r in dictionary.get("styles_results", [])
             ]
+        coverages_results = []
+        if "coverages_results" in dictionary:
+            coverages_results = [
+                CoverageResult.from_dict(r) for r in dictionary.get("coverages_results", [])
+            ]
 
         return Repository(
             name=dictionary.get("name"),
@@ -85,6 +93,7 @@ class Repository(JsonSerializable):
             tier=dictionary.get("tier"),
             tests_results=tests_results,
             styles_results=styles_results,
+            coverages_results=coverages_results,
         )
 
     def __eq__(self, other: "Repository"):
