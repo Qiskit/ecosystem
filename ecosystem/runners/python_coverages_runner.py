@@ -1,4 +1,4 @@
-"""Ecosystem python styles runner."""
+"""Ecosystem python coverage runner."""
 import os
 from typing import Optional, Union, cast, List, Tuple
 
@@ -13,7 +13,7 @@ from ecosystem.runners.runner import Runner
 
 
 class PythonCoverageRunner(Runner):
-    """Runners for styling Python repositories."""
+    """Runners for coveraging Python repositories."""
 
     def __init__(
         self,

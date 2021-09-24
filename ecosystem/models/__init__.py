@@ -3,5 +3,5 @@
 from .configuration import RepositoryConfiguration, PythonRepositoryConfiguration
 from .execution_summary import CommandExecutionSummary
 from .test_type import TestType
-from .test_results import StyleResult, TestResult
+from .test_results import StyleResult, TestResult, CoverageResult
 from .tier import Tier

@@ -14,6 +14,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
             extra_dependencies=["qiskit"],
             tests_command=["python -m unittest -v"],
             styles_check_command=["pylint -rn ecosystem tests"],
+            coverages_check_command=["coverage3 -m pytest", "coverage3 report --fail-under=80"],
         )
         save_path = f"{self.path}/config.json"
         config.save(save_path)
@@ -27,6 +28,9 @@ class TestRepositoryConfiguration(TestCaseWithResources):
         self.assertEqual(
             config.styles_check_command, recovered_config.styles_check_command
         )
+        self.assertEqual(
+            config.coverages_check_command, recovered_config.coverages_check_command
+        )
 
     def test_python_configuration(self):
         """Tests python configurations."""
@@ -39,3 +43,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
             self.assertTrue(dep in rendered_tox)
         for dep_file in config.dependencies_files:
             self.assertTrue(dep_file in rendered_tox)
+        for command in config.styles_check_command:
+            self.assertTrue(command in rendered_tox)
+        for command in config.coverages_check_command:
+            self.assertTrue(command in rendered_tox)
