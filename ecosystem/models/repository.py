@@ -79,7 +79,8 @@ class Repository(JsonSerializable):
         coverages_results = []
         if "coverages_results" in dictionary:
             coverages_results = [
-                CoverageResult.from_dict(r) for r in dictionary.get("coverages_results", [])
+                CoverageResult.from_dict(r)
+                for r in dictionary.get("coverages_results", [])
             ]
 
         return Repository(

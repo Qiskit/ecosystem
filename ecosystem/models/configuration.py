@@ -119,7 +119,8 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             dependencies_files=["requirements.txt"],
             tests_command=["pip check", "pytest -W error::DeprecationWarning"],
             styles_check_command=["pylint -rn . tests"],
-            coverages_check_command=["coverage3 -m pytest", "coverage3 report --fail-under=80"],
+            coverages_check_command=["coverage3 -m pytest",
+                                     "coverage3 report --fail-under=80"],
         )
 
     def render_tox_file(self, ecosystem_deps: List[str] = None):
