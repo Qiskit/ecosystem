@@ -2,7 +2,7 @@
 import os
 import unittest
 
-from ecosystem.runners import PythonTestsRunner, PythonStyleRunner
+from ecosystem.runners import PythonTestsRunner, PythonStyleRunner, PythonCoverageRunner
 
 
 class TestPythonRunner(unittest.TestCase):
@@ -51,8 +51,19 @@ class TestPythonRunner(unittest.TestCase):
         self.assertTrue(terra_version)
 
     def test_styles_runner_on_configured_repo(self):
-        """Simple runner test."""
+        """Configured repo runner test."""
         runner = PythonStyleRunner(
+            "test", working_directory=self.configured_project_dir
+        )
+
+        runner.cloned_repo_directory = self.configured_project_dir
+        _, result = runner.workload()
+
+        self.assertTrue(len(result) > 0)
+
+    def test_coverages_runner_on_configured_repo(self):
+        """Configured repo runner test."""
+        runner = PythonCoverageRunner(
             "test", working_directory=self.configured_project_dir
         )
 

@@ -61,3 +61,31 @@ class StyleResult(JsonSerializable):
 
     def __repr__(self):
         return f"TestResult({self.passed}, {self.style_type}"
+
+
+class CoverageResult(JsonSerializable):
+    """Tests status."""
+
+    _COVERAGE_PASSED: str = "passed"
+    _COVERAGE_FAILED: str = "failed"
+
+    def __init__(self, passed: bool, coverage_type: str):
+        self.coverage_type = coverage_type
+        self.passed = passed
+
+    @classmethod
+    def from_dict(cls, dictionary: dict):
+        return CoverageResult(
+            passed=dictionary.get("passed"),
+            coverage_type=dictionary.get("coverage_type"),
+        )
+
+    def to_string(self) -> str:
+        """Style result as string."""
+        return self._COVERAGE_PASSED if self.passed else self._COVERAGE_FAILED
+
+    def __eq__(self, other: "CoverageResult"):
+        return self.passed == other.passed and self.coverage_type == other.coverage_type
+
+    def __repr__(self):
+        return f"TestResult({self.passed}, {self.coverage_type}"

@@ -3,7 +3,7 @@ from typing import Optional, List
 
 from tinydb import TinyDB, Query
 
-from ecosystem.models import Tier, TestResult, StyleResult
+from ecosystem.models import Tier, TestResult, StyleResult, CoverageResult
 from ecosystem.models.repository import Repository
 
 
@@ -75,6 +75,28 @@ class JsonDAO:
                 if tr.style_type != style_result.style_type
             ] + [style_result]
             fetched_repo.styles_results = new_style_results
+
+            return table.upsert(fetched_repo.to_dict(), repository.url == repo_url)
+        return None
+
+    def add_repo_coverage_result(
+        self, repo_url: str, tier: str, coverage_result: CoverageResult
+    ) -> Optional[List[int]]:
+        """Adds style result for repository."""
+        table = self.database.table(tier)
+        repository = Query()
+
+        fetched_repo_json = table.get(repository.url == repo_url)
+        if fetched_repo_json is not None:
+            fetched_repo = Repository.from_dict(fetched_repo_json)
+            fetched_style_results = fetched_repo.styles_results
+
+            new_coverage_results = [
+                tr
+                for tr in fetched_style_results
+                if tr.coverage_type != coverage_result.coverage_type
+            ] + [coverage_result]
+            fetched_repo.coverages_results = new_coverage_results
 
             return table.upsert(fetched_repo.to_dict(), repository.url == repo_url)
         return None
