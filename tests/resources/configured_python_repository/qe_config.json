@@ -15,6 +15,6 @@
     ],
     "coverages_check_command": [
         "coverage3 -m pytest",
-        "coverage3 report --fail-under=80",
+        "coverage3 report --fail-under=80"
     ]
 }
