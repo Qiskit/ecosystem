@@ -40,10 +40,10 @@ class PythonStyleRunner(Runner):
         # check for configuration file
         if self.repo_config is not None:
             repo_config = self.repo_config
-        elif os.path.exists(f"{self.cloned_repo_directory}/qe_config.json"):
+        elif os.path.exists(f"{self.cloned_repo_directory}/ecosystem.json"):
             self.logger.info("Configuration file exists.")
             loaded_config = RepositoryConfiguration.load(
-                f"{self.cloned_repo_directory}/qe_config.json"
+                f"{self.cloned_repo_directory}/ecosystem.json"
             )
             repo_config = cast(PythonRepositoryConfiguration, loaded_config)
         else:
