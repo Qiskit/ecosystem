@@ -3,7 +3,7 @@ from typing import Optional, List
 
 from tinydb import TinyDB, Query
 
-from ecosystem.models import Tier, TestResult, StyleResult, CoverageResult
+from ecosystem.models import TestResult, StyleResult, CoverageResult
 from ecosystem.models.repository import Repository
 
 
@@ -24,10 +24,44 @@ class JsonDAO:
         table = self.database.table(repo.tier)
         return table.insert(repo.to_dict())
 
-    def get_all_main(self) -> List[Repository]:
-        """Returns all repositories from database."""
-        table = self.database.table(Tier.MAIN)
+    def get_repos_by_tier(self, tier: str) -> List[Repository]:
+        """Returns all repositories in specified tier."""
+        table = self.database.table(tier)
         return [Repository.from_dict(r) for r in table.all()]
+
+    def delete(self, repo_url: str, tier: str) -> List[int]:
+        """Deletes repository from tier.
+
+        Args:
+            repo_url: repository url
+            tier: tier
+        """
+        table = self.database.table(tier)
+        return table.remove(Query().url == repo_url)
+
+    def move_repo_to_other_tier(
+        self, repo_url: str, source_tier: str, destination_tier: str
+    ) -> Optional[Repository]:
+        """Moves repository from one tier to another.
+
+        Args:
+            repo_url: URL for repository
+            source_tier: source tier of repository
+            destination_tier: destination tier
+
+        Returns: Changed repository
+        """
+        repo = self.get_by_url(url=repo_url, tier=source_tier)
+        if repo is not None:
+            repo.tier = destination_tier
+            is_deleted = self.delete(repo_url=repo_url, tier=source_tier)
+            if is_deleted:
+                is_inserted = self.insert(repo)
+                if is_inserted:
+                    return repo
+                return None
+            return None
+        return None
 
     def get_by_url(self, url: str, tier: str) -> Optional[Repository]:
         """Returns repository by URL."""
@@ -100,9 +134,3 @@ class JsonDAO:
 
             return table.upsert(fetched_repo.to_dict(), repository.url == repo_url)
         return None
-
-    def delete(self, repo: Repository) -> List[int]:
-        """Deletes entry."""
-        table = self.database.table(repo.tier)
-        query = Query()
-        return table.remove(query.name == repo.name and query.url == repo.url)

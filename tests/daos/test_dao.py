@@ -1,7 +1,7 @@
 """Tests for entities."""
 import os
 from unittest import TestCase
-from ecosystem.models import TestResult, TestType
+from ecosystem.models import TestResult, TestType, Tier
 from ecosystem.daos import JsonDAO
 from ecosystem.models.repository import Repository
 
@@ -43,45 +43,72 @@ class TestJsonDao(TestCase):
         self._delete_members_json()
 
         main_repo = get_main_repo()
-        controller = JsonDAO(self.path)
+        dao = JsonDAO(self.path)
 
         # insert entry
-        controller.insert(main_repo)
-        fetched_repo = controller.get_all_main()[0]
+        dao.insert(main_repo)
+        fetched_repo = dao.get_repos_by_tier(Tier.MAIN)[0]
         self.assertEqual(main_repo, fetched_repo)
         self.assertEqual(main_repo.labels, fetched_repo.labels)
         self.assertEqual(len(fetched_repo.tests_results), 1)
 
         # delete entry
-        controller.delete(main_repo)
-        self.assertEqual([], controller.get_all_main())
+        dao.delete(repo_url=main_repo.url, tier=main_repo.tier)
+        self.assertEqual([], dao.get_repos_by_tier(Tier.MAIN))
+
+    def test_move_from_tier_to_tier(self):
+        """Tests moving repo from tier to tier."""
+        self._delete_members_json()
+
+        main_repo = get_main_repo()
+        dao = JsonDAO(self.path)
+
+        # insert entry
+        dao.insert(main_repo)
+        fetched_repo = dao.get_repos_by_tier(Tier.MAIN)[0]
+        self.assertEqual(main_repo, fetched_repo)
+        self.assertEqual(main_repo.labels, fetched_repo.labels)
+        self.assertEqual(len(fetched_repo.tests_results), 1)
+
+        # move from tier to tier
+        moved_repo = dao.move_repo_to_other_tier(
+            repo_url=main_repo.url,
+            source_tier=main_repo.tier,
+            destination_tier=Tier.CANDIDATE,
+        )
+        repos = dao.get_repos_by_tier(Tier.MAIN)
+        self.assertEqual(len(repos), 0)
+
+        candidate_repos = dao.get_repos_by_tier(Tier.CANDIDATE)
+        self.assertEqual(len(candidate_repos), 1)
+        self.assertEqual(candidate_repos[0], moved_repo)
 
     def test_add_test_result(self):
         """Tests adding result to repo."""
         self._delete_members_json()
-        controller = JsonDAO(self.path)
+        dao = JsonDAO(self.path)
 
         main_repo = get_main_repo()
-        controller.insert(main_repo)
-        res = controller.add_repo_test_result(
+        dao.insert(main_repo)
+        res = dao.add_repo_test_result(
             main_repo.url,
             main_repo.tier,
             TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE),
         )
         self.assertEqual(res, [1])
-        recovered_repo = controller.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
         self.assertEqual(
             recovered_repo.tests_results,
             [TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
         )
 
-        res = controller.add_repo_test_result(
+        res = dao.add_repo_test_result(
             main_repo.url,
             main_repo.tier,
             TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
         )
         self.assertEqual(res, [1])
-        recovered_repo = controller.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
         self.assertEqual(
             recovered_repo.tests_results,
             [
