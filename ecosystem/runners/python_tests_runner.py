@@ -9,7 +9,7 @@ from ecosystem.models import (
     CommandExecutionSummary,
 )
 from ecosystem.models.repository import Repository
-from ecosystem.runners.runner import Runner, runner_ConfigFile, runner_ToxFile
+from ecosystem.runners.runner import Runner
 
 
 class PythonTestsRunner(Runner):
@@ -42,10 +42,9 @@ class PythonTestsRunner(Runner):
         Returns: execution summary of steps
         """
         # check for configuration file
-        repo_config = runner_ConfigFile(self)
-
+        config = self.get_config()
         # check for existing tox file
-        runner_ToxFile(self, repo_config)
+        self.inject_file(config, "tox.ini", "tox_default.ini", self.ecosystem_deps)
 
         terra_version = "-"
         if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):

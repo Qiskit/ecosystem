@@ -12,38 +12,6 @@ from ecosystem.utils import QiskitEcosystemException
 from ecosystem.utils import logger as ecosystem_logger
 
 
-def runner_ConfigFile(runner):
-    """check for configuration file"""
-    if runner.repo_config is not None:
-        repo_config = runner.repo_config
-    elif os.path.exists(f"{runner.cloned_repo_directory}/ecosystem.json"):
-        runner.logger.info("Configuration file exists.")
-        loaded_config = RepositoryConfiguration.load(
-            f"{runner.cloned_repo_directory}/ecosystem.json"
-        )
-        repo_config = cast(PythonRepositoryConfiguration, loaded_config)
-    else:
-        repo_config = PythonRepositoryConfiguration.default()
-
-    return repo_config
-
-
-def runner_ToxFile(runner, repo_config):
-    """check for Tox file"""
-    if os.path.exists(f"{runner.cloned_repo_directory}/tox.ini"):
-        runner.logger.info("Tox file exists.")
-        os.rename(
-            f"{runner.cloned_repo_directory}/tox.ini",
-            f"{runner.cloned_repo_directory}/tox_default.ini",
-        )
-
-    # render new tox file for tests
-    with open(f"{runner.cloned_repo_directory}/tox.ini", "w") as tox_file:
-        tox_file.write(
-            repo_config.render_tox_file(ecosystem_deps=runner.ecosystem_deps)
-        )
-
-
 class Runner:
     """Runner for repository checks.
 
@@ -74,6 +42,41 @@ class Runner:
         """Execution after workload is finished."""
         if self.cloned_repo_directory and os.path.exists(self.cloned_repo_directory):
             shutil.rmtree(self.cloned_repo_directory)
+
+    def get_config(self):
+        """check for configuration file"""
+        if self.repo_config is not None:
+            repo_config = self.repo_config
+        elif os.path.exists(f"{self.cloned_repo_directory}/ecosystem.json"):
+            self.logger.info("Configuration file exists.")
+            loaded_config = RepositoryConfiguration.load(
+                f"{self.cloned_repo_directory}/ecosystem.json"
+            )
+            repo_config = cast(PythonRepositoryConfiguration, loaded_config)
+        else:
+            repo_config = PythonRepositoryConfiguration.default()
+
+        return repo_config
+
+    def inject_file(self, repo_config, file, file_fault, ecosystem_deps: Optional = None):
+        """check for tox/.pylintrc/.coveragerc file"""
+        if os.path.exists(f"{self.cloned_repo_directory}/{file}"):
+            self.logger.info("Tox file exists.")
+            os.rename(
+                f"{self.cloned_repo_directory}/{file}",
+                f"{self.cloned_repo_directory}/{file_fault}",
+            )
+
+        # render new tox/.pylintrc/.coveragerc file for tests
+        with open(f"{self.cloned_repo_directory}/{file}", "w") as param_file:
+            if file == "tox.ini":
+                param_file.write(
+                    repo_config.render_tox_file(ecosystem_deps=ecosystem_deps)
+                )
+            elif file == ".pylintrc":
+                param_file.write(repo_config.render_lint_file())
+            elif file == ".coveragerc":
+                param_file.write(repo_config.render_lint_file())
 
     @abstractmethod
     def workload(self) -> Tuple[str, List[CommandExecutionSummary]]:
