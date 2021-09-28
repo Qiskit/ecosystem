@@ -43,8 +43,6 @@ def runner_ToxFile(runner, repo_config):
             repo_config.render_tox_file(ecosystem_deps=runner.ecosystem_deps)
         )
 
-    return repo_config
-
 
 class Runner:
     """Runner for repository checks.
