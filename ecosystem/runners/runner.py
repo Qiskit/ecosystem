@@ -3,13 +3,47 @@ import os
 import shutil
 from abc import abstractmethod
 from logging import Logger
-from typing import Optional, Union, List, Tuple
+from typing import Optional, Union, List, Tuple, cast
 
 from ecosystem.commands import CloneRepoCommand
-from ecosystem.models import CommandExecutionSummary, RepositoryConfiguration
+from ecosystem.models import CommandExecutionSummary, RepositoryConfiguration, PythonRepositoryConfiguration
 from ecosystem.models.repository import Repository
 from ecosystem.utils import QiskitEcosystemException
 from ecosystem.utils import logger as ecosystem_logger
+
+
+def runner_ConfigFile(runner):
+    """check for configuration file"""
+    if runner.repo_config is not None:
+        repo_config = runner.repo_config
+    elif os.path.exists(f"{runner.cloned_repo_directory}/ecosystem.json"):
+        runner.logger.info("Configuration file exists.")
+        loaded_config = RepositoryConfiguration.load(
+            f"{runner.cloned_repo_directory}/ecosystem.json"
+        )
+        repo_config = cast(PythonRepositoryConfiguration, loaded_config)
+    else:
+        repo_config = PythonRepositoryConfiguration.default()
+
+    return repo_config
+
+
+def runner_ToxFile(runner, repo_config):
+    """check for Tox file"""
+    if os.path.exists(f"{runner.cloned_repo_directory}/tox.ini"):
+        runner.logger.info("Tox file exists.")
+        os.rename(
+            f"{runner.cloned_repo_directory}/tox.ini",
+            f"{runner.cloned_repo_directory}/tox_default.ini",
+        )
+
+    # render new tox file for tests
+    with open(f"{runner.cloned_repo_directory}/tox.ini", "w") as tox_file:
+        tox_file.write(
+            repo_config.render_tox_file(ecosystem_deps=runner.ecosystem_deps)
+        )
+
+    return repo_config
 
 
 class Runner:
