@@ -59,7 +59,7 @@ class PythonCoverageRunner(Runner):
 
         # render new .coveragerc file for tests
         with open(f"{self.cloned_repo_directory}/.coveragerc", "w") as cov_file:
-            cov_file.write(repo_config.render_lint_file())
+            cov_file.write(repo_config.render_cov_file())
 
         # check for existing tox file
         if os.path.exists(f"{self.cloned_repo_directory}/tox.ini"):

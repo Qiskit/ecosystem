@@ -135,3 +135,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     def render_lint_file(self):
         """Renders .pylintrc template from configuration."""
         return self.lint_template.render()
+
+    def render_cov_file(self):
+        """Renders .coveragerc template from configuration."""
+        return self.cov_template.render()

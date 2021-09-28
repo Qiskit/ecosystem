@@ -76,7 +76,7 @@ class Runner:
             elif file == ".pylintrc":
                 param_file.write(repo_config.render_lint_file())
             elif file == ".coveragerc":
-                param_file.write(repo_config.render_lint_file())
+                param_file.write(repo_config.render_cov_file())
 
     @abstractmethod
     def workload(self) -> Tuple[str, List[CommandExecutionSummary]]:
