@@ -57,7 +57,7 @@ class PythonStyleRunner(Runner):
                 f"{self.cloned_repo_directory}/.pylintrc_default",
             )
 
-        # render new tox file for tests
+        # render new .pylintrc file for tests
         with open(f"{self.cloned_repo_directory}/.pylintrc", "w") as lint_file:
             lint_file.write(repo_config.render_lint_file())
 
