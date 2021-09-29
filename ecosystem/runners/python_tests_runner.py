@@ -42,9 +42,7 @@ class PythonTestsRunner(Runner):
         Returns: execution summary of steps
         """
         # check for configuration file
-        config = self.get_config()
-        # check for existing tox file
-        self.inject_file(config, "tox.ini", "tox_default.ini", self.ecosystem_deps)
+        config = self.get_config("tox.ini", "tox_default.ini", self.ecosystem_deps)
 
         terra_version = "-"
         if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):

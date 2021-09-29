@@ -43,7 +43,7 @@ class Runner:
         if self.cloned_repo_directory and os.path.exists(self.cloned_repo_directory):
             shutil.rmtree(self.cloned_repo_directory)
 
-    def get_config(self):
+    def get_config(self, file, file_fault, ecosystem_deps: Optional = None):
         """check for configuration file"""
         if self.repo_config is not None:
             repo_config = self.repo_config
@@ -56,9 +56,6 @@ class Runner:
         else:
             repo_config = PythonRepositoryConfiguration.default()
 
-        return repo_config
-
-    def inject_file(self, repo_config, file, file_fault, ecosystem_deps: Optional = None):
         """check for tox/.pylintrc/.coveragerc file"""
         if os.path.exists(f"{self.cloned_repo_directory}/{file}"):
             self.logger.info("Tox file exists.")
