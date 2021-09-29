@@ -96,7 +96,7 @@ class Manager:
 
         return terra_version
 
-    def _run_python_styles(self, repo_url: str, tier: str, style_type: str):
+    def python_styles_check(self, repo_url: str, tier: str, style_type: str):
         """Runs tests using python runner.
 
         Args:
@@ -124,7 +124,7 @@ class Manager:
         else:
             self.logger.warning("Runner returned 0 results.")
 
-    def _run_python_coverages(self, repo_url: str, tier: str, coverage_type: str):
+    def python_coverage(self, repo_url: str, tier: str, coverage_type: str):
         """Runs tests using python runner.
 
         Args:

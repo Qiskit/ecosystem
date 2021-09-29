@@ -1,0 +1,49 @@
+# This code is part of Qiskit.
+#
+# (C) Copyright IBM 2021.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE.txt file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: 'Run tests'
+description: 'Run tests for repository'
+inputs:
+  repo_url:
+    description: 'GitHub repository URL'
+    required: true
+  check_type:
+    description: 'Check type. Available options: test_stable, test_dev, lint, coverage'
+    required: true
+  tox_env:
+    description: "Tox test env"
+    required: true
+  tier:
+    description: "Tier of repository"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Run Unit Tests
+      run: |
+        if [ "${{ inputs.check_type }}" == "test_stable" ]; then
+          echo "Running Qiskit stable tests for ${{inputs.repo_url}}..."
+          python manager.py python_stable_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}}
+        fi
+        if [ "${{ inputs.check_type }}" == "test_dev" ]; then
+          echo "Running Qiskit dev tests for ${{inputs.repo_url}}..."
+          python manager.py python_dev_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}}
+        fi
+        if [ "${{ inputs.check_type }}" == "lint" ]; then
+          echo "Running lint tests for ${{inputs.repo_url}}..."
+          python manager.py python_styles_check ${{inputs.repo_url}} --tier=${{inputs.tier}} --style_type=""
+        fi
+        if [ "${{ inputs.check_type }}" == "coverage" ]; then
+          echo "Running coverage tests for ${{inputs.repo_url}}..."
+          python manager.py python_coverage ${{inputs.repo_url}} --tier=${{inputs.tier}} --coverage_type=""
+        fi
+      shell: bash
