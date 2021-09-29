@@ -1,11 +1,9 @@
 """Ecosystem python test runner."""
-import os
-from typing import Optional, Union, cast, List, Tuple
+from typing import Optional, Union, List, Tuple
 
 from ecosystem.commands import RunToxCommand
 from ecosystem.models import (
     RepositoryConfiguration,
-    PythonRepositoryConfiguration,
     CommandExecutionSummary,
 )
 from ecosystem.models.repository import Repository
@@ -42,7 +40,7 @@ class PythonTestsRunner(Runner):
         Returns: execution summary of steps
         """
         # check for configuration file
-        config = self.get_config(["tox.ini"], ["tox_default.ini"], self.ecosystem_deps)
+        self.get_config(["tox.ini"], ["tox_default.ini"], self.ecosystem_deps)
 
         terra_version = "-"
         if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):

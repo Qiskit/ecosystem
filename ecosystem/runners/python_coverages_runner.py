@@ -1,11 +1,9 @@
 """Ecosystem python coverage runner."""
-import os
-from typing import Optional, Union, cast, List, Tuple
+from typing import Optional, Union, List, Tuple
 
 from ecosystem.commands import RunToxCommand
 from ecosystem.models import (
     RepositoryConfiguration,
-    PythonRepositoryConfiguration,
     CommandExecutionSummary,
 )
 from ecosystem.models.repository import Repository
@@ -42,9 +40,8 @@ class PythonCoverageRunner(Runner):
         # render new .coveragerc file for tests
         # check for existing tox file
         # render new tox file for tests
-        config = self.get_config(
-            [".coveragerc", "tox.ini"],
-            [".coveragerc_default", "tox_default.ini"]
+        self.get_config(
+            [".coveragerc", "tox.ini"], [".coveragerc_default", "tox_default.ini"]
         )
 
         # run lint
