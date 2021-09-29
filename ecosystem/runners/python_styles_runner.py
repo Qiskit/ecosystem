@@ -44,8 +44,7 @@ class PythonStyleRunner(Runner):
         # render new tox file for tests
         config = self.get_config(
             [".pylintrc", "tox.ini"],
-            [".pylintrc_default", "tox_default.ini"],
-            self.ecosystem_deps,
+            [".pylintrc_default", "tox_default.ini"]
         )
 
         # run lint

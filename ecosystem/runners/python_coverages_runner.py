@@ -44,8 +44,7 @@ class PythonCoverageRunner(Runner):
         # render new tox file for tests
         config = self.get_config(
             [".coveragerc", "tox.ini"],
-            [".coveragerc_default", "tox_default.ini"],
-            self.ecosystem_deps,
+            [".coveragerc_default", "tox_default.ini"]
         )
 
         # run lint
