@@ -42,7 +42,11 @@ class PythonStyleRunner(Runner):
         # render new .pylintrc file for tests
         # check for existing tox file
         # render new tox file for tests
-        config = self.get_config([".pylintrc", "tox.ini"], [".pylintrc_default", "tox_default.ini"], self.ecosystem_deps)
+        config = self.get_config(
+            [".pylintrc", "tox.ini"],
+            [".pylintrc_default", "tox_default.ini"],
+            self.ecosystem_deps,
+        )
 
         # run lint
         tox_lint_res = RunToxCommand.execute(

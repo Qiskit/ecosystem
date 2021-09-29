@@ -42,7 +42,11 @@ class PythonCoverageRunner(Runner):
         # render new .coveragerc file for tests
         # check for existing tox file
         # render new tox file for tests
-	config = self.get_config([".coveragerc","tox.ini"], [".coveragerc_default","tox_default.ini"], self.ecosystem_deps)
+        config = self.get_config(
+            [".coveragerc", "tox.ini"],
+            [".coveragerc_default", "tox_default.ini"],
+            self.ecosystem_deps,
+        )
 
         # run lint
         tox_coverage_res = RunToxCommand.execute(

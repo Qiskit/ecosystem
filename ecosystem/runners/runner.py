@@ -6,7 +6,11 @@ from logging import Logger
 from typing import Optional, Union, List, Tuple, cast
 
 from ecosystem.commands import CloneRepoCommand
-from ecosystem.models import CommandExecutionSummary, RepositoryConfiguration, PythonRepositoryConfiguration
+from ecosystem.models import (
+    CommandExecutionSummary,
+    RepositoryConfiguration,
+    PythonRepositoryConfiguration,
+)
 from ecosystem.models.repository import Repository
 from ecosystem.utils import QiskitEcosystemException
 from ecosystem.utils import logger as ecosystem_logger
@@ -57,15 +61,15 @@ class Runner:
             repo_config = PythonRepositoryConfiguration.default()
 
         """check for tox/.pylintrc/.coveragerc file"""
-	for i in range(len(file)):
+        for i in range(len(file)):
             if os.path.exists(f"{self.cloned_repo_directory}/{file[i]}"):
-                self.logger.info({file[i]} "file exists.")
+                self.logger.info("{file[i]} file exists.")
                 os.rename(
                     f"{self.cloned_repo_directory}/{file[i]}",
                     f"{self.cloned_repo_directory}/{file_fault[i]}",
                 )
 
-        # render new tox/.pylintrc/.coveragerc file for tests
+            # render new tox/.pylintrc/.coveragerc file for tests
             with open(f"{self.cloned_repo_directory}/{file[i]}", "w") as param_file:
                 if file[i] == "tox.ini":
                     param_file.write(
