@@ -38,40 +38,11 @@ class PythonCoverageRunner(Runner):
         Returns: execution summary of steps
         """
         # check for configuration file
-        if self.repo_config is not None:
-            repo_config = self.repo_config
-        elif os.path.exists(f"{self.cloned_repo_directory}/ecosystem.json"):
-            self.logger.info("Configuration file exists.")
-            loaded_config = RepositoryConfiguration.load(
-                f"{self.cloned_repo_directory}/ecosystem.json"
-            )
-            repo_config = cast(PythonRepositoryConfiguration, loaded_config)
-        else:
-            repo_config = PythonRepositoryConfiguration.default()
-
         # check for existing .coveragerc file
-        if os.path.exists(f"{self.cloned_repo_directory}/.coveragerc"):
-            self.logger.info(".coveragerc file exists.")
-            os.rename(
-                f"{self.cloned_repo_directory}/.coveragerc",
-                f"{self.cloned_repo_directory}/.coveragerc_default",
-            )
-
         # render new .coveragerc file for tests
-        with open(f"{self.cloned_repo_directory}/.coveragerc", "w") as cov_file:
-            cov_file.write(repo_config.render_cov_file())
-
         # check for existing tox file
-        if os.path.exists(f"{self.cloned_repo_directory}/tox.ini"):
-            self.logger.info("Tox file exists.")
-            os.rename(
-                f"{self.cloned_repo_directory}/tox.ini",
-                f"{self.cloned_repo_directory}/tox_default.ini",
-            )
-
         # render new tox file for tests
-        with open(f"{self.cloned_repo_directory}/tox.ini", "w") as tox_file:
-            tox_file.write(repo_config.render_tox_file(ecosystem_deps=[]))
+	config = self.get_config([".coveragerc","tox.ini"], [".coveragerc_default","tox_default.ini"], self.ecosystem_deps)
 
         # run lint
         tox_coverage_res = RunToxCommand.execute(

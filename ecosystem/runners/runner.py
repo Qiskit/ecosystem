@@ -57,23 +57,24 @@ class Runner:
             repo_config = PythonRepositoryConfiguration.default()
 
         """check for tox/.pylintrc/.coveragerc file"""
-        if os.path.exists(f"{self.cloned_repo_directory}/{file}"):
-            self.logger.info("Tox file exists.")
-            os.rename(
-                f"{self.cloned_repo_directory}/{file}",
-                f"{self.cloned_repo_directory}/{file_fault}",
-            )
+	for i in range(len(file)):
+            if os.path.exists(f"{self.cloned_repo_directory}/{file[i]}"):
+                self.logger.info({file[i]} "file exists.")
+                os.rename(
+                    f"{self.cloned_repo_directory}/{file[i]}",
+                    f"{self.cloned_repo_directory}/{file_fault[i]}",
+                )
 
         # render new tox/.pylintrc/.coveragerc file for tests
-        with open(f"{self.cloned_repo_directory}/{file}", "w") as param_file:
-            if file == "tox.ini":
-                param_file.write(
-                    repo_config.render_tox_file(ecosystem_deps=ecosystem_deps)
-                )
-            elif file == ".pylintrc":
-                param_file.write(repo_config.render_lint_file())
-            elif file == ".coveragerc":
-                param_file.write(repo_config.render_cov_file())
+            with open(f"{self.cloned_repo_directory}/{file[i]}", "w") as param_file:
+                if file[i] == "tox.ini":
+                    param_file.write(
+                        repo_config.render_tox_file(ecosystem_deps=ecosystem_deps)
+                    )
+                elif file[i] == ".pylintrc":
+                    param_file.write(repo_config.render_lint_file())
+                elif file[i] == ".coveragerc":
+                    param_file.write(repo_config.render_cov_file())
 
     @abstractmethod
     def workload(self) -> Tuple[str, List[CommandExecutionSummary]]:
