@@ -10,6 +10,7 @@ from ecosystem.models import (
     CommandExecutionSummary,
     RepositoryConfiguration,
     PythonRepositoryConfiguration,
+    FilesTemplates,
 )
 from ecosystem.models.repository import Repository
 from ecosystem.utils import QiskitEcosystemException
@@ -94,13 +95,13 @@ class Runner:
             with open(
                 f"{self.cloned_repo_directory}/{destination_file_name}", "w"
             ) as param_file:
-                if destination_file_name == "tox.ini":
+                if destination_file_name == FilesTemplates.TOX_FILE_NAME:
                     param_file.write(
                         repo_config.render_tox_file(ecosystem_deps=ecosystem_deps)
                     )
-                elif destination_file_name == ".pylintrc":
+                elif destination_file_name == FilesTemplates.LINT_FILE_NAME:
                     param_file.write(repo_config.render_lint_file())
-                elif destination_file_name == ".coveragerc":
+                elif destination_file_name == FilesTemplates.COV_FILE_NAME:
                     param_file.write(repo_config.render_cov_file())
                 else:
                     raise ValueError(
