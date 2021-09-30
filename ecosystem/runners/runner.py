@@ -47,8 +47,29 @@ class Runner:
         if self.cloned_repo_directory and os.path.exists(self.cloned_repo_directory):
             shutil.rmtree(self.cloned_repo_directory)
 
-    def get_config(self, file, file_fault, ecosystem_deps: Optional = None):
-        """check for configuration file"""
+    def configure_repo(
+        self,
+        files: List[str],
+        files_fault: List[str],
+        ecosystem_deps: Optional[List[str]] = None,
+    ):
+        """Configuring the different templates:
+            - tox.ini
+            - .pylintrc
+            - .coveragerc
+
+        Args:
+            files: list of files (tox.ini/.pylintrc/.coveragerc)
+            files_fault: list of default name replacement
+            ecosystem_deps: list of dependence
+
+        No return
+        """
+        if len(files) != len(files_fault):
+            raise ValueError(
+                "The number of element in files aren't the same as in files_fault"
+            )
+
         if self.repo_config is not None:
             repo_config = self.repo_config
         elif os.path.exists(f"{self.cloned_repo_directory}/ecosystem.json"):
@@ -61,24 +82,30 @@ class Runner:
             repo_config = PythonRepositoryConfiguration.default()
 
         # check for tox/.pylintrc/.coveragerc file
-        for i, value in enumerate(file):
-            if os.path.exists(f"{self.cloned_repo_directory}/{value}"):
-                self.logger.info("{value} file exists.")
+        for destination_file_name, renamed_file_name in zip(files, files_fault):
+            if os.path.exists(f"{self.cloned_repo_directory}/{destination_file_name}"):
+                self.logger.info("{destination_file_name} file exists.")
                 os.rename(
-                    f"{self.cloned_repo_directory}/{value}",
-                    f"{self.cloned_repo_directory}/{file_fault[i]}",
+                    f"{self.cloned_repo_directory}/{destination_file_name}",
+                    f"{self.cloned_repo_directory}/{renamed_file_name}",
                 )
 
             # render new tox/.pylintrc/.coveragerc file for tests
-            with open(f"{self.cloned_repo_directory}/{value}", "w") as param_file:
-                if value == "tox.ini":
+            with open(
+                f"{self.cloned_repo_directory}/{destination_file_name}", "w"
+            ) as param_file:
+                if destination_file_name == "tox.ini":
                     param_file.write(
                         repo_config.render_tox_file(ecosystem_deps=ecosystem_deps)
                     )
-                elif value == ".pylintrc":
+                elif destination_file_name == ".pylintrc":
                     param_file.write(repo_config.render_lint_file())
-                elif value == ".coveragerc":
+                elif destination_file_name == ".coveragerc":
                     param_file.write(repo_config.render_cov_file())
+                else:
+                    raise ValueError(
+                        "{destination_file_name} doesn't correspond to anything"
+                    )
 
     @abstractmethod
     def workload(self) -> Tuple[str, List[CommandExecutionSummary]]:

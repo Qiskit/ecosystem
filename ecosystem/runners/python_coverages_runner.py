@@ -40,7 +40,7 @@ class PythonCoverageRunner(Runner):
         # render new .coveragerc file for tests
         # check for existing tox file
         # render new tox file for tests
-        self.get_config(
+        self.configure_repo(
             [".coveragerc", "tox.ini"], [".coveragerc_default", "tox_default.ini"]
         )
 

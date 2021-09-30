@@ -40,7 +40,7 @@ class PythonStyleRunner(Runner):
         # render new .pylintrc file for tests
         # check for existing tox file
         # render new tox file for tests
-        self.get_config(
+        self.configure_repo(
             [".pylintrc", "tox.ini"], [".pylintrc_default", "tox_default.ini"]
         )
 
