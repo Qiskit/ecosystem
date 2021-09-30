@@ -120,7 +120,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             tests_command=["pip check", "pytest -W error::DeprecationWarning"],
             styles_check_command=["pylint -rn . tests"],
             coverages_check_command=[
-                "coverage3 -m pytest",
+                "coverage3 run -m pytest",
                 "coverage3 report --fail-under=80",
             ],
         )
