@@ -1,11 +1,10 @@
 """Ecosystem python test runner."""
 import os
-from typing import Optional, Union, cast, List, Tuple
+from typing import Optional, Union, List, Tuple
 
 from ecosystem.commands import RunToxCommand
 from ecosystem.models import (
     RepositoryConfiguration,
-    PythonRepositoryConfiguration,
     CommandExecutionSummary,
 )
 from ecosystem.models.repository import Repository
@@ -42,30 +41,7 @@ class PythonTestsRunner(Runner):
         Returns: execution summary of steps
         """
         # check for configuration file
-        if self.repo_config is not None:
-            repo_config = self.repo_config
-        elif os.path.exists(f"{self.cloned_repo_directory}/qe_config.json"):
-            self.logger.info("Configuration file exists.")
-            loaded_config = RepositoryConfiguration.load(
-                f"{self.cloned_repo_directory}/qe_config.json"
-            )
-            repo_config = cast(PythonRepositoryConfiguration, loaded_config)
-        else:
-            repo_config = PythonRepositoryConfiguration.default()
-
-        # check for existing tox file
-        if os.path.exists(f"{self.cloned_repo_directory}/tox.ini"):
-            self.logger.info("Tox file exists.")
-            os.rename(
-                f"{self.cloned_repo_directory}/tox.ini",
-                f"{self.cloned_repo_directory}/tox_default.ini",
-            )
-
-        # render new tox file for tests
-        with open(f"{self.cloned_repo_directory}/tox.ini", "w") as tox_file:
-            tox_file.write(
-                repo_config.render_tox_file(ecosystem_deps=self.ecosystem_deps)
-            )
+        self.configure_repo(["tox.ini"], ["tox_default.ini"], self.ecosystem_deps)
 
         terra_version = "-"
         if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):

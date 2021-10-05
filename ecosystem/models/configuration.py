@@ -116,10 +116,11 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         """Returns default python repository configuration."""
         return PythonRepositoryConfiguration(
             dependencies_files=["requirements.txt"],
+            extra_dependencies=["pytest", "coverage"],
             tests_command=["pip check", "pytest -W error::DeprecationWarning"],
             styles_check_command=["pylint -rn . tests"],
             coverages_check_command=[
-                "coverage3 -m pytest",
+                "coverage3 run -m pytest",
                 "coverage3 report --fail-under=80",
             ],
         )
@@ -134,3 +135,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     def render_lint_file(self):
         """Renders .pylintrc template from configuration."""
         return self.lint_template.render()
+
+    def render_cov_file(self):
+        """Renders .coveragerc template from configuration."""
+        return self.cov_template.render()
