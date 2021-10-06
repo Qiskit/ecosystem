@@ -25,16 +25,10 @@ def parser_issue(body: str):
     print("::set-output name=SUBMISSION_NAME::{}".format(parsed_result.name))
     print("::set-output name=SUBMISSION_REPO::{}".format(parsed_result.url))
     print(
-        "::set-output name=SUBMISSION_DESCRIPTION::{}".format(
-            parsed_result.description
-        )
+        "::set-output name=SUBMISSION_DESCRIPTION::{}".format(parsed_result.description)
     )
     print("::set-output name=SUBMISSION_LICENCE::{}".format(parsed_result.licence))
-    print(
-        "::set-output name=SUBMISSION_CONTACT::{}".format(
-            parsed_result.contact_info
-        )
-    )
+    print("::set-output name=SUBMISSION_CONTACT::{}".format(parsed_result.contact_info))
     print(
         "::set-output name=SUBMISSION_ALTERNATIVES::{}".format(
             parsed_result.alternatives
