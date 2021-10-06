@@ -1,0 +1,66 @@
+name: Submission check
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo_url:
+        description: 'Repository URL'
+        required: true
+
+jobs:
+  submission_workflow:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 2
+    permissions:
+      packages: write
+      contents: read
+    env:
+      tox_env: "py39"
+      tier: "MAIN"
+      python-version: [3.9]
+
+    steps:
+    - name: Get current datetime
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y_%m_%d_%H_%M')"
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+
+    - name: Linter check
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.inputs.repo_url }}
+        check_type: "lint"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+    - name: Coverage check
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.inputs.repo_url }}
+        check_type: "coverage"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+    - name: Tests stable check
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.inputs.repo_url }}
+        check_type: "test_stable"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+    - name: Tests dev check
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.inputs.repo_url }}
+        check_type: "test_dev"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
