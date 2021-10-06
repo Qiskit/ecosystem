@@ -10,7 +10,7 @@ name: Submission check
 # -- link pr to issue
 # - if something went wrong:
 # -- create an issue in a repo
-# -- comment in issue about error
+# -- comment error log in issue
 
 on:
   issues:
@@ -24,9 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 2
-    permissions:
-      packages: write
-      contents: read
     env:
       tox_env: "py39"
       tier: "MAIN"
