@@ -15,10 +15,12 @@ name: Submission check
 on:
   issues:
     types: [opened]
+  issue_comment:
+    types: [created]
 
 jobs:
   submission_workflow:
-    if: ${{ startsWith(github.event.issue.title, '[Submission]:') }}
+    if: ${{ startsWith(github.event.issue.title, '[Submission]:') || (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:')) }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 2
@@ -103,10 +105,18 @@ jobs:
         branch: submission-${{ github.event.issue.number }}-${{ env.TIMESTAMP }}
         base: main
 
-    - name: Create comment
+    - name: Create comment on success
       if: ${{ success() }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
+
+    - name: Create comment on failure
+      if: ${{ failure() }}
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Fail submission! :warning:
