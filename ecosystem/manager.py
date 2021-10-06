@@ -13,6 +13,41 @@ from ecosystem.runners.python_coverages_runner import PythonCoverageRunner
 from ecosystem.utils import logger, parse_submission_issue
 
 
+def parser_issue(body: str):
+    """Command for calling body issue parsing function.
+
+    Args:
+        body: body of the created issue
+    """
+
+    parsed_result = parse_submission_issue(body)
+
+    print("::set-output name=SUBMISSION_NAME::{}".format(parsed_result.name))
+    print("::set-output name=SUBMISSION_REPO::{}".format(parsed_result.url))
+    print(
+        "::set-output name=SUBMISSION_DESCRIPTION::{}".format(
+            parsed_result.description
+        )
+    )
+    print("::set-output name=SUBMISSION_LICENCE::{}".format(parsed_result.licence))
+    print(
+        "::set-output name=SUBMISSION_CONTACT::{}".format(
+            parsed_result.contact_info
+        )
+    )
+    print(
+        "::set-output name=SUBMISSION_ALTERNATIVES::{}".format(
+            parsed_result.alternatives
+        )
+    )
+    print(
+        "::set-output name=SUBMISSION_AFFILIATIONS::{}".format(
+            parsed_result.affiliations
+        )
+    )
+    print("::set-output name=SUBMISSION_LABELS::{}".format(parsed_result.labels))
+
+
 class Manager:
     """Manager class.
     Entrypoint for all CLI commands.
@@ -36,24 +71,6 @@ class Manager:
         self.coveragerc_template = self.env.get_template(".coveragerc")
         self.controller = JsonDAO(path=self.resources_dir)
         self.logger = logger
-
-    def parser_issue(self, body_of_issue: str):
-        """Command for calling body issue parsing function.
-
-        Args:
-            body_of_issue: body of the created issue
-        """
-
-        parsed_result = parse_submission_issue(body_of_issue)
-
-        print('::set-output name=SUBMISSION_NAME::{}'.format(parsed_result.name))
-        print('::set-output name=SUBMISSION_REPO::{}'.format(parsed_result.url))
-        print('::set-output name=SUBMISSION_DESCRIPTION::{}'.format(parsed_result.description))
-        print('::set-output name=SUBMISSION_LICENCE::{}'.format(parsed_result.licence))
-        print('::set-output name=SUBMISSION_CONTACT::{}'.format(parsed_result.contact_info))
-        print('::set-output name=SUBMISSION_ALTERNATIVES::{}'.format(parsed_result.alternatives))
-        print('::set-output name=SUBMISSION_AFFILIATIONS::{}'.format(parsed_result.affiliations))
-        print('::set-output name=SUBMISSION_LABELS::{}'.format(parsed_result.labels))
 
     def generate_readme(self, path: Optional[str] = None):
         """Generates entire readme for ecosystem repository.
