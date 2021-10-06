@@ -46,10 +46,10 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-     - name: Parse submission
-       id: parse-issue
-       run: |
-         repo=python manager.py parse_submission_issue --body="${{ github.event.issue.body }}"
+    - name: Parse submission
+      id: parse-issue
+      run: |
+        repo=python manager.py parse_submission_issue --body="${{ github.event.issue.body }}"
 
     - name: Linter check
       uses: ./.github/actions/run-tests
@@ -80,33 +80,33 @@ jobs:
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
 
-     - name: Update readme
-       if: ${{ success() }}
-       run: |
-         python manager.py add_repo \
-                                    --repo_link=${{ steps.parse-issue.outputs.SUBMISSION_REPO }} \
-                                    --repo_author=${{ github.event.issue.user.html_url }} \
-                                    --repo_description="${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}" \
-                                    --repo_tags="${{ steps.parse-issue.outputs.SUBMISSION_TAGS }}"
-         python manager.py generate_readme
+    - name: Update readme
+      if: ${{ success() }}
+      run: |
+        python manager.py add_repo \
+                                   --repo_link=${{ steps.parse-issue.outputs.SUBMISSION_REPO }} \
+                                   --repo_author=${{ github.event.issue.user.html_url }} \
+                                   --repo_description="${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}" \
+                                   --repo_tags="${{ steps.parse-issue.outputs.SUBMISSION_TAGS }}"
+        python manager.py generate_readme
 
-     - name: Commit changes and create Pull Request
-       if: ${{ success() }}
-       id: cpr
-       uses: peter-evans/create-pull-request@v3
-       with:
-         commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_REPO }} to list.
-         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
-         body: |
-           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
-           Closes #${{ github.event.issue.number }}
-         branch: submission-${{ github.event.issue.number }}-${{ env.TIMESTAMP }}
-         base: main
+    - name: Commit changes and create Pull Request
+      if: ${{ success() }}
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_REPO }} to list.
+        title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+        body: |
+          Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+          Closes #${{ github.event.issue.number }}
+        branch: submission-${{ github.event.issue.number }}-${{ env.TIMESTAMP }}
+        base: main
 
-     - name: Create comment
-       if: ${{ success() }}
-       uses: peter-evans/create-or-update-comment@v1
-       with:
-         issue-number: ${{ github.event.issue.number }}
-         body: |
-           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
+    - name: Create comment
+      if: ${{ success() }}
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
