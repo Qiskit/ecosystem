@@ -9,5 +9,12 @@
     "language": "python",
     "tests_command": [
         "pytest"
+    ],
+    "styles_check_command": [
+        "pylint -rn qlib tests"
+    ],
+    "coverages_check_command": [
+        "coverage3 -m pytest",
+        "coverage3 report --fail-under=80"
     ]
 }
