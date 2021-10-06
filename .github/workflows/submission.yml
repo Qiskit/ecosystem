@@ -51,33 +51,33 @@ jobs:
     - name: Parse submission
       id: parse-issue
       run: |
-        repo=python manager.py parse_submission_issue --body="${{ github.event.issue.body }}"
+        repo=python manager.py parser_issue --body="${{ github.event.issue.body }}"
 
     - name: Linter check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ steps.parse-issue.outputs.repo.url }}
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
         check_type: "lint"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Coverage check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ steps.parse-issue.outputs.repo.url }}
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
         check_type: "coverage"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Tests stable check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ steps.parse-issue.outputs.repo.url }}
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
         check_type: "test_stable"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Tests dev check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ steps.parse-issue.outputs.repo.url }}
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
         check_type: "test_dev"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
@@ -85,11 +85,6 @@ jobs:
     - name: Update readme
       if: ${{ success() }}
       run: |
-        python manager.py add_repo \
-                                   --repo_link=${{ steps.parse-issue.outputs.SUBMISSION_REPO }} \
-                                   --repo_author=${{ github.event.issue.user.html_url }} \
-                                   --repo_description="${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}" \
-                                   --repo_tags="${{ steps.parse-issue.outputs.SUBMISSION_TAGS }}"
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
@@ -102,7 +97,7 @@ jobs:
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
           Closes #${{ github.event.issue.number }}
-        branch: submission-${{ github.event.issue.number }}-${{ env.TIMESTAMP }}
+        branch: submission-${{ github.event.issue.number }}
         base: main
 
     - name: Create comment on success
