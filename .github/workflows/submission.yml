@@ -1,14 +1,24 @@
 name: Submission check
 
+###
+# - install deps
+# - parse issue
+# - run lint, coverage, tests
+# - if success:
+# -- comment of success
+# -- create PR with change to readme
+# -- link pr to issue
+# - if something went wrong:
+# -- create an issue in a repo
+# -- comment in issue about error
+
 on:
-  workflow_dispatch:
-    inputs:
-      repo_url:
-        description: 'Repository URL'
-        required: true
+  issues:
+    types: [opened]
 
 jobs:
   submission_workflow:
+    if: ${{ startsWith(github.event.issue.title, '[Submission]:') }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 2
@@ -36,31 +46,67 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
+     - name: Parse submission
+       id: parse-issue
+       run: |
+         repo=python manager.py parse_submission_issue --body="${{ github.event.issue.body }}"
+
     - name: Linter check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ github.event.inputs.repo_url }}
+        repo_url: ${{ steps.parse-issue.outputs.repo.url }}
         check_type: "lint"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Coverage check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ github.event.inputs.repo_url }}
+        repo_url: ${{ steps.parse-issue.outputs.repo.url }}
         check_type: "coverage"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Tests stable check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ github.event.inputs.repo_url }}
+        repo_url: ${{ steps.parse-issue.outputs.repo.url }}
         check_type: "test_stable"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Tests dev check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ github.event.inputs.repo_url }}
+        repo_url: ${{ steps.parse-issue.outputs.repo.url }}
         check_type: "test_dev"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
+
+     - name: Update readme
+       if: ${{ success() }}
+       run: |
+         python manager.py add_repo \
+                                    --repo_link=${{ steps.parse-issue.outputs.SUBMISSION_REPO }} \
+                                    --repo_author=${{ github.event.issue.user.html_url }} \
+                                    --repo_description="${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}" \
+                                    --repo_tags="${{ steps.parse-issue.outputs.SUBMISSION_TAGS }}"
+         python manager.py generate_readme
+
+     - name: Commit changes and create Pull Request
+       if: ${{ success() }}
+       id: cpr
+       uses: peter-evans/create-pull-request@v3
+       with:
+         commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_REPO }} to list.
+         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+         body: |
+           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+           Closes #${{ github.event.issue.number }}
+         branch: submission-${{ github.event.issue.number }}-${{ env.TIMESTAMP }}
+         base: main
+
+     - name: Create comment
+       if: ${{ success() }}
+       uses: peter-evans/create-or-update-comment@v1
+       with:
+         issue-number: ${{ github.event.issue.number }}
+         body: |
+           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
