@@ -112,5 +112,5 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Fail submission! :warning:
-          Error see : #${{ github.run_id }}
+          Error see : https://github.com/qiskit-community/ecosystem/actions/runs/${{ GITHUB_RUN_ID }}
           You can write a comment with "!redo" to rerun the submission process.
