@@ -20,7 +20,7 @@ on:
 
 jobs:
   submission_workflow:
-    if: ${{ startsWith(github.event.issue.title, '[Submission]:') || (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:')) }}
+    if: ${{ (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'created' ) || (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:')) }}
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 2
@@ -112,3 +112,5 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Fail submission! :warning:
+          Error see : #${{ github.run_id }}
+          You can write a comment with "!redo" to rerun the submission process.
