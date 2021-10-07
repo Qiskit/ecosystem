@@ -48,7 +48,7 @@ jobs:
     - name: Parse submission
       id: parse-issue
       run: |
-        repo=python manager.py parser_issue --body="${{ github.event.issue.body }}"
+        python manager.py parser_issue --body="${{ github.event.issue.body }}"
 
     - name: Linter check
       uses: ./.github/actions/run-tests
