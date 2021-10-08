@@ -21,6 +21,11 @@ python manager.py dev_compatibility_tests https://github.com/<ACCOUNT>/<REPOSITO
 ```shell
 python manager.py parser_issue --body="${{ github.event.issue.body }}"
 ```
+
+5. Add repo to jsondb.
+```shell
+python manager.py add_repo_2db --repo_link="https://github.com/<ACCOUNT>/<REPOSITORY_NAME>" --repo_author="<ACCOUNT>" ...
+```
 """
 import fire
 
