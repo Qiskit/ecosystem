@@ -9,8 +9,7 @@ name: Submission check
 # -- create PR with change to readme
 # -- link pr to issue
 # - if something went wrong:
-# -- create an issue in a repo
-# -- comment error log in issue
+# -- comment run url in issue
 
 on:
   issues:
@@ -34,10 +33,10 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y_%m_%d_%H_%M')"
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ env.python-version }}
 
     - name: Install dependencies
       run: |
@@ -82,6 +81,14 @@ jobs:
     - name: Update readme
       if: ${{ success() }}
       run: |
+        python manager.py add_repo_2db --repo_author=${{ steps.parse-issue.outputs.SUBMISSION_NAME }} \
+                                       --repo_link="${{ steps.parse-issue.outputs.SUBMISSION_REPO }}" \
+                                       --repo_description="${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}" \
+                                       --repo_licence="${{ steps.parse-issue.outputs.SUBMISSION_LICENCE }}" \
+                                       --repo_contact="${{ steps.parse-issue.outputs.SUBMISSION_CONTACT }}" \
+                                       --repo_alt="${{ steps.parse-issue.outputs.SUBMISSION_ALTERNATIVES }}" \
+                                       --repo_affiliations="${{ steps.parse-issue.outputs.SUBMISSION_AFFILIATIONS }}" \
+                                       --repo_labels="${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}"
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
