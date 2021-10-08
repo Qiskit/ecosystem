@@ -1,11 +1,12 @@
 """Manager class for controlling all CLI functions."""
 import os
-from typing import Optional, List
+from typing import Optional, List, Tuple
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from ecosystem.daos import JsonDAO
 from ecosystem.models import TestResult, Tier, TestType
+from ecosystem.models.repository import Repository
 from ecosystem.models.test_results import StyleResult, CoverageResult
 from ecosystem.runners import PythonTestsRunner
 from ecosystem.runners.python_styles_runner import PythonStyleRunner
@@ -71,6 +72,28 @@ class Manager:
             )
         )
         print("::set-output name=SUBMISSION_LABELS::{}".format(parsed_result.labels))
+
+    def add_repo_2db(self,
+                 repo_author: str,
+                 repo_link: str,
+                 repo_description: str,
+                 repo_licence: str,
+                 repo_contact: str,
+                 repo_alt: str,
+                 repo_affiliations: str,
+                 repo_labels: Tuple[str]):
+
+        new_repo = Repository(
+                repo_author,
+                repo_link,
+                repo_description,
+                repo_licence,
+                repo_contact,
+                repo_alt,
+                repo_affiliations,
+                repo_labels
+        )
+        self.controller.insert(new_repo)
 
     def generate_readme(self, path: Optional[str] = None):
         """Generates entire readme for ecosystem repository.
