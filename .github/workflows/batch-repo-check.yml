@@ -1,0 +1,53 @@
+name: Batch repo check
+
+on:
+  workflow_dispatch:
+    inputs:
+      tier:
+        description: 'Ecosystem tier'
+        required: false
+        default: "COMMUNITY"
+
+jobs:
+  batch_repo_check:
+    runs-on: ubuntu-latest
+    env:
+      ISSUE_ID: 42
+    steps:
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "::set-output name=datetime::$(date +'%Y_%m_%d_%H_%M')"
+        echo "::set-output name=pr_branch_name::batch_checks_$(date +'%Y_%m_%d_%H_%M')"
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+          python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Create PR for batch checks
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        commit-message: Batch checks for ${{ steps.vars.outputs.datetime }}
+        title: Batch checks for ${{ steps.vars.outputs.datetime }}
+        body: |
+          Batch checks
+          Time: ${{ steps.vars.outputs.datetime }}
+          Tier: ${{ github.event.inputs.tier }}
+        branch: ${{ steps.vars.outputs.pr_branch_name }}
+        base: main
+    - name: Get project for check
+      id: repos
+      run: python manager.py get_projects_by_tier --tier=${{ github.event.inputs.tier }}
+    - name: Launch separate workflows for each project check
+      run: |
+        export IFS=","
+        repositories=${{ steps.repos.outputs.repositories }}
+        for repo in $repositories; do
+          echo "Launching separate workflow for $repo"
+          python manager.py dispatch_check_workflow --repo_url=$repo --issue_id=${{ env.ISSUE_ID }} --branch_name=${{ steps.vars.outputs.pr_branch_name }}
+        done

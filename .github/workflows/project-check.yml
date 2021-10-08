@@ -1,0 +1,28 @@
+name: Project check workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo_url:
+        description: 'Repository URL'
+        required: true
+      issue_id:
+        description: 'Id of issue to put comments in'
+        required: true
+      branch_name:
+        description: 'Branch name to push changes'
+        required: true
+
+jobs:
+  project_check_job:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 2
+      matrix:
+        python-version: [3.9]
+    steps:
+    - name: Info
+      run: |
+        echo "Running check for ${{ github.event.inputs.repo_url }}..."
+        ecbo "Will be commenting in ${{ github.event.inputs.issue_id }}..."
+        echo "Will push changes to ${{ github.event.inputs.pr_id }}..."
