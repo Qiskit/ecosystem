@@ -73,25 +73,27 @@ class Manager:
         )
         print("::set-output name=SUBMISSION_LABELS::{}".format(parsed_result.labels))
 
-    def add_repo_2db(self,
-                 repo_author: str,
-                 repo_link: str,
-                 repo_description: str,
-                 repo_licence: str,
-                 repo_contact: str,
-                 repo_alt: str,
-                 repo_affiliations: str,
-                 repo_labels: Tuple[str]):
+    def add_repo_2db(
+        self,
+        repo_author: str,
+        repo_link: str,
+        repo_description: str,
+        repo_licence: str,
+        repo_contact: str,
+        repo_alt: str,
+        repo_affiliations: str,
+        repo_labels: Tuple[str],
+    ):
 
         new_repo = Repository(
-                repo_author,
-                repo_link,
-                repo_description,
-                repo_licence,
-                repo_contact,
-                repo_alt,
-                repo_affiliations,
-                repo_labels
+            repo_author,
+            repo_link,
+            repo_description,
+            repo_licence,
+            repo_contact,
+            repo_alt,
+            repo_affiliations,
+            repo_labels,
         )
         self.controller.insert(new_repo)
 
