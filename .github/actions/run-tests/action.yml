@@ -20,11 +20,11 @@ runs:
       run: |
         if [ "${{ inputs.check_type }}" == "test_stable" ]; then
           echo "Running Qiskit stable tests for ${{inputs.repo_url}}..."
-          python manager.py python_stable_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}}
+          python manager.py python_stable_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
         fi
         if [ "${{ inputs.check_type }}" == "test_dev" ]; then
           echo "Running Qiskit dev tests for ${{inputs.repo_url}}..."
-          python manager.py python_dev_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}}
+          python manager.py python_dev_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
         fi
         if [ "${{ inputs.check_type }}" == "lint" ]; then
           echo "Running lint tests for ${{inputs.repo_url}}..."
