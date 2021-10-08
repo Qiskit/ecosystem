@@ -21,8 +21,6 @@ jobs:
   submission_workflow:
     if: ${{ (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'created' ) || (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:')) }}
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 2
     env:
       tox_env: "py39"
       tier: "MAIN"
@@ -119,5 +117,5 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Fail submission! :warning:
-          Error see : https://github.com/qiskit-community/ecosystem/actions/runs/${{ GITHUB_RUN_ID }}
+          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ GITHUB_RUN_ID }}
           You can write a comment with "!redo" to rerun the submission process.
