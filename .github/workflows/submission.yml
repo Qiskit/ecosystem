@@ -19,7 +19,9 @@ on:
 
 jobs:
   submission_workflow:
-    if: ${{ (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'created' ) || (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:')) }}
+    if: |
+      (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'opened') ||
+      (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:'))
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
