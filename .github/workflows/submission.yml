@@ -90,10 +90,11 @@ jobs:
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
-      if: ${{ success() }}
+      if: ${{ success() &&  CI == "true" }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
+        repository: "qiskit-community/ecosystem"
         commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_REPO }} to list.
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         body: |
@@ -106,6 +107,7 @@ jobs:
       if: ${{ success() }}
       uses: peter-evans/create-or-update-comment@v1
       with:
+        repository: "qiskit-community/ecosystem"
         issue-number: ${{ github.event.issue.number }}
         body: |
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
@@ -114,6 +116,7 @@ jobs:
       if: ${{ failure() }}
       uses: peter-evans/create-or-update-comment@v1
       with:
+        repository: "qiskit-community/ecosystem"
         issue-number: ${{ github.event.issue.number }}
         body: |
           Fail submission! :warning:
