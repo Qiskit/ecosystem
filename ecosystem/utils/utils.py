@@ -1,5 +1,4 @@
-"""General logger for ecosystem."""
-import logging
+import logging,coloredlogs 
 import os
 
 
@@ -25,5 +24,5 @@ handler = logging.StreamHandler()
 formatter = OneLineExceptionFormatter(logging.BASIC_FORMAT)
 handler.setFormatter(formatter)
 logger = logging.getLogger()
-logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
-logger.addHandler(handler)
+logger = logging.getLogger('ecosystem')
+coloredlogs.install(level='INFO', logger=logger)
