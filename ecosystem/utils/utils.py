@@ -20,9 +20,15 @@ class OneLineExceptionFormatter(logging.Formatter):
         return result
 
 
-handler = logging.StreamHandler()
-formatter = OneLineExceptionFormatter(logging.BASIC_FORMAT)
-handler.setFormatter(formatter)
-logger = logging.getLogger()
+#handler = logging.StreamHandler()
+#formatter = coloredlogs.ColoredFormatter(fmt='%(asctime)s,%(msecs)03d %(name)s[%(process)d] %(levelname)s %(message)s')
+#handler.setFormatter(formatter)
+#logger = logging.getLogger()
 logger = logging.getLogger('ecosystem')
-coloredlogs.install(level='INFO', logger=logger)
+coloredlogs.DEFAULT_FIELD_STYLES = {
+            'name': {'color': 'magenta'},
+            'levelname': {'color': 'black', 'bold': True},
+            'asctime': {'color': 'green'}}
+coloredlogs.install(fmt='%(asctime)s %(name)s %(levelname)s %(message)s',logger=logger)
+
+
