@@ -44,6 +44,8 @@ class Manager:
 
         Args:
             body: body of the created issue
+        Returns:
+            logs output
         """
 
         parsed_result = parse_submission_issue(body)
@@ -164,8 +166,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, test_result)
+            print("::set-output name=PASS::{}".format(test_result))
         else:
             self.logger.warning("Runner returned 0 results.")
+            print("::set-output name=PASS::{}".format("False"))
 
         return terra_version
 
@@ -194,8 +198,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, style_result)
+            print("::set-output name=PASS::{}".format(style_result))
         else:
             self.logger.warning("Runner returned 0 results.")
+            print("::set-output name=PASS::{}".format("False"))
 
     def python_coverage(self, repo_url: str, tier: str, coverage_type: str):
         """Runs tests using python runner.
@@ -222,8 +228,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, coverage_result)
+            print("::set-output name=PASS::{}".format(coverage_result))
         else:
             self.logger.warning("Runner returned 0 results.")
+            print("::set-output name=PASS::{}".format("False"))
 
     def python_dev_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"

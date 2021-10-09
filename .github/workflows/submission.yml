@@ -26,12 +26,9 @@ jobs:
     env:
       tox_env: "py39"
       tier: "MAIN"
-      python-version: [3.9]
+      python-version: "3.9"
 
     steps:
-    - name: Get current datetime
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y_%m_%d_%H_%M')"
     - uses: actions/checkout@v2
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v2
@@ -50,6 +47,7 @@ jobs:
         python manager.py parser_issue --body="${{ github.event.issue.body }}"
 
     - name: Linter check
+      id: linter
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
@@ -57,6 +55,7 @@ jobs:
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Coverage check
+      id: coverage
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
@@ -64,6 +63,7 @@ jobs:
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Tests stable check
+      id: stable
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
@@ -71,6 +71,7 @@ jobs:
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
     - name: Tests dev check
+      id: dev
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
@@ -78,8 +79,28 @@ jobs:
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
 
+    - name: Check return
+      run: |
+        echo "PASS_LOG=True" >> $GITHUB_ENV
+
+        declare -a return_list=( \
+          "${{ steps.linter.outputs.PASS }}" \
+          "${{ steps.coverage.outputs.PASS }}" \
+          "${{ steps.stable.outputs.PASS }}" \
+          "${{ steps.dev.outputs.PASS }}" \
+        )
+        for i in "${return_list[@]}"; do
+          if [[ "${i}" != *"True"* ]]; then
+            echo "PASS_LOG=False" >> $GITHUB_ENV
+          fi
+        done
+
+    - name: Check the check
+      run: |
+        echo "Pass log is ${{ env.PASS_LOG }}"
+
     - name: Update readme
-      if: ${{ success() }}
+      if: ${{ env.PASS_LOG == 'True' }}
       run: |
         python manager.py add_repo_2db --repo_author=${{ steps.parse-issue.outputs.SUBMISSION_NAME }} \
                                        --repo_link="${{ steps.parse-issue.outputs.SUBMISSION_REPO }}" \
@@ -92,7 +113,7 @@ jobs:
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
-      if: ${{ success() &&  CI == "true" }}
+      if: ${{ env.PASS_LOG == 'True'  &&  CI == "true" }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
@@ -106,7 +127,7 @@ jobs:
         base: main
 
     - name: Create comment on success
-      if: ${{ success() }}
+      if: ${{ env.PASS_LOG == 'True' }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         repository: "qiskit-community/ecosystem"
@@ -115,7 +136,7 @@ jobs:
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
 
     - name: Create comment on failure
-      if: ${{ failure() }}
+      if: ${{ env.PASS_LOG == 'False' }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         repository: "qiskit-community/ecosystem"
