@@ -27,20 +27,24 @@ jobs:
       tox_env: "py39"
       tier: "MAIN"
       python-version: "3.9"
-
     steps:
+###################################################################################################
+### Set up deps
+###################################################################################################
     - uses: actions/checkout@v2
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ env.python-version }}
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
+###################################################################################################
+### Workflow
+###################################################################################################
     - name: Parse submission
       id: parse-issue
       run: |
@@ -79,6 +83,9 @@ jobs:
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
 
+###################################################################################################
+### Check result, update issue and create MR
+###################################################################################################
     - name: Check return
       run: |
         echo "PASS_LOG=True" >> $GITHUB_ENV

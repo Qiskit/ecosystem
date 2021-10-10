@@ -140,6 +140,8 @@ class Manager:
             python_version: ex: py36, py37 etc
             test_type: [dev, stable]
             ecosystem_deps: extra dependencies to install for tests
+        Return:
+            output: log PASS
         """
         ecosystem_deps = ecosystem_deps or []
         runner = PythonTestsRunner(
@@ -180,6 +182,8 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             style_type: [dev, stable]
+        Return:
+            output: log PASS
         """
         runner = PythonStyleRunner(repo_url, working_directory=self.resources_dir)
         _, results = runner.run()
@@ -210,6 +214,8 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             coverage_type: [dev, stable]
+        Return:
+            output: log PASS
         """
         runner = PythonCoverageRunner(repo_url, working_directory=self.resources_dir)
         _, results = runner.run()
