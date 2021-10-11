@@ -1,5 +1,6 @@
-import logging,coloredlogs 
-import os
+"""Logging module."""
+import logging
+import coloredlogs
 
 
 class QiskitEcosystemException(Exception):
@@ -20,15 +21,10 @@ class OneLineExceptionFormatter(logging.Formatter):
         return result
 
 
-#handler = logging.StreamHandler()
-#formatter = coloredlogs.ColoredFormatter(fmt='%(asctime)s,%(msecs)03d %(name)s[%(process)d] %(levelname)s %(message)s')
-#handler.setFormatter(formatter)
-#logger = logging.getLogger()
-logger = logging.getLogger('ecosystem')
+logger = logging.getLogger("ecosystem")
 coloredlogs.DEFAULT_FIELD_STYLES = {
-            'name': {'color': 'magenta'},
-            'levelname': {'color': 'black', 'bold': True},
-            'asctime': {'color': 'green'}}
-coloredlogs.install(fmt='%(asctime)s %(name)s %(levelname)s %(message)s',logger=logger)
-
-
+    "name": {"color": "magenta"},
+    "levelname": {"color": "black", "bold": True},
+    "asctime": {"color": "black", "bold": True},
+}
+coloredlogs.install(fmt="%(asctime)s %(name)s %(levelname)s %(message)s", logger=logger)
