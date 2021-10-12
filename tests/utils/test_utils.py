@@ -3,7 +3,7 @@ import os
 from unittest import TestCase
 
 from ecosystem.models.repository import Repository
-from ecosystem import Manager
+from ecosystem.manager import Manager
 
 
 class TestUtils(TestCase):
