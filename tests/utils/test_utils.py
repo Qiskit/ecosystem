@@ -3,7 +3,7 @@ import os
 from unittest import TestCase
 
 from ecosystem.models.repository import Repository
-from ecosystem.manager import Manager
+from ecosystem.utils import parse_submission_issue
 
 
 class TestUtils(TestCase):
@@ -18,7 +18,7 @@ class TestUtils(TestCase):
 
     def test_issue_parsing(self):
         """ "Tests issue parsing function"""
-        parsed_result = Manager.parser_issue(self.issue_body)
+        parsed_result = parse_submission_issue(self.issue_body)
 
         self.assertTrue(isinstance(parsed_result, Repository))
         self.assertEqual(parsed_result.name, "awesome")
