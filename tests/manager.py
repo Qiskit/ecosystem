@@ -17,12 +17,12 @@ class TestManager(TestCase):
 
     def test_issue_parsing_cli(self):
         """ "Tests issue parsing function"""
-        capturedOutput = io.StringIO()
-        sys.stdout = capturedOutput
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
         Manager.parser_issue(self.issue_body)
 
         sys.stdout = sys.__stdout__
-        output_value = capturedOutput.getvalue().split("\n")
+        output_value = captured_output.getvalue().split("\n")
 
         self.assertEqual(output_value[0], "::set-output name=SUBMISSION_NAME::awesome")
         self.assertEqual(
