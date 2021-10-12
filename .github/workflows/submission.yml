@@ -152,3 +152,8 @@ jobs:
           Fail submission! :warning:
           Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ GITHUB_RUN_ID }}
           You can write a comment with "!redo" to rerun the submission process.
+          #### Checks Status ####
+          Linter : ${{ steps.linter.outputs.PASS }}
+          Coverage : ${{ steps.coverage.outputs.PASS }}
+          Qiskit Stable : ${{ steps.stable.outputs.PASS }}
+          Qiskit Dev : ${{ steps.dev.outputs.PASS }}
