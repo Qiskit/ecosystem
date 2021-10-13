@@ -40,37 +40,40 @@ class Manager:
         self.logger = logger
 
     @staticmethod
-    def parser_issue(body: str):
+    def parser_issue(body: str) -> None:
         """Command for calling body issue parsing function.
 
         Args:
             body: body of the created issue
         Returns:
             logs output
+            We want to give the result of the parsing issue to the GitHub action
         """
 
         parsed_result = parse_submission_issue(body)
-        set_actions_output(["SUBMISSION_NAME", parsed_result.name])
-        set_actions_output(["SUBMISSION_REPO", parsed_result.url])
-        set_actions_output(["SUBMISSION_DESCRIPTION", parsed_result.description])
-        set_actions_output(["SUBMISSION_LICENCE", parsed_result.licence])
-        set_actions_output(["SUBMISSION_CONTACT", parsed_result.contact_info])
-        set_actions_output(["SUBMISSION_ALTERNATIVES", parsed_result.alternatives])
-        set_actions_output(["SUBMISSION_AFFILIATIONS", parsed_result.affiliations])
-        set_actions_output(["SUBMISSION_LABELS", parsed_result.labels])
 
+        to_print = [("SUBMISSION_NAME", parsed_result.name),
+                    ("SUBMISSION_REPO", parsed_result.url),
+                    ("SUBMISSION_DESCRIPTION", parsed_result.description),
+                    ("SUBMISSION_LICENCE", parsed_result.licence),
+                    ("SUBMISSION_CONTACT", parsed_result.contact_info),
+                    ("SUBMISSION_ALTERNATIVES", parsed_result.alternatives),
+                    ("SUBMISSION_AFFILIATIONS", parsed_result.affiliations),
+                    ("SUBMISSION_LABELS", parsed_result.labels)]
+
+        set_actions_output(to_print)
 
     def add_repo_2db(
-        self,
-        repo_author: str,
-        repo_link: str,
-        repo_description: str,
-        repo_licence: str,
-        repo_contact: str,
-        repo_alt: str,
-        repo_affiliations: str,
-        repo_labels: Tuple[str],
-    ):
+            self,
+            repo_author: str,
+            repo_link: str,
+            repo_description: str,
+            repo_licence: str,
+            repo_contact: str,
+            repo_alt: str,
+            repo_affiliations: str,
+            repo_labels: Tuple[str],
+    ) -> None:
         """Adds repo to list of entries.
         Args:
             repo_author: repo author
@@ -82,7 +85,7 @@ class Manager:
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
         Returns:
-            JsonDAO: Repository
+            JsonDAO: Integer
         """
 
         new_repo = Repository(
@@ -110,12 +113,12 @@ class Manager:
             file.write(readme_content)
 
     def _run_python_tests(
-        self,
-        repo_url: str,
-        tier: str,
-        python_version: str,
-        test_type: str,
-        ecosystem_deps: Optional[List[str]] = None,
+            self,
+            repo_url: str,
+            tier: str,
+            python_version: str,
+            test_type: str,
+            ecosystem_deps: Optional[List[str]] = None,
     ):
         """Runs tests using python runner.
 
@@ -127,6 +130,7 @@ class Manager:
             ecosystem_deps: extra dependencies to install for tests
         Return:
             output: log PASS
+            We want to give the result of the test to the GitHub action
         """
         ecosystem_deps = ecosystem_deps or []
         runner = PythonTestsRunner(
@@ -169,6 +173,7 @@ class Manager:
             style_type: [dev, stable]
         Return:
             output: log PASS
+            We want to give the result of the test to the GitHub action
         """
         runner = PythonStyleRunner(repo_url, working_directory=self.resources_dir)
         _, results = runner.run()
@@ -201,6 +206,7 @@ class Manager:
             coverage_type: [dev, stable]
         Return:
             output: log PASS
+            We want to give the result of the test to the GitHub action
         """
         runner = PythonCoverageRunner(repo_url, working_directory=self.resources_dir)
         _, results = runner.run()
@@ -225,7 +231,7 @@ class Manager:
             set_actions_output(["PASS", "False"])
 
     def python_dev_tests(
-        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+            self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests against dev version of qiskit."""
         return self._run_python_tests(
@@ -237,7 +243,7 @@ class Manager:
         )
 
     def python_stable_tests(
-        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+            self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests against stable version of qiskit."""
         return self._run_python_tests(

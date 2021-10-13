@@ -5,6 +5,7 @@ import sys
 from unittest import TestCase
 
 from ecosystem.manager import Manager
+from ecosystem.models.repository import Repository
 
 
 class TestManager(TestCase):
@@ -15,7 +16,7 @@ class TestManager(TestCase):
         with open("{}/resources/issue.md".format(current_dir), "r") as issue_body_file:
             self.issue_body = issue_body_file.read()
 
-    def test_issue_parsing_cli(self):
+    def test_parser_issue(self):
         """ "Tests issue parsing function"""
         captured_output = io.StringIO()
         sys.stdout = captured_output
