@@ -1,7 +1,8 @@
-"""General logger for ecosystem."""
+"""Logging module."""
 import logging
 import os
 from typing import Tuple, List
+import coloredlogs
 
 
 class QiskitEcosystemException(Exception):
@@ -21,15 +22,7 @@ class OneLineExceptionFormatter(logging.Formatter):
             result = result.replace("\n", "")
         return result
 
-
-handler = logging.StreamHandler()
-formatter = OneLineExceptionFormatter(logging.BASIC_FORMAT)
-handler.setFormatter(formatter)
-logger = logging.getLogger()
-logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
-logger.addHandler(handler)
-
-
+      
 def set_actions_output(outputs: List[Tuple[str, str]]) -> None:
     """Sets output for GitHub actions.
     Args:
@@ -40,3 +33,19 @@ def set_actions_output(outputs: List[Tuple[str, str]]) -> None:
     for name, value in outputs:
         logger.info("Setting output variable %s: %s", name, value)
         print("::set-output name={name}::{value}".format(name=name, value=value))
+
+        
+handler = logging.StreamHandler()
+formatter = OneLineExceptionFormatter(logging.BASIC_FORMAT)
+handler.setFormatter(formatter)
+logger = logging.getLogger()
+logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
+logger.addHandler(handler)
+        
+logger = logging.getLogger("ecosystem")
+coloredlogs.DEFAULT_FIELD_STYLES = {
+    "name": {"color": "magenta"},
+    "levelname": {"color": "black", "bold": True},
+    "asctime": {"color": "black", "bold": True},
+}
+coloredlogs.install(fmt="%(asctime)s %(name)s %(levelname)s %(message)s", logger=logger)
