@@ -12,6 +12,7 @@ from ecosystem.runners import PythonTestsRunner
 from ecosystem.runners.python_styles_runner import PythonStyleRunner
 from ecosystem.runners.python_coverages_runner import PythonCoverageRunner
 from ecosystem.utils import logger, parse_submission_issue
+from ecosystem.utils.utils import set_actions_output
 
 
 class Manager:
@@ -49,31 +50,15 @@ class Manager:
         """
 
         parsed_result = parse_submission_issue(body)
+        set_actions_output(["SUBMISSION_NAME", parsed_result.name])
+        set_actions_output(["SUBMISSION_REPO", parsed_result.url])
+        set_actions_output(["SUBMISSION_DESCRIPTION", parsed_result.description])
+        set_actions_output(["SUBMISSION_LICENCE", parsed_result.licence])
+        set_actions_output(["SUBMISSION_CONTACT", parsed_result.contact_info])
+        set_actions_output(["SUBMISSION_ALTERNATIVES", parsed_result.alternatives])
+        set_actions_output(["SUBMISSION_AFFILIATIONS", parsed_result.affiliations])
+        set_actions_output(["SUBMISSION_LABELS", parsed_result.labels])
 
-        print("::set-output name=SUBMISSION_NAME::{}".format(parsed_result.name))
-        print("::set-output name=SUBMISSION_REPO::{}".format(parsed_result.url))
-        print(
-            "::set-output name=SUBMISSION_DESCRIPTION::{}".format(
-                parsed_result.description
-            )
-        )
-        print("::set-output name=SUBMISSION_LICENCE::{}".format(parsed_result.licence))
-        print(
-            "::set-output name=SUBMISSION_CONTACT::{}".format(
-                parsed_result.contact_info
-            )
-        )
-        print(
-            "::set-output name=SUBMISSION_ALTERNATIVES::{}".format(
-                parsed_result.alternatives
-            )
-        )
-        print(
-            "::set-output name=SUBMISSION_AFFILIATIONS::{}".format(
-                parsed_result.affiliations
-            )
-        )
-        print("::set-output name=SUBMISSION_LABELS::{}".format(parsed_result.labels))
 
     def add_repo_2db(
         self,
@@ -168,10 +153,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, test_result)
-            print("::set-output name=PASS::{}".format(test_result))
+            set_actions_output(["PASS", test_result])
         else:
             self.logger.warning("Runner returned 0 results.")
-            print("::set-output name=PASS::{}".format("False"))
+            set_actions_output(["PASS", "False"])
 
         return terra_version
 
@@ -202,10 +187,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, style_result)
-            print("::set-output name=PASS::{}".format(style_result))
+            set_actions_output(["PASS", style_result])
         else:
             self.logger.warning("Runner returned 0 results.")
-            print("::set-output name=PASS::{}".format("False"))
+            set_actions_output(["PASS", "False"])
 
     def python_coverage(self, repo_url: str, tier: str, coverage_type: str):
         """Runs tests using python runner.
@@ -234,10 +219,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, coverage_result)
-            print("::set-output name=PASS::{}".format(coverage_result))
+            set_actions_output(["PASS", coverage_result])
         else:
             self.logger.warning("Runner returned 0 results.")
-            print("::set-output name=PASS::{}".format("False"))
+            set_actions_output(["PASS", "False"])
 
     def python_dev_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
