@@ -52,27 +52,29 @@ class Manager:
 
         parsed_result = parse_submission_issue(body)
 
-        to_print = [("SUBMISSION_NAME", parsed_result.name),
-                    ("SUBMISSION_REPO", parsed_result.url),
-                    ("SUBMISSION_DESCRIPTION", parsed_result.description),
-                    ("SUBMISSION_LICENCE", parsed_result.licence),
-                    ("SUBMISSION_CONTACT", parsed_result.contact_info),
-                    ("SUBMISSION_ALTERNATIVES", parsed_result.alternatives),
-                    ("SUBMISSION_AFFILIATIONS", parsed_result.affiliations),
-                    ("SUBMISSION_LABELS", parsed_result.labels)]
+        to_print = [
+            ("SUBMISSION_NAME", parsed_result.name),
+            ("SUBMISSION_REPO", parsed_result.url),
+            ("SUBMISSION_DESCRIPTION", parsed_result.description),
+            ("SUBMISSION_LICENCE", parsed_result.licence),
+            ("SUBMISSION_CONTACT", parsed_result.contact_info),
+            ("SUBMISSION_ALTERNATIVES", parsed_result.alternatives),
+            ("SUBMISSION_AFFILIATIONS", parsed_result.affiliations),
+            ("SUBMISSION_LABELS", parsed_result.labels),
+        ]
 
         set_actions_output(to_print)
 
     def add_repo_2db(
-            self,
-            repo_author: str,
-            repo_link: str,
-            repo_description: str,
-            repo_licence: str,
-            repo_contact: str,
-            repo_alt: str,
-            repo_affiliations: str,
-            repo_labels: Tuple[str],
+        self,
+        repo_author: str,
+        repo_link: str,
+        repo_description: str,
+        repo_licence: str,
+        repo_contact: str,
+        repo_alt: str,
+        repo_affiliations: str,
+        repo_labels: Tuple[str],
     ) -> None:
         """Adds repo to list of entries.
         Args:
@@ -113,12 +115,12 @@ class Manager:
             file.write(readme_content)
 
     def _run_python_tests(
-            self,
-            repo_url: str,
-            tier: str,
-            python_version: str,
-            test_type: str,
-            ecosystem_deps: Optional[List[str]] = None,
+        self,
+        repo_url: str,
+        tier: str,
+        python_version: str,
+        test_type: str,
+        ecosystem_deps: Optional[List[str]] = None,
     ):
         """Runs tests using python runner.
 
@@ -231,7 +233,7 @@ class Manager:
             set_actions_output(["PASS", "False"])
 
     def python_dev_tests(
-            self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests against dev version of qiskit."""
         return self._run_python_tests(
@@ -243,7 +245,7 @@ class Manager:
         )
 
     def python_stable_tests(
-            self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests against stable version of qiskit."""
         return self._run_python_tests(
