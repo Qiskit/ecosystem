@@ -22,7 +22,7 @@ class OneLineExceptionFormatter(logging.Formatter):
             result = result.replace("\n", "")
         return result
 
-      
+
 def set_actions_output(outputs: List[Tuple[str, str]]) -> None:
     """Sets output for GitHub actions.
     Args:
@@ -34,14 +34,14 @@ def set_actions_output(outputs: List[Tuple[str, str]]) -> None:
         logger.info("Setting output variable %s: %s", name, value)
         print("::set-output name={name}::{value}".format(name=name, value=value))
 
-        
+
 handler = logging.StreamHandler()
 formatter = OneLineExceptionFormatter(logging.BASIC_FORMAT)
 handler.setFormatter(formatter)
 logger = logging.getLogger()
 logger.setLevel(os.environ.get("LOGLEVEL", "INFO"))
 logger.addHandler(handler)
-        
+
 logger = logging.getLogger("ecosystem")
 coloredlogs.DEFAULT_FIELD_STYLES = {
     "name": {"color": "magenta"},
