@@ -5,7 +5,6 @@ import sys
 from unittest import TestCase
 
 from ecosystem.manager import Manager
-from ecosystem.models.repository import Repository
 
 
 class TestManager(TestCase):
