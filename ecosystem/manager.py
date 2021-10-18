@@ -46,8 +46,9 @@ class Manager:
         path = path if path is not None else self.current_dir
         main_repos = self.controller.get_repos_by_tier(Tier.MAIN)
         community_repos = self.controller.get_repos_by_tier(Tier.COMMUNITY)
-        readme_content = self.readme_template.render(main_repos=main_repos,
-                                                     community_repos=community_repos)
+        readme_content = self.readme_template.render(
+            main_repos=main_repos, community_repos=community_repos
+        )
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
 

@@ -49,11 +49,17 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 {% for repo in main_repos -%}
 
-[{{ repo.url }}]({{ repo.url }}) - {{repo.description}}
-
+<details>
+<summary>
+<a href={{ repo.url }}>{{ repo.url }}</a> - {{repo.description }}
+</summary>
+<p>
 {% for label in repo.labels %}
 ![core](https://img.shields.io/badge/{{label}}-gray.svg)
 {%- endfor %}
+</p>
+</details>
+<br/>
 
 {% endfor %}
 
@@ -63,15 +69,20 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 {% for repo in community_repos -%}
 
-[{{ repo.url }}]({{ repo.url }}) - {{repo.description}}
-
+<details>
+<summary>
+<a href={{ repo.url }}>{{ repo.url }}</a> - {{repo.description }}
+</summary>
+<p>
 {% for label in repo.labels %}
 ![core](https://img.shields.io/badge/{{label}}-gray.svg)
-{%- endfor -%}
+{%- endfor %}
 {% for t in repo.tests_results -%} {%- set color = "orange" %} {%- if t.passed %} {% set color = "green" %} {%- endif %}
 ![core](https://img.shields.io/badge/{{t.test_type}}-{{t.terra_version}}-{{color}}.svg)
 {%- endfor %}
-
+</p>
+</details>
+<br/>
 {% endfor %}
 
 ## Contribution Guidelines
