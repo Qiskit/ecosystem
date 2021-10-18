@@ -58,6 +58,14 @@ jobs:
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
 
+    - name: Coverage check
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        check_type: "coverage"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+
     - name: Commit changes
       run: |
         git pull --rebase --autostash
