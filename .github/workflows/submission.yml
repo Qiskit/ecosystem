@@ -103,6 +103,7 @@ jobs:
         done
 
     - name: Check the check
+      id: check_result
       run: |
         echo "Pass log is ${{ env.PASS_LOG }}"
         echo 'full_log<<EOF' >> $GITHUB_ENV
@@ -165,5 +166,6 @@ jobs:
           ### Logs ###
           <details>
           <summary>Full log</summary>
+          ${{ steps.check_result.outputs.LOG }}
           ${{ env.full_log }}
           </details>
