@@ -44,6 +44,7 @@ class Manager:
         repo_url: str,
         issue_id: str,
         branch_name: str,
+        token: str,
         owner: str = "qiskit-community",
         repo: str = "ecosystem",
     ):
@@ -54,18 +55,20 @@ class Manager:
         response = requests.post(
             url,
             json={
-                "event_type": "check_workflow_dispatch",
+                "event_type": "check_project",
                 "client_payload": {
-                    "inputs": {
-                        "repo_url": repo_url,
-                        "issue_id": issue_id,
-                        "branch_name": branch_name,
-                    }
+                    "repo_url": repo_url,
+                    "issue_id": issue_id,
+                    "branch_name": branch_name
                 },
             },
+            headers={
+                "Authorization": "token {}".format(token),
+                "Accept": "application/vnd.github.v3+json"
+            }
         )
         if response.ok:
-            self.logger.info("Response on dispatch event: %s", response.text)
+            self.logger.info("Success response on dispatch event. %s", response.text)
         else:
             self.logger.warning(
                 "Something wend wrong with dispatch event: %s", response.text

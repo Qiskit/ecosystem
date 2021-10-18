@@ -1,21 +1,15 @@
 name: Project check workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      repo_url:
-        description: 'Repository URL'
-        required: true
-      tier:
-        description: 'Tier of project'
-        required: false
-        default: "COMMUNITY"
-      issue_id:
-        description: 'Id of issue to put comments in'
-        required: true
-      branch_name:
-        description: 'Branch name to push changes'
-        required: true
+  #  Payload:
+  #  "client_payload": {
+  #    "tier": "COMMUNITY", # 'Tier of project'
+  #    "branch_name": "weekly-checks-1", # 'Branch name to push changes'
+  #    "issue_id": 49, # 'Id of issue to put comments in'
+  #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL'
+  #  }
+  repository_dispatch:
+    types: [ check_project ]
 
 jobs:
   project_check_job:
@@ -24,12 +18,12 @@ jobs:
     - name: Setup variables
       id: vars
       run: |
-        echo "Running check for ${{ github.event.inputs.repo_url }}..."
-        echo "Will be commenting in ${{ github.event.inputs.issue_id }}..."
-        echo "Will push changes to ${{ github.event.inputs.branch_name }}..."
+        echo "Running check for ${{ github.event.client_payload.repo_url }}..."
+        echo "Will be commenting in ${{ github.event.client_payload.issue_id }}..."
+        echo "Will push changes to ${{ github.event.client_payload.branch_name }}..."
     - uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.inputs.branch_name }}
+        ref: ${{ github.event.client_payload.branch_name }}
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
@@ -43,26 +37,26 @@ jobs:
     - name: Stable tests
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ github.event.inputs.repo_url }}
+        repo_url: ${{ github.event.client_payload.repo_url }}
         check_type: "test_stable"
         tox_env: "py39"
-        tier: ${{ github.event.inputs.tier }}
+        tier: ${{ github.event.client_payload.tier }}
 
     - name: Dev tests
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ github.event.inputs.repo_url }}
+        repo_url: ${{ github.event.client_payload.repo_url }}
         check_type: "test_dev"
         tox_env: "py39"
-        tier: ${{ github.event.inputs.tier }}
+        tier: ${{ github.event.client_payload.tier }}
 
     - name: Styles check
       uses: ./.github/actions/run-tests
       with:
-        repo_url: ${{ github.event.inputs.repo_url }}
+        repo_url: ${{ github.event.client_payload.repo_url }}
         check_type: "lint"
         tox_env: "py39"
-        tier: ${{ github.event.inputs.tier }}
+        tier: ${{ github.event.client_payload.tier }}
 
     - name: Commit changes
       run: |
@@ -70,5 +64,5 @@ jobs:
         git add ecosystem/resources/members.json
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -m "Tests for ${{ github.event.inputs.repo_url }}"
+        git commit -m "Tests for ${{ github.event.client_payload.repo_url }}"
         git push

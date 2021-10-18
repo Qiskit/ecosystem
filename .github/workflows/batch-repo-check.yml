@@ -49,5 +49,9 @@ jobs:
         repositories=${{ steps.repos.outputs.repositories }}
         for repo in $repositories; do
           echo "Launching separate workflow for $repo"
-          python manager.py dispatch_check_workflow --repo_url=$repo --issue_id=${{ env.ISSUE_ID }} --branch_name=${{ steps.vars.outputs.pr_branch_name }}
+          python manager.py dispatch_check_workflow \
+                            --repo_url=$repo \
+                            --issue_id=${{ env.ISSUE_ID }} \
+                            --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
+                            --token=${{ secrets.GITHUB_TOKEN }}
         done
