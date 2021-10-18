@@ -1,7 +1,7 @@
 """Logging module."""
 import logging
-import os
 from typing import Tuple, List
+
 import coloredlogs
 
 
