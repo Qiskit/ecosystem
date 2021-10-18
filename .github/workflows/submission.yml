@@ -105,6 +105,10 @@ jobs:
     - name: Check the check
       run: |
         echo "Pass log is ${{ env.PASS_LOG }}"
+        echo 'full_log<<EOF' >> $GITHUB_ENV
+        curl -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/qiskit-community/ecosystem/actions/jobs/${{ GITHUB_JOB }}/logs >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
 
     - name: Update readme
       if: ${{ env.PASS_LOG == 'True' }}
@@ -120,7 +124,7 @@ jobs:
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
-      if: ${{ env.PASS_LOG == 'True'  &&  CI == "true" }}
+      if: ${{ env.PASS_LOG == 'True' &&  CI == "true" }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
@@ -152,8 +156,14 @@ jobs:
           Fail submission! :warning:
           Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ GITHUB_RUN_ID }}
           You can write a comment with "!redo" to rerun the submission process.
-          #### Checks Status ####
+          ### Checks Status ###
           Linter : ${{ steps.linter.outputs.PASS }}
           Coverage : ${{ steps.coverage.outputs.PASS }}
           Qiskit Stable : ${{ steps.stable.outputs.PASS }}
           Qiskit Dev : ${{ steps.dev.outputs.PASS }}
+
+          ### Logs ###
+          <details>
+          <summary>Full log</summary>
+          ${{ env.full_log }}
+          </details>
