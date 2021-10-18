@@ -159,7 +159,16 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, test_result)
-            set_actions_output([("PASS", str(test_result.passed) + " - Terra version : " + str(test_result.terra_version))])
+            set_actions_output(
+                [
+                    (
+                        "PASS",
+                        str(test_result.passed)
+                        + " - Terra version : "
+                        + str(test_result.terra_version),
+                    )
+                ]
+            )
         else:
             self.logger.warning("Runner returned 0 results.")
             set_actions_output([("PASS", "False")])
