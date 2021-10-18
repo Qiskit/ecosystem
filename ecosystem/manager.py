@@ -159,7 +159,7 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, test_result)
-            set_actions_output([("PASS", test_result)])
+            set_actions_output([("PASS", test_result.passed + " - " + test_result.terra_version)])
         else:
             self.logger.warning("Runner returned 0 results.")
             set_actions_output([("PASS", "False")])
@@ -194,7 +194,7 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, style_result)
-            set_actions_output([("PASS", style_result)])
+            set_actions_output([("PASS", style_result.passed)])
         else:
             self.logger.warning("Runner returned 0 results.")
             set_actions_output([("PASS", "False")])
@@ -227,7 +227,7 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, coverage_result)
-            set_actions_output([("PASS", coverage_result)])
+            set_actions_output([("PASS", coverage_result.passed)])
         else:
             self.logger.warning("Runner returned 0 results.")
             set_actions_output([("PASS", "False")])
