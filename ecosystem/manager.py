@@ -59,13 +59,13 @@ class Manager:
                 "client_payload": {
                     "repo_url": repo_url,
                     "issue_id": issue_id,
-                    "branch_name": branch_name
+                    "branch_name": branch_name,
                 },
             },
             headers={
                 "Authorization": "token {}".format(token),
-                "Accept": "application/vnd.github.v3+json"
-            }
+                "Accept": "application/vnd.github.v3+json",
+            },
         )
         if response.ok:
             self.logger.info("Success response on dispatch event. %s", response.text)
