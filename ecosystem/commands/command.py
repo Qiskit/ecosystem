@@ -32,12 +32,12 @@ class Command:
         ) as process:
             logs = []
             while True:
-                output = str(process.stdout.readline())
+                output = str(process.stdout.readline().decode())
                 logger.info(output.strip())
                 logs.append(output.strip())
                 return_code = process.poll()
                 if return_code is not None:
-                    logger.info("RETURN CODE: %s}", return_code)
+                    logger.info("[RETURN CODE]: %s", return_code)
                     for output in process.stdout.readlines():
                         logger.info(str(output).strip())
                         logs.append(str(output).strip())
