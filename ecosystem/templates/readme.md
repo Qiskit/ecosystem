@@ -41,18 +41,40 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
 
-## Members ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
+## Members
 
-### Main ![ecosystem-main](https://img.shields.io/badge/Qiskit-Main-blueviolet)
 
-|  Name | Description  |
-|---|---|
+### Main 
+<hr/>
+
 {% for repo in main_repos -%}
-| {{ repo.url }} | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
+
+[{{ repo.url }}]({{ repo.url }}) - {{repo.description}}
+
+{% for label in repo.labels %}
+![core](https://img.shields.io/badge/{{label}}-gray.svg)
+{%- endfor %}
+
 {% endfor %}
 
-<!-- ROADMAP -->
-## Roadmap
+
+### Community 
+<hr/>
+
+{% for repo in community_repos -%}
+
+[{{ repo.url }}]({{ repo.url }}) - {{repo.description}}
+
+{% for label in repo.labels %}
+![core](https://img.shields.io/badge/{{label}}-gray.svg)
+{%- endfor -%}
+{% for t in repo.tests_results -%} {%- set color = "orange" %} {%- if t.passed %} {% set color = "green" %} {%- endif %}
+![core](https://img.shields.io/badge/{{t.test_type}}-{{t.terra_version}}-{{color}}.svg)
+{%- endfor %}
+
+{% endfor %}
+
+## Contribution Guidelines
 
 See the [contributing](./CONTRIBUTING.md) document to learn about the source code contribution process developers follow.
 
@@ -60,9 +82,6 @@ See the [code of conduct](./CODE_OF_CONDUCT.md) to learn about the social guidel
 
 See the [open issues](https://github.com/qiskit-community/ecosystem/issues) for a list of proposed features (and known issues).
 
-
-
-<!-- LICENSE -->
 ## License
 
 Distributed under the Apache License. See [LICENSE.txt](./LICENSE) for more information.

@@ -159,5 +159,36 @@
             "url": "https://github.com/Qiskit/qiskit.org",
             "tests_results": []
         }
+    },
+    "COMMUNITY": {
+        "1": {
+            "alternatives": null,
+            "contact_info": "zlatko.minev@ibm.com",
+            "created_at": 1634591866.950844,
+            "description": "Qiskit Metal E&M analysis with Ansys and the energy-participation-ratio method is based on pyEPR.",
+            "labels": [
+                "plugin"
+            ],
+            "licence": "BSD 3-Clause \"New\" or \"Revised\" license",
+            "name": "pyEPR",
+            "tier": "COMMUNITY",
+            "updated_at": 1634591866.950885,
+            "url": "https://github.com/zlatko-minev/pyEPR",
+            "tests_results": [
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.18.3"
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.19.0"
+                }
+            ],
+            "affiliations": null,
+            "styles_results": [],
+            "coverages_results": []
+        }
     }
 }
