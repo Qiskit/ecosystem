@@ -159,10 +159,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, test_result)
-            set_actions_output(["PASS", test_result])
+            set_actions_output([("PASS", test_result)])
         else:
             self.logger.warning("Runner returned 0 results.")
-            set_actions_output(["PASS", "False"])
+            set_actions_output([("PASS", "False")])
 
         return terra_version
 
@@ -194,10 +194,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, style_result)
-            set_actions_output(["PASS", style_result])
+            set_actions_output([("PASS", style_result)])
         else:
             self.logger.warning("Runner returned 0 results.")
-            set_actions_output(["PASS", "False"])
+            set_actions_output([("PASS", "False")])
 
     def python_coverage(self, repo_url: str, tier: str, coverage_type: str):
         """Runs tests using python runner.
@@ -227,10 +227,10 @@ class Manager:
                     repo_url,
                 )
             self.logger.info("Test results for %s: %s", repo_url, coverage_result)
-            set_actions_output(["PASS", coverage_result])
+            set_actions_output([("PASS", coverage_result)])
         else:
             self.logger.warning("Runner returned 0 results.")
-            set_actions_output(["PASS", "False"])
+            set_actions_output([("PASS", "False")])
 
     def python_dev_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
