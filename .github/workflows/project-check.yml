@@ -28,6 +28,8 @@ jobs:
         echo "Will be commenting in ${{ github.event.inputs.issue_id }}..."
         echo "Will push changes to ${{ github.event.inputs.branch_name }}..."
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.inputs.branch_name }}
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
@@ -62,10 +64,11 @@ jobs:
         tox_env: "py39"
         tier: ${{ github.event.inputs.tier }}
 
-    - uses: EndBug/add-and-commit@v7
-      with:
-        add: 'ecosystem/resources/members.json'
-        branch: ${{ github.event.inputs.branch_name }}
-        message: 'Tests for ${{ github.event.inputs.repo_url }}'
-        pull: '--rebase --autostash'
-        push: true
+    - name: Commit changes
+      run: |
+        git pull --rebase --autostash
+        git add ecosystem/resources/members.json
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "Tests for ${{ github.event.inputs.repo_url }}"
+        git push

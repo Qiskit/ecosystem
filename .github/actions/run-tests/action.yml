@@ -28,7 +28,7 @@ runs:
         fi
         if [ "${{ inputs.check_type }}" == "lint" ]; then
           echo "Running lint tests for ${{inputs.repo_url}}..."
-          python manager.py python_styles_check ${{inputs.repo_url}} --tier=${{inputs.tier}} --style_type=""
+          python manager.py python_styles_check ${{inputs.repo_url}} --tier=${{inputs.tier}} --style_type="pylint"
         fi
         if [ "${{ inputs.check_type }}" == "coverage" ]; then
           echo "Running coverage tests for ${{inputs.repo_url}}..."
