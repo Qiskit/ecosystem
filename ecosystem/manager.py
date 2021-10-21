@@ -26,9 +26,9 @@ class Manager:
     Ex: `python manager.py generate_readme --path=<SOME_DIRECTORY>`
     """
 
-    def __init__(self):
+    def __init__(self, root_path: Optional[str] = None):
         """Manager class."""
-        self.current_dir = os.path.abspath(os.getcwd())
+        self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
 
         self.env = Environment(
@@ -48,7 +48,7 @@ class Manager:
         token: str,
         owner: str = "qiskit-community",
         repo: str = "ecosystem",
-    ):
+    ) -> bool:
         """Dispatch event to trigger check workflow."""
         url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
             owner=owner, repo=repo
@@ -74,6 +74,7 @@ class Manager:
             self.logger.warning(
                 "Something wend wrong with dispatch event: %s", response.text
             )
+        return response.ok
 
     def get_projects_by_tier(self, tier: str) -> None:
         """Return projects by tier.
