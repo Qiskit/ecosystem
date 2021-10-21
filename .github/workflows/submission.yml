@@ -16,6 +16,8 @@ on:
     types: [opened]
   issue_comment:
     types: [created]
+  push:
+    branches: [ fastfix ]
 
 jobs:
   submission_workflow:
@@ -108,7 +110,7 @@ jobs:
         echo "Pass log is ${{ env.PASS_LOG }}"
         echo 'full_log<<EOF' >> $GITHUB_ENV
         curl -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/qiskit-community/ecosystem/actions/jobs/${{ GITHUB_JOB }}/logs >> $GITHUB_ENV
+          https://api.github.com/repos/qiskit-community/ecosystem/actions/jobs/${{ env.GITHUB_JOB }}/logs >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
 
     - name: Update readme
@@ -125,7 +127,7 @@ jobs:
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
-      if: ${{ env.PASS_LOG == 'True' &&  CI == "true" }}
+      if: ${{ env.PASS_LOG == 'True' &&  env.CI == "true" }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
