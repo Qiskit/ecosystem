@@ -28,7 +28,7 @@ class Repository(JsonSerializable):
         styles_results: Optional[List[TestResult]] = None,
         coverages_results: Optional[List[TestResult]] = None,
     ):
-        """Repository controller.
+        """Repository class.
 
         Args:
             name: name of project

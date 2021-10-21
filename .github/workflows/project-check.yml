@@ -1,0 +1,76 @@
+name: Project check workflow
+
+on:
+  #  Payload:
+  #  "client_payload": {
+  #    "tier": "COMMUNITY", # 'Tier of project'
+  #    "branch_name": "weekly-checks-1", # 'Branch name to push changes'
+  #    "issue_id": 49, # 'Id of issue to put comments in'
+  #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL'
+  #  }
+  repository_dispatch:
+    types: [ check_project ]
+
+jobs:
+  project_check_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "Running check for ${{ github.event.client_payload.repo_url }}..."
+        echo "Will be commenting in ${{ github.event.client_payload.issue_id }}..."
+        echo "Will push changes to ${{ github.event.client_payload.branch_name }}..."
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.client_payload.branch_name }}
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+          python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+
+    - name: Stable tests
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        check_type: "test_stable"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+
+    - name: Dev tests
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        check_type: "test_dev"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+
+    - name: Styles check
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        check_type: "lint"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+
+    - name: Coverage check
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        check_type: "coverage"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+
+    - name: Commit changes
+      run: |
+        git pull --rebase --autostash
+        git add ecosystem/resources/members.json
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "Tests for ${{ github.event.client_payload.repo_url }}"
+        git push

@@ -2,6 +2,7 @@
 import os
 from typing import Optional, List, Tuple
 
+import requests
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from ecosystem.daos import JsonDAO
@@ -25,9 +26,9 @@ class Manager:
     Ex: `python manager.py generate_readme --path=<SOME_DIRECTORY>`
     """
 
-    def __init__(self):
+    def __init__(self, root_path: Optional[str] = None):
         """Manager class."""
-        self.current_dir = os.path.abspath(os.getcwd())
+        self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
 
         self.env = Environment(
@@ -36,8 +37,53 @@ class Manager:
         self.readme_template = self.env.get_template("readme.md")
         self.pylintrc_template = self.env.get_template(".pylintrc")
         self.coveragerc_template = self.env.get_template(".coveragerc")
-        self.controller = JsonDAO(path=self.resources_dir)
+        self.dao = JsonDAO(path=self.resources_dir)
         self.logger = logger
+
+    def dispatch_check_workflow(
+        self,
+        repo_url: str,
+        issue_id: str,
+        branch_name: str,
+        token: str,
+        owner: str = "qiskit-community",
+        repo: str = "ecosystem",
+    ) -> bool:
+        """Dispatch event to trigger check workflow."""
+        url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
+            owner=owner, repo=repo
+        )
+        response = requests.post(
+            url,
+            json={
+                "event_type": "check_project",
+                "client_payload": {
+                    "repo_url": repo_url,
+                    "issue_id": issue_id,
+                    "branch_name": branch_name,
+                },
+            },
+            headers={
+                "Authorization": "token {}".format(token),
+                "Accept": "application/vnd.github.v3+json",
+            },
+        )
+        if response.ok:
+            self.logger.info("Success response on dispatch event. %s", response.text)
+        else:
+            self.logger.warning(
+                "Something wend wrong with dispatch event: %s", response.text
+            )
+        return response.ok
+
+    def get_projects_by_tier(self, tier: str) -> None:
+        """Return projects by tier.
+
+        Args:
+            tier: tier of ecosystem
+        """
+        repositories = ",".join([repo.url for repo in self.dao.get_repos_by_tier(tier)])
+        set_actions_output([("repositories", repositories)])
 
     @staticmethod
     def parser_issue(body: str) -> None:
@@ -98,9 +144,9 @@ class Manager:
             repo_contact,
             repo_alt,
             repo_affiliations,
-            repo_labels,
+            list(repo_labels),
         )
-        self.controller.insert(new_repo)
+        self.dao.insert(new_repo)
 
     def generate_readme(self, path: Optional[str] = None):
         """Generates entire readme for ecosystem repository.
@@ -109,7 +155,7 @@ class Manager:
             str: generated readme
         """
         path = path if path is not None else self.current_dir
-        main_repos = self.controller.get_repos_by_tier(Tier.MAIN)
+        main_repos = self.dao.get_repos_by_tier(Tier.MAIN)
         readme_content = self.readme_template.render(main_repos=main_repos)
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
@@ -149,7 +195,7 @@ class Manager:
                 test_type=test_type,
             )
             # save test res to db
-            result = self.controller.add_repo_test_result(
+            result = self.dao.add_repo_test_result(
                 repo_url=repo_url, tier=tier, test_result=test_result
             )
             # print report
@@ -193,7 +239,7 @@ class Manager:
                 passed=all(r.ok for r in results), style_type=style_type
             )
             # save test res to db
-            result = self.controller.add_repo_style_result(
+            result = self.dao.add_repo_style_result(
                 repo_url=repo_url, tier=tier, style_result=style_result
             )
             # print report
@@ -226,7 +272,7 @@ class Manager:
                 passed=all(r.ok for r in results), coverage_type=coverage_type
             )
             # save test res to db
-            result = self.controller.add_repo_coverage_result(
+            result = self.dao.add_repo_coverage_result(
                 repo_url=repo_url, tier=tier, coverage_result=coverage_result
             )
             # print report

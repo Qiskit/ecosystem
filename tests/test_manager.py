@@ -4,6 +4,8 @@ import io
 import sys
 from unittest import TestCase
 
+import responses
+
 from ecosystem.manager import Manager
 
 
@@ -48,3 +50,30 @@ class TestManager(TestCase):
         self.assertEqual(
             output_value[7], "::set-output name=SUBMISSION_LABELS::['tool', 'tutorial']"
         )
+
+    @responses.activate
+    def test_dispatch_repository(self):
+        """Test github dispatch event."""
+        owner = "qiskit-community"
+        repo = "ecosystem"
+        responses.add(
+            **{
+                "method": responses.POST,
+                "url": "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
+                    owner=owner, repo=repo
+                ),
+                "body": '{"status": "ok"}',
+                "status": 200,
+                "content_type": "application/json",
+            }
+        )
+        manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/../")
+        response = manager.dispatch_check_workflow(
+            repo_url="https://github.com/Qiskit-demo/qiskit-demo",
+            issue_id=str(42),
+            branch_name="awesome_branch",
+            token="<TOKEN>",
+            owner=owner,
+            repo=repo,
+        )
+        self.assertTrue(response)
