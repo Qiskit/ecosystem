@@ -56,14 +56,17 @@ class TestManager(TestCase):
         """Test github dispatch event."""
         owner = "qiskit-community"
         repo = "ecosystem"
-        responses.add(**{
-          'method': responses.POST,
-          'url': 'https://api.github.com/repos/{owner}/{repo}/dispatches'.format(owner=owner,
-                                                                                 repo=repo),
-          'body': '{"status": "ok"}',
-          'status': 200,
-          'content_type': 'application/json'
-        })
+        responses.add(
+            **{
+                "method": responses.POST,
+                "url": "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
+                    owner=owner, repo=repo
+                ),
+                "body": '{"status": "ok"}',
+                "status": 200,
+                "content_type": "application/json",
+            }
+        )
         manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/../")
         response = manager.dispatch_check_workflow(
             repo_url="https://github.com/Qiskit-demo/qiskit-demo",
@@ -71,6 +74,6 @@ class TestManager(TestCase):
             branch_name="awesome_branch",
             token="<TOKEN>",
             owner=owner,
-            repo=repo
+            repo=repo,
         )
         self.assertTrue(response)
