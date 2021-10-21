@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
-      tier: "MAIN"
+      tier: "COMMUNITY"
       python-version: "3.9"
     steps:
 ###################################################################################################
@@ -108,7 +108,7 @@ jobs:
         echo "Pass log is ${{ env.PASS_LOG }}"
         echo 'full_log<<EOF' >> $GITHUB_ENV
         curl -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/qiskit-community/ecosystem/actions/jobs/${{ GITHUB_JOB }}/logs >> $GITHUB_ENV
+          https://api.github.com/repos/qiskit-community/ecosystem/actions/jobs/$GITHUB_JOB/logs >> $GITHUB_ENV
         echo 'EOF' >> $GITHUB_ENV
 
     - name: Update readme
@@ -125,7 +125,7 @@ jobs:
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
-      if: ${{ env.PASS_LOG == 'True' &&  CI == "true" }}
+      if: ${{ env.PASS_LOG == 'True' &&  CI == 'true' }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
@@ -155,7 +155,7 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Fail submission! :warning:
-          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ GITHUB_RUN_ID }}
+          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/$GITHUB_RUN_ID
           You can write a comment with "!redo" to rerun the submission process.
           ### Checks Status ###
           Linter : ${{ steps.linter.outputs.PASS }}
