@@ -1,0 +1,171 @@
+name: Submission check
+
+###
+# - install deps
+# - parse issue
+# - run lint, coverage, tests
+# - if success:
+# -- comment of success
+# -- create PR with change to readme
+# -- link pr to issue
+# - if something went wrong:
+# -- comment run url in issue
+
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  submission_workflow:
+    if: |
+      (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'opened') ||
+      (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:'))
+    runs-on: ubuntu-latest
+    env:
+      tox_env: "py39"
+      tier: "MAIN"
+      python-version: "3.9"
+    steps:
+###################################################################################################
+### Set up deps
+###################################################################################################
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ env.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+
+###################################################################################################
+### Workflow
+###################################################################################################
+    - name: Parse submission
+      id: parse-issue
+      run: |
+        python manager.py parser_issue --body="${{ github.event.issue.body }}"
+
+    - name: Linter check
+      id: linter
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
+        check_type: "lint"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+    - name: Coverage check
+      id: coverage
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
+        check_type: "coverage"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+    - name: Tests stable check
+      id: stable
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
+        check_type: "test_stable"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+    - name: Tests dev check
+      id: dev
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
+        check_type: "test_dev"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+
+###################################################################################################
+### Check result, update issue and create MR
+###################################################################################################
+    - name: Check return
+      run: |
+        echo "PASS_LOG=True" >> $GITHUB_ENV
+
+        declare -a return_list=( \
+          "${{ steps.linter.outputs.PASS }}" \
+          "${{ steps.coverage.outputs.PASS }}" \
+          "${{ steps.stable.outputs.PASS }}" \
+          "${{ steps.dev.outputs.PASS }}" \
+        )
+        for i in "${return_list[@]}"; do
+          if [[ "${i}" != *"True"* ]]; then
+            echo "PASS_LOG=False" >> $GITHUB_ENV
+          fi
+        done
+
+    - name: Check the check
+      id: check_result
+      run: |
+        echo "Pass log is ${{ env.PASS_LOG }}"
+        echo 'full_log<<EOF' >> $GITHUB_ENV
+        curl -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/qiskit-community/ecosystem/actions/jobs/${{ GITHUB_JOB }}/logs >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+
+    - name: Update readme
+      if: ${{ env.PASS_LOG == 'True' }}
+      run: |
+        python manager.py add_repo_2db --repo_author=${{ steps.parse-issue.outputs.SUBMISSION_NAME }} \
+                                       --repo_link="${{ steps.parse-issue.outputs.SUBMISSION_REPO }}" \
+                                       --repo_description="${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}" \
+                                       --repo_licence="${{ steps.parse-issue.outputs.SUBMISSION_LICENCE }}" \
+                                       --repo_contact="${{ steps.parse-issue.outputs.SUBMISSION_CONTACT }}" \
+                                       --repo_alt="${{ steps.parse-issue.outputs.SUBMISSION_ALTERNATIVES }}" \
+                                       --repo_affiliations="${{ steps.parse-issue.outputs.SUBMISSION_AFFILIATIONS }}" \
+                                       --repo_labels="${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}"
+        python manager.py generate_readme
+
+    - name: Commit changes and create Pull Request
+      if: ${{ env.PASS_LOG == 'True' &&  CI == "true" }}
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        repository: "qiskit-community/ecosystem"
+        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_REPO }} to list.
+        title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+        body: |
+          Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+          Closes #${{ github.event.issue.number }}
+        branch: submission-${{ github.event.issue.number }}
+        base: main
+
+    - name: Create comment on success
+      if: ${{ env.PASS_LOG == 'True' }}
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        repository: "qiskit-community/ecosystem"
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
+
+    - name: Create comment on failure
+      if: ${{ env.PASS_LOG == 'False' }}
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        repository: "qiskit-community/ecosystem"
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Fail submission! :warning:
+          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ GITHUB_RUN_ID }}
+          You can write a comment with "!redo" to rerun the submission process.
+          ### Checks Status ###
+          Linter : ${{ steps.linter.outputs.PASS }}
+          Coverage : ${{ steps.coverage.outputs.PASS }}
+          Qiskit Stable : ${{ steps.stable.outputs.PASS }}
+          Qiskit Dev : ${{ steps.dev.outputs.PASS }}
+
+          ### Logs ###
+          <details>
+          <summary>Full log</summary>
+          ${{ steps.check_result.outputs.LOG }}
+          ${{ env.full_log }}
+          </details>

@@ -16,6 +16,16 @@ python manager.py stable_compatibility_tests https://github.com/<ACCOUNT>/<REPOS
 ```shell
 python manager.py dev_compatibility_tests https://github.com/<ACCOUNT>/<REPOSITORY_NAME> --tox_python=<py36,py37,py38,py39>
 ```
+
+4. Get parse issue.
+```shell
+python manager.py parser_issue --body="${{ github.event.issue.body }}"
+```
+
+5. Add repo to jsondb.
+```shell
+python manager.py add_repo_2db --repo_link="https://github.com/<ACCOUNT>/<REPOSITORY_NAME>" --repo_author="<ACCOUNT>" ...
+```
 """
 import fire
 

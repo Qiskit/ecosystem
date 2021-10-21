@@ -8,3 +8,4 @@ class Tier:
     MAIN: str = "MAIN"
     MEMBER: str = "MEMBER"
     CANDIDATE: str = "CANDIDATE"
+    COMMUNITY: str = "COMMUNITY"
