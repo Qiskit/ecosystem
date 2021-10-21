@@ -1,7 +1,6 @@
 """Logging module."""
 import logging
-from typing import Tuple, List
-
+from typing import Tuple, List, Union
 import coloredlogs
 
 
@@ -32,7 +31,7 @@ coloredlogs.DEFAULT_FIELD_STYLES = {
 coloredlogs.install(fmt="%(asctime)s %(name)s %(levelname)s %(message)s", logger=logger)
 
 
-def set_actions_output(outputs: List[Tuple[str, str]]) -> None:
+def set_actions_output(outputs: List[Tuple[str, Union[str, bool, float, int]]]) -> None:
     """Sets output for GitHub actions.
 
     Args:
