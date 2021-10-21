@@ -127,7 +127,7 @@ jobs:
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
-      if: ${{ env.PASS_LOG == 'True' &&  env.CI == "true" }}
+      if: ${{ env.PASS_LOG == 'True' &&  env.CI == 'true' }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
@@ -157,7 +157,7 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Fail submission! :warning:
-          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ GITHUB_RUN_ID }}
+          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ env.GITHUB_RUN_ID }}
           You can write a comment with "!redo" to rerun the submission process.
           ### Checks Status ###
           Linter : ${{ steps.linter.outputs.PASS }}
