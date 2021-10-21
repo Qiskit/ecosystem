@@ -16,8 +16,6 @@ on:
     types: [opened]
   issue_comment:
     types: [created]
-  push:
-    branches: [ fastfix ]
 
 jobs:
   submission_workflow:
