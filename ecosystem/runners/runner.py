@@ -15,6 +15,7 @@ from ecosystem.models import (
 from ecosystem.models.repository import Repository
 from ecosystem.utils import QiskitEcosystemException
 from ecosystem.utils import logger as ecosystem_logger
+from ecosystem.utils.utils import set_actions_output
 
 
 class Runner:
@@ -131,6 +132,9 @@ class Runner:
 
         try:
             result = self.workload()
+            for i in result[1]:
+                warn_logs = CommandExecutionSummary.get_warning_logs(i)
+                set_actions_output([("WARN", str(warn_logs))])
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", CommandExecutionSummary(1, [], summary=str(exception)))
             self.logger.error(exception)
