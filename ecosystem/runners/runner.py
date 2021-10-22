@@ -140,7 +140,7 @@ class Runner:
         result = (terra, [execution_results])
         
         try:
-            print("toto)
+            print("toto")
                 
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", [CommandExecutionSummary(1, [], summary=str(exception))])
