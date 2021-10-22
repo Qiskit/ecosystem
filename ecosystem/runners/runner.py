@@ -130,14 +130,12 @@ class Runner:
                 f"Something went wrong with cloning {self.repo} repository."
             )
             
-            
-            #result = self.workload()
-        for terra, execution_results in self.workload():
+        for execution_results in self.workload():
             logs = []
             for r in execution_results:
                 logs += r.get_warning_logs()
             set_actions_output([("WARN", logs)])
-        result = (terra, [execution_results])
+        result = (terra, execution_results)
         
         try:
             print("toto")
