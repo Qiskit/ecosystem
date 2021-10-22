@@ -129,15 +129,18 @@ class Runner:
             raise QiskitEcosystemException(
                 f"Something went wrong with cloning {self.repo} repository."
             )
-
-        try:
+            
+            
             #result = self.workload()
-            for terra, execution_results in self.workload():
-                logs = []
-                for r in execution_results:
-                    logs += r.get_warning_logs()
-                set_actions_output([("WARN", logs)])
-            result = (terra, [execution_results])
+        for terra, execution_results in self.workload():
+            logs = []
+            for r in execution_results:
+                logs += r.get_warning_logs()
+            set_actions_output([("WARN", logs)])
+        result = (terra, [execution_results])
+        
+        try:
+            print("toto)
                 
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", [CommandExecutionSummary(1, [], summary=str(exception))])
