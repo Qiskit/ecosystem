@@ -132,7 +132,7 @@ class Runner:
 
         try:
             result = self.workload()
-            for _, execution_results in result:
+            for _, execution_results in self.workload():
                 logs = []
                 for r in execution_results:
                     logs += r.get_warn_logs()
