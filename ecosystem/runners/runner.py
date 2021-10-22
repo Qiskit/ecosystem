@@ -131,13 +131,11 @@ class Runner:
             )
             
         result = self.workload()
-        self.logger.error("RESUUUUUULT")
-        self.logger.error(result)
-        for _, execution_results in result:
-            logs = []
-            for r in execution_results:
-                logs += r.get_warning_logs()
-            set_actions_output([("WARN", logs)])
+        terra, execution_results = result
+        logs = []
+        for r in execution_results:
+            logs += r.get_warning_logs()
+        set_actions_output([("WARN", logs)])
         
         try:
             print("toto")
