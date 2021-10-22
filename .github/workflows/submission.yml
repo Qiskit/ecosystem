@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
-      tier: "COMMUNITY"
+      tier: "MAIN"
       python-version: "3.9"
     steps:
 ###################################################################################################
@@ -91,10 +91,10 @@ jobs:
         echo "PASS_LOG=True" >> $GITHUB_ENV
 
         declare -a return_list=( \
-          "${{ steps.linter.outputs.PASS }}" \
-          "${{ steps.coverage.outputs.PASS }}" \
-          "${{ steps.stable.outputs.PASS }}" \
-          "${{ steps.dev.outputs.PASS }}" \
+          "${{ steps.linter.outputs.result }}" \
+          "${{ steps.coverage.outputs.result }}" \
+          "${{ steps.stable.outputs.result }}" \
+          "${{ steps.dev.outputs.result }}" \
         )
         for i in "${return_list[@]}"; do
           if [[ "${i}" != *"True"* ]]; then
@@ -106,11 +106,7 @@ jobs:
       id: check_result
       run: |
         echo "Pass log is ${{ env.PASS_LOG }}"
-        echo 'full_log<<EOF' >> $GITHUB_ENV
-        curl -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/qiskit-community/ecosystem/actions/jobs/$GITHUB_JOB/logs >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
-
+        
     - name: Update readme
       if: ${{ env.PASS_LOG == 'True' }}
       run: |
@@ -125,7 +121,7 @@ jobs:
         python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
-      if: ${{ env.PASS_LOG == 'True' }}
+      if: ${{ env.PASS_LOG == 'True' &&  github.actions == 'true' }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
@@ -155,17 +151,28 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Fail submission! :warning:
-          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/$GITHUB_RUN_ID
+          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
           You can write a comment with "!redo" to rerun the submission process.
           ### Checks Status ###
-          Linter : ${{ steps.linter.outputs.PASS }}
-          Coverage : ${{ steps.coverage.outputs.PASS }}
-          Qiskit Stable : ${{ steps.stable.outputs.PASS }}
-          Qiskit Dev : ${{ steps.dev.outputs.PASS }}
+          Linter : ${{ steps.linter.outputs.result }}
+          Coverage : ${{ steps.coverage.outputs.result }}
+          Qiskit Stable : ${{ steps.stable.outputs.result }}
+          Qiskit Dev : ${{ steps.dev.outputs.result }}
 
           ### Logs ###
           <details>
-          <summary>Full log</summary>
-          ${{ steps.check_result.outputs.LOG }}
-          ${{ env.full_log }}
+          <summary>Linter</summary>
+          ${{ steps.linter.outputs.error }}
+          </details>
+          <details>
+          <summary>Coverage</summary>
+          ${{ steps.coverage.outputs.error }}
+          </details>
+          <details>
+          <summary>Qiskit Stable</summary>
+          ${{ steps.stable.outputs.error }}
+          </details>
+          <details>
+          <summary>Qiskit Dev</summary>
+          ${{ steps.dev.outputs.error }}
           </details>
