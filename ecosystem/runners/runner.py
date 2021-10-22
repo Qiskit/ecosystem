@@ -136,7 +136,7 @@ class Runner:
             for r in result[1]:
                 #logs += r.get_warn_logs()
                 logs = CommandExecutionSummary.get_warn_logs(r)
-            set_actions_output([("WARN", logs)])
+            set_actions_output([("WARN", str(logs))])
                     
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", CommandExecutionSummary(1, [], summary=str(exception)))
