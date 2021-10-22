@@ -138,7 +138,7 @@ class Runner:
                 logs += CommandExecutionSummary.get_warn_logs(r)
             set_actions_output([("WARN", logs)])
             
-            result = (terra, execution_results)
+            result = (terra, [execution_results])
                     
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", CommandExecutionSummary(1, [], summary=str(exception)))
