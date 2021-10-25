@@ -134,6 +134,7 @@ class Runner:
             result = self.workload()
             _, executive_summary = result
             logs_error = []
+            logs_fail = []
             for element in executive_summary:
                 logs_error += element.get_error_logs()
                 logs_fail += element.get_fail_logs()
