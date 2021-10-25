@@ -1,7 +1,5 @@
 """Parser for issue submission."""
 import re
-import os
-import json
 import mdformat
 
 from ecosystem.models.repository import Repository
