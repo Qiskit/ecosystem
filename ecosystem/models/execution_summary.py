@@ -26,11 +26,11 @@ class CommandExecutionSummary:
     def get_warning_logs(self) -> List[str]:
         """Return warning messages."""
         return [log for log in self.logs if "warn" in log.lower()]
-    
+
     def get_error_logs(self) -> List[str]:
         """Return error messages."""
         return [log for log in self.logs if "error" in log.lower()]
-    
+
     def get_fail_logs(self) -> List[str]:
         """Return fail messages."""
         return [log for log in self.logs if "failed" in log.lower()]
