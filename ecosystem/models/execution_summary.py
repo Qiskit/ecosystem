@@ -33,7 +33,7 @@ class CommandExecutionSummary:
     
     def get_fail_logs(self) -> List[str]:
         """Return fail messages."""
-        return [log for log in self.logs if "fail" in log.lower()]
+        return [log for log in self.logs if "failed" in log.lower()]
 
     @property
     def ok(self):  # pylint: disable=invalid-name
