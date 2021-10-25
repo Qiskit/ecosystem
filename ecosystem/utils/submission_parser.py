@@ -19,10 +19,11 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
 
     parse_json = json.loads(parser.result(format="json")[0])
 
-    repo_name = parse_json[0]["repo_url"].split("/")
-
-    name = repo_name[-1]
     url = parse_json[0]["repo_url"]
+
+    repo_name = url.split("/")
+    name = repo_name[-1]
+
     description = parse_json[0]["description"]
     contact_info = parse_json[0]["email"]
     alternatives = parse_json[0]["alternatives"]
