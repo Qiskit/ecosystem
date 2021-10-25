@@ -162,17 +162,33 @@ jobs:
           ### Logs ###
           <details>
           <summary>Linter</summary>
+          #### Error logs
           ${{ steps.linter.outputs.error }}
+          
+          #### Failed logs
+          ${{ steps.linter.outputs.fail }}
           </details>
           <details>
           <summary>Coverage</summary>
+          #### Error logs
           ${{ steps.coverage.outputs.error }}
+          
+          #### Failed logs
+          ${{ steps.coverage.outputs.fail }}
           </details>
           <details>
           <summary>Qiskit Stable</summary>
+          #### Error logs
           ${{ steps.stable.outputs.error }}
+          
+          #### Failed logs
+          ${{ steps.stable.outputs.fail }}
           </details>
           <details>
           <summary>Qiskit Dev</summary>
+          #### Error logs
           ${{ steps.dev.outputs.error }}
+          
+          #### Failed logs
+          ${{ steps.dev.outputs.fail }}
           </details>
