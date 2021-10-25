@@ -16,7 +16,7 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
 
     parser = ttp(data=body_of_issue, template=issue_template)
     parser.parse()
-    results.parser.result(format="json")[0]
+    results = parser.result(format="json")[0]
 
     parse_json = json.loads(results)
 
