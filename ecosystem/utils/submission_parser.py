@@ -9,7 +9,7 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
     
     issue_formatted = mdformat.text(body_of_issue)
     
-    parse = re.findall(r"^([\s\S]*?)(?:\n{2,}|\Z)", body_of_issue, re.M)
+    parse = re.findall(r"^([\s\S]*?)(?:\n{2,}|\Z)", issue_formatted, re.M)
 
     repo_name = parse[1].split("/")
 
