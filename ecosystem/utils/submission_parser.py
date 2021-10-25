@@ -2,35 +2,29 @@
 import re
 import os
 import json
-from ttp import ttp
+import mdformat
 
 from ecosystem.models.repository import Repository
 
 
 def parse_submission_issue(body_of_issue: str) -> Repository:
     """Parse issue body."""
+    
+    issue_formatted = mdformat.text(body_of_issue)
 
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    with open("{}/../templates/issue.md".format(current_dir), "r") as issue_body_tpl:
-        issue_template = issue_body_tpl.read()
+    parse = re.findall(r"^([\s\S]*?)(?:\n{2,}|\Z)", issue_formatted, re.M)
 
-    parser = ttp(data=body_of_issue, template=issue_template)
-    parser.parse()
+    repo_name = parse[1].split("/")
 
-    parse_json = json.loads(parser.result(format="json")[0])
-
-    url = parse_json[0]["repo_url"]
-
-    repo_name = url.split("/")
     name = repo_name[-1]
+    url = parse[1]
+    description = parse[3]
+    contact_info = parse[5]
+    alternatives = parse[7]
+    licence = parse[9]
+    affiliations = parse[11]
 
-    description = parse_json[0]["description"]
-    contact_info = parse_json[0]["email"]
-    alternatives = parse_json[0]["alternatives"]
-    licence = parse_json[0]["license"]
-    affiliations = parse_json[0]["affiliations"]
-
-    labels = re.findall(r"([\w\]+)([\w\-\_]+)", parse_json[0]["tags"])
+    labels = re.findall(r"([\w\]+)([\w\-\_]+)", parse[13])
 
     return Repository(
         name,
