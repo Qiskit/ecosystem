@@ -132,11 +132,11 @@ class Runner:
 
         try:
             result = self.workload()
-            _, execution_results = result
+            _, error_log = result
             logs = []
-            for element in execution_results:
-                logs += element.get_warning_logs()
-            set_actions_output([("WARN", logs)])
+            for element in error_log:
+                logs += element.get_error_logs()
+            set_actions_output([("ERROR", logs)])
 
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", [CommandExecutionSummary(1, [], summary=str(exception))])
