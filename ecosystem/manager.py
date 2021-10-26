@@ -113,7 +113,7 @@ class Manager:
 
     def add_repo_2db(
         self,
-        repo_author: str,
+        repo_name: str,
         repo_link: str,
         repo_description: str,
         repo_licence: str,
@@ -124,7 +124,7 @@ class Manager:
     ) -> None:
         """Adds repo to list of entries.
         Args:
-            repo_author: repo author
+            repo_name: repo name
             repo_link: repo url
             repo_description: repo description
             repo_contact: repo email
@@ -137,7 +137,7 @@ class Manager:
         """
 
         new_repo = Repository(
-            repo_author,
+            repo_name,
             repo_link,
             repo_description,
             repo_licence,
@@ -156,7 +156,10 @@ class Manager:
         """
         path = path if path is not None else self.current_dir
         main_repos = self.dao.get_repos_by_tier(Tier.MAIN)
-        readme_content = self.readme_template.render(main_repos=main_repos)
+        community_repos = self.dao.get_repos_by_tier(Tier.COMMUNITY)
+        readme_content = self.readme_template.render(
+            main_repos=main_repos, community_repos=community_repos
+        )
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
 
@@ -189,8 +192,17 @@ class Manager:
         )
         terra_version, results = runner.run()
         if len(results) > 0:
+            # if default tests are passed
+            # we do not detect deprecation warnings for qiskit
+            if test_type == TestType.STANDARD:
+                passed = all(r.ok for r in results)
+            else:
+                passed = all(
+                    r.ok and not r.has_qiskit_deprecation_logs for r in results
+                )
+
             test_result = TestResult(
-                passed=all(r.ok for r in results),
+                passed=passed,
                 terra_version=terra_version,
                 test_type=test_type,
             )
@@ -209,9 +221,7 @@ class Manager:
                 [
                     (
                         "PASS",
-                        str(test_result.passed)
-                        + " - Terra version : "
-                        + str(test_result.terra_version),
+                        f"{test_result.passed} - Terra version : {test_result.terra_version}",
                     )
                 ]
             )
@@ -309,4 +319,15 @@ class Manager:
             python_version=python_version,
             test_type=TestType.STABLE_COMPATIBLE,
             ecosystem_deps=["qiskit"],
+        )
+
+    def python_standard_tests(
+        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+    ):
+        """Runs tests with provided confiuration."""
+        return self._run_python_tests(
+            repo_url=repo_url,
+            tier=tier,
+            python_version=python_version,
+            test_type=TestType.STANDARD,
         )

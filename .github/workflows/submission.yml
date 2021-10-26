@@ -110,7 +110,7 @@ jobs:
     - name: Update readme
       if: ${{ env.PASS_LOG == 'True' }}
       run: |
-        python manager.py add_repo_2db --repo_author=${{ steps.parse-issue.outputs.SUBMISSION_NAME }} \
+        python manager.py add_repo_2db --repo_name=${{ steps.parse-issue.outputs.SUBMISSION_NAME }} \
                                        --repo_link="${{ steps.parse-issue.outputs.SUBMISSION_REPO }}" \
                                        --repo_description="${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}" \
                                        --repo_licence="${{ steps.parse-issue.outputs.SUBMISSION_LICENCE }}" \
