@@ -162,6 +162,7 @@ jobs:
           ### Logs ###
           <details>
           <summary>Linter</summary>
+          
           #### Error logs
           ${{ steps.linter.outputs.error }}
           
@@ -170,6 +171,7 @@ jobs:
           </details>
           <details>
           <summary>Coverage</summary>
+          
           #### Error logs
           ${{ steps.coverage.outputs.error }}
           
@@ -178,6 +180,7 @@ jobs:
           </details>
           <details>
           <summary>Qiskit Stable</summary>
+          
           #### Error logs
           ${{ steps.stable.outputs.error }}
           
@@ -186,6 +189,7 @@ jobs:
           </details>
           <details>
           <summary>Qiskit Dev</summary>
+          
           #### Error logs
           ${{ steps.dev.outputs.error }}
           
