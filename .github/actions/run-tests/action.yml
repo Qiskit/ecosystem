@@ -17,6 +17,7 @@ runs:
   using: "composite"
   steps:
     - name: Run Unit Tests
+      id: checks
       run: |
         if [ "${{ inputs.check_type }}" == "test_stable" ]; then
           echo "Running Qiskit stable tests for ${{inputs.repo_url}}..."
@@ -35,3 +36,13 @@ runs:
           python manager.py python_coverage ${{inputs.repo_url}} --tier=${{inputs.tier}} --coverage_type=""
         fi
       shell: bash
+outputs:
+  result:
+    description: "Result from tests check"
+    value: ${{ steps.checks.outputs.PASS }}
+  error:
+    description: "Error from tests check"
+    value: ${{ steps.checks.outputs.ERROR }}
+  fail:
+    description: "Error from tests check"
+    value: ${{ steps.checks.outputs.FAIL }}

@@ -15,6 +15,7 @@ from ecosystem.models import (
 from ecosystem.models.repository import Repository
 from ecosystem.utils import QiskitEcosystemException
 from ecosystem.utils import logger as ecosystem_logger
+from ecosystem.utils.utils import set_actions_output
 
 
 class Runner:
@@ -131,8 +132,17 @@ class Runner:
 
         try:
             result = self.workload()
+            _, executive_summary = result
+            logs_error = []
+            logs_fail = []
+            for element in executive_summary:
+                logs_error += element.get_error_logs()
+                logs_fail += element.get_fail_logs()
+            set_actions_output([("ERROR", logs_error)])
+            set_actions_output([("FAIL", logs_fail)])
+
         except Exception as exception:  # pylint: disable=broad-except
-            result = ("-", CommandExecutionSummary(1, [], summary=str(exception)))
+            result = ("-", [CommandExecutionSummary(1, [], summary=str(exception))])
             self.logger.error(exception)
         self.tear_down()
         return result
