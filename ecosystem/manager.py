@@ -45,6 +45,7 @@ class Manager:
         repo_url: str,
         issue_id: str,
         branch_name: str,
+        tier: str,
         token: str,
         owner: str = "qiskit-community",
         repo: str = "ecosystem",
@@ -61,6 +62,7 @@ class Manager:
                     "repo_url": repo_url,
                     "issue_id": issue_id,
                     "branch_name": branch_name,
+                    "tier": tier
                 },
             },
             headers={

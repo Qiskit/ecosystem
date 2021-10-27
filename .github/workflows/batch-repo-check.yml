@@ -55,6 +55,7 @@ jobs:
                             --repo_url=$repo \
                             --issue_id=${{ env.ISSUE_ID }} \
                             --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
+                            --tier=${{ github.event.inputs.tier }} \
                             --token=${{ secrets.WORKFLOW_DISPATCH_PAT }} \
                             --owner=${{ github.repository_owner }}
         done
