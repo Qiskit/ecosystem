@@ -5,7 +5,7 @@ inputs:
     description: 'GitHub repository URL'
     required: true
   check_type:
-    description: 'Check type. Available options: test_stable, test_dev, lint, coverage'
+    description: 'Check type. Available options: test_standard, test_stable, test_dev, lint, coverage'
     required: true
   tox_env:
     description: "Tox test env"
@@ -19,6 +19,10 @@ runs:
     - name: Run Unit Tests
       id: checks
       run: |
+        if [ "${{ inputs.check_type }}" == "test_standard" ]; then
+          echo "Running repository tests for ${{inputs.repo_url}}..."
+          python manager.py python_standard_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
+        fi
         if [ "${{ inputs.check_type }}" == "test_stable" ]; then
           echo "Running Qiskit stable tests for ${{inputs.repo_url}}..."
           python manager.py python_stable_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
