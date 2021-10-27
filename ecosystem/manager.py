@@ -62,7 +62,7 @@ class Manager:
                     "repo_url": repo_url,
                     "issue_id": issue_id,
                     "branch_name": branch_name,
-                    "tier": tier
+                    "tier": tier,
                 },
             },
             headers={
