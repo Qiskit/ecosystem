@@ -1,4 +1,6 @@
 """Test results for commands."""
+import datetime
+
 from .utils import JsonSerializable
 
 
@@ -12,6 +14,7 @@ class TestResult(JsonSerializable):
         self.test_type = test_type
         self.passed = passed
         self.terra_version = terra_version
+        self.timestamp = datetime.datetime.now().timestamp()
 
     @classmethod
     def from_dict(cls, dictionary: dict):

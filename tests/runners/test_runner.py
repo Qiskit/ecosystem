@@ -33,7 +33,7 @@ class TestPythonRunner(unittest.TestCase):
         runner.cloned_repo_directory = self.simple_project_dir
         terra_version, result = runner.workload()
 
-        self.assertFalse(all(r.ok for r in result))
+        self.assertTrue(all(r.ok and r.has_qiskit_deprecation_logs for r in result))
         self.assertTrue(terra_version)
 
     def test_tests_runner_on_configured_repo(self):

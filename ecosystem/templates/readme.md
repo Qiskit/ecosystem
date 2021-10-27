@@ -21,7 +21,7 @@
     </li>
     <li><a href="#join-the-ecosystem">Join the Ecosystem</a></li>
     <li><a href="#members">Members</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contribution-guidelines">Contribution Guidelines</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
@@ -51,8 +51,15 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | {{ repo.url }} | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
 {% endfor %}
 
-<!-- ROADMAP -->
-## Roadmap
+### Community ![ecosystem-community](https://img.shields.io/badge/Qiskit-Community-blueviolet)
+
+|  Name | Description  |
+|---|---|
+{% for repo in community_repos -%}
+| {{ repo.url }} | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
+{% endfor %}
+
+## Contribution Guidelines
 
 See the [contributing](./CONTRIBUTING.md) document to learn about the source code contribution process developers follow.
 
@@ -62,7 +69,6 @@ See the [open issues](https://github.com/qiskit-community/ecosystem/issues) for 
 
 
 
-<!-- LICENSE -->
 ## License
 
 Distributed under the Apache License. See [LICENSE.txt](./LICENSE) for more information.

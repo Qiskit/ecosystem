@@ -15,6 +15,7 @@ def get_main_repo() -> Repository:
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
         tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
+        tier=Tier.MAIN,
     )
 
 

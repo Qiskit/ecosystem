@@ -86,7 +86,7 @@ class Runner:
         # check for tox/.pylintrc/.coveragerc file
         for destination_file_name, renamed_file_name in zip(files, files_fault):
             if os.path.exists(f"{self.cloned_repo_directory}/{destination_file_name}"):
-                self.logger.info("{destination_file_name} file exists.")
+                self.logger.info("%s file exists.", destination_file_name)
                 os.rename(
                     f"{self.cloned_repo_directory}/{destination_file_name}",
                     f"{self.cloned_repo_directory}/{renamed_file_name}",

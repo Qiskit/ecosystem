@@ -23,7 +23,7 @@ class Repository(JsonSerializable):
         labels: Optional[List[str]] = None,
         created_at: Optional[int] = None,
         updated_at: Optional[int] = None,
-        tier: str = Tier.MAIN,
+        tier: str = Tier.COMMUNITY,
         tests_results: Optional[List[TestResult]] = None,
         styles_results: Optional[List[TestResult]] = None,
         coverages_results: Optional[List[TestResult]] = None,
