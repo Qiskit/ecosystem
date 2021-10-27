@@ -123,11 +123,11 @@ class JsonDAO:
         fetched_repo_json = table.get(repository.url == repo_url)
         if fetched_repo_json is not None:
             fetched_repo = Repository.from_dict(fetched_repo_json)
-            fetched_style_results = fetched_repo.styles_results
+            fetched_coverage_results = fetched_repo.coverages_results
 
             new_coverage_results = [
                 tr
-                for tr in fetched_style_results
+                for tr in fetched_coverage_results
                 if tr.coverage_type != coverage_result.coverage_type
             ] + [coverage_result]
             fetched_repo.coverages_results = new_coverage_results
