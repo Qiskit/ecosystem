@@ -27,6 +27,24 @@ class CommandExecutionSummary:
         """Return warning messages."""
         return [log for log in self.logs if "warn" in log.lower()]
 
+    def get_error_logs(self) -> List[str]:
+        """Return error messages."""
+        return [log for log in self.logs if "error" in log.lower()]
+
+    def get_fail_logs(self) -> List[str]:
+        """Return fail messages."""
+        return [log for log in self.logs if "failed" in log.lower()]
+
+    @property
+    def has_qiskit_deprecation_logs(self) -> bool:
+        """Wether execution summary has deprecation warnings for Qiskit or not."""
+        qiskit_deprecation_logs = [
+            log
+            for log in self.logs
+            if "qiskit" in log.lower() and "DeprecationWarning" in log
+        ]
+        return len(qiskit_deprecation_logs) > 0
+
     @property
     def ok(self):  # pylint: disable=invalid-name
         """If command finished with success."""

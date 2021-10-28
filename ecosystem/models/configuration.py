@@ -117,7 +117,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         return PythonRepositoryConfiguration(
             dependencies_files=["requirements.txt"],
             extra_dependencies=["pytest", "coverage"],
-            tests_command=["pip check", "pytest -W error::DeprecationWarning"],
+            tests_command=["pip check", "pytest"],  # -W error::DeprecationWarning
             styles_check_command=["pylint -rn . tests"],
             coverages_check_command=[
                 "coverage3 run -m pytest",

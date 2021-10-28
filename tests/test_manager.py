@@ -72,6 +72,7 @@ class TestManager(TestCase):
             repo_url="https://github.com/Qiskit-demo/qiskit-demo",
             issue_id=str(42),
             branch_name="awesome_branch",
+            tier="COMMUNITY",
             token="<TOKEN>",
             owner=owner,
             repo=repo,

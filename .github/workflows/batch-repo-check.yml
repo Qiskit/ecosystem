@@ -12,7 +12,7 @@ jobs:
   batch_repo_check:
     runs-on: ubuntu-latest
     env:
-      ISSUE_ID: 42
+      ISSUE_ID: 49
     steps:
     - name: Setup variables
       id: vars
@@ -55,5 +55,7 @@ jobs:
                             --repo_url=$repo \
                             --issue_id=${{ env.ISSUE_ID }} \
                             --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
-                            --token=${{ secrets.GITHUB_TOKEN }}
+                            --tier=${{ github.event.inputs.tier }} \
+                            --token=${{ secrets.WORKFLOW_DISPATCH_PAT }} \
+                            --owner=${{ github.repository_owner }}
         done

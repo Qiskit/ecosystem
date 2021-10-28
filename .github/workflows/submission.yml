@@ -91,10 +91,10 @@ jobs:
         echo "PASS_LOG=True" >> $GITHUB_ENV
 
         declare -a return_list=( \
-          "${{ steps.linter.outputs.PASS }}" \
-          "${{ steps.coverage.outputs.PASS }}" \
-          "${{ steps.stable.outputs.PASS }}" \
-          "${{ steps.dev.outputs.PASS }}" \
+          "${{ steps.linter.outputs.result }}" \
+          "${{ steps.coverage.outputs.result }}" \
+          "${{ steps.stable.outputs.result }}" \
+          "${{ steps.dev.outputs.result }}" \
         )
         for i in "${return_list[@]}"; do
           if [[ "${i}" != *"True"* ]]; then
@@ -106,15 +106,11 @@ jobs:
       id: check_result
       run: |
         echo "Pass log is ${{ env.PASS_LOG }}"
-        echo 'full_log<<EOF' >> $GITHUB_ENV
-        curl -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/qiskit-community/ecosystem/actions/jobs/$GITHUB_JOB/logs >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
-
+        
     - name: Update readme
       if: ${{ env.PASS_LOG == 'True' }}
       run: |
-        python manager.py add_repo_2db --repo_author=${{ steps.parse-issue.outputs.SUBMISSION_NAME }} \
+        python manager.py add_repo_2db --repo_name=${{ steps.parse-issue.outputs.SUBMISSION_NAME }} \
                                        --repo_link="${{ steps.parse-issue.outputs.SUBMISSION_REPO }}" \
                                        --repo_description="${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}" \
                                        --repo_licence="${{ steps.parse-issue.outputs.SUBMISSION_LICENCE }}" \
@@ -155,17 +151,48 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Fail submission! :warning:
-          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/$GITHUB_RUN_ID
+          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
           You can write a comment with "!redo" to rerun the submission process.
           ### Checks Status ###
-          Linter : ${{ steps.linter.outputs.PASS }}
-          Coverage : ${{ steps.coverage.outputs.PASS }}
-          Qiskit Stable : ${{ steps.stable.outputs.PASS }}
-          Qiskit Dev : ${{ steps.dev.outputs.PASS }}
+          Linter : ${{ steps.linter.outputs.result }}
+          Coverage : ${{ steps.coverage.outputs.result }}
+          Qiskit Stable : ${{ steps.stable.outputs.result }}
+          Qiskit Dev : ${{ steps.dev.outputs.result }}
 
           ### Logs ###
           <details>
-          <summary>Full log</summary>
-          ${{ steps.check_result.outputs.LOG }}
-          ${{ env.full_log }}
+          <summary>Linter</summary>
+          
+          #### Error logs
+          ${{ steps.linter.outputs.error }}
+          
+          #### Failed logs
+          ${{ steps.linter.outputs.fail }}
+          </details>
+          <details>
+          <summary>Coverage</summary>
+          
+          #### Error logs
+          ${{ steps.coverage.outputs.error }}
+          
+          #### Failed logs
+          ${{ steps.coverage.outputs.fail }}
+          </details>
+          <details>
+          <summary>Qiskit Stable</summary>
+          
+          #### Error logs
+          ${{ steps.stable.outputs.error }}
+          
+          #### Failed logs
+          ${{ steps.stable.outputs.fail }}
+          </details>
+          <details>
+          <summary>Qiskit Dev</summary>
+          
+          #### Error logs
+          ${{ steps.dev.outputs.error }}
+          
+          #### Failed logs
+          ${{ steps.dev.outputs.fail }}
           </details>

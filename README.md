@@ -21,7 +21,7 @@
     </li>
     <li><a href="#join-the-ecosystem">Join the Ecosystem</a></li>
     <li><a href="#members">Members</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contribution-guidelines">Contribution Guidelines</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
@@ -59,8 +59,14 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | https://github.com/Qiskit/qiskit.org | Qiskit's website <br/>  ![core](https://img.shields.io/badge/community-gray.svg)  ![core](https://img.shields.io/badge/web-gray.svg)  <br/> |
 
 
-<!-- ROADMAP -->
-## Roadmap
+### Community ![ecosystem-community](https://img.shields.io/badge/Qiskit-Community-blueviolet)
+
+|  Name | Description  |
+|---|---|
+| https://github.com/zlatko-minev/pyEPR | Qiskit Metal E&M analysis with Ansys and the energy-participation-ratio method is based on pyEPR. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+
+
+## Contribution Guidelines
 
 See the [contributing](./CONTRIBUTING.md) document to learn about the source code contribution process developers follow.
 
@@ -70,7 +76,6 @@ See the [open issues](https://github.com/qiskit-community/ecosystem/issues) for 
 
 
 
-<!-- LICENSE -->
 ## License
 
 Distributed under the Apache License. See [LICENSE.txt](./LICENSE) for more information.

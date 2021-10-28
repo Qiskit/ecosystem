@@ -34,6 +34,14 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
+    - name: Standard tests
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        check_type: "test_standard"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+
     - name: Stable tests
       uses: ./.github/actions/run-tests
       with:
@@ -72,5 +80,5 @@ jobs:
         git add ecosystem/resources/members.json
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git commit -m "Tests for ${{ github.event.client_payload.repo_url }}"
+        git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
         git push
