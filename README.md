@@ -38,7 +38,8 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 
 ## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
-To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+- To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+- You can also create a project from our project template in the repository `github_template/`
 
 
 ## Members ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
