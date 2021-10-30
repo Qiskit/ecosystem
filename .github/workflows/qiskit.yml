@@ -53,7 +53,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-        pip install git
         git clone https://github.com/Qiskit/qiskit-terra.git
         cd qiskit-terra
         pip install cython
