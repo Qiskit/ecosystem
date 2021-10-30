@@ -3,7 +3,7 @@ import math
 from typing import Union
 
 
-class Impl:
+class Random:
     """Demo random."""
 
     def __init__(self):
@@ -17,4 +17,4 @@ class Impl:
         return math.pow(number, self.pow)
 
     def __repr__(self):
-        return f"Impl(pow: {self.pow})"
+        return f"Random(pow: {self.pow})"
