@@ -5,19 +5,17 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   stable:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 2
-      matrix:
-        python-version: [3.9]
+    env:
+      python-version: "3.9"
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v1
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ env.python-version }}
     - name: Set up tox env
       run: |
-        pver=${{ matrix.python-version }}
+        pver=${{ env.python-version }}
         tox_env="-epy${pver/./}"
         echo tox_env
         echo TOX_ENV=$tox_env >> $GITHUB_ENV
@@ -32,19 +30,17 @@ jobs:
         tox ${{ env.TOX_ENV }}
   dev:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 2
-      matrix:
-        python-version: [3.9]
+    env:
+      python-version: "3.9"
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v1
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ env.python-version }}
     - name: Set up tox env
       run: |
-        pver=${{ matrix.python-version }}
+        pver=${{ env.python-version }}
         tox_env="-epy${pver/./}"
         echo tox_env
         echo TOX_ENV=$tox_env >> $GITHUB_ENV
@@ -53,7 +49,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-        pip install git
         git clone https://github.com/Qiskit/qiskit-terra.git
         cd qiskit-terra
         pip install cython
