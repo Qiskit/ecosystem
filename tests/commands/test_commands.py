@@ -11,7 +11,8 @@ class TestCommands(TestCaseWithResources):
 
     def test_execute_command(self):
         """Tests command execution:
-        Function: ShellCommand-> execute
+        Function: ShellCommand 
+                -> execute
         """
         execution_result = ShellCommand.execute(
             ["ls", "-al"], directory=os.path.dirname(os.path.abspath(__file__))
@@ -21,7 +22,8 @@ class TestCommands(TestCaseWithResources):
 
     def test_clone_repo(self):
         """Tests repo cloning:
-        Function: CloneRepoCommand -> execute
+        Function: CloneRepoCommand 
+                -> execute
         """
         clone_res = CloneRepoCommand.execute(
             repo="https://github.com/octocat/Hello-World", directory=self.path
