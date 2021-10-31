@@ -8,7 +8,9 @@ class TestRepositoryConfiguration(TestCaseWithResources):
     """Tests for RepositoryConfiguration file."""
 
     def test_save_and_load(self):
-        """Tests saving and loading of configuration,"""
+        """Tests saving and loading of configuration.
+        Function: RepositoryConfiguration -> save & load
+        """
         config = RepositoryConfiguration(
             dependencies_files=["requirements.txt", "requirements-dev.txt"],
             extra_dependencies=["qiskit"],
@@ -36,7 +38,9 @@ class TestRepositoryConfiguration(TestCaseWithResources):
         )
 
     def test_python_configuration(self):
-        """Tests python configurations."""
+        """Tests python configurations.
+        Function: RepositoryConfiguration -> default & render_tox_file
+        """
         config = PythonRepositoryConfiguration.default()
         rendered_tox = config.render_tox_file()
         self.assertTrue(config)
