@@ -25,7 +25,12 @@ class TestPythonRunner(unittest.TestCase):
                     os.remove(f"{directory}/{file}")
 
     def test_tests_runner_on_simple_repo(self):
-        """Simple runner test."""
+        """Simple runner test.
+        Function: PythonTestsRunner
+                -> cloned_repo_directory
+        Args:
+            simple_repo
+        """
         runner = PythonTestsRunner(
             "test", working_directory=self.simple_project_dir, ecosystem_deps=["qiskit"]
         )
@@ -37,7 +42,12 @@ class TestPythonRunner(unittest.TestCase):
         self.assertTrue(terra_version)
 
     def test_tests_runner_on_configured_repo(self):
-        """Configured repo runner test."""
+        """Configured repo runner test.
+        Function: PythonTestsRunner
+                -> cloned_repo_directory
+        Args:
+            configured_repo
+        """
         runner = PythonTestsRunner(
             "test",
             working_directory=self.configured_project_dir,
@@ -51,7 +61,12 @@ class TestPythonRunner(unittest.TestCase):
         self.assertTrue(terra_version)
 
     def test_styles_runner_on_configured_repo(self):
-        """Configured repo runner test."""
+        """Configured repo runner test.
+        Function: PythonStyleRunner
+                -> cloned_repo_directory
+        Args:
+            configured_repo
+        """
         runner = PythonStyleRunner(
             "test", working_directory=self.configured_project_dir
         )
@@ -62,7 +77,12 @@ class TestPythonRunner(unittest.TestCase):
         self.assertTrue(len(result) > 0)
 
     def test_coverages_runner_on_configured_repo(self):
-        """Configured repo runner test."""
+        """Configured repo runner test.
+        Function: PythonStyleRunner
+                -> cloned_repo_directory
+        Args:
+            configured_repo
+        """
         runner = PythonCoverageRunner(
             "test", working_directory=self.configured_project_dir
         )
