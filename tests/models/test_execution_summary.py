@@ -11,7 +11,7 @@ class TestExecutionSummary(TestCase):
     def test_qiskit_deprecation_warning_detection(self):
         """Tests detection of qiskit deprecation logs.
         Function: CommandExecutionSummary
-            -> has_qiskit_deprecation_logs
+                -> has_qiskit_deprecation_logs
         """
 
         deprecation_log_message = (
