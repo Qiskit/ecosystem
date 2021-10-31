@@ -17,7 +17,13 @@ class TestUtils(TestCase):
             self.issue_body = issue_body_file.read()
 
     def test_issue_parsing(self):
-        """ "Tests issue parsing function"""
+        """ "Tests issue parsing function:
+        Function: 
+                -> parse_submission_issue
+        Args:
+            issue_body
+        Return : Repository
+        """
         parsed_result = parse_submission_issue(self.issue_body)
 
         self.assertTrue(isinstance(parsed_result, Repository))
