@@ -34,7 +34,8 @@ class TestJsonDao(TestCase):
 
     def _delete_members_json(self):
         """Deletes database file.
-        Function: JsonDao -> delete
+        Function: JsonDao 
+                -> delete
         Args:
             repo_url: repository url
             tier: tier
@@ -46,7 +47,9 @@ class TestJsonDao(TestCase):
 
     def test_repository_insert_and_delete(self):
         """Tests repository.
-        Function: JsonDao -> delete & insert
+        Function: JsonDao 
+                -> delete
+                -> insert
         """
         self._delete_members_json()
 
@@ -66,7 +69,8 @@ class TestJsonDao(TestCase):
 
     def test_move_from_tier_to_tier(self):
         """Tests moving repo from tier to tier.
-        Function: JsonDao -> move_repo_to_other_tier
+        Function: JsonDao 
+                -> move_repo_to_other_tier
         Args:
             repo_url: URL for repository
             source_tier: source tier of repository
@@ -100,7 +104,8 @@ class TestJsonDao(TestCase):
 
     def test_add_test_result(self):
         """Tests adding result to repo.
-        Function: JsonDao -> add_repo_test_result
+        Function: JsonDao 
+                -> add_repo_test_result
         """
         self._delete_members_json()
         dao = JsonDAO(self.path)
