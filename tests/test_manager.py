@@ -18,7 +18,12 @@ class TestManager(TestCase):
             self.issue_body = issue_body_file.read()
 
     def test_parser_issue(self):
-        """ "Tests issue parsing function"""
+        """ "Tests issue parsing function.
+        Function: Manager
+                -> parser_issue
+        Args:
+            issue_body
+        """
         captured_output = io.StringIO()
         sys.stdout = captured_output
         Manager.parser_issue(self.issue_body)
@@ -53,7 +58,13 @@ class TestManager(TestCase):
 
     @responses.activate
     def test_dispatch_repository(self):
-        """Test github dispatch event."""
+        """Test github dispatch event.
+        Function: Manager
+                -> dispatch_check_workflow
+        Args:
+            Infos about repo
+        Return: response.status
+        """
         owner = "qiskit-community"
         repo = "ecosystem"
         responses.add(
