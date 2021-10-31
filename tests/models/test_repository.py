@@ -10,7 +10,10 @@ class TestRepository(unittest.TestCase):
     """Tests repository class."""
 
     def test_serialization(self):
-        """Tests json serialization."""
+        """Tests json serialization.
+        Function: Repository 
+                -> from_dict
+        """
         main_repo = Repository(
             name="mock-qiskit-terra",
             url="https://github.com/MockQiskit/mock-qiskit.terra",
