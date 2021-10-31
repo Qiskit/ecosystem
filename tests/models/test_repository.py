@@ -11,7 +11,7 @@ class TestRepository(unittest.TestCase):
 
     def test_serialization(self):
         """Tests json serialization.
-        Function: Repository 
+        Function: Repository
                 -> from_dict
         """
         main_repo = Repository(

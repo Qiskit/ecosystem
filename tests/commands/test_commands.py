@@ -11,7 +11,7 @@ class TestCommands(TestCaseWithResources):
 
     def test_execute_command(self):
         """Tests command execution:
-        Function: ShellCommand 
+        Function: ShellCommand
                 -> execute
         """
         execution_result = ShellCommand.execute(
@@ -22,7 +22,7 @@ class TestCommands(TestCaseWithResources):
 
     def test_clone_repo(self):
         """Tests repo cloning:
-        Function: CloneRepoCommand 
+        Function: CloneRepoCommand
                 -> execute
         """
         clone_res = CloneRepoCommand.execute(

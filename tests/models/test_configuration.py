@@ -9,7 +9,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
 
     def test_save_and_load(self):
         """Tests saving and loading of configuration.
-        Function: RepositoryConfiguration 
+        Function: RepositoryConfiguration
                 -> save
                 -> load
         """
@@ -41,7 +41,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
 
     def test_python_configuration(self):
         """Tests python configurations.
-        Function: RepositoryConfiguration 
+        Function: RepositoryConfiguration
                 -> default
                 -> render_tox_file
         """

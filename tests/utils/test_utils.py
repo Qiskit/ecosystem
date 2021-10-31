@@ -18,7 +18,7 @@ class TestUtils(TestCase):
 
     def test_issue_parsing(self):
         """ "Tests issue parsing function:
-        Function: 
+        Function:
                 -> parse_submission_issue
         Args:
             issue_body
