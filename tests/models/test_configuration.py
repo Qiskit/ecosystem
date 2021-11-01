@@ -1,6 +1,10 @@
 """Tests for configuration files."""
 
-from ecosystem.models import RepositoryConfiguration, PythonRepositoryConfiguration
+from ecosystem.models import (
+    RepositoryConfiguration,
+    PythonLanguageConfiguration,
+    PythonRepositoryConfiguration,
+)
 from tests.common import TestCaseWithResources
 
 
@@ -10,6 +14,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
     def test_save_and_load(self):
         """Tests saving and loading of configuration,"""
         config = RepositoryConfiguration(
+            language=PythonLanguageConfiguration(versions=["3.6"]),
             dependencies_files=["requirements.txt", "requirements-dev.txt"],
             extra_dependencies=["qiskit"],
             tests_command=["python -m unittest -v"],
@@ -24,7 +29,8 @@ class TestRepositoryConfiguration(TestCaseWithResources):
 
         recovered_config = RepositoryConfiguration.load(save_path)
 
-        self.assertEqual(config.language, recovered_config.language)
+        self.assertEqual(config.language.name, recovered_config.language.name)
+        self.assertEqual(config.language.versions, recovered_config.language.versions)
         self.assertEqual(config.tests_command, recovered_config.tests_command)
         self.assertEqual(config.dependencies_files, recovered_config.dependencies_files)
         self.assertEqual(config.extra_dependencies, recovered_config.extra_dependencies)
