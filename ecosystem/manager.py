@@ -172,6 +172,7 @@ class Manager:
         python_version: str,
         test_type: str,
         ecosystem_deps: Optional[List[str]] = None,
+        ecosystem_additional_commands: Optional[List[str]] = None,
     ):
         """Runs tests using python runner.
 
@@ -181,15 +182,18 @@ class Manager:
             python_version: ex: py36, py37 etc
             test_type: [dev, stable]
             ecosystem_deps: extra dependencies to install for tests
+            ecosystem_additional_commands: extra commands to run before tests
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
         """
         ecosystem_deps = ecosystem_deps or []
+        ecosystem_additional_commands = ecosystem_additional_commands or []
         runner = PythonTestsRunner(
             repo_url,
             working_directory=self.resources_dir,
             ecosystem_deps=ecosystem_deps,
+            ecosystem_additional_commands=ecosystem_additional_commands,
             python_version=python_version,
         )
         terra_version, results = runner.run()
@@ -303,12 +307,19 @@ class Manager:
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests against dev version of qiskit."""
+        # hack to fix tox's inability to install proper version of
+        # qiskit through github via deps configuration
+        additional_commands = [
+            "pip uninstall -y qiskit-terra",
+            "pip install git+https://github.com/Qiskit/qiskit-terra.git@main",
+        ]
         return self._run_python_tests(
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
             test_type=TestType.DEV_COMPATIBLE,
-            ecosystem_deps=["git+https://github.com/Qiskit/qiskit-terra.git@main"],
+            ecosystem_deps=[],
+            ecosystem_additional_commands=additional_commands,
         )
 
     def python_stable_tests(
