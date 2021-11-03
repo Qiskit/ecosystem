@@ -1,4 +1,5 @@
 """Tests for configuration files."""
+import os
 
 from ecosystem.models import (
     RepositoryConfiguration,
@@ -56,3 +57,20 @@ class TestRepositoryConfiguration(TestCaseWithResources):
             self.assertTrue(command in rendered_tox)
         for command in config.coverages_check_command:
             self.assertTrue(command in rendered_tox)
+
+    def test_non_complete_config_load(self):
+        """Tests non full configuration load."""
+        path_to_config = (
+            f"{os.path.dirname(os.path.abspath(__file__))}/"
+            f"../resources/test_ecosystem_config.json"
+        )
+
+        config = PythonRepositoryConfiguration.load(path_to_config)
+        self.assertEqual(config.language.name, "python")
+        self.assertEqual(
+            config.language.versions, PythonLanguageConfiguration.default_version()
+        )
+        self.assertEqual(config.dependencies_files, [])
+        self.assertEqual(config.tests_command, [])
+        self.assertEqual(config.styles_check_command, [])
+        self.assertEqual(config.extra_dependencies, [])

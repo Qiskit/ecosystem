@@ -58,7 +58,7 @@ class RepositoryConfiguration(JsonSerializable):
 
     def __init__(
         self,
-        language: LanguageConfiguration,
+        language: Optional[LanguageConfiguration] = None,
         dependencies_files: Optional[List[str]] = None,
         extra_dependencies: Optional[List[str]] = None,
         tests_command: Optional[List[str]] = None,
@@ -80,7 +80,7 @@ class RepositoryConfiguration(JsonSerializable):
             coverages_check_command: list of commands to run coverage checks
                 ex: for python `coverage3 -m unittest -v && coverage report`
         """
-        self.language = language
+        self.language = language or PythonLanguageConfiguration()
         self.dependencies_files = dependencies_files or []
         self.extra_dependencies = extra_dependencies or []
         self.tests_command = tests_command or []
@@ -97,7 +97,10 @@ class RepositoryConfiguration(JsonSerializable):
         """Loads json file into object."""
         with open(path, "r") as json_file:
             json_data = json.load(json_file)
-            language = LanguageConfiguration(**json_data.get("language"))
+            if json_data.get("language"):
+                language = LanguageConfiguration(**json_data.get("language"))
+            else:
+                language = PythonLanguageConfiguration()
             json_data["language"] = language
             config: RepositoryConfiguration = RepositoryConfiguration(**json_data)
             if (  # pylint: disable=no-else-return
