@@ -19,6 +19,11 @@ class TestExecutionSummary(TestCase):
             " information see <https://github.com/Qiskit"
             "/qiskit-aqua/blob/main/README.md#migration-guide>"
             " warn_package('aqua', 'qiskit-terra')"
+            "/usr/local/"
+            "lib/python3.8/dist-packages/qiskit/circuit/quantumcircuit.py:869"
+            ": DeprecationWarning: The QuantumCircuit.combine() method is being deprecated."
+            "Use the compose() method which is more flexible"
+            "w.r.t circuit register compatibility."
         )
 
         summary_with_qiskit_deprecation = CommandExecutionSummary(
