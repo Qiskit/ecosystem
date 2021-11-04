@@ -49,7 +49,9 @@ class CommandExecutionSummary:
         qiskit_deprecation_logs = [
             log
             for log in self.logs
-            if "qiskit" in log.lower() and "DeprecationWarning" in log
+            if "qiskit" in log.lower()
+            and "DeprecationWarning" in log
+            and "qiskit.aqua" not in log.lower()
         ]
         return len(qiskit_deprecation_logs) > 0
 
