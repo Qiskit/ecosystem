@@ -24,7 +24,7 @@ class TestExecutionSummary(TestCase):
         )
 
         self.assertTrue(summary_with_qiskit_deprecation.has_qiskit_deprecation_logs)
-        
+
         aqua_log_message = (
             "/srv/conda/envs/notebook/"
             "lib/python3.8/site-packages/qiskit/aqua/__init__.py:86"
@@ -38,7 +38,7 @@ class TestExecutionSummary(TestCase):
         summary_with_aqua_deprecation = CommandExecutionSummary(
             code=0, logs=[aqua_log_message]
         )
-        
+
         self.assertFalse(summary_with_aqua_deprecation.has_qiskit_deprecation_logs)
 
         clear_summary = CommandExecutionSummary(code=0, logs=[])
