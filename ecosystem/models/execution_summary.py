@@ -32,7 +32,9 @@ class CommandExecutionSummary:
         return [
             log
             for log in self.logs
-            if "qiskit" in log.lower() and "DeprecationWarning" in log and "qiskit.aqua" not in log.lower()
+            if "qiskit" in log.lower()
+            and "DeprecationWarning" in log
+            and "qiskit.aqua" not in log.lower()
         ]
 
     def get_error_logs(self) -> List[str]:
