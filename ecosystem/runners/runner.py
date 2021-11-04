@@ -144,9 +144,11 @@ class Runner:
                 logs_depreciation += element.get_qiskit_depreciation_logs()
                 logs_error += element.get_error_logs()
                 logs_fail += element.get_fail_logs()
-            set_actions_output([("DEPRECIATION", "\n".join(logs_depreciation))])
-            set_actions_output([("ERROR", "\n".join(logs_error))])
-            set_actions_output([("FAIL", "\n".join(logs_fail))])
+            set_actions_output([
+                ("DEPRECIATION", "\n".join(logs_depreciation)),
+                ("ERROR", "\n".join(logs_error)),
+                ("FAIL", "\n".join(logs_fail))
+            ])
 
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", [CommandExecutionSummary(1, [], summary=str(exception))])
