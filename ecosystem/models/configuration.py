@@ -166,11 +166,22 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             ],
         )
 
-    def render_tox_file(self, ecosystem_deps: List[str] = None):
+    def render_tox_file(
+        self,
+        ecosystem_deps: List[str] = None,
+        ecosystem_additional_commands: List[str] = None,
+    ):
         """Renders tox template from configuration."""
         ecosystem_deps = ecosystem_deps or []
+        ecosystem_additional_commands = ecosystem_additional_commands or []
         return self.tox_template.render(
-            {**self.to_dict(), **{"ecosystem_deps": ecosystem_deps}}
+            {
+                **self.to_dict(),
+                **{
+                    "ecosystem_deps": ecosystem_deps,
+                    "ecosystem_additional_commands": ecosystem_additional_commands,
+                },
+            }
         )
 
     def render_lint_file(self):
