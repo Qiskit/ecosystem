@@ -12,6 +12,20 @@ class TestExecutionSummary(TestCase):
         """Tests detection of qiskit deprecation logs."""
 
         deprecation_log_message = (
+            "/usr/local/"
+            "lib/python3.8/site-packages/qiskit/terra/__init__.py:86"
+            ": DeprecationWarning: The QuantumCircuit.combine() method is being deprecated."
+            "Use the compose() method which is more flexible"
+            "w.r.t circuit register compatibility."
+        )
+
+        summary_with_qiskit_deprecation = CommandExecutionSummary(
+            code=0, logs=[deprecation_log_message]
+        )
+
+        self.assertTrue(summary_with_qiskit_deprecation.has_qiskit_deprecation_logs)
+
+        aqua_log_message = (
             "/srv/conda/envs/notebook/"
             "lib/python3.8/site-packages/qiskit/aqua/__init__.py:86"
             ": DeprecationWarning: The package qiskit.aqua is deprecated."
@@ -21,11 +35,11 @@ class TestExecutionSummary(TestCase):
             " warn_package('aqua', 'qiskit-terra')"
         )
 
-        summary_with_qiskit_deprecation = CommandExecutionSummary(
-            code=0, logs=[deprecation_log_message]
+        summary_with_aqua_deprecation = CommandExecutionSummary(
+            code=0, logs=[aqua_log_message]
         )
 
-        self.assertTrue(summary_with_qiskit_deprecation.has_qiskit_deprecation_logs)
+        self.assertFalse(summary_with_aqua_deprecation.has_qiskit_deprecation_logs)
 
         clear_summary = CommandExecutionSummary(code=0, logs=[])
 
