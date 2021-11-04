@@ -26,6 +26,10 @@ class CommandExecutionSummary:
     def get_warning_logs(self) -> List[str]:
         """Return warning messages."""
         return [log for log in self.logs if "warn" in log.lower()]
+    
+    def get_qiskit_depreciation_logs(self) -> List[str]:
+        """Return qiskit depreciation messages."""
+        return [log for log in self.logs if "qiskit" in log.lower() and "DeprecationWarning" in log]
 
     def get_error_logs(self) -> List[str]:
         """Return error messages."""
