@@ -44,9 +44,12 @@ outputs:
   result:
     description: "Result from tests check"
     value: ${{ steps.checks.outputs.PASS }}
+  depreciation:
+    description: "Qiskit depreciation from tests check"
+    value: ${{ steps.checks.outputs.DEPRECIATION }}
   error:
     description: "Error from tests check"
     value: ${{ steps.checks.outputs.ERROR }}
   fail:
-    description: "Error from tests check"
+    description: "Fail from tests check"
     value: ${{ steps.checks.outputs.FAIL }}
