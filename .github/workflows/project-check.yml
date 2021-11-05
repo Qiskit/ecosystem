@@ -127,6 +127,7 @@ jobs:
         body: |
           Failed project check ${{ github.event.client_payload.repo_url }} :warning:
           Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
+          If you don't fix this issue, your badge you change to grey automatically.
 
           ### Checks Status ###
           Linter : ${{ steps.linter.outputs.result }}
