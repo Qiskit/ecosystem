@@ -56,7 +56,7 @@ class Manager:
         )
         repo_split = repo_url.split("/")
         repo_name = repo_split[-1]
-        
+
         response = requests.post(
             url,
             json={
