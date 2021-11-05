@@ -6,6 +6,7 @@ on:
   #    "tier": "COMMUNITY", # 'Tier of project'
   #    "branch_name": "weekly-checks-1", # 'Branch name to push changes'
   #    "issue_id": 49, # 'Id of issue to put comments in'
+  #    "repo_name": "demo-implementation", # 'Repository name'
   #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL'
   #  }
   repository_dispatch:
@@ -105,7 +106,7 @@ jobs:
     - name: Generate badge
       if: ${{ env.PASS_LOG == 'False' }}
       run: |
-        curl "https://img.shields.io/static/v1?label=Qiskit&message=${project}&color=grey" > badges/${project}.svg
+        curl "https://img.shields.io/static/v1?label=Qiskit&message=${{ github.event.client_payload.repo_name }}&color=grey" > badges/${project}.svg
         
     - name: Commit changes
       run: |
