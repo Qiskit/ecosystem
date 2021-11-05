@@ -54,12 +54,16 @@ class Manager:
         url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
             owner=owner, repo=repo
         )
+        repo_split = repo_url.split("/")
+        repo_name = repo_split[-1]
+        
         response = requests.post(
             url,
             json={
                 "event_type": "check_project",
                 "client_payload": {
                     "repo_url": repo_url,
+                    "repo_name": repo_name,
                     "issue_id": issue_id,
                     "branch_name": branch_name,
                     "tier": tier,
