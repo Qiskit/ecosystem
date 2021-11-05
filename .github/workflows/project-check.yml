@@ -79,15 +79,6 @@ jobs:
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
 
-    - name: Commit changes
-      run: |
-        git pull --rebase --autostash
-        git add ecosystem/resources/members.json
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
-        git push
-
     # check if any of the tests failed
     - name: Check return
       run: |
@@ -111,6 +102,21 @@ jobs:
       run: |
         echo "Pass log is ${{ env.PASS_LOG }}"
 
+    - name: Generate badge
+      if: ${{ env.PASS_LOG == 'False' }}
+      run: |
+        curl "https://img.shields.io/static/v1?label=Qiskit&message=${project}&color=grey" > badges/${project}.svg
+        
+    - name: Commit changes
+      run: |
+        git pull --rebase --autostash
+        git add badges/${project}.svg
+        git add ecosystem/resources/members.json
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
+        git push
+        
     - name: Create comment on failure
       if: ${{ env.PASS_LOG == 'False' }}
       uses: peter-evans/create-or-update-comment@v1
