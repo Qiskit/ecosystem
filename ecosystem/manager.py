@@ -59,6 +59,7 @@ class Manager:
             json={
                 "event_type": "check_project",
                 "client_payload": {
+                    "repo": repo,
                     "repo_url": repo_url,
                     "issue_id": issue_id,
                     "branch_name": branch_name,
