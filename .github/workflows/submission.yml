@@ -117,7 +117,7 @@ jobs:
     - name: Generate badge
       if: ${{ env.PASS_LOG == 'True' }}
       run: |
-          curl "https://img.shields.io/static/v1?label=Qiskit&message=${project}&color=purple" > badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg
+        curl "https://img.shields.io/static/v1?label=Qiskit&message=${project}&color=purple" > badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg
         
     - name: Commit changes and create Pull Request
       if: ${{ env.PASS_LOG == 'True' }}
