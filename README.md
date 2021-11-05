@@ -40,7 +40,7 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 
 - To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 - After you successflully join the Ecosystem you can add your badge to your README.md:  
-`Ecosystem ![ecosystem](https://raw.githubusercontent.com/qiskit-community/ecosystem/main/badges/` __nameofyourproject__ `.svg)`
+`![ecosystem](https://raw.githubusercontent.com/qiskit-community/ecosystem/main/badges/` __nameofyourproject__ `.svg)`
 
 ## Members ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
 
