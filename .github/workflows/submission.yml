@@ -114,7 +114,11 @@ jobs:
                                        --repo_affiliations="${{ steps.parse-issue.outputs.SUBMISSION_AFFILIATIONS }}" \
                                        --repo_labels="${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}"
         python manager.py generate_readme
-
+    - name: Generate badge
+      if: ${{ env.PASS_LOG == 'True' }}
+      run: |
+          curl "https://img.shields.io/static/v1?label=Qiskit&message=${project}&color=purple" > badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg
+        
     - name: Commit changes and create Pull Request
       if: ${{ env.PASS_LOG == 'True' }}
       id: cpr
