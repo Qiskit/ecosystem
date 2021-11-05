@@ -176,6 +176,9 @@ jobs:
           <details>
           <summary>Qiskit Stable</summary>
           
+          #### Qiskit depreciation logs
+          ${{ steps.stable.outputs.depreciation }}
+          
           #### Error logs
           ${{ steps.stable.outputs.error }}
           
@@ -184,6 +187,9 @@ jobs:
           </details>
           <details>
           <summary>Qiskit Dev</summary>
+          
+          #### Qiskit depreciation logs
+          ${{ steps.dev.outputs.depreciation }}
           
           #### Error logs
           ${{ steps.dev.outputs.error }}
