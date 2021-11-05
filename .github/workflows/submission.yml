@@ -130,6 +130,8 @@ jobs:
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
           Closes #${{ github.event.issue.number }}
+          After the merge of this PR, you'll be able to add your badge to your README.md with:
+          `![ecosystem](https://raw.githubusercontent.com/qiskit-community/ecosystem/main/badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg)`
         branch: submission-${{ github.event.issue.number }}
         base: main
 
@@ -141,8 +143,6 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
-          You can now add your badge to your README.md with :
-          `![ecosystem](https://raw.githubusercontent.com/qiskit-community/ecosystem/main/badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg)`
 
     - name: Create comment on failure
       if: ${{ env.PASS_LOG == 'False' }}
