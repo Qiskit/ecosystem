@@ -9,6 +9,9 @@ from ecosystem.utils import logger
 
 
 # pylint: disable=arguments-differ
+from ecosystem.utils.custom_requests import get_workflow_status
+
+
 class Command:
     """General for executable shell commands."""
 
