@@ -20,6 +20,7 @@ def get_workflow_status(
     )
     params = {"event": event, "branch": branch, "name": name_of_workflow, "per_page": 1}
     response = requests.get(url, params=params)
+    result = None
     if response.ok:
         response_data = json.loads(response.text)
         runs = response_data.get("workflow_runs", [])
@@ -27,31 +28,32 @@ def get_workflow_status(
             last_run = runs[0]
             conclusion = last_run.get("conclusion", None)
             logger.info("Workflow run status conclusion: %s", str(conclusion))
-            return conclusion == "success"
+            result = conclusion == "success"
         else:
-            logger.warning("No workflow runs for params: {}".format(params))
-            return False
+            logger.warning("No workflow runs for params: %s", str(params))
+            result = False
     else:
         logger.error("Response from GitHub is not ok: %s", response.text)
-        return None
+    return result
 
 
 def get_stable_terra_version() -> str:
     """Returns stable Qiskit-terra version."""
     url = "https://api.github.com/repos/Qiskit/qiskit-terra/releases"
     response = requests.get(url, params={"per_page": 1})
+    version = "-"
     if response.ok:
         releases = json.loads(response.text)
         if len(releases) > 0:
             latest_release = releases[0]
-            return latest_release["tag_name"].strip()
+            version = latest_release["tag_name"].strip()
         else:
             logger.warning("No releases found during terra version fetch.")
     else:
         logger.warning(
             "GitHub api returned non success code during terra release fetch."
         )
-        return "-"
+    return version
 
 
 def get_dev_terra_version() -> str:
@@ -60,8 +62,9 @@ def get_dev_terra_version() -> str:
         "https://raw.githubusercontent.com/Qiskit/qiskit-terra/main/qiskit/VERSION.txt"
     )
     response = requests.get(url)
+    version = "-"
     if response.ok:
-        return response.text.strip()
+        version = response.text.strip()
     else:
         logger.warning("Cannot fetch terra version.")
-        return "-"
+    return version

@@ -78,3 +78,51 @@ class TestManager(TestCase):
             repo=repo,
         )
         self.assertTrue(response)
+
+    @responses.activate
+    def test_fetch_and_update_main_projects(self):
+        """Tests manager function for fetching tests results."""
+        owner = "Qiskit"
+        repos_and_test_names = [
+            ("qiskit-nature", "Nature%2520Unit%2520Tests"),
+            ("qiskit-finance", "Finance%2520Unit%2520Tests"),
+            ("qiskit-optimization", "Optimization%2520Unit%2520Tests"),
+            ("qiskit-machine-learning", "Machine%2520Learning%2520Unit%2520Tests"),
+            ("qiskit-experiments", "Tests"),
+            ("qiskit-aer", "Tests%2520Linux"),
+        ]
+
+        for repo, test_name in repos_and_test_names:
+            responses.add(
+                **{
+                    "method": responses.GET,
+                    "url": "https://api.github.com/repos/{owner}/{repo}/actions/runs"
+                    "?event=push&branch=main&name={test_name}&per_page=1".format(
+                        owner=owner, repo=repo, test_name=test_name
+                    ),
+                    "body": '{"status": "ok"}',
+                    "status": 200,
+                    "content_type": "application/json",
+                }
+            )
+        responses.add(
+            **{
+                "method": responses.GET,
+                "url": "https://raw.githubusercontent.com/Qiskit/"
+                "qiskit-terra/main/qiskit/VERSION.txt",
+                "body": "0.19.0",
+                "status": 200,
+            }
+        )
+        responses.add(
+            **{
+                "method": responses.GET,
+                "url": "https://api.github.com/repos/Qiskit/qiskit-terra/releases?per_page=1",
+                "body": '[{"tag_name": "0.18.3"}]',
+                "status": 200,
+                "content_type": "application/json",
+            }
+        )
+
+        manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/../")
+        self.assertIsNone(manager.fetch_and_update_main_tests_results())
