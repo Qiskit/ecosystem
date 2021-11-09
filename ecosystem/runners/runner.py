@@ -138,6 +138,7 @@ class Runner:
         try:
             result = self.workload()
             _, executive_summary = result
+            logs_depreciation = []
             logs_error = []
             logs_fail = []
             for element in executive_summary:
