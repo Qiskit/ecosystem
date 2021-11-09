@@ -21,8 +21,10 @@ class JsonDAO:
 
     def insert(self, repo: Repository) -> int:
         """Inserts repository into database.
+        
         Args:
             repo: Repository
+            
         Return: int
         """
         table = self.database.table(repo.tier)
@@ -30,8 +32,10 @@ class JsonDAO:
 
     def get_repos_by_tier(self, tier: str) -> List[Repository]:
         """Returns all repositories in specified tier.
+        
         Args:
             tier: tier of the repo (MAIN, COMMUNITY, ...)
+            
         Return: Repository
         """
         table = self.database.table(tier)
@@ -43,6 +47,7 @@ class JsonDAO:
         Args:
             repo_url: repository url
             tier: tier
+            
         Return: List of int
         """
         table = self.database.table(tier)
@@ -74,8 +79,10 @@ class JsonDAO:
 
     def get_by_url(self, url: str, tier: str) -> Optional[Repository]:
         """Returns repository by URL.
+        
         Args:
             tier: tier of the repo (MAIN, COMMUNITY, ...)
+            
         Return: Repository
         """
         res = self.database.table(tier).get(Query().url == url)
@@ -85,10 +92,12 @@ class JsonDAO:
         self, repo_url: str, tier: str, test_result: TestResult
     ) -> Optional[List[int]]:
         """Adds test result for repository.
+        
         Args:
             repo_url: url of the repo
             tier: tier of the repo (MAIN, COMMUNITY, ...)
             test_result: TestResult from the tox -epy3.x
+            
         Return: List of int
         """
         table = self.database.table(tier)
@@ -114,10 +123,12 @@ class JsonDAO:
         self, repo_url: str, tier: str, style_result: StyleResult
     ) -> Optional[List[int]]:
         """Adds style result for repository.
+        
         Args:
             repo_url: url of the repo
             tier: tier of the repo (MAIN, COMMUNITY, ...)
             style_result: StyleResult from the tox -elint
+            
         Return: List of int
         """
         table = self.database.table(tier)
@@ -142,10 +153,12 @@ class JsonDAO:
         self, repo_url: str, tier: str, coverage_result: CoverageResult
     ) -> Optional[List[int]]:
         """Adds style result for repository.
+        
         Args:
             repo_url: url of the repo
             tier: tier of the repo (MAIN, COMMUNITY, ...)
             coverage_result: CoverageResult from the tox -ecoverage
+            
         Return: List of int
         """
         table = self.database.table(tier)
