@@ -13,11 +13,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
     """Tests for RepositoryConfiguration file."""
 
     def test_save_and_load(self):
-        """Tests saving and loading of configuration.
-        Function: RepositoryConfiguration
-                -> save
-                -> load
-        """
+        """Tests saving and loading of configuration."""
         config = RepositoryConfiguration(
             language=PythonLanguageConfiguration(versions=["3.6"]),
             dependencies_files=["requirements.txt", "requirements-dev.txt"],
@@ -47,11 +43,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
         )
 
     def test_python_configuration(self):
-        """Tests python configurations.
-        Function: RepositoryConfiguration
-                -> default
-                -> render_tox_file
-        """
+        """Tests python configurations."""
         config = PythonRepositoryConfiguration.default()
         rendered_tox = config.render_tox_file()
         self.assertTrue(config)
