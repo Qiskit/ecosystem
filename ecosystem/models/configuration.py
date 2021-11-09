@@ -22,12 +22,43 @@ class Languages:
         return "Languages({})".format(",".join(self.all()))
 
 
+class LanguageConfiguration(JsonSerializable):
+    """Language configuration class."""
+
+    def __init__(self, name: str, versions: List[str]):
+        """Language configuration.
+
+        Args:
+            name: programming language
+            versions: versions of programming languages
+        """
+        self.name = name
+        self.versions = versions
+
+    @classmethod
+    def default_version(cls) -> List[str]:
+        """Default language versions."""
+        return []
+
+
+class PythonLanguageConfiguration(LanguageConfiguration):
+    """Python language config."""
+
+    def __init__(self, versions: Optional[List[str]] = None):
+        versions = versions or ["3.6", "3.7", "3.8", "3.9"]
+        super().__init__(name=Languages.PYTHON, versions=versions)
+
+    @classmethod
+    def default_version(cls) -> List[str]:
+        return ["3.6", "3.7", "3.8", "3.9"]
+
+
 class RepositoryConfiguration(JsonSerializable):
     """Configuration for ecosystem repository."""
 
     def __init__(
         self,
-        language: str = Languages.PYTHON,
+        language: Optional[LanguageConfiguration] = None,
         dependencies_files: Optional[List[str]] = None,
         extra_dependencies: Optional[List[str]] = None,
         tests_command: Optional[List[str]] = None,
@@ -37,7 +68,7 @@ class RepositoryConfiguration(JsonSerializable):
         """Configuration for ecosystem repository.
 
         Args:
-            language: repository language
+            language: repository language configuration
             dependencies_files: list of dependencies files paths relative to root of repo
                 ex: for python `requirements.txt`
             extra_dependencies: list of extra dependencies for project to install during tests run
@@ -49,7 +80,7 @@ class RepositoryConfiguration(JsonSerializable):
             coverages_check_command: list of commands to run coverage checks
                 ex: for python `coverage3 -m unittest -v && coverage report`
         """
-        self.language = language
+        self.language = language or PythonLanguageConfiguration()
         self.dependencies_files = dependencies_files or []
         self.extra_dependencies = extra_dependencies or []
         self.tests_command = tests_command or []
@@ -65,11 +96,18 @@ class RepositoryConfiguration(JsonSerializable):
     def load(cls, path: str) -> "RepositoryConfiguration":
         """Loads json file into object."""
         with open(path, "r") as json_file:
-            config: RepositoryConfiguration = json.load(
-                json_file, object_hook=lambda d: RepositoryConfiguration(**d)
-            )
-            if config.language == Languages.PYTHON:  # pylint: disable=no-else-return
+            json_data = json.load(json_file)
+            if json_data.get("language"):
+                language = LanguageConfiguration(**json_data.get("language"))
+            else:
+                language = PythonLanguageConfiguration()
+            json_data["language"] = language
+            config: RepositoryConfiguration = RepositoryConfiguration(**json_data)
+            if (  # pylint: disable=no-else-return
+                config.language.name == Languages.PYTHON
+            ):
                 return PythonRepositoryConfiguration(
+                    language=language,
                     dependencies_files=config.dependencies_files,
                     extra_dependencies=config.extra_dependencies,
                     tests_command=config.tests_command,
@@ -90,14 +128,16 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
 
     def __init__(
         self,
+        language: Optional[LanguageConfiguration] = None,
         dependencies_files: Optional[List[str]] = None,
         extra_dependencies: Optional[List[str]] = None,
         tests_command: Optional[List[str]] = None,
         styles_check_command: Optional[List[str]] = None,
         coverages_check_command: Optional[List[str]] = None,
     ):
+        language = language or PythonLanguageConfiguration()
         super().__init__(
-            language=Languages.PYTHON,
+            language=language,
             dependencies_files=dependencies_files,
             extra_dependencies=extra_dependencies,
             tests_command=tests_command,
@@ -115,6 +155,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     def default(cls) -> "PythonRepositoryConfiguration":
         """Returns default python repository configuration."""
         return PythonRepositoryConfiguration(
+            language=PythonLanguageConfiguration(),
             dependencies_files=["requirements.txt"],
             extra_dependencies=["pytest", "coverage"],
             tests_command=["pip check", "pytest"],  # -W error::DeprecationWarning
@@ -125,11 +166,22 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             ],
         )
 
-    def render_tox_file(self, ecosystem_deps: List[str] = None):
+    def render_tox_file(
+        self,
+        ecosystem_deps: List[str] = None,
+        ecosystem_additional_commands: List[str] = None,
+    ):
         """Renders tox template from configuration."""
         ecosystem_deps = ecosystem_deps or []
+        ecosystem_additional_commands = ecosystem_additional_commands or []
         return self.tox_template.render(
-            {**self.to_dict(), **{"ecosystem_deps": ecosystem_deps}}
+            {
+                **self.to_dict(),
+                **{
+                    "ecosystem_deps": ecosystem_deps,
+                    "ecosystem_additional_commands": ecosystem_additional_commands,
+                },
+            }
         )
 
     def render_lint_file(self):

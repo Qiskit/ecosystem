@@ -27,6 +27,16 @@ class CommandExecutionSummary:
         """Return warning messages."""
         return [log for log in self.logs if "warn" in log.lower()]
 
+    def get_qiskit_depreciation_logs(self) -> List[str]:
+        """Return qiskit depreciation messages."""
+        return [
+            log
+            for log in self.logs
+            if "qiskit" in log.lower()
+            and "DeprecationWarning" in log
+            and "qiskit.aqua" not in log.lower()
+        ]
+
     def get_error_logs(self) -> List[str]:
         """Return error messages."""
         return [log for log in self.logs if "error" in log.lower()]
@@ -38,11 +48,7 @@ class CommandExecutionSummary:
     @property
     def has_qiskit_deprecation_logs(self) -> bool:
         """Wether execution summary has deprecation warnings for Qiskit or not."""
-        qiskit_deprecation_logs = [
-            log
-            for log in self.logs
-            if "qiskit" in log.lower() and "DeprecationWarning" in log
-        ]
+        qiskit_deprecation_logs = self.get_qiskit_depreciation_logs()
         return len(qiskit_deprecation_logs) > 0
 
     @property

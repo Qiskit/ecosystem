@@ -54,6 +54,7 @@ class Runner:
         files: List[str],
         files_fault: List[str],
         ecosystem_deps: Optional[List[str]] = None,
+        ecosystem_additional_commands: Optional[List[str]] = None,
     ):
         """Configuring the different templates:
             - tox.ini
@@ -63,7 +64,8 @@ class Runner:
         Args:
             files: list of files (tox.ini/.pylintrc/.coveragerc)
             files_fault: list of default name replacement
-            ecosystem_deps: list of dependence
+            ecosystem_deps: list of dependencies
+            ecosystem_additional_commands: additional commands to run before tests
 
         No return
         """
@@ -98,7 +100,10 @@ class Runner:
             ) as param_file:
                 if destination_file_name == FilesTemplates.TOX_FILE_NAME:
                     param_file.write(
-                        repo_config.render_tox_file(ecosystem_deps=ecosystem_deps)
+                        repo_config.render_tox_file(
+                            ecosystem_deps=ecosystem_deps,
+                            ecosystem_additional_commands=ecosystem_additional_commands,
+                        )
                     )
                 elif destination_file_name == FilesTemplates.LINT_FILE_NAME:
                     param_file.write(repo_config.render_lint_file())
@@ -133,13 +138,20 @@ class Runner:
         try:
             result = self.workload()
             _, executive_summary = result
+            logs_depreciation = []
             logs_error = []
             logs_fail = []
             for element in executive_summary:
+                logs_depreciation += element.get_qiskit_depreciation_logs()
                 logs_error += element.get_error_logs()
                 logs_fail += element.get_fail_logs()
-            set_actions_output([("ERROR", logs_error)])
-            set_actions_output([("FAIL", logs_fail)])
+            set_actions_output(
+                [
+                    ("DEPRECIATION", "\n".join(logs_depreciation)),
+                    ("ERROR", "\n".join(logs_error)),
+                    ("FAIL", "\n".join(logs_fail)),
+                ]
+            )
 
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", [CommandExecutionSummary(1, [], summary=str(exception))])

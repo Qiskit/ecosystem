@@ -19,6 +19,7 @@ class PythonTestsRunner(Runner):
         repo: Union[str, Repository],
         working_directory: Optional[str] = None,
         ecosystem_deps: Optional[List[str]] = None,
+        ecosystem_additional_commands: Optional[List[str]] = None,
         python_version: str = "py39",
         repo_config: Optional[RepositoryConfiguration] = None,
     ):
@@ -26,7 +27,10 @@ class PythonTestsRunner(Runner):
             repo=repo, working_directory=working_directory, repo_config=repo_config
         )
         self.python_version = python_version
-        self.ecosystem_deps = ecosystem_deps or ["qiskit"]
+        self.ecosystem_deps = (
+            ecosystem_deps if ecosystem_deps is not None else ["qiskit"]
+        )
+        self.ecosystem_additional_commands = ecosystem_additional_commands or []
 
     def workload(self) -> Tuple[str, List[CommandExecutionSummary]]:
         """Runs tests checks for python repository.
@@ -41,7 +45,12 @@ class PythonTestsRunner(Runner):
         Returns: execution summary of steps
         """
         # check for configuration file
-        self.configure_repo(["tox.ini"], ["tox_default.ini"], self.ecosystem_deps)
+        self.configure_repo(
+            ["tox.ini"],
+            ["tox_default.ini"],
+            ecosystem_deps=self.ecosystem_deps,
+            ecosystem_additional_commands=self.ecosystem_additional_commands,
+        )
 
         terra_version = "-"
         if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):

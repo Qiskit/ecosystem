@@ -28,9 +28,8 @@ jobs:
       tier: "COMMUNITY"
       python-version: "3.9"
     steps:
-###################################################################################################
-### Set up deps
-###################################################################################################
+
+    # setup deps
     - uses: actions/checkout@v2
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v2
@@ -42,9 +41,7 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-###################################################################################################
-### Workflow
-###################################################################################################
+    # workflow
     - name: Parse submission
       id: parse-issue
       run: |
@@ -83,9 +80,7 @@ jobs:
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
 
-###################################################################################################
-### Check result, update issue and create MR
-###################################################################################################
+    # Check result, update issue and create MR
     - name: Check return
       run: |
         echo "PASS_LOG=True" >> $GITHUB_ENV
@@ -181,6 +176,9 @@ jobs:
           <details>
           <summary>Qiskit Stable</summary>
           
+          #### Qiskit depreciation logs
+          ${{ steps.stable.outputs.depreciation }}
+          
           #### Error logs
           ${{ steps.stable.outputs.error }}
           
@@ -189,6 +187,9 @@ jobs:
           </details>
           <details>
           <summary>Qiskit Dev</summary>
+          
+          #### Qiskit depreciation logs
+          ${{ steps.dev.outputs.depreciation }}
           
           #### Error logs
           ${{ steps.dev.outputs.error }}

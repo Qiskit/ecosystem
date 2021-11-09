@@ -6,7 +6,10 @@
     "extra_dependencies": [
         "pytest"
     ],
-    "language": "python",
+    "language": {
+        "name": "python",
+        "versions": ["3.6"]
+    },
     "tests_command": [
         "pytest"
     ],

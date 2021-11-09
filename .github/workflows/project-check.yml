@@ -35,6 +35,7 @@ jobs:
         pip install -r requirements-dev.txt
 
     - name: Standard tests
+      id: standard
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
@@ -43,6 +44,7 @@ jobs:
         tier: ${{ github.event.client_payload.tier }}
 
     - name: Stable tests
+      id: stable
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
@@ -51,6 +53,7 @@ jobs:
         tier: ${{ github.event.client_payload.tier }}
 
     - name: Dev tests
+      id: dev
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
@@ -59,6 +62,7 @@ jobs:
         tier: ${{ github.event.client_payload.tier }}
 
     - name: Styles check
+      id: linter
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
@@ -67,6 +71,7 @@ jobs:
         tier: ${{ github.event.client_payload.tier }}
 
     - name: Coverage check
+      id: coverage
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
@@ -82,3 +87,93 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
         git push
+
+    # check if any of the tests failed
+    - name: Check return
+      run: |
+        echo "PASS_LOG=True" >> $GITHUB_ENV
+
+        declare -a return_list=( \
+          "${{ steps.standard.outputs.result }}" \
+          "${{ steps.linter.outputs.result }}" \
+          "${{ steps.coverage.outputs.result }}" \
+          "${{ steps.stable.outputs.result }}" \
+          "${{ steps.dev.outputs.result }}" \
+        )
+        for i in "${return_list[@]}"; do
+          if [[ "${i}" != *"True"* ]]; then
+            echo "PASS_LOG=False" >> $GITHUB_ENV
+          fi
+        done
+
+    - name: Check the check
+      id: check_result
+      run: |
+        echo "Pass log is ${{ env.PASS_LOG }}"
+
+    - name: Create comment on failure
+      if: ${{ env.PASS_LOG == 'False' }}
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        repository: "qiskit-community/ecosystem"
+        issue-number: ${{ github.event.client_payload.issue_id }}
+        body: |
+          Failed project check ${{ github.event.client_payload.repo_url }} :warning:
+          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
+
+          ### Checks Status ###
+          Linter : ${{ steps.linter.outputs.result }}
+          Coverage : ${{ steps.coverage.outputs.result }}
+          Qiskit Stable : ${{ steps.stable.outputs.result }}
+          Qiskit Dev : ${{ steps.dev.outputs.result }}
+          Standard: ${{ steps.standard.outputs.result }}
+
+          ### Logs ###
+          <details>
+          <summary>Linter</summary>
+
+          #### Error logs
+          ${{ steps.linter.outputs.error }}
+
+          #### Failed logs
+          ${{ steps.linter.outputs.fail }}
+          </details>
+          <details>
+          <summary>Coverage</summary>
+
+          #### Error logs
+          ${{ steps.coverage.outputs.error }}
+
+          #### Failed logs
+          ${{ steps.coverage.outputs.fail }}
+          </details>
+          <details>
+          <summary>Qiskit Stable</summary>
+
+          #### Error logs
+          ${{ steps.stable.outputs.error }}
+
+          #### Failed logs
+          ${{ steps.stable.outputs.fail }}
+          </details>
+          <details>
+          <summary>Qiskit Dev</summary>
+          
+          #### Qiskit depreciation logs
+          ${{ steps.dev.outputs.depreciation }}
+
+          #### Error logs
+          ${{ steps.dev.outputs.error }}
+
+          #### Failed logs
+          ${{ steps.dev.outputs.fail }}
+          </details>
+          <details>
+          <summary>Standard</summary>
+
+          #### Error logs
+          ${{ steps.standard.outputs.error }}
+
+          #### Failed logs
+          ${{ steps.standard.outputs.fail }}
+          </details>
