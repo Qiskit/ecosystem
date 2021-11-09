@@ -51,16 +51,16 @@ class Manager:
         repo: str = "ecosystem",
     ) -> bool:
         """Dispatch event to trigger check workflow.
-        
+
         Args:
             repo_url: url of the repo
             issue_id: id for the issue
             branch_name: name of the branch
             tier: tier of the project
             token: token base on the date
-            owner: "qiskit-community" parameters 
+            owner: "qiskit-community" parameters
             repo: "ecosystem"
-        
+
         Return: true
         """
         url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
@@ -325,7 +325,7 @@ class Manager:
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests against dev version of qiskit.
-        
+
         Args:
             repo_url: repository url
             tier: tier of project
