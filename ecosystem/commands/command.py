@@ -25,8 +25,14 @@ class Command:
     @classmethod
     def subprocess_execute(
         cls, command: List[str], name: Optional[str] = None, cwd: Optional[str] = None
-    ):
-        """Executes specified command as subprocess in a directory."""
+    ) -> CommandExecutionSummary:
+        """Executes specified command as subprocess in a directory.
+        Args:
+            command: command to run
+            name: name for command
+            cwd: directory where to execute command
+        Return: CommandExecutionSummary
+        """
         with subprocess.Popen(
             command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=cwd
         ) as process:
@@ -59,6 +65,12 @@ class ShellCommand(Command):
     def execute(
         cls, command: List[str], directory: str, **kwargs
     ) -> CommandExecutionSummary:
+        """Executes shell command as subprocess in a directory.
+        Args:
+            command: command to run
+            directory: directory where to execute command
+        Return: CommandExecutionSummary
+        """
         return cls.subprocess_execute(
             command=command, cwd=directory, name=" ".join(command)
         )
@@ -69,6 +81,12 @@ class CloneRepoCommand(Command):
 
     @classmethod
     def execute(cls, repo: str, directory: str, **kwargs) -> CommandExecutionSummary:
+        """Executes clone repo command as subprocess in a directory.
+        Args:
+            repo: url of the project to clone
+            directory: directory where to execute command
+        Return: CommandExecutionSummary
+        """
         return cls.subprocess_execute(
             ["git", "-C", directory, "clone", repo], name="Clone repo"
         )
@@ -79,6 +97,12 @@ class RunToxCommand(Command):
 
     @classmethod
     def execute(cls, directory: str, env: str, **kwargs) -> CommandExecutionSummary:
+        """Executes tox command as subprocess in a directory.
+        Args:
+            directory: directory where to execute command
+            env: type of tox command (epy36, ecoverage, elint, ...)
+        Return: CommandExecutionSummary
+        """
         return cls.subprocess_execute(
             ["tox", "-e{}".format(env), "--workdir", directory],
             cwd=directory,
@@ -91,6 +115,12 @@ class FileExistenceCheckCommand(Command):
 
     @classmethod
     def execute(cls, file: str, directory: str, **kwargs) -> CommandExecutionSummary:
+        """Executes check file command as subprocess in a directory.
+        Args:
+            file: file to check
+            directory: directory where to execute command
+        Return: CommandExecutionSummary
+        """
         if not os.path.isfile("{}/{}".format(directory, file)):
             return CommandExecutionSummary(
                 code=1, logs=[], summary="No {} file in project.".format(file)
