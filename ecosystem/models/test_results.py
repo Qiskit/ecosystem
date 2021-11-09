@@ -19,10 +19,10 @@ class TestResult(JsonSerializable):
     @classmethod
     def from_dict(cls, dictionary: dict):
         """Get result form dict.
-        
+
         Args:
             dictionary: dict object with the result of tox -epy3.x
-            
+
         Return: TestResult
         """
         return TestResult(
@@ -59,10 +59,10 @@ class StyleResult(JsonSerializable):
     @classmethod
     def from_dict(cls, dictionary: dict):
         """Get result form dict.
-        
+
         Args:
             dictionary: dict object with the result of tox -elint
-            
+
         Return: StyleResult
         """
         return StyleResult(
@@ -93,10 +93,10 @@ class CoverageResult(JsonSerializable):
     @classmethod
     def from_dict(cls, dictionary: dict):
         """Get result form dict.
-        
+
         Args:
             dictionary: dict object with the result of tox -ecoverage
-            
+
         Return: CoverageResult
         """
         return CoverageResult(

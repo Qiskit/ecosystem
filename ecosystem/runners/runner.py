@@ -123,7 +123,7 @@ class Runner:
 
     def run(self) -> Tuple[str, List[CommandExecutionSummary]]:
         """Runs chain of commands to check repository.
-        
+
         Returns: tuple (qiskit_version, CommandExecutionSummary)
         """
         self.set_up()

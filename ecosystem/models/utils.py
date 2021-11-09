@@ -8,7 +8,7 @@ class JsonSerializable(ABC):
     @classmethod
     def from_dict(cls, dictionary: dict):
         """Converts dict to object.
-        
+
         Args:
             dictionary: dict to convert
         """

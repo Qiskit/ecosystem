@@ -93,7 +93,7 @@ class Manager:
 
         Args:
             body: body of the created issue
-            
+
         Returns:
             logs output
             We want to give the result of the parsing issue to the GitHub action
@@ -126,7 +126,7 @@ class Manager:
         repo_labels: Tuple[str],
     ) -> None:
         """Adds repo to list of entries.
-        
+
         Args:
             repo_name: repo name
             repo_link: repo url
@@ -136,7 +136,7 @@ class Manager:
             repo_licence: repo licence
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
-            
+
         Returns:
             JsonDAO: Integer
         """
@@ -186,7 +186,7 @@ class Manager:
             test_type: [dev, stable]
             ecosystem_deps: extra dependencies to install for tests
             ecosystem_additional_commands: extra commands to run before tests
-            
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
@@ -248,7 +248,7 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             style_type: [dev, stable]
-            
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
@@ -282,7 +282,7 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             coverage_type: [dev, stable]
-            
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
