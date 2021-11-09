@@ -18,6 +18,13 @@ class TestResult(JsonSerializable):
 
     @classmethod
     def from_dict(cls, dictionary: dict):
+        """Get result form dict.
+        
+        Args:
+            dictionary: dict object with the result of tox -epy3.x
+            
+        Return: TestResult
+        """
         return TestResult(
             passed=dictionary.get("passed"),
             terra_version=dictionary.get("terra_version"),
@@ -51,6 +58,13 @@ class StyleResult(JsonSerializable):
 
     @classmethod
     def from_dict(cls, dictionary: dict):
+        """Get result form dict.
+        
+        Args:
+            dictionary: dict object with the result of tox -elint
+            
+        Return: StyleResult
+        """
         return StyleResult(
             passed=dictionary.get("passed"), style_type=dictionary.get("style_type")
         )
@@ -78,6 +92,13 @@ class CoverageResult(JsonSerializable):
 
     @classmethod
     def from_dict(cls, dictionary: dict):
+        """Get result form dict.
+        
+        Args:
+            dictionary: dict object with the result of tox -ecoverage
+            
+        Return: CoverageResult
+        """
         return CoverageResult(
             passed=dictionary.get("passed"),
             coverage_type=dictionary.get("coverage_type"),
