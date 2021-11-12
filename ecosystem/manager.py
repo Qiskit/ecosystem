@@ -135,14 +135,13 @@ class Manager:
 
         for i in tests_list:
             test_result = [str(repo.passed) for repo in i]
-            if 'False' not in test_result:
-                tests.append('True')
+            if "False" not in test_result:
+                tests.append("True")
             else:
-                tests.append('False')
+                tests.append("False")
 
         set_actions_output([("repositories", repositories)])
         set_actions_output([("tests", ",".join(tests))])
-
 
     @staticmethod
     def parser_issue(body: str) -> None:
