@@ -141,9 +141,12 @@ class Manager:
                 tests.append("False")
 
         tests_out = ",".join(tests)
-        
-        set_actions_output([("repositories", repositories)])
-        set_actions_output([("tests", tests_out)])
+
+        to_print = [
+            ("repositories", repositories),
+            ("tests", tests_out)
+        ]
+        set_actions_output(to_print)
 
     @staticmethod
     def parser_issue(body: str) -> None:
