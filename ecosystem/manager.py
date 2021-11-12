@@ -82,14 +82,67 @@ class Manager:
             )
         return response.ok
 
+    def dispatch_badge_workflow(
+        self,
+        repo_url: str,
+        tests: str,
+        issue_id: str,
+        branch_name: str,
+        token: str,
+        owner: str = "qiskit-community",
+        repo: str = "ecosystem",
+    ) -> bool:
+        """Dispatch event to trigger check workflow."""
+        url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
+            owner=owner, repo=repo
+        )
+        repo_split = repo_url.split("/")
+        repo_name = repo_split[-1]
+
+        response = requests.post(
+            url,
+            json={
+                "event_type": "badge_project",
+                "client_payload": {
+                    "repo_name": repo_name,
+                    "tests": tests,
+                    "issue_id": issue_id,
+                    "branch_name": branch_name,
+                },
+            },
+            headers={
+                "Authorization": "token {}".format(token),
+                "Accept": "application/vnd.github.v3+json",
+            },
+        )
+        if response.ok:
+            self.logger.info("Success response on dispatch event. %s", response.text)
+        else:
+            self.logger.warning(
+                "Something wend wrong with dispatch event: %s", response.text
+            )
+        return response.ok
+
     def get_projects_by_tier(self, tier: str) -> None:
         """Return projects by tier.
 
         Args:
             tier: tier of ecosystem
         """
+        tests = []
         repositories = ",".join([repo.url for repo in self.dao.get_repos_by_tier(tier)])
+        tests_list = [repo.tests_results for repo in self.dao.get_repos_by_tier(tier)]
+
+        for i in tests_list:
+            test_result = [str(repo.passed) for repo in i]
+            if 'False' not in test_result:
+                tests.append('True')
+            else:
+                tests.append('False')
+
         set_actions_output([("repositories", repositories)])
+        set_actions_output([("tests", ",".join(tests))])
+
 
     @staticmethod
     def parser_issue(body: str) -> None:
