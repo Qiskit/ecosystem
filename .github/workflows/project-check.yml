@@ -105,10 +105,11 @@ jobs:
 
     - name: Generate badge
       id: gen_badge
+      if: ${{ env.PASS_LOG == 'False' }}
       uses: ./.github/actions/update-badges
       with:
         repo_name: ${{ github.event.client_payload.repo_name }}
-        status: "False"
+        status: 'False'
         
     - name: Commit changes
       run: |
