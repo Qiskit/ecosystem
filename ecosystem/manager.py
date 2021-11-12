@@ -142,10 +142,7 @@ class Manager:
 
         tests_out = str(",".join(tests))
 
-        to_print = [
-            ("repositories", repositories),
-            ("tests", tests_out)
-        ]
+        to_print = [("repositories", repositories), ("tests", tests_out)]
         set_actions_output(to_print)
 
     @staticmethod
