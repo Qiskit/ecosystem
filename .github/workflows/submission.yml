@@ -116,10 +116,11 @@ jobs:
         python manager.py generate_readme
     - name: Generate badge
       id: gen_badge
+      if: ${{ env.PASS_LOG == 'True' }}
       uses: ./.github/actions/update-badges
       with:
         repo_name: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
-        status: "True"
+        status: 'True'
         
     - name: Commit changes and create Pull Request
       if: ${{ env.PASS_LOG == 'True' }}
