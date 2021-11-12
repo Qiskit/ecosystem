@@ -104,9 +104,11 @@ jobs:
         echo "Pass log is ${{ env.PASS_LOG }}"
 
     - name: Generate badge
-      if: ${{ env.PASS_LOG == 'False' }}
-      run: |
-        curl "https://img.shields.io/static/v1?label=Qiskit&message=${{ github.event.client_payload.repo_name }}&color=grey" > badges/${{ github.event.client_payload.repo_name }}.svg
+      id: gen_badge
+      uses: ./.github/actions/update-badges
+      with:
+        repo_name: ${{ github.event.client_payload.repo_name }}
+        status: "False"
         
     - name: Commit changes
       run: |
