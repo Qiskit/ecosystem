@@ -41,14 +41,14 @@ class Manager:
         self.logger = logger
 
     def dispatch_check_workflow(
-            self,
-            repo_url: str,
-            issue_id: str,
-            branch_name: str,
-            tier: str,
-            token: str,
-            owner: str = "qiskit-community",
-            repo: str = "ecosystem",
+        self,
+        repo_url: str,
+        issue_id: str,
+        branch_name: str,
+        tier: str,
+        token: str,
+        owner: str = "qiskit-community",
+        repo: str = "ecosystem",
     ) -> bool:
         """Dispatch event to trigger check workflow."""
         url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
@@ -83,14 +83,14 @@ class Manager:
         return response.ok
 
     def dispatch_badge_workflow(
-            self,
-            repo_url: str,
-            tests: str,
-            issue_id: str,
-            branch_name: str,
-            token: str,
-            owner: str = "qiskit-community",
-            repo: str = "ecosystem",
+        self,
+        repo_url: str,
+        tests: str,
+        issue_id: str,
+        branch_name: str,
+        token: str,
+        owner: str = "qiskit-community",
+        repo: str = "ecosystem",
     ) -> bool:
         """Dispatch event to trigger check workflow."""
         url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
@@ -172,15 +172,15 @@ class Manager:
         set_actions_output(to_print)
 
     def add_repo_2db(
-            self,
-            repo_name: str,
-            repo_link: str,
-            repo_description: str,
-            repo_licence: str,
-            repo_contact: str,
-            repo_alt: str,
-            repo_affiliations: str,
-            repo_labels: Tuple[str],
+        self,
+        repo_name: str,
+        repo_link: str,
+        repo_description: str,
+        repo_licence: str,
+        repo_contact: str,
+        repo_alt: str,
+        repo_affiliations: str,
+        repo_labels: Tuple[str],
     ) -> None:
         """Adds repo to list of entries.
         Args:
@@ -224,13 +224,13 @@ class Manager:
             file.write(readme_content)
 
     def _run_python_tests(
-            self,
-            repo_url: str,
-            tier: str,
-            python_version: str,
-            test_type: str,
-            ecosystem_deps: Optional[List[str]] = None,
-            ecosystem_additional_commands: Optional[List[str]] = None,
+        self,
+        repo_url: str,
+        tier: str,
+        python_version: str,
+        test_type: str,
+        ecosystem_deps: Optional[List[str]] = None,
+        ecosystem_additional_commands: Optional[List[str]] = None,
     ):
         """Runs tests using python runner.
 
@@ -362,7 +362,7 @@ class Manager:
             set_actions_output([("PASS", "False")])
 
     def python_dev_tests(
-            self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests against dev version of qiskit."""
         # hack to fix tox's inability to install proper version of
@@ -381,7 +381,7 @@ class Manager:
         )
 
     def python_stable_tests(
-            self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests against stable version of qiskit."""
         return self._run_python_tests(
@@ -393,7 +393,7 @@ class Manager:
         )
 
     def python_standard_tests(
-            self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
         """Runs tests with provided confiuration."""
         return self._run_python_tests(
