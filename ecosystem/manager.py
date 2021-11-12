@@ -10,9 +10,14 @@ from ecosystem.models import TestResult, Tier, TestType
 from ecosystem.models.repository import Repository
 from ecosystem.models.test_results import StyleResult, CoverageResult
 from ecosystem.runners import PythonTestsRunner
+from ecosystem.runners.main_repos_report_runner import RepositoryActionStatusRunner
 from ecosystem.runners.python_styles_runner import PythonStyleRunner
 from ecosystem.runners.python_coverages_runner import PythonCoverageRunner
 from ecosystem.utils import logger, parse_submission_issue
+from ecosystem.utils.custom_requests import (
+    get_dev_terra_version,
+    get_stable_terra_version,
+)
 from ecosystem.utils.utils import set_actions_output
 
 
@@ -344,3 +349,63 @@ class Manager:
             python_version=python_version,
             test_type=TestType.STANDARD,
         )
+
+    def fetch_and_update_main_tests_results(self):
+        """Gets executed results from Github actions runs of main repositories."""
+        main_repos = self.dao.get_repos_by_tier(Tier.MAIN)
+        repo_to_url_mapping = {r.name: r.url for r in main_repos}
+
+        terra_dev_version = get_dev_terra_version()
+        terra_stable_version = get_stable_terra_version()
+
+        data = [
+            # repo, workflow_name, terra_version, test_type
+            (
+                "qiskit-nature",
+                "Nature%20Unit%20Tests",
+                terra_dev_version,
+                TestType.DEV_COMPATIBLE,
+            ),
+            (
+                "qiskit-finance",
+                "Finance%20Unit%20Tests",
+                terra_dev_version,
+                TestType.DEV_COMPATIBLE,
+            ),
+            (
+                "qiskit-optimization",
+                "Optimization%20Unit%20Tests",
+                terra_dev_version,
+                TestType.DEV_COMPATIBLE,
+            ),
+            (
+                "qiskit-machine-learning",
+                "Machine%20Learning%20Unit%20Tests",
+                terra_dev_version,
+                TestType.DEV_COMPATIBLE,
+            ),
+            ("qiskit-experiments", "Tests", terra_stable_version, TestType.STANDARD),
+            ("qiskit-aer", "Tests%20Linux", terra_stable_version, TestType.STANDARD),
+        ]
+
+        for repo, workflow_name, terra_version, test_type in data:
+            self.logger.info("Updating %s repository...", repo)
+            _, results = RepositoryActionStatusRunner(
+                repo=repo, test_name=workflow_name, terra_version=terra_version
+            ).workload()
+            test_result = TestResult(
+                passed=all(r.ok for r in results),
+                terra_version=terra_version,
+                test_type=test_type,
+            )
+            result = self.dao.add_repo_test_result(
+                repo_url=repo_to_url_mapping.get(repo),
+                tier=Tier.MAIN,
+                test_result=test_result,
+            )
+            if result is None:
+                self.logger.warning(
+                    "Test result was not saved. There is not repo for url %s",
+                    repo,
+                )
+            self.logger.info("Test results for %s: %s", repo, test_result)
