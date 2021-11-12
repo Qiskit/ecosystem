@@ -140,8 +140,10 @@ class Manager:
             else:
                 tests.append("False")
 
+        tests_out = ",".join(tests)
+        
         set_actions_output([("repositories", repositories)])
-        set_actions_output([("tests", ",".join(tests))])
+        set_actions_output([("tests", tests_out)])
 
     @staticmethod
     def parser_issue(body: str) -> None:
