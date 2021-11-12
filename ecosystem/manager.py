@@ -140,7 +140,7 @@ class Manager:
             else:
                 tests.append("False")
 
-        tests_out = ",".join(tests)
+        tests_out = str(",".join(tests))
 
         to_print = [
             ("repositories", repositories),
