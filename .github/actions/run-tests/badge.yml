@@ -1,0 +1,22 @@
+name: 'Create badge'
+description: 'Create badge for repository'
+inputs:
+  repo_name:
+    description: 'GitHub repository name'
+    required: true
+  status:
+    description: 'Status of the test - True, False'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Generate badge
+      id: badge
+      run: |
+        if [ "${{ inputs.status }}" == "True" ]; then
+          curl "https://img.shields.io/static/v1?label=Qiskit&message=${{ inputs.repo_name }}&color=blueviolet" > badges/${{ inputs.repo_name }}.svg
+        fi
+        if [ "${{ inputs.status }}" == "False" ]; then
+          curl "https://img.shields.io/static/v1?label=Qiskit&message=${{ inputs.repo_name }}&color=grey" > badges/${{ inputs.repo_name }}.svg
+        fi
+      shell: bash
