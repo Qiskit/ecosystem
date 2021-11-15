@@ -95,28 +95,13 @@ class Manager:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         badges_folder_path = "{}/../badges".format(current_dir)
 
-        tests = []
-        community_projects = [
-            repo.name for repo in self.dao.get_repos_by_tier("COMMUNITY")
-        ]
-        tests_list = [
-            repo.tests_results for repo in self.dao.get_repos_by_tier("COMMUNITY")
-        ]
-
-        for i in tests_list:
-            test_result = [str(repo.passed) for repo in i]
-            if "False" not in test_result:
-                tests.append(True)
-            else:
-                tests.append(False)
-
-        for project, tests_out in zip(community_projects, tests):
-            tests_passed = tests_out
+        for project in self.dao.get_repos_by_tier("COMMUNITY"):
+            tests_passed = all([result.passed for result in project.tests_results])
             color = "blueviolet" if tests_passed else "gray"
-            url = f"https://img.shields.io/static/v1?label=Qiskit&message={project}&color={color}"
+            url = f"https://img.shields.io/static/v1?label=Qiskit&message={project.name}&color={color}"
 
             shields_request = requests.get(url)
-            with open(f"{badges_folder_path}/{project}.svg", "wb") as outfile:
+            with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
                 outfile.write(shields_request.content)
 
     @staticmethod
