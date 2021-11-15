@@ -113,9 +113,9 @@ class Manager:
         for project, tests_out in zip(community_projects, tests):
             tests_passed = tests_out
             color = "blueviolet" if tests_passed else "gray"
-            image_url = f"https://img.shields.io/static/v1?label=Qiskit&message={project}&color={color}"
+            url = f"https://img.shields.io/static/v1?label=Qiskit&message={project}&color={color}"
 
-            shields_request = requests.get(image_url)
+            shields_request = requests.get(url)
             with open(f"{badges_folder_path}/{project}.svg", "wb") as outfile:
                 outfile.write(shields_request.content)
 
