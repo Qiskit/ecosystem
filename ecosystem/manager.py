@@ -116,9 +116,9 @@ class Manager:
             image_url = f"https://img.shields.io/static/v1?label=Qiskit&message={project}&color={color}"
             target_image_name = f"{badges_folder_path}/{project}.svg"
 
-            r = requests.get(image_url)
+            shields_request = requests.get(image_url)
             with open(target_image_name, "wb") as outfile:
-                outfile.write(r.content)
+                outfile.write(shields_request.content)
 
     @staticmethod
     def parser_issue(body: str) -> None:
