@@ -92,8 +92,7 @@ class Manager:
 
     def update_badges(self):
         """Updates badges for projects."""
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        badges_folder_path = "{}/../badges".format(current_dir)
+        badges_folder_path = "{}/badges".format(self.current_dir)
 
         for project in self.dao.get_repos_by_tier("COMMUNITY"):
             tests_passed = all([result.passed for result in project.tests_results])
