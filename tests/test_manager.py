@@ -6,6 +6,7 @@ from unittest import TestCase
 
 import responses
 
+from ecosystem.daos import JsonDAO
 from ecosystem.manager import Manager
 
 
@@ -78,3 +79,14 @@ class TestManager(TestCase):
             repo=repo,
         )
         self.assertTrue(response)
+
+    def test_update_badges(self):
+
+        manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/..")
+        manager.resources_dir = "{}/tests/resources".format(manager.current_dir)
+        manager.dao.path = manager.resources_dir
+
+        manager.update_badges()
+
+        badges_folder_path = "{}/badges".format(manager.current_dir)
+        self.assertTrue(os.path.isfile(f"{badges_folder_path}/tata.svg"))
