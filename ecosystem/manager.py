@@ -114,10 +114,9 @@ class Manager:
             tests_passed = tests_out
             color = "blueviolet" if tests_passed else "gray"
             image_url = f"https://img.shields.io/static/v1?label=Qiskit&message={project}&color={color}"
-            target_image_name = f"{badges_folder_path}/{project}.svg"
 
             shields_request = requests.get(image_url)
-            with open(target_image_name, "wb") as outfile:
+            with open(f"{badges_folder_path}/{project}.svg", "wb") as outfile:
                 outfile.write(shields_request.content)
 
     @staticmethod
