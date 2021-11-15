@@ -13,7 +13,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
     """Tests for RepositoryConfiguration file."""
 
     def test_save_and_load(self):
-        """Tests saving and loading of configuration,"""
+        """Tests saving and loading of configuration."""
         config = RepositoryConfiguration(
             language=PythonLanguageConfiguration(versions=["3.6"]),
             dependencies_files=["requirements.txt", "requirements-dev.txt"],

@@ -6,7 +6,13 @@ from ecosystem.models.repository import Repository
 
 
 def parse_submission_issue(body_of_issue: str) -> Repository:
-    """Parse issue body."""
+    """Parse issue body.
+
+    Args:
+        body_of_issue: body of an GitHub issue in markdown
+
+    Return: Repository
+    """
 
     issue_formatted = mdformat.text(body_of_issue)
 
