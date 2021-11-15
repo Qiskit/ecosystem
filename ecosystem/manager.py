@@ -82,68 +82,43 @@ class Manager:
             )
         return response.ok
 
-    def dispatch_badge_workflow(
-        self,
-        repo_url: str,
-        tests: str,
-        issue_id: str,
-        branch_name: str,
-        token: str,
-        owner: str = "qiskit-community",
-        repo: str = "ecosystem",
-    ) -> bool:
-        """Dispatch event to trigger check workflow."""
-        url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
-            owner=owner, repo=repo
-        )
-        repo_split = repo_url.split("/")
-        repo_name = repo_split[-1]
-
-        response = requests.post(
-            url,
-            json={
-                "event_type": "badge_project",
-                "client_payload": {
-                    "repo_name": repo_name,
-                    "tests": tests,
-                    "issue_id": issue_id,
-                    "branch_name": branch_name,
-                },
-            },
-            headers={
-                "Authorization": "token {}".format(token),
-                "Accept": "application/vnd.github.v3+json",
-            },
-        )
-        if response.ok:
-            self.logger.info("Success response on dispatch event. %s", response.text)
-        else:
-            self.logger.warning(
-                "Something wend wrong with dispatch event: %s", response.text
-            )
-        return response.ok
-
     def get_projects_by_tier(self, tier: str) -> None:
         """Return projects by tier.
-
         Args:
             tier: tier of ecosystem
         """
-        tests = []
         repositories = ",".join([repo.url for repo in self.dao.get_repos_by_tier(tier)])
-        tests_list = [repo.tests_results for repo in self.dao.get_repos_by_tier(tier)]
+        set_actions_output([("repositories", repositories)])
+
+    def update_badges(self):
+        """Updates badges for projects."""
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        badges_folder_path = "{}/../badges".format(current_dir)
+
+        tests = []
+        community_projects = [
+            repo.name for repo in self.dao.get_repos_by_tier("COMMUNITY")
+        ]
+        tests_list = [
+            repo.tests_results for repo in self.dao.get_repos_by_tier("COMMUNITY")
+        ]
 
         for i in tests_list:
             test_result = [str(repo.passed) for repo in i]
             if "False" not in test_result:
-                tests.append("True")
+                tests.append(True)
             else:
-                tests.append("False")
+                tests.append(False)
 
-        tests_out = str(",".join(tests))
+        for project, tests_out in zip(community_projects, tests):
+            tests_passed = tests_out
+            color = "blueviolet" if tests_passed else "gray"
+            image_url = f"https://img.shields.io/static/v1?label=Qiskit&message={project}&color={color}"
+            target_image_name = f"{badges_folder_path}/{project}.svg"
 
-        to_print = [("repositories", repositories), ("tests", tests_out)]
-        set_actions_output(to_print)
+            r = requests.get(image_url)
+            with open(target_image_name, "wb") as outfile:
+                outfile.write(r.content)
 
     @staticmethod
     def parser_issue(body: str) -> None:

@@ -30,6 +30,9 @@ jobs:
         pip install -r requirements.txt
     - name: Add check time
       run:  echo ${{ steps.vars.outputs.datetime }} >> check_time.txt
+    - name: Update badges
+      run: python manager.py update_badges
+
     - name: Create PR for batch badge
       id: cpr
       uses: peter-evans/create-pull-request@v3
@@ -37,27 +40,9 @@ jobs:
         commit-message: Batch badges for ${{ steps.vars.outputs.datetime }}
         title: Batch badges for ${{ steps.vars.outputs.datetime }}
         body: |
-          Batch checks
+          Batch badges
           Time: ${{ steps.vars.outputs.datetime }}
           Tier: ${{ github.event.inputs.tier }}
         branch: ${{ steps.vars.outputs.pr_branch_name }}
         base: main
-    - name: Get project for check
-      id: repos
-      run: python manager.py get_projects_by_tier --tier=${{ github.event.inputs.tier }}
-    - name: Launch separate workflows for each batch badge
-      run: |
-        export IFS=","
-        repositories=${{ steps.repos.outputs.repositories }}
-        tests=${{ steps.repos.outputs.tests }}
-        len=${#repositories[@]}
-        for (( i=0; i<$len; i++ )); do
-          echo "Launching separate workflow for ${repositories[$i]}"
-          python manager.py dispatch_badge_workflow \
-                            --repo_url="${repositories[$i]}" \
-                            --tests="${tests[$i]}" \
-                            --issue_id=${{ env.ISSUE_ID }} \
-                            --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
-                            --token=${{ secrets.WORKFLOW_DISPATCH_PAT }} \
-                            --owner=${{ github.repository_owner }}
-        done
+
