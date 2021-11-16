@@ -160,7 +160,8 @@ class TestJsonDao(TestCase):
         manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/")
         manager.resources_dir = "../resources"
         manager.dao = dao
-
+        
+        # create badges
         manager.update_badges()
 
         badges_folder_path = "{}/badges".format(manager.current_dir)
@@ -168,7 +169,8 @@ class TestJsonDao(TestCase):
             os.path.isfile(f"{badges_folder_path}/{commu_success.name}.svg")
         )
         self.assertTrue(os.path.isfile(f"{badges_folder_path}/{commu_failed.name}.svg"))
-
+        
+        # check version status
         with open(
             f"{badges_folder_path}/{commu_success.name}.svg", "r"
         ) as svg_blueviolet:
