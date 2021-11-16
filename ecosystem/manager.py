@@ -98,7 +98,8 @@ class Manager:
             tests_passed = all([result.passed for result in project.tests_results])
             color = "blueviolet" if tests_passed else "gray"
             label = "Qiskit Ecosystem"
-            url = f"https://img.shields.io/static/v1?label={label}&message={project.name}&color={color}"
+            message = project.name
+            url = f"https://img.shields.io/static/v1?label={label}&message={message}&color={color}"
 
             shields_request = requests.get(url)
             with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
