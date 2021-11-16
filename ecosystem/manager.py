@@ -95,7 +95,7 @@ class Manager:
         badges_folder_path = "{}/badges".format(self.current_dir)
 
         for project in self.dao.get_repos_by_tier("COMMUNITY"):
-            tests_passed = all([result.passed for result in project.tests_results])
+            tests_passed = all(result.passed for result in project.tests_results)
             color = "blueviolet" if tests_passed else "gray"
             label = "Qiskit Ecosystem"
             message = project.name
