@@ -159,7 +159,7 @@ class TestJsonDao(TestCase):
         
         manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/")
         manager.resources_dir = "../resources"
-        manager.dao.path = manager.resources_dir
+        manager.dao = dao
         
         manager.update_badges()
         
