@@ -150,7 +150,7 @@ class TestJsonDao(TestCase):
         self._delete_members_json()
 
         commu_success = get_community_repo()
-        commu_failed = get_community_repo()
+        commu_failed = get_community_fail_repo()
         dao = JsonDAO(self.path)
 
         # insert entry
