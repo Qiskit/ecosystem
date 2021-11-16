@@ -33,7 +33,10 @@ class TestJsonDao(TestCase):
         self._delete_members_json()
 
     def _delete_members_json(self):
-        """Deletes database file."""
+        """Deletes database file.
+        Function: JsonDao
+                -> delete
+        """
         if os.path.exists(self.members_path):
             os.remove(self.members_path)
         if not os.path.exists(self.path):
@@ -58,7 +61,10 @@ class TestJsonDao(TestCase):
         self.assertEqual([], dao.get_repos_by_tier(Tier.MAIN))
 
     def test_move_from_tier_to_tier(self):
-        """Tests moving repo from tier to tier."""
+        """Tests moving repo from tier to tier.
+        Function: JsonDao
+                -> move_repo_to_other_tier
+        """
         self._delete_members_json()
 
         main_repo = get_main_repo()
@@ -85,7 +91,10 @@ class TestJsonDao(TestCase):
         self.assertEqual(candidate_repos[0], moved_repo)
 
     def test_add_test_result(self):
-        """Tests adding result to repo."""
+        """Tests adding result to repo.
+        JsonDao
+                -> add_repo_test_result
+        """
         self._delete_members_json()
         dao = JsonDAO(self.path)
 

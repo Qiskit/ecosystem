@@ -122,7 +122,10 @@ class Runner:
         """
 
     def run(self) -> Tuple[str, List[CommandExecutionSummary]]:
-        """Runs chain of commands to check repository."""
+        """Runs chain of commands to check repository.
+
+        Returns: tuple (qiskit_version, CommandExecutionSummary)
+        """
         self.set_up()
         # clone repository
         self.logger.info("Cloning repository: %s", self.repo)

@@ -7,7 +7,7 @@ from tests.common import TestCaseWithResources
 
 
 class TestCommands(TestCaseWithResources):
-    """Tests shell commands."""
+    """Tests for shell commands methods."""
 
     def test_execute_command(self):
         """Tests command execution."""

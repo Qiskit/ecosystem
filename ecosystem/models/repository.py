@@ -66,6 +66,13 @@ class Repository(JsonSerializable):
 
     @classmethod
     def from_dict(cls, dictionary: dict):
+        """Transform dicrectory to Repository.
+
+        Args:
+            dictionary: dict object
+
+        Return: Repository
+        """
         tests_results = []
         if "tests_results" in dictionary:
             tests_results = [
