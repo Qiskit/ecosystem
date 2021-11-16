@@ -97,7 +97,8 @@ class Manager:
         for project in self.dao.get_repos_by_tier("COMMUNITY"):
             tests_passed = all([result.passed for result in project.tests_results])
             color = "blueviolet" if tests_passed else "gray"
-            url = f"https://img.shields.io/static/v1?label=Qiskit Ecosystem&message={project.name}&color={color}"
+            label = "Qiskit Ecosystem"
+            url = f"https://img.shields.io/static/v1?label={label}&message={project.name}&color={color}"
 
             shields_request = requests.get(url)
             with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
