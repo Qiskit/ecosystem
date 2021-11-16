@@ -174,3 +174,6 @@ class TestJsonDao(TestCase):
         with open(f"{badges_folder_path}/{commu_failed.name}.svg", "r") as svg_grey:
             svg_failed = svg_grey.read()
         self.assertTrue('fill="blueviolet"' not in svg_failed)
+        
+        os.remove(f"{badges_folder_path}/{commu_success.name}.svg")
+        os.remove(f"{badges_folder_path}/{commu_failed.name}.svg")
