@@ -144,7 +144,7 @@ class TestJsonDao(TestCase):
                 TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
             ],
         )
-        
+
     def test_update_badges(self):
         """Tests creating badges."""
         self._delete_members_json()
@@ -156,24 +156,28 @@ class TestJsonDao(TestCase):
         # insert entry
         dao.insert(commu_success)
         dao.insert(commu_failed)
-        
+
         manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/")
         manager.resources_dir = "../resources"
         manager.dao = dao
-        
+
         manager.update_badges()
-        
+
         badges_folder_path = "{}/badges".format(manager.current_dir)
-        self.assertTrue(os.path.isfile(f"{badges_folder_path}/{commu_success.name}.svg"))
+        self.assertTrue(
+            os.path.isfile(f"{badges_folder_path}/{commu_success.name}.svg")
+        )
         self.assertTrue(os.path.isfile(f"{badges_folder_path}/{commu_failed.name}.svg"))
-        
-        with open(f"{badges_folder_path}/{commu_success.name}.svg", "r") as svg_blueviolet:
+
+        with open(
+            f"{badges_folder_path}/{commu_success.name}.svg", "r"
+        ) as svg_blueviolet:
             svg_success = svg_blueviolet.read()
         self.assertTrue('fill="blueviolet"' in svg_success)
-        
+
         with open(f"{badges_folder_path}/{commu_failed.name}.svg", "r") as svg_grey:
             svg_failed = svg_grey.read()
         self.assertTrue('fill="blueviolet"' not in svg_failed)
-        
+
         os.remove(f"{badges_folder_path}/{commu_success.name}.svg")
         os.remove(f"{badges_folder_path}/{commu_failed.name}.svg")
