@@ -174,5 +174,3 @@ class TestJsonDao(TestCase):
         with open(f"{badges_folder_path}/{commu_failed.name}.svg", "r") as svg_grey:
         svg_failed = svg_grey.read()
         self.assertTrue(True if 'fill="blueviolet"' not in svg_failed else False)
-        
-        
