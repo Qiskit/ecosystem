@@ -158,7 +158,7 @@ class TestJsonDao(TestCase):
         dao.insert(commu_failed)
         
         manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/..")
-        manager.resources_dir = "self.path"
+        manager.resources_dir = self.path
         manager.dao.path = manager.resources_dir
         
         manager.update_badges()
