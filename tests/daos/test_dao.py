@@ -1,9 +1,9 @@
 """Tests for entities."""
 import os
 from unittest import TestCase
-from ecosystem.models import TestResult, TestType, Tier
+
 from ecosystem.daos import JsonDAO
-from ecosystem.manager import Manager
+from ecosystem.models import TestResult, TestType, Tier
 from ecosystem.models.repository import Repository
 
 
@@ -17,32 +17,6 @@ def get_main_repo() -> Repository:
         labels=["mock", "tests", "wsdt"],
         tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
         tier=Tier.MAIN,
-    )
-
-
-def get_community_repo() -> Repository:
-    """Return main mock repo."""
-    return Repository(
-        name="mock-qiskit-terra-with-success-dev-test",
-        url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
-        description="Mock description for repo. wsdt",
-        licence="Apache 2.0",
-        labels=["mock", "tests", "wsdt"],
-        tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
-        tier=Tier.COMMUNITY,
-    )
-
-
-def get_community_fail_repo() -> Repository:
-    """Return main mock repo."""
-    return Repository(
-        name="mock-qiskit-terra-with-fail-dev-test",
-        url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
-        description="Mock description for repo. wsdt",
-        licence="Apache 2.0",
-        labels=["mock", "tests", "wsdt"],
-        tests_results=[TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
-        tier=Tier.COMMUNITY,
     )
 
 
@@ -144,42 +118,3 @@ class TestJsonDao(TestCase):
                 TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
             ],
         )
-
-    def test_update_badges(self):
-        """Tests creating badges."""
-        self._delete_members_json()
-
-        commu_success = get_community_repo()
-        commu_failed = get_community_fail_repo()
-        dao = JsonDAO(self.path)
-
-        # insert entry
-        dao.insert(commu_success)
-        dao.insert(commu_failed)
-
-        manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/")
-        manager.resources_dir = "../resources"
-        manager.dao = dao
-
-        # create badges
-        manager.update_badges()
-
-        badges_folder_path = "{}/badges".format(manager.current_dir)
-        self.assertTrue(
-            os.path.isfile(f"{badges_folder_path}/{commu_success.name}.svg")
-        )
-        self.assertTrue(os.path.isfile(f"{badges_folder_path}/{commu_failed.name}.svg"))
-
-        # check version status
-        with open(
-            f"{badges_folder_path}/{commu_success.name}.svg", "r"
-        ) as svg_blueviolet:
-            svg_success = svg_blueviolet.read()
-        self.assertTrue('fill="blueviolet"' in svg_success)
-
-        with open(f"{badges_folder_path}/{commu_failed.name}.svg", "r") as svg_grey:
-            svg_failed = svg_grey.read()
-        self.assertTrue('fill="blueviolet"' not in svg_failed)
-
-        os.remove(f"{badges_folder_path}/{commu_success.name}.svg")
-        os.remove(f"{badges_folder_path}/{commu_failed.name}.svg")
