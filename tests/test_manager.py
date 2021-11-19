@@ -62,7 +62,12 @@ class TestManager(TestCase):
             os.makedirs(self.path)
 
     def test_parser_issue(self):
-        """ "Tests issue parsing function"""
+        """ "Tests issue parsing function.
+        Function: Manager
+                -> parser_issue
+        Args:
+            issue_body
+        """
         captured_output = io.StringIO()
         sys.stdout = captured_output
         Manager.parser_issue(self.issue_body)
@@ -97,7 +102,13 @@ class TestManager(TestCase):
 
     @responses.activate
     def test_dispatch_repository(self):
-        """Test github dispatch event."""
+        """Test github dispatch event.
+        Function: Manager
+                -> dispatch_check_workflow
+        Args:
+            Infos about repo
+        Return: response.status
+        """
         owner = "qiskit-community"
         repo = "ecosystem"
         responses.add(
@@ -161,3 +172,51 @@ class TestManager(TestCase):
 
         os.remove(f"{badges_folder_path}/{commu_success.name}.svg")
         os.remove(f"{badges_folder_path}/{commu_failed.name}.svg")
+
+    @responses.activate
+    def test_fetch_and_update_main_projects(self):
+        """Tests manager function for fetching tests results."""
+        owner = "Qiskit"
+        repos_and_test_names = [
+            ("qiskit-nature", "Nature%2520Unit%2520Tests"),
+            ("qiskit-finance", "Finance%2520Unit%2520Tests"),
+            ("qiskit-optimization", "Optimization%2520Unit%2520Tests"),
+            ("qiskit-machine-learning", "Machine%2520Learning%2520Unit%2520Tests"),
+            ("qiskit-experiments", "Tests"),
+            ("qiskit-aer", "Tests%2520Linux"),
+        ]
+
+        for repo, test_name in repos_and_test_names:
+            responses.add(
+                **{
+                    "method": responses.GET,
+                    "url": "https://api.github.com/repos/{owner}/{repo}/actions/runs"
+                    "?event=push&branch=main&name={test_name}&per_page=1".format(
+                        owner=owner, repo=repo, test_name=test_name
+                    ),
+                    "body": '{"status": "ok"}',
+                    "status": 200,
+                    "content_type": "application/json",
+                }
+            )
+        responses.add(
+            **{
+                "method": responses.GET,
+                "url": "https://raw.githubusercontent.com/Qiskit/"
+                "qiskit-terra/main/qiskit/VERSION.txt",
+                "body": "0.19.0",
+                "status": 200,
+            }
+        )
+        responses.add(
+            **{
+                "method": responses.GET,
+                "url": "https://api.github.com/repos/Qiskit/qiskit-terra/releases?per_page=1",
+                "body": '[{"tag_name": "0.18.3"}]',
+                "status": 200,
+                "content_type": "application/json",
+            }
+        )
+
+        manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/../")
+        self.assertIsNone(manager.fetch_and_update_main_tests_results())

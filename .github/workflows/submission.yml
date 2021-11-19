@@ -19,16 +19,29 @@ on:
 
 jobs:
   submission_workflow:
+    concurrency:
+      group: ci-${{ github.event.issue.title }}
+      cancel-in-progress: true
     if: |
       (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'opened') ||
-      (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:'))
+      (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:') && 
+      (
+      	github.event.sender.login == github.event.issue.user.login || 
+      	github.event.comment.author_association == 'OWNER' || 
+      	github.event.comment.author_association == 'CONTRIBUTOR'
+      ))
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
       tier: "COMMUNITY"
       python-version: "3.9"
     steps:
-
+    # Add label 'submission'
+    - uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ github.event.action == 'opened' }}
+      with:
+        labels: submission
+        
     # setup deps
     - uses: actions/checkout@v2
     - name: Set up Python ${{ env.python-version }}
@@ -183,6 +196,9 @@ jobs:
           <details>
           <summary>Qiskit Stable</summary>
           
+          #### Qiskit depreciation logs
+          ${{ steps.stable.outputs.depreciation }}
+          
           #### Error logs
           ${{ steps.stable.outputs.error }}
           
@@ -191,6 +207,9 @@ jobs:
           </details>
           <details>
           <summary>Qiskit Dev</summary>
+          
+          #### Qiskit depreciation logs
+          ${{ steps.dev.outputs.depreciation }}
           
           #### Error logs
           ${{ steps.dev.outputs.error }}

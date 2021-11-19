@@ -160,6 +160,9 @@ jobs:
           </details>
           <details>
           <summary>Qiskit Dev</summary>
+          
+          #### Qiskit depreciation logs
+          ${{ steps.dev.outputs.depreciation }}
 
           #### Error logs
           ${{ steps.dev.outputs.error }}

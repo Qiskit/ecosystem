@@ -7,7 +7,11 @@ class JsonSerializable(ABC):
 
     @classmethod
     def from_dict(cls, dictionary: dict):
-        """Converts dict to object."""
+        """Converts dict to object.
+
+        Args:
+            dictionary: dict to convert
+        """
 
     def to_dict(self) -> dict:
         """Converts repo to dict."""

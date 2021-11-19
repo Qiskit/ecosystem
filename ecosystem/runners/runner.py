@@ -122,7 +122,10 @@ class Runner:
         """
 
     def run(self) -> Tuple[str, List[CommandExecutionSummary]]:
-        """Runs chain of commands to check repository."""
+        """Runs chain of commands to check repository.
+
+        Returns: tuple (qiskit_version, CommandExecutionSummary)
+        """
         self.set_up()
         # clone repository
         self.logger.info("Cloning repository: %s", self.repo)
@@ -138,13 +141,20 @@ class Runner:
         try:
             result = self.workload()
             _, executive_summary = result
+            logs_depreciation = []
             logs_error = []
             logs_fail = []
             for element in executive_summary:
+                logs_depreciation += element.get_qiskit_depreciation_logs()
                 logs_error += element.get_error_logs()
                 logs_fail += element.get_fail_logs()
-            set_actions_output([("ERROR", "\n".join(logs_error))])
-            set_actions_output([("FAIL", "\n".join(logs_fail))])
+            set_actions_output(
+                [
+                    ("DEPRECIATION", "\n".join(logs_depreciation)),
+                    ("ERROR", "\n".join(logs_error)),
+                    ("FAIL", "\n".join(logs_fail)),
+                ]
+            )
 
         except Exception as exception:  # pylint: disable=broad-except
             result = ("-", [CommandExecutionSummary(1, [], summary=str(exception))])

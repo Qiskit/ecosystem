@@ -10,9 +10,14 @@ from ecosystem.models import TestResult, Tier, TestType
 from ecosystem.models.repository import Repository
 from ecosystem.models.test_results import StyleResult, CoverageResult
 from ecosystem.runners import PythonTestsRunner
+from ecosystem.runners.main_repos_report_runner import RepositoryActionStatusRunner
 from ecosystem.runners.python_styles_runner import PythonStyleRunner
 from ecosystem.runners.python_coverages_runner import PythonCoverageRunner
 from ecosystem.utils import logger, parse_submission_issue
+from ecosystem.utils.custom_requests import (
+    get_dev_terra_version,
+    get_stable_terra_version,
+)
 from ecosystem.utils.utils import set_actions_output
 
 
@@ -50,7 +55,19 @@ class Manager:
         owner: str = "qiskit-community",
         repo: str = "ecosystem",
     ) -> bool:
-        """Dispatch event to trigger check workflow."""
+        """Dispatch event to trigger check workflow.
+
+        Args:
+            repo_url: url of the repo
+            issue_id: id for the issue
+            branch_name: name of the branch
+            tier: tier of the project
+            token: token base on the date
+            owner: "qiskit-community" parameters
+            repo: "ecosystem"
+
+        Return: true
+        """
         url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
             owner=owner, repo=repo
         )
@@ -111,6 +128,7 @@ class Manager:
 
         Args:
             body: body of the created issue
+
         Returns:
             logs output
             We want to give the result of the parsing issue to the GitHub action
@@ -143,6 +161,7 @@ class Manager:
         repo_labels: Tuple[str],
     ) -> None:
         """Adds repo to list of entries.
+
         Args:
             repo_name: repo name
             repo_link: repo url
@@ -152,6 +171,7 @@ class Manager:
             repo_licence: repo licence
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
+
         Returns:
             JsonDAO: Integer
         """
@@ -201,6 +221,7 @@ class Manager:
             test_type: [dev, stable]
             ecosystem_deps: extra dependencies to install for tests
             ecosystem_additional_commands: extra commands to run before tests
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
@@ -262,6 +283,7 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             style_type: [dev, stable]
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
@@ -295,6 +317,7 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             coverage_type: [dev, stable]
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
@@ -324,7 +347,16 @@ class Manager:
     def python_dev_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
-        """Runs tests against dev version of qiskit."""
+        """Runs tests against dev version of qiskit.
+
+        Args:
+            repo_url: repository url
+            tier: tier of project
+            python_version: [py39, py37]
+
+        Return:
+            _run_python_tests def
+        """
         # hack to fix tox's inability to install proper version of
         # qiskit through github via deps configuration
         additional_commands = [
@@ -343,7 +375,15 @@ class Manager:
     def python_stable_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
-        """Runs tests against stable version of qiskit."""
+        """Runs tests against stable version of qiskit.
+        Args:
+            repo_url: repository url
+            tier: tier of project
+            python_version: [py39, py37]
+
+        Return:
+            _run_python_tests def
+        """
         return self._run_python_tests(
             repo_url=repo_url,
             tier=tier,
@@ -355,10 +395,78 @@ class Manager:
     def python_standard_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
-        """Runs tests with provided confiuration."""
+        """Runs tests with provided confiuration.
+        Args:
+            repo_url: repository url
+            tier: tier of project
+            python_version: [py39, py37]
+
+        Return:
+            _run_python_tests def
+        """
         return self._run_python_tests(
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
             test_type=TestType.STANDARD,
         )
+
+    def fetch_and_update_main_tests_results(self):
+        """Gets executed results from Github actions runs of main repositories."""
+        main_repos = self.dao.get_repos_by_tier(Tier.MAIN)
+        repo_to_url_mapping = {r.name: r.url for r in main_repos}
+
+        terra_dev_version = get_dev_terra_version()
+        terra_stable_version = get_stable_terra_version()
+
+        data = [
+            # repo, workflow_name, terra_version, test_type
+            (
+                "qiskit-nature",
+                "Nature%20Unit%20Tests",
+                terra_dev_version,
+                TestType.DEV_COMPATIBLE,
+            ),
+            (
+                "qiskit-finance",
+                "Finance%20Unit%20Tests",
+                terra_dev_version,
+                TestType.DEV_COMPATIBLE,
+            ),
+            (
+                "qiskit-optimization",
+                "Optimization%20Unit%20Tests",
+                terra_dev_version,
+                TestType.DEV_COMPATIBLE,
+            ),
+            (
+                "qiskit-machine-learning",
+                "Machine%20Learning%20Unit%20Tests",
+                terra_dev_version,
+                TestType.DEV_COMPATIBLE,
+            ),
+            ("qiskit-experiments", "Tests", terra_stable_version, TestType.STANDARD),
+            ("qiskit-aer", "Tests%20Linux", terra_stable_version, TestType.STANDARD),
+        ]
+
+        for repo, workflow_name, terra_version, test_type in data:
+            self.logger.info("Updating %s repository...", repo)
+            _, results = RepositoryActionStatusRunner(
+                repo=repo, test_name=workflow_name, terra_version=terra_version
+            ).workload()
+            test_result = TestResult(
+                passed=all(r.ok for r in results),
+                terra_version=terra_version,
+                test_type=test_type,
+            )
+            result = self.dao.add_repo_test_result(
+                repo_url=repo_to_url_mapping.get(repo),
+                tier=Tier.MAIN,
+                test_result=test_result,
+            )
+            if result is None:
+                self.logger.warning(
+                    "Test result was not saved. There is not repo for url %s",
+                    repo,
+                )
+            self.logger.info("Test results for %s: %s", repo, test_result)
