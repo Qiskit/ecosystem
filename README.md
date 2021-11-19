@@ -38,9 +38,8 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 
 ## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
-- To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
-- After you successflully join the Ecosystem you can add your badge to your README.md:  
-`![ecosystem](https://raw.githubusercontent.com/qiskit-community/ecosystem/main/badges/` __nameofyourproject__ `.svg)`
+To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+
 
 ## Members ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
 
@@ -65,6 +64,7 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 |  Name | Description  |
 |---|---|
 | https://github.com/zlatko-minev/pyEPR | Qiskit Metal E&M analysis with Ansys and the energy-participation-ratio method is based on pyEPR. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/mickahell/qiskit-ecosystem_template | Project template for adding to Qiskit Ecosystem <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 
 
 ## Contribution Guidelines
