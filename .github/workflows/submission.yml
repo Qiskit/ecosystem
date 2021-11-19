@@ -36,13 +36,6 @@ jobs:
       tier: "COMMUNITY"
       python-version: "3.9"
     steps:
-    
-    - name: check variables
-      run: |
-        echo "Sender login : ${{ github.event.sender.login }}"
-        echo "Issue user : ${{ github.event.issue.user.login }}"
-        echo "Comment Author asso : ${{ github.event.comment.author_association }}"
-
     # setup deps
     - uses: actions/checkout@v2
     - name: Set up Python ${{ env.python-version }}
