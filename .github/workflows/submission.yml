@@ -36,10 +36,12 @@ jobs:
       tier: "COMMUNITY"
       python-version: "3.9"
     steps:
+    # Add label 'submission'
     - uses: actions-ecosystem/action-add-labels@v1
-      #if: ${{ startsWith(github.event.comment.body, '/add-labels') }}
+      if: ${{ github.event.action == 'opened' }}
       with:
         labels: submission
+        
     # setup deps
     - uses: actions/checkout@v2
     - name: Set up Python ${{ env.python-version }}
