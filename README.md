@@ -64,6 +64,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 |  Name | Description  |
 |---|---|
 | https://github.com/zlatko-minev/pyEPR | Qiskit Metal E&M analysis with Ansys and the energy-participation-ratio method is based on pyEPR. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/mickahell/qiskit-ecosystem_template | Project template for adding to Qiskit Ecosystem <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 
 
 ## Contribution Guidelines

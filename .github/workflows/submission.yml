@@ -127,7 +127,12 @@ jobs:
                                        --repo_affiliations="${{ steps.parse-issue.outputs.SUBMISSION_AFFILIATIONS }}" \
                                        --repo_labels="${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}"
         python manager.py generate_readme
-
+    - name: Generate badge
+      id: gen_badge
+      if: ${{ env.PASS_LOG == 'True' }}
+      run: |
+        curl "https://img.shields.io/static/v1?label=Qiskit Ecosystem&message=${{ steps.parse-issue.outputs.SUBMISSION_NAME }}&color=blueviolet" > badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg
+        
     - name: Commit changes and create Pull Request
       if: ${{ env.PASS_LOG == 'True' }}
       id: cpr
@@ -139,6 +144,8 @@ jobs:
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
           Closes #${{ github.event.issue.number }}
+          After the merge of this PR, you'll be able to add your badge to your README.md with:
+          `![ecosystem](https://raw.githubusercontent.com/qiskit-community/ecosystem/main/badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg)`
         branch: submission-${{ github.event.issue.number }}
         base: main
 

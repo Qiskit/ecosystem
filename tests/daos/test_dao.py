@@ -1,8 +1,9 @@
 """Tests for entities."""
 import os
 from unittest import TestCase
-from ecosystem.models import TestResult, TestType, Tier
+
 from ecosystem.daos import JsonDAO
+from ecosystem.models import TestResult, TestType, Tier
 from ecosystem.models.repository import Repository
 
 
