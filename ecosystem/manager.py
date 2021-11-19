@@ -71,12 +71,16 @@ class Manager:
         url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
             owner=owner, repo=repo
         )
+        repo_split = repo_url.split("/")
+        repo_name = repo_split[-1]
+
         response = requests.post(
             url,
             json={
                 "event_type": "check_project",
                 "client_payload": {
                     "repo_url": repo_url,
+                    "repo_name": repo_name,
                     "issue_id": issue_id,
                     "branch_name": branch_name,
                     "tier": tier,
@@ -97,12 +101,26 @@ class Manager:
 
     def get_projects_by_tier(self, tier: str) -> None:
         """Return projects by tier.
-
         Args:
             tier: tier of ecosystem
         """
         repositories = ",".join([repo.url for repo in self.dao.get_repos_by_tier(tier)])
         set_actions_output([("repositories", repositories)])
+
+    def update_badges(self):
+        """Updates badges for projects."""
+        badges_folder_path = "{}/badges".format(self.current_dir)
+
+        for project in self.dao.get_repos_by_tier("COMMUNITY"):
+            tests_passed = all(result.passed for result in project.tests_results)
+            color = "blueviolet" if tests_passed else "gray"
+            label = "Qiskit Ecosystem"
+            message = project.name
+            url = f"https://img.shields.io/static/v1?label={label}&message={message}&color={color}"
+
+            shields_request = requests.get(url)
+            with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
+                outfile.write(shields_request.content)
 
     @staticmethod
     def parser_issue(body: str) -> None:

@@ -6,6 +6,7 @@ on:
   #    "tier": "COMMUNITY", # 'Tier of project'
   #    "branch_name": "weekly-checks-1", # 'Branch name to push changes'
   #    "issue_id": 49, # 'Id of issue to put comments in'
+  #    "repo_name": "demo-implementation", # 'Repository name'
   #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL'
   #  }
   repository_dispatch:
@@ -79,15 +80,6 @@ jobs:
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
 
-    - name: Commit changes
-      run: |
-        git pull --rebase --autostash
-        git add ecosystem/resources/members.json
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
-        git push
-
     # check if any of the tests failed
     - name: Check return
       run: |
@@ -110,7 +102,16 @@ jobs:
       id: check_result
       run: |
         echo "Pass log is ${{ env.PASS_LOG }}"
-
+        
+    - name: Commit changes
+      run: |
+        git pull --rebase --autostash
+        git add ecosystem/resources/members.json
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
+        git push
+        
     - name: Create comment on failure
       if: ${{ env.PASS_LOG == 'False' }}
       uses: peter-evans/create-or-update-comment@v1
@@ -120,6 +121,7 @@ jobs:
         body: |
           Failed project check ${{ github.event.client_payload.repo_url }} :warning:
           Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
+          If you don't fix this issue, your badge will change to grey automatically.
 
           ### Checks Status ###
           Linter : ${{ steps.linter.outputs.result }}
