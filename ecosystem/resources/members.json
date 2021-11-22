@@ -359,18 +359,40 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637597210.809044,
-            "updated_at": 1637597210.809049,
+            "created_at": 1637598871.906623,
+            "updated_at": 1637598871.906625,
             "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637598871.906568
+                },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637597210.808673
+                    "timestamp": 1637598871.906594
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.0",
+                    "timestamp": 1637598871.906596
                 }
             ],
-            "styles_results": [],
-            "coverages_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "5": {
