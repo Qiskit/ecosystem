@@ -6,19 +6,68 @@ from unittest import TestCase
 
 import responses
 
+from ecosystem.daos import JsonDAO
 from ecosystem.manager import Manager
+from ecosystem.models import TestResult, Tier, TestType
+from ecosystem.models.repository import Repository
+
+
+def get_community_repo() -> Repository:
+    """Return main mock repo."""
+    return Repository(
+        name="mock-qiskit-terra-with-success-dev-test",
+        url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
+        description="Mock description for repo. wsdt",
+        licence="Apache 2.0",
+        labels=["mock", "tests", "wsdt"],
+        tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
+        tier=Tier.COMMUNITY,
+    )
+
+
+def get_community_fail_repo() -> Repository:
+    """Return main mock repo."""
+    return Repository(
+        name="mock-qiskit-terra-with-fail-dev-test",
+        url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
+        description="Mock description for repo. wsdt",
+        licence="Apache 2.0",
+        labels=["mock", "tests", "wsdt"],
+        tests_results=[TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
+        tier=Tier.COMMUNITY,
+    )
 
 
 class TestManager(TestCase):
     """Test class for manager cli."""
 
     def setUp(self) -> None:
+        self.path = "../resources"
+        self.members_path = "{}/members.json".format(self.path)
+        self._delete_members_json()
+        if not os.path.exists(self.path):
+            os.makedirs(self.path)
         current_dir = os.path.dirname(os.path.abspath(__file__))
         with open("{}/resources/issue.md".format(current_dir), "r") as issue_body_file:
             self.issue_body = issue_body_file.read()
 
+    def tearDown(self) -> None:
+        self._delete_members_json()
+
+    def _delete_members_json(self):
+        """Deletes database file."""
+        if os.path.exists(self.members_path):
+            os.remove(self.members_path)
+        if not os.path.exists(self.path):
+            os.makedirs(self.path)
+
     def test_parser_issue(self):
-        """ "Tests issue parsing function"""
+        """ "Tests issue parsing function.
+        Function: Manager
+                -> parser_issue
+        Args:
+            issue_body
+        """
         captured_output = io.StringIO()
         sys.stdout = captured_output
         Manager.parser_issue(self.issue_body)
@@ -53,7 +102,13 @@ class TestManager(TestCase):
 
     @responses.activate
     def test_dispatch_repository(self):
-        """Test github dispatch event."""
+        """Test github dispatch event.
+        Function: Manager
+                -> dispatch_check_workflow
+        Args:
+            Infos about repo
+        Return: response.status
+        """
         owner = "qiskit-community"
         repo = "ecosystem"
         responses.add(
@@ -78,6 +133,45 @@ class TestManager(TestCase):
             repo=repo,
         )
         self.assertTrue(response)
+
+    def test_update_badges(self):
+        """Tests creating badges."""
+        self._delete_members_json()
+
+        commu_success = get_community_repo()
+        commu_failed = get_community_fail_repo()
+        dao = JsonDAO(self.path)
+
+        # insert entry
+        dao.insert(commu_success)
+        dao.insert(commu_failed)
+
+        manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/")
+        manager.resources_dir = "../resources"
+        manager.dao = dao
+
+        # create badges
+        manager.update_badges()
+
+        badges_folder_path = "{}/badges".format(manager.current_dir)
+        self.assertTrue(
+            os.path.isfile(f"{badges_folder_path}/{commu_success.name}.svg")
+        )
+        self.assertTrue(os.path.isfile(f"{badges_folder_path}/{commu_failed.name}.svg"))
+
+        # check version status
+        with open(
+            f"{badges_folder_path}/{commu_success.name}.svg", "r"
+        ) as svg_blueviolet:
+            svg_success = svg_blueviolet.read()
+        self.assertTrue('fill="blueviolet"' in svg_success)
+
+        with open(f"{badges_folder_path}/{commu_failed.name}.svg", "r") as svg_grey:
+            svg_failed = svg_grey.read()
+        self.assertTrue('fill="blueviolet"' not in svg_failed)
+
+        os.remove(f"{badges_folder_path}/{commu_success.name}.svg")
+        os.remove(f"{badges_folder_path}/{commu_failed.name}.svg")
 
     @responses.activate
     def test_fetch_and_update_main_projects(self):

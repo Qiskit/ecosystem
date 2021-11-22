@@ -55,16 +55,32 @@ class Manager:
         owner: str = "qiskit-community",
         repo: str = "ecosystem",
     ) -> bool:
-        """Dispatch event to trigger check workflow."""
+        """Dispatch event to trigger check workflow.
+
+        Args:
+            repo_url: url of the repo
+            issue_id: id for the issue
+            branch_name: name of the branch
+            tier: tier of the project
+            token: token base on the date
+            owner: "qiskit-community" parameters
+            repo: "ecosystem"
+
+        Return: true
+        """
         url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
             owner=owner, repo=repo
         )
+        repo_split = repo_url.split("/")
+        repo_name = repo_split[-1]
+
         response = requests.post(
             url,
             json={
                 "event_type": "check_project",
                 "client_payload": {
                     "repo_url": repo_url,
+                    "repo_name": repo_name,
                     "issue_id": issue_id,
                     "branch_name": branch_name,
                     "tier": tier,
@@ -85,12 +101,26 @@ class Manager:
 
     def get_projects_by_tier(self, tier: str) -> None:
         """Return projects by tier.
-
         Args:
             tier: tier of ecosystem
         """
         repositories = ",".join([repo.url for repo in self.dao.get_repos_by_tier(tier)])
         set_actions_output([("repositories", repositories)])
+
+    def update_badges(self):
+        """Updates badges for projects."""
+        badges_folder_path = "{}/badges".format(self.current_dir)
+
+        for project in self.dao.get_repos_by_tier("COMMUNITY"):
+            tests_passed = all(result.passed for result in project.tests_results)
+            color = "blueviolet" if tests_passed else "gray"
+            label = "Qiskit Ecosystem"
+            message = project.name
+            url = f"https://img.shields.io/static/v1?label={label}&message={message}&color={color}"
+
+            shields_request = requests.get(url)
+            with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
+                outfile.write(shields_request.content)
 
     @staticmethod
     def parser_issue(body: str) -> None:
@@ -98,6 +128,7 @@ class Manager:
 
         Args:
             body: body of the created issue
+
         Returns:
             logs output
             We want to give the result of the parsing issue to the GitHub action
@@ -130,6 +161,7 @@ class Manager:
         repo_labels: Tuple[str],
     ) -> None:
         """Adds repo to list of entries.
+
         Args:
             repo_name: repo name
             repo_link: repo url
@@ -139,6 +171,7 @@ class Manager:
             repo_licence: repo licence
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
+
         Returns:
             JsonDAO: Integer
         """
@@ -188,6 +221,7 @@ class Manager:
             test_type: [dev, stable]
             ecosystem_deps: extra dependencies to install for tests
             ecosystem_additional_commands: extra commands to run before tests
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
@@ -249,6 +283,7 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             style_type: [dev, stable]
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
@@ -282,6 +317,7 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             coverage_type: [dev, stable]
+
         Return:
             output: log PASS
             We want to give the result of the test to the GitHub action
@@ -311,7 +347,16 @@ class Manager:
     def python_dev_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
-        """Runs tests against dev version of qiskit."""
+        """Runs tests against dev version of qiskit.
+
+        Args:
+            repo_url: repository url
+            tier: tier of project
+            python_version: [py39, py37]
+
+        Return:
+            _run_python_tests def
+        """
         # hack to fix tox's inability to install proper version of
         # qiskit through github via deps configuration
         additional_commands = [
@@ -330,7 +375,15 @@ class Manager:
     def python_stable_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
-        """Runs tests against stable version of qiskit."""
+        """Runs tests against stable version of qiskit.
+        Args:
+            repo_url: repository url
+            tier: tier of project
+            python_version: [py39, py37]
+
+        Return:
+            _run_python_tests def
+        """
         return self._run_python_tests(
             repo_url=repo_url,
             tier=tier,
@@ -342,7 +395,15 @@ class Manager:
     def python_standard_tests(
         self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
     ):
-        """Runs tests with provided confiuration."""
+        """Runs tests with provided confiuration.
+        Args:
+            repo_url: repository url
+            tier: tier of project
+            python_version: [py39, py37]
+
+        Return:
+            _run_python_tests def
+        """
         return self._run_python_tests(
             repo_url=repo_url,
             tier=tier,
