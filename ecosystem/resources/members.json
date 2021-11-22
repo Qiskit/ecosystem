@@ -265,6 +265,104 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "COMMUNITY"
+        },
+        "3": {
+            "name": "c3",
+            "url": "https://github.com/q-optimize/c3",
+            "description": "The C3 package is intended to close the loop between open-loop control optimization, control pulse calibration, and model-matching based on calibration data.",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": null,
+            "labels": [
+                "plugin"
+            ],
+            "created_at": 1637596839.30196,
+            "updated_at": 1637596839.301964,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637596839.301932
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.0",
+                    "timestamp": 1637596839.301938
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637596839.301462
+                }
+            ],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "COMMUNITY"
+        },
+        "4": {
+            "name": "qiskit-superstaq",
+            "url": "https://github.com/SupertechLabs/qiskit-superstaq",
+            "description": "This package is used to access SuperstaQ via a Web API through Qiskit. Qiskit programmers can take advantage of the applications, pulse level optimizations, and write-once-target-all features of SuperstaQ with this package.",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": null,
+            "labels": [
+                "plugin"
+            ],
+            "created_at": 1637597210.809044,
+            "updated_at": 1637597210.809049,
+            "tests_results": [
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637597210.808673
+                }
+            ],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "COMMUNITY"
+        },
+        "5": {
+            "name": "qtcodes",
+            "url": "https://github.com/yaleqc/qtcodes",
+            "description": "Qiskit Topological Codes",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "",
+            "labels": [
+                "plugin"
+            ],
+            "created_at": 1637597584.305325,
+            "updated_at": 1637597584.305355,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "COMMUNITY"
+        },
+        "6": {
+            "name": "kaleidoscope",
+            "url": "https://github.com/QuSTaR/kaleidoscope",
+            "description": "Kaleidoscope",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "",
+            "labels": [
+                "plugin"
+            ],
+            "created_at": 1637597665.905221,
+            "updated_at": 1637597665.905234,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "COMMUNITY"
         }
     }
 }
