@@ -255,15 +255,44 @@
             "licence": "Apache License 2.0",
             "contact_info": "michael.rollin@protonmail.com",
             "alternatives": "_No response_",
-            "affiliations": "Qiskit community",
+            "affiliations": null,
             "labels": [
                 "tool"
             ],
-            "created_at": 1637357479.804299,
-            "updated_at": 1637357479.804304,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1637598830.773871,
+            "updated_at": 1637598830.773872,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637598830.773827
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637598830.773837
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.19.0",
+                    "timestamp": 1637598830.773839
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": true
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "3": {
