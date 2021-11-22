@@ -65,6 +65,10 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 |---|---|
 | https://github.com/zlatko-minev/pyEPR | Qiskit Metal E&M analysis with Ansys and the energy-participation-ratio method is based on pyEPR. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | https://github.com/mickahell/qiskit-ecosystem_template | Project template for adding to Qiskit Ecosystem <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
+| https://github.com/q-optimize/c3 | The C3 package is intended to close the loop between open-loop control optimization, control pulse calibration, and model-matching based on calibration data. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/SupertechLabs/qiskit-superstaq | This package is used to access SuperstaQ via a Web API through Qiskit. Qiskit programmers can take advantage of the applications, pulse level optimizations, and write-once-target-all features of SuperstaQ with this package. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/yaleqc/qtcodes | Qiskit Topological Codes <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/QuSTaR/kaleidoscope | Kaleidoscope <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 
 
 ## Contribution Guidelines
