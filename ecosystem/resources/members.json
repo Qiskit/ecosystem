@@ -222,30 +222,46 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1635277702.522329,
-            "updated_at": 1635277702.52233,
+            "created_at": 1637598842.741817,
+            "updated_at": 1637598842.74182,
             "tests_results": [
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1635277702.522301
-                },
                 {
                     "test_type": "STANDARD",
                     "passed": false,
                     "terra_version": "0.18.3",
-                    "timestamp": 1635277702.522306
+                    "timestamp": 1637598842.74177
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1637598842.741779
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637598842.741782
                 },
                 {
                     "test_type": "DEV_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.19.0",
-                    "timestamp": 1635277702.521839
+                    "timestamp": 1637598842.741783
                 }
             ],
-            "styles_results": [],
-            "coverages_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "2": {
@@ -255,15 +271,44 @@
             "licence": "Apache License 2.0",
             "contact_info": "michael.rollin@protonmail.com",
             "alternatives": "_No response_",
-            "affiliations": "Qiskit community",
+            "affiliations": null,
             "labels": [
                 "tool"
             ],
-            "created_at": 1637357479.804299,
-            "updated_at": 1637357479.804304,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1637598830.773871,
+            "updated_at": 1637598830.773872,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637598830.773827
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637598830.773837
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.19.0",
+                    "timestamp": 1637598830.773839
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": true
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "3": {
@@ -277,30 +322,40 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637596839.30196,
-            "updated_at": 1637596839.301964,
+            "created_at": 1637601916.875402,
+            "updated_at": 1637601916.875404,
             "tests_results": [
                 {
                     "test_type": "STANDARD",
                     "passed": true,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637596839.301932
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1637596839.301938
+                    "timestamp": 1637601916.875342
                 },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": true,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637596839.301462
+                    "timestamp": 1637601916.875354
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.0",
+                    "timestamp": 1637601916.875356
                 }
             ],
-            "styles_results": [],
-            "coverages_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "4": {
@@ -314,18 +369,40 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637597210.809044,
-            "updated_at": 1637597210.809049,
+            "created_at": 1637598871.906623,
+            "updated_at": 1637598871.906625,
             "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637598871.906568
+                },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637597210.808673
+                    "timestamp": 1637598871.906594
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.0",
+                    "timestamp": 1637598871.906596
                 }
             ],
-            "styles_results": [],
-            "coverages_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "5": {
@@ -335,15 +412,44 @@
             "licence": "Apache-2.0 License",
             "contact_info": "",
             "alternatives": "",
-            "affiliations": "",
+            "affiliations": null,
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637597584.305325,
-            "updated_at": 1637597584.305355,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1637598624.203397,
+            "updated_at": 1637598624.203399,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1637598624.203356
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1637598624.203367
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1637598624.203369
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "6": {
@@ -353,15 +459,44 @@
             "licence": "Apache-2.0 License",
             "contact_info": "",
             "alternatives": "",
-            "affiliations": "",
+            "affiliations": null,
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637597665.905221,
-            "updated_at": 1637597665.905234,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1637598913.696201,
+            "updated_at": 1637598913.696202,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1637598913.696168
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.18.3",
+                    "timestamp": 1637598913.696176
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.0",
+                    "timestamp": 1637598913.696178
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "COMMUNITY"
         }
     }
