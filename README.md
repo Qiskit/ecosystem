@@ -69,6 +69,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | https://github.com/SupertechLabs/qiskit-superstaq | This package is used to access SuperstaQ via a Web API through Qiskit. Qiskit programmers can take advantage of the applications, pulse level optimizations, and write-once-target-all features of SuperstaQ with this package. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | https://github.com/yaleqc/qtcodes | Qiskit Topological Codes <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | https://github.com/QuSTaR/kaleidoscope | Kaleidoscope <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/mickahell/qiskit-ecosystem_template | My awesome project ! <br/>  ![core](https://img.shields.io/badge/paper-implementation-gray.svg)  <br/> |
 
 
 ## Contribution Guidelines

@@ -275,26 +275,26 @@
             "labels": [
                 "tool"
             ],
-            "created_at": 1637598830.773871,
-            "updated_at": 1637598830.773872,
+            "created_at": 1638725396.209793,
+            "updated_at": 1638725396.209796,
             "tests_results": [
                 {
                     "test_type": "STANDARD",
                     "passed": true,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637598830.773827
+                    "timestamp": 1638725396.209749
                 },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": true,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637598830.773837
+                    "timestamp": 1638725396.209755
                 },
                 {
                     "test_type": "DEV_COMPATIBLE",
                     "passed": true,
                     "terra_version": "0.19.0",
-                    "timestamp": 1637598830.773839
+                    "timestamp": 1638725396.209238
                 }
             ],
             "styles_results": [
@@ -497,6 +497,24 @@
                     "passed": false
                 }
             ],
+            "tier": "COMMUNITY"
+        },
+        "7": {
+            "name": "qiskit-ecosystem_template",
+            "url": "https://github.com/mickahell/qiskit-ecosystem_template",
+            "description": "My awesome project !",
+            "licence": "Apache License 2.0",
+            "contact_info": "toto@qiskit.org",
+            "alternatives": "_No response_",
+            "affiliations": "Me, my and myself",
+            "labels": [
+                "paper-implementation"
+            ],
+            "created_at": 1638725396.576341,
+            "updated_at": 1638725396.576346,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "COMMUNITY"
         }
     }
