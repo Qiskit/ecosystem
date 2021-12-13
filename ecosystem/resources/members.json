@@ -507,7 +507,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["plugin"],
+            "labels": [
+                "plugin"
+            ],
             "created_at": 1639429974.161801,
             "updated_at": 1639429974.161815,
             "tests_results": [],
@@ -523,7 +525,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["algorithms"],
+            "labels": [
+                "algorithms"
+            ],
             "created_at": 1639429974.16335,
             "updated_at": 1639429974.163353,
             "tests_results": [],
@@ -539,7 +543,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["library"],
+            "labels": [
+                "library"
+            ],
             "created_at": 1639429974.164257,
             "updated_at": 1639429974.16426,
             "tests_results": [],
@@ -555,7 +561,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["library"],
+            "labels": [
+                "library"
+            ],
             "created_at": 1639429974.165275,
             "updated_at": 1639429974.165278,
             "tests_results": [],
@@ -571,7 +579,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["library"],
+            "labels": [
+                "library"
+            ],
             "created_at": 1639429974.166141,
             "updated_at": 1639429974.166144,
             "tests_results": [],
@@ -587,7 +597,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["library"],
+            "labels": [
+                "library"
+            ],
             "created_at": 1639429974.167136,
             "updated_at": 1639429974.167139,
             "tests_results": [],
@@ -603,7 +615,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["library"],
+            "labels": [
+                "library"
+            ],
             "created_at": 1639429974.168246,
             "updated_at": 1639429974.168249,
             "tests_results": [],
@@ -619,7 +633,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["plugin"],
+            "labels": [
+                "plugin"
+            ],
             "created_at": 1639429974.169158,
             "updated_at": 1639429974.16916,
             "tests_results": [],
@@ -635,7 +651,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["library"],
+            "labels": [
+                "library"
+            ],
             "created_at": 1639429974.170087,
             "updated_at": 1639429974.17009,
             "tests_results": [],
@@ -651,7 +669,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["algorithms"],
+            "labels": [
+                "algorithms"
+            ],
             "created_at": 1639429974.171066,
             "updated_at": 1639429974.171068,
             "tests_results": [],
@@ -667,7 +687,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["game"],
+            "labels": [
+                "game"
+            ],
             "created_at": 1639429974.172169,
             "updated_at": 1639429974.172172,
             "tests_results": [],
@@ -683,12 +705,24 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["tool"],
-            "created_at": 1639429974.173188,
-            "updated_at": 1639429974.173191,
+            "labels": [
+                "tool"
+            ],
+            "created_at": 1639430646.510188,
+            "updated_at": 1639430646.510196,
             "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "19": {
@@ -699,7 +733,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["library"],
+            "labels": [
+                "library"
+            ],
             "created_at": 1639429974.17426,
             "updated_at": 1639429974.174263,
             "tests_results": [],
@@ -715,7 +751,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["game"],
+            "labels": [
+                "game"
+            ],
             "created_at": 1639429974.175281,
             "updated_at": 1639429974.175284,
             "tests_results": [],
@@ -731,7 +769,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["tool"],
+            "labels": [
+                "tool"
+            ],
             "created_at": 1639429974.176524,
             "updated_at": 1639429974.176527,
             "tests_results": [],
@@ -747,7 +787,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["library"],
+            "labels": [
+                "library"
+            ],
             "created_at": 1639429974.177636,
             "updated_at": 1639429974.177639,
             "tests_results": [],
@@ -763,7 +805,9 @@
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": ["game"],
+            "labels": [
+                "game"
+            ],
             "created_at": 1639429974.178738,
             "updated_at": 1639429974.178741,
             "tests_results": [],
