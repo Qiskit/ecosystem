@@ -69,6 +69,23 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | https://github.com/SupertechLabs/qiskit-superstaq | This package is used to access SuperstaQ via a Web API through Qiskit. Qiskit programmers can take advantage of the applications, pulse level optimizations, and write-once-target-all features of SuperstaQ with this package. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | https://github.com/yaleqc/qtcodes | Qiskit Topological Codes <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | https://github.com/QuSTaR/kaleidoscope | Kaleidoscope <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/CQCL/pytket-extensions | repository contains a collection of Python extension modules for CQC's pytket quantum SDK. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/QuTech-Delft/quantuminspire | platform allows to execute quantum algorithms using the cQASM language. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  <br/> |
+| https://github.com/unitaryfund/mitiq | Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| https://github.com/PennyLaneAI/pennylane-qiskit | The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| https://github.com/artificial-brain/quantumcat | quantumcat is a platform-independent, open-source, high-level quantum computing library, which allows the quantum community to focus on developing platform-independent quantum applications without much effort <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| https://github.com/Blueqat/Blueqat | A quantum computing SDK <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| https://github.com/qctrl/python-open-controls | Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| https://github.com/rigetti/qiskit-rigetti | Rigetti Provider for Qiskit <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| https://github.com/acuto/quantum-dev | A multi-framework development environment for Quantum Computing on Kubernetes <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| https://github.com/carstenblank/dc-qiskit-algorithms | Data Cybernetics qiskit-algorithms <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  <br/> |
+| https://github.com/hennlo/Q-shall-not-pass | This game was built as part of the lecture: Quantum Information at the University of Basel in the Spring Semester of 2021 <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
+| https://github.com/infiniteregrets/QiskitBot | A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
+| https://github.com/mit-han-lab/pytorch-quantum | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| https://github.com/qonwaygameoflife/qonwaygameoflife | Qiskit Camp - Hackaton Madrid 2019 - Quantum Game of Life <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
+| https://github.com/MaxKelsen/quantumcircuit_gym | A custom gym environment for creating quantum circuits using IBMQ's qiskit library for python <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
+| https://github.com/entropicalabs/polyadicQML | A python library to define, train and deploy Polyadic Quantum Machine Learning models <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| https://github.com/dartmouth-cs98/Quantum-Tetris | Quantum Tetris is your traditional tetris game which has several twists based on the concepts of quantum computing. <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 
 
 ## Contribution Guidelines
