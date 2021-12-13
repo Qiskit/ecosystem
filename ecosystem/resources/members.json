@@ -510,11 +510,26 @@
             "labels": [
                 "plugin"
             ],
+<<<<<<< Updated upstream
             "created_at": 1639429974.161801,
             "updated_at": 1639429974.161815,
+=======
+            "created_at": 1639430656.301773,
+            "updated_at": 1639430656.301782,
+>>>>>>> Stashed changes
             "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "COMMUNITY"
         },
         "8": {
@@ -708,8 +723,13 @@
             "labels": [
                 "tool"
             ],
+<<<<<<< Updated upstream
             "created_at": 1639430646.510188,
             "updated_at": 1639430646.510196,
+=======
+            "created_at": 1639429974.173188,
+            "updated_at": 1639429974.173191,
+>>>>>>> Stashed changes
             "tests_results": [],
             "styles_results": [
                 {
