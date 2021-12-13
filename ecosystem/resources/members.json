@@ -565,6 +565,9 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -753,11 +756,48 @@
             "labels": [
                 "algorithms"
             ],
+<<<<<<< Updated upstream
             "created_at": 1639429974.171066,
             "updated_at": 1639429974.171068,
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
+=======
+            "created_at": 1639430924.001154,
+            "updated_at": 1639430924.001155,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1639430924.001108
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1639430924.00112
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1639430924.001123
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
+>>>>>>> Stashed changes
             "tier": "COMMUNITY"
         },
         "17": {
@@ -776,6 +816,9 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -823,9 +866,12 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             "created_at": 1639430646.510188,
             "updated_at": 1639430646.510196,
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -870,6 +916,9 @@
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
