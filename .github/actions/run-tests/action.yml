@@ -13,6 +13,10 @@ inputs:
   tier:
     description: "Tier of repository"
     required: true
+  run_name:
+    description: "Name of execution"
+    required: false
+    default: ""
 runs:
   using: "composite"
   steps:
@@ -21,23 +25,23 @@ runs:
       run: |
         if [ "${{ inputs.check_type }}" == "test_standard" ]; then
           echo "Running repository tests for ${{inputs.repo_url}}..."
-          python manager.py python_standard_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
+          python manager.py python_standard_tests ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
         fi
         if [ "${{ inputs.check_type }}" == "test_stable" ]; then
           echo "Running Qiskit stable tests for ${{inputs.repo_url}}..."
-          python manager.py python_stable_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
+          python manager.py python_stable_tests ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
         fi
         if [ "${{ inputs.check_type }}" == "test_dev" ]; then
           echo "Running Qiskit dev tests for ${{inputs.repo_url}}..."
-          python manager.py python_dev_tests ${{inputs.repo_url}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
+          python manager.py python_dev_tests ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --python_version=${{inputs.tox_env}} --tier=${{ inputs.tier }}
         fi
         if [ "${{ inputs.check_type }}" == "lint" ]; then
           echo "Running lint tests for ${{inputs.repo_url}}..."
-          python manager.py python_styles_check ${{inputs.repo_url}} --tier=${{inputs.tier}} --style_type="pylint"
+          python manager.py python_styles_check ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --tier=${{inputs.tier}} --style_type="pylint"
         fi
         if [ "${{ inputs.check_type }}" == "coverage" ]; then
           echo "Running coverage tests for ${{inputs.repo_url}}..."
-          python manager.py python_coverage ${{inputs.repo_url}} --tier=${{inputs.tier}} --coverage_type=""
+          python manager.py python_coverage ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --tier=${{inputs.tier}} --coverage_type=""
         fi
       shell: bash
 outputs:
