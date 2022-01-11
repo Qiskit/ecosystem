@@ -35,7 +35,7 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
         commit-message: Batch checks for ${{ steps.vars.outputs.datetime }}
-        title: Batch checks for ${{ steps.vars.outputs.datetime }}
+        title: Batch checks | ${{ github.event.inputs.tier }} | ${{ steps.vars.outputs.datetime }}
         body: |
           Batch checks
           Time: ${{ steps.vars.outputs.datetime }}
