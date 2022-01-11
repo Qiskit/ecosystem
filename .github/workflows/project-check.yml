@@ -111,10 +111,11 @@ jobs:
     - name: Commit changes
       run: |
         git pull --rebase --autostash
-        git add ecosystem/resources/members.json
+        git add ecosystem/resources/
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
+        git pull --rebase --autostash
         git push
         
     - name: Create comment on failure
