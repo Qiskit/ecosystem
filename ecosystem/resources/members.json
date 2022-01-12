@@ -539,7 +539,21 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": ["requirements.txt", "requirements-dev.txt"],
+                "extra_dependencies": ["qiskit"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn ecosystem tests"],
+                "tests_command": ["pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit"]
+            }
         },
         "7": {
             "name": "pytket-extensions",

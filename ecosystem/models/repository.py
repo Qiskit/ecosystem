@@ -3,6 +3,7 @@ import pprint
 from datetime import datetime
 from typing import Optional, List
 
+from . import RepositoryConfiguration
 from .test_results import TestResult, StyleResult, CoverageResult
 from .tier import Tier
 from .utils import JsonSerializable
@@ -27,6 +28,7 @@ class Repository(JsonSerializable):
         tests_results: Optional[List[TestResult]] = None,
         styles_results: Optional[List[TestResult]] = None,
         coverages_results: Optional[List[TestResult]] = None,
+        configuration: Optional[RepositoryConfiguration] = None,
     ):
         """Repository class.
 
@@ -63,6 +65,7 @@ class Repository(JsonSerializable):
         self.styles_results = styles_results if styles_results else []
         self.coverages_results = coverages_results if coverages_results else []
         self.tier = tier
+        self.configuration = configuration
 
     @classmethod
     def from_dict(cls, dictionary: dict):
@@ -90,6 +93,12 @@ class Repository(JsonSerializable):
                 for r in dictionary.get("coverages_results", [])
             ]
 
+        configuration = None
+        if dictionary.get("configuration") is not None:
+            configuration = RepositoryConfiguration.from_dict(
+                dictionary.get("configuration")
+            )
+
         return Repository(
             name=dictionary.get("name"),
             url=dictionary.get("url"),
@@ -102,6 +111,7 @@ class Repository(JsonSerializable):
             tests_results=tests_results,
             styles_results=styles_results,
             coverages_results=coverages_results,
+            configuration=configuration,
         )
 
     def __eq__(self, other: "Repository"):

@@ -294,7 +294,7 @@ class Manager:
         self,
         run_name: str,
         repo_url: str,
-        tier: str,  # pylint: disable=unused-argument
+        tier: str,
         python_version: str,
         test_type: str,
         ecosystem_deps: Optional[List[str]] = None,
@@ -317,12 +317,18 @@ class Manager:
         """
         ecosystem_deps = ecosystem_deps or []
         ecosystem_additional_commands = ecosystem_additional_commands or []
+        repository = self.dao.get_by_url(repo_url, tier=tier)
+        repo_configuration = (
+            repository.configuration if repository is not None else None
+        )
+
         runner = PythonTestsRunner(
             repo_url,
             working_directory=self.resources_dir,
             ecosystem_deps=ecosystem_deps,
             ecosystem_additional_commands=ecosystem_additional_commands,
             python_version=python_version,
+            repo_config=repo_configuration,
         )
         terra_version, results = runner.run()
         if len(results) > 0:
