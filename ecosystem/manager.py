@@ -392,7 +392,7 @@ class Manager:
         runner = PythonStyleRunner(
             repo_url,
             working_directory=self.resources_dir,
-            repo_config=repo_configuration
+            repo_config=repo_configuration,
         )
         _, results = runner.run()
         if len(results) > 0:
@@ -436,7 +436,7 @@ class Manager:
         runner = PythonCoverageRunner(
             repo_url,
             working_directory=self.resources_dir,
-            repo_config=repo_configuration
+            repo_config=repo_configuration,
         )
         _, results = runner.run()
         if len(results) > 0:
