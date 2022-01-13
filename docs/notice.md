@@ -58,5 +58,6 @@ If you need some custom in your test command or coverage check command, please a
 ### qiskit <a class="anchor" id="qiskit"></a>
 Our final requierement is to be compatible without any warning or breaking change with the latest stable version of Qiskit. Also we ask to be compatible with the beta version of Terra (no breaking change) in order to be ready for futur release and prevent bug.
 
-## Project template <a class="anchor" id="template"></a>
-A project template as been create with all the minimal requierements and automatisation to checks the tests, coverage, styles and qiskit compatibilities along the life time of your project. You can use it as github repo template when you create your project or copying the config files.
+## [Project template](https://github.com/mickahell/qiskit-ecosystem_template) <a class="anchor" id="template"></a>
+A project template as been create with all the minimal requierements and automatisation to checks the tests, coverage, styles and qiskit compatibilities along the life time of your project. You can use it as github repo template when you create your project or copying the config files.  
+**Find it --> [here](https://github.com/mickahell/qiskit-ecosystem_template)**
