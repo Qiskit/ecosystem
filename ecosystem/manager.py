@@ -1,6 +1,10 @@
 """Manager class for controlling all CLI functions."""
+import glob
+import json
 import os
-from typing import Optional, List, Tuple
+import shutil
+import uuid
+from typing import Optional, List, Tuple, Union
 
 import requests
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -203,10 +207,94 @@ class Manager:
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
 
+    def _save_temp_test_result(
+        self,
+        folder_name: str,
+        repo_url: str,
+        test_result: Union[TestResult, StyleResult, CoverageResult],
+    ) -> None:
+        """Saves result to temp file.
+
+        Args:
+            folder_name: name of folder to store temp files
+            repo_url: project repo url
+            test_result: test result
+        """
+        folder_full_path = "{}/{}".format(self.resources_dir, folder_name)
+        # make dir
+        if not os.path.exists(folder_full_path):
+            os.makedirs(folder_full_path)
+
+        file_name = "{}/{}.json".format(folder_full_path, uuid.uuid4())
+
+        with open(file_name, "w") as json_temp_file:
+            json_temp_file.write(
+                json.dumps(
+                    {
+                        "repo_url": repo_url,
+                        "type": type(test_result).__name__,
+                        "test_result": test_result.to_dict(),
+                    }
+                )
+            )
+
+    def process_temp_test_results_files(self, folder_name: str, tier: str) -> None:
+        """Process temp test results files and store data to DB.
+
+        Args:
+            folder_name: folder to store temp results
+            tier: tier of project
+
+        Returns: number of saved entries
+        """
+
+        # read all files and push to DB
+        folder_full_path = "{}/{}".format(self.resources_dir, folder_name)
+        for path in glob.glob("{}/*.json".format(folder_full_path)):
+            self.logger.info("Processing %s file...", path)
+            with open(path, "r") as json_temp_file:
+                json_temp_file_data = json.load(json_temp_file)
+                repo_url = json_temp_file_data.get("repo_url")
+                test_type = json_temp_file_data.get("type")
+                test_result = json_temp_file_data.get("test_result")
+                self.logger.info(
+                    "Processing test results for project: " "%s %s",
+                    repo_url,
+                    test_result,
+                )
+                res = None
+                if test_type == "TestResult":
+                    tres = TestResult.from_dict(test_result)
+                    res = self.dao.add_repo_test_result(
+                        repo_url=repo_url, tier=tier, test_result=tres
+                    )
+                elif test_type == "CoverageResult":
+                    cres = CoverageResult.from_dict(test_result)
+                    res = self.dao.add_repo_coverage_result(
+                        repo_url=repo_url, tier=tier, coverage_result=cres
+                    )
+                elif test_type == "StyleResult":
+                    sres = StyleResult.from_dict(test_result)
+                    res = self.dao.add_repo_style_result(
+                        repo_url=repo_url, tier=tier, style_result=sres
+                    )
+                else:
+                    raise NotImplementedError(
+                        "Test type {} is not supported".format(test_type)
+                    )
+                if res is None:
+                    self.logger.warning("Result was not saved for %s", repo_url)
+
+        # remove temp files
+        if os.path.exists(folder_full_path):
+            self.logger.info("Removing temp folder %s", folder_full_path)
+            shutil.rmtree(folder_full_path)
+
     def _run_python_tests(
         self,
+        run_name: str,
         repo_url: str,
-        tier: str,
+        tier: str,  # pylint: disable=unused-argument
         python_version: str,
         test_type: str,
         ecosystem_deps: Optional[List[str]] = None,
@@ -215,6 +303,7 @@ class Manager:
         """Runs tests using python runner.
 
         Args:
+            run_name (str): name of the run
             repo_url: repository url
             tier: tier of project
             python_version: ex: py36, py37 etc
@@ -251,15 +340,10 @@ class Manager:
                 terra_version=terra_version,
                 test_type=test_type,
             )
-            # save test res to db
-            result = self.dao.add_repo_test_result(
-                repo_url=repo_url, tier=tier, test_result=test_result
-            )
-            # print report
-            if result is None:
-                self.logger.warning(
-                    "Test result was not saved." "There is not repo for url %s",
-                    repo_url,
+            # saving results to temp files
+            if run_name:
+                self._save_temp_test_result(
+                    folder_name=run_name, repo_url=repo_url, test_result=test_result
                 )
             self.logger.info("Test results for %s: %s", repo_url, test_result)
             set_actions_output(
@@ -276,10 +360,17 @@ class Manager:
 
         return terra_version
 
-    def python_styles_check(self, repo_url: str, tier: str, style_type: str):
+    def python_styles_check(
+        self,
+        run_name: str,
+        repo_url: str,
+        tier: str,  # pylint: disable=unused-argument
+        style_type: str,
+    ):
         """Runs tests using python runner.
 
         Args:
+            run_name: name of the run
             repo_url: repository url
             tier: tier of project
             style_type: [dev, stable]
@@ -294,15 +385,10 @@ class Manager:
             style_result = StyleResult(
                 passed=all(r.ok for r in results), style_type=style_type
             )
-            # save test res to db
-            result = self.dao.add_repo_style_result(
-                repo_url=repo_url, tier=tier, style_result=style_result
-            )
-            # print report
-            if result is None:
-                self.logger.warning(
-                    "Test result was not saved." "There is not repo for url %s",
-                    repo_url,
+            # saving results to temp files
+            if run_name:
+                self._save_temp_test_result(
+                    folder_name=run_name, repo_url=repo_url, test_result=style_result
                 )
             self.logger.info("Test results for %s: %s", repo_url, style_result)
             set_actions_output([("PASS", style_result.passed)])
@@ -310,10 +396,17 @@ class Manager:
             self.logger.warning("Runner returned 0 results.")
             set_actions_output([("PASS", "False")])
 
-    def python_coverage(self, repo_url: str, tier: str, coverage_type: str):
+    def python_coverage(
+        self,
+        run_name: str,
+        repo_url: str,
+        tier: str,  # pylint: disable=unused-argument
+        coverage_type: str,
+    ):
         """Runs tests using python runner.
 
         Args:
+            run_name: name of the run
             repo_url: repository url
             tier: tier of project
             coverage_type: [dev, stable]
@@ -328,15 +421,10 @@ class Manager:
             coverage_result = CoverageResult(
                 passed=all(r.ok for r in results), coverage_type=coverage_type
             )
-            # save test res to db
-            result = self.dao.add_repo_coverage_result(
-                repo_url=repo_url, tier=tier, coverage_result=coverage_result
-            )
-            # print report
-            if result is None:
-                self.logger.warning(
-                    "Test result was not saved." "There is not repo for url %s",
-                    repo_url,
+            # saving results to temp files
+            if run_name:
+                self._save_temp_test_result(
+                    folder_name=run_name, repo_url=repo_url, test_result=coverage_result
                 )
             self.logger.info("Test results for %s: %s", repo_url, coverage_result)
             set_actions_output([("PASS", coverage_result.passed)])
@@ -345,11 +433,16 @@ class Manager:
             set_actions_output([("PASS", "False")])
 
     def python_dev_tests(
-        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+        self,
+        run_name: str,
+        repo_url: str,
+        tier: str = Tier.MAIN,
+        python_version: str = "py39",
     ):
         """Runs tests against dev version of qiskit.
 
         Args:
+            run_name: name of the run
             repo_url: repository url
             tier: tier of project
             python_version: [py39, py37]
@@ -364,6 +457,7 @@ class Manager:
             "pip install git+https://github.com/Qiskit/qiskit-terra.git@main",
         ]
         return self._run_python_tests(
+            run_name=run_name,
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
@@ -373,10 +467,15 @@ class Manager:
         )
 
     def python_stable_tests(
-        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+        self,
+        run_name: str,
+        repo_url: str,
+        tier: str = Tier.MAIN,
+        python_version: str = "py39",
     ):
         """Runs tests against stable version of qiskit.
         Args:
+            run_name: name of the run
             repo_url: repository url
             tier: tier of project
             python_version: [py39, py37]
@@ -385,6 +484,7 @@ class Manager:
             _run_python_tests def
         """
         return self._run_python_tests(
+            run_name=run_name,
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
@@ -393,10 +493,15 @@ class Manager:
         )
 
     def python_standard_tests(
-        self, repo_url: str, tier: str = Tier.MAIN, python_version: str = "py39"
+        self,
+        run_name: str,
+        repo_url: str,
+        tier: str = Tier.MAIN,
+        python_version: str = "py39",
     ):
         """Runs tests with provided confiuration.
         Args:
+            run_name: name of the run
             repo_url: repository url
             tier: tier of project
             python_version: [py39, py37]
@@ -405,6 +510,7 @@ class Manager:
             _run_python_tests def
         """
         return self._run_python_tests(
+            run_name=run_name,
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,

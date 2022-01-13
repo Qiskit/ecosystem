@@ -222,32 +222,38 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637598842.741817,
-            "updated_at": 1637598842.74182,
+            "created_at": 1641938992.426062,
+            "updated_at": 1641938992.426063,
             "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1637598842.74177
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1637598842.741779
-                },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637598842.741782
+                    "timestamp": 1641938992.426041
                 },
                 {
                     "test_type": "DEV_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.19.0",
-                    "timestamp": 1637598842.741783
+                    "timestamp": 1641938992.426045
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.426047
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.426049
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.426051
                 }
             ],
             "styles_results": [
@@ -275,26 +281,44 @@
             "labels": [
                 "tool"
             ],
-            "created_at": 1637598830.773871,
-            "updated_at": 1637598830.773872,
+            "created_at": 1641938992.308625,
+            "updated_at": 1641938992.308626,
             "tests_results": [
                 {
                     "test_type": "STANDARD",
                     "passed": true,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637598830.773827
+                    "timestamp": 1641938992.308602
                 },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": true,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637598830.773837
+                    "timestamp": 1641938992.308606
                 },
                 {
                     "test_type": "DEV_COMPATIBLE",
                     "passed": true,
                     "terra_version": "0.19.0",
-                    "timestamp": 1637598830.773839
+                    "timestamp": 1641938992.308608
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.308612
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.308614
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.308186
                 }
             ],
             "styles_results": [
@@ -322,26 +346,26 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637601916.875402,
-            "updated_at": 1637601916.875404,
+            "created_at": 1638807605.079218,
+            "updated_at": 1638807605.079223,
             "tests_results": [
                 {
                     "test_type": "STANDARD",
                     "passed": true,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637601916.875342
+                    "timestamp": 1638807605.079161
                 },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": true,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637601916.875354
+                    "timestamp": 1638807605.079178
                 },
                 {
                     "test_type": "DEV_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.19.0",
-                    "timestamp": 1637601916.875356
+                    "timestamp": 1638807605.079181
                 }
             ],
             "styles_results": [
@@ -369,26 +393,32 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637598871.906623,
-            "updated_at": 1637598871.906625,
+            "created_at": 1641938992.280572,
+            "updated_at": 1641938992.280573,
             "tests_results": [
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "DEV_COMPATIBLE",
                     "passed": false,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1637598871.906568
+                    "terra_version": "0.19.0",
+                    "timestamp": 1641938992.280553
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.280557
                 },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637598871.906594
+                    "timestamp": 1641938992.280559
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "STANDARD",
                     "passed": false,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1637598871.906596
+                    "terra_version": "0.18.3",
+                    "timestamp": 1641938992.280561
                 }
             ],
             "styles_results": [
@@ -416,26 +446,26 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637598624.203397,
-            "updated_at": 1637598624.203399,
+            "created_at": 1641938992.417498,
+            "updated_at": 1641938992.417498,
             "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1637598624.203356
-                },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": false,
                     "terra_version": "-",
-                    "timestamp": 1637598624.203367
+                    "timestamp": 1641938992.417485
                 },
                 {
                     "test_type": "DEV_COMPATIBLE",
                     "passed": false,
                     "terra_version": "-",
-                    "timestamp": 1637598624.203369
+                    "timestamp": 1641938992.417487
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.417052
                 }
             ],
             "styles_results": [
@@ -463,28 +493,715 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1637598913.696201,
-            "updated_at": 1637598913.696202,
+            "created_at": 1641938992.378912,
+            "updated_at": 1641938992.378913,
             "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1637598913.696168
-                },
                 {
                     "test_type": "STABLE_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.18.3",
-                    "timestamp": 1637598913.696176
+                    "timestamp": 1641938992.378893
                 },
                 {
                     "test_type": "DEV_COMPATIBLE",
                     "passed": false,
                     "terra_version": "0.19.0",
-                    "timestamp": 1637598913.696178
+                    "timestamp": 1641938992.378896
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.3789
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.378901
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.378497
                 }
             ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "7": {
+            "name": "pytket-extensions",
+            "url": "https://github.com/CQCL/pytket-extensions",
+            "description": "repository contains a collection of Python extension modules for CQC's pytket quantum SDK.",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "plugin"
+            ],
+            "created_at": 1641938992.295526,
+            "updated_at": 1641938992.295528,
+            "tests_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "8": {
+            "name": "quantuminspire",
+            "url": "https://github.com/QuTech-Delft/quantuminspire",
+            "description": "platform allows to execute quantum algorithms using the cQASM language.",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "algorithms"
+            ],
+            "created_at": 1641938992.369625,
+            "updated_at": 1641938992.369626,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.369609
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.369614
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.369615
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "9": {
+            "name": "mitiq",
+            "url": "https://github.com/unitaryfund/mitiq",
+            "description": "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "library"
+            ],
+            "created_at": 1641938992.291824,
+            "updated_at": 1641938992.291825,
+            "tests_results": [
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.291806
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.291811
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.291813
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "10": {
+            "name": "pennylane-qiskit",
+            "url": "https://github.com/PennyLaneAI/pennylane-qiskit",
+            "description": "The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "library"
+            ],
+            "created_at": 1641938992.429689,
+            "updated_at": 1641938992.42969,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.429675
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.429677
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.429243
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "11": {
+            "name": "quantumcat",
+            "url": "https://github.com/artificial-brain/quantumcat",
+            "description": "quantumcat is a platform-independent, open-source, high-level quantum computing library, which allows the quantum community to focus on developing platform-independent quantum applications without much effort",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "library"
+            ],
+            "created_at": 1641938992.441942,
+            "updated_at": 1641938992.441943,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.17.4",
+                    "timestamp": 1641938992.441925
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.17.4",
+                    "timestamp": 1641938992.44193
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.441932
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "12": {
+            "name": "Blueqat",
+            "url": "https://github.com/Blueqat/Blueqat",
+            "description": "A quantum computing SDK",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "library"
+            ],
+            "created_at": 1641938992.422032,
+            "updated_at": 1641938992.422033,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.422019
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.422021
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.421483
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "13": {
+            "name": "python-open-controls",
+            "url": "https://github.com/qctrl/python-open-controls",
+            "description": "Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "library"
+            ],
+            "created_at": 1641938992.390322,
+            "updated_at": 1641938992.390323,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.39031
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.390312
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.389865
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "14": {
+            "name": "qiskit-rigetti",
+            "url": "https://github.com/rigetti/qiskit-rigetti",
+            "description": "Rigetti Provider for Qiskit",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "plugin"
+            ],
+            "created_at": 1641936446.811627,
+            "updated_at": 1641936446.811629,
+            "tests_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641936446.811607
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641936446.811612
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641936446.811196
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "15": {
+            "name": "quantum-dev",
+            "url": "https://github.com/acuto/quantum-dev",
+            "description": "A multi-framework development environment for Quantum Computing on Kubernetes",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "library"
+            ],
+            "created_at": 1639429974.170087,
+            "updated_at": 1639429974.17009,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "COMMUNITY"
+        },
+        "16": {
+            "name": "dc-qiskit-algorithms",
+            "url": "https://github.com/carstenblank/dc-qiskit-algorithms",
+            "description": "Data Cybernetics qiskit-algorithms",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "algorithms"
+            ],
+            "created_at": 1641938992.32343,
+            "updated_at": 1641938992.323431,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.323414
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.0",
+                    "timestamp": 1641938992.323418
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1641938992.32342
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "17": {
+            "name": "Q-shall-not-pass",
+            "url": "https://github.com/hennlo/Q-shall-not-pass",
+            "description": "This game was built as part of the lecture: Quantum Information at the University of Basel in the Spring Semester of 2021",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "game"
+            ],
+            "created_at": 1641936446.709749,
+            "updated_at": 1641936446.709756,
+            "tests_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "18": {
+            "name": "QiskitBot",
+            "url": "https://github.com/infiniteregrets/QiskitBot",
+            "description": "A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "tool"
+            ],
+            "created_at": 1641938992.363096,
+            "updated_at": 1641938992.363099,
+            "tests_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "19": {
+            "name": "pytorch-quantum",
+            "url": "https://github.com/mit-han-lab/pytorch-quantum",
+            "description": "A PyTorch-centric hybrid classical-quantum dynamic neural networks framework.",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "library"
+            ],
+            "created_at": 1641938992.438087,
+            "updated_at": 1641938992.438088,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.438069
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.438074
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.438076
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "20": {
+            "name": "qonwaygameoflife",
+            "url": "https://github.com/qonwaygameoflife/qonwaygameoflife",
+            "description": "Qiskit Camp - Hackaton Madrid 2019 - Quantum Game of Life",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "game"
+            ],
+            "created_at": 1641938992.408485,
+            "updated_at": 1641938992.408488,
+            "tests_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "21": {
+            "name": "quantumcircuit_gym",
+            "url": "https://github.com/MaxKelsen/quantumcircuit_gym",
+            "description": "A custom gym environment for creating quantum circuits using IBMQ's qiskit library for python",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "tool"
+            ],
+            "created_at": 1641938992.403708,
+            "updated_at": 1641938992.403709,
+            "tests_results": [
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.403696
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.403698
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.403272
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "22": {
+            "name": "polyadicQML",
+            "url": "https://github.com/entropicalabs/polyadicQML",
+            "description": "A python library to define, train and deploy Polyadic Quantum Machine Learning models",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "library"
+            ],
+            "created_at": 1641938992.434237,
+            "updated_at": 1641938992.434238,
+            "tests_results": [
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.434224
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.434226
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "-",
+                    "timestamp": 1641938992.433773
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
+            "tier": "COMMUNITY"
+        },
+        "23": {
+            "name": "Quantum-Tetris",
+            "url": "https://github.com/dartmouth-cs98/Quantum-Tetris",
+            "description": "Quantum Tetris is your traditional tetris game which has several twists based on the concepts of quantum computing.",
+            "licence": "Apache 2.0",
+            "contact_info": null,
+            "alternatives": null,
+            "affiliations": null,
+            "labels": [
+                "game"
+            ],
+            "created_at": 1641938992.244078,
+            "updated_at": 1641938992.244081,
+            "tests_results": [],
             "styles_results": [
                 {
                     "style_type": "pylint",

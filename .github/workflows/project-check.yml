@@ -43,6 +43,7 @@ jobs:
         check_type: "test_standard"
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
 
     - name: Stable tests
       id: stable
@@ -52,6 +53,7 @@ jobs:
         check_type: "test_stable"
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
 
     - name: Dev tests
       id: dev
@@ -61,6 +63,7 @@ jobs:
         check_type: "test_dev"
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
 
     - name: Styles check
       id: linter
@@ -70,6 +73,7 @@ jobs:
         check_type: "lint"
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
 
     - name: Coverage check
       id: coverage
@@ -79,6 +83,7 @@ jobs:
         check_type: "coverage"
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
 
     # check if any of the tests failed
     - name: Check return
@@ -106,10 +111,11 @@ jobs:
     - name: Commit changes
       run: |
         git pull --rebase --autostash
-        git add ecosystem/resources/members.json
+        git add ecosystem/resources/
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
+        git pull --rebase --autostash
         git push
         
     - name: Create comment on failure
