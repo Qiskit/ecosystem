@@ -13,7 +13,7 @@ from ecosystem.models import (
     FilesTemplates,
 )
 from ecosystem.models.repository import Repository
-from ecosystem.utils import QiskitEcosystemException
+from ecosystem.exception import QiskitEcosystemException
 from ecosystem.utils import logger as ecosystem_logger
 from ecosystem.utils.utils import set_actions_output
 
@@ -75,6 +75,9 @@ class Runner:
             )
 
         if self.repo_config is not None:
+            self.logger.info(
+                "Running with configuration: {}".format(self.repo_config.to_dict())
+            )
             repo_config = self.repo_config
         elif os.path.exists(f"{self.cloned_repo_directory}/ecosystem.json"):
             self.logger.info("Configuration file exists.")

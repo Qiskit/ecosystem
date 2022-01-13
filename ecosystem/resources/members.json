@@ -268,7 +268,21 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": ["requirements.txt"],
+                "extra_dependencies": ["qiskit" ,"coverage", "pylint"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn pyEPR"],
+                "tests_command": ["pytest"]
+            }
         },
         "2": {
             "name": "qiskit-ecosystem_template",
@@ -380,7 +394,23 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "pytest -x -v --cov=c3 --cov-report=xml test/"
+                ],
+                "dependencies_files": ["requirements.txt"],
+                "extra_dependencies": ["qiskit" ,"coverage", "pylint", "black"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.7", "3.8", "3.9"]
+                },
+                "styles_check_command": ["black --check c3/"],
+                "tests_command": [
+                    "pytest -v -x -m \"not slow\" test/",
+                    "pytest -v -x -m \"slow\" test/"
+                ]
+            }
         },
         "4": {
             "name": "qiskit-superstaq",
@@ -433,7 +463,24 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "pytest qiskit_superstaq --cov --cov-report=term-missing --cov-config=.coveragerc --cov-fail-under=100 --ignore-glob=*_integration_test.py --ignore=examples/"
+                ],
+                "dependencies_files": ["requirements.txt", "dev-requirements.txt"],
+                "extra_dependencies": ["qiskit"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": [
+                    "pylint --rcfile=.pylintrc examples qiskit-superstaq"
+                ],
+                "tests_command": [
+                    "pytest .  --ignore-glob=*_integration_test.py --ignore=examples/"
+                ]
+            }
         },
         "5": {
             "name": "qtcodes",
@@ -480,7 +527,34 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": [],
+                "extra_dependencies": [
+                    "qiskit",
+                    "coverage",
+                    "pylint",
+                    "numpy",
+                    "matplotlib>=3.3.0",
+                    "retworkx>=0.10.0",
+                    "tqdm",
+                    "pylatexenc",
+                    "IPython",
+                    "mypy",
+                    "black",
+                    "pytest"
+                ],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn qtcodes"],
+                "tests_command": ["python -m unittest"]
+            }
         },
         "6": {
             "name": "kaleidoscope",
@@ -539,7 +613,21 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": ["requirements.txt", "requirements-dev.txt"],
+                "extra_dependencies": ["coverage", "pylint"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn kaleidoscope"],
+                "tests_command": ["pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit"]
+            }
         },
         "7": {
             "name": "pytket-extensions",
@@ -614,7 +702,20 @@
                     "passed": true
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage run --source=\"./src/quantuminspire\" -m unittest discover -s src/tests -t src -v"
+                ],
+                "dependencies_files": ["requirements.txt"],
+                "extra_dependencies": ["coverage", "pylint", "qiskit"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn src"],
+                "tests_command": ["pytest src/tests"]
+            }
         },
         "9": {
             "name": "mitiq",
@@ -661,7 +762,22 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml"
+                ],
+                "dependencies_files": ["requirements.txt", "dev_requirements.txt"],
+                "extra_dependencies": ["coverage", "pylint", "qiskit"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn mitiq"],
+                "tests_command": [
+                    "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml --ignore=mitiq/interface/mitiq_pyquil"
+                ]
+            }
         },
         "10": {
             "name": "pennylane-qiskit",
@@ -708,7 +824,22 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "python3 -m pytest tests --tb=short --cov=pennylane_qiskit --cov-report term-missing --cov-report=html:coverage_html_report"
+                ],
+                "dependencies_files": ["requirements.txt"],
+                "extra_dependencies": ["coverage", "pylint", "qiskit"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn pennylane_qiskit tests"],
+                "tests_command": [
+                    "pytest tests --tb=short"
+                ]
+            }
         },
         "11": {
             "name": "quantumcat",

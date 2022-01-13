@@ -4,10 +4,6 @@ from typing import Tuple, List, Union
 import coloredlogs
 
 
-class QiskitEcosystemException(Exception):
-    """Exceptions for qiskit ecosystem."""
-
-
 class OneLineExceptionFormatter(logging.Formatter):
     """Exception formatter"""
 
