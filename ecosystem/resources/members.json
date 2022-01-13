@@ -542,16 +542,16 @@
             "tier": "COMMUNITY",
             "configuration": {
                 "coverages_check_command": [
-                    "coverage3 -m pytest",
+                    "coverage3 -m pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit",
                     "coverage3 report --fail-under=80"
                 ],
                 "dependencies_files": ["requirements.txt", "requirements-dev.txt"],
-                "extra_dependencies": ["qiskit"],
+                "extra_dependencies": ["coverage", "pylint"],
                 "language": {
                     "name": "python",
                     "versions": ["3.6"]
                 },
-                "styles_check_command": ["pylint -rn ecosystem tests"],
+                "styles_check_command": ["pylint -rn kaleidoscope"],
                 "tests_command": ["pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit"]
             }
         },

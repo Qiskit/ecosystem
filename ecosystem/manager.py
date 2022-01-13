@@ -385,7 +385,15 @@ class Manager:
             output: log PASS
             We want to give the result of the test to the GitHub action
         """
-        runner = PythonStyleRunner(repo_url, working_directory=self.resources_dir)
+        repository = self.dao.get_by_url(repo_url, tier=tier)
+        repo_configuration = (
+            repository.configuration if repository is not None else None
+        )
+        runner = PythonStyleRunner(
+            repo_url,
+            working_directory=self.resources_dir,
+            repo_config=repo_configuration
+        )
         _, results = runner.run()
         if len(results) > 0:
             style_result = StyleResult(
@@ -421,7 +429,15 @@ class Manager:
             output: log PASS
             We want to give the result of the test to the GitHub action
         """
-        runner = PythonCoverageRunner(repo_url, working_directory=self.resources_dir)
+        repository = self.dao.get_by_url(repo_url, tier=tier)
+        repo_configuration = (
+            repository.configuration if repository is not None else None
+        )
+        runner = PythonCoverageRunner(
+            repo_url,
+            working_directory=self.resources_dir,
+            repo_config=repo_configuration
+        )
         _, results = runner.run()
         if len(results) > 0:
             coverage_result = CoverageResult(
