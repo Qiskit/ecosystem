@@ -886,7 +886,21 @@
                     "passed": true
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": ["requirements.txt"],
+                "extra_dependencies": ["coverage", "pylint"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn quantumcat tests"],
+                "tests_command": ["pytest"]
+            }
         },
         "12": {
             "name": "Blueqat",
@@ -933,7 +947,21 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": ["requirements.txt"],
+                "extra_dependencies": ["qiskit","Cython", "coverage", "pylint"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn blueqat tests"],
+                "tests_command": ["pytest"]
+            }
         },
         "13": {
             "name": "python-open-controls",
@@ -980,7 +1008,35 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": [],
+                "extra_dependencies": [
+                    "qiskit",
+                    "coverage",
+                    "numpy==1.*,>=1.20.0",
+                    "toml==0.*,>=0.10.0",
+                    "black==20.*,>=20.8.0.b1",
+                    "isort==5.*,>=5.7.0",
+                    "mypy==0.*,>=0.800.0",
+                    "nbval==0.*,>=0.9.5",
+                    "pre-commit==2.*,>=2.9.3",
+                    "pylint==2.*,>=2.6.0",
+                    "pylint-runner==0.*,>=0.5.4",
+                    "pytest==5.*,>=5.0.0",
+                    "qctrl-visualizer==2.*,>=2.12.2"
+                ],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn qctrlopencontrols tests"],
+                "tests_command": ["pytest"]
+            }
         },
         "14": {
             "name": "qiskit-rigetti",
@@ -1027,7 +1083,33 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": [],
+                "extra_dependencies": [
+                    "qiskit", "coverage", "pylint",
+                    "numpy==1.*,>=1.20.1",
+                    "pyquil==3.*,>=3.0.0",
+                    "black==20.*,>=20.8.0.b1",
+                    "flake8==3.*,>=3.8.1",
+                    "mypy==0.*,>=0.800.0",
+                    "pip-licenses==3.*,>=3.5.1",
+                    "pytest==6.*,>=6.2.2",
+                    "pytest-cov==2.*,>=2.11.1",
+                    "pytest-httpx==0.*,>=0.9.0",
+                    "pytest-mock==3.*,>=3.6.1"
+                ],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn qiskit_rigetti tests"],
+                "tests_command": ["pytest"]
+            }
         },
         "15": {
             "name": "quantum-dev",
