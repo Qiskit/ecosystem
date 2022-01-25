@@ -81,7 +81,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: Validate JSON
         run: |
-          echo "PASS_LOG=True" >> $GITHUB_ENV
+          PASS_LOG=True
           
           cd ecosystem/resources
           for i in *.json; do 
@@ -93,9 +93,9 @@ jobs:
               echo "##########################"
               echo "$i --> $return"
               echo "##########################"
-              echo "PASS_LOG=False" >> $GITHUB_ENV
+              PASS_LOG=False
             fi
           done
-          if [[ ${{ env.PASS_LOG == 'False' }} ]]; then
+          if [[ $PASS_LOG == 'False' ]]; then
             exit 1
           fi
