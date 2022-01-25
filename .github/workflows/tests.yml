@@ -74,3 +74,27 @@ jobs:
         pip install -r requirements-dev.txt
     - name: Run black
       run: tox -eblack
+      
+  CV:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Validate JSON
+        run: |
+          echo "PASS_LOG=True" >> $GITHUB_ENV
+          
+          cd ecosystem/resources
+          for i in *.json; do 
+            return=0
+            echo $i
+            cat $i | jq empty || return=$?
+            
+            if [[ "$return" != 0 ]]; then
+              echo "##########################"
+              echo "$i --> $return"
+              echo "##########################"
+              echo "PASS_LOG=False" >> $GITHUB_ENV
+            fi
+          done
+          if [[ ${{ env.PASS_LOG == 'False' }} ]]; then
+            exit 1
