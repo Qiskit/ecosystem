@@ -96,6 +96,6 @@ jobs:
               PASS_LOG=False
             fi
           done
-          if [[ $PASS_LOG == 'False' ]]; then
+          if [[ "$PASS_LOG" == 'False' ]]; then
             exit 1
           fi
