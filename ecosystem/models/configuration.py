@@ -5,7 +5,7 @@ from typing import Optional, List
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from ecosystem.utils.utils import QiskitEcosystemException
+from ecosystem.exception import QiskitEcosystemException
 from .utils import JsonSerializable
 
 
@@ -91,6 +91,28 @@ class RepositoryConfiguration(JsonSerializable):
         """Saves configuration as json file."""
         with open(path, "w") as json_file:
             json.dump(self.to_dict(), json_file, indent=4)
+
+    @classmethod
+    def from_dict(cls, dictionary: dict):
+        if dictionary.get("language"):
+            language = LanguageConfiguration(**dictionary.get("language"))
+        else:
+            language = PythonLanguageConfiguration()
+        dictionary["language"] = language
+        config: RepositoryConfiguration = RepositoryConfiguration(**dictionary)
+        if config.language.name == Languages.PYTHON:  # pylint: disable=no-else-return
+            return PythonRepositoryConfiguration(
+                language=language,
+                dependencies_files=config.dependencies_files,
+                extra_dependencies=config.extra_dependencies,
+                tests_command=config.tests_command,
+                styles_check_command=config.styles_check_command,
+                coverages_check_command=config.coverages_check_command,
+            )
+        else:
+            raise QiskitEcosystemException(
+                f"Unsupported language configuration type: {config.language}"
+            )
 
     @classmethod
     def load(cls, path: str) -> "RepositoryConfiguration":
