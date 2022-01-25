@@ -75,7 +75,7 @@ jobs:
     - name: Run black
       run: tox -eblack
       
-  CV:
+  json-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -98,3 +98,4 @@ jobs:
           done
           if [[ ${{ env.PASS_LOG == 'False' }} ]]; then
             exit 1
+          fi
