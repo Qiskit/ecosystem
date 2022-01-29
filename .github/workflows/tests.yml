@@ -78,24 +78,11 @@ jobs:
   json-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Validate JSON
-        run: |
-          PASS_LOG=True
-          
-          cd ecosystem/resources
-          for i in *.json; do 
-            return=0
-            echo $i
-            cat $i | jq empty || return=$?
-            
-            if [[ "$return" != 0 ]]; then
-              echo "##########################"
-              echo "$i --> $return"
-              echo "##########################"
-              PASS_LOG=False
-            fi
-          done
-          if [[ "$PASS_LOG" != 'True' ]]; then
-            exit 1
-          fi
+    - uses: actions/checkout@v1
+    - name: Install tox
+      run: |
+        python -m pip install --upgrade pip
+        pip install tox
+    - name: Validate JSON
+      run: tox -ejson
+
