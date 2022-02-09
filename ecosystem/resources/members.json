@@ -1111,24 +1111,6 @@
                 "tests_command": ["pytest"]
             }
         },
-        "15": {
-            "name": "quantum-dev",
-            "url": "https://github.com/acuto/quantum-dev",
-            "description": "A multi-framework development environment for Quantum Computing on Kubernetes",
-            "licence": "Apache 2.0",
-            "contact_info": null,
-            "alternatives": null,
-            "affiliations": null,
-            "labels": [
-                "library"
-            ],
-            "created_at": 1639429974.170087,
-            "updated_at": 1639429974.17009,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
-            "tier": "COMMUNITY"
-        },
         "16": {
             "name": "dc-qiskit-algorithms",
             "url": "https://github.com/carstenblank/dc-qiskit-algorithms",
@@ -1174,7 +1156,21 @@
                     "passed": true
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": ["requirements.txt"],
+                "extra_dependencies": ["qiskit", "coverage", "pylint"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn dc_qiskit_algorithms tests"],
+                "tests_command": ["pytest"]
+            }
         },
         "17": {
             "name": "Q-shall-not-pass",
@@ -1277,7 +1273,21 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": ["requirements.txt"],
+                "extra_dependencies": ["qiskit", "coverage", "pylint"],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn torchquantum test"],
+                "tests_command": ["pytest"]
+            }
         },
         "20": {
             "name": "qonwaygameoflife",
@@ -1293,53 +1303,6 @@
             "created_at": 1641938992.408485,
             "updated_at": 1641938992.408488,
             "tests_results": [],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
-            "tier": "COMMUNITY"
-        },
-        "21": {
-            "name": "quantumcircuit_gym",
-            "url": "https://github.com/MaxKelsen/quantumcircuit_gym",
-            "description": "A custom gym environment for creating quantum circuits using IBMQ's qiskit library for python",
-            "licence": "Apache 2.0",
-            "contact_info": null,
-            "alternatives": null,
-            "affiliations": null,
-            "labels": [
-                "tool"
-            ],
-            "created_at": 1641938992.403708,
-            "updated_at": 1641938992.403709,
-            "tests_results": [
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.403696
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.403698
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.403272
-                }
-            ],
             "styles_results": [
                 {
                     "style_type": "pylint",
@@ -1399,7 +1362,30 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "configuration": {
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
+                ],
+                "dependencies_files": [],
+                "extra_dependencies": [
+                    "qiskit",
+                    "coverage",
+                    "pylint",
+                    "numpy",
+                    "scipy",
+                    "sklearn",
+                    "manyq",
+                    "tqdm"
+                ],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.6"]
+                },
+                "styles_check_command": ["pylint -rn polyadicqml test"],
+                "tests_command": ["pytest"]
+            }
         },
         "23": {
             "name": "Quantum-Tetris",
