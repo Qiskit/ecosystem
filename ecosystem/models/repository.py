@@ -29,6 +29,7 @@ class Repository(JsonSerializable):
         styles_results: Optional[List[TestResult]] = None,
         coverages_results: Optional[List[TestResult]] = None,
         configuration: Optional[RepositoryConfiguration] = None,
+        skip_tests: Optional[bool] = None,
     ):
         """Repository class.
 
@@ -46,6 +47,7 @@ class Repository(JsonSerializable):
             tests_results: tests passed by repo
             styles_results: styles passed by repo
             coverages_results: coverages passed by repo
+            skip_tests: weather skip tests or not
         """
         self.name = name
         self.url = url
@@ -66,6 +68,7 @@ class Repository(JsonSerializable):
         self.coverages_results = coverages_results if coverages_results else []
         self.tier = tier
         self.configuration = configuration
+        self.skip_tests = skip_tests if skip_tests is not None else False
 
     @classmethod
     def from_dict(cls, dictionary: dict):
@@ -112,6 +115,7 @@ class Repository(JsonSerializable):
             styles_results=styles_results,
             coverages_results=coverages_results,
             configuration=configuration,
+            skip_tests=dictionary.get("skip_tests"),
         )
 
     def __eq__(self, other: "Repository"):
