@@ -24,6 +24,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
                 "coverage3 -m pytest",
                 "coverage3 report --fail-under=80",
             ],
+            depends_on_qiskit=False,
         )
         save_path = f"{self.path}/config.json"
         config.save(save_path)
@@ -41,6 +42,7 @@ class TestRepositoryConfiguration(TestCaseWithResources):
         self.assertEqual(
             config.coverages_check_command, recovered_config.coverages_check_command
         )
+        self.assertFalse(recovered_config.depends_on_qiskit)
 
     def test_python_configuration(self):
         """Tests python configurations."""
@@ -74,3 +76,4 @@ class TestRepositoryConfiguration(TestCaseWithResources):
         self.assertEqual(config.tests_command, [])
         self.assertEqual(config.styles_check_command, [])
         self.assertEqual(config.extra_dependencies, [])
+        self.assertTrue(config.depends_on_qiskit)

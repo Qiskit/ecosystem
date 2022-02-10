@@ -64,10 +64,12 @@ class RepositoryConfiguration(JsonSerializable):
         tests_command: Optional[List[str]] = None,
         styles_check_command: Optional[List[str]] = None,
         coverages_check_command: Optional[List[str]] = None,
+        depends_on_qiskit: Optional[bool] = None,
     ):
         """Configuration for ecosystem repository.
 
         Args:
+            depends_on_qiskit (bool): does project depend on qiskit
             language: repository language configuration
             dependencies_files: list of dependencies files paths relative to root of repo
                 ex: for python `requirements.txt`
@@ -86,6 +88,9 @@ class RepositoryConfiguration(JsonSerializable):
         self.tests_command = tests_command or []
         self.styles_check_command = styles_check_command or []
         self.coverages_check_command = coverages_check_command or []
+        self.depends_on_qiskit = (
+            depends_on_qiskit if depends_on_qiskit is not None else True
+        )
 
     def save(self, path: str):
         """Saves configuration as json file."""
@@ -108,6 +113,7 @@ class RepositoryConfiguration(JsonSerializable):
                 tests_command=config.tests_command,
                 styles_check_command=config.styles_check_command,
                 coverages_check_command=config.coverages_check_command,
+                depends_on_qiskit=config.depends_on_qiskit,
             )
         else:
             raise QiskitEcosystemException(
@@ -135,6 +141,7 @@ class RepositoryConfiguration(JsonSerializable):
                     tests_command=config.tests_command,
                     styles_check_command=config.styles_check_command,
                     coverages_check_command=config.coverages_check_command,
+                    depends_on_qiskit=config.depends_on_qiskit,
                 )
             else:
                 raise QiskitEcosystemException(
@@ -156,6 +163,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         tests_command: Optional[List[str]] = None,
         styles_check_command: Optional[List[str]] = None,
         coverages_check_command: Optional[List[str]] = None,
+        depends_on_qiskit: Optional[bool] = None,
     ):
         language = language or PythonLanguageConfiguration()
         super().__init__(
@@ -165,6 +173,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             tests_command=tests_command,
             styles_check_command=styles_check_command,
             coverages_check_command=coverages_check_command,
+            depends_on_qiskit=depends_on_qiskit,
         )
         env = Environment(
             loader=PackageLoader("ecosystem"), autoescape=select_autoescape()
@@ -186,6 +195,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
                 "coverage3 run -m pytest",
                 "coverage3 report --fail-under=80",
             ],
+            depends_on_qiskit=True,
         )
 
     def render_tox_file(

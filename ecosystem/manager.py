@@ -478,21 +478,29 @@ class Manager:
         Return:
             _run_python_tests def
         """
-        # hack to fix tox's inability to install proper version of
-        # qiskit through github via deps configuration
-        additional_commands = [
-            "pip uninstall -y qiskit-terra",
-            "pip install git+https://github.com/Qiskit/qiskit-terra.git@main",
-        ]
-        return self._run_python_tests(
-            run_name=run_name,
-            repo_url=repo_url,
-            tier=tier,
-            python_version=python_version,
-            test_type=TestType.DEV_COMPATIBLE,
-            ecosystem_deps=[],
-            ecosystem_additional_commands=additional_commands,
-        )
+        repository = self.dao.get_by_url(repo_url, tier=tier)
+        result = ""
+        if repository.configuration.depends_on_qiskit:
+            # hack to fix tox's inability to install proper version of
+            # qiskit through github via deps configuration
+            additional_commands = [
+                "pip uninstall -y qiskit-terra",
+                "pip install git+https://github.com/Qiskit/qiskit-terra.git@main",
+            ]
+            result = self._run_python_tests(
+                run_name=run_name,
+                repo_url=repo_url,
+                tier=tier,
+                python_version=python_version,
+                test_type=TestType.DEV_COMPATIBLE,
+                ecosystem_deps=[],
+                ecosystem_additional_commands=additional_commands,
+            )
+        else:
+            self.logger.info(
+                "Project does not depends on qiskit." "Skipping dev tests."
+            )
+        return result
 
     def python_stable_tests(
         self,
@@ -511,14 +519,22 @@ class Manager:
         Return:
             _run_python_tests def
         """
-        return self._run_python_tests(
-            run_name=run_name,
-            repo_url=repo_url,
-            tier=tier,
-            python_version=python_version,
-            test_type=TestType.STABLE_COMPATIBLE,
-            ecosystem_deps=["qiskit"],
-        )
+        repository = self.dao.get_by_url(repo_url, tier=tier)
+        result = ""
+        if repository.configuration.depends_on_qiskit:
+            result = self._run_python_tests(
+                run_name=run_name,
+                repo_url=repo_url,
+                tier=tier,
+                python_version=python_version,
+                test_type=TestType.STABLE_COMPATIBLE,
+                ecosystem_deps=["qiskit"],
+            )
+        else:
+            self.logger.info(
+                "Project does not depends on qiskit." "Skipping stable tests."
+            )
+        return result
 
     def python_standard_tests(
         self,
