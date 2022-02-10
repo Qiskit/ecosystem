@@ -39,6 +39,7 @@ class TestRepository(unittest.TestCase):
             labels=["mock", "tests"],
             tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
             configuration=configuration,
+            skip_tests=True,
         )
         repo_dict = main_repo.to_dict()
         recovered = Repository.from_dict(repo_dict)
@@ -72,3 +73,4 @@ class TestRepository(unittest.TestCase):
             main_repo.configuration.coverages_check_command,
             recovered.configuration.coverages_check_command,
         )
+        self.assertTrue(recovered.skip_tests)

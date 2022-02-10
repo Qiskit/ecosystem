@@ -104,11 +104,17 @@ class Manager:
         return response.ok
 
     def get_projects_by_tier(self, tier: str) -> None:
-        """Return projects by tier.
+        """Return projects by tier for testing.
         Args:
             tier: tier of ecosystem
         """
-        repositories = ",".join([repo.url for repo in self.dao.get_repos_by_tier(tier)])
+        repositories = ",".join(
+            [
+                repo.url
+                for repo in self.dao.get_repos_by_tier(tier)
+                if not repo.skip_tests
+            ]
+        )
         set_actions_output([("repositories", repositories)])
 
     def update_badges(self):

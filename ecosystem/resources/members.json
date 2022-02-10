@@ -13,7 +13,8 @@
             "tier": "MAIN",
             "updated_at": 1628883441.117589,
             "url": "https://github.com/Qiskit/qiskit",
-            "tests_results": []
+            "tests_results": [],
+            "skip_tests": true
         },
         "2": {
             "alternatives": null,
@@ -29,7 +30,8 @@
             "tier": "MAIN",
             "updated_at": 1628883441.118061,
             "url": "https://github.com/Qiskit/qiskit-terra",
-            "tests_results": []
+            "tests_results": [],
+            "skip_tests": true
         },
         "3": {
             "alternatives": null,
@@ -54,7 +56,8 @@
             ],
             "affiliations": null,
             "styles_results": [],
-            "coverages_results": []
+            "coverages_results": [],
+            "skip_tests": true
         },
         "4": {
             "alternatives": null,
@@ -80,7 +83,8 @@
             ],
             "affiliations": null,
             "styles_results": [],
-            "coverages_results": []
+            "coverages_results": [],
+            "skip_tests": true
         },
         "5": {
             "alternatives": null,
@@ -96,7 +100,8 @@
             "tier": "MAIN",
             "updated_at": 1628883441.119205,
             "url": "https://github.com/Qiskit/qiskit-metal",
-            "tests_results": []
+            "tests_results": [],
+            "skip_tests": true
         },
         "6": {
             "alternatives": null,
@@ -122,7 +127,8 @@
             ],
             "affiliations": null,
             "styles_results": [],
-            "coverages_results": []
+            "coverages_results": [],
+            "skip_tests": true
         },
         "7": {
             "alternatives": null,
@@ -149,7 +155,8 @@
             ],
             "affiliations": null,
             "styles_results": [],
-            "coverages_results": []
+            "coverages_results": [],
+            "skip_tests": true
         },
         "8": {
             "alternatives": null,
@@ -175,7 +182,8 @@
             ],
             "affiliations": null,
             "styles_results": [],
-            "coverages_results": []
+            "coverages_results": [],
+            "skip_tests": true
         },
         "9": {
             "alternatives": null,
@@ -191,7 +199,8 @@
             "tier": "MAIN",
             "updated_at": 1628883441.120709,
             "url": "https://github.com/Qiskit/qiskit-tutorials",
-            "tests_results": []
+            "tests_results": [],
+            "skip_tests": true
         },
         "10": {
             "alternatives": null,
@@ -207,7 +216,8 @@
             "tier": "MAIN",
             "updated_at": 1628883441.121111,
             "url": "https://github.com/Qiskit/qiskit.org",
-            "tests_results": []
+            "tests_results": [],
+            "skip_tests": true
         }
     },
     "COMMUNITY": {
@@ -269,6 +279,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -347,7 +358,8 @@
                     "passed": true
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "skip_tests": false
         },
         "3": {
             "name": "c3",
@@ -395,6 +407,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "pytest -x -v --cov=c3 --cov-report=xml test/"
@@ -464,6 +477,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "pytest qiskit_superstaq --cov --cov-report=term-missing --cov-config=.coveragerc --cov-fail-under=100 --ignore-glob=*_integration_test.py --ignore=examples/"
@@ -528,6 +542,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -614,6 +629,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit",
@@ -655,7 +671,8 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "skip_tests": false
         },
         "8": {
             "name": "quantuminspire",
@@ -703,6 +720,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage run --source=\"./src/quantuminspire\" -m unittest discover -s src/tests -t src -v"
@@ -763,6 +781,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml"
@@ -825,6 +844,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "python3 -m pytest tests --tb=short --cov=pennylane_qiskit --cov-report term-missing --cov-report=html:coverage_html_report"
@@ -887,6 +907,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -948,6 +969,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -1009,6 +1031,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -1084,6 +1107,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -1157,6 +1181,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -1198,7 +1223,8 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "skip_tests": true
         },
         "18": {
             "name": "QiskitBot",
@@ -1226,7 +1252,8 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "skip_tests": true
         },
         "19": {
             "name": "pytorch-quantum",
@@ -1274,6 +1301,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -1315,7 +1343,8 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "skip_tests": true
         },
         "22": {
             "name": "polyadicQML",
@@ -1363,6 +1392,7 @@
                 }
             ],
             "tier": "COMMUNITY",
+            "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
@@ -1413,7 +1443,8 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY"
+            "tier": "COMMUNITY",
+            "skip_tests": true
         }
     }
 }
