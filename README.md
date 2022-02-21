@@ -39,6 +39,7 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 ## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
 To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+- To know more about how to pass the submission form, check the **[Notice](https://github.com/qiskit-community/ecosystem/tree/main/docs/notice.md)**
 
 
 ## Members ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
@@ -59,6 +60,14 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | https://github.com/Qiskit/qiskit.org | Qiskit's website <br/>  ![core](https://img.shields.io/badge/community-gray.svg)  ![core](https://img.shields.io/badge/web-gray.svg)  <br/> |
 
 
+### Prototypes ![ecosystem-prototypes](https://img.shields.io/badge/Qiskit-Prototypes-blueviolet)
+|  Name | Description  |
+|---|---|
+| https://github.com/IBM-Quantum-Prototypes/entanglement-forging | This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
+| https://github.com/IBM-Quantum-Prototypes/quantum-kernel-training | The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
+
+
+
 ### Community ![ecosystem-community](https://img.shields.io/badge/Qiskit-Community-blueviolet)
 
 |  Name | Description  |
@@ -77,13 +86,11 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | https://github.com/Blueqat/Blueqat | A quantum computing SDK <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | https://github.com/qctrl/python-open-controls | Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | https://github.com/rigetti/qiskit-rigetti | Rigetti Provider for Qiskit <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
-| https://github.com/acuto/quantum-dev | A multi-framework development environment for Quantum Computing on Kubernetes <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | https://github.com/carstenblank/dc-qiskit-algorithms | Data Cybernetics qiskit-algorithms <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  <br/> |
 | https://github.com/hennlo/Q-shall-not-pass | This game was built as part of the lecture: Quantum Information at the University of Basel in the Spring Semester of 2021 <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 | https://github.com/infiniteregrets/QiskitBot | A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 | https://github.com/mit-han-lab/pytorch-quantum | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | https://github.com/qonwaygameoflife/qonwaygameoflife | Qiskit Camp - Hackaton Madrid 2019 - Quantum Game of Life <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
-| https://github.com/MaxKelsen/quantumcircuit_gym | A custom gym environment for creating quantum circuits using IBMQ's qiskit library for python <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 | https://github.com/entropicalabs/polyadicQML | A python library to define, train and deploy Polyadic Quantum Machine Learning models <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | https://github.com/dartmouth-cs98/Quantum-Tetris | Quantum Tetris is your traditional tetris game which has several twists based on the concepts of quantum computing. <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 

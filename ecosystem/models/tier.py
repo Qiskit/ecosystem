@@ -9,3 +9,4 @@ class Tier:
     MEMBER: str = "MEMBER"
     CANDIDATE: str = "CANDIDATE"
     COMMUNITY: str = "COMMUNITY"
+    PROTOTYPES: str = "PROTOTYPES"

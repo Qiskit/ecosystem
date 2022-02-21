@@ -1446,5 +1446,47 @@
             "tier": "COMMUNITY",
             "skip_tests": true
         }
+    },
+    "PROTOTYPES": {
+        "1": {
+            "name": "Entanglement forging",
+            "url": "https://github.com/IBM-Quantum-Prototypes/entanglement-forging",
+            "description": "This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits.",
+            "licence": "Apache 2.0",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": null,
+            "labels": [
+                "prototype",
+                "chemistry"
+            ],
+            "created_at": 1645480343.964777,
+            "updated_at": 1645480343.964777,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "PROTOTYPES",
+            "skip_tests": true
+        },
+        "2": {
+            "name": "Quantum kernel training",
+            "url": "https://github.com/IBM-Quantum-Prototypes/quantum-kernel-training",
+            "description": "The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications.",
+            "licence": "Apache 2.0",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": null,
+            "labels": [
+                "prototype",
+                "ml"
+            ],
+            "created_at": 1645480343.964777,
+            "updated_at": 1645480343.964777,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "PROTOTYPES",
+            "skip_tests": true
+        }
     }
 }
