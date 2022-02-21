@@ -207,8 +207,11 @@ class Manager:
         path = path if path is not None else self.current_dir
         main_repos = self.dao.get_repos_by_tier(Tier.MAIN)
         community_repos = self.dao.get_repos_by_tier(Tier.COMMUNITY)
+        prototypes_repos = self.dao.get_repos_by_tier(Tier.PROTOTYPES)
         readme_content = self.readme_template.render(
-            main_repos=main_repos, community_repos=community_repos
+            main_repos=main_repos,
+            community_repos=community_repos,
+            prototypes_repos=prototypes_repos,
         )
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
