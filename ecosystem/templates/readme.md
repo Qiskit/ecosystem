@@ -49,14 +49,14 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 |  Name | Description  |
 |---|---|
 {% for repo in main_repos -%}
-| {{ repo.url }} | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
+| [{{ repo.name }}]({{ repo.url }}) | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
 {% endfor %}
 
 ### Prototypes ![ecosystem-prototypes](https://img.shields.io/badge/Qiskit-Prototypes-blueviolet)
 |  Name | Description  |
 |---|---|
 {% for repo in prototypes_repos -%}
-| {{ repo.url }} | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
+| [{{ repo.name }}]({{ repo.url }}) | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
 {% endfor %}
 
 
@@ -65,7 +65,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 |  Name | Description  |
 |---|---|
 {% for repo in community_repos -%}
-| {{ repo.url }} | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
+| [{{ repo.name }}]({{ repo.url }}) | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
 {% endfor %}
 
 ## Contribution Guidelines

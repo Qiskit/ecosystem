@@ -218,6 +218,22 @@
             "url": "https://github.com/Qiskit/qiskit.org",
             "tests_results": [],
             "skip_tests": true
+        },
+        "11": {
+            "alternatives": null,
+            "contact_info": null,
+            "created_at": 1628883441.121108,
+            "description": "Qiskit Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit.",
+            "labels": [
+                "differential equations"
+            ],
+            "licence": "Apache 2.0",
+            "name": "qiskit-dynamics",
+            "tier": "MAIN",
+            "updated_at": 1628883441.121111,
+            "url": "https://github.com/Qiskit/qiskit-dynamics",
+            "tests_results": [],
+            "skip_tests": true
         }
     },
     "COMMUNITY": {
@@ -1135,98 +1151,7 @@
                 "tests_command": ["pytest"]
             }
         },
-        "16": {
-            "name": "dc-qiskit-algorithms",
-            "url": "https://github.com/carstenblank/dc-qiskit-algorithms",
-            "description": "Data Cybernetics qiskit-algorithms",
-            "licence": "Apache 2.0",
-            "contact_info": null,
-            "alternatives": null,
-            "affiliations": null,
-            "labels": [
-                "algorithms"
-            ],
-            "created_at": 1641938992.32343,
-            "updated_at": 1641938992.323431,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": true,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.323414
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.323418
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.32342
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": true
-                }
-            ],
-            "tier": "COMMUNITY",
-            "skip_tests": false,
-            "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
-                "dependencies_files": ["requirements.txt"],
-                "extra_dependencies": ["qiskit", "coverage", "pylint"],
-                "language": {
-                    "name": "python",
-                    "versions": ["3.6"]
-                },
-                "styles_check_command": ["pylint -rn dc_qiskit_algorithms tests"],
-                "tests_command": ["pytest"]
-            }
-        },
-        "17": {
-            "name": "Q-shall-not-pass",
-            "url": "https://github.com/hennlo/Q-shall-not-pass",
-            "description": "This game was built as part of the lecture: Quantum Information at the University of Basel in the Spring Semester of 2021",
-            "licence": "Apache 2.0",
-            "contact_info": null,
-            "alternatives": null,
-            "affiliations": null,
-            "labels": [
-                "game"
-            ],
-            "created_at": 1641936446.709749,
-            "updated_at": 1641936446.709756,
-            "tests_results": [],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
-            "tier": "COMMUNITY",
-            "skip_tests": true
-        },
-        "18": {
+        "15": {
             "name": "QiskitBot",
             "url": "https://github.com/infiniteregrets/QiskitBot",
             "description": "A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange",
@@ -1255,7 +1180,7 @@
             "tier": "COMMUNITY",
             "skip_tests": true
         },
-        "19": {
+        "16": {
             "name": "pytorch-quantum",
             "url": "https://github.com/mit-han-lab/pytorch-quantum",
             "description": "A PyTorch-centric hybrid classical-quantum dynamic neural networks framework.",
@@ -1316,141 +1241,12 @@
                 "styles_check_command": ["pylint -rn torchquantum test"],
                 "tests_command": ["pytest"]
             }
-        },
-        "20": {
-            "name": "qonwaygameoflife",
-            "url": "https://github.com/qonwaygameoflife/qonwaygameoflife",
-            "description": "Qiskit Camp - Hackaton Madrid 2019 - Quantum Game of Life",
-            "licence": "Apache 2.0",
-            "contact_info": null,
-            "alternatives": null,
-            "affiliations": null,
-            "labels": [
-                "game"
-            ],
-            "created_at": 1641938992.408485,
-            "updated_at": 1641938992.408488,
-            "tests_results": [],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
-            "tier": "COMMUNITY",
-            "skip_tests": true
-        },
-        "22": {
-            "name": "polyadicQML",
-            "url": "https://github.com/entropicalabs/polyadicQML",
-            "description": "A python library to define, train and deploy Polyadic Quantum Machine Learning models",
-            "licence": "Apache 2.0",
-            "contact_info": null,
-            "alternatives": null,
-            "affiliations": null,
-            "labels": [
-                "library"
-            ],
-            "created_at": 1641938992.434237,
-            "updated_at": 1641938992.434238,
-            "tests_results": [
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.434224
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.434226
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.433773
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
-            "tier": "COMMUNITY",
-            "skip_tests": false,
-            "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
-                "dependencies_files": [],
-                "extra_dependencies": [
-                    "qiskit",
-                    "coverage",
-                    "pylint",
-                    "numpy",
-                    "scipy",
-                    "sklearn",
-                    "manyq",
-                    "tqdm"
-                ],
-                "language": {
-                    "name": "python",
-                    "versions": ["3.6"]
-                },
-                "styles_check_command": ["pylint -rn polyadicqml test"],
-                "tests_command": ["pytest"]
-            }
-        },
-        "23": {
-            "name": "Quantum-Tetris",
-            "url": "https://github.com/dartmouth-cs98/Quantum-Tetris",
-            "description": "Quantum Tetris is your traditional tetris game which has several twists based on the concepts of quantum computing.",
-            "licence": "Apache 2.0",
-            "contact_info": null,
-            "alternatives": null,
-            "affiliations": null,
-            "labels": [
-                "game"
-            ],
-            "created_at": 1641938992.244078,
-            "updated_at": 1641938992.244081,
-            "tests_results": [],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
-            "tier": "COMMUNITY",
-            "skip_tests": true
         }
     },
     "PROTOTYPES": {
         "1": {
             "name": "Entanglement forging",
-            "url": "https://github.com/IBM-Quantum-Prototypes/entanglement-forging",
+            "url": "https://github.com/qiskit-community/prototype-entanglement-forging",
             "description": "This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits.",
             "licence": "Apache 2.0",
             "contact_info": "",
@@ -1470,7 +1266,7 @@
         },
         "2": {
             "name": "Quantum kernel training",
-            "url": "https://github.com/IBM-Quantum-Prototypes/quantum-kernel-training",
+            "url": "https://github.com/qiskit-community/prototype-quantum-kernel-training",
             "description": "The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications.",
             "licence": "Apache 2.0",
             "contact_info": "",
