@@ -1,21 +1,5 @@
 {
     "MAIN": {
-        "1": {
-            "alternatives": null,
-            "contact_info": null,
-            "created_at": 1628883441.117576,
-            "description": "Qiskit is an open-source SDK for working with quantum computers at the level of circuits, algorithms, and application modules. Qiskit is made up of elements that work together to enable quantum computing. This is a simple meta-package to install the elements of Qiskit altogether.",
-            "labels": [
-                "meta"
-            ],
-            "licence": "Apache 2.0",
-            "name": "qiskit",
-            "tier": "MAIN",
-            "updated_at": 1628883441.117589,
-            "url": "https://github.com/Qiskit/qiskit",
-            "tests_results": [],
-            "skip_tests": true
-        },
         "2": {
             "alternatives": null,
             "contact_info": null,
@@ -185,40 +169,6 @@
             "coverages_results": [],
             "skip_tests": true
         },
-        "9": {
-            "alternatives": null,
-            "contact_info": null,
-            "created_at": 1628883441.120706,
-            "description": "Collection of Jupyter notebooks aimed at teaching people who want to use Qiskit for writing quantum computing programs, and executing them on one of several backends.",
-            "labels": [
-                "education",
-                "community"
-            ],
-            "licence": "Apache 2.0",
-            "name": "qiskit-tutorials",
-            "tier": "MAIN",
-            "updated_at": 1628883441.120709,
-            "url": "https://github.com/Qiskit/qiskit-tutorials",
-            "tests_results": [],
-            "skip_tests": true
-        },
-        "10": {
-            "alternatives": null,
-            "contact_info": null,
-            "created_at": 1628883441.121108,
-            "description": "Qiskit's website",
-            "labels": [
-                "community",
-                "web"
-            ],
-            "licence": "Apache 2.0",
-            "name": "qiskit.org",
-            "tier": "MAIN",
-            "updated_at": 1628883441.121111,
-            "url": "https://github.com/Qiskit/qiskit.org",
-            "tests_results": [],
-            "skip_tests": true
-        },
         "11": {
             "alternatives": null,
             "contact_info": null,
@@ -310,72 +260,6 @@
                 "styles_check_command": ["pylint -rn pyEPR"],
                 "tests_command": ["pytest"]
             }
-        },
-        "2": {
-            "name": "qiskit-ecosystem_template",
-            "url": "https://github.com/mickahell/qiskit-ecosystem_template",
-            "description": "Project template for adding to Qiskit Ecosystem",
-            "licence": "Apache License 2.0",
-            "contact_info": "michael.rollin@protonmail.com",
-            "alternatives": "_No response_",
-            "affiliations": null,
-            "labels": [
-                "tool"
-            ],
-            "created_at": 1641938992.308625,
-            "updated_at": 1641938992.308626,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": true,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1641938992.308602
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1641938992.308606
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1641938992.308608
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.308612
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": true,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.308614
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.308186
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": true
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": true
-                }
-            ],
-            "tier": "COMMUNITY",
-            "skip_tests": false
         },
         "3": {
             "name": "c3",
