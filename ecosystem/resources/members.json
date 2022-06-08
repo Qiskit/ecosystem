@@ -1,5 +1,5 @@
 {
-    "MAIN": {
+    "Main": {
         "2": {
             "alternatives": null,
             "contact_info": null,
@@ -11,7 +11,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-terra",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1628883441.118061,
             "url": "https://github.com/Qiskit/qiskit-terra",
             "tests_results": [],
@@ -27,7 +27,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-aer",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403010.377697,
             "url": "https://github.com/Qiskit/qiskit-aer",
             "tests_results": [
@@ -54,7 +54,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-optimization",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403009.538763,
             "url": "https://github.com/Qiskit/qiskit-optimization",
             "tests_results": [
@@ -81,7 +81,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-metal",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1628883441.119205,
             "url": "https://github.com/Qiskit/qiskit-metal",
             "tests_results": [],
@@ -98,7 +98,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-machine-learning",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403010.012956,
             "url": "https://github.com/Qiskit/qiskit-machine-learning",
             "tests_results": [
@@ -126,7 +126,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-nature",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403009.167082,
             "url": "https://github.com/Qiskit/qiskit-nature",
             "tests_results": [
@@ -153,7 +153,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-finance",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403009.368609,
             "url": "https://github.com/Qiskit/qiskit-finance",
             "tests_results": [
@@ -179,14 +179,14 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-dynamics",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1628883441.121111,
             "url": "https://github.com/Qiskit/qiskit-dynamics",
             "tests_results": [],
             "skip_tests": true
         }
     },
-    "COMMUNITY": {
+    "Community": {
         "1": {
             "name": "pyEPR",
             "url": "https://github.com/zlatko-minev/pyEPR",
@@ -244,7 +244,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -318,7 +318,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -401,7 +401,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -473,7 +473,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -566,7 +566,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -621,7 +621,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false
         },
         "8": {
@@ -669,7 +669,7 @@
                     "passed": true
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -742,7 +742,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -816,7 +816,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -889,7 +889,7 @@
                     "passed": true
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -962,7 +962,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -1037,7 +1037,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -1119,7 +1119,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -1182,7 +1182,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": true
         },
         "16": {
@@ -1230,7 +1230,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -1260,7 +1260,7 @@
             }
         }
     },
-    "PROTOTYPES": {
+    "Prototypes": {
         "1": {
             "name": "Entanglement forging",
             "url": "https://github.com/qiskit-community/prototype-entanglement-forging",
@@ -1278,7 +1278,7 @@
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
-            "tier": "PROTOTYPES",
+            "tier": "Prototypes",
             "skip_tests": true
         },
         "2": {
@@ -1298,7 +1298,7 @@
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
-            "tier": "PROTOTYPES",
+            "tier": "Prototypes",
             "skip_tests": true
         }
     },
