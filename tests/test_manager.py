@@ -135,7 +135,6 @@ class TestManager(TestCase):
         )
         self.assertTrue(response)
 
-    @unittest.skip
     def test_update_badges(self):
         """Tests creating badges."""
         self._delete_members_json()
