@@ -2,7 +2,6 @@
 import os
 import io
 import sys
-import unittest
 from unittest import TestCase
 
 import responses
