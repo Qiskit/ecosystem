@@ -19,4 +19,10 @@ class Tier:
     @classmethod
     def all(cls) -> List[str]:
         """Returns all Tiers."""
-        return [Tier.MAIN, Tier.COMMUNITY, Tier.PROTOTYPES, Tier.PARTNERS, Tier.EXTENSION]
+        return [
+            Tier.MAIN,
+            Tier.COMMUNITY,
+            Tier.PROTOTYPES,
+            Tier.PARTNERS,
+            Tier.EXTENSION,
+        ]

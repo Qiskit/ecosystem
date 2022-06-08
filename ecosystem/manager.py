@@ -197,7 +197,7 @@ class Manager:
             repo_alt,
             repo_affiliations,
             list(repo_labels),
-            tier=repo_tier or Tier.COMMUNITY
+            tier=repo_tier or Tier.COMMUNITY,
         )
         self.dao.insert(new_repo)
 
@@ -209,10 +209,7 @@ class Manager:
         """
         path = path if path is not None else self.current_dir
 
-        data = [
-            (tier, self.dao.get_repos_by_tier(tier=tier))
-            for tier in Tier.all()
-        ]
+        data = [(tier, self.dao.get_repos_by_tier(tier=tier)) for tier in Tier.all()]
         readme_content = self.readme_template.render(data=data)
 
         with open(f"{path}/README.md", "w") as file:
