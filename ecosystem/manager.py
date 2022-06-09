@@ -121,16 +121,20 @@ class Manager:
         """Updates badges for projects."""
         badges_folder_path = "{}/badges".format(self.current_dir)
 
-        for project in self.dao.get_repos_by_tier("COMMUNITY"):
-            tests_passed = all(result.passed for result in project.tests_results)
-            color = "blueviolet" if tests_passed else "gray"
-            label = "Qiskit Ecosystem"
-            message = project.name
-            url = f"https://img.shields.io/static/v1?label={label}&message={message}&color={color}"
+        for tier in Tier.all():
+            for project in self.dao.get_repos_by_tier(tier):
+                tests_passed = all(result.passed for result in project.tests_results)
+                color = "blueviolet" if tests_passed else "gray"
+                label = "Qiskit Ecosystem"
+                message = project.name
+                url = (
+                    f"https://img.shields.io/static/v1?"
+                    f"label={label}&message={message}&color={color}"
+                )
 
-            shields_request = requests.get(url)
-            with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
-                outfile.write(shields_request.content)
+                shields_request = requests.get(url)
+                with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
+                    outfile.write(shields_request.content)
 
     @staticmethod
     def parser_issue(body: str) -> None:
