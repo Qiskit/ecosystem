@@ -1,5 +1,5 @@
 {
-    "MAIN": {
+    "Main": {
         "2": {
             "alternatives": null,
             "contact_info": null,
@@ -11,7 +11,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-terra",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1628883441.118061,
             "url": "https://github.com/Qiskit/qiskit-terra",
             "tests_results": [],
@@ -27,7 +27,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-aer",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403010.377697,
             "url": "https://github.com/Qiskit/qiskit-aer",
             "tests_results": [
@@ -54,7 +54,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-optimization",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403009.538763,
             "url": "https://github.com/Qiskit/qiskit-optimization",
             "tests_results": [
@@ -81,7 +81,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-metal",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1628883441.119205,
             "url": "https://github.com/Qiskit/qiskit-metal",
             "tests_results": [],
@@ -98,7 +98,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-machine-learning",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403010.012956,
             "url": "https://github.com/Qiskit/qiskit-machine-learning",
             "tests_results": [
@@ -126,7 +126,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-nature",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403009.167082,
             "url": "https://github.com/Qiskit/qiskit-nature",
             "tests_results": [
@@ -153,7 +153,7 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-finance",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1636403009.368609,
             "url": "https://github.com/Qiskit/qiskit-finance",
             "tests_results": [
@@ -179,14 +179,14 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-dynamics",
-            "tier": "MAIN",
+            "tier": "Main",
             "updated_at": 1628883441.121111,
             "url": "https://github.com/Qiskit/qiskit-dynamics",
             "tests_results": [],
             "skip_tests": true
         }
     },
-    "COMMUNITY": {
+    "Community": {
         "1": {
             "name": "pyEPR",
             "url": "https://github.com/zlatko-minev/pyEPR",
@@ -244,21 +244,33 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
                     "coverage3 report --fail-under=80"
                 ],
-                "dependencies_files": ["requirements.txt"],
-                "extra_dependencies": ["qiskit" ,"coverage", "pylint"],
+                "dependencies_files": [
+                    "requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "qiskit",
+                    "coverage",
+                    "pylint"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn pyEPR"],
-                "tests_command": ["pytest"]
+                "styles_check_command": [
+                    "pylint -rn pyEPR"
+                ],
+                "tests_command": [
+                    "pytest"
+                ]
             }
         },
         "3": {
@@ -306,19 +318,32 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "pytest -x -v --cov=c3 --cov-report=xml test/"
                 ],
-                "dependencies_files": ["requirements.txt"],
-                "extra_dependencies": ["qiskit" ,"coverage", "pylint", "black"],
+                "dependencies_files": [
+                    "requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "qiskit",
+                    "coverage",
+                    "pylint",
+                    "black"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.7", "3.8", "3.9"]
+                    "versions": [
+                        "3.7",
+                        "3.8",
+                        "3.9"
+                    ]
                 },
-                "styles_check_command": ["black --check c3/"],
+                "styles_check_command": [
+                    "black --check c3/"
+                ],
                 "tests_command": [
                     "pytest -v -x -m \"not slow\" test/",
                     "pytest -v -x -m \"slow\" test/"
@@ -376,17 +401,24 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "pytest qiskit_superstaq --cov --cov-report=term-missing --cov-config=.coveragerc --cov-fail-under=100 --ignore-glob=*_integration_test.py --ignore=examples/"
                 ],
-                "dependencies_files": ["requirements.txt", "dev-requirements.txt"],
-                "extra_dependencies": ["qiskit"],
+                "dependencies_files": [
+                    "requirements.txt",
+                    "dev-requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "qiskit"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
                 "styles_check_command": [
                     "pylint --rcfile=.pylintrc examples qiskit-superstaq"
@@ -441,7 +473,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -465,10 +497,16 @@
                 ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn qtcodes"],
-                "tests_command": ["python -m unittest"]
+                "styles_check_command": [
+                    "pylint -rn qtcodes"
+                ],
+                "tests_command": [
+                    "python -m unittest"
+                ]
             }
         },
         "6": {
@@ -528,21 +566,33 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit",
                     "coverage3 report --fail-under=80"
                 ],
-                "dependencies_files": ["requirements.txt", "requirements-dev.txt"],
-                "extra_dependencies": ["coverage", "pylint"],
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [
+                    "coverage",
+                    "pylint"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn kaleidoscope"],
-                "tests_command": ["pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit"]
+                "styles_check_command": [
+                    "pylint -rn kaleidoscope"
+                ],
+                "tests_command": [
+                    "pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit"
+                ]
             }
         },
         "7": {
@@ -571,7 +621,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false
         },
         "8": {
@@ -619,20 +669,32 @@
                     "passed": true
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage run --source=\"./src/quantuminspire\" -m unittest discover -s src/tests -t src -v"
                 ],
-                "dependencies_files": ["requirements.txt"],
-                "extra_dependencies": ["coverage", "pylint", "qiskit"],
+                "dependencies_files": [
+                    "requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "coverage",
+                    "pylint",
+                    "qiskit"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn src"],
-                "tests_command": ["pytest src/tests"]
+                "styles_check_command": [
+                    "pylint -rn src"
+                ],
+                "tests_command": [
+                    "pytest src/tests"
+                ]
             }
         },
         "9": {
@@ -680,19 +742,30 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml"
                 ],
-                "dependencies_files": ["requirements.txt", "dev_requirements.txt"],
-                "extra_dependencies": ["coverage", "pylint", "qiskit"],
+                "dependencies_files": [
+                    "requirements.txt",
+                    "dev_requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "coverage",
+                    "pylint",
+                    "qiskit"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn mitiq"],
+                "styles_check_command": [
+                    "pylint -rn mitiq"
+                ],
                 "tests_command": [
                     "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml --ignore=mitiq/interface/mitiq_pyquil"
                 ]
@@ -743,19 +816,29 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "python3 -m pytest tests --tb=short --cov=pennylane_qiskit --cov-report term-missing --cov-report=html:coverage_html_report"
                 ],
-                "dependencies_files": ["requirements.txt"],
-                "extra_dependencies": ["coverage", "pylint", "qiskit"],
+                "dependencies_files": [
+                    "requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "coverage",
+                    "pylint",
+                    "qiskit"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn pennylane_qiskit tests"],
+                "styles_check_command": [
+                    "pylint -rn pennylane_qiskit tests"
+                ],
                 "tests_command": [
                     "pytest tests --tb=short"
                 ]
@@ -806,21 +889,32 @@
                     "passed": true
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
                     "coverage3 report --fail-under=80"
                 ],
-                "dependencies_files": ["requirements.txt"],
-                "extra_dependencies": ["coverage", "pylint"],
+                "dependencies_files": [
+                    "requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "coverage",
+                    "pylint"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn quantumcat tests"],
-                "tests_command": ["pytest"]
+                "styles_check_command": [
+                    "pylint -rn quantumcat tests"
+                ],
+                "tests_command": [
+                    "pytest"
+                ]
             }
         },
         "12": {
@@ -868,21 +962,34 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
                     "coverage3 report --fail-under=80"
                 ],
-                "dependencies_files": ["requirements.txt"],
-                "extra_dependencies": ["qiskit","Cython", "coverage", "pylint"],
+                "dependencies_files": [
+                    "requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "qiskit",
+                    "Cython",
+                    "coverage",
+                    "pylint"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn blueqat tests"],
-                "tests_command": ["pytest"]
+                "styles_check_command": [
+                    "pylint -rn blueqat tests"
+                ],
+                "tests_command": [
+                    "pytest"
+                ]
             }
         },
         "13": {
@@ -930,7 +1037,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -955,10 +1062,16 @@
                 ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn qctrlopencontrols tests"],
-                "tests_command": ["pytest"]
+                "styles_check_command": [
+                    "pylint -rn qctrlopencontrols tests"
+                ],
+                "tests_command": [
+                    "pytest"
+                ]
             }
         },
         "14": {
@@ -1006,7 +1119,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
@@ -1015,7 +1128,9 @@
                 ],
                 "dependencies_files": [],
                 "extra_dependencies": [
-                    "qiskit", "coverage", "pylint",
+                    "qiskit",
+                    "coverage",
+                    "pylint",
                     "numpy==1.*,>=1.20.1",
                     "pyquil==3.*,>=3.0.0",
                     "black==20.*,>=20.8.0.b1",
@@ -1029,10 +1144,16 @@
                 ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn qiskit_rigetti tests"],
-                "tests_command": ["pytest"]
+                "styles_check_command": [
+                    "pylint -rn qiskit_rigetti tests"
+                ],
+                "tests_command": [
+                    "pytest"
+                ]
             }
         },
         "15": {
@@ -1061,7 +1182,7 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": true
         },
         "16": {
@@ -1109,25 +1230,37 @@
                     "passed": false
                 }
             ],
-            "tier": "COMMUNITY",
+            "tier": "Community",
             "skip_tests": false,
             "configuration": {
                 "coverages_check_command": [
                     "coverage3 -m pytest",
                     "coverage3 report --fail-under=80"
                 ],
-                "dependencies_files": ["requirements.txt"],
-                "extra_dependencies": ["qiskit", "coverage", "pylint"],
+                "dependencies_files": [
+                    "requirements.txt"
+                ],
+                "extra_dependencies": [
+                    "qiskit",
+                    "coverage",
+                    "pylint"
+                ],
                 "language": {
                     "name": "python",
-                    "versions": ["3.6"]
+                    "versions": [
+                        "3.6"
+                    ]
                 },
-                "styles_check_command": ["pylint -rn torchquantum test"],
-                "tests_command": ["pytest"]
+                "styles_check_command": [
+                    "pylint -rn torchquantum test"
+                ],
+                "tests_command": [
+                    "pytest"
+                ]
             }
         }
     },
-    "PROTOTYPES": {
+    "Prototypes": {
         "1": {
             "name": "Entanglement forging",
             "url": "https://github.com/qiskit-community/prototype-entanglement-forging",
@@ -1145,7 +1278,7 @@
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
-            "tier": "PROTOTYPES",
+            "tier": "Prototypes",
             "skip_tests": true
         },
         "2": {
@@ -1165,8 +1298,150 @@
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
-            "tier": "PROTOTYPES",
+            "tier": "Prototypes",
             "skip_tests": true
+        },
+        "3": {
+            "name": "Quantum Random Access Optimization",
+            "url": "https://github.com/qiskit-community/prototype-qrao",
+            "description": "The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems.",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "",
+            "labels": [
+                "optimization"
+            ],
+            "created_at": 1654781175.236777,
+            "updated_at": 1654781175.236794,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Prototypes",
+            "configuration": null,
+            "skip_tests": false
+        }
+    },
+    "Partners": {
+        "1": {
+            "name": "qiskit-ibm-runtime",
+            "url": "https://github.com/qiskit/qiskit-ibm-runtime",
+            "description": "This module provides the interface to access Qiskit Runtime.",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "IBM",
+            "labels": [
+                "runtime"
+            ],
+            "created_at": 1654696489.147673,
+            "updated_at": 1654696489.147699,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Partners",
+            "configuration": null,
+            "skip_tests": false
+        },
+        "2": {
+            "name": "qiskit-ionq",
+            "url": "https://github.com/Qiskit-Partners/qiskit-ionq",
+            "description": "Project contains a provider that allows access to IonQ ion trap quantum systems.",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "",
+            "labels": [
+                "provider"
+            ],
+            "created_at": 1654696643.797478,
+            "updated_at": 1654696643.797491,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Partners",
+            "configuration": null,
+            "skip_tests": false
+        },
+        "3": {
+            "name": "qiskit-ibm-provider",
+            "url": "https://github.com/Qiskit/qiskit-ibm-provider",
+            "description": "Project contains a provider that allows accessing the IBM Quantum systems and simulators.",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "IBM",
+            "labels": [
+                "provider"
+            ],
+            "created_at": 1654696732.591266,
+            "updated_at": 1654696732.591279,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Partners",
+            "configuration": null,
+            "skip_tests": false
+        },
+        "4": {
+            "name": "mthree",
+            "url": "https://github.com/Qiskit-Partners/mthree",
+            "description": "Matrix-free Measurement Mitigation (M3)",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "",
+            "labels": [],
+            "created_at": 1654696795.075555,
+            "updated_at": 1654696795.07557,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Partners",
+            "configuration": null,
+            "skip_tests": false
+        }
+    },
+    "Extension": {
+        "1": {
+            "name": "qiskit-alt",
+            "url": "https://github.com/Qiskit-Extensions/qiskit-alt",
+            "description": "Python package uses a backend written in Julia to implement high performance features for standard Qiskit.",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "",
+            "labels": [
+                "julia"
+            ],
+            "created_at": 1654709818.849842,
+            "updated_at": 1654709818.849859,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Extension",
+            "configuration": null,
+            "skip_tests": false
+        },
+        "2": {
+            "name": "qiskit-cold-atom",
+            "url": "https://github.com/Qiskit-Extensions/qiskit-cold-atom",
+            "description": "This project builds on this functionality to describe programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework.",
+            "licence": "Apache-2.0 License",
+            "contact_info": "",
+            "alternatives": "",
+            "affiliations": "",
+            "labels": [
+                "provider"
+            ],
+            "created_at": 1654709886.686642,
+            "updated_at": 1654709886.686661,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Extension",
+            "configuration": null,
+            "skip_tests": false
         }
     }
 }
