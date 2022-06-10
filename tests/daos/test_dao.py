@@ -112,6 +112,10 @@ class TestJsonDao(TestCase):
             recovered_repo.tests_results,
             [TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
         )
+        self.assertEqual(
+            recovered_repo.historical_test_results,
+            [TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
+        )
 
         res = dao.add_repo_test_result(
             main_repo.url,
@@ -119,11 +123,25 @@ class TestJsonDao(TestCase):
             TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
         )
         self.assertEqual(res, [1])
+        res = dao.add_repo_test_result(
+            main_repo.url,
+            main_repo.tier,
+            TestResult(True, "0.18.2", TestType.STANDARD),
+        )
+        self.assertEqual(res, [1])
         recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
         self.assertEqual(
             recovered_repo.tests_results,
             [
+                TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
+                TestResult(True, "0.18.2", TestType.STANDARD),
+            ],
+        )
+        self.assertEqual(
+            recovered_repo.historical_test_results,
+            [
                 TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE),
                 TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
+                TestResult(True, "0.18.2", TestType.STANDARD),
             ],
         )
