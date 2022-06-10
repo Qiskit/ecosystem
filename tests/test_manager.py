@@ -47,8 +47,10 @@ class TestManager(TestCase):
         self._delete_members_json()
         if not os.path.exists(self.path):
             os.makedirs(self.path)
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        with open("{}/resources/issue.md".format(current_dir), "r") as issue_body_file:
+        self.current_dir = os.path.dirname(os.path.abspath(__file__))
+        with open(
+            "{}/resources/issue.md".format(self.current_dir), "r"
+        ) as issue_body_file:
             self.issue_body = issue_body_file.read()
 
     def tearDown(self) -> None:
@@ -146,7 +148,7 @@ class TestManager(TestCase):
         dao.insert(commu_success)
         dao.insert(commu_failed)
 
-        manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/")
+        manager = Manager(root_path=os.path.join(self.current_dir, ".."))
         manager.resources_dir = "../resources"
         manager.dao = dao
 

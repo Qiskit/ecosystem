@@ -82,12 +82,12 @@ class TestJsonDao(TestCase):
         moved_repo = dao.move_repo_to_other_tier(
             repo_url=main_repo.url,
             source_tier=main_repo.tier,
-            destination_tier=Tier.CANDIDATE,
+            destination_tier=Tier.COMMUNITY,
         )
         repos = dao.get_repos_by_tier(Tier.MAIN)
         self.assertEqual(len(repos), 0)
 
-        candidate_repos = dao.get_repos_by_tier(Tier.CANDIDATE)
+        candidate_repos = dao.get_repos_by_tier(Tier.COMMUNITY)
         self.assertEqual(len(candidate_repos), 1)
         self.assertEqual(candidate_repos[0], moved_repo)
 
