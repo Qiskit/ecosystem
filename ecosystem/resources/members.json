@@ -30,14 +30,7 @@
             "tier": "Main",
             "updated_at": 1636403010.377697,
             "url": "https://github.com/Qiskit/qiskit-aer",
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": true,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1636403010.377469
-                }
-            ],
+            "tests_results": [],
             "affiliations": null,
             "styles_results": [],
             "coverages_results": [],
@@ -57,14 +50,7 @@
             "tier": "Main",
             "updated_at": 1636403009.538763,
             "url": "https://github.com/Qiskit/qiskit-optimization",
-            "tests_results": [
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1636403009.53853
-                }
-            ],
+            "tests_results": [],
             "affiliations": null,
             "styles_results": [],
             "coverages_results": [],
@@ -101,14 +87,7 @@
             "tier": "Main",
             "updated_at": 1636403010.012956,
             "url": "https://github.com/Qiskit/qiskit-machine-learning",
-            "tests_results": [
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1636403010.012718
-                }
-            ],
+            "tests_results": [],
             "affiliations": null,
             "styles_results": [],
             "coverages_results": [],
@@ -129,14 +108,7 @@
             "tier": "Main",
             "updated_at": 1636403009.167082,
             "url": "https://github.com/Qiskit/qiskit-nature",
-            "tests_results": [
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1636403009.166847
-                }
-            ],
+            "tests_results": [],
             "affiliations": null,
             "styles_results": [],
             "coverages_results": [],
@@ -156,14 +128,7 @@
             "tier": "Main",
             "updated_at": 1636403009.368609,
             "url": "https://github.com/Qiskit/qiskit-finance",
-            "tests_results": [
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1636403009.368369
-                }
-            ],
+            "tests_results": [],
             "affiliations": null,
             "styles_results": [],
             "coverages_results": [],
@@ -200,50 +165,9 @@
             ],
             "created_at": 1641938992.426062,
             "updated_at": 1641938992.426063,
-            "tests_results": [
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1641938992.426041
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1641938992.426045
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.426047
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.426049
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.426051
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -286,38 +210,9 @@
             ],
             "created_at": 1638807605.079218,
             "updated_at": 1638807605.079223,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": true,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1638807605.079161
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": true,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1638807605.079178
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1638807605.079181
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -363,44 +258,9 @@
             ],
             "created_at": 1641938992.280572,
             "updated_at": 1641938992.280573,
-            "tests_results": [
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1641938992.280553
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.280557
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1641938992.280559
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1641938992.280561
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -441,38 +301,9 @@
             ],
             "created_at": 1641938992.417498,
             "updated_at": 1641938992.417498,
-            "tests_results": [
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.417485
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.417487
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.417052
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -522,50 +353,9 @@
             ],
             "created_at": 1641938992.378912,
             "updated_at": 1641938992.378913,
-            "tests_results": [
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.18.3",
-                    "timestamp": 1641938992.378893
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.0",
-                    "timestamp": 1641938992.378896
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.3789
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.378901
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.378497
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -609,18 +399,8 @@
             "created_at": 1641938992.295526,
             "updated_at": 1641938992.295528,
             "tests_results": [],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false
         },
@@ -637,38 +417,9 @@
             ],
             "created_at": 1641938992.369625,
             "updated_at": 1641938992.369626,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": true,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.369609
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.369614
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.369615
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": true
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -710,38 +461,9 @@
             ],
             "created_at": 1641938992.291824,
             "updated_at": 1641938992.291825,
-            "tests_results": [
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.291806
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.291811
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.291813
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -784,38 +506,9 @@
             ],
             "created_at": 1641938992.429689,
             "updated_at": 1641938992.42969,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.429675
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.429677
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.429243
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -857,38 +550,9 @@
             ],
             "created_at": 1641938992.441942,
             "updated_at": 1641938992.441943,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": true,
-                    "terra_version": "0.17.4",
-                    "timestamp": 1641938992.441925
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.17.4",
-                    "timestamp": 1641938992.44193
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.441932
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": true
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -930,38 +594,9 @@
             ],
             "created_at": 1641938992.422032,
             "updated_at": 1641938992.422033,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.422019
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.19.1",
-                    "timestamp": 1641938992.422021
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "0.20.0",
-                    "timestamp": 1641938992.421483
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -1005,38 +640,9 @@
             ],
             "created_at": 1641938992.390322,
             "updated_at": 1641938992.390323,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.39031
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.390312
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.389865
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -1087,38 +693,9 @@
             ],
             "created_at": 1641936446.811627,
             "updated_at": 1641936446.811629,
-            "tests_results": [
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641936446.811607
-                },
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641936446.811612
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641936446.811196
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
@@ -1170,18 +747,8 @@
             "created_at": 1641938992.363096,
             "updated_at": 1641938992.363099,
             "tests_results": [],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": true
         },
@@ -1198,38 +765,9 @@
             ],
             "created_at": 1641938992.438087,
             "updated_at": 1641938992.438088,
-            "tests_results": [
-                {
-                    "test_type": "STANDARD",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.438069
-                },
-                {
-                    "test_type": "STABLE_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.438074
-                },
-                {
-                    "test_type": "DEV_COMPATIBLE",
-                    "passed": false,
-                    "terra_version": "-",
-                    "timestamp": 1641938992.438076
-                }
-            ],
-            "styles_results": [
-                {
-                    "style_type": "pylint",
-                    "passed": false
-                }
-            ],
-            "coverages_results": [
-                {
-                    "coverage_type": "",
-                    "passed": false
-                }
-            ],
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
