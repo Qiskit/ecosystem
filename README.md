@@ -45,7 +45,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 ## Members ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
 
 
-### Main ![ecosystem-MAIN](https://img.shields.io/badge/Qiskit-Main-blueviolet)
+### Main ![ecosystem-Main](https://img.shields.io/badge/Qiskit-Main-blueviolet)
 
 |  Name | Description  |
 |---|---|
@@ -56,10 +56,10 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-machine-learning](https://github.com/Qiskit/qiskit-machine-learning) | The Machine Learning package contains sample datasets and quantum ML algorithms. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
 | [qiskit-nature](https://github.com/Qiskit/qiskit-nature) | Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
 | [qiskit-finance](https://github.com/Qiskit/qiskit-finance) | Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/finance-gray.svg)  <br/> |
-| [qiskit-dynamics](https://github.com/Qiskit/qiskit-dynamics) | Qiskit Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit. <br/>  ![core](https://img.shields.io/badge/differential equations-gray.svg)  <br/> |
+| [qiskit-dynamics](https://github.com/Qiskit/qiskit-dynamics) | Qiskit Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit. <br/>  ![core](https://img.shields.io/badge/differential-equations-gray.svg)  <br/> |
 
 
-### Community ![ecosystem-COMMUNITY](https://img.shields.io/badge/Qiskit-Community-blueviolet)
+### Community ![ecosystem-Community](https://img.shields.io/badge/Qiskit-Community-blueviolet)
 
 |  Name | Description  |
 |---|---|
@@ -80,12 +80,13 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [pytorch-quantum](https://github.com/mit-han-lab/pytorch-quantum) | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 
 
-### Prototypes ![ecosystem-PROTOTYPES](https://img.shields.io/badge/Qiskit-Prototypes-blueviolet)
+### Prototypes ![ecosystem-Prototypes](https://img.shields.io/badge/Qiskit-Prototypes-blueviolet)
 
 |  Name | Description  |
 |---|---|
 | [Entanglement forging](https://github.com/qiskit-community/prototype-entanglement-forging) | This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
 | [Quantum kernel training](https://github.com/qiskit-community/prototype-quantum-kernel-training) | The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
+| [Quantum Random Access Optimization](https://github.com/qiskit-community/prototype-qrao) | The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems. <br/>  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
 
 
 ### Partners ![ecosystem-Partners](https://img.shields.io/badge/Qiskit-Partners-blueviolet)
