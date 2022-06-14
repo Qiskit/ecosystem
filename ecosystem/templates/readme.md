@@ -1,6 +1,9 @@
-# Ecosystem ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet) [![Tests](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml)
+<!--lint ignore double-link-->
 
-<!-- PROJECT LOGO -->
+# Ecosystem ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet) [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![Tests](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml)
+
+<!--lint enable double-link-->
+
 <br />
 <p align="center">
   <p align="center">
@@ -11,24 +14,13 @@
   <h3 align="center">Ecosystem</h3>
 </p>
 
-
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li><a href="#join-the-ecosystem">Join the Ecosystem</a></li>
-    <li><a href="#members">Members</a></li>
-    <li><a href="#contribution-guidelines">Contribution Guidelines</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
+## Contents
+1. [About The Project](#about-the-project)
+2. [Join the Ecosystem](#join-the-ecosystem)
+3. [Members](#members)
+4. [Contribution Guidelines](#contribution-guidelines)
 
 
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 The Ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
@@ -42,7 +34,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 - To know more about how to pass the submission form, check the **[Notice](https://github.com/qiskit-community/ecosystem/tree/main/docs/notice.md)**
 
 
-## Members ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
+## Members
 
 {% for tier, repos in data %}
 ### {{ tier.capitalize() }} ![ecosystem-{{tier}}](https://img.shields.io/badge/Qiskit-{{tier.capitalize()}}-blueviolet)
@@ -63,8 +55,3 @@ See the [code of conduct](./CODE_OF_CONDUCT.md) to learn about the social guidel
 
 See the [open issues](https://github.com/qiskit-community/ecosystem/issues) for a list of proposed features (and known issues).
 
-
-
-## License
-
-Distributed under the Apache License. See [LICENSE.txt](./LICENSE) for more information.
