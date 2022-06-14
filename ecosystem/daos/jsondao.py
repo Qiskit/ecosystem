@@ -92,6 +92,7 @@ class JsonDAO:
         self, repo_url: str, tier: str, test_result: TestResult
     ) -> Optional[List[int]]:
         """Adds test result for repository.
+        Overwrites latest test results and adds to historical test results.
 
         Args:
             repo_url: url of the repo
@@ -105,18 +106,22 @@ class JsonDAO:
 
         fetched_repo_json = table.get(repository.url == repo_url)
         if fetched_repo_json is not None:
-            fetched_repo = Repository.from_dict(fetched_repo_json)
-            fetched_test_results = fetched_repo.tests_results
+            repo = Repository.from_dict(fetched_repo_json)
 
             new_test_results = [
+                tr for tr in repo.tests_results if tr.test_type != test_result.test_type
+            ] + [test_result]
+            repo.tests_results = new_test_results
+
+            new_historical_est_results = [
                 tr
-                for tr in fetched_test_results
+                for tr in repo.historical_test_results
                 if tr.test_type != test_result.test_type
                 or tr.terra_version != test_result.terra_version
             ] + [test_result]
-            fetched_repo.tests_results = new_test_results
+            repo.historical_test_results = new_historical_est_results
 
-            return table.upsert(fetched_repo.to_dict(), repository.url == repo_url)
+            return table.upsert(repo.to_dict(), repository.url == repo_url)
         return None
 
     def add_repo_style_result(
