@@ -26,12 +26,11 @@
 The Ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
 The goal of the Ecosystem is to recognize, support and accelerate development of quantum technologies using Qiskit.
 
-
+[Read more about this project](./docs/project_overview.md).
 
 ## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
 To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
-- To know more about how to pass the submission form, check the **[Notice](https://github.com/qiskit-community/ecosystem/tree/main/docs/notice.md)**
 
 
 ## Members
