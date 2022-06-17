@@ -163,18 +163,49 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1641938992.426062,
-            "updated_at": 1641938992.426063,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.750681,
+            "updated_at": 1655495925.750682,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.741138
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.741142
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.740715
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt"
                 ],
@@ -183,19 +214,37 @@
                     "coverage",
                     "pylint"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest"
+                ],
                 "styles_check_command": [
                     "pylint -rn pyEPR"
                 ],
-                "tests_command": [
-                    "pytest"
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.75067
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.750674
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.740715
+                }
+            ]
         },
         "3": {
             "name": "c3",
@@ -208,17 +257,51 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1638807605.079218,
-            "updated_at": 1638807605.079223,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.881617,
+            "updated_at": 1655495925.881618,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.870712
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.870715
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.870223
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": true
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "pytest -x -v --cov=c3 --cov-report=xml test/"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7",
+                        "3.8",
+                        "3.9"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt"
                 ],
@@ -228,22 +311,37 @@
                     "pylint",
                     "black"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.7",
-                        "3.8",
-                        "3.9"
-                    ]
-                },
-                "styles_check_command": [
-                    "black --check c3/"
-                ],
                 "tests_command": [
                     "pytest -v -x -m \"not slow\" test/",
                     "pytest -v -x -m \"slow\" test/"
+                ],
+                "styles_check_command": [
+                    "black --check c3/"
+                ],
+                "coverages_check_command": [
+                    "pytest -x -v --cov=c3 --cov-report=xml test/"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.881605
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.88161
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.870223
+                }
+            ]
         },
         "4": {
             "name": "qiskit-superstaq",
@@ -256,17 +354,49 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1641938992.280572,
-            "updated_at": 1641938992.280573,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.849723,
+            "updated_at": 1655495925.849724,
+            "tests_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.839797
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.839801
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.839803
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "pytest qiskit_superstaq --cov --cov-report=term-missing --cov-config=.coveragerc --cov-fail-under=100 --ignore-glob=*_integration_test.py --ignore=examples/"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt",
                     "dev-requirements.txt"
@@ -274,19 +404,36 @@
                 "extra_dependencies": [
                     "qiskit"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest .  --ignore-glob=*_integration_test.py --ignore=examples/"
+                ],
                 "styles_check_command": [
                     "pylint --rcfile=.pylintrc examples qiskit-superstaq"
                 ],
-                "tests_command": [
-                    "pytest .  --ignore-glob=*_integration_test.py --ignore=examples/"
+                "coverages_check_command": [
+                    "pytest qiskit_superstaq --cov --cov-report=term-missing --cov-config=.coveragerc --cov-fail-under=100 --ignore-glob=*_integration_test.py --ignore=examples/"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.849708
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.849713
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.849715
+                }
+            ]
         },
         "5": {
             "name": "qtcodes",
@@ -299,18 +446,49 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1641938992.417498,
-            "updated_at": 1641938992.417498,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.736015,
+            "updated_at": 1655495925.736016,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.726454
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.726458
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.726048
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [],
                 "extra_dependencies": [
                     "qiskit",
@@ -326,19 +504,37 @@
                     "black",
                     "pytest"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "python -m unittest"
+                ],
                 "styles_check_command": [
                     "pylint -rn qtcodes"
                 ],
-                "tests_command": [
-                    "python -m unittest"
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.736004
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.736009
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.726048
+                }
+            ]
         },
         "6": {
             "name": "kaleidoscope",
@@ -351,18 +547,49 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1641938992.378912,
-            "updated_at": 1641938992.378913,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.865021,
+            "updated_at": 1655495925.865022,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.854809
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.854813
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.854245
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit",
-                    "coverage3 report --fail-under=80"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt",
                     "requirements-dev.txt"
@@ -371,19 +598,37 @@
                     "coverage",
                     "pylint"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit"
+                ],
                 "styles_check_command": [
                     "pylint -rn kaleidoscope"
                 ],
-                "tests_command": [
-                    "pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit"
+                "coverages_check_command": [
+                    "coverage3 -m pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit",
+                    "coverage3 report --fail-under=80"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.865008
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.865013
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.854245
+                }
+            ]
         },
         "7": {
             "name": "pytket-extensions",
@@ -396,13 +641,25 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1641938992.295526,
-            "updated_at": 1641938992.295528,
+            "created_at": 1655495925.119081,
+            "updated_at": 1655495925.119083,
             "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
-            "skip_tests": false
+            "skip_tests": false,
+            "configuration": null,
+            "historical_test_results": []
         },
         "8": {
             "name": "quantuminspire",
@@ -415,17 +672,49 @@
             "labels": [
                 "algorithms"
             ],
-            "created_at": 1641938992.369625,
-            "updated_at": 1641938992.369626,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.821056,
+            "updated_at": 1655495925.821057,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.811265
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.81127
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.811272
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": true
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage run --source=\"./src/quantuminspire\" -m unittest discover -s src/tests -t src -v"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt"
                 ],
@@ -434,19 +723,36 @@
                     "pylint",
                     "qiskit"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest src/tests"
+                ],
                 "styles_check_command": [
                     "pylint -rn src"
                 ],
-                "tests_command": [
-                    "pytest src/tests"
+                "coverages_check_command": [
+                    "coverage run --source=\"./src/quantuminspire\" -m unittest discover -s src/tests -t src -v"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.821041
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.821046
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.821048
+                }
+            ]
         },
         "9": {
             "name": "mitiq",
@@ -459,17 +765,49 @@
             "labels": [
                 "library"
             ],
-            "created_at": 1641938992.291824,
-            "updated_at": 1641938992.291825,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.806005,
+            "updated_at": 1655495925.806006,
+            "tests_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.796422
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.796427
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.796429
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt",
                     "dev_requirements.txt"
@@ -479,19 +817,36 @@
                     "pylint",
                     "qiskit"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml --ignore=mitiq/interface/mitiq_pyquil"
+                ],
                 "styles_check_command": [
                     "pylint -rn mitiq"
                 ],
-                "tests_command": [
-                    "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml --ignore=mitiq/interface/mitiq_pyquil"
+                "coverages_check_command": [
+                    "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.805992
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.805996
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": true,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.805998
+                }
+            ]
         },
         "10": {
             "name": "pennylane-qiskit",
@@ -504,17 +859,49 @@
             "labels": [
                 "library"
             ],
-            "created_at": 1641938992.429689,
-            "updated_at": 1641938992.42969,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.593186,
+            "updated_at": 1655495925.593187,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1655495925.583495
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1655495925.583499
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.583501
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "python3 -m pytest tests --tb=short --cov=pennylane_qiskit --cov-report term-missing --cov-report=html:coverage_html_report"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt"
                 ],
@@ -523,19 +910,36 @@
                     "pylint",
                     "qiskit"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest tests --tb=short"
+                ],
                 "styles_check_command": [
                     "pylint -rn pennylane_qiskit tests"
                 ],
-                "tests_command": [
-                    "pytest tests --tb=short"
+                "coverages_check_command": [
+                    "python3 -m pytest tests --tb=short --cov=pennylane_qiskit --cov-report term-missing --cov-report=html:coverage_html_report"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1655495925.593167
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.19.1",
+                    "timestamp": 1655495925.593173
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.593175
+                }
+            ]
         },
         "11": {
             "name": "quantumcat",
@@ -548,18 +952,49 @@
             "labels": [
                 "library"
             ],
-            "created_at": 1641938992.441942,
-            "updated_at": 1641938992.441943,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.896683,
+            "updated_at": 1655495925.896683,
+            "tests_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.886932
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.17.4",
+                    "timestamp": 1655495925.886937
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.17.4",
+                    "timestamp": 1655495925.88694
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt"
                 ],
@@ -567,19 +1002,37 @@
                     "coverage",
                     "pylint"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest"
+                ],
                 "styles_check_command": [
                     "pylint -rn quantumcat tests"
                 ],
-                "tests_command": [
-                    "pytest"
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.896651
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.17.4",
+                    "timestamp": 1655495925.896673
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": true,
+                    "terra_version": "0.17.4",
+                    "timestamp": 1655495925.896675
+                }
+            ]
         },
         "12": {
             "name": "Blueqat",
@@ -592,18 +1045,49 @@
             "labels": [
                 "library"
             ],
-            "created_at": 1641938992.422032,
-            "updated_at": 1641938992.422033,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.791823,
+            "updated_at": 1655495925.791824,
+            "tests_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.78269
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.782694
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.782196
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt"
                 ],
@@ -613,19 +1097,37 @@
                     "coverage",
                     "pylint"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest"
+                ],
                 "styles_check_command": [
                     "pylint -rn blueqat tests"
                 ],
-                "tests_command": [
-                    "pytest"
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.791812
+                },
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.791816
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.782196
+                }
+            ]
         },
         "13": {
             "name": "python-open-controls",
@@ -638,18 +1140,30 @@
             "labels": [
                 "library"
             ],
-            "created_at": 1641938992.390322,
-            "updated_at": 1641938992.390323,
+            "created_at": 1655495925.91149,
+            "updated_at": 1655495925.911493,
             "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [],
                 "extra_dependencies": [
                     "qiskit",
@@ -666,19 +1180,18 @@
                     "pytest==5.*,>=5.0.0",
                     "qctrl-visualizer==2.*,>=2.12.2"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest"
+                ],
                 "styles_check_command": [
                     "pylint -rn qctrlopencontrols tests"
                 ],
-                "tests_command": [
-                    "pytest"
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
                 ]
-            }
+            },
+            "historical_test_results": []
         },
         "14": {
             "name": "qiskit-rigetti",
@@ -691,18 +1204,49 @@
             "labels": [
                 "plugin"
             ],
-            "created_at": 1641936446.811627,
-            "updated_at": 1641936446.811629,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.778395,
+            "updated_at": 1655495925.778396,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.767905
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.767909
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.767911
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [],
                 "extra_dependencies": [
                     "qiskit",
@@ -719,19 +1263,37 @@
                     "pytest-httpx==0.*,>=0.9.0",
                     "pytest-mock==3.*,>=3.6.1"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest"
+                ],
                 "styles_check_command": [
                     "pylint -rn qiskit_rigetti tests"
                 ],
-                "tests_command": [
-                    "pytest"
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.778381
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.778386
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.778388
+                }
+            ]
         },
         "15": {
             "name": "QiskitBot",
@@ -763,18 +1325,49 @@
             "labels": [
                 "library"
             ],
-            "created_at": 1641938992.438087,
-            "updated_at": 1641938992.438088,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
+            "created_at": 1655495925.579887,
+            "updated_at": 1655495925.579888,
+            "tests_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.570289
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.570293
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.570295
+                }
+            ],
+            "styles_results": [
+                {
+                    "style_type": "pylint",
+                    "passed": false
+                }
+            ],
+            "coverages_results": [
+                {
+                    "coverage_type": "",
+                    "passed": false
+                }
+            ],
             "tier": "Community",
             "skip_tests": false,
             "configuration": {
-                "coverages_check_command": [
-                    "coverage3 -m pytest",
-                    "coverage3 report --fail-under=80"
-                ],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.6"
+                    ]
+                },
                 "dependencies_files": [
                     "requirements.txt"
                 ],
@@ -783,19 +1376,37 @@
                     "coverage",
                     "pylint"
                 ],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.6"
-                    ]
-                },
+                "tests_command": [
+                    "pytest"
+                ],
                 "styles_check_command": [
                     "pylint -rn torchquantum test"
                 ],
-                "tests_command": [
-                    "pytest"
+                "coverages_check_command": [
+                    "coverage3 -m pytest",
+                    "coverage3 report --fail-under=80"
                 ]
-            }
+            },
+            "historical_test_results": [
+                {
+                    "test_type": "STANDARD",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.579874
+                },
+                {
+                    "test_type": "DEV_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.21.0",
+                    "timestamp": 1655495925.579878
+                },
+                {
+                    "test_type": "STABLE_COMPATIBLE",
+                    "passed": false,
+                    "terra_version": "0.20.2",
+                    "timestamp": 1655495925.57988
+                }
+            ]
         }
     },
     "Prototypes": {
