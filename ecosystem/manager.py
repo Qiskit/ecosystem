@@ -311,6 +311,7 @@ class Manager:
         test_type: str,
         ecosystem_deps: Optional[List[str]] = None,
         ecosystem_additional_commands: Optional[List[str]] = None,
+        logs_link: Optional[str] = None,
     ):
         """Runs tests using python runner.
 
@@ -322,6 +323,7 @@ class Manager:
             test_type: [dev, stable]
             ecosystem_deps: extra dependencies to install for tests
             ecosystem_additional_commands: extra commands to run before tests
+            logs_link: link to logs from gh actions
 
         Return:
             output: log PASS
@@ -357,6 +359,7 @@ class Manager:
                 passed=passed,
                 terra_version=terra_version,
                 test_type=test_type,
+                logs_link=logs_link,
             )
             # saving results to temp files
             if run_name:
@@ -472,10 +475,12 @@ class Manager:
         repo_url: str,
         tier: str = Tier.MAIN,
         python_version: str = "py39",
+        logs_link: Optional[str] = None,
     ):
         """Runs tests against dev version of qiskit.
 
         Args:
+            logs_link: link to logs of github actions run
             run_name: name of the run
             repo_url: repository url
             tier: tier of project
@@ -498,6 +503,7 @@ class Manager:
             test_type=TestType.DEV_COMPATIBLE,
             ecosystem_deps=[],
             ecosystem_additional_commands=additional_commands,
+            logs_link=logs_link,
         )
 
     def python_stable_tests(
@@ -506,6 +512,7 @@ class Manager:
         repo_url: str,
         tier: str = Tier.MAIN,
         python_version: str = "py39",
+        logs_link: Optional[str] = None,
     ):
         """Runs tests against stable version of qiskit.
         Args:
@@ -524,6 +531,7 @@ class Manager:
             python_version=python_version,
             test_type=TestType.STABLE_COMPATIBLE,
             ecosystem_deps=["qiskit"],
+            logs_link=logs_link,
         )
 
     def python_standard_tests(
@@ -532,6 +540,7 @@ class Manager:
         repo_url: str,
         tier: str = Tier.MAIN,
         python_version: str = "py39",
+        logs_link: Optional[str] = None,
     ):
         """Runs tests with provided confiuration.
         Args:
@@ -549,6 +558,7 @@ class Manager:
             tier=tier,
             python_version=python_version,
             test_type=TestType.STANDARD,
+            logs_link=logs_link,
         )
 
     def fetch_and_update_main_tests_results(self):
