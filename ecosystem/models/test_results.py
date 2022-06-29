@@ -1,5 +1,6 @@
 """Test results for commands."""
 import datetime
+from typing import Optional
 
 from .utils import JsonSerializable
 
@@ -10,11 +11,18 @@ class TestResult(JsonSerializable):
     _TEST_PASSED: str = "passed"
     _TEST_FAILED: str = "failed"
 
-    def __init__(self, passed: bool, terra_version: str, test_type: str):
+    def __init__(
+        self,
+        passed: bool,
+        terra_version: str,
+        test_type: str,
+        logs_link: Optional[str] = None,
+    ):
         self.test_type = test_type
         self.passed = passed
         self.terra_version = terra_version
         self.timestamp = datetime.datetime.now().timestamp()
+        self.logs_link = logs_link
 
     @classmethod
     def from_dict(cls, dictionary: dict):
@@ -29,6 +37,7 @@ class TestResult(JsonSerializable):
             passed=dictionary.get("passed"),
             terra_version=dictionary.get("terra_version"),
             test_type=dictionary.get("test_type"),
+            logs_link=dictionary.get("logs_link"),
         )
 
     def to_string(self) -> str:

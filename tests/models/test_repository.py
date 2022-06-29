@@ -37,7 +37,11 @@ class TestRepository(unittest.TestCase):
             description="Mock description for repo.",
             licence="Apache 2.0",
             labels=["mock", "tests"],
-            tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
+            tests_results=[
+                TestResult(
+                    True, "0.18.1", TestType.DEV_COMPATIBLE, logs_link="log_link"
+                )
+            ],
             configuration=configuration,
             skip_tests=True,
         )
@@ -46,6 +50,7 @@ class TestRepository(unittest.TestCase):
         pprint(repo_dict)
         self.assertEqual(main_repo, recovered)
         self.assertEqual(main_repo.tests_results, recovered.tests_results)
+        self.assertEqual(recovered.tests_results[0].logs_link, "log_link")
         # check configs
         self.assertEqual(
             main_repo.configuration.language.name, recovered.configuration.language.name
