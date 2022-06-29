@@ -44,6 +44,7 @@ class TestRepository(unittest.TestCase):
             ],
             configuration=configuration,
             skip_tests=True,
+            stars=42,
         )
         repo_dict = main_repo.to_dict()
         recovered = Repository.from_dict(repo_dict)
@@ -79,3 +80,7 @@ class TestRepository(unittest.TestCase):
             recovered.configuration.coverages_check_command,
         )
         self.assertTrue(recovered.skip_tests)
+        self.assertEqual(
+            main_repo.stars,
+            recovered.stars,
+        )

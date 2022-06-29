@@ -31,6 +31,7 @@ class Repository(JsonSerializable):
         configuration: Optional[RepositoryConfiguration] = None,
         skip_tests: Optional[bool] = None,
         historical_test_results: Optional[List[TestResult]] = None,
+        stars: Optional[int] = None,
     ):
         """Repository class.
 
@@ -50,6 +51,7 @@ class Repository(JsonSerializable):
             coverages_results: coverages passed by repo
             skip_tests: weather skip tests or not
             historical_test_results: list of historical test results
+            stars: github stars for repo
         """
         self.name = name
         self.url = url
@@ -72,6 +74,7 @@ class Repository(JsonSerializable):
         self.configuration = configuration
         self.skip_tests = skip_tests if skip_tests is not None else False
         self.historical_test_results = historical_test_results or []
+        self.stars = stars
 
     @classmethod
     def from_dict(cls, dictionary: dict):
@@ -127,6 +130,7 @@ class Repository(JsonSerializable):
             configuration=configuration,
             skip_tests=dictionary.get("skip_tests"),
             historical_test_results=historical_test_results,
+            stars=dictionary.get("stars")
         )
 
     def __eq__(self, other: "Repository"):
