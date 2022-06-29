@@ -111,7 +111,7 @@ class JsonDAO:
             new_test_results = [
                 tr for tr in repo.tests_results if tr.test_type != test_result.test_type
             ] + [test_result]
-            repo.tests_results = new_test_results
+            repo.tests_results = sorted(new_test_results, key=lambda r: r.test_type)
 
             new_historical_est_results = [
                 tr

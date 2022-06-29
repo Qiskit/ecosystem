@@ -145,3 +145,32 @@ class TestJsonDao(TestCase):
                 TestResult(True, "0.18.2", TestType.STANDARD),
             ],
         )
+
+    def test_add_test_result_order(self):
+        """Test order of test results."""
+        self._delete_members_json()
+        dao = JsonDAO(self.path)
+
+        main_repo = get_main_repo()
+        dao.insert(main_repo)
+        dao.add_repo_test_result(
+            main_repo.url,
+            main_repo.tier,
+            TestResult(False, "0.18.1", TestType.STABLE_COMPATIBLE),
+        )
+        dao.add_repo_test_result(
+            main_repo.url,
+            main_repo.tier,
+            TestResult(False, "0.18.1", TestType.STANDARD),
+        )
+        dao.add_repo_test_result(
+            main_repo.url,
+            main_repo.tier,
+            TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE),
+        )
+
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        test_results = recovered_repo.tests_results
+        self.assertEqual(test_results[0].test_type, TestType.DEV_COMPATIBLE)
+        self.assertEqual(test_results[1].test_type, TestType.STABLE_COMPATIBLE)
+        self.assertEqual(test_results[2].test_type, TestType.STANDARD)
