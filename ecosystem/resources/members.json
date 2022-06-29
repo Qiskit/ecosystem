@@ -1595,7 +1595,31 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Prototypes",
-            "skip_tests": true,
+            "skip_tests": false,
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                },
+                "dependencies_files": [],
+                "extra_dependencies": [
+                    "qiskit>=0.35.0",
+                    "qiskit_nature>=0.3.2",
+                    "pyscf>=2.0.1",
+                    "h5py>=3.6.0",
+                    "pytest",
+                    "black==22.3.0"
+                ],
+                "tests_command": [
+                    "python -m pytest tests"
+                ],
+                "styles_check_command": [
+                    "python -m black --check entanglement_forging tests"
+                ],
+                "coverages_check_command": []
+            },
             "stars": 21
         },
         "2": {
@@ -1615,6 +1639,26 @@
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                },
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                    "treon docs/ --threads 1"
+                ],
+                "styles_check_command": [
+                    "black --check docs"
+                ],
+                "coverages_check_command": []
+            },
             "tier": "Prototypes",
             "skip_tests": true,
             "stars": 19
@@ -1635,8 +1679,28 @@
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                },
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                      "pip check",
+                      "python -m pytest"
+                ],
+                "styles_check_command": [
+                    "black ."
+                ],
+                "coverages_check_command": []
+            },
             "tier": "Prototypes",
-            "configuration": null,
             "skip_tests": false,
             "stars": 20
         }

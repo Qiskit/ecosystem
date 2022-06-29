@@ -172,6 +172,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         self._tox_template = env.get_template("configured_tox.ini")
         self._lint_template = env.get_template(".pylintrc")
         self._cov_template = env.get_template(".coveragerc")
+        self._setup_template = env.get_template("setup.py")
 
     @classmethod
     def default(cls) -> "PythonRepositoryConfiguration":
@@ -213,3 +214,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     def render_cov_file(self):
         """Renders .coveragerc template from configuration."""
         return self._cov_template.render()
+
+    def render_setup_file(self):
+        """Renders default setup.py file."""
+        return self._setup_template.render()

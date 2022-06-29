@@ -53,9 +53,6 @@ class PythonTestsRunner(Runner):
         )
 
         terra_version = "-"
-        if not os.path.exists(f"{self.cloned_repo_directory}/setup.py"):
-            self.logger.error("No setup.py file for repository %s", self.repo)
-            return terra_version, []
 
         # run tox
         tox_tests_res = RunToxCommand.execute(
