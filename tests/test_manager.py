@@ -26,7 +26,7 @@ def get_community_repo() -> Repository:
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
                 framework=Framework.TERRA,
-                framework_version="0.18.0"
+                framework_version="0.18.0",
             )
         ],
         tier=Tier.COMMUNITY,
@@ -46,7 +46,7 @@ def get_community_fail_repo() -> Repository:
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
                 framework=Framework.TERRA,
-                framework_version="0.18.0"
+                framework_version="0.18.0",
             )
         ],
         tier=Tier.COMMUNITY,

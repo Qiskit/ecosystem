@@ -1,5 +1,4 @@
 """Tests for entities."""
-import time
 import unittest
 from datetime import datetime
 from pprint import pprint
@@ -25,21 +24,20 @@ class TestRepository(unittest.TestCase):
             test_type=TestType.DEV_COMPATIBLE,
             framework=Framework.TERRA,
             framework_version="0.18.1",
-            logs_link="log_link"
+            logs_link="log_link",
         )
         test_result.timestamp = timestamp
         expecting = {
-            'test_type': 'DEV_COMPATIBLE',
-            'passed': True,
-            'framework': 'qiskit-terra',
-            'framework_version': '0.18.1',
-            'terra_version': '0.18.1',
-            'timestamp': timestamp,
-            'logs_link': 'log_link'
+            "test_type": "DEV_COMPATIBLE",
+            "passed": True,
+            "framework": "qiskit-terra",
+            "framework_version": "0.18.1",
+            "terra_version": "0.18.1",
+            "timestamp": timestamp,
+            "logs_link": "log_link",
         }
 
         self.assertEqual(test_result.to_dict(), expecting)
-
 
     def test_serialization(self):
         """Tests json serialization.
@@ -69,7 +67,7 @@ class TestRepository(unittest.TestCase):
                     test_type=TestType.DEV_COMPATIBLE,
                     framework=Framework.TERRA,
                     framework_version="0.18.1",
-                    logs_link="log_link"
+                    logs_link="log_link",
                 )
             ],
             configuration=configuration,

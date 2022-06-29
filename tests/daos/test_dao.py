@@ -21,7 +21,7 @@ def get_main_repo() -> Repository:
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
                 framework=Framework.TERRA,
-                framework_version="0.18.1"
+                framework_version="0.18.1",
             )
         ],
         tier=Tier.MAIN,
@@ -116,9 +116,8 @@ class TestJsonDao(TestCase):
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
                 framework=Framework.TERRA,
-                framework_version="0.18.1"
-            )
-            ,
+                framework_version="0.18.1",
+            ),
         )
         self.assertEqual(res, [1])
         recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
@@ -129,7 +128,7 @@ class TestJsonDao(TestCase):
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
                     framework=Framework.TERRA,
-                    framework_version="0.18.1"
+                    framework_version="0.18.1",
                 )
             ],
         )
@@ -140,7 +139,7 @@ class TestJsonDao(TestCase):
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
                     framework=Framework.TERRA,
-                    framework_version="0.18.1"
+                    framework_version="0.18.1",
                 )
             ],
         )
@@ -152,7 +151,7 @@ class TestJsonDao(TestCase):
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
                 framework=Framework.TERRA,
-                framework_version="0.18.2"
+                framework_version="0.18.2",
             ),
         )
         self.assertEqual(res, [1])
@@ -163,7 +162,7 @@ class TestJsonDao(TestCase):
                 passed=False,
                 test_type=TestType.STANDARD,
                 framework=Framework.TERRA,
-                framework_version="0.18.2"
+                framework_version="0.18.2",
             ),
         )
         self.assertEqual(res, [1])
@@ -175,13 +174,13 @@ class TestJsonDao(TestCase):
                     passed=True,
                     test_type=TestType.DEV_COMPATIBLE,
                     framework=Framework.TERRA,
-                    framework_version="0.18.2"
+                    framework_version="0.18.2",
                 ),
                 TestResult(
                     passed=False,
                     test_type=TestType.STANDARD,
                     framework=Framework.TERRA,
-                    framework_version="0.18.2"
+                    framework_version="0.18.2",
                 ),
             ],
         )
@@ -192,19 +191,19 @@ class TestJsonDao(TestCase):
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
                     framework=Framework.TERRA,
-                    framework_version="0.18.1"
+                    framework_version="0.18.1",
                 ),
                 TestResult(
                     passed=True,
                     test_type=TestType.DEV_COMPATIBLE,
                     framework=Framework.TERRA,
-                    framework_version="0.18.2"
+                    framework_version="0.18.2",
                 ),
                 TestResult(
                     passed=False,
                     test_type=TestType.STANDARD,
                     framework=Framework.TERRA,
-                    framework_version="0.18.2"
+                    framework_version="0.18.2",
                 ),
             ],
         )
@@ -223,7 +222,7 @@ class TestJsonDao(TestCase):
                 passed=False,
                 test_type=TestType.STABLE_COMPATIBLE,
                 framework=Framework.TERRA,
-                framework_version="0.18.1"
+                framework_version="0.18.1",
             ),
         )
         dao.add_repo_test_result(
@@ -233,7 +232,7 @@ class TestJsonDao(TestCase):
                 passed=False,
                 test_type=TestType.STANDARD,
                 framework=Framework.TERRA,
-                framework_version="0.18.1"
+                framework_version="0.18.1",
             ),
         )
         dao.add_repo_test_result(
@@ -243,7 +242,7 @@ class TestJsonDao(TestCase):
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
                 framework=Framework.TERRA,
-                framework_version="0.18.1"
+                framework_version="0.18.1",
             ),
         )
 

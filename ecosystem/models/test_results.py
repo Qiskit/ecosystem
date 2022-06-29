@@ -5,7 +5,7 @@ from typing import Optional, List
 from .utils import JsonSerializable
 
 
-class Framework:
+class Framework:  # pylint: disable=too-few-public-methods
     """Frameworks."""
 
     TERRA: str = "qiskit-terra"
@@ -16,13 +16,7 @@ class Framework:
 
     def all(self) -> List[str]:
         """Returns list of all available Qiskit frameworks."""
-        return [
-            self.TERRA,
-            self.NATURE,
-            self.ML,
-            self.OPTIMIZATION,
-            self.DYNAMICS
-        ]
+        return [self.TERRA, self.NATURE, self.ML, self.OPTIMIZATION, self.DYNAMICS]
 
 
 class TestResult(JsonSerializable):
@@ -86,7 +80,11 @@ class TestResult(JsonSerializable):
         )
 
     def __repr__(self):
-        return f"TestResult({self.passed}, {self.test_type}, {self.framework}: {self.framework_version})"
+        return (
+            f"TestResult("
+            f"{self.passed}, {self.test_type}, "
+            f"{self.framework}: {self.framework_version})"
+        )
 
 
 class StyleResult(JsonSerializable):
