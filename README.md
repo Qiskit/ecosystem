@@ -36,7 +36,14 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 ## Members
 
 
-### Main ![ecosystem-Main](https://img.shields.io/badge/Qiskit-Main-blueviolet)
+
+<details>
+  <summary>
+    <b>Main</b> (8)
+  </summary>
+  
+<hr/>
+<img src="https://img.shields.io/badge/Qiskit-Main-blueviolet">
 
 |  Name | Description  |
 |---|---|
@@ -49,8 +56,19 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-finance](https://github.com/Qiskit/qiskit-finance) | Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/finance-gray.svg)  <br/> |
 | [qiskit-dynamics](https://github.com/Qiskit/qiskit-dynamics) | Qiskit Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit. <br/>  ![core](https://img.shields.io/badge/differential-equations-gray.svg)  <br/> |
 
+<hr/>
 
-### Community ![ecosystem-Community](https://img.shields.io/badge/Qiskit-Community-blueviolet)
+</details>
+
+
+
+<details>
+  <summary>
+    <b>Community</b> (15)
+  </summary>
+  
+<hr/>
+<img src="https://img.shields.io/badge/Qiskit-Community-blueviolet">
 
 |  Name | Description  |
 |---|---|
@@ -70,8 +88,19 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [QiskitBot](https://github.com/infiniteregrets/QiskitBot) | A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 | [pytorch-quantum](https://github.com/mit-han-lab/pytorch-quantum) | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 
+<hr/>
 
-### Prototypes ![ecosystem-Prototypes](https://img.shields.io/badge/Qiskit-Prototypes-blueviolet)
+</details>
+
+
+
+<details>
+  <summary>
+    <b>Prototypes</b> (3)
+  </summary>
+  
+<hr/>
+<img src="https://img.shields.io/badge/Qiskit-Prototypes-blueviolet">
 
 |  Name | Description  |
 |---|---|
@@ -79,8 +108,19 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [Quantum kernel training](https://github.com/qiskit-community/prototype-quantum-kernel-training) | The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
 | [Quantum Random Access Optimization](https://github.com/qiskit-community/prototype-qrao) | The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems. <br/>  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
 
+<hr/>
 
-### Partners ![ecosystem-Partners](https://img.shields.io/badge/Qiskit-Partners-blueviolet)
+</details>
+
+
+
+<details>
+  <summary>
+    <b>Partners</b> (4)
+  </summary>
+  
+<hr/>
+<img src="https://img.shields.io/badge/Qiskit-Partners-blueviolet">
 
 |  Name | Description  |
 |---|---|
@@ -89,13 +129,28 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-ibm-provider](https://github.com/Qiskit/qiskit-ibm-provider) | Project contains a provider that allows accessing the IBM Quantum systems and simulators. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
 | [mthree](https://github.com/Qiskit-Partners/mthree) | Matrix-free Measurement Mitigation (M3) <br/>  <br/> |
 
+<hr/>
 
-### Extension ![ecosystem-Extension](https://img.shields.io/badge/Qiskit-Extension-blueviolet)
+</details>
+
+
+
+<details>
+  <summary>
+    <b>Extension</b> (2)
+  </summary>
+  
+<hr/>
+<img src="https://img.shields.io/badge/Qiskit-Extension-blueviolet">
 
 |  Name | Description  |
 |---|---|
 | [qiskit-alt](https://github.com/Qiskit-Extensions/qiskit-alt) | Python package uses a backend written in Julia to implement high performance features for standard Qiskit. <br/>  ![core](https://img.shields.io/badge/julia-gray.svg)  <br/> |
 | [qiskit-cold-atom](https://github.com/Qiskit-Extensions/qiskit-cold-atom) | This project builds on this functionality to describe programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
+
+<hr/>
+
+</details>
 
 
 

@@ -36,13 +36,24 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 ## Members
 
 {% for tier, repos in data %}
-### {{ tier.capitalize() }} ![ecosystem-{{tier}}](https://img.shields.io/badge/Qiskit-{{tier.capitalize()}}-blueviolet)
+
+<details>
+  <summary>
+    <b>{{ tier.capitalize() }}</b> ({{ repos|length }})
+  </summary>
+  
+<hr/>
+<img src="https://img.shields.io/badge/Qiskit-{{tier.capitalize()}}-blueviolet">
 
 |  Name | Description  |
 |---|---|
 {% for repo in repos -%}
 | [{{ repo.name }}]({{ repo.url }}) | {{repo.description}} <br/> {% for label in repo.labels %} ![core](https://img.shields.io/badge/{{label}}-gray.svg) {% endfor %} <br/> {% for test in repo.tests_passed %} ![core](https://img.shields.io/badge/tests-{{test}}-green.svg) {% endfor %}|
 {% endfor %}
+<hr/>
+
+</details>
+
 {% endfor %}
 
 
