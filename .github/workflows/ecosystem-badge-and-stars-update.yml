@@ -1,12 +1,7 @@
-name: Ecosystem | Batch | generate badges
+name: Ecosystem | Batch | Update stars and badges
 
 on:
   workflow_dispatch:
-    inputs:
-      tier:
-        description: 'Ecosystem tier'
-        required: false
-        default: "COMMUNITY"
 
 jobs:
   batch_update_badges:
@@ -28,19 +23,22 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
     - name: Update badges
       run: python manager.py update_badges
 
-    - name: Create PR for batch badge
+    - name: Update stars
+      run: python manager.py update_stars
+
+    - name: Create PR for stars and badges update
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
-        commit-message: Batch badges for ${{ steps.vars.outputs.datetime }}
-        title: Batch badges for ${{ steps.vars.outputs.datetime }}
+        commit-message: Badges and stars update for ${{ steps.vars.outputs.datetime }}
+        title: Badges and stars update for ${{ steps.vars.outputs.datetime }}
         body: |
-          Batch badges
+          Badges and stars update
           Time: ${{ steps.vars.outputs.datetime }}
-          Tier: ${{ github.event.inputs.tier }}
         branch: ${{ steps.vars.outputs.pr_branch_name }}
         base: main
 

@@ -51,6 +51,20 @@ class TestJsonDao(TestCase):
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
+    def test_start_update(self):
+        """Test update start for repo."""
+        self._delete_members_json()
+        main_repo = get_main_repo()
+        dao = JsonDAO(self.path)
+        dao.insert(main_repo)
+
+        repo_from_db = dao.get_by_url(main_repo.url, main_repo.tier)
+        self.assertIsNone(repo_from_db.stars)
+
+        dao.update_stars(main_repo.url, main_repo.tier, 42)
+        repo_from_db = dao.get_by_url(main_repo.url, main_repo.tier)
+        self.assertEqual(repo_from_db.stars, 42)
+
     def test_repository_insert_and_delete(self):
         """Tests repository."""
         self._delete_members_json()
