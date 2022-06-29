@@ -125,8 +125,8 @@ class Manager:
             for project in self.dao.get_repos_by_tier(tier):
                 tests_passed = all(result.passed for result in project.tests_results)
                 color = "blueviolet" if tests_passed else "gray"
-                label = "Qiskit Ecosystem"
-                message = project.name
+                label = project.name
+                message = tier
                 url = (
                     f"https://img.shields.io/static/v1?"
                     f"label={label}&message={message}&color={color}"
@@ -135,6 +135,7 @@ class Manager:
                 shields_request = requests.get(url)
                 with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
                     outfile.write(shields_request.content)
+                    self.logger.info("Badge for %s has been updated.", project.name)
 
     @staticmethod
     def parser_issue(body: str) -> None:
