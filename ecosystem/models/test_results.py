@@ -1,12 +1,32 @@
 """Test results for commands."""
 import datetime
-from typing import Optional
+from typing import Optional, List
 
 from .utils import JsonSerializable
 
 
+class Framework:
+    """Frameworks."""
+
+    TERRA: str = "qiskit-terra"
+    NATURE: str = "qiskit-nature"
+    ML: str = "qiskit-machine-learning"
+    OPTIMIZATION: str = "qiskit-optimization"
+    DYNAMICS: str = "qiskit-dymanics"
+
+    def all(self) -> List[str]:
+        """Returns list of all available Qiskit frameworks."""
+        return [
+            self.TERRA,
+            self.NATURE,
+            self.ML,
+            self.OPTIMIZATION,
+            self.DYNAMICS
+        ]
+
+
 class TestResult(JsonSerializable):
-    """Tests status."""
+    """Tests result class."""
 
     _TEST_PASSED: str = "passed"
     _TEST_FAILED: str = "failed"
@@ -14,13 +34,25 @@ class TestResult(JsonSerializable):
     def __init__(
         self,
         passed: bool,
-        terra_version: str,
         test_type: str,
+        framework: str,
+        framework_version: str,
         logs_link: Optional[str] = None,
     ):
+        """Tests result.
+
+        Args:
+            passed: passed or not
+            test_type: dev, standard, stable
+            framework: framework tested against
+            framework_version: version of framework tested against
+            logs_link: link to logs of tests
+        """
         self.test_type = test_type
         self.passed = passed
-        self.terra_version = terra_version
+        self.framework = framework
+        self.framework_version = framework_version
+        self.terra_version = framework_version
         self.timestamp = datetime.datetime.now().timestamp()
         self.logs_link = logs_link
 
@@ -35,8 +67,9 @@ class TestResult(JsonSerializable):
         """
         return TestResult(
             passed=dictionary.get("passed"),
-            terra_version=dictionary.get("terra_version"),
             test_type=dictionary.get("test_type"),
+            framework=dictionary.get("framework"),
+            framework_version=dictionary.get("framework_version"),
             logs_link=dictionary.get("logs_link"),
         )
 
@@ -48,11 +81,12 @@ class TestResult(JsonSerializable):
         return (
             self.passed == other.passed
             and self.test_type == other.test_type
-            and self.terra_version == other.terra_version
+            and self.framework == other.framework
+            and self.framework_version == other.framework_version
         )
 
     def __repr__(self):
-        return f"TestResult({self.passed}, {self.test_type}, {self.terra_version})"
+        return f"TestResult({self.passed}, {self.test_type}, {self.framework}: {self.framework_version})"
 
 
 class StyleResult(JsonSerializable):

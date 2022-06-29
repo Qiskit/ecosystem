@@ -4,6 +4,7 @@ import os
 from unittest import TestCase
 
 from ecosystem.daos import JsonDAO
+from ecosystem.models import Tier
 from ecosystem.models.repository import Repository
 
 
@@ -25,7 +26,12 @@ class TestMembersJson(TestCase):
 
     def test_deserialize_to_repositories(self):
         """Tests members json deserialization."""
-        community_repos = self.dao.get_repos_by_tier("COMMUNITY")
+        community_repos = self.dao.get_repos_by_tier(Tier.COMMUNITY)
+        self.assertTrue(len(community_repos) > 0)
         for repo in community_repos:
             self.assertIsInstance(repo, Repository)
             self.assertIn(repo.skip_tests, [True, False, None])
+            for result in repo.tests_results:
+                self.assertIsNotNone(result.framework)
+                self.assertIsNotNone(result.framework_version)
+                self.assertEqual(result.framework_version, result.terra_version)
