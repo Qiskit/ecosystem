@@ -1723,8 +1723,7 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Partners",
-            "configuration": null,
-            "skip_tests": false,
+            "skip_tests": true,
             "stars": 29
         },
         "2": {
@@ -1744,7 +1743,26 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Partners",
-            "configuration": null,
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                },
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-test.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                    "python setup.py test"
+                ],
+                "styles_check_command": [
+                    "pylint -rn --rcfile=./.pylintrc qiskit_ionq test"
+                ],
+                "coverages_check_command": []
+            },
             "skip_tests": false,
             "stars": 23
         },
@@ -1765,8 +1783,27 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Partners",
-            "configuration": null,
-            "skip_tests": false,
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                },
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                    "python -m unittest -v"
+                ],
+                "styles_check_command": [
+                    "pylint -rn --rcfile=./.pylintrc test"
+                ],
+                "coverages_check_command": []
+            },
+            "skip_tests": true,
             "stars": 24
         },
         "4": {
@@ -1784,7 +1821,26 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Partners",
-            "configuration": null,
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                },
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                    "pytest -p no:warnings --pyargs mthree/test"
+                ],
+                "styles_check_command": [
+                    "pylint -rn mthree"
+                ],
+                "coverages_check_command": []
+            },
             "skip_tests": false,
             "stars": 14
         }
