@@ -12,7 +12,7 @@ from .utils import JsonSerializable
 class Repository(JsonSerializable):
     """Main repository class."""
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-locals
         self,
         name: str,
         url: str,
@@ -130,7 +130,7 @@ class Repository(JsonSerializable):
             configuration=configuration,
             skip_tests=dictionary.get("skip_tests"),
             historical_test_results=historical_test_results,
-            stars=dictionary.get("stars")
+            stars=dictionary.get("stars"),
         )
 
     def __eq__(self, other: "Repository"):

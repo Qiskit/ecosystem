@@ -137,6 +137,25 @@ class Manager:
                     outfile.write(shields_request.content)
                     self.logger.info("Badge for %s has been updated.", project.name)
 
+    def update_stars(self):
+        """Updates start for repositories."""
+        for tier in Tier.all():
+            for project in self.dao.get_repos_by_tier(tier):
+                stars = None
+                url = project.url[:-1] if project.url[-1] == "/" else project.url
+                url_chunks = url.split("/")
+                repo = url_chunks[-1]
+                user = url_chunks[-2]
+
+                response = requests.get(f"http://api.github.com/repos/{user}/{repo}")
+                if response.ok:
+                    json_data = json.loads(response.text)
+                    stars = json_data.get("stargazers_count")
+                else:
+                    self.logger.warning("Bad response for project %s", project.url)
+                self.dao.update_stars(project.url, tier, stars)
+                self.logger.info("Updating star count for %s: %d", project.url, stars)
+
     @staticmethod
     def parser_issue(body: str) -> None:
         """Command for calling body issue parsing function.

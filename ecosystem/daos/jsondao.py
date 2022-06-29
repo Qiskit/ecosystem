@@ -88,6 +88,11 @@ class JsonDAO:
         res = self.database.table(tier).get(Query().url == url)
         return Repository.from_dict(res) if res else None
 
+    def update_stars(self, url: str, tier: str, stars: int) -> List[int]:
+        """Updates repo with github stars."""
+        table = self.database.table(tier)
+        return table.update({"stars": stars}, Query().url == url)
+
     def add_repo_test_result(
         self, repo_url: str, tier: str, test_result: TestResult
     ) -> Optional[List[int]]:
