@@ -4,18 +4,15 @@ name: Ecosystem | Submission check
 # - install deps
 # - parse issue
 # - run lint, coverage, tests
-# - if success:
-# -- comment of success
-# -- create PR with change to readme
-# -- link pr to issue
-# - if something went wrong:
-# -- comment run url in issue
+# - comment result
+# - create PR with change to readme
+# - link pr to issue
 
 on:
   issues:
     types: [opened]
-  issue_comment:
-    types: [created]
+#  issue_comment:
+#    types: [created]
 
 jobs:
   submission_workflow:
@@ -33,15 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
-      tier: "COMMUNITY"
+      tier: "Community"
       python-version: "3.9"
     steps:
-    # Add label 'submission'
-    - uses: actions-ecosystem/action-add-labels@v1
-      if: ${{ github.event.action == 'opened' }}
-      with:
-        labels: submission
-        
     # setup deps
     - uses: actions/checkout@v2
     - name: Set up Python ${{ env.python-version }}
@@ -107,9 +98,8 @@ jobs:
       id: check_result
       run: |
         echo "Pass log is ${{ env.PASS_LOG }}"
-        
-    - name: Update readme
-      if: ${{ env.PASS_LOG == 'True' }}
+
+    - name: Add member and update readme
       run: |
         python manager.py add_repo_2db --repo_name=${{ steps.parse-issue.outputs.SUBMISSION_NAME }} \
                                        --repo_link="${{ steps.parse-issue.outputs.SUBMISSION_REPO }}" \
@@ -120,14 +110,8 @@ jobs:
                                        --repo_affiliations="${{ steps.parse-issue.outputs.SUBMISSION_AFFILIATIONS }}" \
                                        --repo_labels="${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}"
         python manager.py generate_readme
-    - name: Generate badge
-      id: gen_badge
-      if: ${{ env.PASS_LOG == 'True' }}
-      run: |
-        curl "https://img.shields.io/static/v1?label=Qiskit Ecosystem&message=${{ steps.parse-issue.outputs.SUBMISSION_NAME }}&color=blueviolet" > badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg
-        
+
     - name: Commit changes and create Pull Request
-      if: ${{ env.PASS_LOG == 'True' }}
       id: cpr
       uses: peter-evans/create-pull-request@v3
       with:
@@ -137,8 +121,6 @@ jobs:
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
           Closes #${{ github.event.issue.number }}
-          After the merge of this PR, you'll be able to add your badge to your README.md with:
-          `![ecosystem](https://raw.githubusercontent.com/qiskit-community/ecosystem/main/badges/${{ steps.parse-issue.outputs.SUBMISSION_NAME }}.svg)`
         branch: submission-${{ github.event.issue.number }}
         base: main
 
@@ -158,55 +140,5 @@ jobs:
         repository: "qiskit-community/ecosystem"
         issue-number: ${{ github.event.issue.number }}
         body: |
-          Fail submission! :warning:
-          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
-          You can write a comment with "!redo" to rerun the submission process.
-          ### Checks Status ###
-          Linter : ${{ steps.linter.outputs.result }}
-          Coverage : ${{ steps.coverage.outputs.result }}
-          Qiskit Stable : ${{ steps.stable.outputs.result }}
-          Qiskit Dev : ${{ steps.dev.outputs.result }}
-
-          ### Logs ###
-          <details>
-          <summary>Linter</summary>
-          
-          #### Error logs
-          ${{ steps.linter.outputs.error }}
-          
-          #### Failed logs
-          ${{ steps.linter.outputs.fail }}
-          </details>
-          <details>
-          <summary>Coverage</summary>
-          
-          #### Error logs
-          ${{ steps.coverage.outputs.error }}
-          
-          #### Failed logs
-          ${{ steps.coverage.outputs.fail }}
-          </details>
-          <details>
-          <summary>Qiskit Stable</summary>
-          
-          #### Qiskit depreciation logs
-          ${{ steps.stable.outputs.depreciation }}
-          
-          #### Error logs
-          ${{ steps.stable.outputs.error }}
-          
-          #### Failed logs
-          ${{ steps.stable.outputs.fail }}
-          </details>
-          <details>
-          <summary>Qiskit Dev</summary>
-          
-          #### Qiskit depreciation logs
-          ${{ steps.dev.outputs.depreciation }}
-          
-          #### Error logs
-          ${{ steps.dev.outputs.error }}
-          
-          #### Failed logs
-          ${{ steps.dev.outputs.fail }}
-          </details>
+          Submission PR #${{ steps.cpr.outputs.pull-request-number }} has been created with errors in tests :warning:
+          See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
