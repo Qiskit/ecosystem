@@ -5,6 +5,7 @@ from unittest import TestCase
 from ecosystem.daos import JsonDAO
 from ecosystem.models import TestResult, TestType, Tier
 from ecosystem.models.repository import Repository
+from ecosystem.models.test_results import Framework
 
 
 def get_main_repo() -> Repository:
@@ -15,7 +16,14 @@ def get_main_repo() -> Repository:
         description="Mock description for repo. wsdt",
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
-        tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
+        tests_results=[
+            TestResult(
+                passed=True,
+                test_type=TestType.DEV_COMPATIBLE,
+                framework=Framework.TERRA,
+                framework_version="0.18.1",
+            )
+        ],
         tier=Tier.MAIN,
     )
 
@@ -104,45 +112,99 @@ class TestJsonDao(TestCase):
         res = dao.add_repo_test_result(
             main_repo.url,
             main_repo.tier,
-            TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE),
-        )
-        self.assertEqual(res, [1])
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
-        self.assertEqual(
-            recovered_repo.tests_results,
-            [TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
-        )
-        self.assertEqual(
-            recovered_repo.historical_test_results,
-            [TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
-        )
-
-        res = dao.add_repo_test_result(
-            main_repo.url,
-            main_repo.tier,
-            TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
-        )
-        self.assertEqual(res, [1])
-        res = dao.add_repo_test_result(
-            main_repo.url,
-            main_repo.tier,
-            TestResult(True, "0.18.2", TestType.STANDARD),
+            TestResult(
+                passed=False,
+                test_type=TestType.DEV_COMPATIBLE,
+                framework=Framework.TERRA,
+                framework_version="0.18.1",
+            ),
         )
         self.assertEqual(res, [1])
         recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
         self.assertEqual(
             recovered_repo.tests_results,
             [
-                TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
-                TestResult(True, "0.18.2", TestType.STANDARD),
+                TestResult(
+                    passed=False,
+                    test_type=TestType.DEV_COMPATIBLE,
+                    framework=Framework.TERRA,
+                    framework_version="0.18.1",
+                )
             ],
         )
         self.assertEqual(
             recovered_repo.historical_test_results,
             [
-                TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE),
-                TestResult(True, "0.18.2", TestType.DEV_COMPATIBLE),
-                TestResult(True, "0.18.2", TestType.STANDARD),
+                TestResult(
+                    passed=False,
+                    test_type=TestType.DEV_COMPATIBLE,
+                    framework=Framework.TERRA,
+                    framework_version="0.18.1",
+                )
+            ],
+        )
+
+        res = dao.add_repo_test_result(
+            main_repo.url,
+            main_repo.tier,
+            TestResult(
+                passed=True,
+                test_type=TestType.DEV_COMPATIBLE,
+                framework=Framework.TERRA,
+                framework_version="0.18.2",
+            ),
+        )
+        self.assertEqual(res, [1])
+        res = dao.add_repo_test_result(
+            main_repo.url,
+            main_repo.tier,
+            TestResult(
+                passed=False,
+                test_type=TestType.STANDARD,
+                framework=Framework.TERRA,
+                framework_version="0.18.2",
+            ),
+        )
+        self.assertEqual(res, [1])
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        self.assertEqual(
+            recovered_repo.tests_results,
+            [
+                TestResult(
+                    passed=True,
+                    test_type=TestType.DEV_COMPATIBLE,
+                    framework=Framework.TERRA,
+                    framework_version="0.18.2",
+                ),
+                TestResult(
+                    passed=False,
+                    test_type=TestType.STANDARD,
+                    framework=Framework.TERRA,
+                    framework_version="0.18.2",
+                ),
+            ],
+        )
+        self.assertEqual(
+            recovered_repo.historical_test_results,
+            [
+                TestResult(
+                    passed=False,
+                    test_type=TestType.DEV_COMPATIBLE,
+                    framework=Framework.TERRA,
+                    framework_version="0.18.1",
+                ),
+                TestResult(
+                    passed=True,
+                    test_type=TestType.DEV_COMPATIBLE,
+                    framework=Framework.TERRA,
+                    framework_version="0.18.2",
+                ),
+                TestResult(
+                    passed=False,
+                    test_type=TestType.STANDARD,
+                    framework=Framework.TERRA,
+                    framework_version="0.18.2",
+                ),
             ],
         )
 
@@ -156,17 +218,32 @@ class TestJsonDao(TestCase):
         dao.add_repo_test_result(
             main_repo.url,
             main_repo.tier,
-            TestResult(False, "0.18.1", TestType.STABLE_COMPATIBLE),
+            TestResult(
+                passed=False,
+                test_type=TestType.STABLE_COMPATIBLE,
+                framework=Framework.TERRA,
+                framework_version="0.18.1",
+            ),
         )
         dao.add_repo_test_result(
             main_repo.url,
             main_repo.tier,
-            TestResult(False, "0.18.1", TestType.STANDARD),
+            TestResult(
+                passed=False,
+                test_type=TestType.STANDARD,
+                framework=Framework.TERRA,
+                framework_version="0.18.1",
+            ),
         )
         dao.add_repo_test_result(
             main_repo.url,
             main_repo.tier,
-            TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE),
+            TestResult(
+                passed=False,
+                test_type=TestType.DEV_COMPATIBLE,
+                framework=Framework.TERRA,
+                framework_version="0.18.1",
+            ),
         )
 
         recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)

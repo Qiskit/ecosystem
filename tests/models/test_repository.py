@@ -1,6 +1,6 @@
 """Tests for entities."""
-
 import unittest
+from datetime import datetime
 from pprint import pprint
 
 from ecosystem.models import (
@@ -10,10 +10,34 @@ from ecosystem.models import (
     PythonLanguageConfiguration,
 )
 from ecosystem.models.repository import Repository
+from ecosystem.models.test_results import Framework
 
 
 class TestRepository(unittest.TestCase):
     """Tests repository class."""
+
+    def test_test_results_serialization(self):
+        """Tests TestResult class serialization."""
+        timestamp = datetime.now().timestamp()
+        test_result = TestResult(
+            passed=True,
+            test_type=TestType.DEV_COMPATIBLE,
+            framework=Framework.TERRA,
+            framework_version="0.18.1",
+            logs_link="log_link",
+        )
+        test_result.timestamp = timestamp
+        expecting = {
+            "test_type": "DEV_COMPATIBLE",
+            "passed": True,
+            "framework": "qiskit-terra",
+            "framework_version": "0.18.1",
+            "terra_version": "0.18.1",
+            "timestamp": timestamp,
+            "logs_link": "log_link",
+        }
+
+        self.assertEqual(test_result.to_dict(), expecting)
 
     def test_serialization(self):
         """Tests json serialization.
@@ -39,7 +63,11 @@ class TestRepository(unittest.TestCase):
             labels=["mock", "tests"],
             tests_results=[
                 TestResult(
-                    True, "0.18.1", TestType.DEV_COMPATIBLE, logs_link="log_link"
+                    passed=True,
+                    test_type=TestType.DEV_COMPATIBLE,
+                    framework=Framework.TERRA,
+                    framework_version="0.18.1",
+                    logs_link="log_link",
                 )
             ],
             configuration=configuration,

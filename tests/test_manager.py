@@ -10,6 +10,7 @@ from ecosystem.daos import JsonDAO
 from ecosystem.manager import Manager
 from ecosystem.models import TestResult, Tier, TestType
 from ecosystem.models.repository import Repository
+from ecosystem.models.test_results import Framework
 
 
 def get_community_repo() -> Repository:
@@ -20,7 +21,14 @@ def get_community_repo() -> Repository:
         description="Mock description for repo. wsdt",
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
-        tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
+        tests_results=[
+            TestResult(
+                passed=True,
+                test_type=TestType.DEV_COMPATIBLE,
+                framework=Framework.TERRA,
+                framework_version="0.18.0",
+            )
+        ],
         tier=Tier.COMMUNITY,
     )
 
@@ -33,7 +41,14 @@ def get_community_fail_repo() -> Repository:
         description="Mock description for repo. wsdt",
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
-        tests_results=[TestResult(False, "0.18.1", TestType.DEV_COMPATIBLE)],
+        tests_results=[
+            TestResult(
+                passed=False,
+                test_type=TestType.DEV_COMPATIBLE,
+                framework=Framework.TERRA,
+                framework_version="0.18.0",
+            )
+        ],
         tier=Tier.COMMUNITY,
     )
 
