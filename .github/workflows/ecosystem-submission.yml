@@ -142,3 +142,5 @@ jobs:
         body: |
           Submission PR #${{ steps.cpr.outputs.pull-request-number }} has been created with errors in tests :warning:
           See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
+          Please follow minimal requirements for project or/and add `ecosystem.json` configuration in the root of the project
+          Read more here https://github.com/qiskit-community/ecosystem/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem
