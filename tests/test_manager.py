@@ -10,7 +10,7 @@ from ecosystem.daos import JsonDAO
 from ecosystem.manager import Manager
 from ecosystem.models import TestResult, Tier, TestType
 from ecosystem.models.repository import Repository
-from ecosystem.models.test_results import Framework
+from ecosystem.models.test_results import Package
 
 
 def get_community_repo() -> Repository:
@@ -25,8 +25,8 @@ def get_community_repo() -> Repository:
             TestResult(
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
-                framework=Framework.TERRA,
-                framework_version="0.18.0",
+                package=Package.TERRA,
+                package_version="0.18.0",
             )
         ],
         tier=Tier.COMMUNITY,
@@ -45,8 +45,8 @@ def get_community_fail_repo() -> Repository:
             TestResult(
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
-                framework=Framework.TERRA,
-                framework_version="0.18.0",
+                package=Package.TERRA,
+                package_version="0.18.0",
             )
         ],
         tier=Tier.COMMUNITY,

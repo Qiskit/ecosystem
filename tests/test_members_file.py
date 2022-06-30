@@ -32,6 +32,6 @@ class TestMembersJson(TestCase):
             self.assertIsInstance(repo, Repository)
             self.assertIn(repo.skip_tests, [True, False, None])
             for result in repo.tests_results:
-                self.assertIsNotNone(result.framework)
-                self.assertIsNotNone(result.framework_version)
-                self.assertEqual(result.framework_version, result.terra_version)
+                self.assertIsNotNone(result.package)
+                self.assertIsNotNone(result.package_version)
+                self.assertEqual(result.package_version, result.terra_version)

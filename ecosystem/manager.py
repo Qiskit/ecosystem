@@ -12,7 +12,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 from ecosystem.daos import JsonDAO
 from ecosystem.models import TestResult, Tier, TestType
 from ecosystem.models.repository import Repository
-from ecosystem.models.test_results import StyleResult, CoverageResult, Framework
+from ecosystem.models.test_results import StyleResult, CoverageResult, Package
 from ecosystem.runners import PythonTestsRunner
 from ecosystem.runners.main_repos_report_runner import RepositoryActionStatusRunner
 from ecosystem.runners.python_styles_runner import PythonStyleRunner
@@ -377,8 +377,8 @@ class Manager:
 
             test_result = TestResult(
                 passed=passed,
-                framework=Framework.TERRA,
-                framework_version=terra_version,
+                package=Package.TERRA,
+                package_version=terra_version,
                 test_type=test_type,
                 logs_link=logs_link,
             )
@@ -627,8 +627,8 @@ class Manager:
             ).workload()
             test_result = TestResult(
                 passed=all(r.ok for r in results),
-                framework=Framework.TERRA,
-                framework_version=terra_version,
+                package=Package.TERRA,
+                package_version=terra_version,
                 test_type=test_type,
             )
             result = self.dao.add_repo_test_result(
