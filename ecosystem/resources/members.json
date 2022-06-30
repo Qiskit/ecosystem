@@ -1863,7 +1863,26 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Extension",
-            "configuration": null,
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                },
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                    "pytest -p no:warnings --pyargs test"
+                ],
+                "styles_check_command": [
+                    "pylint -rn src"
+                ],
+                "coverages_check_command": []
+            },
             "skip_tests": false,
             "stars": 9
         },
@@ -1884,7 +1903,25 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Extension",
-            "configuration": null,
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                },
+                "dependencies_files": [
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                    "stestr run"
+                ],
+                "styles_check_command": [
+                    "pylint -rn -j 0 --rcfile=./.pylintrc qiskit_cold_atom/ test/"
+                ],
+                "coverages_check_command": []
+            },
             "skip_tests": false,
             "stars": 13
         }
