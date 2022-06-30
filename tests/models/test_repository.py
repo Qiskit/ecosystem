@@ -10,7 +10,7 @@ from ecosystem.models import (
     PythonLanguageConfiguration,
 )
 from ecosystem.models.repository import Repository
-from ecosystem.models.test_results import Framework
+from ecosystem.models.test_results import Package
 
 
 class TestRepository(unittest.TestCase):
@@ -22,16 +22,16 @@ class TestRepository(unittest.TestCase):
         test_result = TestResult(
             passed=True,
             test_type=TestType.DEV_COMPATIBLE,
-            framework=Framework.TERRA,
-            framework_version="0.18.1",
+            package=Package.TERRA,
+            package_version="0.18.1",
             logs_link="log_link",
         )
         test_result.timestamp = timestamp
         expecting = {
             "test_type": "DEV_COMPATIBLE",
             "passed": True,
-            "framework": "qiskit-terra",
-            "framework_version": "0.18.1",
+            "package": "qiskit-terra",
+            "package_version": "0.18.1",
             "terra_version": "0.18.1",
             "timestamp": timestamp,
             "logs_link": "log_link",
@@ -65,8 +65,8 @@ class TestRepository(unittest.TestCase):
                 TestResult(
                     passed=True,
                     test_type=TestType.DEV_COMPATIBLE,
-                    framework=Framework.TERRA,
-                    framework_version="0.18.1",
+                    package=Package.TERRA,
+                    package_version="0.18.1",
                     logs_link="log_link",
                 )
             ],

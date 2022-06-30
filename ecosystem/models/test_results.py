@@ -5,7 +5,7 @@ from typing import Optional, List
 from .utils import JsonSerializable
 
 
-class Framework:  # pylint: disable=too-few-public-methods
+class Package:  # pylint: disable=too-few-public-methods
     """Frameworks."""
 
     TERRA: str = "qiskit-terra"
@@ -29,8 +29,8 @@ class TestResult(JsonSerializable):
         self,
         passed: bool,
         test_type: str,
-        framework: str,
-        framework_version: str,
+        package: str,
+        package_version: str,
         logs_link: Optional[str] = None,
     ):
         """Tests result.
@@ -38,15 +38,15 @@ class TestResult(JsonSerializable):
         Args:
             passed: passed or not
             test_type: dev, standard, stable
-            framework: framework tested against
-            framework_version: version of framework tested against
+            package: framework tested against
+            package_version: version of framework tested against
             logs_link: link to logs of tests
         """
         self.test_type = test_type
         self.passed = passed
-        self.framework = framework
-        self.framework_version = framework_version
-        self.terra_version = framework_version
+        self.package = package
+        self.package_version = package_version
+        self.terra_version = package_version
         self.timestamp = datetime.datetime.now().timestamp()
         self.logs_link = logs_link
 
@@ -62,8 +62,8 @@ class TestResult(JsonSerializable):
         return TestResult(
             passed=dictionary.get("passed"),
             test_type=dictionary.get("test_type"),
-            framework=dictionary.get("framework"),
-            framework_version=dictionary.get("framework_version"),
+            package=dictionary.get("package"),
+            package_version=dictionary.get("package_version"),
             logs_link=dictionary.get("logs_link"),
         )
 
@@ -75,15 +75,15 @@ class TestResult(JsonSerializable):
         return (
             self.passed == other.passed
             and self.test_type == other.test_type
-            and self.framework == other.framework
-            and self.framework_version == other.framework_version
+            and self.package == other.package
+            and self.package_version == other.package_version
         )
 
     def __repr__(self):
         return (
             f"TestResult("
             f"{self.passed}, {self.test_type}, "
-            f"{self.framework}: {self.framework_version})"
+            f"{self.package}: {self.package_version})"
         )
 
 

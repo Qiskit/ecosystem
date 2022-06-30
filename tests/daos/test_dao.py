@@ -5,7 +5,7 @@ from unittest import TestCase
 from ecosystem.daos import JsonDAO
 from ecosystem.models import TestResult, TestType, Tier
 from ecosystem.models.repository import Repository
-from ecosystem.models.test_results import Framework
+from ecosystem.models.test_results import Package
 
 
 def get_main_repo() -> Repository:
@@ -20,8 +20,8 @@ def get_main_repo() -> Repository:
             TestResult(
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
-                framework=Framework.TERRA,
-                framework_version="0.18.1",
+                package=Package.TERRA,
+                package_version="0.18.1",
             )
         ],
         tier=Tier.MAIN,
@@ -129,8 +129,8 @@ class TestJsonDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
-                framework=Framework.TERRA,
-                framework_version="0.18.1",
+                package=Package.TERRA,
+                package_version="0.18.1",
             ),
         )
         self.assertEqual(res, [1])
@@ -141,8 +141,8 @@ class TestJsonDao(TestCase):
                 TestResult(
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
-                    framework=Framework.TERRA,
-                    framework_version="0.18.1",
+                    package=Package.TERRA,
+                    package_version="0.18.1",
                 )
             ],
         )
@@ -152,8 +152,8 @@ class TestJsonDao(TestCase):
                 TestResult(
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
-                    framework=Framework.TERRA,
-                    framework_version="0.18.1",
+                    package=Package.TERRA,
+                    package_version="0.18.1",
                 )
             ],
         )
@@ -164,8 +164,8 @@ class TestJsonDao(TestCase):
             TestResult(
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
-                framework=Framework.TERRA,
-                framework_version="0.18.2",
+                package=Package.TERRA,
+                package_version="0.18.2",
             ),
         )
         self.assertEqual(res, [1])
@@ -175,8 +175,8 @@ class TestJsonDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.STANDARD,
-                framework=Framework.TERRA,
-                framework_version="0.18.2",
+                package=Package.TERRA,
+                package_version="0.18.2",
             ),
         )
         self.assertEqual(res, [1])
@@ -187,14 +187,14 @@ class TestJsonDao(TestCase):
                 TestResult(
                     passed=True,
                     test_type=TestType.DEV_COMPATIBLE,
-                    framework=Framework.TERRA,
-                    framework_version="0.18.2",
+                    package=Package.TERRA,
+                    package_version="0.18.2",
                 ),
                 TestResult(
                     passed=False,
                     test_type=TestType.STANDARD,
-                    framework=Framework.TERRA,
-                    framework_version="0.18.2",
+                    package=Package.TERRA,
+                    package_version="0.18.2",
                 ),
             ],
         )
@@ -204,20 +204,20 @@ class TestJsonDao(TestCase):
                 TestResult(
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
-                    framework=Framework.TERRA,
-                    framework_version="0.18.1",
+                    package=Package.TERRA,
+                    package_version="0.18.1",
                 ),
                 TestResult(
                     passed=True,
                     test_type=TestType.DEV_COMPATIBLE,
-                    framework=Framework.TERRA,
-                    framework_version="0.18.2",
+                    package=Package.TERRA,
+                    package_version="0.18.2",
                 ),
                 TestResult(
                     passed=False,
                     test_type=TestType.STANDARD,
-                    framework=Framework.TERRA,
-                    framework_version="0.18.2",
+                    package=Package.TERRA,
+                    package_version="0.18.2",
                 ),
             ],
         )
@@ -235,8 +235,8 @@ class TestJsonDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.STABLE_COMPATIBLE,
-                framework=Framework.TERRA,
-                framework_version="0.18.1",
+                package=Package.TERRA,
+                package_version="0.18.1",
             ),
         )
         dao.add_repo_test_result(
@@ -245,8 +245,8 @@ class TestJsonDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.STANDARD,
-                framework=Framework.TERRA,
-                framework_version="0.18.1",
+                package=Package.TERRA,
+                package_version="0.18.1",
             ),
         )
         dao.add_repo_test_result(
@@ -255,8 +255,8 @@ class TestJsonDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
-                framework=Framework.TERRA,
-                framework_version="0.18.1",
+                package=Package.TERRA,
+                package_version="0.18.1",
             ),
         )
 
