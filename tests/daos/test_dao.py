@@ -16,14 +16,7 @@ def get_main_repo() -> Repository:
         description="Mock description for repo. wsdt",
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
-        tests_results=[
-            TestResult(
-                passed=True,
-                test_type=TestType.DEV_COMPATIBLE,
-                package=Package.TERRA,
-                package_version="0.18.1",
-            )
-        ],
+        tests_results=[],
         tier=Tier.MAIN,
     )
 
@@ -77,7 +70,7 @@ class TestJsonDao(TestCase):
         fetched_repo = dao.get_repos_by_tier(Tier.MAIN)[0]
         self.assertEqual(main_repo, fetched_repo)
         self.assertEqual(main_repo.labels, fetched_repo.labels)
-        self.assertEqual(len(fetched_repo.tests_results), 1)
+        self.assertEqual(len(fetched_repo.tests_results), 0)
 
         # delete entry
         dao.delete(repo_url=main_repo.url, tier=main_repo.tier)
@@ -98,7 +91,7 @@ class TestJsonDao(TestCase):
         fetched_repo = dao.get_repos_by_tier(Tier.MAIN)[0]
         self.assertEqual(main_repo, fetched_repo)
         self.assertEqual(main_repo.labels, fetched_repo.labels)
-        self.assertEqual(len(fetched_repo.tests_results), 1)
+        self.assertEqual(len(fetched_repo.tests_results), 0)
 
         # move from tier to tier
         moved_repo = dao.move_repo_to_other_tier(
@@ -112,6 +105,98 @@ class TestJsonDao(TestCase):
         candidate_repos = dao.get_repos_by_tier(Tier.COMMUNITY)
         self.assertEqual(len(candidate_repos), 1)
         self.assertEqual(candidate_repos[0], moved_repo)
+
+    def test_latest_results(self):
+        """Tests append of latest passed test results."""
+        self._delete_members_json()
+        dao = JsonDAO(self.path)
+        main_repo = get_main_repo()
+        dao.insert(main_repo)
+
+        dao.add_repo_test_result(
+            repo_url=main_repo.url,
+            tier=main_repo.tier,
+            test_result=TestResult(
+                passed=True,
+                test_type=TestType.STANDARD,
+                package=Package.TERRA,
+                package_version="0.18.1",
+            ),
+        )
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        self.assertEqual(len(recovered_repo.tests_results), 1)
+
+        dao.add_repo_test_result(
+            repo_url=main_repo.url,
+            tier=main_repo.tier,
+            test_result=TestResult(
+                passed=True,
+                test_type=TestType.DEV_COMPATIBLE,
+                package=Package.TERRA,
+                package_version="0.18.1",
+            ),
+        )
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        self.assertEqual(len(recovered_repo.tests_results), 2)
+
+        dao.add_repo_test_result(
+            repo_url=main_repo.url,
+            tier=main_repo.tier,
+            test_result=TestResult(
+                passed=False,
+                test_type=TestType.STABLE_COMPATIBLE,
+                package=Package.TERRA,
+                package_version="0.18.1",
+            ),
+        )
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        self.assertEqual(len(recovered_repo.tests_results), 3)
+
+        # here latest passed should be added
+        dao.add_repo_test_result(
+            repo_url=main_repo.url,
+            tier=main_repo.tier,
+            test_result=TestResult(
+                passed=True,
+                test_type=TestType.STABLE_COMPATIBLE,
+                package=Package.TERRA,
+                package_version="0.18.1",
+            ),
+        )
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        self.assertEqual(len(recovered_repo.tests_results), 4)
+        self.assertIn(
+            TestResult(
+                passed=True,
+                test_type=TestType.LAST_WORKING_VERSION,
+                package=Package.TERRA,
+                package_version="0.18.1",
+            ),
+            recovered_repo.tests_results,
+        )
+
+        # here we check that last passed is updated
+        dao.add_repo_test_result(
+            repo_url=main_repo.url,
+            tier=main_repo.tier,
+            test_result=TestResult(
+                passed=True,
+                test_type=TestType.STABLE_COMPATIBLE,
+                package=Package.TERRA,
+                package_version="0.20.0",
+            ),
+        )
+        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        self.assertEqual(len(recovered_repo.tests_results), 4)
+        self.assertIn(
+            TestResult(
+                passed=True,
+                test_type=TestType.LAST_WORKING_VERSION,
+                package=Package.TERRA,
+                package_version="0.20.0",
+            ),
+            recovered_repo.tests_results,
+        )
 
     def test_add_test_result(self):
         """Tests adding result to repo.
