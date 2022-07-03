@@ -306,7 +306,7 @@ signature-mutators=
 additional-builtins=
 
 # Tells whether unused global variables should be treated as a violation.
-allow-global-unused-variables=yes
+allow-global-unused-variables=no
 
 # List of names allowed to shadow builtins
 allowed-redefined-builtins=
@@ -585,25 +585,25 @@ valid-metaclass-classmethod-first-arg=cls
 [DESIGN]
 
 # Maximum number of arguments for function / method.
-max-args=20
+max-args=1
 
 # Maximum number of attributes for a class (see R0902).
-max-attributes=14
+max-attributes=1
 
 # Maximum number of boolean expressions in an if statement (see R0916).
-max-bool-expr=5
+max-bool-expr=1
 
 # Maximum number of branch for function / method body.
-max-branches=12
+max-branches=1
 
 # Maximum number of locals for function / method body.
-max-locals=15
+max-locals=1
 
 # Maximum number of parents for a class (see R0901).
-max-parents=7
+max-parents=1
 
 # Maximum number of public methods for a class (see R0904).
-max-public-methods=20
+max-public-methods=1
 
 # Maximum number of return / yield for function / method body.
 max-returns=6
