@@ -9,7 +9,6 @@ class Impl:
     def __init__(self):
         """Demo impl."""
         self.pow = 2
-        self.useless = "empty"
 
     def run(self, number: Union[int, float]) -> Union[int, float]:
         """Run method."""

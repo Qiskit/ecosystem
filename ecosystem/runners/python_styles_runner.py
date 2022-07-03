@@ -38,10 +38,10 @@ class PythonStyleRunner(Runner):
         # check for configuration file
         # check for existing .pylintrc file
         # render new .pylintrc file for tests
-        # check for existing tox file
+        # check for existing tox.ini file
         # render new tox file for tests
         self.configure_repo(
-            [".pylintrc", "tox.ini"], [".pylintrc_default", "tox_default.ini"]
+            ["tox.ini"], ["tox_default.ini"]
         )
 
         # run lint
