@@ -169,9 +169,10 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         env = Environment(
             loader=PackageLoader("ecosystem"), autoescape=select_autoescape()
         )
-        self.tox_template = env.get_template("configured_tox.ini")
-        self.lint_template = env.get_template(".pylintrc")
-        self.cov_template = env.get_template(".coveragerc")
+        self._tox_template = env.get_template("configured_tox.ini")
+        self._lint_template = env.get_template(".pylintrc")
+        self._cov_template = env.get_template(".coveragerc")
+        self._setup_template = env.get_template("setup.py")
 
     @classmethod
     def default(cls) -> "PythonRepositoryConfiguration":
@@ -196,7 +197,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         """Renders tox template from configuration."""
         ecosystem_deps = ecosystem_deps or []
         ecosystem_additional_commands = ecosystem_additional_commands or []
-        return self.tox_template.render(
+        return self._tox_template.render(
             {
                 **self.to_dict(),
                 **{
@@ -208,8 +209,12 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
 
     def render_lint_file(self):
         """Renders .pylintrc template from configuration."""
-        return self.lint_template.render()
+        return self._lint_template.render()
 
     def render_cov_file(self):
         """Renders .coveragerc template from configuration."""
-        return self.cov_template.render()
+        return self._cov_template.render()
+
+    def render_setup_file(self):
+        """Renders default setup.py file."""
+        return self._setup_template.render()

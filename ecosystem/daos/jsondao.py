@@ -3,7 +3,7 @@ from typing import Optional, List
 
 from tinydb import TinyDB, Query
 
-from ecosystem.models import TestResult, StyleResult, CoverageResult
+from ecosystem.models import TestResult, StyleResult, CoverageResult, TestType
 from ecosystem.models.repository import Repository
 
 
@@ -88,10 +88,16 @@ class JsonDAO:
         res = self.database.table(tier).get(Query().url == url)
         return Repository.from_dict(res) if res else None
 
+    def update_stars(self, url: str, tier: str, stars: int) -> List[int]:
+        """Updates repo with github stars."""
+        table = self.database.table(tier)
+        return table.update({"stars": stars}, Query().url == url)
+
     def add_repo_test_result(
         self, repo_url: str, tier: str, test_result: TestResult
     ) -> Optional[List[int]]:
         """Adds test result for repository.
+        Overwrites latest test results and adds to historical test results.
 
         Args:
             repo_url: url of the repo
@@ -105,18 +111,43 @@ class JsonDAO:
 
         fetched_repo_json = table.get(repository.url == repo_url)
         if fetched_repo_json is not None:
-            fetched_repo = Repository.from_dict(fetched_repo_json)
-            fetched_test_results = fetched_repo.tests_results
+            repo = Repository.from_dict(fetched_repo_json)
 
+            # add new result and remove old from list
             new_test_results = [
+                tr for tr in repo.tests_results if tr.test_type != test_result.test_type
+            ] + [test_result]
+
+            # add last working version
+            if (
+                test_result.test_type == TestType.STABLE_COMPATIBLE
+                and test_result.passed
+            ):
+                last_stable_test_result = TestResult(
+                    passed=True,
+                    test_type=TestType.LAST_WORKING_VERSION,
+                    package=test_result.package,
+                    package_version=test_result.package_version,
+                    logs_link=test_result.logs_link,
+                )
+                new_test_results_with_latest = [
+                    tr
+                    for tr in new_test_results
+                    if tr.test_type != last_stable_test_result.test_type
+                ] + [last_stable_test_result]
+                new_test_results = new_test_results_with_latest
+
+            repo.tests_results = sorted(new_test_results, key=lambda r: r.test_type)
+
+            new_historical_est_results = [
                 tr
-                for tr in fetched_test_results
+                for tr in repo.historical_test_results
                 if tr.test_type != test_result.test_type
                 or tr.terra_version != test_result.terra_version
             ] + [test_result]
-            fetched_repo.tests_results = new_test_results
+            repo.historical_test_results = new_historical_est_results
 
-            return table.upsert(fetched_repo.to_dict(), repository.url == repo_url)
+            return table.upsert(repo.to_dict(), repository.url == repo_url)
         return None
 
     def add_repo_style_result(

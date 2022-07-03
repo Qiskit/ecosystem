@@ -1,6 +1,6 @@
 """Tests for entities."""
-
 import unittest
+from datetime import datetime
 from pprint import pprint
 
 from ecosystem.models import (
@@ -10,10 +10,34 @@ from ecosystem.models import (
     PythonLanguageConfiguration,
 )
 from ecosystem.models.repository import Repository
+from ecosystem.models.test_results import Package
 
 
 class TestRepository(unittest.TestCase):
     """Tests repository class."""
+
+    def test_test_results_serialization(self):
+        """Tests TestResult class serialization."""
+        timestamp = datetime.now().timestamp()
+        test_result = TestResult(
+            passed=True,
+            test_type=TestType.DEV_COMPATIBLE,
+            package=Package.TERRA,
+            package_version="0.18.1",
+            logs_link="log_link",
+        )
+        test_result.timestamp = timestamp
+        expecting = {
+            "test_type": "DEV_COMPATIBLE",
+            "passed": True,
+            "package": "qiskit-terra",
+            "package_version": "0.18.1",
+            "terra_version": "0.18.1",
+            "timestamp": timestamp,
+            "logs_link": "log_link",
+        }
+
+        self.assertEqual(test_result.to_dict(), expecting)
 
     def test_serialization(self):
         """Tests json serialization.
@@ -37,14 +61,25 @@ class TestRepository(unittest.TestCase):
             description="Mock description for repo.",
             licence="Apache 2.0",
             labels=["mock", "tests"],
-            tests_results=[TestResult(True, "0.18.1", TestType.DEV_COMPATIBLE)],
+            tests_results=[
+                TestResult(
+                    passed=True,
+                    test_type=TestType.DEV_COMPATIBLE,
+                    package=Package.TERRA,
+                    package_version="0.18.1",
+                    logs_link="log_link",
+                )
+            ],
             configuration=configuration,
+            skip_tests=True,
+            stars=42,
         )
         repo_dict = main_repo.to_dict()
         recovered = Repository.from_dict(repo_dict)
         pprint(repo_dict)
         self.assertEqual(main_repo, recovered)
         self.assertEqual(main_repo.tests_results, recovered.tests_results)
+        self.assertEqual(recovered.tests_results[0].logs_link, "log_link")
         # check configs
         self.assertEqual(
             main_repo.configuration.language.name, recovered.configuration.language.name
@@ -71,4 +106,9 @@ class TestRepository(unittest.TestCase):
         self.assertEqual(
             main_repo.configuration.coverages_check_command,
             recovered.configuration.coverages_check_command,
+        )
+        self.assertTrue(recovered.skip_tests)
+        self.assertEqual(
+            main_repo.stars,
+            recovered.stars,
         )

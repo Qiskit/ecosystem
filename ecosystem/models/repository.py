@@ -12,7 +12,7 @@ from .utils import JsonSerializable
 class Repository(JsonSerializable):
     """Main repository class."""
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-locals
         self,
         name: str,
         url: str,
@@ -29,6 +29,9 @@ class Repository(JsonSerializable):
         styles_results: Optional[List[TestResult]] = None,
         coverages_results: Optional[List[TestResult]] = None,
         configuration: Optional[RepositoryConfiguration] = None,
+        skip_tests: Optional[bool] = None,
+        historical_test_results: Optional[List[TestResult]] = None,
+        stars: Optional[int] = None,
     ):
         """Repository class.
 
@@ -46,6 +49,9 @@ class Repository(JsonSerializable):
             tests_results: tests passed by repo
             styles_results: styles passed by repo
             coverages_results: coverages passed by repo
+            skip_tests: weather skip tests or not
+            historical_test_results: list of historical test results
+            stars: github stars for repo
         """
         self.name = name
         self.url = url
@@ -66,6 +72,9 @@ class Repository(JsonSerializable):
         self.coverages_results = coverages_results if coverages_results else []
         self.tier = tier
         self.configuration = configuration
+        self.skip_tests = skip_tests if skip_tests is not None else False
+        self.historical_test_results = historical_test_results or []
+        self.stars = stars
 
     @classmethod
     def from_dict(cls, dictionary: dict):
@@ -99,6 +108,13 @@ class Repository(JsonSerializable):
                 dictionary.get("configuration")
             )
 
+        historical_test_results = []
+        if "historical_test_results" in dictionary:
+            historical_test_results = [
+                TestResult.from_dict(r)
+                for r in dictionary.get("historical_test_results", [])
+            ]
+
         return Repository(
             name=dictionary.get("name"),
             url=dictionary.get("url"),
@@ -112,6 +128,9 @@ class Repository(JsonSerializable):
             styles_results=styles_results,
             coverages_results=coverages_results,
             configuration=configuration,
+            skip_tests=dictionary.get("skip_tests"),
+            historical_test_results=historical_test_results,
+            stars=dictionary.get("stars"),
         )
 
     def __eq__(self, other: "Repository"):

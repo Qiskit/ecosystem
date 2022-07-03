@@ -1,20 +1,54 @@
 """Test results for commands."""
 import datetime
+from typing import Optional, List
 
 from .utils import JsonSerializable
 
 
+class Package:  # pylint: disable=too-few-public-methods
+    """Frameworks."""
+
+    TERRA: str = "qiskit-terra"
+    NATURE: str = "qiskit-nature"
+    ML: str = "qiskit-machine-learning"
+    OPTIMIZATION: str = "qiskit-optimization"
+    DYNAMICS: str = "qiskit-dymanics"
+
+    def all(self) -> List[str]:
+        """Returns list of all available Qiskit frameworks."""
+        return [self.TERRA, self.NATURE, self.ML, self.OPTIMIZATION, self.DYNAMICS]
+
+
 class TestResult(JsonSerializable):
-    """Tests status."""
+    """Tests result class."""
 
     _TEST_PASSED: str = "passed"
     _TEST_FAILED: str = "failed"
 
-    def __init__(self, passed: bool, terra_version: str, test_type: str):
+    def __init__(
+        self,
+        passed: bool,
+        test_type: str,
+        package: str,
+        package_version: str,
+        logs_link: Optional[str] = None,
+    ):
+        """Tests result.
+
+        Args:
+            passed: passed or not
+            test_type: dev, standard, stable
+            package: framework tested against
+            package_version: version of framework tested against
+            logs_link: link to logs of tests
+        """
         self.test_type = test_type
         self.passed = passed
-        self.terra_version = terra_version
+        self.package = package
+        self.package_version = package_version
+        self.terra_version = package_version
         self.timestamp = datetime.datetime.now().timestamp()
+        self.logs_link = logs_link
 
     @classmethod
     def from_dict(cls, dictionary: dict):
@@ -27,8 +61,10 @@ class TestResult(JsonSerializable):
         """
         return TestResult(
             passed=dictionary.get("passed"),
-            terra_version=dictionary.get("terra_version"),
             test_type=dictionary.get("test_type"),
+            package=dictionary.get("package"),
+            package_version=dictionary.get("package_version"),
+            logs_link=dictionary.get("logs_link"),
         )
 
     def to_string(self) -> str:
@@ -39,11 +75,16 @@ class TestResult(JsonSerializable):
         return (
             self.passed == other.passed
             and self.test_type == other.test_type
-            and self.terra_version == other.terra_version
+            and self.package == other.package
+            and self.package_version == other.package_version
         )
 
     def __repr__(self):
-        return f"TestResult({self.passed}, {self.test_type}, {self.terra_version})"
+        return (
+            f"TestResult("
+            f"{self.passed}, {self.test_type}, "
+            f"{self.package}: {self.package_version})"
+        )
 
 
 class StyleResult(JsonSerializable):

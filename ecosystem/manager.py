@@ -12,7 +12,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 from ecosystem.daos import JsonDAO
 from ecosystem.models import TestResult, Tier, TestType
 from ecosystem.models.repository import Repository
-from ecosystem.models.test_results import StyleResult, CoverageResult
+from ecosystem.models.test_results import StyleResult, CoverageResult, Package
 from ecosystem.runners import PythonTestsRunner
 from ecosystem.runners.main_repos_report_runner import RepositoryActionStatusRunner
 from ecosystem.runners.python_styles_runner import PythonStyleRunner
@@ -104,27 +104,57 @@ class Manager:
         return response.ok
 
     def get_projects_by_tier(self, tier: str) -> None:
-        """Return projects by tier.
+        """Return projects by tier for testing.
         Args:
             tier: tier of ecosystem
         """
-        repositories = ",".join([repo.url for repo in self.dao.get_repos_by_tier(tier)])
+        repositories = ",".join(
+            [
+                repo.url
+                for repo in self.dao.get_repos_by_tier(tier)
+                if not repo.skip_tests
+            ]
+        )
         set_actions_output([("repositories", repositories)])
 
     def update_badges(self):
         """Updates badges for projects."""
         badges_folder_path = "{}/badges".format(self.current_dir)
 
-        for project in self.dao.get_repos_by_tier("COMMUNITY"):
-            tests_passed = all(result.passed for result in project.tests_results)
-            color = "blueviolet" if tests_passed else "gray"
-            label = "Qiskit Ecosystem"
-            message = project.name
-            url = f"https://img.shields.io/static/v1?label={label}&message={message}&color={color}"
+        for tier in Tier.all():
+            for project in self.dao.get_repos_by_tier(tier):
+                tests_passed = all(result.passed for result in project.tests_results)
+                color = "blueviolet" if tests_passed else "gray"
+                label = project.name
+                message = tier
+                url = (
+                    f"https://img.shields.io/static/v1?"
+                    f"label={label}&message={message}&color={color}"
+                )
 
-            shields_request = requests.get(url)
-            with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
-                outfile.write(shields_request.content)
+                shields_request = requests.get(url)
+                with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
+                    outfile.write(shields_request.content)
+                    self.logger.info("Badge for %s has been updated.", project.name)
+
+    def update_stars(self):
+        """Updates start for repositories."""
+        for tier in Tier.all():
+            for project in self.dao.get_repos_by_tier(tier):
+                stars = None
+                url = project.url[:-1] if project.url[-1] == "/" else project.url
+                url_chunks = url.split("/")
+                repo = url_chunks[-1]
+                user = url_chunks[-2]
+
+                response = requests.get(f"http://api.github.com/repos/{user}/{repo}")
+                if response.ok:
+                    json_data = json.loads(response.text)
+                    stars = json_data.get("stargazers_count")
+                else:
+                    self.logger.warning("Bad response for project %s", project.url)
+                self.dao.update_stars(project.url, tier, stars)
+                self.logger.info("Updating star count for %s: %d", project.url, stars)
 
     @staticmethod
     def parser_issue(body: str) -> None:
@@ -163,6 +193,7 @@ class Manager:
         repo_alt: str,
         repo_affiliations: str,
         repo_labels: Tuple[str],
+        repo_tier: Optional[str] = None,
     ) -> None:
         """Adds repo to list of entries.
 
@@ -175,6 +206,7 @@ class Manager:
             repo_licence: repo licence
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
+            repo_tier: tier for repository
 
         Returns:
             JsonDAO: Integer
@@ -189,6 +221,7 @@ class Manager:
             repo_alt,
             repo_affiliations,
             list(repo_labels),
+            tier=repo_tier or Tier.COMMUNITY,
         )
         self.dao.insert(new_repo)
 
@@ -199,11 +232,10 @@ class Manager:
             str: generated readme
         """
         path = path if path is not None else self.current_dir
-        main_repos = self.dao.get_repos_by_tier(Tier.MAIN)
-        community_repos = self.dao.get_repos_by_tier(Tier.COMMUNITY)
-        readme_content = self.readme_template.render(
-            main_repos=main_repos, community_repos=community_repos
-        )
+
+        data = [(tier, self.dao.get_repos_by_tier(tier=tier)) for tier in Tier.all()]
+        readme_content = self.readme_template.render(data=data)
+
         with open(f"{path}/README.md", "w") as file:
             file.write(readme_content)
 
@@ -299,6 +331,7 @@ class Manager:
         test_type: str,
         ecosystem_deps: Optional[List[str]] = None,
         ecosystem_additional_commands: Optional[List[str]] = None,
+        logs_link: Optional[str] = None,
     ):
         """Runs tests using python runner.
 
@@ -310,6 +343,7 @@ class Manager:
             test_type: [dev, stable]
             ecosystem_deps: extra dependencies to install for tests
             ecosystem_additional_commands: extra commands to run before tests
+            logs_link: link to logs from gh actions
 
         Return:
             output: log PASS
@@ -343,8 +377,10 @@ class Manager:
 
             test_result = TestResult(
                 passed=passed,
-                terra_version=terra_version,
+                package=Package.TERRA,
+                package_version=terra_version,
                 test_type=test_type,
+                logs_link=logs_link,
             )
             # saving results to temp files
             if run_name:
@@ -460,10 +496,12 @@ class Manager:
         repo_url: str,
         tier: str = Tier.MAIN,
         python_version: str = "py39",
+        logs_link: Optional[str] = None,
     ):
         """Runs tests against dev version of qiskit.
 
         Args:
+            logs_link: link to logs of github actions run
             run_name: name of the run
             repo_url: repository url
             tier: tier of project
@@ -486,6 +524,7 @@ class Manager:
             test_type=TestType.DEV_COMPATIBLE,
             ecosystem_deps=[],
             ecosystem_additional_commands=additional_commands,
+            logs_link=logs_link,
         )
 
     def python_stable_tests(
@@ -494,6 +533,7 @@ class Manager:
         repo_url: str,
         tier: str = Tier.MAIN,
         python_version: str = "py39",
+        logs_link: Optional[str] = None,
     ):
         """Runs tests against stable version of qiskit.
         Args:
@@ -512,6 +552,7 @@ class Manager:
             python_version=python_version,
             test_type=TestType.STABLE_COMPATIBLE,
             ecosystem_deps=["qiskit"],
+            logs_link=logs_link,
         )
 
     def python_standard_tests(
@@ -520,6 +561,7 @@ class Manager:
         repo_url: str,
         tier: str = Tier.MAIN,
         python_version: str = "py39",
+        logs_link: Optional[str] = None,
     ):
         """Runs tests with provided confiuration.
         Args:
@@ -537,6 +579,7 @@ class Manager:
             tier=tier,
             python_version=python_version,
             test_type=TestType.STANDARD,
+            logs_link=logs_link,
         )
 
     def fetch_and_update_main_tests_results(self):
@@ -584,7 +627,8 @@ class Manager:
             ).workload()
             test_result = TestResult(
                 passed=all(r.ok for r in results),
-                terra_version=terra_version,
+                package=Package.TERRA,
+                package_version=terra_version,
                 test_type=test_type,
             )
             result = self.dao.add_repo_test_result(
