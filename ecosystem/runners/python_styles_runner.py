@@ -40,9 +40,7 @@ class PythonStyleRunner(Runner):
         # render new .pylintrc file for tests
         # check for existing tox.ini file
         # render new tox file for tests
-        self.configure_repo(
-            ["tox.ini"], ["tox_default.ini"]
-        )
+        self.configure_repo(["tox.ini"], ["tox_default.ini"])
 
         # run lint
         tox_lint_res = RunToxCommand.execute(
