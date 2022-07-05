@@ -32,6 +32,7 @@ class TestResult(JsonSerializable):
         package: str,
         package_version: str,
         logs_link: Optional[str] = None,
+        package_commit_hash: Optional[str] = None,
     ):
         """Tests result.
 
@@ -41,6 +42,7 @@ class TestResult(JsonSerializable):
             package: framework tested against
             package_version: version of framework tested against
             logs_link: link to logs of tests
+            package_commit_hash: package commit hash
         """
         self.test_type = test_type
         self.passed = passed
@@ -49,6 +51,7 @@ class TestResult(JsonSerializable):
         self.terra_version = package_version
         self.timestamp = datetime.datetime.now().timestamp()
         self.logs_link = logs_link
+        self.package_commit_hash = package_commit_hash
 
     @classmethod
     def from_dict(cls, dictionary: dict):
@@ -65,6 +68,7 @@ class TestResult(JsonSerializable):
             package=dictionary.get("package"),
             package_version=dictionary.get("package_version"),
             logs_link=dictionary.get("logs_link"),
+            package_commit_hash=dictionary.get("package_commit_hash"),
         )
 
     def to_string(self) -> str:

@@ -25,6 +25,7 @@ class TestRepository(unittest.TestCase):
             package=Package.TERRA,
             package_version="0.18.1",
             logs_link="log_link",
+            package_commit_hash="42answer",
         )
         test_result.timestamp = timestamp
         expecting = {
@@ -35,6 +36,7 @@ class TestRepository(unittest.TestCase):
             "terra_version": "0.18.1",
             "timestamp": timestamp,
             "logs_link": "log_link",
+            "package_commit_hash": "42answer",
         }
 
         self.assertEqual(test_result.to_dict(), expecting)

@@ -332,6 +332,7 @@ class Manager:
         ecosystem_deps: Optional[List[str]] = None,
         ecosystem_additional_commands: Optional[List[str]] = None,
         logs_link: Optional[str] = None,
+        package_commit_hash: Optional[str] = None,
     ):
         """Runs tests using python runner.
 
@@ -344,6 +345,7 @@ class Manager:
             ecosystem_deps: extra dependencies to install for tests
             ecosystem_additional_commands: extra commands to run before tests
             logs_link: link to logs from gh actions
+            package_commit_hash: commit hash for package
 
         Return:
             output: log PASS
@@ -381,6 +383,7 @@ class Manager:
                 package_version=terra_version,
                 test_type=test_type,
                 logs_link=logs_link,
+                package_commit_hash=package_commit_hash,
             )
             # saving results to temp files
             if run_name:
@@ -510,11 +513,24 @@ class Manager:
         Return:
             _run_python_tests def
         """
+        package = "qiskit-terra"
+
+        # get package commit hash
+        package_commit_hash = None
+        git_response = requests.get(
+            f"https://api.github.com/repos/qiskit/{package}/commits/main"
+        )
+        if git_response.ok:
+            commit_data = json.loads(git_response.text)
+            package_commit_hash = commit_data.get("sha")
+        else:
+            self.logger.warning("Wan't able to parse package commit hash")
+
         # hack to fix tox's inability to install proper version of
         # qiskit through github via deps configuration
         additional_commands = [
             "pip uninstall -y qiskit-terra",
-            "pip install git+https://github.com/Qiskit/qiskit-terra.git@main",
+            f"pip install git+https://github.com/Qiskit/{package}.git@main",
         ]
         return self._run_python_tests(
             run_name=run_name,
@@ -525,6 +541,7 @@ class Manager:
             ecosystem_deps=[],
             ecosystem_additional_commands=additional_commands,
             logs_link=logs_link,
+            package_commit_hash=package_commit_hash,
         )
 
     def python_stable_tests(
