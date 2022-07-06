@@ -28,21 +28,17 @@ class PythonStyleRunner(Runner):
 
         Steps:
         - check for configuration file
-            - optional: check for .pylintrc file
-        - optional: render .pylintrc file
+            - optional: check for tox.ini file
+        - optional: render tox.ini file
             - run lint
         - form report
 
         Returns: execution summary of steps
         """
         # check for configuration file
-        # check for existing .pylintrc file
-        # render new .pylintrc file for tests
-        # check for existing tox file
+        # check for existing tox.ini file
         # render new tox file for tests
-        self.configure_repo(
-            [".pylintrc", "tox.ini"], [".pylintrc_default", "tox_default.ini"]
-        )
+        self.configure_repo(["tox.ini"], ["tox_default.ini"])
 
         # run lint
         tox_lint_res = RunToxCommand.execute(
