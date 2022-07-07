@@ -29,7 +29,7 @@ class TestRepository(unittest.TestCase):
         )
         test_result.timestamp = timestamp
         expecting = {
-            "test_type": "DEV_COMPATIBLE",
+            "test_type": "development",
             "passed": True,
             "package": "qiskit-terra",
             "package_version": "0.18.1",
