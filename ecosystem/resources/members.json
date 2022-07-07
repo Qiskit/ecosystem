@@ -175,7 +175,7 @@
             "updated_at": 1657115862.870598,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -185,7 +185,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -195,7 +195,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -247,7 +247,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -257,7 +257,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -267,7 +267,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -277,7 +277,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -287,7 +287,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -297,7 +297,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -324,7 +324,7 @@
             "updated_at": 1657115862.64124,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -334,7 +334,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "LAST_WORKING_VERSION",
+                    "test_type": "last passing version",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -344,7 +344,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -354,7 +354,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -409,7 +409,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -419,7 +419,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -429,7 +429,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -439,7 +439,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -449,7 +449,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -459,7 +459,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -486,7 +486,7 @@
             "updated_at": 1657115863.004097,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -496,7 +496,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "LAST_WORKING_VERSION",
+                    "test_type": "last passing version",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -506,7 +506,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -516,7 +516,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -566,7 +566,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -576,7 +576,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -586,7 +586,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -596,7 +596,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -623,7 +623,7 @@
             "updated_at": 1657115862.828168,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -633,7 +633,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "LAST_WORKING_VERSION",
+                    "test_type": "last passing version",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -643,7 +643,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -653,7 +653,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -712,7 +712,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -722,7 +722,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -732,7 +732,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -742,7 +742,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -752,7 +752,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -762,7 +762,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -789,7 +789,7 @@
             "updated_at": 1657115862.943979,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -799,7 +799,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "LAST_WORKING_VERSION",
+                    "test_type": "last passing version",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -809,7 +809,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -819,7 +819,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -871,7 +871,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -881,7 +881,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -891,7 +891,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -901,7 +901,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -911,7 +911,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -921,7 +921,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -948,7 +948,7 @@
             "updated_at": 1657115862.77068,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "-",
@@ -958,7 +958,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "-",
@@ -968,7 +968,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "-",
@@ -995,7 +995,7 @@
             "configuration": null,
             "historical_test_results": [
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "-",
@@ -1005,7 +1005,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "-",
@@ -1015,7 +1015,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "-",
@@ -1042,7 +1042,7 @@
             "updated_at": 1657115862.67954,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1052,7 +1052,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1062,7 +1062,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1113,7 +1113,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1123,7 +1123,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1133,7 +1133,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1143,7 +1143,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1153,7 +1153,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1163,7 +1163,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1190,7 +1190,7 @@
             "updated_at": 1657115863.018389,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1200,7 +1200,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "LAST_WORKING_VERSION",
+                    "test_type": "last passing version",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1210,7 +1210,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1220,7 +1220,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1272,7 +1272,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1282,7 +1282,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1292,7 +1292,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1302,7 +1302,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1329,7 +1329,7 @@
             "updated_at": 1657115863.032824,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1339,7 +1339,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.19.1",
@@ -1349,7 +1349,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.19.1",
@@ -1400,7 +1400,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1410,7 +1410,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1420,7 +1420,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.19.1",
@@ -1430,7 +1430,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.19.1",
@@ -1457,7 +1457,7 @@
             "updated_at": 1657115862.899248,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1467,7 +1467,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.17.4",
@@ -1477,7 +1477,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.17.4",
@@ -1528,7 +1528,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1538,7 +1538,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.17.4",
@@ -1548,7 +1548,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1558,7 +1558,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.17.4",
@@ -1585,7 +1585,7 @@
             "updated_at": 1657115862.929237,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1595,7 +1595,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1605,7 +1605,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1658,7 +1658,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1668,7 +1668,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1678,7 +1678,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1688,7 +1688,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1698,7 +1698,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1708,7 +1708,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1735,7 +1735,7 @@
             "updated_at": 1657115862.85653,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1745,7 +1745,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "LAST_WORKING_VERSION",
+                    "test_type": "last passing version",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1755,7 +1755,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1765,7 +1765,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1825,7 +1825,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1835,7 +1835,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1845,7 +1845,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": true,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1872,7 +1872,7 @@
             "updated_at": 1657115862.972007,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -1882,7 +1882,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1892,7 +1892,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1952,7 +1952,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1962,7 +1962,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -1972,7 +1972,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1982,7 +1982,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -1992,7 +1992,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -2002,7 +2002,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -2049,7 +2049,7 @@
             "updated_at": 1657115862.76537,
             "tests_results": [
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -2059,7 +2059,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -2069,7 +2069,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -2121,7 +2121,7 @@
             },
             "historical_test_results": [
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -2131,7 +2131,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -2141,7 +2141,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.20.2",
@@ -2151,7 +2151,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "STANDARD",
+                    "test_type": "standard",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",
@@ -2161,7 +2161,7 @@
                     "package_commit_hash": null
                 },
                 {
-                    "test_type": "DEV_COMPATIBLE",
+                    "test_type": "development",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.22.0",
@@ -2171,7 +2171,7 @@
                     "package_commit_hash": "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
                 },
                 {
-                    "test_type": "STABLE_COMPATIBLE",
+                    "test_type": "stable",
                     "passed": false,
                     "package": "qiskit-terra",
                     "package_version": "0.21.0",

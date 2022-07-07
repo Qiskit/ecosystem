@@ -12,10 +12,10 @@ class TestType:
     - LAST_WORKING_VERSION - last stable working version of qiskit
     """
 
-    STABLE_COMPATIBLE: str = "STABLE_COMPATIBLE"
-    DEV_COMPATIBLE: str = "DEV_COMPATIBLE"
-    STANDARD: str = "STANDARD"
-    LAST_WORKING_VERSION: str = "LAST_WORKING_VERSION"
+    STABLE_COMPATIBLE: str = "stable"
+    DEV_COMPATIBLE: str = "development"
+    STANDARD: str = "standard"
+    LAST_WORKING_VERSION: str = "last passing version"
 
     @classmethod
     def all(cls):
