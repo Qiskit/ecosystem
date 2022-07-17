@@ -43,7 +43,7 @@ pip install -r requirements-dev.txt
 - To Fix the black violation  <code> black <PATH_FILE_YOU_WANT_TO_FIX> </code>
 
 # Guidance on git
-Please follow <a>this link</a> if this is your first time contributing to open source and/or you would like some guidance on how to create and/or merge
+Please follow <a href="git-guidance.md">this link</a> if this is your first time contributing to open source and/or you would like some guidance on how to create and/or merge
 pull requests.
         
 
