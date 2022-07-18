@@ -39,5 +39,5 @@ Click here for a <a href="https://www.youtube.com/watch?v=c6b6B9oN4Vg">video</a>
       <code> git pull https://github.com/forkuser/forkedrepo.git my-branch </code> 
   - Merge the development branch  <br/>
       <code> git merge newfeature </code>
-  - Push master with the new feature merged into it  <br/>
+  - Push main with the new feature merged into it  <br/>
       <code> git push origin main  </code> 
