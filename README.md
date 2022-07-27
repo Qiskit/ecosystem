@@ -64,7 +64,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (15)
+    <b>Community</b> (16)
   </summary>
   
 <hr/>
@@ -87,6 +87,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-rigetti](https://github.com/rigetti/qiskit-rigetti) | Rigetti Provider for Qiskit <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | [QiskitBot](https://github.com/infiniteregrets/QiskitBot) | A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 | [pytorch-quantum](https://github.com/mit-han-lab/pytorch-quantum) | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
+| [QPong](https://github.com/HuangJunye/QPong) | A quantum version of the classic game Pong built with Qiskit and PyGame <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 
 <hr/>
 
