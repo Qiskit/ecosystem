@@ -1,0 +1,18 @@
+[
+  {
+    "name": "development",
+    "description": "Test against coming release of Qiskit that is currently being developed"
+  },
+  {
+    "name": "stable",
+    "description": "Test against the latest stable release of Qiskit"
+  },
+    {
+    "name": "standard",
+    "description": "Test using the lastest version required by the package. This might be different than \"stable\" if the package requirment is pinned.""
+  },
+    {
+    "name": "last passing version",
+    "description": "The last version of Qiskit for which the package is passing all their tests."
+  }
+]
