@@ -142,7 +142,6 @@ class TestManager(TestCase):
         manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/../")
         response = manager.dispatch_check_workflow(
             repo_url="https://github.com/Qiskit-demo/qiskit-demo",
-            issue_id=str(42),
             branch_name="awesome_branch",
             tier="COMMUNITY",
             token="<TOKEN>",

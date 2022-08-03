@@ -24,3 +24,13 @@ class Tier:
             Tier.PARTNERS,
             Tier.EXTENSION,
         ]
+
+    @classmethod
+    def non_main_tiers(cls) -> List[str]:
+        """Return all non Main tiers."""
+        return [
+            Tier.COMMUNITY,
+            Tier.PROTOTYPES,
+            Tier.PARTNERS,
+            Tier.EXTENSION,
+        ]
