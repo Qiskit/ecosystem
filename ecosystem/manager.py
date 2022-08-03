@@ -240,6 +240,7 @@ class Manager:
         self,
         folder_name: str,
         repo_url: str,
+        tier: str,
         test_result: Union[TestResult, StyleResult, CoverageResult],
     ) -> None:
         """Saves result to temp file.
@@ -261,13 +262,14 @@ class Manager:
                 json.dumps(
                     {
                         "repo_url": repo_url,
+                        "tier": tier,
                         "type": type(test_result).__name__,
                         "test_result": test_result.to_dict(),
                     }
                 )
             )
 
-    def process_temp_test_results_files(self, folder_name: str, tier: str) -> None:
+    def process_temp_test_results_files(self, folder_name: str) -> None:
         """Process temp test results files and store data to DB.
 
         Args:
@@ -284,6 +286,7 @@ class Manager:
             with open(path, "r") as json_temp_file:
                 json_temp_file_data = json.load(json_temp_file)
                 repo_url = json_temp_file_data.get("repo_url")
+                repo_tier = json_temp_file_data.get("tier")
                 test_type = json_temp_file_data.get("type")
                 test_result = json_temp_file_data.get("test_result")
                 self.logger.info(
@@ -295,17 +298,17 @@ class Manager:
                 if test_type == "TestResult":
                     tres = TestResult.from_dict(test_result)
                     res = self.dao.add_repo_test_result(
-                        repo_url=repo_url, tier=tier, test_result=tres
+                        repo_url=repo_url, tier=repo_tier, test_result=tres
                     )
                 elif test_type == "CoverageResult":
                     cres = CoverageResult.from_dict(test_result)
                     res = self.dao.add_repo_coverage_result(
-                        repo_url=repo_url, tier=tier, coverage_result=cres
+                        repo_url=repo_url, tier=repo_tier, coverage_result=cres
                     )
                 elif test_type == "StyleResult":
                     sres = StyleResult.from_dict(test_result)
                     res = self.dao.add_repo_style_result(
-                        repo_url=repo_url, tier=tier, style_result=sres
+                        repo_url=repo_url, tier=repo_tier, style_result=sres
                     )
                 else:
                     raise NotImplementedError(
@@ -385,7 +388,10 @@ class Manager:
             # saving results to temp files
             if run_name:
                 self._save_temp_test_result(
-                    folder_name=run_name, repo_url=repo_url, test_result=test_result
+                    folder_name=run_name,
+                    repo_url=repo_url,
+                    test_result=test_result,
+                    tier=tier,
                 )
             self.logger.info("Test results for %s: %s", repo_url, test_result)
             set_actions_output(
@@ -438,7 +444,10 @@ class Manager:
             # saving results to temp files
             if run_name:
                 self._save_temp_test_result(
-                    folder_name=run_name, repo_url=repo_url, test_result=style_result
+                    folder_name=run_name,
+                    repo_url=repo_url,
+                    test_result=style_result,
+                    tier=tier,
                 )
             self.logger.info("Test results for %s: %s", repo_url, style_result)
             set_actions_output([("PASS", style_result.passed)])
@@ -482,7 +491,10 @@ class Manager:
             # saving results to temp files
             if run_name:
                 self._save_temp_test_result(
-                    folder_name=run_name, repo_url=repo_url, test_result=coverage_result
+                    folder_name=run_name,
+                    repo_url=repo_url,
+                    test_result=coverage_result,
+                    tier=tier,
                 )
             self.logger.info("Test results for %s: %s", repo_url, coverage_result)
             set_actions_output([("PASS", coverage_result.passed)])

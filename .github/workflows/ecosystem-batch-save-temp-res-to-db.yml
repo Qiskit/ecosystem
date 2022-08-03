@@ -3,10 +3,6 @@ name: Ecosystem | Batch | merge check files and push to db
 on:
   workflow_dispatch:
     inputs:
-      tier:
-        description: 'Ecosystem tier'
-        required: false
-        default: "COMMUNITY"
       branch:
         description: 'Github branch to push changes to'
         required: true
@@ -32,7 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Merge files and save to db
-      run: python manager.py process_temp_test_results_files --tier=${{ github.event.inputs.tier }} --folder_name=${{ github.event.inputs.branch }}
+      run: python manager.py process_temp_test_results_files --folder_name=${{ github.event.inputs.branch }}
     - name: Commit changes
       run: |
         git pull --rebase --autostash
