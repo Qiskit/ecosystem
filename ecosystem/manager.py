@@ -110,10 +110,9 @@ class Manager:
                 if not repo.skip_tests:
                     repositories.append(repo.url)
                     tiers.append(repo.tier)
-        set_actions_output([
-            ("repositories", ",".join(repositories)),
-            ("tiers", ",".join(tiers))
-        ])
+        set_actions_output(
+            [("repositories", ",".join(repositories)), ("tiers", ",".join(tiers))]
+        )
 
     def update_badges(self):
         """Updates badges for projects."""
