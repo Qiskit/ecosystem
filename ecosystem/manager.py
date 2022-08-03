@@ -52,7 +52,6 @@ class Manager:
     def dispatch_check_workflow(
         self,
         repo_url: str,
-        issue_id: str,
         branch_name: str,
         tier: str,
         token: str,
@@ -85,7 +84,6 @@ class Manager:
                 "client_payload": {
                     "repo_url": repo_url,
                     "repo_name": repo_name,
-                    "issue_id": issue_id,
                     "branch_name": branch_name,
                     "tier": tier,
                 },
@@ -103,19 +101,19 @@ class Manager:
             )
         return response.ok
 
-    def get_projects_by_tier(self, tier: str) -> None:
-        """Return projects by tier for testing.
-        Args:
-            tier: tier of ecosystem
-        """
-        repositories = ",".join(
-            [
-                repo.url
-                for repo in self.dao.get_repos_by_tier(tier)
-                if not repo.skip_tests
-            ]
-        )
-        set_actions_output([("repositories", repositories)])
+    def expose_all_project_to_actions(self):
+        """Exposes all project for github actions."""
+        repositories = []
+        tiers = []
+        for tier in Tier.non_main_tiers():
+            for repo in self.dao.get_repos_by_tier(tier):
+                if not repo.skip_tests:
+                    repositories.append(repo.url)
+                    tiers.append(repo.tier)
+        set_actions_output([
+            ("repositories", ",".join(repositories)),
+            ("tiers", ",".join(tiers))
+        ])
 
     def update_badges(self):
         """Updates badges for projects."""

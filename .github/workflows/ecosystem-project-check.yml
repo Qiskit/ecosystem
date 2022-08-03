@@ -5,7 +5,6 @@ on:
   #  "client_payload": {
   #    "tier": "COMMUNITY", # 'Tier of project'
   #    "branch_name": "weekly-checks-1", # 'Branch name to push changes'
-  #    "issue_id": 49, # 'Id of issue to put comments in'
   #    "repo_name": "demo-implementation", # 'Repository name'
   #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL'
   #  }
@@ -20,7 +19,6 @@ jobs:
       id: vars
       run: |
         echo "Running check for ${{ github.event.client_payload.repo_url }}..."
-        echo "Will be commenting in ${{ github.event.client_payload.issue_id }}..."
         echo "Will push changes to ${{ github.event.client_payload.branch_name }}..."
     - uses: actions/checkout@v2
       with:
@@ -98,14 +96,3 @@ jobs:
         git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
         git pull --rebase --autostash
         git push
-        
-    - name: Create comment on failure
-      if: ${{ env.PASS_LOG == 'False' }}
-      uses: peter-evans/create-or-update-comment@v1
-      with:
-        repository: "qiskit-community/ecosystem"
-        issue-number: ${{ github.event.client_payload.issue_id }}
-        body: |
-          Failed project check ${{ github.event.client_payload.repo_url }} :warning:
-          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
-          If you don't fix this issue, your badge will change to grey automatically.

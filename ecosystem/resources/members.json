@@ -2200,7 +2200,29 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Community",
-            "configuration": null,
+            "configuration": {
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [
+                    "pytest"
+                ],
+                "language": {
+                    "name": "python",
+                    "versions": ["3.9"]
+                },
+                "tests_command": [
+                    "pytest"
+                ],
+                "styles_check_command": [
+                    "pylint -rn qpong tests"
+                ],
+                "coverages_check_command": [
+                    "coverage3 run -m pytest",
+                    "coverage3 report --fail-under=80"
+                ]
+            },
             "skip_tests": false,
             "historical_test_results": [],
             "stars": 98
