@@ -64,7 +64,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (16)
+    <b>Community</b> (17)
   </summary>
   
 <hr/>
@@ -84,10 +84,11 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [quantumcat](https://github.com/artificial-brain/quantumcat) | quantumcat is a platform-independent, open-source, high-level quantum computing library, which allows the quantum community to focus on developing platform-independent quantum applications without much effort <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | [Blueqat](https://github.com/Blueqat/Blueqat) | A quantum computing SDK <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | [python-open-controls](https://github.com/qctrl/python-open-controls) | Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
-| [qiskit-rigetti](https://github.com/rigetti/qiskit-rigetti) | Rigetti Provider for Qiskit <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| [qiskit-rigetti](https://github.com/rigetti/qiskit-rigetti) | Rigetti Provider for Qiskit <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
 | [QiskitBot](https://github.com/infiniteregrets/QiskitBot) | A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 | [pytorch-quantum](https://github.com/mit-han-lab/pytorch-quantum) | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | [QPong](https://github.com/HuangJunye/QPong) | A quantum version of the classic game Pong built with Qiskit and PyGame <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
+| [openqasm](https://github.com/openqasm/openqasm) | OpenQASM is an imperative programming language designed for near-term quantum computing algorithms and applications. Quantum programs are described using the measurement-based quantum circuit model with support for classical feed-forward flow control based on measurement outcomes. <br/>  ![core](https://img.shields.io/badge/qasm-gray.svg)  <br/> |
 
 <hr/>
 
