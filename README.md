@@ -47,7 +47,6 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 |  Name | Description  |
 |---|---|
-| [qiskit-terra](https://github.com/Qiskit/qiskit-terra) | Terra is the foundation on which the rest of Qiskit is built. <br/>  ![core](https://img.shields.io/badge/circuit-gray.svg)  ![core](https://img.shields.io/badge/pulse-gray.svg)  <br/> |
 | [qiskit-aer](https://github.com/Qiskit/qiskit-aer) | Aer provides high-performance quantum computing simulators with realistic noise models. <br/>  ![core](https://img.shields.io/badge/simulation-gray.svg)  <br/> |
 | [qiskit-optimization](https://github.com/Qiskit/qiskit-optimization) | Qiskit Optimization is an open-source framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
 | [qiskit-metal](https://github.com/Qiskit/qiskit-metal) | Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease. <br/>  ![core](https://img.shields.io/badge/hardware-gray.svg)  ![core](https://img.shields.io/badge/design-gray.svg)  <br/> |
@@ -55,6 +54,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-nature](https://github.com/Qiskit/qiskit-nature) | Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
 | [qiskit-finance](https://github.com/Qiskit/qiskit-finance) | Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/finance-gray.svg)  <br/> |
 | [qiskit-dynamics](https://github.com/Qiskit/qiskit-dynamics) | Qiskit Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit. <br/>  ![core](https://img.shields.io/badge/differential-equations-gray.svg)  <br/> |
+| [openqasm](https://github.com/openqasm/openqasm) | OpenQASM is an imperative programming language designed for near-term quantum computing algorithms and applications. Quantum programs are described using the measurement-based quantum circuit model with support for classical feed-forward flow control based on measurement outcomes. <br/>  ![core](https://img.shields.io/badge/qasm-gray.svg)  <br/> |
 
 <hr/>
 
@@ -64,7 +64,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (17)
+    <b>Community</b> (16)
   </summary>
   
 <hr/>
@@ -88,7 +88,6 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [QiskitBot](https://github.com/infiniteregrets/QiskitBot) | A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 | [pytorch-quantum](https://github.com/mit-han-lab/pytorch-quantum) | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | [QPong](https://github.com/HuangJunye/QPong) | A quantum version of the classic game Pong built with Qiskit and PyGame <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
-| [openqasm](https://github.com/openqasm/openqasm) | OpenQASM is an imperative programming language designed for near-term quantum computing algorithms and applications. Quantum programs are described using the measurement-based quantum circuit model with support for classical feed-forward flow control based on measurement outcomes. <br/>  ![core](https://img.shields.io/badge/qasm-gray.svg)  <br/> |
 
 <hr/>
 
