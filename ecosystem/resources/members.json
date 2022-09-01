@@ -1098,9 +1098,9 @@
             "stars": 13
         },
         "7": {
-            "name": "pytket-extensions",
-            "url": "https://github.com/CQCL/pytket-extensions",
-            "description": "repository contains a collection of Python extension modules for CQC's pytket quantum SDK.",
+            "name": "pytket-qiskit",
+            "url": "https://github.com/CQCL/pytket-extensions/tree/develop/modules/pytket-qiskit",
+            "description": "an extension to Pytket (a python module for interfacing with CQC tket) that allows Pytket circuits to be run on IBM backends and simulators, as well as conversion to and from Qiskit representations.",
             "licence": "Apache 2.0",
             "contact_info": null,
             "alternatives": null,
