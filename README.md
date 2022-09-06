@@ -39,7 +39,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Main</b> (8)
+    <b>Main</b> (9)
   </summary>
   
 <hr/>
@@ -53,6 +53,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-machine-learning](https://github.com/Qiskit/qiskit-machine-learning) | The Machine Learning package contains sample datasets and quantum ML algorithms. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
 | [qiskit-nature](https://github.com/Qiskit/qiskit-nature) | Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
 | [qiskit-finance](https://github.com/Qiskit/qiskit-finance) | Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/finance-gray.svg)  <br/> |
+| [qiskit-experiments](https://github.com/Qiskit/qiskit-experiments) | Qiskit Experiments is an open-source project for running characterizing, calibrating, and benchmarking experiments in Qiskit. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  <br/> |
 | [qiskit-dynamics](https://github.com/Qiskit/qiskit-dynamics) | Qiskit Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit. <br/>  ![core](https://img.shields.io/badge/differential-equations-gray.svg)  <br/> |
 | [OpenQASM](https://github.com/openqasm/openqasm) | OpenQASM is an imperative programming language designed for near-term quantum computing algorithms and applications. Quantum programs are described using the measurement-based quantum circuit model with support for classical feed-forward flow control based on measurement outcomes. <br/>  ![core](https://img.shields.io/badge/qasm-gray.svg)  <br/> |
 
