@@ -10,9 +10,7 @@ class Tier:
 
     MAIN: str = "Main"
     COMMUNITY: str = "Community"
-    PROTOTYPES: str = "Prototypes"
-    PARTNERS: str = "Partners"
-    EXTENSION: str = "Extension"
+    EXTENSION: str = "Extensions"
 
     @classmethod
     def all(cls) -> List[str]:
@@ -20,8 +18,6 @@ class Tier:
         return [
             Tier.MAIN,
             Tier.COMMUNITY,
-            Tier.PROTOTYPES,
-            Tier.PARTNERS,
             Tier.EXTENSION,
         ]
 
@@ -30,7 +26,5 @@ class Tier:
         """Return all non Main tiers."""
         return [
             Tier.COMMUNITY,
-            Tier.PROTOTYPES,
-            Tier.PARTNERS,
             Tier.EXTENSION,
         ]

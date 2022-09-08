@@ -78,7 +78,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-superstaq](https://github.com/SupertechLabs/qiskit-superstaq) | This package is used to access SuperstaQ via a Web API through Qiskit. Qiskit programmers can take advantage of the applications, pulse level optimizations, and write-once-target-all features of SuperstaQ with this package. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | [qtcodes](https://github.com/yaleqc/qtcodes) | Qiskit Topological Codes <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | [kaleidoscope](https://github.com/QuSTaR/kaleidoscope) | Kaleidoscope <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
-| [pytket-extensions](https://github.com/CQCL/pytket-extensions) | repository contains a collection of Python extension modules for CQC's pytket quantum SDK. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
+| [pytket-qiskit](https://github.com/CQCL/pytket-extensions/tree/develop/modules/pytket-qiskit) | an extension to Pytket (a python module for interfacing with CQC tket) that allows Pytket circuits to be run on IBM backends and simulators, as well as conversion to and from Qiskit representations. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  <br/> |
 | [quantuminspire](https://github.com/QuTech-Delft/quantuminspire) | platform allows to execute quantum algorithms using the cQASM language. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  <br/> |
 | [mitiq](https://github.com/unitaryfund/mitiq) | Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | [pennylane-qiskit](https://github.com/PennyLaneAI/pennylane-qiskit) | The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
@@ -99,57 +99,23 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Prototypes</b> (3)
+    <b>Extensions</b> (9)
   </summary>
   
 <hr/>
-<img src="https://img.shields.io/badge/Qiskit-Prototypes-blueviolet">
-
-|  Name | Description  |
-|---|---|
-| [Entanglement forging](https://github.com/qiskit-community/prototype-entanglement-forging) | This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
-| [Quantum kernel training](https://github.com/qiskit-community/prototype-quantum-kernel-training) | The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
-| [Quantum Random Access Optimization](https://github.com/qiskit-community/prototype-qrao) | The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems. <br/>  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
-
-<hr/>
-
-</details>
-
-
-
-<details>
-  <summary>
-    <b>Partners</b> (4)
-  </summary>
-  
-<hr/>
-<img src="https://img.shields.io/badge/Qiskit-Partners-blueviolet">
-
-|  Name | Description  |
-|---|---|
-| [qiskit-ibm-runtime](https://github.com/qiskit/qiskit-ibm-runtime) | This module provides the interface to access Qiskit Runtime. <br/>  ![core](https://img.shields.io/badge/runtime-gray.svg)  <br/> |
-| [qiskit-ionq](https://github.com/Qiskit-Partners/qiskit-ionq) | Project contains a provider that allows access to IonQ ion trap quantum systems. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
-| [qiskit-ibm-provider](https://github.com/Qiskit/qiskit-ibm-provider) | Project contains a provider that allows accessing the IBM Quantum systems and simulators. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
-| [mthree](https://github.com/Qiskit-Partners/mthree) | Matrix-free Measurement Mitigation (M3) <br/>  <br/> |
-
-<hr/>
-
-</details>
-
-
-
-<details>
-  <summary>
-    <b>Extension</b> (2)
-  </summary>
-  
-<hr/>
-<img src="https://img.shields.io/badge/Qiskit-Extension-blueviolet">
+<img src="https://img.shields.io/badge/Qiskit-Extensions-blueviolet">
 
 |  Name | Description  |
 |---|---|
 | [qiskit-alt](https://github.com/Qiskit-Extensions/qiskit-alt) | Python package uses a backend written in Julia to implement high performance features for standard Qiskit. <br/>  ![core](https://img.shields.io/badge/julia-gray.svg)  <br/> |
 | [qiskit-cold-atom](https://github.com/Qiskit-Extensions/qiskit-cold-atom) | This project builds on this functionality to describe programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
+| [Entanglement forging](https://github.com/qiskit-community/prototype-entanglement-forging) | This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
+| [Quantum kernel training](https://github.com/qiskit-community/prototype-quantum-kernel-training) | The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
+| [Quantum Random Access Optimization](https://github.com/qiskit-community/prototype-qrao) | The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems. <br/>  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
+| [qiskit-ibm-runtime](https://github.com/qiskit/qiskit-ibm-runtime) | This module provides the interface to access Qiskit Runtime. <br/>  ![core](https://img.shields.io/badge/runtime-gray.svg)  <br/> |
+| [qiskit-ionq](https://github.com/Qiskit-Partners/qiskit-ionq) | Project contains a provider that allows access to IonQ ion trap quantum systems. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
+| [qiskit-ibm-provider](https://github.com/Qiskit/qiskit-ibm-provider) | Project contains a provider that allows accessing the IBM Quantum systems and simulators. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
+| [mthree](https://github.com/Qiskit-Partners/mthree) | Matrix-free Measurement Mitigation (M3) <br/>  <br/> |
 
 <hr/>
 
