@@ -2601,30 +2601,6 @@
             "skip_tests": false,
             "historical_test_results": [],
             "stars": 1
-        },
-        "19": {
-            "name": "qiskit-qec",
-            "url": "https://github.com/qiskit-community/qiskit-qec",
-            "description": "Qiskit Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC).",
-            "licence": "Apache License 2.0",
-            "contact_info": "_No response_",
-            "alternatives": "_No response_",
-            "affiliations": "_No response_",
-            "labels": [
-                "algorithm",
-                "sdk",
-                "circuit"
-            ],
-            "created_at": 1662992390.122591,
-            "updated_at": 1662992390.122597,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
-            "tier": "Community",
-            "configuration": null,
-            "skip_tests": false,
-            "historical_test_results": [],
-            "stars": null
         }
     },
     "Extensions": {
@@ -3479,6 +3455,30 @@
                     "package_commit_hash": "6927a8d26bb58bf402b4e38f5563ed97a76a0fad"
                 }
             ]
+        },
+        "11": {
+            "name": "qiskit-qec",
+            "url": "https://github.com/qiskit-community/qiskit-qec",
+            "description": "Qiskit Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC).",
+            "licence": "Apache License 2.0",
+            "contact_info": "_No response_",
+            "alternatives": "_No response_",
+            "affiliations": "_No response_",
+            "labels": [
+                "algorithm",
+                "sdk",
+                "circuit"
+            ],
+            "created_at": 1662992390.122591,
+            "updated_at": 1662992390.122597,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Extensions",
+            "configuration": null,
+            "skip_tests": true,
+            "historical_test_results": [],
+            "stars": null
         }
     }
 }
