@@ -77,29 +77,32 @@ class Manager:
         repo_split = repo_url.split("/")
         repo_name = repo_split[-1]
 
-        response = requests.post(
-            url,
-            json={
-                "event_type": "check_project",
-                "client_payload": {
-                    "repo_url": repo_url,
-                    "repo_name": repo_name,
-                    "branch_name": branch_name,
-                    "tier": tier,
+        # run each type of tests as separate workflow
+        for test_type in [TestType.STANDARD, TestType.STABLE_COMPATIBLE, TestType.DEV_COMPATIBLE]:
+            response = requests.post(
+                url,
+                json={
+                    "event_type": "check_project",
+                    "client_payload": {
+                        "repo_url": repo_url,
+                        "repo_name": repo_name,
+                        "branch_name": branch_name,
+                        "tier": tier,
+                        "test_type": test_type,
+                    },
                 },
-            },
-            headers={
-                "Authorization": "token {}".format(token),
-                "Accept": "application/vnd.github.v3+json",
-            },
-        )
-        if response.ok:
-            self.logger.info("Success response on dispatch event. %s", response.text)
-        else:
-            self.logger.warning(
-                "Something wend wrong with dispatch event: %s", response.text
+                headers={
+                    "Authorization": "token {}".format(token),
+                    "Accept": "application/vnd.github.v3+json",
+                },
             )
-        return response.ok
+            if response.ok:
+                self.logger.info("Success response on dispatch event. %s", response.text)
+            else:
+                self.logger.warning(
+                    "Something wend wrong with dispatch event: %s", response.text
+                )
+        return True
 
     def expose_all_project_to_actions(self):
         """Exposes all project for github actions."""
