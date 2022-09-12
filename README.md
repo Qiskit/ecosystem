@@ -91,6 +91,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [QPong](https://github.com/HuangJunye/QPong) | A quantum version of the classic game Pong built with Qiskit and PyGame <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 | [q-kernel-ops](https://github.com/Travis-S-IBM/q-kernel-ops) | Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449). <br/>  ![core](https://img.shields.io/badge/Tags-gray.svg)  <br/> |
 | [qiskit-qec](https://github.com/qiskit-community/qiskit-qec) | Qiskit Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC). <br/>  ![core](https://img.shields.io/badge/algorithm-gray.svg)  ![core](https://img.shields.io/badge/sdk-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
+| [qiskit-research](https://github.com/qiskit-research/qiskit-research) | This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments. <br/>  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  <br/> |
 
 <hr/>
 
