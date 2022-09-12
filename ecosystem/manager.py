@@ -567,17 +567,22 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             python_version: [py39, py37]
+            logs_link: links to logs
 
         Return:
             _run_python_tests def
         """
+        additional_commands = [
+            "pip install --upgrade --force-reinstall qiskit-terra",
+        ]
         return self._run_python_tests(
             run_name=run_name,
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
             test_type=TestType.STABLE_COMPATIBLE,
-            ecosystem_deps=["qiskit"],
+            ecosystem_deps=[],
+            ecosystem_additional_commands=additional_commands,
             logs_link=logs_link,
         )
 
@@ -595,6 +600,7 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             python_version: [py39, py37]
+            logs_link: links to logs
 
         Return:
             _run_python_tests def
