@@ -4,6 +4,7 @@ from typing import Optional
 
 import requests
 
+from ecosystem.models.utils import UnknownPackageVersion
 from ecosystem.utils import logger
 
 
@@ -41,7 +42,7 @@ def get_stable_terra_version() -> str:
     """Returns stable Qiskit-terra version."""
     url = "https://api.github.com/repos/Qiskit/qiskit-terra/releases"
     response = requests.get(url, params={"per_page": 1})
-    version = "-"
+    version = UnknownPackageVersion
     if response.ok:
         releases = json.loads(response.text)
         if len(releases) > 0:
@@ -62,7 +63,7 @@ def get_dev_terra_version() -> str:
         "https://raw.githubusercontent.com/Qiskit/qiskit-terra/main/qiskit/VERSION.txt"
     )
     response = requests.get(url)
-    version = "-"
+    version = UnknownPackageVersion
     if response.ok:
         version = response.text.strip()
     else:

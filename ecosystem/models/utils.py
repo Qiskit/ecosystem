@@ -2,6 +2,9 @@
 from abc import ABC
 
 
+UnknownPackageVersion: str = "unknown"
+
+
 class JsonSerializable(ABC):
     """Classes that can be serialized as json."""
 

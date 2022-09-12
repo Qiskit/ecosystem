@@ -8,6 +8,7 @@ from ecosystem.models import (
     CommandExecutionSummary,
 )
 from ecosystem.models.repository import Repository
+from ecosystem.models.utils import UnknownPackageVersion
 from ecosystem.runners.runner import Runner
 
 
@@ -52,7 +53,7 @@ class PythonTestsRunner(Runner):
             ecosystem_additional_commands=self.ecosystem_additional_commands,
         )
 
-        terra_version = "-"
+        terra_version = UnknownPackageVersion
 
         # run tox
         tox_tests_res = RunToxCommand.execute(

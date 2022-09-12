@@ -14,6 +14,7 @@ from ecosystem.models import (
 )
 from ecosystem.models.repository import Repository
 from ecosystem.exception import QiskitEcosystemException
+from ecosystem.models.utils import UnknownPackageVersion
 from ecosystem.utils import logger as ecosystem_logger
 from ecosystem.utils.utils import set_actions_output
 
@@ -169,7 +170,10 @@ class Runner:
             )
 
         except Exception as exception:  # pylint: disable=broad-except
-            result = ("-", [CommandExecutionSummary(1, [], summary=str(exception))])
+            result = (
+                UnknownPackageVersion,
+                [CommandExecutionSummary(1, [], summary=str(exception))],
+            )
             self.logger.error(exception)
         self.tear_down()
         return result
