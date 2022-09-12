@@ -7,6 +7,7 @@ from ecosystem.models import (
     CommandExecutionSummary,
 )
 from ecosystem.models.repository import Repository
+from ecosystem.models.utils import UnknownPackageVersion
 from ecosystem.runners.runner import Runner
 
 
@@ -45,4 +46,4 @@ class PythonStyleRunner(Runner):
             directory=self.cloned_repo_directory, env="lint"
         )
 
-        return "-", [tox_lint_res]
+        return UnknownPackageVersion, [tox_lint_res]
