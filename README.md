@@ -65,7 +65,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (17)
+    <b>Community</b> (18)
   </summary>
   
 <hr/>
@@ -90,6 +90,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [pytorch-quantum](https://github.com/mit-han-lab/pytorch-quantum) | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | [QPong](https://github.com/HuangJunye/QPong) | A quantum version of the classic game Pong built with Qiskit and PyGame <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 | [q-kernel-ops](https://github.com/Travis-S-IBM/q-kernel-ops) | Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449). <br/>  ![core](https://img.shields.io/badge/Tags-gray.svg)  <br/> |
+| [qiskit-qec](https://github.com/qiskit-community/qiskit-qec) | Qiskit Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC). <br/>  ![core](https://img.shields.io/badge/algorithm-gray.svg)  ![core](https://img.shields.io/badge/sdk-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
 
 <hr/>
 
