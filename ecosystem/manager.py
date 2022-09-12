@@ -78,7 +78,11 @@ class Manager:
         repo_name = repo_split[-1]
 
         # run each type of tests as separate workflow
-        for test_type in [TestType.STANDARD, TestType.STABLE_COMPATIBLE, TestType.DEV_COMPATIBLE]:
+        for test_type in [
+            TestType.STANDARD,
+            TestType.STABLE_COMPATIBLE,
+            TestType.DEV_COMPATIBLE,
+        ]:
             response = requests.post(
                 url,
                 json={
@@ -97,7 +101,9 @@ class Manager:
                 },
             )
             if response.ok:
-                self.logger.info("Success response on dispatch event. %s", response.text)
+                self.logger.info(
+                    "Success response on dispatch event. %s", response.text
+                )
             else:
                 self.logger.warning(
                     "Something wend wrong with dispatch event: %s", response.text
