@@ -333,6 +333,7 @@ class Manager:
         ecosystem_additional_commands: Optional[List[str]] = None,
         logs_link: Optional[str] = None,
         package_commit_hash: Optional[str] = None,
+        skip_deprecation_warnings: bool = True,
     ):
         """Runs tests using python runner.
 
@@ -346,6 +347,7 @@ class Manager:
             ecosystem_additional_commands: extra commands to run before tests
             logs_link: link to logs from gh actions
             package_commit_hash: commit hash for package
+            skip_deprecation_warnings: deprecation warnings does not affect passing of tests
 
         Return:
             output: log PASS
@@ -370,7 +372,7 @@ class Manager:
         if len(results) > 0:
             # if default tests are passed
             # we do not detect deprecation warnings for qiskit
-            if test_type == TestType.STANDARD:
+            if test_type == TestType.STANDARD or skip_deprecation_warnings is True:
                 passed = all(r.ok for r in results)
             else:
                 passed = all(
