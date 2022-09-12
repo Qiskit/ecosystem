@@ -57,7 +57,7 @@
             "url": "https://github.com/Qiskit/qiskit-metal",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 198
+            "stars": 199
         },
         "6": {
             "alternatives": null,
@@ -78,7 +78,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 320
+            "stars": 322
         },
         "7": {
             "alternatives": null,
@@ -177,7 +177,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 869
+            "stars": 871
         }
     },
     "Community": {
@@ -428,7 +428,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 46
+            "stars": 48
         },
         "4": {
             "name": "qiskit-superstaq",
@@ -1431,7 +1431,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 217
+            "stars": 218
         },
         "10": {
             "name": "pennylane-qiskit",
@@ -1887,7 +1887,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 349
+            "stars": 350
         },
         "13": {
             "name": "python-open-controls",
@@ -2470,7 +2470,7 @@
                     "package_commit_hash": "6927a8d26bb58bf402b4e38f5563ed97a76a0fad"
                 }
             ],
-            "stars": 322
+            "stars": 328
         },
         "17": {
             "name": "QPong",
@@ -2601,29 +2601,6 @@
             "skip_tests": false,
             "historical_test_results": [],
             "stars": 1
-        },
-        "19": {
-            "name": "qiskit-research",
-            "url": "https://github.com/qiskit-research/qiskit-research",
-            "description": "This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments.",
-            "licence": "Apache License 2.0",
-            "contact_info": "_No response_",
-            "alternatives": "_No response_",
-            "affiliations": "_No response_",
-            "labels": [
-                "paper",
-                "implementation"
-            ],
-            "created_at": 1662992208.202283,
-            "updated_at": 1662992208.20229,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
-            "tier": "Community",
-            "configuration": null,
-            "skip_tests": false,
-            "historical_test_results": [],
-            "stars": null
         }
     },
     "Extensions": {
@@ -2946,7 +2923,7 @@
                 ],
                 "coverages_check_command": []
             },
-            "stars": 23,
+            "stars": 24,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -3425,7 +3402,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 14,
+            "stars": 15,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -3478,6 +3455,29 @@
                     "package_commit_hash": "6927a8d26bb58bf402b4e38f5563ed97a76a0fad"
                 }
             ]
+        },
+        "10": {
+            "name": "qiskit-research",
+            "url": "https://github.com/qiskit-research/qiskit-research",
+            "description": "This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments.",
+            "licence": "Apache License 2.0",
+            "contact_info": "_No response_",
+            "alternatives": "_No response_",
+            "affiliations": "_No response_",
+            "labels": [
+                "paper",
+                "implementation"
+            ],
+            "created_at": 1662992208.202283,
+            "updated_at": 1662992208.20229,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Extensions",
+            "configuration": null,
+            "skip_tests": true,
+            "historical_test_results": [],
+            "stars": 24
         }
     }
 }
