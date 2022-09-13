@@ -30,7 +30,8 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 
 ## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
-To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+). 
+If you are planning to open-source some code around Qiskit, consider using this [repo template](https://github.com/qiskit-community/quantum-prototype-template) as starting point.
 
 
 ## Members
