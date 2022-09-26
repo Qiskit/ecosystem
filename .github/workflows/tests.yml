@@ -62,14 +62,6 @@ jobs:
       run: |
         tox -ecoverage
 
-  awesomeness:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - run: npx awesome-lint
-      
   json-lint:
     runs-on: ubuntu-latest
     steps:

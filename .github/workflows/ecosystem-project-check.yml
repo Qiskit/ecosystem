@@ -3,11 +3,11 @@ name: Ecosystem | Project tests workflow
 on:
   #  Payload:
   #  "client_payload": {
-  #    "tier": "COMMUNITY", # 'Tier of project'
+  #    "tier": "Community", # 'Tier of project'
   #    "branch_name": "weekly-checks-1", # 'Branch name to push changes'
-  #    "issue_id": 49, # 'Id of issue to put comments in'
   #    "repo_name": "demo-implementation", # 'Repository name'
-  #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL'
+  #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL',
+  #    "test_type": "development"
   #  }
   repository_dispatch:
     types: [ check_project ]
@@ -20,7 +20,6 @@ jobs:
       id: vars
       run: |
         echo "Running check for ${{ github.event.client_payload.repo_url }}..."
-        echo "Will be commenting in ${{ github.event.client_payload.issue_id }}..."
         echo "Will push changes to ${{ github.event.client_payload.branch_name }}..."
     - uses: actions/checkout@v2
       with:
@@ -35,34 +34,12 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    - name: Standard tests
-      id: standard
+    - name: Tests [${{ github.event.client_payload.test_type }}]
+      id: test_step
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
-        check_type: "test_standard"
-        tox_env: "py39"
-        tier: ${{ github.event.client_payload.tier }}
-        run_name: ${{ github.event.client_payload.branch_name }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
-
-    - name: Stable tests
-      id: stable
-      uses: ./.github/actions/run-tests
-      with:
-        repo_url: ${{ github.event.client_payload.repo_url }}
-        check_type: "test_stable"
-        tox_env: "py39"
-        tier: ${{ github.event.client_payload.tier }}
-        run_name: ${{ github.event.client_payload.branch_name }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
-
-    - name: Dev tests
-      id: dev
-      uses: ./.github/actions/run-tests
-      with:
-        repo_url: ${{ github.event.client_payload.repo_url }}
-        check_type: "test_dev"
+        test_type: ${{ github.event.client_payload.test_type }}
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
         run_name: ${{ github.event.client_payload.branch_name }}
@@ -74,9 +51,7 @@ jobs:
         echo "PASS_LOG=True" >> $GITHUB_ENV
 
         declare -a return_list=( \
-          "${{ steps.standard.outputs.result }}" \
-          "${{ steps.stable.outputs.result }}" \
-          "${{ steps.dev.outputs.result }}" \
+          "${{ steps.test_step.outputs.result }}" \
         )
         for i in "${return_list[@]}"; do
           if [[ "${i}" != *"True"* ]]; then
@@ -98,14 +73,3 @@ jobs:
         git commit -m "Tests for ${{ github.event.client_payload.repo_url }}" --allow-empty
         git pull --rebase --autostash
         git push
-        
-    - name: Create comment on failure
-      if: ${{ env.PASS_LOG == 'False' }}
-      uses: peter-evans/create-or-update-comment@v1
-      with:
-        repository: "qiskit-community/ecosystem"
-        issue-number: ${{ github.event.client_payload.issue_id }}
-        body: |
-          Failed project check ${{ github.event.client_payload.repo_url }} :warning:
-          Error see: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
-          If you don't fix this issue, your badge will change to grey automatically.

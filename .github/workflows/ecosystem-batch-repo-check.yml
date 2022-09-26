@@ -1,18 +1,13 @@
-name: Ecosystem | Batch | check projects in tier
+name: Ecosystem | Batch | check projects
 
 on:
   workflow_dispatch:
-    inputs:
-      tier:
-        description: 'Ecosystem tier'
-        required: false
-        default: "COMMUNITY"
+  schedule:
+  - cron:  '0 9 * * 2'
 
 jobs:
   batch_repo_check:
     runs-on: ubuntu-latest
-    env:
-      ISSUE_ID: 49
     steps:
     - name: Setup variables
       id: vars
@@ -35,27 +30,26 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
         commit-message: Batch checks for ${{ steps.vars.outputs.datetime }}
-        title: Batch checks | ${{ github.event.inputs.tier }} | ${{ steps.vars.outputs.datetime }}
+        title: Batch checks | ${{ steps.vars.outputs.datetime }}
         body: |
           Batch checks
           Time: ${{ steps.vars.outputs.datetime }}
-          Tier: ${{ github.event.inputs.tier }}
         branch: ${{ steps.vars.outputs.pr_branch_name }}
         base: main
     - name: Get project for check
       id: repos
-      run: python manager.py get_projects_by_tier --tier=${{ github.event.inputs.tier }}
+      run: python manager.py expose_all_project_to_actions
     - name: Launch separate workflows for each project check
       run: |
-        export IFS=","
-        repositories=${{ steps.repos.outputs.repositories }}
-        for repo in $repositories; do
-          echo "Launching separate workflow for $repo"
+        IFS=',' read -r -a repositories <<< ${{ steps.repos.outputs.repositories }}
+        IFS=',' read -r -a tiers <<< ${{ steps.repos.outputs.tiers }}
+
+        for (( i=0; i<${#repositories[*]}; ++i)); do
+          echo "Launching separate workflow for ${repositories[$i]} in ${tiers[$i]} tier"
           python manager.py dispatch_check_workflow \
-                            --repo_url=$repo \
-                            --issue_id=${{ env.ISSUE_ID }} \
+                            --repo_url=${repositories[$i]} \
                             --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
-                            --tier=${{ github.event.inputs.tier }} \
+                            --tier=${tiers[$i]} \
                             --token=${{ secrets.WORKFLOW_DISPATCH_PAT }} \
                             --owner=${{ github.repository_owner }}
         done

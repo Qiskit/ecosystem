@@ -7,6 +7,7 @@ from ecosystem.models import (
     CommandExecutionSummary,
 )
 from ecosystem.models.repository import Repository
+from ecosystem.models.utils import UnknownPackageVersion
 from ecosystem.runners.runner import Runner
 
 
@@ -49,4 +50,4 @@ class PythonCoverageRunner(Runner):
             directory=self.cloned_repo_directory, env="coverage"
         )
 
-        return "-", [tox_coverage_res]
+        return UnknownPackageVersion, [tox_coverage_res]

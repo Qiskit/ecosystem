@@ -52,7 +52,6 @@ class Manager:
     def dispatch_check_workflow(
         self,
         repo_url: str,
-        issue_id: str,
         branch_name: str,
         tier: str,
         token: str,
@@ -78,44 +77,51 @@ class Manager:
         repo_split = repo_url.split("/")
         repo_name = repo_split[-1]
 
-        response = requests.post(
-            url,
-            json={
-                "event_type": "check_project",
-                "client_payload": {
-                    "repo_url": repo_url,
-                    "repo_name": repo_name,
-                    "issue_id": issue_id,
-                    "branch_name": branch_name,
-                    "tier": tier,
+        # run each type of tests as separate workflow
+        for test_type in [
+            TestType.STANDARD,
+            TestType.STABLE_COMPATIBLE,
+            TestType.DEV_COMPATIBLE,
+        ]:
+            response = requests.post(
+                url,
+                json={
+                    "event_type": "check_project",
+                    "client_payload": {
+                        "repo_url": repo_url,
+                        "repo_name": repo_name,
+                        "branch_name": branch_name,
+                        "tier": tier,
+                        "test_type": test_type,
+                    },
                 },
-            },
-            headers={
-                "Authorization": "token {}".format(token),
-                "Accept": "application/vnd.github.v3+json",
-            },
-        )
-        if response.ok:
-            self.logger.info("Success response on dispatch event. %s", response.text)
-        else:
-            self.logger.warning(
-                "Something wend wrong with dispatch event: %s", response.text
+                headers={
+                    "Authorization": "token {}".format(token),
+                    "Accept": "application/vnd.github.v3+json",
+                },
             )
-        return response.ok
+            if response.ok:
+                self.logger.info(
+                    "Success response on dispatch event. %s", response.text
+                )
+            else:
+                self.logger.warning(
+                    "Something wend wrong with dispatch event: %s", response.text
+                )
+        return True
 
-    def get_projects_by_tier(self, tier: str) -> None:
-        """Return projects by tier for testing.
-        Args:
-            tier: tier of ecosystem
-        """
-        repositories = ",".join(
-            [
-                repo.url
-                for repo in self.dao.get_repos_by_tier(tier)
-                if not repo.skip_tests
-            ]
+    def expose_all_project_to_actions(self):
+        """Exposes all project for github actions."""
+        repositories = []
+        tiers = []
+        for tier in Tier.non_main_tiers():
+            for repo in self.dao.get_repos_by_tier(tier):
+                if not repo.skip_tests:
+                    repositories.append(repo.url)
+                    tiers.append(repo.tier)
+        set_actions_output(
+            [("repositories", ",".join(repositories)), ("tiers", ",".join(tiers))]
         )
-        set_actions_output([("repositories", repositories)])
 
     def update_badges(self):
         """Updates badges for projects."""
@@ -243,6 +249,7 @@ class Manager:
         self,
         folder_name: str,
         repo_url: str,
+        tier: str,
         test_result: Union[TestResult, StyleResult, CoverageResult],
     ) -> None:
         """Saves result to temp file.
@@ -264,13 +271,14 @@ class Manager:
                 json.dumps(
                     {
                         "repo_url": repo_url,
+                        "tier": tier,
                         "type": type(test_result).__name__,
                         "test_result": test_result.to_dict(),
                     }
                 )
             )
 
-    def process_temp_test_results_files(self, folder_name: str, tier: str) -> None:
+    def process_temp_test_results_files(self, folder_name: str) -> None:
         """Process temp test results files and store data to DB.
 
         Args:
@@ -287,6 +295,7 @@ class Manager:
             with open(path, "r") as json_temp_file:
                 json_temp_file_data = json.load(json_temp_file)
                 repo_url = json_temp_file_data.get("repo_url")
+                repo_tier = json_temp_file_data.get("tier")
                 test_type = json_temp_file_data.get("type")
                 test_result = json_temp_file_data.get("test_result")
                 self.logger.info(
@@ -298,17 +307,17 @@ class Manager:
                 if test_type == "TestResult":
                     tres = TestResult.from_dict(test_result)
                     res = self.dao.add_repo_test_result(
-                        repo_url=repo_url, tier=tier, test_result=tres
+                        repo_url=repo_url, tier=repo_tier, test_result=tres
                     )
                 elif test_type == "CoverageResult":
                     cres = CoverageResult.from_dict(test_result)
                     res = self.dao.add_repo_coverage_result(
-                        repo_url=repo_url, tier=tier, coverage_result=cres
+                        repo_url=repo_url, tier=repo_tier, coverage_result=cres
                     )
                 elif test_type == "StyleResult":
                     sres = StyleResult.from_dict(test_result)
                     res = self.dao.add_repo_style_result(
-                        repo_url=repo_url, tier=tier, style_result=sres
+                        repo_url=repo_url, tier=repo_tier, style_result=sres
                     )
                 else:
                     raise NotImplementedError(
@@ -332,6 +341,8 @@ class Manager:
         ecosystem_deps: Optional[List[str]] = None,
         ecosystem_additional_commands: Optional[List[str]] = None,
         logs_link: Optional[str] = None,
+        package_commit_hash: Optional[str] = None,
+        skip_deprecation_warnings: bool = True,
     ):
         """Runs tests using python runner.
 
@@ -344,6 +355,8 @@ class Manager:
             ecosystem_deps: extra dependencies to install for tests
             ecosystem_additional_commands: extra commands to run before tests
             logs_link: link to logs from gh actions
+            package_commit_hash: commit hash for package
+            skip_deprecation_warnings: deprecation warnings does not affect passing of tests
 
         Return:
             output: log PASS
@@ -368,7 +381,7 @@ class Manager:
         if len(results) > 0:
             # if default tests are passed
             # we do not detect deprecation warnings for qiskit
-            if test_type == TestType.STANDARD:
+            if test_type == TestType.STANDARD or skip_deprecation_warnings is True:
                 passed = all(r.ok for r in results)
             else:
                 passed = all(
@@ -381,11 +394,15 @@ class Manager:
                 package_version=terra_version,
                 test_type=test_type,
                 logs_link=logs_link,
+                package_commit_hash=package_commit_hash,
             )
             # saving results to temp files
             if run_name:
                 self._save_temp_test_result(
-                    folder_name=run_name, repo_url=repo_url, test_result=test_result
+                    folder_name=run_name,
+                    repo_url=repo_url,
+                    test_result=test_result,
+                    tier=tier,
                 )
             self.logger.info("Test results for %s: %s", repo_url, test_result)
             set_actions_output(
@@ -438,7 +455,10 @@ class Manager:
             # saving results to temp files
             if run_name:
                 self._save_temp_test_result(
-                    folder_name=run_name, repo_url=repo_url, test_result=style_result
+                    folder_name=run_name,
+                    repo_url=repo_url,
+                    test_result=style_result,
+                    tier=tier,
                 )
             self.logger.info("Test results for %s: %s", repo_url, style_result)
             set_actions_output([("PASS", style_result.passed)])
@@ -482,7 +502,10 @@ class Manager:
             # saving results to temp files
             if run_name:
                 self._save_temp_test_result(
-                    folder_name=run_name, repo_url=repo_url, test_result=coverage_result
+                    folder_name=run_name,
+                    repo_url=repo_url,
+                    test_result=coverage_result,
+                    tier=tier,
                 )
             self.logger.info("Test results for %s: %s", repo_url, coverage_result)
             set_actions_output([("PASS", coverage_result.passed)])
@@ -510,11 +533,24 @@ class Manager:
         Return:
             _run_python_tests def
         """
+        package = "qiskit-terra"
+
+        # get package commit hash
+        package_commit_hash = None
+        git_response = requests.get(
+            f"https://api.github.com/repos/qiskit/{package}/commits/main"
+        )
+        if git_response.ok:
+            commit_data = json.loads(git_response.text)
+            package_commit_hash = commit_data.get("sha")
+        else:
+            self.logger.warning("Wan't able to parse package commit hash")
+
         # hack to fix tox's inability to install proper version of
         # qiskit through github via deps configuration
         additional_commands = [
             "pip uninstall -y qiskit-terra",
-            "pip install git+https://github.com/Qiskit/qiskit-terra.git@main",
+            f"pip install git+https://github.com/Qiskit/{package}.git@main",
         ]
         return self._run_python_tests(
             run_name=run_name,
@@ -525,6 +561,7 @@ class Manager:
             ecosystem_deps=[],
             ecosystem_additional_commands=additional_commands,
             logs_link=logs_link,
+            package_commit_hash=package_commit_hash,
         )
 
     def python_stable_tests(
@@ -541,17 +578,22 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             python_version: [py39, py37]
+            logs_link: links to logs
 
         Return:
             _run_python_tests def
         """
+        additional_commands = [
+            "pip install --upgrade --force-reinstall qiskit-terra",
+        ]
         return self._run_python_tests(
             run_name=run_name,
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
             test_type=TestType.STABLE_COMPATIBLE,
-            ecosystem_deps=["qiskit"],
+            ecosystem_deps=[],
+            ecosystem_additional_commands=additional_commands,
             logs_link=logs_link,
         )
 
@@ -569,6 +611,7 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             python_version: [py39, py37]
+            logs_link: links to logs
 
         Return:
             _run_python_tests def
