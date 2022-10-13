@@ -30,8 +30,7 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 
 ## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
-To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+). 
-If you are planning to open-source some code around Qiskit, consider using this [repo template](https://github.com/qiskit-community/quantum-prototype-template) as starting point.
+To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
 
 ## Members
@@ -66,7 +65,7 @@ If you are planning to open-source some code around Qiskit, consider using this 
 
 <details>
   <summary>
-    <b>Community</b> (17)
+    <b>Community</b> (18)
   </summary>
   
 <hr/>
@@ -91,6 +90,7 @@ If you are planning to open-source some code around Qiskit, consider using this 
 | [pytorch-quantum](https://github.com/mit-han-lab/pytorch-quantum) | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | [QPong](https://github.com/HuangJunye/QPong) | A quantum version of the classic game Pong built with Qiskit and PyGame <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 | [q-kernel-ops](https://github.com/Travis-S-IBM/q-kernel-ops) | Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449). <br/>  ![core](https://img.shields.io/badge/Tags-gray.svg)  <br/> |
+| [bosonic-qiskit](https://github.com/C2QA/bosonic-qiskit) | NQI C2QA project to simulate hybrid boson-qubit systems within QisKit. <br/>  ![core](https://img.shields.io/badge/sdk-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  <br/> |
 
 <hr/>
 
@@ -112,10 +112,10 @@ If you are planning to open-source some code around Qiskit, consider using this 
 | [qiskit-cold-atom](https://github.com/Qiskit-Extensions/qiskit-cold-atom) | This project builds on this functionality to describe programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
 | [Entanglement forging](https://github.com/qiskit-community/prototype-entanglement-forging) | This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
 | [Quantum kernel training](https://github.com/qiskit-community/prototype-quantum-kernel-training) | The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications. <br/>  ![core](https://img.shields.io/badge/prototype-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
-| [Quantum Random Access Optimization](https://github.com/qiskit-community/prototype-qrao) | The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems. <br/>  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
-| [qiskit-ibm-runtime](https://github.com/qiskit/qiskit-ibm-runtime) | This module provides the interface to access Qiskit Runtime. <br/>  ![core](https://img.shields.io/badge/runtime-gray.svg)  <br/> |
-| [qiskit-ionq](https://github.com/Qiskit-Partners/qiskit-ionq) | Project contains a provider that allows access to IonQ ion trap quantum systems. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
-| [qiskit-ibm-provider](https://github.com/Qiskit/qiskit-ibm-provider) | Project contains a provider that allows accessing the IBM Quantum systems and simulators. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  <br/> |
+| [Quantum Random Access Optimization](https://github.com/qiskit-community/prototype-qrao) | The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems. <br/>  ![core](https://img.shields.io/badge/optimization-gray.svg)  ![core](https://img.shields.io/badge/prototype-gray.svg)  <br/> |
+| [qiskit-ibm-runtime](https://github.com/qiskit/qiskit-ibm-runtime) | This module provides the interface to access Qiskit Runtime. <br/>  ![core](https://img.shields.io/badge/runtime-gray.svg)  ![core](https://img.shields.io/badge/partner-gray.svg)  <br/> |
+| [qiskit-ionq](https://github.com/Qiskit-Partners/qiskit-ionq) | Project contains a provider that allows access to IonQ ion trap quantum systems. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  ![core](https://img.shields.io/badge/partner-gray.svg)  <br/> |
+| [qiskit-ibm-provider](https://github.com/Qiskit/qiskit-ibm-provider) | Project contains a provider that allows accessing the IBM Quantum systems and simulators. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  ![core](https://img.shields.io/badge/partner-gray.svg)  <br/> |
 | [mthree](https://github.com/Qiskit-Partners/mthree) | Matrix-free Measurement Mitigation (M3) <br/>  <br/> |
 | [qiskit-research](https://github.com/qiskit-research/qiskit-research) | This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments. <br/>  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  <br/> |
 | [qiskit-qec](https://github.com/qiskit-community/qiskit-qec) | Qiskit Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC). <br/>  ![core](https://img.shields.io/badge/algorithm-gray.svg)  ![core](https://img.shields.io/badge/sdk-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
