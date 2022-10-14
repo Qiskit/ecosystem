@@ -41,24 +41,6 @@
             "skip_tests": true,
             "stars": 126
         },
-        "5": {
-            "alternatives": null,
-            "contact_info": null,
-            "created_at": 1628883441.119202,
-            "description": "Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease.",
-            "labels": [
-                "hardware",
-                "design"
-            ],
-            "licence": "Apache 2.0",
-            "name": "qiskit-metal",
-            "tier": "Extensions",
-            "updated_at": 1628883441.119205,
-            "url": "https://github.com/Qiskit/qiskit-metal",
-            "tests_results": [],
-            "skip_tests": true,
-            "stars": 201
-        },
         "6": {
             "alternatives": null,
             "contact_info": null,
@@ -3738,6 +3720,24 @@
             "skip_tests": true,
             "historical_test_results": [],
             "stars": 23
+        },
+        "12": {
+            "alternatives": null,
+            "contact_info": null,
+            "created_at": 1628883441.119202,
+            "description": "Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease.",
+            "labels": [
+                "hardware",
+                "design"
+            ],
+            "licence": "Apache 2.0",
+            "name": "qiskit-metal",
+            "tier": "Extensions",
+            "updated_at": 1628883441.119205,
+            "url": "https://github.com/Qiskit/qiskit-metal",
+            "tests_results": [],
+            "skip_tests": true,
+            "stars": 201
         }
     }
 }
