@@ -2939,6 +2939,31 @@
             "skip_tests": false,
             "historical_test_results": [],
             "stars": null
+        },
+        "20": {
+            "name": "qiskit-toqm",
+            "url": "https://github.com/qiskit-toqm/qiskit-toqm",
+            "description": "Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706",
+            "licence": "Apache License 2.0",
+            "contact_info": "_No response_",
+            "alternatives": "_No response_",
+            "affiliations": "_No response_",
+            "labels": [
+                "plugin",
+                "paper",
+                "implementation",
+                "circuit"
+            ],
+            "created_at": 1665657351.788539,
+            "updated_at": 1665657351.788544,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
         }
     },
     "Extensions": {
