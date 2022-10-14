@@ -2915,13 +2915,61 @@
             "stars": 2
         },
         "19": {
+            "name": "QuantumCircuits.jl",
+            "url": "https://github.com/Adgnitio/QuantumCircuits.jl",
+            "description": "QuantumCircuits is an open-source library written in Julia for working with quantum computers at the application level, especially for Quantum Finance and Quantum Machine Learning. It allows to creation and manipulation of the quantum circuits and executes them in Julia or convert them to Qiskit Python object. The library also contains the Quantum Binomial Tree implementation for derivative pricing.",
+            "licence": "GNU General Public License (GPL)",
+            "contact_info": "rafal.pracht@adgnitio.com",
+            "alternatives": "qiskit-finance, qiskit-machine-learning, Yao",
+            "affiliations": "_No response_",
+            "labels": [
+                "paper",
+                "implementation",
+                "machine",
+                "learning",
+                "finance"
+            ],
+            "created_at": 1665676740.500221,
+            "updated_at": 1665676740.500226,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
+        },
+        "20": {
+            "name": "qiskit-toqm",
+            "url": "https://github.com/qiskit-toqm/qiskit-toqm",
+            "description": "Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706",
+            "licence": "Apache License 2.0",
+            "contact_info": "_No response_",
+            "alternatives": "_No response_",
+            "affiliations": "_No response_",
+            "labels": [
+                "plugin",
+                "paper",
+                "implementation",
+                "circuit"
+            ],
+            "created_at": 1665657351.788539,
+            "updated_at": 1665657351.788544,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
+        },
+        "21": {
             "name": "bosonic-qiskit",
             "url": "https://github.com/C2QA/bosonic-qiskit",
             "description": "NQI C2QA project to simulate hybrid boson-qubit systems within QisKit.",
             "licence": "BSD 2-Clause Simplified or FreeBSD license",
-            "contact_info": "_No response_",
-            "alternatives": "_No response_",
-            "affiliations": "_No response_",
             "labels": [
                 "sdk",
                 "physics"
