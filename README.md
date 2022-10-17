@@ -39,7 +39,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Main</b> (9)
+    <b>Main</b> (8)
   </summary>
   
 <hr/>
@@ -49,7 +49,6 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 |---|---|
 | [qiskit-aer](https://github.com/Qiskit/qiskit-aer) | Aer provides high-performance quantum computing simulators with realistic noise models. <br/>  ![core](https://img.shields.io/badge/simulation-gray.svg)  <br/> |
 | [qiskit-optimization](https://github.com/Qiskit/qiskit-optimization) | Qiskit Optimization is an open-source framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
-| [qiskit-metal](https://github.com/Qiskit/qiskit-metal) | Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease. <br/>  ![core](https://img.shields.io/badge/hardware-gray.svg)  ![core](https://img.shields.io/badge/design-gray.svg)  <br/> |
 | [qiskit-machine-learning](https://github.com/Qiskit/qiskit-machine-learning) | The Machine Learning package contains sample datasets and quantum ML algorithms. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/ml-gray.svg)  <br/> |
 | [qiskit-nature](https://github.com/Qiskit/qiskit-nature) | Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
 | [qiskit-finance](https://github.com/Qiskit/qiskit-finance) | Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/finance-gray.svg)  <br/> |
@@ -65,7 +64,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (18)
+    <b>Community</b> (21)
   </summary>
   
 <hr/>
@@ -89,10 +88,11 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [QiskitBot](https://github.com/infiniteregrets/QiskitBot) | A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange <br/>  ![core](https://img.shields.io/badge/tool-gray.svg)  <br/> |
 | [pytorch-quantum](https://github.com/mit-han-lab/pytorch-quantum) | A PyTorch-centric hybrid classical-quantum dynamic neural networks framework. <br/>  ![core](https://img.shields.io/badge/library-gray.svg)  <br/> |
 | [QPong](https://github.com/HuangJunye/QPong) | A quantum version of the classic game Pong built with Qiskit and PyGame <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
-| [q-kernel-ops](https://github.com/Travis-S-IBM/q-kernel-ops) | Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449). <br/>  ![core](https://img.shields.io/badge/Tags-gray.svg)  <br/> |
-| [bosonic-qiskit](https://github.com/C2QA/bosonic-qiskit) | NQI C2QA project to simulate hybrid boson-qubit systems within QisKit. <br/>  ![core](https://img.shields.io/badge/sdk-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  <br/> |
-| [qiskit-toqm](https://github.com/qiskit-toqm/qiskit-toqm) | Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706 <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
+| [q-kernel-ops](https://github.com/Travis-S-IBM/q-kernel-ops) | Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449). <br/>  ![core](https://img.shields.io/badge/QAMP-gray.svg)  <br/> |
 | [QuantumCircuits.jl](https://github.com/Adgnitio/QuantumCircuits.jl) | QuantumCircuits is an open-source library written in Julia for working with quantum computers at the application level, especially for Quantum Finance and Quantum Machine Learning. It allows to creation and manipulation of the quantum circuits and executes them in Julia or convert them to Qiskit Python object. The library also contains the Quantum Binomial Tree implementation for derivative pricing. <br/>  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  ![core](https://img.shields.io/badge/machine-gray.svg)  ![core](https://img.shields.io/badge/learning-gray.svg)  ![core](https://img.shields.io/badge/finance-gray.svg)  <br/> |
+| [qiskit-toqm](https://github.com/qiskit-toqm/qiskit-toqm) | Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706 <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
+| [bosonic-qiskit](https://github.com/C2QA/bosonic-qiskit) | NQI C2QA project to simulate hybrid boson-qubit systems within QisKit. <br/>  ![core](https://img.shields.io/badge/sdk-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  <br/> |
+| [dsm-swap](https://github.com/qiskit-community/dsm-swap) | A doubly stochastic matrices-based approach to optimal qubit routing <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
 
 <hr/>
 
@@ -102,7 +102,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Extensions</b> (11)
+    <b>Extensions</b> (12)
   </summary>
   
 <hr/>
@@ -121,6 +121,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [mthree](https://github.com/Qiskit-Partners/mthree) | Matrix-free Measurement Mitigation (M3) <br/>  <br/> |
 | [qiskit-research](https://github.com/qiskit-research/qiskit-research) | This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments. <br/>  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  <br/> |
 | [qiskit-qec](https://github.com/qiskit-community/qiskit-qec) | Qiskit Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC). <br/>  ![core](https://img.shields.io/badge/algorithm-gray.svg)  ![core](https://img.shields.io/badge/sdk-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
+| [qiskit-metal](https://github.com/Qiskit/qiskit-metal) | Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease. <br/>  ![core](https://img.shields.io/badge/hardware-gray.svg)  ![core](https://img.shields.io/badge/design-gray.svg)  <br/> |
 
 <hr/>
 
