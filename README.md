@@ -64,7 +64,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (21)
+    <b>Community</b> (22)
   </summary>
   
 <hr/>
@@ -93,6 +93,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-toqm](https://github.com/qiskit-toqm/qiskit-toqm) | Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706 <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
 | [bosonic-qiskit](https://github.com/C2QA/bosonic-qiskit) | NQI C2QA project to simulate hybrid boson-qubit systems within QisKit. <br/>  ![core](https://img.shields.io/badge/sdk-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  <br/> |
 | [dsm-swap](https://github.com/qiskit-community/dsm-swap) | A doubly stochastic matrices-based approach to optimal qubit routing <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/paper-gray.svg)  ![core](https://img.shields.io/badge/implementation-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
+| [Quantum-Application-Framework.git](https://github.com/vito490/Quantum-Application-Framework.git) | We designed and implemented an architectural framework that aims to standardize the interaction of an existing infrastructure with IBM Quantum, leveraging the most used open source technologies. The general idea is to heavily decouple all the components of the framework and isolate, in a docker container, the components which interact with IBM Quantum. Plus, we focused on automate the provisioning process, so that trying the framework would be as easy as executing a script and in a matter of minutes, all the components will be available on a vanilla OpenShift cluster <br/>  ![core](https://img.shields.io/badge/_No-gray.svg)  ![core](https://img.shields.io/badge/response_-gray.svg)  <br/> |
 
 <hr/>
 

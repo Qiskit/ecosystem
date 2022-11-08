@@ -3462,6 +3462,29 @@
                 }
             ],
             "stars": 4
+        },
+        "23": {
+            "name": "Quantum-Application-Framework.git",
+            "url": "https://github.com/vito490/Quantum-Application-Framework.git",
+            "description": "We designed and implemented an architectural framework that aims to standardize the interaction of an existing infrastructure with IBM Quantum, leveraging the most used open source technologies. The general idea is to heavily decouple all the components of the framework and isolate, in a docker container, the components which interact with IBM Quantum. Plus, we focused on automate the provisioning process, so that trying the framework would be as easy as executing a script and in a matter of minutes, all the components will be available on a vanilla OpenShift cluster",
+            "licence": "Apache License 2.0",
+            "contact_info": "vitosammarco94@gmail.com",
+            "alternatives": "Other framework componets can be found here https://github.com/Quantum-App-Framework",
+            "affiliations": "_No response_",
+            "labels": [
+                "_No",
+                "response_"
+            ],
+            "created_at": 1667903673.803174,
+            "updated_at": 1667903673.80318,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
         }
     },
     "Extensions": {
