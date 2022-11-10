@@ -53,10 +53,10 @@ Read [more on tests](#tests).
 #### Minimal requirements for projects
 
 By default project must have
-- `tests` folder and test runnable discoverable unittest in this older.
+- `tests` folder and test runnable discoverable unittest in this folder.
 - `requirements.txt` file with list of dependencies for running tests and project
 
-Minimal requirements for project might be overwritten by introducing [ecosystem test configuration](#ecosystem-test-configuration)
+Alternatively, minimal requirements for project might be overwritten by introducing [ecosystem test configuration](#ecosystem-test-configuration).
 
 #### Ecosystem test configuration
 
