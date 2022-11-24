@@ -232,12 +232,16 @@ class TestJsonDao(TestCase):
             ),
         )
         self.assertEqual(res, [1])
-        self.assertLabelsFile([{'description': 'description for label 1', 'name': 'label 1'},
-                               {'description': 'description for label 2', 'name': 'label 2'},
-                               {'description': 'description for label 4', 'name': 'label 4'},
-                               {'description': '', 'name': 'mock'},
-                               {'description': '', 'name': 'tests'},
-                               {'description': '', 'name': 'wsdt'}])
+        self.assertLabelsFile(
+            [
+                {"description": "description for label 1", "name": "label 1"},
+                {"description": "description for label 2", "name": "label 2"},
+                {"description": "description for label 4", "name": "label 4"},
+                {"description": "", "name": "mock"},
+                {"description": "", "name": "tests"},
+                {"description": "", "name": "wsdt"},
+            ]
+        )
 
         recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
         self.assertEqual(
@@ -379,15 +383,9 @@ class TestJsonDao(TestCase):
 
     def _create_dummy_labels_json(self):
         dummy_data = [
-            {
-                "name": "label 1",
-                "description": "description for label 1"},
-            {
-                "name": "label 2",
-                "description": "description for label 2"},
-            {
-                "name": "label 4",
-                "description": "description for label 4"}
+            {"name": "label 1", "description": "description for label 1"},
+            {"name": "label 2", "description": "description for label 2"},
+            {"name": "label 4", "description": "description for label 4"},
         ]
         with open(self.labels_path, "w") as labels_file:
             json.dump(dummy_data, labels_file)

@@ -100,14 +100,18 @@ class JsonDAO:
     def update_labels(self, labels: List[str]) -> List[int]:
         """Updates labels db."""
         with open(self.labels_json_path, "r") as labels_file:
-            label_dscs = {label["name"]: label["description"] for label in json.load(labels_file)}
+            label_dscs = {
+                label["name"]: label["description"] for label in json.load(labels_file)
+            }
 
         merged = {**{l: "" for l in labels}, **label_dscs}
         new_label_list = [
             {"name": name, "description": dsc} for name, dsc in merged.items()
         ]
         with open(self.labels_json_path, "w") as labels_file:
-            json.dump(sorted(new_label_list, key=lambda x: x["name"]), labels_file, indent=4)
+            json.dump(
+                sorted(new_label_list, key=lambda x: x["name"]), labels_file, indent=4
+            )
 
     def add_repo_test_result(
         self, repo_url: str, tier: str, test_result: TestResult
