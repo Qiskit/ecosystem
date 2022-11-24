@@ -79,7 +79,7 @@ class TestManager(TestCase):
             os.makedirs(self.path)
 
     def test_parser_issue(self):
-        """ "Tests issue parsing function.
+        """Tests issue parsing function.
         Function: Manager
                 -> parser_issue
         Args:

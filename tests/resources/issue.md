@@ -24,4 +24,4 @@ _No response_
 
 ### Tags
 
-tool, tutorial
+tool, tutorial, machine learning
