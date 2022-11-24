@@ -6,7 +6,7 @@
             "created_at": 1636403010.377695,
             "description": "Aer provides high-performance quantum computing simulators with realistic noise models.",
             "labels": [
-                "simulation"
+                "circuit simulator"
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-aer",
@@ -24,7 +24,7 @@
             "alternatives": null,
             "contact_info": null,
             "created_at": 1636403009.538761,
-            "description": "Qiskit Optimization is an open-source framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit.",
+            "description": "Framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit.",
             "labels": [
                 "algorithms",
                 "optimization"
@@ -1495,7 +1495,7 @@
             "alternatives": null,
             "affiliations": null,
             "labels": [
-                "library"
+                "error mitigation"
             ],
             "created_at": 1669126844.335511,
             "updated_at": 1669126844.335512,
@@ -1724,7 +1724,7 @@
             "alternatives": null,
             "affiliations": null,
             "labels": [
-                "library"
+                "converter"
             ],
             "created_at": 1669126843.855406,
             "updated_at": 1669126843.855407,
@@ -2814,7 +2814,7 @@
             "alternatives": null,
             "affiliations": null,
             "labels": [
-                "library"
+                "machine learning"
             ],
             "created_at": 1669126844.076678,
             "updated_at": 1669126844.076679,
@@ -3512,10 +3512,10 @@
         "21": {
             "name": "bosonic-qiskit",
             "url": "https://github.com/C2QA/bosonic-qiskit",
-            "description": "NQI C2QA project to simulate hybrid boson-qubit systems within QisKit.",
+            "description": "NQI C2QA project to simulate hybrid boson-qubit systems within Qiskit.",
             "licence": "BSD 2-Clause Simplified or FreeBSD license",
             "labels": [
-                "sdk",
+                "simulation",
                 "physics"
             ],
             "created_at": 1669126844.516939,
@@ -4490,7 +4490,7 @@
             "alternatives": "",
             "affiliations": "IBM",
             "labels": [
-                "runtime",
+                "provider",
                 "partner"
             ],
             "created_at": 1654696489.147673,
@@ -4933,14 +4933,14 @@
         "11": {
             "name": "qiskit-qec",
             "url": "https://github.com/qiskit-community/qiskit-qec",
-            "description": "Qiskit Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC).",
+            "description": "Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC).",
             "licence": "Apache 2.0",
             "contact_info": "_No response_",
             "alternatives": "_No response_",
             "affiliations": "_No response_",
             "labels": [
-                "algorithm",
-                "sdk",
+                "algorithms",
+                "QEC",
                 "circuit"
             ],
             "created_at": 1662992390.122591,
@@ -4960,8 +4960,7 @@
             "created_at": 1628883441.119202,
             "description": "Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease.",
             "labels": [
-                "hardware",
-                "design"
+                "hardware"
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-metal",
