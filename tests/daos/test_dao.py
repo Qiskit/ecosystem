@@ -371,9 +371,10 @@ class TestJsonDao(TestCase):
         self.assertEqual(test_results[1].test_type, TestType.STABLE_COMPATIBLE)
         self.assertEqual(test_results[2].test_type, TestType.STANDARD)
 
-    def assertLabelsFile(self, result):
-        with open(self.labels_path, "r") as f:
-            content = json.load(f)
+    def assertLabelsFile(self, result):  # pylint: disable=invalid-name
+        """Asserts the content of labels.json matches the result dict"""
+        with open(self.labels_path, "r") as labels_file:
+            content = json.load(labels_file)
         self.assertEqual(content, result)
 
     def _create_dummy_labels_json(self):
@@ -388,5 +389,5 @@ class TestJsonDao(TestCase):
                 "name": "label 4",
                 "description": "description for label 4"}
         ]
-        with open(self.labels_path, "w") as f:
-            json.dump(dummy_data, f)
+        with open(self.labels_path, "w") as labels_file:
+            json.dump(dummy_data, labels_file)
