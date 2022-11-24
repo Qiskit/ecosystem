@@ -126,9 +126,9 @@
             "alternatives": null,
             "contact_info": null,
             "created_at": 1628883441.121108,
-            "description": "Qiskit Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit.",
+            "description": "Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit.",
             "labels": [
-                "differential-equations"
+                "simulation"
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-dynamics",
@@ -148,7 +148,7 @@
             "alternatives": "_No response_",
             "affiliations": "OpenQASM specification contributors",
             "labels": [
-                "qasm"
+                "openqasm"
             ],
             "created_at": 1660223774.444544,
             "updated_at": 1660223774.44455,
@@ -1912,7 +1912,8 @@
             "alternatives": null,
             "affiliations": null,
             "labels": [
-                "library"
+                "algorithms",
+                "converter"
             ],
             "created_at": 1669126844.56035,
             "updated_at": 1669126844.56035,
@@ -2080,7 +2081,7 @@
             "alternatives": null,
             "affiliations": null,
             "labels": [
-                "library"
+                "convert"
             ],
             "created_at": 1669126844.466162,
             "updated_at": 1669126844.466162,
@@ -2320,7 +2321,7 @@
             "alternatives": null,
             "affiliations": null,
             "labels": [
-                "library"
+                "hardware"
             ],
             "created_at": 1669126843.897989,
             "updated_at": 1669126843.89799,
@@ -2788,14 +2789,12 @@
         "15": {
             "name": "QiskitBot",
             "url": "https://github.com/infiniteregrets/QiskitBot",
-            "description": "A discord bot that allows you to execute Quantum Circuits, look up the IBMQ Qiskit's Documentation, and search questions on the Quantum Computing StackExchange",
+            "description": "A discord bot that allows you to execute Quantum Circuits, look up the Qiskit's Documentation, and search questions on the Quantum Computing StackExchange",
             "licence": "Apache 2.0",
             "contact_info": null,
             "alternatives": null,
             "affiliations": null,
-            "labels": [
-                "tool"
-            ],
+            "labels": [],
             "created_at": 1641938992.363096,
             "updated_at": 1641938992.363099,
             "tests_results": [],
