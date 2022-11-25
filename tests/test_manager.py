@@ -114,7 +114,8 @@ class TestManager(TestCase):
             output_value[6], "::set-output name=SUBMISSION_AFFILIATIONS::_No response_"
         )
         self.assertEqual(
-            output_value[7], "::set-output name=SUBMISSION_LABELS::['tool', 'tutorial']"
+            output_value[7],
+            "::set-output name=SUBMISSION_LABELS::['tool', 'tutorial', 'paper implementation']"
         )
 
     @responses.activate
