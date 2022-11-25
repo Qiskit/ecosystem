@@ -28,7 +28,7 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
     licence = parse[9]
     affiliations = parse[11]
 
-    labels = [l.strip() for l in parse[13].split(',')]
+    labels = [l.strip() for l in parse[13].split(",")]
 
     return Repository(
         name,
