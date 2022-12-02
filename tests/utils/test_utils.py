@@ -36,4 +36,6 @@ class TestUtils(TestCase):
         self.assertEqual(parsed_result.alternatives, "tititata")
         self.assertEqual(parsed_result.licence, "Apache License 2.0")
         self.assertEqual(parsed_result.affiliations, "_No response_")
-        self.assertEqual(parsed_result.labels, ["tool", "tutorial", "paper implementation"])
+        self.assertEqual(
+            parsed_result.labels, ["tool", "tutorial", "paper implementation"]
+        )
