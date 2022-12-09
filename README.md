@@ -64,7 +64,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (24)
+    <b>Community</b> (25)
   </summary>
   
 <hr/>
@@ -97,6 +97,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [quantum-serverless](https://github.com/Qiskit-Extensions/quantum-serverless) | The Quantum Serverless package aims to allow developers to easily offload computations to cloud resources, without being experts in packaging code for remote execution environments. <br/>  ![core](https://img.shields.io/badge/_No response_-gray.svg)  <br/> |
 | [RasQberry](https://github.com/JanLahmann/RasQberry) | RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 | [zoose-codespace](https://github.com/ianhellstrom/zoose-codespace) | GitHub Codespace template repository based on Zoose Quantum, a custom Docker image with everything included, so you can be up and running with any of the major quantum libraries (incl. Qiskit) with only two clicks! No installation required. Ideal for beginners or people who want to code quantum circuits on the go. Code quantum circuits straight in your browser with VSCode. <br/>  ![core](https://img.shields.io/badge/notebook-gray.svg)  <br/> |
+| [qiskit-nature-pyscf](https://github.com/qiskit-community/qiskit-nature-pyscf) | Qiskit Nature PySCF is a third-party integration plugin of Qiskit Nature and PySCF. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
 
 <hr/>
 
