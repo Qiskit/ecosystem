@@ -39,7 +39,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 136
+            "stars": 137
         },
         "6": {
             "alternatives": null,
@@ -60,7 +60,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 360
+            "stars": 362
         },
         "7": {
             "alternatives": null,
@@ -103,7 +103,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 135
+            "stars": 134
         },
         "10": {
             "alternatives": null,
@@ -159,7 +159,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 916
+            "stars": 920
         }
     },
     "Community": {
@@ -943,7 +943,7 @@
                     "package_commit_hash": "2f5944d60140ceb6e30d5b891e8ffec735247ce9"
                 }
             ],
-            "stars": 74
+            "stars": 75
         },
         "6": {
             "name": "kaleidoscope",
@@ -2041,7 +2041,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 106
+            "stars": 107
         },
         "11": {
             "name": "quantumcat",
@@ -2480,7 +2480,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 357
+            "stars": 356
         },
         "13": {
             "name": "python-open-controls",
@@ -3281,7 +3281,7 @@
                     "package_commit_hash": "2f5944d60140ceb6e30d5b891e8ffec735247ce9"
                 }
             ],
-            "stars": 399
+            "stars": 400
         },
         "17": {
             "name": "QPong",
@@ -3639,7 +3639,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 9
+            "stars": 11
         },
         "20": {
             "name": "qiskit-toqm",
@@ -4313,7 +4313,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 109
+            "stars": 108
         }
     },
     "Extensions": {
@@ -4386,7 +4386,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 12,
+            "stars": null,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -4588,7 +4588,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 16,
+            "stars": null,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -4796,7 +4796,7 @@
                 ],
                 "coverages_check_command": []
             },
-            "stars": 25,
+            "stars": null,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -4939,7 +4939,7 @@
             },
             "tier": "Extensions",
             "skip_tests": true,
-            "stars": 26
+            "stars": null
         },
         "5": {
             "name": "Quantum Random Access Optimization",
@@ -5022,7 +5022,7 @@
             },
             "tier": "Extensions",
             "skip_tests": false,
-            "stars": 23,
+            "stars": null,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -5165,7 +5165,7 @@
             "coverages_results": [],
             "tier": "Extensions",
             "skip_tests": true,
-            "stars": 50
+            "stars": null
         },
         "7": {
             "name": "qiskit-ionq",
@@ -5247,7 +5247,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 25,
+            "stars": null,
             "historical_test_results": [
                 {
                     "test_type": "standard",
@@ -5410,7 +5410,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": true,
-            "stars": 30
+            "stars": null
         },
         "9": {
             "name": "mthree",
@@ -5489,7 +5489,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 19,
+            "stars": null,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -5633,7 +5633,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 39
+            "stars": null
         },
         "11": {
             "name": "qiskit-qec",
@@ -5657,7 +5657,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 29
+            "stars": null
         },
         "12": {
             "alternatives": null,
@@ -5674,7 +5674,7 @@
             "url": "https://github.com/Qiskit/qiskit-metal",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 208
+            "stars": null
         }
     }
 }
