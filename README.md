@@ -64,7 +64,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (25)
+    <b>Community</b> (27)
   </summary>
   
 <hr/>
@@ -95,9 +95,10 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [dsm-swap](https://github.com/qiskit-community/dsm-swap) | A doubly stochastic matrices-based approach to optimal qubit routing <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/paper implementation-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
 | [circuit-knitting-toolbox](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox) | Circuit Knitting is the process of decomposing a quantum circuit into smaller circuits, executing those smaller circuits on a quantum processor(s), and then knitting their results into a reconstruction of the original circuit's outcome. Circuit knitting includes techniques such as entanglement forging, circuit cutting, and classical embedding. The Circuit Knitting Toolbox (CKT) is a collection of such tools. <br/>  ![core](https://img.shields.io/badge/_No response_-gray.svg)  <br/> |
 | [quantum-serverless](https://github.com/Qiskit-Extensions/quantum-serverless) | The Quantum Serverless package aims to allow developers to easily offload computations to cloud resources, without being experts in packaging code for remote execution environments. <br/>  ![core](https://img.shields.io/badge/_No response_-gray.svg)  <br/> |
-| [RasQberry](https://github.com/JanLahmann/RasQberry) | RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 | [zoose-codespace](https://github.com/ianhellstrom/zoose-codespace) | GitHub Codespace template repository based on Zoose Quantum, a custom Docker image with everything included, so you can be up and running with any of the major quantum libraries (incl. Qiskit) with only two clicks! No installation required. Ideal for beginners or people who want to code quantum circuits on the go. Code quantum circuits straight in your browser with VSCode. <br/>  ![core](https://img.shields.io/badge/notebook-gray.svg)  <br/> |
-| [qiskit-nature-pyscf](https://github.com/qiskit-community/qiskit-nature-pyscf) | Qiskit Nature PySCF is a third-party integration plugin of Qiskit Nature and PySCF. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
+| [Qiskit Nature PySCF](https://github.com/qiskit-community/qiskit-nature-pyscf) | Qiskit Nature PySCF is a third-party integration plugin of Qiskit Nature and PySCF. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
+| [RasQberry](https://github.com/JanLahmann/RasQberry) | RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
+| [qiskit-timeline-debugger](https://github.com/TheGupta2012/qiskit-timeline-debugger) | #### Overview <br/>  ![core](https://img.shields.io/badge/### License-gray.svg)  <br/> |
 
 <hr/>
 
