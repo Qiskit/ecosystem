@@ -4696,13 +4696,13 @@
         "28": {
             "name": "qiskit-timeline-debugger",
             "url": "https://github.com/TheGupta2012/qiskit-timeline-debugger",
-            "description": "#### Overview",
-            "licence": "### Email",
-            "contact_info": "#### Working",
-            "alternatives": "#### Developers",
-            "affiliations": "### Alternatives",
+            "description": "A lightweight jupyter widget to highlight the actions of the qiskit transpiler. Qiskit users can simply replace the call to qiskit's transpile function with the debug method of a Debugger instance. The widget provides an insight into the various details of the transpiler passes such as circuit evolution, property set changes, logs emitted during transpilation and the docs of the transpiler passes.",
+            "licence": "Apache 2.0",
+            "contact_info": "harshit.11235@gmail.com",
+            "alternatives": "-",
+            "affiliations": "-",
             "labels": [
-                "### License"
+                "plugin"
             ],
             "created_at": 1674387065.334913,
             "updated_at": 1674387065.334918,
@@ -4713,7 +4713,6 @@
             "configuration": null,
             "skip_tests": false,
             "historical_test_results": [],
-            "stars": null
             "stars": 7
         }
     },
