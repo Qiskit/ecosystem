@@ -99,6 +99,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [Qiskit Nature PySCF](https://github.com/qiskit-community/qiskit-nature-pyscf) | Qiskit Nature PySCF is a third-party integration plugin of Qiskit Nature and PySCF. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
 | [RasQberry](https://github.com/JanLahmann/RasQberry) | RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi <br/>  ![core](https://img.shields.io/badge/game-gray.svg)  <br/> |
 | [QiskitOpt.jl](https://github.com/psrenergy/QiskitOpt.jl) | QiskitOpt.jl is a Julia package that exports a JuMP wrapper for qiskit-optimization. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  <br/> |
+| [qiskit-timeline-debugger](https://github.com/TheGupta2012/qiskit-timeline-debugger) | A lightweight jupyter widget to highlight the actions of the qiskit transpiler. Qiskit users can simply replace the call to qiskit's transpile function with the debug method of a Debugger instance. The widget provides an insight into the various details of the transpiler passes such as circuit evolution, property set changes, logs emitted during transpilation and the docs of the transpiler passes. <br/>  ![core](https://img.shields.io/badge/### License-gray.svg)  <br/> |
 
 <hr/>
 
