@@ -18,7 +18,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 327
+            "stars": 328
         },
         "4": {
             "alternatives": null,
@@ -39,7 +39,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 138
+            "stars": 142
         },
         "6": {
             "alternatives": null,
@@ -60,7 +60,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 371
+            "stars": 380
         },
         "7": {
             "alternatives": null,
@@ -82,7 +82,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 190
+            "stars": 195
         },
         "8": {
             "alternatives": null,
@@ -103,7 +103,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 139
+            "stars": 141
         },
         "10": {
             "alternatives": null,
@@ -120,7 +120,7 @@
             "url": "https://github.com/Qiskit/qiskit-experiments",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 93
+            "stars": 94
         },
         "11": {
             "alternatives": null,
@@ -137,7 +137,7 @@
             "url": "https://github.com/Qiskit/qiskit-dynamics",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 53
+            "stars": 55
         },
         "12": {
             "name": "OpenQASM",
@@ -159,7 +159,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 935
+            "stars": 938
         }
     },
     "Community": {
@@ -208,7 +208,7 @@
                 ]
             },
             "historical_test_results": [],
-            "stars": 123
+            "stars": 124
         },
         "3": {
             "name": "c3",
@@ -737,7 +737,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 16
+            "stars": 17
         },
         "5": {
             "name": "qtcodes",
@@ -1033,7 +1033,7 @@
                     "package_commit_hash": "e981b7e8ba073388edc3544b30d908b731dc6d7d"
                 }
             ],
-            "stars": 75
+            "stars": 76
         },
         "6": {
             "name": "kaleidoscope",
@@ -2221,7 +2221,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 108
+            "stars": 109
         },
         "11": {
             "name": "quantumcat",
@@ -2710,7 +2710,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 356
+            "stars": 357
         },
         "13": {
             "name": "python-open-controls",
@@ -3601,7 +3601,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 410
+            "stars": 415
         },
         "17": {
             "name": "QPong",
@@ -4691,29 +4691,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 108
-        },
-        "28": {
-            "name": "qiskit-timeline-debugger",
-            "url": "https://github.com/TheGupta2012/qiskit-timeline-debugger",
-            "description": "A lightweight jupyter widget to highlight the actions of the qiskit transpiler. Qiskit users can simply replace the call to qiskit's transpile function with the debug method of a Debugger instance. The widget provides an insight into the various details of the transpiler passes such as circuit evolution, property set changes, logs emitted during transpilation and the docs of the transpiler passes.",
-            "licence": "Apache 2.0",
-            "contact_info": "harshit.11235@gmail.com",
-            "alternatives": "-",
-            "affiliations": "-",
-            "labels": [
-                "plugin"
-            ],
-            "created_at": 1674387065.334913,
-            "updated_at": 1674387065.334918,
-            "tests_results": [],
-            "styles_results": [],
-            "coverages_results": [],
-            "tier": "Community",
-            "configuration": null,
-            "skip_tests": false,
-            "historical_test_results": [],
-            "stars": 7
+            "stars": 110
         },
         "28": {
             "name": "QiskitOpt.jl",
@@ -4735,7 +4713,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": null
+            "stars": 5
         }
     },
     "Extensions": {
@@ -5697,7 +5675,7 @@
             "coverages_results": [],
             "tier": "Extensions",
             "skip_tests": true,
-            "stars": 51
+            "stars": 52
         },
         "7": {
             "name": "qiskit-ionq",
@@ -6185,7 +6163,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 40
+            "stars": 39
         },
         "11": {
             "name": "qiskit-qec",
@@ -6226,7 +6204,7 @@
             "url": "https://github.com/Qiskit/qiskit-metal",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 215
+            "stars": 218
         }
     }
 }
