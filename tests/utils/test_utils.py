@@ -30,7 +30,8 @@ class TestUtils(TestCase):
         self.assertEqual(parsed_result.name, "awesome")
         self.assertEqual(parsed_result.url, "http://github.com/awesome/awesome")
         self.assertEqual(
-            parsed_result.description, "An awesome repo for awesome project\nmultiple\nparagraphs"
+            parsed_result.description,
+            "An awesome repo for awesome project\nmultiple\nparagraphs",
         )
         self.assertEqual(parsed_result.contact_info, "toto@gege.com")
         self.assertEqual(parsed_result.alternatives, "tititata")
