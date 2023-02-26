@@ -7,9 +7,9 @@ from ecosystem.models.repository import Repository
 
 def _clean_section(section: str) -> {str: str}:
     """For a section, return a tuple with a title and "clean section".
-    A clean section is without empty lines and strip spaces"""
-    paragraphs = section.split("\n\n")
-    section = ("\n").join(
+    A clean section is without new lines and strip spaces"""
+    paragraphs = section.split("\n")
+    section = (" ").join(
         [paragraph.strip() for paragraph in paragraphs[1:] if paragraph]
     )
     title = paragraphs[0].strip()

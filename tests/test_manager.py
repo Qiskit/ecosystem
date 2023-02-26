@@ -99,7 +99,7 @@ class TestManager(TestCase):
         )
         self.assertEqual(
             output_value[2],
-            "::set-output name=SUBMISSION_DESCRIPTION::An awesome repo for awesome project",
+            "::set-output name=SUBMISSION_DESCRIPTION::An awesome repo for awesome project multiple paragraphs",
         )
         self.assertEqual(
             output_value[3], "::set-output name=SUBMISSION_LICENCE::Apache License 2.0"
