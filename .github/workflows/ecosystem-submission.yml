@@ -50,7 +50,7 @@ jobs:
       id: parse-issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
-      run: python manager.py parser_issue --body=$ISSUE_BODY
+      run: python manager.py parser_issue --body="$ISSUE_BODY"
     - name: Tests stable check
       id: stable
       uses: ./.github/actions/run-tests
