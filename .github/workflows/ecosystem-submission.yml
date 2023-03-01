@@ -48,8 +48,9 @@ jobs:
     # workflow
     - name: Parse submission
       id: parse-issue
-      run: |
-        python manager.py parser_issue --body="${{ github.event.issue.body }}"
+      env:
+        ISSUE_BODY: ${{ github.event.issue.body }}
+      run: python manager.py parser_issue --body=$ISSUE_BODY
     - name: Tests stable check
       id: stable
       uses: ./.github/actions/run-tests
