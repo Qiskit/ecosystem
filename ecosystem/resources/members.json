@@ -18,7 +18,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 331
+            "stars": 332
         },
         "4": {
             "alternatives": null,
@@ -39,7 +39,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 147
+            "stars": 148
         },
         "6": {
             "alternatives": null,
@@ -60,7 +60,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 388
+            "stars": 398
         },
         "7": {
             "alternatives": null,
@@ -82,7 +82,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 198
+            "stars": 199
         },
         "8": {
             "alternatives": null,
@@ -103,7 +103,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 145
+            "stars": 146
         },
         "10": {
             "alternatives": null,
@@ -120,7 +120,7 @@
             "url": "https://github.com/Qiskit/qiskit-experiments",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 96
+            "stars": 97
         },
         "11": {
             "alternatives": null,
@@ -159,7 +159,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 943
+            "stars": 956
         }
     },
     "Community": {
@@ -827,7 +827,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 18
+            "stars": 19
         },
         "5": {
             "name": "qtcodes",
@@ -1542,7 +1542,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 15
+            "stars": 16
         },
         "7": {
             "name": "pytket-qiskit",
@@ -2363,7 +2363,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 235
+            "stars": 239
         },
         "10": {
             "name": "pennylane-qiskit",
@@ -2551,7 +2551,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 111
+            "stars": 110
         },
         "11": {
             "name": "quantumcat",
@@ -3457,7 +3457,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 86
+            "stars": 85
         },
         "14": {
             "name": "qiskit-rigetti",
@@ -4181,7 +4181,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 432
+            "stars": 448
         },
         "17": {
             "name": "QPong",
@@ -4389,7 +4389,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 108
+            "stars": 107
         },
         "18": {
             "name": "q-kernel-ops",
@@ -4589,7 +4589,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 11
+            "stars": 12
         },
         "20": {
             "name": "qiskit-toqm",
@@ -4967,7 +4967,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 20,
+            "stars": 29,
             "contact_info": null,
             "alternatives": null,
             "affiliations": null
@@ -5282,7 +5282,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 17
+            "stars": 18
         },
         "25": {
             "name": "zoose-codespace",
@@ -5489,7 +5489,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 12
+            "stars": 11
         },
         "27": {
             "name": "RasQberry",
@@ -5511,7 +5511,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 111
+            "stars": 113
         },
         "28": {
             "name": "QiskitOpt.jl",
@@ -5587,39 +5587,8 @@
             "tier": "Community",
             "configuration": null,
             "skip_tests": false,
-            "historical_test_results": [
-                {
-                    "test_type": "standard",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1678827878.415695,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414048071",
-                    "package_commit_hash": null
-                },
-                {
-                    "test_type": "stable",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1678827878.415698,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414048144",
-                    "package_commit_hash": null
-                },
-                {
-                    "test_type": "development",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1678827878.413669,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414048174",
-                    "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
-                }
-            ],
-            "stars": null
+            "historical_test_results": [],
+            "stars": 3
         }
     },
     "Extensions": {
@@ -5974,7 +5943,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 16,
+            "stars": 21,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -6548,7 +6517,7 @@
             },
             "tier": "Extensions",
             "skip_tests": false,
-            "stars": 24,
+            "stars": 26,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -6781,7 +6750,7 @@
             "coverages_results": [],
             "tier": "Extensions",
             "skip_tests": true,
-            "stars": 54
+            "stars": 59
         },
         "7": {
             "name": "qiskit-ionq",
@@ -6863,7 +6832,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 24,
+            "stars": 25,
             "historical_test_results": [
                 {
                     "test_type": "standard",
@@ -7105,7 +7074,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 21,
+            "stars": 22,
             "historical_test_results": [
                 {
                     "test_type": "stable",
