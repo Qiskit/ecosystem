@@ -30,7 +30,7 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 
 ## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
 
-To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+). You can also ask questions and participate in the channel `#qiskit-ecosystem` in [Qiskit Slack](https://qisk.it/join-slack).
 
 
 ## Members
