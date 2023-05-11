@@ -5680,6 +5680,28 @@
             "skip_tests": true,
             "historical_test_results": [],
             "stars": 6
+        },
+        "34": {
+            "name": "spinoza",
+            "url": "https://github.com/smu160/spinoza",
+            "description": "Spinoza is a quantum state simulator (implemented in Rust) that is one of the fastest open-source simulators. Spinoza is implemented using a functional approach. Additionally, Spinoza has a `QuantumCircuit` object-oriented interface, which partially matches Qiskit's interface. Spinoza is capable of running in a myriad of computing environments (e.g., small workstations), and on various architectures. At this juncture, Spinoza only utilizes a single thread; however, it is designed to be easily extended into a parallel version, as well as a distributed version. The paper associated with Spinoza is available [here](https://arxiv.org/pdf/2303.01493.pdf).",
+            "licence": "Apache License 2.0",
+            "contact_info": "sy2685@columbia.edu",
+            "alternatives": "_No response_",
+            "affiliations": "_No response_",
+            "labels": [
+                "simulation"
+            ],
+            "created_at": 1683727562.604629,
+            "updated_at": 1683727562.604634,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": true,
+            "historical_test_results": [],
+            "stars": null
         }
     },
     "Extensions": {
