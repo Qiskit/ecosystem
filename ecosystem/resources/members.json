@@ -5636,9 +5636,9 @@
             "stars": 2
         },
         "32": {
-            "name": "qiskit-symbolic",
-            "url": "https://github.com/SimoneGasperini/qiskit-symbolic",
-            "description": "The `qiskit-symbolic` project is meant to enable the symbolic evaluation of quantum states/operators defined by Qiskit parametric circuits. It's based on sympy as the backend for the manipulation of symbolic expressions. The original idea for this project goes back to the [qiskit-terra#4751](https://github.com/Qiskit/qiskit-terra/issues/4751) issue, where I recently had a discussion with [jakelishman](https://github.com/jakelishman) who finally proposed me to submit my repo to the Qiskit Ecosystem.",
+            "name": "qiskit-symb",
+            "url": "https://github.com/SimoneGasperini/qiskit-symb",
+            "description": "Easy-to-use Python package designed to enable symbolic quantum computation in Qiskit. It provides the basic tools for the symbolic evaluation of statevectors, density matrices, and unitary operators directly created from parametric Qiskit quantum circuits. The implementation is based on the Sympy library as backend for symbolic expressions manipulation.",
             "licence": "Apache License 2.0",
             "contact_info": "simone.gasperini4@unibo.it",
             "alternatives": "_No response_",
@@ -5653,8 +5653,26 @@
             "styles_results": [],
             "coverages_results": [],
             "tier": "Community",
-            "configuration": null,
-            "skip_tests": true,
+            "configuration": {
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.8", "3.9", "3.10"
+                    ]
+                },
+                "dependencies_files": [
+                    "requirements.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                    "pytest -v --cov=qiskit_symb"
+                ],
+                "styles_check_command": [
+                    "pylint src/ tests/"
+                ],
+                "coverages_check_command": []
+            },
+            "skip_tests": false,
             "historical_test_results": [],
             "stars": 1
         },
