@@ -5724,7 +5724,7 @@
         "35": {
             "name": "vqls-prototype",
             "url": "https://github.com/QuantumApplicationLab/vqls-prototype",
-            "description": "Dear qiskit developers, we have developed a prototype for the variational quantum linear solver. We've used the qiskit prototype-template and did our best to follow qiskit coding standards. We are still having a few issues with pylint and mypy and had to disable some error for the tests to pass for now. The solver uses the Estimator/Sampler primitives and can be run through runtime seamlessly. We would love to share our work with the qiskit community and make the prototype available to a broader audience. We would therefore like to know if you would be interested in this prototype. If you are, we could review the code together and include vqls prototype as part of the qiskit-community. Thanks for all the work you are doing for the community ! Nico",
+            "description": "The Variational Quantum Linear Solver (VQLS) uses an optimization approach to solve linear systems of equations. The vqls-prototype allows to easily setup and deploy a VQLS instance on different backends through the use of qiskit primitives and the runtime library",
             "licence": "Apache License 2.0",
             "contact_info": "nicolas.gm.renaud@gmail.com",
             "alternatives": "The prototype builds on the qiskit-textbook chapter and tutorial. The prototype allows to use the primitives and use different cost function and test circuits to optimize the parameters.",
