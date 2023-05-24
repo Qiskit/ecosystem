@@ -5657,7 +5657,9 @@
                 "language": {
                     "name": "python",
                     "versions": [
-                        "3.8", "3.9", "3.10"
+                        "3.8",
+                        "3.9",
+                        "3.10"
                     ]
                 },
                 "dependencies_files": [
@@ -5734,6 +5736,31 @@
             ],
             "created_at": 1683906067.55753,
             "updated_at": 1683906067.557535,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
+        },
+        "36": {
+            "name": "qBraid",
+            "url": "https://github.com/qBraid/qBraid",
+            "description": "The qBraid-SDK is a Python toolkit for cross-framework abstraction, transpilation, and execution of quantum programs. Key features include: - Unified quantum frontend interface. Transpiler supports converting quantum circuits between `qiskit`, `cirq`, `braket`, `pyquil`, `pytket` and `qasm` program types. - Build once, target many. Create quantum programs using your preferred circuit-building package, and execute on any IBMQ backend or Amazon Braket supported device. - Benchmark, compare, interpret results. Built-in post-processing functions enable comparing results between runs and across backends. - Visualization tools including front-end agnostic circuit-drawer Source Code: https://github.com/qBraid/qBraid Documentation: https://docs.qbraid.com/en/latest/sdk/overview.html Examples: https://github.com/qBraid/qbraid-lab-demo",
+            "licence": "GNU General Public License (GPL)",
+            "contact_info": "ryanhill@qbraid.com",
+            "alternatives": "There are some alternatives to individual modules within the qBraid-SDK. For example, to execute a Qiskit circuit on an AWS device, you could use the [`qiskit-braket-provider`](https://github.com/qiskit-community/qiskit-braket-provider) package. But as far as I know, there aren't any existing projects that support the full range of program types and quantum backends that the qBraid-SDK does, and definitely not with the same level of granularity. Some point out [`mitiq`](https://github.com/unitaryfund/mitiq) and [`pytket`](https://github.com/CQCL/pytket-extensions) as two packages that implement internal circuit conversions across a number of quantum frontends. However, these conversion functions are not explicitly user-facing, and are instead positioned as a secondary feature. The main focus of these packages is on error mitigation and circuit compilation/optimization, respectively. For the qBraid-SDK, the transpiler is a leading feature, and because of this, it offers a measurably higher degree of gate coverage and conversion accuracy than the alternatives.",
+            "affiliations": "qBraid Co. Website: https://www.qbraid.com/ GitHub: https://github.com/qBraid",
+            "labels": [
+                "plugin",
+                "circuit",
+                "openqasm",
+                "converter"
+            ],
+            "created_at": 1684945181.778329,
+            "updated_at": 1684945181.778335,
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
