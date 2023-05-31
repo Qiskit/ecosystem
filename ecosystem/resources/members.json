@@ -5657,7 +5657,9 @@
                 "language": {
                     "name": "python",
                     "versions": [
-                        "3.8", "3.9", "3.10"
+                        "3.8",
+                        "3.9",
+                        "3.10"
                     ]
                 },
                 "dependencies_files": [
@@ -5735,6 +5737,30 @@
             ],
             "created_at": 1683906067.55753,
             "updated_at": 1683906067.557535,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
+        },
+        "36": {
+            "name": "qiskit-nature-pyscf-dft-embedding",
+            "url": "https://github.com/mrossinek/qiskit-nature-pyscf-dft-embedding",
+            "description": "This repository contains the latest prototype implementation of the Qiskit Nature + PySCF DFT Embedding. It is based on the following publication: > Max Rossmannek, Panagiotis Kl. Barkoutsos, Pauline J. Ollitrault, Ivano Tavernelli; > Quantum HF/DFT-embedding algorithms for electronic structure calculations: Scaling up to complex molecular systems. > J. Chem. Phys. 21 March 2021; 154 (11): 114105.",
+            "licence": "Apache License 2.0",
+            "contact_info": "oss@zurich.ibm.com",
+            "alternatives": "_No response_",
+            "affiliations": "_No response_",
+            "labels": [
+                "plugin",
+                "algorithms",
+                "chemistry"
+            ],
+            "created_at": 1685540348.208874,
+            "updated_at": 1685540348.208879,
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
