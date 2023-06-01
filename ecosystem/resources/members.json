@@ -5657,7 +5657,9 @@
                 "language": {
                     "name": "python",
                     "versions": [
-                        "3.8", "3.9", "3.10"
+                        "3.8",
+                        "3.9",
+                        "3.10"
                     ]
                 },
                 "dependencies_files": [
@@ -5735,6 +5737,28 @@
             ],
             "created_at": 1683906067.55753,
             "updated_at": 1683906067.557535,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
+        },
+        "36": {
+            "name": "Quantum-enhanced-variational-autoencoder",
+            "url": "https://github.com/Anantha-Rao12/Quantum-enhanced-variational-autoencoder",
+            "description": "- This is a submission for the Qiskit Ecosystem. - The project is the source code for building and running a hybrid quantum-classical neural network for generative modeling. - The code is a qiskit implementation of a quantum-enhanced variational autoencoder (QeVAE). - The project is based on the research paper \"Learning hard distributions with quantum-enhanced Variational Autoencoders\" by Rao et al. (https://arxiv.org/abs/2305.01592).",
+            "licence": "Apache License 2.0",
+            "contact_info": "anantharao@zohomail.in",
+            "alternatives": "There are no alternatives to the project!",
+            "affiliations": "Indian Institute of Science Education and Research IBM Research India",
+            "labels": [
+                "paper implementation"
+            ],
+            "created_at": 1685600349.689114,
+            "updated_at": 1685600349.68912,
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
