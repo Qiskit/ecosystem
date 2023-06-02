@@ -5657,7 +5657,9 @@
                 "language": {
                     "name": "python",
                     "versions": [
-                        "3.8", "3.9", "3.10"
+                        "3.8",
+                        "3.9",
+                        "3.10"
                     ]
                 },
                 "dependencies_files": [
@@ -5735,6 +5737,32 @@
             ],
             "created_at": 1683906067.55753,
             "updated_at": 1683906067.557535,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
+        },
+        "36": {
+            "name": "qiskit-shots-animator",
+            "url": "https://github.com/teavuihuang/qiskit-shots-animator",
+            "description": "[Qiskit-Shots-Animator ](https://pypi.org/project/qiskit-shots-animator/1.0.1/) is an open-source Python add-on package I developed for IBM Qiskit that animates quantum job execution results e.g. for 1024 shots: \"{'000': 510, '111': 514}\" as microwave flashes either on a gate map, or x-ray photo of the quantum computer chip. The stand-alone looping **GIF** animation can be viewed directly in the **Jupyter** notebook or saved & exported to webpages & social media. Qiskit animation examples can be seen in the [Github repo](https://github.com/teavuihuang/qiskit-shots-animator). It's purpose is to help newcomers to Quantum to visually comprehend the quantum results. It can also be used as a fun, indirect way to learn quantum circuit design as the students modify the circuits to draw and create simple animation patterns on the gate map like a LED signboard. Hence, I think this is something that could be used / incorporated in IBM Qiskit tutorials, lessons and even YouTube video lessons and presentations.",
+            "licence": "Apache License 2.0",
+            "contact_info": "TVHUANG@HOTMAIL.COM",
+            "alternatives": "_No response_",
+            "affiliations": "_No response_",
+            "labels": [
+                "simulation",
+                "circuit simulator",
+                "circuit",
+                "game",
+                "notebook"
+            ],
+            "created_at": 1685717392.674134,
+            "updated_at": 1685717392.674139,
             "tests_results": [],
             "styles_results": [],
             "coverages_results": [],
