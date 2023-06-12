@@ -32,9 +32,9 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-optimization",
-            "tier": "Main",
+            "tier": "Community",
             "updated_at": 1636403009.538763,
-            "url": "https://github.com/Qiskit/qiskit-optimization",
+            "url": "https://github.com/qiskit-community/qiskit-optimization",
             "website": "https://qiskit.org/ecosystem/optimization",
             "tests_results": [],
             "affiliations": null,
@@ -54,9 +54,9 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-machine-learning",
-            "tier": "Main",
+            "tier": "Community",
             "updated_at": 1636403010.012956,
-            "url": "https://github.com/Qiskit/qiskit-machine-learning",
+            "url": "https://github.com/qiskit-community/qiskit-machine-learning",
             "website": "https://qiskit.org/ecosystem/machine-learning",
             "tests_results": [],
             "affiliations": null,
@@ -77,9 +77,9 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-nature",
-            "tier": "Main",
+            "tier": "Community",
             "updated_at": 1636403009.167082,
-            "url": "https://github.com/Qiskit/qiskit-nature",
+            "url": "https://github.com/qiskit-community/qiskit-nature",
             "website": "https://qiskit.org/ecosystem/nature",
             "tests_results": [],
             "affiliations": null,
@@ -99,9 +99,9 @@
             ],
             "licence": "Apache 2.0",
             "name": "qiskit-finance",
-            "tier": "Main",
+            "tier": "Community",
             "updated_at": 1636403009.368609,
-            "url": "https://github.com/Qiskit/qiskit-finance",
+            "url": "https://github.com/qiskit-community/qiskit-finance",
             "Website": "https://qiskit.org/ecosystem/finance/",
             "tests_results": [],
             "affiliations": null,
@@ -111,42 +111,6 @@
             "stars": 154
         },
         "10": {
-            "alternatives": null,
-            "contact_info": null,
-            "created_at": 1661785302.25299,
-            "description": "Qiskit Experiments is an open-source project for running characterizing, calibrating, and benchmarking experiments in Qiskit.",
-            "labels": [
-                "algorithms"
-            ],
-            "licence": "Apache 2.0",
-            "name": "qiskit-experiments",
-            "tier": "Main",
-            "updated_at": 1661785302.25299,
-            "url": "https://github.com/Qiskit/qiskit-experiments",
-            "website": "https://qiskit.org/ecosystem/experiments/",
-            "tests_results": [],
-            "skip_tests": true,
-            "stars": 101
-        },
-        "11": {
-            "alternatives": null,
-            "contact_info": null,
-            "created_at": 1628883441.121108,
-            "description": "Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit.",
-            "labels": [
-                "simulation"
-            ],
-            "licence": "Apache 2.0",
-            "name": "qiskit-dynamics",
-            "tier": "Main",
-            "updated_at": 1628883441.121111,
-            "url": "https://github.com/Qiskit/qiskit-dynamics",
-	    "website": "https://qiskit.org/ecosystem/dynamics/",
-            "tests_results": [],
-            "skip_tests": true,
-            "stars": 58
-        },
-        "12": {
             "name": "OpenQASM",
             "url": "https://github.com/openqasm/openqasm",
 	    "website": "https://openqasm.com/",
@@ -7478,7 +7442,7 @@
         },
         "10": {
             "name": "qiskit-research",
-            "url": "https://github.com/qiskit-research/qiskit-research",
+            "url": "https://github.com/qiskit-community/qiskit-research",
             "description": "This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments.",
             "licence": "Apache 2.0",
             "contact_info": "_No response_",
@@ -7538,6 +7502,42 @@
             "tests_results": [],
             "skip_tests": true,
             "stars": 231
-        }
+        },
+        "13": {
+            "alternatives": null,
+            "contact_info": null,
+            "created_at": 1661785302.25299,
+            "description": "Qiskit Experiments is an open-source project for running characterizing, calibrating, and benchmarking experiments in Qiskit.",
+            "labels": [
+                "algorithms"
+            ],
+            "licence": "Apache 2.0",
+            "name": "qiskit-experiments",
+            "tier": "Extensions",
+            "updated_at": 1661785302.25299,
+            "url": "https://github.com/Qiskit-Extensions/qiskit-experiments",
+            "website": "https://qiskit.org/ecosystem/experiments/",
+            "tests_results": [],
+            "skip_tests": true,
+            "stars": 101
+        },
+        "14": {
+            "alternatives": null,
+            "contact_info": null,
+            "created_at": 1628883441.121108,
+            "description": "Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit.",
+            "labels": [
+                "simulation"
+            ],
+            "licence": "Apache 2.0",
+            "name": "qiskit-dynamics",
+            "tier": "Extensions",
+            "updated_at": 1628883441.121111,
+            "url": "https://github.com/Qiskit-Extensions/qiskit-dynamics",
+	    "website": "https://qiskit.org/ecosystem/dynamics/",
+            "tests_results": [],
+            "skip_tests": true,
+            "stars": 58
+        },
     }
 }
