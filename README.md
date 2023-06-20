@@ -39,7 +39,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Main</b> (8)
+    <b>Main</b> (2)
   </summary>
   
 <hr/>
@@ -48,12 +48,6 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 |  Name | Description  |
 |---|---|
 | [qiskit-aer](https://github.com/Qiskit/qiskit-aer) | Aer provides high-performance quantum computing simulators with realistic noise models. <br/>  ![core](https://img.shields.io/badge/circuit simulator-gray.svg)  <br/> |
-| [qiskit-optimization](https://github.com/Qiskit/qiskit-optimization) | Framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
-| [qiskit-machine-learning](https://github.com/Qiskit/qiskit-machine-learning) | The Machine Learning package contains sample datasets and quantum ML algorithms. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/machine learning-gray.svg)  <br/> |
-| [qiskit-nature](https://github.com/Qiskit/qiskit-nature) | Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
-| [qiskit-finance](https://github.com/Qiskit/qiskit-finance) | Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/finance-gray.svg)  <br/> |
-| [qiskit-experiments](https://github.com/Qiskit/qiskit-experiments) | Qiskit Experiments is an open-source project for running characterizing, calibrating, and benchmarking experiments in Qiskit. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  <br/> |
-| [qiskit-dynamics](https://github.com/Qiskit/qiskit-dynamics) | Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit. <br/>  ![core](https://img.shields.io/badge/simulation-gray.svg)  <br/> |
 | [OpenQASM](https://github.com/openqasm/openqasm) | OpenQASM is an imperative programming language designed for near-term quantum computing algorithms and applications. Quantum programs are described using the measurement-based quantum circuit model with support for classical feed-forward flow control based on measurement outcomes. <br/>  ![core](https://img.shields.io/badge/openqasm-gray.svg)  <br/> |
 
 <hr/>
@@ -64,7 +58,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Community</b> (35)
+    <b>Community</b> (40)
   </summary>
   
 <hr/>
@@ -107,6 +101,11 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [spinoza](https://github.com/smu160/spinoza) | Spinoza is a quantum state simulator (implemented in Rust) that is one of the fastest open-source simulators. Spinoza is implemented using a functional approach. Additionally, Spinoza has a `QuantumCircuit` object-oriented interface, which partially matches Qiskit's interface. Spinoza is capable of running in a myriad of computing environments (e.g., small workstations), and on various architectures. At this juncture, Spinoza only utilizes a single thread; however, it is designed to be easily extended into a parallel version, as well as a distributed version. The paper associated with Spinoza is available [here](https://arxiv.org/pdf/2303.01493.pdf). <br/>  ![core](https://img.shields.io/badge/simulation-gray.svg)  <br/> |
 | [vqls-prototype](https://github.com/QuantumApplicationLab/vqls-prototype) | The Variational Quantum Linear Solver (VQLS) uses an optimization approach to solve linear systems of equations. The vqls-prototype allows to easily setup and deploy a VQLS instance on different backends through the use of qiskit primitives and the runtime library <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
 | [qiskit-nature-pyscf-dft-embedding](https://github.com/mrossinek/qiskit-nature-pyscf-dft-embedding) | This repository contains the latest prototype implementation of the Qiskit Nature + PySCF DFT Embedding. It is based on the following publication: > Max Rossmannek, Panagiotis Kl. Barkoutsos, Pauline J. Ollitrault, Ivano Tavernelli; > Quantum HF/DFT-embedding algorithms for electronic structure calculations: Scaling up to complex molecular systems. > J. Chem. Phys. 21 March 2021; 154 (11): 114105. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
+| [qiskit-optimization](https://github.com/qiskit-community/qiskit-optimization) | Framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/optimization-gray.svg)  <br/> |
+| [qiskit-machine-learning](https://github.com/qiskit-community/qiskit-machine-learning) | The Machine Learning package contains sample datasets and quantum ML algorithms. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/machine learning-gray.svg)  <br/> |
+| [qiskit-nature](https://github.com/qiskit-community/qiskit-nature) | Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/physics-gray.svg)  ![core](https://img.shields.io/badge/chemistry-gray.svg)  <br/> |
+| [qiskit-finance](https://github.com/qiskit-community/qiskit-finance) | Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/finance-gray.svg)  <br/> |
+| [purplecaffeine](https://github.com/IceKhan13/purplecaffeine) | Project is aimed to create simple general interface to track quantum experiments, store and search them in an easy way. <br/>  ![core](https://img.shields.io/badge/plugin-gray.svg)  ![core](https://img.shields.io/badge/notebook-gray.svg)  <br/> |
 
 <hr/>
 
@@ -116,7 +115,7 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 
 <details>
   <summary>
-    <b>Extensions</b> (12)
+    <b>Extensions</b> (14)
   </summary>
   
 <hr/>
@@ -133,9 +132,11 @@ To join the Ecosystem create a [submission issue](https://github.com/qiskit-comm
 | [qiskit-ionq](https://github.com/Qiskit-Partners/qiskit-ionq) | Project contains a provider that allows access to IonQ ion trap quantum systems. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  ![core](https://img.shields.io/badge/partner-gray.svg)  <br/> |
 | [qiskit-ibm-provider](https://github.com/Qiskit/qiskit-ibm-provider) | Project contains a provider that allows accessing the IBM Quantum systems and simulators. <br/>  ![core](https://img.shields.io/badge/provider-gray.svg)  ![core](https://img.shields.io/badge/partner-gray.svg)  <br/> |
 | [mthree](https://github.com/Qiskit-Partners/mthree) | Matrix-free Measurement Mitigation (M3) <br/>  <br/> |
-| [qiskit-research](https://github.com/qiskit-research/qiskit-research) | This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments. <br/>  ![core](https://img.shields.io/badge/paper implementation-gray.svg)  <br/> |
+| [qiskit-research](https://github.com/qiskit-community/qiskit-research) | This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments. <br/>  ![core](https://img.shields.io/badge/paper implementation-gray.svg)  <br/> |
 | [qiskit-qec](https://github.com/qiskit-community/qiskit-qec) | Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC). <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  ![core](https://img.shields.io/badge/QEC-gray.svg)  ![core](https://img.shields.io/badge/circuit-gray.svg)  <br/> |
-| [qiskit-metal](https://github.com/Qiskit/qiskit-metal) | Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease. <br/>  ![core](https://img.shields.io/badge/hardware-gray.svg)  <br/> |
+| [qiskit-metal](https://github.com/qiskit-community/qiskit-metal) | Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease. <br/>  ![core](https://img.shields.io/badge/hardware-gray.svg)  <br/> |
+| [qiskit-experiments](https://github.com/Qiskit-Extensions/qiskit-experiments) | Qiskit Experiments is an open-source project for running characterizing, calibrating, and benchmarking experiments in Qiskit. <br/>  ![core](https://img.shields.io/badge/algorithms-gray.svg)  <br/> |
+| [qiskit-dynamics](https://github.com/Qiskit-Extensions/qiskit-dynamics) | Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit. <br/>  ![core](https://img.shields.io/badge/simulation-gray.svg)  <br/> |
 
 <hr/>
 
