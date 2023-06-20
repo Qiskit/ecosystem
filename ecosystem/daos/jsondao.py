@@ -1,5 +1,7 @@
 """DAO for json db."""
 from typing import Optional, List
+import os
+import json
 
 from tinydb import TinyDB, Query
 
@@ -16,8 +18,9 @@ class JsonDAO:
         Args:
             path: path to store database in
         """
-        self.path = path if path is not None else "./"
+        self.path = path if path is not None else os.getcwd()
         self.database = TinyDB("{}/members.json".format(self.path), indent=4)
+        self.labels_json_path = os.path.join(self.path, "labels.json")
 
     def insert(self, repo: Repository) -> int:
         """Inserts repository into database.
@@ -28,6 +31,7 @@ class JsonDAO:
         Return: int
         """
         table = self.database.table(repo.tier)
+        self.update_labels(repo.labels)
         return table.insert(repo.to_dict())
 
     def get_repos_by_tier(self, tier: str) -> List[Repository]:
@@ -93,11 +97,27 @@ class JsonDAO:
         table = self.database.table(tier)
         return table.update({"stars": stars}, Query().url == url)
 
+    def update_labels(self, labels: List[str]) -> List[int]:
+        """Updates labels db."""
+        with open(self.labels_json_path, "r") as labels_file:
+            label_dscs = {
+                label["name"]: label["description"] for label in json.load(labels_file)
+            }
+
+        merged = {**{l: "" for l in labels}, **label_dscs}
+        new_label_list = [
+            {"name": name, "description": dsc} for name, dsc in merged.items()
+        ]
+        with open(self.labels_json_path, "w") as labels_file:
+            json.dump(
+                sorted(new_label_list, key=lambda x: x["name"]), labels_file, indent=4
+            )
+
     def add_repo_test_result(
         self, repo_url: str, tier: str, test_result: TestResult
     ) -> Optional[List[int]]:
         """Adds test result for repository.
-        Overwrites latest test results and adds to historical test results.
+        Overwrites the latest test results and adds to historical test results.
 
         Args:
             repo_url: url of the repo

@@ -1,5 +1,6 @@
 """Tests for entities."""
 import os
+import json
 from unittest import TestCase
 
 from ecosystem.daos import JsonDAO
@@ -27,7 +28,9 @@ class TestJsonDao(TestCase):
     def setUp(self) -> None:
         self.path = "../resources"
         self.members_path = "{}/members.json".format(self.path)
+        self.labels_path = "{}/labels.json".format(self.path)
         self._delete_members_json()
+        self._create_dummy_labels_json()
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
@@ -41,6 +44,16 @@ class TestJsonDao(TestCase):
         """
         if os.path.exists(self.members_path):
             os.remove(self.members_path)
+        if not os.path.exists(self.path):
+            os.makedirs(self.path)
+
+    def _delete_labels_json(self):
+        """Deletes labels file.
+        Function: JsonDao
+                -> delete
+        """
+        if os.path.exists(self.labels_path):
+            os.remove(self.labels_path)
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
@@ -219,6 +232,17 @@ class TestJsonDao(TestCase):
             ),
         )
         self.assertEqual(res, [1])
+        self.assertLabelsFile(
+            [
+                {"description": "description for label 1", "name": "label 1"},
+                {"description": "description for label 2", "name": "label 2"},
+                {"description": "description for label 4", "name": "label 4"},
+                {"description": "", "name": "mock"},
+                {"description": "", "name": "tests"},
+                {"description": "", "name": "wsdt"},
+            ]
+        )
+
         recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
         self.assertEqual(
             recovered_repo.tests_results,
@@ -350,3 +374,18 @@ class TestJsonDao(TestCase):
         self.assertEqual(test_results[0].test_type, TestType.DEV_COMPATIBLE)
         self.assertEqual(test_results[1].test_type, TestType.STABLE_COMPATIBLE)
         self.assertEqual(test_results[2].test_type, TestType.STANDARD)
+
+    def assertLabelsFile(self, result):  # pylint: disable=invalid-name
+        """Asserts the content of labels.json matches the result dict"""
+        with open(self.labels_path, "r") as labels_file:
+            content = json.load(labels_file)
+        self.assertEqual(content, result)
+
+    def _create_dummy_labels_json(self):
+        dummy_data = [
+            {"name": "label 1", "description": "description for label 1"},
+            {"name": "label 2", "description": "description for label 2"},
+            {"name": "label 4", "description": "description for label 4"},
+        ]
+        with open(self.labels_path, "w") as labels_file:
+            json.dump(dummy_data, labels_file)

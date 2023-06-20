@@ -79,7 +79,7 @@ class TestManager(TestCase):
             os.makedirs(self.path)
 
     def test_parser_issue(self):
-        """ "Tests issue parsing function.
+        """Tests issue parsing function.
         Function: Manager
                 -> parser_issue
         Args:
@@ -99,7 +99,8 @@ class TestManager(TestCase):
         )
         self.assertEqual(
             output_value[2],
-            "::set-output name=SUBMISSION_DESCRIPTION::An awesome repo for awesome project",
+            "::set-output name=SUBMISSION_DESCRIPTION::An awesome repo for awesome project multiple"
+            " paragraphs",
         )
         self.assertEqual(
             output_value[3], "::set-output name=SUBMISSION_LICENCE::Apache License 2.0"
@@ -114,7 +115,8 @@ class TestManager(TestCase):
             output_value[6], "::set-output name=SUBMISSION_AFFILIATIONS::_No response_"
         )
         self.assertEqual(
-            output_value[7], "::set-output name=SUBMISSION_LABELS::['tool', 'tutorial']"
+            output_value[7],
+            "::set-output name=SUBMISSION_LABELS::['tool', 'tutorial', 'paper implementation']",
         )
 
     @responses.activate
