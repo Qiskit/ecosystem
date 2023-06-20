@@ -56,7 +56,7 @@ jobs:
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
-        check_type: "test_stable"
+        test_type: "test_stable"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
         logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
@@ -65,7 +65,7 @@ jobs:
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
-        check_type: "test_dev"
+        test_type: "test_dev"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
         logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
@@ -74,7 +74,7 @@ jobs:
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
-        check_type: "test_standard"
+        test_type: "test_standard"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
         logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
