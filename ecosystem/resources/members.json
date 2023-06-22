@@ -5353,112 +5353,6 @@
             ],
             "stars": 7
         },
-        "23": {
-            "name": "circuit-knitting-toolbox",
-            "url": "https://github.com/Qiskit-Extensions/circuit-knitting-toolbox",
-            "description": "Circuit Knitting is the process of decomposing a quantum circuit into smaller circuits, executing those smaller circuits on a quantum processor(s), and then knitting their results into a reconstruction of the original circuit's outcome. Circuit knitting includes techniques such as entanglement forging, circuit cutting, and classical embedding. The Circuit Knitting Toolbox (CKT) is a collection of such tools.",
-            "licence": "Apache License 2.0",
-            "contact_info": "blake.johnson@ibm.com",
-            "alternatives": "_No response_",
-            "affiliations": null,
-            "labels": [
-                "algorithms"
-            ],
-            "created_at": 1670427445.884067,
-            "updated_at": 1670427445.884068,
-            "tests_results": [
-                {
-                    "test_type": "development",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1670427445.882592,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096614",
-                    "package_commit_hash": "0df0d29fc44fb571e38530d20743a6e70e230865"
-                },
-                {
-                    "test_type": "stable",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1670427445.884051,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096615",
-                    "package_commit_hash": null
-                },
-                {
-                    "test_type": "standard",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1670427445.884055,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096587",
-                    "package_commit_hash": null
-                }
-            ],
-            "styles_results": [],
-            "coverages_results": [],
-            "tier": "Community",
-            "configuration": null,
-            "skip_tests": true,
-            "historical_test_results": [],
-            "stars": 23
-        },
-        "24": {
-            "name": "quantum-serverless",
-            "url": "https://github.com/Qiskit-Extensions/quantum-serverless",
-            "description": "The Quantum Serverless package aims to allow developers to easily offload computations to cloud resources, without being experts in packaging code for remote execution environments.",
-            "licence": "Apache License 2.0",
-            "contact_info": "blake.johnson@ibm.com",
-            "alternatives": "_No response_",
-            "affiliations": null,
-            "labels": [
-                "sdk"
-            ],
-            "created_at": 1670427445.627174,
-            "updated_at": 1670427445.627175,
-            "tests_results": [
-                {
-                    "test_type": "development",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1670427445.627157,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096882",
-                    "package_commit_hash": "0df0d29fc44fb571e38530d20743a6e70e230865"
-                },
-                {
-                    "test_type": "stable",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1670427445.625689,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096844",
-                    "package_commit_hash": null
-                },
-                {
-                    "test_type": "standard",
-                    "passed": false,
-                    "package": "qiskit-terra",
-                    "package_version": "unknown",
-                    "terra_version": "unknown",
-                    "timestamp": 1670427445.627162,
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096823",
-                    "package_commit_hash": null
-                }
-            ],
-            "styles_results": [],
-            "coverages_results": [],
-            "tier": "Community",
-            "configuration": null,
-            "skip_tests": true,
-            "historical_test_results": [],
-            "stars": 21
-        },
         "25": {
             "name": "zoose-codespace",
             "url": "https://github.com/ianhellstrom/zoose-codespace",
@@ -7538,6 +7432,112 @@
             "tests_results": [],
             "skip_tests": true,
             "stars": 58
+        },
+        "13": {
+            "name": "quantum-serverless",
+            "url": "https://github.com/Qiskit-Extensions/quantum-serverless",
+            "description": "The Quantum Serverless package aims to allow developers to easily offload computations to cloud resources, without being experts in packaging code for remote execution environments.",
+            "licence": "Apache License 2.0",
+            "contact_info": "blake.johnson@ibm.com",
+            "alternatives": "_No response_",
+            "affiliations": null,
+            "labels": [
+                "sdk"
+            ],
+            "created_at": 1670427445.627174,
+            "updated_at": 1670427445.627175,
+            "tests_results": [
+                {
+                    "test_type": "development",
+                    "passed": false,
+                    "package": "qiskit-terra",
+                    "package_version": "unknown",
+                    "terra_version": "unknown",
+                    "timestamp": 1670427445.627157,
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096882",
+                    "package_commit_hash": "0df0d29fc44fb571e38530d20743a6e70e230865"
+                },
+                {
+                    "test_type": "stable",
+                    "passed": false,
+                    "package": "qiskit-terra",
+                    "package_version": "unknown",
+                    "terra_version": "unknown",
+                    "timestamp": 1670427445.625689,
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096844",
+                    "package_commit_hash": null
+                },
+                {
+                    "test_type": "standard",
+                    "passed": false,
+                    "package": "qiskit-terra",
+                    "package_version": "unknown",
+                    "terra_version": "unknown",
+                    "timestamp": 1670427445.627162,
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096823",
+                    "package_commit_hash": null
+                }
+            ],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Extensions",
+            "configuration": null,
+            "skip_tests": true,
+            "historical_test_results": [],
+            "stars": 21
+        },
+        "14": {
+            "name": "circuit-knitting-toolbox",
+            "url": "https://github.com/Qiskit-Extensions/circuit-knitting-toolbox",
+            "description": "Circuit Knitting is the process of decomposing a quantum circuit into smaller circuits, executing those smaller circuits on a quantum processor(s), and then knitting their results into a reconstruction of the original circuit's outcome. Circuit knitting includes techniques such as entanglement forging, circuit cutting, and classical embedding. The Circuit Knitting Toolbox (CKT) is a collection of such tools.",
+            "licence": "Apache License 2.0",
+            "contact_info": "blake.johnson@ibm.com",
+            "alternatives": "_No response_",
+            "affiliations": null,
+            "labels": [
+                "algorithms"
+            ],
+            "created_at": 1670427445.884067,
+            "updated_at": 1670427445.884068,
+            "tests_results": [
+                {
+                    "test_type": "development",
+                    "passed": false,
+                    "package": "qiskit-terra",
+                    "package_version": "unknown",
+                    "terra_version": "unknown",
+                    "timestamp": 1670427445.882592,
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096614",
+                    "package_commit_hash": "0df0d29fc44fb571e38530d20743a6e70e230865"
+                },
+                {
+                    "test_type": "stable",
+                    "passed": false,
+                    "package": "qiskit-terra",
+                    "package_version": "unknown",
+                    "terra_version": "unknown",
+                    "timestamp": 1670427445.884051,
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096615",
+                    "package_commit_hash": null
+                },
+                {
+                    "test_type": "standard",
+                    "passed": false,
+                    "package": "qiskit-terra",
+                    "package_version": "unknown",
+                    "terra_version": "unknown",
+                    "timestamp": 1670427445.884055,
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3628096587",
+                    "package_commit_hash": null
+                }
+            ],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Extensions",
+            "configuration": null,
+            "skip_tests": true,
+            "historical_test_results": [],
+            "stars": 23
         }
     }
 }
