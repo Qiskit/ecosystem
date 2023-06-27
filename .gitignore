@@ -103,6 +103,7 @@ celerybeat.pid
 
 # Environments
 .env
+.envrc
 .venv
 env/
 venv/
@@ -134,3 +135,5 @@ dmypy.json
 
 # Local testing
 ecosystem/resources/cloned_repo_directory/
+resources
+tests/resources
