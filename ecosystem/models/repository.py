@@ -11,6 +11,7 @@ from .utils import JsonSerializable
 
 class Repository(JsonSerializable):
     """Main repository class."""
+
     # pylint: disable=too-many-locals, too-many-instance-attributes
 
     def __init__(
