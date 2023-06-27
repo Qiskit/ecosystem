@@ -12,7 +12,7 @@ from .utils import JsonSerializable
 class Repository(JsonSerializable):
     """Main repository class."""
 
-    def __init__(  # pylint: disable=too-many-locals
+    def __init__(  # pylint: disable=too-many-locals, too-many-instance-attributes
         self,
         name: str,
         url: str,
@@ -22,6 +22,7 @@ class Repository(JsonSerializable):
         alternatives: Optional[str] = None,
         affiliations: Optional[str] = None,
         labels: Optional[List[str]] = None,
+        website: Optional[List[str]] = None,
         created_at: Optional[int] = None,
         updated_at: Optional[int] = None,
         tier: str = Tier.COMMUNITY,
@@ -43,6 +44,7 @@ class Repository(JsonSerializable):
             contact_info: contact information
             alternatives: alternatives to project
             affiliations : affiliations of the project
+            website : website for the project
             labels: labels
             created_at: creation date
             updated_at: update date
@@ -60,6 +62,7 @@ class Repository(JsonSerializable):
         self.contact_info = contact_info
         self.alternatives = alternatives
         self.affiliations = affiliations
+        self.website = website
         self.labels = labels if labels is not None else []
         self.created_at = (
             created_at if created_at is not None else datetime.now().timestamp()

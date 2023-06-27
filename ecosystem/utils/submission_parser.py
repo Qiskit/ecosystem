@@ -40,6 +40,7 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
     alternatives = sections["Alternatives"]
     licence = sections["License"]
     affiliations = sections["Affiliations"]
+    website = sections["Website"]
 
     labels = [l.strip() for l in sections["Tags"].split(",")]
 
@@ -52,4 +53,5 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
         alternatives,
         affiliations,
         labels,
+        website,
     )
