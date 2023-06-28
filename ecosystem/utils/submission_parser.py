@@ -45,13 +45,13 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
     labels = [l.strip() for l in sections["Tags"].split(",")]
 
     return Repository(
-        name,
-        url,
-        description,
-        licence,
-        contact_info,
-        alternatives,
-        affiliations,
-        labels,
-        website,
+        name=name,
+        url=url,
+        description=description,
+        licence=licence,
+        contact_info=contact_info,
+        alternatives=alternatives,
+        affiliations=affiliations,
+        labels=labels,
+        website=website,
     )
