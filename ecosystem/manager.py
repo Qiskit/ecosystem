@@ -61,7 +61,6 @@ class Manager:
 
         Args:
             repo_url: url of the repo
-            issue_id: id for the issue
             branch_name: name of the branch
             tier: tier of the project
             token: token base on the date
@@ -272,7 +271,6 @@ class Manager:
 
         Args:
             folder_name: folder to store temp results
-            tier: tier of project
 
         Returns: number of saved entries
         """
