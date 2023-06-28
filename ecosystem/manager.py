@@ -184,6 +184,7 @@ class Manager:
             ("SUBMISSION_ALTERNATIVES", parsed_result.alternatives),
             ("SUBMISSION_AFFILIATIONS", parsed_result.affiliations),
             ("SUBMISSION_LABELS", parsed_result.labels),
+            ("SUBMISSION_WEBSITE", parsed_result.website),
         ]
 
         set_actions_output(to_print)
@@ -199,6 +200,7 @@ class Manager:
         repo_affiliations: str,
         repo_labels: Tuple[str],
         repo_tier: Optional[str] = None,
+        repo_website: Optional[str] = None,
     ) -> None:
         """Adds repo to list of entries.
 
@@ -212,6 +214,7 @@ class Manager:
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
             repo_tier: tier for repository
+            repo_website: link to project website
 
         Returns:
             JsonDAO: Integer
@@ -227,6 +230,7 @@ class Manager:
             repo_affiliations,
             list(repo_labels),
             tier=repo_tier or Tier.COMMUNITY,
+            website=repo_website,
         )
         self.dao.insert(new_repo)
 

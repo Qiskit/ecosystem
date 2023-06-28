@@ -109,6 +109,7 @@ jobs:
         SUBMISSION_ALTERNATIVES: ${{ steps.parse-issue.outputs.SUBMISSION_ALTERNATIVES }}
         SUBMISSION_AFFILIATIONS: ${{ steps.parse-issue.outputs.SUBMISSION_AFFILIATIONS }}
         SUBMISSION_LABELS: ${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}
+        SUBMISSION_WEBSITE: ${{ steps.parse-issue.outputs.SUBMISSION_WEBSITE }}
       run: |
         python manager.py add_repo_2db --repo_name="$SUBMISSION_NAME" \
                                        --repo_link="$SUBMISSION_REPO" \
@@ -117,7 +118,8 @@ jobs:
                                        --repo_contact="$SUBMISSION_CONTACT" \
                                        --repo_alt="$SUBMISSION_ALTERNATIVES" \
                                        --repo_affiliations="$SUBMISSION_AFFILIATIONS" \
-                                       --repo_labels="$SUBMISSION_LABELS"
+                                       --repo_labels="$SUBMISSION_LABELS" \
+                                       --repo_website="$SUBMISSION_WEBSITE"
 
     - name: Commit changes and create Pull Request
       id: cpr

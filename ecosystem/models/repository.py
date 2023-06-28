@@ -12,7 +12,9 @@ from .utils import JsonSerializable
 class Repository(JsonSerializable):
     """Main repository class."""
 
-    def __init__(  # pylint: disable=too-many-locals
+    # pylint: disable=too-many-locals, too-many-instance-attributes
+
+    def __init__(
         self,
         name: str,
         url: str,
@@ -25,6 +27,7 @@ class Repository(JsonSerializable):
         created_at: Optional[int] = None,
         updated_at: Optional[int] = None,
         tier: str = Tier.COMMUNITY,
+        website: Optional[str] = None,
         tests_results: Optional[List[TestResult]] = None,
         styles_results: Optional[List[TestResult]] = None,
         coverages_results: Optional[List[TestResult]] = None,
@@ -43,9 +46,12 @@ class Repository(JsonSerializable):
             contact_info: contact information
             alternatives: alternatives to project
             affiliations : affiliations of the project
+            website : website for the project
             labels: labels
             created_at: creation date
             updated_at: update date
+            website: website for the project
+            tier: repo tier
             tests_results: tests passed by repo
             styles_results: styles passed by repo
             coverages_results: coverages passed by repo
@@ -60,6 +66,7 @@ class Repository(JsonSerializable):
         self.contact_info = contact_info
         self.alternatives = alternatives
         self.affiliations = affiliations
+        self.website = website
         self.labels = labels if labels is not None else []
         self.created_at = (
             created_at if created_at is not None else datetime.now().timestamp()
@@ -71,6 +78,7 @@ class Repository(JsonSerializable):
         self.styles_results = styles_results if styles_results else []
         self.coverages_results = coverages_results if coverages_results else []
         self.tier = tier
+        self.website = website
         self.configuration = configuration
         self.skip_tests = skip_tests if skip_tests is not None else False
         self.historical_test_results = historical_test_results or []
