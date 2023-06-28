@@ -28,6 +28,7 @@ class Repository(JsonSerializable):
         created_at: Optional[int] = None,
         updated_at: Optional[int] = None,
         tier: str = Tier.COMMUNITY,
+        website: Optional[List[str]] = None,
         tests_results: Optional[List[TestResult]] = None,
         styles_results: Optional[List[TestResult]] = None,
         coverages_results: Optional[List[TestResult]] = None,
@@ -50,6 +51,8 @@ class Repository(JsonSerializable):
             labels: labels
             created_at: creation date
             updated_at: update date
+            website: website for the project
+            tier: repo tier
             tests_results: tests passed by repo
             styles_results: styles passed by repo
             coverages_results: coverages passed by repo
@@ -76,6 +79,7 @@ class Repository(JsonSerializable):
         self.styles_results = styles_results if styles_results else []
         self.coverages_results = coverages_results if coverages_results else []
         self.tier = tier
+        self.website = website
         self.configuration = configuration
         self.skip_tests = skip_tests if skip_tests is not None else False
         self.historical_test_results = historical_test_results or []
