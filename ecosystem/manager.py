@@ -32,7 +32,7 @@ class Manager:
     Each public method of this class is CLI command
     and arguments for method are options/flags for this command.
 
-    Ex: `python manager.py generate_readme --path=<SOME_DIRECTORY>`
+    Ex: `python manager.py parser_issue --body="<SOME_MARKDOWN>"`
     """
 
     def __init__(self, root_path: Optional[str] = None):
@@ -43,7 +43,6 @@ class Manager:
         self.env = Environment(
             loader=PackageLoader("ecosystem"), autoescape=select_autoescape()
         )
-        self.readme_template = self.env.get_template("readme.md")
         self.pylintrc_template = self.env.get_template(".pylintrc")
         self.coveragerc_template = self.env.get_template(".coveragerc")
         self.dao = JsonDAO(path=self.resources_dir)
@@ -62,7 +61,6 @@ class Manager:
 
         Args:
             repo_url: url of the repo
-            issue_id: id for the issue
             branch_name: name of the branch
             tier: tier of the project
             token: token base on the date
@@ -235,20 +233,6 @@ class Manager:
         )
         self.dao.insert(new_repo)
 
-    def generate_readme(self, path: Optional[str] = None):
-        """Generates entire readme for ecosystem repository.
-
-        Returns:
-            str: generated readme
-        """
-        path = path if path is not None else self.current_dir
-
-        data = [(tier, self.dao.get_repos_by_tier(tier=tier)) for tier in Tier.all()]
-        readme_content = self.readme_template.render(data=data)
-
-        with open(f"{path}/README.md", "w") as file:
-            file.write(readme_content)
-
     def _save_temp_test_result(
         self,
         folder_name: str,
@@ -287,7 +271,6 @@ class Manager:
 
         Args:
             folder_name: folder to store temp results
-            tier: tier of project
 
         Returns: number of saved entries
         """

@@ -5,7 +5,6 @@ name: Ecosystem | Submission check
 # - parse issue
 # - run lint, coverage, tests
 # - comment result
-# - create PR with change to readme
 # - link pr to issue
 
 on:
@@ -100,7 +99,7 @@ jobs:
       run: |
         echo "Pass log is ${{ env.PASS_LOG }}"
 
-    - name: Add member and update readme
+    - name: Add member
       env:
         SUBMISSION_NAME: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
         SUBMISSION_REPO: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
@@ -121,7 +120,6 @@ jobs:
                                        --repo_affiliations="$SUBMISSION_AFFILIATIONS" \
                                        --repo_labels="$SUBMISSION_LABELS" \
                                        --repo_website="$SUBMISSION_WEBSITE"
-        python manager.py generate_readme
 
     - name: Commit changes and create Pull Request
       id: cpr
