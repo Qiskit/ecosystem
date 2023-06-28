@@ -14,17 +14,17 @@
             "updated_at": 1636403010.377697,
             "url": "https://github.com/Qiskit/qiskit-aer",
             "website": "https://qiskit.org/ecosystem/aer",
-	    "tests_results": [],
+            "tests_results": [],
             "affiliations": null,
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 343
+            "stars": 374
         },
         "2": {
             "name": "OpenQASM",
             "url": "https://github.com/openqasm/openqasm",
-	    "website": "https://openqasm.com/",
+            "website": "https://openqasm.com/",
             "description": "OpenQASM is an imperative programming language designed for near-term quantum computing algorithms and applications. Quantum programs are described using the measurement-based quantum circuit model with support for classical feed-forward flow control based on measurement outcomes.",
             "licence": "Apache 2.0",
             "contact_info": "_No response_",
@@ -42,7 +42,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 968
+            "stars": 990
         }
     },
     "Community": {
@@ -91,7 +91,7 @@
                 ]
             },
             "historical_test_results": [],
-            "stars": 127
+            "stars": 134
         },
         "2": {
             "name": "qiskit-cold-atom",
@@ -171,7 +171,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 20,
+            "stars": 21,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -745,7 +745,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 55
+            "stars": 56
         },
         "4": {
             "name": "qiskit-superstaq",
@@ -2538,7 +2538,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 250
+            "stars": 266
         },
         "10": {
             "name": "pennylane-qiskit",
@@ -2726,7 +2726,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 112
+            "stars": 125
         },
         "11": {
             "name": "quantumcat",
@@ -2955,7 +2955,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 19
+            "stars": 20
         },
         "12": {
             "name": "Blueqat",
@@ -3295,7 +3295,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 355
+            "stars": 358
         },
         "13": {
             "name": "python-open-controls",
@@ -3632,7 +3632,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 87
+            "stars": 89
         },
         "14": {
             "name": "qiskit-rigetti",
@@ -4356,7 +4356,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 543
+            "stars": 713
         },
         "17": {
             "name": "QPong",
@@ -4564,7 +4564,7 @@
                     "package_commit_hash": null
                 }
             ],
-            "stars": 108
+            "stars": 111
         },
         "18": {
             "name": "q-kernel-ops",
@@ -4764,7 +4764,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 13
+            "stars": 0
         },
         "20": {
             "name": "qiskit-toqm",
@@ -4980,7 +4980,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 2
+            "stars": 4
         },
         "21": {
             "name": "bosonic-qiskit",
@@ -5142,7 +5142,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 31,
+            "stars": 33,
             "contact_info": null,
             "alternatives": null,
             "affiliations": null
@@ -5558,7 +5558,7 @@
                     "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd"
                 }
             ],
-            "stars": 12
+            "stars": 13
         },
         "27": {
             "name": "RasQberry",
@@ -5580,7 +5580,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 116
+            "stars": 120
         },
         "28": {
             "name": "QiskitOpt.jl",
@@ -5657,7 +5657,7 @@
             "configuration": null,
             "skip_tests": false,
             "historical_test_results": [],
-            "stars": 3
+            "stars": 4
         },
         "30": {
             "name": "quantum-tetris",
@@ -5702,7 +5702,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 2
+            "stars": 4
         },
         "32": {
             "name": "qiskit-symb",
@@ -5745,7 +5745,7 @@
             },
             "skip_tests": false,
             "historical_test_results": [],
-            "stars": 1
+            "stars": 5
         },
         "33": {
             "name": "sat-circuits-engine",
@@ -5790,7 +5790,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": null
+            "stars": 3
         },
         "35": {
             "name": "vqls-prototype",
@@ -5813,7 +5813,7 @@
             "configuration": null,
             "skip_tests": false,
             "historical_test_results": [],
-            "stars": null
+            "stars": 1
         },
         "36": {
             "name": "qiskit-nature-pyscf-dft-embedding",
@@ -5837,7 +5837,7 @@
             "configuration": null,
             "skip_tests": false,
             "historical_test_results": [],
-            "stars": null
+            "stars": 3
         },
         "37": {
             "alternatives": null,
@@ -5859,7 +5859,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 155
+            "stars": 170
         },
         "38": {
             "alternatives": null,
@@ -5881,7 +5881,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 414
+            "stars": 453
         },
         "39": {
             "alternatives": null,
@@ -5904,7 +5904,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 208
+            "stars": 227
         },
         "40": {
             "alternatives": null,
@@ -5926,7 +5926,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 154
+            "stars": 166
         },
         "41": {
             "name": "qiskit-ionq",
@@ -6008,7 +6008,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 26,
+            "stars": 29,
             "historical_test_results": [
                 {
                     "test_type": "standard",
@@ -6491,7 +6491,7 @@
                 ],
                 "coverages_check_command": []
             },
-            "stars": 27,
+            "stars": 29,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -6684,7 +6684,7 @@
             },
             "tier": "Extensions",
             "skip_tests": true,
-            "stars": 31
+            "stars": 33
         },
         "4": {
             "name": "Quantum Random Access Optimization",
@@ -6767,7 +6767,7 @@
             },
             "tier": "Extensions",
             "skip_tests": false,
-            "stars": 25,
+            "stars": 27,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -7000,7 +7000,7 @@
             "coverages_results": [],
             "tier": "Main",
             "skip_tests": true,
-            "stars": 64
+            "stars": 81
         },
         "6": {
             "name": "qiskit-ibm-provider",
@@ -7041,7 +7041,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": true,
-            "stars": 37
+            "stars": 52
         },
         "7": {
             "name": "mthree",
@@ -7120,7 +7120,7 @@
                 "coverages_check_command": []
             },
             "skip_tests": false,
-            "stars": 23,
+            "stars": 24,
             "historical_test_results": [
                 {
                     "test_type": "stable",
@@ -7354,7 +7354,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 46
+            "stars": 53
         },
         "9": {
             "name": "qiskit-qec",
@@ -7378,7 +7378,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 36
+            "stars": 40
         },
         "10": {
             "alternatives": null,
@@ -7395,7 +7395,7 @@
             "url": "https://github.com/qiskit-community/qiskit-metal",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 231
+            "stars": 238
         },
         "11": {
             "alternatives": null,
@@ -7413,7 +7413,7 @@
             "website": "https://qiskit.org/ecosystem/experiments/",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 101
+            "stars": 110
         },
         "12": {
             "alternatives": null,
@@ -7431,7 +7431,7 @@
             "website": "https://qiskit.org/ecosystem/dynamics/",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 58
+            "stars": 71
         },
         "13": {
             "name": "quantum-serverless",
@@ -7484,7 +7484,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 21
+            "stars": null
         },
         "14": {
             "name": "circuit-knitting-toolbox",
@@ -7537,7 +7537,7 @@
             "configuration": null,
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 23
+            "stars": null
         }
     }
 }
