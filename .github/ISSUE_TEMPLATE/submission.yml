@@ -90,3 +90,11 @@ body:
         - game
         - notebook
         - converter
+  - type: input
+    id: website
+    attributes:
+      label: Website
+      description: Link to project website
+      placeholder: https://your-project.com
+    validations:
+      required: false
