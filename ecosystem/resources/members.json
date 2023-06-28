@@ -14,7 +14,7 @@
             "updated_at": 1636403010.377697,
             "url": "https://github.com/Qiskit/qiskit-aer",
             "website": "https://qiskit.org/ecosystem/aer",
-	    "tests_results": [],
+            "tests_results": [],
             "affiliations": null,
             "styles_results": [],
             "coverages_results": [],
@@ -24,7 +24,7 @@
         "2": {
             "name": "OpenQASM",
             "url": "https://github.com/openqasm/openqasm",
-	    "website": "https://openqasm.com/",
+            "website": "https://openqasm.com/",
             "description": "OpenQASM is an imperative programming language designed for near-term quantum computing algorithms and applications. Quantum programs are described using the measurement-based quantum circuit model with support for classical feed-forward flow control based on measurement outcomes.",
             "licence": "Apache 2.0",
             "contact_info": "_No response_",
@@ -6131,6 +6131,29 @@
                     "package_commit_hash": null
                 }
             ]
+        },
+        "42": {
+            "name": "",
+            "url": "https://github.com/qiskit-community/ecosystem/",
+            "description": "This is a description",
+            "licence": "Apache License 2.0",
+            "contact_info": "description@email.com",
+            "alternatives": "Test alternatives",
+            "affiliations": "test affiliation",
+            "website": "www.qiskti.org",
+            "labels": [
+                "tutorial"
+            ],
+            "created_at": 1687950427.145326,
+            "updated_at": 1687950427.145332,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "configuration": null,
+            "skip_tests": false,
+            "historical_test_results": [],
+            "stars": null
         }
     },
     "Extensions": {
