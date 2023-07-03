@@ -104,9 +104,9 @@ https://github.com/mickahell/qiskit-ecosystem_template.
 ### Storage
 
 We store each member of the ecosystem as a TOML file under
-[`ecosystem/resources/toml`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/toml);
+[`ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members);
 these are the files you should edit when adding / updating members to the
-ecosystem. Access to `members.json` is handled through
+ecosystem. Access to this file is handled through the
 [`JsonDAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/jsondao.py)
 class.
 

@@ -21,7 +21,7 @@ class EcosystemStorage:
 
     self.root
     ├── members.json  # compiled file; don't edit manually
-    └── toml
+    └── members
         └── repo-name.toml
 
     Database structure:
@@ -33,7 +33,7 @@ class EcosystemStorage:
     """
 
     def __init__(self, root_path):
-        self.toml_dir = Path(root_path, "toml")
+        self.toml_dir = Path(root_path, "members")
         self.compiled_json_path = Path(root_path, "compiled.json")
 
     def _url_to_path(self, url):
