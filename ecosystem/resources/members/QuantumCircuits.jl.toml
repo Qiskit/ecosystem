@@ -1,0 +1,70 @@
+name = "QuantumCircuits.jl"
+url = "https://github.com/Adgnitio/QuantumCircuits.jl"
+description = "QuantumCircuits is an open-source library written in Julia for working with quantum computers at the application level, especially for Quantum Finance and Quantum Machine Learning. It allows to creation and manipulation of the quantum circuits and executes them in Julia or convert them to Qiskit Python object. The library also contains the Quantum Binomial Tree implementation for derivative pricing."
+licence = "GNU General Public License (GPL)"
+contact_info = "rafal.pracht@adgnitio.com"
+alternatives = "qiskit-finance, qiskit-machine-learning, Yao"
+labels = [ "paper implementation", "machine learning", "finance",]
+created_at = 1678827878.254124
+updated_at = 1678827878.254125
+styles_results = []
+coverages_results = []
+tier = "Community"
+skip_tests = false
+stars = 0
+[[tests_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+terra_version = "unknown"
+timestamp = 1678827878.252147
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414046828"
+package_commit_hash = "3005806e48da61f235742bb365e251bce37452bd"
+
+[[tests_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+terra_version = "unknown"
+timestamp = 1678827878.254106
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414046867"
+
+[[tests_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+terra_version = "unknown"
+timestamp = 1678827878.254109
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414046777"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+terra_version = "unknown"
+timestamp = 1678827878.254117
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414046777"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+terra_version = "unknown"
+timestamp = 1678827878.254119
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414046867"
+
+[[historical_test_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+terra_version = "unknown"
+timestamp = 1678827878.252147
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414046828"
+package_commit_hash = "3005806e48da61f235742bb365e251bce37452bd"
+

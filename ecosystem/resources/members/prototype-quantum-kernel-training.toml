@@ -1,0 +1,26 @@
+name = "Quantum kernel training"
+url = "https://github.com/qiskit-community/prototype-quantum-kernel-training"
+description = "The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications."
+licence = "Apache 2.0"
+contact_info = ""
+alternatives = ""
+labels = [ "prototype", "machine learning",]
+created_at = 1645480343.964777
+updated_at = 1645480343.964777
+tests_results = []
+styles_results = []
+coverages_results = []
+tier = "Extensions"
+skip_tests = true
+stars = 33
+
+[configuration]
+dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
+extra_dependencies = []
+tests_command = [ "treon docs/ --threads 1",]
+styles_check_command = [ "black --check docs",]
+coverages_check_command = []
+
+[configuration.language]
+name = "python"
+versions = [ "3.7",]
