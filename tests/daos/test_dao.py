@@ -1,5 +1,6 @@
 """Tests for entities."""
 import os
+import shutil
 import json
 from unittest import TestCase
 
@@ -44,6 +45,8 @@ class TestJsonDao(TestCase):
         """
         if os.path.exists(self.members_path):
             os.remove(self.members_path)
+        if os.path.exists(self.path + "/members"):
+            shutil.rmtree(self.path + "/members")
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
@@ -231,7 +234,7 @@ class TestJsonDao(TestCase):
                 package_version="0.18.1",
             ),
         )
-        self.assertEqual(res, [1])
+        self.assertEqual(len(res), 1)
         self.assertLabelsFile(
             [
                 {"description": "description for label 1", "name": "label 1"},
@@ -277,7 +280,7 @@ class TestJsonDao(TestCase):
                 package_version="0.18.2",
             ),
         )
-        self.assertEqual(res, [1])
+        self.assertEqual(len(res), 1)
         res = dao.add_repo_test_result(
             main_repo.url,
             main_repo.tier,
@@ -288,7 +291,7 @@ class TestJsonDao(TestCase):
                 package_version="0.18.2",
             ),
         )
-        self.assertEqual(res, [1])
+        self.assertEqual(len(res), 1)
         recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
         self.assertEqual(
             recovered_repo.tests_results,

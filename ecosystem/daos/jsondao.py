@@ -2,6 +2,9 @@
 from typing import Optional, List
 import os
 import json
+from pathlib import Path
+import shutil
+import toml
 
 from tinydb import TinyDB, Query
 
@@ -9,17 +12,83 @@ from ecosystem.models import TestResult, StyleResult, CoverageResult, TestType
 from ecosystem.models.repository import Repository
 
 
+class EcosystemStorage:
+    """
+    Tell TinyDB how to read/write from files
+    (see https://tinydb.readthedocs.io/en/latest/extend.html)
+
+    File structure:
+
+    self.root
+    ├── members.json  # compiled file; don't edit manually
+    └── members
+        └── repo-name.toml
+
+    Database structure:
+
+    { tier: {  # e.g. Main, Community
+        index: repo  # `repo` is data from repo-name.toml
+    }}
+
+    """
+
+    def __init__(self, root_path):
+        self.root = Path(root_path)
+
+    def _url_to_path(self, url):
+        repo_name = url.strip("/").split("/")[-1]
+        return self.root / f"{repo_name}.toml"
+
+    def read(self):
+        """
+        Search for TOML files and add to DB
+        """
+        if not self.root.is_dir():
+            # For TinyDB initialization
+            return None
+
+        data = {}
+        for path in self.root.glob("*"):
+            repo = toml.load(path)
+            tier = repo["tier"]
+            if tier not in data:
+                data[tier] = {}
+            index = len(data[tier].keys())
+            data[tier][index] = repo
+
+        return data
+
+    def write(self, data):
+        """
+        Write TOML files, plus compiled JSON for qiskit.org
+        """
+        # Dump compiled JSON first
+        with open(self.root.with_suffix(".json"), "w") as file:
+            json.dump(data, file, indent=4)
+
+        # Erase existing human-readable files
+        if self.root.exists():
+            shutil.rmtree(self.root)
+
+        # Rewrite to human-readable TOML
+        self.root.mkdir()
+        for _, repos in data.items():
+            for repo in repos.values():
+                with open(self._url_to_path(repo["url"]), "w") as file:
+                    toml.dump(repo, file)
+
+
 class JsonDAO:
     """JsonDAO for repo database."""
 
-    def __init__(self, path: Optional[str] = None):
+    def __init__(self, path):
         """JsonDAO for repository database.
 
         Args:
             path: path to store database in
         """
-        self.path = path if path is not None else os.getcwd()
-        self.database = TinyDB("{}/members.json".format(self.path), indent=4)
+        self.path = path
+        self.database = TinyDB(Path(self.path) / "members", storage=EcosystemStorage)
         self.labels_json_path = os.path.join(self.path, "labels.json")
 
     def insert(self, repo: Repository) -> int:
