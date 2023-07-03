@@ -121,6 +121,10 @@ python -m manager recompile
 
 You shouldn't edit `members.json` manually.
 
+If you have a merge conflict in `members.json`, don't try to manually resolve the
+conflict. Instead, merge `main` and use the version of `members.json` from `main`.
+Then, recompile the file with `python -m manager recompile`.
+
 ### Tests
 
 There are 3 type of tests for project: `STANDARD`, `DEV` and `STABLE`. 

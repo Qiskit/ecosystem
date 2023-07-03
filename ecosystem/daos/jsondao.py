@@ -66,7 +66,8 @@ class EcosystemStorage:
         with open(self.root.with_suffix(".json"), "w") as file:
             json.dump(data, file, indent=4)
 
-        # Erase existing human-readable files
+        # Erase existing TOML files
+        # (we erase everything to clean up any deleted repos)
         if self.root.exists():
             shutil.rmtree(self.root)
 
@@ -81,14 +82,14 @@ class EcosystemStorage:
 class JsonDAO:
     """JsonDAO for repo database."""
 
-    def __init__(self, path):
+    def __init__(self, path: str):
         """JsonDAO for repository database.
 
         Args:
             path: path to store database in
         """
         self.path = path
-        self.database = TinyDB(Path(self.path) / "members", storage=EcosystemStorage)
+        self.database = TinyDB(Path(self.path, "members"), storage=EcosystemStorage)
         self.labels_json_path = os.path.join(self.path, "labels.json")
 
     def insert(self, repo: Repository) -> int:
