@@ -21,7 +21,7 @@ class EcosystemStorage:
 
     self.root
     ├── members.json  # compiled file; don't edit manually
-    └── members
+    └── toml
         └── repo-name.toml
 
     Database structure:
@@ -33,22 +33,23 @@ class EcosystemStorage:
     """
 
     def __init__(self, root_path):
-        self.root = Path(root_path)
+        self.toml_dir = Path(root_path, "toml")
+        self.compiled_json_path = Path(root_path, "compiled.json")
 
     def _url_to_path(self, url):
         repo_name = url.strip("/").split("/")[-1]
-        return self.root / f"{repo_name}.toml"
+        return self.toml_dir / f"{repo_name}.toml"
 
     def read(self):
         """
         Search for TOML files and add to DB
         """
-        if not self.root.is_dir():
+        if not self.toml_dir.is_dir():
             # For TinyDB initialization
             return None
 
         data = {}
-        for path in self.root.glob("*"):
+        for path in self.toml_dir.glob("*"):
             repo = toml.load(path)
             tier = repo["tier"]
             if tier not in data:
@@ -63,16 +64,16 @@ class EcosystemStorage:
         Write TOML files, plus compiled JSON for qiskit.org
         """
         # Dump compiled JSON first
-        with open(self.root.with_suffix(".json"), "w") as file:
+        with open(self.compiled_json_path, "w") as file:
             json.dump(data, file, indent=4)
 
         # Erase existing TOML files
         # (we erase everything to clean up any deleted repos)
-        if self.root.exists():
-            shutil.rmtree(self.root)
+        if self.toml_dir.exists():
+            shutil.rmtree(self.toml_dir)
 
         # Rewrite to human-readable TOML
-        self.root.mkdir()
+        self.toml_dir.mkdir()
         for _, repos in data.items():
             for repo in repos.values():
                 with open(self._url_to_path(repo["url"]), "w") as file:
@@ -89,7 +90,7 @@ class JsonDAO:
             path: path to store database in
         """
         self.path = path
-        self.database = TinyDB(Path(self.path, "members"), storage=EcosystemStorage)
+        self.database = TinyDB(self.path, storage=EcosystemStorage)
         self.labels_json_path = os.path.join(self.path, "labels.json")
 
     def insert(self, repo: Repository) -> int:
