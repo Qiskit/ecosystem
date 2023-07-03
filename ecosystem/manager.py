@@ -50,6 +50,7 @@ class Manager:
 
     def recompile(self):
         """Recompile `members.json` by reading and writing with no changes."""
+        # pylint: disable=protected-access
         data = self.dao.database._storage.read()
         self.dao.database._storage.write(data)
 
