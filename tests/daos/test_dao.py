@@ -3,6 +3,7 @@ import os
 import shutil
 import json
 from unittest import TestCase
+from pathlib import Path
 
 from ecosystem.daos import JsonDAO
 from ecosystem.models import TestResult, TestType, Tier
@@ -377,6 +378,22 @@ class TestJsonDao(TestCase):
         self.assertEqual(test_results[0].test_type, TestType.DEV_COMPATIBLE)
         self.assertEqual(test_results[1].test_type, TestType.STABLE_COMPATIBLE)
         self.assertEqual(test_results[2].test_type, TestType.STANDARD)
+
+    def test_compile_json(self):
+        """
+        Recompiles the JSON file, then checks it matches the read data.
+        """
+        # pylint: disable=protected-access
+        self._delete_members_json()
+        dao = JsonDAO(self.path)
+
+        # Dump JSON file
+        dao.compile_json()
+
+        # Open and check it matches data
+        with open(Path(self.path, "members.json")) as file:
+            dumped_data = json.loads(file.read())
+        self.assertEqual(dao.database._storage.read(), dumped_data)
 
     def assertLabelsFile(self, result):  # pylint: disable=invalid-name
         """Asserts the content of labels.json matches the result dict"""
