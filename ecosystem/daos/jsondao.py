@@ -34,7 +34,6 @@ class EcosystemStorage:
 
     def __init__(self, root_path):
         self.toml_dir = Path(root_path, "members")
-        self.compiled_json_path = Path(root_path, "compiled.json")
 
     def _url_to_path(self, url):
         repo_name = url.strip("/").split("/")[-1]
@@ -61,12 +60,8 @@ class EcosystemStorage:
 
     def write(self, data):
         """
-        Write TOML files, plus compiled JSON for qiskit.org
+        Write TOML files
         """
-        # Dump compiled JSON first
-        with open(self.compiled_json_path, "w") as file:
-            json.dump(data, file, indent=4)
-
         # Erase existing TOML files
         # (we erase everything to clean up any deleted repos)
         if self.toml_dir.exists():
@@ -92,6 +87,17 @@ class JsonDAO:
         self.path = path
         self.database = TinyDB(self.path, storage=EcosystemStorage)
         self.labels_json_path = os.path.join(self.path, "labels.json")
+
+    def compile_json(self):
+        """
+        Dump database to JSON file for consumption by qiskit.org
+        """
+        # pylint: disable=protected-access
+        data = self.database._storage.read()
+
+        compiled_json_path = Path(self.path, "members.json")
+        with open(compiled_json_path, "w") as file:
+            json.dump(data, file, indent=4)
 
     def insert(self, repo: Repository) -> int:
         """Inserts repository into database.

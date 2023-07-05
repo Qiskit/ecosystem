@@ -110,10 +110,9 @@ ecosystem. Access to this file is handled through the
 [`JsonDAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/jsondao.py)
 class.
 
-When `JsonDAO` writes updates, it will also compile a json file
-([`members.json`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members.json))
-to be read by qiskit.org/ecosystem. If this file becomes out-of-sync with the
-TOML files, you can recompile it using
+To make any changes to the members visible on qiskit.org, you'll need to recompile
+[`members.json`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members.json))
+using
 
 ```sh
 python -m manager recompile
