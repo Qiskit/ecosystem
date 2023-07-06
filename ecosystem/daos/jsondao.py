@@ -19,7 +19,7 @@ class EcosystemStorage:
 
     File structure:
 
-    self.root
+    root_path
     ├── members.json  # compiled file; don't edit manually
     └── members
         └── repo-name.toml
@@ -67,7 +67,7 @@ class EcosystemStorage:
         if self.toml_dir.exists():
             shutil.rmtree(self.toml_dir)
 
-        # Rewrite to human-readable TOML
+        # Write to human-readable TOML
         self.toml_dir.mkdir()
         for _, repos in data.items():
             for repo in repos.values():

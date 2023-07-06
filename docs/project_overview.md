@@ -110,9 +110,10 @@ ecosystem. Access to this file is handled through the
 [`JsonDAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/jsondao.py)
 class.
 
-To make any changes to the members visible on qiskit.org, you'll need to recompile
+The qiskit.org page pulls information from the compiled
 [`members.json`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members.json))
-using
+file. This file should be compiled automatically by an action on pushing to
+`main`, but you can also compile it locally (e.g. for testing) using
 
 ```sh
 python -m manager recompile
@@ -120,9 +121,9 @@ python -m manager recompile
 
 You shouldn't edit `members.json` manually.
 
-If you have a merge conflict in `members.json`, don't try to manually resolve the
-conflict. Instead, merge `main` and use the version of `members.json` from `main`.
-Then, recompile the file with `python -m manager recompile`.
+If you somehow get a merge conflict in `members.json`, don't try to manually
+resolve the conflict. Instead, merge the branch, then run `python -m manager
+recompile` and add the file to resolve the conflict.
 
 ### Tests
 
