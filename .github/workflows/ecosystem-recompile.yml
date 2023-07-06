@@ -14,6 +14,9 @@ jobs:
     env:
       tox_env: "py39"
       python-version: "3.9"
+    concurrency:
+      group: ci-ecosystem-recompile
+      cancel-in-progress: true
     steps:
     # setup deps
     - uses: actions/checkout@v2
