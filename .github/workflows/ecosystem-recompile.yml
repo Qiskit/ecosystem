@@ -10,6 +10,7 @@ on:
 
 
 jobs:
+  recompile_workflow:
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
