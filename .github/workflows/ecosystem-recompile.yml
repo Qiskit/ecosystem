@@ -30,7 +30,8 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    - name: Pull modif
+    - name: Git pull
+      # Just in case anything has changed since the action started
       run: git pull
  
     - name: Recompile and push
