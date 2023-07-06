@@ -2,6 +2,9 @@
 from typing import Optional, List
 import os
 import json
+from pathlib import Path
+import shutil
+import toml
 
 from tinydb import TinyDB, Query
 
@@ -9,18 +12,92 @@ from ecosystem.models import TestResult, StyleResult, CoverageResult, TestType
 from ecosystem.models.repository import Repository
 
 
+class EcosystemStorage:
+    """
+    Tell TinyDB how to read/write from files
+    (see https://tinydb.readthedocs.io/en/latest/extend.html)
+
+    File structure:
+
+    root_path
+    ├── members.json  # compiled file; don't edit manually
+    └── members
+        └── repo-name.toml
+
+    Database structure:
+
+    { tier: {  # e.g. Main, Community
+        index: repo  # `repo` is data from repo-name.toml
+    }}
+
+    """
+
+    def __init__(self, root_path):
+        self.toml_dir = Path(root_path, "members")
+
+    def _url_to_path(self, url):
+        repo_name = url.strip("/").split("/")[-1]
+        return self.toml_dir / f"{repo_name}.toml"
+
+    def read(self):
+        """
+        Search for TOML files and add to DB
+        """
+        if not self.toml_dir.is_dir():
+            # For TinyDB initialization
+            return None
+
+        data = {}
+        for path in self.toml_dir.glob("*"):
+            repo = toml.load(path)
+            tier = repo["tier"]
+            if tier not in data:
+                data[tier] = {}
+            index = len(data[tier].keys())
+            data[tier][index] = repo
+
+        return data
+
+    def write(self, data):
+        """
+        Write TOML files
+        """
+        # Erase existing TOML files
+        # (we erase everything to clean up any deleted repos)
+        if self.toml_dir.exists():
+            shutil.rmtree(self.toml_dir)
+
+        # Write to human-readable TOML
+        self.toml_dir.mkdir()
+        for _, repos in data.items():
+            for repo in repos.values():
+                with open(self._url_to_path(repo["url"]), "w") as file:
+                    toml.dump(repo, file)
+
+
 class JsonDAO:
     """JsonDAO for repo database."""
 
-    def __init__(self, path: Optional[str] = None):
+    def __init__(self, path: str):
         """JsonDAO for repository database.
 
         Args:
             path: path to store database in
         """
-        self.path = path if path is not None else os.getcwd()
-        self.database = TinyDB("{}/members.json".format(self.path), indent=4)
+        self.path = path
+        self.database = TinyDB(self.path, storage=EcosystemStorage)
         self.labels_json_path = os.path.join(self.path, "labels.json")
+
+    def compile_json(self):
+        """
+        Dump database to JSON file for consumption by qiskit.org
+        """
+        # pylint: disable=protected-access
+        data = self.database._storage.read()
+
+        compiled_json_path = Path(self.path, "members.json")
+        with open(compiled_json_path, "w") as file:
+            json.dump(data, file, indent=4)
 
     def insert(self, repo: Repository) -> int:
         """Inserts repository into database.

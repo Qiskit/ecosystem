@@ -1,0 +1,252 @@
+name = "qiskit-cold-atom"
+url = "https://github.com/qiskit-community/qiskit-cold-atom"
+description = "This project builds on this functionality to describe programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework."
+licence = "Apache 2.0"
+contact_info = ""
+alternatives = ""
+labels = [ "provider",]
+created_at = 1678827878.507531
+updated_at = 1678827878.507532
+styles_results = []
+coverages_results = []
+tier = "Community"
+skip_tests = false
+stars = 21
+[[tests_results]]
+test_type = "development"
+passed = true
+package = "qiskit-terra"
+package_version = "0.24.0"
+terra_version = "0.24.0"
+timestamp = 1678827878.496921
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414048688"
+package_commit_hash = "3005806e48da61f235742bb365e251bce37452bd"
+
+[[tests_results]]
+test_type = "last passing version"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.2"
+terra_version = "0.23.2"
+timestamp = 1678827878.498896
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414048649"
+
+[[tests_results]]
+test_type = "stable"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.2"
+terra_version = "0.23.2"
+timestamp = 1678827878.498899
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414048649"
+
+[[tests_results]]
+test_type = "standard"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.2"
+terra_version = "0.23.2"
+timestamp = 1678827878.498902
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414048578"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "0.21.1"
+terra_version = "0.21.1"
+timestamp = 1678827878.507478
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/2824121773"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "0.21.1"
+terra_version = "0.21.1"
+timestamp = 1678827878.507483
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/2824121773"
+
+[[historical_test_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "0.22.0"
+terra_version = "0.22.0"
+timestamp = 1678827878.507486
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3180920905"
+package_commit_hash = "53e215c31cf3aea51a623dc22883ac92fe74d0b9"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "0.21.2"
+terra_version = "0.21.2"
+timestamp = 1678827878.507488
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3225639328"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "0.21.2"
+terra_version = "0.21.2"
+timestamp = 1678827878.50749
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3225639358"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = true
+package = "qiskit-terra"
+package_version = "0.22.0"
+terra_version = "0.22.0"
+timestamp = 1678827878.507492
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3368225772"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = true
+package = "qiskit-terra"
+package_version = "0.22.0"
+terra_version = "0.22.0"
+timestamp = 1678827878.507494
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3368225754"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = true
+package = "qiskit-terra"
+package_version = "0.22.2"
+terra_version = "0.22.2"
+timestamp = 1678827878.507497
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3521953898"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = true
+package = "qiskit-terra"
+package_version = "0.22.2"
+terra_version = "0.22.2"
+timestamp = 1678827878.507499
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3521953919"
+
+[[historical_test_results]]
+test_type = "development"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.0"
+terra_version = "0.23.0"
+timestamp = 1678827878.507501
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3937705694"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = true
+package = "qiskit-terra"
+package_version = "0.22.3"
+terra_version = "0.22.3"
+timestamp = 1678827878.507503
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3937705604"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = true
+package = "qiskit-terra"
+package_version = "0.22.3"
+terra_version = "0.22.3"
+timestamp = 1678827878.507505
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3937705583"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = true
+package = "qiskit-terra"
+package_version = "0.22.4"
+terra_version = "0.22.4"
+timestamp = 1678827878.507508
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3994630594"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = true
+package = "qiskit-terra"
+package_version = "0.22.4"
+terra_version = "0.22.4"
+timestamp = 1678827878.50751
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3994630688"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.0"
+terra_version = "0.23.0"
+timestamp = 1678827878.507512
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4052485912"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.0"
+terra_version = "0.23.0"
+timestamp = 1678827878.507514
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4052485977"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.1"
+terra_version = "0.23.1"
+timestamp = 1678827878.507519
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4231024143"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.1"
+terra_version = "0.23.1"
+timestamp = 1678827878.507521
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4231024081"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.2"
+terra_version = "0.23.2"
+timestamp = 1678827878.507523
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414048649"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = true
+package = "qiskit-terra"
+package_version = "0.23.2"
+terra_version = "0.23.2"
+timestamp = 1678827878.507525
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414048578"
+
+[[historical_test_results]]
+test_type = "development"
+passed = true
+package = "qiskit-terra"
+package_version = "0.24.0"
+terra_version = "0.24.0"
+timestamp = 1678827878.496921
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414048688"
+package_commit_hash = "3005806e48da61f235742bb365e251bce37452bd"
+
+[configuration]
+dependencies_files = [ "requirements-dev.txt",]
+extra_dependencies = []
+tests_command = [ "stestr run",]
+styles_check_command = [ "pylint -rn -j 0 --rcfile=./.pylintrc qiskit_cold_atom/ test/",]
+coverages_check_command = []
+
+[configuration.language]
+name = "python"
+versions = [ "3.7",]

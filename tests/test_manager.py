@@ -37,7 +37,7 @@ def get_community_fail_repo() -> Repository:
     """Return main mock repo."""
     return Repository(
         name="mock-qiskit-terra-with-fail-dev-test",
-        url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
+        url="https://github.com/MockQiskit/mock-qiskit-wsdt-fail.terra",
         description="Mock description for repo. wsdt",
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],

@@ -48,6 +48,10 @@ class Manager:
         self.dao = JsonDAO(path=self.resources_dir)
         self.logger = logger
 
+    def recompile(self):
+        """Recompile `members.json` from human-readable files."""
+        self.dao.compile_json()
+
     def dispatch_check_workflow(
         self,
         repo_url: str,

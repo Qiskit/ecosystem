@@ -103,8 +103,27 @@ https://github.com/mickahell/qiskit-ecosystem_template.
 
 ### Storage
 
-We use json file ([members.json](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members.json)) as ecosystem state storage. 
-Access to members.json is handled through [JsonDAO](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/jsondao.py) class.
+We store each member of the ecosystem as a TOML file under
+[`ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members);
+these are the files you should edit when adding / updating members to the
+ecosystem. Access to this file is handled through the
+[`JsonDAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/jsondao.py)
+class.
+
+The qiskit.org page pulls information from the compiled
+[`members.json`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members.json))
+file. This file should be compiled automatically by an action on pushing to
+`main`, but you can also compile it locally (e.g. for testing) using
+
+```sh
+python -m manager recompile
+```
+
+You shouldn't edit `members.json` manually.
+
+If you somehow get a merge conflict in `members.json`, don't try to manually
+resolve the conflict. Instead, merge the branch, then run `python -m manager
+recompile` and add the file to resolve the conflict.
 
 ### Tests
 
