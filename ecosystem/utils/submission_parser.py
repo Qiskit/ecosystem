@@ -41,6 +41,8 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
     licence = sections["License"]
     affiliations = sections["Affiliations"]
     website = sections["Website"]
+    if website == "_No response_":
+        website = None
 
     labels = [l.strip() for l in sections["Tags"].split(",")]
 
