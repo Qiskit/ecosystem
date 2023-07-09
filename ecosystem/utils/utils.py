@@ -38,5 +38,8 @@ def set_actions_output(outputs: List[Tuple[str, Union[str, bool, float, int]]]) 
     """
     for name, value in outputs:
         logger.info("Setting output variable %s: %s", name, value)
-        with open(os.environ['GITHUB_OUTPUT'], 'a') as github_env:
-            print("name={name}={value}".format(name=name, value=value), file=github_env)
+        if "GITHUB_OUTPUT" in os.environ:
+            with open(os.environ["GITHUB_OUTPUT"], "a") as github_env:
+                print("{name}={value}".format(name=name, value=value), file=github_env)
+        else:
+            print("{name}={value}".format(name=name, value=value))
