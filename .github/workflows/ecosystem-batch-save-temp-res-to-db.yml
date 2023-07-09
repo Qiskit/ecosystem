@@ -16,11 +16,11 @@ jobs:
       run: |
         echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
         echo "pr_branch_name=batch_checks_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         ref: ${{ github.event.inputs.branch }}
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
           python-version: '3.9'
     - name: Install dependencies
