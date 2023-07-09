@@ -44,6 +44,7 @@ jobs:
         pip install -r requirements-dev.txt
     - name: Test using tox envs
       run: |
+        unset GITHUB_OUTPUT
         tox ${{ env.TOX_ENV }}
   coverage:
     runs-on: ubuntu-latest
@@ -60,6 +61,7 @@ jobs:
         pip install -r requirements-dev.txt
     - name: Run coverage
       run: |
+        unset GITHUB_OUTPUT
         tox -ecoverage
 
   json-lint:
