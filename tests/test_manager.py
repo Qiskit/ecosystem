@@ -90,16 +90,20 @@ class TestManager(TestCase):
         Manager.parser_issue(self.issue_body)
 
         sys.stdout = sys.__stdout__
-        output_value = captured_output.getvalue().split("\n")
+        if "GITHUB_OUTPUT" in os.environ:
+            output_value = os.environ["GITHUB_OUTPUT"]
+            print(output_value)
+        else:
+            output_value = captured_output.getvalue().split("\n")
 
-        self.assertEqual(output_value[0], "::set-output name=SUBMISSION_NAME::awesome")
+        self.assertEqual(output_value[0], "SUBMISSION_NAME=awesome")
         self.assertEqual(
             output_value[1],
-            "::set-output name=SUBMISSION_REPO::http://github.com/awesome/awesome",
+            "SUBMISSION_REPO=http://github.com/awesome/awesome",
         )
         self.assertEqual(
             output_value[2],
-            "::set-output name=SUBMISSION_DESCRIPTION::An awesome repo for awesome project multiple"
+            "SUBMISSION_DESCRIPTION=An awesome repo for awesome project multiple"
             " paragraphs",
         )
         self.assertEqual(
