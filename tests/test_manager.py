@@ -102,18 +102,10 @@ class TestManager(TestCase):
             "SUBMISSION_DESCRIPTION=An awesome repo for awesome project multiple"
             " paragraphs",
         )
-        self.assertEqual(
-            output_value[3], "SUBMISSION_LICENCE=Apache License 2.0"
-        )
-        self.assertEqual(
-            output_value[4], "SUBMISSION_CONTACT=toto@gege.com"
-        )
-        self.assertEqual(
-            output_value[5], "SUBMISSION_ALTERNATIVES=tititata"
-        )
-        self.assertEqual(
-            output_value[6], "SUBMISSION_AFFILIATIONS=_No response_"
-        )
+        self.assertEqual(output_value[3], "SUBMISSION_LICENCE=Apache License 2.0")
+        self.assertEqual(output_value[4], "SUBMISSION_CONTACT=toto@gege.com")
+        self.assertEqual(output_value[5], "SUBMISSION_ALTERNATIVES=tititata")
+        self.assertEqual(output_value[6], "SUBMISSION_AFFILIATIONS=_No response_")
         self.assertEqual(
             output_value[7],
             "SUBMISSION_LABELS=['tool', 'tutorial', 'paper implementation']",
