@@ -135,7 +135,7 @@ jobs:
         base: main
 
     - name: Create comment on success
-      if: ${{ ${{ steps.check-return.outputs.PASS_LOG }} == 'True' }}
+      if: ${{ steps.check-return.outputs.PASS_LOG == 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         repository: "qiskit-community/ecosystem"
@@ -144,7 +144,7 @@ jobs:
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
 
     - name: Create comment on failure
-      if: ${{ ${{ steps.check-return.outputs.PASS_LOG }} == 'False' }}
+      if: ${{ steps.check-return.outputs.PASS_LOG == 'False' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         repository: "qiskit-community/ecosystem"
