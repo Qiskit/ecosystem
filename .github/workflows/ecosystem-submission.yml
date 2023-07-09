@@ -138,7 +138,6 @@ jobs:
       if: ${{ steps.check-return.outputs.PASS_LOG == 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
-        repository: "qiskit-community/ecosystem"
         issue-number: ${{ github.event.issue.number }}
         body: |
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
@@ -147,7 +146,6 @@ jobs:
       if: ${{ steps.check-return.outputs.PASS_LOG == 'False' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
-        repository: "qiskit-community/ecosystem"
         issue-number: ${{ github.event.issue.number }}
         body: |
           Submission PR #${{ steps.cpr.outputs.pull-request-number }} has been created with errors in tests :warning:

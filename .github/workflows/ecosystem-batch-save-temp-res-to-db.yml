@@ -14,8 +14,8 @@ jobs:
     - name: Setup variables
       id: vars
       run: |
-        echo "::set-output name=datetime::$(date +'%Y_%m_%d_%H_%M')"
-        echo "::set-output name=pr_branch_name::batch_checks_$(date +'%Y_%m_%d_%H_%M')"
+        echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+        echo "pr_branch_name=batch_checks_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
     - uses: actions/checkout@v2
       with:
         ref: ${{ github.event.inputs.branch }}
