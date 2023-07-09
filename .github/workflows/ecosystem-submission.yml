@@ -81,7 +81,7 @@ jobs:
     # Check result, update issue and create MR
     - name: Check return
       run: |
-        echo "PASS_LOG=True" >> $GITHUB_ENV
+        echo "PASS_LOG=True" >> "$GITHUB_OUTPUT"
 
         declare -a return_list=( \
           "${{ steps.stable.outputs.result }}" \
@@ -90,7 +90,7 @@ jobs:
         )
         for i in "${return_list[@]}"; do
           if [[ "${i}" != *"True"* ]]; then
-            echo "PASS_LOG=False" >> $GITHUB_ENV
+            echo "PASS_LOG=False" >> "$GITHUB_OUTPUT"
           fi
         done
 

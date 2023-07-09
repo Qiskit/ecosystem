@@ -1,4 +1,5 @@
 """Logging module."""
+import os
 import logging
 from typing import Tuple, List, Union
 import coloredlogs
@@ -37,4 +38,5 @@ def set_actions_output(outputs: List[Tuple[str, Union[str, bool, float, int]]]) 
     """
     for name, value in outputs:
         logger.info("Setting output variable %s: %s", name, value)
-        print("::set-output name={name}::{value}".format(name=name, value=value))
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+            print("name={name}::{value}".format(name=name, value=value), file=fh)
