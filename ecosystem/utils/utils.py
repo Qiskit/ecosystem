@@ -42,4 +42,4 @@ def set_actions_output(outputs: List[Tuple[str, Union[str, bool, float, int]]]) 
             with open(os.environ["GITHUB_OUTPUT"], "a") as github_env:
                 github_env.write(f"{name}={value}\n")
         else:
-            print("{name}={value}".format(name=name, value=value))
+            print(f"{name}={value}")
