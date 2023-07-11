@@ -541,7 +541,7 @@ class Manager:
         # qiskit through github via deps configuration
         additional_commands = [
             "pip uninstall -y qiskit-terra",
-            f"pip install --no-dependencies git+https://github.com/Qiskit/{package}.git@main",
+            f"pip install git+https://github.com/Qiskit/{package}.git@main",
         ]
         return self._run_python_tests(
             run_name=run_name,
