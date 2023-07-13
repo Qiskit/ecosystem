@@ -94,7 +94,7 @@ class CloneRepoCommand(Command):
         Return: CommandExecutionSummary
         """
         return cls.subprocess_execute(
-            ["git", "-C", directory, "clone", repo], name="Clone repo"
+            ["git", "-C", directory, "--branch", "qiskit-ecosystem-test","clone", repo], name="Clone repo"
         )
 
 
