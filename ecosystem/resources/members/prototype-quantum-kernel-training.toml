@@ -12,7 +12,6 @@ styles_results = []
 coverages_results = []
 tier = "Extensions"
 skip_tests = true
-stars = 33
 
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
