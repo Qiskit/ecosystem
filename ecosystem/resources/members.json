@@ -12,7 +12,7 @@
             "updated_at": 1678827878.864397,
             "tier": "Community",
             "skip_tests": false,
-            "stars": 358,
+            "stars": 359,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -327,7 +327,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 453
+            "stars": 463
         },
         "2": {
             "created_at": 1636403009.538761,
@@ -346,7 +346,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 170
+            "stars": 171
         },
         "3": {
             "name": "kaleidoscope",
@@ -362,7 +362,7 @@
             "updated_at": 1678827878.709701,
             "tier": "Community",
             "skip_tests": false,
-            "stars": 18,
+            "stars": 19,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -713,7 +713,7 @@
             "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
-            "stars": 21,
+            "stars": 22,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -984,7 +984,7 @@
             "tier": "Community",
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 134,
+            "stars": 137,
             "configuration": {
                 "dependencies_files": [
                     "requirements.txt"
@@ -1136,7 +1136,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 227
+            "stars": 229
         },
         "9": {
             "name": "quantumcat",
@@ -1540,7 +1540,8 @@
             "coverages_results": [],
             "tier": "Community",
             "skip_tests": false,
-            "historical_test_results": []
+            "historical_test_results": [],
+            "stars": 6
         },
         "12": {
             "name": "qiskit-symb",
@@ -1562,7 +1563,7 @@
             "tier": "Community",
             "skip_tests": false,
             "historical_test_results": [],
-            "stars": 5,
+            "stars": 8,
             "configuration": {
                 "dependencies_files": [
                     "requirements.txt"
@@ -1597,7 +1598,7 @@
             "updated_at": 1678827878.611622,
             "tier": "Community",
             "skip_tests": false,
-            "stars": 713,
+            "stars": 745,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -1915,7 +1916,7 @@
             "updated_at": 1678827878.782752,
             "tier": "Community",
             "skip_tests": false,
-            "stars": 125,
+            "stars": 126,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -2568,7 +2569,7 @@
             "updated_at": 1678827878.932437,
             "tier": "Community",
             "skip_tests": false,
-            "stars": 266,
+            "stars": 271,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -2984,7 +2985,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 166
+            "stars": 169
         },
         "23": {
             "name": "c3",
@@ -4891,7 +4892,7 @@
             "tier": "Community",
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 3
+            "stars": 4
         },
         "37": {
             "name": "python-open-controls",
@@ -5323,7 +5324,7 @@
             "updated_at": 1678827878.827902,
             "tier": "Community",
             "skip_tests": false,
-            "stars": 81,
+            "stars": 82,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -5657,7 +5658,7 @@
             "coverages_results": [],
             "tier": "Main",
             "skip_tests": true,
-            "stars": 52,
+            "stars": 53,
             "configuration": {
                 "dependencies_files": [
                     "requirements.txt",
@@ -5699,7 +5700,7 @@
             "tier": "Main",
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 990
+            "stars": 1000
         },
         "2": {
             "created_at": 1636403010.377695,
@@ -5717,7 +5718,7 @@
             "styles_results": [],
             "coverages_results": [],
             "skip_tests": true,
-            "stars": 374
+            "stars": 376
         },
         "3": {
             "name": "qiskit-ibm-runtime",
@@ -5738,7 +5739,7 @@
             "coverages_results": [],
             "tier": "Main",
             "skip_tests": true,
-            "stars": 81
+            "stars": 83
         }
     },
     "Extensions": {
@@ -5756,7 +5757,7 @@
             "coverages_results": [],
             "tier": "Extensions",
             "skip_tests": false,
-            "stars": 24,
+            "stars": 25,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -6298,7 +6299,7 @@
             "website": "https://qiskit.org/ecosystem/experiments/",
             "tests_results": [],
             "skip_tests": true,
-            "stars": 110
+            "stars": 113
         },
         "3": {
             "name": "qiskit-research",
@@ -6319,7 +6320,7 @@
             "tier": "Extensions",
             "skip_tests": true,
             "historical_test_results": [],
-            "stars": 53
+            "stars": 54
         },
         "4": {
             "created_at": 1628883441.121108,
@@ -6334,8 +6335,7 @@
             "url": "https://github.com/Qiskit-Extensions/qiskit-dynamics",
             "website": "https://qiskit.org/ecosystem/dynamics/",
             "tests_results": [],
-            "skip_tests": true,
-            "stars": 71
+            "skip_tests": true
         },
         "5": {
             "name": "quantum-serverless",
@@ -6449,7 +6449,6 @@
             "coverages_results": [],
             "tier": "Extensions",
             "skip_tests": false,
-            "stars": 12,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -6703,7 +6702,6 @@
             "coverages_results": [],
             "tier": "Extensions",
             "skip_tests": false,
-            "stars": 29,
             "tests_results": [
                 {
                     "test_type": "development",
@@ -6926,7 +6924,6 @@
             "coverages_results": [],
             "tier": "Extensions",
             "skip_tests": true,
-            "stars": 33,
             "configuration": {
                 "dependencies_files": [
                     "requirements.txt",
@@ -6968,8 +6965,7 @@
             "coverages_results": [],
             "tier": "Extensions",
             "skip_tests": true,
-            "historical_test_results": [],
-            "stars": 40
+            "historical_test_results": []
         }
     }
 }
