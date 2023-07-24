@@ -23,6 +23,8 @@ class JsonSerializable(ABC):
             if key.startswith("_"):
                 continue
             element = []
+            if val is None:
+                continue
             if isinstance(val, list):
                 for item in val:
                     if isinstance(item, JsonSerializable):

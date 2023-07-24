@@ -1,8 +1,8 @@
 """Tests for manager cli."""
 import os
 import io
-import sys
 from unittest import TestCase
+from contextlib import redirect_stdout
 
 import responses
 
@@ -67,6 +67,10 @@ class TestManager(TestCase):
             "{}/resources/issue.md".format(self.current_dir), "r"
         ) as issue_body_file:
             self.issue_body = issue_body_file.read()
+        with open(
+            "{}/resources/issue_2.md".format(self.current_dir), "r"
+        ) as issue_body_file:
+            self.issue_body_2 = issue_body_file.read()
 
     def tearDown(self) -> None:
         self._delete_members_json()
@@ -85,11 +89,12 @@ class TestManager(TestCase):
         Args:
             issue_body
         """
-        captured_output = io.StringIO()
-        sys.stdout = captured_output
-        Manager.parser_issue(self.issue_body)
 
-        sys.stdout = sys.__stdout__
+        # Issue 1
+        captured_output = io.StringIO()
+        with redirect_stdout(captured_output):
+            Manager.parser_issue(self.issue_body)
+
         output_value = captured_output.getvalue().split("\n")
 
         self.assertEqual(output_value[0], "SUBMISSION_NAME=awesome")
@@ -113,6 +118,35 @@ class TestManager(TestCase):
         self.assertEqual(
             output_value[8],
             "SUBMISSION_WEBSITE=https://qiskit.org/ecosystem/",
+        )
+
+        # Issue 2
+        captured_output = io.StringIO()
+        with redirect_stdout(captured_output):
+            Manager.parser_issue(self.issue_body_2)
+
+        output_value = captured_output.getvalue().split("\n")
+
+        self.assertEqual(output_value[0], "SUBMISSION_NAME=awesome")
+        self.assertEqual(
+            output_value[1],
+            "SUBMISSION_REPO=http://github.com/awesome/awesome",
+        )
+        self.assertEqual(
+            output_value[2],
+            "SUBMISSION_DESCRIPTION=An awesome repo for awesome project",
+        )
+        self.assertEqual(output_value[3], "SUBMISSION_LICENCE=Apache License 2.0")
+        self.assertEqual(output_value[4], "SUBMISSION_CONTACT=toto@gege.com")
+        self.assertEqual(output_value[5], "SUBMISSION_ALTERNATIVES=_No response_")
+        self.assertEqual(output_value[6], "SUBMISSION_AFFILIATIONS=Awesome Inc.")
+        self.assertEqual(
+            output_value[7],
+            "SUBMISSION_LABELS=['_No response_']",
+        )
+        self.assertEqual(
+            output_value[8],
+            "SUBMISSION_WEBSITE=None",
         )
 
     @responses.activate
