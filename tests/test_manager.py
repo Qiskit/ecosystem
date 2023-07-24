@@ -1,7 +1,6 @@
 """Tests for manager cli."""
 import os
 import io
-import sys
 from unittest import TestCase
 from contextlib import redirect_stdout
 
