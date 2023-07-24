@@ -92,31 +92,27 @@ class TestManager(TestCase):
         sys.stdout = sys.__stdout__
         output_value = captured_output.getvalue().split("\n")
 
-        self.assertEqual(output_value[0], "::set-output name=SUBMISSION_NAME::awesome")
+        self.assertEqual(output_value[0], "SUBMISSION_NAME=awesome")
         self.assertEqual(
             output_value[1],
-            "::set-output name=SUBMISSION_REPO::http://github.com/awesome/awesome",
+            "SUBMISSION_REPO=http://github.com/awesome/awesome",
         )
         self.assertEqual(
             output_value[2],
-            "::set-output name=SUBMISSION_DESCRIPTION::An awesome repo for awesome project multiple"
+            "SUBMISSION_DESCRIPTION=An awesome repo for awesome project multiple"
             " paragraphs",
         )
-        self.assertEqual(
-            output_value[3], "::set-output name=SUBMISSION_LICENCE::Apache License 2.0"
-        )
-        self.assertEqual(
-            output_value[4], "::set-output name=SUBMISSION_CONTACT::toto@gege.com"
-        )
-        self.assertEqual(
-            output_value[5], "::set-output name=SUBMISSION_ALTERNATIVES::tititata"
-        )
-        self.assertEqual(
-            output_value[6], "::set-output name=SUBMISSION_AFFILIATIONS::_No response_"
-        )
+        self.assertEqual(output_value[3], "SUBMISSION_LICENCE=Apache License 2.0")
+        self.assertEqual(output_value[4], "SUBMISSION_CONTACT=toto@gege.com")
+        self.assertEqual(output_value[5], "SUBMISSION_ALTERNATIVES=tititata")
+        self.assertEqual(output_value[6], "SUBMISSION_AFFILIATIONS=_No response_")
         self.assertEqual(
             output_value[7],
-            "::set-output name=SUBMISSION_LABELS::['tool', 'tutorial', 'paper implementation']",
+            "SUBMISSION_LABELS=['tool', 'tutorial', 'paper implementation']",
+        )
+        self.assertEqual(
+            output_value[8],
+            "SUBMISSION_WEBSITE=https://qiskit.org/ecosystem/",
         )
 
     @responses.activate

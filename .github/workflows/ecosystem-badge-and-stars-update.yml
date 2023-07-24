@@ -14,11 +14,11 @@ jobs:
     - name: Setup variables
       id: vars
       run: |
-        echo "::set-output name=datetime::$(date +'%Y_%m_%d_%H_%M')"
-        echo "::set-output name=pr_branch_name::batch_badges_$(date +'%Y_%m_%d_%H_%M')"
-    - uses: actions/checkout@v2
+        echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+        echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+    - uses: actions/checkout@v3
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
           python-version: '3.9'
     - name: Install dependencies
@@ -34,7 +34,7 @@ jobs:
 
     - name: Create PR for stars and badges update
       id: cpr
-      uses: peter-evans/create-pull-request@v3
+      uses: peter-evans/create-pull-request@v5
       with:
         commit-message: Badges and stars update for ${{ steps.vars.outputs.datetime }}
         title: Badges and stars update for ${{ steps.vars.outputs.datetime }}

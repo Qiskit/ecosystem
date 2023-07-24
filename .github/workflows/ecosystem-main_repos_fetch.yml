@@ -17,9 +17,9 @@ jobs:
       run: |
         echo "::set-output name=datetime::$(date +'%Y_%m_%d_%H_%M')"
         echo "::set-output name=pr_branch_name::fetch_tests_for_main_$(date +'%Y_%m_%d_%H_%M')"
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ env.python-version }}
     - name: Install dependencies
@@ -33,7 +33,7 @@ jobs:
 
     - name: Create PR for batch checks
       id: cpr
-      uses: peter-evans/create-pull-request@v3
+      uses: peter-evans/create-pull-request@v5
       with:
         commit-message: Fetch tests results for main projects.
         title: AUTO ${{ steps.vars.outputs.datetime }} | Fetch tests results for main projects

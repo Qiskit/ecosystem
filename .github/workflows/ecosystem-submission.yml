@@ -33,9 +33,9 @@ jobs:
       python-version: "3.9"
     steps:
     # setup deps
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ env.python-version }}
     - name: Install dependencies
@@ -80,8 +80,9 @@ jobs:
 
     # Check result, update issue and create MR
     - name: Check return
+      id: check-return
       run: |
-        echo "PASS_LOG=True" >> $GITHUB_ENV
+        echo "PASS_LOG=True" >> "$GITHUB_OUTPUT"
 
         declare -a return_list=( \
           "${{ steps.stable.outputs.result }}" \
@@ -90,14 +91,14 @@ jobs:
         )
         for i in "${return_list[@]}"; do
           if [[ "${i}" != *"True"* ]]; then
-            echo "PASS_LOG=False" >> $GITHUB_ENV
+            echo "PASS_LOG=False" >> "$GITHUB_OUTPUT"
           fi
         done
 
     - name: Check the check
-      id: check_result
+      id: check-result
       run: |
-        echo "Pass log is ${{ env.PASS_LOG }}"
+        echo "Pass log is ${{ steps.check-return.outputs.PASS_LOG }}"
 
     - name: Add member
       env:
@@ -123,9 +124,8 @@ jobs:
 
     - name: Commit changes and create Pull Request
       id: cpr
-      uses: peter-evans/create-pull-request@v3
+      uses: peter-evans/create-pull-request@v5
       with:
-        repository: "qiskit-community/ecosystem"
         commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_REPO }} to list.
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         body: |
@@ -135,19 +135,17 @@ jobs:
         base: main
 
     - name: Create comment on success
-      if: ${{ env.PASS_LOG == 'True' }}
-      uses: peter-evans/create-or-update-comment@v1
+      if: ${{ steps.check-return.outputs.PASS_LOG == 'True' }}
+      uses: peter-evans/create-or-update-comment@v3
       with:
-        repository: "qiskit-community/ecosystem"
         issue-number: ${{ github.event.issue.number }}
         body: |
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
 
     - name: Create comment on failure
-      if: ${{ env.PASS_LOG == 'False' }}
-      uses: peter-evans/create-or-update-comment@v1
+      if: ${{ steps.check-return.outputs.PASS_LOG == 'False' }}
+      uses: peter-evans/create-or-update-comment@v3
       with:
-        repository: "qiskit-community/ecosystem"
         issue-number: ${{ github.event.issue.number }}
         body: |
           Submission PR #${{ steps.cpr.outputs.pull-request-number }} has been created with errors in tests :warning:
