@@ -574,6 +574,7 @@ class Manager:
         Return:
             _run_python_tests def
         """
+        qiskit_latest_deps = ["qiskit-terra"]
         additional_commands = [
             "pip install --upgrade --no-dependencies --force-reinstall qiskit-terra",
         ]
@@ -583,7 +584,7 @@ class Manager:
             tier=tier,
             python_version=python_version,
             test_type=TestType.STABLE_COMPATIBLE,
-            ecosystem_deps=[],
+            ecosystem_deps=qiskit_latest_deps,
             ecosystem_additional_commands=additional_commands,
             logs_link=logs_link,
         )
