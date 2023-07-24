@@ -92,7 +92,7 @@ class TestManager(TestCase):
 
         # Issue 1
         captured_output = io.StringIO()
-        with redirect_stdout(captured_output) as _:
+        with redirect_stdout(captured_output):
             Manager.parser_issue(self.issue_body)
 
         output_value = captured_output.getvalue().split("\n")
@@ -122,7 +122,7 @@ class TestManager(TestCase):
 
         # Issue 2
         captured_output = io.StringIO()
-        with redirect_stdout(captured_output) as _:
+        with redirect_stdout(captured_output):
             Manager.parser_issue(self.issue_body_2)
 
         output_value = captured_output.getvalue().split("\n")
