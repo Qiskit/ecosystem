@@ -2969,6 +2969,29 @@
             "stars": 9
         },
         "22": {
+            "name": "qBraid",
+            "url": "https://github.com/qBraid/qBraid",
+            "description": "The qBraid-SDK is a Python toolkit for cross-framework abstraction, transpilation, and execution of quantum programs.",
+            "licence": "GNU General Public License (GPL)",
+            "contact_info": "ryanhill@qbraid.com",
+            "alternatives": "There are some alternatives to individual modules within the qBraid-SDK e.g. to execute a Qiskit circuit on an AWS device, you could use the qiskit-braket-provider. However, there aren't any other existing projects that support the same matrix of quantum program types and backends through a single, unified interface.",
+            "affiliations": "qBraid Co.",
+            "website": "https://qbraid.com",
+            "labels": [
+                "circuit",
+                "openqasm",
+                "converter"
+            ],
+            "created_at": 1690263743.561744,
+            "updated_at": 1690263743.56175,
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "skip_tests": false,
+            "historical_test_results": []
+        },
+        "23": {
             "created_at": 1636403009.368607,
             "description": "Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments.",
             "labels": [
@@ -2987,7 +3010,7 @@
             "skip_tests": true,
             "stars": 169
         },
-        "23": {
+        "24": {
             "name": "c3",
             "url": "https://github.com/q-optimize/c3",
             "description": "The C3 package is intended to close the loop between open-loop control optimization, control pulse calibration, and model-matching based on calibration data.",
@@ -3319,7 +3342,7 @@
                 }
             }
         },
-        "24": {
+        "25": {
             "name": "QiskitOpt.jl",
             "url": "https://github.com/psrenergy/QiskitOpt.jl",
             "description": "QiskitOpt.jl is a Julia package that exports a JuMP wrapper for qiskit-optimization.",
@@ -3340,7 +3363,7 @@
             "historical_test_results": [],
             "stars": 8
         },
-        "25": {
+        "26": {
             "name": "qiskit-toqm",
             "url": "https://github.com/qiskit-toqm/qiskit-toqm",
             "description": "Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706",
@@ -3538,7 +3561,7 @@
                 }
             ]
         },
-        "26": {
+        "27": {
             "name": "qiskit-bip-mapper",
             "url": "https://github.com/qiskit-community/qiskit-bip-mapper",
             "description": "The repository contains a standalone routing stage plugin to use the BIPMapping [routing](https://qiskit.org/documentation/apidoc/transpiler.html#routing-stage) pass. The BIP mapping pass solves the routing and [layout](https://qiskit.org/documentation/apidoc/transpiler.html#layout-stage) problems as a binary integer programming (BIP) problem. The algorithm used in this pass is described in: G. Nannicini et al. \"Optimal qubit assignment and routing via integer programming.\" [arXiv:2106.06446](https://arxiv.org/abs/2106.06446)",
@@ -3560,7 +3583,7 @@
             "historical_test_results": [],
             "stars": 4
         },
-        "27": {
+        "28": {
             "name": "bosonic-qiskit",
             "url": "https://github.com/C2QA/bosonic-qiskit",
             "description": "NQI C2QA project to simulate hybrid boson-qubit systems within Qiskit.",
@@ -3710,7 +3733,7 @@
                 }
             ]
         },
-        "28": {
+        "29": {
             "created_at": 1628883441.119202,
             "description": "Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease.",
             "labels": [
@@ -3725,7 +3748,7 @@
             "skip_tests": true,
             "stars": 238
         },
-        "29": {
+        "30": {
             "name": "qiskit-rigetti",
             "url": "https://github.com/rigetti/qiskit-rigetti",
             "description": "Rigetti Provider for Qiskit",
@@ -4051,7 +4074,7 @@
                 }
             }
         },
-        "30": {
+        "31": {
             "name": "QiskitBot",
             "url": "https://github.com/infiniteregrets/QiskitBot",
             "description": "A discord bot that allows you to execute Quantum Circuits, look up the Qiskit's Documentation, and search questions on the Quantum Computing StackExchange",
@@ -4066,7 +4089,7 @@
             "skip_tests": true,
             "stars": 23
         },
-        "31": {
+        "32": {
             "name": "quantuminspire",
             "url": "https://github.com/QuTech-Delft/quantuminspire",
             "description": "platform allows to execute quantum algorithms using the cQASM language.",
@@ -4392,7 +4415,7 @@
                 }
             }
         },
-        "32": {
+        "33": {
             "name": "qiskit-ionq",
             "url": "https://github.com/Qiskit-Partners/qiskit-ionq",
             "description": "Project contains a provider that allows access to IonQ ion trap quantum systems.",
@@ -4582,7 +4605,7 @@
                 }
             }
         },
-        "33": {
+        "34": {
             "name": "sat-circuits-engine",
             "url": "https://github.com/ohadlev77/sat-circuits-engine",
             "description": "A Python-Qiskit-based package that provides capabilities of easily generating, executing and analyzing quantum circuits for satisfiability problems according to user-defined constraints. The circuits being generated by the program are based on Grover's algorithm and its amplitude-amplification generalization.",
@@ -4604,7 +4627,7 @@
             "historical_test_results": [],
             "stars": 6
         },
-        "34": {
+        "35": {
             "name": "QuantumCircuits.jl",
             "url": "https://github.com/Adgnitio/QuantumCircuits.jl",
             "description": "QuantumCircuits is an open-source library written in Julia for working with quantum computers at the application level, especially for Quantum Finance and Quantum Machine Learning. It allows to creation and manipulation of the quantum circuits and executes them in Julia or convert them to Qiskit Python object. The library also contains the Quantum Binomial Tree implementation for derivative pricing.",
@@ -4684,7 +4707,7 @@
                 }
             ]
         },
-        "35": {
+        "36": {
             "name": "dsm-swap",
             "url": "https://github.com/qiskit-community/dsm-swap",
             "description": "A doubly stochastic matrices-based approach to optimal qubit routing",
@@ -4873,7 +4896,7 @@
                 }
             ]
         },
-        "36": {
+        "37": {
             "name": "spinoza",
             "url": "https://github.com/smu160/spinoza",
             "description": "Spinoza is a quantum state simulator (implemented in Rust) that is one of the fastest open-source simulators. Spinoza is implemented using a functional approach. Additionally, Spinoza has a `QuantumCircuit` object-oriented interface, which partially matches Qiskit's interface. Spinoza is capable of running in a myriad of computing environments (e.g., small workstations), and on various architectures. At this juncture, Spinoza only utilizes a single thread; however, it is designed to be easily extended into a parallel version, as well as a distributed version. The paper associated with Spinoza is available [here](https://arxiv.org/pdf/2303.01493.pdf).",
@@ -4894,7 +4917,7 @@
             "historical_test_results": [],
             "stars": 4
         },
-        "37": {
+        "38": {
             "name": "python-open-controls",
             "url": "https://github.com/qctrl/python-open-controls",
             "description": "Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature",
@@ -5205,7 +5228,7 @@
                 }
             }
         },
-        "38": {
+        "39": {
             "name": "pytket-qiskit",
             "url": "https://github.com/CQCL/pytket-extensions/tree/develop/modules/pytket-qiskit",
             "description": "an extension to Pytket (a python module for interfacing with CQC tket) that allows Pytket circuits to be run on IBM backends and simulators, as well as conversion to and from Qiskit representations.",
@@ -5290,7 +5313,7 @@
                 }
             ]
         },
-        "39": {
+        "40": {
             "name": "zoose-codespace",
             "url": "https://github.com/ianhellstrom/zoose-codespace",
             "description": "GitHub Codespace template repository based on Zoose Quantum, a custom Docker image with everything included, so you can be up and running with any of the major quantum libraries (incl. Qiskit) with only two clicks! No installation required. Ideal for beginners or people who want to code quantum circuits on the go. Code quantum circuits straight in your browser with VSCode.",
@@ -5310,7 +5333,7 @@
             "historical_test_results": [],
             "stars": 0
         },
-        "40": {
+        "41": {
             "name": "qtcodes",
             "url": "https://github.com/yaleqc/qtcodes",
             "description": "Qiskit Topological Codes",
