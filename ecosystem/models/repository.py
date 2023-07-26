@@ -1,7 +1,7 @@
 """Repository model."""
+from __future__ import annotations
 import pprint
 from datetime import datetime
-from typing import Optional, List
 from dataclasses import dataclass
 
 from . import RepositoryConfiguration
@@ -19,21 +19,21 @@ class Repository(JsonSerializable):
     url: str
     description: str
     licence: str
-    contact_info: Optional[str] = None
-    alternatives: Optional[str] = None
-    affiliations: Optional[str] = None
-    labels: List[str] = new_list()
-    created_at: Optional[int] = None
-    updated_at: Optional[int] = None
+    contact_info: str | None = None
+    alternatives: str | None = None
+    affiliations: str | None = None
+    labels: list[str] = new_list()
+    created_at: int | None = None
+    updated_at: int | None = None
     tier: str = Tier.COMMUNITY
-    website: Optional[str] = None
-    tests_results: List[TestResult] = new_list()
-    styles_results: List[TestResult] = new_list()
-    coverages_results: List[TestResult] = new_list()
-    configuration: Optional[RepositoryConfiguration] = None
-    skip_tests: Optional[bool] = False
-    historical_test_results: List[TestResult] = new_list()
-    stars: Optional[int] = None
+    website: str | None = None
+    tests_results: list[TestResult] = new_list()
+    styles_results: list[TestResult] = new_list()
+    coverages_results: list[TestResult] = new_list()
+    configuration: RepositoryConfiguration | None = None
+    skip_tests: bool | None = False
+    historical_test_results: list[TestResult] = new_list()
+    stars: int | None = None
 
     def __post_init__(self):
         self.__dict__.setdefault("created_at", datetime.now().timestamp())

@@ -1,10 +1,7 @@
 """Tier of ecosystem membership."""
-
+from __future__ import annotations
 
 # pylint: disable=too-few-public-methods
-from typing import List
-
-
 class Tier:
     """Tiers of ecosystem membership."""
 
@@ -13,7 +10,7 @@ class Tier:
     EXTENSION: str = "Extensions"
 
     @classmethod
-    def all(cls) -> List[str]:
+    def all(cls) -> list[str]:
         """Returns all Tiers."""
         return [
             Tier.MAIN,
@@ -22,7 +19,7 @@ class Tier:
         ]
 
     @classmethod
-    def non_main_tiers(cls) -> List[str]:
+    def non_main_tiers(cls) -> list[str]:
         """Return all non Main tiers."""
         return [
             Tier.COMMUNITY,

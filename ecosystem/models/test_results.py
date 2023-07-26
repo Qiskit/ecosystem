@@ -1,6 +1,6 @@
 """Test results for commands."""
+from __future__ import annotations
 import datetime
-from typing import Optional, List
 from dataclasses import dataclass
 
 from .utils import JsonSerializable
@@ -22,7 +22,7 @@ class Package:  # pylint: disable=too-few-public-methods
     OPTIMIZATION: str = "qiskit-optimization"
     DYNAMICS: str = "qiskit-dymanics"
 
-    def all(self) -> List[str]:
+    def all(self) -> list[str]:
         """Returns list of all available Qiskit frameworks."""
         return [self.TERRA, self.NATURE, self.ML, self.OPTIMIZATION, self.DYNAMICS]
 
@@ -45,8 +45,8 @@ class TestResult(JsonSerializable):
     test_type: str
     package: str
     package_version: str
-    logs_link: Optional[str] = None
-    package_commit_hash: Optional[str] = None
+    logs_link: str | None = None
+    package_commit_hash: str | None = None
     terra_version: str = None
     timestamp: float = None
 

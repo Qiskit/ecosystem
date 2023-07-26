@@ -1,7 +1,7 @@
 """Configuration for ecosystem repository."""
+from __future__ import annotations
 import json
 import pprint
-from typing import Optional, List
 from dataclasses import dataclass, field
 
 from jinja2 import Environment, PackageLoader, select_autoescape, Template
@@ -15,7 +15,7 @@ class Languages:
 
     PYTHON: str = "python"
 
-    def all(self) -> List[str]:
+    def all(self) -> list[str]:
         """Return all supported languages."""
         return [self.PYTHON]
 
@@ -26,7 +26,7 @@ class Languages:
 class LanguageConfiguration(JsonSerializable):
     """Language configuration class."""
 
-    def __init__(self, name: str, versions: List[str]):
+    def __init__(self, name: str, versions: list[str]):
         """Language configuration.
 
         Args:
@@ -37,7 +37,7 @@ class LanguageConfiguration(JsonSerializable):
         self.versions = versions
 
     @classmethod
-    def default_version(cls) -> List[str]:
+    def default_version(cls) -> list[str]:
         """Default language versions."""
         return []
 
@@ -45,12 +45,12 @@ class LanguageConfiguration(JsonSerializable):
 class PythonLanguageConfiguration(LanguageConfiguration):
     """Python language config."""
 
-    def __init__(self, versions: Optional[List[str]] = None):
+    def __init__(self, versions: list[str] | None = None):
         versions = versions or ["3.6", "3.7", "3.8", "3.9"]
         super().__init__(name=Languages.PYTHON, versions=versions)
 
     @classmethod
-    def default_version(cls) -> List[str]:
+    def default_version(cls) -> list[str]:
         return ["3.6", "3.7", "3.8", "3.9"]
 
 
@@ -74,11 +74,11 @@ class RepositoryConfiguration(JsonSerializable):
     """
 
     language: LanguageConfiguration = field(default_factory=PythonLanguageConfiguration)
-    dependencies_files: List[str] = new_list()
-    extra_dependencies: List[str] = new_list()
-    tests_command: List[str] = new_list()
-    styles_check_command: List[str] = new_list()
-    coverages_check_command: List[str] = new_list()
+    dependencies_files: list[str] = new_list()
+    extra_dependencies: list[str] = new_list()
+    tests_command: list[str] = new_list()
+    styles_check_command: list[str] = new_list()
+    coverages_check_command: list[str] = new_list()
 
     def save(self, path: str):
         """Saves configuration as json file."""
@@ -144,10 +144,10 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     Repository configuration for python based projects.
     """
 
-    _tox_template: Template = None
-    _lint_template: Template = None
-    _cov_template: Template = None
-    _setup_template: Template = None
+    _tox_template: Template | None = None
+    _lint_template: Template | None = None
+    _cov_template: Template | None = None
+    _setup_template: Template | None = None
 
     def __post_init__(self):
         env = Environment(
@@ -175,8 +175,8 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
 
     def render_tox_file(
         self,
-        ecosystem_deps: List[str] = None,
-        ecosystem_additional_commands: List[str] = None,
+        ecosystem_deps: list[str] = None,
+        ecosystem_additional_commands: list[str] = None,
     ):
         """Renders tox template from configuration."""
         ecosystem_deps = ecosystem_deps or []
