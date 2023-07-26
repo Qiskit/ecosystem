@@ -22,17 +22,17 @@ class Repository(JsonSerializable):
     contact_info: Optional[str] = None
     alternatives: Optional[str] = None
     affiliations: Optional[str] = None
-    labels: Optional[List[str]] = new_list()
+    labels: List[str] = new_list()
     created_at: Optional[int] = None
     updated_at: Optional[int] = None
     tier: str = Tier.COMMUNITY
     website: Optional[str] = None
-    tests_results: Optional[List[TestResult]] = new_list()
-    styles_results: Optional[List[TestResult]] = new_list()
-    coverages_results: Optional[List[TestResult]] = new_list()
+    tests_results: List[TestResult] = new_list()
+    styles_results: List[TestResult] = new_list()
+    coverages_results: List[TestResult] = new_list()
     configuration: Optional[RepositoryConfiguration] = None
     skip_tests: Optional[bool] = False
-    historical_test_results: Optional[List[TestResult]] = new_list()
+    historical_test_results: List[TestResult] = new_list()
     stars: Optional[int] = None
 
     def __post_init__(self):
