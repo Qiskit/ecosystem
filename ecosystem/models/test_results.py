@@ -2,12 +2,12 @@
 from __future__ import annotations
 import datetime
 from dataclasses import dataclass
+from enum import Enum
 
 from .utils import JsonSerializable
 
 
-@dataclass
-class TestStatus:
+class TestStatus(str, Enum):
     # pylint: disable=invalid-name, missing-docstring
     PASSED = "passed"
     FAILED = "failed"
