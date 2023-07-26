@@ -18,14 +18,7 @@ jobs:
     concurrency:
       group: ci-${{ github.event.issue.title }}
       cancel-in-progress: true
-    if: |
-      (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'opened') ||
-      (github.event.comment.body == '!redo' && startsWith(github.event.issue.title, '[Submission]:') && 
-      (
-      	github.event.sender.login == github.event.issue.user.login || 
-      	github.event.comment.author_association == 'OWNER' || 
-      	github.event.comment.author_association == 'CONTRIBUTOR'
-      ))
+    if: startsWith(github.event.issue.title, '[Submission]:')
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
