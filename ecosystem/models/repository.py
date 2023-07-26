@@ -1,145 +1,68 @@
 """Repository model."""
+from __future__ import annotations
+
 import pprint
 from datetime import datetime
-from typing import Optional, List
+from dataclasses import dataclass
 
 from . import RepositoryConfiguration
 from .test_results import TestResult, StyleResult, CoverageResult
 from .tier import Tier
-from .utils import JsonSerializable
+from .utils import JsonSerializable, new_list
 
 
+@dataclass
 class Repository(JsonSerializable):
     """Main repository class."""
 
-    # pylint: disable=too-many-locals, too-many-instance-attributes
+    # pylint: disable=too-many-instance-attributes
+    name: str
+    url: str
+    description: str
+    licence: str
+    contact_info: str | None = None
+    alternatives: str | None = None
+    affiliations: str | None = None
+    labels: list[str] = new_list()
+    created_at: int | None = None
+    updated_at: int | None = None
+    tier: str = Tier.COMMUNITY
+    website: str | None = None
+    tests_results: list[TestResult] = new_list()
+    styles_results: list[TestResult] = new_list()
+    coverages_results: list[TestResult] = new_list()
+    configuration: RepositoryConfiguration | None = None
+    skip_tests: bool | None = False
+    historical_test_results: list[TestResult] = new_list()
+    stars: int | None = None
 
-    def __init__(
-        self,
-        name: str,
-        url: str,
-        description: str,
-        licence: str,
-        contact_info: Optional[str] = None,
-        alternatives: Optional[str] = None,
-        affiliations: Optional[str] = None,
-        labels: Optional[List[str]] = None,
-        created_at: Optional[int] = None,
-        updated_at: Optional[int] = None,
-        tier: str = Tier.COMMUNITY,
-        website: Optional[str] = None,
-        tests_results: Optional[List[TestResult]] = None,
-        styles_results: Optional[List[TestResult]] = None,
-        coverages_results: Optional[List[TestResult]] = None,
-        configuration: Optional[RepositoryConfiguration] = None,
-        skip_tests: Optional[bool] = None,
-        historical_test_results: Optional[List[TestResult]] = None,
-        stars: Optional[int] = None,
-    ):
-        """Repository class.
-
-        Args:
-            name: name of project
-            url: url to github repo
-            description: description
-            licence: licence
-            contact_info: contact information
-            alternatives: alternatives to project
-            affiliations : affiliations of the project
-            website : website for the project
-            labels: labels
-            created_at: creation date
-            updated_at: update date
-            website: website for the project
-            tier: repo tier
-            tests_results: tests passed by repo
-            styles_results: styles passed by repo
-            coverages_results: coverages passed by repo
-            skip_tests: weather skip tests or not
-            historical_test_results: list of historical test results
-            stars: github stars for repo
-        """
-        self.name = name
-        self.url = url
-        self.description = description
-        self.licence = licence
-        self.contact_info = contact_info
-        self.alternatives = alternatives
-        self.affiliations = affiliations
-        self.website = website
-        self.labels = labels if labels is not None else []
-        self.created_at = (
-            created_at if created_at is not None else datetime.now().timestamp()
-        )
-        self.updated_at = (
-            updated_at if updated_at is not None else datetime.now().timestamp()
-        )
-        self.tests_results = tests_results if tests_results else []
-        self.styles_results = styles_results if styles_results else []
-        self.coverages_results = coverages_results if coverages_results else []
-        self.tier = tier
-        self.website = website
-        self.configuration = configuration
-        self.skip_tests = skip_tests if skip_tests is not None else False
-        self.historical_test_results = historical_test_results or []
-        self.stars = stars
+    def __post_init__(self):
+        self.__dict__.setdefault("created_at", datetime.now().timestamp())
+        self.__dict__.setdefault("updated_at", datetime.now().timestamp())
 
     @classmethod
     def from_dict(cls, dictionary: dict):
-        """Transform dicrectory to Repository.
+        """Transform dictionary to Repository.
 
         Args:
             dictionary: dict object
 
         Return: Repository
         """
-        tests_results = []
-        if "tests_results" in dictionary:
-            tests_results = [
-                TestResult.from_dict(r) for r in dictionary.get("tests_results", [])
-            ]
-        styles_results = []
-        if "styles_results" in dictionary:
-            styles_results = [
-                StyleResult.from_dict(r) for r in dictionary.get("styles_results", [])
-            ]
-        coverages_results = []
-        if "coverages_results" in dictionary:
-            coverages_results = [
-                CoverageResult.from_dict(r)
-                for r in dictionary.get("coverages_results", [])
-            ]
+        for key, dtype in [
+            ("tests_results", TestResult),
+            ("styles_results", StyleResult),
+            ("coverages_results", CoverageResult),
+            ("historical_test_results", TestResult),
+        ]:
+            dictionary[key] = [dtype.from_dict(r) for r in dictionary.get(key, [])]
 
-        configuration = None
-        if dictionary.get("configuration") is not None:
-            configuration = RepositoryConfiguration.from_dict(
+        if "configuration" in dictionary:
+            dictionary["configuration"] = RepositoryConfiguration.from_dict(
                 dictionary.get("configuration")
             )
 
-        historical_test_results = []
-        if "historical_test_results" in dictionary:
-            historical_test_results = [
-                TestResult.from_dict(r)
-                for r in dictionary.get("historical_test_results", [])
-            ]
-
-        return Repository(
-            name=dictionary.get("name"),
-            url=dictionary.get("url"),
-            description=dictionary.get("description"),
-            licence=dictionary.get("licence"),
-            contact_info=dictionary.get("contact_info"),
-            alternatives=dictionary.get("alternatives"),
-            labels=dictionary.get("labels"),
-            tier=dictionary.get("tier"),
-            tests_results=tests_results,
-            styles_results=styles_results,
-            coverages_results=coverages_results,
-            configuration=configuration,
-            skip_tests=dictionary.get("skip_tests"),
-            historical_test_results=historical_test_results,
-            stars=dictionary.get("stars"),
-        )
+        return Repository(**dictionary)
 
     def __eq__(self, other: "Repository"):
         return (

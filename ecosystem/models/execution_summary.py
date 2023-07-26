@@ -1,5 +1,5 @@
 """Execution summary model."""
-from typing import List, Optional
+from __future__ import annotations
 
 
 class CommandExecutionSummary:
@@ -8,9 +8,9 @@ class CommandExecutionSummary:
     def __init__(
         self,
         code: int,
-        logs: List[str],
-        summary: Optional[str] = None,
-        name: Optional[str] = None,
+        logs: list[str],
+        summary: str | None = None,
+        name: str | None = None,
     ):
         """CommandExecutionSummary class."""
         self.name = name or ""
@@ -23,11 +23,11 @@ class CommandExecutionSummary:
         else:
             self.summary = summary
 
-    def get_warning_logs(self) -> List[str]:
+    def get_warning_logs(self) -> list[str]:
         """Return warning messages."""
         return [log for log in self.logs if "warn" in log.lower()]
 
-    def get_qiskit_depreciation_logs(self) -> List[str]:
+    def get_qiskit_depreciation_logs(self) -> list[str]:
         """Return qiskit depreciation messages."""
         return [
             log
@@ -37,11 +37,11 @@ class CommandExecutionSummary:
             and "qiskit.aqua" not in log.lower()
         ]
 
-    def get_error_logs(self) -> List[str]:
+    def get_error_logs(self) -> list[str]:
         """Return error messages."""
         return [log for log in self.logs if "error" in log.lower()]
 
-    def get_fail_logs(self) -> List[str]:
+    def get_fail_logs(self) -> list[str]:
         """Return fail messages."""
         return [log for log in self.logs if "failed" in log.lower()]
 

@@ -1,8 +1,17 @@
 """Test results for commands."""
+from __future__ import annotations
+
 import datetime
-from typing import Optional, List
+from dataclasses import dataclass
+from enum import Enum
 
 from .utils import JsonSerializable
+
+
+class TestStatus(Enum):
+    # pylint: disable=invalid-name, missing-docstring
+    PASSED = "passed"
+    FAILED = "failed"
 
 
 class Package:  # pylint: disable=too-few-public-methods
@@ -14,66 +23,52 @@ class Package:  # pylint: disable=too-few-public-methods
     OPTIMIZATION: str = "qiskit-optimization"
     DYNAMICS: str = "qiskit-dymanics"
 
-    def all(self) -> List[str]:
+    def all(self) -> list[str]:
         """Returns list of all available Qiskit frameworks."""
         return [self.TERRA, self.NATURE, self.ML, self.OPTIMIZATION, self.DYNAMICS]
 
 
+@dataclass
 class TestResult(JsonSerializable):
-    """Tests result class."""
+    """
+    Tests result class.
 
-    _TEST_PASSED: str = "passed"
-    _TEST_FAILED: str = "failed"
+    Attributes:
+        passed: passed or not
+        test_type: dev, standard, stable
+        package: framework tested against
+        package_version: version of framework tested against
+        logs_link: link to logs of tests
+        package_commit_hash: package commit hash
+    """
 
-    def __init__(
-        self,
-        passed: bool,
-        test_type: str,
-        package: str,
-        package_version: str,
-        logs_link: Optional[str] = None,
-        package_commit_hash: Optional[str] = None,
-    ):
-        """Tests result.
+    passed: bool
+    test_type: str
+    package: str
+    package_version: str
+    logs_link: str | None = None
+    package_commit_hash: str | None = None
+    terra_version: str | None = None
+    timestamp: float | None = None
 
-        Args:
-            passed: passed or not
-            test_type: dev, standard, stable
-            package: framework tested against
-            package_version: version of framework tested against
-            logs_link: link to logs of tests
-            package_commit_hash: package commit hash
-        """
-        self.test_type = test_type
-        self.passed = passed
-        self.package = package
-        self.package_version = package_version
-        self.terra_version = package_version
+    def __post_init__(self):
+        self.terra_version = self.package_version
         self.timestamp = datetime.datetime.now().timestamp()
-        self.logs_link = logs_link
-        self.package_commit_hash = package_commit_hash
 
     @classmethod
     def from_dict(cls, dictionary: dict):
-        """Get result form dict.
+        """Get result from dict.
 
         Args:
             dictionary: dict object with the result of tox -epy3.x
 
         Return: TestResult
         """
-        return TestResult(
-            passed=dictionary.get("passed"),
-            test_type=dictionary.get("test_type"),
-            package=dictionary.get("package"),
-            package_version=dictionary.get("package_version"),
-            logs_link=dictionary.get("logs_link"),
-            package_commit_hash=dictionary.get("package_commit_hash"),
-        )
+        return TestResult(**dictionary)
 
     def to_string(self) -> str:
         """Test result as string."""
-        return self._TEST_PASSED if self.passed else self._TEST_FAILED
+        return TestStatus.PASSED if self.passed else TestStatus.FAILED
 
     def __eq__(self, other: "TestResult"):
         return (
@@ -91,32 +86,27 @@ class TestResult(JsonSerializable):
         )
 
 
+@dataclass
 class StyleResult(JsonSerializable):
     """Tests status."""
 
-    _STYLE_PASSED: str = "passed"
-    _STYLE_FAILED: str = "failed"
-
-    def __init__(self, passed: bool, style_type: str):
-        self.style_type = style_type
-        self.passed = passed
+    passed: bool
+    style_type: str
 
     @classmethod
     def from_dict(cls, dictionary: dict):
-        """Get result form dict.
+        """Get result from dict.
 
         Args:
             dictionary: dict object with the result of tox -elint
 
         Return: StyleResult
         """
-        return StyleResult(
-            passed=dictionary.get("passed"), style_type=dictionary.get("style_type")
-        )
+        return StyleResult(**dictionary)
 
     def to_string(self) -> str:
         """Style result as string."""
-        return self._STYLE_PASSED if self.passed else self._STYLE_FAILED
+        return TestStatus.PASSED if self.passed else TestStatus.FAILED
 
     def __eq__(self, other: "StyleResult"):
         return self.passed == other.passed and self.style_type == other.style_type
@@ -125,33 +115,27 @@ class StyleResult(JsonSerializable):
         return f"TestResult({self.passed}, {self.style_type}"
 
 
+@dataclass
 class CoverageResult(JsonSerializable):
     """Tests status."""
 
-    _COVERAGE_PASSED: str = "passed"
-    _COVERAGE_FAILED: str = "failed"
-
-    def __init__(self, passed: bool, coverage_type: str):
-        self.coverage_type = coverage_type
-        self.passed = passed
+    passed: str
+    coverage_type: str
 
     @classmethod
     def from_dict(cls, dictionary: dict):
-        """Get result form dict.
+        """Get result from dict.
 
         Args:
             dictionary: dict object with the result of tox -ecoverage
 
         Return: CoverageResult
         """
-        return CoverageResult(
-            passed=dictionary.get("passed"),
-            coverage_type=dictionary.get("coverage_type"),
-        )
+        return CoverageResult(**dictionary)
 
     def to_string(self) -> str:
         """Style result as string."""
-        return self._COVERAGE_PASSED if self.passed else self._COVERAGE_FAILED
+        return TestStatus.PASSED if self.passed else TestStatus.FAILED
 
     def __eq__(self, other: "CoverageResult"):
         return self.passed == other.passed and self.coverage_type == other.coverage_type

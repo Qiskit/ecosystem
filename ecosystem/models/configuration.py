@@ -1,12 +1,14 @@
 """Configuration for ecosystem repository."""
+from __future__ import annotations
+
 import json
 import pprint
-from typing import Optional, List
+from dataclasses import dataclass, field
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Environment, PackageLoader, select_autoescape, Template
 
 from ecosystem.exception import QiskitEcosystemException
-from .utils import JsonSerializable
+from .utils import JsonSerializable, new_list
 
 
 class Languages:
@@ -14,7 +16,7 @@ class Languages:
 
     PYTHON: str = "python"
 
-    def all(self) -> List[str]:
+    def all(self) -> list[str]:
         """Return all supported languages."""
         return [self.PYTHON]
 
@@ -25,7 +27,7 @@ class Languages:
 class LanguageConfiguration(JsonSerializable):
     """Language configuration class."""
 
-    def __init__(self, name: str, versions: List[str]):
+    def __init__(self, name: str, versions: list[str]):
         """Language configuration.
 
         Args:
@@ -36,7 +38,7 @@ class LanguageConfiguration(JsonSerializable):
         self.versions = versions
 
     @classmethod
-    def default_version(cls) -> List[str]:
+    def default_version(cls) -> list[str]:
         """Default language versions."""
         return []
 
@@ -44,48 +46,40 @@ class LanguageConfiguration(JsonSerializable):
 class PythonLanguageConfiguration(LanguageConfiguration):
     """Python language config."""
 
-    def __init__(self, versions: Optional[List[str]] = None):
+    def __init__(self, versions: list[str] | None = None):
         versions = versions or ["3.6", "3.7", "3.8", "3.9"]
         super().__init__(name=Languages.PYTHON, versions=versions)
 
     @classmethod
-    def default_version(cls) -> List[str]:
+    def default_version(cls) -> list[str]:
         return ["3.6", "3.7", "3.8", "3.9"]
 
 
+@dataclass
 class RepositoryConfiguration(JsonSerializable):
-    """Configuration for ecosystem repository."""
+    """
+    Configuration for ecosystem repository.
 
-    def __init__(
-        self,
-        language: Optional[LanguageConfiguration] = None,
-        dependencies_files: Optional[List[str]] = None,
-        extra_dependencies: Optional[List[str]] = None,
-        tests_command: Optional[List[str]] = None,
-        styles_check_command: Optional[List[str]] = None,
-        coverages_check_command: Optional[List[str]] = None,
-    ):
-        """Configuration for ecosystem repository.
+    Attributes:
+        language: repository language configuration
+        dependencies_files: list of dependencies files paths relative to root of repo
+            ex: for python `requirements.txt`
+        extra_dependencies: list of extra dependencies for project to install during tests run
+            ex: for python it might be `qiskit==0.19`
+        tests_command: list of commands to run tests
+            ex: for python `python -m unittest -v`
+        styles_check_command: list of commands to run style checks
+            ex: for python `pylint -rn ecosystem tests`
+        coverages_check_command: list of commands to run coverage checks
+            ex: for python `coverage3 -m unittest -v && coverage report`
+    """
 
-        Args:
-            language: repository language configuration
-            dependencies_files: list of dependencies files paths relative to root of repo
-                ex: for python `requirements.txt`
-            extra_dependencies: list of extra dependencies for project to install during tests run
-                ex: for python it might be `qiskit==0.19`
-            tests_command: list of commands to run tests
-                ex: for python `python -m unittest -v`
-            styles_check_command: list of commands to run style checks
-                ex: for python `pylint -rn ecosystem tests`
-            coverages_check_command: list of commands to run coverage checks
-                ex: for python `coverage3 -m unittest -v && coverage report`
-        """
-        self.language = language or PythonLanguageConfiguration()
-        self.dependencies_files = dependencies_files or []
-        self.extra_dependencies = extra_dependencies or []
-        self.tests_command = tests_command or []
-        self.styles_check_command = styles_check_command or []
-        self.coverages_check_command = coverages_check_command or []
+    language: LanguageConfiguration = field(default_factory=PythonLanguageConfiguration)
+    dependencies_files: list[str] = new_list()
+    extra_dependencies: list[str] = new_list()
+    tests_command: list[str] = new_list()
+    styles_check_command: list[str] = new_list()
+    coverages_check_command: list[str] = new_list()
 
     def save(self, path: str):
         """Saves configuration as json file."""
@@ -145,27 +139,18 @@ class RepositoryConfiguration(JsonSerializable):
         return pprint.pformat(self.to_dict(), indent=4)
 
 
+@dataclass
 class PythonRepositoryConfiguration(RepositoryConfiguration):
-    """Repository configuration for python based projects."""
+    """
+    Repository configuration for python based projects.
+    """
 
-    def __init__(
-        self,
-        language: Optional[LanguageConfiguration] = None,
-        dependencies_files: Optional[List[str]] = None,
-        extra_dependencies: Optional[List[str]] = None,
-        tests_command: Optional[List[str]] = None,
-        styles_check_command: Optional[List[str]] = None,
-        coverages_check_command: Optional[List[str]] = None,
-    ):
-        language = language or PythonLanguageConfiguration()
-        super().__init__(
-            language=language,
-            dependencies_files=dependencies_files,
-            extra_dependencies=extra_dependencies,
-            tests_command=tests_command,
-            styles_check_command=styles_check_command,
-            coverages_check_command=coverages_check_command,
-        )
+    _tox_template: Template | None = None
+    _lint_template: Template | None = None
+    _cov_template: Template | None = None
+    _setup_template: Template | None = None
+
+    def __post_init__(self):
         env = Environment(
             loader=PackageLoader("ecosystem"), autoescape=select_autoescape()
         )
@@ -191,8 +176,8 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
 
     def render_tox_file(
         self,
-        ecosystem_deps: List[str] = None,
-        ecosystem_additional_commands: List[str] = None,
+        ecosystem_deps: list[str] = None,
+        ecosystem_additional_commands: list[str] = None,
     ):
         """Renders tox template from configuration."""
         ecosystem_deps = ecosystem_deps or []
