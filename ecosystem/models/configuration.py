@@ -1,5 +1,6 @@
 """Configuration for ecosystem repository."""
 from __future__ import annotations
+
 import json
 import pprint
 from dataclasses import dataclass, field

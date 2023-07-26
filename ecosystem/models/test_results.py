@@ -1,5 +1,6 @@
 """Test results for commands."""
 from __future__ import annotations
+
 import datetime
 from dataclasses import dataclass
 from enum import Enum
@@ -7,7 +8,7 @@ from enum import Enum
 from .utils import JsonSerializable
 
 
-class TestStatus(str, Enum):
+class TestStatus(Enum):
     # pylint: disable=invalid-name, missing-docstring
     PASSED = "passed"
     FAILED = "failed"

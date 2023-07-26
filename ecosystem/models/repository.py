@@ -1,5 +1,6 @@
 """Repository model."""
 from __future__ import annotations
+
 import pprint
 from datetime import datetime
 from dataclasses import dataclass
