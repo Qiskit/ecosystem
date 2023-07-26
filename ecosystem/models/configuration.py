@@ -72,6 +72,7 @@ class RepositoryConfiguration(JsonSerializable):
         coverages_check_command: list of commands to run coverage checks
             ex: for python `coverage3 -m unittest -v && coverage report`
     """
+
     language: LanguageConfiguration = field(default_factory=PythonLanguageConfiguration)
     dependencies_files: List[str] = new_list()
     extra_dependencies: List[str] = new_list()
