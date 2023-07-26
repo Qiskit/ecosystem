@@ -1,8 +1,10 @@
 """Utility classes for models."""
 from abc import ABC
+from dataclasses import field
 
 
 UnknownPackageVersion: str = "unknown"
+new_list = lambda: field(default_factory=list)
 
 
 class JsonSerializable(ABC):
