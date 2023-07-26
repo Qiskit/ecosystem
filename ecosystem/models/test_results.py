@@ -48,8 +48,8 @@ class TestResult(JsonSerializable):
     package_version: str
     logs_link: str | None = None
     package_commit_hash: str | None = None
-    terra_version: str = None
-    timestamp: float = None
+    terra_version: str | None = None
+    timestamp: float | None = None
 
     def __post_init__(self):
         self.terra_version = self.package_version
