@@ -10,8 +10,6 @@ name: Ecosystem | Submission check
 on:
   issues:
     types: [opened, edited, reopened]
-#  issue_comment:
-#    types: [created]
 
 jobs:
   submission_workflow:
