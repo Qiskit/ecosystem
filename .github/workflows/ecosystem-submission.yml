@@ -78,7 +78,7 @@ jobs:
         tier: ${{ env.tier }}
         logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
 
-    # Check result, update issue and create MR
+    # Check result, update issue and create PR
     - name: Check return
       id: check-return
       run: |
@@ -132,7 +132,7 @@ jobs:
         branch: submission-${{ github.event.issue.number }}
         base: main
 
-    - name: Create comment on success
+    - name: Create comment on success for standard check
       if: ${{ steps.standard.outputs.result == *"True"* }}
       uses: peter-evans/create-or-update-comment@v3
       with:
@@ -150,3 +150,41 @@ jobs:
           See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
           Please follow minimal requirements for project or/and add `ecosystem.json` configuration in the root of the project
           Read more here https://github.com/qiskit-community/ecosystem/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem
+
+    - name: Create comment on success for stable check
+      if: ${{ steps.stable.outputs.result == *"True"* }}
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Tests with latest version of Qiskit release passed! :sparkles:
+
+    - name: Create comment on failure for stable check
+      if: ${{ steps.stable.outputs.result == *"True"* }}
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Tests with latest version of Qiskit release failed! :warning:
+          This means, your project doesn't works with lastest version of Qiskit.
+          This is purely informational and doesn't affect your project joining Ecosystem.
+          See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
+
+    - name: Create comment on success for dev check
+      if: ${{ steps.dev.outputs.result == *"True"* }}
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Tests with development version of Qiskit release passed! :sparkles:
+
+    - name: Create comment on failure for dev check
+      if: ${{ steps.dev.outputs.result == *"True"* }}
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Tests with development version of Qiskit release failed! :warning:
+          This means, your project seems not gonna work with next version of Qiskit.
+          This is purely informational and doesn't affect your project joining Ecosystem.
+          See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
