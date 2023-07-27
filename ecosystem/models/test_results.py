@@ -3,15 +3,8 @@ from __future__ import annotations
 
 import datetime
 from dataclasses import dataclass
-from enum import Enum
 
 from .utils import JsonSerializable
-
-
-class TestStatus(Enum):
-    # pylint: disable=invalid-name, missing-docstring
-    PASSED = "passed"
-    FAILED = "failed"
 
 
 class Package:  # pylint: disable=too-few-public-methods
@@ -66,10 +59,6 @@ class TestResult(JsonSerializable):
         """
         return TestResult(**dictionary)
 
-    def to_string(self) -> str:
-        """Test result as string."""
-        return TestStatus.PASSED if self.passed else TestStatus.FAILED
-
     def __eq__(self, other: "TestResult"):
         return (
             self.passed == other.passed
@@ -104,10 +93,6 @@ class StyleResult(JsonSerializable):
         """
         return StyleResult(**dictionary)
 
-    def to_string(self) -> str:
-        """Style result as string."""
-        return TestStatus.PASSED if self.passed else TestStatus.FAILED
-
     def __eq__(self, other: "StyleResult"):
         return self.passed == other.passed and self.style_type == other.style_type
 
@@ -132,10 +117,6 @@ class CoverageResult(JsonSerializable):
         Return: CoverageResult
         """
         return CoverageResult(**dictionary)
-
-    def to_string(self) -> str:
-        """Style result as string."""
-        return TestStatus.PASSED if self.passed else TestStatus.FAILED
 
     def __eq__(self, other: "CoverageResult"):
         return self.passed == other.passed and self.coverage_type == other.coverage_type
