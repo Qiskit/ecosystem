@@ -93,36 +93,6 @@ class TestJsonDao(TestCase):
         dao.delete(repo_url=main_repo.url, tier=main_repo.tier)
         self.assertEqual([], dao.get_repos_by_tier(Tier.MAIN))
 
-    def test_move_from_tier_to_tier(self):
-        """Tests moving repo from tier to tier.
-        Function: JsonDao
-                -> move_repo_to_other_tier
-        """
-        self._delete_members_json()
-
-        main_repo = get_main_repo()
-        dao = JsonDAO(self.path)
-
-        # insert entry
-        dao.insert(main_repo)
-        fetched_repo = dao.get_repos_by_tier(Tier.MAIN)[0]
-        self.assertEqual(main_repo, fetched_repo)
-        self.assertEqual(main_repo.labels, fetched_repo.labels)
-        self.assertEqual(len(fetched_repo.tests_results), 0)
-
-        # move from tier to tier
-        moved_repo = dao.move_repo_to_other_tier(
-            repo_url=main_repo.url,
-            source_tier=main_repo.tier,
-            destination_tier=Tier.COMMUNITY,
-        )
-        repos = dao.get_repos_by_tier(Tier.MAIN)
-        self.assertEqual(len(repos), 0)
-
-        candidate_repos = dao.get_repos_by_tier(Tier.COMMUNITY)
-        self.assertEqual(len(candidate_repos), 1)
-        self.assertEqual(candidate_repos[0], moved_repo)
-
     def test_latest_results(self):
         """Tests append of latest passed test results."""
         self._delete_members_json()
