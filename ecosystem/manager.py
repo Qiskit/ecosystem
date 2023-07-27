@@ -142,6 +142,7 @@ class Manager:
                     f"https://img.shields.io/static/v1?"
                     f"label={label}&message={message}&color={color}"
                 )
+
                 shields_request = requests.get(url)
                 with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
                     outfile.write(shields_request.content)
