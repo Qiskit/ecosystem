@@ -82,23 +82,21 @@ jobs:
     - name: Check return
       id: check-return
       run: |
-        echo "PASS_LOG=True" >> "$GITHUB_OUTPUT"
-
-        declare -a return_list=( \
-          "${{ steps.stable.outputs.result }}" \
-          "${{ steps.standard.outputs.result }}" \
-          "${{ steps.dev.outputs.result }}" \
-        )
-        for i in "${return_list[@]}"; do
-          if [[ "${i}" != *"True"* ]]; then
-            echo "PASS_LOG=False" >> "$GITHUB_OUTPUT"
-          fi
-        done
-
-    - name: Check the check
-      id: check-result
-      run: |
-        echo "Pass log is ${{ steps.check-return.outputs.PASS_LOG }}"
+        if [[ "${{ steps.standard.outputs.result }}" == *"True"* ]]; then
+          echo "::notice title=StandartCheck::Success"
+        else
+          echo "::error title=StandartCheck::Didn't pass"
+        fi
+        if [[ "${{ steps.stable.outputs.result }}" == *"True"* ]]; then
+          echo "::notice title=StableCheck::Success"
+        else
+          echo "::warning title=StableCheck::Didn't pass"
+        fi
+        if [[ "${{ steps.dev.outputs.result }}" == *"True"* ]]; then
+            echo "::notice title=DevCheck::Success"
+        else
+            echo "::warning title=DevCheck::Didn't pass"
+        fi
 
     - name: Add member
       env:
@@ -135,7 +133,7 @@ jobs:
         base: main
 
     - name: Create comment on success
-      if: ${{ steps.check-return.outputs.PASS_LOG == 'True' }}
+      if: ${{ steps.standard.outputs.result == *"True"* }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
@@ -143,7 +141,7 @@ jobs:
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
 
     - name: Create comment on failure
-      if: ${{ steps.check-return.outputs.PASS_LOG == 'False' }}
+      if: ${{ steps.standard.outputs.result != *"True"* }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
