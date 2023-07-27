@@ -38,9 +38,10 @@ def set_actions_output(outputs: List[Tuple[str, Union[str, bool, float, int]]]) 
     """
     for name, value in outputs:
         logger.info("Setting output variable %s: %s", name, value)
+        single_line_value = " ".join(line.strip() for line in value.splitlines())
         if "CI" in os.environ:
             with open(os.environ["GITHUB_OUTPUT"], "a") as github_env:
-                print(f"{name}={str(value)}", file=github_env)
+                github_env.write(f"{name}={single_line_value}\n")
         else:
             # Used only during unit tests
-            print(f"{name}={str(value)}")
+            print(f"{name}={single_line_value}")
