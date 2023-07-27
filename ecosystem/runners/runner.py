@@ -163,9 +163,9 @@ class Runner:
                 logs_fail += element.get_fail_logs()
             set_actions_output(
                 [
-                    ("DEPRECIATION", "\n".join(logs_depreciation)),
-                    ("ERROR", "\n".join(logs_error)),
-                    ("FAIL", "\n".join(logs_fail)),
+                    ("DEPRECIATION", " ".join(logs_depreciation)),
+                    ("ERROR", " ".join(logs_error)),
+                    ("FAIL", " ".join(logs_fail)),
                 ]
             )
 
