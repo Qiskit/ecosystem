@@ -134,7 +134,7 @@ class Manager:
                 tests_passed = True
                 for type_test in project.tests_results:
                     if type_test.test_type == "standard":
-                        tests_passed = True if type_test.passed else False
+                        tests_passed = True in type_test.passed
                 color = "blueviolet" if tests_passed else "gray"
                 label = project.name
                 message = tier
