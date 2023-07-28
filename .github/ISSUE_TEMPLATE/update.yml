@@ -1,0 +1,36 @@
+name: Update request
+description: Update (or remove) information about your project
+title: "[Project update]: "
+labels: [update request]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Explain the updates you'd like to see.
+  - type: input
+    id: repo
+    attributes:
+      label: Github repo
+      description: |
+        Name of Ecosytem project to update information for
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        Mention the field you'd like to update, and tell us what you'd like to update the field to. You can request updates to the following fields:
+          - Repo URL
+          - Description
+          - Email
+          - Project alternatives
+          - Licence
+          - Affiliations
+          - Tags
+          - Website
+      placeholder: E.g. Change contact information to example@example.com
+    validations:
+      required: true
