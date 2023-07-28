@@ -14,7 +14,7 @@ body:
     attributes:
       label: Github repo
       description: |
-        Name of GitHub repo to update information for
+        Name of Ecosytem project to update information for
     validations:
       required: true
   - type: textarea
@@ -22,7 +22,15 @@ body:
     attributes:
       label: Description
       description: |
-        Mention the field you'd like to update, and tell us what you'd like to update the field to
+        Mention the field you'd like to update, and tell us what you'd like to update the field to. You can request updates to the following fields:
+          - Repo URL
+          - Description
+          - Email
+          - Project alternatives
+          - Licence
+          - Affiliations
+          - Tags
+          - Website
       placeholder: E.g. Change contact information to example@example.com
     validations:
       required: true
