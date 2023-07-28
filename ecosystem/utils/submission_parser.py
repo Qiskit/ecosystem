@@ -45,6 +45,8 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
         website = None
 
     labels = [l.strip() for l in sections["Tags"].split(",")]
+    if labels == ["_No response_"]:
+        labels = None
 
     return Repository(
         name=name,
