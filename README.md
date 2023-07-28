@@ -14,23 +14,36 @@
   <h3 align="center">Ecosystem</h3>
 </p>
 
-## Contents
-1. [About The Project](#about-the-project)
-2. [Join the Ecosystem](#join-the-ecosystem)
-3. [Members](#members)
-4. [Contribution Guidelines](#contribution-guidelines)
+## About the Ecosystem
+
+The Qiskit Ecosystem is a collection of software and tutorials that builds on
+or extends Qiskit. The goal of the Ecosystem is to celebrate, support, and
+accelerate development of quantum technologies using Qiskit. View all projects
+at [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
+
+This repository manages members of the ecosystem, and runs regular tests on
+each project.
 
 
-## About The Project
+## How to join
 
-The Ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
-The goal of the Ecosystem is to recognize, support and accelerate development of quantum technologies using Qiskit.
+1. Upload your project to GitHub
 
-[Read more about this project](./docs/project_overview.md).
+   To accept your project, it'll need to be in a GitHub repo.
 
-## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+2. Add tests
 
-To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+3. Make an issue
+
+
+## How to update project information
+
+To change your project's information, find your project's file in
+[`.ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/tree/main/ecosystem/resources/members)
+and make a pull request with the updated information. You can also [make an
+issue](https://github.com/qiskit-community/ecosystem/issues/new) asking us to
+do it, or asking us to remove your project from the Ecosystem.
+
 
 ## Contribution Guidelines
 
