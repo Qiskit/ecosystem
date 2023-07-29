@@ -22,23 +22,21 @@ accelerate development of quantum technologies using Qiskit. View all projects
 at [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
 
 This repository manages members of the ecosystem, and can run regular tests on
-each project if project maintainers want.
+each project to alert maintainers of upcoming breaking changes.
 
 
 ## How to join
 
-1. Upload your project to GitHub
+1. **Upload your project to GitHub**
 
-   We can only accept projects in public GitHub repositories.
-
-2. Add tests (optional)
-
+2. **Add tests (optional)**
+   
    If you use [tox](https://tox.wiki/en/4.6.4/) tests to check your code, we
-   can run these regularly to check detect breaking changes in current and
+   can run your tests regularly to check detect breaking changes in current and
    upcoming versions of Qiskit.
 
-3. Make a submission issue
-
+3. **Make a submission issue**
+   
    Once you're ready, [make an
    issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=&projects=&template=submission.yml&title=%5BSubmission%5D%3A+)
    asking to add your project to the Ecosystem. We'll review it and get back to
