@@ -13,7 +13,7 @@ body:
     id: repo
     attributes:
       label: Github repo
-      description: Link to your github repo with project you want to submit
+      description: Link to GitHub repo of project you want to submit
       placeholder: https://github.com/Qiskit/qiskit-terra
     validations:
       required: true
@@ -21,16 +21,19 @@ body:
     id: description
     attributes:
       label: Description
-      description: Short description of the project.
-      placeholder: Tell us about your work!
-      value: "..."
+      description: |
+        A couple of sentences to appear under your project on
+        [qiskit.org/ecosystem](https://qiskit.org/ecosystem). Note this **does
+        not** support markdown.
+      placeholder: |
+        E.g. Use your GPU to compile huge quantum circuits in seconds. Supports
+        all modern devices and operating systems.
     validations:
       required: true
   - type: input
     id: contacts
     attributes:
       label: Email
-      description: Your contact information
       placeholder: awesome_person@awesome_main.com
     validations:
       required: false
@@ -63,16 +66,17 @@ body:
     id: affiliations
     attributes:
       label: Affiliations
-      description: Affiliations of the project.
+      description: List any organisations affiliated with the project.
       placeholder: None
     validations:
       required: false
   - type: dropdown
     id: tags
     description: |
-      Tags are how users discover your project on qiskit.org/ecosystem. If you
-      don't think any existing tags apply to your project, leave a comment
-      after submitting your issue requesting a new tag.
+      Tags are how users discover your project on
+      [qiskit.org/ecosystem](https://qiskit.org/ecosystem). If you don't think
+      any existing tags apply to your project, leave a comment after submitting
+      your issue requesting a new tag.
     attributes:
       label: Tags
       multiple: true
@@ -98,7 +102,7 @@ body:
     id: website
     attributes:
       label: Website
-      description: Link to project website
+      description: Link to project's website
       placeholder: https://your-project.com
     validations:
       required: false
