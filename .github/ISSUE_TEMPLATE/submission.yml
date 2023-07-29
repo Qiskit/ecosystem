@@ -69,6 +69,10 @@ body:
       required: false
   - type: dropdown
     id: tags
+    description: |
+      Tags are how users discover your project on qiskit.org/ecosystem. If you
+      don't think any existing tags apply to your project, leave a comment
+      after submitting your issue requesting a new tag.
     attributes:
       label: Tags
       multiple: true
