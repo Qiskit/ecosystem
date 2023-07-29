@@ -19,7 +19,7 @@ class TestUtils(TestCase):
             self.issue_body = issue_body_file.read()
 
     def test_issue_parsing(self):
-        """ "Tests issue parsing function:
+        """Tests issue parsing function:
         Function:
                 -> parse_submission_issue
         Args:
@@ -44,8 +44,7 @@ class TestUtils(TestCase):
         )
 
     def test_set_actions_output(self):
-        """Test set actions output error."""
-
+        """Test set actions output."""
         # Test ok -> ok
         captured_output = io.StringIO()
         with redirect_stdout(captured_output):
