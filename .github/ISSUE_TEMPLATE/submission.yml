@@ -22,9 +22,8 @@ body:
     attributes:
       label: Description
       description: |
-        A couple of sentences to appear under your project on
-        [qiskit.org/ecosystem](https://qiskit.org/ecosystem). Note this **does
-        not** support markdown.
+        A couple of sentences to appear under your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
+        Note this **does not** support markdown.
       placeholder: |
         E.g. Use your GPU to compile huge quantum circuits in seconds. Supports
         all modern devices and operating systems.
@@ -74,10 +73,8 @@ body:
     id: tags
     attributes:
       description: |
-        Tags are how users discover your project on
-        [qiskit.org/ecosystem](https://qiskit.org/ecosystem). If you don't think
-        any existing tags apply to your project, leave a comment after submitting
-        your issue requesting a new tag.
+        Tags are how users discover your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
+        If you don't think any existing tags apply to your project, leave a comment after submitting your issue requesting a new tag.
       label: Tags
       multiple: true
       options:
