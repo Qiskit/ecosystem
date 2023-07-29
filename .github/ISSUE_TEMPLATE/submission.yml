@@ -25,8 +25,7 @@ body:
         A couple of sentences to appear under your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
         Note this **does not** support markdown.
       placeholder: |
-        E.g. Use your GPU to compile huge quantum circuits in seconds. Supports
-        all modern devices and operating systems.
+        E.g. Use your GPU to compile huge quantum circuits in seconds. Supports all modern devices and operating systems.
     validations:
       required: true
   - type: input
