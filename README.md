@@ -48,7 +48,7 @@ each project to alert maintainers of upcoming breaking changes.
 To change your project's information, find your project's file in
 [`.ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/tree/main/ecosystem/resources/members)
 and make a pull request with the updated information. You can also [make an
-issue]([https://github.com/qiskit-community/ecosystem/issues/new](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=update+request&projects=&template=update.yml&title=%5BProject+update%5D%3A+))
+issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=update+request&projects=&template=update.yml&title=%5BProject+update%5D%3A+)
 asking us to do it, or asking us to remove your project from the Ecosystem.
 
 
