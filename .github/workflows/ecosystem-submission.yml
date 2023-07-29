@@ -83,9 +83,9 @@ jobs:
       id: check-return
       run: |
         if [[ "${{ steps.standard.outputs.result }}" == *"True"* ]]; then
-          echo "::notice title=StandartCheck::Success"
+          echo "::notice title=StandardCheck::Success"
         else
-          echo "::error title=StandartCheck::Didn't pass"
+          echo "::error title=StandardCheck::Didn't pass"
         fi
         if [[ "${{ steps.stable.outputs.result }}" == *"True"* ]]; then
           echo "::notice title=StableCheck::Success"
