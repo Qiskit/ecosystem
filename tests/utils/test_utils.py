@@ -1,10 +1,9 @@
 """Tests for manager."""
-import os, io
+import os
 from unittest import TestCase
-from contextlib import redirect_stdout
 
 from ecosystem.models.repository import Repository
-from ecosystem.utils import parse_submission_issue, set_actions_output
+from ecosystem.utils import parse_submission_issue
 
 
 class TestUtils(TestCase):
@@ -41,29 +40,3 @@ class TestUtils(TestCase):
         self.assertEqual(
             parsed_result.labels, ["tool", "tutorial", "paper implementation"]
         )
-
-    def test_set_actions_output(self):
-        """Test set actions output error."""
-
-        # Test ok -> ok
-        captured_output = io.StringIO()
-        with redirect_stdout(captured_output):
-            set_actions_output([("success", "this test is a success case!")])
-        output_value = captured_output.getvalue()
-        self.assertEqual(output_value, "success=this test is a success case!\n")
-
-        # Test ok -> ko
-        with self.assertRaises(AssertionError):
-            set_actions_output(
-                [
-                    (
-                        "fail",
-                        """
-                this test is a failed case,
-                why ?
-                because it's a multi-lines output
-                and GITHUB_OUTPUT doesn't like that!
-                """,
-                    )
-                ]
-            )
