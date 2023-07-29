@@ -15,8 +15,8 @@ jobs:
     - name: Setup variables
       id: vars
       run: |
-        echo "::set-output name=datetime::$(date +'%Y_%m_%d_%H_%M')"
-        echo "::set-output name=pr_branch_name::fetch_tests_for_main_$(date +'%Y_%m_%d_%H_%M')"
+        echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+        echo "pr_branch_name=fetch_tests_for_main_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
     - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v4
