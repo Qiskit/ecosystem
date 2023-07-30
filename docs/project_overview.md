@@ -107,7 +107,7 @@ We store each member of the ecosystem as a TOML file under
 [`ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members);
 these are the files you should edit when adding / updating members to the
 ecosystem. Access to this file is handled through the
-[`JsonDAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/jsondao.py)
+[`DAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/dao.py)
 class.
 
 The qiskit.org page pulls information from the compiled

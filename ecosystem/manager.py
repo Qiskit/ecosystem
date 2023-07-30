@@ -9,7 +9,7 @@ from typing import Optional, List, Tuple, Union
 import requests
 from jinja2 import Environment, PackageLoader, select_autoescape
 
-from ecosystem.daos import JsonDAO
+from ecosystem.daos import DAO
 from ecosystem.models import TestResult, Tier, TestType
 from ecosystem.models.repository import Repository
 from ecosystem.models.test_results import StyleResult, CoverageResult, Package
@@ -45,7 +45,7 @@ class Manager:
         )
         self.pylintrc_template = self.env.get_template(".pylintrc")
         self.coveragerc_template = self.env.get_template(".coveragerc")
-        self.dao = JsonDAO(path=self.resources_dir)
+        self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
     def recompile(self):
@@ -161,7 +161,7 @@ class Manager:
                     stars = json_data.get("stargazers_count")
                 else:
                     self.logger.warning("Bad response for project %s", project.url)
-                self.dao.update_stars(project.url, tier, stars)
+                self.dao.update(project.url, stars=stars)
                 self.logger.info("Updating star count for %s: %d", project.url, stars)
 
     @staticmethod
@@ -218,9 +218,6 @@ class Manager:
             repo_labels: comma separated labels
             repo_tier: tier for repository
             repo_website: link to project website
-
-        Returns:
-            JsonDAO: Integer
         """
 
         new_repo = Repository(
@@ -235,7 +232,7 @@ class Manager:
             tier=repo_tier or Tier.COMMUNITY,
             website=repo_website,
         )
-        self.dao.insert(new_repo)
+        self.dao.write(new_repo)
 
     def _save_temp_test_result(
         self,
@@ -286,7 +283,6 @@ class Manager:
             with open(path, "r") as json_temp_file:
                 json_temp_file_data = json.load(json_temp_file)
                 repo_url = json_temp_file_data.get("repo_url")
-                repo_tier = json_temp_file_data.get("tier")
                 test_type = json_temp_file_data.get("type")
                 test_result = json_temp_file_data.get("test_result")
                 self.logger.info(
@@ -297,19 +293,15 @@ class Manager:
                 res = None
                 if test_type == "TestResult":
                     tres = TestResult.from_dict(test_result)
-                    res = self.dao.add_repo_test_result(
-                        repo_url=repo_url, tier=repo_tier, test_result=tres
-                    )
+                    self.dao.add_repo_test_result(repo_url=repo_url, test_result=tres)
                 elif test_type == "CoverageResult":
                     cres = CoverageResult.from_dict(test_result)
-                    res = self.dao.add_repo_coverage_result(
-                        repo_url=repo_url, tier=repo_tier, coverage_result=cres
+                    self.dao.add_repo_coverage_result(
+                        repo_url=repo_url, coverage_result=cres
                     )
                 elif test_type == "StyleResult":
                     sres = StyleResult.from_dict(test_result)
-                    res = self.dao.add_repo_style_result(
-                        repo_url=repo_url, tier=repo_tier, style_result=sres
-                    )
+                    self.dao.add_repo_style_result(repo_url=repo_url, style_result=sres)
                 else:
                     raise NotImplementedError(
                         "Test type {} is not supported".format(test_type)
@@ -355,7 +347,7 @@ class Manager:
         """
         ecosystem_deps = ecosystem_deps or []
         ecosystem_additional_commands = ecosystem_additional_commands or []
-        repository = self.dao.get_by_url(repo_url, tier=tier)
+        repository = self.dao.get_by_url(repo_url)
         repo_configuration = (
             repository.configuration if repository is not None else None
         )
@@ -429,7 +421,7 @@ class Manager:
             output: log PASS
             We want to give the result of the test to the GitHub action
         """
-        repository = self.dao.get_by_url(repo_url, tier=tier)
+        repository = self.dao.get_by_url(repo_url)
         repo_configuration = (
             repository.configuration if repository is not None else None
         )
@@ -476,7 +468,7 @@ class Manager:
             output: log PASS
             We want to give the result of the test to the GitHub action
         """
-        repository = self.dao.get_by_url(repo_url, tier=tier)
+        repository = self.dao.get_by_url(repo_url)
         repo_configuration = (
             repository.configuration if repository is not None else None
         )
@@ -666,12 +658,12 @@ class Manager:
                 package_version=terra_version,
                 test_type=test_type,
             )
-            result = self.dao.add_repo_test_result(
-                repo_url=repo_to_url_mapping.get(repo),
-                tier=Tier.MAIN,
-                test_result=test_result,
-            )
-            if result is None:
+            try:
+                self.dao.add_repo_test_result(
+                    repo_url=repo_to_url_mapping.get(repo),
+                    test_result=test_result,
+                )
+            except KeyError:
                 self.logger.warning(
                     "Test result was not saved. There is not repo for url %s",
                     repo,
