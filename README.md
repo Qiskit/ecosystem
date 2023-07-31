@@ -35,7 +35,7 @@ each project to alert maintainers of upcoming breaking changes.
    can run your tests regularly to detect breaking changes in current and
    upcoming versions of Qiskit.
 
-3. **Make a submission issue**
+3. **Open a project submission issue**
    
    Once you're ready, [make an
    issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=&projects=&template=submission.yml&title=%5BSubmission%5D%3A+)
