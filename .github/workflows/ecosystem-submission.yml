@@ -166,8 +166,8 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Tests with latest version of Qiskit release failed! :warning:
-          This means, your project doesn't works with lastest version of Qiskit.
-          This is purely informational and doesn't affect your project joining Ecosystem.
+          This means your project doesn't work with the latest version of Qiskit.
+          This is purely informational and doesn't affect your project joining the Ecosystem, but you may want to investigate the problem.
           See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
 
     - name: Create comment on success for dev check
