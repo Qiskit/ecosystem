@@ -39,8 +39,9 @@ each project to alert maintainers of upcoming breaking changes.
    
    Once you're ready, [make an
    issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=&projects=&template=submission.yml&title=%5BSubmission%5D%3A+)
-   asking to add your project to the Ecosystem. We'll review it and get back to
-   you within a few days.
+   asking to add your project to the Ecosystem. This will automatically create
+   a pull request adding your project to the repo. We'll review the pull request
+   and get back to you within a few days.
 
 
 ## How to update project information
