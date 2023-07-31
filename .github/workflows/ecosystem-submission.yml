@@ -84,18 +84,24 @@ jobs:
       run: |
         if [[ "${{ steps.standard.outputs.result }}" == *"True"* ]]; then
           echo "::notice title=StandardCheck::Success"
+          echo "PASS_STD=True" >> "$GITHUB_OUTPUT"
         else
           echo "::error title=StandardCheck::Didn't pass"
+          echo "PASS_STD=False" >> "$GITHUB_OUTPUT"
         fi
         if [[ "${{ steps.stable.outputs.result }}" == *"True"* ]]; then
           echo "::notice title=StableCheck::Success"
+          echo "PASS_STB=True" >> "$GITHUB_OUTPUT"
         else
           echo "::warning title=StableCheck::Didn't pass"
+          echo "PASS_STB=False" >> "$GITHUB_OUTPUT"
         fi
         if [[ "${{ steps.dev.outputs.result }}" == *"True"* ]]; then
-            echo "::notice title=DevCheck::Success"
+          echo "::notice title=DevCheck::Success"
+          echo "PASS_DEV=True" >> "$GITHUB_OUTPUT"
         else
-            echo "::warning title=DevCheck::Didn't pass"
+          echo "::warning title=DevCheck::Didn't pass"
+          echo "PASS_DEV=False" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Add member
@@ -133,7 +139,7 @@ jobs:
         base: main
 
     - name: Create comment on success for standard check
-      if: ${{ steps.standard.outputs.result == *"True"* }}
+      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
@@ -141,7 +147,7 @@ jobs:
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
 
     - name: Create comment on failure
-      if: ${{ steps.standard.outputs.result != *"True"* }}
+      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
@@ -152,7 +158,7 @@ jobs:
           Read more here https://github.com/qiskit-community/ecosystem/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem
 
     - name: Create comment on success for stable check
-      if: ${{ steps.stable.outputs.result == *"True"* }}
+      if: ${{ steps.check-return.outputs.PASS_STB == 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
@@ -160,7 +166,7 @@ jobs:
           Tests with latest version of Qiskit release passed! :sparkles:
 
     - name: Create comment on failure for stable check
-      if: ${{ steps.stable.outputs.result == *"True"* }}
+      if: ${{ steps.check-return.outputs.PASS_STB != 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
@@ -171,7 +177,7 @@ jobs:
           See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
 
     - name: Create comment on success for dev check
-      if: ${{ steps.dev.outputs.result == *"True"* }}
+      if: ${{ steps.check-return.outputs.PASS_DEV == 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
@@ -179,7 +185,7 @@ jobs:
           Tests with development version of Qiskit release passed! :sparkles:
 
     - name: Create comment on failure for dev check
-      if: ${{ steps.dev.outputs.result == *"True"* }}
+      if: ${{ steps.check-return.outputs.PASS_DEV != 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
