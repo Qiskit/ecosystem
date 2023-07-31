@@ -133,8 +133,8 @@ class Manager:
             for project in self.dao.get_repos_by_tier(tier):
                 tests_passed = True
                 for type_test in project.tests_results:
-                    if type_test.test_type == "standard":
-                        tests_passed = True is type_test.passed
+                    if type_test.test_type == "standard" and not type_test.passed:
+                        tests_passed = False
                 color = "blueviolet" if tests_passed else "gray"
                 label = project.name
                 message = tier
