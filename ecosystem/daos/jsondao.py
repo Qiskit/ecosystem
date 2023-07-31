@@ -134,30 +134,6 @@ class JsonDAO:
         table = self.database.table(tier)
         return table.remove(Query().url == repo_url)
 
-    def move_repo_to_other_tier(
-        self, repo_url: str, source_tier: str, destination_tier: str
-    ) -> Optional[Repository]:
-        """Moves repository from one tier to another.
-
-        Args:
-            repo_url: URL for repository
-            source_tier: source tier of repository
-            destination_tier: destination tier
-
-        Returns: Changed repository
-        """
-        repo = self.get_by_url(url=repo_url, tier=source_tier)
-        if repo is not None:
-            repo.tier = destination_tier
-            is_deleted = self.delete(repo_url=repo_url, tier=source_tier)
-            if is_deleted:
-                is_inserted = self.insert(repo)
-                if is_inserted:
-                    return repo
-                return None
-            return None
-        return None
-
     def get_by_url(self, url: str, tier: str) -> Optional[Repository]:
         """Returns repository by URL.
 

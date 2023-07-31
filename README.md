@@ -14,23 +14,53 @@
   <h3 align="center">Ecosystem</h3>
 </p>
 
-## Contents
-1. [About The Project](#about-the-project)
-2. [Join the Ecosystem](#join-the-ecosystem)
-3. [Members](#members)
-4. [Contribution Guidelines](#contribution-guidelines)
+## About the Ecosystem
+
+The Qiskit Ecosystem is a collection of software and tutorials that builds on
+or extends Qiskit. The goal of the Ecosystem is to celebrate, support, and
+accelerate development of quantum technologies using Qiskit. View all projects
+at [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
+
+This repository manages members of the ecosystem, and can run regular tests on
+each project to alert maintainers of upcoming breaking changes.
 
 
-## About The Project
+## How to join
 
-The Ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
-The goal of the Ecosystem is to recognize, support and accelerate development of quantum technologies using Qiskit.
+1. **Upload your project to GitHub**
 
-[Read more about this project](./docs/project_overview.md).
+2. **Add tests (optional)**
+   
+   If you use [tox](https://tox.wiki/en/4.6.4/) tests to check your code, we
+   can run your tests regularly to detect breaking changes in current and
+   upcoming versions of Qiskit.
 
-## [Join the Ecosystem](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+3. **Open a project submission issue**
+   
+   Once you're ready, [open an
+   issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=&projects=&template=submission.yml&title=%5BSubmission%5D%3A+)
+   asking to add your project to the Ecosystem. This will automatically create
+   a pull request adding your project to the repo. We'll review the pull request
+   and get back to you within a few days.
 
-To join the Ecosystem create a [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+)
+Once your submission has been approved and merged, it will appear on
+[qiskit.org/ecosystem](https://qiskit.org/ecosystem) within 24hrs.
+
+Members of the ecosystem are invited to give a presentation about
+their project at [Qiskit demo
+day](https://github.com/Qiskit/feedback/wiki/Qiskit-DemoDays). You
+can also write a post for the [Qiskit Medium
+blog](https://medium.com/qiskit); reach out to a maintainer if
+you're interested.
+
+## How to update project information
+
+To change your project's information, find your project's file in
+[`.ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/tree/main/ecosystem/resources/members)
+and make a pull request with the updated information. You can also [open an
+issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=update+request&projects=&template=update.yml&title=%5BProject+update%5D%3A+)
+asking us to do it, or asking us to remove your project from the Ecosystem.
+
 
 ## Contribution Guidelines
 
