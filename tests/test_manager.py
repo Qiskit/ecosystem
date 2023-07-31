@@ -142,7 +142,7 @@ class TestManager(TestCase):
         self.assertEqual(output_value[6], "SUBMISSION_AFFILIATIONS=Awesome Inc.")
         self.assertEqual(
             output_value[7],
-            "SUBMISSION_LABELS=['_No response_']",
+            "SUBMISSION_LABELS=[]",
         )
         self.assertEqual(
             output_value[8],
