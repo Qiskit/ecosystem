@@ -37,7 +37,7 @@ each project to alert maintainers of upcoming breaking changes.
 
 3. **Open a project submission issue**
    
-   Once you're ready, [make an
+   Once you're ready, [open an
    issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=&projects=&template=submission.yml&title=%5BSubmission%5D%3A+)
    asking to add your project to the Ecosystem. This will automatically create
    a pull request adding your project to the repo. We'll review the pull request
@@ -57,7 +57,7 @@ you're interested.
 
 To change your project's information, find your project's file in
 [`.ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/tree/main/ecosystem/resources/members)
-and make a pull request with the updated information. You can also [make an
+and make a pull request with the updated information. You can also [open an
 issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=update+request&projects=&template=update.yml&title=%5BProject+update%5D%3A+)
 asking us to do it, or asking us to remove your project from the Ecosystem.
 
