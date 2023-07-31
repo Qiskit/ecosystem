@@ -43,6 +43,15 @@ each project to alert maintainers of upcoming breaking changes.
    a pull request adding your project to the repo. We'll review the pull request
    and get back to you within a few days.
 
+Once your submission has been approved and merged, it will appear on
+[qiskit.org/ecosystem](https://qiskit.org/ecosystem) within 24hrs.
+
+Members of the ecosystem are invited to give a presentation about
+their project at [Qiskit demo
+day](https://github.com/Qiskit/feedback/wiki/Qiskit-DemoDays). You
+can also write a post for the [Qiskit Medium
+blog](https://medium.com/qiskit); reach out to a maintainer if
+you're interested.
 
 ## How to update project information
 
