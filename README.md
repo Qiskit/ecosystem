@@ -32,7 +32,7 @@ each project to alert maintainers of upcoming breaking changes.
 2. **Add tests (optional)**
    
    If you use [tox](https://tox.wiki/en/4.6.4/) tests to check your code, we
-   can run your tests regularly to check detect breaking changes in current and
+   can run your tests regularly to detect breaking changes in current and
    upcoming versions of Qiskit.
 
 3. **Make a submission issue**
