@@ -156,11 +156,12 @@ class Manager:
                 user = url_chunks[-2]
 
                 response = requests.get(f"http://api.github.com/repos/{user}/{repo}")
-                if response.ok:
-                    json_data = json.loads(response.text)
-                    stars = json_data.get("stargazers_count")
-                else:
+                if not response.ok:
                     self.logger.warning("Bad response for project %s", project.url)
+                    continue
+
+                json_data = json.loads(response.text)
+                stars = json_data.get("stargazers_count")
                 self.dao.update_stars(project.url, tier, stars)
                 self.logger.info("Updating star count for %s: %d", project.url, stars)
 
