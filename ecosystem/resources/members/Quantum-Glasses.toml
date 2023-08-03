@@ -1,0 +1,14 @@
+name = "Quantum-Glasses"
+url = "https://github.com/Jayshah25/Quantum-Glasses"
+description = "Visualize effect of Quantum Gates on a single qubit via Bloch Sphere Simulation!"
+licence = "Apache License 2.0"
+contact_info = "shahj097@gmail.com"
+alternatives = "The only alternative is to code up a circuit (qiskit.QuantumCircuit) and then use visualize_transition from qiskit.visualization. Quantum Glasses implementation wraps all of this into a simple beginner-friendly Tkinter Software."
+affiliations = "_No response_"
+labels = []
+tier = "Community"
+tests_results = []
+styles_results = []
+coverages_results = []
+skip_tests = false
+historical_test_results = []
