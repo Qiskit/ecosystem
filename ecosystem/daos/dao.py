@@ -118,14 +118,11 @@ class DAO:
     def get_by_url(self, url: str) -> Repository:
         """
         Returns repository by URL.
-
-        Args:
-            repo_url: repository url
         """
-        try:
-            return self.storage.read()[url]
-        except KeyError as err:
-            raise KeyError(f"No repo with URL '{url}'") from err
+        data = self.storage.read()
+        if url not in data:
+            raise KeyError(f"No repo with URL '{url}'")
+        return self.storage.read()[url]
 
     def update(self, repo_url: str, **kwargs):
         """
