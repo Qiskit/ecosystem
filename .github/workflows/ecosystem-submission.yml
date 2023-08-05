@@ -127,7 +127,6 @@ jobs:
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
           Closes #${{ github.event.issue.number }}
         branch: submission-${{ github.event.issue.number }}
-        base: main
 
     - name: Create comment on success for standard check
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
