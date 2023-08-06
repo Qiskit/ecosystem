@@ -183,9 +183,11 @@ jobs:
         echo "---" >> $GITHUB_STEP_SUMMARY
         echo "Logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
         echo "PR #${{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
+        # Create summary_output.md
+        echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
 
     - name: Create comment on issue
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
-        body-path: $GITHUB_STEP_SUMMARY
+        body-path: "summary_output.md"
