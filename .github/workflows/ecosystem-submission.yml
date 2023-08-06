@@ -101,11 +101,9 @@ jobs:
         # STD check
         echo "### Standard tests" >> $GITHUB_STEP_SUMMARY
         if [[ "${{ steps.standard.outputs.result }}" == *"True"* ]]; then
-          echo "::notice title=StandardCheck::Success"
           echo "PASS_STD=True" >> "$GITHUB_OUTPUT"
           echo ":sparkles: Successfull submission!" >> $GITHUB_STEP_SUMMARY
         else
-          echo "::error title=StandardCheck::Didn't pass"
           echo "PASS_STD=False" >> "$GITHUB_OUTPUT"
           echo ":x: The submission didn't pass the standard check." >> $GITHUB_STEP_SUMMARY
           echo "Please follow minimal requirements for project or/and add `ecosystem.json` configuration in the root of the project." >> $GITHUB_STEP_SUMMARY
@@ -115,11 +113,9 @@ jobs:
         # STB check
         echo "### Stable tests" >> $GITHUB_STEP_SUMMARY
         if [[ "${{ steps.stable.outputs.result }}" == *"True"* ]]; then
-          echo "::notice title=StableCheck::Success"
           echo "PASS_STB=True" >> "$GITHUB_OUTPUT"
           echo ":sparkles: Tests with latest version of Qiskit release passed!" >> $GITHUB_STEP_SUMMARY
         else
-          echo "::warning title=StableCheck::Didn't pass"
           echo "PASS_STB=False" >> "$GITHUB_OUTPUT"
           echo ":warning: The submission didn't pass the stable check." >> $GITHUB_STEP_SUMMARY
           echo "This means your project doesn't work with the latest version of Qiskit." >> $GITHUB_STEP_SUMMARY
@@ -129,11 +125,9 @@ jobs:
         # DEV check
         echo "### Development tests" >> $GITHUB_STEP_SUMMARY
         if [[ "${{ steps.dev.outputs.result }}" == *"True"* ]]; then
-          echo "::notice title=DevCheck::Success"
           echo "PASS_DEV=True" >> "$GITHUB_OUTPUT"
           echo ":sparkles: Tests with development version of Qiskit release passed!" >> $GITHUB_STEP_SUMMARY
         else
-          echo "::warning title=DevCheck::Didn't pass"
           echo "PASS_DEV=False" >> "$GITHUB_OUTPUT"
           echo ":warning: The submission didn't pass the development check." >> $GITHUB_STEP_SUMMARY
           echo "This means your project might not work with the next version of Qiskit." >> $GITHUB_STEP_SUMMARY
@@ -141,7 +135,7 @@ jobs:
         fi
 
         # Merge
-        echo "summary_output=$(cat $GITHUB_STEP_SUMMARY)" >> "$GITHUB_OUTPUT"
+        echo "summary_output=$(cat $GITHUB_STEP_SUMMARY)" >> "$GITHUB_ENV"
 
     # PR stuff
     - name: Commit changes and create Pull Request
@@ -192,7 +186,7 @@ jobs:
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-          ${{ steps.check-return.outputs.summary_output }}
+          ${{ env.summary_output }}
           ---
           Logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
           PR #${{ steps.cpr.outputs.pull-request-number }}
