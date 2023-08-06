@@ -160,23 +160,38 @@ jobs:
 
     # PR labels and comment
     - name: PR labeling status ready
-      uses: actions-ecosystem/action-add-labels@v1
+      uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
-        number: ${{ steps.cpr.outputs.pull-request-number }}
-        labels: ready
-    - uses: actions-ecosystem/action-remove-labels@v1
+        script: |
+          github.rest.issues.addLabels({
+            issue_number: steps.cpr.outputs.pull-request-number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["ready"]
+        })
+    - uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
-        number: ${{ steps.cpr.outputs.pull-request-number }}
-        labels: on hold
+        script: |
+          github.rest.issues.removeLabel({
+            issue_number: steps.cpr.outputs.pull-request-number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["on hold"]
+          })
 
     - name: PR labeling status on hold
-      uses: actions-ecosystem/action-add-labels@v1
+      uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
-        number: ${{ steps.cpr.outputs.pull-request-number }}
-        labels: on hold
+        script: |
+          github.rest.issues.addLabels({
+            issue_number: steps.cpr.outputs.pull-request-number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["on hold"]
+        })
 
     - name: PR create comment
       uses: peter-evans/create-or-update-comment@v3
@@ -186,20 +201,39 @@ jobs:
 
     # Issue labels and comment
     - name: Issue labeling status ready
-      uses: actions-ecosystem/action-add-labels@v1
+      uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
-        labels: ready
-    - uses: actions-ecosystem/action-remove-labels@v1
+        script: |
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["ready"]
+    })
+    - uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
-        labels: on hold
+        script: |
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["on hold"]
+          })
+
 
     - name: Issue labeling status on hold
-      uses: actions-ecosystem/action-add-labels@v1
+      uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
-        labels: on hold
+        script: |
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["on hold"]
+        })
 
     - name: Issue create comment
       uses: peter-evans/create-or-update-comment@v3
