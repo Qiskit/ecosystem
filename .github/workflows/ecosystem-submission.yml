@@ -107,7 +107,7 @@ jobs:
         else
           echo "::error title=StandardCheck::Didn't pass"
           echo "PASS_STD=False" >> "$GITHUB_OUTPUT"
-          echo ":error: The submission didn't pass the standard check." >> $GITHUB_STEP_SUMMARY
+          echo ":x: The submission didn't pass the standard check." >> $GITHUB_STEP_SUMMARY
           echo "Please follow minimal requirements for project or/and add `ecosystem.json` configuration in the root of the project." >> $GITHUB_STEP_SUMMARY
           echo "Read more here https://github.com/qiskit-community/ecosystem/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem." >> $GITHUB_STEP_SUMMARY
         fi
@@ -191,10 +191,7 @@ jobs:
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-          - Standard check status passed : ${{ steps.check-return.outputs.PASS_STD }}
-
-          - Stable check status passed : ${{ steps.check-return.outputs.PASS_STB }}
-          - Dev check status passed : ${{ steps.check-return.outputs.PASS_DEV }}
+          ${{ steps.check-return.GITHUB_STEP_SUMMARY }}
           ---
           Logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
           PR #${{ steps.cpr.outputs.pull-request-number }}
