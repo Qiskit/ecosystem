@@ -129,8 +129,10 @@ jobs:
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
-          Closes #${{ github.event.issue.number }}
           Standard check passed : ${{ steps.check-return.outputs.PASS_STD }}
+
+          ---
+          Closes #${{ github.event.issue.number }}
         branch: submission-${{ github.event.issue.number }}
         labels: submission
         base: main
