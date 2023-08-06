@@ -141,6 +141,7 @@ jobs:
         fi
 
         # Merge
+        echo "summary_output=$(cat $GITHUB_STEP_SUMMARY)" >> "$GITHUB_OUTPUT"
 
     # PR stuff
     - name: Commit changes and create Pull Request
@@ -191,7 +192,7 @@ jobs:
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-          ${{ steps.check-return.GITHUB_STEP_SUMMARY }}
+          ${{ steps.check-return.outputs.summary_output }}
           ---
           Logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
           PR #${{ steps.cpr.outputs.pull-request-number }}
