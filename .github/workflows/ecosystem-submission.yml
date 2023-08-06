@@ -25,9 +25,6 @@ jobs:
     steps:
     # setup deps
     - uses: actions/checkout@v3
-    - uses: actions-ecosystem/action-add-labels@v1
-      with:
-        labels: submission
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v4
       with:
@@ -171,6 +168,7 @@ jobs:
             labels: ["ready"]
           })
     - name: PR labeling status ready remove on hold
+      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
@@ -194,6 +192,7 @@ jobs:
             labels: ["on hold"]
           })
     - name: PR labeling status on hold remove ready
+      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
@@ -221,9 +220,10 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            labels: ["ready"]
+            labels: ["ready", "submission"]
           })
     - name: PR labeling status ready remove on hold
+      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
@@ -244,9 +244,10 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            labels: ["on hold"]
+            labels: ["on hold", "submission"]
           })
     - name: PR labeling status on hold remove ready
+      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
