@@ -52,7 +52,7 @@ jobs:
         test_type: "stable"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     - name: Tests dev check
       id: dev
       uses: ./.github/actions/run-tests
@@ -61,7 +61,7 @@ jobs:
         test_type: "development"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     - name: Tests standard repo check
       id: standard
       uses: ./.github/actions/run-tests
@@ -70,7 +70,7 @@ jobs:
         test_type: "standard"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
     - name: Add member
       env:
@@ -107,7 +107,7 @@ jobs:
           echo "PASS_STD=False" >> "$GITHUB_OUTPUT"
           echo ":x: The submission didn't pass the standard check." >> $GITHUB_STEP_SUMMARY
           echo "Please follow minimal requirements for project or/and add `ecosystem.json` configuration in the root of the project." >> $GITHUB_STEP_SUMMARY
-          echo "Read more here https://github.com/qiskit-community/ecosystem/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem." >> $GITHUB_STEP_SUMMARY
+          echo "Read more here ${{ github.server_url }}/${{ github.repository }}/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem." >> $GITHUB_STEP_SUMMARY
         fi
 
         # STB check
@@ -133,6 +133,11 @@ jobs:
           echo "This means your project might not work with the next version of Qiskit." >> $GITHUB_STEP_SUMMARY
           echo "This is purely informational and doesn't affect your project joining Ecosystem." >> $GITHUB_STEP_SUMMARY
         fi
+
+        # Gen info + create summary_output.md
+        echo "---" >> $GITHUB_STEP_SUMMARY
+        echo "Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+        echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
 
     # PR stuff
     - name: Commit changes and create Pull Request
@@ -178,13 +183,11 @@ jobs:
       with:
         labels: on hold
 
-    - name: Footprint of step summary
+    - name: Add into step summary
       run: |
-        echo "---" >> $GITHUB_STEP_SUMMARY
-        echo "Logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
         echo "PR #${{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
         # Create summary_output.md
-        echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
+        echo "$(cat $GITHUB_STEP_SUMMARY)" >> summary_output.md
 
     - name: Create comment on issue
       uses: peter-evans/create-or-update-comment@v3
