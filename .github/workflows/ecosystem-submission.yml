@@ -165,17 +165,18 @@ jobs:
       with:
         script: |
           github.rest.issues.addLabels({
-            issue_number: steps.cpr.outputs.pull-request-number,
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
             repo: context.repo.repo,
             labels: ["ready"]
           })
-    - uses: actions/github-script@v6
+    - name: PR labeling status ready remove on hold
+      uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
         script: |
           github.rest.issues.removeLabel({
-            issue_number: steps.cpr.outputs.pull-request-number,
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
             repo: context.repo.repo,
             name: ["on hold"]
@@ -187,10 +188,21 @@ jobs:
       with:
         script: |
           github.rest.issues.addLabels({
-            issue_number: steps.cpr.outputs.pull-request-number,
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
             repo: context.repo.repo,
             labels: ["on hold"]
+          })
+    - name: PR labeling status on hold remove ready
+      uses: actions/github-script@v6
+      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
+      with:
+        script: |
+          github.rest.issues.removeLabel({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["ready"]
           })
 
     - name: PR create comment
@@ -211,7 +223,8 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-    - uses: actions/github-script@v6
+    - name: PR labeling status ready remove on hold
+      uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
         script: |
@@ -232,6 +245,17 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             labels: ["on hold"]
+          })
+    - name: PR labeling status on hold remove ready
+      uses: actions/github-script@v6
+      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
+      with:
+        script: |
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["ready"]
           })
 
     - name: Issue create comment
