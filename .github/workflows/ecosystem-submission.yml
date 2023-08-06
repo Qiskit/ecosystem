@@ -220,7 +220,7 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            labels: ["ready", "submission"]
+            labels: ["ready"]
           })
     - name: PR labeling status ready remove on hold
       continue-on-error: true
@@ -244,7 +244,7 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            labels: ["on hold", "submission"]
+            labels: ["on hold"]
           })
     - name: PR labeling status on hold remove ready
       continue-on-error: true
