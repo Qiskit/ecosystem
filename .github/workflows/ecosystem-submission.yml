@@ -5,7 +5,7 @@ name: Ecosystem | Submission check
 # - parse issue
 # - run lint, coverage, tests
 # - create pr
-# - comment result
+# - comment result and add labels
 
 on:
   issues:
@@ -159,18 +159,17 @@ jobs:
         echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
 
     # PR labels and comment
-    - name: PR create comment
-      uses: peter-evans/create-or-update-comment@v3
-      with:
-        issue-number: ${{ steps.cpr.outputs.pull-request-number }}
-        body-path: "summary_output.md"
-
     - name: PR labeling status ready
       uses: actions-ecosystem/action-add-labels@v1
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
         number: ${{ steps.cpr.outputs.pull-request-number }}
         labels: ready
+    - uses: actions-ecosystem/action-remove-labels@v1
+      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
+      with:
+        number: ${{ steps.cpr.outputs.pull-request-number }}
+        labels: on hold
 
     - name: PR labeling status on hold
       uses: actions-ecosystem/action-add-labels@v1
@@ -179,12 +178,22 @@ jobs:
         number: ${{ steps.cpr.outputs.pull-request-number }}
         labels: on hold
 
+    - name: PR create comment
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ steps.cpr.outputs.pull-request-number }}
+        body-path: "summary_output.md"
+
     # Issue labels and comment
     - name: Issue labeling status ready
       uses: actions-ecosystem/action-add-labels@v1
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
         labels: ready
+    - uses: actions-ecosystem/action-remove-labels@v1
+      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
+      with:
+        labels: on hold
 
     - name: Issue labeling status on hold
       uses: actions-ecosystem/action-add-labels@v1
