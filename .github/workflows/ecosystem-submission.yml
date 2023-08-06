@@ -148,13 +148,18 @@ jobs:
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
-          Standard check passed : ${{ steps.check-return.outputs.PASS_STD }}
 
           ---
           Closes #${{ github.event.issue.number }}
         branch: submission-${{ github.event.issue.number }}
         labels: submission
         base: main
+
+    - name: Create comment on PR
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ steps.cpr.outputs.pull-request-number }}
+        body-path: "summary_output.md"
 
     - name: PR labeling status ready
       uses: actions-ecosystem/action-add-labels@v1
@@ -187,7 +192,7 @@ jobs:
       run: |
         echo "PR #${{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
         # Create summary_output.md
-        echo "$(cat $GITHUB_STEP_SUMMARY)" >> summary_output.md
+        #echo "$(cat $GITHUB_STEP_SUMMARY)" >> summary_output.md
 
     - name: Create comment on issue
       uses: peter-evans/create-or-update-comment@v3
