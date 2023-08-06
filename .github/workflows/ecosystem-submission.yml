@@ -4,8 +4,8 @@ name: Ecosystem | Submission check
 # - install deps
 # - parse issue
 # - run lint, coverage, tests
+# - create pr
 # - comment result
-# - link pr to issue
 
 on:
   issues:
@@ -25,6 +25,9 @@ jobs:
     steps:
     # setup deps
     - uses: actions/checkout@v3
+    - uses: actions-ecosystem/action-add-labels@v1
+      with:
+        labels: submission
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v4
       with:
@@ -35,7 +38,7 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    # workflow
+    # Python workflow
     - name: Parse submission
       id: parse-issue
       env:
@@ -117,6 +120,7 @@ jobs:
                                        --repo_labels="$SUBMISSION_LABELS" \
                                        --repo_website="$SUBMISSION_WEBSITE"
 
+    # PR stuff
     - name: Commit changes and create Pull Request
       id: cpr
       uses: peter-evans/create-pull-request@v5
@@ -126,9 +130,27 @@ jobs:
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
           Closes #${{ github.event.issue.number }}
+          Standard check passed : ${{ steps.check-return.outputs.PASS_STD }}
         branch: submission-${{ github.event.issue.number }}
+        labels: submission
         base: main
 
+    - name: PR labeling status ready
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
+      with:
+        number: ${{ steps.cpr.outputs.pull-request-number }}
+        labels: ready
+
+    - name: PR labeling status on hold
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
+      with:
+        number: ${{ steps.cpr.outputs.pull-request-number }}
+        labels: on hold
+
+    # Issue stuff
+    ## Standard
     - name: Create comment on success for standard check
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       uses: peter-evans/create-or-update-comment@v3
@@ -137,17 +159,30 @@ jobs:
         body: |
           Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
 
-    - name: Create comment on failure
+    - name: Create comment on failure for standard check
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-          Submission PR #${{ steps.cpr.outputs.pull-request-number }} has been created with errors in tests :warning:
+          Submission PR #${{ steps.cpr.outputs.pull-request-number }} has been created with errors in tests :error:
           See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
           Please follow minimal requirements for project or/and add `ecosystem.json` configuration in the root of the project
           Read more here https://github.com/qiskit-community/ecosystem/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem
 
+    - name: Issue labeling status ready
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
+      with:
+        labels: ready
+
+    - name: Issue labeling status on hold
+      uses: actions-ecosystem/action-add-labels@v1
+      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
+      with:
+        labels: on hold
+
+    ## Stable / Dev
     - name: Create comment on success for stable check
       if: ${{ steps.check-return.outputs.PASS_STB == 'True' }}
       uses: peter-evans/create-or-update-comment@v3
