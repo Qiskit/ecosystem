@@ -169,7 +169,7 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             labels: ["ready"]
-        })
+          })
     - uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
@@ -191,7 +191,7 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             labels: ["on hold"]
-        })
+          })
 
     - name: PR create comment
       uses: peter-evans/create-or-update-comment@v3
@@ -210,7 +210,7 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             labels: ["ready"]
-    })
+          })
     - uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
@@ -221,7 +221,6 @@ jobs:
             repo: context.repo.repo,
             name: ["on hold"]
           })
-
 
     - name: Issue labeling status on hold
       uses: actions/github-script@v6
