@@ -168,7 +168,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-    - name: PR labeling status ready remove on hold
+    - name: 'PR: Remove "on hold" label'
       continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
