@@ -181,7 +181,7 @@ jobs:
             name: ["on hold"]
           })
 
-    - name: PR labeling status on hold
+    - name: 'PR: Add "on hold" label'
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
