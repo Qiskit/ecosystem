@@ -260,7 +260,7 @@ jobs:
             name: ["ready"]
           })
 
-    - name: Issue create comment
+    - name: 'Issue: Post comment'
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
