@@ -108,7 +108,8 @@ jobs:
         base: main
 
     # Check result
-    - name: Check return
+    - name: Check test results
+    # Gets results of repo tests, and creates comment to post to issue
       id: check-return
       run: |
         # STD check
