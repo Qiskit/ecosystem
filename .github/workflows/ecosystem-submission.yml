@@ -212,7 +212,7 @@ jobs:
         body-path: "summary_output.md"
 
     # Issue labels and comment
-    - name: Issue labeling status ready
+    - name: 'Issue: Add "ready" label'
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
