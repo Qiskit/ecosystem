@@ -205,7 +205,7 @@ jobs:
             name: ["ready"]
           })
 
-    - name: PR create comment
+    - name: 'PR: Post comment'
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ steps.cpr.outputs.pull-request-number }}
