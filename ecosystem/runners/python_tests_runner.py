@@ -53,21 +53,21 @@ class PythonTestsRunner(Runner):
             ecosystem_additional_commands=self.ecosystem_additional_commands,
         )
 
-        terra_version = UnknownPackageVersion
+        qiskit_version = UnknownPackageVersion
 
         # run tox
         tox_tests_res = RunToxCommand.execute(
             directory=self.cloned_repo_directory, env=self.python_version
         )
 
-        # get terra version from file
-        if os.path.exists(f"{self.cloned_repo_directory}/terra_version.txt"):
+        # get qiskit version from file
+        if os.path.exists(f"{self.cloned_repo_directory}/qiskit_version.txt"):
             with open(
-                f"{self.cloned_repo_directory}/terra_version.txt", "r"
+                f"{self.cloned_repo_directory}/qiskit_version.txt", "r"
             ) as version_file:
-                terra_version = version_file.read()
-                self.logger.info("Terra version: %s", terra_version)
+                qiskit_version = version_file.read()
+                self.logger.info("Qiskit version: %s", qiskit_version)
         else:
-            self.logger.warning("There in no terra version file...")
+            self.logger.warning("There in no qiskit version file...")
 
-        return terra_version, [tox_tests_res]
+        return qiskit_version, [tox_tests_res]

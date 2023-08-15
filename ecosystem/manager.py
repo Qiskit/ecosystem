@@ -19,8 +19,8 @@ from ecosystem.runners.python_styles_runner import PythonStyleRunner
 from ecosystem.runners.python_coverages_runner import PythonCoverageRunner
 from ecosystem.utils import logger, parse_submission_issue
 from ecosystem.utils.custom_requests import (
-    get_dev_terra_version,
-    get_stable_terra_version,
+    get_dev_qiskit_version,
+    get_stable_qiskit_version,
 )
 from ecosystem.utils.utils import set_actions_output
 
@@ -372,7 +372,7 @@ class Manager:
             python_version=python_version,
             repo_config=repo_configuration,
         )
-        terra_version, results = runner.run()
+        qiskit_version, results = runner.run()
         if len(results) > 0:
             # if default tests are passed
             # we do not detect deprecation warnings for qiskit
@@ -385,8 +385,8 @@ class Manager:
 
             test_result = TestResult(
                 passed=passed,
-                package=Package.TERRA,
-                package_version=terra_version,
+                package=Package.QISKIT,
+                package_version=qiskit_version,
                 test_type=test_type,
                 logs_link=logs_link,
                 package_commit_hash=package_commit_hash,
@@ -404,7 +404,7 @@ class Manager:
                 [
                     (
                         "PASS",
-                        f"{test_result.passed} - Terra version : {test_result.terra_version}",
+                        f"{test_result.passed} - Qiskit version : {test_result.qiskit_version}",
                     )
                 ]
             )
@@ -412,7 +412,7 @@ class Manager:
             self.logger.warning("Runner returned 0 results.")
             set_actions_output([("PASS", "False")])
 
-        return terra_version
+        return qiskit_version
 
     def python_styles_check(
         self,
@@ -528,7 +528,7 @@ class Manager:
         Return:
             _run_python_tests def
         """
-        package = "qiskit-terra"
+        package = "qiskit"
 
         # get package commit hash
         package_commit_hash = None
@@ -544,7 +544,7 @@ class Manager:
         # hack to fix tox's inability to install proper version of
         # qiskit through github via deps configuration
         additional_commands = [
-            "pip uninstall -y qiskit-terra",
+            "pip uninstall -y qiskit",
             f"pip install git+https://github.com/Qiskit/{package}.git@main",
         ]
         return self._run_python_tests(
@@ -578,9 +578,9 @@ class Manager:
         Return:
             _run_python_tests def
         """
-        qiskit_latest_deps = ["qiskit-terra"]
+        qiskit_latest_deps = ["qiskit"]
         additional_commands = [
-            "pip install --upgrade --no-dependencies --force-reinstall qiskit-terra",
+            "pip install --upgrade --no-dependencies --force-reinstall qiskit",
         ]
         return self._run_python_tests(
             run_name=run_name,
@@ -626,48 +626,48 @@ class Manager:
         main_repos = self.dao.get_repos_by_tier(Tier.MAIN)
         repo_to_url_mapping = {r.name: r.url for r in main_repos}
 
-        terra_dev_version = get_dev_terra_version()
-        terra_stable_version = get_stable_terra_version()
+        qiskit_dev_version = get_dev_qiskit_version()
+        qiskit_stable_version = get_stable_qiskit_version()
 
         data = [
-            # repo, workflow_name, terra_version, test_type
+            # repo, workflow_name, qiskit_version, test_type
             (
                 "qiskit-nature",
                 "Nature%20Unit%20Tests",
-                terra_dev_version,
+                qiskit_dev_version,
                 TestType.DEV_COMPATIBLE,
             ),
             (
                 "qiskit-finance",
                 "Finance%20Unit%20Tests",
-                terra_dev_version,
+                qiskit_dev_version,
                 TestType.DEV_COMPATIBLE,
             ),
             (
                 "qiskit-optimization",
                 "Optimization%20Unit%20Tests",
-                terra_dev_version,
+                qiskit_dev_version,
                 TestType.DEV_COMPATIBLE,
             ),
             (
                 "qiskit-machine-learning",
                 "Machine%20Learning%20Unit%20Tests",
-                terra_dev_version,
+                qiskit_dev_version,
                 TestType.DEV_COMPATIBLE,
             ),
-            ("qiskit-experiments", "Tests", terra_stable_version, TestType.STANDARD),
-            ("qiskit-aer", "Tests%20Linux", terra_stable_version, TestType.STANDARD),
+            ("qiskit-experiments", "Tests", qiskit_stable_version, TestType.STANDARD),
+            ("qiskit-aer", "Tests%20Linux", qiskit_stable_version, TestType.STANDARD),
         ]
 
-        for repo, workflow_name, terra_version, test_type in data:
+        for repo, workflow_name, qiskit_version, test_type in data:
             self.logger.info("Updating %s repository...", repo)
             _, results = RepositoryActionStatusRunner(
-                repo=repo, test_name=workflow_name, terra_version=terra_version
+                repo=repo, test_name=workflow_name, qiskit_version=qiskit_version
             ).workload()
             test_result = TestResult(
                 passed=all(r.ok for r in results),
-                package=Package.TERRA,
-                package_version=terra_version,
+                package=Package.QISKIT,
+                package_version=qiskit_version,
                 test_type=test_type,
             )
             result = self.dao.add_repo_test_result(

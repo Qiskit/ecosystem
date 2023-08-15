@@ -25,13 +25,13 @@ def get_community_repo() -> Repository:
             TestResult(
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.0",
             ),
             TestResult(
                 passed=True,
                 test_type=TestType.STANDARD,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.0",
             ),
         ],
@@ -51,13 +51,13 @@ def get_community_fail_repo() -> Repository:
             TestResult(
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.0",
             ),
             TestResult(
                 passed=False,
                 test_type=TestType.STANDARD,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.0",
             ),
         ],
