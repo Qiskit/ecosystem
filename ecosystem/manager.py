@@ -528,7 +528,7 @@ class Manager:
         Return:
             _run_python_tests def
         """
-        package = "qiskit"
+        package = "qiskit-terra"
 
         # get package commit hash
         package_commit_hash = None
@@ -544,7 +544,7 @@ class Manager:
         # hack to fix tox's inability to install proper version of
         # qiskit through github via deps configuration
         additional_commands = [
-            "pip uninstall -y qiskit",
+            f"pip uninstall -y {package}",
             f"pip install git+https://github.com/Qiskit/{package}.git@main",
         ]
         return self._run_python_tests(
