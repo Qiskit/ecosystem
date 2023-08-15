@@ -10,7 +10,7 @@ from .utils import JsonSerializable
 class Package:  # pylint: disable=too-few-public-methods
     """Frameworks."""
 
-    TERRA: str = "qiskit-terra"
+    QISKIT: str = "qiskit"
     NATURE: str = "qiskit-nature"
     ML: str = "qiskit-machine-learning"
     OPTIMIZATION: str = "qiskit-optimization"
@@ -18,7 +18,7 @@ class Package:  # pylint: disable=too-few-public-methods
 
     def all(self) -> list[str]:
         """Returns list of all available Qiskit frameworks."""
-        return [self.TERRA, self.NATURE, self.ML, self.OPTIMIZATION, self.DYNAMICS]
+        return [self.QISKIT, self.NATURE, self.ML, self.OPTIMIZATION, self.DYNAMICS]
 
 
 @dataclass
@@ -41,11 +41,11 @@ class TestResult(JsonSerializable):
     package_version: str
     logs_link: str | None = None
     package_commit_hash: str | None = None
-    terra_version: str | None = None
+    qiskit_version: str | None = None
     timestamp: float | None = None
 
     def __post_init__(self):
-        self.terra_version = self.package_version
+        self.qiskit_version = self.package_version
         self.timestamp = datetime.datetime.now().timestamp()
 
     @classmethod

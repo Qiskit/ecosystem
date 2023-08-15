@@ -38,8 +38,8 @@ def get_workflow_status(
     return result
 
 
-def get_stable_terra_version() -> str:
-    """Returns stable Qiskit-terra version."""
+def get_stable_qiskit_version() -> str:
+    """Returns stable Qiskit version."""
     url = "https://api.github.com/repos/Qiskit/qiskit-terra/releases"
     response = requests.get(url, params={"per_page": 1})
     version = UnknownPackageVersion
@@ -49,16 +49,16 @@ def get_stable_terra_version() -> str:
             latest_release = releases[0]
             version = latest_release["tag_name"].strip()
         else:
-            logger.warning("No releases found during terra version fetch.")
+            logger.warning("No releases found during qiskit version fetch.")
     else:
         logger.warning(
-            "GitHub api returned non success code during terra release fetch."
+            "GitHub api returned non success code during qiskit release fetch."
         )
     return version
 
 
-def get_dev_terra_version() -> str:
-    """Returns dev Qiskit-terra version."""
+def get_dev_qiskit_version() -> str:
+    """Returns dev Qiskit version."""
     url = (
         "https://raw.githubusercontent.com/Qiskit/qiskit-terra/main/qiskit/VERSION.txt"
     )
@@ -67,5 +67,5 @@ def get_dev_terra_version() -> str:
     if response.ok:
         version = response.text.strip()
     else:
-        logger.warning("Cannot fetch terra version.")
+        logger.warning("Cannot fetch qiskit version.")
     return version
