@@ -69,12 +69,12 @@ body:
     validations:
       required: false
   - type: dropdown
-    id: tags
+    id: labels
     attributes:
       description: |
-        Tags are how users discover your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
-        If you don't think any existing tags apply to your project, leave a comment after submitting your issue requesting a new tag.
-      label: Tags
+        Labels are how users discover your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
+        If you don't think any existing labels apply to your project, leave a comment after submitting your issue requesting a new label.
+      label: Labels
       multiple: true
       options:
         - Advocate mentorship project
