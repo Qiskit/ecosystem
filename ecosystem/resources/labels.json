@@ -1,11 +1,11 @@
 [
     {
         "name": "Advocate mentorship project",
-        "description": "Project from the Qiskit Advocate Mentorship Program (QAMP)"
+        "description": "Develped as part of the Qiskit Advocate Mentorship Program (QAMP)"
     },
     {
         "name": "Error correction",
-        "description": "Related to or tools for performing quantum error correction"
+        "description": "Performs or investigates quantum error correction"
     },
     {
         "name": "_No response_",
@@ -13,43 +13,47 @@
     },
     {
         "name": "Algorithms",
-        "description": "Extends the Qiskit algorithms library"
+        "description": "Implements quantum algorithms"
     },
     {
         "name": "Chemistry",
-        "description": "Related to or with applications in chemistry"
+        "description": "Applies quantum computing to chemistry"
     },
     {
         "name": "Circuit",
-        "description": "Extends the Qiskit circuit library, implements a circuit transformation or analysis"
+        "description": "Builds or modifies quantum circuits"
+    },
+    {
+        "name": "Circuit simulator",
+        "description": "Simulates quantum computers"
     },
     {
         "name": "Converter",
-        "description": "Tools for converting Qiskit objects (such as QuantumCircuit) into other frameworks"
+        "description": "Converts Qiskit objects (such as QuantumCircuit) for use in other programs"
     },
     {
         "name": "Error mitigation",
-        "description": "Tools or algorithms for mitigating errors"
+        "description": "Includes tools for mitigating errors"
     },
     {
         "name": "Finance",
-        "description": "Related to or with applications in finance"
+        "description": "Applies quantum computing to finance"
     },
     {
         "name": "Game",
-        "description": "Games or playful education resources that use Qiskit"
+        "description": "Games or playful education resources"
     },
     {
         "name": "Hardware",
-        "description": "Related with quantum hardware design or quantum control"
+        "description": "For quantum hardware design or quantum control"
     },
     {
         "name": "Julia",
-        "description": "Tools written in the Julia programming language"
+        "description": "Written in the Julia programming language"
     },
     {
         "name": "Machine learning",
-        "description": "Related to or with applications in machine learning"
+        "description": "Uses or applies to machine learning"
     },
     {
         "name": "Jupyter notebook",
@@ -57,43 +61,38 @@
     },
     {
         "name": "OpenQASM",
-        "description": "Supports OpenQASM as an exchange format"
+        "description": "Supports Open Quantum Assembly Language"
     },
     {
         "name": "Optimization",
-        "description": "Related to or with applications in optimization"
+        "description": "Applies quantum computing to optimization problems"
     },
     {
         "name": "Paper implementation",
-        "description": "Implements ideas from peer-reviewed papers (owned or from third parties)"
+        "description": "Implements ideas from research papers"
     },
     {
         "name": "Partners",
-        "description": "Software in maintained as part of the Qiskit Partnership Program"
+        "description": "Part of the Qiskit Partnership Program"
     },
     {
         "name": "Physics",
-        "description": "Related to or with applications in physics"
+        "description": "Applies quantum computing to physics"
     },
     {
         "name": "Transpiler plugin",
-        "description": "Transpiler or synthesis Qiskit plugin"
+        "description": "Extends Qiskit's transpiler"
     },
     {
         "name": "Prototype",
-        "description": "Software or tool written by the Qiskit prototypes team"
+        "description": "Written by the Qiskit prototypes team"
     },
     {
         "name": "Provider",
-        "description": "Implements a Qiskit provider interface, either local or remote"
-    },
-    {
-        "name": "Simulator",
-        "description": "Simulates quantum computers"
+        "description": "Connects Qiskit to hardware or simulators"
     },
     {
         "name": "Productivity",
-        "description": "Makes working with Qiskit easier"
+        "description": "Tool to make working with Qiskit easier"
     }
-
 ]
