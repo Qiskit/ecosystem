@@ -77,10 +77,12 @@ body:
       label: Tags
       multiple: true
       options:
-        - Advocate mentorship program
+        - Advocate mentorship project
         - Algorithms
         - Chemistry
+        - Circuit simulator
         - Circuit
+        - Cloud
         - Converter
         - Error correction
         - Error mitigation
@@ -90,18 +92,16 @@ body:
         - Julia
         - Jupyter notebook
         - Machine learning
-        - Meta
         - OpenQASM
         - Optimization
         - Paper implementation
         - Partner
         - Physics
+        - Productivity
         - Prototype
         - Provider
         - Quantum information
-        - Simulation
         - Software development kit
-        - Symbolic computation
         - Transpiler plugin
         - Visualization
   - type: input

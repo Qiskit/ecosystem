@@ -4,14 +4,6 @@
         "description": "Develped as part of the Qiskit Advocate Mentorship Program (QAMP)"
     },
     {
-        "name": "Error correction",
-        "description": "Performs or investigates quantum error correction"
-    },
-    {
-        "name": "_No response_",
-        "description": ""
-    },
-    {
         "name": "Algorithms",
         "description": "Implements quantum algorithms"
     },
@@ -20,16 +12,24 @@
         "description": "Applies quantum computing to chemistry"
     },
     {
-        "name": "Circuit",
-        "description": "Builds or modifies quantum circuits"
-    },
-    {
         "name": "Circuit simulator",
         "description": "Simulates quantum computers"
     },
     {
+        "name": "Circuit",
+        "description": "Builds or modifies quantum circuits"
+    },
+    {
+        "name": "Cloud",
+        "description": "Runs quantum programs on the cloud"
+    },
+    {
         "name": "Converter",
         "description": "Converts Qiskit objects (such as QuantumCircuit) for use in other programs"
+    },
+    {
+        "name": "Error correction",
+        "description": "Performs or investigates quantum error correction"
     },
     {
         "name": "Error mitigation",
@@ -52,12 +52,12 @@
         "description": "Written in the Julia programming language"
     },
     {
-        "name": "Machine learning",
-        "description": "Uses or applies to machine learning"
-    },
-    {
         "name": "Jupyter notebook",
         "description": "Uses or supports Jupyter notebooks"
+    },
+    {
+        "name": "Machine learning",
+        "description": "Uses or applies to machine learning"
     },
     {
         "name": "OpenQASM",
@@ -72,7 +72,7 @@
         "description": "Implements ideas from research papers"
     },
     {
-        "name": "Partners",
+        "name": "Partner",
         "description": "Part of the Qiskit Partnership Program"
     },
     {
@@ -80,8 +80,8 @@
         "description": "Applies quantum computing to physics"
     },
     {
-        "name": "Transpiler plugin",
-        "description": "Extends Qiskit's transpiler"
+        "name": "Productivity",
+        "description": "Tool to make working with Qiskit easier"
     },
     {
         "name": "Prototype",
@@ -92,7 +92,19 @@
         "description": "Connects Qiskit to hardware or simulators"
     },
     {
-        "name": "Productivity",
-        "description": "Tool to make working with Qiskit easier"
+        "name": "Quantum information",
+        "description": "Tool for quantum information experiments"
+    },
+    {
+        "name": "Software development kit",
+        "description": "Helps develop Qiskit code"
+    },
+    {
+        "name": "Transpiler plugin",
+        "description": "Extends Qiskit's transpiler"
+    },
+    {
+        "name": "Visualization",
+        "description": "Produces images, animations, or graphical user interfaces"
     }
 ]
