@@ -162,7 +162,7 @@ jobs:
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
         script: |
-          # PR
+          // PR
           github.rest.issues.addLabels({
             issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
@@ -175,7 +175,7 @@ jobs:
             repo: context.repo.repo,
             name: ["on hold"]
           })
-          # Issue
+          // Issue
           github.rest.issues.addLabels({
             issue_number: context.issue.number,
             owner: context.repo.owner,
@@ -194,7 +194,7 @@ jobs:
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
         script: |
-          # PR
+          // PR
           github.rest.issues.addLabels({
             issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
@@ -207,7 +207,7 @@ jobs:
             repo: context.repo.repo,
             name: ["ready"]
           })
-          # Issue
+          // Issue
           github.rest.issues.addLabels({
             issue_number: context.issue.number,
             owner: context.repo.owner,
