@@ -108,8 +108,8 @@ jobs:
         base: main
 
     # Check result
+    ## Gets results of repo tests, and creates comment to post into issue/PR
     - name: Check test results
-    # Gets results of repo tests, and creates comment to post to issue
       id: check-return
       run: |
         # STD check
@@ -157,110 +157,77 @@ jobs:
         echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
 
     # PR labels and comment
-    - name: 'PR: Add "ready" label'
+    - name: "Label 'ready'"
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
         script: |
+          # PR
           github.rest.issues.addLabels({
             issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
             repo: context.repo.repo,
             labels: ["ready"]
           })
-    - name: 'PR: Remove "on hold" label'
-      continue-on-error: true
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
-      with:
-        script: |
           github.rest.issues.removeLabel({
             issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
             repo: context.repo.repo,
             name: ["on hold"]
           })
+          # Issue
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["ready"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["on hold"]
+          })
 
-    - name: 'PR: Add "on hold" label'
+    - name: "Label 'on hold'"
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
         script: |
+          # PR
           github.rest.issues.addLabels({
             issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-    - name: 'PR: Remove "ready" label'
-      continue-on-error: true
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
-      with:
-        script: |
           github.rest.issues.removeLabel({
             issue_number: ${{ steps.cpr.outputs.pull-request-number }},
             owner: context.repo.owner,
             repo: context.repo.repo,
             name: ["ready"]
           })
+          # Issue
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["on hold"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["ready"]
+          })
 
-    - name: 'PR: Post comment'
+    - name: "PR: Post comment"
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ steps.cpr.outputs.pull-request-number }}
         body-path: "summary_output.md"
 
-    # Issue labels and comment
-    - name: 'Issue: Add "ready" label'
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
-      with:
-        script: |
-          github.rest.issues.addLabels({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: ["ready"]
-          })
-    - name: PR labeling status ready remove on hold
-      continue-on-error: true
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
-      with:
-        script: |
-          github.rest.issues.removeLabel({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["on hold"]
-          })
-
-    - name: 'Issue: Add "on hold" label'
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
-      with:
-        script: |
-          github.rest.issues.addLabels({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: ["on hold"]
-          })
-    - name: PR labeling status on hold remove ready
-      continue-on-error: true
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
-      with:
-        script: |
-          github.rest.issues.removeLabel({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["ready"]
-          })
-
-    - name: 'Issue: Post comment'
+    - name: "Issue: Post comment"
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
