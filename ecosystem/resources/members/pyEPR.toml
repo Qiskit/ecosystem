@@ -1,0 +1,27 @@
+name = "pyEPR"
+url = "https://github.com/zlatko-minev/pyEPR"
+description = "Qiskit Metal E&M analysis with Ansys and the energy-participation-ratio method is based on pyEPR."
+licence = "BSD 3-Clause New or Revised license"
+contact_info = "zlatko.minev@ibm.com"
+alternatives = ""
+labels = [ "plugin",]
+created_at = 1662470654.437653
+updated_at = 1662470654.437655
+tests_results = []
+styles_results = []
+coverages_results = []
+tier = "Community"
+skip_tests = true
+historical_test_results = []
+stars = 139
+
+[configuration]
+dependencies_files = [ "requirements.txt",]
+extra_dependencies = [ "qiskit", "coverage", "pylint",]
+tests_command = [ "pytest",]
+styles_check_command = [ "pylint -rn pyEPR",]
+coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]
+
+[configuration.language]
+name = "python"
+versions = [ "3.6",]

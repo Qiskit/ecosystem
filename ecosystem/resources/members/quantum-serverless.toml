@@ -1,0 +1,43 @@
+name = "quantum-serverless"
+url = "https://github.com/Qiskit-Extensions/quantum-serverless"
+description = "The Quantum Serverless package aims to allow developers to easily offload computations to cloud resources, without being experts in packaging code for remote execution environments."
+licence = "Apache License 2.0"
+contact_info = "blake.johnson@ibm.com"
+alternatives = "_No response_"
+labels = [ "sdk",]
+created_at = 1670427445.627174
+updated_at = 1670427445.627175
+styles_results = []
+coverages_results = []
+tier = "Extensions"
+skip_tests = true
+historical_test_results = []
+stars = 32
+[[tests_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1670427445.627157
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096882"
+package_commit_hash = "0df0d29fc44fb571e38530d20743a6e70e230865"
+
+[[tests_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1670427445.625689
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096844"
+
+[[tests_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1670427445.627162
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096823"
+

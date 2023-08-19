@@ -1,0 +1,148 @@
+name = "pennylane-qiskit"
+url = "https://github.com/PennyLaneAI/pennylane-qiskit"
+description = "The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities"
+licence = "Apache 2.0"
+labels = [ "converter",]
+created_at = 1678827878.782751
+updated_at = 1678827878.782752
+tier = "Community"
+skip_tests = false
+stars = 129
+[[tests_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1678827878.774079
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414045051"
+package_commit_hash = "3005806e48da61f235742bb365e251bce37452bd"
+
+[[tests_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1678827878.774085
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414045004"
+
+[[tests_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1678827878.772074
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414044960"
+
+[[styles_results]]
+style_type = "pylint"
+passed = false
+
+[[coverages_results]]
+coverage_type = ""
+passed = false
+
+[[historical_test_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "0.37.0"
+qiskit_version = "0.37.0"
+timestamp = 1678827878.782722
+
+[[historical_test_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "0.39.0"
+qiskit_version = "0.39.0"
+timestamp = 1678827878.782727
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/2617548463"
+package_commit_hash = "c60d3b8e735d54c1180fe788876f3c4dacbc3cba"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "0.34.1"
+qiskit_version = "0.34.1"
+timestamp = 1678827878.78273
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/2617548463"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "0.34.1"
+qiskit_version = "0.34.1"
+timestamp = 1678827878.782732
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/2617548463"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "-"
+qiskit_version = "-"
+timestamp = 1678827878.782734
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3039653656"
+
+[[historical_test_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "-"
+qiskit_version = "-"
+timestamp = 1678827878.782736
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3039653687"
+package_commit_hash = "055fe0f9c9ca3b3b994f68ba2c7647763a29f63b"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "-"
+qiskit_version = "-"
+timestamp = 1678827878.782739
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3039653655"
+
+[[historical_test_results]]
+test_type = "development"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1678827878.782743
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414045051"
+package_commit_hash = "3005806e48da61f235742bb365e251bce37452bd"
+
+[[historical_test_results]]
+test_type = "stable"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1678827878.782745
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414045004"
+
+[[historical_test_results]]
+test_type = "standard"
+passed = false
+package = "qiskit-terra"
+package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1678827878.772074
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414044960"
+
+[configuration]
+dependencies_files = [ "requirements.txt",]
+extra_dependencies = [ "coverage", "pylint", "qiskit",]
+tests_command = [ "pytest tests --tb=short",]
+styles_check_command = [ "pylint -rn pennylane_qiskit tests",]
+coverages_check_command = [ "python3 -m pytest tests --tb=short --cov=pennylane_qiskit --cov-report term-missing --cov-report=html:coverage_html_report",]
+
+[configuration.language]
+name = "python"
+versions = [ "3.6",]
