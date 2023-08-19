@@ -97,9 +97,7 @@ class Manager:
             },
         )
         if response.ok:
-            self.logger.info(
-                "Success response on dispatch event. %s", response.text
-            )
+            self.logger.info("Success response on dispatch event. %s", response.text)
         else:
             self.logger.warning(
                 "Something wend wrong with dispatch event: %s", response.text

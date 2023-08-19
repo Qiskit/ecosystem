@@ -15,10 +15,9 @@ jobs:
   project_check_job:
     runs-on: ubuntu-latest
     steps:
-    - name: Running for ${{ github.event.client_payload.repo_url }}
+    - name: Running for ${{ github.event.client_payload.repo_name }}
       id: info
       run: |
-        echo "Repo name : ${{ github.event.client_payload.repo_url }}"
         echo "Running check for ${{ github.event.client_payload.repo_url }}..."
         echo "Will push changes to ${{ github.event.client_payload.branch_name }}..."
     - uses: actions/checkout@v3
