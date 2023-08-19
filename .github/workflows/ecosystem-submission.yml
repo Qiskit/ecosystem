@@ -105,7 +105,6 @@ jobs:
           Closes #${{ github.event.issue.number }}
         branch: submission-${{ github.event.issue.number }}
         labels: submission
-        base: main
 
     # Check result
     ## Gets results of repo tests, and creates comment to post into issue/PR
