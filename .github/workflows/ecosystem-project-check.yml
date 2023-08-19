@@ -44,11 +44,11 @@ jobs:
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
         run_name: ${{ github.event.client_payload.branch_name }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+        logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
 
     - name: Merge files and save to db
       run: python manager.py process_temp_test_results_files --folder_name=${{ github.event.client_payload.branch_name }}
-        
+
     - name: Commit changes
       run: |
         git pull --rebase --autostash
