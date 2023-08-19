@@ -7,7 +7,6 @@ on:
   #    "branch_name": "weekly-checks-1", # 'Branch name to push changes'
   #    "repo_name": "demo-implementation", # 'Repository name'
   #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL',
-  #    "test_type": "development"
   #  }
   repository_dispatch:
     types: [ check_project ]
@@ -35,12 +34,34 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    - name: Tests [${{ github.event.client_payload.test_type }}]
+    - name: Tests Stable
       id: test_step
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
-        test_type: ${{ github.event.client_payload.test_type }}
+        test_type: "stable"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
+        logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
+
+    - name: Tests dev
+      id: test_step
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        test_type: "development"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
+        logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
+
+    - name: Tests standard
+      id: test_step
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        test_type: "standard"
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
         run_name: ${{ github.event.client_payload.branch_name }}
