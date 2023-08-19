@@ -35,7 +35,6 @@ jobs:
           Batch checks
           Time: ${{ steps.vars.outputs.datetime }}
         branch: ${{ steps.vars.outputs.pr_branch_name }}
-        base: main
     - name: Get project for check
       id: repos
       run: python manager.py expose_all_project_to_actions
