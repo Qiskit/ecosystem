@@ -50,6 +50,6 @@ jobs:
                             --repo_url=${repositories[$i]} \
                             --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
                             --tier=${tiers[$i]} \
-                            --token=${{ secrets.WORKFLOW_DISPATCH_PAT }} \
+                            --token=${{ secrets.GITHUB_TOKEN }} \
                             --owner=${{ github.repository_owner }}
         done
