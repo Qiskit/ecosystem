@@ -35,7 +35,7 @@ jobs:
         pip install -r requirements-dev.txt
 
     - name: Tests Stable
-      id: test_step
+      id: test_stb
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
@@ -46,7 +46,7 @@ jobs:
         logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
 
     - name: Tests dev
-      id: test_step
+      id: test_dev
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
@@ -57,7 +57,7 @@ jobs:
         logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
 
     - name: Tests standard
-      id: test_step
+      id: test_std
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
