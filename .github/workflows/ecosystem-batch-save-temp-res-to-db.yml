@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       batch_folder:
-        description: 'Github branch to push changes to'
+        description: "batch_check_ folder with json to merge."
         required: true
 
 jobs:
