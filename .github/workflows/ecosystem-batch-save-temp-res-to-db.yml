@@ -2,10 +2,6 @@ name: Ecosystem | Batch | merge check files and push to db
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Github branch to push changes to'
-        required: true
 
 jobs:
   batch_save_files_to_db:
@@ -17,8 +13,6 @@ jobs:
         echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
         echo "pr_branch_name=batch_checks_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
     - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.inputs.branch }}
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
