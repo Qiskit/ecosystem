@@ -8,9 +8,72 @@ affiliations = "_No response_"
 labels = [ "Converter",]
 tier = "Community"
 website = "https://github.com/KMU-quantum-classroom"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
-stars = 0
+stars = 1
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924784456"
+package_commit_hash = "7bc2bfd4f8dcc436aec5f85641e3ec07be15eb01"
+qiskit_version = "0.45.0"
+timestamp = 1692612660.225499
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924784456"
+qiskit_version = "0.44.1"
+timestamp = 1692612660.383696
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924784456"
+qiskit_version = "0.44.1"
+timestamp = 1692612660.383707
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924784456"
+qiskit_version = "0.44.0"
+timestamp = 1692612660.383711
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924784456"
+qiskit_version = "0.44.1"
+timestamp = 1692612660.383719
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924784456"
+qiskit_version = "0.44.0"
+timestamp = 1692612660.383723
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924784456"
+package_commit_hash = "7bc2bfd4f8dcc436aec5f85641e3ec07be15eb01"
+qiskit_version = "0.45.0"
+timestamp = 1692612660.225499
+

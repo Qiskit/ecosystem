@@ -3,8 +3,8 @@ name: Ecosystem | Batch | merge check files and push to db
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: 'Github branch to push changes to'
+      batch_folder:
+        description: "batch_check_ folder with json to merge."
         required: true
 
 jobs:
@@ -17,8 +17,6 @@ jobs:
         echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
         echo "pr_branch_name=batch_checks_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
     - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.inputs.branch }}
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
@@ -28,7 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Merge files and save to db
-      run: python manager.py process_temp_test_results_files --folder_name=${{ github.event.inputs.branch }}
+      run: python manager.py process_temp_test_results_files --folder_name=${{ github.event.inputs.batch_folder }}
     - name: Commit changes
       run: |
         git pull --rebase --autostash

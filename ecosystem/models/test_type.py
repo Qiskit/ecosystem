@@ -6,8 +6,8 @@ class TestType:
     """Test types for specific repository.
 
     Types:
-    - STABLE_COMPATIBLE - compatibility of repository with stable branch of qiskit-terra
-    - DEV_COMPATIBLE - compatibility if repository with dev/main branch of qiskit-terra
+    - STABLE_COMPATIBLE - compatibility of repository with stable branch of qiskit
+    - DEV_COMPATIBLE - compatibility if repository with dev/main branch of qiskit
     - STANDARD - regular tests that comes with repo
     - LAST_WORKING_VERSION - last stable working version of qiskit
     """

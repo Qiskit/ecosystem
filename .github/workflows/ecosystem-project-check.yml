@@ -7,7 +7,6 @@ on:
   #    "branch_name": "weekly-checks-1", # 'Branch name to push changes'
   #    "repo_name": "demo-implementation", # 'Repository name'
   #    "repo_url": "https://github.com/IceKhan13/demo-implementation" # 'Repository URL',
-  #    "test_type": "development"
   #  }
   repository_dispatch:
     types: [ check_project ]
@@ -16,8 +15,8 @@ jobs:
   project_check_job:
     runs-on: ubuntu-latest
     steps:
-    - name: Setup variables
-      id: vars
+    - name: Running for ${{ github.event.client_payload.repo_name }}
+      id: info
       run: |
         echo "Running check for ${{ github.event.client_payload.repo_url }}..."
         echo "Will push changes to ${{ github.event.client_payload.branch_name }}..."
@@ -34,36 +33,42 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    - name: Tests [${{ github.event.client_payload.test_type }}]
-      id: test_step
+    - name: Tests Stable
+      id: test_stb
       uses: ./.github/actions/run-tests
       with:
         repo_url: ${{ github.event.client_payload.repo_url }}
-        test_type: ${{ github.event.client_payload.test_type }}
+        test_type: "stable"
         tox_env: "py39"
         tier: ${{ github.event.client_payload.tier }}
         run_name: ${{ github.event.client_payload.branch_name }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+        logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
 
-    # check if any of the tests failed
-    - name: Check return
-      run: |
-        echo "PASS_LOG=True" >> "$GITHUB_OUTPUT"
+    - name: Tests dev
+      id: test_dev
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        test_type: "development"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
+        logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
 
-        declare -a return_list=( \
-          "${{ steps.test_step.outputs.result }}" \
-        )
-        for i in "${return_list[@]}"; do
-          if [[ "${i}" != *"True"* ]]; then
-            echo "PASS_LOG=False" >> "$GITHUB_OUTPUT"
-          fi
-        done
+    - name: Tests standard
+      id: test_std
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ github.event.client_payload.repo_url }}
+        test_type: "standard"
+        tox_env: "py39"
+        tier: ${{ github.event.client_payload.tier }}
+        run_name: ${{ github.event.client_payload.branch_name }}
+        logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
 
-    - name: Check the check
-      id: check_result
-      run: |
-        echo "Pass log is ${{ env.PASS_LOG }}"
-        
+    - name: Merge files and save to db
+      run: python manager.py process_temp_test_results_files --folder_name=${{ github.event.client_payload.branch_name }}
+
     - name: Commit changes
       run: |
         git pull --rebase --autostash

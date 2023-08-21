@@ -216,7 +216,7 @@ class JsonDAO:
                 tr
                 for tr in repo.historical_test_results
                 if tr.test_type != test_result.test_type
-                or tr.terra_version != test_result.terra_version
+                or tr.qiskit_version != test_result.qiskit_version
             ] + [test_result]
             repo.historical_test_results = new_historical_est_results
 

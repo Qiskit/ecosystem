@@ -8,13 +8,75 @@ affiliations = "_No response_"
 labels = [ "Quantum information", "Circuit simulator",]
 created_at = 1680254616.930627
 updated_at = 1680254616.930632
-tests_results = []
 styles_results = []
 coverages_results = []
 tier = "Community"
 skip_tests = false
-historical_test_results = []
-stars = 9
+stars = 10
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924781808"
+package_commit_hash = "7bc2bfd4f8dcc436aec5f85641e3ec07be15eb01"
+qiskit_version = "0.45.0"
+timestamp = 1692612432.094366
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924781808"
+qiskit_version = "0.44.1"
+timestamp = 1692612432.104111
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924781808"
+qiskit_version = "0.44.1"
+timestamp = 1692612431.968117
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924781808"
+qiskit_version = ""
+timestamp = 1692612432.094375
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924781808"
+qiskit_version = ""
+timestamp = 1692612432.094382
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924781808"
+package_commit_hash = "7bc2bfd4f8dcc436aec5f85641e3ec07be15eb01"
+qiskit_version = "0.45.0"
+timestamp = 1692612432.094386
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5924781808"
+qiskit_version = "0.44.1"
+timestamp = 1692612431.968117
 
 [configuration]
 dependencies_files = [ "requirements.txt",]
