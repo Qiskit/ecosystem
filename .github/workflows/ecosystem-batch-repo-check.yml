@@ -35,7 +35,6 @@ jobs:
           Batch checks
           Time: ${{ steps.vars.outputs.datetime }}
         branch: ${{ steps.vars.outputs.pr_branch_name }}
-        base: main
     - name: Get project for check
       id: repos
       run: python manager.py expose_all_project_to_actions
@@ -50,6 +49,6 @@ jobs:
                             --repo_url=${repositories[$i]} \
                             --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
                             --tier=${tiers[$i]} \
-                            --token=${{ secrets.WORKFLOW_DISPATCH_PAT }} \
+                            --token=${{ secrets.GITHUB_TOKEN }} \
                             --owner=${{ github.repository_owner }}
         done

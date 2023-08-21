@@ -4662,6 +4662,24 @@
             "stars": 1
         },
         "34": {
+            "name": "Quantum-Glasses",
+            "url": "https://github.com/Jayshah25/Quantum-Glasses",
+            "description": "Visualise the effects of Single Qubit Gates on a Qubit via Bloch Sphere Simulation in a Tkinter Software.",
+            "licence": "Apache License 2.0",
+            "contact_info": "shahj097@gmail.com",
+            "alternatives": "The only alternative is to code up a circuit (qiskit.QuantumCircuit) and pass the circuit to visualize_transition from qiskit.visualization. Quantum Glasses implementation wraps all of this into a simple, easy to use Tkinter Software.",
+            "affiliations": "_No response_",
+            "labels": [
+                "visualization"
+            ],
+            "tier": "Community",
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "skip_tests": false,
+            "historical_test_results": []
+        },
+        "35": {
             "name": "QiskitBot",
             "url": "https://github.com/infiniteregrets/QiskitBot",
             "description": "A discord bot that allows you to execute Quantum Circuits, look up the Qiskit's Documentation, and search questions on the Quantum Computing StackExchange",
@@ -4676,7 +4694,7 @@
             "skip_tests": true,
             "stars": 23
         },
-        "35": {
+        "36": {
             "name": "Blueqat",
             "url": "https://github.com/Blueqat/Blueqat",
             "description": "A quantum computing SDK",
@@ -4986,7 +5004,7 @@
                 }
             }
         },
-        "36": {
+        "37": {
             "created_at": 1636403010.012954,
             "description": "The Machine Learning package contains sample datasets and quantum ML algorithms.",
             "labels": [
@@ -5005,7 +5023,7 @@
             "skip_tests": true,
             "stars": 480
         },
-        "37": {
+        "38": {
             "name": "pytorch-quantum",
             "url": "https://github.com/mit-han-lab/pytorch-quantum",
             "description": "A PyTorch-centric hybrid classical-quantum dynamic neural networks framework.",
@@ -5323,7 +5341,7 @@
                 }
             }
         },
-        "38": {
+        "39": {
             "name": "zoose-codespace",
             "url": "https://github.com/ianhellstrom/zoose-codespace",
             "description": "GitHub Codespace template repository based on Zoose Quantum, a custom Docker image with everything included, so you can be up and running with any of the major quantum libraries (incl. Qiskit) with only two clicks! No installation required. Ideal for beginners or people who want to code quantum circuits on the go. Code quantum circuits straight in your browser with VSCode.",
@@ -5343,7 +5361,7 @@
             "historical_test_results": [],
             "stars": 0
         },
-        "39": {
+        "40": {
             "name": "q-kernel-ops",
             "url": "https://github.com/Travis-S-IBM/q-kernel-ops",
             "description": "Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449).",
@@ -5449,7 +5467,7 @@
                 }
             ]
         },
-        "40": {
+        "41": {
             "name": "quantum-tetris",
             "url": "https://github.com/olivierbrcknr/quantum-tetris",
             "description": "What would happen if you combine Tetris with a Quantum computer? The winning entry of the Quantum Design Jam from IBM and Parsons in October 2021 explores just that!",
@@ -5470,7 +5488,7 @@
             "historical_test_results": [],
             "stars": 9
         },
-        "41": {
+        "42": {
             "name": "qiskit-ionq",
             "url": "https://github.com/Qiskit-Partners/qiskit-ionq",
             "description": "Project contains a provider that allows access to IonQ ion trap quantum systems.",
@@ -5660,7 +5678,7 @@
                 }
             }
         },
-        "42": {
+        "43": {
             "name": "dense-ev",
             "url": "https://github.com/atlytle/dense-ev",
             "description": "Implements expectation value measurements in Qiskit using optimal dense grouping. Dense-ev provides an improvement of ~2^m over naive grouping and (3/2)^m over qubit-wise commuting groups. Based on arXiv:2305.11847.",
@@ -5679,7 +5697,7 @@
             "skip_tests": false,
             "historical_test_results": []
         },
-        "43": {
+        "44": {
             "name": "spinoza",
             "url": "https://github.com/smu160/spinoza",
             "description": "Spinoza is a quantum state simulator (implemented in Rust) that is one of the fastest open-source simulators. Spinoza is implemented using a functional approach. Additionally, Spinoza has a `QuantumCircuit` object-oriented interface, which partially matches Qiskit's interface. Spinoza is capable of running in a myriad of computing environments (e.g., small workstations), and on various architectures. At this juncture, Spinoza only utilizes a single thread; however, it is designed to be easily extended into a parallel version, as well as a distributed version. The paper associated with Spinoza is available [here](https://arxiv.org/pdf/2303.01493.pdf).",
