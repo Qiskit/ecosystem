@@ -42,5 +42,3 @@ jobs:
           Badges and stars update
           Time: ${{ steps.vars.outputs.datetime }}
         branch: ${{ steps.vars.outputs.pr_branch_name }}
-        base: main
-
