@@ -16,9 +16,8 @@ stars = 46
 [[tests_results]]
 test_type = "development"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "unknown"
-terra_version = "unknown"
 timestamp = 1670427445.882592
 logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096614"
 package_commit_hash = "0df0d29fc44fb571e38530d20743a6e70e230865"
@@ -26,18 +25,16 @@ package_commit_hash = "0df0d29fc44fb571e38530d20743a6e70e230865"
 [[tests_results]]
 test_type = "stable"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "unknown"
-terra_version = "unknown"
 timestamp = 1670427445.884051
 logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096615"
 
 [[tests_results]]
 test_type = "standard"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "unknown"
-terra_version = "unknown"
 timestamp = 1670427445.884055
 logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096587"
 
