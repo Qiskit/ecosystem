@@ -174,10 +174,10 @@ class DAO:
             if repo.tier not in out:
                 out[repo.tier] = {}
             index = str(len(out[repo.tier]))
-            out[repo.tier][index] = repo
+            out[repo.tier][index] = repo.to_dict()
 
         with open(self.compiled_json_path, "w") as file:
-            json.dump(data, file, indent=4)
+            json.dump(out, file, indent=4)
 
     def add_repo_test_result(self, repo_url: str, test_result: TestResult):
         """
