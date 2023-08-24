@@ -26,7 +26,7 @@ Apache License 2.0
 
 _No response_
 
-### Tags
+### Labels
 
 tool, tutorial, paper implementation
 

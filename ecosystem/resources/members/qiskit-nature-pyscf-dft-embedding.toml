@@ -5,13 +5,67 @@ licence = "Apache License 2.0"
 contact_info = "oss@zurich.ibm.com"
 alternatives = "_No response_"
 affiliations = "_No response_"
-labels = [ "plugin", "algorithms", "chemistry",]
+labels = [ "Algorithms", "Chemistry",]
 created_at = 1685540348.208874
 updated_at = 1685540348.208879
-tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
+tier = "Community"
 skip_tests = false
-historical_test_results = []
 stars = 3
+[[tests_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781104"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "unknown"
+timestamp = 1692695570.725665
+
+[[tests_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781104"
+qiskit_version = "unknown"
+timestamp = 1692695570.546512
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781104"
+qiskit_version = "unknown"
+timestamp = 1692695570.725681
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781104"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "unknown"
+timestamp = 1692695570.725693
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781104"
+qiskit_version = "unknown"
+timestamp = 1692695570.725697
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781104"
+qiskit_version = "unknown"
+timestamp = 1692695570.546512
+

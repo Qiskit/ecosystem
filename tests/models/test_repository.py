@@ -22,7 +22,7 @@ class TestRepository(unittest.TestCase):
         test_result = TestResult(
             passed=True,
             test_type=TestType.DEV_COMPATIBLE,
-            package=Package.TERRA,
+            package=Package.QISKIT,
             package_version="0.18.1",
             logs_link="log_link",
             package_commit_hash="42answer",
@@ -31,9 +31,9 @@ class TestRepository(unittest.TestCase):
         expecting = {
             "test_type": "development",
             "passed": True,
-            "package": "qiskit-terra",
+            "package": "qiskit",
             "package_version": "0.18.1",
-            "terra_version": "0.18.1",
+            "qiskit_version": "0.18.1",
             "timestamp": timestamp,
             "logs_link": "log_link",
             "package_commit_hash": "42answer",
@@ -67,7 +67,7 @@ class TestRepository(unittest.TestCase):
                 TestResult(
                     passed=True,
                     test_type=TestType.DEV_COMPATIBLE,
-                    package=Package.TERRA,
+                    package=Package.QISKIT,
                     package_version="0.18.1",
                     logs_link="log_link",
                 )

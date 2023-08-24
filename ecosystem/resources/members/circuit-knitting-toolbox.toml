@@ -4,40 +4,40 @@ description = "Circuit Knitting is the process of decomposing a quantum circuit 
 licence = "Apache License 2.0"
 contact_info = "blake.johnson@ibm.com"
 alternatives = "_No response_"
-labels = [ "algorithms",]
+labels = [ "Algorithms",]
 created_at = 1670427445.884067
 updated_at = 1670427445.884068
-tier = "Extensions"
 styles_results = []
 coverages_results = []
+tier = "Extensions"
 skip_tests = true
 historical_test_results = []
 stars = 46
 [[tests_results]]
-passed = false
 test_type = "development"
+passed = false
 package = "qiskit-terra"
 package_version = "unknown"
+qiskit_version = "unknown"
+timestamp = 1670427445.882592
 logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096614"
 package_commit_hash = "0df0d29fc44fb571e38530d20743a6e70e230865"
-terra_version = "unknown"
-timestamp = 1670427445.882592
 
 [[tests_results]]
-passed = false
 test_type = "stable"
+passed = false
 package = "qiskit-terra"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096615"
-terra_version = "unknown"
+qiskit_version = "unknown"
 timestamp = 1670427445.884051
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096615"
 
 [[tests_results]]
-passed = false
 test_type = "standard"
+passed = false
 package = "qiskit-terra"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096587"
-terra_version = "unknown"
+qiskit_version = "unknown"
 timestamp = 1670427445.884055
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096587"
 

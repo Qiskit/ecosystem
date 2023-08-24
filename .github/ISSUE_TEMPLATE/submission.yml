@@ -1,7 +1,7 @@
 name: Project submission
 description: Ecosystem project submission
 title: "[Submission]: "
-labels: []
+labels: ["submission"]
 assignees:
   - octocat
 body:
@@ -69,31 +69,40 @@ body:
     validations:
       required: false
   - type: dropdown
-    id: tags
+    id: labels
     attributes:
       description: |
-        Tags are how users discover your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
-        If you don't think any existing tags apply to your project, leave a comment after submitting your issue requesting a new tag.
-      label: Tags
+        Labels are how users discover your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
+        If you don't think any existing labels apply to your project, leave a comment after submitting your issue requesting a new label.
+      label: Labels
       multiple: true
       options:
-        - plugin
-        - tutorial
-        - paper implementation
-        - provider
-        - algorithms
-        - simulation
-        - circuit simulator
-        - chemistry
-        - physics
-        - machine learning
-        - circuit
-        - openpulse
-        - openqasm
-        - finance
-        - game
-        - notebook
-        - converter
+        - Advocate mentorship project
+        - Algorithms
+        - Chemistry
+        - Circuit simulator
+        - Circuit
+        - Converter
+        - Error correction
+        - Error mitigation
+        - Finance
+        - Game
+        - Hardware
+        - Julia
+        - Jupyter notebook
+        - Machine learning
+        - OpenQASM
+        - Optimization
+        - Paper implementation
+        - Partner
+        - Physics
+        - Productivity
+        - Prototype
+        - Provider
+        - Quantum information
+        - Software development kit
+        - Transpiler plugin
+        - Visualization
   - type: input
     id: website
     attributes:

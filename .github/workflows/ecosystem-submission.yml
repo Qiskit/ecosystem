@@ -4,8 +4,8 @@ name: Ecosystem | Submission check
 # - install deps
 # - parse issue
 # - run lint, coverage, tests
-# - comment result
-# - link pr to issue
+# - create pr
+# - comment result and add labels
 
 on:
   issues:
@@ -35,7 +35,7 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    # workflow
+    # Python workflow
     - name: Parse submission
       id: parse-issue
       env:
@@ -49,7 +49,7 @@ jobs:
         test_type: "stable"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     - name: Tests dev check
       id: dev
       uses: ./.github/actions/run-tests
@@ -58,7 +58,7 @@ jobs:
         test_type: "development"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     - name: Tests standard repo check
       id: standard
       uses: ./.github/actions/run-tests
@@ -67,33 +67,7 @@ jobs:
         test_type: "standard"
         tox_env: ${{ env.tox_env }}
         tier: ${{ env.tier }}
-        logs_link: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
-
-    # Check result, update issue and create PR
-    - name: Check return
-      id: check-return
-      run: |
-        if [[ "${{ steps.standard.outputs.result }}" == *"True"* ]]; then
-          echo "::notice title=StandardCheck::Success"
-          echo "PASS_STD=True" >> "$GITHUB_OUTPUT"
-        else
-          echo "::error title=StandardCheck::Didn't pass"
-          echo "PASS_STD=False" >> "$GITHUB_OUTPUT"
-        fi
-        if [[ "${{ steps.stable.outputs.result }}" == *"True"* ]]; then
-          echo "::notice title=StableCheck::Success"
-          echo "PASS_STB=True" >> "$GITHUB_OUTPUT"
-        else
-          echo "::warning title=StableCheck::Didn't pass"
-          echo "PASS_STB=False" >> "$GITHUB_OUTPUT"
-        fi
-        if [[ "${{ steps.dev.outputs.result }}" == *"True"* ]]; then
-          echo "::notice title=DevCheck::Success"
-          echo "PASS_DEV=True" >> "$GITHUB_OUTPUT"
-        else
-          echo "::warning title=DevCheck::Didn't pass"
-          echo "PASS_DEV=False" >> "$GITHUB_OUTPUT"
-        fi
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
     - name: Add member
       env:
@@ -117,6 +91,7 @@ jobs:
                                        --repo_labels="$SUBMISSION_LABELS" \
                                        --repo_website="$SUBMISSION_WEBSITE"
 
+    # Create PR
     - name: Commit changes and create Pull Request
       id: cpr
       uses: peter-evans/create-pull-request@v5
@@ -125,62 +100,136 @@ jobs:
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+
+          ---
           Closes #${{ github.event.issue.number }}
         branch: submission-${{ github.event.issue.number }}
+        labels: submission
 
-    - name: Create comment on success for standard check
+    # Check result
+    ## Gets results of repo tests, and creates comment to post into issue/PR
+    - name: Check test results
+      id: check-return
+      run: |
+        # STD check
+        echo "### Standard tests" >> $GITHUB_STEP_SUMMARY
+        if [[ "${{ steps.standard.outputs.result }}" == *"True"* ]]; then
+          echo "PASS_STD=True" >> "$GITHUB_OUTPUT"
+          echo ":sparkles: Successfull submission!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "PASS_STD=False" >> "$GITHUB_OUTPUT"
+          echo ":x: The submission didn't pass the standard check." >> $GITHUB_STEP_SUMMARY
+          echo "Please follow minimal requirements for project or/and add ecosystem.json configuration in the root of the project." >> $GITHUB_STEP_SUMMARY
+          echo "Read more here ${{ github.server_url }}/${{ github.repository }}/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem." >> $GITHUB_STEP_SUMMARY
+        fi
+
+        # STB check
+        echo "### Stable tests" >> $GITHUB_STEP_SUMMARY
+        if [[ "${{ steps.stable.outputs.result }}" == *"True"* ]]; then
+          echo "PASS_STB=True" >> "$GITHUB_OUTPUT"
+          echo ":sparkles: Tests with latest version of Qiskit release passed!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "PASS_STB=False" >> "$GITHUB_OUTPUT"
+          echo ":warning: The submission didn't pass the stable check." >> $GITHUB_STEP_SUMMARY
+          echo "This means your project doesn't work with the latest version of Qiskit." >> $GITHUB_STEP_SUMMARY
+          echo "This is purely informational and doesn't affect your project joining the Ecosystem, but you may want to investigate the problem." >> $GITHUB_STEP_SUMMARY
+        fi
+
+        # DEV check
+        echo "### Development tests" >> $GITHUB_STEP_SUMMARY
+        if [[ "${{ steps.dev.outputs.result }}" == *"True"* ]]; then
+          echo "PASS_DEV=True" >> "$GITHUB_OUTPUT"
+          echo ":sparkles: Tests with development version of Qiskit release passed!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "PASS_DEV=False" >> "$GITHUB_OUTPUT"
+          echo ":warning: The submission didn't pass the development check." >> $GITHUB_STEP_SUMMARY
+          echo "This means your project might not work with the next version of Qiskit." >> $GITHUB_STEP_SUMMARY
+          echo "This is purely informational and doesn't affect your project joining Ecosystem." >> $GITHUB_STEP_SUMMARY
+        fi
+
+        # Gen info
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "---" >> $GITHUB_STEP_SUMMARY
+        echo "Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+        echo "PR #${{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
+        # Create summary_output.md
+        echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
+
+    # PR labels and comment
+    - name: "Label 'ready'"
+      continue-on-error: true
+      uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
-      uses: peter-evans/create-or-update-comment@v3
       with:
-        issue-number: ${{ github.event.issue.number }}
-        body: |
-          Successfull submission! :sparkles: PR #${{ steps.cpr.outputs.pull-request-number }}
+        script: |
+          // PR
+          github.rest.issues.addLabels({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["ready"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["on hold"]
+          })
+          // Issue
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["ready"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["on hold"]
+          })
 
-    - name: Create comment on failure
+    - name: "Label 'on hold'"
+      continue-on-error: true
+      uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
-      uses: peter-evans/create-or-update-comment@v3
       with:
-        issue-number: ${{ github.event.issue.number }}
-        body: |
-          Submission PR #${{ steps.cpr.outputs.pull-request-number }} has been created with errors in tests :warning:
-          See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
-          Please follow minimal requirements for project or/and add `ecosystem.json` configuration in the root of the project
-          Read more here https://github.com/qiskit-community/ecosystem/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem
+        script: |
+          // PR
+          github.rest.issues.addLabels({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["on hold"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["ready"]
+          })
+          // Issue
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["on hold"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["ready"]
+          })
 
-    - name: Create comment on success for stable check
-      if: ${{ steps.check-return.outputs.PASS_STB == 'True' }}
+    - name: "PR: Post comment"
       uses: peter-evans/create-or-update-comment@v3
       with:
-        issue-number: ${{ github.event.issue.number }}
-        body: |
-          Tests with latest version of Qiskit release passed! :sparkles:
+        issue-number: ${{ steps.cpr.outputs.pull-request-number }}
+        body-path: "summary_output.md"
 
-    - name: Create comment on failure for stable check
-      if: ${{ steps.check-return.outputs.PASS_STB != 'True' }}
+    - name: "Issue: Post comment"
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
-        body: |
-          Tests with latest version of Qiskit release failed! :warning:
-          This means your project doesn't work with the latest version of Qiskit.
-          This is purely informational and doesn't affect your project joining the Ecosystem, but you may want to investigate the problem.
-          See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
-
-    - name: Create comment on success for dev check
-      if: ${{ steps.check-return.outputs.PASS_DEV == 'True' }}
-      uses: peter-evans/create-or-update-comment@v3
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        body: |
-          Tests with development version of Qiskit release passed! :sparkles:
-
-    - name: Create comment on failure for dev check
-      if: ${{ steps.check-return.outputs.PASS_DEV != 'True' }}
-      uses: peter-evans/create-or-update-comment@v3
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        body: |
-          Tests with development version of Qiskit release failed! :warning:
-          This means your project might not work with the next version of Qiskit.
-          This is purely informational and doesn't affect your project joining Ecosystem.
-          See logs: https://github.com/qiskit-community/ecosystem/actions/runs/${{ github.run_id }}
+        body-path: "summary_output.md"

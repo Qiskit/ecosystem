@@ -34,4 +34,4 @@ class TestMembersJson(TestCase):
             for result in repo.tests_results:
                 self.assertIsNotNone(result.package)
                 self.assertIsNotNone(result.package_version)
-                self.assertEqual(result.package_version, result.terra_version)
+                self.assertEqual(result.package_version, result.qiskit_version)

@@ -133,7 +133,7 @@ class DAO:
             kwargs: Names of attributes and new values
 
         Example usage:
-            update("github.com/qiskit/qiskit-terra", name="qiskit", stars=300)
+            update("github.com/qiskit/qiskit, name="qiskit", stars=300)
         """
         with self.storage as data:
             for arg, value in kwargs.items():
@@ -170,7 +170,7 @@ class DAO:
         data = self.storage.read()
 
         out = {}
-        for repo in data.items():
+        for repo in data.values():
             if repo.tier not in out:
                 out[repo.tier] = {}
             index = str(len(out[repo.tier]))
@@ -217,7 +217,7 @@ class DAO:
             tr
             for tr in repo.historical_test_results
             if tr.test_type != test_result.test_type
-            or tr.terra_version != test_result.terra_version
+            or tr.qiskit_version != test_result.qiskit_version
         ] + [test_result]
         repo.historical_test_results = new_historical_test_results
         self.write(repo)

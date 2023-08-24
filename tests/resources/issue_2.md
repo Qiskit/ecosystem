@@ -22,7 +22,7 @@ Apache License 2.0
 
 Awesome Inc.
 
-### Tags
+### Labels
 
 _No response_
 

@@ -29,10 +29,10 @@ class TestExecutionSummary(TestCase):
             "/srv/conda/envs/notebook/"
             "lib/python3.8/site-packages/qiskit/aqua/__init__.py:86"
             ": DeprecationWarning: The package qiskit.aqua is deprecated."
-            " It was moved/refactored to qiskit-terra For more"
+            " It was moved/refactored to qiskit For more"
             " information see <https://github.com/Qiskit"
             "/qiskit-aqua/blob/main/README.md#migration-guide>"
-            " warn_package('aqua', 'qiskit-terra')"
+            " warn_package('aqua', 'qiskit')"
         )
 
         summary_with_aqua_deprecation = CommandExecutionSummary(

@@ -5,14 +5,77 @@ licence = "Apache License 2.0"
 contact_info = "_No response_"
 alternatives = "_No response_"
 affiliations = "QAMP"
-labels = [ "plugin", "notebook",]
+website = "https://icekhan13.github.io/purplecaffeine/index.html"
+labels = [ "Productivity", "Jupyter notebook",]
 created_at = 1688661859.080258
 updated_at = 1688661859.080264
-tier = "Community"
-website = "https://icekhan13.github.io/purplecaffeine/index.html"
-tests_results = []
 styles_results = []
 coverages_results = []
+tier = "Community"
 skip_tests = false
-historical_test_results = []
 stars = 6
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779152"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692696019.162644
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779152"
+qiskit_version = "0.44.1"
+timestamp = 1692696019.162702
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779152"
+qiskit_version = "0.44.1"
+timestamp = 1692696019.017214
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779152"
+qiskit_version = "0.44.1"
+timestamp = 1692696019.162661
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779152"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692696019.162671
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779152"
+qiskit_version = "0.44.1"
+timestamp = 1692696019.162674
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779152"
+qiskit_version = "0.44.1"
+timestamp = 1692696019.017214
+

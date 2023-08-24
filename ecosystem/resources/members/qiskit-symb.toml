@@ -5,16 +5,78 @@ licence = "Apache License 2.0"
 contact_info = "simone.gasperini4@unibo.it"
 alternatives = "_No response_"
 affiliations = "_No response_"
-labels = [ "quantum-info", "symbolic-computation",]
+labels = [ "Quantum information", "Circuit simulator",]
 created_at = 1680254616.930627
 updated_at = 1680254616.930632
-tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
+tier = "Community"
 skip_tests = false
-historical_test_results = []
-stars = 9
+stars = 10
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692696044.885484
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = "0.44.1"
+timestamp = 1692696044.897791
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = "0.44.1"
+timestamp = 1692696044.695524
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = ""
+timestamp = 1692696044.885502
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = ""
+timestamp = 1692696044.885514
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692696044.885518
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = "0.44.1"
+timestamp = 1692696044.695524
 
 [configuration]
 dependencies_files = [ "requirements.txt",]

@@ -4,16 +4,16 @@ description = "Qiskit Metal E&M analysis with Ansys and the energy-participation
 licence = "BSD 3-Clause New or Revised license"
 contact_info = "zlatko.minev@ibm.com"
 alternatives = ""
-labels = [ "plugin",]
+labels = [ "Hardware",]
 created_at = 1662470654.437653
 updated_at = 1662470654.437655
-tier = "Community"
 tests_results = []
 styles_results = []
 coverages_results = []
+tier = "Community"
 skip_tests = true
 historical_test_results = []
-stars = 137
+stars = 139
 
 [configuration]
 dependencies_files = [ "requirements.txt",]

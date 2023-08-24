@@ -18,7 +18,7 @@ class TestPythonRunner(unittest.TestCase):
         )
 
     def tearDown(self) -> None:
-        files_to_delete = ["tox.ini", "terra_version.txt"]
+        files_to_delete = ["tox.ini", "qiskit_version.txt"]
         for directory in [self.simple_project_dir, self.configured_project_dir]:
             for file in files_to_delete:
                 if os.path.exists(f"{directory}/{file}"):
@@ -36,11 +36,11 @@ class TestPythonRunner(unittest.TestCase):
         )
 
         runner.cloned_repo_directory = self.simple_project_dir
-        terra_version, result = runner.workload()
+        qiskit_version, result = runner.workload()
 
         self.assertFalse(all(r.has_qiskit_deprecation_logs for r in result))
         self.assertTrue(all(r.ok for r in result))
-        self.assertTrue(terra_version)
+        self.assertTrue(qiskit_version)
 
     def test_tests_runner_on_configured_repo(self):
         """Configured repo runner test.
@@ -56,10 +56,10 @@ class TestPythonRunner(unittest.TestCase):
         )
 
         runner.cloned_repo_directory = self.configured_project_dir
-        terra_version, result = runner.workload()
+        qiskit_version, result = runner.workload()
 
         self.assertTrue(all(r.ok for r in result))
-        self.assertTrue(terra_version)
+        self.assertTrue(qiskit_version)
 
     def test_styles_runner_on_configured_repo(self):
         """Configured repo runner test.

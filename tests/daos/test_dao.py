@@ -105,7 +105,7 @@ class TestDao(TestCase):
             test_result=TestResult(
                 passed=True,
                 test_type=TestType.STANDARD,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
         )
@@ -117,7 +117,7 @@ class TestDao(TestCase):
             test_result=TestResult(
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
         )
@@ -129,7 +129,7 @@ class TestDao(TestCase):
             test_result=TestResult(
                 passed=False,
                 test_type=TestType.STABLE_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
         )
@@ -142,7 +142,7 @@ class TestDao(TestCase):
             test_result=TestResult(
                 passed=True,
                 test_type=TestType.STABLE_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
         )
@@ -152,7 +152,7 @@ class TestDao(TestCase):
             TestResult(
                 passed=True,
                 test_type=TestType.LAST_WORKING_VERSION,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
             recovered_repo.tests_results,
@@ -164,7 +164,7 @@ class TestDao(TestCase):
             test_result=TestResult(
                 passed=True,
                 test_type=TestType.STABLE_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.20.0",
             ),
         )
@@ -174,7 +174,7 @@ class TestDao(TestCase):
             TestResult(
                 passed=True,
                 test_type=TestType.LAST_WORKING_VERSION,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.20.0",
             ),
             recovered_repo.tests_results,
@@ -195,7 +195,7 @@ class TestDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
         )
@@ -217,7 +217,7 @@ class TestDao(TestCase):
                 TestResult(
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
-                    package=Package.TERRA,
+                    package=Package.QISKIT,
                     package_version="0.18.1",
                 )
             ],
@@ -228,7 +228,7 @@ class TestDao(TestCase):
                 TestResult(
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
-                    package=Package.TERRA,
+                    package=Package.QISKIT,
                     package_version="0.18.1",
                 )
             ],
@@ -239,7 +239,7 @@ class TestDao(TestCase):
             TestResult(
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.2",
             ),
         )
@@ -248,7 +248,7 @@ class TestDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.STANDARD,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.2",
             ),
         )
@@ -259,13 +259,13 @@ class TestDao(TestCase):
                 TestResult(
                     passed=True,
                     test_type=TestType.DEV_COMPATIBLE,
-                    package=Package.TERRA,
+                    package=Package.QISKIT,
                     package_version="0.18.2",
                 ),
                 TestResult(
                     passed=False,
                     test_type=TestType.STANDARD,
-                    package=Package.TERRA,
+                    package=Package.QISKIT,
                     package_version="0.18.2",
                 ),
             ],
@@ -276,19 +276,19 @@ class TestDao(TestCase):
                 TestResult(
                     passed=False,
                     test_type=TestType.DEV_COMPATIBLE,
-                    package=Package.TERRA,
+                    package=Package.QISKIT,
                     package_version="0.18.1",
                 ),
                 TestResult(
                     passed=True,
                     test_type=TestType.DEV_COMPATIBLE,
-                    package=Package.TERRA,
+                    package=Package.QISKIT,
                     package_version="0.18.2",
                 ),
                 TestResult(
                     passed=False,
                     test_type=TestType.STANDARD,
-                    package=Package.TERRA,
+                    package=Package.QISKIT,
                     package_version="0.18.2",
                 ),
             ],
@@ -306,7 +306,7 @@ class TestDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.STABLE_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
         )
@@ -315,7 +315,7 @@ class TestDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.STANDARD,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
         )
@@ -324,7 +324,7 @@ class TestDao(TestCase):
             TestResult(
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
-                package=Package.TERRA,
+                package=Package.QISKIT,
                 package_version="0.18.1",
             ),
         )
