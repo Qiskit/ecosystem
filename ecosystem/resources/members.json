@@ -481,307 +481,6 @@
             "historical_test_results": []
         },
         "5": {
-            "name": "Quantum Random Access Optimization",
-            "url": "https://github.com/qiskit-community/prototype-qrao",
-            "description": "The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems.",
-            "licence": "Apache 2.0",
-            "contact_info": "",
-            "alternatives": "",
-            "labels": [
-                "Optimization",
-                "Prototype"
-            ],
-            "created_at": 1678827878.909912,
-            "updated_at": 1678827878.909913,
-            "styles_results": [],
-            "coverages_results": [],
-            "tier": "Extensions",
-            "skip_tests": false,
-            "stars": 27,
-            "tests_results": [
-                {
-                    "passed": true,
-                    "test_type": "development",
-                    "package": "qiskit",
-                    "package_version": "0.45.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
-                    "package_commit_hash": "0b51250e219ca303654fc28a318c21366584ccd3",
-                    "qiskit_version": "0.45.0",
-                    "timestamp": 1692696456.131841
-                },
-                {
-                    "passed": true,
-                    "test_type": "last passing version",
-                    "package": "qiskit",
-                    "package_version": "0.44.1",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
-                    "qiskit_version": "0.44.1",
-                    "timestamp": 1692696456.271797
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit",
-                    "package_version": "0.44.1",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
-                    "qiskit_version": "0.44.1",
-                    "timestamp": 1692696456.271801
-                },
-                {
-                    "passed": false,
-                    "test_type": "standard",
-                    "package": "qiskit",
-                    "package_version": "",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
-                    "qiskit_version": "",
-                    "timestamp": 1692696456.271803
-                }
-            ],
-            "historical_test_results": [
-                {
-                    "passed": false,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.37.1",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/2824121584",
-                    "qiskit_version": "0.37.1",
-                    "timestamp": 1692696456.271809
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.37.1",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/2824121584",
-                    "qiskit_version": "0.37.1",
-                    "timestamp": 1692696456.271812
-                },
-                {
-                    "passed": true,
-                    "test_type": "development",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3180921127",
-                    "package_commit_hash": "53e215c31cf3aea51a623dc22883ac92fe74d0b9",
-                    "qiskit_version": "0.39.0",
-                    "timestamp": 1692696456.271816
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.38.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3225639520",
-                    "qiskit_version": "0.38.0",
-                    "timestamp": 1692696456.271819
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.38.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3225639517",
-                    "qiskit_version": "0.38.0",
-                    "timestamp": 1692696456.271822
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3368226033",
-                    "qiskit_version": "0.39.0",
-                    "timestamp": 1692696456.271825
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3368225981",
-                    "qiskit_version": "0.39.0",
-                    "timestamp": 1692696456.271828
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.2",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3521954179",
-                    "qiskit_version": "0.39.2",
-                    "timestamp": 1692696456.271832
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.2",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3521954205",
-                    "qiskit_version": "0.39.2",
-                    "timestamp": 1692696456.271834
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.4",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3937705929",
-                    "qiskit_version": "0.39.4",
-                    "timestamp": 1692696456.271837
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.4",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3937705953",
-                    "qiskit_version": "0.39.4",
-                    "timestamp": 1692696456.27184
-                },
-                {
-                    "passed": true,
-                    "test_type": "development",
-                    "package": "qiskit-terra",
-                    "package_version": "0.40.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3937705973",
-                    "package_commit_hash": "af0b2220b75fd5cf3980576b1a31f9c4ceb9f99f",
-                    "qiskit_version": "0.40.0",
-                    "timestamp": 1692696456.271843
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.5",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3994631129",
-                    "qiskit_version": "0.39.5",
-                    "timestamp": 1692696456.271846
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.39.5",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3994631163",
-                    "qiskit_version": "0.39.5",
-                    "timestamp": 1692696456.271849
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.40.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4052486294",
-                    "qiskit_version": "0.40.0",
-                    "timestamp": 1692696456.271851
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.40.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4052486355",
-                    "qiskit_version": "0.40.0",
-                    "timestamp": 1692696456.271854
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.41.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4231024475",
-                    "qiskit_version": "0.41.0",
-                    "timestamp": 1692696456.271857
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.41.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4231024540",
-                    "qiskit_version": "0.41.0",
-                    "timestamp": 1692696456.27186
-                },
-                {
-                    "passed": true,
-                    "test_type": "standard",
-                    "package": "qiskit-terra",
-                    "package_version": "0.41.1",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414049043",
-                    "qiskit_version": "0.41.1",
-                    "timestamp": 1692696456.271863
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit-terra",
-                    "package_version": "0.41.1",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414049127",
-                    "qiskit_version": "0.41.1",
-                    "timestamp": 1692696456.271866
-                },
-                {
-                    "passed": true,
-                    "test_type": "development",
-                    "package": "qiskit-terra",
-                    "package_version": "0.43.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414049192",
-                    "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd",
-                    "qiskit_version": "0.43.0",
-                    "timestamp": 1692696456.271869
-                },
-                {
-                    "passed": true,
-                    "test_type": "stable",
-                    "package": "qiskit",
-                    "package_version": "0.44.1",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
-                    "qiskit_version": "0.44.1",
-                    "timestamp": 1692696456.271874
-                },
-                {
-                    "passed": false,
-                    "test_type": "standard",
-                    "package": "qiskit",
-                    "package_version": "",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
-                    "qiskit_version": "",
-                    "timestamp": 1692696456.271877
-                },
-                {
-                    "passed": true,
-                    "test_type": "development",
-                    "package": "qiskit",
-                    "package_version": "0.45.0",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
-                    "package_commit_hash": "0b51250e219ca303654fc28a318c21366584ccd3",
-                    "qiskit_version": "0.45.0",
-                    "timestamp": 1692696456.131841
-                }
-            ],
-            "configuration": {
-                "dependencies_files": [
-                    "requirements.txt",
-                    "requirements-dev.txt"
-                ],
-                "extra_dependencies": [],
-                "tests_command": [
-                    "pip check",
-                    "python -m pytest"
-                ],
-                "styles_check_command": [
-                    "black ."
-                ],
-                "coverages_check_command": [],
-                "language": {
-                    "name": "python",
-                    "versions": [
-                        "3.7"
-                    ]
-                }
-            }
-        },
-        "6": {
             "name": "circuit-knitting-toolbox",
             "url": "https://github.com/Qiskit-Extensions/circuit-knitting-toolbox",
             "description": "Circuit Knitting is the process of decomposing a quantum circuit into smaller circuits, executing those smaller circuits on a quantum processor(s), and then knitting their results into a reconstruction of the original circuit's outcome. Circuit knitting includes techniques such as entanglement forging, circuit cutting, and classical embedding. The Circuit Knitting Toolbox (CKT) is a collection of such tools.",
@@ -830,7 +529,7 @@
                 }
             ]
         },
-        "7": {
+        "6": {
             "name": "qiskit-alt",
             "url": "https://github.com/Qiskit-Extensions/qiskit-alt",
             "description": "Python package uses a backend written in Julia to implement high performance features for standard Qiskit.",
@@ -1112,7 +811,7 @@
                 }
             }
         },
-        "8": {
+        "7": {
             "name": "qiskit-research",
             "url": "https://github.com/qiskit-community/qiskit-research",
             "description": "This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments.",
@@ -1133,7 +832,7 @@
             "historical_test_results": [],
             "stars": 56
         },
-        "9": {
+        "8": {
             "name": "mthree",
             "url": "https://github.com/Qiskit-Partners/mthree",
             "description": "Matrix-free Measurement Mitigation (M3)",
@@ -1432,7 +1131,7 @@
                 }
             }
         },
-        "10": {
+        "9": {
             "created_at": 1661785302.25299,
             "description": "Qiskit Experiments is an open-source project for running characterizing, calibrating, and benchmarking experiments in Qiskit.",
             "labels": [
@@ -3177,6 +2876,307 @@
             ]
         },
         "12": {
+            "name": "Quantum Random Access Optimization",
+            "url": "https://github.com/qiskit-community/prototype-qrao",
+            "description": "The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems.",
+            "licence": "Apache 2.0",
+            "contact_info": "",
+            "alternatives": "",
+            "labels": [
+                "Optimization",
+                "Prototype"
+            ],
+            "created_at": 1678827878.909912,
+            "updated_at": 1678827878.909913,
+            "styles_results": [],
+            "coverages_results": [],
+            "tier": "Community",
+            "skip_tests": false,
+            "stars": 27,
+            "tests_results": [
+                {
+                    "passed": true,
+                    "test_type": "development",
+                    "package": "qiskit",
+                    "package_version": "0.45.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
+                    "package_commit_hash": "0b51250e219ca303654fc28a318c21366584ccd3",
+                    "qiskit_version": "0.45.0",
+                    "timestamp": 1692696456.131841
+                },
+                {
+                    "passed": true,
+                    "test_type": "last passing version",
+                    "package": "qiskit",
+                    "package_version": "0.44.1",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
+                    "qiskit_version": "0.44.1",
+                    "timestamp": 1692696456.271797
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit",
+                    "package_version": "0.44.1",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
+                    "qiskit_version": "0.44.1",
+                    "timestamp": 1692696456.271801
+                },
+                {
+                    "passed": false,
+                    "test_type": "standard",
+                    "package": "qiskit",
+                    "package_version": "",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
+                    "qiskit_version": "",
+                    "timestamp": 1692696456.271803
+                }
+            ],
+            "historical_test_results": [
+                {
+                    "passed": false,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.37.1",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/2824121584",
+                    "qiskit_version": "0.37.1",
+                    "timestamp": 1692696456.271809
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.37.1",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/2824121584",
+                    "qiskit_version": "0.37.1",
+                    "timestamp": 1692696456.271812
+                },
+                {
+                    "passed": true,
+                    "test_type": "development",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3180921127",
+                    "package_commit_hash": "53e215c31cf3aea51a623dc22883ac92fe74d0b9",
+                    "qiskit_version": "0.39.0",
+                    "timestamp": 1692696456.271816
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.38.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3225639520",
+                    "qiskit_version": "0.38.0",
+                    "timestamp": 1692696456.271819
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.38.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3225639517",
+                    "qiskit_version": "0.38.0",
+                    "timestamp": 1692696456.271822
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3368226033",
+                    "qiskit_version": "0.39.0",
+                    "timestamp": 1692696456.271825
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3368225981",
+                    "qiskit_version": "0.39.0",
+                    "timestamp": 1692696456.271828
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.2",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3521954179",
+                    "qiskit_version": "0.39.2",
+                    "timestamp": 1692696456.271832
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.2",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3521954205",
+                    "qiskit_version": "0.39.2",
+                    "timestamp": 1692696456.271834
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.4",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3937705929",
+                    "qiskit_version": "0.39.4",
+                    "timestamp": 1692696456.271837
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.4",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3937705953",
+                    "qiskit_version": "0.39.4",
+                    "timestamp": 1692696456.27184
+                },
+                {
+                    "passed": true,
+                    "test_type": "development",
+                    "package": "qiskit-terra",
+                    "package_version": "0.40.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3937705973",
+                    "package_commit_hash": "af0b2220b75fd5cf3980576b1a31f9c4ceb9f99f",
+                    "qiskit_version": "0.40.0",
+                    "timestamp": 1692696456.271843
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.5",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3994631129",
+                    "qiskit_version": "0.39.5",
+                    "timestamp": 1692696456.271846
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.39.5",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/3994631163",
+                    "qiskit_version": "0.39.5",
+                    "timestamp": 1692696456.271849
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.40.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4052486294",
+                    "qiskit_version": "0.40.0",
+                    "timestamp": 1692696456.271851
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.40.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4052486355",
+                    "qiskit_version": "0.40.0",
+                    "timestamp": 1692696456.271854
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.41.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4231024475",
+                    "qiskit_version": "0.41.0",
+                    "timestamp": 1692696456.271857
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.41.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4231024540",
+                    "qiskit_version": "0.41.0",
+                    "timestamp": 1692696456.27186
+                },
+                {
+                    "passed": true,
+                    "test_type": "standard",
+                    "package": "qiskit-terra",
+                    "package_version": "0.41.1",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414049043",
+                    "qiskit_version": "0.41.1",
+                    "timestamp": 1692696456.271863
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit-terra",
+                    "package_version": "0.41.1",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414049127",
+                    "qiskit_version": "0.41.1",
+                    "timestamp": 1692696456.271866
+                },
+                {
+                    "passed": true,
+                    "test_type": "development",
+                    "package": "qiskit-terra",
+                    "package_version": "0.43.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/4414049192",
+                    "package_commit_hash": "3005806e48da61f235742bb365e251bce37452bd",
+                    "qiskit_version": "0.43.0",
+                    "timestamp": 1692696456.271869
+                },
+                {
+                    "passed": true,
+                    "test_type": "stable",
+                    "package": "qiskit",
+                    "package_version": "0.44.1",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
+                    "qiskit_version": "0.44.1",
+                    "timestamp": 1692696456.271874
+                },
+                {
+                    "passed": false,
+                    "test_type": "standard",
+                    "package": "qiskit",
+                    "package_version": "",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
+                    "qiskit_version": "",
+                    "timestamp": 1692696456.271877
+                },
+                {
+                    "passed": true,
+                    "test_type": "development",
+                    "package": "qiskit",
+                    "package_version": "0.45.0",
+                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/5936782681",
+                    "package_commit_hash": "0b51250e219ca303654fc28a318c21366584ccd3",
+                    "qiskit_version": "0.45.0",
+                    "timestamp": 1692696456.131841
+                }
+            ],
+            "configuration": {
+                "dependencies_files": [
+                    "requirements.txt",
+                    "requirements-dev.txt"
+                ],
+                "extra_dependencies": [],
+                "tests_command": [
+                    "pip check",
+                    "python -m pytest"
+                ],
+                "styles_check_command": [
+                    "black ."
+                ],
+                "coverages_check_command": [],
+                "language": {
+                    "name": "python",
+                    "versions": [
+                        "3.7"
+                    ]
+                }
+            }
+        },
+        "13": {
             "name": "qiskit-toqm",
             "url": "https://github.com/qiskit-toqm/qiskit-toqm",
             "description": "Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706",
@@ -3402,7 +3402,7 @@
                 }
             ]
         },
-        "13": {
+        "14": {
             "name": "vqls-prototype",
             "url": "https://github.com/QuantumApplicationLab/vqls-prototype",
             "description": "The Variational Quantum Linear Solver (VQLS) uses an optimization approach to solve linear systems of equations. The vqls-prototype allows to easily setup and deploy a VQLS instance on different backends through the use of qiskit primitives and the runtime library",
@@ -3491,7 +3491,7 @@
                 }
             ]
         },
-        "14": {
+        "15": {
             "name": "dsm-swap",
             "url": "https://github.com/qiskit-community/dsm-swap",
             "description": "A doubly stochastic matrices-based approach to optimal qubit routing",
@@ -3708,7 +3708,7 @@
                 }
             ]
         },
-        "15": {
+        "16": {
             "name": "qiskit-cold-atom",
             "url": "https://github.com/qiskit-community/qiskit-cold-atom",
             "description": "This project builds on this functionality to describe programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework.",
@@ -4006,7 +4006,7 @@
                 }
             }
         },
-        "16": {
+        "17": {
             "name": "pennylane-qiskit",
             "url": "https://github.com/PennyLaneAI/pennylane-qiskit",
             "description": "The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities",
@@ -4181,7 +4181,7 @@
                 }
             }
         },
-        "17": {
+        "18": {
             "name": "RasQberry",
             "url": "https://github.com/JanLahmann/RasQberry",
             "description": "RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi",
@@ -4201,7 +4201,7 @@
             "historical_test_results": [],
             "stars": 120
         },
-        "18": {
+        "19": {
             "name": "dense-ev",
             "url": "https://github.com/atlytle/dense-ev",
             "description": "Implements expectation value measurements in Qiskit using optimal dense grouping. Dense-ev provides an improvement of ~2^m over naive grouping and (3/2)^m over qubit-wise commuting groups. Based on arXiv:2305.11847.",
@@ -4287,7 +4287,7 @@
                 }
             ]
         },
-        "19": {
+        "20": {
             "name": "qiskit-rigetti",
             "url": "https://github.com/rigetti/qiskit-rigetti",
             "description": "Rigetti Provider for Qiskit",
@@ -4641,7 +4641,7 @@
                 }
             }
         },
-        "20": {
+        "21": {
             "name": "quantumcat",
             "url": "https://github.com/artificial-brain/quantumcat",
             "description": "quantumcat is a platform-independent, open-source, high-level quantum computing library, which allows the quantum community to focus on developing platform-independent quantum applications without much effort",
@@ -4890,7 +4890,7 @@
                 }
             }
         },
-        "21": {
+        "22": {
             "created_at": 1636403009.16708,
             "description": "Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations",
             "labels": [
@@ -4910,7 +4910,7 @@
             "skip_tests": true,
             "stars": 237
         },
-        "22": {
+        "23": {
             "name": "pytorch-quantum",
             "url": "https://github.com/mit-han-lab/pytorch-quantum",
             "description": "A PyTorch-centric hybrid classical-quantum dynamic neural networks framework.",
@@ -5247,7 +5247,7 @@
                 }
             }
         },
-        "23": {
+        "24": {
             "name": "q-kernel-ops",
             "url": "https://github.com/Travis-S-IBM/q-kernel-ops",
             "description": "Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449).",
@@ -5354,7 +5354,7 @@
                 }
             ]
         },
-        "24": {
+        "25": {
             "name": "qiskit-nature-pyscf-dft-embedding",
             "url": "https://github.com/mrossinek/qiskit-nature-pyscf-dft-embedding",
             "description": "This repository contains the latest prototype implementation of the Qiskit Nature + PySCF DFT Embedding. It is based on the following publication: > Max Rossmannek, Panagiotis Kl. Barkoutsos, Pauline J. Ollitrault, Ivano Tavernelli; > Quantum HF/DFT-embedding algorithms for electronic structure calculations: Scaling up to complex molecular systems. > J. Chem. Phys. 21 March 2021; 154 (11): 114105.",
@@ -5434,7 +5434,7 @@
                 }
             ]
         },
-        "25": {
+        "26": {
             "name": "quantuminspire",
             "url": "https://github.com/QuTech-Delft/quantuminspire",
             "description": "platform allows to execute quantum algorithms using the cQASM language.",
@@ -5788,7 +5788,7 @@
                 }
             }
         },
-        "26": {
+        "27": {
             "name": "qiskit-symb",
             "url": "https://github.com/SimoneGasperini/qiskit-symb",
             "description": "Easy-to-use Python package designed to enable symbolic quantum computation in Qiskit. It provides the basic tools for the symbolic evaluation of statevectors, density matrices, and unitary operators directly created from parametric Qiskit quantum circuits. The implementation is based on the Sympy library as backend for symbolic expressions manipulation.",
@@ -5898,7 +5898,7 @@
                 }
             }
         },
-        "27": {
+        "28": {
             "name": "diskit",
             "url": "https://github.com/Interlin-q/diskit",
             "description": "Distributed quantum computing is a concept that proposes to connect multiple quantum computers in a network to leverage a collection of more, but physically separated, qubits. In order to perform distributed quantum computing, it is necessary to add the addition of classical communication and entanglement distribution so that the control information from one qubit can be applied to another that is located on another quantum computer. For more details on distributed quantum computing, see this blog post: [Distributed Quantum Computing: A path to large scale quantum computing](https://medium.com/@stephen.diadamo/distributed-quantum-computing-1c5d38a34c50) In this project, we aim to validate distributed quantum algorithms using Qiskit. Because Qiskit does not yet come with networking features, we embed a \"virtual network topology\" into large circuits to mimic distributed quantum computing. The idea is to take a monolithic quantum circuit developed in the Qiskit language and distribute the circuit according to an artificially segmented version of a quantum processor. The inputs to the library are a quantum algorithm written monolithically (i.e., in a single circuit) and a topology parameter that represents the artificial segmentation of the single quantum processor. The algorithm takes these two inputs and remaps the Qiskit circuit to the specified segmentation, adding all necessary steps to perform an equivalent distributed quantum circuit. Our algorithm for achieving this is based on the work: [Distributed Quantum Computing and Network Control for Accelerated VQE](https://ieeexplore.ieee.org/document/9351762). The algorithm output is another Qiskit circuit with the equivalent measurement statistics but with all of the additional logic needed to perform a distributed version.",
@@ -5977,7 +5977,7 @@
                 }
             ]
         },
-        "28": {
+        "29": {
             "name": "qtcodes",
             "url": "https://github.com/yaleqc/qtcodes",
             "description": "Qiskit Topological Codes",
@@ -6332,7 +6332,7 @@
                 }
             }
         },
-        "29": {
+        "30": {
             "created_at": 1628883441.119202,
             "description": "Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease.",
             "labels": [
@@ -6347,7 +6347,7 @@
             "skip_tests": true,
             "stars": 242
         },
-        "30": {
+        "31": {
             "name": "sat-circuits-engine",
             "url": "https://github.com/ohadlev77/sat-circuits-engine",
             "description": "A Python-Qiskit-based package that provides capabilities of easily generating, executing and analyzing quantum circuits for satisfiability problems according to user-defined constraints. The circuits being generated by the program are based on Grover's algorithm and its amplitude-amplification generalization.",
@@ -6369,7 +6369,7 @@
             "historical_test_results": [],
             "stars": 7
         },
-        "31": {
+        "32": {
             "name": "python-open-controls",
             "url": "https://github.com/qctrl/python-open-controls",
             "description": "Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature",
@@ -6708,7 +6708,7 @@
                 }
             }
         },
-        "32": {
+        "33": {
             "name": "QiskitOpt.jl",
             "url": "https://github.com/psrenergy/QiskitOpt.jl",
             "description": "QiskitOpt.jl is a Julia package that exports a JuMP wrapper for qiskit-optimization.",
@@ -6730,7 +6730,7 @@
             "historical_test_results": [],
             "stars": 8
         },
-        "33": {
+        "34": {
             "name": "qiskit-bip-mapper",
             "url": "https://github.com/qiskit-community/qiskit-bip-mapper",
             "description": "The repository contains a standalone routing stage plugin to use the BIPMapping [routing](https://qiskit.org/documentation/apidoc/transpiler.html#routing-stage) pass. The BIP mapping pass solves the routing and [layout](https://qiskit.org/documentation/apidoc/transpiler.html#layout-stage) problems as a binary integer programming (BIP) problem. The algorithm used in this pass is described in: G. Nannicini et al. \"Optimal qubit assignment and routing via integer programming.\" [arXiv:2106.06446](https://arxiv.org/abs/2106.06446)",
@@ -6752,7 +6752,7 @@
             "historical_test_results": [],
             "stars": 4
         },
-        "34": {
+        "35": {
             "name": "qiskit-ionq",
             "url": "https://github.com/Qiskit-Partners/qiskit-ionq",
             "description": "Project contains a provider that allows access to IonQ ion trap quantum systems.",
@@ -6970,7 +6970,7 @@
                 }
             }
         },
-        "35": {
+        "36": {
             "name": "QPong",
             "url": "https://github.com/HuangJunye/QPong",
             "description": "A quantum version of the classic game Pong built with Qiskit and PyGame",
@@ -7184,7 +7184,7 @@
                 }
             }
         },
-        "36": {
+        "37": {
             "name": "zoose-codespace",
             "url": "https://github.com/ianhellstrom/zoose-codespace",
             "description": "GitHub Codespace template repository based on Zoose Quantum, a custom Docker image with everything included, so you can be up and running with any of the major quantum libraries (incl. Qiskit) with only two clicks! No installation required. Ideal for beginners or people who want to code quantum circuits on the go. Code quantum circuits straight in your browser with VSCode.",
@@ -7204,7 +7204,7 @@
             "historical_test_results": [],
             "stars": 0
         },
-        "37": {
+        "38": {
             "name": "Qiskit Nature PySCF",
             "url": "https://github.com/qiskit-community/qiskit-nature-pyscf",
             "description": "Qiskit Nature PySCF is a third-party integration plugin of Qiskit Nature and PySCF.",
@@ -7401,7 +7401,7 @@
                 }
             ]
         },
-        "38": {
+        "39": {
             "name": "qiskit-superstaq",
             "url": "https://github.com/SupertechLabs/qiskit-superstaq",
             "description": "This package is used to access SuperstaQ via a Web API through Qiskit. Qiskit programmers can take advantage of the applications, pulse level optimizations, and write-once-target-all features of SuperstaQ with this package.",
@@ -7640,7 +7640,7 @@
                 }
             }
         },
-        "39": {
+        "40": {
             "created_at": 1636403009.538761,
             "description": "Framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit.",
             "labels": [
@@ -7659,7 +7659,7 @@
             "skip_tests": true,
             "stars": 174
         },
-        "40": {
+        "41": {
             "name": "kaleidoscope",
             "url": "https://github.com/QuSTaR/kaleidoscope",
             "description": "Kaleidoscope",
@@ -8016,7 +8016,7 @@
                 }
             }
         },
-        "41": {
+        "42": {
             "name": "spinoza",
             "url": "https://github.com/smu160/spinoza",
             "description": "Spinoza is a quantum state simulator (implemented in Rust) that is one of the fastest open-source simulators. Spinoza is implemented using a functional approach. Additionally, Spinoza has a `QuantumCircuit` object-oriented interface, which partially matches Qiskit's interface. Spinoza is capable of running in a myriad of computing environments (e.g., small workstations), and on various architectures. At this juncture, Spinoza only utilizes a single thread; however, it is designed to be easily extended into a parallel version, as well as a distributed version. The paper associated with Spinoza is available [here](https://arxiv.org/pdf/2303.01493.pdf).",
@@ -8037,7 +8037,7 @@
             "historical_test_results": [],
             "stars": 4
         },
-        "42": {
+        "43": {
             "name": "Quantum-Glasses",
             "url": "https://github.com/Jayshah25/Quantum-Glasses",
             "description": "Visualise the effects of Single Qubit Gates on a Qubit via Bloch Sphere Simulation in a Tkinter Software.",
@@ -8122,7 +8122,7 @@
                 }
             ]
         },
-        "43": {
+        "44": {
             "name": "quantum-tetris",
             "url": "https://github.com/olivierbrcknr/quantum-tetris",
             "description": "What would happen if you combine Tetris with a Quantum computer? The winning entry of the Quantum Design Jam from IBM and Parsons in October 2021 explores just that!",
@@ -8143,7 +8143,7 @@
             "historical_test_results": [],
             "stars": 9
         },
-        "44": {
+        "45": {
             "name": "pyEPR",
             "url": "https://github.com/zlatko-minev/pyEPR",
             "description": "Qiskit Metal E&M analysis with Ansys and the energy-participation-ratio method is based on pyEPR.",
