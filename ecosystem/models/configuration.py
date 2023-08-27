@@ -149,6 +149,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     _lint_template: Template | None = None
     _cov_template: Template | None = None
     _setup_template: Template | None = None
+    _requirements_template: Template | None = None
 
     def __post_init__(self):
         env = Environment(
@@ -158,6 +159,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
         self._lint_template = env.get_template(".pylintrc")
         self._cov_template = env.get_template(".coveragerc")
         self._setup_template = env.get_template("setup.py")
+        self._requirements_template = env.get_template("requirements.txt")
 
     @classmethod
     def default(cls) -> "PythonRepositoryConfiguration":
@@ -205,3 +207,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     def render_setup_file(self):
         """Renders default setup.py file."""
         return self._setup_template.render()
+
+    def render_requirements_file(self):
+        """Renders default requirements.txt file."""
+        return self._requirements_template.render()
