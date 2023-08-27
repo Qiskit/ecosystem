@@ -5,12 +5,75 @@ licence = "Apache License 2.0"
 contact_info = "_No response_"
 alternatives = "_No response_"
 affiliations = "_No response_"
-labels = [ "converter",]
+labels = [ "Converter",]
 tier = "Community"
 website = "https://github.com/KMU-quantum-classroom"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 stars = 1
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778455"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692695810.18748
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778455"
+qiskit_version = "0.44.1"
+timestamp = 1692695810.332814
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778455"
+qiskit_version = "0.44.1"
+timestamp = 1692695810.332818
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778455"
+qiskit_version = "0.44.0"
+timestamp = 1692695810.332821
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778455"
+qiskit_version = "0.44.1"
+timestamp = 1692695810.332831
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778455"
+qiskit_version = "0.44.0"
+timestamp = 1692695810.332834
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778455"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692695810.18748
+

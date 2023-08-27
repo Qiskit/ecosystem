@@ -5,13 +5,76 @@ licence = "Apache License 2.0"
 contact_info = "nicolas.gm.renaud@gmail.com"
 alternatives = "The prototype builds on the qiskit-textbook chapter and tutorial. The prototype allows to use the primitives and use different cost function and test circuits to optimize the parameters."
 affiliations = "Netherlands eScience Center @ Quantum Application Lab, Amsterdam NL"
-labels = [ "algorithms", "optimization",]
+labels = [ "Algorithms", "Optimization",]
 created_at = 1683906067.55753
 updated_at = 1683906067.557535
-tests_results = []
 styles_results = []
 coverages_results = []
 tier = "Community"
 skip_tests = false
-historical_test_results = []
-stars = 1
+stars = 2
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692695887.724066
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+qiskit_version = "0.44.1"
+timestamp = 1692695887.724076
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+qiskit_version = "0.44.1"
+timestamp = 1692695887.724079
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+qiskit_version = ""
+timestamp = 1692695887.580608
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+qiskit_version = "0.44.1"
+timestamp = 1692695887.724092
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692695887.724096
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+qiskit_version = ""
+timestamp = 1692695887.580608
+

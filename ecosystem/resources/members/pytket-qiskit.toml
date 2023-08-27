@@ -2,7 +2,7 @@ name = "pytket-qiskit"
 url = "https://github.com/CQCL/pytket-extensions/tree/develop/modules/pytket-qiskit"
 description = "an extension to Pytket (a python module for interfacing with CQC tket) that allows Pytket circuits to be run on IBM backends and simulators, as well as conversion to and from Qiskit representations."
 licence = "Apache 2.0"
-labels = [ "plugin",]
+labels = [ "Converter",]
 created_at = 1661869851.523229
 updated_at = 1661869851.523229
 tier = "Community"
@@ -10,7 +10,7 @@ skip_tests = false
 [[tests_results]]
 test_type = "development"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "-"
 qiskit_version = "-"
 timestamp = 1661869851.523199
@@ -20,7 +20,7 @@ package_commit_hash = "bab9d4568334d572dd14ffef3b35567bb81fbc2c"
 [[tests_results]]
 test_type = "stable"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "-"
 qiskit_version = "-"
 timestamp = 1661869851.523204
@@ -29,7 +29,7 @@ logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/29550021
 [[tests_results]]
 test_type = "standard"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "-"
 qiskit_version = "-"
 timestamp = 1661869851.522323
@@ -46,7 +46,7 @@ passed = false
 [[historical_test_results]]
 test_type = "stable"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "-"
 qiskit_version = "-"
 timestamp = 1661869851.52322
@@ -55,7 +55,7 @@ logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/29550021
 [[historical_test_results]]
 test_type = "development"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "-"
 qiskit_version = "-"
 timestamp = 1661869851.523222
@@ -65,7 +65,7 @@ package_commit_hash = "bab9d4568334d572dd14ffef3b35567bb81fbc2c"
 [[historical_test_results]]
 test_type = "standard"
 passed = false
-package = "qiskit-terra"
+package = "qiskit"
 package_version = "-"
 qiskit_version = "-"
 timestamp = 1661869851.522323
