@@ -3,7 +3,7 @@ import json
 import os
 from unittest import TestCase
 
-from ecosystem.daos import JsonDAO
+from ecosystem.daos import DAO
 from ecosystem.models import Tier
 from ecosystem.models.repository import Repository
 
@@ -15,7 +15,7 @@ class TestMembersJson(TestCase):
         current_directory = os.path.dirname(os.path.abspath(__file__))
         self.path = "{}/../ecosystem/resources".format(current_directory)
         self.members_path = "{}/members.json".format(self.path)
-        self.dao = JsonDAO(self.path)
+        self.dao = DAO(self.path)
 
     def test_members_json(self):
         """Tests members json file for correctness."""

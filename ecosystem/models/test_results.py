@@ -46,7 +46,7 @@ class TestResult(JsonSerializable):
 
     def __post_init__(self):
         self.qiskit_version = self.package_version
-        self.timestamp = datetime.datetime.now().timestamp()
+        self.timestamp = self.timestamp or datetime.datetime.now().timestamp()
 
     @classmethod
     def from_dict(cls, dictionary: dict):

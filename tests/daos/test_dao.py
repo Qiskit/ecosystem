@@ -5,7 +5,7 @@ import json
 from unittest import TestCase
 from pathlib import Path
 
-from ecosystem.daos import JsonDAO
+from ecosystem.daos import DAO
 from ecosystem.models import TestResult, TestType, Tier
 from ecosystem.models.repository import Repository
 from ecosystem.models.test_results import Package
@@ -24,7 +24,7 @@ def get_main_repo() -> Repository:
     )
 
 
-class TestJsonDao(TestCase):
+class TestDao(TestCase):
     """Tests repository related functions."""
 
     def setUp(self) -> None:
@@ -41,7 +41,7 @@ class TestJsonDao(TestCase):
 
     def _delete_members_json(self):
         """Deletes database file.
-        Function: JsonDao
+        Function: Dao
                 -> delete
         """
         if os.path.exists(self.members_path):
@@ -53,7 +53,7 @@ class TestJsonDao(TestCase):
 
     def _delete_labels_json(self):
         """Deletes labels file.
-        Function: JsonDao
+        Function: Dao
                 -> delete
         """
         if os.path.exists(self.labels_path):
@@ -65,14 +65,14 @@ class TestJsonDao(TestCase):
         """Test update start for repo."""
         self._delete_members_json()
         main_repo = get_main_repo()
-        dao = JsonDAO(self.path)
-        dao.insert(main_repo)
+        dao = DAO(self.path)
+        dao.write(main_repo)
 
-        repo_from_db = dao.get_by_url(main_repo.url, main_repo.tier)
+        repo_from_db = dao.get_by_url(main_repo.url)
         self.assertIsNone(repo_from_db.stars)
 
-        dao.update_stars(main_repo.url, main_repo.tier, 42)
-        repo_from_db = dao.get_by_url(main_repo.url, main_repo.tier)
+        dao.update(main_repo.url, stars=42)
+        repo_from_db = dao.get_by_url(main_repo.url)
         self.assertEqual(repo_from_db.stars, 42)
 
     def test_repository_insert_and_delete(self):
@@ -80,29 +80,28 @@ class TestJsonDao(TestCase):
         self._delete_members_json()
 
         main_repo = get_main_repo()
-        dao = JsonDAO(self.path)
+        dao = DAO(self.path)
 
         # insert entry
-        dao.insert(main_repo)
+        dao.write(main_repo)
         fetched_repo = dao.get_repos_by_tier(Tier.MAIN)[0]
         self.assertEqual(main_repo, fetched_repo)
         self.assertEqual(main_repo.labels, fetched_repo.labels)
         self.assertEqual(len(fetched_repo.tests_results), 0)
 
         # delete entry
-        dao.delete(repo_url=main_repo.url, tier=main_repo.tier)
+        dao.delete(repo_url=main_repo.url)
         self.assertEqual([], dao.get_repos_by_tier(Tier.MAIN))
 
     def test_latest_results(self):
         """Tests append of latest passed test results."""
         self._delete_members_json()
-        dao = JsonDAO(self.path)
+        dao = DAO(self.path)
         main_repo = get_main_repo()
-        dao.insert(main_repo)
+        dao.write(main_repo)
 
         dao.add_repo_test_result(
             repo_url=main_repo.url,
-            tier=main_repo.tier,
             test_result=TestResult(
                 passed=True,
                 test_type=TestType.STANDARD,
@@ -110,12 +109,11 @@ class TestJsonDao(TestCase):
                 package_version="0.18.1",
             ),
         )
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url)
         self.assertEqual(len(recovered_repo.tests_results), 1)
 
         dao.add_repo_test_result(
             repo_url=main_repo.url,
-            tier=main_repo.tier,
             test_result=TestResult(
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
@@ -123,12 +121,11 @@ class TestJsonDao(TestCase):
                 package_version="0.18.1",
             ),
         )
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url)
         self.assertEqual(len(recovered_repo.tests_results), 2)
 
         dao.add_repo_test_result(
             repo_url=main_repo.url,
-            tier=main_repo.tier,
             test_result=TestResult(
                 passed=False,
                 test_type=TestType.STABLE_COMPATIBLE,
@@ -136,13 +133,12 @@ class TestJsonDao(TestCase):
                 package_version="0.18.1",
             ),
         )
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url)
         self.assertEqual(len(recovered_repo.tests_results), 3)
 
         # here latest passed should be added
         dao.add_repo_test_result(
             repo_url=main_repo.url,
-            tier=main_repo.tier,
             test_result=TestResult(
                 passed=True,
                 test_type=TestType.STABLE_COMPATIBLE,
@@ -150,7 +146,7 @@ class TestJsonDao(TestCase):
                 package_version="0.18.1",
             ),
         )
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url)
         self.assertEqual(len(recovered_repo.tests_results), 4)
         self.assertIn(
             TestResult(
@@ -165,7 +161,6 @@ class TestJsonDao(TestCase):
         # here we check that last passed is updated
         dao.add_repo_test_result(
             repo_url=main_repo.url,
-            tier=main_repo.tier,
             test_result=TestResult(
                 passed=True,
                 test_type=TestType.STABLE_COMPATIBLE,
@@ -173,7 +168,7 @@ class TestJsonDao(TestCase):
                 package_version="0.20.0",
             ),
         )
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url)
         self.assertEqual(len(recovered_repo.tests_results), 4)
         self.assertIn(
             TestResult(
@@ -187,17 +182,16 @@ class TestJsonDao(TestCase):
 
     def test_add_test_result(self):
         """Tests adding result to repo.
-        JsonDao
+        Dao
                 -> add_repo_test_result
         """
         self._delete_members_json()
-        dao = JsonDAO(self.path)
+        dao = DAO(self.path)
 
         main_repo = get_main_repo()
-        dao.insert(main_repo)
-        res = dao.add_repo_test_result(
+        dao.write(main_repo)
+        dao.add_repo_test_result(
             main_repo.url,
-            main_repo.tier,
             TestResult(
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
@@ -205,7 +199,6 @@ class TestJsonDao(TestCase):
                 package_version="0.18.1",
             ),
         )
-        self.assertEqual(len(res), 1)
         self.assertLabelsFile(
             [
                 {"description": "description for label 1", "name": "label 1"},
@@ -217,7 +210,7 @@ class TestJsonDao(TestCase):
             ]
         )
 
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url)
         self.assertEqual(
             recovered_repo.tests_results,
             [
@@ -241,9 +234,8 @@ class TestJsonDao(TestCase):
             ],
         )
 
-        res = dao.add_repo_test_result(
+        dao.add_repo_test_result(
             main_repo.url,
-            main_repo.tier,
             TestResult(
                 passed=True,
                 test_type=TestType.DEV_COMPATIBLE,
@@ -251,10 +243,8 @@ class TestJsonDao(TestCase):
                 package_version="0.18.2",
             ),
         )
-        self.assertEqual(len(res), 1)
-        res = dao.add_repo_test_result(
+        dao.add_repo_test_result(
             main_repo.url,
-            main_repo.tier,
             TestResult(
                 passed=False,
                 test_type=TestType.STANDARD,
@@ -262,8 +252,7 @@ class TestJsonDao(TestCase):
                 package_version="0.18.2",
             ),
         )
-        self.assertEqual(len(res), 1)
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url)
         self.assertEqual(
             recovered_repo.tests_results,
             [
@@ -308,13 +297,12 @@ class TestJsonDao(TestCase):
     def test_add_test_result_order(self):
         """Test order of test results."""
         self._delete_members_json()
-        dao = JsonDAO(self.path)
+        dao = DAO(self.path)
 
         main_repo = get_main_repo()
-        dao.insert(main_repo)
+        dao.write(main_repo)
         dao.add_repo_test_result(
             main_repo.url,
-            main_repo.tier,
             TestResult(
                 passed=False,
                 test_type=TestType.STABLE_COMPATIBLE,
@@ -324,7 +312,6 @@ class TestJsonDao(TestCase):
         )
         dao.add_repo_test_result(
             main_repo.url,
-            main_repo.tier,
             TestResult(
                 passed=False,
                 test_type=TestType.STANDARD,
@@ -334,7 +321,6 @@ class TestJsonDao(TestCase):
         )
         dao.add_repo_test_result(
             main_repo.url,
-            main_repo.tier,
             TestResult(
                 passed=False,
                 test_type=TestType.DEV_COMPATIBLE,
@@ -343,7 +329,7 @@ class TestJsonDao(TestCase):
             ),
         )
 
-        recovered_repo = dao.get_by_url(main_repo.url, tier=main_repo.tier)
+        recovered_repo = dao.get_by_url(main_repo.url)
         test_results = recovered_repo.tests_results
         self.assertEqual(test_results[0].test_type, TestType.DEV_COMPATIBLE)
         self.assertEqual(test_results[1].test_type, TestType.STABLE_COMPATIBLE)
@@ -353,17 +339,22 @@ class TestJsonDao(TestCase):
         """
         Recompiles the JSON file, then checks it matches the read data.
         """
-        # pylint: disable=protected-access
         self._delete_members_json()
-        dao = JsonDAO(self.path)
+        dao = DAO(self.path)
 
         # Dump JSON file
         dao.compile_json()
 
-        # Open and check it matches data
+        # Open and check 1:1 correspondence
+        repo_list = dao.storage.read().values()
         with open(Path(self.path, "members.json")) as file:
             dumped_data = json.loads(file.read())
-        self.assertEqual(dao.database._storage.read(), dumped_data)
+
+        for tier in dumped_data.values():
+            for repo in tier.values():
+                self.assertIn(repo_list, Repository.from_dict(repo))
+        for repo in repo_list:
+            self.assertIn(dumped_data[repo.tier].values(), repo.to_dict())
 
     def assertLabelsFile(self, result):  # pylint: disable=invalid-name
         """Asserts the content of labels.json matches the result dict"""
