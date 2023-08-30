@@ -59,10 +59,6 @@ class PythonTestsRunner(Runner):
             ["tox_default.ini"],
             ecosystem_deps=self.ecosystem_deps,
             ecosystem_additional_commands=self.ecosystem_additional_commands,
-<<<<<<< HEAD
-=======
-            qiskit=self.qiskit,
->>>>>>> 2b284cffea465cb413ac35b655efce9f5be03546
         )
 
         qiskit_version = UnknownPackageVersion
