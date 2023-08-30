@@ -1,0 +1,27 @@
+name = "qiskit-ibm-provider"
+url = "https://github.com/Qiskit/qiskit-ibm-provider"
+description = "Project contains a provider that allows accessing the IBM Quantum systems and simulators."
+licence = "Apache 2.0"
+contact_info = ""
+alternatives = ""
+affiliations = "IBM"
+labels = [ "Provider", "Partner",]
+created_at = 1654696732.591266
+updated_at = 1654696732.591279
+tests_results = []
+styles_results = []
+coverages_results = []
+tier = "Main"
+skip_tests = true
+stars = 58
+
+[configuration]
+dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
+extra_dependencies = []
+tests_command = [ "python -m unittest -v",]
+styles_check_command = [ "pylint -rn --rcfile=./.pylintrc test",]
+coverages_check_command = []
+
+[configuration.language]
+name = "python"
+versions = [ "3.7",]

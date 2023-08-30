@@ -1,0 +1,90 @@
+name = "qiskit-symb"
+url = "https://github.com/SimoneGasperini/qiskit-symb"
+description = "Easy-to-use Python package designed to enable symbolic quantum computation in Qiskit. It provides the basic tools for the symbolic evaluation of statevectors, density matrices, and unitary operators directly created from parametric Qiskit quantum circuits. The implementation is based on the Sympy library as backend for symbolic expressions manipulation."
+licence = "Apache License 2.0"
+contact_info = "simone.gasperini4@unibo.it"
+alternatives = "_No response_"
+affiliations = "_No response_"
+labels = [ "Quantum information", "Circuit simulator",]
+created_at = 1680254616.930627
+updated_at = 1680254616.930632
+styles_results = []
+coverages_results = []
+tier = "Community"
+skip_tests = false
+stars = 10
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692696044.885484
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = "0.44.1"
+timestamp = 1692696044.897791
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = "0.44.1"
+timestamp = 1692696044.695524
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = ""
+timestamp = 1692696044.885502
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = ""
+timestamp = 1692696044.885514
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+qiskit_version = "0.45.0"
+timestamp = 1692696044.885518
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781448"
+qiskit_version = "0.44.1"
+timestamp = 1692696044.695524
+
+[configuration]
+dependencies_files = [ "requirements.txt",]
+extra_dependencies = []
+tests_command = [ "pytest -v --cov=qiskit_symb",]
+styles_check_command = [ "pylint src/ tests/",]
+coverages_check_command = []
+
+[configuration.language]
+name = "python"
+versions = [ "3.8", "3.9", "3.10",]
