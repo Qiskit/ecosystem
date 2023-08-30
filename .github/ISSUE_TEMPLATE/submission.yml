@@ -1,0 +1,113 @@
+name: Project submission
+description: Ecosystem project submission
+title: "[Submission]: "
+labels: ["submission"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Provide information about your project.
+  - type: input
+    id: repo
+    attributes:
+      label: Github repo
+      description: Link to GitHub repo of project you want to submit
+      placeholder: https://github.com/Qiskit/qiskit-terra
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        A couple of sentences to appear under your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem), try to keep it under 50 words.
+        Note this **does not** support markdown.
+      placeholder: |
+        E.g. Use your GPU to compile huge quantum circuits in seconds. Supports all modern devices and operating systems.
+    validations:
+      required: true
+  - type: input
+    id: contacts
+    attributes:
+      label: Email
+      placeholder: awesome_person@awesome_main.com
+    validations:
+      required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Short description of alternative projects.
+      placeholder: There are no alternatives to this project!
+    validations:
+      required: false
+  - type: dropdown
+    id: license
+    attributes:
+      label: License
+      description: License for your project
+      options:
+        - Apache License 2.0
+        - MIT license
+        - BSD 3-Clause "New" or "Revised" license
+        - BSD 2-Clause "Simplified" or "FreeBSD" license
+        - GNU General Public License (GPL)
+        - GNU Library or "Lesser" General Public License (LGPL)
+        - Mozilla Public License 2.0
+        - Common Development and Distribution License
+        - Eclipse Public License version 2.0
+    validations:
+      required: true
+  - type: textarea
+    id: affiliations
+    attributes:
+      label: Affiliations
+      description: List any organisations affiliated with the project.
+      placeholder: None
+    validations:
+      required: false
+  - type: dropdown
+    id: labels
+    attributes:
+      description: |
+        Labels are how users discover your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
+        If you don't think any existing labels apply to your project, leave a comment after submitting your issue requesting a new label.
+      label: Labels
+      multiple: true
+      options:
+        - Advocate mentorship project
+        - Algorithms
+        - Chemistry
+        - Circuit simulator
+        - Circuit
+        - Converter
+        - Error correction
+        - Error mitigation
+        - Finance
+        - Game
+        - Hardware
+        - Julia
+        - Jupyter notebook
+        - Machine learning
+        - OpenQASM
+        - Optimization
+        - Paper implementation
+        - Partner
+        - Physics
+        - Productivity
+        - Prototype
+        - Provider
+        - Quantum information
+        - Software development kit
+        - Transpiler plugin
+        - Visualization
+  - type: input
+    id: website
+    attributes:
+      label: Website
+      description: Link to project's website
+      placeholder: https://your-project.com
+    validations:
+      required: false

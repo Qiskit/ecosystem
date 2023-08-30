@@ -1,0 +1,44 @@
+name: Ecosystem | Batch | Update stars and badges
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron:  '0 9 * * 2'
+
+jobs:
+  batch_update_badges:
+    runs-on: ubuntu-latest
+    env:
+      ISSUE_ID: 49
+    steps:
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+        echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+          python-version: '3.9'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Update badges
+      run: python manager.py update_badges
+
+    - name: Update stars
+      run: python manager.py update_stars
+
+    - name: Create PR for stars and badges update
+      id: cpr
+      uses: peter-evans/create-pull-request@v5
+      with:
+        commit-message: Badges and stars update for ${{ steps.vars.outputs.datetime }}
+        title: Badges and stars update for ${{ steps.vars.outputs.datetime }}
+        body: |
+          Badges and stars update
+          Time: ${{ steps.vars.outputs.datetime }}
+        branch: ${{ steps.vars.outputs.pr_branch_name }}

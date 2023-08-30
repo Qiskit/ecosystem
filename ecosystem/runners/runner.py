@@ -56,6 +56,10 @@ class Runner:
         files_fault: List[str],
         ecosystem_deps: Optional[List[str]] = None,
         ecosystem_additional_commands: Optional[List[str]] = None,
+<<<<<<< HEAD
+=======
+        qiskit: str = "qiskit",
+>>>>>>> 2b284cffea465cb413ac35b655efce9f5be03546
     ):
         """Configuring the different templates:
             - tox.ini
@@ -67,6 +71,10 @@ class Runner:
             files_fault: list of default name replacement
             ecosystem_deps: list of dependencies
             ecosystem_additional_commands: additional commands to run before tests
+<<<<<<< HEAD
+=======
+            qiskit: package to check the version of qiskit
+>>>>>>> 2b284cffea465cb413ac35b655efce9f5be03546
 
         No return
         """
@@ -116,6 +124,10 @@ class Runner:
                         repo_config.render_tox_file(
                             ecosystem_deps=ecosystem_deps,
                             ecosystem_additional_commands=ecosystem_additional_commands,
+<<<<<<< HEAD
+=======
+                            qiskit=qiskit,
+>>>>>>> 2b284cffea465cb413ac35b655efce9f5be03546
                         )
                     )
                 elif destination_file_name == FilesTemplates.LINT_FILE_NAME:

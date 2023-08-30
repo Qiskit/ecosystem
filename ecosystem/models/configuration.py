@@ -177,6 +177,10 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
     def render_tox_file(
         self,
         ecosystem_deps: list[str] = None,
+<<<<<<< HEAD
+=======
+        qiskit: str = "qiskit",
+>>>>>>> 2b284cffea465cb413ac35b655efce9f5be03546
         ecosystem_additional_commands: list[str] = None,
     ):
         """Renders tox template from configuration."""
@@ -187,6 +191,10 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
                 **self.to_dict(),
                 **{
                     "ecosystem_deps": ecosystem_deps,
+<<<<<<< HEAD
+=======
+                    "qiskit": qiskit,
+>>>>>>> 2b284cffea465cb413ac35b655efce9f5be03546
                     "ecosystem_additional_commands": ecosystem_additional_commands,
                 },
             }

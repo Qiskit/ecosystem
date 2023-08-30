@@ -1,0 +1,235 @@
+name: Ecosystem | Submission check
+
+###
+# - install deps
+# - parse issue
+# - run lint, coverage, tests
+# - create pr
+# - comment result and add labels
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+jobs:
+  submission_workflow:
+    concurrency:
+      group: ci-${{ github.event.issue.title }}
+      cancel-in-progress: true
+    if: startsWith(github.event.issue.title, '[Submission]:')
+    runs-on: ubuntu-latest
+    env:
+      tox_env: "py39"
+      tier: "Community"
+      python-version: "3.9"
+    steps:
+    # setup deps
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ env.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+
+    # Python workflow
+    - name: Parse submission
+      id: parse-issue
+      env:
+        ISSUE_BODY: ${{ github.event.issue.body }}
+      run: python manager.py parser_issue --body="$ISSUE_BODY"
+    - name: Tests stable check
+      id: stable
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
+        test_type: "stable"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    - name: Tests dev check
+      id: dev
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
+        test_type: "development"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    - name: Tests standard repo check
+      id: standard
+      uses: ./.github/actions/run-tests
+      with:
+        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
+        test_type: "standard"
+        tox_env: ${{ env.tox_env }}
+        tier: ${{ env.tier }}
+        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+    - name: Add member
+      env:
+        SUBMISSION_NAME: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
+        SUBMISSION_REPO: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
+        SUBMISSION_DESCRIPTION: ${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}
+        SUBMISSION_LICENCE: ${{ steps.parse-issue.outputs.SUBMISSION_LICENCE }}
+        SUBMISSION_CONTACT: ${{ steps.parse-issue.outputs.SUBMISSION_CONTACT }}
+        SUBMISSION_ALTERNATIVES: ${{ steps.parse-issue.outputs.SUBMISSION_ALTERNATIVES }}
+        SUBMISSION_AFFILIATIONS: ${{ steps.parse-issue.outputs.SUBMISSION_AFFILIATIONS }}
+        SUBMISSION_LABELS: ${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}
+        SUBMISSION_WEBSITE: ${{ steps.parse-issue.outputs.SUBMISSION_WEBSITE }}
+      run: |
+        python manager.py add_repo_2db --repo_name="$SUBMISSION_NAME" \
+                                       --repo_link="$SUBMISSION_REPO" \
+                                       --repo_description="$SUBMISSION_DESCRIPTION" \
+                                       --repo_licence="$SUBMISSION_LICENCE" \
+                                       --repo_contact="$SUBMISSION_CONTACT" \
+                                       --repo_alt="$SUBMISSION_ALTERNATIVES" \
+                                       --repo_affiliations="$SUBMISSION_AFFILIATIONS" \
+                                       --repo_labels="$SUBMISSION_LABELS" \
+                                       --repo_website="$SUBMISSION_WEBSITE"
+
+    # Create PR
+    - name: Commit changes and create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v5
+      with:
+        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_REPO }} to list.
+        title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+        body: |
+          Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+
+          ---
+          Closes #${{ github.event.issue.number }}
+        branch: submission-${{ github.event.issue.number }}
+        labels: submission
+
+    # Check result
+    ## Gets results of repo tests, and creates comment to post into issue/PR
+    - name: Check test results
+      id: check-return
+      run: |
+        # STD check
+        echo "### Standard tests" >> $GITHUB_STEP_SUMMARY
+        if [[ "${{ steps.standard.outputs.result }}" == *"True"* ]]; then
+          echo "PASS_STD=True" >> "$GITHUB_OUTPUT"
+          echo ":sparkles: Successfull submission!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "PASS_STD=False" >> "$GITHUB_OUTPUT"
+          echo ":x: The submission didn't pass the standard check." >> $GITHUB_STEP_SUMMARY
+          echo "Please follow minimal requirements for project or/and add ecosystem.json configuration in the root of the project." >> $GITHUB_STEP_SUMMARY
+          echo "Read more here ${{ github.server_url }}/${{ github.repository }}/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem." >> $GITHUB_STEP_SUMMARY
+        fi
+
+        # STB check
+        echo "### Stable tests" >> $GITHUB_STEP_SUMMARY
+        if [[ "${{ steps.stable.outputs.result }}" == *"True"* ]]; then
+          echo "PASS_STB=True" >> "$GITHUB_OUTPUT"
+          echo ":sparkles: Tests with latest version of Qiskit release passed!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "PASS_STB=False" >> "$GITHUB_OUTPUT"
+          echo ":warning: The submission didn't pass the stable check." >> $GITHUB_STEP_SUMMARY
+          echo "This means your project doesn't work with the latest version of Qiskit." >> $GITHUB_STEP_SUMMARY
+          echo "This is purely informational and doesn't affect your project joining the Ecosystem, but you may want to investigate the problem." >> $GITHUB_STEP_SUMMARY
+        fi
+
+        # DEV check
+        echo "### Development tests" >> $GITHUB_STEP_SUMMARY
+        if [[ "${{ steps.dev.outputs.result }}" == *"True"* ]]; then
+          echo "PASS_DEV=True" >> "$GITHUB_OUTPUT"
+          echo ":sparkles: Tests with development version of Qiskit release passed!" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "PASS_DEV=False" >> "$GITHUB_OUTPUT"
+          echo ":warning: The submission didn't pass the development check." >> $GITHUB_STEP_SUMMARY
+          echo "This means your project might not work with the next version of Qiskit." >> $GITHUB_STEP_SUMMARY
+          echo "This is purely informational and doesn't affect your project joining Ecosystem." >> $GITHUB_STEP_SUMMARY
+        fi
+
+        # Gen info
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "---" >> $GITHUB_STEP_SUMMARY
+        echo "Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+        echo "PR #${{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
+        # Create summary_output.md
+        echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
+
+    # PR labels and comment
+    - name: "Label 'ready'"
+      continue-on-error: true
+      uses: actions/github-script@v6
+      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
+      with:
+        script: |
+          // PR
+          github.rest.issues.addLabels({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["ready"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["on hold"]
+          })
+          // Issue
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["ready"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["on hold"]
+          })
+
+    - name: "Label 'on hold'"
+      continue-on-error: true
+      uses: actions/github-script@v6
+      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
+      with:
+        script: |
+          // PR
+          github.rest.issues.addLabels({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["on hold"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["ready"]
+          })
+          // Issue
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: ["on hold"]
+          })
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: ["ready"]
+          })
+
+    - name: "PR: Post comment"
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ steps.cpr.outputs.pull-request-number }}
+        body-path: "summary_output.md"
+
+    - name: "Issue: Post comment"
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body-path: "summary_output.md"
