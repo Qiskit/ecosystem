@@ -1,3 +1,3 @@
 """DAOs for ecosystem."""
 
-from .jsondao import JsonDAO
+from .dao import DAO

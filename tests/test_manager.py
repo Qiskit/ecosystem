@@ -6,7 +6,7 @@ from contextlib import redirect_stdout
 
 import responses
 
-from ecosystem.daos import JsonDAO
+from ecosystem.daos import DAO
 from ecosystem.manager import Manager
 from ecosystem.models import TestResult, Tier, TestType
 from ecosystem.models.repository import Repository
@@ -200,11 +200,11 @@ class TestManager(TestCase):
 
         commu_success = get_community_repo()
         commu_failed = get_community_fail_repo()
-        dao = JsonDAO(self.path)
+        dao = DAO(self.path)
 
         # insert entry
-        dao.insert(commu_success)
-        dao.insert(commu_failed)
+        dao.write(commu_success)
+        dao.write(commu_failed)
 
         manager = Manager(root_path=os.path.join(self.current_dir, ".."))
         manager.resources_dir = "../resources"
