@@ -100,6 +100,15 @@ class Runner:
             with open(f"{self.cloned_repo_directory}/setup.py", "w") as setup_file:
                 setup_file.write(repo_config.render_setup_file())
 
+        # check for requirements.txt file
+        if not os.path.exists(f"{self.cloned_repo_directory}/requirements.txt"):
+            self.logger.warning("No requirements files for repository %s", self.repo)
+            self.logger.warning("Creating default requirements.txt file.")
+            with open(
+                f"{self.cloned_repo_directory}/requirements.txt", "w"
+            ) as requirements_file:
+                requirements_file.write(repo_config.render_requirements_file())
+
         # check for tox/.pylintrc/.coveragerc file
         for destination_file_name, renamed_file_name in zip(files, files_fault):
             if os.path.exists(f"{self.cloned_repo_directory}/{destination_file_name}"):
