@@ -193,37 +193,41 @@ class DAO:
         """
         repo = self.get_by_url(repo_url)
 
-        # add new result and remove old from list
-        new_test_results = [
-            tr for tr in repo.tests_results if tr.test_type != test_result.test_type
-        ] + [test_result]
+        if repo is not None:
+            # add new result and remove old from list
+            new_test_results = [
+                tr for tr in repo.tests_results if tr.test_type != test_result.test_type
+            ] + [test_result]
 
-        # add last working version
-        if test_result.test_type == TestType.STABLE_COMPATIBLE and test_result.passed:
-            last_stable_test_result = TestResult(
-                passed=True,
-                test_type=TestType.LAST_WORKING_VERSION,
-                package=test_result.package,
-                package_version=test_result.package_version,
-                logs_link=test_result.logs_link,
-            )
-            new_test_results_with_latest = [
+            # add last working version
+            if (
+                test_result.test_type == TestType.STABLE_COMPATIBLE
+                and test_result.passed
+            ):
+                last_stable_test_result = TestResult(
+                    passed=True,
+                    test_type=TestType.LAST_WORKING_VERSION,
+                    package=test_result.package,
+                    package_version=test_result.package_version,
+                    logs_link=test_result.logs_link,
+                )
+                new_test_results_with_latest = [
+                    tr
+                    for tr in new_test_results
+                    if tr.test_type != last_stable_test_result.test_type
+                ] + [last_stable_test_result]
+                new_test_results = new_test_results_with_latest
+
+            repo.tests_results = sorted(new_test_results, key=lambda r: r.test_type)
+
+            new_historical_test_results = [
                 tr
-                for tr in new_test_results
-                if tr.test_type != last_stable_test_result.test_type
-            ] + [last_stable_test_result]
-            new_test_results = new_test_results_with_latest
-
-        repo.tests_results = sorted(new_test_results, key=lambda r: r.test_type)
-
-        new_historical_test_results = [
-            tr
-            for tr in repo.historical_test_results
-            if tr.test_type != test_result.test_type
-            or tr.qiskit_version != test_result.qiskit_version
-        ] + [test_result]
-        repo.historical_test_results = new_historical_test_results
-        self.write(repo)
+                for tr in repo.historical_test_results
+                if tr.test_type != test_result.test_type
+                or tr.qiskit_version != test_result.qiskit_version
+            ] + [test_result]
+            repo.historical_test_results = new_historical_test_results
+            self.write(repo)
 
     def add_repo_style_result(self, repo_url: str, style_result: StyleResult):
         """

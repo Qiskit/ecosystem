@@ -286,7 +286,6 @@ class Manager:
                     repo_url,
                     test_result,
                 )
-                res = None
                 if test_type == "TestResult":
                     tres = TestResult.from_dict(test_result)
                     self.dao.add_repo_test_result(repo_url=repo_url, test_result=tres)
@@ -302,8 +301,6 @@ class Manager:
                     raise NotImplementedError(
                         "Test type {} is not supported".format(test_type)
                     )
-                if res is None:
-                    self.logger.warning("Result was not saved for %s", repo_url)
 
         # remove temp files
         if os.path.exists(folder_full_path):
