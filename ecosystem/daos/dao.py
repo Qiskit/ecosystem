@@ -8,6 +8,7 @@ File structure:
     └── members
         └── repo-name.toml
 """
+from typing import Optional
 import json
 from pathlib import Path
 import shutil
@@ -116,13 +117,14 @@ class DAO:
         with self.storage as data:
             del data[repo_url]
 
-    def get_by_url(self, url: str) -> Repository:
+    def get_by_url(self, url: str) -> Optional[Repository]:
         """
         Returns repository by URL.
         """
         data = self.storage.read()
         if url not in data:
-            logger.info("No repo with URL", url)
+            logger.info("No repo with URL : %s", url)
+            return None
         return self.storage.read()[url]
 
     def update(self, repo_url: str, **kwargs):
