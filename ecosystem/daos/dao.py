@@ -117,7 +117,7 @@ class DAO:
         with self.storage as data:
             del data[repo_url]
 
-    def get_by_url(self, url: str) -> Repository | None:
+    def get_by_url(self, url: str) -> Optional[Repository]:
         """
         Returns repository by URL.
         """
