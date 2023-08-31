@@ -13,6 +13,7 @@ from pathlib import Path
 import shutil
 import toml
 
+from ecosystem.utils import logger
 from ecosystem.models import TestResult, StyleResult, CoverageResult, TestType
 from ecosystem.models.repository import Repository
 
@@ -121,7 +122,7 @@ class DAO:
         """
         data = self.storage.read()
         if url not in data:
-            raise KeyError(f"No repo with URL '{url}'")
+            logger.info("No repo with URL", url)
         return self.storage.read()[url]
 
     def update(self, repo_url: str, **kwargs):
