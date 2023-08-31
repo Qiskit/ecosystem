@@ -316,7 +316,6 @@ class Manager:
         repo_url: str,
         tier: str,
         python_version: str,
-        package_to_check: str,
         test_type: str,
         ecosystem_deps: Optional[List[str]] = None,
         ecosystem_additional_commands: Optional[List[str]] = None,
@@ -331,7 +330,6 @@ class Manager:
             repo_url: repository url
             tier: tier of project
             python_version: ex: py36, py37 etc
-            package_to_check: qiskit or qiskit-terra
             test_type: [dev, stable]
             ecosystem_deps: extra dependencies to install for tests
             ecosystem_additional_commands: extra commands to run before tests
@@ -356,7 +354,6 @@ class Manager:
             ecosystem_deps=ecosystem_deps,
             ecosystem_additional_commands=ecosystem_additional_commands,
             python_version=python_version,
-            package_to_check=package_to_check,
             repo_config=repo_configuration,
         )
         qiskit_version, results = runner.run()
@@ -539,7 +536,6 @@ class Manager:
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
-            package_to_check=package,
             test_type=TestType.DEV_COMPATIBLE,
             ecosystem_deps=[],
             ecosystem_additional_commands=additional_commands,
@@ -575,7 +571,6 @@ class Manager:
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
-            package_to_check="qiskit",
             test_type=TestType.STABLE_COMPATIBLE,
             ecosystem_deps=qiskit_latest_deps,
             ecosystem_additional_commands=additional_commands,
@@ -606,7 +601,6 @@ class Manager:
             repo_url=repo_url,
             tier=tier,
             python_version=python_version,
-            package_to_check="qiskit",
             test_type=TestType.STANDARD,
             logs_link=logs_link,
         )

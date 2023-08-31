@@ -22,14 +22,12 @@ class PythonTestsRunner(Runner):
         ecosystem_deps: Optional[List[str]] = None,
         ecosystem_additional_commands: Optional[List[str]] = None,
         python_version: str = "py39",
-        package_to_check: str = "qiskit",
         repo_config: Optional[RepositoryConfiguration] = None,
     ):
         super().__init__(
             repo=repo, working_directory=working_directory, repo_config=repo_config
         )
         self.python_version = python_version
-        self.package_to_check = package_to_check
         self.ecosystem_deps = (
             ecosystem_deps if ecosystem_deps is not None else ["qiskit"]
         )
@@ -53,7 +51,6 @@ class PythonTestsRunner(Runner):
             ["tox_default.ini"],
             ecosystem_deps=self.ecosystem_deps,
             ecosystem_additional_commands=self.ecosystem_additional_commands,
-            package_to_check=self.package_to_check,
         )
 
         qiskit_version = UnknownPackageVersion
