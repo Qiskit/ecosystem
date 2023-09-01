@@ -8,11 +8,13 @@ File structure:
     └── members
         └── repo-name.toml
 """
+from __future__ import annotations
 import json
 from pathlib import Path
 import shutil
 import toml
 
+from ecosystem.utils import logger
 from ecosystem.models import TestResult, StyleResult, CoverageResult, TestType
 from ecosystem.models.repository import Repository
 
@@ -115,13 +117,14 @@ class DAO:
         with self.storage as data:
             del data[repo_url]
 
-    def get_by_url(self, url: str) -> Repository:
+    def get_by_url(self, url: str) -> Repository | None:
         """
         Returns repository by URL.
         """
         data = self.storage.read()
         if url not in data:
-            raise KeyError(f"No repo with URL '{url}'")
+            logger.info("No repo with URL : %s", url)
+            return None
         return self.storage.read()[url]
 
     def update(self, repo_url: str, **kwargs):
@@ -179,7 +182,7 @@ class DAO:
         with open(self.compiled_json_path, "w") as file:
             json.dump(out, file, indent=4)
 
-    def add_repo_test_result(self, repo_url: str, test_result: TestResult):
+    def add_repo_test_result(self, repo_url: str, test_result: TestResult) -> None:
         """
         Adds test result to repository.
         Overwrites the latest test results and adds to historical test results.
@@ -189,6 +192,9 @@ class DAO:
             test_result: TestResult from the tox -epy3.x
         """
         repo = self.get_by_url(repo_url)
+
+        if repo is None:
+            return None
 
         # add new result and remove old from list
         new_test_results = [
@@ -221,8 +227,9 @@ class DAO:
         ] + [test_result]
         repo.historical_test_results = new_historical_test_results
         self.write(repo)
+        return None
 
-    def add_repo_style_result(self, repo_url: str, style_result: StyleResult):
+    def add_repo_style_result(self, repo_url: str, style_result: StyleResult) -> None:
         """
         Adds style result for repository.
 
@@ -232,13 +239,19 @@ class DAO:
         """
         repo = self.get_by_url(repo_url)
 
+        if repo is None:
+            return None
+
         new_style_results = [
             tr for tr in repo.styles_results if tr.style_type != style_result.style_type
         ] + [style_result]
         repo.styles_results = new_style_results
         self.write(repo)
+        return None
 
-    def add_repo_coverage_result(self, repo_url: str, coverage_result: CoverageResult):
+    def add_repo_coverage_result(
+        self, repo_url: str, coverage_result: CoverageResult
+    ) -> None:
         """
         Adds coverage result for repository.
 
@@ -248,6 +261,9 @@ class DAO:
         """
         repo = self.get_by_url(repo_url)
 
+        if repo is None:
+            return None
+
         new_coverage_results = [
             tr
             for tr in repo.coverages_results
@@ -255,3 +271,4 @@ class DAO:
         ] + [coverage_result]
         repo.coverages_results = new_coverage_results
         self.write(repo)
+        return None
