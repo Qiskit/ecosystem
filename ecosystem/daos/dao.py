@@ -182,7 +182,7 @@ class DAO:
         with open(self.compiled_json_path, "w") as file:
             json.dump(out, file, indent=4)
 
-    def add_repo_test_result(self, repo_url: str, test_result: TestResult):
+    def add_repo_test_result(self, repo_url: str, test_result: TestResult) -> None:
         """
         Adds test result to repository.
         Overwrites the latest test results and adds to historical test results.
@@ -193,43 +193,43 @@ class DAO:
         """
         repo = self.get_by_url(repo_url)
 
-        if repo is not None:
-            # add new result and remove old from list
-            new_test_results = [
-                tr for tr in repo.tests_results if tr.test_type != test_result.test_type
-            ] + [test_result]
+        if repo is None:
+            return None
 
-            # add last working version
-            if (
-                test_result.test_type == TestType.STABLE_COMPATIBLE
-                and test_result.passed
-            ):
-                last_stable_test_result = TestResult(
-                    passed=True,
-                    test_type=TestType.LAST_WORKING_VERSION,
-                    package=test_result.package,
-                    package_version=test_result.package_version,
-                    logs_link=test_result.logs_link,
-                )
-                new_test_results_with_latest = [
-                    tr
-                    for tr in new_test_results
-                    if tr.test_type != last_stable_test_result.test_type
-                ] + [last_stable_test_result]
-                new_test_results = new_test_results_with_latest
+        # add new result and remove old from list
+        new_test_results = [
+            tr for tr in repo.tests_results if tr.test_type != test_result.test_type
+        ] + [test_result]
 
-            repo.tests_results = sorted(new_test_results, key=lambda r: r.test_type)
-
-            new_historical_test_results = [
+        # add last working version
+        if test_result.test_type == TestType.STABLE_COMPATIBLE and test_result.passed:
+            last_stable_test_result = TestResult(
+                passed=True,
+                test_type=TestType.LAST_WORKING_VERSION,
+                package=test_result.package,
+                package_version=test_result.package_version,
+                logs_link=test_result.logs_link,
+            )
+            new_test_results_with_latest = [
                 tr
-                for tr in repo.historical_test_results
-                if tr.test_type != test_result.test_type
-                or tr.qiskit_version != test_result.qiskit_version
-            ] + [test_result]
-            repo.historical_test_results = new_historical_test_results
-            self.write(repo)
+                for tr in new_test_results
+                if tr.test_type != last_stable_test_result.test_type
+            ] + [last_stable_test_result]
+            new_test_results = new_test_results_with_latest
 
-    def add_repo_style_result(self, repo_url: str, style_result: StyleResult):
+        repo.tests_results = sorted(new_test_results, key=lambda r: r.test_type)
+
+        new_historical_test_results = [
+            tr
+            for tr in repo.historical_test_results
+            if tr.test_type != test_result.test_type
+            or tr.qiskit_version != test_result.qiskit_version
+        ] + [test_result]
+        repo.historical_test_results = new_historical_test_results
+        self.write(repo)
+        return None
+
+    def add_repo_style_result(self, repo_url: str, style_result: StyleResult) -> None:
         """
         Adds style result for repository.
 
@@ -239,16 +239,19 @@ class DAO:
         """
         repo = self.get_by_url(repo_url)
 
-        if repo is not None:
-            new_style_results = [
-                tr
-                for tr in repo.styles_results
-                if tr.style_type != style_result.style_type
-            ] + [style_result]
-            repo.styles_results = new_style_results
-            self.write(repo)
+        if repo is None:
+            return None
 
-    def add_repo_coverage_result(self, repo_url: str, coverage_result: CoverageResult):
+        new_style_results = [
+            tr for tr in repo.styles_results if tr.style_type != style_result.style_type
+        ] + [style_result]
+        repo.styles_results = new_style_results
+        self.write(repo)
+        return None
+
+    def add_repo_coverage_result(
+        self, repo_url: str, coverage_result: CoverageResult
+    ) -> None:
         """
         Adds coverage result for repository.
 
@@ -258,11 +261,14 @@ class DAO:
         """
         repo = self.get_by_url(repo_url)
 
-        if repo is not None:
-            new_coverage_results = [
-                tr
-                for tr in repo.coverages_results
-                if tr.coverage_type != coverage_result.coverage_type
-            ] + [coverage_result]
-            repo.coverages_results = new_coverage_results
-            self.write(repo)
+        if repo is None:
+            return None
+
+        new_coverage_results = [
+            tr
+            for tr in repo.coverages_results
+            if tr.coverage_type != coverage_result.coverage_type
+        ] + [coverage_result]
+        repo.coverages_results = new_coverage_results
+        self.write(repo)
+        return None
