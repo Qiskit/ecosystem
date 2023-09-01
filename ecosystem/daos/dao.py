@@ -8,6 +8,7 @@ File structure:
     └── members
         └── repo-name.toml
 """
+from __future__ import annotations
 from typing import Optional
 import json
 from pathlib import Path
@@ -117,7 +118,7 @@ class DAO:
         with self.storage as data:
             del data[repo_url]
 
-    def get_by_url(self, url: str) -> Optional[Repository]:
+    def get_by_url(self, url: str) -> Repository | None:
         """
         Returns repository by URL.
         """
@@ -239,11 +240,14 @@ class DAO:
         """
         repo = self.get_by_url(repo_url)
 
-        new_style_results = [
-            tr for tr in repo.styles_results if tr.style_type != style_result.style_type
-        ] + [style_result]
-        repo.styles_results = new_style_results
-        self.write(repo)
+        if repo is not None:
+            new_style_results = [
+                tr
+                for tr in repo.styles_results
+                if tr.style_type != style_result.style_type
+            ] + [style_result]
+            repo.styles_results = new_style_results
+            self.write(repo)
 
     def add_repo_coverage_result(self, repo_url: str, coverage_result: CoverageResult):
         """
@@ -255,10 +259,11 @@ class DAO:
         """
         repo = self.get_by_url(repo_url)
 
-        new_coverage_results = [
-            tr
-            for tr in repo.coverages_results
-            if tr.coverage_type != coverage_result.coverage_type
-        ] + [coverage_result]
-        repo.coverages_results = new_coverage_results
-        self.write(repo)
+        if repo is not None:
+            new_coverage_results = [
+                tr
+                for tr in repo.coverages_results
+                if tr.coverage_type != coverage_result.coverage_type
+            ] + [coverage_result]
+            repo.coverages_results = new_coverage_results
+            self.write(repo)
