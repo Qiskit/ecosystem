@@ -1,0 +1,14 @@
+name = "SSVQE"
+url = "https://github.com/JoelHBierman/SSVQE"
+description = "The SSVQE algorithm (https://arxiv.org/abs/1810.09434) is a generalization of VQE to find low-lying eigenstates of a Hermitian operator. This specific implementation of SSVQE carries out one optimization procedure using weights."
+licence = "Apache License 2.0"
+contact_info = "joel.bierman@duke.edu"
+alternatives = "_No response_"
+affiliations = "Duke University"
+labels = [ "Algorithms", "Chemistry",]
+tier = "Community"
+tests_results = []
+styles_results = []
+coverages_results = []
+skip_tests = false
+historical_test_results = []
