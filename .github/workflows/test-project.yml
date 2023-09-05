@@ -1,0 +1,59 @@
+name: Test repository
+
+on:
+  workflow_call:
+    inputs:
+      repo_name:
+        description: "GitHub repository owner-name/repo-name"
+        type: string
+        required: true
+      test_type:
+        description: "'standard', 'stable', or 'dev'"
+        type: string
+        required: true
+
+  workflow_dispatch:
+    inputs:
+      repo_name:
+        description: "GitHub repository owner-name/repo-name"
+        type: string
+        required: true
+      test_type:
+        description: "Type of test to run"
+        required: true 
+        default: 'standard'
+        type: choice
+        options:
+          - standard
+          - stable
+          - development
+
+jobs:
+  run_tests:
+    name: Test ${{ inputs.repo_name }}
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ inputs.repo_name }}
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Set up standard environment
+        run: |
+          pip install tox
+          tox exec -epy39 -- python -c ""  # Empty command to force tox setup
+
+      - name: Force install development qiskit
+        if: ${{ inputs.test_type == 'development' }}
+        run: |
+          tox exec -epy39 -- pip install git+https://github.com/Qiskit/qiskit
+          
+      - name: Run tests
+        run: |
+          tox -epy39
+
+
