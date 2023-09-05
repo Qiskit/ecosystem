@@ -1,4 +1,4 @@
-name: Test all repositories
+name: Ecosystem | Batch | Test all projects
 
 on:
   workflow_call:
@@ -42,7 +42,7 @@ jobs:
       matrix:
         repo_name: ${{ fromJSON(needs.get_projects.outputs.repo_names) }}
         test_type: [standard, stable, development]
-    uses: frankharkins/ecosystem/.github/workflows/test-project.yml@fh-simplify-testing
+    uses: frankharkins/ecosystem/.github/workflows/ecosystem-test-project.yml@fh-simplify-testing
     with:
       repo_name: ${{ matrix.repo_name }}
       test_type: ${{ matrix.test_type }}
