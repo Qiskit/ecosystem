@@ -1,0 +1,52 @@
+name: Test all repositories
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  get_projects:
+    name: Get project names
+    runs-on: ubuntu-latest
+    outputs:
+      repo_names: ${{ steps.get_names.outputs.repo_names }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ inputs.repo_name }}
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Get repo names
+        id: get_names
+        # TODO: Find a cleaner way to do this
+        run: |
+          pip install -r requirements.txt
+          python -c "
+          import os
+          import json
+          from ecosystem.daos import DAO
+          names = []
+          for url in DAO('ecosystem/resources/').storage.read().keys():
+              names.append('/'.join(url.split('/')[3:5]))
+          names_str = json.dumps(names)
+
+          env_file = os.getenv('GITHUB_OUTPUT')
+          with open(env_file, 'a') as f:
+              f.write(f'repo_names={names_str}')
+          "
+
+  spawn_tests:
+    name: Spawn testing actions
+    needs: [get_projects]
+    strategy:
+      fail-fast: false
+      matrix:
+        test_type: [standard, stable, development]
+        repo_name: ${{ fromJSON(needs.get_projects.outputs.repo_names) }}
+    uses: frankharkins/ecosystem/.github/workflows/test-project.yml@fh-simplify-testing
+    with:
+      repo_name: ${{ matrix.repo_name }}
+      test_type: ${{ matrix.test_type }}
