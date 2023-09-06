@@ -47,13 +47,39 @@ jobs:
           pip install tox
           tox exec -epy39 -- python -c ""  # Empty command to force tox setup
 
-      - name: Force install development qiskit
+      - name: Force install latest Qiskit
+        if: ${{ inputs.test_type == 'stable' }}
+        run: |
+          tox exec -epy39 -- pip install --upgrade qiskit
+
+      - name: Force install development Qiskit
         if: ${{ inputs.test_type == 'development' }}
         run: |
-          tox exec -epy39 -- pip install git+https://github.com/Qiskit/qiskit
+          QISKIT_COMMIT_HASH=$(git ls-remote https://github.com/Qiskit/qiskit refs/heads/main | cut -f 1)
+          echo "QISKIT_COMMIT_HASH=$QISKIT_COMMIT_HASH" >> "$GITHUB_OUTPUT"
+          tox exec -epy39 -- pip install git+https://github.com/Qiskit/qiskit@"$QISKIT_COMMIT_HASH"
           
       - name: Run tests
         run: |
           tox -epy39
+
+      - name: Report results
+        if: ${{ !cancelled() }}
+        run: |
+          # TODO: Find a cleaner way to get qiskit version
+          QISKIT_VERSION=$(tox exec -epy39 -- python -c 'import qiskit; print(qiskit.__version__)' | awk 'NR==2')
+          echo "QISKIT_VERSION=$QISKIT_VERSION" >> "$GITHUB_OUTPUT"
+          echo "TEST_TYPE=${{ inputs.test_type }}" >> "$GITHUB_OUTPUT"
+          echo "LOGS_LINK=https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}" >> "$GITHUB_OUTPUT"
+
+      - name: Report pass
+        if: ${{ success() }}
+        run: |
+          echo "PASS=true" >> "$GITHUB_OUTPUT"
+
+      - name: Report failure
+        if: ${{ failure() }}
+        run: |
+          echo "PASS=false" >> "$GITHUB_OUTPUT"
 
 
