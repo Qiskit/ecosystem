@@ -1,4 +1,6 @@
 name: Test repository
+# Clone repository and run `tox -epy39`, optionally force-installing a
+# different version of Qiskit
 
 on:
   workflow_call:
@@ -44,31 +46,34 @@ jobs:
 
       - name: Set up standard environment
         run: |
+          # Create the tox environment using the package versions specified in
+          # the repo. This means any later force-installs take precedence.
+          if [ ! -e tox.ini ]; then echo "No tox.ini" && exit 1; fi
           pip install tox
           tox exec -epy39 -- python -c ""  # Empty command to force tox setup
 
       - name: Force install latest Qiskit
         if: ${{ inputs.test_type == 'stable' }}
         run: |
-          tox exec -epy39 -- pip install --upgrade qiskit
+          tox exec -epy39 -- pip install --upgrade qiskit --force-reinstall
 
       - name: Force install development Qiskit
         if: ${{ inputs.test_type == 'development' }}
         run: |
           QISKIT_COMMIT_HASH=$(git ls-remote https://github.com/Qiskit/qiskit refs/heads/main | cut -f 1)
-          echo "QISKIT_COMMIT_HASH=$QISKIT_COMMIT_HASH" >> "$GITHUB_OUTPUT"
-          tox exec -epy39 -- pip install git+https://github.com/Qiskit/qiskit@"$QISKIT_COMMIT_HASH"
+          tox exec -epy39 -- pip install git+https://github.com/Qiskit/qiskit@"$QISKIT_COMMIT_HASH" --force-reinstall
           
       - name: Run tests
         run: |
           tox -epy39
+          # TODO: Find a cleaner way to get qiskit version
+          QISKIT_VERSION=$(tox exec -epy39 -- python -c "import qiskit; print(qiskit.__version__)" | awk "NR==2")
 
       - name: Report results
         if: ${{ !cancelled() }}
         run: |
-          # TODO: Find a cleaner way to get qiskit version
-          QISKIT_VERSION=$(tox exec -epy39 -- python -c 'import qiskit; print(qiskit.__version__)' | awk 'NR==2')
           echo "QISKIT_VERSION=$QISKIT_VERSION" >> "$GITHUB_OUTPUT"
+          echo "QISKIT_COMMIT_HASH=$QISKIT_COMMIT_HASH" >> "$GITHUB_OUTPUT"
           echo "TEST_TYPE=${{ inputs.test_type }}" >> "$GITHUB_OUTPUT"
           echo "LOGS_LINK=https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}" >> "$GITHUB_OUTPUT"
 
