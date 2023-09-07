@@ -7,9 +7,72 @@ alternatives = "_No response_"
 affiliations = "Duke University"
 labels = [ "Algorithms", "Chemistry",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 stars = 0
+
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6082575100"
+package_commit_hash = "1606ca35447dfc5a70845dc534b7e351b175e580"
+qiskit_version = "0.45.0"
+timestamp = 1693906102.152358
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6082575100"
+qiskit_version = "0.44.1"
+timestamp = 1693906225.362321
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6082575100"
+qiskit_version = "0.44.1"
+timestamp = 1693905669.649715
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6082575100"
+qiskit_version = "0.44.1"
+timestamp = 1693906223.950387
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6082575100"
+qiskit_version = "0.44.1"
+timestamp = 1693905669.649715
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6082575100"
+package_commit_hash = "1606ca35447dfc5a70845dc534b7e351b175e580"
+qiskit_version = "0.45.0"
+timestamp = 1693906102.152358
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6082575100"
+qiskit_version = "0.44.1"
+timestamp = 1693906223.950387
