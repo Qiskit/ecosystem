@@ -262,6 +262,27 @@ class Manager:
                     }
                 )
             )
+    def add_test_result(self, repo_name, **test_args):
+        repo_url = f"https://github.com/{repo_name}/"
+        test_result = TestResult.from_dict(test_args)
+        self.dao.add_repo_test_result(repo_url=repo_url, test_result=test_result)
+        print(Path(
+            self.dao.storage.toml_dir,
+            repo_name.split('/')[1] + ".toml"
+        ))
+
+    def list_repos_for_testing(self):
+        """
+        Returns JSON string of repos to test
+        """
+        repo_names = []
+        for repo in self.dao.storage.read().values():
+            if not repo.skip_tests:
+                name = "/".join(repo.url.split("/")[3:5])
+                repo_names.append(name)
+                break # TODO: remove after testing
+        return json.dumps(repo_names)
+
 
     def process_temp_test_results_files(self, folder_name: str) -> None:
         """Process temp test results files and store data to DB.

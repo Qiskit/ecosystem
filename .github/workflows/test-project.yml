@@ -49,6 +49,7 @@ jobs:
           # Create the tox environment using the package versions specified in
           # the repo. This means any later force-installs take precedence.
           if [ ! -e tox.ini ]; then echo "No tox.ini" && exit 1; fi
+          echo "PASS=false" >> "$GITHUB_ENV"
           pip install tox
           tox -epy39 --notest  # Create tox environment
 
@@ -70,23 +71,27 @@ jobs:
           tox -epy39
           # TODO: Find a cleaner way to get qiskit version
           QISKIT_VERSION=$(tox exec -epy39 -- python -c "import qiskit; print(qiskit.__version__)" | awk "NR==2")
+          echo "PASS=true" >> "$GITHUB_ENV"
 
-      - name: Report results
+      - name: Gather results
         if: ${{ !cancelled() }}
+        # TODO: This is also a mess; can we clean this up?
         run: |
-          echo "QISKIT_VERSION=$QISKIT_VERSION" >> "$GITHUB_OUTPUT"
-          echo "QISKIT_COMMIT_HASH=$QISKIT_COMMIT_HASH" >> "$GITHUB_OUTPUT"
-          echo "TEST_TYPE=${{ inputs.test_type }}" >> "$GITHUB_OUTPUT"
-          echo "LOGS_LINK=https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}" >> "$GITHUB_OUTPUT"
+          JSON_FILE="$(basename ${{ inputs.repo_name }}).json"
+          LOGS_LINK=https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
+          echo "{
+            \"passed\": \"${{ env.PASS }}\",
+            \"test_type\": \"${{ inputs.test_type }}\",
+            \"package\": \"qiskit\",
+            \"package_version\": \"$QISKIT_VERSION\",
+            \"package_commit_hash\": \"$QISKIT_COMMIT_HASH\",
+            \"logs_link\": \"$LOGS_LINK\"
+          }" > "$JSON_FILE"
+          echo "JSON_FILE=$JSON_FILE" >> "$GITHUB_ENV"
 
-      - name: Report pass
-        if: ${{ success() }}
-        run: |
-          echo "PASS=true" >> "$GITHUB_OUTPUT"
-
-      - name: Report failure
-        if: ${{ failure() }}
-        run: |
-          echo "PASS=false" >> "$GITHUB_OUTPUT"
-
-
+      - name: Upload results artifact
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.JSON_FILE }}
+          path: ${{ env.JSON_FILE }}

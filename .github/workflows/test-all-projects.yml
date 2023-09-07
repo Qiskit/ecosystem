@@ -6,14 +6,32 @@ on:
 
 jobs:
   get_projects:
-    name: Get project names
+    name: Make branch and get project names
     runs-on: ubuntu-latest
     outputs:
+      datetime: ${{ steps.vars.outputs.datetime }}
+      pr_branch_name: ${{ steps.vars.outputs.pr_branch_name }}
       repo_names: ${{ steps.get_names.outputs.repo_names }}
     steps:
       - uses: actions/checkout@v3
         with:
           repository: ${{ inputs.repo_name }}
+
+      - name: Set variables
+        id: vars
+        run: |
+          echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+          echo "pr_branch_name=batch_checks_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+
+      - name: Create PR for batch checks
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: Batch checks for ${{ steps.vars.outputs.datetime }}
+          title: Batch checks | ${{ steps.vars.outputs.datetime }}
+          body: |
+            Batch checks
+            Time: ${{ steps.vars.outputs.datetime }}
+          branch: ${{ steps.vars.outputs.pr_branch_name }}
 
       - uses: actions/setup-python@v4
         with:
@@ -21,30 +39,10 @@ jobs:
 
       - name: Get repo names
         id: get_names
-        # TODO: Find a cleaner way to do this
         run: |
           pip install -r requirements.txt
-          python -c "
-          import os
-          import json
-          import requests
-          from ecosystem.daos import DAO
-          names = []
-          for url, repo in DAO('ecosystem/resources/').storage.read().items():
-              if repo.skip_tests:
-                continue
-              name = '/'.join(url.split('/')[3:5])
-              if not requests.get(
-                  f'https://raw.githubusercontent.com/{name}/HEAD/tox.ini'
-                  ).ok:
-                continue
-              names.append(name)
-          names_str = json.dumps(names)
-
-          env_file = os.getenv('GITHUB_OUTPUT')
-          with open(env_file, 'a') as f:
-              f.write(f'repo_names={names_str}')
-          "
+          REPO_NAMES="$(python manager.py list_repos_for_testing)"
+          echo "repo_names=$REPO_NAMES" >> "$GITHUB_OUTPUT"
 
   spawn_tests:
     name: Spawn testing actions
@@ -52,9 +50,42 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        test_type: [standard, stable, development]
         repo_name: ${{ fromJSON(needs.get_projects.outputs.repo_names) }}
+        test_type: [standard, stable, development]
     uses: frankharkins/ecosystem/.github/workflows/test-project.yml@fh-simplify-testing
     with:
       repo_name: ${{ matrix.repo_name }}
       test_type: ${{ matrix.test_type }}
+
+  # commit_results:
+  #   name: Commit results
+  #   needs: [spawn_tests]
+  #   strategy:
+  #     matrix:
+  #       repo_name: ${{ fromJSON(needs.get_projects.outputs.repo_names) }}
+  #       test_type: [standard, stable, development]
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-python@v4
+  #       with:
+  #         python-version: '3.9'
+  #     - name: Add results
+  #       run: >
+  #           python manager.py add_test_result
+  #             --repo_name=${{ matrix.repo_name }}
+  #             --test_json="\{
+  #                 'passed': 'true',
+  #                 'test_type': 'standard',
+  #                 'package': 'qiskit',
+  #                 'logs_link': 'none'
+  #                 'package_commit_hash': 'asvlriu'
+  #             \}"
+  #     - name: Commit and push
+  #       run: |
+  #         git pull --rebase --autostash
+  #         git add ecosystem/resources/
+  #         git config --local user.email "github-actions[bot]@users.noreply.github.com"
+  #         git config --local user.name "github-actions[bot]"
+  #         git commit -m "Merge temp files for ${{ needs.get_projects.output.pr_branch_name }}" --allow-empty
+  #         git pull --rebase --autostash
+  #         git push
