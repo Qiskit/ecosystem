@@ -73,25 +73,29 @@ jobs:
           QISKIT_VERSION=$(tox exec -epy39 -- python -c "import qiskit; print(qiskit.__version__)" | awk "NR==2")
           echo "PASS=true" >> "$GITHUB_ENV"
 
-      - name: Gather results
+      - name: Compile results
         if: ${{ !cancelled() }}
-        # TODO: This is also a mess; can we clean this up?
+        # We upload a JSON artifact so the calling job can read the results.
+        # This is a bit ugly, but there doesn't seem to be a better way of doing it.
+        # See https://github.com/orgs/community/discussions/17245 for details.
         run: |
-          JSON_FILE="$(basename ${{ inputs.repo_name }}).json"
-          LOGS_LINK=https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
-          echo "{
+          LOGS_LINK=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          JSON_CONTENT="{
             \"passed\": \"${{ env.PASS }}\",
             \"test_type\": \"${{ inputs.test_type }}\",
             \"package\": \"qiskit\",
             \"package_version\": \"$QISKIT_VERSION\",
             \"package_commit_hash\": \"$QISKIT_COMMIT_HASH\",
             \"logs_link\": \"$LOGS_LINK\"
-          }" > "$JSON_FILE"
-          echo "JSON_FILE=$JSON_FILE" >> "$GITHUB_ENV"
+          }"
+          echo "$JSON_CONTENT" > "${{ inputs.test_type }}.json"
+          
+          ARTIFACT_NAME=$(basename ${{ inputs.repo_name }})--${{ inputs.test_type }}
+          echo "artifact_name=$ARTIFACT_NAME" >> "$GITHUB_ENV"
 
       - name: Upload results artifact
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.JSON_FILE }}
-          path: ${{ env.JSON_FILE }}
+          name: ${{ env.artifact_name }}
+          path: ${{ inputs.test_type }}.json

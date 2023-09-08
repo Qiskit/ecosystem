@@ -8,6 +8,8 @@ jobs:
   get_projects:
     name: Make branch and get project names
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     outputs:
       datetime: ${{ steps.vars.outputs.datetime }}
       pr_branch_name: ${{ steps.vars.outputs.pr_branch_name }}
@@ -57,35 +59,47 @@ jobs:
       repo_name: ${{ matrix.repo_name }}
       test_type: ${{ matrix.test_type }}
 
-  # commit_results:
-  #   name: Commit results
-  #   needs: [spawn_tests]
-  #   strategy:
-  #     matrix:
-  #       repo_name: ${{ fromJSON(needs.get_projects.outputs.repo_names) }}
-  #       test_type: [standard, stable, development]
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-python@v4
-  #       with:
-  #         python-version: '3.9'
-  #     - name: Add results
-  #       run: >
-  #           python manager.py add_test_result
-  #             --repo_name=${{ matrix.repo_name }}
-  #             --test_json="\{
-  #                 'passed': 'true',
-  #                 'test_type': 'standard',
-  #                 'package': 'qiskit',
-  #                 'logs_link': 'none'
-  #                 'package_commit_hash': 'asvlriu'
-  #             \}"
-  #     - name: Commit and push
-  #       run: |
-  #         git pull --rebase --autostash
-  #         git add ecosystem/resources/
-  #         git config --local user.email "github-actions[bot]@users.noreply.github.com"
-  #         git config --local user.name "github-actions[bot]"
-  #         git commit -m "Merge temp files for ${{ needs.get_projects.output.pr_branch_name }}" --allow-empty
-  #         git pull --rebase --autostash
-  #         git push
+  commit_results:
+    # We read artifacts uploaded by the matrix jobs to get the test results.
+    # This is a bit ugly, but there doesn't seem to be a better way of doing it.
+    # See https://github.com/orgs/community/discussions/17245 for details.
+    name: Commit results
+    needs: [get_projects, spawn_tests]
+    if: '!cancelled()'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        repo_name: ${{ fromJSON(needs.get_projects.outputs.repo_names) }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
+      - name: Download results for ${{ matrix.repo_name }}
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+
+      - name: Add results
+        run: >
+          for JSON_FILE in artifacts/$(basename ${{ matrix.repo_name}})--*/*.json; do
+            python manager.py add_test_result --repo_name="${{ matrix.repo_name }}" --test_json="$(cat $JSON_FILE)";
+          done
+
+      - name: Commit and push
+        run: |
+          git switch -c ${{ needs.get_projects.outputs.pr_branch_name }} origin/${{ needs.get_projects.outputs.pr_branch_name }}
+          git pull --rebase --autostash
+          git add ecosystem/resources/
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Results for ${{ matrix.repo_name }}" --allow-empty
+          git pull --rebase --autostash
+          git push

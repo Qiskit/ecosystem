@@ -262,14 +262,10 @@ class Manager:
                     }
                 )
             )
-    def add_test_result(self, repo_name, **test_args):
-        repo_url = f"https://github.com/{repo_name}/"
-        test_result = TestResult.from_dict(test_args)
+    def add_test_result(self, repo_name, test_json):
+        repo_url = f"https://github.com/{repo_name}"
+        test_result = TestResult.from_dict(test_json)
         self.dao.add_repo_test_result(repo_url=repo_url, test_result=test_result)
-        print(Path(
-            self.dao.storage.toml_dir,
-            repo_name.split('/')[1] + ".toml"
-        ))
 
     def list_repos_for_testing(self):
         """
