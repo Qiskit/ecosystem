@@ -11,7 +11,6 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 0
-
 [[tests_results]]
 passed = true
 test_type = "development"
@@ -76,3 +75,4 @@ package_version = "0.44.1"
 logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6082575100"
 qiskit_version = "0.44.1"
 timestamp = 1693906223.950387
+
