@@ -242,6 +242,7 @@ jobs:
       (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'closed'
       && contains(github.event.issue.labels.*.name, 'submission')
       && contains(github.event.issue.labels.*.name, 'ready'))
+    runs-on: ubuntu-latest
     steps:
     - name: Create comment on success
       uses: peter-evans/create-or-update-comment@v3
