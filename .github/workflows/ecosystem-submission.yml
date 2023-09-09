@@ -251,9 +251,9 @@ jobs:
         body: |
           hello @${{ github.event.issue.user.login }}! You joined the Qiskit Ecosystem a little while ago and I just wanted to check in and let you know of some follow up actions you can take to make the most of joining the program, if you're interested:
 
-          :speech_ballon: Join other Qiskit ecosystem developers in the [Slack channel #qiskit-ecosystem](https://qiskit.slack.com/archives/C04RHE56N93) (if you are not in the Qiskit workspace yet, you can sign up here: https://qisk.it/join-slack)
+          :speech_balloon: Join other Qiskit ecosystem developers in the [Slack channel #qiskit-ecosystem](https://qiskit.slack.com/archives/C04RHE56N93) (if you are not in the Qiskit workspace yet, you can sign up here: https://qisk.it/join-slack)
 
-          :brain: Help us define the future of the Qiskit Ecosystem: we recently started an RFC on how the Ecosystem should be structured. It is very draft-y at the moment, but you can subscribe for notifications here [Qiskit/RFCs#42](https://github.com/Qiskit/RFCs/pull/42) to participate in that discussion.
+          :brain: Help us define the future of the Qiskit Ecosystem: we recently started an RFC on how the Ecosystem should be structured. It is very draft-y at the moment, but you can subscribe for notifications here [Qiskit/RFCs#46](https://github.com/Qiskit/RFCs/pull/46) to participate in that discussion.
 
           :mega: Would you like to showcase your project to the Qiskit community? A couple of things you can do to raise awareness for your project:
 
