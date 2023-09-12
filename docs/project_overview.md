@@ -79,6 +79,9 @@ Example of `ecosystem.json`:
     "extra_dependencies": [
         "pytest"
     ],
+    "debian_dependencies": [
+        "jq"
+    ],
     "language": {
         "name": "python",
         "versions": ["3.9"]
