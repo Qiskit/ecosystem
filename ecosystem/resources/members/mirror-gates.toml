@@ -1,0 +1,15 @@
+name = "mirror-gates"
+url = "https://github.com/Pitt-JonesLab/mirror-gates"
+description = "MIRAGE is a transpilation plugin for quantum circuits that minimizes the use of SWAP gates while optimizing native basis gate decomposition through mirror gates. Specifically designed for iSWAP-based quantum systems, MIRAGE improves circuit depth, making quantum algorithms more practical and efficient."
+licence = "MIT license"
+contact_info = "evmckinney9@gmail.com"
+alternatives = "_No response_"
+affiliations = "University of Pittsburgh"
+labels = [ "Transpiler plugin",]
+tier = "Community"
+website = "https://arxiv.org/abs/2308.03874"
+tests_results = []
+styles_results = []
+coverages_results = []
+skip_tests = false
+historical_test_results = []
