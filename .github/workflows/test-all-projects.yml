@@ -6,10 +6,8 @@ on:
 
 jobs:
   get_projects:
-    name: Make branch and get project names
+    name: Get time and project names
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     outputs:
       datetime: ${{ steps.vars.outputs.datetime }}
       pr_branch_name: ${{ steps.vars.outputs.pr_branch_name }}
@@ -24,16 +22,6 @@ jobs:
         run: |
           echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
           echo "pr_branch_name=batch_checks_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
-
-      - name: Create PR for batch checks
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: Batch checks for ${{ steps.vars.outputs.datetime }}
-          title: Batch checks | ${{ steps.vars.outputs.datetime }}
-          body: |
-            Batch checks
-            Time: ${{ steps.vars.outputs.datetime }}
-          branch: ${{ steps.vars.outputs.pr_branch_name }}
 
       - uses: actions/setup-python@v4
         with:
@@ -69,37 +57,61 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     strategy:
       matrix:
         repo_name: ${{ fromJSON(needs.get_projects.outputs.repo_names) }}
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install requirements
-        run: pip install -r requirements.txt
-
       - name: Download results for ${{ matrix.repo_name }}
         uses: actions/download-artifact@v3
         with:
           path: artifacts
 
+      - name: Check artifacts exist
+        id: check-artifacts
+        continue-on-error: true
+        run: |
+          mkdir -p artifacts
+          if [ -z "$(ls -A ./artifacts)" ]; then
+            exit 0
+          else
+            echo "No artifacts found; skipping commit"
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v4
+        if: ${{ steps.check-artifacts.outcome == 'success' }}
+        with:
+          python-version: '3.9'
+
+      - name: Install requirements
+        if: ${{ steps.check-artifacts.outcome == 'success' }}
+        run: pip install -r requirements.txt
+
       - name: Add results
+        if: ${{ steps.check-artifacts.outcome == 'success' }}
         run: >
-          for JSON_FILE in artifacts/$(basename ${{ matrix.repo_name}})--*/*.json; do
+          for JSON_FILE in artifacts/$(basename ${{ matrix.repo_name }})--*/*.json; do
             python manager.py add_test_result --repo_name="${{ matrix.repo_name }}" --test_json="$(cat $JSON_FILE)";
           done
 
-      - name: Commit and push
+      - name: Pull latest updates
+        if: ${{ steps.check-artifacts.outcome == 'success' }}
         run: |
-          git switch -c ${{ needs.get_projects.outputs.pr_branch_name }} origin/${{ needs.get_projects.outputs.pr_branch_name }}
-          git pull --rebase --autostash
-          git add ecosystem/resources/
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -m "Results for ${{ matrix.repo_name }}" --allow-empty
-          git pull --rebase --autostash
-          git push
+          git pull origin ${{ needs.get_projects.outputs.pr_branch_name }} --rebase --autostash || true
+
+      - name: Update pull request
+        if: ${{ steps.check-artifacts.outcome == 'success' }}
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: ${{ matrix.repo_name }} test results
+          title: Batch checks | ${{ needs.get_projects.outputs.datetime }}
+          add-paths: ecosystem/resources
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          body: |
+            Add project test results
+            Time: ${{ needs.get_projects.outputs.datetime }}
+          branch: ${{ needs.get_projects.outputs.pr_branch_name }}

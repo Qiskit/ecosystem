@@ -45,36 +45,41 @@ jobs:
           python-version: '3.9'
 
       - name: Set up standard environment
+        id: set-up-env
         run: |
           # Create the tox environment using the package versions specified in
           # the repo. This means any later force-installs take precedence.
           if [ ! -e tox.ini ]; then echo "No tox.ini" && exit 1; fi
-          echo "PASS=false" >> "$GITHUB_ENV"
-          pip install tox
+          echo "PASS=false" >> $GITHUB_ENV
+          pip install tox tox-DEBIAN
           tox -epy39 --notest  # Create tox environment
 
       - name: Force install latest Qiskit
+        continue-on-error: true
         if: ${{ inputs.test_type == 'stable' }}
         run: |
           tox exec -epy39 -- pip uninstall -y qiskit
           tox exec -epy39 -- pip install --upgrade qiskit --force-reinstall
 
       - name: Force install development Qiskit
+        continue-on-error: true
         if: ${{ inputs.test_type == 'development' }}
         run: |
           tox exec -epy39 -- pip uninstall -y qiskit
           QISKIT_COMMIT_HASH=$(git ls-remote https://github.com/Qiskit/qiskit refs/heads/main | cut -f 1)
+          echo "QISKIT_COMMIT_HASH=$QISKIT_COMMIT_HASH" >> $GITHUB_ENV
           tox exec -epy39 -- pip install git+https://github.com/Qiskit/qiskit@"$QISKIT_COMMIT_HASH" --force-reinstall
           
       - name: Run tests
+        continue-on-error: true
         run: |
           tox -epy39
+          echo "PASS=true" >> $GITHUB_ENV
           # TODO: Find a cleaner way to get qiskit version
-          QISKIT_VERSION=$(tox exec -epy39 -- python -c "import qiskit; print(qiskit.__version__)" | awk "NR==2")
-          echo "PASS=true" >> "$GITHUB_ENV"
+          QISKIT_VERSION=$(tox exec -epy39 -- python -c 'import qiskit; print(qiskit.__version__)' | awk "NR==2")
+          echo "QISKIT_VERSION=$QISKIT_VERSION" >> $GITHUB_ENV
 
       - name: Compile results
-        if: ${{ !cancelled() }}
         # We upload a JSON artifact so the calling job can read the results.
         # This is a bit ugly, but there doesn't seem to be a better way of doing it.
         # See https://github.com/orgs/community/discussions/17245 for details.
@@ -84,17 +89,17 @@ jobs:
             \"passed\": \"${{ env.PASS }}\",
             \"test_type\": \"${{ inputs.test_type }}\",
             \"package\": \"qiskit\",
-            \"package_version\": \"$QISKIT_VERSION\",
-            \"package_commit_hash\": \"$QISKIT_COMMIT_HASH\",
+            \"package_version\": \"${{ env.QISKIT_VERSION }}\",
+            \"package_commit_hash\": \"${{ env.QISKIT_COMMIT_HASH }}\",
             \"logs_link\": \"$LOGS_LINK\"
           }"
+          echo "$JSON_CONTENT"
           echo "$JSON_CONTENT" > "${{ inputs.test_type }}.json"
           
           ARTIFACT_NAME=$(basename ${{ inputs.repo_name }})--${{ inputs.test_type }}
-          echo "artifact_name=$ARTIFACT_NAME" >> "$GITHUB_ENV"
+          echo "artifact_name=$ARTIFACT_NAME" >> $GITHUB_ENV
 
       - name: Upload results artifact
-        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
