@@ -98,6 +98,7 @@
                     "pylint",
                     "qiskit"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest src/tests"
                 ],
@@ -869,6 +870,7 @@
                     "pytest-httpx==0.*,>=0.9.0",
                     "pytest-mock==3.*,>=3.6.1"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest"
                 ],
@@ -1224,6 +1226,7 @@
                     "coverage",
                     "pylint"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest"
                 ],
@@ -1427,6 +1430,7 @@
                     "coverage",
                     "pylint"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest"
                 ],
@@ -1520,6 +1524,7 @@
                     "pylint",
                     "qiskit"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml --ignore=mitiq/interface/mitiq_pyquil"
                 ],
@@ -2165,6 +2170,7 @@
                     "pytest==5.*,>=5.0.0",
                     "qctrl-visualizer==2.*,>=2.12.2"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest"
                 ],
@@ -2597,6 +2603,7 @@
                     "pylint",
                     "black"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest -v -x -m \"not slow\" test/",
                     "pytest -v -x -m \"slow\" test/"
@@ -3067,6 +3074,7 @@
                     "requirements.txt"
                 ],
                 "extra_dependencies": [],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest -v --cov=qiskit_symb"
                 ],
@@ -3474,6 +3482,7 @@
                     "requirements-dev.txt"
                 ],
                 "extra_dependencies": [],
+                "debian_dependencies": [],
                 "tests_command": [
                     "stestr run"
                 ],
@@ -3990,6 +3999,7 @@
                     "requirements-test.txt"
                 ],
                 "extra_dependencies": [],
+                "debian_dependencies": [],
                 "tests_command": [
                     "python setup.py test"
                 ],
@@ -4211,6 +4221,7 @@
                     "coverage",
                     "pylint"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest"
                 ],
@@ -4706,6 +4717,7 @@
                 "extra_dependencies": [
                     "qiskit"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest .  --ignore-glob=*_integration_test.py --ignore=examples/"
                 ],
@@ -5130,6 +5142,7 @@
                     "requirements-dev.txt"
                 ],
                 "extra_dependencies": [],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pip check",
                     "python -m pytest"
@@ -5459,6 +5472,7 @@
                     "black",
                     "pytest"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "python -m unittest"
                 ],
@@ -5817,6 +5831,7 @@
                     "coverage",
                     "pylint"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest"
                 ],
@@ -6163,6 +6178,7 @@
                 "extra_dependencies": [
                     "pytest"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest"
                 ],
@@ -6800,6 +6816,7 @@
                     "coverage",
                     "pylint"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit"
                 ],
@@ -7187,6 +7204,7 @@
                     "pylint",
                     "qiskit"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest tests --tb=short"
                 ],
@@ -7293,6 +7311,25 @@
                 }
             ],
             "stars": 129
+        },
+        "49": {
+            "name": "quantum-prototype-template",
+            "url": "https://github.com/qiskit-community/quantum-prototype-template",
+            "description": "A template repository for generating new quantum prototypes based on Qiskit.",
+            "licence": "Apache License 2.0",
+            "contact_info": "_No response_",
+            "alternatives": "_No response_",
+            "affiliations": "Qiskit Community",
+            "labels": [
+                "Productivity"
+            ],
+            "tier": "Community",
+            "website": "https://github.com/qiskit-community/quantum-prototype-template",
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "skip_tests": false,
+            "historical_test_results": []
         }
     },
     "Extensions": {
@@ -7362,6 +7399,7 @@
                     "requirements-dev.txt"
                 ],
                 "extra_dependencies": [],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest -p no:warnings --pyargs mthree/test"
                 ],
@@ -7666,6 +7704,7 @@
                     "pytest",
                     "black==22.3.0"
                 ],
+                "debian_dependencies": [],
                 "tests_command": [
                     "python -m pytest tests"
                 ],
@@ -7894,6 +7933,7 @@
                     "requirements-dev.txt"
                 ],
                 "extra_dependencies": [],
+                "debian_dependencies": [],
                 "tests_command": [
                     "treon docs/ --threads 1"
                 ],
@@ -8075,6 +8115,7 @@
                     "requirements-dev.txt"
                 ],
                 "extra_dependencies": [],
+                "debian_dependencies": [],
                 "tests_command": [
                     "pytest -p no:warnings --pyargs test"
                 ],
@@ -8422,6 +8463,7 @@
                     "requirements-dev.txt"
                 ],
                 "extra_dependencies": [],
+                "debian_dependencies": [],
                 "tests_command": [
                     "python -m unittest -v"
                 ],
