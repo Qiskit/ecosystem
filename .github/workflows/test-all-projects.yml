@@ -58,49 +58,31 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    strategy:
-      matrix:
-        repo_name: ${{ fromJSON(needs.get_projects.outputs.repo_names) }}
     steps:
       - uses: actions/checkout@v3
 
-      - name: Download results for ${{ matrix.repo_name }}
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           path: artifacts
 
-      - name: Check artifacts exist
-        id: check-artifacts
-        continue-on-error: true
-        run: |
-          ls artifacts/$(basename ${{ matrix.repo_name }})--*/*.json
-
       - uses: actions/setup-python@v4
-        if: ${{ steps.check-artifacts.outcome == 'success' }}
         with:
           python-version: '3.9'
 
       - name: Install requirements
-        if: ${{ steps.check-artifacts.outcome == 'success' }}
         run: pip install -r requirements.txt
 
       - name: Add results
-        if: ${{ steps.check-artifacts.outcome == 'success' }}
-        run: >
-          for JSON_FILE in artifacts/$(basename ${{ matrix.repo_name }})--*/*.json; do
-            python manager.py add_test_result --repo_name="${{ matrix.repo_name }}" --test_json="$(cat $JSON_FILE)";
+        run: |
+          for JSON_FILE in artifacts/*/*.json
+          do
+            python manager.py add_test_result --json_file="$JSON_FILE"
           done
 
-      - name: Pull latest updates
-        if: ${{ steps.check-artifacts.outcome == 'success' }}
-        run: |
-          git pull origin ${{ needs.get_projects.outputs.pr_branch_name }} --rebase --autostash || true
-
       - name: Update pull request
-        if: ${{ steps.check-artifacts.outcome == 'success' }}
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: ${{ matrix.repo_name }} test results
+          commit-message: Add test results
           title: Batch checks | ${{ needs.get_projects.outputs.datetime }}
           add-paths: ecosystem/resources
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
