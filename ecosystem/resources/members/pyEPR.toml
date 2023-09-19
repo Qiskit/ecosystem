@@ -18,6 +18,7 @@ stars = 140
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "qiskit", "coverage", "pylint",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn pyEPR",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]

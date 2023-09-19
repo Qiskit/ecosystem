@@ -281,6 +281,7 @@ timestamp = 1694510346.399896
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "pip check", "python -m pytest",]
 styles_check_command = [ "black .",]
 coverages_check_command = []

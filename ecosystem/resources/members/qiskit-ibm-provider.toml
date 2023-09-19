@@ -19,6 +19,7 @@ stars = 60
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "python -m unittest -v",]
 styles_check_command = [ "pylint -rn --rcfile=./.pylintrc test",]
 coverages_check_command = []

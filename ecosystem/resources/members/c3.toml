@@ -320,6 +320,7 @@ timestamp = 1694509993.569889
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "qiskit", "coverage", "pylint", "black",]
+debian_dependencies = []
 tests_command = [ "pytest -v -x -m \"not slow\" test/", "pytest -v -x -m \"slow\" test/",]
 styles_check_command = [ "black --check c3/",]
 coverages_check_command = [ "pytest -x -v --cov=c3 --cov-report=xml test/",]

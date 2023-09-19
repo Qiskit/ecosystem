@@ -309,6 +309,7 @@ timestamp = 1694510272.444874
 [configuration]
 dependencies_files = []
 extra_dependencies = [ "qiskit", "coverage", "pylint", "numpy==1.*,>=1.20.1", "pyquil==3.*,>=3.0.0", "black==20.*,>=20.8.0.b1", "flake8==3.*,>=3.8.1", "mypy==0.*,>=0.800.0", "pip-licenses==3.*,>=3.5.1", "pytest==6.*,>=6.2.2", "pytest-cov==2.*,>=2.11.1", "pytest-httpx==0.*,>=0.9.0", "pytest-mock==3.*,>=3.6.1",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn qiskit_rigetti tests",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]
