@@ -218,6 +218,7 @@ timestamp = 1693906171.782188
 [configuration]
 dependencies_files = []
 extra_dependencies = [ "qiskit>=0.35.0", "qiskit_nature>=0.3.2", "pyscf>=2.0.1", "h5py>=3.6.0", "pytest", "black==22.3.0",]
+debian_dependencies = []
 tests_command = [ "python -m pytest tests",]
 styles_check_command = [ "python -m black --check entanglement_forging tests",]
 coverages_check_command = []

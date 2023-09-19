@@ -254,6 +254,7 @@ timestamp = 1694510987.836523
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "pytest -p no:warnings --pyargs test",]
 styles_check_command = [ "pylint -rn src",]
 coverages_check_command = []

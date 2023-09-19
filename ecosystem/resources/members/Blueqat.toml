@@ -300,6 +300,7 @@ timestamp = 1694510488.163408
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "qiskit", "Cython", "coverage", "pylint",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn blueqat tests",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]

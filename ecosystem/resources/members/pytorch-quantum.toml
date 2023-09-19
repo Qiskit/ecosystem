@@ -300,6 +300,7 @@ timestamp = 1694511118.733143
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "qiskit", "coverage", "pylint",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn torchquantum test",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]

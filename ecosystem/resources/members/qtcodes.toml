@@ -311,6 +311,7 @@ timestamp = 1694510403.611077
 [configuration]
 dependencies_files = []
 extra_dependencies = [ "qiskit", "coverage", "pylint", "numpy", "matplotlib>=3.3.0", "retworkx>=0.10.0", "tqdm", "pylatexenc", "IPython", "mypy", "black", "pytest",]
+debian_dependencies = []
 tests_command = [ "python -m unittest",]
 styles_check_command = [ "pylint -rn qtcodes",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]

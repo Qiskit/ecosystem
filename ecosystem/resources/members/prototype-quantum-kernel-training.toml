@@ -18,6 +18,7 @@ stars = 33
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "treon docs/ --threads 1",]
 styles_check_command = [ "black --check docs",]
 coverages_check_command = []

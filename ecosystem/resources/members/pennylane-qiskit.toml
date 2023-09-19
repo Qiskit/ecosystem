@@ -139,6 +139,7 @@ timestamp = 1694509912.070713
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "coverage", "pylint", "qiskit",]
+debian_dependencies = []
 tests_command = [ "pytest tests --tb=short",]
 styles_check_command = [ "pylint -rn pennylane_qiskit tests",]
 coverages_check_command = [ "python3 -m pytest tests --tb=short --cov=pennylane_qiskit --cov-report term-missing --cov-report=html:coverage_html_report",]

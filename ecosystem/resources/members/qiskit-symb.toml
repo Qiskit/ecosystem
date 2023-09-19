@@ -81,6 +81,7 @@ timestamp = 1694510480.382217
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "pytest -v --cov=qiskit_symb",]
 styles_check_command = [ "pylint src/ tests/",]
 coverages_check_command = []

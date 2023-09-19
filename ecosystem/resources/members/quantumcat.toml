@@ -212,6 +212,7 @@ timestamp = 1694510291.600908
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "coverage", "pylint",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn quantumcat tests",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]
