@@ -73,13 +73,7 @@ jobs:
         id: check-artifacts
         continue-on-error: true
         run: |
-          mkdir -p artifacts
-          if [ -z "$(ls -A ./artifacts)" ]; then
-            exit 0
-          else
-            echo "No artifacts found; skipping commit"
-            exit 1
-          fi
+          ls artifacts/$(basename ${{ matrix.repo_name }})--*/*.json
 
       - uses: actions/setup-python@v4
         if: ${{ steps.check-artifacts.outcome == 'success' }}
