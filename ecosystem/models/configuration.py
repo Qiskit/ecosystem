@@ -66,6 +66,8 @@ class RepositoryConfiguration(JsonSerializable):
             ex: for python `requirements.txt`
         extra_dependencies: list of extra dependencies for project to install during tests run
             ex: for python it might be `qiskit==0.19`
+        debian_dependencies: list of debian dependenies for project to install during tests run
+            ex: jq
         tests_command: list of commands to run tests
             ex: for python `python -m unittest -v`
         styles_check_command: list of commands to run style checks
@@ -77,6 +79,7 @@ class RepositoryConfiguration(JsonSerializable):
     language: LanguageConfiguration = field(default_factory=PythonLanguageConfiguration)
     dependencies_files: list[str] = new_list()
     extra_dependencies: list[str] = new_list()
+    debian_dependencies: list[str] = new_list()
     tests_command: list[str] = new_list()
     styles_check_command: list[str] = new_list()
     coverages_check_command: list[str] = new_list()
@@ -99,6 +102,7 @@ class RepositoryConfiguration(JsonSerializable):
                 language=language,
                 dependencies_files=config.dependencies_files,
                 extra_dependencies=config.extra_dependencies,
+                debian_dependencies=config.debian_dependencies,
                 tests_command=config.tests_command,
                 styles_check_command=config.styles_check_command,
                 coverages_check_command=config.coverages_check_command,
@@ -126,6 +130,7 @@ class RepositoryConfiguration(JsonSerializable):
                     language=language,
                     dependencies_files=config.dependencies_files,
                     extra_dependencies=config.extra_dependencies,
+                    debian_dependencies=config.debian_dependencies,
                     tests_command=config.tests_command,
                     styles_check_command=config.styles_check_command,
                     coverages_check_command=config.coverages_check_command,
@@ -168,6 +173,7 @@ class PythonRepositoryConfiguration(RepositoryConfiguration):
             language=PythonLanguageConfiguration(),
             dependencies_files=["requirements.txt"],
             extra_dependencies=["pytest", "coverage"],
+            debian_dependencies=["jq"],
             tests_command=["pytest"],  # -W error::DeprecationWarning
             styles_check_command=["pylint -rn . tests"],
             coverages_check_command=[
