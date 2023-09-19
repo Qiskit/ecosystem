@@ -294,6 +294,7 @@ timestamp = 1694510427.802724
 [configuration]
 dependencies_files = []
 extra_dependencies = [ "qiskit", "coverage", "numpy==1.*,>=1.20.0", "toml==0.*,>=0.10.0", "black==20.*,>=20.8.0.b1", "isort==5.*,>=5.7.0", "mypy==0.*,>=0.800.0", "nbval==0.*,>=0.9.5", "pre-commit==2.*,>=2.9.3", "pylint==2.*,>=2.6.0", "pylint-runner==0.*,>=0.5.4", "pytest==5.*,>=5.0.0", "qctrl-visualizer==2.*,>=2.12.2",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn qctrlopencontrols tests",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]

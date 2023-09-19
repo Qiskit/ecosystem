@@ -318,6 +318,7 @@ timestamp = 1694510440.576844
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "coverage", "pylint", "qiskit",]
+debian_dependencies = []
 tests_command = [ "pytest src/tests",]
 styles_check_command = [ "pylint -rn src",]
 coverages_check_command = [ "coverage run --source=\"./src/quantuminspire\" -m unittest discover -s src/tests -t src -v",]

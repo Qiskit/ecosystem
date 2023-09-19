@@ -320,6 +320,7 @@ timestamp = 1694510943.083653
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
 extra_dependencies = [ "coverage", "pylint",]
+debian_dependencies = []
 tests_command = [ "pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit",]
 styles_check_command = [ "pylint -rn kaleidoscope",]
 coverages_check_command = [ "coverage3 -m pytest -p no:warnings --pyargs kaleidoscope/test/no_qiskit", "coverage3 report --fail-under=80",]

@@ -182,6 +182,7 @@ timestamp = 1694510736.052684
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
 extra_dependencies = [ "pytest",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn qpong tests",]
 coverages_check_command = [ "coverage3 run -m pytest", "coverage3 report --fail-under=80",]

@@ -271,6 +271,7 @@ timestamp = 1694509963.288894
 [configuration]
 dependencies_files = [ "requirements-dev.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "stestr run",]
 styles_check_command = [ "pylint -rn -j 0 --rcfile=./.pylintrc qiskit_cold_atom/ test/",]
 coverages_check_command = []

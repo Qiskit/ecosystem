@@ -190,6 +190,7 @@ timestamp = 1694510425.243389
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-test.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "python setup.py test",]
 styles_check_command = [ "pylint -rn --rcfile=./.pylintrc qiskit_ionq test",]
 coverages_check_command = []
