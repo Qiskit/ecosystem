@@ -55,7 +55,6 @@ jobs:
           # the repo. This means any later force-installs take precedence.
           tox -epy39 --notest  # Create tox environment
 
-          # Find Qiskit version
           QISKIT_VERSION=$(tox exec -q -epy39 -- python -c "import qiskit; print(qiskit.__version__)" | awk "NR==1")
           echo "QISKIT_VERSION=$QISKIT_VERSION" >> $GITHUB_ENV
 
@@ -72,17 +71,16 @@ jobs:
         if: ${{ inputs.test_type == 'development' }}
         run: |
           echo "QISKIT_VERSION=development" >> $GITHUB_ENV
-          tox exec -epy39 -- pip uninstall -y qiskit
           QISKIT_COMMIT_HASH=$(git ls-remote https://github.com/Qiskit/qiskit refs/heads/main | cut -f 1)
           echo "QISKIT_COMMIT_HASH=$QISKIT_COMMIT_HASH" >> $GITHUB_ENV
+
+          tox exec -epy39 -- pip uninstall -y qiskit
           tox exec -epy39 -- pip install git+https://github.com/Qiskit/qiskit@"$QISKIT_COMMIT_HASH" --force-reinstall
           
       - name: Run tests
         run: |
           tox -epy39
-
-      - name: Set success flag
-        run: echo "PASS=true" >> $GITHUB_ENV
+          echo "PASS=true" >> $GITHUB_ENV
 
       - name: Compile results
         # We upload a JSON artifact so the calling job can read the results.

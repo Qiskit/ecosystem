@@ -5,6 +5,7 @@ import os
 import shutil
 import uuid
 from typing import Optional, List, Tuple, Union
+from pathlib import Path
 
 import requests
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -262,13 +263,14 @@ class Manager:
                     }
                 )
             )
-    def add_test_result(self, json_file):
-        with open(json_file) as f:
-            test_json = json.load(f)
-        repo_name = test_json.pop('repo_name')
-        repo_url = f"https://github.com/{repo_name}"
-        test_result = TestResult.from_dict(test_json)
-        self.dao.add_repo_test_result(repo_url=repo_url, test_result=test_result)
+    def add_results_from_artifacts(self, path="artifacts"):
+        for artifact in Path(path).rglob('*.json'):
+            with open(artifact) as f:
+                test_json = json.load(f)
+            repo_name = test_json.pop('repo_name')
+            repo_url = f"https://github.com/{repo_name}"
+            test_result = TestResult.from_dict(test_json)
+            self.dao.add_repo_test_result(repo_url=repo_url, test_result=test_result)
 
     def list_repos_for_testing(self):
         """

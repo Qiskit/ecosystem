@@ -74,10 +74,7 @@ jobs:
 
       - name: Add results
         run: |
-          for JSON_FILE in artifacts/*/*.json
-          do
-            python manager.py add_test_result --json_file="$JSON_FILE"
-          done
+          python manager.py add_results_from_artifacts
 
       - name: Update pull request
         uses: peter-evans/create-pull-request@v5
