@@ -1,27 +1,36 @@
 name: Ecosystem | Test repository
 # Clone repository and run `tox -epy39`, optionally force-installing a
 # different version of Qiskit
+ 
 
 on:
   workflow_call:
     inputs:
       repo_name:
-        description: "GitHub repository owner-name/repo-name"
+        description: GitHub repository (e.g. qiskit-community/qiskit-nature)
         type: string
         required: true
       test_type:
-        description: "'standard', 'stable', or 'dev'"
+        description: |
+          Type of test to run. Options are
+            - "standard" installs a version of Qiskit supported by the repository
+            - "stable" force-installs the latest stable version of Qiskit
+            - "development" force-installs the current development version of Qiskit
         type: string
         required: true
 
   workflow_dispatch:
     inputs:
       repo_name:
-        description: "GitHub repository owner-name/repo-name"
+        description: GitHub repository (e.g. qiskit-community/qiskit-nature)
         type: string
         required: true
       test_type:
-        description: "Type of test to run"
+        description: |
+          Type of test to run.
+            "standard" installs the version of Qiskit supported by the repository.
+            "stable" force-installs the latest stable version of Qiskit.
+            "development" force-installs the current development version of Qiskit.
         required: true 
         default: 'standard'
         type: choice
