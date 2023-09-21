@@ -86,5 +86,10 @@ jobs:
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           body: |
             Add project test results
+
+            ### Logs
+             
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
             Time: ${{ needs.get_projects.outputs.datetime }}
           branch: ${{ needs.get_projects.outputs.pr_branch_name }}
