@@ -155,13 +155,6 @@ jobs:
         # Create summary_output.md
         echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
 
-    - name: "Test"
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
-      with:
-        script: |
-          console.log(${{ toJSON(github.event.issue.labels.*.name) }})
-
     # PR labels and comment
     - name: "Label 'ready'"
       continue-on-error: true
