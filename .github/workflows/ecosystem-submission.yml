@@ -155,6 +155,13 @@ jobs:
         # Create summary_output.md
         echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
 
+    - name: "Test"
+      uses: actions/github-script@v6
+      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
+      with:
+        script: |
+          console.log(${{ toJSON(github.event.issue.labels.*.name) }})
+
     # PR labels and comment
     - name: "Label 'ready'"
       continue-on-error: true
@@ -169,7 +176,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-          if (${{ github.event.pull_request.labels.*.name }}.includes("on hold")) {
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes("on hold")) {
             github.rest.issues.removeLabel({
               issue_number: ${{ steps.cpr.outputs.pull-request-number }},
               owner: context.repo.owner,
@@ -184,7 +191,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-          if (${{ github.event.pull_request.labels.*.name }}.includes("on hold")) {
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes("on hold")) {
             github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -206,7 +213,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-          if (${{ github.event.pull_request.labels.*.name }}.includes('ready')) {
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes('ready')) {
             github.rest.issues.removeLabel({
               issue_number: ${{ steps.cpr.outputs.pull-request-number }},
               owner: context.repo.owner,
@@ -221,7 +228,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-          if (${{ github.event.pull_request.labels.*.name }}.includes('ready')) {
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes('ready')) {
             github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
