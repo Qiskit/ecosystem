@@ -160,8 +160,6 @@ jobs:
       continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
-      env:
-        PR_LABEL_LIST: ${{ github.event.pull_request.labels.*.name }}
       with:
         script: |
           // PR
@@ -171,7 +169,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-          if (${{ env.PR_LABEL_LIST }}.includes("on hold")) {
+          if (${{ github.event.pull_request.labels.*.name }}.includes("on hold")) {
             github.rest.issues.removeLabel({
               issue_number: ${{ steps.cpr.outputs.pull-request-number }},
               owner: context.repo.owner,
@@ -186,7 +184,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-          if (${{ env.PR_LABEL_LIST }}.includes("on hold")) {
+          if (${{ github.event.pull_request.labels.*.name }}.includes("on hold")) {
             github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -199,7 +197,6 @@ jobs:
       continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
-        PR_LABEL_LIST: ${{ github.event.pull_request.labels.*.name }}
       with:
         script: |
           // PR
@@ -209,7 +206,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-          if (${{ env.PR_LABEL_LIST }}.includes('ready')) {
+          if (${{ github.event.pull_request.labels.*.name }}.includes('ready')) {
             github.rest.issues.removeLabel({
               issue_number: ${{ steps.cpr.outputs.pull-request-number }},
               owner: context.repo.owner,
@@ -224,7 +221,7 @@ jobs:
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-          if (${{ env.PR_LABEL_LIST }}.includes('ready')) {
+          if (${{ github.event.pull_request.labels.*.name }}.includes('ready')) {
             github.rest.issues.removeLabel({
               issue_number: context.issue.number,
               owner: context.repo.owner,
