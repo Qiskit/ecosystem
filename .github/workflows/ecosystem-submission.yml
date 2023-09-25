@@ -157,7 +157,6 @@ jobs:
 
     # PR labels and comment
     - name: "Label 'ready'"
-      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
@@ -194,7 +193,6 @@ jobs:
           }
 
     - name: "Label 'on hold'"
-      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
