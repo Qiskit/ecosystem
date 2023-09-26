@@ -4,6 +4,7 @@ import json
 import os
 import shutil
 import uuid
+from string import Template
 from typing import Optional, List, Tuple, Union
 
 import requests
@@ -51,6 +52,23 @@ class Manager:
     def recompile(self):
         """Recompile `members.json` from human-readable files."""
         self.dao.compile_json()
+
+    def build_page(self):
+        with open("./html/templates/page.html") as f:
+            page_template = Template(f.read())
+        with open("./html/templates/card.html") as f:
+            card_template = Template(f.read())
+
+        cards = [
+            card_template.substitute(
+                name=repo.name,
+                description=repo.description,
+                url=url
+                )
+            for url, repo in self.dao.storage.read().items()
+        ]
+        cards = ''.join(cards)
+        return page_template.substitute(cards=cards)
 
     def dispatch_check_workflow(
         self,
