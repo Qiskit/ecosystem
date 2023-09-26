@@ -1,38 +1,128 @@
- <script
-   type="module"
-   src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.1/tile.rtl.min.js"
- ></script>
- <script
-    type="module"
-    src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.1/button.min.js"
- ></script>
+ <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.1/tile.rtl.min.js"></script>
+ <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.1/button.min.js"></script>
+ <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/list.min.js"></script>
  
  <style>
  @import url('https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/plex.css');
  @import url('https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/themes.css');
  @import url('https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/grid.css');
  
+
  body {
    font-family: 'IBM Plex Sans', sans-serif;
+   max-width: 99rem;
+   margin: auto;
  }
+
+ /* replace blues with purples */
+ .custom-theme {
+  --cds-background-brand: #6929c4;
+  --cds-border-interactive: #6929c4;
+  --cds-focus: #6929c4;
+  --cds-icon-interactive: #6929c4;
+  --cds-interactive: #6929c4;
+  --cds-link-primary: #6929c4;
+  --cds-button-primary: #6929c4;
+  --cds-button-tertiary: #6929c4;
+  --cds-background-brand: #6929c4;
+  --cds-border-interactive: #6929c4;
+  --cds-focus: #6929c4;
+  --cds-icon-interactive: #6929c4;
+  --cds-interactive: #6929c4;
+  --cds-link-primary: #6929c4;
+  --cds-button-primary: #6929c4;
+  --cds-button-tertiary: #6929c4;
+  --cds-background-brand: #6929c4;
+  --cds-focus-inverse: #6929c4;
+  --cds-link-inverse: #6929c4;
+  --cds-button-primary: #6929c4;
+  --cds-notification-action-tertiary-inverse: #6929c4;
+  --cds-background-brand: #6929c4;
+  --cds-focus-inverse: #6929c4;
+  --cds-link-inverse: #6929c4;
+  --cds-button-primary: #6929c4;
+  --cds-notification-action-tertiary-inverse: #6929c4;
+
+  --cds-button-primary-hover: #491d8b;
+  --cds-button-tertiary-hover: #491d8b;
+  --cds-button-primary-hover: #491d8b;
+  --cds-button-tertiary-hover: #491d8b;
+  --cds-button-primary-hover: #491d8b;
+  --cds-notification-action-tertiary-inverse-hover: #491d8b;
+  --cds-button-primary-hover: #491d8b;
+  --cds-notification-action-tertiary-inverse-hover: #491d8b;
+
+  --cds-link-primary-hover: #491d8b;
+  --cds-link-secondary: #491d8b;
+  --cds-support-info: #491d8b;
+  --cds-link-primary-hover: #491d8b;
+  --cds-link-secondary: #491d8b;
+  --cds-support-info: #491d8b;
+  --cds-highlight: #491d8b;
+  --cds-link-inverse-hover: #491d8b;
+  --cds-support-info-inverse: #491d8b;
+  --cds-tag-background-blue: #491d8b;
+  --cds-link-inverse-hover: #491d8b;
+  --cds-support-info-inverse: #491d8b;
+  --cds-tag-background-blue: #491d8b;
+ }
+
+ header {
+   height: 17.5rem;
+   padding: 2.5rem;
+ }
+
+ p {
+   margin: 1rem 0;
+   font-size: .875rem;
+ }
+
+ h2 {
+   font-size: .875rem;
+   font-weight: 600;
+ }
+
+ .cds--row {
+   align-items: stretch;
+ }
+
+ cds-tile {
+   height: 100%;
+   display: flex;
+   flex-flow: column;
+
+   p {
+     flex-grow: 1;
+   }
+ }
+
  </style>
  
- <body class="cds-theme-zone-white cds--grid">
-   <div class="header">
- 
+ <body class="cds-theme-zone-white custom-theme">
+   <header>
      <h1>Qiskit Ecosystem</h1>
      <p>
-     These projects use or extend Qiskit.
+     Explore projects that use or extend Qiskit
      </p>
   
-   </div>
+     <cds-button href="https://github.com/qiskit-community/ecosystem">
+       Join the Ecosystem
+      <span slot="icon"
+            style="margin: 2px 0 -2px 0">
+        <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+             xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+             width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+             data-v-bdc8f36d="">
+          <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+          <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+        </svg>
+      </span>
+     </cds-button>
+   </header>
+
   
    <div class="cds--grid">
-     <div class="cds--row">
-     
-       ${cards}
-     
-     </div>
+     ${rows}
    </div>
  
  </body>

@@ -56,19 +56,25 @@ class Manager:
     def build_page(self):
         with open("./html/templates/page.html") as f:
             page_template = Template(f.read())
+        with open("./html/templates/row.html") as f:
+            row_template = Template(f.read())
         with open("./html/templates/card.html") as f:
             card_template = Template(f.read())
 
-        cards = [
-            card_template.substitute(
+        rows, cards, i = "", "", 1
+        for url, repo in self.dao.storage.read().items():
+            cards += card_template.substitute(
                 name=repo.name,
                 description=repo.description,
                 url=url
-                )
-            for url, repo in self.dao.storage.read().items()
-        ]
-        cards = ''.join(cards)
-        return page_template.substitute(cards=cards)
+            )
+            if i % 4 == 0:
+                rows += row_template.substitute(cards=cards)
+                cards = ""
+            i += 1
+        if cards:
+            rows += row_template.substitute(cards=cards)
+        return page_template.substitute(rows=rows)
 
     def dispatch_check_workflow(
         self,
