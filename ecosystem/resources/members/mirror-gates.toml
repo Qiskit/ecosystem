@@ -5,12 +5,13 @@ licence = "MIT license"
 contact_info = "evmckinney9@gmail.com"
 alternatives = "_No response_"
 affiliations = "University of Pittsburgh"
-labels = [ "Transpiler plugin", "Paper implementation"]
+labels = [ "Transpiler plugin", "Paper implementation",]
 tier = "Community"
 website = "https://arxiv.org/abs/2308.03874"
 styles_results = []
 coverages_results = []
 skip_tests = false
+stars = 2
 [[tests_results]]
 passed = true
 test_type = "development"
