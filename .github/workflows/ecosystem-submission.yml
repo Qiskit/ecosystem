@@ -157,7 +157,6 @@ jobs:
 
     # PR labels and comment
     - name: "Label 'ready'"
-      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
@@ -169,12 +168,14 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-          github.rest.issues.removeLabel({
-            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["on hold"]
-          })
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes("on hold")) {
+            github.rest.issues.removeLabel({
+              issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ["on hold"]
+            })
+          }
           // Issue
           github.rest.issues.addLabels({
             issue_number: context.issue.number,
@@ -182,15 +183,16 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-          github.rest.issues.removeLabel({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["on hold"]
-          })
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes("on hold")) {
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ["on hold"]
+            })
+          }
 
     - name: "Label 'on hold'"
-      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
@@ -202,12 +204,14 @@ jobs:
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-          github.rest.issues.removeLabel({
-            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["ready"]
-          })
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes('ready')) {
+            github.rest.issues.removeLabel({
+              issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ["ready"]
+            })
+          }
           // Issue
           github.rest.issues.addLabels({
             issue_number: context.issue.number,
@@ -215,12 +219,14 @@ jobs:
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-          github.rest.issues.removeLabel({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["ready"]
-          })
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes('ready')) {
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ["ready"]
+            })
+          }
 
     - name: "PR: Post comment"
       uses: peter-evans/create-or-update-comment@v3
