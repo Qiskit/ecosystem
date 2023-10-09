@@ -3,7 +3,7 @@ name: Ecosystem | Batch | Update stars and badges
 on:
   workflow_dispatch:
   schedule:
-  - cron:  '0 9 * * 2'
+  - cron:  '0 9 * * 4'
 
 jobs:
   batch_update_badges:
