@@ -6731,6 +6731,25 @@
             "stars": 0
         },
         "39": {
+            "name": "qiskit-algorithms",
+            "url": "https://github.com/qiskit-community/qiskit-algorithms",
+            "description": "Qiskit Algorithms is a library of quantum algorithms based on Qiskit, suitable to run on near-term quantum devices with short-depth circuits.",
+            "licence": "Apache License 2.0",
+            "contact_info": "ept@zurich.ibm.com",
+            "alternatives": "_No response_",
+            "affiliations": "IBM Quantum",
+            "labels": [
+                "Algorithms"
+            ],
+            "tier": "Community",
+            "website": "https://qiskit.org/ecosystem/algorithms",
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "skip_tests": false,
+            "historical_test_results": []
+        },
+        "40": {
             "name": "quantumcat",
             "url": "https://github.com/artificial-brain/quantumcat",
             "description": "quantumcat is a platform-independent, open-source, high-level quantum computing library, which allows the quantum community to focus on developing platform-independent quantum applications without much effort",
@@ -6989,7 +7008,7 @@
             ],
             "stars": 22
         },
-        "40": {
+        "41": {
             "name": "qdao",
             "url": "https://github.com/Zhaoyilunnn/qdao",
             "description": "A lightweight framework to enable configurable memory consumption when simulating large quantum circuits.",
@@ -7084,7 +7103,7 @@
             ],
             "stars": 6
         },
-        "41": {
+        "42": {
             "name": "kaleidoscope",
             "url": "https://github.com/QuSTaR/kaleidoscope",
             "description": "Kaleidoscope",
@@ -7451,7 +7470,7 @@
             ],
             "stars": 21
         },
-        "42": {
+        "43": {
             "name": "dsm-swap",
             "url": "https://github.com/qiskit-community/dsm-swap",
             "description": "A doubly stochastic matrices-based approach to optimal qubit routing",
@@ -7677,7 +7696,7 @@
             ],
             "stars": 7
         },
-        "43": {
+        "44": {
             "name": "Blueqat",
             "url": "https://github.com/Blueqat/Blueqat",
             "description": "A quantum computing SDK",
@@ -8035,7 +8054,7 @@
             ],
             "stars": 359
         },
-        "44": {
+        "45": {
             "name": "quantum-tetris",
             "url": "https://github.com/olivierbrcknr/quantum-tetris",
             "description": "What would happen if you combine Tetris with a Quantum computer? The winning entry of the Quantum Design Jam from IBM and Parsons in October 2021 explores just that!",
@@ -8056,7 +8075,7 @@
             "historical_test_results": [],
             "stars": 9
         },
-        "45": {
+        "46": {
             "name": "Quantum-Glasses",
             "url": "https://github.com/Jayshah25/Quantum-Glasses",
             "description": "Visualise the effects of Single Qubit Gates on a Qubit via Bloch Sphere Simulation in a Tkinter Software.",
@@ -8160,7 +8179,7 @@
             ],
             "stars": 7
         },
-        "46": {
+        "47": {
             "name": "RasQberry",
             "url": "https://github.com/JanLahmann/RasQberry",
             "description": "RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi",
@@ -8180,7 +8199,7 @@
             "historical_test_results": [],
             "stars": 122
         },
-        "47": {
+        "48": {
             "name": "qiskit-cold-atom",
             "url": "https://github.com/qiskit-community/qiskit-cold-atom",
             "description": "This project builds on this functionality to describe programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework.",
@@ -8488,7 +8507,7 @@
             ],
             "stars": 23
         },
-        "48": {
+        "49": {
             "name": "pytorch-quantum",
             "url": "https://github.com/mit-han-lab/pytorch-quantum",
             "description": "A PyTorch-centric hybrid classical-quantum dynamic neural networks framework.",
@@ -8835,7 +8854,7 @@
             ],
             "stars": 890
         },
-        "49": {
+        "50": {
             "name": "qiskit-classroom",
             "url": "https://github.com/KMU-quantum-classroom/qiskit-classroom",
             "description": "Qiskit-classroom is a toolkit that helps implement quantum algorithms by converting and visualizing different expressions used in the Qiskit ecosystem using Qiskit-classroom-converter. The following three transformations are supported : Quantum Circuit to Dirac notation, Quantum Circuit to Matrix, Matrix to Quantum Circuit etc...",
@@ -8931,7 +8950,7 @@
             ],
             "stars": 1
         },
-        "50": {
+        "51": {
             "name": "q-kernel-ops",
             "url": "https://github.com/Travis-S-IBM/q-kernel-ops",
             "description": "Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449).",
@@ -9066,7 +9085,7 @@
             ],
             "stars": 3
         },
-        "51": {
+        "52": {
             "name": "SSVQE",
             "url": "https://github.com/JoelHBierman/SSVQE",
             "description": "The SSVQE algorithm (https://arxiv.org/abs/1810.09434) is a generalization of VQE to find low-lying eigenstates of a Hermitian operator. This specific implementation of SSVQE carries out one optimization procedure using weights.",
