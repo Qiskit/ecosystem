@@ -1,0 +1,186 @@
+.custom-theme {
+    --cds-background-brand: #6929c4;
+    --cds-border-interactive: #6929c4;
+    --cds-focus: #6929c4;
+    --cds-icon-interactive: #6929c4;
+    --cds-interactive: #6929c4;
+    --cds-link-primary: #6929c4;
+    --cds-button-primary: #6929c4;
+    --cds-button-tertiary: #6929c4;
+    --cds-background-brand: #6929c4;
+    --cds-border-interactive: #6929c4;
+    --cds-focus: #6929c4;
+    --cds-icon-interactive: #6929c4;
+    --cds-interactive: #6929c4;
+    --cds-link-primary: #6929c4;
+    --cds-button-primary: #6929c4;
+    --cds-button-tertiary: #6929c4;
+    --cds-background-brand: #6929c4;
+    --cds-focus-inverse: #6929c4;
+    --cds-link-inverse: #6929c4;
+    --cds-button-primary: #6929c4;
+    --cds-notification-action-tertiary-inverse: #6929c4;
+    --cds-background-brand: #6929c4;
+    --cds-focus-inverse: #6929c4;
+    --cds-link-inverse: #6929c4;
+    --cds-button-primary: #6929c4;
+    --cds-notification-action-tertiary-inverse: #6929c4;
+  
+    --cds-button-primary-hover: #491d8b;
+    --cds-button-tertiary-hover: #491d8b;
+    --cds-button-primary-hover: #491d8b;
+    --cds-button-tertiary-hover: #491d8b;
+    --cds-button-primary-hover: #491d8b;
+    --cds-notification-action-tertiary-inverse-hover: #491d8b;
+    --cds-button-primary-hover: #491d8b;
+    --cds-notification-action-tertiary-inverse-hover: #491d8b;
+  
+    --cds-link-primary-hover: #491d8b;
+    --cds-link-secondary: #491d8b;
+    --cds-support-info: #491d8b;
+    --cds-link-primary-hover: #491d8b;
+    --cds-link-secondary: #491d8b;
+    --cds-support-info: #491d8b;
+    --cds-highlight: #491d8b;
+    --cds-link-inverse-hover: #491d8b;
+    --cds-support-info-inverse: #491d8b;
+    --cds-tag-background-blue: #491d8b;
+    --cds-link-inverse-hover: #491d8b;
+    --cds-support-info-inverse: #491d8b;
+    --cds-tag-background-blue: #491d8b;
+   }
+
+*{
+    box-sizing: inherit;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+body {
+    flex-flow: column nowrap;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+header{
+    padding: 20px 0px 20px 0px;
+    background-color: white;
+}
+
+.content{
+    padding: 20px 30px 20px 30px;
+    margin-bottom: 15px;
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card{
+    flex: 0 1 20%;
+    min-width: 300px;
+    background-color: white;
+    /*height: 100%; /*Cards have the necessary height*/
+}
+
+cds-tile{
+    display: flex;
+    flex-flow: column;
+    gap: 15px;
+    background-color: white;
+}
+
+
+.tags{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.project-title{
+    font-size: 1.4rem;
+    line-height: 1.25;
+    font-weight: normal;
+}
+
+.section{
+    font-weight: normal;
+}
+
+p {
+    font-size: .775rem;
+}
+
+.title{
+    margin: 1rem 0;
+    font-size: .875rem;
+}
+
+h2 {
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.links{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+@media only screen and (max-width: 1500px) {
+    .card{
+        flex: 0 1 25%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .card{
+        flex: 0 1 40%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .card{
+        flex: 0 1 95%;
+    }
+}
+
+.read-more-input{
+    display: none;
+}
+
+.extra-text {
+    opacity: 0;
+    max-height: 0;
+    font-size: 0;
+    transition: .25s ease;
+}
+
+.read-more-input:checked ~ .text .extra-text {
+    opacity: 1;
+    font-size: inherit;
+    max-height: 999em;
+}
+
+.read-more-input ~ .read-more-button:before {
+    content: 'Read more';
+    text-decoration: underline;
+}
+
+.read-more-input:checked ~ .read-more-button:before {
+    content: 'Read less';
+    text-decoration: underline;
+}
+
+.read-more-button{
+    cursor: pointer;
+}
+
+.description{
+    display: block;
+}

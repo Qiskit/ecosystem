@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosystem website</title>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.1/tile.rtl.min.js"></script>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.1/button.min.js"></script>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/list.min.js"></script>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/tag.min.js"></script>
+    <link rel="stylesheet" href="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/plex.css" />
+    <link rel="stylesheet" href="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/themes.css" />
+    <link rel="stylesheet" href="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/grid.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="cds-theme-zone-white custom-theme">
+
+      <header>
+        <div class="cds--grid layout-lead-space-fixed__container">
+          <img src = "ecosystem-logo.svg" width="350px" alt="Qiskit Ecosystem"/>
+          <p class="title">Explore projects that use or extend Qiskit</p>
+      
+          <cds-button href="https://github.com/qiskit-community/ecosystem">
+            Join the Ecosystem
+          <span slot="icon"
+                style="margin: 2px 0 -2px 0">
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                  width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                  data-v-bdc8f36d="">
+              <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+              <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+            </svg>
+          </span>
+          </cds-button>
+        </div>
+      </header>
+
+      <div class="content cds--grid layout-lead-space-fixed__container">
+        <h2 class="section">Providers</h2>
+        <p>Run your quantum programs using the following projects</p>
+        <div class="cards cds--row">
+
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Project title</h2>
+              <div class="tags">
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Algorithms</cds-tag>
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Physics</cds-tag>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa!</p>
+              <cds-link href="https://ibm.com">
+                Go to repository
+                <span class = "link" slot="icon">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                       xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                       data-v-bdc8f36d="">
+                    <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                    <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                  </svg>
+                </span>
+              </cds-link>
+            </cds-tile>
+          </div>
+
+          </div>
+
+        <h2 class="section">Libraries</h2>
+        <p>Use the following projects in your code</p>
+        <div class="cards cds--row">
+
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Example 1</h2>
+              <div class="tags">
+                <cds-tag type="cyan" title="ibm-quantum" size="sm">IBM Quantum</cds-tag>
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Algorithms</cds-tag>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa!</p>
+              <cds-link href="https://ibm.com">
+                Go to repository
+                <span class = "link" slot="icon">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                       xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                       data-v-bdc8f36d="">
+                    <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                    <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                  </svg>
+                </span>
+              </cds-link>
+            </cds-tile>
+          </div>
+
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Example 2</h2>
+              <div class="tags">
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Algorithms</cds-tag>
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Julia</cds-tag>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa!</p>
+              <cds-link href="https://ibm.com">
+                Go to repository
+                <span class = "link" slot="icon">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                       xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                       data-v-bdc8f36d="">
+                    <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                    <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                  </svg>
+                </span>
+              </cds-link>
+            </cds-tile>
+          </div>
+
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Example 3</h2>
+              <div class="tags">
+                <cds-tag type="cyan" title="ibm-quantum" size="sm">IBM Quantum</cds-tag>
+              </div>
+              <div class="description">
+                <input type="checkbox" class="read-more-input" id="extra-1"/>
+                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa! <span class="extra-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus laudantium deleniti esse sed? Asperiores dicta minima numquam. Voluptatem molestiae itaque nesciunt omnis dolorem dicta exercitationem iste ducimus illum, asperiores maiores! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos eos eaque expedita necessitatibus tempore repudiandae amet incidunt, quia asperiores perspiciatis, doloremque officiis corrupti ipsum! Laudantium tempora quo adipisci excepturi autem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi nemo placeat fugiat, error odit ullam dolorum soluta accusamus quisquam odio, eligendi libero quas perspiciatis consequuntur vero minus qui! Facere, reiciendis!</span></p>
+                <label for="extra-1" class="read-more-button"></label>
+              </div>
+              <cds-link href="https://ibm.com">
+                Go to repository
+                <span class = "link" slot="icon">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                       xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                       data-v-bdc8f36d="">
+                    <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                    <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                  </svg>
+                </span>
+              </cds-link>
+            </cds-tile>
+          </div>
+
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Example 4</h2>
+              <div class="tags">
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Visualization</cds-tag>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa!</p>
+              <cds-link href="https://ibm.com">
+                Go to repository
+                <span class = "link" slot="icon">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                       xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                       data-v-bdc8f36d="">
+                    <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                    <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                  </svg>
+                </span>
+              </cds-link>
+            </cds-tile>
+          </div>
+        
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Example 5</h2>
+              <div class="tags">
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Algorithms</cds-tag>
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Chemistry</cds-tag>
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Physics</cds-tag>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa!</p>
+              <div class="links">
+                <cds-link href="https://ibm.com">
+                  Go to repository
+                  <span class = "link" slot="icon">
+                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                        data-v-bdc8f36d="">
+                      <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                      <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                    </svg>
+                  </span>
+                </cds-link>
+
+                <cds-link href="https://ibm.com">
+                  Go to website
+                  <span class = "link" slot="icon">
+                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                        data-v-bdc8f36d="">
+                      <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                      <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                    </svg>
+                  </span>
+                </cds-link>
+              </div>
+            </cds-tile>
+          </div>
+
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Example 6</h2>
+              <div class="tags">
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Finance</cds-tag>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa!</p>
+              <cds-link href="https://ibm.com">
+                Go to repository
+                <span class = "link" slot="icon">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                       xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                       data-v-bdc8f36d="">
+                    <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                    <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                  </svg>
+                </span>
+              </cds-link>
+            </cds-tile>
+          </div>
+
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Example 7</h2>
+              <div class="tags">
+                <cds-tag type="cyan" title="ibm-quantum" size="sm">IBM Quantum</cds-tag>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa!</p>
+              <cds-link href="https://ibm.com">
+                Go to repository
+                <span class = "link" slot="icon">
+                  <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                       xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                       width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                       data-v-bdc8f36d="">
+                    <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                    <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                  </svg>
+                </span>
+              </cds-link>
+            </cds-tile>
+          </div>
+
+          <div class="card cds--col">
+            <cds-tile color-scheme="white">
+              <h2 class="project-title">Example 8</h2>
+              <div class="tags">
+                <cds-tag type="cyan" title="ibm-quantum" size="sm">IBM Quantum</cds-tag>
+                <cds-tag type="purple" title="ibm-quantum" size="sm">Algorithms</cds-tag>
+              </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique odio, nostrum voluptatum quidem tempore dolores! Iste vero reprehenderit rerum minima! Laudantium quia nemo aliquid dolorem sit at. Aliquid, consequuntur culpa!</p>
+              <div class="links">
+                <cds-link href="https://ibm.com">
+                  Go to repository
+                  <span class = "link" slot="icon">
+                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                        data-v-bdc8f36d="">
+                      <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                      <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                    </svg>
+                  </span>
+                </cds-link>
+
+                <cds-link href="https://ibm.com">
+                  Go to website
+                  <span class = "link" slot="icon">
+                    <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                        data-v-bdc8f36d="">
+                      <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+                      <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+                    </svg>
+                  </span>
+                </cds-link>
+              </div>
+            </cds-tile>
+          </div>
+
+      </div>
+ 
+</body>
+</html>
