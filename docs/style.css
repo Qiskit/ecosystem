@@ -97,14 +97,13 @@ cds-tile{
     background-color: white;
 }
 
-
 .tags{
     display: flex;
     flex-flow: row wrap;
 }
 
 .project-title{
-    font-size: 1.4rem;
+    font-size: 23px;
     line-height: 1.25;
     font-weight: normal;
 }
@@ -114,17 +113,11 @@ cds-tile{
 }
 
 p {
-    font-size: .775rem;
+    font-size: 14px;
 }
 
 .title{
-    margin: 1rem 0;
-    font-size: .875rem;
-}
-
-h2 {
-    font-size: .875rem;
-    font-weight: 600;
+    margin: 16px 0;
 }
 
 .links{
@@ -132,23 +125,11 @@ h2 {
     flex-flow: column wrap;
 }
 
-@media only screen and (max-width: 1500px) {
-    .card{
-        flex: 0 1 25%;
-    }
+.description{
+    display: block;
 }
 
-@media only screen and (max-width: 1200px) {
-    .card{
-        flex: 0 1 40%;
-    }
-}
-
-@media only screen and (max-width: 750px) {
-    .card{
-        flex: 0 1 95%;
-    }
-}
+/* ##### Read more button ##### */
 
 .read-more-input{
     display: none;
@@ -181,6 +162,26 @@ h2 {
     cursor: pointer;
 }
 
-.description{
-    display: block;
+/* ######################## */
+
+@media only screen and (max-width: 1500px) {
+    .card{
+        flex: 0 1 25%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .card{
+        flex: 0 1 40%;
+    }
+    
+    .links{
+        flex-flow: row wrap;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .card{
+        flex: 0 1 95%;
+    }
 }
