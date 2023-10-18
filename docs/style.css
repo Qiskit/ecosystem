@@ -66,21 +66,25 @@ body {
 }
 
 header{
-    padding: 20px 0px 20px 0px;
+    padding: 24px 0px 24px 0px;
     background-color: white;
 }
 
+.inside-header{
+    padding: 0px 32px 0px 32px;
+}
+
 .content{
-    padding: 20px 30px 20px 30px;
-    margin-bottom: 15px;
+    padding: 24px 32px 24px 32px;
+    margin-bottom: 16px;
 }
 
 .cards{
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    gap: 32px;
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 .card{
@@ -93,13 +97,19 @@ header{
 cds-tile{
     display: flex;
     flex-flow: column;
-    gap: 15px;
+    gap: 16px;
     background-color: white;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .tags{
     display: flex;
     flex-flow: row wrap;
+}
+
+cds-tag{
+    margin-left: 0;
 }
 
 .project-title{
@@ -127,6 +137,11 @@ p {
 
 .description{
     display: block;
+}
+
+.link svg{
+    vertical-align: middle;
+    margin-left: 4px;
 }
 
 /* ##### Read more button ##### */
