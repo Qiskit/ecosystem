@@ -132,6 +132,7 @@ p {
 .links{
     display: flex;
     flex-flow: column wrap;
+    gap: 16px;
 }
 
 .description{
