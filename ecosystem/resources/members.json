@@ -2017,88 +2017,6 @@
             "stars": 24
         },
         "5": {
-            "name": "QuantumCircuits.jl",
-            "url": "https://github.com/Adgnitio/QuantumCircuits.jl",
-            "description": "QuantumCircuits is an open-source library written in Julia for working with quantum computers at the application level, especially for Quantum Finance and Quantum Machine Learning. It allows to creation and manipulation of the quantum circuits and executes them in Julia or convert them to Qiskit Python object. The library also contains the Quantum Binomial Tree implementation for derivative pricing.",
-            "licence": "GNU General Public License (GPL)",
-            "contact_info": "rafal.pracht@adgnitio.com",
-            "alternatives": "qiskit-finance, qiskit-machine-learning, Yao",
-            "labels": [
-                "Paper implementation",
-                "Machine learning",
-                "Finance",
-                "Julia",
-                "Circuit"
-            ],
-            "created_at": 1678827878.254124,
-            "updated_at": 1678827878.254125,
-            "tier": "Community",
-            "tests_results": [
-                {
-                    "passed": false,
-                    "test_type": "development",
-                    "package": "qiskit",
-                    "package_version": "unknown",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/6157344606",
-                    "package_commit_hash": "cd507adc68a96a333bc62de7ce9799a245506f25",
-                    "qiskit_version": "unknown",
-                    "timestamp": 1694509912.912748
-                },
-                {
-                    "passed": false,
-                    "test_type": "stable",
-                    "package": "qiskit",
-                    "package_version": "unknown",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/6157344606",
-                    "qiskit_version": "unknown",
-                    "timestamp": 1694509907.173778
-                },
-                {
-                    "passed": false,
-                    "test_type": "standard",
-                    "package": "qiskit",
-                    "package_version": "unknown",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/6157344606",
-                    "qiskit_version": "unknown",
-                    "timestamp": 1694509918.59605
-                }
-            ],
-            "styles_results": [],
-            "coverages_results": [],
-            "skip_tests": false,
-            "historical_test_results": [
-                {
-                    "passed": false,
-                    "test_type": "stable",
-                    "package": "qiskit",
-                    "package_version": "unknown",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/6157344606",
-                    "qiskit_version": "unknown",
-                    "timestamp": 1694509907.173778
-                },
-                {
-                    "passed": false,
-                    "test_type": "standard",
-                    "package": "qiskit",
-                    "package_version": "unknown",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/6157344606",
-                    "qiskit_version": "unknown",
-                    "timestamp": 1694509918.59605
-                },
-                {
-                    "passed": false,
-                    "test_type": "development",
-                    "package": "qiskit",
-                    "package_version": "unknown",
-                    "logs_link": "https://github.com/qiskit-community/ecosystem/actions/runs/6157344606",
-                    "package_commit_hash": "cd507adc68a96a333bc62de7ce9799a245506f25",
-                    "qiskit_version": "unknown",
-                    "timestamp": 1694509912.912748
-                }
-            ],
-            "stars": 0
-        },
-        "6": {
             "name": "Quantum Random Access Optimization",
             "url": "https://github.com/qiskit-community/prototype-qrao",
             "description": "The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems.",
@@ -2427,7 +2345,7 @@
             ],
             "stars": 27
         },
-        "7": {
+        "6": {
             "name": "qiskit-bip-mapper",
             "url": "https://github.com/qiskit-community/qiskit-bip-mapper",
             "description": "The repository contains a standalone routing stage plugin to use the BIPMapping [routing](https://qiskit.org/documentation/apidoc/transpiler.html#routing-stage) pass. The BIP mapping pass solves the routing and [layout](https://qiskit.org/documentation/apidoc/transpiler.html#layout-stage) problems as a binary integer programming (BIP) problem. The algorithm used in this pass is described in: G. Nannicini et al. \"Optimal qubit assignment and routing via integer programming.\" [arXiv:2106.06446](https://arxiv.org/abs/2106.06446)",
@@ -2449,7 +2367,7 @@
             "historical_test_results": [],
             "stars": 4
         },
-        "8": {
+        "7": {
             "name": "RasQberry",
             "url": "https://github.com/JanLahmann/RasQberry",
             "description": "RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi",
@@ -2469,7 +2387,7 @@
             "historical_test_results": [],
             "stars": 121
         },
-        "9": {
+        "8": {
             "name": "qiskit-superstaq",
             "url": "https://github.com/Infleqtion/client-superstaq/tree/main/qiskit-superstaq",
             "description": "This package is used to access SuperstaQ via a Web API through Qiskit. Qiskit programmers can take advantage of the applications, pulse level optimizations, and write-once-target-all features of SuperstaQ with this package.",
@@ -2709,7 +2627,7 @@
                 }
             ]
         },
-        "10": {
+        "9": {
             "name": "qiskit-rigetti",
             "url": "https://github.com/rigetti/qiskit-rigetti",
             "description": "Rigetti Provider for Qiskit",
@@ -3082,7 +3000,7 @@
             ],
             "stars": 9
         },
-        "11": {
+        "10": {
             "name": "zoose-codespace",
             "url": "https://github.com/ianhellstrom/zoose-codespace",
             "description": "GitHub Codespace template repository based on Zoose Quantum, a custom Docker image with everything included, so you can be up and running with any of the major quantum libraries (incl. Qiskit) with only two clicks! No installation required. Ideal for beginners or people who want to code quantum circuits on the go. Code quantum circuits straight in your browser with VSCode.",
@@ -3102,7 +3020,7 @@
             "historical_test_results": [],
             "stars": 0
         },
-        "12": {
+        "11": {
             "name": "pytket-qiskit",
             "url": "https://github.com/CQCL/pytket-qiskit",
             "description": "an extension to Pytket (a python module for interfacing with CQC tket) that allows Pytket circuits to be run on IBM backends and simulators, as well as conversion to and from Qiskit representations.",
@@ -3243,7 +3161,7 @@
             ],
             "stars": 7
         },
-        "13": {
+        "12": {
             "name": "QiskitOpt.jl",
             "url": "https://github.com/psrenergy/QiskitOpt.jl",
             "description": "QiskitOpt.jl is a Julia package that exports a JuMP wrapper for qiskit-optimization.",
@@ -3265,7 +3183,7 @@
             "historical_test_results": [],
             "stars": 8
         },
-        "14": {
+        "13": {
             "name": "python-open-controls",
             "url": "https://github.com/qctrl/python-open-controls",
             "description": "Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature",
@@ -3623,7 +3541,7 @@
             ],
             "stars": 91
         },
-        "15": {
+        "14": {
             "name": "dense-ev",
             "url": "https://github.com/atlytle/dense-ev",
             "description": "Implements expectation value measurements in Qiskit using optimal dense grouping. Dense-ev provides an improvement of ~2^m over naive grouping and (3/2)^m over qubit-wise commuting groups. Based on arXiv:2305.11847.",
@@ -3719,7 +3637,7 @@
             ],
             "stars": 5
         },
-        "16": {
+        "15": {
             "name": "vqls-prototype",
             "url": "https://github.com/QuantumApplicationLab/vqls-prototype",
             "description": "The Variational Quantum Linear Solver (VQLS) uses an optimization approach to solve linear systems of equations. The vqls-prototype allows to easily setup and deploy a VQLS instance on different backends through the use of qiskit primitives and the runtime library",
@@ -3845,7 +3763,7 @@
             ],
             "stars": 2
         },
-        "17": {
+        "16": {
             "name": "sat-circuits-engine",
             "url": "https://github.com/ohadlev77/sat-circuits-engine",
             "description": "A Python-Qiskit-based package that provides capabilities of easily generating, executing and analyzing quantum circuits for satisfiability problems according to user-defined constraints. The circuits being generated by the program are based on Grover's algorithm and its amplitude-amplification generalization.",
@@ -3867,7 +3785,7 @@
             "historical_test_results": [],
             "stars": 7
         },
-        "18": {
+        "17": {
             "name": "qdao",
             "url": "https://github.com/Zhaoyilunnn/qdao",
             "description": "A lightweight framework to enable configurable memory consumption when simulating large quantum circuits.",
@@ -3962,7 +3880,7 @@
             ],
             "stars": 6
         },
-        "19": {
+        "18": {
             "name": "mirror-gates",
             "url": "https://github.com/Pitt-JonesLab/mirror-gates",
             "description": "MIRAGE is a transpilation plugin for quantum circuits that minimizes the use of SWAP gates while optimizing native basis gate decomposition through mirror gates. Specifically designed for iSWAP-based quantum systems, MIRAGE improves circuit depth, making quantum algorithms more practical and efficient.",
@@ -4068,7 +3986,7 @@
             ],
             "stars": 3
         },
-        "20": {
+        "19": {
             "name": "qiskit-machine-learning",
             "url": "https://github.com/qiskit-community/qiskit-machine-learning",
             "description": "The Machine Learning package contains sample datasets and quantum ML algorithms.",
@@ -4088,7 +4006,7 @@
             "historical_test_results": [],
             "stars": 509
         },
-        "21": {
+        "20": {
             "name": "qiskit-qubit-reuse",
             "url": "https://github.com/qiskit-community/qiskit-qubit-reuse",
             "description": "A Qiskit transpiler stage plugin to enable qubit reuse via mid-circuit measurement and reset.",
@@ -4166,7 +4084,7 @@
             ],
             "stars": 7
         },
-        "22": {
+        "21": {
             "name": "qiskit-nature",
             "url": "https://github.com/qiskit-community/qiskit-nature",
             "description": "Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations",
@@ -4187,7 +4105,7 @@
             "historical_test_results": [],
             "stars": 246
         },
-        "23": {
+        "22": {
             "name": "pennylane-qiskit",
             "url": "https://github.com/PennyLaneAI/pennylane-qiskit",
             "description": "The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities",
@@ -4361,7 +4279,7 @@
             ],
             "stars": 129
         },
-        "24": {
+        "23": {
             "name": "quantuminspire",
             "url": "https://github.com/QuTech-Delft/quantuminspire",
             "description": "platform allows to execute quantum algorithms using the cQASM language.",
@@ -4734,7 +4652,7 @@
             ],
             "stars": 58
         },
-        "25": {
+        "24": {
             "name": "dsm-swap",
             "url": "https://github.com/qiskit-community/dsm-swap",
             "description": "A doubly stochastic matrices-based approach to optimal qubit routing",
@@ -4960,7 +4878,7 @@
             ],
             "stars": 7
         },
-        "26": {
+        "25": {
             "name": "mitiq",
             "url": "https://github.com/unitaryfund/mitiq",
             "description": "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers",
@@ -5346,7 +5264,7 @@
             ],
             "stars": 294
         },
-        "27": {
+        "26": {
             "name": "spinoza",
             "url": "https://github.com/smu160/spinoza",
             "description": "Spinoza is a quantum state simulator (implemented in Rust) that is one of the fastest open-source simulators. Spinoza is implemented using a functional approach. Additionally, Spinoza has a `QuantumCircuit` object-oriented interface, which partially matches Qiskit's interface. Spinoza is capable of running in a myriad of computing environments (e.g., small workstations), and on various architectures. At this juncture, Spinoza only utilizes a single thread; however, it is designed to be easily extended into a parallel version, as well as a distributed version. The paper associated with Spinoza is available [here](https://arxiv.org/pdf/2303.01493.pdf).",
@@ -5367,7 +5285,7 @@
             "historical_test_results": [],
             "stars": 15
         },
-        "28": {
+        "27": {
             "name": "c3",
             "url": "https://github.com/q-optimize/c3",
             "description": "The C3 package is intended to close the loop between open-loop control optimization, control pulse calibration, and model-matching based on calibration data.",
@@ -5746,7 +5664,7 @@
             ],
             "stars": 60
         },
-        "29": {
+        "28": {
             "name": "QiskitBot",
             "url": "https://github.com/infiniteregrets/QiskitBot",
             "description": "A discord bot that allows you to execute Quantum Circuits, look up the Qiskit's Documentation, and search questions on the Quantum Computing StackExchange",
@@ -5764,7 +5682,7 @@
             "historical_test_results": [],
             "stars": 23
         },
-        "30": {
+        "29": {
             "name": "kaleidoscope",
             "url": "https://github.com/QuSTaR/kaleidoscope",
             "description": "Kaleidoscope",
@@ -6131,7 +6049,7 @@
             ],
             "stars": 21
         },
-        "31": {
+        "30": {
             "name": "quantum-tetris",
             "url": "https://github.com/olivierbrcknr/quantum-tetris",
             "description": "What would happen if you combine Tetris with a Quantum computer? The winning entry of the Quantum Design Jam from IBM and Parsons in October 2021 explores just that!",
@@ -6152,7 +6070,7 @@
             "historical_test_results": [],
             "stars": 9
         },
-        "32": {
+        "31": {
             "name": "Qiskit Nature PySCF",
             "url": "https://github.com/qiskit-community/qiskit-nature-pyscf",
             "description": "Qiskit Nature PySCF is a third-party integration plugin of Qiskit Nature and PySCF.",
@@ -6358,7 +6276,7 @@
             ],
             "stars": 13
         },
-        "33": {
+        "32": {
             "name": "qiskit-optimization",
             "url": "https://github.com/qiskit-community/qiskit-optimization",
             "description": "Framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit.",
@@ -6378,7 +6296,7 @@
             "historical_test_results": [],
             "stars": 184
         },
-        "34": {
+        "33": {
             "name": "qiskit-toqm",
             "url": "https://github.com/qiskit-toqm/qiskit-toqm",
             "description": "Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706",
@@ -6613,7 +6531,7 @@
             ],
             "stars": 6
         },
-        "35": {
+        "34": {
             "name": "bosonic-qiskit",
             "url": "https://github.com/C2QA/bosonic-qiskit",
             "description": "NQI C2QA project to simulate hybrid boson-qubit systems within Qiskit.",
@@ -6790,7 +6708,7 @@
             ],
             "stars": 38
         },
-        "36": {
+        "35": {
             "name": "qiskit-symb",
             "url": "https://github.com/SimoneGasperini/qiskit-symb",
             "description": "Easy-to-use Python package designed to enable symbolic quantum computation in Qiskit. It provides the basic tools for the symbolic evaluation of statevectors, density matrices, and unitary operators directly created from parametric Qiskit quantum circuits. The implementation is based on the Sympy library as backend for symbolic expressions manipulation.",
@@ -6910,7 +6828,7 @@
             ],
             "stars": 13
         },
-        "37": {
+        "36": {
             "name": "QPong",
             "url": "https://github.com/HuangJunye/QPong",
             "description": "A quantum version of the classic game Pong built with Qiskit and PyGame",
@@ -7134,7 +7052,7 @@
             ],
             "stars": 112
         },
-        "38": {
+        "37": {
             "name": "qiskit-algorithms",
             "url": "https://github.com/qiskit-community/qiskit-algorithms",
             "description": "Qiskit Algorithms is a library of quantum algorithms based on Qiskit, suitable to run on near-term quantum devices with short-depth circuits.",
@@ -7212,7 +7130,7 @@
             ],
             "stars": 26
         },
-        "39": {
+        "38": {
             "name": "qiskit-classroom",
             "url": "https://github.com/KMU-quantum-classroom/qiskit-classroom",
             "description": "Qiskit-classroom is a toolkit that helps implement quantum algorithms by converting and visualizing different expressions used in the Qiskit ecosystem using Qiskit-classroom-converter. The following three transformations are supported : Quantum Circuit to Dirac notation, Quantum Circuit to Matrix, Matrix to Quantum Circuit etc...",
@@ -7308,7 +7226,7 @@
             ],
             "stars": 1
         },
-        "40": {
+        "39": {
             "name": "diskit",
             "url": "https://github.com/Interlin-q/diskit",
             "description": "Distributed quantum computing is a concept that proposes to connect multiple quantum computers in a network to leverage a collection of more, but physically separated, qubits. In order to perform distributed quantum computing, it is necessary to add the addition of classical communication and entanglement distribution so that the control information from one qubit can be applied to another that is located on another quantum computer. For more details on distributed quantum computing, see this blog post: [Distributed Quantum Computing: A path to large scale quantum computing](https://medium.com/@stephen.diadamo/distributed-quantum-computing-1c5d38a34c50) In this project, we aim to validate distributed quantum algorithms using Qiskit. Because Qiskit does not yet come with networking features, we embed a \"virtual network topology\" into large circuits to mimic distributed quantum computing. The idea is to take a monolithic quantum circuit developed in the Qiskit language and distribute the circuit according to an artificially segmented version of a quantum processor. The inputs to the library are a quantum algorithm written monolithically (i.e., in a single circuit) and a topology parameter that represents the artificial segmentation of the single quantum processor. The algorithm takes these two inputs and remaps the Qiskit circuit to the specified segmentation, adding all necessary steps to perform an equivalent distributed quantum circuit. Our algorithm for achieving this is based on the work: [Distributed Quantum Computing and Network Control for Accelerated VQE](https://ieeexplore.ieee.org/document/9351762). The algorithm output is another Qiskit circuit with the equivalent measurement statistics but with all of the additional logic needed to perform a distributed version.",
@@ -7387,7 +7305,7 @@
             ],
             "stars": 6
         },
-        "41": {
+        "40": {
             "name": "quantumcat",
             "url": "https://github.com/artificial-brain/quantumcat",
             "description": "quantumcat is a platform-independent, open-source, high-level quantum computing library, which allows the quantum community to focus on developing platform-independent quantum applications without much effort",
@@ -7646,7 +7564,7 @@
             ],
             "stars": 22
         },
-        "42": {
+        "41": {
             "name": "qiskit-classroom-converter",
             "url": "https://github.com/KMU-quantum-classroom/qiskit-classroom-converter",
             "description": "Convert quantum circuits, matrices, and bra-ket strings. This converter includes the following conversion functions: quantum circuit to bra-ket notation, quantum circuit to matrix, matrix to quantum circuit, bra-ket notation to matrix",
@@ -7760,7 +7678,7 @@
             ],
             "stars": 2
         },
-        "43": {
+        "42": {
             "name": "SSVQE",
             "url": "https://github.com/JoelHBierman/SSVQE",
             "description": "The SSVQE algorithm (https://arxiv.org/abs/1810.09434) is a generalization of VQE to find low-lying eigenstates of a Hermitian operator. This specific implementation of SSVQE carries out one optimization procedure using weights.",
@@ -7865,7 +7783,7 @@
             ],
             "stars": 0
         },
-        "44": {
+        "43": {
             "name": "qtcodes",
             "url": "https://github.com/yaleqc/qtcodes",
             "description": "Qiskit Topological Codes",
@@ -8239,7 +8157,7 @@
             ],
             "stars": 83
         },
-        "45": {
+        "44": {
             "name": "quantum-prototype-template",
             "url": "https://github.com/qiskit-community/quantum-prototype-template",
             "description": "A template repository for generating new quantum prototypes based on Qiskit.",
@@ -8344,7 +8262,7 @@
             ],
             "stars": 35
         },
-        "46": {
+        "45": {
             "name": "qiskit-ionq",
             "url": "https://github.com/Qiskit-Partners/qiskit-ionq",
             "description": "Project contains a provider that allows access to IonQ ion trap quantum systems.",
@@ -8572,7 +8490,7 @@
             ],
             "stars": 32
         },
-        "47": {
+        "46": {
             "name": "qBraid",
             "url": "https://github.com/qBraid/qBraid",
             "description": "The qBraid-SDK is a Python toolkit for cross-framework abstraction, transpilation, and execution of quantum programs.",
@@ -8692,7 +8610,7 @@
             ],
             "stars": 41
         },
-        "48": {
+        "47": {
             "name": "qiskit-finance",
             "url": "https://github.com/qiskit-community/qiskit-finance",
             "description": "Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments.",
@@ -8712,7 +8630,7 @@
             "historical_test_results": [],
             "stars": 182
         },
-        "49": {
+        "48": {
             "name": "q-kernel-ops",
             "url": "https://github.com/Travis-S-IBM/q-kernel-ops",
             "description": "Code base on the paper Kernel Matrix Completion for Offline Quantum-Enhanced Machine Learning [2112.08449](https://arxiv.org/abs/2112.08449).",
@@ -8847,7 +8765,7 @@
             ],
             "stars": 3
         },
-        "50": {
+        "49": {
             "name": "Quantum-Glasses",
             "url": "https://github.com/Jayshah25/Quantum-Glasses",
             "description": "Visualise the effects of Single Qubit Gates on a Qubit via Bloch Sphere Simulation in a Tkinter Software.",
@@ -8951,7 +8869,7 @@
             ],
             "stars": 7
         },
-        "51": {
+        "50": {
             "name": "qiskit-metal",
             "url": "https://github.com/qiskit-community/qiskit-metal",
             "description": "Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease.",
@@ -8969,7 +8887,7 @@
             "historical_test_results": [],
             "stars": 253
         },
-        "52": {
+        "51": {
             "name": "pytorch-quantum",
             "url": "https://github.com/mit-han-lab/pytorch-quantum",
             "description": "A PyTorch-centric hybrid classical-quantum dynamic neural networks framework.",
