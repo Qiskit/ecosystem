@@ -53,6 +53,7 @@ class Manager:
         self.dao.compile_json()
 
     def build_website(self):
+        """Generates the ecosystem web page reading `members.json`."""
         environment = Environment(loader=FileSystemLoader("ecosystem/html/"))
         website_template = environment.get_template("webpage.html")
         card_template = environment.get_template("card.html")
@@ -64,34 +65,32 @@ class Manager:
         count_read_more=1
         max_chars_description=400
         margin = 100
-        for _, repo in self.dao.storage.read().items():            
+        for _, repo in self.dao.storage.read().items():
             ######### Tags #########
             tags = ""
             for label in repo.labels:
                 tags += tag_template.render(color='purple', title=label, text=label)
-            
+
             ######### Links #########
             links = link_template.render(url=repo.url, place='repository')
             if repo.website:
                 links+= link_template.render(url=repo.website, place= 'website')
 
-            ######### Description ######### 
+            ######### Description #########
             if len(repo.description)-max_chars_description >= margin:
-                description_visible = repo.description[:400]
-                description_hidden = repo.description[400:]
+                description = [repo.description[:400], repo.description[400:]]
                 id_read_more = str(count_read_more)
                 count_read_more += 1
             else:
-                description_visible = repo.description
-                description_hidden = ""
+                description = [repo.description, ""]
                 id_read_more = "None"
 
             ######### Create the card #########
             card = card_template.render(
                 title=repo.name,
                 tags=tags,
-                description_visible=description_visible,
-                description_hidden=description_hidden,
+                description_visible=description[0],
+                description_hidden=description[1],
                 id_read_more=id_read_more,
                 links=links
             )
@@ -103,15 +102,11 @@ class Manager:
                 apps += card
             else:
                 others += card
-                
-        website = website_template.render(
-            section1_cards=providers,
-            section2_cards=apps,
-            section3_cards=others,
-        )
 
-        #print(self.dao.storage.read())
-        return website
+        return website_template.render(section1_cards=providers,
+                                       section2_cards=apps,
+                                       section3_cards=others,
+                                )
 
     def dispatch_check_workflow(
         self,
