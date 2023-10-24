@@ -62,21 +62,21 @@ class Manager:
 
         providers = apps = others = ""
 
-        count_read_more=1
-        max_chars_description=500
+        count_read_more = 1
+        max_chars_description = 500
         for _, repo in self.dao.storage.read().items():
             ######### Tags #########
             tags = ""
             for label in repo.labels:
-                tags += tag_template.render(color='purple', title=label, text=label)
+                tags += tag_template.render(color="purple", title=label, text=label)
 
             ######### Links #########
-            links = link_template.render(url=repo.url, place='repository')
+            links = link_template.render(url=repo.url, place="repository")
             if repo.website:
-                links+= link_template.render(url=repo.website, place= 'website')
+                links += link_template.render(url=repo.website, place="website")
 
             ######### Description #########
-            if len(repo.description)-max_chars_description >= 0:
+            if len(repo.description) - max_chars_description >= 0:
                 description = [repo.description[:400], repo.description[400:]]
                 id_read_more = str(count_read_more)
                 count_read_more += 1
@@ -91,21 +91,26 @@ class Manager:
                 description_visible=description[0],
                 description_hidden=description[1],
                 id_read_more=id_read_more,
-                links=links
+                links=links,
             )
 
             # Provisional until the categories are added in members.json
             if "Provider" in repo.labels:
                 providers += card
-            elif "Physics" in repo.labels or "Chemistry" in repo.labels or "Finance" in repo.labels:
+            elif (
+                "Physics" in repo.labels
+                or "Chemistry" in repo.labels
+                or "Finance" in repo.labels
+            ):
                 apps += card
             else:
                 others += card
 
-        return website_template.render(section1_cards=providers,
-                                       section2_cards=apps,
-                                       section3_cards=others,
-                                )
+        return website_template.render(
+            section1_cards=providers,
+            section2_cards=apps,
+            section3_cards=others,
+        )
 
     def dispatch_check_workflow(
         self,
