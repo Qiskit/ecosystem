@@ -8,8 +8,71 @@ affiliations = "Alpine Quantum Technologies GmbH"
 labels = [ "Provider",]
 tier = "Community"
 website = "https://qiskit-community.github.io/qiskit-aqt-provider/"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757109"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139135.510237
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757109"
+qiskit_version = "0.44.2"
+timestamp = 1698139168.501355
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757109"
+qiskit_version = "0.44.2"
+timestamp = 1698138760.205501
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.43.3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757109"
+qiskit_version = "0.43.3"
+timestamp = 1698139164.804802
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.43.3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757109"
+qiskit_version = "0.43.3"
+timestamp = 1698139164.804802
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757109"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139135.510237
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757109"
+qiskit_version = "0.44.2"
+timestamp = 1698138760.205501
+
