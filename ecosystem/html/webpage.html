@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosystem website</title>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.1/tile.min.js"></script>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/version/v2.0.1/button.min.js"></script>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/list.min.js"></script>
+    <script type="module" src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/tag.min.js"></script>
+    <link rel="stylesheet" href="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/plex.css" />
+    <link rel="stylesheet" href="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/themes.css" />
+    <link rel="stylesheet" href="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/grid.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="cds-theme-zone-white custom-theme">
+
+      <header>
+        <div class="inside-header cds--grid layout-lead-space-fixed__container">
+          <img class="ecosystem-logo" src = "ecosystem-logo.svg" width="350px" alt="Qiskit Ecosystem"/>
+          <p class="title">Explore projects that use or extend Qiskit</p>
+      
+          <cds-button href="https://github.com/qiskit-community/ecosystem">
+            Join the Ecosystem
+          <span slot="icon"
+                style="margin: 2px 0 -2px 0">
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                  width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"
+                  data-v-bdc8f36d="">
+              <path d="M13,14H3c-0.6,0-1-0.4-1-1V3c0-0.6,0.4-1,1-1h5v1H3v10h10V8h1v5C14,13.6,13.6,14,13,14z"></path>
+              <path d="M10 1L10 2 13.3 2 9 6.3 9.7 7 14 2.7 14 6 15 6 15 1z"></path>
+            </svg>
+          </span>
+          </cds-button>
+        </div>
+      </header>
+
+      <div class="content cds--grid layout-lead-space-fixed__container">
+        <h2 class="section">Providers</h2>
+        <p>Description</p>
+        <div id="section1" class="cards cds--row">
+            {{section1_cards}}
+        </div>
+
+        <h2 class="section">Quantum applications</h2>
+        <p>Description</p>
+        <div id="section2" class="cards cds--row">
+            {{section2_cards}}
+        </div>
+
+        <h2 class="section">Other tools</h2>
+        <p>Description</p>
+        <div id="section3" class="cards cds--row">
+            {{section3_cards}}
+        </div>
+      
+      </div>
+ 
+</body>
+</html>

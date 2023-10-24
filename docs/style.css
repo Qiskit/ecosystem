@@ -144,6 +144,10 @@ p {
     margin-left: 4px;
 }
 
+.text{
+    word-break: break-word;
+}
+
 /* ##### Read more button ##### */
 
 .read-more-input{
@@ -154,7 +158,6 @@ p {
     opacity: 0;
     max-height: 0;
     font-size: 0;
-    transition: .25s ease;
 }
 
 .read-more-input:checked ~ .text .extra-text {

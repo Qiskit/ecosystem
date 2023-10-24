@@ -7,7 +7,7 @@ import uuid
 from typing import Optional, List, Tuple, Union
 
 import requests
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Environment, PackageLoader, select_autoescape, FileSystemLoader
 
 from ecosystem.daos import DAO
 from ecosystem.models import TestResult, Tier, TestType
@@ -51,6 +51,68 @@ class Manager:
     def recompile(self):
         """Recompile `members.json` from human-readable files."""
         self.dao.compile_json()
+
+    def build_website(self):
+        environment = Environment(loader=FileSystemLoader("ecosystem/html/"))
+        website_template = environment.get_template("webpage.html")
+        card_template = environment.get_template("card.html")
+        tag_template = environment.get_template("tag.html")
+        link_template = environment.get_template("link.html")
+
+        providers = apps = others = ""
+
+        count_read_more=1
+        max_chars_description=400
+        margin = 100
+        for url, repo in self.dao.storage.read().items():
+            
+            ######### Tags #########
+            tags = ""
+            for label in repo.labels:
+                tags += tag_template.render(color='purple', title=label, text=label)
+            
+            ######### Links #########
+            links = link_template.render(url=repo.url, place='repository')
+            if repo.website:
+                links+= link_template.render(url=repo.website, place= 'website')
+
+            ######### Description ######### 
+            if len(repo.description)-max_chars_description >= margin:
+                description_visible = repo.description[:400]
+                description_hidden = repo.description[400:]
+                id = str(count_read_more)
+                count_read_more += 1
+            else:
+                description_visible = repo.description
+                description_hidden = ""
+                id = "None"
+
+            ######### Create the card #########
+            card = card_template.render(
+                title=repo.name,
+                tags=tags,
+                description_visible=description_visible,
+                description_hidden=description_hidden,
+                id_read_more=id,
+                links=links
+            )
+
+            # Provisional until the categories are added in members.json
+            if "Provider" in repo.labels:
+                providers += card
+            elif "Physics" in repo.labels or "Chemistry" in repo.labels or "Finance" in repo.labels:
+                apps += card
+            else:
+                others += card
+                
+        website = website_template.render(
+            section1_cards=providers,
+            section2_cards=apps,
+            section3_cards=others,
+        )
+
+        #print(self.dao.storage.read())
+        return website
 
     def dispatch_check_workflow(
         self,
