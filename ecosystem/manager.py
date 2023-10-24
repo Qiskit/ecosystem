@@ -63,8 +63,7 @@ class Manager:
         providers = apps = others = ""
 
         count_read_more=1
-        max_chars_description=400
-        margin = 100
+        max_chars_description=500
         for _, repo in self.dao.storage.read().items():
             ######### Tags #########
             tags = ""
@@ -77,7 +76,7 @@ class Manager:
                 links+= link_template.render(url=repo.website, place= 'website')
 
             ######### Description #########
-            if len(repo.description)-max_chars_description >= margin:
+            if len(repo.description)-max_chars_description >= 0:
                 description = [repo.description[:400], repo.description[400:]]
                 id_read_more = str(count_read_more)
                 count_read_more += 1
