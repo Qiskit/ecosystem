@@ -166,6 +166,12 @@ p {
     max-height: 999em;
 }
 
+.read-more-input:checked ~ .text .ellipsis {
+    opacity: 0;
+    font-size: 0;
+    max-height: 0;
+}
+
 .read-more-input ~ .read-more-button:before {
     content: 'Read more';
     text-decoration: underline;

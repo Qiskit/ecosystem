@@ -7,7 +7,7 @@
     <div class="description">
         {% if id_read_more != "None" %}
             <input type="checkbox" class="read-more-input" id="{{id_read_more}}"/>
-            <p class="text">{{description_visible}}<span class="extra-text">{{description_hidden}}</span></p>
+            <p class="text">{{description_visible}}<span class="ellipsis">...</span><span class="extra-text">{{description_hidden}}</span></p>
             <label for="{{id_read_more}}" class="read-more-button"></label>
         {% else %}
             <p class="text">{{description_visible}}</p>
