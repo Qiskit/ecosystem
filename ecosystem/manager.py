@@ -64,8 +64,7 @@ class Manager:
         count_read_more=1
         max_chars_description=400
         margin = 100
-        for url, repo in self.dao.storage.read().items():
-            
+        for _, repo in self.dao.storage.read().items():            
             ######### Tags #########
             tags = ""
             for label in repo.labels:
@@ -80,12 +79,12 @@ class Manager:
             if len(repo.description)-max_chars_description >= margin:
                 description_visible = repo.description[:400]
                 description_hidden = repo.description[400:]
-                id = str(count_read_more)
+                id_read_more = str(count_read_more)
                 count_read_more += 1
             else:
                 description_visible = repo.description
                 description_hidden = ""
-                id = "None"
+                id_read_more = "None"
 
             ######### Create the card #########
             card = card_template.render(
@@ -93,7 +92,7 @@ class Manager:
                 tags=tags,
                 description_visible=description_visible,
                 description_hidden=description_hidden,
-                id_read_more=id,
+                id_read_more=id_read_more,
                 links=links
             )
 
