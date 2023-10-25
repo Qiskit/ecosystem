@@ -151,25 +151,23 @@ p {
 /* ##### Read more button ##### */
 
 .read-more-input{
+    visibility: hidden;
     display: none;
 }
 
 .extra-text {
-    opacity: 0;
-    max-height: 0;
-    font-size: 0;
+    visibility: hidden;
+    display: none;
 }
 
 .read-more-input:checked ~ .text .extra-text {
-    opacity: 1;
-    font-size: inherit;
-    max-height: 999em;
+    visibility: inherit;
+    display: inline;
 }
 
 .read-more-input:checked ~ .text .ellipsis {
-    opacity: 0;
-    font-size: 0;
-    max-height: 0;
+    visibility: hidden;
+    display: none;
 }
 
 .read-more-input ~ .read-more-button:before {
