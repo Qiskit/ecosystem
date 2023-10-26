@@ -6,6 +6,7 @@ contact_info = ""
 alternatives = ""
 affiliations = "IBM"
 labels = [ "Provider", "Partner",]
+group = "provider"
 created_at = 1654696732.591266
 updated_at = 1654696732.591279
 tier = "Main"
@@ -14,7 +15,7 @@ styles_results = []
 coverages_results = []
 skip_tests = true
 historical_test_results = []
-stars = 63
+stars = 64
 
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]

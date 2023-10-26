@@ -3,49 +3,50 @@ url = "https://github.com/C2QA/bosonic-qiskit"
 description = "NQI C2QA project to simulate hybrid boson-qubit systems within Qiskit."
 licence = "BSD 2-Clause Simplified or FreeBSD license"
 labels = [ "Physics",]
+group = "applications"
 created_at = 1678827878.841977
 updated_at = 1678827878.841978
 tier = "Community"
 styles_results = []
 coverages_results = []
 skip_tests = false
-stars = 37
+stars = 38
 [[tests_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545037181"
-package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
-qiskit_version = "0.45.0"
-timestamp = 1697535054.910321
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624758109"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698140505.700804
 
 [[tests_results]]
 passed = true
 test_type = "last passing version"
 package = "qiskit"
 package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545037181"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624758109"
 qiskit_version = "0.44.2"
-timestamp = 1697535833.069228
+timestamp = 1698141364.594495
 
 [[tests_results]]
 passed = true
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545037181"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624758109"
 qiskit_version = "0.44.2"
-timestamp = 1697534678.506947
+timestamp = 1698140061.279459
 
 [[tests_results]]
 passed = true
 test_type = "standard"
 package = "qiskit"
 package_version = "0.39.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545037181"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624758109"
 qiskit_version = "0.39.0"
-timestamp = 1697535831.86736
+timestamp = 1698141361.771747
 
 [[historical_test_results]]
 passed = true
@@ -140,24 +141,6 @@ qiskit_version = "0.44.1"
 timestamp = 1695720270.168092
 
 [[historical_test_results]]
-passed = true
-test_type = "stable"
-package = "qiskit"
-package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545037181"
-qiskit_version = "0.44.2"
-timestamp = 1697534678.506947
-
-[[historical_test_results]]
-passed = true
-test_type = "standard"
-package = "qiskit"
-package_version = "0.39.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545037181"
-qiskit_version = "0.39.0"
-timestamp = 1697535831.86736
-
-[[historical_test_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
@@ -166,4 +149,32 @@ logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/65450371
 package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
 qiskit_version = "0.45.0"
 timestamp = 1697535054.910321
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624758109"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698140505.700804
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624758109"
+qiskit_version = "0.44.2"
+timestamp = 1698140061.279459
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.39.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624758109"
+qiskit_version = "0.39.0"
+timestamp = 1698141361.771747
 

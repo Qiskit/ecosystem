@@ -6,6 +6,7 @@ contact_info = "nicolas.gm.renaud@gmail.com"
 alternatives = "The prototype builds on the qiskit-textbook chapter and tutorial. The prototype allows to use the primitives and use different cost function and test circuits to optimize the parameters."
 affiliations = "Netherlands eScience Center @ Quantum Application Lab, Amsterdam NL"
 labels = [ "Algorithms", "Optimization",]
+group = "applications"
 created_at = 1683906067.55753
 updated_at = 1683906067.557535
 tier = "Community"
@@ -18,10 +19,10 @@ passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545035572"
-package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
 qiskit_version = "unknown"
-timestamp = 1697534030.381128
+timestamp = 1698138861.890482
 
 [[tests_results]]
 passed = true
@@ -37,18 +38,18 @@ passed = false
 test_type = "stable"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545035572"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
 qiskit_version = "unknown"
-timestamp = 1697533969.003721
+timestamp = 1698138795.426884
 
 [[tests_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545035572"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
 qiskit_version = "unknown"
-timestamp = 1697534091.112146
+timestamp = 1698138928.234918
 
 [[historical_test_results]]
 passed = false
@@ -92,26 +93,26 @@ passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545035572"
-package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
 qiskit_version = "unknown"
-timestamp = 1697534030.381128
-
-[[historical_test_results]]
-passed = false
-test_type = "stable"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545035572"
-qiskit_version = "unknown"
-timestamp = 1697533969.003721
+timestamp = 1698138861.890482
 
 [[historical_test_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545035572"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
 qiskit_version = "unknown"
-timestamp = 1697534091.112146
+timestamp = 1698138928.234918
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+qiskit_version = "unknown"
+timestamp = 1698138795.426884
 

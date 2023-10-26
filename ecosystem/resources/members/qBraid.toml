@@ -6,6 +6,7 @@ contact_info = "ryanhill@qbraid.com"
 alternatives = "There are some alternatives to individual modules within the qBraid-SDK e.g. to execute a Qiskit circuit on an AWS device, you could use the qiskit-braket-provider. However, there aren't any other existing projects that support the same matrix of quantum program types and backends through a single, unified interface."
 affiliations = "qBraid Co."
 labels = [ "Circuit", "OpenQASM", "Converter", "Software development kit",]
+group = "other"
 created_at = 1690263743.561744
 updated_at = 1690263743.56175
 tier = "Community"
@@ -19,10 +20,10 @@ passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545038967"
-package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759838"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
 qiskit_version = "unknown"
-timestamp = 1697534071.162361
+timestamp = 1698139694.751579
 
 [[tests_results]]
 passed = true
@@ -38,18 +39,18 @@ passed = false
 test_type = "stable"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545038967"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759838"
 qiskit_version = "unknown"
-timestamp = 1697533996.975502
+timestamp = 1698139592.163486
 
 [[tests_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545038967"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759838"
 qiskit_version = "unknown"
-timestamp = 1697534145.029979
+timestamp = 1698139798.589742
 
 [[historical_test_results]]
 passed = false
@@ -81,29 +82,29 @@ timestamp = 1692696381.631434
 
 [[historical_test_results]]
 passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759838"
+qiskit_version = "unknown"
+timestamp = 1698139798.589742
+
+[[historical_test_results]]
+passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545038967"
-package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759838"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
 qiskit_version = "unknown"
-timestamp = 1697534071.162361
+timestamp = 1698139694.751579
 
 [[historical_test_results]]
 passed = false
 test_type = "stable"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545038967"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759838"
 qiskit_version = "unknown"
-timestamp = 1697533996.975502
-
-[[historical_test_results]]
-passed = false
-test_type = "standard"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545038967"
-qiskit_version = "unknown"
-timestamp = 1697534145.029979
+timestamp = 1698139592.163486
 

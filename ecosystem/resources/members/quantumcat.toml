@@ -3,6 +3,7 @@ url = "https://github.com/artificial-brain/quantumcat"
 description = "quantumcat is a platform-independent, open-source, high-level quantum computing library, which allows the quantum community to focus on developing platform-independent quantum applications without much effort"
 licence = "Apache 2.0"
 labels = [ "Algorithms", "Converter",]
+group = "other"
 created_at = 1678827878.289276
 updated_at = 1678827878.289277
 tier = "Community"
@@ -12,38 +13,38 @@ stars = 22
 passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545040896"
-package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
-qiskit_version = "0.45.0"
-timestamp = 1697534898.812148
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759004"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139934.982811
 
 [[tests_results]]
 passed = true
 test_type = "last passing version"
 package = "qiskit"
 package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545040896"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759004"
 qiskit_version = "0.44.2"
-timestamp = 1697534968.267294
+timestamp = 1698140016.960501
 
 [[tests_results]]
 passed = true
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545040896"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759004"
 qiskit_version = "0.44.2"
-timestamp = 1697534499.745544
+timestamp = 1698139428.766482
 
 [[tests_results]]
 passed = true
 test_type = "standard"
 package = "qiskit"
 package_version = "0.26.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545040896"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759004"
 qiskit_version = "0.26.2"
-timestamp = 1697534965.938763
+timestamp = 1698140012.59176
 
 [[styles_results]]
 passed = false
@@ -202,21 +203,31 @@ timestamp = 1697534898.812148
 
 [[historical_test_results]]
 passed = true
-test_type = "stable"
-package = "qiskit"
-package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545040896"
-qiskit_version = "0.44.2"
-timestamp = 1697534499.745544
-
-[[historical_test_results]]
-passed = true
 test_type = "standard"
 package = "qiskit"
 package_version = "0.26.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545040896"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759004"
 qiskit_version = "0.26.2"
-timestamp = 1697534965.938763
+timestamp = 1698140012.59176
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759004"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139934.982811
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759004"
+qiskit_version = "0.44.2"
+timestamp = 1698139428.766482
 
 [configuration]
 dependencies_files = [ "requirements.txt",]
