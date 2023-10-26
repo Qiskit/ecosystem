@@ -16,38 +16,38 @@ stars = 0
 passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545042350"
-package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
-qiskit_version = "0.45.0"
-timestamp = 1697535130.366886
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759281"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698140031.483355
 
 [[tests_results]]
 passed = true
 test_type = "last passing version"
 package = "qiskit"
 package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545042350"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759281"
 qiskit_version = "0.44.2"
-timestamp = 1697535207.679901
+timestamp = 1698140140.619623
 
 [[tests_results]]
 passed = true
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545042350"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759281"
 qiskit_version = "0.44.2"
-timestamp = 1697534729.26446
+timestamp = 1698139509.437624
 
 [[tests_results]]
 passed = true
 test_type = "standard"
 package = "qiskit"
 package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545042350"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759281"
 qiskit_version = "0.44.2"
-timestamp = 1697535205.366566
+timestamp = 1698140137.914579
 
 [[historical_test_results]]
 passed = true
@@ -79,19 +79,29 @@ timestamp = 1697535130.366886
 
 [[historical_test_results]]
 passed = true
-test_type = "stable"
-package = "qiskit"
-package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545042350"
-qiskit_version = "0.44.2"
-timestamp = 1697534729.26446
-
-[[historical_test_results]]
-passed = true
 test_type = "standard"
 package = "qiskit"
 package_version = "0.44.2"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545042350"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759281"
 qiskit_version = "0.44.2"
-timestamp = 1697535205.366566
+timestamp = 1698140137.914579
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759281"
+qiskit_version = "0.44.2"
+timestamp = 1698139509.437624
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759281"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698140031.483355
 
