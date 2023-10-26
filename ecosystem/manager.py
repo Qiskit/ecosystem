@@ -60,22 +60,28 @@ class Manager:
         tag_template = environment.get_template("tag.html")
         link_template = environment.get_template("link.html")
 
-        providers = apps = others = ""
+        sections = {
+            "provider": "",
+            "applications": "",
+            "other": "",
+        }
+
+        projects = DAO("ecosystem/resources/").storage.read()
 
         count_read_more = 1
         max_chars_description = 500
-        for _, repo in self.dao.storage.read().items():
-            ######### Tags #########
+        for _, repo in projects.items():
+            # Card tags
             tags = ""
             for label in repo.labels:
                 tags += tag_template.render(color="purple", title=label, text=label)
 
-            ######### Links #########
+            # Card links
             links = link_template.render(url=repo.url, place="repository")
             if repo.website:
                 links += link_template.render(url=repo.website, place="website")
 
-            ######### Description #########
+            # Card description
             if len(repo.description) - max_chars_description >= 0:
                 description = [repo.description[:400], repo.description[400:]]
                 id_read_more = str(count_read_more)
@@ -84,7 +90,7 @@ class Manager:
                 description = [repo.description, ""]
                 id_read_more = "None"
 
-            ######### Create the card #########
+            # Create the card
             card = card_template.render(
                 title=repo.name,
                 tags=tags,
@@ -94,22 +100,13 @@ class Manager:
                 links=links,
             )
 
-            # Provisional until the categories are added in members.json
-            if "Provider" in repo.labels:
-                providers += card
-            elif (
-                "Physics" in repo.labels
-                or "Chemistry" in repo.labels
-                or "Finance" in repo.labels
-            ):
-                apps += card
-            else:
-                others += card
+            # Assing the card to a section
+            sections[repo.group] += card
 
         return website_template.render(
-            section1_cards=providers,
-            section2_cards=apps,
-            section3_cards=others,
+            section1_cards=sections["provider"],
+            section2_cards=sections["applications"],
+            section3_cards=sections["other"],
         )
 
     def dispatch_check_workflow(
