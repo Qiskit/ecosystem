@@ -35,6 +35,7 @@ class Repository(JsonSerializable):
     skip_tests: bool | None = False
     historical_test_results: list[TestResult] = new_list()
     stars: int | None = None
+    group: str | None = None
 
     def __post_init__(self):
         self.__dict__.setdefault("created_at", datetime.now().timestamp())
