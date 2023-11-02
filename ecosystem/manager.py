@@ -100,7 +100,7 @@ class Manager:
                 links=links,
             )
 
-            # Assing the card to a section
+            # Adding the card to a section
             sections[repo.group] += card
 
         return website_template.render(
