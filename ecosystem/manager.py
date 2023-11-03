@@ -67,9 +67,9 @@ class Manager:
             "applications": "",
             "other": "",
         }
-        
-        MAX_CHARS_DESCRIPTION_VISIBLE = 400
-        MIN_CHARS_DESCRIPTION_HIDDEN = 100
+
+        max_chars_description_visible = 400
+        min_chars_description_hidden = 100
         count_read_more = 1
         for _, repo in projects.items():
             # Card tags
@@ -83,8 +83,14 @@ class Manager:
                 links += templates["link"].render(url=repo.website, place="website")
 
             # Card description
-            if len(repo.description) - MAX_CHARS_DESCRIPTION_VISIBLE >= MIN_CHARS_DESCRIPTION_HIDDEN:
-                description = [repo.description[:MAX_CHARS_DESCRIPTION_VISIBLE], repo.description[MAX_CHARS_DESCRIPTION_VISIBLE:]]
+            if (
+                len(repo.description) - max_chars_description_visible
+                >= min_chars_description_hidden
+            ):
+                description = [
+                    repo.description[:max_chars_description_visible],
+                    repo.description[max_chars_description_visible:],
+                ]
                 id_read_more = str(count_read_more)
                 count_read_more += 1
             else:
