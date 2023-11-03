@@ -54,36 +54,37 @@ class Manager:
 
     def build_website(self):
         """Generates the ecosystem web page reading `members.json`."""
-        environment = Environment(loader=FileSystemLoader("ecosystem/html/"))
-        website_template = environment.get_template("webpage.html")
-        card_template = environment.get_template("card.html")
-        tag_template = environment.get_template("tag.html")
-        link_template = environment.get_template("link.html")
-
+        environment = Environment(loader=FileSystemLoader("ecosystem/html_templates/"))
+        projects = self.dao.storage.read()
+        templates = {
+            "website": environment.get_template("webpage.html.jinja"),
+            "card": environment.get_template("card.html.jinja"),
+            "tag": environment.get_template("tag.html.jinja"),
+            "link": environment.get_template("link.html.jinja"),
+        }
         sections = {
             "provider": "",
             "applications": "",
             "other": "",
         }
-
-        projects = DAO("ecosystem/resources/").storage.read()
-
+        
+        MAX_CHARS_DESCRIPTION_VISIBLE = 400
+        MIN_CHARS_DESCRIPTION_HIDDEN = 100
         count_read_more = 1
-        max_chars_description = 500
         for _, repo in projects.items():
             # Card tags
             tags = ""
             for label in repo.labels:
-                tags += tag_template.render(color="purple", title=label, text=label)
+                tags += templates["tag"].render(color="purple", title=label, text=label)
 
             # Card links
-            links = link_template.render(url=repo.url, place="repository")
+            links = templates["link"].render(url=repo.url, place="repository")
             if repo.website:
-                links += link_template.render(url=repo.website, place="website")
+                links += templates["link"].render(url=repo.website, place="website")
 
             # Card description
-            if len(repo.description) - max_chars_description >= 0:
-                description = [repo.description[:400], repo.description[400:]]
+            if len(repo.description) - MAX_CHARS_DESCRIPTION_VISIBLE >= MIN_CHARS_DESCRIPTION_HIDDEN:
+                description = [repo.description[:MAX_CHARS_DESCRIPTION_VISIBLE], repo.description[MAX_CHARS_DESCRIPTION_VISIBLE:]]
                 id_read_more = str(count_read_more)
                 count_read_more += 1
             else:
@@ -91,7 +92,7 @@ class Manager:
                 id_read_more = "None"
 
             # Create the card
-            card = card_template.render(
+            card = templates["card"].render(
                 title=repo.name,
                 tags=tags,
                 description_visible=description[0],
@@ -103,10 +104,10 @@ class Manager:
             # Adding the card to a section
             sections[repo.group] += card
 
-        return website_template.render(
-            section1_cards=sections["provider"],
-            section2_cards=sections["applications"],
-            section3_cards=sections["other"],
+        return templates["website"].render(
+            section_provider_cards=sections["provider"],
+            section_applications_cards=sections["applications"],
+            section_other_cards=sections["other"],
         )
 
     def dispatch_check_workflow(

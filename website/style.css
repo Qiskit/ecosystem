@@ -1,0 +1,222 @@
+.custom-theme {
+  --cds-background-brand: #6929c4;
+  --cds-border-interactive: #6929c4;
+  --cds-focus: #6929c4;
+  --cds-icon-interactive: #6929c4;
+  --cds-interactive: #6929c4;
+  --cds-link-primary: #6929c4;
+  --cds-button-primary: #6929c4;
+  --cds-button-tertiary: #6929c4;
+  --cds-background-brand: #6929c4;
+  --cds-border-interactive: #6929c4;
+  --cds-focus: #6929c4;
+  --cds-icon-interactive: #6929c4;
+  --cds-interactive: #6929c4;
+  --cds-link-primary: #6929c4;
+  --cds-button-primary: #6929c4;
+  --cds-button-tertiary: #6929c4;
+  --cds-background-brand: #6929c4;
+  --cds-focus-inverse: #6929c4;
+  --cds-link-inverse: #6929c4;
+  --cds-button-primary: #6929c4;
+  --cds-notification-action-tertiary-inverse: #6929c4;
+  --cds-background-brand: #6929c4;
+  --cds-focus-inverse: #6929c4;
+  --cds-link-inverse: #6929c4;
+  --cds-button-primary: #6929c4;
+  --cds-notification-action-tertiary-inverse: #6929c4;
+
+  --cds-button-primary-hover: #491d8b;
+  --cds-button-tertiary-hover: #491d8b;
+  --cds-button-primary-hover: #491d8b;
+  --cds-button-tertiary-hover: #491d8b;
+  --cds-button-primary-hover: #491d8b;
+  --cds-notification-action-tertiary-inverse-hover: #491d8b;
+  --cds-button-primary-hover: #491d8b;
+  --cds-notification-action-tertiary-inverse-hover: #491d8b;
+
+  --cds-link-primary-hover: #491d8b;
+  --cds-link-secondary: #491d8b;
+  --cds-support-info: #491d8b;
+  --cds-link-primary-hover: #491d8b;
+  --cds-link-secondary: #491d8b;
+  --cds-support-info: #491d8b;
+  --cds-highlight: #491d8b;
+  --cds-link-inverse-hover: #491d8b;
+  --cds-support-info-inverse: #491d8b;
+  --cds-tag-background-blue: #491d8b;
+  --cds-link-inverse-hover: #491d8b;
+  --cds-support-info-inverse: #491d8b;
+  --cds-tag-background-blue: #491d8b;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+body {
+  flex-flow: column nowrap;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+header {
+  padding: 24px 0px 24px 0px;
+  background-color: white;
+}
+
+.inside-header {
+  padding: 0px 32px 0px 32px;
+}
+
+.ecosystem-logo {
+  width: 350px;
+}
+
+.content {
+  padding: 24px 32px 24px 32px;
+  margin-bottom: 16px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.card {
+  flex: 0 1 20%;
+  background-color: white;
+}
+
+cds-tile {
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+  background-color: white;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tags {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+cds-tag {
+  margin-left: 0;
+}
+
+.project-title {
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: normal;
+}
+
+.section {
+  font-size: 28px;
+}
+
+p {
+  font-size: 14px;
+}
+
+.title {
+  margin: 16px 0;
+}
+
+.links {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 8px;
+}
+
+.description {
+  display: block;
+}
+
+.link svg {
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.text {
+  word-break: break-word;
+}
+
+/* ------------------------------
+* Read more button
+* ------------------------------ */
+
+.read-more-input {
+  visibility: hidden;
+  display: none;
+}
+
+.extra-text {
+  visibility: hidden;
+  display: none;
+}
+
+.read-more-input:checked ~ .text .extra-text {
+  visibility: inherit;
+  display: inline;
+}
+
+.read-more-input:checked ~ .text .ellipsis {
+  visibility: hidden;
+  display: none;
+}
+
+.read-more-input ~ .read-more-button:before {
+  content: "Read more";
+  text-decoration: underline;
+}
+
+.read-more-input:checked ~ .read-more-button:before {
+  content: "Read less";
+  text-decoration: underline;
+}
+
+.read-more-button {
+  cursor: pointer;
+}
+
+/* ------------------------------  */
+
+@media only screen and (max-width: 1500px) {
+  .card {
+    flex: 0 1 25%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .card {
+    flex: 0 1 40%;
+  }
+
+  .links {
+    flex-flow: row wrap;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .card {
+    flex: 0 1 95%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .ecosystem-logo {
+    width: 100%;
+    min-width: 200px;
+  }
+}
