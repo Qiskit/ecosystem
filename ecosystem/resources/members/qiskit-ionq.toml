@@ -5,7 +5,6 @@ licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
 labels = [ "Provider", "Partner",]
-group = "provider"
 created_at = 1670427446.011674
 updated_at = 1670427446.011675
 tier = "Community"
@@ -13,6 +12,7 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 32
+group = "provider"
 [[tests_results]]
 passed = false
 test_type = "development"

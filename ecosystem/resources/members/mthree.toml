@@ -5,7 +5,6 @@ licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
 labels = [ "Error mitigation",]
-group = "other"
 created_at = 1678827878.805163
 updated_at = 1678827878.805164
 tier = "Extensions"
@@ -13,6 +12,7 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 26
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"

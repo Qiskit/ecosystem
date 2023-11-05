@@ -6,7 +6,6 @@ contact_info = "simone.gasperini4@unibo.it"
 alternatives = "_No response_"
 affiliations = "_No response_"
 labels = [ "Quantum information", "Circuit simulator",]
-group = "other"
 created_at = 1680254616.930627
 updated_at = 1680254616.930632
 tier = "Community"
@@ -14,6 +13,7 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 13
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"

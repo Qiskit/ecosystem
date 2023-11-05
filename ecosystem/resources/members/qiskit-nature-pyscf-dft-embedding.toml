@@ -6,7 +6,6 @@ contact_info = "oss@zurich.ibm.com"
 alternatives = "_No response_"
 affiliations = "_No response_"
 labels = [ "Algorithms", "Chemistry",]
-group = "applications"
 created_at = 1685540348.208874
 updated_at = 1685540348.208879
 tier = "Community"
@@ -14,6 +13,7 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 4
+group = "applications"
 [[tests_results]]
 passed = false
 test_type = "development"
