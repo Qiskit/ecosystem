@@ -5,7 +5,6 @@ licence = "Apache License 2.0"
 contact_info = "blake.johnson@ibm.com"
 alternatives = "_No response_"
 labels = [ "Algorithms", "Circuit",]
-group = "other"
 created_at = 1670427445.884067
 updated_at = 1670427445.884068
 tier = "Extensions"
@@ -14,6 +13,7 @@ coverages_results = []
 skip_tests = true
 historical_test_results = []
 stars = 52
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"

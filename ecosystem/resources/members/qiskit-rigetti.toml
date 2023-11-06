@@ -3,12 +3,12 @@ url = "https://github.com/rigetti/qiskit-rigetti"
 description = "Rigetti Provider for Qiskit"
 licence = "Apache 2.0"
 labels = [ "Provider",]
-group = "provider"
 created_at = 1678827878.136911
 updated_at = 1678827878.136912
 tier = "Community"
 skip_tests = false
 stars = 9
+group = "provider"
 [[tests_results]]
 passed = false
 test_type = "development"

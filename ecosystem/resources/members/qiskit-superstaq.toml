@@ -5,11 +5,11 @@ licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
 labels = [ "Converter", "Provider",]
-group = "provider"
 created_at = 1678827878.760089
 updated_at = 1678827878.76009
 tier = "Community"
 skip_tests = false
+group = "provider"
 [[tests_results]]
 passed = true
 test_type = "development"

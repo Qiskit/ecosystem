@@ -6,13 +6,13 @@ contact_info = "evmckinney9@gmail.com"
 alternatives = "_No response_"
 affiliations = "University of Pittsburgh"
 labels = [ "Transpiler plugin", "Paper implementation",]
-group = "other"
 tier = "Community"
 website = "https://arxiv.org/abs/2308.03874"
 styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 3
+group = "other"
 [[tests_results]]
 passed = true
 test_type = "development"

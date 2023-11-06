@@ -6,7 +6,6 @@ contact_info = "_No response_"
 alternatives = "_No response_"
 affiliations = "QAMP"
 labels = [ "Productivity", "Jupyter notebook",]
-group = "other"
 created_at = 1688661859.080258
 updated_at = 1688661859.080264
 tier = "Community"
@@ -15,6 +14,7 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 6
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"

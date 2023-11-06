@@ -5,7 +5,6 @@ licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
 labels = [ "Optimization", "Prototype",]
-group = "applications"
 created_at = 1678827878.909912
 updated_at = 1678827878.909913
 tier = "Community"
@@ -13,6 +12,7 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 27
+group = "applications"
 [[tests_results]]
 passed = false
 test_type = "development"

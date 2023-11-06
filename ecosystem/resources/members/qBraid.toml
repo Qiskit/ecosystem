@@ -6,7 +6,6 @@ contact_info = "ryanhill@qbraid.com"
 alternatives = "There are some alternatives to individual modules within the qBraid-SDK e.g. to execute a Qiskit circuit on an AWS device, you could use the qiskit-braket-provider. However, there aren't any other existing projects that support the same matrix of quantum program types and backends through a single, unified interface."
 affiliations = "qBraid Co."
 labels = [ "Circuit", "OpenQASM", "Converter", "Software development kit",]
-group = "other"
 created_at = 1690263743.561744
 updated_at = 1690263743.56175
 tier = "Community"
@@ -15,6 +14,7 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 41
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"
