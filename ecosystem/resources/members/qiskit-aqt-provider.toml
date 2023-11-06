@@ -6,12 +6,12 @@ contact_info = "info@aqt.eu"
 alternatives = "_No response_"
 affiliations = "Alpine Quantum Technologies GmbH"
 labels = [ "Provider",]
-group = "provider"
 tier = "Community"
 website = "https://qiskit-community.github.io/qiskit-aqt-provider/"
 styles_results = []
 coverages_results = []
 skip_tests = false
+group = "provider"
 [[tests_results]]
 passed = true
 test_type = "development"

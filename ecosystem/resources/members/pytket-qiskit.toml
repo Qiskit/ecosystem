@@ -3,12 +3,12 @@ url = "https://github.com/CQCL/pytket-qiskit"
 description = "an extension to Pytket (a python module for interfacing with CQC tket) that allows Pytket circuits to be run on IBM backends and simulators, as well as conversion to and from Qiskit representations."
 licence = "Apache 2.0"
 labels = [ "Converter",]
-group = "other"
 created_at = 1661869851.523229
 updated_at = 1661869851.523229
 tier = "Community"
 skip_tests = false
 stars = 7
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"
