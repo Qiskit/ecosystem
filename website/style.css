@@ -123,6 +123,8 @@ cds-tag {
 
 .section {
   font-size: 28px;
+  position: relative;
+  left: -24px;
 }
 
 p {
@@ -151,6 +153,17 @@ p {
 .text {
   word-break: break-word;
 }
+
+.section-anchor {
+  display: inline;
+  visibility: hidden;
+  text-decoration:none;
+}
+
+.section:hover .section-anchor{
+  visibility: inherit;
+}
+
 
 /* ------------------------------
 * Read more button
