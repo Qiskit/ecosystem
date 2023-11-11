@@ -39,7 +39,7 @@ class TestPythonRunner(unittest.TestCase):
         qiskit_version, result = runner.workload()
 
         # Uncomment when qiskit-terra gonna be commonly unused.
-        #self.assertFalse(all(r.has_qiskit_deprecation_logs for r in result))
+        # self.assertFalse(all(r.has_qiskit_deprecation_logs for r in result))
         self.assertTrue(all(r.ok for r in result))
         self.assertTrue(qiskit_version)
 
