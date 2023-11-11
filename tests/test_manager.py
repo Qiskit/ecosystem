@@ -94,6 +94,11 @@ class TestManager(TestCase):
         if not os.path.exists(self.path):
             os.makedirs(self.path)
 
+    def test_build_website(self):
+        """Test the website builder function."""
+        manager = Manager(root_path=f"{os.path.abspath(os.getcwd())}/../")
+        self.assertIsInstance(manager.build_website(), str)
+
     def test_parser_issue(self):
         """Tests issue parsing function.
         Function: Manager
