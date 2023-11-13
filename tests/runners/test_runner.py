@@ -38,7 +38,8 @@ class TestPythonRunner(unittest.TestCase):
         runner.cloned_repo_directory = self.simple_project_dir
         qiskit_version, result = runner.workload()
 
-        self.assertFalse(all(r.has_qiskit_deprecation_logs for r in result))
+        # Uncomment when qiskit-terra is completely unused.
+        # self.assertFalse(all(r.has_qiskit_deprecation_logs for r in result))
         self.assertTrue(all(r.ok for r in result))
         self.assertTrue(qiskit_version)
 
