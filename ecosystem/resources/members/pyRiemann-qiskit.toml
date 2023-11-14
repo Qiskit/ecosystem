@@ -7,10 +7,73 @@ alternatives = "_No response_"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
 labels = [ "Machine learning",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 stars = 14
 group = "applications"
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6861460585"
+package_commit_hash = "af6fbd0725de411fbc8f0ff70d550d77ebf715dc"
+qiskit_version = "1.0.0"
+timestamp = 1699954536.004966
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6861460585"
+qiskit_version = "0.45.0"
+timestamp = 1699954609.528546
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6861460585"
+qiskit_version = "0.45.0"
+timestamp = 1699953968.918906
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6861460585"
+qiskit_version = "0.45.0"
+timestamp = 1699954608.061931
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6861460585"
+qiskit_version = "0.45.0"
+timestamp = 1699953968.918906
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6861460585"
+qiskit_version = "0.45.0"
+timestamp = 1699954608.061931
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6861460585"
+package_commit_hash = "af6fbd0725de411fbc8f0ff70d550d77ebf715dc"
+qiskit_version = "1.0.0"
+timestamp = 1699954536.004966
+
