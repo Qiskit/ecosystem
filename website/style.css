@@ -79,8 +79,9 @@ p {
   font-size: 14px;
 }
 
-.title {
+.title-description {
   margin: 16px 0;
+  width: 400px;
 }
 
 .links {
@@ -180,4 +181,7 @@ p {
     width: 100%;
     min-width: 200px;
   }
+  .title-description {
+    width: auto;
+  }  
 }
