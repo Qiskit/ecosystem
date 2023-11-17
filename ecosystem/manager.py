@@ -56,6 +56,13 @@ class Manager:
         """Generates the ecosystem web page reading `members.json`."""
         environment = Environment(loader=FileSystemLoader("ecosystem/html_templates/"))
         projects = self.dao.storage.read()
+        projects_sorted = sorted(
+            projects.items(),
+            key=lambda item: (
+                -item[1].stars if item[1].stars is not None else 0,
+                item[1].name,
+            ),
+        )
         templates = {
             "website": environment.get_template("webpage.html.jinja"),
             "card": environment.get_template("card.html.jinja"),
@@ -71,7 +78,7 @@ class Manager:
         max_chars_description_visible = 400
         min_chars_description_hidden = 100
         count_read_more = 1
-        for _, repo in projects.items():
+        for _, repo in projects_sorted:
             # Card tags
             tags = ""
             for label in repo.labels:
