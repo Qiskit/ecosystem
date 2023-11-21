@@ -5,13 +5,13 @@ licence = "Apache License 2.0"
 contact_info = "_No response_"
 alternatives = "_No response_"
 affiliations = "IBM"
-labels = [ "Paper implementation", "Transpiler plugin",]
+labels = [ "Paper implementation", ]
 tier = "Community"
 styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 7
-group = "other"
+group = "transpiler_plugin"
 [[tests_results]]
 passed = false
 test_type = "development"
