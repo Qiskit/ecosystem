@@ -7,10 +7,77 @@ alternatives = "_No response_"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
 labels = [ "Machine learning",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
+<<<<<<< Updated upstream
 historical_test_results = []
+=======
+>>>>>>> Stashed changes
 stars = 14
 group = "applications"
+[[tests_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6941514209"
+package_commit_hash = "45e42525224e9e1857300e7e5529273fe619c9e4"
+qiskit_version = "1.0.0"
+timestamp = 1700557836.129106
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6941514209"
+qiskit_version = "0.45.0"
+timestamp = 1700557889.584579
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6941514209"
+qiskit_version = "0.45.0"
+timestamp = 1700557482.276649
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6941514209"
+qiskit_version = "0.45.0"
+timestamp = 1700557886.625493
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6941514209"
+qiskit_version = "0.45.0"
+timestamp = 1700557886.625493
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6941514209"
+package_commit_hash = "45e42525224e9e1857300e7e5529273fe619c9e4"
+qiskit_version = "1.0.0"
+timestamp = 1700557836.129106
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/6941514209"
+qiskit_version = "0.45.0"
+timestamp = 1700557482.276649
+
