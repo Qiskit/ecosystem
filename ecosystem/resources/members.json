@@ -207,7 +207,6 @@
             "alternatives": "_No response_",
             "affiliations": "University of Pittsburgh",
             "labels": [
-                "Transpiler plugin",
                 "Paper implementation"
             ],
             "tier": "Community",
@@ -313,7 +312,7 @@
                 }
             ],
             "stars": 3,
-            "group": "other"
+            "group": "transpiler_plugin"
         },
         "3": {
             "name": "qiskit-aqt-provider",
@@ -1185,7 +1184,6 @@
             "contact_info": "_No response_",
             "alternatives": "_No response_",
             "labels": [
-                "Transpiler plugin",
                 "Paper implementation",
                 "Circuit"
             ],
@@ -1421,7 +1419,7 @@
                 }
             ],
             "stars": 6,
-            "group": "other"
+            "group": "transpiler_plugin"
         },
         "7": {
             "name": "Blueqat",
@@ -1935,7 +1933,6 @@
             "alternatives": "_No response_",
             "affiliations": "IBM",
             "labels": [
-                "Transpiler plugin",
                 "Paper implementation"
             ],
             "created_at": 1681306690.423614,
@@ -1947,7 +1944,7 @@
             "skip_tests": true,
             "historical_test_results": [],
             "stars": 4,
-            "group": "other"
+            "group": "transpiler_plugin"
         },
         "11": {
             "name": "quantum-tetris",
@@ -3051,7 +3048,6 @@
             "contact_info": "_No response_",
             "alternatives": "_No response_",
             "labels": [
-                "Transpiler plugin",
                 "Paper implementation",
                 "Circuit"
             ],
@@ -3278,7 +3274,7 @@
                 }
             ],
             "stars": 7,
-            "group": "other"
+            "group": "transpiler_plugin"
         },
         "23": {
             "name": "qiskit-classroom",
@@ -7662,8 +7658,7 @@
             "alternatives": "_No response_",
             "affiliations": "IBM",
             "labels": [
-                "Paper implementation",
-                "Transpiler plugin"
+                "Paper implementation"
             ],
             "tier": "Community",
             "tests_results": [
@@ -7740,7 +7735,7 @@
                 }
             ],
             "stars": 7,
-            "group": "other"
+            "group": "transpiler_plugin"
         },
         "49": {
             "name": "quantumcat",
