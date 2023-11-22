@@ -70,6 +70,7 @@ class Manager:
             "link": environment.get_template("link.html.jinja"),
         }
         sections = {
+            "transpiler_plugin": "",
             "provider": "",
             "applications": "",
             "other": "",
@@ -118,6 +119,7 @@ class Manager:
             sections[repo.group] += card
 
         return templates["website"].render(
+            section_transpiler_plugin_cards=sections["transpiler_plugin"],
             section_provider_cards=sections["provider"],
             section_applications_cards=sections["applications"],
             section_other_cards=sections["other"],
