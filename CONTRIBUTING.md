@@ -42,6 +42,10 @@ pip install -r requirements-dev.txt
    <code> tox -eblack </code>
 - To Fix the black violation  <code> black <PATH_FILE_YOU_WANT_TO_FIX> </code>
 
+# Create a preview of the website
+1. Build the website: `tox -ewebsite`
+2. Go to the `website/` folder in the root of your project and open up `index.html` in a browser
+
 # Guidance on git
 Please follow [this link](./docs/git-guidance.md) if this is your first time contributing to open source and/or you would like some guidance on how to create and/or merge
 pull requests.
