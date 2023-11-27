@@ -40,7 +40,7 @@ jobs:
       id: parse-issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
-      run: python manager.py parser_issue --body="$ISSUE_BODY"
+      run: python manager.py ci parser_issue --body="$ISSUE_BODY"
     - name: Tests stable check
       id: stable
       uses: ./.github/actions/run-tests
@@ -81,7 +81,7 @@ jobs:
         SUBMISSION_LABELS: ${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}
         SUBMISSION_WEBSITE: ${{ steps.parse-issue.outputs.SUBMISSION_WEBSITE }}
       run: |
-        python manager.py add_repo_2db --repo_name="$SUBMISSION_NAME" \
+        python manager.py members add_repo_2db --repo_name="$SUBMISSION_NAME" \
                                        --repo_link="$SUBMISSION_REPO" \
                                        --repo_description="$SUBMISSION_DESCRIPTION" \
                                        --repo_licence="$SUBMISSION_LICENCE" \

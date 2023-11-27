@@ -1,23 +1,21 @@
-"""Manager class for controlling all CLI functions."""
+"""CliTests class for controlling all CLI functions."""
 import glob
 import json
 import os
 import shutil
 import uuid
-from typing import Optional, List, Tuple, Union
+from typing import Optional, List, Union
 
 import requests
-from jinja2 import Environment, PackageLoader, select_autoescape, FileSystemLoader
 
 from ecosystem.daos import DAO
 from ecosystem.models import TestResult, Tier, TestType
-from ecosystem.models.repository import Repository
 from ecosystem.models.test_results import StyleResult, CoverageResult, Package
 from ecosystem.runners import PythonTestsRunner
 from ecosystem.runners.main_repos_report_runner import RepositoryActionStatusRunner
 from ecosystem.runners.python_styles_runner import PythonStyleRunner
 from ecosystem.runners.python_coverages_runner import PythonCoverageRunner
-from ecosystem.utils import logger, parse_submission_issue
+from ecosystem.utils import logger
 from ecosystem.utils.custom_requests import (
     get_dev_qiskit_version,
     get_stable_qiskit_version,
@@ -25,283 +23,22 @@ from ecosystem.utils.custom_requests import (
 from ecosystem.utils.utils import set_actions_output
 
 
-class Manager:
-    """Manager class.
-    Entrypoint for all CLI commands.
+class CliTests:
+    """CliTests class.
+    Entrypoint for all CLI tests commands.
 
     Each public method of this class is CLI command
     and arguments for method are options/flags for this command.
 
-    Ex: `python manager.py parser_issue --body="<SOME_MARKDOWN>"`
+    Ex: `python manager.py tests python_stable_tests --body="<SOME_MARKDOWN>"`
     """
 
     def __init__(self, root_path: Optional[str] = None):
-        """Manager class."""
+        """CliTests class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
-
-        self.env = Environment(
-            loader=PackageLoader("ecosystem"), autoescape=select_autoescape()
-        )
-        self.pylintrc_template = self.env.get_template(".pylintrc")
-        self.coveragerc_template = self.env.get_template(".coveragerc")
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
-
-    def recompile(self):
-        """Recompile `members.json` from human-readable files."""
-        self.dao.compile_json()
-
-    def build_website(self):
-        """Generates the ecosystem web page reading `members.json`."""
-        environment = Environment(loader=FileSystemLoader("ecosystem/html_templates/"))
-        projects = self.dao.storage.read()
-        projects_sorted = sorted(
-            projects.items(),
-            key=lambda item: (
-                -item[1].stars if item[1].stars is not None else 0,
-                item[1].name,
-            ),
-        )
-        templates = {
-            "website": environment.get_template("webpage.html.jinja"),
-            "card": environment.get_template("card.html.jinja"),
-            "tag": environment.get_template("tag.html.jinja"),
-            "link": environment.get_template("link.html.jinja"),
-        }
-        sections = {
-            "transpiler_plugin": "",
-            "provider": "",
-            "applications": "",
-            "other": "",
-        }
-
-        max_chars_description_visible = 400
-        min_chars_description_hidden = 100
-        count_read_more = 1
-        for _, repo in projects_sorted:
-            # Card tags
-            tags = ""
-            for label in repo.labels:
-                tags += templates["tag"].render(color="purple", title=label, text=label)
-
-            # Card links
-            links = templates["link"].render(url=repo.url, place="repository")
-            if repo.website:
-                links += templates["link"].render(url=repo.website, place="website")
-
-            # Card description
-            if (
-                len(repo.description) - max_chars_description_visible
-                >= min_chars_description_hidden
-            ):
-                description = [
-                    repo.description[:max_chars_description_visible],
-                    repo.description[max_chars_description_visible:],
-                ]
-                id_read_more = str(count_read_more)
-                count_read_more += 1
-            else:
-                description = [repo.description, ""]
-                id_read_more = "None"
-
-            # Create the card
-            card = templates["card"].render(
-                title=repo.name,
-                tags=tags,
-                description_visible=description[0],
-                description_hidden=description[1],
-                id_read_more=id_read_more,
-                links=links,
-            )
-
-            # Adding the card to a section
-            sections[repo.group] += card
-
-        return templates["website"].render(
-            section_transpiler_plugin_cards=sections["transpiler_plugin"],
-            section_provider_cards=sections["provider"],
-            section_applications_cards=sections["applications"],
-            section_other_cards=sections["other"],
-        )
-
-    def dispatch_check_workflow(
-        self,
-        repo_url: str,
-        branch_name: str,
-        tier: str,
-        token: str,
-        owner: str = "qiskit-community",
-        repo: str = "ecosystem",
-    ) -> bool:
-        """Dispatch event to trigger check workflow.
-
-        Args:
-            repo_url: url of the repo
-            branch_name: name of the branch
-            tier: tier of the project
-            token: token base on the date
-            owner: "qiskit-community" parameters
-            repo: "ecosystem"
-
-        Return: true
-        """
-        url = "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
-            owner=owner, repo=repo
-        )
-        repo_split = repo_url.split("/")
-        repo_name = repo_split[-1]
-
-        # run each type of tests in same workflow
-        response = requests.post(
-            url,
-            json={
-                "event_type": "check_project",
-                "client_payload": {
-                    "repo_url": repo_url,
-                    "repo_name": repo_name,
-                    "branch_name": branch_name,
-                    "tier": tier,
-                },
-            },
-            headers={
-                "Authorization": "token {}".format(token),
-                "Accept": "application/vnd.github.v3+json",
-            },
-        )
-        if response.ok:
-            self.logger.info("Success response on dispatch event. %s", response.text)
-        else:
-            self.logger.warning(
-                "Something wend wrong with dispatch event: %s", response.text
-            )
-        return True
-
-    def expose_all_project_to_actions(self):
-        """Exposes all project for github actions."""
-        repositories = []
-        tiers = []
-        for tier in Tier.non_main_tiers():
-            for repo in self.dao.get_repos_by_tier(tier):
-                if not repo.skip_tests:
-                    repositories.append(repo.url)
-                    tiers.append(repo.tier)
-        set_actions_output(
-            [("repositories", ",".join(repositories)), ("tiers", ",".join(tiers))]
-        )
-
-    def update_badges(self):
-        """Updates badges for projects."""
-        badges_folder_path = "{}/badges".format(self.current_dir)
-
-        for tier in Tier.all():
-            for project in self.dao.get_repos_by_tier(tier):
-                tests_passed = True
-                for type_test in project.tests_results:
-                    if type_test.test_type == "standard" and not type_test.passed:
-                        tests_passed = False
-                color = "blueviolet" if tests_passed else "gray"
-                label = project.name
-                message = tier
-                url = (
-                    f"https://img.shields.io/static/v1?"
-                    f"label={label}&message={message}&color={color}"
-                )
-
-                shields_request = requests.get(url)
-                with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
-                    outfile.write(shields_request.content)
-                    self.logger.info("Badge for %s has been updated.", project.name)
-
-    def update_stars(self):
-        """Updates start for repositories."""
-        for tier in Tier.all():
-            for project in self.dao.get_repos_by_tier(tier):
-                stars = None
-                url = project.url[:-1] if project.url[-1] == "/" else project.url
-                url_chunks = url.split("/")
-                repo = url_chunks[-1]
-                user = url_chunks[-2]
-
-                response = requests.get(f"http://api.github.com/repos/{user}/{repo}")
-                if not response.ok:
-                    self.logger.warning("Bad response for project %s", project.url)
-                    continue
-
-                json_data = json.loads(response.text)
-                stars = json_data.get("stargazers_count")
-                self.dao.update(project.url, stars=stars)
-                self.logger.info("Updating star count for %s: %d", project.url, stars)
-
-    @staticmethod
-    def parser_issue(body: str) -> None:
-        """Command for calling body issue parsing function.
-
-        Args:
-            body: body of the created issue
-
-        Returns:
-            logs output
-            We want to give the result of the parsing issue to the GitHub action
-        """
-
-        parsed_result = parse_submission_issue(body)
-
-        to_print = [
-            ("SUBMISSION_NAME", parsed_result.name),
-            ("SUBMISSION_REPO", parsed_result.url),
-            ("SUBMISSION_DESCRIPTION", parsed_result.description),
-            ("SUBMISSION_LICENCE", parsed_result.licence),
-            ("SUBMISSION_CONTACT", parsed_result.contact_info),
-            ("SUBMISSION_ALTERNATIVES", parsed_result.alternatives),
-            ("SUBMISSION_AFFILIATIONS", parsed_result.affiliations),
-            ("SUBMISSION_LABELS", parsed_result.labels),
-            ("SUBMISSION_WEBSITE", parsed_result.website),
-        ]
-
-        set_actions_output(to_print)
-
-    def add_repo_2db(
-        self,
-        repo_name: str,
-        repo_link: str,
-        repo_description: str,
-        repo_licence: str,
-        repo_contact: str,
-        repo_alt: str,
-        repo_affiliations: str,
-        repo_labels: Tuple[str],
-        repo_tier: Optional[str] = None,
-        repo_website: Optional[str] = None,
-    ) -> None:
-        """Adds repo to list of entries.
-
-        Args:
-            repo_name: repo name
-            repo_link: repo url
-            repo_description: repo description
-            repo_contact: repo email
-            repo_alt: repo alternatives
-            repo_licence: repo licence
-            repo_affiliations: repo university, company, ...
-            repo_labels: comma separated labels
-            repo_tier: tier for repository
-            repo_website: link to project website
-        """
-
-        new_repo = Repository(
-            repo_name,
-            repo_link,
-            repo_description,
-            repo_licence,
-            repo_contact,
-            repo_alt,
-            repo_affiliations,
-            list(repo_labels),
-            tier=repo_tier or Tier.COMMUNITY,
-            website=repo_website,
-        )
-        self.dao.write(new_repo)
 
     def _save_temp_test_result(
         self,
