@@ -6401,6 +6401,26 @@
             "group": "applications"
         },
         "42": {
+            "name": "qlasskit",
+            "url": "https://github.com/dakk/qlasskit",
+            "description": "Qlasskit is a Python library that allows quantum developers to write classical algorithms in pure Python and translate them into quantum circuits.",
+            "licence": "Apache License 2.0",
+            "contact_info": "gessadavide@gmail.com",
+            "alternatives": "_No response_",
+            "affiliations": "The project is partially funded by the UnitaryFund microgrant.",
+            "labels": [
+                "Converter"
+            ],
+            "tier": "Community",
+            "website": "https://dakk.github.com/qlasskit",
+            "tests_results": [],
+            "styles_results": [],
+            "coverages_results": [],
+            "skip_tests": false,
+            "historical_test_results": [],
+            "group": "other"
+        },
+        "43": {
             "name": "Quantum Random Access Optimization",
             "url": "https://github.com/qiskit-community/prototype-qrao",
             "description": "The Quantum Random Access Optimization (QRAO) module is designed to enable users to leverage a new quantum method for combinatorial optimization problems.",
@@ -6740,7 +6760,7 @@
             "stars": 26,
             "group": "applications"
         },
-        "43": {
+        "44": {
             "name": "mitiq",
             "url": "https://github.com/unitaryfund/mitiq",
             "description": "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers.",
@@ -7137,7 +7157,7 @@
             "stars": 300,
             "group": "other"
         },
-        "44": {
+        "45": {
             "name": "purplecaffeine",
             "url": "https://github.com/IceKhan13/purplecaffeine",
             "description": "Project is aimed to create simple general interface to track quantum experiments, store and search them in an easy way.",
@@ -7256,7 +7276,7 @@
             "stars": 6,
             "group": "other"
         },
-        "45": {
+        "46": {
             "name": "qiskit-superstaq",
             "url": "https://github.com/Infleqtion/client-superstaq/tree/main/qiskit-superstaq",
             "description": "This package is used to access SuperstaQ via a Web API through Qiskit. Qiskit programmers can take advantage of the applications, pulse level optimizations, and write-once-target-all features of SuperstaQ with this package.",
@@ -7497,7 +7517,7 @@
             ],
             "group": "provider"
         },
-        "46": {
+        "47": {
             "name": "RasQberry",
             "url": "https://github.com/JanLahmann/RasQberry",
             "description": "RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi",
@@ -7518,7 +7538,7 @@
             "stars": 122,
             "group": "other"
         },
-        "47": {
+        "48": {
             "name": "qiskit-symb",
             "url": "https://github.com/SimoneGasperini/qiskit-symb",
             "description": "Easy-to-use Python package designed to enable symbolic quantum computation in Qiskit. It provides the basic tools for the symbolic evaluation of statevectors, density matrices, and unitary operators directly created from parametric Qiskit quantum circuits. The implementation is based on the Sympy library as backend for symbolic expressions manipulation.",
@@ -7649,7 +7669,7 @@
             "stars": 15,
             "group": "other"
         },
-        "48": {
+        "49": {
             "name": "qiskit-qubit-reuse",
             "url": "https://github.com/qiskit-community/qiskit-qubit-reuse",
             "description": "A Qiskit transpiler stage plugin to enable qubit reuse via mid-circuit measurement and reset.",
@@ -7737,7 +7757,7 @@
             "stars": 7,
             "group": "transpiler_plugin"
         },
-        "49": {
+        "50": {
             "name": "quantumcat",
             "url": "https://github.com/artificial-brain/quantumcat",
             "description": "quantumcat is a platform-independent, open-source, high-level quantum computing library, which allows the quantum community to focus on developing platform-independent quantum applications without much effort.",
@@ -8007,7 +8027,7 @@
             "stars": 23,
             "group": "other"
         },
-        "50": {
+        "51": {
             "name": "qiskit-optimization",
             "url": "https://github.com/qiskit-community/qiskit-optimization",
             "description": "Framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit.",
@@ -8028,7 +8048,7 @@
             "stars": 184,
             "group": "applications"
         },
-        "51": {
+        "52": {
             "name": "pytorch-quantum",
             "url": "https://github.com/mit-han-lab/pytorch-quantum",
             "description": "A PyTorch-centric hybrid classical-quantum dynamic neural networks framework.",
@@ -8386,7 +8406,7 @@
             "stars": 1052,
             "group": "applications"
         },
-        "52": {
+        "53": {
             "name": "pytket-qiskit",
             "url": "https://github.com/CQCL/pytket-qiskit",
             "description": "An extension to Pytket (a python module for interfacing with CQC tket) that allows Pytket circuits to be run on IBM backends and simulators, as well as conversion to and from Qiskit representations.",
@@ -8538,7 +8558,7 @@
             "stars": 8,
             "group": "other"
         },
-        "53": {
+        "54": {
             "name": "qdao",
             "url": "https://github.com/Zhaoyilunnn/qdao",
             "description": "A lightweight framework to enable configurable memory consumption when simulating large quantum circuits.",
@@ -8644,7 +8664,7 @@
             "stars": 7,
             "group": "other"
         },
-        "54": {
+        "55": {
             "name": "quPython",
             "url": "https://github.com/frankharkins/quPython",
             "description": "Write quantum programs as Python functions, rather than separate circuit objects. Create higher-level quantum data types, and return measurement results as bool-like objects.",
