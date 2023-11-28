@@ -37,7 +37,7 @@ jobs:
         branch: ${{ steps.vars.outputs.pr_branch_name }}
     - name: Get project for check
       id: repos
-      run: python manager.py expose_all_project_to_actions
+      run: python manager.py ci expose_all_project_to_actions
     - name: Launch separate workflows for each project check
       run: |
         IFS=',' read -r -a repositories <<< ${{ steps.repos.outputs.repositories }}
@@ -45,10 +45,10 @@ jobs:
 
         for (( i=0; i<${#repositories[*]}; ++i)); do
           echo "Launching separate workflow for ${repositories[$i]} in ${tiers[$i]} tier"
-          python manager.py dispatch_check_workflow \
-                            --repo_url=${repositories[$i]} \
-                            --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
-                            --tier=${tiers[$i]} \
-                            --token=${{ secrets.GITHUB_TOKEN }} \
-                            --owner=${{ github.repository_owner }}
+          python manager.py ci dispatch_check_workflow \
+                               --repo_url=${repositories[$i]} \
+                               --branch_name=${{ steps.vars.outputs.pr_branch_name }} \
+                               --tier=${tiers[$i]} \
+                               --token=${{ secrets.GITHUB_TOKEN }} \
+                               --owner=${{ github.repository_owner }}
         done
