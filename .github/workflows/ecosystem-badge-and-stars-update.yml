@@ -27,10 +27,10 @@ jobs:
         pip install -r requirements.txt
 
     - name: Update badges
-      run: python manager.py update_badges
+      run: python manager.py members update_badges
 
     - name: Update stars
-      run: python manager.py update_stars
+      run: python manager.py members update_stars
 
     - name: Create PR for stars and badges update
       id: cpr

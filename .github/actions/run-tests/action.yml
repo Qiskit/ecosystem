@@ -28,7 +28,7 @@ runs:
       run: |
         if [ "${{ inputs.test_type }}" == "standard" ]; then
           echo "Running repository tests for ${{inputs.repo_url}}..."
-          python manager.py python_standard_tests ${{inputs.repo_url}} \
+          python manager.py tests python_standard_tests ${{inputs.repo_url}} \
                                                   --run_name=${{inputs.run_name}} \
                                                   --python_version=${{inputs.tox_env}} \
                                                   --tier=${{ inputs.tier }} \
@@ -36,7 +36,7 @@ runs:
         fi
         if [ "${{ inputs.test_type }}" == "stable" ]; then
           echo "Running Qiskit stable tests for ${{inputs.repo_url}}..."
-          python manager.py python_stable_tests ${{inputs.repo_url}} \
+          python manager.py tests python_stable_tests ${{inputs.repo_url}} \
                                                   --run_name=${{inputs.run_name}} \
                                                   --python_version=${{inputs.tox_env}} \
                                                   --tier=${{ inputs.tier }} \
@@ -44,7 +44,7 @@ runs:
         fi
         if [ "${{ inputs.test_type }}" == "development" ]; then
           echo "Running Qiskit dev tests for ${{inputs.repo_url}}..."
-          python manager.py python_dev_tests ${{inputs.repo_url}} \
+          python manager.py tests python_dev_tests ${{inputs.repo_url}} \
                                                   --run_name=${{inputs.run_name}} \
                                                   --python_version=${{inputs.tox_env}} \
                                                   --tier=${{ inputs.tier }} \
@@ -52,11 +52,11 @@ runs:
         fi
         if [ "${{ inputs.test_type }}" == "lint" ]; then
           echo "Running lint tests for ${{inputs.repo_url}}..."
-          python manager.py python_styles_check ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --tier=${{inputs.tier}} --style_type="pylint"
+          python manager.py tests python_styles_check ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --tier=${{inputs.tier}} --style_type="pylint"
         fi
         if [ "${{ inputs.test_type }}" == "coverage" ]; then
           echo "Running coverage tests for ${{inputs.repo_url}}..."
-          python manager.py python_coverage ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --tier=${{inputs.tier}} --coverage_type=""
+          python manager.py tests python_coverage ${{inputs.repo_url}} --run_name=${{inputs.run_name}} --tier=${{inputs.tier}} --coverage_type=""
         fi
       shell: bash
 outputs:

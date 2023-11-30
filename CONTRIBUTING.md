@@ -25,11 +25,11 @@ pip install -r requirements-dev.txt
 
 # Running the tests
 1. To run tests against the stable version of qiskit  <br/>
-<code> python manager.py python_stable_tests <url_of_the github_repository> --python_version=py39 --run_name="stable"</code>
+<code> python manager.py tests python_stable_tests <url_of_the github_repository> --python_version=py39 --run_name="stable"</code>
 2. To run tests against the dev version of qiskit  <br/>
-<code> python manager.py  python_dev_tests  <url_of_the github_repository> --python_version=py39 --run_name="dev"</code>
+<code> python manager.py  tests python_dev_tests  <url_of_the github_repository> --python_version=py39 --run_name="dev"</code>
 3. To run tests within repository  <br/>
-<code> python manager.py python_standard_tests <url_of_the github_repository> --python_version=py39 --run_name="standard"</code>
+<code> python manager.py tests python_standard_tests <url_of_the github_repository> --python_version=py39 --run_name="standard"</code>
 
 # Performing style checks
 - Run for style checks 
