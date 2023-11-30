@@ -1,7 +1,7 @@
 {
     "Community": {
         "0": {
-            "name": "qiskit-machine-learning",
+            "name": "Qiskit Machine Learning",
             "url": "https://github.com/qiskit-community/qiskit-machine-learning",
             "description": "The Machine Learning package contains sample datasets and quantum ML algorithms.",
             "licence": "Apache 2.0",
@@ -22,7 +22,7 @@
             "group": "applications"
         },
         "1": {
-            "name": "pennylane-qiskit",
+            "name": "Pennylane-Qiskit",
             "url": "https://github.com/PennyLaneAI/pennylane-qiskit",
             "description": "The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities.",
             "licence": "Apache 2.0",
@@ -315,7 +315,7 @@
             "group": "transpiler_plugin"
         },
         "3": {
-            "name": "qiskit-aqt-provider",
+            "name": "Qiskit AQT Provider",
             "url": "https://github.com/qiskit-community/qiskit-aqt-provider",
             "description": "Qiskit provider for ion-trap quantum computers from Alpine Quantum Technologies (AQT). https://www.aqt.eu/qc-systems/",
             "licence": "Apache License 2.0",
@@ -793,7 +793,7 @@
             "group": "other"
         },
         "5": {
-            "name": "quantuminspire",
+            "name": "Quantum Inspire SDK",
             "url": "https://github.com/QuTech-Delft/quantuminspire",
             "description": "This platform allows you to execute quantum algorithms using the cQASM language.",
             "licence": "Apache 2.0",
@@ -1177,7 +1177,7 @@
             "group": "other"
         },
         "6": {
-            "name": "qiskit-toqm",
+            "name": "Qiskit TOQM",
             "url": "https://github.com/qiskit-toqm/qiskit-toqm",
             "description": "Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706",
             "licence": "Apache License 2.0",
@@ -1925,7 +1925,7 @@
             "group": "other"
         },
         "10": {
-            "name": "qiskit-bip-mapper",
+            "name": "Qiskit BIP Mapper",
             "url": "https://github.com/qiskit-community/qiskit-bip-mapper",
             "description": "This plugin solves the routing and layout problems as a binary integer programming (BIP) problem. This is an implementation of G. Nannicini et al. \"Optimal qubit assignment and routing via integer programming.\" (arXiv:2106.06446).",
             "licence": "Apache License 2.0",
@@ -1947,7 +1947,7 @@
             "group": "transpiler_plugin"
         },
         "11": {
-            "name": "quantum-tetris",
+            "name": "Quantum Tetris",
             "url": "https://github.com/olivierbrcknr/quantum-tetris",
             "description": "What would happen if you combine Tetris with a Quantum computer? The winning entry of the Quantum Design Jam from IBM and Parsons in October 2021 explores just that!",
             "licence": "Apache License 2.0",
@@ -1990,7 +1990,7 @@
             "group": "other"
         },
         "13": {
-            "name": "python-open-controls",
+            "name": "Q-CTRL Open Controls",
             "url": "https://github.com/qctrl/python-open-controls",
             "description": "Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature.",
             "licence": "Apache 2.0",
@@ -2740,7 +2740,7 @@
             "group": "other"
         },
         "16": {
-            "name": "qiskit-nature",
+            "name": "Qiskit Nature",
             "url": "https://github.com/qiskit-community/qiskit-nature",
             "description": "Qiskit Nature allows researchers and developers in different areas of natural sciences (including physics, chemistry, material science and biology) to model and solve domain-specific problems using quantum simulations",
             "licence": "Apache 2.0",
@@ -2782,7 +2782,7 @@
             "group": "applications"
         },
         "18": {
-            "name": "qiskit-algorithms",
+            "name": "Qiskit Algorithms",
             "url": "https://github.com/qiskit-community/qiskit-algorithms",
             "description": "Qiskit Algorithms is a library of quantum algorithms based on Qiskit, suitable to run on near-term quantum devices with short-depth circuits.",
             "licence": "Apache License 2.0",
@@ -2871,7 +2871,7 @@
             "group": "applications"
         },
         "19": {
-            "name": "sat-circuits-engine",
+            "name": "SAT Circuits Synthesis Engine",
             "url": "https://github.com/ohadlev77/sat-circuits-engine",
             "description": "A Python-Qiskit-based package that provides capabilities of easily generating, executing and analyzing quantum circuits for satisfiability problems according to user-defined constraints. The circuits generated by the program are based on Grover's algorithm and its amplitude-amplification generalization.",
             "licence": "Apache License 2.0",
@@ -2894,7 +2894,7 @@
             "group": "other"
         },
         "20": {
-            "name": "spinoza",
+            "name": "Spinoza",
             "url": "https://github.com/smu160/spinoza",
             "description": "Spinoza is a quantum state simulator (implemented in Rust) that is one of the fastest open-source simulators. Spinoza is implemented using a functional approach. Additionally, Spinoza has a QuantumCircuit object-oriented interface, which partially matches Qiskit's interface. Spinoza is capable of running in a myriad of computing environments (e.g., small workstations), and on various architectures. At this juncture, Spinoza only utilizes a single thread; however, it is designed to be easily extended into a parallel version, as well as a distributed version. The paper associated with Spinoza is available at arXiv:2303.01493.",
             "licence": "Apache License 2.0",
@@ -3384,7 +3384,7 @@
             "group": "other"
         },
         "24": {
-            "name": "qiskit-rigetti",
+            "name": "Qiskit Rigetti Provider",
             "url": "https://github.com/rigetti/qiskit-rigetti",
             "description": "Rigetti Provider for Qiskit.",
             "licence": "Apache 2.0",
@@ -3768,7 +3768,7 @@
             "group": "provider"
         },
         "25": {
-            "name": "kaleidoscope",
+            "name": "Kaleidoscope",
             "url": "https://github.com/QuSTaR/kaleidoscope",
             "description": "Kaleidoscope",
             "licence": "Apache 2.0",
@@ -4146,7 +4146,7 @@
             "group": "other"
         },
         "26": {
-            "name": "qiskit-nature-pyscf-dft-embedding",
+            "name": "Qiskit Nature PySCF DFT Embedding",
             "url": "https://github.com/mrossinek/qiskit-nature-pyscf-dft-embedding",
             "description": "This repository contains the latest prototype implementation of the Qiskit Nature + PySCF DFT Embedding. It is based on \"Quantum HF/DFT-embedding algorithms for electronic structure calculations: Scaling up to complex molecular systems\" (J. Chem. Phys. 154, 114105)",
             "licence": "Apache License 2.0",
@@ -4274,7 +4274,7 @@
             "group": "applications"
         },
         "27": {
-            "name": "bosonic-qiskit",
+            "name": "Bosonic Qiskit",
             "url": "https://github.com/C2QA/bosonic-qiskit",
             "description": "NQI C2QA project to simulate hybrid boson-qubit systems within Qiskit.",
             "licence": "BSD 2-Clause Simplified or FreeBSD license",
@@ -4462,7 +4462,7 @@
             "group": "applications"
         },
         "28": {
-            "name": "qiskit-metal",
+            "name": "Qiskit Metal",
             "url": "https://github.com/qiskit-community/qiskit-metal",
             "description": "Qiskit Metal is an open-source framework for engineers and scientists to design superconducting quantum devices with ease.",
             "licence": "Apache 2.0",
@@ -4482,7 +4482,7 @@
             "group": "other"
         },
         "29": {
-            "name": "qiskit-ionq",
+            "name": "Qiskit IonQ Provider",
             "url": "https://github.com/Qiskit-Partners/qiskit-ionq",
             "description": "This project contains a provider that allows access to IonQ ion trap quantum systems.",
             "licence": "Apache 2.0",
@@ -4721,7 +4721,7 @@
             "group": "provider"
         },
         "30": {
-            "name": "qiskit-finance",
+            "name": "Qiskit Finance",
             "url": "https://github.com/qiskit-community/qiskit-finance",
             "description": "Qiskit Finance is an open-source framework that contains uncertainty components for stock/securities problems, Ising translators for portfolio optimizations and data providers to source real or random data to finance experiments.",
             "licence": "Apache 2.0",
@@ -4742,7 +4742,7 @@
             "group": "applications"
         },
         "31": {
-            "name": "qiskit-cold-atom",
+            "name": "Qiskit Cold Atom",
             "url": "https://github.com/qiskit-community/qiskit-cold-atom",
             "description": "Qiskit-cold-atom builds on core Qiskit functionalities to integrate programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework. The project includes a provider and simulators for fermionic and spin-based systems.",
             "licence": "Apache 2.0",
@@ -6043,7 +6043,7 @@
             "group": "other"
         },
         "39": {
-            "name": "quantum-prototype-template",
+            "name": "Quantum Prototype Template",
             "url": "https://github.com/qiskit-community/quantum-prototype-template",
             "description": "A template repository for generating new quantum prototypes based on Qiskit.",
             "licence": "Apache License 2.0",
@@ -6275,7 +6275,7 @@
             "group": "applications"
         },
         "41": {
-            "name": "vqls-prototype",
+            "name": "Variational Quantum Linear Solver Prototype",
             "url": "https://github.com/QuantumApplicationLab/vqls-prototype",
             "description": "The Variational Quantum Linear Solver (VQLS) uses an optimization approach to solve linear systems of equations. The vqls-prototype allows to easily setup and deploy a VQLS instance on different backends through the use of qiskit primitives and the runtime library.",
             "licence": "Apache License 2.0",
@@ -6763,7 +6763,7 @@
             "group": "applications"
         },
         "44": {
-            "name": "mitiq",
+            "name": "Mitiq",
             "url": "https://github.com/unitaryfund/mitiq",
             "description": "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers.",
             "licence": "Apache 2.0",
@@ -7160,7 +7160,7 @@
             "group": "other"
         },
         "45": {
-            "name": "purplecaffeine",
+            "name": "PurpleCaffeine",
             "url": "https://github.com/IceKhan13/purplecaffeine",
             "description": "Project is aimed to create simple general interface to track quantum experiments, store and search them in an easy way.",
             "licence": "Apache License 2.0",
@@ -8030,7 +8030,7 @@
             "group": "other"
         },
         "51": {
-            "name": "qiskit-optimization",
+            "name": "Qiskit Optimization",
             "url": "https://github.com/qiskit-community/qiskit-optimization",
             "description": "Framework that covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit.",
             "licence": "Apache 2.0",
@@ -8993,7 +8993,7 @@
             "group": "other"
         },
         "1": {
-            "name": "circuit-knitting-toolbox",
+            "name": "Circuit Knitting Toolbox",
             "url": "https://github.com/Qiskit-Extensions/circuit-knitting-toolbox",
             "description": "Circuit Knitting is the process of decomposing a quantum circuit into smaller circuits, executing those smaller circuits on a quantum processor(s), and then knitting their results into a reconstruction of the original circuit's outcome. Circuit knitting includes techniques such as entanglement forging, circuit cutting, and classical embedding. The Circuit Knitting Toolbox (CKT) is a collection of such tools.",
             "licence": "Apache License 2.0",
@@ -9345,7 +9345,7 @@
             "group": "other"
         },
         "3": {
-            "name": "qiskit-qec",
+            "name": "Qiskit QEC",
             "url": "https://github.com/qiskit-community/qiskit-qec",
             "description": "Framework for Quantum Error Correction is an open-source framework for developers, experimentalist and theorists of Quantum Error Correction (QEC).",
             "licence": "Apache 2.0",
@@ -9369,7 +9369,7 @@
             "group": "other"
         },
         "4": {
-            "name": "quantum-serverless",
+            "name": "Quantum Serverless",
             "url": "https://github.com/Qiskit-Extensions/quantum-serverless",
             "description": "The Quantum Serverless package aims to allow developers to easily offload computations to cloud resources, without being experts in packaging code for remote execution environments.",
             "licence": "Apache License 2.0",
@@ -9419,7 +9419,7 @@
             "group": "other"
         },
         "5": {
-            "name": "qiskit-dynamics",
+            "name": "Qiskit Dynamics",
             "url": "https://github.com/Qiskit-Extensions/qiskit-dynamics",
             "description": "Dynamics is an open-source project for building, transforming, and solving time-dependent quantum systems in Qiskit.",
             "licence": "Apache 2.0",
@@ -9439,7 +9439,7 @@
             "group": "applications"
         },
         "6": {
-            "name": "Quantum kernel training",
+            "name": "Quantum Kernel Training",
             "url": "https://github.com/qiskit-community/prototype-quantum-kernel-training",
             "description": "The quantum kernel training (QKT) toolkit is designed to enable users to leverage quantum kernels for machine learning tasks; in particular, researchers who are interested in investigating quantum kernel training algorithms in their own research, as well as practitioners looking to explore and apply these algorithms to their machine learning applications.",
             "licence": "Apache 2.0",
@@ -9482,7 +9482,7 @@
             "group": "applications"
         },
         "7": {
-            "name": "qiskit-research",
+            "name": "Qiskit Research",
             "url": "https://github.com/qiskit-community/qiskit-research",
             "description": "This project contains modules for running quantum computing research experiments using Qiskit and the IBM Quantum Services, demonstrating by example best practices for running such experiments.",
             "licence": "Apache 2.0",
@@ -9504,7 +9504,7 @@
             "group": "other"
         },
         "8": {
-            "name": "Entanglement forging",
+            "name": "Entanglement Forging",
             "url": "https://github.com/qiskit-community/prototype-entanglement-forging",
             "description": "This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits.",
             "licence": "Apache 2.0",
@@ -9775,7 +9775,7 @@
             "group": "applications"
         },
         "9": {
-            "name": "qiskit-experiments",
+            "name": "Qiskit Experiments",
             "url": "https://github.com/Qiskit-Extensions/qiskit-experiments",
             "description": "Qiskit Experiments is an open-source project for running characterizing, calibrating, and benchmarking experiments in Qiskit.",
             "licence": "Apache 2.0",
@@ -9798,7 +9798,7 @@
     },
     "Main": {
         "0": {
-            "name": "qiskit-aer",
+            "name": "Qiskit Aer",
             "url": "https://github.com/Qiskit/qiskit-aer",
             "description": "Aer provides high-performance quantum computing simulators with realistic noise models.",
             "licence": "Apache 2.0",
@@ -9818,7 +9818,7 @@
             "group": "other"
         },
         "1": {
-            "name": "qiskit-ibm-runtime",
+            "name": "Qiskit IBM Runtime",
             "url": "https://github.com/qiskit/qiskit-ibm-runtime",
             "description": "This module provides the interface to access Qiskit Runtime.",
             "licence": "Apache 2.0",
@@ -9841,7 +9841,7 @@
             "group": "provider"
         },
         "2": {
-            "name": "qiskit-ibm-provider",
+            "name": "Qiskit IBM Provider",
             "url": "https://github.com/Qiskit/qiskit-ibm-provider",
             "description": "This project contains a provider that allows accessing the IBM Quantum systems and simulators.",
             "licence": "Apache 2.0",
