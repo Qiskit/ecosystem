@@ -71,13 +71,14 @@ body:
   - type: dropdown
     id: group
     attributes:
+      label: Group
       description: Which group your project belongs to on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
-    multiple: false
-    options:
-      - transpiler_plugin
-      - provider
-      - applications
-      - other
+      multiple: false
+      options:
+        - transpiler_plugin
+        - provider
+        - applications
+        - other
     validations:
       required: true
   - type: dropdown
