@@ -13,7 +13,7 @@ body:
     id: name
     attributes:
       label: Project name
-      description: Title of your project as it will appear on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem) (e.g. Qiskit IBM Runtime).
+      description: Title of your project as it will appear on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
       placeholder: Qiskit IBM Runtime
     validations:
       required: true
