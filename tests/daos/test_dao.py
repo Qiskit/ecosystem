@@ -325,4 +325,6 @@ class TestDao(TestCase):
             {"name": "label 4", "description": "description for label 4"},
         ]
         with open(self.labels_path, "w") as labels_file:
+            if not os.path.exists(self.labels_path):
+                os.makedirs(self.labels_path)
             json.dump(dummy_data, labels_file)
