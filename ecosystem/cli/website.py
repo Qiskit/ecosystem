@@ -24,7 +24,7 @@ class CliWebsite:
         self.dao = DAO(path=self.resources_dir)
 
     def build_website(self):
-        """Generates the ecosystem web page reading `members.json`."""
+        """Generates the ecosystem web page reading the TOML files."""
         environment = Environment(loader=FileSystemLoader("ecosystem/html_templates/"))
         projects = self.dao.storage.read()
         projects_sorted = sorted(
