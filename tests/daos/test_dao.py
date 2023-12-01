@@ -1,9 +1,7 @@
 """Tests for entities."""
 import os
-import shutil
 import json
 from unittest import TestCase
-from pathlib import Path
 
 from ecosystem.daos import DAO
 from ecosystem.models import TestResult, TestType, Tier
@@ -29,27 +27,10 @@ class TestDao(TestCase):
 
     def setUp(self) -> None:
         self.path = "../resources"
-        self.members_path = "{}/members.json".format(self.path)
         self.labels_path = "{}/labels.json".format(self.path)
-        self._delete_members_json()
+        if not os.path.exists(self.path):
+            os.makedirs(self.path)
         self._create_dummy_labels_json()
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
-
-    def tearDown(self) -> None:
-        self._delete_members_json()
-
-    def _delete_members_json(self):
-        """Deletes database file.
-        Function: Dao
-                -> delete
-        """
-        if os.path.exists(self.members_path):
-            os.remove(self.members_path)
-        if os.path.exists(self.path + "/members"):
-            shutil.rmtree(self.path + "/members")
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
 
     def _delete_labels_json(self):
         """Deletes labels file.
@@ -63,7 +44,6 @@ class TestDao(TestCase):
 
     def test_start_update(self):
         """Test update start for repo."""
-        self._delete_members_json()
         main_repo = get_main_repo()
         dao = DAO(self.path)
         dao.write(main_repo)
@@ -77,8 +57,6 @@ class TestDao(TestCase):
 
     def test_repository_insert_and_delete(self):
         """Tests repository."""
-        self._delete_members_json()
-
         main_repo = get_main_repo()
         dao = DAO(self.path)
 
@@ -95,7 +73,6 @@ class TestDao(TestCase):
 
     def test_latest_results(self):
         """Tests append of latest passed test results."""
-        self._delete_members_json()
         dao = DAO(self.path)
         main_repo = get_main_repo()
         dao.write(main_repo)
@@ -185,7 +162,6 @@ class TestDao(TestCase):
         Dao
                 -> add_repo_test_result
         """
-        self._delete_members_json()
         dao = DAO(self.path)
 
         main_repo = get_main_repo()
@@ -296,7 +272,6 @@ class TestDao(TestCase):
 
     def test_add_test_result_order(self):
         """Test order of test results."""
-        self._delete_members_json()
         dao = DAO(self.path)
 
         main_repo = get_main_repo()
@@ -334,27 +309,6 @@ class TestDao(TestCase):
         self.assertEqual(test_results[0].test_type, TestType.DEV_COMPATIBLE)
         self.assertEqual(test_results[1].test_type, TestType.STABLE_COMPATIBLE)
         self.assertEqual(test_results[2].test_type, TestType.STANDARD)
-
-    def test_compile_json(self):
-        """
-        Recompiles the JSON file, then checks it matches the read data.
-        """
-        self._delete_members_json()
-        dao = DAO(self.path)
-
-        # Dump JSON file
-        dao.compile_json()
-
-        # Open and check 1:1 correspondence
-        repo_list = dao.storage.read().values()
-        with open(Path(self.path, "members.json")) as file:
-            dumped_data = json.loads(file.read())
-
-        for tier in dumped_data.values():
-            for repo in tier.values():
-                self.assertIn(repo_list, Repository.from_dict(repo))
-        for repo in repo_list:
-            self.assertIn(dumped_data[repo.tier].values(), repo.to_dict())
 
     def assertLabelsFile(self, result):  # pylint: disable=invalid-name
         """Asserts the content of labels.json matches the result dict"""

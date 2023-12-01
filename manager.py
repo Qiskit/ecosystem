@@ -27,12 +27,7 @@ python manager.py ci parser_issue --body="${{ github.event.issue.body }}"
 python manager.py members add_repo_2db --repo_link="https://github.com/<ACCOUNT>/<REPOSITORY_NAME>" --repo_author="<ACCOUNT>" ...
 ```
 
-6. Recompile members.
-```shell
-python manager.py members recompile"
-```
-
-7. Build website.
+6. Build website.
 ```shell
 python manager.py website build_website"
 ```
