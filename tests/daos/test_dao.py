@@ -1,9 +1,7 @@
 """Tests for entities."""
 import os
-import shutil
 import json
 from unittest import TestCase
-from pathlib import Path
 
 from ecosystem.daos import DAO
 from ecosystem.models import TestResult, TestType, Tier
