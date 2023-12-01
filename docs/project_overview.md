@@ -113,20 +113,13 @@ ecosystem. Access to this file is handled through the
 [`DAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/dao.py)
 class.
 
-The qiskit.org page pulls information from the compiled
-[`members.json`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members.json))
-file. This file should be compiled automatically by an action on pushing to
-`main`, but you can also compile it locally (e.g. for testing) using
+To generate the webpage from the TOML files, run:
 
 ```sh
-python -m manager members recompile
+tox -e website
 ```
 
-You shouldn't edit `members.json` manually.
-
-If you somehow get a merge conflict in `members.json`, don't try to manually
-resolve the conflict. Instead, merge the branch, then run `python -m manager members
-recompile` and add the file to resolve the conflict.
+Then open `website/index.html` in your browser.
 
 ### Tests
 

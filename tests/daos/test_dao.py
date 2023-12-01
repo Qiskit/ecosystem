@@ -335,27 +335,6 @@ class TestDao(TestCase):
         self.assertEqual(test_results[1].test_type, TestType.STABLE_COMPATIBLE)
         self.assertEqual(test_results[2].test_type, TestType.STANDARD)
 
-    def test_compile_json(self):
-        """
-        Recompiles the JSON file, then checks it matches the read data.
-        """
-        self._delete_members_json()
-        dao = DAO(self.path)
-
-        # Dump JSON file
-        dao.compile_json()
-
-        # Open and check 1:1 correspondence
-        repo_list = dao.storage.read().values()
-        with open(Path(self.path, "members.json")) as file:
-            dumped_data = json.loads(file.read())
-
-        for tier in dumped_data.values():
-            for repo in tier.values():
-                self.assertIn(repo_list, Repository.from_dict(repo))
-        for repo in repo_list:
-            self.assertIn(dumped_data[repo.tier].values(), repo.to_dict())
-
     def assertLabelsFile(self, result):  # pylint: disable=invalid-name
         """Asserts the content of labels.json matches the result dict"""
         with open(self.labels_path, "r") as labels_file:

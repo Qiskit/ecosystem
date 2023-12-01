@@ -18,7 +18,7 @@ class CliMembers:
     Each public method of this class is CLI command
     and arguments for method are options/flags for this command.
 
-    Ex: `python manager.py members recompile --body="<SOME_MARKDOWN>"`
+    Ex: `python manager.py members update_badges`
     """
 
     def __init__(self, root_path: Optional[str] = None):
@@ -27,10 +27,6 @@ class CliMembers:
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
-
-    def recompile(self):
-        """Recompile `members.json` from human-readable files."""
-        self.dao.compile_json()
 
     def add_repo_2db(
         self,
