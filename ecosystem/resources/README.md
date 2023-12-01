@@ -1,5 +1,5 @@
-Ecosystem database
-==================
+Ecosystem data files
+====================
 
 This folder contains the actual ecosystem data.
 
