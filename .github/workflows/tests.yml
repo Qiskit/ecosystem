@@ -1,6 +1,6 @@
 name: Sourcecode tests
 
-on: [push, pull_request, workflow_dispatch]
+on: [pull_request, workflow_dispatch]
 
 jobs:
   lint:
@@ -46,6 +46,8 @@ jobs:
       run: |
         unset CI
         tox ${{ env.TOX_ENV }}
+    - name: Build website
+      run: tox -e website
   coverage:
     runs-on: ubuntu-latest
     steps:
