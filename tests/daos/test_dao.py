@@ -28,9 +28,9 @@ class TestDao(TestCase):
     def setUp(self) -> None:
         self.path = "../resources"
         self.labels_path = "{}/labels.json".format(self.path)
-        self._create_dummy_labels_json()
         if not os.path.exists(self.path):
             os.makedirs(self.path)
+        self._create_dummy_labels_json()
 
     def _delete_labels_json(self):
         """Deletes labels file.
@@ -323,6 +323,4 @@ class TestDao(TestCase):
             {"name": "label 4", "description": "description for label 4"},
         ]
         with open(self.labels_path, "w") as labels_file:
-            if not os.path.exists(self.labels_path):
-                os.makedirs(self.labels_path)
             json.dump(dummy_data, labels_file)
