@@ -10,11 +10,19 @@ body:
       value: |
         Provide information about your project.
   - type: input
+    id: name
+    attributes:
+      label: Project name
+      description: Title of your project as it will appear on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
+      placeholder: Qiskit IBM Runtime
+    validations:
+      required: true
+  - type: input
     id: repo
     attributes:
       label: Github repo
       description: Link to GitHub repo of project you want to submit
-      placeholder: https://github.com/Qiskit/qiskit-terra
+      placeholder: https://github.com/Qiskit/qiskit
     validations:
       required: true
   - type: textarea
@@ -22,7 +30,7 @@ body:
     attributes:
       label: Description
       description: |
-        A couple of sentences to appear under your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem), try to keep it under 50 words.
+        A couple of sentences to appear under your project on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem), try to keep it under 50 words.
         Note this **does not** support markdown.
       placeholder: |
         E.g. Use your GPU to compile huge quantum circuits in seconds. Supports all modern devices and operating systems.
@@ -69,10 +77,23 @@ body:
     validations:
       required: false
   - type: dropdown
+    id: group
+    attributes:
+      label: Group
+      description: Which group your project belongs to on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
+      multiple: false
+      options:
+        - transpiler_plugin
+        - provider
+        - applications
+        - other
+    validations:
+      required: true
+  - type: dropdown
     id: labels
     attributes:
       description: |
-        Labels are how users discover your project on [qiskit.org/ecosystem](https://qiskit.org/ecosystem).
+        Labels are how users discover your project on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
         If you don't think any existing labels apply to your project, leave a comment after submitting your issue requesting a new label.
       label: Labels
       multiple: true

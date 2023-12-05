@@ -4,7 +4,6 @@ DAO for json db.
 File structure:
 
     root_path
-    ├── members.json  # compiled file; don't edit manually
     └── members
         └── repo-name.toml
 """
@@ -88,7 +87,6 @@ class DAO:
         """
         self.storage = TomlStorage(path)
         self.labels_json_path = Path(path, "labels.json")
-        self.compiled_json_path = Path(path, "members.json")
 
     def write(self, repo: Repository):
         """
@@ -159,28 +157,6 @@ class DAO:
             json.dump(
                 sorted(new_label_list, key=lambda x: x["name"]), labels_file, indent=4
             )
-
-    def compile_json(self):
-        """
-        Dump database to JSON file for consumption by qiskit.org
-        Needs this structure:
-
-        { tier: {  # e.g. Main, Community
-            index: repo  # `repo` is data from repo-name.toml
-        }}
-
-        """
-        data = self.storage.read()
-
-        out = {}
-        for repo in data.values():
-            if repo.tier not in out:
-                out[repo.tier] = {}
-            index = str(len(out[repo.tier]))
-            out[repo.tier][index] = repo.to_dict()
-
-        with open(self.compiled_json_path, "w") as file:
-            json.dump(out, file, indent=4)
 
     def add_repo_test_result(self, repo_url: str, test_result: TestResult) -> None:
         """

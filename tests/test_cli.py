@@ -70,8 +70,6 @@ class TestCli(TestCase):
 
     def setUp(self) -> None:
         self.path = "../resources"
-        self.members_path = "{}/members.json".format(self.path)
-        self._delete_members_json()
         if not os.path.exists(self.path):
             os.makedirs(self.path)
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -83,16 +81,6 @@ class TestCli(TestCase):
             "{}/resources/issue_2.md".format(self.current_dir), "r"
         ) as issue_body_file:
             self.issue_body_2 = issue_body_file.read()
-
-    def tearDown(self) -> None:
-        self._delete_members_json()
-
-    def _delete_members_json(self):
-        """Deletes database file."""
-        if os.path.exists(self.members_path):
-            os.remove(self.members_path)
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
 
     def test_build_website(self):
         """Test the website builder function."""
@@ -201,7 +189,6 @@ class TestCli(TestCase):
 
     def test_update_badges(self):
         """Tests creating badges."""
-        self._delete_members_json()
 
         commu_success = get_community_repo()
         commu_failed = get_community_fail_repo()
