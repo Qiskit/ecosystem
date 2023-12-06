@@ -1,6 +1,6 @@
 name = "Qiskit TOQM"
 url = "https://github.com/qiskit-toqm/qiskit-toqm"
-description = "Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm, described in https://doi.org/10.1145/3445814.3446706"
+description = "Qiskit transpiler routing method using the Time-Optimal Qubit Mapping (TOQM) algorithm."
 licence = "Apache License 2.0"
 contact_info = "_No response_"
 alternatives = "_No response_"
@@ -13,6 +13,7 @@ coverages_results = []
 skip_tests = false
 stars = 6
 group = "transpiler_plugin"
+reference_paper = "https://doi.org/10.1145/3445814.3446706"
 [[tests_results]]
 passed = false
 test_type = "development"

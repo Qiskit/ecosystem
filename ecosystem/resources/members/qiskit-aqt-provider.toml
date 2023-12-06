@@ -1,18 +1,19 @@
 name = "Qiskit AQT Provider"
 url = "https://github.com/qiskit-community/qiskit-aqt-provider"
-description = "Qiskit provider for ion-trap quantum computers from Alpine Quantum Technologies (AQT). https://www.aqt.eu/qc-systems/"
+description = "Qiskit provider for ion-trap quantum computers from Alpine Quantum Technologies (AQT)."
 licence = "Apache License 2.0"
 contact_info = "info@aqt.eu"
 alternatives = "_No response_"
 affiliations = "Alpine Quantum Technologies GmbH"
 labels = [ "Provider",]
 tier = "Community"
-website = "https://qiskit-community.github.io/qiskit-aqt-provider/"
+website = "https://www.aqt.eu/qc-systems/"
 styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 26
 group = "provider"
+documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
 [[tests_results]]
 passed = true
 test_type = "development"

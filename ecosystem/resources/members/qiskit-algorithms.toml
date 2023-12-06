@@ -7,12 +7,12 @@ alternatives = "_No response_"
 affiliations = "IBM Quantum"
 labels = [ "Algorithms",]
 tier = "Community"
-website = "https://qiskit.org/ecosystem/algorithms"
 styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 41
 group = "applications"
+documentation = "https://qiskit.org/ecosystem/algorithms"
 [[tests_results]]
 passed = false
 test_type = "development"
