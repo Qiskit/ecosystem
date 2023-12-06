@@ -62,11 +62,10 @@ class CliWebsite:
                 (repo.url, "repository"),
                 (repo.website, "website"),
                 (repo.reference_paper, "paper"),
-                (repo.documentation, "documentation")
-                ):
+                (repo.documentation, "documentation"),
+            ):
                 if url:
                     links += templates["link"].render(url=url, place=link_text)
-
 
             # Card description
             if (
