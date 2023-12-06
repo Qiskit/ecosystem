@@ -16,6 +16,7 @@ skip_tests = true
 historical_test_results = []
 stars = 69
 group = "provider"
+documentation = "https://docs.quantum.ibm.com/api/qiskit-ibm-provider"
 
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
