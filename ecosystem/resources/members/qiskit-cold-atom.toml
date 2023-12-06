@@ -8,12 +8,12 @@ labels = [ "Provider", "Physics",]
 created_at = 1678827878.507531
 updated_at = 1678827878.507532
 tier = "Community"
-website = "https://qiskit-community.github.io/qiskit-cold-atom/"
 styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 25
 group = "provider"
+documentation = "https://qiskit-community.github.io/qiskit-cold-atom/"
 [[tests_results]]
 passed = false
 test_type = "development"
