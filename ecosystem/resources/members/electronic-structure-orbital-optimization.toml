@@ -1,6 +1,6 @@
-name = "electronic-structure-orbital-optimization"
+name = "Electronic Structure Orbital Optimization"
 url = "https://github.com/JoelHBierman/electronic-structure-orbital-optimization"
-description = "This repository contains a collection of methods which apply orbital optimization to quantum algorithms for finding ground and excited states of the electronic structure Hamiltonian. These methods optimize the underlying basis set through orbital rotations, enabling more accurate energies to be found while using as few qubits as possible."
+description = "Apply orbital optimization to quantum algorithms that solve electronic structure Hamiltonians. This collection of methods optimize the underlying basis set through orbital rotations, finding more accurate energies with fewer qubits."
 licence = "Apache License 2.0"
 contact_info = "joel.bierman@duke.edu"
 alternatives = "_No response_"
@@ -12,3 +12,4 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 historical_test_results = []
+group = "applications"
