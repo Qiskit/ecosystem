@@ -57,9 +57,16 @@ class CliWebsite:
                 tags += templates["tag"].render(color="purple", title=label, text=label)
 
             # Card links
-            links = templates["link"].render(url=repo.url, place="repository")
-            if repo.website:
-                links += templates["link"].render(url=repo.website, place="website")
+            links = ""
+            for url, link_text in (
+                (repo.url, "repository"),
+                (repo.website, "website"),
+                (repo.reference_paper, "paper"),
+                (repo.documentation, "documentation")
+                ):
+                if url:
+                    links += templates["link"].render(url=url, place=link_text)
+
 
             # Card description
             if (
