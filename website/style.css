@@ -15,16 +15,31 @@ body {
 }
 
 header {
-  padding: 24px 0px 24px 0px;
+  padding: 48px 0px 32px 0px;
   background-color: white;
 }
 
 .inside-header {
   padding: 0px 32px 0px 32px;
+  display: flex;
 }
 
-.ecosystem-logo {
-  width: 350px;
+.header-content{
+  width: fit-content;
+}
+
+.header-logo {
+  margin-right: 48px;
+}
+
+.ecosystem-title {
+  font-size: 60px;
+  line-height: 70px;
+  font-weight: 300;
+}
+
+.qiskit {
+  font-weight: 450;
 }
 
 .content {
@@ -80,7 +95,7 @@ p {
 }
 
 .title-description {
-  margin: 16px 0;
+  margin: 24px 0;
   width: 400px;
 }
 
@@ -156,17 +171,16 @@ p {
 
 @media only screen and (max-width: 1500px) {
   .card {
-    flex: 0 1 25%;
+    flex: 0 1 28%;
+  }
+  .header-logo {
+    margin-right: 16px;
   }
 }
 
 @media only screen and (max-width: 1200px) {
   .card {
-    flex: 0 1 40%;
-  }
-
-  .links {
-    flex-flow: row wrap;
+    flex: 0 1 42%;
   }
 }
 
@@ -176,11 +190,13 @@ p {
   }
 }
 
-@media only screen and (max-width: 400px) {
-  .ecosystem-logo {
-    width: 100%;
-    min-width: 200px;
+@media only screen and (max-width: 725px) {
+  .header-logo {
+    display: none;
   }
+}
+
+@media only screen and (max-width: 400px) {
   .title-description {
     width: auto;
   }  
