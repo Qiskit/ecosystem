@@ -29,7 +29,7 @@ header {
 }
 
 .header-logo {
-  margin-right: 48px;
+  margin-right: 80px;
 }
 
 .ecosystem-title {
@@ -43,16 +43,16 @@ header {
 }
 
 .content {
-  padding: 24px 32px 24px 32px;
+  padding: 48px 32px 48px 32px;
   margin-bottom: 16px;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 48px;
 }
 
 .card {
@@ -86,18 +86,21 @@ cds-tag {
 }
 
 .section {
-  font-size: 28px;
+  font-size: 20px;
   position: relative;
-  left: -24px;
+  left: -20px;
+  margin-bottom: 8px;
 }
 
 p {
   font-size: 14px;
+  color: #525252;
 }
 
 .title-description {
   margin: 24px 0;
   width: 400px;
+  color: black;
 }
 
 .links {
@@ -175,7 +178,7 @@ p {
     flex: 0 1 28%;
   }
   .header-logo {
-    margin-right: 16px;
+    margin-right: 48px;
   }
 }
 
