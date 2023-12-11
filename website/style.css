@@ -15,34 +15,50 @@ body {
 }
 
 header {
-  padding: 24px 0px 24px 0px;
+  padding: 48px 0px 32px 0px;
   background-color: white;
 }
 
 .inside-header {
   padding: 0px 32px 0px 32px;
+  display: flex;
 }
 
-.ecosystem-logo {
-  width: 350px;
+.header-content{
+  width: fit-content;
+}
+
+.header-logo {
+  margin-right: 80px;
+}
+
+.ecosystem-title {
+  font-size: 60px;
+  line-height: 70px;
+  font-weight: 300;
+}
+
+.header-qiskit-word {
+  font-weight: 450;
 }
 
 .content {
-  padding: 24px 32px 24px 32px;
+  padding: 48px 32px 48px 32px;
   margin-bottom: 16px;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
-  margin-top: 32px;
-  margin-bottom: 32px;
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 48px;
 }
 
 .card {
   flex: 0 1 20%;
   background-color: white;
+  border-radius: 4px;
 }
 
 cds-tile {
@@ -70,18 +86,21 @@ cds-tag {
 }
 
 .section {
-  font-size: 28px;
+  font-size: 20px;
   position: relative;
-  left: -24px;
+  left: -20px;
+  margin-bottom: 8px;
 }
 
 p {
   font-size: 14px;
+  color: #525252;
 }
 
 .title-description {
-  margin: 16px 0;
+  margin: 24px 0;
   width: 400px;
+  color: black;
 }
 
 .links {
@@ -156,17 +175,16 @@ p {
 
 @media only screen and (max-width: 1500px) {
   .card {
-    flex: 0 1 25%;
+    flex: 0 1 28%;
+  }
+  .header-logo {
+    margin-right: 48px;
   }
 }
 
 @media only screen and (max-width: 1200px) {
   .card {
-    flex: 0 1 40%;
-  }
-
-  .links {
-    flex-flow: row wrap;
+    flex: 0 1 42%;
   }
 }
 
@@ -176,11 +194,13 @@ p {
   }
 }
 
-@media only screen and (max-width: 400px) {
-  .ecosystem-logo {
-    width: 100%;
-    min-width: 200px;
+@media only screen and (max-width: 725px) {
+  .header-logo {
+    display: none;
   }
+}
+
+@media only screen and (max-width: 400px) {
   .title-description {
     width: auto;
   }  
