@@ -7,9 +7,63 @@ alternatives = "_No response_"
 affiliations = "_No response_"
 labels = [ "Circuit", "Converter", "Productivity",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 group = "other"
+[[tests_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7179138382"
+package_commit_hash = "7a411405ac3b5f2e107eabb8846475c38fdcaa07"
+qiskit_version = "unknown"
+timestamp = 1702371881.082891
+
+[[tests_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7179138382"
+qiskit_version = "unknown"
+timestamp = 1702371874.075509
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7179138382"
+qiskit_version = "unknown"
+timestamp = 1702371887.914537
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7179138382"
+qiskit_version = "unknown"
+timestamp = 1702371874.075509
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7179138382"
+package_commit_hash = "7a411405ac3b5f2e107eabb8846475c38fdcaa07"
+qiskit_version = "unknown"
+timestamp = 1702371881.082891
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7179138382"
+qiskit_version = "unknown"
+timestamp = 1702371887.914537
+
