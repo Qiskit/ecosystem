@@ -7,10 +7,73 @@ alternatives = "_No response_"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
 labels = [ "Machine learning",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 stars = 16
 group = "applications"
+[[tests_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7259585071"
+package_commit_hash = "f3fffc0611806787eb3cd2c812c4db696ecd2d38"
+qiskit_version = ""
+timestamp = 1702976873.228677
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7259585071"
+qiskit_version = "0.45.0"
+timestamp = 1702976929.765111
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7259585071"
+qiskit_version = "0.45.0"
+timestamp = 1702976682.211011
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7259585071"
+qiskit_version = "0.45.0"
+timestamp = 1702976927.785512
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7259585071"
+package_commit_hash = "f3fffc0611806787eb3cd2c812c4db696ecd2d38"
+qiskit_version = ""
+timestamp = 1702976873.228677
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7259585071"
+qiskit_version = "0.45.0"
+timestamp = 1702976682.211011
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7259585071"
+qiskit_version = "0.45.0"
+timestamp = 1702976927.785512
+
