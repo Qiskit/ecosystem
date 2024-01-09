@@ -7,10 +7,64 @@ alternatives = "_No response_"
 affiliations = "Supported by the Unitary Fund microgrant program: https://unitary.fund/grants/"
 labels = [ "Circuit simulator", "Converter", "Provider",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 group = "provider"
 documentation = "https://qiskit-qulacs.netlify.app/"
+[[tests_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7458851436"
+package_commit_hash = "d113a6af3d3889532bb412ed3419b5366ca7fc98"
+qiskit_version = ""
+timestamp = 1704791458.45381
+
+[[tests_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.1"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7458851436"
+qiskit_version = "0.45.1"
+timestamp = 1704791307.518432
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.1"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7458851436"
+qiskit_version = "0.45.1"
+timestamp = 1704791508.833682
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.1"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7458851436"
+qiskit_version = "0.45.1"
+timestamp = 1704791508.833682
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.1"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7458851436"
+qiskit_version = "0.45.1"
+timestamp = 1704791307.518432
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7458851436"
+package_commit_hash = "d113a6af3d3889532bb412ed3419b5366ca7fc98"
+qiskit_version = ""
+timestamp = 1704791458.45381
+
