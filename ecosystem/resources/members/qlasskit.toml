@@ -8,10 +8,64 @@ affiliations = "The project is partially funded by the UnitaryFund microgrant."
 labels = [ "Converter",]
 tier = "Community"
 website = "https://dakk.github.io/qlasskit/"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 stars = 33
 group = "other"
+[[tests_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7539252300"
+package_commit_hash = "0a860fd968959c80ad8a3a099b5ec15d2f1f6a6e"
+qiskit_version = "unknown"
+timestamp = 1705396361.137845
+
+[[tests_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.1"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7539252300"
+qiskit_version = "0.45.1"
+timestamp = 1705396353.69932
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7539252300"
+qiskit_version = "unknown"
+timestamp = 1705396367.13257
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7539252300"
+qiskit_version = "unknown"
+timestamp = 1705396367.13257
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7539252300"
+package_commit_hash = "0a860fd968959c80ad8a3a099b5ec15d2f1f6a6e"
+qiskit_version = "unknown"
+timestamp = 1705396361.137845
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.1"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7539252300"
+qiskit_version = "0.45.1"
+timestamp = 1705396353.69932
+
