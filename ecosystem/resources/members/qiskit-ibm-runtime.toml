@@ -1,6 +1,6 @@
 name = "Qiskit IBM Runtime"
 url = "https://github.com/qiskit/qiskit-ibm-runtime"
-description = "This module provides the interface to access Qiskit Runtime."
+description = "Run Qiskit primitives on IBM Quantum hardware with built-in error suppression and mitigation."
 licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
@@ -14,5 +14,6 @@ styles_results = []
 coverages_results = []
 skip_tests = true
 historical_test_results = []
-stars = 108
+stars = 116
 group = "provider"
+documentation = "https://docs.quantum.ibm.com/api/qiskit-ibm-runtime"

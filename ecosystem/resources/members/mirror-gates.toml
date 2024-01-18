@@ -7,12 +7,12 @@ alternatives = "_No response_"
 affiliations = "University of Pittsburgh"
 labels = [ "Paper implementation",]
 tier = "Community"
-website = "https://arxiv.org/abs/2308.03874"
 styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 3
 group = "transpiler_plugin"
+reference_paper = "https://arxiv.org/abs/2308.03874"
 [[tests_results]]
 passed = true
 test_type = "development"

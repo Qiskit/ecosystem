@@ -1,6 +1,6 @@
 name = "Qiskit IBM Provider"
 url = "https://github.com/Qiskit/qiskit-ibm-provider"
-description = "This project contains a provider that allows accessing the IBM Quantum systems and simulators."
+description = "Access IBM Quantum systems."
 licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
@@ -14,8 +14,9 @@ styles_results = []
 coverages_results = []
 skip_tests = true
 historical_test_results = []
-stars = 69
+stars = 71
 group = "provider"
+documentation = "https://docs.quantum.ibm.com/api/qiskit-ibm-provider"
 
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]

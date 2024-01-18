@@ -1,6 +1,6 @@
 name = "Qiskit Nature PySCF DFT Embedding"
 url = "https://github.com/mrossinek/qiskit-nature-pyscf-dft-embedding"
-description = "This repository contains the latest prototype implementation of the Qiskit Nature + PySCF DFT Embedding. It is based on \"Quantum HF/DFT-embedding algorithms for electronic structure calculations: Scaling up to complex molecular systems\" (J. Chem. Phys. 154, 114105)"
+description = "This repository contains the latest prototype implementation of the Qiskit Nature + PySCF DFT Embedding. It is based on \"Quantum HF/DFT-embedding algorithms for electronic structure calculations: Scaling up to complex molecular systems\"."
 licence = "Apache License 2.0"
 contact_info = "oss@zurich.ibm.com"
 alternatives = "_No response_"
@@ -14,6 +14,7 @@ coverages_results = []
 skip_tests = false
 stars = 4
 group = "applications"
+reference_paper = "https://pubs.aip.org/aip/jcp/article-abstract/154/11/114105/315377/Quantum-HF-DFT-embedding-algorithms-for-electronic"
 [[tests_results]]
 passed = false
 test_type = "development"
