@@ -7,10 +7,64 @@ alternatives = "_No response_"
 affiliations = "National University of Ireland Maynooth"
 labels = [ "Circuit simulator",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 group = "other"
 documentation = "https://soqcsadmin.github.io/QoptKIT/"
+[[tests_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7623336358"
+package_commit_hash = "937ca5b313f66ec36922bffb4b474474478ce729"
+qiskit_version = ""
+timestamp = 1706001184.963781
+
+[[tests_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.2"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7623336358"
+qiskit_version = "0.45.2"
+timestamp = 1706001086.983874
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.2"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7623336358"
+qiskit_version = "0.45.2"
+timestamp = 1706001213.16753
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.2"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7623336358"
+qiskit_version = "0.45.2"
+timestamp = 1706001213.16753
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.2"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7623336358"
+qiskit_version = "0.45.2"
+timestamp = 1706001086.983874
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7623336358"
+package_commit_hash = "937ca5b313f66ec36922bffb4b474474478ce729"
+qiskit_version = ""
+timestamp = 1706001184.963781
+
