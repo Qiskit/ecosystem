@@ -7,38 +7,5 @@ alternatives = "_No response_"
 labels = [ "Algorithms", "Circuit",]
 created_at = 1670427445.884067
 updated_at = 1670427445.884068
-tier = "Extensions"
-styles_results = []
-coverages_results = []
-skip_tests = true
-historical_test_results = []
 stars = 52
 group = "other"
-[[tests_results]]
-passed = false
-test_type = "development"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096614"
-package_commit_hash = "0df0d29fc44fb571e38530d20743a6e70e230865"
-qiskit_version = "unknown"
-timestamp = 1670427445.882592
-
-[[tests_results]]
-passed = false
-test_type = "stable"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096615"
-qiskit_version = "unknown"
-timestamp = 1670427445.884051
-
-[[tests_results]]
-passed = false
-test_type = "standard"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096587"
-qiskit_version = "unknown"
-timestamp = 1670427445.884055
-

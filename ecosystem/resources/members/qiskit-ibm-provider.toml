@@ -8,24 +8,6 @@ affiliations = "IBM"
 labels = [ "Provider", "Partner",]
 created_at = 1654696732.591266
 updated_at = 1654696732.591279
-tier = "Main"
-tests_results = []
-styles_results = []
-coverages_results = []
-skip_tests = true
-historical_test_results = []
 stars = 71
 group = "provider"
 documentation = "https://docs.quantum.ibm.com/api/qiskit-ibm-provider"
-
-[configuration]
-dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
-extra_dependencies = []
-debian_dependencies = []
-tests_command = [ "python -m unittest -v",]
-styles_check_command = [ "pylint -rn --rcfile=./.pylintrc test",]
-coverages_check_command = []
-
-[configuration.language]
-name = "python"
-versions = [ "3.7",]
