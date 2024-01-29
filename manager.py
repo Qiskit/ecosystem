@@ -27,7 +27,6 @@ if __name__ == "__main__":
     fire.Fire(
         {
             "members": CliMembers,
-            "tests": CliTests,
             "website": CliWebsite,
             "ci": CliCI,
         }
