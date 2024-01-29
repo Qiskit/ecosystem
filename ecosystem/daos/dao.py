@@ -4,7 +4,6 @@ DAO for json db.
 File structure:
 
     root_path
-    ├── members.json  # compiled file; don't edit manually
     └── members
         └── repo-name.toml
 """
@@ -13,7 +12,6 @@ from pathlib import Path
 import shutil
 import toml
 
-from ecosystem.models import TestResult, StyleResult, CoverageResult, TestType
 from ecosystem.models.repository import Repository
 
 
@@ -86,7 +84,6 @@ class DAO:
         """
         self.storage = TomlStorage(path)
         self.labels_json_path = Path(path, "labels.json")
-        self.compiled_json_path = Path(path, "members.json")
 
     def write(self, repo: Repository):
         """
@@ -96,18 +93,8 @@ class DAO:
         with self.storage as data:
             data[repo.url] = repo
 
-    def get_repos_by_tier(self, tier: str) -> list[Repository]:
-        """
-        Returns all repositories in specified tier.
-
-        Args:
-            tier: tier of the repo (MAIN, COMMUNITY, ...)
-        """
-        matches = [repo for repo in self.storage.read().values() if repo.tier == tier]
-        return matches
-
     def delete(self, repo_url: str):
-        """Deletes repository from tier.
+        """Deletes repository from database.
 
         Args:
             repo_url: repository url
@@ -123,6 +110,12 @@ class DAO:
         if url not in data:
             raise KeyError(f"No repo with URL '{url}'")
         return self.storage.read()[url]
+
+    def get_all(self) -> list[Repository]:
+        """
+        Returns list of all repositories.
+        """
+        return self.storage.read().values()
 
     def update(self, repo_url: str, **kwargs):
         """
@@ -156,102 +149,3 @@ class DAO:
             json.dump(
                 sorted(new_label_list, key=lambda x: x["name"]), labels_file, indent=4
             )
-
-    def compile_json(self):
-        """
-        Dump database to JSON file for consumption by qiskit.org
-        Needs this structure:
-
-        { tier: {  # e.g. Main, Community
-            index: repo  # `repo` is data from repo-name.toml
-        }}
-
-        """
-        data = self.storage.read()
-
-        out = {}
-        for repo in data.values():
-            if repo.tier not in out:
-                out[repo.tier] = {}
-            index = str(len(out[repo.tier]))
-            out[repo.tier][index] = repo.to_dict()
-
-        with open(self.compiled_json_path, "w") as file:
-            json.dump(out, file, indent=4)
-
-    def add_repo_test_result(self, repo_url: str, test_result: TestResult):
-        """
-        Adds test result to repository.
-        Overwrites the latest test results and adds to historical test results.
-
-        Args:
-            repo_url: url of the repo
-            test_result: TestResult from the tox -epy3.x
-        """
-        repo = self.get_by_url(repo_url)
-
-        # add new result and remove old from list
-        new_test_results = [
-            tr for tr in repo.tests_results if tr.test_type != test_result.test_type
-        ] + [test_result]
-
-        # add last working version
-        if test_result.test_type == TestType.STABLE_COMPATIBLE and test_result.passed:
-            last_stable_test_result = TestResult(
-                passed=True,
-                test_type=TestType.LAST_WORKING_VERSION,
-                package=test_result.package,
-                package_version=test_result.package_version,
-                logs_link=test_result.logs_link,
-            )
-            new_test_results_with_latest = [
-                tr
-                for tr in new_test_results
-                if tr.test_type != last_stable_test_result.test_type
-            ] + [last_stable_test_result]
-            new_test_results = new_test_results_with_latest
-
-        repo.tests_results = sorted(new_test_results, key=lambda r: r.test_type)
-
-        new_historical_test_results = [
-            tr
-            for tr in repo.historical_test_results
-            if tr.test_type != test_result.test_type
-            or tr.qiskit_version != test_result.qiskit_version
-        ] + [test_result]
-        repo.historical_test_results = new_historical_test_results
-        self.write(repo)
-
-    def add_repo_style_result(self, repo_url: str, style_result: StyleResult):
-        """
-        Adds style result for repository.
-
-        Args:
-            repo_url: url of the repo
-            style_result: StyleResult from the tox -elint
-        """
-        repo = self.get_by_url(repo_url)
-
-        new_style_results = [
-            tr for tr in repo.styles_results if tr.style_type != style_result.style_type
-        ] + [style_result]
-        repo.styles_results = new_style_results
-        self.write(repo)
-
-    def add_repo_coverage_result(self, repo_url: str, coverage_result: CoverageResult):
-        """
-        Adds coverage result for repository.
-
-        Args:
-            repo_url: url of the repo
-            coverage_result: CoverageResult from the tox -ecoverage
-        """
-        repo = self.get_by_url(repo_url)
-
-        new_coverage_results = [
-            tr
-            for tr in repo.coverages_results
-            if tr.coverage_type != coverage_result.coverage_type
-        ] + [coverage_result]
-        repo.coverages_results = new_coverage_results
-        self.write(repo)

@@ -1,8 +1,0 @@
-[run]
-omit =
-    # omit template files
-    .tox/*
-    .py3*/*
-    lint/*
-    coverage/*
-    .github/*

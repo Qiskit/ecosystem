@@ -42,28 +42,3 @@ class TestUtils(TestCase):
         self.assertEqual(
             parsed_result.labels, ["tool", "tutorial", "paper implementation"]
         )
-
-    def test_set_actions_output(self):
-        """Test set actions output."""
-        # Test ok -> ok
-        captured_output = io.StringIO()
-        with redirect_stdout(captured_output):
-            set_actions_output([("success", "this test is a success case!")])
-        output_value = captured_output.getvalue()
-        self.assertEqual(output_value, "success=this test is a success case!\n")
-
-        # Test ok -> ko
-        with self.assertRaises(AssertionError):
-            set_actions_output(
-                [
-                    (
-                        "fail",
-                        """
-                this test is a failed case,
-                why ?
-                because it's a multi-lines output
-                and GITHUB_OUTPUT doesn't like that!
-                """,
-                    )
-                ]
-            )
