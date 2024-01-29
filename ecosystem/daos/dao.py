@@ -13,6 +13,7 @@ from pathlib import Path
 import shutil
 import toml
 
+from ecosystem.utils import logger
 from ecosystem.models.repository import Repository
 
 

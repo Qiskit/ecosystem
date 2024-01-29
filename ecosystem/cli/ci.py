@@ -2,8 +2,6 @@
 import os
 from typing import Optional
 
-import requests
-
 from ecosystem.daos import DAO
 from ecosystem.utils import logger, parse_submission_issue
 from ecosystem.utils.utils import set_actions_output

@@ -20,7 +20,7 @@ Available commands:
 """
 import fire
 
-from ecosystem.cli import CliMembers, CliWebsite, CliCI, CliTests
+from ecosystem.cli import CliMembers, CliWebsite, CliCI
 
 
 if __name__ == "__main__":

@@ -1,7 +1,5 @@
 """Tests for entities."""
 import unittest
-from datetime import datetime
-from pprint import pprint
 
 from ecosystem.models.repository import Repository
 

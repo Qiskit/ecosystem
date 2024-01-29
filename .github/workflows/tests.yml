@@ -65,15 +65,3 @@ jobs:
       run: |
         unset CI
         tox -ecoverage
-
-  json-lint:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Install tox
-      run: |
-        python -m pip install --upgrade pip
-        pip install tox
-    - name: Validate JSON
-      run: tox -ejson
-

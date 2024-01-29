@@ -1,11 +1,9 @@
 """Tests for manager."""
 import os
-import io
 from unittest import TestCase
-from contextlib import redirect_stdout
 
 from ecosystem.models.repository import Repository
-from ecosystem.utils import parse_submission_issue, set_actions_output
+from ecosystem.utils import parse_submission_issue
 
 
 class TestUtils(TestCase):
