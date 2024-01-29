@@ -3,19 +3,32 @@
 Available commands:
 
 1. Get parse issue.
-```shell
-python manager.py parser_issue --body="${{ github.event.issue.body }}"
-```
+
+   ```shell
+   python manager.py ci parser_issue --body="${{ github.event.issue.body }}"
+   ```
 
 2. Add repo to tomldb.
-```shell
-python manager.py add_repo_2db --repo_link="https://github.com/<ACCOUNT>/<REPOSITORY_NAME>" --repo_author="<ACCOUNT>" ...
-```
+   ```shell
+   python manager.py members add_repo_2db --repo_link="https://github.com/<ACCOUNT>/<REPOSITORY_NAME>" --repo_author="<ACCOUNT>" ...
+   ```
+
+3. Build website.
+   ```shell
+   python manager.py website build_website"
+   ```
 """
 import fire
 
-from ecosystem import Manager
+from ecosystem.cli import CliMembers, CliWebsite, CliCI, CliTests
 
 
 if __name__ == "__main__":
-    fire.Fire(Manager)
+    fire.Fire(
+        {
+            "members": CliMembers,
+            "tests": CliTests,
+            "website": CliWebsite,
+            "ci": CliCI,
+        }
+    )

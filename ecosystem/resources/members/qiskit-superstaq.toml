@@ -9,6 +9,7 @@ created_at = 1678827878.760089
 updated_at = 1678827878.76009
 tier = "Community"
 skip_tests = false
+group = "provider"
 [[tests_results]]
 passed = true
 test_type = "development"
@@ -203,6 +204,7 @@ timestamp = 1678827878.749304
 [configuration]
 dependencies_files = [ "requirements.txt", "dev-requirements.txt",]
 extra_dependencies = [ "qiskit",]
+debian_dependencies = []
 tests_command = [ "pytest .  --ignore-glob=*_integration_test.py --ignore=examples/",]
 styles_check_command = [ "pylint --rcfile=.pylintrc examples qiskit-superstaq",]
 coverages_check_command = [ "pytest qiskit_superstaq --cov --cov-report=term-missing --cov-config=.coveragerc --cov-fail-under=100 --ignore-glob=*_integration_test.py --ignore=examples/",]

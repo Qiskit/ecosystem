@@ -9,14 +9,14 @@ name: Ecosystem | Submission check
 
 on:
   issues:
-    types: [opened, edited, reopened]
+    types: [opened, edited, reopened, closed]
 
 jobs:
   submission_workflow:
     concurrency:
       group: ci-${{ github.event.issue.title }}
       cancel-in-progress: true
-    if: startsWith(github.event.issue.title, '[Submission]:')
+    if: (startsWith(github.event.issue.title, '[Submission]:') && github.event.action != 'closed')
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
@@ -40,7 +40,7 @@ jobs:
       id: parse-issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
-      run: python manager.py parser_issue --body="$ISSUE_BODY"
+      run: python manager.py ci parser_issue --body="$ISSUE_BODY"
     - name: Tests stable check
       id: stable
       uses: ./.github/actions/run-tests
@@ -81,7 +81,7 @@ jobs:
         SUBMISSION_LABELS: ${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}
         SUBMISSION_WEBSITE: ${{ steps.parse-issue.outputs.SUBMISSION_WEBSITE }}
       run: |
-        python manager.py add_repo_2db --repo_name="$SUBMISSION_NAME" \
+        python manager.py members add_repo_2db --repo_name="$SUBMISSION_NAME" \
                                        --repo_link="$SUBMISSION_REPO" \
                                        --repo_description="$SUBMISSION_DESCRIPTION" \
                                        --repo_licence="$SUBMISSION_LICENCE" \
@@ -157,7 +157,6 @@ jobs:
 
     # PR labels and comment
     - name: "Label 'ready'"
-      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
       with:
@@ -169,12 +168,14 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-          github.rest.issues.removeLabel({
-            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["on hold"]
-          })
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes("on hold")) {
+            github.rest.issues.removeLabel({
+              issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ["on hold"]
+            })
+          }
           // Issue
           github.rest.issues.addLabels({
             issue_number: context.issue.number,
@@ -182,15 +183,16 @@ jobs:
             repo: context.repo.repo,
             labels: ["ready"]
           })
-          github.rest.issues.removeLabel({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["on hold"]
-          })
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes("on hold")) {
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ["on hold"]
+            })
+          }
 
     - name: "Label 'on hold'"
-      continue-on-error: true
       uses: actions/github-script@v6
       if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
       with:
@@ -202,12 +204,14 @@ jobs:
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-          github.rest.issues.removeLabel({
-            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["ready"]
-          })
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes('ready')) {
+            github.rest.issues.removeLabel({
+              issue_number: ${{ steps.cpr.outputs.pull-request-number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ["ready"]
+            })
+          }
           // Issue
           github.rest.issues.addLabels({
             issue_number: context.issue.number,
@@ -215,12 +219,14 @@ jobs:
             repo: context.repo.repo,
             labels: ["on hold"]
           })
-          github.rest.issues.removeLabel({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: ["ready"]
-          })
+          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes('ready')) {
+            github.rest.issues.removeLabel({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: ["ready"]
+            })
+          }
 
     - name: "PR: Post comment"
       uses: peter-evans/create-or-update-comment@v3
@@ -233,3 +239,31 @@ jobs:
       with:
         issue-number: ${{ github.event.issue.number }}
         body-path: "summary_output.md"
+
+  followup_workflow:
+    concurrency:
+      group: ci-${{ github.event.issue.title }}
+      cancel-in-progress: true
+    if: |
+      (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'closed'
+      && contains(github.event.issue.labels.*.name, 'submission')
+      && contains(github.event.issue.labels.*.name, 'ready'))
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create comment on success
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          hello @${{ github.event.issue.user.login }}! You joined the Qiskit Ecosystem a little while ago and I just wanted to check in and let you know of some follow up actions you can take to make the most of joining the program, if you're interested:
+
+          :speech_balloon: Join other Qiskit ecosystem developers in the [Slack channel #qiskit-ecosystem](https://qiskit.slack.com/archives/C04RHE56N93) (if you are not in the Qiskit workspace yet, you can sign up here: https://qisk.it/join-slack)
+
+          :brain: Help us define the future of the Qiskit Ecosystem: we recently started an RFC on how the Ecosystem should be structured. It is very draft-y at the moment, but you can subscribe for notifications here [Qiskit/RFCs#46](https://github.com/Qiskit/RFCs/pull/46) to participate in that discussion.
+
+          :mega: Would you like to showcase your project to the Qiskit community? A couple of things you can do to raise awareness for your project:
+
+          * [write a blog for your project](https://github.com/qiskit-community/ecosystem/wiki/Write-a-Blog-for-your-Project) (reach out to Abby Mitchell via slack or [email](mailto:abby.s.mitchell@ibm.com) if you'd like to be featured on the Qiskit Medium)
+          * Participate in [Qiskit Demoday](https://github.com/Qiskit/feedback/wiki/Qiskit-DemoDays). (reach out to Luciano Bello via slack or [email](mailto:BEL@zurich.ibm.com) to request a slot to demo your project)
+
+          Great having you as a part of the ecosystem!

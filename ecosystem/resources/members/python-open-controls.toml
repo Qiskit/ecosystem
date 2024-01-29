@@ -1,49 +1,50 @@
-name = "python-open-controls"
+name = "Q-CTRL Open Controls"
 url = "https://github.com/qctrl/python-open-controls"
-description = "Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature"
+description = "Q-CTRL Open Controls is an open-source Python package that makes it easy to create and deploy established error-robust quantum control protocols from the open literature."
 licence = "Apache 2.0"
 labels = [ "Hardware",]
 created_at = 1678827878.68594
 updated_at = 1678827878.68594
 tier = "Community"
 skip_tests = false
-stars = 89
+stars = 95
+group = "other"
 [[tests_results]]
 passed = true
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781825"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692696056.391948
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755874"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139173.811424
 
 [[tests_results]]
 passed = true
 test_type = "last passing version"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781825"
-qiskit_version = "0.44.1"
-timestamp = 1692696056.576225
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755874"
+qiskit_version = "0.44.2"
+timestamp = 1698139223.270685
 
 [[tests_results]]
 passed = true
 test_type = "stable"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781825"
-qiskit_version = "0.44.1"
-timestamp = 1692696056.57623
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755874"
+qiskit_version = "0.44.2"
+timestamp = 1698138766.213613
 
 [[tests_results]]
 passed = true
 test_type = "standard"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781825"
-qiskit_version = "0.44.1"
-timestamp = 1692696056.576234
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755874"
+qiskit_version = "0.44.2"
+timestamp = 1698139222.061688
 
 [[styles_results]]
 passed = false
@@ -268,32 +269,61 @@ passed = true
 test_type = "standard"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781825"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310543949"
 qiskit_version = "0.44.1"
-timestamp = 1692696056.576337
+timestamp = 1695719927.37986
 
 [[historical_test_results]]
 passed = true
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781825"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310543949"
 qiskit_version = "0.44.1"
-timestamp = 1692696056.576341
+timestamp = 1695719545.209856
 
 [[historical_test_results]]
 passed = true
 test_type = "development"
 package = "qiskit"
 package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781825"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545036452"
+package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
 qiskit_version = "0.45.0"
-timestamp = 1692696056.391948
+timestamp = 1697534338.558521
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755874"
+qiskit_version = "0.44.2"
+timestamp = 1698138766.213613
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755874"
+qiskit_version = "0.44.2"
+timestamp = 1698139222.061688
+
+[[historical_test_results]]
+passed = true
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755874"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139173.811424
 
 [configuration]
 dependencies_files = []
 extra_dependencies = [ "qiskit", "coverage", "numpy==1.*,>=1.20.0", "toml==0.*,>=0.10.0", "black==20.*,>=20.8.0.b1", "isort==5.*,>=5.7.0", "mypy==0.*,>=0.800.0", "nbval==0.*,>=0.9.5", "pre-commit==2.*,>=2.9.3", "pylint==2.*,>=2.6.0", "pylint-runner==0.*,>=0.5.4", "pytest==5.*,>=5.0.0", "qctrl-visualizer==2.*,>=2.12.2",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn qctrlopencontrols tests",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]

@@ -1,4 +1,4 @@
-"""Tests for manager cli."""
+"""Tests for cli."""
 import os
 import io
 from unittest import TestCase
@@ -6,8 +6,8 @@ from contextlib import redirect_stdout
 
 import responses
 
+from ecosystem.cli import CliCI, CliWebsite, CliMembers
 from ecosystem.daos import DAO
-from ecosystem.manager import Manager
 from ecosystem.models.repository import Repository
 
 
@@ -22,8 +22,8 @@ def get_community_repo() -> Repository:
     )
 
 
-class TestManager(TestCase):
-    """Test class for manager cli."""
+class TestCli(TestCase):
+    """Test class for cli."""
 
     def setUp(self) -> None:
         self.path = "../resources"
@@ -39,9 +39,14 @@ class TestManager(TestCase):
         ) as issue_body_file:
             self.issue_body_2 = issue_body_file.read()
 
+    def test_build_website(self):
+        """Test the website builder function."""
+        cli_website = CliWebsite(root_path=f"{os.path.abspath(os.getcwd())}/../")
+        self.assertIsInstance(cli_website.build_website(), str)
+
     def test_parser_issue(self):
         """Tests issue parsing function.
-        Function: Manager
+        Function: Cli
                 -> parser_issue
         Args:
             issue_body
@@ -50,7 +55,7 @@ class TestManager(TestCase):
         # Issue 1
         captured_output = io.StringIO()
         with redirect_stdout(captured_output):
-            Manager.parser_issue(self.issue_body)
+            CliCI.parser_issue(self.issue_body)
 
         output_value = captured_output.getvalue().split("\n")
 
@@ -80,7 +85,7 @@ class TestManager(TestCase):
         # Issue 2
         captured_output = io.StringIO()
         with redirect_stdout(captured_output):
-            Manager.parser_issue(self.issue_body_2)
+            CliCI.parser_issue(self.issue_body_2)
 
         output_value = captured_output.getvalue().split("\n")
 
@@ -114,14 +119,14 @@ class TestManager(TestCase):
         # insert entry
         dao.write(commu_success)
 
-        manager = Manager(root_path=os.path.join(self.current_dir, ".."))
-        manager.resources_dir = "../resources"
-        manager.dao = dao
+        cli_members = CliMembers(root_path=os.path.join(self.current_dir, ".."))
+        cli_members.resources_dir = "../resources"
+        cli_members.dao = dao
 
         # create badges
-        manager.update_badges()
+        cli_members.update_badges()
 
-        badges_folder_path = "{}/badges".format(manager.current_dir)
+        badges_folder_path = "{}/badges".format(cli_members.current_dir)
         self.assertTrue(
             os.path.isfile(f"{badges_folder_path}/{commu_success.name}.svg")
         )

@@ -9,16 +9,17 @@ created_at = 1678827878.240528
 updated_at = 1678827878.240528
 tier = "Community"
 skip_tests = false
-stars = 57
+stars = 60
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779030"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692696024.513507
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757522"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139343.700825
 
 [[tests_results]]
 passed = true
@@ -33,19 +34,19 @@ timestamp = 1692696024.685026
 passed = false
 test_type = "stable"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779030"
-qiskit_version = "0.44.1"
-timestamp = 1692696024.685031
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757522"
+qiskit_version = "0.44.2"
+timestamp = 1698138850.003291
 
 [[tests_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779030"
-qiskit_version = "0.44.1"
-timestamp = 1692696024.685034
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757522"
+qiskit_version = "0.44.2"
+timestamp = 1698139439.685505
 
 [[styles_results]]
 passed = true
@@ -291,35 +292,64 @@ timestamp = 1692696024.685145
 
 [[historical_test_results]]
 passed = false
-test_type = "standard"
-package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779030"
-qiskit_version = "0.44.1"
-timestamp = 1692696024.685152
-
-[[historical_test_results]]
-passed = false
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779030"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310544130"
 qiskit_version = "0.44.1"
-timestamp = 1692696024.685156
+timestamp = 1695719580.976353
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310544130"
+qiskit_version = "0.44.1"
+timestamp = 1695720034.002218
 
 [[historical_test_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779030"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545035845"
+package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
 qiskit_version = "0.45.0"
-timestamp = 1692696024.513507
+timestamp = 1697534511.538462
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757522"
+qiskit_version = "0.44.2"
+timestamp = 1698139439.685505
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757522"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139343.700825
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757522"
+qiskit_version = "0.44.2"
+timestamp = 1698138850.003291
 
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "qiskit", "coverage", "pylint", "black",]
+debian_dependencies = []
 tests_command = [ "pytest -v -x -m \"not slow\" test/", "pytest -v -x -m \"slow\" test/",]
 styles_check_command = [ "black --check c3/",]
 coverages_check_command = [ "pytest -x -v --cov=c3 --cov-report=xml test/",]

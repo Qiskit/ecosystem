@@ -1,6 +1,6 @@
-name = "Entanglement forging"
+name = "Entanglement Forging"
 url = "https://github.com/qiskit-community/prototype-entanglement-forging"
-description = "This module allows a user to simulate chemical and physical systems using a Variational Quantum Eigensolver (VQE) enhanced by Entanglement Forging. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of quantum bits."
+description = "Simulate larger chemical and physical systems using a Variational Quantum Eigensolver. Entanglement Forging doubles the size of the system that can be exactly simulated on a fixed set of qubits."
 licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
@@ -12,15 +12,16 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 30
+group = "applications"
 [[tests_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782607"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692696549.367447
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760554"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698140143.977066
 
 [[tests_results]]
 passed = true
@@ -35,19 +36,19 @@ timestamp = 1692696549.367459
 passed = false
 test_type = "stable"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782607"
-qiskit_version = "0.44.1"
-timestamp = 1692696549.367463
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760554"
+qiskit_version = "0.44.2"
+timestamp = 1698139722.304594
 
 [[tests_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = "0.35.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782607"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760554"
 qiskit_version = "0.35.0"
-timestamp = 1692696549.170347
+timestamp = 1698140218.816217
 
 [[historical_test_results]]
 passed = false
@@ -189,35 +190,55 @@ timestamp = 1692696549.36753
 
 [[historical_test_results]]
 passed = false
-test_type = "development"
-package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782607"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692696549.367538
-
-[[historical_test_results]]
-passed = false
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782607"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310548071"
 qiskit_version = "0.44.1"
-timestamp = 1692696549.367542
+timestamp = 1695720317.004089
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545042596"
+package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
+qiskit_version = "0.45.0"
+timestamp = 1697535273.464765
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760554"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698140143.977066
 
 [[historical_test_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = "0.35.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782607"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760554"
 qiskit_version = "0.35.0"
-timestamp = 1692696549.170347
+timestamp = 1698140218.816217
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760554"
+qiskit_version = "0.44.2"
+timestamp = 1698139722.304594
 
 [configuration]
 dependencies_files = []
 extra_dependencies = [ "qiskit>=0.35.0", "qiskit_nature>=0.3.2", "pyscf>=2.0.1", "h5py>=3.6.0", "pytest", "black==22.3.0",]
+debian_dependencies = []
 tests_command = [ "python -m pytest tests",]
 styles_check_command = [ "python -m black --check entanglement_forging tests",]
 coverages_check_command = []

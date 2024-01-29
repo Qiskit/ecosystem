@@ -1,40 +1,41 @@
-name = "pennylane-qiskit"
+name = "Pennylane-Qiskit"
 url = "https://github.com/PennyLaneAI/pennylane-qiskit"
-description = "The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities"
+description = "The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities."
 licence = "Apache 2.0"
 labels = [ "Converter",]
 created_at = 1678827878.782751
 updated_at = 1678827878.782752
 tier = "Community"
 skip_tests = false
-stars = 129
+stars = 141
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780308"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756813"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
 qiskit_version = "unknown"
-timestamp = 1692695490.799526
+timestamp = 1698138740.260072
 
 [[tests_results]]
 passed = false
 test_type = "stable"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780308"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756813"
 qiskit_version = "unknown"
-timestamp = 1692695490.799534
+timestamp = 1698138729.221521
 
 [[tests_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780308"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756813"
 qiskit_version = "unknown"
-timestamp = 1692695490.671455
+timestamp = 1698138750.98411
 
 [[styles_results]]
 passed = false
@@ -110,35 +111,36 @@ timestamp = 1692695490.799568
 
 [[historical_test_results]]
 passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756813"
+qiskit_version = "unknown"
+timestamp = 1698138750.98411
+
+[[historical_test_results]]
+passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780308"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756813"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
 qiskit_version = "unknown"
-timestamp = 1692695490.799574
+timestamp = 1698138740.260072
 
 [[historical_test_results]]
 passed = false
 test_type = "stable"
 package = "qiskit"
 package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780308"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756813"
 qiskit_version = "unknown"
-timestamp = 1692695490.799576
-
-[[historical_test_results]]
-passed = false
-test_type = "standard"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780308"
-qiskit_version = "unknown"
-timestamp = 1692695490.671455
+timestamp = 1698138729.221521
 
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "coverage", "pylint", "qiskit",]
+debian_dependencies = []
 tests_command = [ "pytest tests --tb=short",]
 styles_check_command = [ "pylint -rn pennylane_qiskit tests",]
 coverages_check_command = [ "python3 -m pytest tests --tb=short --cov=pennylane_qiskit --cov-report term-missing --cov-report=html:coverage_html_report",]

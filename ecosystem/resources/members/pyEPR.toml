@@ -13,11 +13,13 @@ styles_results = []
 coverages_results = []
 skip_tests = true
 historical_test_results = []
-stars = 140
+stars = 146
+group = "other"
 
 [configuration]
 dependencies_files = [ "requirements.txt",]
 extra_dependencies = [ "qiskit", "coverage", "pylint",]
+debian_dependencies = []
 tests_command = [ "pytest",]
 styles_check_command = [ "pylint -rn pyEPR",]
 coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]

@@ -25,7 +25,7 @@ to be executed from steps in Actions.
 Entrypoint is ``manager.py`` file in the root of repository.
 
 ```shell
-python manager.py <NAME_OF_FUNCTION_IN_MANAGER_FILE> <POSITIONAL_ARGUMENT> [FLAGS]
+python manager.py <CMD> <NAME_OF_FUNCTION_IN_MANAGER_FILE> <POSITIONAL_ARGUMENT> [FLAGS]
 ```
 
 ### Adding project to the ecosystem
@@ -38,6 +38,6 @@ Anyone can add their project for review to be included in the ecosystem by
 We store each member of the ecosystem as a TOML file under
 [`ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members);
 these are the files you should edit when adding / updating members to the
-ecosystem. Access to this file is handled through the
+ecosystem. Access to these files is handled programmatically through the
 [`DAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/dao.py)
 class.

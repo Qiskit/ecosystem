@@ -1,9 +1,7 @@
 """Tests for entities."""
 import os
-import shutil
 import json
 from unittest import TestCase
-from pathlib import Path
 
 from ecosystem.daos import DAO
 from ecosystem.models.repository import Repository
@@ -25,13 +23,12 @@ class TestDao(TestCase):
     """Tests repository related functions."""
 
     def setUp(self) -> None:
-        self.path = Path("../resources")
-        self.labels_path = self.path / "labels.json"
+        self.path = "../resources"
+        self.labels_path = f"{self.path}/labels.json"
         self._create_dummy_labels_json()
-        if not self.path.exists():
+        if not os.path.exists(self.path):
             os.makedirs(self.path)
-        if not self.labels_path.exists():
-            os.makedirs(self.labels_path)
+        self._create_dummy_labels_json()
 
     def _delete_labels_json(self):
         """Deletes labels file.
@@ -58,7 +55,6 @@ class TestDao(TestCase):
 
     def test_repository_insert_and_delete(self):
         """Tests repository."""
-
         main_repo = get_main_repo()
         dao = DAO(self.path)
 
@@ -84,5 +80,7 @@ class TestDao(TestCase):
             {"name": "label 2", "description": "description for label 2"},
             {"name": "label 4", "description": "description for label 4"},
         ]
+        if not os.path.exists(self.labels_path):
+            os.makedirs(self.labels_path)
         with open(self.labels_path, "w") as labels_file:
             json.dump(dummy_data, labels_file)

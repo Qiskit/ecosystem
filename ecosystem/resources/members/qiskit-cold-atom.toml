@@ -1,6 +1,6 @@
-name = "qiskit-cold-atom"
+name = "Qiskit Cold Atom"
 url = "https://github.com/qiskit-community/qiskit-cold-atom"
-description = "This project builds on this functionality to describe programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework."
+description = "Qiskit-cold-atom builds on core Qiskit functionalities to integrate programmable quantum simulators of trapped cold atoms in a gate- and circuit-based framework. The project includes a provider and simulators for fermionic and spin-based systems."
 licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
@@ -11,43 +11,45 @@ tier = "Community"
 styles_results = []
 coverages_results = []
 skip_tests = false
-stars = 23
+stars = 26
+group = "provider"
+documentation = "https://qiskit-community.github.io/qiskit-cold-atom/"
 [[tests_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780123"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692695880.293219
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755140"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139244.826846
 
 [[tests_results]]
 passed = true
 test_type = "last passing version"
 package = "qiskit"
-package_version = "0.41.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/4414048649"
-qiskit_version = "0.41.1"
-timestamp = 1692695880.437188
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755140"
+qiskit_version = "0.44.2"
+timestamp = 1698139310.496177
 
 [[tests_results]]
-passed = false
+passed = true
 test_type = "stable"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780123"
-qiskit_version = "0.44.1"
-timestamp = 1692695880.437192
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755140"
+qiskit_version = "0.44.2"
+timestamp = 1698138792.66062
 
 [[tests_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = ""
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780123"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755140"
 qiskit_version = ""
-timestamp = 1692695880.437195
+timestamp = 1698139309.354068
 
 [[historical_test_results]]
 passed = false
@@ -241,36 +243,56 @@ qiskit_version = "0.43.0"
 timestamp = 1692695880.437265
 
 [[historical_test_results]]
-passed = false
-test_type = "standard"
-package = "qiskit"
-package_version = ""
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780123"
-qiskit_version = ""
-timestamp = 1692695880.437271
-
-[[historical_test_results]]
-passed = false
+passed = true
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780123"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310545543"
 qiskit_version = "0.44.1"
-timestamp = 1692695880.437274
+timestamp = 1695719577.688871
 
 [[historical_test_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936780123"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545041837"
+package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
 qiskit_version = "0.45.0"
-timestamp = 1692695880.293219
+timestamp = 1697535062.255855
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755140"
+qiskit_version = "0.44.2"
+timestamp = 1698138792.66062
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755140"
+qiskit_version = ""
+timestamp = 1698139309.354068
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624755140"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139244.826846
 
 [configuration]
 dependencies_files = [ "requirements-dev.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "stestr run",]
 styles_check_command = [ "pylint -rn -j 0 --rcfile=./.pylintrc qiskit_cold_atom/ test/",]
 coverages_check_command = []

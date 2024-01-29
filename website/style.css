@@ -1,0 +1,207 @@
+* {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #f4f4f4;
+}
+
+body {
+  flex-flow: column nowrap;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+header {
+  padding: 48px 0px 32px 0px;
+  background-color: white;
+}
+
+.inside-header {
+  padding: 0px 32px 0px 32px;
+  display: flex;
+}
+
+.header-content{
+  width: fit-content;
+}
+
+.header-logo {
+  margin-right: 80px;
+}
+
+.ecosystem-title {
+  font-size: 60px;
+  line-height: 70px;
+  font-weight: 300;
+}
+
+.header-qiskit-word {
+  font-weight: 450;
+}
+
+.content {
+  padding: 48px 32px 48px 32px;
+  margin-bottom: 16px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.card {
+  flex: 0 1 20%;
+  background-color: white;
+  border-radius: 4px;
+}
+
+cds-tile {
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+  background-color: white;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tags {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+cds-tag {
+  margin-left: 0;
+}
+
+.project-title {
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: normal;
+}
+
+.section {
+  font-size: 20px;
+  position: relative;
+  left: -20px;
+  margin-bottom: 8px;
+}
+
+p {
+  font-size: 14px;
+  color: #525252;
+}
+
+.title-description {
+  margin: 24px 0;
+  width: 400px;
+  color: black;
+}
+
+.links {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 8px;
+}
+
+.description {
+  display: block;
+}
+
+.link svg {
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.text {
+  word-break: break-word;
+}
+
+.section-anchor {
+  display: inline;
+  visibility: hidden;
+  text-decoration:none;
+}
+
+.section:hover .section-anchor{
+  visibility: inherit;
+}
+
+
+/* ------------------------------
+* Read more button
+* ------------------------------ */
+
+.read-more-input {
+  visibility: hidden;
+  display: none;
+}
+
+.extra-text {
+  visibility: hidden;
+  display: none;
+}
+
+.read-more-input:checked ~ .text .extra-text {
+  visibility: inherit;
+  display: inline;
+}
+
+.read-more-input:checked ~ .text .ellipsis {
+  visibility: hidden;
+  display: none;
+}
+
+.read-more-input ~ .read-more-button:before {
+  content: "Read more";
+  text-decoration: underline;
+}
+
+.read-more-input:checked ~ .read-more-button:before {
+  content: "Read less";
+  text-decoration: underline;
+}
+
+.read-more-button {
+  cursor: pointer;
+}
+
+/* ------------------------------  */
+
+@media only screen and (max-width: 1500px) {
+  .card {
+    flex: 0 1 28%;
+  }
+  .header-logo {
+    margin-right: 48px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .card {
+    flex: 0 1 42%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .card {
+    flex: 0 1 95%;
+  }
+}
+
+@media only screen and (max-width: 725px) {
+  .header-logo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .title-description {
+    width: auto;
+  }  
+}

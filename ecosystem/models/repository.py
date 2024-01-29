@@ -25,6 +25,9 @@ class Repository(JsonSerializable):
     updated_at: int | None = None
     website: str | None = None
     stars: int | None = None
+    group: str | None = None
+    reference_paper: str | None = None
+    documentation: str | None = None
 
     def __post_init__(self):
         self.__dict__.setdefault("created_at", datetime.now().timestamp())

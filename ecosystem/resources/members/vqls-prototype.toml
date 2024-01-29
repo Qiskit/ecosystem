@@ -1,6 +1,6 @@
-name = "vqls-prototype"
+name = "Variational Quantum Linear Solver Prototype"
 url = "https://github.com/QuantumApplicationLab/vqls-prototype"
-description = "The Variational Quantum Linear Solver (VQLS) uses an optimization approach to solve linear systems of equations. The vqls-prototype allows to easily setup and deploy a VQLS instance on different backends through the use of qiskit primitives and the runtime library"
+description = "The Variational Quantum Linear Solver (VQLS) uses an optimization approach to solve linear systems of equations. The vqls-prototype allows to easily setup and deploy a VQLS instance on different backends through the use of qiskit primitives and the runtime library."
 licence = "Apache License 2.0"
 contact_info = "nicolas.gm.renaud@gmail.com"
 alternatives = "The prototype builds on the qiskit-textbook chapter and tutorial. The prototype allows to use the primitives and use different cost function and test circuits to optimize the parameters."
@@ -12,36 +12,46 @@ tier = "Community"
 styles_results = []
 coverages_results = []
 skip_tests = false
-stars = 2
+stars = 8
+group = "applications"
 [[tests_results]]
-passed = true
+passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692695887.724066
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "unknown"
+timestamp = 1698138861.890482
 
 [[tests_results]]
 passed = true
 test_type = "last passing version"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310547397"
 qiskit_version = "0.44.1"
-timestamp = 1692695887.724076
+timestamp = 1695720615.379427
 
 [[tests_results]]
-passed = true
+passed = false
 test_type = "stable"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
-qiskit_version = "0.44.1"
-timestamp = 1692695887.724079
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+qiskit_version = "unknown"
+timestamp = 1698138795.426884
 
 [[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+qiskit_version = "unknown"
+timestamp = 1698138928.234918
+
+[[historical_test_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
@@ -55,26 +65,54 @@ passed = true
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310547397"
 qiskit_version = "0.44.1"
-timestamp = 1692695887.724092
+timestamp = 1695720161.656866
 
 [[historical_test_results]]
 passed = true
 test_type = "development"
 package = "qiskit"
 package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310547397"
+package_commit_hash = "6e80e89e18da2691a86d4e2050db2e5479043b16"
 qiskit_version = "0.45.0"
-timestamp = 1692695887.724096
+timestamp = 1695720532.945335
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310547397"
+qiskit_version = "0.44.1"
+timestamp = 1695720614.196099
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "unknown"
+timestamp = 1698138861.890482
 
 [[historical_test_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
-package_version = ""
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936779850"
-qiskit_version = ""
-timestamp = 1692695887.580608
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+qiskit_version = "unknown"
+timestamp = 1698138928.234918
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "unknown"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624756179"
+qiskit_version = "unknown"
+timestamp = 1698138795.426884
 

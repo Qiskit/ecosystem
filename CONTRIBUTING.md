@@ -25,11 +25,11 @@ pip install -r requirements-dev.txt
 
 # Running the tests
 1. To run tests against the stable version of qiskit  <br/>
-<code> python manager.py stable_compatibility_tests <url_of_the github_repository></code>
+<code> python manager.py tests python_stable_tests <url_of_the github_repository> --python_version=py39 --run_name="stable"</code>
 2. To run tests against the dev version of qiskit  <br/>
-<code> python manager.py  dev_compatibility_tests  <url_of_the github_repository></code>
+<code> python manager.py  tests python_dev_tests  <url_of_the github_repository> --python_version=py39 --run_name="dev"</code>
 3. To run tests within repository  <br/>
-<code> python manager.py python_standard_tests <url_of_the github_repository></code>
+<code> python manager.py tests python_standard_tests <url_of_the github_repository> --python_version=py39 --run_name="standard"</code>
 
 # Performing style checks
 - Run for style checks 
@@ -41,6 +41,10 @@ pip install -r requirements-dev.txt
 - Run black 
    <code> tox -eblack </code>
 - To Fix the black violation  <code> black <PATH_FILE_YOU_WANT_TO_FIX> </code>
+
+# Create a preview of the website
+1. Build the website: `tox -ewebsite`
+2. Go to the `website/` folder in the root of your project and open up `index.html` in a browser
 
 # Guidance on git
 Please follow [this link](./docs/git-guidance.md) if this is your first time contributing to open source and/or you would like some guidance on how to create and/or merge

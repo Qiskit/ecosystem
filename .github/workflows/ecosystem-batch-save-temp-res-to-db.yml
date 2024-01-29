@@ -26,7 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Merge files and save to db
-      run: python manager.py process_temp_test_results_files --folder_name=${{ github.event.inputs.batch_folder }}
+      run: python manager.py tests process_temp_test_results_files --folder_name=${{ github.event.inputs.batch_folder }}
     - name: Commit changes
       run: |
         git pull --rebase --autostash

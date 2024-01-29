@@ -67,7 +67,7 @@ jobs:
         logs_link: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
 
     - name: Merge files and save to db
-      run: python manager.py process_temp_test_results_files --folder_name=${{ github.event.client_payload.branch_name }}
+      run: python manager.py tests process_temp_test_results_files --folder_name=${{ github.event.client_payload.branch_name }}
 
     - name: Commit changes
       run: |

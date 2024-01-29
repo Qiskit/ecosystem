@@ -1,6 +1,6 @@
 name = "qiskit-alt"
 url = "https://github.com/Qiskit-Extensions/qiskit-alt"
-description = "Python package uses a backend written in Julia to implement high performance features for standard Qiskit."
+description = "A Python package that uses a backend written in Julia to implement high performance features for standard Qiskit."
 licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
@@ -12,33 +12,34 @@ styles_results = []
 coverages_results = []
 skip_tests = false
 stars = 12
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782906"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692696429.383203
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760664"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698140180.474971
 
 [[tests_results]]
 passed = false
 test_type = "stable"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782906"
-qiskit_version = "0.44.1"
-timestamp = 1692696429.208664
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760664"
+qiskit_version = "0.44.2"
+timestamp = 1698139768.531675
 
 [[tests_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = ""
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782906"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760664"
 qiskit_version = ""
-timestamp = 1692696429.383219
+timestamp = 1698140224.315832
 
 [[historical_test_results]]
 passed = false
@@ -225,35 +226,55 @@ timestamp = 1692696429.383298
 
 [[historical_test_results]]
 passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310548203"
+qiskit_version = "0.44.1"
+timestamp = 1695720334.512771
+
+[[historical_test_results]]
+passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782906"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545042445"
+package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
 qiskit_version = "0.45.0"
-timestamp = 1692696429.383305
+timestamp = 1697535210.100717
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760664"
+qiskit_version = "0.44.2"
+timestamp = 1698139768.531675
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760664"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698140180.474971
 
 [[historical_test_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = ""
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782906"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624760664"
 qiskit_version = ""
-timestamp = 1692696429.383308
-
-[[historical_test_results]]
-passed = false
-test_type = "stable"
-package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936782906"
-qiskit_version = "0.44.1"
-timestamp = 1692696429.208664
+timestamp = 1698140224.315832
 
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-dev.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "pytest -p no:warnings --pyargs test",]
 styles_check_command = [ "pylint -rn src",]
 coverages_check_command = []

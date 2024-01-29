@@ -1,49 +1,50 @@
-name = "mitiq"
+name = "Mitiq"
 url = "https://github.com/unitaryfund/mitiq"
-description = "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers"
+description = "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers."
 licence = "Apache 2.0"
 labels = [ "Error mitigation",]
 created_at = 1678827878.932437
 updated_at = 1678827878.932437
 tier = "Community"
 skip_tests = false
-stars = 279
+stars = 307
+group = "other"
 [[tests_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778621"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692700417.456375
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757356"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698141541.05708
 
 [[tests_results]]
 passed = true
 test_type = "last passing version"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778621"
-qiskit_version = "0.44.1"
-timestamp = 1692700417.598927
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757356"
+qiskit_version = "0.44.2"
+timestamp = 1698142835.491791
 
 [[tests_results]]
 passed = true
 test_type = "stable"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778621"
-qiskit_version = "0.44.1"
-timestamp = 1692700417.598931
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757356"
+qiskit_version = "0.44.2"
+timestamp = 1698140032.534717
 
 [[tests_results]]
 passed = true
 test_type = "standard"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778621"
-qiskit_version = "0.44.1"
-timestamp = 1692700417.598934
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757356"
+qiskit_version = "0.44.2"
+timestamp = 1698142834.361218
 
 [[styles_results]]
 passed = false
@@ -301,35 +302,64 @@ timestamp = 1692700417.599029
 
 [[historical_test_results]]
 passed = true
-test_type = "stable"
-package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778621"
-qiskit_version = "0.44.1"
-timestamp = 1692700417.599036
-
-[[historical_test_results]]
-passed = true
 test_type = "standard"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778621"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310543400"
 qiskit_version = "0.44.1"
-timestamp = 1692700417.599039
+timestamp = 1695725359.365808
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.1"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310543400"
+qiskit_version = "0.44.1"
+timestamp = 1695721467.420674
 
 [[historical_test_results]]
 passed = false
 test_type = "development"
 package = "qiskit"
 package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936778621"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545036558"
+package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
 qiskit_version = "0.45.0"
-timestamp = 1692700417.456375
+timestamp = 1697537050.499594
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757356"
+qiskit_version = "0.44.2"
+timestamp = 1698140032.534717
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757356"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698141541.05708
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624757356"
+qiskit_version = "0.44.2"
+timestamp = 1698142834.361218
 
 [configuration]
 dependencies_files = [ "requirements.txt", "dev_requirements.txt",]
 extra_dependencies = [ "coverage", "pylint", "qiskit",]
+debian_dependencies = []
 tests_command = [ "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml --ignore=mitiq/interface/mitiq_pyquil",]
 styles_check_command = [ "pylint -rn mitiq",]
 coverages_check_command = [ "pytest -n auto -v --cov=mitiq --cov-report=term --cov-report=xml",]

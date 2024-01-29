@@ -1,34 +1,34 @@
-"""Manager class for controlling all CLI functions."""
+"""CliTests class for controlling all CLI functions."""
+from __future__ import annotations
+
+
 import glob
 import json
 import os
 import shutil
 import uuid
-from typing import Optional, List, Tuple, Union
 
 import requests
-from jinja2 import Environment, PackageLoader, select_autoescape
 
 from ecosystem.daos import DAO
 from ecosystem.models.repository import Repository
 from ecosystem.utils import logger, parse_submission_issue, set_actions_output
 
 
-class Manager:
-    """Manager class.
-    Entrypoint for all CLI commands.
+class CliTests:
+    """CliTests class.
+    Entrypoint for all CLI tests commands.
 
     Each public method of this class is CLI command
     and arguments for method are options/flags for this command.
 
-    Ex: `python manager.py parser_issue --body="<SOME_MARKDOWN>"`
+    Ex: `python manager.py tests python_stable_tests --body="<SOME_MARKDOWN>"`
     """
 
-    def __init__(self, root_path: Optional[str] = None):
-        """Manager class."""
+    def __init__(self, root_path: str | None):
+        """CliTests class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
-
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -106,8 +106,8 @@ class Manager:
         repo_contact: str,
         repo_alt: str,
         repo_affiliations: str,
-        repo_labels: Tuple[str],
-        repo_website: Optional[str] = None,
+        repo_labels: tuple[str],
+        repo_website: str | None,
     ) -> None:
         """Adds repo to list of entries.
 

@@ -1,0 +1,16 @@
+name = "QoptKIT"
+url = "https://github.com/SOQCSAdmin/QoptKIT"
+description = "Optical circuits in Qiskit. Translate Qiskit circuits to quantum-optical circuits made of phase shifters and beamsplitters, simulate the circuit, then translate the outcome back to a qubit encoding."
+licence = "Apache License 2.0"
+contact_info = "soqcslib@gmail.com"
+alternatives = "_No response_"
+affiliations = "National University of Ireland Maynooth"
+labels = [ "Circuit simulator",]
+tier = "Community"
+tests_results = []
+styles_results = []
+coverages_results = []
+skip_tests = false
+historical_test_results = []
+group = "other"
+documentation = "https://soqcsadmin.github.io/QoptKIT/"

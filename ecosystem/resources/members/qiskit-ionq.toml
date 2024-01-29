@@ -1,6 +1,6 @@
-name = "qiskit-ionq"
+name = "Qiskit IonQ Provider"
 url = "https://github.com/Qiskit-Partners/qiskit-ionq"
-description = "Project contains a provider that allows access to IonQ ion trap quantum systems."
+description = "This project contains a provider that allows access to IonQ ion trap quantum systems."
 licence = "Apache 2.0"
 contact_info = ""
 alternatives = ""
@@ -11,43 +11,44 @@ tier = "Community"
 styles_results = []
 coverages_results = []
 skip_tests = false
-stars = 30
+stars = 37
+group = "provider"
 [[tests_results]]
-passed = true
+passed = false
 test_type = "development"
 package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781939"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692696164.635205
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759628"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139929.64452
 
 [[tests_results]]
 passed = true
 test_type = "last passing version"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781939"
-qiskit_version = "0.44.1"
-timestamp = 1692696164.802138
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759628"
+qiskit_version = "0.44.2"
+timestamp = 1698139966.086275
 
 [[tests_results]]
 passed = true
 test_type = "stable"
 package = "qiskit"
-package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781939"
-qiskit_version = "0.44.1"
-timestamp = 1692696164.802141
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759628"
+qiskit_version = "0.44.2"
+timestamp = 1698139477.751113
 
 [[tests_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = ""
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781939"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759628"
 qiskit_version = ""
-timestamp = 1692696164.802144
+timestamp = 1698139964.592461
 
 [[historical_test_results]]
 passed = true
@@ -164,32 +165,52 @@ passed = true
 test_type = "stable"
 package = "qiskit"
 package_version = "0.44.1"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781939"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6310545781"
 qiskit_version = "0.44.1"
-timestamp = 1692696164.802187
+timestamp = 1695719750.502959
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6545039123"
+package_commit_hash = "62467839e8d4e263465c42118414e6e5eca3c776"
+qiskit_version = "0.45.0"
+timestamp = 1697534418.5786
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.44.2"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759628"
+qiskit_version = "0.44.2"
+timestamp = 1698139477.751113
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = "1.0.0"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759628"
+package_commit_hash = "fe3bffbc85a4fb57dc62ba04fa7f11bcefb5d75f"
+qiskit_version = "1.0.0"
+timestamp = 1698139929.64452
 
 [[historical_test_results]]
 passed = false
 test_type = "standard"
 package = "qiskit"
 package_version = ""
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781939"
+logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/6624759628"
 qiskit_version = ""
-timestamp = 1692696164.80219
-
-[[historical_test_results]]
-passed = true
-test_type = "development"
-package = "qiskit"
-package_version = "0.45.0"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/5936781939"
-package_commit_hash = "0b51250e219ca303654fc28a318c21366584ccd3"
-qiskit_version = "0.45.0"
-timestamp = 1692696164.635205
+timestamp = 1698139964.592461
 
 [configuration]
 dependencies_files = [ "requirements.txt", "requirements-test.txt",]
 extra_dependencies = []
+debian_dependencies = []
 tests_command = [ "python setup.py test",]
 styles_check_command = [ "pylint -rn --rcfile=./.pylintrc qiskit_ionq test",]
 coverages_check_command = []
