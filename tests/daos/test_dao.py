@@ -25,11 +25,13 @@ class TestDao(TestCase):
     """Tests repository related functions."""
 
     def setUp(self) -> None:
-        self.path = "../resources"
-        self.labels_path = "{}/labels.json".format(self.path)
+        self.path = Path("../resources")
+        self.labels_path = self.path / "labels.json"
         self._create_dummy_labels_json()
-        if not os.path.exists(self.path):
+        if not self.path.exists():
             os.makedirs(self.path)
+        if not self.labels_path.exists():
+            os.makedirs(self.labels_path)
 
     def _delete_labels_json(self):
         """Deletes labels file.
