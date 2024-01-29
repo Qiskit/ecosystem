@@ -1,5 +1,5 @@
 """Tests for entities."""
-import os
+from pathlib import Path
 import json
 from unittest import TestCase
 
@@ -23,11 +23,10 @@ class TestDao(TestCase):
     """Tests repository related functions."""
 
     def setUp(self) -> None:
-        self.path = "../resources"
-        self.labels_path = f"{self.path}/labels.json"
-        self._create_dummy_labels_json()
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
+        self.path = Path("../resources")
+        self.path.mkdir(exist_ok=True)
+
+        self.labels_path = self.path / "labels.json"
         self._create_dummy_labels_json()
 
     def _delete_labels_json(self):
@@ -35,10 +34,9 @@ class TestDao(TestCase):
         Function: Dao
                 -> delete
         """
-        if os.path.exists(self.labels_path):
-            os.remove(self.labels_path)
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
+        if self.labels_path.exists():
+            self.labels_path.unlink()
+        self.path.mkdir(exist_ok=True)
 
     def test_stars_update(self):
         """Test update stars for repo."""
@@ -80,7 +78,6 @@ class TestDao(TestCase):
             {"name": "label 2", "description": "description for label 2"},
             {"name": "label 4", "description": "description for label 4"},
         ]
-        if not os.path.exists(self.labels_path):
-            os.makedirs(self.labels_path)
+        self.labels_path.parent.mkdir(exist_ok=True)
         with open(self.labels_path, "w") as labels_file:
             json.dump(dummy_data, labels_file)
