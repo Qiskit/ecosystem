@@ -95,18 +95,8 @@ class DAO:
         with self.storage as data:
             data[repo.url] = repo
 
-    def get_repos_by_tier(self, tier: str) -> list[Repository]:
-        """
-        Returns all repositories in specified tier.
-
-        Args:
-            tier: tier of the repo (MAIN, COMMUNITY, ...)
-        """
-        matches = [repo for repo in self.storage.read().values() if repo.tier == tier]
-        return matches
-
     def delete(self, repo_url: str):
-        """Deletes repository from tier.
+        """Deletes repository from database.
 
         Args:
             repo_url: repository url
