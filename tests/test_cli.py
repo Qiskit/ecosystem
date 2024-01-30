@@ -6,6 +6,7 @@ from contextlib import redirect_stdout
 
 from ecosystem.cli import CliCI, CliWebsite, CliMembers
 from ecosystem.daos import DAO
+from ecosystem.models import Tier
 from ecosystem.models.repository import Repository
 
 
@@ -17,6 +18,7 @@ def get_community_repo() -> Repository:
         description="Mock description for repo. wsdt",
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
+        tier=Tier.COMMUNITY,
     )
 
 

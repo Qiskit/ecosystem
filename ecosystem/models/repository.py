@@ -5,6 +5,7 @@ import pprint
 from datetime import datetime
 from dataclasses import dataclass
 
+from .tier import Tier
 from .utils import JsonSerializable, new_list
 
 
@@ -23,6 +24,7 @@ class Repository(JsonSerializable):
     labels: list[str] = new_list()
     created_at: int | None = None
     updated_at: int | None = None
+    tier: str = Tier.COMMUNITY
     website: str | None = None
     stars: int | None = None
     group: str | None = None
@@ -46,7 +48,8 @@ class Repository(JsonSerializable):
 
     def __eq__(self, other: "Repository"):
         return (
-            self.url == other.url
+            self.tier == other.tier
+            and self.url == other.url
             and self.description == other.description
             and self.licence == other.licence
         )
@@ -55,4 +58,4 @@ class Repository(JsonSerializable):
         return pprint.pformat(self.to_dict(), indent=4)
 
     def __str__(self):
-        return f"Repository({self.name} | {self.url})"
+        return f"Repository({self.tier} | {self.name} | {self.url})"

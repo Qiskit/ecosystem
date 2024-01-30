@@ -6,6 +6,7 @@ from typing import Optional, Tuple
 import requests
 
 from ecosystem.daos import DAO
+from ecosystem.models import Tier
 from ecosystem.models.repository import Repository
 from ecosystem.utils import logger
 
@@ -37,6 +38,7 @@ class CliMembers:
         repo_alt: str,
         repo_affiliations: str,
         repo_labels: Tuple[str],
+        repo_tier: Optional[str] = None,
         repo_website: Optional[str] = None,
     ) -> None:
         """Adds repo to list of entries.
@@ -50,6 +52,7 @@ class CliMembers:
             repo_licence: repo licence
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
+            repo_tier: tier for repository
             repo_website: link to project website
         """
 
@@ -62,6 +65,7 @@ class CliMembers:
             repo_alt,
             repo_affiliations,
             list(repo_labels),
+            tier=repo_tier or Tier.COMMUNITY,
             website=repo_website,
         )
         self.dao.write(new_repo)
@@ -70,35 +74,37 @@ class CliMembers:
         """Updates badges for projects."""
         badges_folder_path = "{}/badges".format(self.current_dir)
 
-        for project in self.dao.get_all():
-            color = "blueviolet"
-            label = project.name
-            message = "Qiskit ecosystem"
-            url = (
-                f"https://img.shields.io/static/v1?"
-                f"label={label}&message={message}&color={color}"
-            )
+        for tier in Tier.all():
+            for project in self.dao.get_repos_by_tier(tier):
+                color = "blueviolet"
+                label = project.name
+                message = tier
+                url = (
+                    f"https://img.shields.io/static/v1?"
+                    f"label={label}&message={message}&color={color}"
+                )
 
-            shields_request = requests.get(url)
-            with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
-                outfile.write(shields_request.content)
-                self.logger.info("Badge for %s has been updated.", project.name)
+                shields_request = requests.get(url)
+                with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
+                    outfile.write(shields_request.content)
+                    self.logger.info("Badge for %s has been updated.", project.name)
 
     def update_stars(self):
         """Updates start for repositories."""
-        for project in self.dao.get_all():
-            stars = None
-            url = project.url[:-1] if project.url[-1] == "/" else project.url
-            url_chunks = url.split("/")
-            repo = url_chunks[-1]
-            user = url_chunks[-2]
+        for tier in Tier.all():
+            for project in self.dao.get_repos_by_tier(tier):
+                stars = None
+                url = project.url[:-1] if project.url[-1] == "/" else project.url
+                url_chunks = url.split("/")
+                repo = url_chunks[-1]
+                user = url_chunks[-2]
 
-            response = requests.get(f"http://api.github.com/repos/{user}/{repo}")
-            if not response.ok:
-                self.logger.warning("Bad response for project %s", project.url)
-                continue
+                response = requests.get(f"http://api.github.com/repos/{user}/{repo}")
+                if not response.ok:
+                    self.logger.warning("Bad response for project %s", project.url)
+                    continue
 
-            json_data = json.loads(response.text)
-            stars = json_data.get("stargazers_count")
-            self.dao.update(project.url, stars=stars)
-            self.logger.info("Updating star count for %s: %d", project.url, stars)
+                json_data = json.loads(response.text)
+                stars = json_data.get("stargazers_count")
+                self.dao.update(project.url, stars=stars)
+                self.logger.info("Updating star count for %s: %d", project.url, stars)
