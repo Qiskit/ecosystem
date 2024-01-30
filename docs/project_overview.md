@@ -41,3 +41,13 @@ these are the files you should edit when adding / updating members to the
 ecosystem. Access to these files is handled programmatically through the
 [`DAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/dao.py)
 class.
+
+### Webpage
+
+To generate the webpage from the TOML files, run:
+
+```sh
+tox -e website
+```
+
+Then open `website/index.html` in your browser. A GitHub action publishes the result of this command on every push to main.
