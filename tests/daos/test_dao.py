@@ -4,7 +4,6 @@ import json
 from unittest import TestCase
 
 from ecosystem.daos import DAO
-from ecosystem.models import Tier
 from ecosystem.models.repository import Repository
 
 
@@ -17,7 +16,6 @@ def get_main_repo() -> Repository:
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
         website="https://example.org",
-        tier=Tier.MAIN,
     )
 
 

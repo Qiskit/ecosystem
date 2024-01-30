@@ -20,7 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       tox_env: "py39"
-      tier: "Community"
       python-version: "3.9"
     steps:
     # setup deps
@@ -48,7 +47,6 @@ jobs:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
         test_type: "stable"
         tox_env: ${{ env.tox_env }}
-        tier: ${{ env.tier }}
         logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     - name: Tests dev check
       id: dev
@@ -57,7 +55,6 @@ jobs:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
         test_type: "development"
         tox_env: ${{ env.tox_env }}
-        tier: ${{ env.tier }}
         logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     - name: Tests standard repo check
       id: standard
@@ -66,7 +63,6 @@ jobs:
         repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
         test_type: "standard"
         tox_env: ${{ env.tox_env }}
-        tier: ${{ env.tier }}
         logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
     - name: Add member
