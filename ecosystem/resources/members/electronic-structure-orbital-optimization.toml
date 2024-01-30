@@ -7,10 +7,64 @@ alternatives = "_No response_"
 affiliations = "Duke University"
 labels = [ "Algorithms", "Chemistry",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 stars = 0
 group = "applications"
+[[tests_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682745"
+package_commit_hash = "bcc1307033eb176a817ccff1f32f7266c5d6ba66"
+qiskit_version = ""
+timestamp = 1706606220.727496
+
+[[tests_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.2"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682745"
+qiskit_version = "0.45.2"
+timestamp = 1706606040.631667
+
+[[tests_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.2"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682745"
+qiskit_version = "0.45.2"
+timestamp = 1706606431.750639
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682745"
+package_commit_hash = "bcc1307033eb176a817ccff1f32f7266c5d6ba66"
+qiskit_version = ""
+timestamp = 1706606220.727496
+
+[[historical_test_results]]
+passed = false
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.2"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682745"
+qiskit_version = "0.45.2"
+timestamp = 1706606431.750639
+
+[[historical_test_results]]
+passed = false
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.2"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682745"
+qiskit_version = "0.45.2"
+timestamp = 1706606040.631667
+
