@@ -7,10 +7,73 @@ alternatives = "_No response_"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
 labels = [ "Machine learning",]
 tier = "Community"
-tests_results = []
 styles_results = []
 coverages_results = []
 skip_tests = false
-historical_test_results = []
 stars = 18
 group = "applications"
+[[tests_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682095"
+package_commit_hash = "bcc1307033eb176a817ccff1f32f7266c5d6ba66"
+qiskit_version = ""
+timestamp = 1706605936.606465
+
+[[tests_results]]
+passed = true
+test_type = "last passing version"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682095"
+qiskit_version = "0.45.0"
+timestamp = 1706605992.182967
+
+[[tests_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682095"
+qiskit_version = "0.45.0"
+timestamp = 1706605777.320736
+
+[[tests_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682095"
+qiskit_version = "0.45.0"
+timestamp = 1706605990.159106
+
+[[historical_test_results]]
+passed = true
+test_type = "standard"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682095"
+qiskit_version = "0.45.0"
+timestamp = 1706605990.159106
+
+[[historical_test_results]]
+passed = true
+test_type = "stable"
+package = "qiskit"
+package_version = "0.45.0"
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682095"
+qiskit_version = "0.45.0"
+timestamp = 1706605777.320736
+
+[[historical_test_results]]
+passed = false
+test_type = "development"
+package = "qiskit"
+package_version = ""
+logs_link = "https://github.com/Qiskit/ecosystem/actions/runs/7708682095"
+package_commit_hash = "bcc1307033eb176a817ccff1f32f7266c5d6ba66"
+qiskit_version = ""
+timestamp = 1706605936.606465
+
