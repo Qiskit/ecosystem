@@ -3,7 +3,6 @@ import os
 from typing import Optional
 
 from ecosystem.daos import DAO
-from ecosystem.models import Tier
 from ecosystem.utils import logger, parse_submission_issue
 from ecosystem.utils.utils import set_actions_output
 
