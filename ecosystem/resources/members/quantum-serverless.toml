@@ -8,37 +8,5 @@ labels = [ "Software development kit",]
 created_at = 1670427445.627174
 updated_at = 1670427445.627175
 tier = "Extensions"
-styles_results = []
-coverages_results = []
-skip_tests = true
-historical_test_results = []
 stars = 36
 group = "other"
-[[tests_results]]
-passed = false
-test_type = "development"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096882"
-package_commit_hash = "0df0d29fc44fb571e38530d20743a6e70e230865"
-qiskit_version = "unknown"
-timestamp = 1670427445.627157
-
-[[tests_results]]
-passed = false
-test_type = "stable"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096844"
-qiskit_version = "unknown"
-timestamp = 1670427445.625689
-
-[[tests_results]]
-passed = false
-test_type = "standard"
-package = "qiskit"
-package_version = "unknown"
-logs_link = "https://github.com/qiskit-community/ecosystem/actions/runs/3628096823"
-qiskit_version = "unknown"
-timestamp = 1670427445.627162
-

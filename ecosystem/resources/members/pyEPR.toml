@@ -8,22 +8,5 @@ labels = [ "Hardware",]
 created_at = 1662470654.437653
 updated_at = 1662470654.437655
 tier = "Community"
-tests_results = []
-styles_results = []
-coverages_results = []
-skip_tests = true
-historical_test_results = []
 stars = 146
 group = "other"
-
-[configuration]
-dependencies_files = [ "requirements.txt",]
-extra_dependencies = [ "qiskit", "coverage", "pylint",]
-debian_dependencies = []
-tests_command = [ "pytest",]
-styles_check_command = [ "pylint -rn pyEPR",]
-coverages_check_command = [ "coverage3 -m pytest", "coverage3 report --fail-under=80",]
-
-[configuration.language]
-name = "python"
-versions = [ "3.6",]

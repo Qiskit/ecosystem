@@ -4,63 +4,20 @@ import io
 from unittest import TestCase
 from contextlib import redirect_stdout
 
-import responses
-
+from ecosystem.cli import CliCI, CliWebsite, CliMembers
 from ecosystem.daos import DAO
-from ecosystem.cli import CliCI, CliTests, CliMembers, CliWebsite
-from ecosystem.models import TestResult, Tier, TestType
+from ecosystem.models import Tier
 from ecosystem.models.repository import Repository
-from ecosystem.models.test_results import Package
 
 
 def get_community_repo() -> Repository:
     """Return main mock repo."""
     return Repository(
-        name="mock-qiskit-terra-with-success-dev-test",
+        name="mock-qiskit-terra",
         url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
         description="Mock description for repo. wsdt",
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
-        tests_results=[
-            TestResult(
-                passed=True,
-                test_type=TestType.DEV_COMPATIBLE,
-                package=Package.QISKIT,
-                package_version="0.18.0",
-            ),
-            TestResult(
-                passed=True,
-                test_type=TestType.STANDARD,
-                package=Package.QISKIT,
-                package_version="0.18.0",
-            ),
-        ],
-        tier=Tier.COMMUNITY,
-    )
-
-
-def get_community_fail_repo() -> Repository:
-    """Return main mock repo."""
-    return Repository(
-        name="mock-qiskit-terra-with-fail-dev-test",
-        url="https://github.com/MockQiskit/mock-qiskit-wsdt-fail.terra",
-        description="Mock description for repo. wsdt",
-        licence="Apache 2.0",
-        labels=["mock", "tests", "wsdt"],
-        tests_results=[
-            TestResult(
-                passed=False,
-                test_type=TestType.DEV_COMPATIBLE,
-                package=Package.QISKIT,
-                package_version="0.18.0",
-            ),
-            TestResult(
-                passed=False,
-                test_type=TestType.STANDARD,
-                package=Package.QISKIT,
-                package_version="0.18.0",
-            ),
-        ],
         tier=Tier.COMMUNITY,
     )
 
@@ -154,49 +111,13 @@ class TestCli(TestCase):
             "SUBMISSION_WEBSITE=None",
         )
 
-    @responses.activate
-    def test_dispatch_repository(self):
-        """Test github dispatch event.
-        Function: Cli
-                -> dispatch_check_workflow
-        Args:
-            Infos about repo
-        Return: response.status
-        """
-        owner = "qiskit-community"
-        repo = "ecosystem"
-        responses.add(
-            **{
-                "method": responses.POST,
-                "url": "https://api.github.com/repos/{owner}/{repo}/dispatches".format(
-                    owner=owner, repo=repo
-                ),
-                "body": '{"status": "ok"}',
-                "status": 200,
-                "content_type": "application/json",
-            }
-        )
-        cli_ci = CliCI(root_path=f"{os.path.abspath(os.getcwd())}/../")
-        response = cli_ci.dispatch_check_workflow(
-            repo_url="https://github.com/Qiskit-demo/qiskit-demo",
-            branch_name="awesome_branch",
-            tier="COMMUNITY",
-            token="<TOKEN>",
-            owner=owner,
-            repo=repo,
-        )
-        self.assertTrue(response)
-
     def test_update_badges(self):
         """Tests creating badges."""
-
         commu_success = get_community_repo()
-        commu_failed = get_community_fail_repo()
         dao = DAO(self.path)
 
         # insert entry
         dao.write(commu_success)
-        dao.write(commu_failed)
 
         cli_members = CliMembers(root_path=os.path.join(self.current_dir, ".."))
         cli_members.resources_dir = "../resources"
@@ -209,7 +130,6 @@ class TestCli(TestCase):
         self.assertTrue(
             os.path.isfile(f"{badges_folder_path}/{commu_success.name}.svg")
         )
-        self.assertTrue(os.path.isfile(f"{badges_folder_path}/{commu_failed.name}.svg"))
 
         # check version status
         with open(
@@ -218,57 +138,4 @@ class TestCli(TestCase):
             svg_success = svg_blueviolet.read()
         self.assertTrue('fill="blueviolet"' in svg_success)
 
-        with open(f"{badges_folder_path}/{commu_failed.name}.svg", "r") as svg_grey:
-            svg_failed = svg_grey.read()
-        self.assertTrue('fill="blueviolet"' not in svg_failed)
-
         os.remove(f"{badges_folder_path}/{commu_success.name}.svg")
-        os.remove(f"{badges_folder_path}/{commu_failed.name}.svg")
-
-    @responses.activate
-    def test_fetch_and_update_main_projects(self):
-        """Tests cli function for fetching tests results."""
-        owner = "Qiskit"
-        repos_and_test_names = [
-            ("qiskit-nature", "Nature%2520Unit%2520Tests"),
-            ("qiskit-finance", "Finance%2520Unit%2520Tests"),
-            ("qiskit-optimization", "Optimization%2520Unit%2520Tests"),
-            ("qiskit-machine-learning", "Machine%2520Learning%2520Unit%2520Tests"),
-            ("qiskit-experiments", "Tests"),
-            ("qiskit-aer", "Tests%2520Linux"),
-        ]
-
-        for repo, test_name in repos_and_test_names:
-            responses.add(
-                **{
-                    "method": responses.GET,
-                    "url": "https://api.github.com/repos/{owner}/{repo}/actions/runs"
-                    "?event=push&branch=main&name={test_name}&per_page=1".format(
-                        owner=owner, repo=repo, test_name=test_name
-                    ),
-                    "body": '{"status": "ok"}',
-                    "status": 200,
-                    "content_type": "application/json",
-                }
-            )
-        responses.add(
-            **{
-                "method": responses.GET,
-                "url": "https://raw.githubusercontent.com/Qiskit/"
-                "qiskit-terra/main/qiskit/VERSION.txt",
-                "body": "0.19.0",
-                "status": 200,
-            }
-        )
-        responses.add(
-            **{
-                "method": responses.GET,
-                "url": "https://api.github.com/repos/Qiskit/qiskit-terra/releases?per_page=1",
-                "body": '[{"tag_name": "0.18.3"}]',
-                "status": 200,
-                "content_type": "application/json",
-            }
-        )
-
-        cli_tests = CliTests(root_path=f"{os.path.abspath(os.getcwd())}/../")
-        self.assertIsNone(cli_tests.fetch_and_update_main_tests_results())

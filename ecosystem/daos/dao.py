@@ -14,7 +14,6 @@ import shutil
 import toml
 
 from ecosystem.utils import logger
-from ecosystem.models import TestResult, StyleResult, CoverageResult, TestType
 from ecosystem.models.repository import Repository
 
 
@@ -125,6 +124,12 @@ class DAO:
             return None
         return self.storage.read()[url]
 
+    def get_all(self) -> list[Repository]:
+        """
+        Returns list of all repositories.
+        """
+        return self.storage.read().values()
+
     def update(self, repo_url: str, **kwargs):
         """
         Update attributes of repository.
@@ -157,94 +162,3 @@ class DAO:
             json.dump(
                 sorted(new_label_list, key=lambda x: x["name"]), labels_file, indent=4
             )
-
-    def add_repo_test_result(self, repo_url: str, test_result: TestResult) -> None:
-        """
-        Adds test result to repository.
-        Overwrites the latest test results and adds to historical test results.
-
-        Args:
-            repo_url: url of the repo
-            test_result: TestResult from the tox -epy3.x
-        """
-        repo = self.get_by_url(repo_url)
-
-        if repo is None:
-            return None
-
-        # add new result and remove old from list
-        new_test_results = [
-            tr for tr in repo.tests_results if tr.test_type != test_result.test_type
-        ] + [test_result]
-
-        # add last working version
-        if test_result.test_type == TestType.STABLE_COMPATIBLE and test_result.passed:
-            last_stable_test_result = TestResult(
-                passed=True,
-                test_type=TestType.LAST_WORKING_VERSION,
-                package=test_result.package,
-                package_version=test_result.package_version,
-                logs_link=test_result.logs_link,
-            )
-            new_test_results_with_latest = [
-                tr
-                for tr in new_test_results
-                if tr.test_type != last_stable_test_result.test_type
-            ] + [last_stable_test_result]
-            new_test_results = new_test_results_with_latest
-
-        repo.tests_results = sorted(new_test_results, key=lambda r: r.test_type)
-
-        new_historical_test_results = [
-            tr
-            for tr in repo.historical_test_results
-            if tr.test_type != test_result.test_type
-            or tr.qiskit_version != test_result.qiskit_version
-        ] + [test_result]
-        repo.historical_test_results = new_historical_test_results
-        self.write(repo)
-        return None
-
-    def add_repo_style_result(self, repo_url: str, style_result: StyleResult) -> None:
-        """
-        Adds style result for repository.
-
-        Args:
-            repo_url: url of the repo
-            style_result: StyleResult from the tox -elint
-        """
-        repo = self.get_by_url(repo_url)
-
-        if repo is None:
-            return None
-
-        new_style_results = [
-            tr for tr in repo.styles_results if tr.style_type != style_result.style_type
-        ] + [style_result]
-        repo.styles_results = new_style_results
-        self.write(repo)
-        return None
-
-    def add_repo_coverage_result(
-        self, repo_url: str, coverage_result: CoverageResult
-    ) -> None:
-        """
-        Adds coverage result for repository.
-
-        Args:
-            repo_url: url of the repo
-            coverage_result: CoverageResult from the tox -ecoverage
-        """
-        repo = self.get_by_url(repo_url)
-
-        if repo is None:
-            return None
-
-        new_coverage_results = [
-            tr
-            for tr in repo.coverages_results
-            if tr.coverage_type != coverage_result.coverage_type
-        ] + [coverage_result]
-        repo.coverages_results = new_coverage_results
-        self.write(repo)
-        return None

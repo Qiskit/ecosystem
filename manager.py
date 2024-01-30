@@ -2,46 +2,31 @@
 
 Available commands:
 
-1. Run tests within repository.
-```shell
-python manager.py tests python_standard_tests https://github.com/<ACCOUNT>/<REPOSITORY_NAME> --tox_python=<py36,py37,py38,py39>
-```
+1. Get parse issue.
 
-2. Run tests against stable version of Qiskit.
-```shell
-python manager.py tests python_stable_tests https://github.com/<ACCOUNT>/<REPOSITORY_NAME> --tox_python=<py36,py37,py38,py39>
-```
+   ```shell
+   python manager.py ci parser_issue --body="${{ github.event.issue.body }}"
+   ```
 
-3. Run tests against dev version of Qiskit.
-```shell
-python manager.py tests python_dev_tests https://github.com/<ACCOUNT>/<REPOSITORY_NAME> --tox_python=<py36,py37,py38,py39>
-```
+2. Add repo to tomldb.
+   ```shell
+   python manager.py members add_repo_2db --repo_link="https://github.com/<ACCOUNT>/<REPOSITORY_NAME>" --repo_author="<ACCOUNT>" ...
+   ```
 
-4. Get parse issue.
-```shell
-python manager.py ci parser_issue --body="${{ github.event.issue.body }}"
-```
-
-5. Add repo to jsondb.
-```shell
-python manager.py members add_repo_2db --repo_link="https://github.com/<ACCOUNT>/<REPOSITORY_NAME>" --repo_author="<ACCOUNT>" ...
-```
-
-6. Build website.
-```shell
-python manager.py website build_website"
-```
+3. Build website.
+   ```shell
+   python manager.py website build_website"
+   ```
 """
 import fire
 
-from ecosystem.cli import CliMembers, CliWebsite, CliCI, CliTests
+from ecosystem.cli import CliMembers, CliWebsite, CliCI
 
 
 if __name__ == "__main__":
     fire.Fire(
         {
             "members": CliMembers,
-            "tests": CliTests,
             "website": CliWebsite,
             "ci": CliCI,
         }

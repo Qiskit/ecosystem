@@ -8,12 +8,7 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 - [Background](#background)
 - [Solution explanation](#solution-explanation)
   - [Adding project to the ecosystem](#adding-project-to-the-ecosystem)
-  - [Minimal requirements for projects](#minimal-requirements-for-projects)
-  - [Ecosystem tests configuration](#ecosystem-test-configuration)
-    - [Example of configured project](#example-of-configured-project)
   - [Storage](#storage)
-  - [Tests](#tests)
-  - [Workflow diagram](#workflow-diagram)
 
 ## Background
 
@@ -29,12 +24,6 @@ to be executed from steps in Actions.
 
 Entrypoint is ``manager.py`` file in the root of repository.
 
-Example of commands:
-```shell
-python manager.py tests python_dev_tests https://github.com/IceKhan13/demo-implementation --python_version=py39
-python manager.py tests python_stable_tests https://github.com/IceKhan13/demo-implementation --python_version=py39
-```
-or in general
 ```shell
 python manager.py <CMD> <NAME_OF_FUNCTION_IN_MANAGER_FILE> <POSITIONAL_ARGUMENT> [FLAGS]
 ```
@@ -43,66 +32,6 @@ python manager.py <CMD> <NAME_OF_FUNCTION_IN_MANAGER_FILE> <POSITIONAL_ARGUMENT>
 
 Anyone can add their project for review to be included in the ecosystem by
 [submitting issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=&template=submission.yml&title=%5BSubmission%5D%3A+).
-
-Once issue created GH Actions starts running tests for repository. 
-If all tests passed PR will be created automatically to add project to the ecosystem.
-If test failed GH Actions will comment in the created issue.
-
-Read [more on tests](#tests).
-
-#### Minimal requirements for projects
-
-By default project must have
-- `tests` folder and test runnable discoverable unittest in this folder.
-- `requirements.txt` file with list of dependencies for running tests and project
-
-Alternatively, minimal requirements for project might be overwritten by introducing [ecosystem test configuration](#ecosystem-test-configuration).
-
-#### Ecosystem test configuration
-
-In order to help CI to currectly run tests for your repository you can put `ecosystem.json` file in a root of your project.
-
-Structure of config file:
-- dependencies_files: list[string] - files with package dependencies (ex: requirements.txt, packages.json)
-- extra_dependencies: list[string] - names of additional packages to install before tests execution
-- language: string - programming language for tests env. Only supported lang is Python at this moment.
-- tests_command: list[string] - list of commands to execute tests
-
-Example of `ecosystem.json`:
-
-```json
-{
-    "dependencies_files": [
-        "requirements.txt",
-        "requirements-dev.txt"
-    ],
-    "extra_dependencies": [
-        "pytest"
-    ],
-    "debian_dependencies": [
-        "jq"
-    ],
-    "language": {
-        "name": "python",
-        "versions": ["3.9"]
-    },
-    "tests_command": [
-        "pytest"
-    ],
-    "styles_check_command": [
-        "pylint -rn src tests"
-    ],
-    "coverages_check_command": [
-        "coverage3 run -m pytest",
-        "coverage3 report --fail-under=80"
-    ]
-}
-```
-  
-Alternatively configuration is stored for each project in [the state of ecosystem](#storage). 
-
-##### Example of configured project: 
-https://github.com/mickahell/qiskit-ecosystem_template.
 
 ### Storage
 
@@ -113,41 +42,12 @@ ecosystem. Access to these files is handled programmatically through the
 [`DAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/dao.py)
 class.
 
+### Webpage
+
 To generate the webpage from the TOML files, run:
 
 ```sh
 tox -e website
 ```
 
-Then open `website/index.html` in your browser.
-
-### Tests
-
-There are 3 type of tests for project: `STANDARD`, `DEV` and `STABLE`. 
-
-`STANDARD` - runs tests with default requirements for project
-
-CLI command:
-```shell
-python manager.py tests python_standard_tests <REPO_URL> --run_name=<NAME_OF_RUN> --python_version=py39 --tier=<TIER>
-```
-
-`DEV` - runs tests with default requirements for project + dev version of qiskit-terra installed
-
-CLI command:
-```shell
-python manager.py tests python_dev_tests <REPO_URL> --run_name=<NAME_OF_RUN> --python_version=py39 --tier=<TIER>
-```
-
-`STABLE` - runs tests with default requirements for project + latest stable version of qiskit-terra installed
-
-CLI command:
-```shell
-python manager.py tests python_stable_tests <REPO_URL> --run_name=<NAME_OF_RUN> --python_version=py39 --tier=<TIER>
-```
-
-You can see full setup on test running in [GitHub Action](https://github.com/qiskit-community/ecosystem/blob/main/.github/actions/run-tests/action.yml)
-
-#### Workflow diagram
-
-![workflow](./images/ecosystem_architecture.png)
+Then open `website/index.html` in your browser. A GitHub action publishes the result of this command on every push to main.
