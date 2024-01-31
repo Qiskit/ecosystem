@@ -1,8 +1,11 @@
 """Tests for cli."""
-import os
 import io
+import os
+import shutil
+import tempfile
 from unittest import TestCase
 from contextlib import redirect_stdout
+from pathlib import Path
 
 from ecosystem.cli import CliCI, CliWebsite, CliMembers
 from ecosystem.daos import DAO
@@ -24,10 +27,13 @@ class TestCli(TestCase):
     """Test class for cli."""
 
     def setUp(self) -> None:
-        self.path = "../resources"
+        self.path = Path(tempfile.mkdtemp())
         if not os.path.exists(self.path):
             os.makedirs(self.path)
+        with open(self.path / "labels.json", "w") as f:
+            f.write("{}")
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
+        print(self.current_dir)
         with open(
             "{}/resources/issue.md".format(self.current_dir), "r"
         ) as issue_body_file:
@@ -36,6 +42,9 @@ class TestCli(TestCase):
             "{}/resources/issue_2.md".format(self.current_dir), "r"
         ) as issue_body_file:
             self.issue_body_2 = issue_body_file.read()
+
+    def tearDown(self) -> None:
+        shutil.rmtree(self.path)
 
     def test_build_website(self):
         """Test the website builder function."""
@@ -118,7 +127,7 @@ class TestCli(TestCase):
         dao.write(commu_success)
 
         cli_members = CliMembers(root_path=os.path.join(self.current_dir, ".."))
-        cli_members.resources_dir = "../resources"
+        cli_members.resources_dir = self.path
         cli_members.dao = dao
 
         # create badges
