@@ -30,8 +30,8 @@ class TestCli(TestCase):
         self.path = Path(tempfile.mkdtemp())
         if not os.path.exists(self.path):
             os.makedirs(self.path)
-        with open(self.path / "labels.json", "w") as f:
-            f.write("{}")
+        with open(self.path / "labels.json", "w") as file:
+            file.write("{}")
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
         print(self.current_dir)
         with open(
