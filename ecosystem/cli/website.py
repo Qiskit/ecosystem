@@ -1,5 +1,6 @@
 """CliWebsite class for controlling all CLI functions."""
 import os
+import json
 from typing import Optional
 
 from jinja2 import Environment, FileSystemLoader
@@ -22,6 +23,10 @@ class CliWebsite:
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
         self.dao = DAO(path=self.resources_dir)
+        with open(self.resources_dir + "/labels.json") as f:
+            self.label_descriptions = {
+                item["name"]: item["description"] for item in json.load(f)
+            }
 
     def build_website(self):
         """Generates the ecosystem web page reading the TOML files."""
@@ -54,7 +59,10 @@ class CliWebsite:
             # Card tags
             tags = ""
             for label in repo.labels:
-                tags += templates["tag"].render(color="purple", title=label, text=label)
+                explanation = self.label_descriptions[label]
+                tags += templates["tag"].render(
+                    color="purple", text=label, explanation=explanation
+                )
 
             # Card links
             links = ""
