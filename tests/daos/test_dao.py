@@ -1,4 +1,6 @@
 """Tests for entities."""
+import tempfile
+import shutil
 from pathlib import Path
 import json
 from unittest import TestCase
@@ -23,11 +25,14 @@ class TestDao(TestCase):
     """Tests repository related functions."""
 
     def setUp(self) -> None:
-        self.path = Path("../resources")
+        self.path = Path(tempfile.mkdtemp())
         self.path.mkdir(exist_ok=True)
 
         self.labels_path = self.path / "labels.json"
         self._create_dummy_labels_json()
+
+    def tearDown(self) -> None:
+        shutil.rmtree(self.path)
 
     def _delete_labels_json(self):
         """Deletes labels file.
