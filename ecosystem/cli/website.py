@@ -59,11 +59,14 @@ class CliWebsite:
         for _, repo in projects_sorted:
             # Card tags
             tags = ""
-            for label in repo.labels:
+            for index, label in enumerate(repo.labels):
                 tags += templates["tag"].render(
                     color="purple",
                     text=label,
                     tooltip=self.label_descriptions[label],
+                    # Sometimes tooltips are clipped by the browser window.
+                    # While not perfect, the following line solves 95% of cases
+                    alignment="bottom" if (index % 3) == 2 else "bottom-left",
                 )
 
             # Card links
