@@ -4,7 +4,7 @@ import io
 from unittest import TestCase
 from contextlib import redirect_stdout
 
-from ecosystem.cli import CliCI, CliWebsite, CliMembers
+from ecosystem.cli import CliCI, CliMembers
 from ecosystem.daos import DAO
 from ecosystem.models.repository import Repository
 

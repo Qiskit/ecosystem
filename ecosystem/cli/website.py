@@ -23,9 +23,9 @@ class CliWebsite:
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
         self.dao = DAO(path=self.resources_dir)
-        with open(self.resources_dir + "/labels.json") as f:
+        with open(self.resources_dir + "/labels.json") as file:
             self.label_descriptions = {
-                item["name"]: item["description"] for item in json.load(f)
+                item["name"]: item["description"] for item in json.load(file)
             }
 
     def build_website(self):
@@ -59,9 +59,10 @@ class CliWebsite:
             # Card tags
             tags = ""
             for label in repo.labels:
-                explanation = self.label_descriptions[label]
                 tags += templates["tag"].render(
-                    color="purple", text=label, explanation=explanation
+                    color="purple",
+                    text=label,
+                    explanation=self.label_descriptions[label],
                 )
 
             # Card links
