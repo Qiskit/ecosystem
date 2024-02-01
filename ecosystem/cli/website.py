@@ -23,9 +23,10 @@ class CliWebsite:
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
         self.dao = DAO(path=self.resources_dir)
-        with open(self.resources_dir + "/labels.json") as file:
-            self.label_descriptions = {
-                item["name"]: item["description"] for item in json.load(file)
+        self.label_descriptions = {
+                item["name"]: item["description"]
+                for item
+                in json.loads(Path(self.resources_dir, "labels.json").read_text())
             }
 
     def build_website(self):
