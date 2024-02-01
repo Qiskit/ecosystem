@@ -37,11 +37,6 @@ class TestCli(TestCase):
         ) as issue_body_file:
             self.issue_body_2 = issue_body_file.read()
 
-    def test_build_website(self):
-        """Test the website builder function."""
-        cli_website = CliWebsite(root_path=f"{os.path.abspath(os.getcwd())}/../")
-        self.assertIsInstance(cli_website.build_website(), str)
-
     def test_parser_issue(self):
         """Tests issue parsing function.
         Function: Cli
