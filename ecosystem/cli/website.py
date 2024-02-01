@@ -62,7 +62,7 @@ class CliWebsite:
                 tags += templates["tag"].render(
                     color="purple",
                     text=label,
-                    explanation=self.label_descriptions[label],
+                    tooltip=self.label_descriptions[label],
                 )
 
             # Card links
