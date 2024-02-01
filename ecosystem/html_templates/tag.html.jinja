@@ -1,1 +1,8 @@
-<cds-tag type="{{color}}" title="{{title}}" size="md">{{text}}</cds-tag>
+<cds-tooltip align="{{ alignment }}">
+  <div class="sb-tooltip-trigger" aria-labelledby="content">
+    <cds-tag type="{{color}}" title="" size="md">{{text}}</cds-tag>
+  </div>
+  <cds-tooltip-content id="content">
+    {{ tooltip }}
+  </cds-tooltip-content>
+</cds-tooltip>

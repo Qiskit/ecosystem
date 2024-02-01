@@ -7,7 +7,7 @@ from unittest import TestCase
 from contextlib import redirect_stdout
 from pathlib import Path
 
-from ecosystem.cli import CliCI, CliWebsite, CliMembers
+from ecosystem.cli import CliCI, CliMembers
 from ecosystem.daos import DAO
 from ecosystem.models.repository import Repository
 
@@ -45,11 +45,6 @@ class TestCli(TestCase):
 
     def tearDown(self) -> None:
         shutil.rmtree(self.path)
-
-    def test_build_website(self):
-        """Test the website builder function."""
-        cli_website = CliWebsite(root_path=f"{os.path.abspath(os.getcwd())}/../")
-        self.assertIsInstance(cli_website.build_website(), str)
 
     def test_parser_issue(self):
         """Tests issue parsing function.

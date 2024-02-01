@@ -1,5 +1,7 @@
 """CliWebsite class for controlling all CLI functions."""
 import os
+import json
+from pathlib import Path
 from typing import Optional
 
 from jinja2 import Environment, FileSystemLoader
@@ -22,9 +24,14 @@ class CliWebsite:
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
         self.dao = DAO(path=self.resources_dir)
+        self.label_descriptions = {
+            item["name"]: item["description"]
+            for item in json.loads(Path(self.resources_dir, "labels.json").read_text())
+        }
 
     def build_website(self):
         """Generates the ecosystem web page reading the TOML files."""
+        # pylint: disable=too-many-locals
         environment = Environment(loader=FileSystemLoader("ecosystem/html_templates/"))
         projects = self.dao.storage.read()
         projects_sorted = sorted(
@@ -53,8 +60,15 @@ class CliWebsite:
         for _, repo in projects_sorted:
             # Card tags
             tags = ""
-            for label in repo.labels:
-                tags += templates["tag"].render(color="purple", title=label, text=label)
+            for index, label in enumerate(repo.labels):
+                tags += templates["tag"].render(
+                    color="purple",
+                    text=label,
+                    tooltip=self.label_descriptions[label],
+                    # Sometimes tooltips are clipped by the browser window.
+                    # While not perfect, the following line solves 95% of cases
+                    alignment="bottom" if (index % 3) == 2 else "bottom-left",
+                )
 
             # Card links
             links = ""
