@@ -31,6 +31,7 @@ class CliWebsite:
 
     def build_website(self):
         """Generates the ecosystem web page reading the TOML files."""
+        # pylint: disable=too-many-locals
         environment = Environment(loader=FileSystemLoader("ecosystem/html_templates/"))
         projects = self.dao.storage.read()
         projects_sorted = sorted(
