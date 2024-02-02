@@ -1,8 +1,9 @@
 """CliWebsite class for controlling all CLI functions."""
-import os
-import json
 from pathlib import Path
 from typing import Optional
+import json
+import os
+import toml
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -22,12 +23,13 @@ class CliWebsite:
     def __init__(self, root_path: Optional[str] = None):
         """CliWebsite class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
-        self.dao = DAO(path=self.resources_dir)
+        resources_dir = Path(self.current_dir, "ecosystem/resources")
+        self.dao = DAO(path=resources_dir)
         self.label_descriptions = {
             item["name"]: item["description"]
-            for item in json.loads(Path(self.resources_dir, "labels.json").read_text())
+            for item in json.loads(Path(resources_dir, "labels.json").read_text())
         }
+        self.web_data = toml.loads((resources_dir / "website.toml").read_text())
 
     def build_website(self):
         """Generates the ecosystem web page reading the TOML files."""
@@ -47,12 +49,9 @@ class CliWebsite:
             "tag": environment.get_template("tag.html.jinja"),
             "link": environment.get_template("link.html.jinja"),
         }
-        sections = {
-            "transpiler_plugin": "",
-            "provider": "",
-            "applications": "",
-            "other": "",
-        }
+        sections = {group["id"]: group for group in self.web_data["groups"]}
+        for section in sections.values():
+            section.setdefault("html", "")
 
         max_chars_description_visible = 400
         min_chars_description_hidden = 100
@@ -107,11 +106,9 @@ class CliWebsite:
             )
 
             # Adding the card to a section
-            sections[repo.group] += card
+            sections[repo.group]["html"] += card
 
         return templates["website"].render(
-            section_transpiler_plugin_cards=sections["transpiler_plugin"],
-            section_provider_cards=sections["provider"],
-            section_applications_cards=sections["applications"],
-            section_other_cards=sections["other"],
+            header=self.web_data["header"],
+            sections=sections.values(),
         )
