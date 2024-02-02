@@ -22,48 +22,64 @@ class CliWebsite:
 
     def __init__(self, root_path: Optional[str] = None):
         """CliWebsite class."""
-        self.current_dir = root_path or os.path.abspath(os.getcwd())
-        resources_dir = Path(self.current_dir, "ecosystem/resources")
-        self.dao = DAO(path=resources_dir)
-        self.label_descriptions = {
+        pass
+
+    def _load_from_file(self, resources_dir: Path):
+        """
+        Loads:
+            * Projects list
+            * Website strings
+            * Label descriptions
+            * Jinja templates
+        """
+        # Projects list
+        dao = DAO(path=resources_dir)
+        projects = sorted(
+            dao.get_all(),
+            key=lambda item: (
+                -(item.stars or 0),
+                item.name,
+            ),
+        )
+
+        # Label descriptions
+        label_descriptions = {
             item["name"]: item["description"]
             for item in json.loads(Path(resources_dir, "labels.json").read_text())
         }
-        self.web_data = toml.loads((resources_dir / "website.toml").read_text())
 
-    def build_website(self):
-        """Generates the ecosystem web page reading the TOML files."""
-        # pylint: disable=too-many-locals
+        # Website strings
+        web_data = toml.loads((resources_dir / "website.toml").read_text())
+
+        # Jinja templates
         environment = Environment(loader=FileSystemLoader("ecosystem/html_templates/"))
-        projects = self.dao.storage.read()
-        projects_sorted = sorted(
-            projects.items(),
-            key=lambda item: (
-                -item[1].stars if item[1].stars is not None else 0,
-                item[1].name,
-            ),
-        )
         templates = {
             "website": environment.get_template("webpage.html.jinja"),
             "card": environment.get_template("card.html.jinja"),
             "tag": environment.get_template("tag.html.jinja"),
             "link": environment.get_template("link.html.jinja"),
         }
-        sections = {group["id"]: group for group in self.web_data["groups"]}
+        return projects, web_data, label_descriptions, templates
+
+    def _build_html(self, projects, web_data, label_descriptions, templates) -> str:
+        """
+        Take all data needed to build the website and produce a HTML string.
+        """
+        sections = {group["id"]: group for group in web_data["groups"]}
         for section in sections.values():
             section.setdefault("html", "")
 
         max_chars_description_visible = 400
         min_chars_description_hidden = 100
         count_read_more = 1
-        for _, repo in projects_sorted:
+        for repo in projects:
             # Card tags
             tags = ""
             for index, label in enumerate(repo.labels):
                 tags += templates["tag"].render(
                     color="purple",
                     text=label,
-                    tooltip=self.label_descriptions[label],
+                    tooltip=label_descriptions[label],
                     # Sometimes tooltips are clipped by the browser window.
                     # While not perfect, the following line solves 95% of cases
                     alignment="bottom" if (index % 3) == 2 else "bottom-left",
@@ -109,6 +125,16 @@ class CliWebsite:
             sections[repo.group]["html"] += card
 
         return templates["website"].render(
-            header=self.web_data["header"],
+            header=web_data["header"],
             sections=sections.values(),
         )
+
+    def build_website(self, resources: str, output: str):
+        """
+        Generates the ecosystem web page from data in `resources` dir, writing to `output` dir.
+        """
+        resources_dir = Path(resources)
+        html = self._build_html(*self._load_from_file(resources_dir))
+        with open(Path(output, "index.html"), "w") as f:
+            f.write(html)
+
