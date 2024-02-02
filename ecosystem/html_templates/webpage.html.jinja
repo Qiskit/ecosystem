@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Explore projects that use or extend Qiskit"
+      content="{{ header.description.short }}"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ header.title.bold }} {{ header.title.normal }}</title>
@@ -44,11 +44,11 @@
         <div class="header-content">
           <h1 class="ecosystem-title"><span class="header-qiskit-word">{{ header.title.bold }}</span> {{ header.title.normal }}</h1>
           <p class="title-description">
-             {{ header.description }}
+             {{ header.description.long }}
           </p>
 
-          <cds-button href="https://github.com/qiskit-community/ecosystem">
-            Add your project
+          <cds-button href="{{ header.add_project.link }}">
+            {{ header.add_project.text }}
             <span slot="icon" style="margin: 2px 0 -2px 0">
               <svg
                 focusable="false"
