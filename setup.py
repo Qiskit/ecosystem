@@ -11,6 +11,9 @@ with open('requirements.txt') as fp:
 setuptools.setup(
     name="ecosystem",
     description="Ecosystem",
+    entry_points = {
+        'console_scripts': ['ecosystem=ecosystem:main'],
+    },
     long_description=long_description,
     packages=setuptools.find_packages(),
     install_requires=install_requires,
