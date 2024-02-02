@@ -1,9 +1,9 @@
 """CliWebsite class for controlling all CLI functions."""
-import os
-import json
-import toml
 from pathlib import Path
 from typing import Optional
+import json
+import os
+import toml
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -50,8 +50,8 @@ class CliWebsite:
             "link": environment.get_template("link.html.jinja"),
         }
         sections = {group["id"]: group for group in self.web_data["groups"]}
-        for s in sections.values():
-            s.setdefault("html", "")
+        for section in sections.values():
+            section.setdefault("html", "")
 
         max_chars_description_visible = 400
         min_chars_description_hidden = 100
