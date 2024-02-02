@@ -1,0 +1,27 @@
+[header]
+title.bold = "Qiskit"
+title.normal = "ecosystem"
+description = "Explore projects and hardware providers that use the open-source Qiskit toolkit or are built on top of it. "
+
+add-project.text = "Add your project"
+add-project.link = "https://github.com/qiskit-community/ecosystem"
+
+[[groups]]
+title = "Transpiler plugins"
+id = "transpiler_plugin"
+description = "Compile and optimize your quantum circuits"
+
+[[groups]]
+title = "System providers"
+id = "provider"
+description = "Access IBM Quantum and 3rd party systems and simulators to the following providers"
+
+[[groups]]
+title = "Application packages"
+id = "applications"
+description = "Packages that help apply quantum technology to real-world use cases"
+
+[[groups]]
+title = "Additional projects"
+id = "other"
+description = "Cool projects that extend, interface with, or use Qiskit"
