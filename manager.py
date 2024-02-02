@@ -20,14 +20,14 @@ Available commands:
 """
 import fire
 
-from ecosystem.cli import CliMembers, CliWebsite, CliCI
+from ecosystem.cli import CliMembers, CliCI, build_website
 
 
 if __name__ == "__main__":
     fire.Fire(
         {
             "members": CliMembers,
-            "website": CliWebsite,
+            "build": build_website,
             "ci": CliCI,
         }
     )
