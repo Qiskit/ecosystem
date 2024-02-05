@@ -1,11 +1,15 @@
 """CliWebsite class for controlling all CLI functions."""
+from __future__ import annotations
+
+
 from pathlib import Path
 import json
 import toml
 
-from jinja2 import Environment, PackageLoader
+from jinja2 import Environment, PackageLoader, Template
 
 from ecosystem.daos import DAO
+from ecosystem.models.repository import Repository
 
 
 def build_website(resources: str, output: str):
@@ -17,13 +21,18 @@ def build_website(resources: str, output: str):
     Path(output, "index.html").write_text(html)
 
 
-def _load_from_file(resources_dir: Path):
+def _load_from_file(
+    resources_dir: Path,
+) -> tuple[
+    list[Repository], dict[str, str | dict], dict[str, str], dict[str, Template]
+]:
     """
-    Loads:
-        * Projects list
-        * Website strings
-        * Label descriptions
-        * Jinja templates
+    Loads website data from file.
+    Returns:
+        * Projects: List of Repository objects from `members` folder.
+        * Web data: Strings (title / descriptions etc.) from `website.toml`.
+        * Label descriptions: from `labels.json`.
+        * Jinja templates: from `html_templates` folder.
     """
     # Projects list
     dao = DAO(path=resources_dir)
