@@ -5,6 +5,7 @@ from ecosystem.cli import CliMembers, CliCI, build_website
 
 
 def main():
+    # pylint: disable=missing-function-docstring
     fire.Fire(
         {
             "members": CliMembers,
