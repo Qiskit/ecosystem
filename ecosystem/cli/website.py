@@ -7,6 +7,7 @@ from jinja2 import Environment, PackageLoader
 
 from ecosystem.daos import DAO
 
+
 def build_website(resources: str, output: str):
     """
     Generates the ecosystem web page from data in `resources` dir, writing to `output` dir.
@@ -15,6 +16,7 @@ def build_website(resources: str, output: str):
     html = _build_html(*_load_from_file(resources_dir))
     with open(Path(output, "index.html"), "w") as file:
         file.write(html)
+
 
 def _load_from_file(resources_dir: Path):
     """
@@ -52,6 +54,7 @@ def _load_from_file(resources_dir: Path):
         "link": environment.get_template("link.html.jinja"),
     }
     return projects, web_data, label_descriptions, templates
+
 
 def _build_html(projects, web_data, label_descriptions, templates) -> str:
     """
