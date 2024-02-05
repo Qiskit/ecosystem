@@ -3,7 +3,7 @@ from pathlib import Path
 import json
 import toml
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, PackageLoader
 
 from ecosystem.daos import DAO
 
@@ -44,7 +44,7 @@ def _load_from_file(resources_dir: Path):
     web_data = toml.loads((resources_dir / "website.toml").read_text())
 
     # Jinja templates
-    environment = Environment(loader=FileSystemLoader("ecosystem/html_templates/"))
+    environment = Environment(loader=PackageLoader("ecosystem", "html_templates/"))
     templates = {
         "website": environment.get_template("webpage.html.jinja"),
         "card": environment.get_template("card.html.jinja"),

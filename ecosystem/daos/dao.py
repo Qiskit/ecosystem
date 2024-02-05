@@ -43,7 +43,7 @@ class TomlStorage:
         { url (str): repo (Repository) }
         """
         data = {}
-        for path in self.toml_dir.glob("*"):
+        for path in self.toml_dir.glob("*.toml"):
             repo = Repository.from_dict(toml.load(path))
             data[repo.url] = repo
         return data
