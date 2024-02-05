@@ -24,9 +24,7 @@ def build_website(resources: str, output: str) -> None:
 
 def _load_from_file(
     resources_dir: Path,
-) -> tuple[
-    list[Repository], dict[str, Any], dict[str, str], dict[str, Template]
-]:
+) -> tuple[list[Repository], dict[str, Any], dict[str, str], dict[str, Template]]:
     """
     Loads website data from file.
     Returns:
