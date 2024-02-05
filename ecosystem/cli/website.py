@@ -3,6 +3,7 @@ from __future__ import annotations
 
 
 from pathlib import Path
+from typing import Any
 import json
 import toml
 
@@ -24,7 +25,7 @@ def build_website(resources: str, output: str) -> None:
 def _load_from_file(
     resources_dir: Path,
 ) -> tuple[
-    list[Repository], dict[str, str | dict], dict[str, str], dict[str, Template]
+    list[Repository], dict[str, Any], dict[str, str], dict[str, Template]
 ]:
     """
     Loads website data from file.
