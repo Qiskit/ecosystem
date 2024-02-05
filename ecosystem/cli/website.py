@@ -8,7 +8,7 @@ from jinja2 import Environment, PackageLoader
 from ecosystem.daos import DAO
 
 
-def build_website(resources: str, output: str):
+def build_website(resources: str, output: str) -> None:
     """
     Generates the ecosystem web page from data in `resources` dir, writing to `output` dir.
     """
