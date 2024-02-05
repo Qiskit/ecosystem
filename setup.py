@@ -11,8 +11,12 @@ with open('requirements.txt') as fp:
 setuptools.setup(
     name="ecosystem",
     description="Ecosystem",
+    entry_points = {
+        'console_scripts': ['ecosystem=ecosystem:main'],
+    },
     long_description=long_description,
     packages=setuptools.find_packages(),
+    package_data={"ecosystem": ["html_templates/*.jinja"]},
     install_requires=install_requires,
     python_requires='>=3.6'
 )
