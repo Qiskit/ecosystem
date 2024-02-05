@@ -14,8 +14,7 @@ def build_website(resources: str, output: str):
     """
     resources_dir = Path(resources)
     html = _build_html(*_load_from_file(resources_dir))
-    with open(Path(output, "index.html"), "w") as file:
-        file.write(html)
+    Path(output, "index.html").write_text(html)
 
 
 def _load_from_file(resources_dir: Path):
