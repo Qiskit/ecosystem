@@ -31,7 +31,7 @@ This will automatically create a pull request adding your project to this
 repository. We'll review the pull request and get back to you within a few
 days.
 
-To join the ecosystem your project must:
+To join the ecosystem, your project must:
   - Have an open-source license
   - Adhere to our [code of conduct](./CODE_OF_CONDUCT.md)
   - Build on, interface with, or extend Qiskit in some way
