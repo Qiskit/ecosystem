@@ -2,7 +2,6 @@
 import tempfile
 import shutil
 from pathlib import Path
-import json
 from unittest import TestCase
 
 from ecosystem.daos import DAO
