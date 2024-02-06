@@ -28,20 +28,8 @@ class TestDao(TestCase):
         self.path = Path(tempfile.mkdtemp())
         self.path.mkdir(exist_ok=True)
 
-        self.labels_path = self.path / "labels.json"
-        self._create_dummy_labels_json()
-
     def tearDown(self) -> None:
         shutil.rmtree(self.path)
-
-    def _delete_labels_json(self):
-        """Deletes labels file.
-        Function: Dao
-                -> delete
-        """
-        if self.labels_path.exists():
-            self.labels_path.unlink()
-        self.path.mkdir(exist_ok=True)
 
     def test_stars_update(self):
         """Test update stars for repo."""
@@ -65,24 +53,7 @@ class TestDao(TestCase):
         dao.write(main_repo)
         fetched_repo = dao.get_by_url(main_repo.url)
         self.assertEqual(main_repo, fetched_repo)
-        self.assertEqual(main_repo.labels, fetched_repo.labels)
 
         # delete entry
         dao.delete(repo_url=main_repo.url)
         self.assertEqual(len(dao.get_all()), 0)
-
-    def assertLabelsFile(self, result):  # pylint: disable=invalid-name
-        """Asserts the content of labels.json matches the result dict"""
-        with open(self.labels_path, "r") as labels_file:
-            content = json.load(labels_file)
-        self.assertEqual(content, result)
-
-    def _create_dummy_labels_json(self):
-        dummy_data = [
-            {"name": "label 1", "description": "description for label 1"},
-            {"name": "label 2", "description": "description for label 2"},
-            {"name": "label 4", "description": "description for label 4"},
-        ]
-        self.labels_path.parent.mkdir(exist_ok=True)
-        with open(self.labels_path, "w") as labels_file:
-            json.dump(dummy_data, labels_file)

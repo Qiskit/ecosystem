@@ -25,10 +25,7 @@ class CliWebsite:
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         resources_dir = Path(self.current_dir, "ecosystem/resources")
         self.dao = DAO(path=resources_dir)
-        self.label_descriptions = {
-            item["name"]: item["description"]
-            for item in json.loads(Path(resources_dir, "labels.json").read_text())
-        }
+        self.label_descriptions = json.loads((resources_dir / "labels.json").read_text())
         self.web_data = toml.loads((resources_dir / "website.toml").read_text())
 
     def build_website(self):
