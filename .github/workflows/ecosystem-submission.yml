@@ -1,11 +1,9 @@
-name: Ecosystem | Submission check
+name: Ecosystem | Submission
 
 ###
 # - install deps
 # - parse issue
-# - run lint, coverage, tests
 # - create pr
-# - comment result and add labels
 
 on:
   issues:
@@ -40,31 +38,6 @@ jobs:
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
       run: python manager.py ci parser_issue --body="$ISSUE_BODY"
-    - name: Tests stable check
-      id: stable
-      uses: ./.github/actions/run-tests
-      with:
-        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
-        test_type: "stable"
-        tox_env: ${{ env.tox_env }}
-        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    - name: Tests dev check
-      id: dev
-      uses: ./.github/actions/run-tests
-      with:
-        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
-        test_type: "development"
-        tox_env: ${{ env.tox_env }}
-        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    - name: Tests standard repo check
-      id: standard
-      uses: ./.github/actions/run-tests
-      with:
-        repo_url: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
-        test_type: "standard"
-        tox_env: ${{ env.tox_env }}
-        logs_link: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
     - name: Add member
       env:
         SUBMISSION_NAME: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
@@ -88,7 +61,7 @@ jobs:
                                        --repo_website="$SUBMISSION_WEBSITE"
 
     # Create PR
-    - name: Commit changes and create Pull Request
+    - name: Commit changes and create pull request
       id: cpr
       uses: peter-evans/create-pull-request@v5
       with:
@@ -102,148 +75,14 @@ jobs:
         branch: submission-${{ github.event.issue.number }}
         labels: submission
 
-    # Check result
-    ## Gets results of repo tests, and creates comment to post into issue/PR
-    - name: Check test results
-      id: check-return
-      run: |
-        # STD check
-        echo "### Standard tests" >> $GITHUB_STEP_SUMMARY
-        if [[ "${{ steps.standard.outputs.result }}" == *"True"* ]]; then
-          echo "PASS_STD=True" >> "$GITHUB_OUTPUT"
-          echo ":sparkles: Successfull submission!" >> $GITHUB_STEP_SUMMARY
-        else
-          echo "PASS_STD=False" >> "$GITHUB_OUTPUT"
-          echo ":x: The submission didn't pass the standard check." >> $GITHUB_STEP_SUMMARY
-          echo "Please follow minimal requirements for project or/and add ecosystem.json configuration in the root of the project." >> $GITHUB_STEP_SUMMARY
-          echo "Read more here ${{ github.server_url }}/${{ github.repository }}/blob/main/docs/project_overview.md#adding-project-to-the-ecosystem." >> $GITHUB_STEP_SUMMARY
-        fi
-
-        # STB check
-        echo "### Stable tests" >> $GITHUB_STEP_SUMMARY
-        if [[ "${{ steps.stable.outputs.result }}" == *"True"* ]]; then
-          echo "PASS_STB=True" >> "$GITHUB_OUTPUT"
-          echo ":sparkles: Tests with latest version of Qiskit release passed!" >> $GITHUB_STEP_SUMMARY
-        else
-          echo "PASS_STB=False" >> "$GITHUB_OUTPUT"
-          echo ":warning: The submission didn't pass the stable check." >> $GITHUB_STEP_SUMMARY
-          echo "This means your project doesn't work with the latest version of Qiskit." >> $GITHUB_STEP_SUMMARY
-          echo "This is purely informational and doesn't affect your project joining the Ecosystem, but you may want to investigate the problem." >> $GITHUB_STEP_SUMMARY
-        fi
-
-        # DEV check
-        echo "### Development tests" >> $GITHUB_STEP_SUMMARY
-        if [[ "${{ steps.dev.outputs.result }}" == *"True"* ]]; then
-          echo "PASS_DEV=True" >> "$GITHUB_OUTPUT"
-          echo ":sparkles: Tests with development version of Qiskit release passed!" >> $GITHUB_STEP_SUMMARY
-        else
-          echo "PASS_DEV=False" >> "$GITHUB_OUTPUT"
-          echo ":warning: The submission didn't pass the development check." >> $GITHUB_STEP_SUMMARY
-          echo "This means your project might not work with the next version of Qiskit." >> $GITHUB_STEP_SUMMARY
-          echo "This is purely informational and doesn't affect your project joining Ecosystem." >> $GITHUB_STEP_SUMMARY
-        fi
-
-        # Gen info
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "---" >> $GITHUB_STEP_SUMMARY
-        echo "Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
-        echo "PR #${{ steps.cpr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
-        # Create summary_output.md
-        echo "$(cat $GITHUB_STEP_SUMMARY)" > summary_output.md
-
-    # PR labels and comment
-    - name: "Label 'ready'"
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD == 'True' }}
-      with:
-        script: |
-          // PR
-          github.rest.issues.addLabels({
-            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: ["ready"]
-          })
-          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes("on hold")) {
-            github.rest.issues.removeLabel({
-              issue_number: ${{ steps.cpr.outputs.pull-request-number }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: ["on hold"]
-            })
-          }
-          // Issue
-          github.rest.issues.addLabels({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: ["ready"]
-          })
-          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes("on hold")) {
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: ["on hold"]
-            })
-          }
-
-    - name: "Label 'on hold'"
-      uses: actions/github-script@v6
-      if: ${{ steps.check-return.outputs.PASS_STD != 'True' }}
-      with:
-        script: |
-          // PR
-          github.rest.issues.addLabels({
-            issue_number: ${{ steps.cpr.outputs.pull-request-number }},
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: ["on hold"]
-          })
-          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes('ready')) {
-            github.rest.issues.removeLabel({
-              issue_number: ${{ steps.cpr.outputs.pull-request-number }},
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: ["ready"]
-            })
-          }
-          // Issue
-          github.rest.issues.addLabels({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: ["on hold"]
-          })
-          if (${{ toJSON(github.event.issue.labels.*.name) }}.includes('ready')) {
-            github.rest.issues.removeLabel({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: ["ready"]
-            })
-          }
-
-    - name: "PR: Post comment"
-      uses: peter-evans/create-or-update-comment@v3
-      with:
-        issue-number: ${{ steps.cpr.outputs.pull-request-number }}
-        body-path: "summary_output.md"
-
-    - name: "Issue: Post comment"
-      uses: peter-evans/create-or-update-comment@v3
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        body-path: "summary_output.md"
-
   followup_workflow:
     concurrency:
       group: ci-${{ github.event.issue.title }}
       cancel-in-progress: true
-    if: |
-      (startsWith(github.event.issue.title, '[Submission]:') && github.event.action == 'closed'
+    if: >
+      startsWith(github.event.issue.title, '[Submission]:')
+      && github.event.action == 'closed'
       && contains(github.event.issue.labels.*.name, 'submission')
-      && contains(github.event.issue.labels.*.name, 'ready'))
     runs-on: ubuntu-latest
     steps:
     - name: Create comment on success
@@ -251,15 +90,15 @@ jobs:
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-          hello @${{ github.event.issue.user.login }}! You joined the Qiskit Ecosystem a little while ago and I just wanted to check in and let you know of some follow up actions you can take to make the most of joining the program, if you're interested:
+          Hello @${{ github.event.issue.user.login }}! You joined the Qiskit ecosystem recently, here are some follow up actions you can take to make the most of the program:
 
-          :speech_balloon: Join other Qiskit ecosystem developers in the [Slack channel #qiskit-ecosystem](https://qiskit.slack.com/archives/C04RHE56N93) (if you are not in the Qiskit workspace yet, you can sign up here: https://qisk.it/join-slack)
+          :speech_balloon: Join other Qiskit ecosystem developers in the [Slack channel #qiskit-ecosystem](https://qiskit.slack.com/archives/C04RHE56N93) (if you are not in the Qiskit workspace yet, [sign up](https://qisk.it/join-slack))
 
-          :brain: Help us define the future of the Qiskit Ecosystem: we recently started an RFC on how the Ecosystem should be structured. It is very draft-y at the moment, but you can subscribe for notifications here [Qiskit/RFCs#46](https://github.com/Qiskit/RFCs/pull/46) to participate in that discussion.
+          :mega: Showcase your project by
 
-          :mega: Would you like to showcase your project to the Qiskit community? A couple of things you can do to raise awareness for your project:
+          * [Writing a blog for your project](https://github.com/qiskit-community/ecosystem/wiki/Write-a-Blog-for-your-Project): reach out to Abby Mitchell via Slack or [email](mailto:abby.s.mitchell@ibm.com) if you'd like to be featured on the Qiskit blog
+          * Presenting at a [Qiskit Demoday](https://github.com/Qiskit/feedback/wiki/Qiskit-DemoDays): reach out to Luciano Bello via Slack or [email](mailto:BEL@zurich.ibm.com) to request a slot to demo your project)
 
-          * [write a blog for your project](https://github.com/qiskit-community/ecosystem/wiki/Write-a-Blog-for-your-Project) (reach out to Abby Mitchell via slack or [email](mailto:abby.s.mitchell@ibm.com) if you'd like to be featured on the Qiskit Medium)
-          * Participate in [Qiskit Demoday](https://github.com/Qiskit/feedback/wiki/Qiskit-DemoDays). (reach out to Luciano Bello via slack or [email](mailto:BEL@zurich.ibm.com) to request a slot to demo your project)
+          :stethoscope: Get support integrating with Qiskit, including updating your project to Qiskit 1.0, using our [documentation theme](https://github.com/Qiskit/qiskit_sphinx_theme), and integrating with the transpiler plugin system. Reach out to Frank Harkins via [email](mailto:francis.harkins@ibm.com) for any questions or suggestions about working with Qiskit.
 
-          Great having you as a part of the ecosystem!
+          It's great having you as a part of the ecosystem!
