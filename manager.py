@@ -18,16 +18,7 @@ Available commands:
    python manager.py website build_website"
    ```
 """
-import fire
-
-from ecosystem.cli import CliMembers, CliWebsite, CliCI
-
+from ecosystem import main
 
 if __name__ == "__main__":
-    fire.Fire(
-        {
-            "members": CliMembers,
-            "website": CliWebsite,
-            "ci": CliCI,
-        }
-    )
+    main()
