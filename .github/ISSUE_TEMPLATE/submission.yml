@@ -5,16 +5,14 @@ labels: ["submission"]
 assignees:
   - octocat
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Provide information about your project.
   - type: input
     id: name
     attributes:
       label: Project name
-      description: Title of your project as it will appear on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
-      placeholder: Qiskit IBM Runtime
+      description: >
+        Title of your project as it will appear on
+        [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
+      placeholder: Qiskit GPU Compile
     validations:
       required: true
   - type: input
@@ -22,25 +20,30 @@ body:
     attributes:
       label: Github repo
       description: Link to GitHub repo of project you want to submit
-      placeholder: https://github.com/Qiskit/qiskit
+      placeholder: https://github.com/owner/qiskit-gpu-compile
     validations:
       required: true
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: |
-        A couple of sentences to appear under your project on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem), try to keep it under 50 words.
+      description: >
+        1-2 sentences to appear under your project on
+        [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
+        Keep it under 30 words; readers will click through to your repo if
+        they want to learn more.
+
         Note this **does not** support markdown.
-      placeholder: |
-        E.g. Use your GPU to compile huge quantum circuits in seconds. Supports all modern devices and operating systems.
+      placeholder: >
+        E.g. Use your GPU to compile huge quantum circuits in seconds. Supports
+        all modern devices and operating systems.
     validations:
       required: true
   - type: input
     id: contacts
     attributes:
       label: Email
-      placeholder: awesome_person@awesome_main.com
+      placeholder: awesome.person@example.org
     validations:
       required: false
   - type: textarea
@@ -80,7 +83,9 @@ body:
     id: group
     attributes:
       label: Group
-      description: Which group your project belongs to on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
+      description: >
+        Which group your project belongs to on
+        [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
       multiple: false
       options:
         - transpiler_plugin
@@ -92,23 +97,27 @@ body:
   - type: dropdown
     id: labels
     attributes:
-      description: |
-        Labels are how users discover your project on [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
-        If you don't think any existing labels apply to your project, leave a comment after submitting your issue requesting a new label.
+      description: >
+        Labels are how users discover your project on
+        [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem). If
+        you don't think any existing labels apply to your project, leave a
+        comment after submitting your issue requesting a new label.
       label: Labels
       multiple: true
       options:
         - Advocate mentorship project
         - Algorithms
         - Chemistry
-        - Circuit simulator
         - Circuit
+        - Circuit simulator
         - Converter
         - Error correction
         - Error mitigation
+        - Education
         - Finance
         - Game
         - Hardware
+        - IBM maintained
         - Julia
         - Jupyter notebook
         - Machine learning
@@ -121,14 +130,31 @@ body:
         - Prototype
         - Provider
         - Quantum information
+        - Rust
         - Software development kit
         - Transpiler plugin
         - Visualization
   - type: input
+    id: documentation
+    attributes:
+      label: Documentation
+      description: Link to project's documentation website
+      placeholder: https://your-project.com/documentation
+    validations:
+      required: false
+  - type: input
     id: website
     attributes:
       label: Website
-      description: Link to project's website
+      description: Link to project or company website if applicable
       placeholder: https://your-project.com
+    validations:
+      required: false
+  - type: input
+    id: reference_paper
+    attributes:
+      label: Reference paper
+      description: If your project is based on a paper, you can link it here.
+      placeholder: https://arxiv.org/abs/2402.00022
     validations:
       required: false

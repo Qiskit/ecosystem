@@ -8,7 +8,6 @@ File structure:
         └── repo-name.toml
 """
 from __future__ import annotations
-import json
 from pathlib import Path
 import shutil
 import toml
@@ -85,13 +84,11 @@ class DAO:
             path: path to store database in
         """
         self.storage = TomlStorage(path)
-        self.labels_json_path = Path(path, "labels.json")
 
     def write(self, repo: Repository):
         """
         Update or insert repo (identified by URL).
         """
-        self.update_labels(repo.labels)
         with self.storage as data:
             data[repo.url] = repo
 
@@ -134,21 +131,3 @@ class DAO:
         with self.storage as data:
             for arg, value in kwargs.items():
                 data[repo_url].__dict__[arg] = value
-
-    def update_labels(self, labels: list[str]):
-        """
-        Updates labels file for consumption by qiskit.org.
-        """
-        with open(self.labels_json_path, "r") as labels_file:
-            existing_labels = {
-                label["name"]: label["description"] for label in json.load(labels_file)
-            }
-
-        merged = {**{l: "" for l in labels}, **existing_labels}
-        new_label_list = [
-            {"name": name, "description": dsc} for name, dsc in merged.items()
-        ]
-        with open(self.labels_json_path, "w") as labels_file:
-            json.dump(
-                sorted(new_label_list, key=lambda x: x["name"]), labels_file, indent=4
-            )
