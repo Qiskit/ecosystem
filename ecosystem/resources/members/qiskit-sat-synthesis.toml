@@ -1,9 +1,10 @@
-name = "qiskit-sat-synthesis"
+name = "Qiskit SAT Synthesis"
 url = "https://github.com/qiskit-community/qiskit-sat-synthesis"
-description = "Qiskit synthesis plugins for Cliffords, linear functions, permutations, and more."
+description = "Synthesis plugins for Cliffords, linear functions, permutations, and more"
 licence = "Apache License 2.0"
 contact_info = "alexi@il.ibm.com"
-alternatives = "There are other quantum circuit compilation tools that use SAT-solving to search for optimum circuits, for instance: _MQT QMAP_ (https://github.com/cda-tum/mqt-qmap), and _tweedledum_ (https://github.com/boschmitt/tweedledum)."
+alternatives = "There are other quantum circuit compilation tools that use SAT-solving to search for optimum circuits, for instance: MQT QMAP (https://github.com/cda-tum/mqt-qmap), and tweedledum (https://github.com/boschmitt/tweedledum)."
 affiliations = "IBM"
-labels = [ "Transpiler plugin",]
+labels = []
+group = "transpiler_plugin"
 website = "https://github.com/qiskit-community/qiskit-sat-synthesis"
