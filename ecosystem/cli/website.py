@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 import json
 import toml
+import re
 
 from jinja2 import Environment, PackageLoader, Template
 
@@ -123,7 +124,9 @@ def _build_html(projects, web_data, label_descriptions, templates) -> str:
         # Adding the card to a section
         sections[repo.group]["html"] += card
 
-    return templates["website"].render(
+    html = templates["website"].render(
+        is_standalone=web_data.get("standalone", True),
         header=web_data["header"],
         sections=sections.values(),
     )
+    return re.sub(r"^\s+", "", html, flags=re.MULTILINE)

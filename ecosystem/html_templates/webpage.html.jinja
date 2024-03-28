@@ -1,3 +1,4 @@
+{% if is_standalone %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,6 +9,19 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ header.title.bold }} {{ header.title.normal }}</title>
+    <link
+      rel="stylesheet"
+      href="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/plex.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/themes.css"
+    />
+{% endif %}
+    <link
+      rel="stylesheet"
+      href="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/grid.css"
+    />
     <script
       type="module"
       src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/tile.min.js"
@@ -28,21 +42,12 @@
       type="module"
       src="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/tooltip.min.js"
     ></script>
-    <link
-      rel="stylesheet"
-      href="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/plex.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/themes.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://1.www.s81c.com/common/carbon/web-components/tag/v2/latest/grid.css"
-    />
     <link rel="stylesheet" href="style.css" />
+{% if is_standalone %}
   </head>
-  <body class="cds-theme-zone-white">
+  <body>
+{% endif %}
+  <div class="cds-theme-zone-white">
     <header>
       <div class="inside-header cds--grid layout-lead-space-fixed__container">
         <div class="header-content">
@@ -113,5 +118,8 @@
       <div class="cards cds--row">{{ section.html }}</div>
     </div>
     {% endfor %}
+  </div>
+{% if is_standalone %}
   </body>
 </html>
+{% endif %}
