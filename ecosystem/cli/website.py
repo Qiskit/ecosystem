@@ -20,7 +20,7 @@ def build_website(resources: str, output: str) -> None:
     """
     resources_dir = Path(resources)
     html = _build_html(*_load_from_file(resources_dir))
-    Path(output, "index.html").write_text(html)
+    Path(output).write_text(html)
 
 
 def _load_from_file(
