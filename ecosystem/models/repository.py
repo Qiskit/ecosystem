@@ -16,7 +16,7 @@ class Repository(JsonSerializable):
     name: str
     url: str
     description: str
-    licence: str
+    licence: str | None = None
     contact_info: str | None = None
     alternatives: str | None = None
     affiliations: str | None = None
