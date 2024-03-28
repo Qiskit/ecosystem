@@ -1,3 +1,4 @@
+{% if standalone %}
 * {
   box-sizing: inherit;
 }
@@ -18,6 +19,7 @@ header {
   padding: 48px 0px 32px 0px;
   background-color: white;
 }
+{% endif %}
 
 .inside-header {
   padding: 0px 32px 0px 32px;
@@ -92,10 +94,12 @@ cds-tag {
   margin-bottom: 8px;
 }
 
+{% if standalone %}
 p {
   font-size: 14px;
   color: #525252;
 }
+{% endif %}
 
 .title-description {
   margin: 24px 0;
@@ -171,6 +175,7 @@ p {
   cursor: pointer;
 }
 
+{% if standalone %}
 /* ------------------------------  */
 
 @media only screen and (max-width: 1500px) {
@@ -205,3 +210,14 @@ p {
     width: auto;
   }  
 }
+{% endif %}
+
+{% if custom_css %}
+
+/* ------------ */
+/* Custom rules */
+/* ------------ */
+
+{{ custom_css }}
+
+{% endif %}

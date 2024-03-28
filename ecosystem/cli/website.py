@@ -18,14 +18,17 @@ def build_website(resources: str, output: str) -> None:
     """
     Generates the ecosystem web page from data in `resources` dir, writing to `output` dir.
     """
-    resources_dir = Path(resources)
-    html = _build_html(*_load_from_file(resources_dir))
+    projects, web_data, label_descriptions, templates, custom_css = _load_from_file(Path(resources))
+    html = _build_html(projects, web_data, label_descriptions, templates)
     Path(output).write_text(html)
+
+    css = templates["css"].render(custom_css=custom_css, standalone=web_data.get("standalone", True))
+    (Path(output).parent / "style.css").write_text(css)
 
 
 def _load_from_file(
     resources_dir: Path,
-) -> tuple[list[Repository], dict[str, Any], dict[str, str], dict[str, Template]]:
+) -> tuple[list[Repository], dict[str, Any], dict[str, str], dict[str, Template], str | None]:
     """
     Loads website data from file.
     Returns:
@@ -33,6 +36,7 @@ def _load_from_file(
         * Web data: Strings (title / descriptions etc.) from `website.toml`.
         * Label descriptions: from `labels.json`.
         * Jinja templates: from `html_templates` folder.
+        * Any custom css to be appended to the css file.
     """
     # Projects list
     dao = DAO(path=resources_dir)
@@ -50,6 +54,11 @@ def _load_from_file(
     # Website strings
     web_data = toml.loads((resources_dir / "website.toml").read_text())
 
+    # Custom css
+    custom_css = None
+    if web_data.get("custom-css", False):
+        custom_css = (resources_dir / web_data["custom-css"]).read_text()
+
     # Jinja templates
     environment = Environment(loader=PackageLoader("ecosystem", "html_templates/"))
     templates = {
@@ -57,8 +66,9 @@ def _load_from_file(
         "card": environment.get_template("card.html.jinja"),
         "tag": environment.get_template("tag.html.jinja"),
         "link": environment.get_template("link.html.jinja"),
+        "css": environment.get_template("style.css.jinja"),
     }
-    return projects, web_data, label_descriptions, templates
+    return projects, web_data, label_descriptions, templates, custom_css
 
 
 def _build_html(projects, web_data, label_descriptions, templates) -> str:
