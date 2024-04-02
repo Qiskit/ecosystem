@@ -18,20 +18,23 @@ def build_website(resources: str, output: str) -> None:
     """
     Generates the ecosystem web page from data in `resources` dir, writing to `output` dir.
     """
-    projects, web_data, label_descriptions, templates, custom_css = _load_from_file(Path(resources))
+    projects, web_data, label_descriptions, templates, custom_css = _load_from_file(
+        Path(resources)
+    )
     html = _build_html(projects, web_data, label_descriptions, templates)
     Path(output).write_text(html)
 
     css = templates["css"].render(
-            custom_css=custom_css,
-            standalone=web_data.get("standalone", True)
+        custom_css=custom_css, standalone=web_data.get("standalone", True)
     )
     (Path(output).parent / "style.css").write_text(css)
 
 
 def _load_from_file(
     resources_dir: Path,
-) -> tuple[list[Repository], dict[str, Any], dict[str, str], dict[str, Template], str | None]:
+) -> tuple[
+    list[Repository], dict[str, Any], dict[str, str], dict[str, Template], str | None
+]:
     """
     Loads website data from file.
     Returns:
