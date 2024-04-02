@@ -5,8 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 import json
-import toml
 import re
+import toml
 
 from jinja2 import Environment, PackageLoader, Template
 
@@ -22,7 +22,10 @@ def build_website(resources: str, output: str) -> None:
     html = _build_html(projects, web_data, label_descriptions, templates)
     Path(output).write_text(html)
 
-    css = templates["css"].render(custom_css=custom_css, standalone=web_data.get("standalone", True))
+    css = templates["css"].render(
+            custom_css=custom_css,
+            standalone=web_data.get("standalone", True)
+    )
     (Path(output).parent / "style.css").write_text(css)
 
 
@@ -75,6 +78,7 @@ def _build_html(projects, web_data, label_descriptions, templates) -> str:
     """
     Take all data needed to build the website and produce a HTML string.
     """
+    # pylint: disable=too-many-locals
     sections = {group["id"]: group for group in web_data["groups"]}
     for section in sections.values():
         section.setdefault("html", "")
