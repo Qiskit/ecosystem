@@ -1,3 +1,4 @@
+{% if standalone %}
 * {
   box-sizing: inherit;
 }
@@ -18,6 +19,12 @@ header {
   padding: 48px 0px 32px 0px;
   background-color: white;
 }
+
+p {
+  font-size: 14px;
+  color: #525252;
+}
+{% endif %}
 
 .inside-header {
   padding: 0px 32px 0px 32px;
@@ -90,11 +97,6 @@ cds-tag {
   position: relative;
   left: -20px;
   margin-bottom: 8px;
-}
-
-p {
-  font-size: 14px;
-  color: #525252;
 }
 
 .title-description {
@@ -171,6 +173,7 @@ p {
   cursor: pointer;
 }
 
+{% if standalone %}
 /* ------------------------------  */
 
 @media only screen and (max-width: 1500px) {
@@ -205,3 +208,14 @@ p {
     width: auto;
   }  
 }
+{% endif %}
+
+{% if custom_css %}
+
+/* ------------ */
+/* Custom rules */
+/* ------------ */
+
+{{ custom_css }}
+
+{% endif %}
