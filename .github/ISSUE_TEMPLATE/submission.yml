@@ -8,14 +8,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Criteria
+        ### Criteria
 
         To join the ecosystem, your project must:
-        * Build on, interface with, or extend the Qiskit SDK in some way.
-        * Be compatible with Qiskit 1.0 (or newer).
-        * Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
-        * Adhere to our [code of conduct](https://github.com/Qiskit/qiskit/blob/main/CODE_OF_CONDUCT.md).
-        * Have a commit from within the last 6 months.
+          * Build on, interface with, or extend the Qiskit SDK in some way.
+          * Be compatible with Qiskit 1.0 (or newer).
+          * Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
+          * Adhere to our [code of conduct](https://github.com/Qiskit/qiskit/blob/main/CODE_OF_CONDUCT.md).
+          * Have a commit from within the last 6 months.
 
         If you have any questions, please reach out through the `#qiskit-ecosystem` channel on [Slack](https://qisk.it/join-slack).
   - type: input
