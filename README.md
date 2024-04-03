@@ -32,9 +32,11 @@ repository. We'll review the pull request and get back to you within a few
 days.
 
 To join the ecosystem, your project must:
-  - Have an open-source license
-  - Adhere to our [code of conduct](./CODE_OF_CONDUCT.md)
-  - Build on, interface with, or extend Qiskit in some way
+  - Build on, interface with, or extend the Qiskit SDK in some way.
+  - Be compatible with Qiskit 1.0 (or newer).
+  - Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
+  - Adhere to our [code of conduct](./CODE_OF_CONDUCT.md).
+  - Have a commit from within the last 6 months.
 
 Once your submission has been approved and merged, it will appear on
 [qiskit.github.io/ecosystem/](https://qiskit.github.io/ecosystem/) within a few
