@@ -36,7 +36,7 @@ To join the ecosystem, your project must:
   - Be compatible with Qiskit 1.0 (or newer).
   - Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
   - Adhere to our [code of conduct](./CODE_OF_CONDUCT.md).
-  - Have a commit from within the last 6 months.
+  - Have maintainer activity within the last 6 months, such as a commit.
 
 Once your submission has been approved and merged, it will appear on
 [qiskit.github.io/ecosystem/](https://qiskit.github.io/ecosystem/) within a few
