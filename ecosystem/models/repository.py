@@ -10,7 +10,11 @@ from .utils import JsonSerializable, new_list
 
 @dataclass
 class Repository(JsonSerializable):
-    """Main repository class."""
+    """Main repository class.
+
+    NOTE: These attribute names must exist in the issue template.
+    See .github/ISSUE_TEMPLATE/submission.yml
+    """
 
     # pylint: disable=too-many-instance-attributes
     name: str | None = None
