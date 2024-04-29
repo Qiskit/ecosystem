@@ -13,9 +13,9 @@ class Repository(JsonSerializable):
     """Main repository class."""
 
     # pylint: disable=too-many-instance-attributes
-    name: str
-    url: str
-    description: str
+    name: str | None = None
+    url: str | None = None
+    description: str | None = None
     licence: str | None = None
     contact_info: str | None = None
     alternatives: str | None = None

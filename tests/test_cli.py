@@ -61,7 +61,7 @@ class TestCli(TestCase):
 
         output_value = captured_output.getvalue().split("\n")
 
-        self.assertEqual(output_value[0], "SUBMISSION_NAME=awesome")
+        self.assertEqual(output_value[0], "SUBMISSION_NAME=My awesome project")
         self.assertEqual(
             output_value[1],
             "SUBMISSION_REPO=http://github.com/awesome/awesome",

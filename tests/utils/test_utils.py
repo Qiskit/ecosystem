@@ -27,7 +27,7 @@ class TestUtils(TestCase):
         parsed_result = parse_submission_issue(self.issue_body)
 
         self.assertTrue(isinstance(parsed_result, Repository))
-        self.assertEqual(parsed_result.name, "awesome")
+        self.assertEqual(parsed_result.name, "My awesome project")
         self.assertEqual(parsed_result.url, "http://github.com/awesome/awesome")
         self.assertEqual(
             parsed_result.description,

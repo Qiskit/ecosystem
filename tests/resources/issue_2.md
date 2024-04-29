@@ -1,3 +1,7 @@
+### Project name
+
+My awesome project
+
 ### Github repo
 
 http://github.com/awesome/awesome
