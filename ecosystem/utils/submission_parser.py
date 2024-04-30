@@ -18,10 +18,10 @@ def _clean_section(section: str) -> {str: str}:
     return (title, section)
 
 
-def _section_titles_to_ids(sections: dict[str, str], cwd: str) -> dict[str, str]:
+def _section_titles_to_ids(sections: dict[str, str]) -> dict[str, str]:
     """Given a section title, find its `id` from the issue template"""
     issue_template = yaml.load(
-        Path(cwd, ".github/ISSUE_TEMPLATE/submission.yml").read_text(),
+        Path(".github/ISSUE_TEMPLATE/submission.yml").read_text(),
         Loader=yaml.SafeLoader,
     )
     mapping = {
@@ -32,8 +32,7 @@ def _section_titles_to_ids(sections: dict[str, str], cwd: str) -> dict[str, str]
     return {mapping[key]: value for key, value in sections.items()}
 
 
-
-def parse_submission_issue(body_of_issue: str, current_directory: str) -> Repository:
+def parse_submission_issue(body_of_issue: str) -> Repository:
     """Parse issue body.
 
     Args:
@@ -47,9 +46,12 @@ def parse_submission_issue(body_of_issue: str, current_directory: str) -> Reposi
     sections = defaultdict(
         None, [_clean_section(s) for s in issue_formatted.split("### ")[1:]]
     )
-    args = _section_titles_to_ids(sections, current_directory)
+    args = _section_titles_to_ids(sections)
 
-    args = { key: (None if value=="_No response_" else value) for key, value in args.items() }
+    args = {
+        key: (None if value == "_No response_" else value)
+        for key, value in args.items()
+    }
 
     if args["labels"] is None:
         args["labels"] = []

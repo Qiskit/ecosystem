@@ -28,12 +28,10 @@ class TestCli(TestCase):
 
     def setUp(self) -> None:
         self.path = Path(tempfile.mkdtemp())
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
+        (self.path / "members").mkdir(parents=True, exist_ok=True)
         with open(self.path / "labels.json", "w") as file:
             file.write("{}")
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
-        print(self.current_dir)
         with open(
             "{}/resources/issue.md".format(self.current_dir), "r"
         ) as issue_body_file:
@@ -46,7 +44,7 @@ class TestCli(TestCase):
     def tearDown(self) -> None:
         shutil.rmtree(self.path)
 
-    def test_parser_issue(self):
+    def test_add_member_from_issue(self):
         """Tests issue parsing function.
         Function: Cli
                 -> parser_issue
@@ -57,61 +55,45 @@ class TestCli(TestCase):
         # Issue 1
         captured_output = io.StringIO()
         with redirect_stdout(captured_output):
-            CliCI.parser_issue(self.issue_body)
+            CliCI.add_member_from_issue(self.issue_body, self.path)
 
         output_value = captured_output.getvalue().split("\n")
-
         self.assertEqual(output_value[0], "SUBMISSION_NAME=My awesome project")
-        self.assertEqual(
-            output_value[1],
-            "SUBMISSION_REPO=http://github.com/awesome/awesome",
-        )
-        self.assertEqual(
-            output_value[2],
-            "SUBMISSION_DESCRIPTION=An awesome repo for awesome project multiple"
-            " paragraphs",
-        )
-        self.assertEqual(output_value[3], "SUBMISSION_LICENCE=Apache License 2.0")
-        self.assertEqual(output_value[4], "SUBMISSION_CONTACT=toto@gege.com")
-        self.assertEqual(output_value[5], "SUBMISSION_ALTERNATIVES=tititata")
-        self.assertEqual(output_value[6], "SUBMISSION_AFFILIATIONS=_No response_")
-        self.assertEqual(
-            output_value[7],
-            "SUBMISSION_LABELS=['tool', 'tutorial', 'paper implementation']",
-        )
-        self.assertEqual(
-            output_value[8],
-            "SUBMISSION_WEBSITE=https://qiskit.org/ecosystem/",
-        )
+
+        retrieved_repos = DAO(self.path).get_all()
+        expected = {
+            "name": "My awesome project",
+            "url": "http://github.com/awesome/awesome",
+            "description": "An awesome repo for awesome project multiple paragraphs",
+            "contact_info": "toto@gege.com",
+            "alternatives": "tititata",
+            "licence": "Apache License 2.0",
+            "labels": ["tool", "tutorial", "paper implementation"],
+            "website": "https://qiskit.org/ecosystem/",
+        }
+        self.assertEqual(len(retrieved_repos), 1)
+        self.assertEqual(list(retrieved_repos)[0].to_dict(), expected)
 
         # Issue 2
         captured_output = io.StringIO()
         with redirect_stdout(captured_output):
-            CliCI.parser_issue(self.issue_body_2)
+            CliCI.add_member_from_issue(self.issue_body_2, self.path)
 
         output_value = captured_output.getvalue().split("\n")
+        self.assertEqual(output_value[0], "SUBMISSION_NAME=My awesome project")
 
-        self.assertEqual(output_value[0], "SUBMISSION_NAME=awesome")
-        self.assertEqual(
-            output_value[1],
-            "SUBMISSION_REPO=http://github.com/awesome/awesome",
-        )
-        self.assertEqual(
-            output_value[2],
-            "SUBMISSION_DESCRIPTION=An awesome repo for awesome project",
-        )
-        self.assertEqual(output_value[3], "SUBMISSION_LICENCE=Apache License 2.0")
-        self.assertEqual(output_value[4], "SUBMISSION_CONTACT=toto@gege.com")
-        self.assertEqual(output_value[5], "SUBMISSION_ALTERNATIVES=_No response_")
-        self.assertEqual(output_value[6], "SUBMISSION_AFFILIATIONS=Awesome Inc.")
-        self.assertEqual(
-            output_value[7],
-            "SUBMISSION_LABELS=[]",
-        )
-        self.assertEqual(
-            output_value[8],
-            "SUBMISSION_WEBSITE=None",
-        )
+        retrieved_repos = DAO(self.path).get_all()
+        expected = {
+            "name": "My awesome project",
+            "url": "http://github.com/awesome/awesome",
+            "description": "An awesome repo for awesome project",
+            "contact_info": "toto@gege.com",
+            "licence": "Apache License 2.0",
+            "affiliations": "Awesome Inc.",
+            "labels": [],
+        }
+        self.assertEqual(len(retrieved_repos), 1)
+        self.assertEqual(list(retrieved_repos)[0].to_dict(), expected)
 
     def test_update_badges(self):
         """Tests creating badges."""

@@ -18,19 +18,19 @@ class CliCI:
     """
 
     @staticmethod
-    def add_member_from_issue(body: str) -> None:
+    def add_member_from_issue(body: str, resources_dir: str | None = None) -> None:
         """Parse an issue created from the issue template and add the member to the database
 
         Args:
             body: body of the created issue
+            working_dir: (For testing) Path to the working directory
 
         Returns:
             None (side effect is updating database)
         """
 
-        current_dir = Path.cwd()
-        resources_dir = Path(current_dir, "ecosystem/resources")
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem/resources"))
 
-        parsed_result = parse_submission_issue(body, current_dir)
+        parsed_result = parse_submission_issue(body)
         DAO(path=resources_dir).write(parsed_result)
-        set_actions_output([ ("SUBMISSION_NAME", parsed_result.name) ])
+        set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
