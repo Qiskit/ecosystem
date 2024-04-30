@@ -24,12 +24,12 @@ def _section_titles_to_ids(sections: dict[str, str]) -> dict[str, str]:
         Path(".github/ISSUE_TEMPLATE/submission.yml").read_text(),
         Loader=yaml.SafeLoader,
     )
-    mapping = {
+    label_to_id = {
         form["attributes"]["label"]: form["id"]
         for form in issue_template["body"]
         if form["type"] != "markdown"
     }
-    return {mapping[key]: value for key, value in sections.items()}
+    return {label_to_id[key]: value for key, value in sections.items()}
 
 
 def parse_submission_issue(body_of_issue: str) -> Repository:

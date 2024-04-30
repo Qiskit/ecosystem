@@ -20,7 +20,7 @@ class CliCI:
     """
 
     @staticmethod
-    def add_member_from_issue(body: str, resources_dir: str | None = None) -> None:
+    def add_member_from_issue(body: str, *, resources_dir: str | None = None) -> None:
         """Parse an issue created from the issue template and add the member to the database
 
         Args:
