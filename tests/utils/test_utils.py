@@ -1,6 +1,11 @@
 """Tests for manager."""
+
 import os
+import dataclasses
 from unittest import TestCase
+from pathlib import Path
+
+import yaml
 
 from ecosystem.models.repository import Repository
 from ecosystem.utils import parse_submission_issue
@@ -40,3 +45,23 @@ class TestUtils(TestCase):
         self.assertEqual(
             parsed_result.labels, ["tool", "tutorial", "paper implementation"]
         )
+
+    def test_issue_template_matches_repository_model(self):
+        """Make sure IDs in the issue template match attributes of the Repository model."""
+        issue_template = yaml.load(
+            Path(".github/ISSUE_TEMPLATE/submission.yml").read_text(),
+            Loader=yaml.SafeLoader,
+        )
+        issue_ids = {
+            field["id"]
+            for field in issue_template["body"]
+            if field["type"] != "markdown"
+        }
+
+        repo_fields = {attr.name for attr in dataclasses.fields(Repository)}
+        for issue_id in issue_ids:
+            self.assertIn(
+                issue_id,
+                repo_fields,
+                msg="\nA field exists in the issue template but not in the Repository class.",
+            )
