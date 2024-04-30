@@ -1,8 +1,8 @@
 """Parser for issue submission."""
 from collections import defaultdict
+from pathlib import Path
 import mdformat
 import yaml
-from pathlib import Path
 
 from ecosystem.models.repository import Repository
 
