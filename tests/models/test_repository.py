@@ -1,5 +1,4 @@
 """Tests for entities."""
-
 import unittest
 
 from ecosystem.models.repository import Repository

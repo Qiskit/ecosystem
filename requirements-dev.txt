@@ -1,5 +1,5 @@
 coverage==5.5
-pylint~=3.1
-tox~=4.15
-black[jupyter]~=24.1
-responses~=0.25
+pylint==2.9.5
+tox==3.24.0
+black[jupyter]~=22.1
+responses==0.14.0

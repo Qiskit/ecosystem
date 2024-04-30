@@ -1,5 +1,4 @@
 """Common test classes."""
-
 import os
 import shutil
 import unittest

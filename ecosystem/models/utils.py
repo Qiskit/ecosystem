@@ -1,5 +1,4 @@
 """Utility classes for models."""
-
 from abc import ABC
 from dataclasses import field
 

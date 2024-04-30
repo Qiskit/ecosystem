@@ -1,5 +1,4 @@
 """CliMembers class for controlling all CLI functions."""
-
 import json
 import os
 from typing import Optional, Tuple

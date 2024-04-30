@@ -7,7 +7,6 @@ File structure:
     └── members
         └── repo-name.toml
 """
-
 from __future__ import annotations
 from pathlib import Path
 import shutil

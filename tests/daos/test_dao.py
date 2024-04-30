@@ -1,5 +1,4 @@
 """Tests for entities."""
-
 import tempfile
 import shutil
 from pathlib import Path

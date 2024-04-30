@@ -1,5 +1,4 @@
 """Parser for issue submission."""
-
 from collections import defaultdict
 import mdformat
 

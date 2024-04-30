@@ -1,5 +1,4 @@
 """CliCI class for controlling all CLI functions."""
-
 import os
 from typing import Optional
 

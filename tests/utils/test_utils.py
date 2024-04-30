@@ -1,5 +1,4 @@
 """Tests for manager."""
-
 import os
 from unittest import TestCase
 
