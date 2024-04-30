@@ -25,7 +25,7 @@ class CliCI:
 
         Args:
             body: body of the created issue
-            working_dir: (For testing) Path to the working directory
+            resources_dir: (For testing) Path to the working directory
 
         Returns:
             None (side effect is updating database)

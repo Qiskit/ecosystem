@@ -12,8 +12,8 @@ from .utils import JsonSerializable, new_list
 class Repository(JsonSerializable):
     """Main repository class.
 
-    NOTE: These attribute names must exist in the issue template.
-    See .github/ISSUE_TEMPLATE/submission.yml
+    NOTE: These attribute names must correspond to field IDs in the issue
+    template (.github/ISSUE_TEMPLATE/submission.yml).
     """
 
     # pylint: disable=too-many-instance-attributes
