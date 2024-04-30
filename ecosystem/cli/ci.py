@@ -3,10 +3,9 @@ from __future__ import annotations
 
 
 from pathlib import Path
-from typing import Optional
 
 from ecosystem.daos import DAO
-from ecosystem.utils import logger, parse_submission_issue
+from ecosystem.utils import parse_submission_issue
 from ecosystem.utils.utils import set_actions_output
 
 
