@@ -79,6 +79,6 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
     if args["labels"] is None:
         args["labels"] = []
     else:
-        args["labels"] = [l.strip() for l in args["labels"].split(",")]
+        args["labels"] = [x.strip() for x in args["labels"].split(",")]
 
     return Repository(**args)
