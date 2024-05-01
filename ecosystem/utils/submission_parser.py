@@ -12,7 +12,7 @@ def _parse_section(section: str) -> tuple[str, str]:
     The content has no newlines and has spaces stripped.
     """
     lines = section.split("\n")
-    content = (" ").join(line.strip() for line in lines[1:] if line)
+    content = " ".join(line.strip() for line in lines[1:] if line)
     label = lines[0].strip()
     field_id = _label_to_id(label)
     return field_id, content
