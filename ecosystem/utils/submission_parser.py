@@ -7,7 +7,7 @@ import yaml
 from ecosystem.models.repository import Repository
 
 
-def _parse_section(section: str, label_to_id: dict) -> tuple[str, str]:
+def _parse_section(section: str, label_to_id: dict[str, str]) -> tuple[str, str]:
     """For a section, return its field ID and the content.
     The content has no newlines and has spaces stripped.
     """
