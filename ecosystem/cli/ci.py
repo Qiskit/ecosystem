@@ -28,7 +28,7 @@ class CliCI:
             resources_dir: (For testing) Path to the working directory
 
         Returns:
-            None (side effect is updating database)
+            None (side effect is updating database and writing actions output)
         """
 
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem/resources"))

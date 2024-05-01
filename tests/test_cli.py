@@ -55,7 +55,7 @@ class TestCli(TestCase):
         # Issue 1
         captured_output = io.StringIO()
         with redirect_stdout(captured_output):
-            CliCI.add_member_from_issue(self.issue_body, self.path)
+            CliCI.add_member_from_issue(self.issue_body, resources_dir=self.path)
 
         output_value = captured_output.getvalue().split("\n")
         self.assertEqual(output_value[0], "SUBMISSION_NAME=My awesome project")
@@ -77,7 +77,7 @@ class TestCli(TestCase):
         # Issue 2
         captured_output = io.StringIO()
         with redirect_stdout(captured_output):
-            CliCI.add_member_from_issue(self.issue_body_2, self.path)
+            CliCI.add_member_from_issue(self.issue_body_2, resources_dir=self.path)
 
         output_value = captured_output.getvalue().split("\n")
         self.assertEqual(output_value[0], "SUBMISSION_NAME=My awesome project")
