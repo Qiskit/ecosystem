@@ -1,9 +1,11 @@
 """CliCI class for controlling all CLI functions."""
-import os
-from typing import Optional
+from __future__ import annotations
+
+
+from pathlib import Path
 
 from ecosystem.daos import DAO
-from ecosystem.utils import logger, parse_submission_issue
+from ecosystem.utils import parse_submission_issue
 from ecosystem.utils.utils import set_actions_output
 
 
@@ -17,37 +19,20 @@ class CliCI:
     Ex: `python manager.py ci parser_issue --body="<SOME_MARKDOWN>"`
     """
 
-    def __init__(self, root_path: Optional[str] = None):
-        """CliCI class."""
-        self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
-        self.dao = DAO(path=self.resources_dir)
-        self.logger = logger
-
     @staticmethod
-    def parser_issue(body: str) -> None:
-        """Command for calling body issue parsing function.
+    def add_member_from_issue(body: str, *, resources_dir: str | None = None) -> None:
+        """Parse an issue created from the issue template and add the member to the database
 
         Args:
             body: body of the created issue
+            resources_dir: (For testing) Path to the working directory
 
         Returns:
-            logs output
-            We want to give the result of the parsing issue to the GitHub action
+            None (side effect is updating database and writing actions output)
         """
 
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem/resources"))
+
         parsed_result = parse_submission_issue(body)
-
-        to_print = [
-            ("SUBMISSION_NAME", parsed_result.name),
-            ("SUBMISSION_REPO", parsed_result.url),
-            ("SUBMISSION_DESCRIPTION", parsed_result.description),
-            ("SUBMISSION_LICENCE", parsed_result.licence),
-            ("SUBMISSION_CONTACT", parsed_result.contact_info),
-            ("SUBMISSION_ALTERNATIVES", parsed_result.alternatives),
-            ("SUBMISSION_AFFILIATIONS", parsed_result.affiliations),
-            ("SUBMISSION_LABELS", parsed_result.labels),
-            ("SUBMISSION_WEBSITE", parsed_result.website),
-        ]
-
-        set_actions_output(to_print)
+        DAO(path=resources_dir).write(parsed_result)
+        set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
