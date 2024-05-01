@@ -37,35 +37,14 @@ jobs:
       id: parse-issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
-      run: python manager.py ci parser_issue --body="$ISSUE_BODY"
-    - name: Add member
-      env:
-        SUBMISSION_NAME: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
-        SUBMISSION_REPO: ${{ steps.parse-issue.outputs.SUBMISSION_REPO }}
-        SUBMISSION_DESCRIPTION: ${{ steps.parse-issue.outputs.SUBMISSION_DESCRIPTION }}
-        SUBMISSION_LICENCE: ${{ steps.parse-issue.outputs.SUBMISSION_LICENCE }}
-        SUBMISSION_CONTACT: ${{ steps.parse-issue.outputs.SUBMISSION_CONTACT }}
-        SUBMISSION_ALTERNATIVES: ${{ steps.parse-issue.outputs.SUBMISSION_ALTERNATIVES }}
-        SUBMISSION_AFFILIATIONS: ${{ steps.parse-issue.outputs.SUBMISSION_AFFILIATIONS }}
-        SUBMISSION_LABELS: ${{ steps.parse-issue.outputs.SUBMISSION_LABELS }}
-        SUBMISSION_WEBSITE: ${{ steps.parse-issue.outputs.SUBMISSION_WEBSITE }}
-      run: |
-        python manager.py members add_repo_2db --repo_name="$SUBMISSION_NAME" \
-                                       --repo_link="$SUBMISSION_REPO" \
-                                       --repo_description="$SUBMISSION_DESCRIPTION" \
-                                       --repo_licence="$SUBMISSION_LICENCE" \
-                                       --repo_contact="$SUBMISSION_CONTACT" \
-                                       --repo_alt="$SUBMISSION_ALTERNATIVES" \
-                                       --repo_affiliations="$SUBMISSION_AFFILIATIONS" \
-                                       --repo_labels="$SUBMISSION_LABELS" \
-                                       --repo_website="$SUBMISSION_WEBSITE"
+      run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY"
 
     # Create PR
     - name: Commit changes and create pull request
       id: cpr
       uses: peter-evans/create-pull-request@v5
       with:
-        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_REPO }} to list.
+        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         body: |
           Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
