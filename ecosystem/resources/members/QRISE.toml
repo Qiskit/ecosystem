@@ -1,0 +1,10 @@
+name = "Exploring Dynamic Circuits through Gibbs Free Energy Calculations and Error Mitigation"
+url = "https://github.com/owaisishtiaqsiddiqui/QRISE"
+description = "The Project seeks to demonstrate the behavior of Gibbs free energy using dynamic mid-circuit measurements. We Developed a framework for estimating the free energy of quantum systems using variational quantum algorithms. We Implemented ansatz parameterization techniques to construct parameterized quantum circuits capable of preparing quantum states relevant to the free energy calculation also Designed efficient algorithms for estimating expectation values of Hamiltonians and computing the free energy based on the obtained results and Evaluated the performance of the developed framework through empirical analysis, including benchmarking, optimization,"
+licence = "MIT license"
+contact_info = "owaisishtiaq15@gmail.com"
+alternatives = "There are no alternatives to this project but there are some tutorials on using Mid circuit measurements using Qiskit."
+labels = [ "Algorithms", "Chemistry", "Error mitigation", "Jupyter notebook", "Paper implementation", "Physics",]
+group = "other"
+reference_paper = "https://arxiv.org/pdf/2005.08797.pdf, https://arxiv.org/pdf/2312.14139.pdf"
+documentation = "https://github.com/owaisishtiaqsiddiqui/QRISE/blob/main/QRise_Final_PPT.pdf"
