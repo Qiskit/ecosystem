@@ -36,8 +36,7 @@ minutes.
 
 Members of the ecosystem are invited to give a presentation about their project
 at [Qiskit demo day](https://github.com/Qiskit/feedback/wiki/Qiskit-DemoDays).
-You can also write a post for the Qiskit blog; reach out to [Frank
-Harkins](francis.harkins@ibm.com) if you're interested.
+Reach out to [Frank Harkins](francis.harkins@ibm.com) if you're interested.
 
 ## How to update project information
 
