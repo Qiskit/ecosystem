@@ -1,18 +1,10 @@
 <!--lint ignore double-link-->
 
-# Ecosystem ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet) [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![Tests](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml)
+# Qiskit ecosystem
+
+![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet) [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![Tests](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml)
 
 <!--lint enable double-link-->
-
-<br />
-<p align="center">
-  <p align="center">
-    <a href="https://qiskit.org/">
-      <img alt="Qiskit" src="https://qiskit.org/images/qiskit-logo.png" width="70" />
-    </a>
-  </p>
-  <h3 align="center">Ecosystem</h3>
-</p>
 
 ## About the ecosystem
 
