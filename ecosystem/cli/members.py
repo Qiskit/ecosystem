@@ -1,7 +1,9 @@
 """CliMembers class for controlling all CLI functions."""
+
 import json
 import os
 from typing import Optional, Tuple
+from pathlib import Path
 
 import requests
 
@@ -102,3 +104,8 @@ class CliMembers:
             stars = json_data.get("stargazers_count")
             self.dao.update(project.url, stars=stars)
             self.logger.info("Updating star count for %s: %d", project.url, stars)
+
+    def compile_json(self, output_file: str):
+        """Compile JSON file for consumption by ibm.com"""
+        data = {"members": [repo.to_dict() for repo in self.dao.get_all()]}
+        Path(output_file).write_text(json.dumps(data))
