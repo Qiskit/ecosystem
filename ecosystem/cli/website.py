@@ -61,10 +61,10 @@ def _load_from_file(
         ),
     )
 
-    # Label descriptions
+    # Label descriptions: We flatten the dict to the form { label_name: description }
     label_descriptions = {}
-    for _category in json.loads((resources_dir / "labels.json").read_text()).values():
-        for label in _category:
+    for category in json.loads((resources_dir / "labels.json").read_text()).values():
+        for label in category:
             label_descriptions[label["name"]] = label["description"]
 
     # Website strings
