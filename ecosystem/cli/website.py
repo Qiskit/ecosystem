@@ -61,8 +61,11 @@ def _load_from_file(
         ),
     )
 
-    # Label descriptions
-    label_descriptions = json.loads((resources_dir / "labels.json").read_text())
+    # Label descriptions: We flatten the dict to the form { label_name: description }
+    label_descriptions = {}
+    for category in json.loads((resources_dir / "labels.json").read_text()).values():
+        for label in category:
+            label_descriptions[label["name"]] = label["description"]
 
     # Website strings
     web_data = toml.loads((resources_dir / "website.toml").read_text())
