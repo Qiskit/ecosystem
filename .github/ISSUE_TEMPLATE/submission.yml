@@ -27,7 +27,7 @@ body:
       description: >
         Title of your project as it will appear on
         [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
-      placeholder: Qiskit GPU Compile
+      placeholder: E.g. Qiskit GPU Compile
     validations:
       required: true
   - type: input
@@ -35,7 +35,7 @@ body:
     attributes:
       label: Github repo
       description: Link to GitHub repo of project you want to submit
-      placeholder: https://github.com/owner/qiskit-gpu-compile
+      placeholder: E.g. https://github.com/owner/qiskit-gpu-compile
     validations:
       required: true
   - type: textarea
@@ -45,8 +45,7 @@ body:
       description: >
         1-2 sentences to appear under your project on
         [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
-        Keep it under 30 words; readers will click through to your repo if
-        they want to learn more.
+        Keep it under 135 characters; anything longer will be trimmed.
 
         Note this **does not** support markdown.
       placeholder: >
@@ -58,7 +57,7 @@ body:
     id: contact_info
     attributes:
       label: Email
-      placeholder: awesome.person@example.org
+      placeholder: E.g. awesome.person@example.org
     validations:
       required: false
   - type: textarea
@@ -66,7 +65,7 @@ body:
     attributes:
       label: Alternatives
       description: Short description of alternative projects.
-      placeholder: There are no alternatives to this project!
+      placeholder: E.g. There are no alternatives to this project!
     validations:
       required: false
   - type: dropdown
@@ -91,7 +90,7 @@ body:
     attributes:
       label: Affiliations
       description: List any organisations affiliated with the project.
-      placeholder: None
+      placeholder: E.g. None
     validations:
       required: false
   - type: checkboxes
@@ -152,7 +151,7 @@ body:
     attributes:
       label: Documentation
       description: Link to project's documentation website
-      placeholder: https://your-project.com/documentation
+      placeholder: E.g. https://your-project.com/documentation
     validations:
       required: false
   - type: input
@@ -160,7 +159,7 @@ body:
     attributes:
       label: Website
       description: Link to project or company website if applicable
-      placeholder: https://your-project.com
+      placeholder: E.g. https://your-project.com
     validations:
       required: false
   - type: input
@@ -168,6 +167,6 @@ body:
     attributes:
       label: Reference paper
       description: If your project is based on a paper, you can link it here.
-      placeholder: https://arxiv.org/abs/2402.00022
+      placeholder: E.g. https://arxiv.org/abs/2402.00022
     validations:
       required: false
