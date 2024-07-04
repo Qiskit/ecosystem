@@ -67,6 +67,7 @@ class TestCli(TestCase):
             "description": "An awesome repo for awesome project multiple paragraphs",
             "contact_info": "toto@gege.com",
             "alternatives": "tititata",
+            "ibm_maintained": True,
             "licence": "Apache License 2.0",
             "labels": ["tool", "tutorial", "paper implementation"],
             "website": "https://qiskit.org/ecosystem/",
@@ -90,6 +91,7 @@ class TestCli(TestCase):
             "contact_info": "toto@gege.com",
             "licence": "Apache License 2.0",
             "affiliations": "Awesome Inc.",
+            "ibm_maintained": False,
             "labels": [],
         }
         self.assertEqual(len(retrieved_repos), 1)

@@ -81,4 +81,6 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
     else:
         args["labels"] = [x.strip() for x in args["labels"].split(",")]
 
+    args["ibm_maintained"] = args["ibm_maintained"].startswith("- \\[X\\]")
+
     return Repository(**args)

@@ -25,6 +25,7 @@ class Repository(JsonSerializable):
     alternatives: str | None = None
     affiliations: str | None = None
     labels: list[str] = new_list()
+    ibm_maintained: bool = False
     created_at: int | None = None
     updated_at: int | None = None
     website: str | None = None
