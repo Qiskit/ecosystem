@@ -94,6 +94,15 @@ body:
       placeholder: None
     validations:
       required: false
+  - type: checkboxes
+    id: ibm_maintained
+    attributes:
+      label: IBM maintenance status
+      options:
+        - label: This project is officially maintained by IBM Quantum
+          required: false
+    validations:
+      required: false
   - type: dropdown
     id: group
     attributes:
@@ -120,35 +129,24 @@ body:
       label: Labels
       multiple: true
       options:
-        - Advocate mentorship project
         - Algorithms
+        - Application package
         - Chemistry
-        - Circuit
+        - Circuit building tool
         - Circuit simulator
+        - Compute provider
         - Converter
         - Error correction
         - Error mitigation
-        - Education
         - Finance
         - Game
-        - Hardware
-        - IBM maintained
-        - Julia
-        - Jupyter notebook
         - Machine learning
-        - OpenQASM
         - Optimization
         - Paper implementation
-        - Partner
         - Physics
-        - Productivity
-        - Prototype
-        - Provider
         - Quantum information
-        - Rust
         - Software development kit
         - Transpiler plugin
-        - Visualization
   - type: input
     id: documentation
     attributes:
