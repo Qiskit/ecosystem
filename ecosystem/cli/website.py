@@ -66,6 +66,7 @@ def _load_from_file(
     for category in json.loads((resources_dir / "labels.json").read_text()).values():
         for label in category:
             label_descriptions[label["name"]] = label["description"]
+    label_descriptions["IBM maintained"] = "Officially maintained by IBM Quantum"
 
     # Website strings
     web_data = toml.loads((resources_dir / "website.toml").read_text())
@@ -100,6 +101,8 @@ def _build_html(projects, web_data, label_descriptions, templates) -> str:
     min_chars_description_hidden = 100
     count_read_more = 1
     for repo in projects:
+        if repo.ibm_maintained:
+            repo.labels.append("IBM maintained")
         # Card tags
         tags = ""
         for index, label in enumerate(repo.labels):
