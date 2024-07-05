@@ -1,6 +1,6 @@
 name = "qiskit-symb"
 url = "https://github.com/SimoneGasperini/qiskit-symb"
-description = "Easy-to-use Python package designed to enable symbolic quantum computation in Qiskit. It provides the basic tools for the symbolic evaluation of statevectors, density matrices, and unitary operators directly created from parametric Qiskit quantum circuits. The implementation is based on the Sympy library as backend for symbolic expressions manipulation."
+description = "Symbolic evaluation of statevectors, density matrices, and unitary operators created from parameterized circuits, in Qiskit."
 licence = "Apache License 2.0"
 contact_info = "simone.gasperini4@unibo.it"
 labels = [ "Circuit simulator", "Quantum information",]
