@@ -1,6 +1,6 @@
 name = "Variational Quantum Linear Solver Prototype"
 url = "https://github.com/QuantumApplicationLab/vqls-prototype"
-description = "VQLS uses an optimization approach to solve linear systems of equations. Set up and deploy a VQLS instance on different backends."
+description = "VQLS uses an optimization approach to solve systems of linear equations. Set up and deploy VQLS instances on different backends."
 licence = "Apache License 2.0"
 contact_info = "nicolas.gm.renaud@gmail.com"
 alternatives = "The prototype builds on the qiskit-textbook chapter and tutorial. The prototype allows to use the primitives and use different cost function and test circuits to optimize the parameters."
