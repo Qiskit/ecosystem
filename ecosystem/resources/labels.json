@@ -1,5 +1,5 @@
 {
-  "types": [
+  "Types": [
     { "name": "Application package", "description": "Applies quantum technology to real-world use cases" },
     { "name": "Compute provider", "description": "Provides access to remote quantum computers or simulators" },
     { "name": "Circuit building tool", "description": "Builds or modifies quantum circuits" },
@@ -10,7 +10,7 @@
     { "name": "Software development kit", "description": "Helps develop Qiskit code" },
     { "name": "Transpiler plugin", "description": "Extends Qiskit's transpiler to compile and optimize quantum circuits" }
   ],
-  "subjects": [
+  "Subjects": [
     { "name": "Algorithms", "description": "Implements quantum algorithms" },
     { "name": "Chemistry", "description": "Applies quantum computing to chemistry" },
     { "name": "Error correction", "description": "Performs or investigates quantum error correction" },
