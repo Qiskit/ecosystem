@@ -44,10 +44,10 @@ class.
 
 ### Webpage
 
-To generate the webpage from the TOML files, run:
+To generate the ecosystem data from the TOML files, run:
 
 ```sh
 tox -e website
 ```
 
-Then open `website/index.html` in your browser. A GitHub action publishes the result of this command on every push to main.
+Then open `website/ecosystem.json`. A GitHub action publishes the result of this command on every push to main.
