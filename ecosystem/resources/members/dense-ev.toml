@@ -1,6 +1,6 @@
 name = "dense-ev"
 url = "https://github.com/atlytle/dense-ev"
-description = "Implements expectation value measurements in Qiskit using optimal dense grouping. Dense-ev provides an improvement of ~2^m over naive grouping and (3/2)^m over qubit-wise commuting groups."
+description = "Expectation value measurements in Qiskit using optimal dense grouping, an improvement of (3/2)^m over qubit-wise commuting groups."
 licence = "Apache License 2.0"
 contact_info = "atlytle@gmail.com"
 affiliations = "University of Illinois at Urbana-Champaign"
