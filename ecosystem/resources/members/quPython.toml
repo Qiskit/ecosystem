@@ -1,9 +1,10 @@
 name = "quPython"
 url = "https://github.com/frankharkins/quPython"
-description = "Write quantum programs as Python functions instead of circuit objects. Create higher-level quantum data types and return measurement results as bool-like objects."
+description = "Write Pythonic quantum programs. Replace circuits and registers with functions and classes for better abstractions and readability."
 licence = "MIT license"
 contact_info = "frankharkins@hotmail.co.uk"
 labels = [ "Circuit building tool", "Converter", "Software development kit",]
 ibm_maintained = false
 stars = 4
 group = "other"
+uuid = "bad95659-420a-4529-97d0-80e52532fc90"

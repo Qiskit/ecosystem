@@ -1,10 +1,11 @@
 name = "pytket-qiskit"
 url = "https://github.com/CQCL/pytket-qiskit"
-description = "An extension to Pytket (a python module for interfacing with CQC tket) that allows Pytket circuits to be run on IBM backends and simulators, as well as conversion to and from Qiskit representations."
+description = "Convert between Pytket (a Python interface for CQC tket) and Qiskit, and run Pytket circuits on IBM backends and simulators"
 licence = "Apache 2.0"
 labels = [ "Converter",]
 ibm_maintained = false
 created_at = 1661869851.523229
 updated_at = 1661869851.523229
-stars = 13
+stars = 14
 group = "other"
+uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"

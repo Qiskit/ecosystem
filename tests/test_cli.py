@@ -73,7 +73,9 @@ class TestCli(TestCase):
             "website": "https://qiskit.org/ecosystem/",
         }
         self.assertEqual(len(retrieved_repos), 1)
-        self.assertEqual(list(retrieved_repos)[0].to_dict(), expected)
+        retrieved = list(retrieved_repos)[0].to_dict()
+        self.assertIsInstance(retrieved.pop("uuid"), str)
+        self.assertEqual(retrieved, expected)
 
         # Issue 2
         captured_output = io.StringIO()
@@ -95,7 +97,9 @@ class TestCli(TestCase):
             "labels": [],
         }
         self.assertEqual(len(retrieved_repos), 1)
-        self.assertEqual(list(retrieved_repos)[0].to_dict(), expected)
+        retrieved = list(retrieved_repos)[0].to_dict()
+        self.assertIsInstance(retrieved.pop("uuid"), str)
+        self.assertEqual(retrieved, expected)
 
     def test_update_badges(self):
         """Tests creating badges."""

@@ -4,6 +4,7 @@ from __future__ import annotations
 import pprint
 from datetime import datetime
 from dataclasses import dataclass
+from uuid import uuid4
 
 from .utils import JsonSerializable, new_list
 
@@ -33,10 +34,13 @@ class Repository(JsonSerializable):
     group: str | None = None
     reference_paper: str | None = None
     documentation: str | None = None
+    uuid: str | None = None
 
     def __post_init__(self):
         self.__dict__.setdefault("created_at", datetime.now().timestamp())
         self.__dict__.setdefault("updated_at", datetime.now().timestamp())
+        if self.uuid is None:
+            self.uuid = str(uuid4())
 
     @classmethod
     def from_dict(cls, dictionary: dict):
