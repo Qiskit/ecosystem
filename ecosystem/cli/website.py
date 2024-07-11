@@ -29,4 +29,5 @@ def build_website(output: str) -> None:
     </html>
     """
     html = re.sub(r"\n\s*", "", html)
+    Path(output).parent.mkdir(parents=True, exist_ok=True)
     Path(output).write_text(html)
