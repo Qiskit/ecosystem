@@ -1,10 +1,12 @@
 """CliWebsite class for controlling all CLI functions."""
+
 from __future__ import annotations
 
 import re
 from pathlib import Path
 
 NEW_URL = "https://ibm.com"
+
 
 def build_website(output: str) -> None:
     """
