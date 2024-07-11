@@ -70,10 +70,11 @@ class TestUtils(TestCase):
 
     def test_decription_lengths(self):
         """Make sure IDs in the issue template match attributes of the Repository model."""
+        # pylint: disable=no-self-use
         dao = DAO("ecosystem/resources")
         for repo in dao.get_all():
             if len(repo.description) > 135:
                 raise AssertionError(
                     f'Description for "{repo.name}" is too long!\n'
-                    f"Rephrase to under 135 characters (currently {len(repo.description)} characters)"
+                    f"Rephrase to under 135 characters (currently {len(repo.description)})"
                 )
