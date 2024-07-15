@@ -5,7 +5,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-NEW_URL = "https://ibm.com"
+NEW_URL = "https://ibm.com/quantum/ecosystem"
 
 
 def build_website(output: str) -> None:
