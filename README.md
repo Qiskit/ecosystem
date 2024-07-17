@@ -11,7 +11,7 @@
 The Qiskit ecosystem is a collection of software and tutorials that builds on
 or extends Qiskit. The goal of the Ecosystem is to celebrate, support, and
 accelerate development of quantum technologies using Qiskit. View all projects
-at [qiskit.github.io/ecosystem/](https://qiskit.github.io/ecosystem/).
+at [https://www.ibm.com/quantum/ecosystem](https://www.ibm.com/quantum/ecosystem).
 
 This repository handles submissions to the ecosystem and builds the web page.
 
@@ -31,7 +31,7 @@ To join the ecosystem, your project must:
   - Have maintainer activity within the last 6 months, such as a commit.
 
 Once your submission has been approved and merged, it will appear on
-[qiskit.github.io/ecosystem/](https://qiskit.github.io/ecosystem/) within a few
+[https://www.ibm.com/quantum/ecosystem](https://www.ibm.com/quantum/ecosystem) within a few
 minutes.
 
 Members of the ecosystem are invited to give a presentation about their project
