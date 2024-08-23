@@ -1,0 +1,12 @@
+name = "CALA-n Quantum Library"
+url = "https://github.com/albayaty/cala_quantum_library"
+description = "A set of cost-effective n-bit gates based on Clifford+T gates, quantum layouts, and n neighboring physical qubits (2 \\<= n \\<= 5)."
+licence = "Apache License 2.0"
+contact_info = "albayaty@pdx.edu"
+alternatives = "There are no alternatives to this project."
+affiliations = "Department of Electrical and Computer Engineering at Portland State University"
+labels = [ "Circuit building tool", "Paper implementation",]
+ibm_maintained = false
+group = "applications"
+reference_paper = "https://doi.org/10.48550/arXiv.2408.01025"
+uuid = "8868c7af-adce-48ee-9ca9-d066fb569cf4"
