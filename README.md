@@ -29,7 +29,7 @@ To join the ecosystem, your project must:
   - Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
   - Adhere to our [code of conduct](./CODE_OF_CONDUCT.md) (you can enforce your own code of conduct in addition to this).
   - Have maintainer activity within the last 6 months, such as a commit.
-  - New projects should also be compatible with the [V2 primitives](https://docs.quantum.ibm.com/migration-guides/v2-primitives).
+  - New projects should be compatible with the [V2 primitives](https://docs.quantum.ibm.com/migration-guides/v2-primitives).
 
 Once your submission has been approved and merged, it will appear on
 [https://www.ibm.com/quantum/ecosystem](https://www.ibm.com/quantum/ecosystem) within a few
