@@ -1,0 +1,14 @@
+name = "Qiskit Qrack Provider"
+url = "https://github.com/vm6502q/qiskit-qrack-provider"
+description = "Qrack is a GPU-accelerated simulator with optional pure-CPU and CPU/GPU-hybrid simulation, scaling from minimalist systems to multiple GPUs for high performance, with novel near-Clifford, Schmidt-decomposition, quantum binary decision diagram (QBDD), light-cone optimization, state vector, and other simulation techniques."
+licence = "Apache License 2.0"
+contact_info = "dan@unitary.fund"
+alternatives = "Any simulator back end provider could furnish similar functionality, though Qrack has many novel approaches to optimization and \"hybrid\" simulation techniques that are not currently available in other simulators."
+affiliations = "[Unitary Fund](https://unitary.fund/) [VM6502Q](https://github.com/vm6502q)"
+labels = [ "Circuit simulator",]
+ibm_maintained = false
+website = "https://github.com/unitaryfund/qrack"
+group = "provider"
+reference_paper = "https://arxiv.org/abs/2304.14969"
+documentation = "https://qrack.readthedocs.io/en/latest/"
+uuid = "43cd849a-f5a7-4107-bca9-c19c6cbefc5f"
