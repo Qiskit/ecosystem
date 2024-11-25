@@ -1,10 +1,10 @@
 name = "MQT Predictor"
 url = "https://github.com/cda-tum/mqt-predictor"
-description = "MQT Predictor allows one to automatically select a suitable quantum device for a circuit and provides an optimized compiler for the selected device."
+description = "Automatically select a suitable quantum device for a circuit and get an optimized compiler for the selected device."
 licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
-labels = [ "Application package", "Circuit building tool", "Converter", "Machine learning", "Software development kit", "Optimization", "Paper implementation",]
+labels = [ "Circuit building tool", "Converter", "Machine learning", "Software development kit", "Paper implementation",]
 ibm_maintained = false
 group = "transpiler_plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
