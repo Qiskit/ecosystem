@@ -1,9 +1,9 @@
 name = "Quantum Debugger"
 url = "https://github.com/quantag/qdb-qscore"
-description = "Quantum debugger which allows to debug OpenQASM and Python Qiskit circuits directly from VS Code. Supports step debugging and circuits visualization in VS Code. Implements Microsoft Debugger Adapter Protocol, can work with any [IDE](https://microsoft.github.io/debug-adapter-protocol/implementors/tools/) which supports it. ![Image](https://github.com/user-attachments/assets/981b1e10-5d79-4139-8bc4-cec672c4cc37) Source code: VS Code extension: https://github.com/quantag/qasm-adapter-vscode Backend with QVM: https://github.com/quantag/qdb-qscore VS Code extension can be downloaded directly from VS Code or [here](https://marketplace.visualstudio.com/items?itemName=QuantagITSolutionsGmbH.openqasm-debug)"
+description = "Debug and visualize OpenQASM and Qiskit circuits directly from VSCode or any IDE that supports Microsoft's Debugger Adapter Protocol."
 licence = "MIT license"
 contact_info = "sergii.salata@quantag-it.com"
-affiliations = "[Quantag IT Solutions GmbH](https://quantag-it.com/)"
+affiliations = "Quantag IT Solutions GmbH"
 labels = [ "Software development kit", "Circuit simulator",]
 ibm_maintained = false
 website = "https://quantag-it.com/quantum/#/debugger"
