@@ -1,0 +1,15 @@
+name = "MQT QUBOMaker"
+url = "https://github.com/cda-tum/mqt-qubomaker"
+description = "A framework to generate QUBO formulations for optimization problems based on a selection of constraints that define the problem."
+licence = "MIT license"
+contact_info = "quantum.cda@xcit.tum.de"
+alternatives = "There are no direct alternatives as this project has very specialized uses."
+affiliations = "Technical University of Munich (TUM), Germany"
+labels = [ "Optimization", "Quantum information",]
+ibm_maintained = false
+website = "https://mqt.readthedocs.io"
+stars = 20
+group = "applications"
+reference_paper = "https://arxiv.org/abs/2404.10820"
+documentation = "https://mqt.readthedocs.io/projects/qubomaker"
+uuid = "026213b3-a2cd-4281-b49d-8516c6cd73ae"

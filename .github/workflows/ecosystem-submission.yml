@@ -61,6 +61,7 @@ jobs:
     if: >
       startsWith(github.event.issue.title, '[Submission]:')
       && github.event.action == 'closed'
+      && github.event.pull_request.merged == true
       && contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
     steps:
