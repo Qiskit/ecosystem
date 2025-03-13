@@ -23,7 +23,7 @@ jobs:
         - name: Build
           run: tox -e website
         - name: Upload Artifacts
-          uses: actions/upload-pages-artifact@v2
+          uses: actions/upload-pages-artifact@v3
           with:
             path: 'website/'
   deploy:
@@ -41,4 +41,4 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
