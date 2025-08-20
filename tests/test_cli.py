@@ -1,4 +1,5 @@
 """Tests for cli."""
+
 import io
 import os
 import shutil
