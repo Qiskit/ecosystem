@@ -70,20 +70,17 @@ class CliMembers:
 
     def update_badges(self):
         """Updates badges for projects."""
-        badges_folder_path = "{}/badges".format(self.current_dir)
-
         for project in self.dao.get_all():
-            color = "blueviolet"
-            label = project.name
-            message = "Qiskit ecosystem"
-            url = (
-                f"https://img.shields.io/static/v1?"
-                f"label={label}&message={message}&color={color}"
-            )
-
-            shields_request = requests.get(url)
-            with open(f"{badges_folder_path}/{project.name}.svg", "wb") as outfile:
-                outfile.write(shields_request.content)
+            # Create a json to be consumed by https://shields.io/badges/endpoint-badge
+            data = {
+                "schemaVersion": 1,
+                "label": "Qiskit Ecosystem",
+                "namedLogo": "Qiskit",
+                "message": project.name,
+                "color": "6929C4"
+            }
+            with open(os.path.join(self.current_dir, "badges", f"{project.uuid}.json"), "w") as outfile:
+                json.dump(data, outfile, indent=4)
                 self.logger.info("Badge for %s has been updated.", project.name)
 
     def update_stars(self):
