@@ -1,0 +1,14 @@
+name = "FAdam-VQE"
+url = "https://github.com/dolf3131/qiskit_algorithms_V2"
+description = "Custom implementation of the Variational Quantum Eigensolver (VQE) algorithm integrating the Fisher Adam (FAdam) optimizer for Qiskit's EstimatorV2 API. This project addresses compatibility issues with Qiskit 1.0+ and enables the use of FAdam for quantum chemistry and optimization problems."
+licence = "Apache License 2.0"
+contact_info = "milk_lime@naver.com"
+alternatives = "qiskit-algorithms, VQE"
+affiliations = "I'm undergraduate Yonsei University."
+labels = [ "Algorithms",]
+ibm_maintained = false
+website = "https://arxiv.org/abs/2405.12807"
+group = "applications"
+reference_paper = "https://arxiv.org/abs/2405.12807"
+documentation = "https://arxiv.org/abs/2405.12807"
+uuid = "e4d840cb-e4f1-4e58-84f6-d5a77a5d2d1e"
