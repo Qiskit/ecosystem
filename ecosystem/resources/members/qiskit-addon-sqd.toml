@@ -1,6 +1,6 @@
 name = "Qiskit addon: sample-based quantum diagonalization (SQD)"
 url = "https://github.com/Qiskit/qiskit-addon-sqd"
-description = "Cut large circuits into smaller, hardware-executable circuits, then use their results to reconstruct the original outcome."
+description = "Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 licence = "Apache License 2.0"
 contact_info = "garrison@ibm.com"
 labels = [ "Algorithms", "Chemistry" ]
