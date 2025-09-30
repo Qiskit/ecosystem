@@ -1,6 +1,6 @@
 name = "Qiskit addon: approximate quantum compilation with tensor networks (AQC-Tensor)"
 url = "https://github.com/Qiskit/qiskit-aqc-tensor"
-description = "Reduce circuit depth by compressing initial layers via approximate quantum compilation with tensor networks."
+description = "Map to lower depth circuits by compressing initial layers via approximate quantum compilation with tensor networks."
 licence = "Apache License 2.0"
 contact_info = "garrison@ibm.com"
 labels = [ "Algorithms", "Circuit building tool",]
