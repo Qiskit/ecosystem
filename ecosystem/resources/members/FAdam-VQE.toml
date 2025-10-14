@@ -1,0 +1,24 @@
+# This file is licensed under the Apache License, Version 2.0.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE.txt file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name = "FAdam-VQE"
+description = "FAdam VQE: Custom VQE with FAdam optimizer, compatible with Qiskit 1.0+ EstimatorV2 for quantum chemistry & optimization."
+url = "https://arxiv.org/abs/2405.12807"
+source_url = "https://github.com/dolf3131/qiskit_algorithms_V2"
+documentation_url = "https://arxiv.org/abs/2405.12807"
+contact_email = "milk_lime@naver.com"
+licenses = ["Apache-2.0"]
+programming_languages = ["Python"]
+
+[extra]
+tags = ["Algorithms", "VQE"]
+reference_paper = "https://arxiv.org/abs/2405.12807"
+alternatives = ["qiskit-algorithms"]
+uuid = "e4d840cb-e4f1-4e58-84f6-d5a77a5d2d1e"
