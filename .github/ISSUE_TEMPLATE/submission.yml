@@ -6,7 +6,7 @@ assignees:
   - octocat
 body:
   # The IDs of each input must correspond with the attributes of the repository model
-  # in ecosystem/models/repository.py 
+  # in ecosystem/models/submission.py
   - type: markdown
     attributes:
       value: |
