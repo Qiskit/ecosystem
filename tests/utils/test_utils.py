@@ -7,7 +7,7 @@ from pathlib import Path
 
 import yaml
 
-from ecosystem.models.repository import Repository
+from ecosystem.models.submission import Submission
 from ecosystem.utils import parse_submission_issue
 from ecosystem.daos import DAO
 
@@ -28,11 +28,11 @@ class TestUtils(TestCase):
                 -> parse_submission_issue
         Args:
             issue_body
-        Return : Repository
+        Return : Submission
         """
         parsed_result = parse_submission_issue(self.issue_body)
 
-        self.assertTrue(isinstance(parsed_result, Repository))
+        self.assertTrue(isinstance(parsed_result, Submission))
         self.assertEqual(parsed_result.name, "My awesome project")
         self.assertEqual(parsed_result.url, "http://github.com/awesome/awesome")
         self.assertEqual(
@@ -49,7 +49,7 @@ class TestUtils(TestCase):
         )
 
     def test_issue_template_matches_repository_model(self):
-        """Make sure IDs in the issue template match attributes of the Repository model."""
+        """Make sure IDs in the issue template match attributes of the Submission model."""
         issue_template = yaml.load(
             Path(".github/ISSUE_TEMPLATE/submission.yml").read_text(),
             Loader=yaml.SafeLoader,
@@ -60,16 +60,16 @@ class TestUtils(TestCase):
             if field["type"] != "markdown"
         }
 
-        repo_fields = {attr.name for attr in dataclasses.fields(Repository)}
+        repo_fields = {attr.name for attr in dataclasses.fields(Submission)}
         for issue_id in issue_ids:
             self.assertIn(
                 issue_id,
                 repo_fields,
-                msg="\nA field exists in the issue template but not in the Repository class.",
+                msg="\nA field exists in the issue template but not in the Submission class.",
             )
 
     def test_decription_lengths(self):
-        """Make sure IDs in the issue template match attributes of the Repository model."""
+        """Make sure IDs in the issue template match attributes of the Submission model."""
         # pylint: disable=no-self-use
         dao = DAO("ecosystem/resources")
         for repo in dao.get_all():

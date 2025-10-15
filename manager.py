@@ -18,6 +18,7 @@ Available commands:
    python manager.py website build_website"
    ```
 """
+
 from ecosystem import main
 
 if __name__ == "__main__":

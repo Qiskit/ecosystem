@@ -1,4 +1,5 @@
-"""Repository model."""
+"""Submission model."""
+
 from __future__ import annotations
 
 import pprint
@@ -10,7 +11,7 @@ from .utils import JsonSerializable, new_list
 
 
 @dataclass
-class Repository(JsonSerializable):
+class Submission(JsonSerializable):
     """Main repository class.
 
     NOTE: These attribute names must correspond to field IDs in the issue
@@ -44,16 +45,16 @@ class Repository(JsonSerializable):
 
     @classmethod
     def from_dict(cls, dictionary: dict):
-        """Transform dictionary to Repository.
+        """Transform dictionary to Submission.
 
         Args:
             dictionary: dict object
 
-        Return: Repository
+        Return: Submission
         """
-        return Repository(**dictionary)
+        return Submission(**dictionary)
 
-    def __eq__(self, other: "Repository"):
+    def __eq__(self, other: "Submission"):
         return (
             self.url == other.url
             and self.description == other.description
@@ -64,4 +65,4 @@ class Repository(JsonSerializable):
         return pprint.pformat(self.to_dict(), indent=4)
 
     def __str__(self):
-        return f"Repository({self.name} | {self.url})"
+        return f"Submission({self.name} | {self.url})"
