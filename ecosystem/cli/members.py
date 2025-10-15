@@ -4,7 +4,6 @@ import json
 import os
 from typing import Optional, Tuple
 from pathlib import Path
-from urllib.parse import urlparse
 
 import requests
 
