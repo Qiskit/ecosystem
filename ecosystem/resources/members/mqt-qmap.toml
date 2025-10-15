@@ -1,0 +1,15 @@
+name = "MQT QMAP"
+url = "https://github.com/cda-tum/mqt-qmap"
+description = "A tool for quantum circuit compilation for various qubit technologies developed as part of the Munich Quantum Toolkit (MQT)."
+licence = "MIT license"
+contact_info = "quantum.cda@xcit.tum.de"
+alternatives = "Any other layout and routing techniques for superconducting systems, Clifford synthesis approach, or compilation tool for neutral atom quantum computers."
+affiliations = "Technical University of Munich (TUM), Germany"
+labels = [ "Paper implementation",]
+ibm_maintained = false
+website = "https://mqt.readthedocs.io"
+stars = 120
+group = "transpiler_plugin"
+reference_paper = "https://arxiv.org/abs/2405.17543"
+documentation = "https://mqt.readthedocs.io/projects/qmap"
+uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"

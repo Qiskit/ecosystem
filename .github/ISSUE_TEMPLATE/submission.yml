@@ -6,7 +6,7 @@ assignees:
   - octocat
 body:
   # The IDs of each input must correspond with the attributes of the repository model
-  # in ecosystem/models/repository.py 
+  # in ecosystem/models/submission.py
   - type: markdown
     attributes:
       value: |
@@ -129,12 +129,13 @@ body:
       multiple: true
       options:
         - Algorithms
-        - Application package
+        - Applications
         - Chemistry
         - Circuit building tool
         - Circuit simulator
         - Compute provider
         - Converter
+        - Cloud service
         - Error correction
         - Error mitigation
         - Finance

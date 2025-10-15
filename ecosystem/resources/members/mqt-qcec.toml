@@ -1,0 +1,15 @@
+name = "MQT QCEC"
+url = "https://github.com/cda-tum/mqt-qcec"
+description = "A tool for quantum circuit equivalence checking developed as part of the Munich Quantum Toolkit (MQT)."
+licence = "MIT license"
+contact_info = "quantum.cda@xcit.tum.de"
+alternatives = "There are no real alternatives to this project that are as automated and connected to Qiskit and, e.g., allow for the automatic verification of transpilation results."
+affiliations = "Technical University of Munich (TUM), Germany"
+labels = [ "Paper implementation", "Quantum information",]
+ibm_maintained = false
+website = "https://mqt.readthedocs.io"
+stars = 103
+group = "other"
+reference_paper = "https://arxiv.org/abs/2405.17543"
+documentation = "https://mqt.readthedocs.io/projects/qcec"
+uuid = "79415931-2d24-4959-ab15-29dfaeb139b4"

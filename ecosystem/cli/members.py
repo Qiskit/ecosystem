@@ -4,11 +4,12 @@ import json
 import os
 from typing import Optional, Tuple
 from pathlib import Path
+from urllib.parse import urlparse
 
 import requests
 
 from ecosystem.daos import DAO
-from ecosystem.models.repository import Repository
+from ecosystem.models.submission import Submission
 from ecosystem.utils import logger
 
 
@@ -55,7 +56,7 @@ class CliMembers:
             repo_website: link to project website
         """
 
-        new_repo = Repository(
+        new_repo = Submission(
             repo_name,
             repo_link,
             repo_description,

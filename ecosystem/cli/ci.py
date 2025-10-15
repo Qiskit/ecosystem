@@ -1,4 +1,5 @@
 """CliCI class for controlling all CLI functions."""
+
 from __future__ import annotations
 
 
