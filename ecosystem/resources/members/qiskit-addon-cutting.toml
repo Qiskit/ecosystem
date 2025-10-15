@@ -1,0 +1,13 @@
+name = "qiskit-addon-cutting"
+url = "https://github.com/Qiskit/qiskit-addon-cutting"
+description = "Cut large circuits into smaller, hardware-executable circuits, then use their results to reconstruct the original outcome."
+licence = "Apache License 2.0"
+contact_info = "garrison@ibm.com"
+labels = [ "Circuit building tool",]
+ibm_maintained = true
+created_at = 1670427445.884067
+updated_at = 1758737407.8760931
+stars = 93
+group = "qiskit_addon"
+documentation = "https://qiskit.github.io/qiskit-addon-cutting/"
+uuid = "b8a6cb2a-e38f-46a5-b714-37ddb1e562e4"
