@@ -119,14 +119,14 @@ class TestCli(TestCase):
 
         badges_folder_path = "{}/badges".format(cli_members.current_dir)
         self.assertTrue(
-            os.path.isfile(f"{badges_folder_path}/{commu_success.name}.svg")
+            os.path.isfile(f"{badges_folder_path}/{commu_success.uuid}.json")
         )
 
         # check version status
         with open(
-            f"{badges_folder_path}/{commu_success.name}.svg", "r"
-        ) as svg_blueviolet:
-            svg_success = svg_blueviolet.read()
-        self.assertTrue('fill="blueviolet"' in svg_success)
+            f"{badges_folder_path}/{commu_success.uuid}.json", "r"
+        ) as json_blueviolet:
+            json_success = json_blueviolet.read()
+        self.assertTrue('"color": "6929C4"' in json_success)
 
-        os.remove(f"{badges_folder_path}/{commu_success.name}.svg")
+        os.remove(f"{badges_folder_path}/{commu_success.uuid}.json")
