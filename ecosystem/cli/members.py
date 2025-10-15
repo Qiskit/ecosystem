@@ -78,9 +78,11 @@ class CliMembers:
                 "label": "Qiskit Ecosystem",
                 "namedLogo": "Qiskit",
                 "message": project.name,
-                "color": "6929C4"
+                "color": "6929C4",
             }
-            with open(os.path.join(self.current_dir, "badges", f"{project.uuid}.json"), "w") as outfile:
+            with open(
+                os.path.join(self.current_dir, "badges", f"{project.uuid}.json"), "w"
+            ) as outfile:
                 json.dump(data, outfile, indent=4)
                 self.logger.info("Badge for %s has been updated.", project.name)
 
