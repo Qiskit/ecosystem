@@ -1,4 +1,5 @@
 name: Deploy Website
+# Builds website/ and deploys its content to  https://qiskit.github.io/ecosystem/
 
 on:
   push:

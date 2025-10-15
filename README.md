@@ -2,7 +2,7 @@
 
 # Qiskit ecosystem
 
-![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet) [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![Tests](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/qiskit-community/ecosystem/actions/workflows/tests.yml)
+![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet) [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![Tests](https://github.com/qiskit/ecosystem/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/qiskit/ecosystem/actions/workflows/tests.yml)
 
 <!--lint enable double-link-->
 
@@ -33,11 +33,7 @@ To join the ecosystem, your project must:
 
 Once your submission has been approved and merged, it will appear on
 [https://www.ibm.com/quantum/ecosystem](https://www.ibm.com/quantum/ecosystem) within a few
-minutes.
-
-Members of the ecosystem are invited to give a presentation about their project
-at [Qiskit demo day](https://github.com/Qiskit/feedback/wiki/Qiskit-DemoDays).
-Reach out to [Frank Harkins](francis.harkins@ibm.com) if you're interested.
+days.
 
 ## How to update project information
 
