@@ -1,0 +1,13 @@
+name = "truncated Variational Hamiltonian Ansatz tVHA"
+url = "https://github.com/cpossel/tvha"
+description = "truncated Variational Hamiltonian Ansatz (tVHA) for calculation of ground state energies of molecular systems/fermionic Hamiltonians"
+licence = "MIT license"
+contact_info = "clemens.possel@ict.fraunhofer.de"
+alternatives = "tVHA is an improved ansatz which shows better performance for NISQ devices than UCCSD from `qiskit-nature` (see paper [Truncated Variational Hamiltonian Ansatz: efficient quantum circuit design for quantum chemistry and material science](https://arxiv.org/abs/2505.19772)). It can work as a replacement for ansatz efficientSU2 from package `qiskit` though with its own pros and cons. Classiq has its own basic implementation of VHA ([Hamiltonian Variational Ansatz](https://docs.classiq.io/latest/user-guide/applications/ground-state-solving/ansatzes/hva/)) but with fewer options and without any truncation scheme."
+affiliations = "Fraunhofer Institute for Chemical Technology ICT"
+labels = [ "Algorithms", "Applications", "Chemistry", "Paper implementation", "Physics",]
+ibm_maintained = false
+stars = 1
+group = "applications"
+reference_paper = "https://arxiv.org/abs/2505.19772"
+uuid = "6e4000a2-3a09-43ff-b738-d4b17a0df011"

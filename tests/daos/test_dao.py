@@ -1,16 +1,17 @@
 """Tests for entities."""
+
 import tempfile
 import shutil
 from pathlib import Path
 from unittest import TestCase
 
 from ecosystem.daos import DAO
-from ecosystem.models.repository import Repository
+from ecosystem.models.submission import Submission
 
 
-def get_main_repo() -> Repository:
+def get_main_repo() -> Submission:
     """Return main mock repo."""
-    return Repository(
+    return Submission(
         name="mock-qiskit-terra-with-success-dev-test",
         url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
         description="Mock description for repo. wsdt",

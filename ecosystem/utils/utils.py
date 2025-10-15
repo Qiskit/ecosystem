@@ -1,4 +1,5 @@
 """Logging module."""
+
 import os
 import logging
 from typing import Tuple, List, Union

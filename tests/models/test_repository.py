@@ -1,7 +1,8 @@
 """Tests for entities."""
+
 import unittest
 
-from ecosystem.models.repository import Repository
+from ecosystem.models.submission import Submission
 
 
 class TestRepository(unittest.TestCase):
@@ -9,10 +10,10 @@ class TestRepository(unittest.TestCase):
 
     def test_serialization(self):
         """Tests json serialization.
-        Function: Repository
+        Function: Submission
                 -> from_dict
         """
-        main_repo = Repository(
+        main_repo = Submission(
             name="mock-qiskit-terra",
             url="https://github.com/MockQiskit/mock-qiskit.terra",
             description="Mock description for repo.",
@@ -22,7 +23,7 @@ class TestRepository(unittest.TestCase):
             website="https://example.org",
         )
         repo_dict = main_repo.to_dict()
-        recovered = Repository.from_dict(repo_dict)
+        recovered = Submission.from_dict(repo_dict)
         self.assertEqual(main_repo, recovered)
         # check configs
         self.assertEqual(
