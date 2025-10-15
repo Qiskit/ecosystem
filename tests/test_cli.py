@@ -10,12 +10,12 @@ from pathlib import Path
 
 from ecosystem.cli import CliCI, CliMembers
 from ecosystem.daos import DAO
-from ecosystem.models.repository import Repository
+from ecosystem.models.submission import Submission
 
 
-def get_community_repo() -> Repository:
+def get_community_repo() -> Submission:
     """Return main mock repo."""
-    return Repository(
+    return Submission(
         name="mock-qiskit-terra",
         url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
         description="Mock description for repo. wsdt",

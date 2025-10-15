@@ -14,13 +14,13 @@ import shutil
 import toml
 
 from ecosystem.utils import logger
-from ecosystem.models.repository import Repository
+from ecosystem.models.submission import Submission
 
 
 class TomlStorage:
     """
     Read / write TOML files from a dict where keys are repo URLs, and values
-    are Repository objects.
+    are Submission objects.
 
     Can use as a context manager like so:
 
@@ -40,18 +40,18 @@ class TomlStorage:
     def read(self) -> dict:
         """
         Search for TOML files and read into dict with types:
-        { url (str): repo (Repository) }
+        { url (str): repo (Submission) }
         """
         data = {}
         for path in self.toml_dir.glob("*.toml"):
-            repo = Repository.from_dict(toml.load(path))
+            repo = Submission.from_dict(toml.load(path))
             data[repo.url] = repo
         return data
 
     def write(self, data: dict):
         """
         Dump everything to TOML files from dict of types
-        { key (any): repo (Repository) }
+        { key (any): repo (Submission) }
         """
         # Erase existing TOML files
         # (we erase everything to clean up any deleted repos)
@@ -86,7 +86,7 @@ class DAO:
         """
         self.storage = TomlStorage(path)
 
-    def write(self, repo: Repository):
+    def write(self, repo: Submission):
         """
         Update or insert repo (identified by URL).
         """
@@ -102,7 +102,7 @@ class DAO:
         with self.storage as data:
             del data[repo_url]
 
-    def get_by_url(self, url: str) -> Repository | None:
+    def get_by_url(self, url: str) -> Submission | None:
         """
         Returns repository by URL.
         """
@@ -112,7 +112,7 @@ class DAO:
             return None
         return self.storage.read()[url]
 
-    def get_all(self) -> list[Repository]:
+    def get_all(self) -> list[Submission]:
         """
         Returns list of all repositories.
         """

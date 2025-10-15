@@ -4,7 +4,7 @@ from pathlib import Path
 import mdformat
 import yaml
 
-from ecosystem.models.repository import Repository
+from ecosystem.models.submission import Submission
 
 
 def _parse_section(section: str, label_to_id: dict[str, str]) -> tuple[str, str]:
@@ -34,14 +34,14 @@ def _get_label_to_id_map() -> dict[str, str]:
     return label_to_id
 
 
-def parse_submission_issue(body_of_issue: str) -> Repository:
+def parse_submission_issue(body_of_issue: str) -> Submission:
     """Parse issue body.
 
     The GitHub issue is a collection of "fields", each of which has a
     "label" and an "ID" specified in the template. We require IDs in the
-    template to match argument names of the Repository model.
+    template to match argument names of the Submission model.
 
-    We recieve issues as a markdown string. The markdown contains a section for
+    We receive issues as a markdown string. The markdown contains a section for
     each field; the heading of a section is the "label", and the content that
     follows it is the information the user submitted for that field.
 
@@ -53,8 +53,8 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
 
     This function parses the markdown to create a dict of { label: content },
     then, using the issue template, transforms labels to IDs to create a
-    dictionary { id: content }. Since the IDs match arguments of the Repository
-    constructor, this dict is the "args" needed to create the Repository object.
+    dictionary { id: content }. Since the IDs match arguments of the Submission
+    constructor, this dict is the "args" needed to create the Submission object.
 
     Since users can only submit strings, we map the string "_No response_" to
     None and parse the "labels" field into a list.
@@ -62,7 +62,7 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
     Args:
         body_of_issue: body of an GitHub issue in markdown
 
-    Return: Repository
+    Return: Submission
     """
 
     issue_formatted = mdformat.text(body_of_issue)
@@ -83,4 +83,4 @@ def parse_submission_issue(body_of_issue: str) -> Repository:
 
     args["ibm_maintained"] = args["ibm_maintained"].startswith("- \\[X\\]")
 
-    return Repository(**args)
+    return Submission(**args)
