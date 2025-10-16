@@ -14,7 +14,7 @@ jobs:
       run: |
         echo "dateIseconds=$(date -Iseconds)" >> "$GITHUB_ENV"
         echo "datev=$(date +'%v')" >> "$GITHUB_ENV"
-        echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_ENV"
+        echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
     - uses: actions/checkout@v5
     - uses: actions/setup-python@v6
       with:
@@ -40,4 +40,4 @@ jobs:
         body: |
           Badges and stats update
           Time: ${{ steps.vars.env.dateIseconds }}
-        branch: ${{ steps.vars.env.pr_branch_name }}
+        branch: ${{ steps.vars.outputs.pr_branch_name }}
