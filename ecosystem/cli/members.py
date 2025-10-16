@@ -25,7 +25,7 @@ class CliMembers:
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
+        self.resources_dir = f"{self.current_dir}/ecosystem/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -94,7 +94,9 @@ class CliMembers:
             repo = url_chunks[-1]
             user = url_chunks[-2]
 
-            response = requests.get(f"http://api.github.com/repos/{user}/{repo}")
+            response = requests.get(
+                f"http://api.github.com/repos/{user}/{repo}", timeout=240
+            )
             if not response.ok:
                 self.logger.warning("Bad response for project %s", project.url)
                 continue
