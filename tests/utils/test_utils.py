@@ -32,7 +32,7 @@ class TestUtils(TestCase):
 
         self.assertTrue(isinstance(parsed_result, Submission))
         self.assertEqual(parsed_result.name, "My awesome project")
-        self.assertEqual(parsed_result.url, "http://github.com/awesome/awesome")
+        self.assertEqual(parsed_result.url, "http://github.com/Qiskit/awesome")
         self.assertEqual(
             parsed_result.description,
             "An awesome repo for awesome project multiple paragraphs",
