@@ -13,7 +13,7 @@ jobs:
       id: vars
       run: |
         echo "dateIseconds=$(date -Iseconds)" >> "$GITHUB_ENV"
-        echo "datev=$(date +'%v')" >> "$GITHUB_ENV"
+        echo "date_bdY=$(date +'%b %d, %Y')" >> "$GITHUB_ENV"
         echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_ENV"
     - uses: actions/checkout@v5
     - uses: actions/setup-python@v6
@@ -36,7 +36,7 @@ jobs:
       with:
         author: GitHub <noreply@github.com>
         commit-message: Badges and stats update for ${{ env.dateIseconds }}
-        title: Badges and stats update for ${{ env.datev }}
+        title: Badges and stats update for ${{ env.date_bdY }}
         body: |
           Badges and stats update
           Time: ${{ env.dateIseconds }}
