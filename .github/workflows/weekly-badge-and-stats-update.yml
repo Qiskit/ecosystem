@@ -1,4 +1,4 @@
-name: Ecosystem | Batch | Update stars and badges
+name: Weekly | Update stats and badges
 
 on:
   workflow_dispatch:
@@ -8,19 +8,16 @@ on:
 jobs:
   batch_update_badges:
     runs-on: ubuntu-latest
-    env:
-      ISSUE_ID: 49
     steps:
     - name: Setup variables
       id: vars
       run: |
         echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
         echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
+    - uses: actions/checkout@v5
+    - uses: actions/setup-python@v6
       with:
-          python-version: '3.9'
+          python-version: '3.13'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -29,16 +26,17 @@ jobs:
     - name: Update badges
       run: python manager.py members update_badges
 
-    - name: Update stars
+    - name: Update stats
       run: python manager.py members update_stars
 
-    - name: Create PR for stars and badges update
+    - name: Create PR for stats and badges update
       id: cpr
       uses: peter-evans/create-pull-request@v5
       with:
-        commit-message: Badges and stars update for ${{ steps.vars.outputs.datetime }}
-        title: Badges and stars update for ${{ steps.vars.outputs.datetime }}
+        author: GitHub <noreply@github.com>
+        commit-message: Badges and stats update for $(date -Iseconds)
+        title: Badges and stats update for $(date +'%v')
         body: |
-          Badges and stars update
-          Time: ${{ steps.vars.outputs.datetime }}
+          Badges and stats update
+          Time: $(date -Iseconds)
         branch: ${{ steps.vars.outputs.pr_branch_name }}
