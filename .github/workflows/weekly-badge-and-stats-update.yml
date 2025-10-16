@@ -12,9 +12,9 @@ jobs:
     - name: Setup variables
       id: vars
       run: |
-        echo "dateIseconds=$(date -Iseconds)" >> "$GITHUB_OUTPUT"
-        echo "datev=$(date +'%v')" >> "$GITHUB_OUTPUT"
-        echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
+        echo "dateIseconds=$(date -Iseconds)" >> "$GITHUB_ENV"
+        echo "datev=$(date +'%v')" >> "$GITHUB_ENV"
+        echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_ENV"
     - uses: actions/checkout@v5
     - uses: actions/setup-python@v6
       with:
@@ -35,9 +35,9 @@ jobs:
       uses: peter-evans/create-pull-request@v5
       with:
         author: GitHub <noreply@github.com>
-        commit-message: Badges and stats update for ${{ steps.vars.outputs.dateIseconds }}
-        title: Badges and stats update for ${{ steps.vars.outputs.datev }}
+        commit-message: Badges and stats update for ${{ steps.vars.env.dateIseconds }}
+        title: Badges and stats update for ${{ steps.vars.env.datev }}
         body: |
           Badges and stats update
-          Time: ${{ steps.vars.outputs.dateIseconds }}
-        branch: ${{ steps.vars.outputs.pr_branch_name }}
+          Time: ${{ steps.vars.env.dateIseconds }}
+        branch: ${{ steps.vars.env.pr_branch_name }}
