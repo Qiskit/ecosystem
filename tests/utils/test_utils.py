@@ -17,9 +17,7 @@ class TestUtils(TestCase):
 
     def setUp(self) -> None:
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        with open(
-            f"{current_dir}/../resources/issue.md", "r"
-        ) as issue_body_file:
+        with open(f"{current_dir}/../resources/issue.md", "r") as issue_body_file:
             self.issue_body = issue_body_file.read()
 
     def test_issue_parsing(self):

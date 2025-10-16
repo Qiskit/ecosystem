@@ -94,7 +94,9 @@ class CliMembers:
             repo = url_chunks[-1]
             user = url_chunks[-2]
 
-            response = requests.get(f"http://api.github.com/repos/{user}/{repo}", timeout=240)
+            response = requests.get(
+                f"http://api.github.com/repos/{user}/{repo}", timeout=240
+            )
             if not response.ok:
                 self.logger.warning("Bad response for project %s", project.url)
                 continue

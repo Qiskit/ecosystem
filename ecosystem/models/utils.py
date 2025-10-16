@@ -5,6 +5,8 @@ from dataclasses import field
 
 
 UnknownPackageVersion: str = "unknown"
+
+
 def new_list():  # pylint: disable=missing-function-docstring
     return field(default_factory=list)  # pylint: disable=invalid-field-call
 
