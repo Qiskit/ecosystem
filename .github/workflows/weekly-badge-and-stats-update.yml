@@ -40,4 +40,6 @@ jobs:
         body: |
           Badges and stats update
           Time: ${{ env.dateIseconds }}
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         branch: ${{ env.pr_branch_name }}
+        labels: member update
