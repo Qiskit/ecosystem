@@ -1,9 +1,8 @@
-name: Project submission
-description: Ecosystem project submission
+name: :octocat: Project submission
+description: Request that your project be included in the Qiskit ecosystem
 title: "[Submission]: "
 labels: ["submission"]
-assignees:
-  - octocat
+type: Task
 body:
   # The IDs of each input must correspond with the attributes of the repository model
   # in ecosystem/models/submission.py
@@ -38,7 +37,7 @@ body:
       placeholder: E.g. https://github.com/owner/qiskit-gpu-compile
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: description
     attributes:
       label: Description
@@ -46,11 +45,10 @@ body:
         1-2 sentences to appear under your project on
         [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
         Keep it under 135 characters; anything longer will be rejected.
-
-        Note this **does not** support markdown.
       placeholder: >
         E.g. Use your GPU to compile huge quantum circuits in seconds. Supports
         all modern devices and operating systems.
+      render: text
     validations:
       required: true
   - type: input
@@ -58,14 +56,6 @@ body:
     attributes:
       label: Email
       placeholder: E.g. awesome.person@example.org
-    validations:
-      required: false
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternatives
-      description: Short description of alternative projects.
-      placeholder: E.g. There are no alternatives to this project!
     validations:
       required: false
   - type: dropdown
@@ -85,21 +75,12 @@ body:
         - Eclipse Public License version 2.0
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: affiliations
     attributes:
       label: Affiliations
       description: List any organisations affiliated with the project.
       placeholder: E.g. None
-    validations:
-      required: false
-  - type: checkboxes
-    id: ibm_maintained
-    attributes:
-      label: IBM maintenance status
-      options:
-        - label: This project is officially maintained by IBM Quantum
-          required: false
     validations:
       required: false
   - type: dropdown
