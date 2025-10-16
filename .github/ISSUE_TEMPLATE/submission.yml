@@ -1,9 +1,8 @@
-name: Project submission
-description: Ecosystem project submission
+name: "🆕 Submit a project to the Qiskit Ecosystem"
+description: Request that your project be included in the Qiskit ecosystem
 title: "[Submission]: "
 labels: ["submission"]
-assignees:
-  - octocat
+type: Task
 body:
   # The IDs of each input must correspond with the attributes of the repository model
   # in ecosystem/models/submission.py
@@ -16,7 +15,7 @@ body:
           * Build on, interface with, or extend the [Qiskit SDK](https://github.com/Qiskit/qiskit) in some way.
           * Be compatible with Qiskit 1.0 (or newer).
           * Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
-          * Adhere to our [code of conduct](https://github.com/Qiskit/ecosystem/blob/main/CODE_OF_CONDUCT.md) (you can enforce your own code of conduct in addition to this).
+          * Adhere to [Qiskit's Code of Conduct](https://qisk.it/coc) (you can enforce your own code of conduct in addition to this one).
           * Have maintainer activity within the last 6 months, such as a commit.
 
         If you have any questions, please reach out through the `#qiskit-ecosystem` channel on [Slack](https://qisk.it/join-slack).
@@ -46,11 +45,10 @@ body:
         1-2 sentences to appear under your project on
         [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
         Keep it under 135 characters; anything longer will be rejected.
-
-        Note this **does not** support markdown.
       placeholder: >
         E.g. Use your GPU to compile huge quantum circuits in seconds. Supports
         all modern devices and operating systems.
+      render: text
     validations:
       required: true
   - type: input
@@ -58,14 +56,6 @@ body:
     attributes:
       label: Email
       placeholder: E.g. awesome.person@example.org
-    validations:
-      required: false
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternatives
-      description: Short description of alternative projects.
-      placeholder: E.g. There are no alternatives to this project!
     validations:
       required: false
   - type: dropdown
@@ -85,21 +75,12 @@ body:
         - Eclipse Public License version 2.0
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: affiliations
     attributes:
       label: Affiliations
       description: List any organisations affiliated with the project.
       placeholder: E.g. None
-    validations:
-      required: false
-  - type: checkboxes
-    id: ibm_maintained
-    attributes:
-      label: IBM maintenance status
-      options:
-        - label: This project is officially maintained by IBM Quantum
-          required: false
     validations:
       required: false
   - type: dropdown
@@ -171,3 +152,11 @@ body:
       placeholder: E.g. https://arxiv.org/abs/2402.00022
     validations:
       required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you adhere to [Qiskit's Code of Conduct](https://qisk.it/coc). 
+      options:
+        - label: I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)
+          required: true

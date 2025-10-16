@@ -3,6 +3,7 @@
 from pathlib import Path
 import mdformat
 import yaml
+from urllib.parse import urlparse
 
 from ecosystem.models.submission import Submission
 
@@ -80,7 +81,15 @@ def parse_submission_issue(body_of_issue: str) -> Submission:
         args["labels"] = []
     else:
         args["labels"] = [x.strip() for x in args["labels"].split(",")]
+    url = urlparse(args["url"])
 
-    args["ibm_maintained"] = args["ibm_maintained"].startswith("- \\[X\\]")
+    if args["contact_info"].endswith("ibm.com"):
+        # if hosted in maintainer is IBMer, it is ibm maintained
+        args["ibm_maintained"] = True
+    elif url.hostname == "github.com" and url.path.lower().startswith("/qiskit/"):
+        # if hosted in Qiskit GitHub organization, it is ibm maintained
+        args["ibm_maintained"] = True
+    else:
+        args["ibm_maintained"] = False
 
     return Submission(**args)
