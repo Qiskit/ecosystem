@@ -18,7 +18,7 @@ class TestUtils(TestCase):
     def setUp(self) -> None:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         with open(
-            "{}/../resources/issue.md".format(current_dir), "r"
+            f"{current_dir}/../resources/issue.md", "r"
         ) as issue_body_file:
             self.issue_body = issue_body_file.read()
 
@@ -70,7 +70,6 @@ class TestUtils(TestCase):
 
     def test_decription_lengths(self):
         """Make sure IDs in the issue template match attributes of the Submission model."""
-        # pylint: disable=no-self-use
         dao = DAO("ecosystem/resources")
         for repo in dao.get_all():
             if len(repo.description) > 135:

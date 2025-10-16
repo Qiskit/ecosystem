@@ -5,7 +5,8 @@ from dataclasses import field
 
 
 UnknownPackageVersion: str = "unknown"
-new_list = lambda: field(default_factory=list)
+def new_list():  # pylint: disable=missing-function-docstring
+    return field(default_factory=list)  # pylint: disable=invalid-field-call
 
 
 class JsonSerializable(ABC):
