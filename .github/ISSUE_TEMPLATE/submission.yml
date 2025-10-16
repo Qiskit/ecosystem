@@ -37,7 +37,7 @@ body:
       placeholder: E.g. https://github.com/owner/qiskit-gpu-compile
     validations:
       required: true
-  - type: input
+  - type: textarea
     id: description
     attributes:
       label: Description
