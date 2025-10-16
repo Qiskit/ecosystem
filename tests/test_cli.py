@@ -33,13 +33,9 @@ class TestCli(TestCase):
         with open(self.path / "labels.json", "w") as file:
             file.write("{}")
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
-        with open(
-            "{}/resources/issue.md".format(self.current_dir), "r"
-        ) as issue_body_file:
+        with open(f"{self.current_dir}/resources/issue.md", "r") as issue_body_file:
             self.issue_body = issue_body_file.read()
-        with open(
-            "{}/resources/issue_2.md".format(self.current_dir), "r"
-        ) as issue_body_file:
+        with open(f"{self.current_dir}/resources/issue_2.md", "r") as issue_body_file:
             self.issue_body_2 = issue_body_file.read()
 
     def tearDown(self) -> None:
@@ -117,7 +113,7 @@ class TestCli(TestCase):
         # create badges
         cli_members.update_badges()
 
-        badges_folder_path = "{}/badges".format(cli_members.current_dir)
+        badges_folder_path = f"{cli_members.current_dir}/badges"
         self.assertTrue(
             os.path.isfile(f"{badges_folder_path}/{commu_success.uuid}.json")
         )

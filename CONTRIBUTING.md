@@ -1,10 +1,5 @@
 # Contributing
 
-First read the overall project contributing guidelines. These are all
-included in the qiskit documentation:
-
-https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md
-
 ## Joining the Ecosystem
 To join ecosystem you need to create 
 [submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+) 
