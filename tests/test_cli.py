@@ -60,7 +60,7 @@ class TestCli(TestCase):
         retrieved_repos = DAO(self.path).get_all()
         expected = {
             "name": "My awesome project",
-            "url": "http://github.com/awesome/awesome",
+            "url": "http://github.com/Qiskit/awesome",
             "description": "An awesome repo for awesome project multiple paragraphs",
             "contact_info": "toto@gege.com",
             "ibm_maintained": True,

@@ -22,10 +22,6 @@ Apache License 2.0
 
 Awesome Inc.
 
-### IBM maintenance status
-
-- [ ] This project is officially maintained by IBM Quantum
-
 ### Labels
 
 _No response_
