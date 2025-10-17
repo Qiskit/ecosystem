@@ -55,7 +55,7 @@ class TestUtils(TestCase):
             field["id"]
             for field in issue_template["body"]
             if field["type"] != "markdown"
-        } - {'terms'}
+        } - {"terms"}
 
         repo_fields = {attr.name for attr in dataclasses.fields(Submission)}
         for issue_id in issue_ids:
