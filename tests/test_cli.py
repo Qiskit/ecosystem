@@ -63,7 +63,6 @@ class TestCli(TestCase):
             "url": "http://github.com/awesome/awesome",
             "description": "An awesome repo for awesome project multiple paragraphs",
             "contact_info": "toto@gege.com",
-            "alternatives": "tititata",
             "ibm_maintained": True,
             "licence": "Apache License 2.0",
             "labels": ["tool", "tutorial", "paper implementation"],

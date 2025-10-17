@@ -14,10 +14,6 @@ An awesome repo for awesome project
 
 toto@gege.com
 
-### Alternatives
-
-_No response_
-
 ### License
 
 Apache License 2.0
