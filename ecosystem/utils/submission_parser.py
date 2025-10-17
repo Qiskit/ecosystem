@@ -1,9 +1,9 @@
 """Parser for issue submission."""
 
 from pathlib import Path
+from urllib.parse import urlparse
 import mdformat
 import yaml
-from urllib.parse import urlparse
 
 from ecosystem.models.submission import Submission
 
