@@ -18,10 +18,6 @@ paragraphs
 
 toto@gege.com
 
-### Alternatives
-
-tititata
-
 ### License
 
 Apache License 2.0
