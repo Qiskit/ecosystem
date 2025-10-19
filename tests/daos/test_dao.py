@@ -40,7 +40,8 @@ class TestDao(TestCase):
         repo_from_db = dao.get_by_url(main_repo.url)
         self.assertIsNone(repo_from_db.stars)
 
-        dao.update(main_repo.url, stars=42)
+        name_id = main_repo.url.strip("/").split("/")[-1]
+        dao.update(name_id, stars=42)
         repo_from_db = dao.get_by_url(main_repo.url)
         self.assertEqual(repo_from_db.stars, 42)
 
@@ -55,5 +56,6 @@ class TestDao(TestCase):
         self.assertEqual(main_repo, fetched_repo)
 
         # delete entry
-        dao.delete(repo_url=main_repo.url)
+        name_id = main_repo.url.strip("/").split("/")[-1]
+        dao.delete(name_id)
         self.assertEqual(len(dao.get_all()), 0)

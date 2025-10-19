@@ -45,7 +45,7 @@ class TomlStorage:
         data = {}
         for path in self.toml_dir.glob("*.toml"):
             repo = Submission.from_dict(toml.load(path))
-            data[repo.url] = repo
+            data[path.stem] = repo
         return data
 
     def write(self, data: dict):
@@ -60,9 +60,9 @@ class TomlStorage:
 
         # Write to human-readable TOML
         self.toml_dir.mkdir()
-        for repo in data.values():
-            with open(self._url_to_path(repo.url), "w") as file:
-                toml.dump(repo.to_dict(), file)
+        for submission in data.values():
+            with open(self._url_to_path(submission.url), "w") as file:
+                toml.dump(submission.to_dict(), file)
 
     def __enter__(self) -> dict:
         self._data = self.read()
@@ -93,24 +93,25 @@ class DAO:
         with self.storage as data:
             data[repo.url] = repo
 
-    def delete(self, repo_url: str):
+    def delete(self, name_id: str = None):
         """Deletes repository from database.
 
         Args:
-            repo_url: repository url
+            name_id: ID of the project. Typically, the name of the TOML file
         """
         with self.storage as data:
-            del data[repo_url]
+            del data[name_id]
 
     def get_by_url(self, url: str) -> Submission | None:
         """
-        Returns repository by URL.
+        Returns project by URL.
         """
-        data = self.storage.read()
-        if url not in data:
-            logger.info("No repo with URL : %s", url)
-            return None
-        return self.storage.read()[url]
+        for project in self.get_all():
+            if project.url == url:
+                return project
+
+        logger.info("No repo with URL : %s", url)
+        return None
 
     def get_all(self) -> list[Submission]:
         """
@@ -118,17 +119,17 @@ class DAO:
         """
         return self.storage.read().values()
 
-    def update(self, repo_url: str, **kwargs):
+    def update(self, name_id: str = None, **kwargs):
         """
         Update attributes of repository.
 
         Args:
-            repo_url (str): URL of repo
+            name_id (str): ID of the project. Typically, name of the TOML file.
             kwargs: Names of attributes and new values
 
         Example usage:
-            update("github.com/qiskit/qiskit, name="qiskit", stars=300)
+            update("qiskit-aer", stars=300)
         """
         with self.storage as data:
             for arg, value in kwargs.items():
-                data[repo_url].__dict__[arg] = value
+                data[name_id].__dict__[arg] = value
