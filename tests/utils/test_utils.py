@@ -32,13 +32,12 @@ class TestUtils(TestCase):
 
         self.assertTrue(isinstance(parsed_result, Submission))
         self.assertEqual(parsed_result.name, "My awesome project")
-        self.assertEqual(parsed_result.url, "http://github.com/awesome/awesome")
+        self.assertEqual(parsed_result.url, "http://github.com/Qiskit/awesome")
         self.assertEqual(
             parsed_result.description,
             "An awesome repo for awesome project multiple paragraphs",
         )
         self.assertEqual(parsed_result.contact_info, "toto@gege.com")
-        self.assertEqual(parsed_result.alternatives, "tititata")
         self.assertEqual(parsed_result.licence, "Apache License 2.0")
         self.assertEqual(parsed_result.affiliations, None)
         self.assertEqual(parsed_result.ibm_maintained, True)
@@ -56,7 +55,7 @@ class TestUtils(TestCase):
             field["id"]
             for field in issue_template["body"]
             if field["type"] != "markdown"
-        }
+        } - {"terms"}
 
         repo_fields = {attr.name for attr in dataclasses.fields(Submission)}
         for issue_id in issue_ids:

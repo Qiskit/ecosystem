@@ -4,7 +4,7 @@ My awesome project
 
 ### Github repo
 
-http://github.com/awesome/awesome
+http://github.com/Qiskit/awesome
 
 ### Description
 
@@ -18,10 +18,6 @@ paragraphs
 
 toto@gege.com
 
-### Alternatives
-
-tititata
-
 ### License
 
 Apache License 2.0
@@ -30,9 +26,6 @@ Apache License 2.0
 
 _No response_
 
-### IBM maintenance status
-
-- [X] This project is officially maintained by IBM Quantum
 
 ### Labels
 
