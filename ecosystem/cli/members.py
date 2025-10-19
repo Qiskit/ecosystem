@@ -103,7 +103,7 @@ class CliMembers:
 
             json_data = json.loads(response.text)
             stars = json_data.get("stargazers_count")
-            self.dao.update(project.url, stars=stars)
+            self.dao.update(project.name_id, stars=stars)
             self.logger.info("Updating star count for %s: %d", project.url, stars)
 
     def compile_json(self, output_file: str):

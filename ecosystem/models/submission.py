@@ -66,3 +66,12 @@ class Submission(JsonSerializable):
 
     def __str__(self):
         return f"Submission({self.name} | {self.url})"
+
+    @property
+    def name_id(self):
+        """
+        A unique and human-readable way to identify a submission
+        It is used to create the TOML file name
+        """
+        # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
+        return self.url.strip("/").split("/")[-1]
