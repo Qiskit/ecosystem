@@ -7,19 +7,13 @@ and fill in all required details. That's it!
 
 
 # Installation and environment setup 
-1. Create new environment   <br/>
-<code> conda create --name ecosystem python=3.9  </code> <br/> 
-2. Activate the environment  <br/>
-<code> conda activate ecosystem  </code> <br/> 
-3. install dependencies  <br/>
-<code>
+1. Create new environment: `conda create --name ecosystem python=3.13` 
+2. Activate the environment: `conda activate ecosystem  </code>`
+3. install dependencies:
+```
 pip install -r requirements.txt
-</code>
-<br>
-<code>
 pip install -r requirements-dev.txt
-</code> 
-
+```
 
 # Running the tests
 1. To run tests against the stable version of qiskit  <br/>
