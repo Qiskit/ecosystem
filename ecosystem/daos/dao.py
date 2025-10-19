@@ -33,9 +33,8 @@ class TomlStorage:
         self.toml_dir = Path(root_path, "members")
         self._data = None  # for use with context manager
 
-    def _url_to_path(self, url):
-        repo_name = url.strip("/").split("/")[-1]
-        return self.toml_dir / f"{repo_name}.toml"
+    def _name_id_to_path(self, name_id):
+        return self.toml_dir / f"{name_id}.toml"
 
     def read(self) -> dict:
         """
@@ -61,7 +60,7 @@ class TomlStorage:
         # Write to human-readable TOML
         self.toml_dir.mkdir()
         for submission in data.values():
-            with open(self._url_to_path(submission.url), "w") as file:
+            with open(self._name_id_to_path(submission.name_id), "w") as file:
                 toml.dump(submission.to_dict(), file)
 
     def __enter__(self) -> dict:
