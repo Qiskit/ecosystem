@@ -7,21 +7,19 @@ and fill in all required details. That's it!
 
 
 # Installation and environment setup 
-1. Create new environment: `conda create --name ecosystem python=3.13` 
-2. Activate the environment: `conda activate ecosystem  </code>`
-3. install dependencies:
+1. Create new environment:
+```
+conda create --name ecosystem python=3.13
+```
+2. Activate the environment:
+```
+conda activate ecosystem
+```
+3. Install dependencies:
 ```
 pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
-
-# Running the tests
-1. To run tests against the stable version of qiskit  <br/>
-<code> python manager.py tests python_stable_tests <url_of_the github_repository> --python_version=py39 --run_name="stable"</code>
-2. To run tests against the dev version of qiskit  <br/>
-<code> python manager.py tests python_dev_tests  <url_of_the github_repository> --python_version=py39 --run_name="dev"</code>
-3. To run tests within repository  <br/>
-<code> python manager.py tests python_standard_tests <url_of_the github_repository> --python_version=py39 --run_name="standard"</code>
 
 # Performing style checks
 - Run for style checks 
