@@ -3,7 +3,6 @@ url = "https://github.com/vm6502q/qiskit-qrack-provider"
 description = "Supports near-Clifford, Schmidt-decomposition, quantum binary decision diagrams, and more. Scales from minimal setups to multiple GPUs."
 licence = "Apache License 2.0"
 contact_info = "dan@unitary.fund"
-alternatives = "Any simulator back end provider could furnish similar functionality, though Qrack has many novel approaches to optimization and \"hybrid\" simulation techniques that are not currently available in other simulators."
 affiliations = "[Unitary Fund](https://unitary.fund/) [VM6502Q](https://github.com/vm6502q)"
 labels = [ "Circuit simulator",]
 ibm_maintained = false
