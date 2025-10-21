@@ -87,10 +87,10 @@ class DAO:
 
     def write(self, repo: Submission):
         """
-        Update or insert repo (identified by URL).
+        Update or insert repo (identified by ID).
         """
         with self.storage as data:
-            data[repo.url] = repo
+            data[repo.name_id] = repo
 
     def delete(self, name_id: str = None):
         """Deletes repository from database.

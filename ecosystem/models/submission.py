@@ -44,7 +44,8 @@ class Submission(JsonSerializable):
 
     @property
     def short_uuid(self):
-        return self.uuid.split('-')[0]
+        """just the short version of UUID"""
+        return self.uuid.split("-")[0]
 
     @classmethod
     def from_dict(cls, dictionary: dict):
