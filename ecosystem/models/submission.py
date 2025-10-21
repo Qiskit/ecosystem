@@ -42,6 +42,10 @@ class Submission(JsonSerializable):
         if self.uuid is None:
             self.uuid = str(uuid4())
 
+    @property
+    def short_uuid(self):
+        return self.uuid.split('-')[0]
+
     @classmethod
     def from_dict(cls, dictionary: dict):
         """Transform dictionary to Submission.

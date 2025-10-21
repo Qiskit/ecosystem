@@ -79,7 +79,7 @@ class CliMembers:
                 "color": "6929C4",
             }
             with open(
-                os.path.join(self.current_dir, "badges", f"{project.uuid}.json"), "w"
+                os.path.join(self.current_dir, "badges", f"{project.short_uuid}"), "w"
             ) as outfile:
                 json.dump(data, outfile, indent=4)
                 self.logger.info("Badge for %s has been updated.", project.name)
