@@ -48,7 +48,6 @@ class CliMembers:
             repo_link: repo url
             repo_description: repo description
             repo_contact: repo email
-            repo_alt: repo alternatives
             repo_licence: repo licence
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
@@ -103,7 +102,7 @@ class CliMembers:
 
             json_data = json.loads(response.text)
             stars = json_data.get("stargazers_count")
-            self.dao.update(project.url, stars=stars)
+            self.dao.update(project.name_id, stars=stars)
             self.logger.info("Updating star count for %s: %d", project.url, stars)
 
     def compile_json(self, output_file: str):
