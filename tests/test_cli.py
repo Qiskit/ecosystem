@@ -114,14 +114,14 @@ class TestCli(TestCase):
 
         badges_folder_path = f"{cli_members.current_dir}/badges"
         self.assertTrue(
-            os.path.isfile(f"{badges_folder_path}/{commu_success.uuid}.json")
+            os.path.isfile(f"{badges_folder_path}/{commu_success.short_uuid}")
         )
 
         # check version status
         with open(
-            f"{badges_folder_path}/{commu_success.uuid}.json", "r"
+            f"{badges_folder_path}/{commu_success.short_uuid}", "r"
         ) as json_blueviolet:
             json_success = json_blueviolet.read()
         self.assertTrue('"color": "6929C4"' in json_success)
 
-        os.remove(f"{badges_folder_path}/{commu_success.uuid}.json")
+        os.remove(f"{badges_folder_path}/{commu_success.short_uuid}")
