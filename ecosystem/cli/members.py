@@ -48,7 +48,6 @@ class CliMembers:
             repo_link: repo url
             repo_description: repo description
             repo_contact: repo email
-            repo_alt: repo alternatives
             repo_licence: repo licence
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
