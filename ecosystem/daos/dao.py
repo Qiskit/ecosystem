@@ -61,7 +61,14 @@ class TomlStorage:
         self.toml_dir.mkdir()
         for submission in data.values():
             with open(self._name_id_to_path(submission.name_id), "w") as file:
-                toml.dump(submission.to_dict(), file)
+                submission_dict = submission.to_dict()
+                if "uuid" in submission_dict:
+                    submission_dict["badge"] = (
+                        "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flaturl=https"
+                        f"%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F{submission.short_uuid})]"
+                        "(https://qisk.it/e)"
+                    )
+                toml.dump(submission_dict, file)
 
     def __enter__(self) -> dict:
         self._data = self.read()
