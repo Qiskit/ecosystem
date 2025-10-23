@@ -6,8 +6,13 @@ labels = [ "Algorithms", "Optimization", "Applications",]
 ibm_maintained = false
 created_at = 1636403009.538761
 updated_at = 1636403009.538763
-stars = 268
+stars = 270
 group = "applications"
 documentation = "https://qiskit-community.github.io/qiskit-optimization/"
 uuid = "3b2ff33f-b4a3-49cd-ab32-563d282cc3bf"
-badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flaturl=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F3b2ff33f)](https://qisk.it/e)"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F3b2ff33f)](https://qisk.it/e)"
+
+[github]
+org = "qiskit-community"
+repo = "qiskit-optimization"
+stars = 270

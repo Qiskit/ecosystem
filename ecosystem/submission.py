@@ -6,13 +6,15 @@ import pprint
 from datetime import datetime
 from dataclasses import dataclass, fields
 from uuid import uuid4
+from urllib.parse import urlparse
 
-from .utils import JsonSerializable, new_list
+from .serializable import JsonSerializable
+from .github import GitHubData
 
 
 @dataclass
 class Submission(JsonSerializable):
-    """Main repository class.
+    """Main project class.
 
     NOTE: These attribute names must correspond to field IDs in the issue
     template (.github/ISSUE_TEMPLATE/submission.yml).
@@ -25,7 +27,7 @@ class Submission(JsonSerializable):
     licence: str | None = None
     contact_info: str | None = None
     affiliations: str | None = None
-    labels: list[str] = new_list()
+    labels: list[str] | None = None
     ibm_maintained: bool = False
     created_at: int | None = None
     updated_at: int | None = None
@@ -35,12 +37,17 @@ class Submission(JsonSerializable):
     reference_paper: str | None = None
     documentation: str | None = None
     uuid: str | None = None
+    github: GitHubData | None = None
 
     def __post_init__(self):
         self.__dict__.setdefault("created_at", datetime.now().timestamp())
         self.__dict__.setdefault("updated_at", datetime.now().timestamp())
+        if self.github is None:
+            self.github = GitHubData.from_url(urlparse(self.url))
         if self.uuid is None:
             self.uuid = str(uuid4())
+        if self.labels is None:
+            self.labels = []
 
     @property
     def short_uuid(self):
@@ -58,7 +65,18 @@ class Submission(JsonSerializable):
         """
         submission_fields = [f.name for f in fields(Submission)]
         filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
+        if "github" in filtered_dict:
+            filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
         return Submission(**filtered_dict)
+
+    def to_dict(self) -> dict:
+        base_dict = super().to_dict()
+        base_dict["badge"] = (
+            "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https"
+            f"%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F{self.short_uuid})]"
+            "(https://qisk.it/e)"
+        )
+        return base_dict
 
     def __eq__(self, other: "Submission"):
         return (
@@ -81,3 +99,9 @@ class Submission(JsonSerializable):
         """
         # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
         return self.url.strip("/").split("/")[-1]
+
+    def update_github(self):
+        """
+        Updates all the GitHub information for project self.
+        """
+        self.github.update_json()

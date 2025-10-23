@@ -5,11 +5,9 @@ import os
 from typing import Optional, Tuple
 from pathlib import Path
 
-import requests
-
-from ecosystem.daos import DAO
-from ecosystem.models.submission import Submission
-from ecosystem.utils import logger
+from ecosystem.dao import DAO
+from ecosystem.submission import Submission
+from ecosystem.error_handling import logger
 
 
 class CliMembers:
@@ -87,23 +85,10 @@ class CliMembers:
     def update_stars(self):
         """Updates start for repositories."""
         for project in self.dao.get_all():
-            stars = None
-            url = project.url[:-1] if project.url[-1] == "/" else project.url
-            url_chunks = url.split("/")
-            repo = url_chunks[-1]
-            user = url_chunks[-2]
-
-            response = requests.get(
-                f"http://api.github.com/repos/{user}/{repo}", timeout=240
-            )
-            if not response.ok:
-                self.logger.warning("Bad response for project %s", project.url)
-                continue
-
-            json_data = json.loads(response.text)
-            stars = json_data.get("stargazers_count")
+            project.update_github()
+            stars = project.github.stars
             self.dao.update(project.name_id, stars=stars)
-            self.logger.info("Updating star count for %s: %d", project.url, stars)
+            self.dao.update(project.name_id, section="github", stars=stars)
 
     def compile_json(self, output_file: str):
         """Compile JSON file for consumption by ibm.com"""
