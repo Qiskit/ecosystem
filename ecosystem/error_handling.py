@@ -47,3 +47,12 @@ def set_actions_output(outputs: List[Tuple[str, Union[str, bool, float, int]]]) 
         else:
             # Used only during unit tests
             print(f"{name}={value}")
+
+
+class EcosystemError(Exception):
+    """Base class for Ecosystem exceptions."""
+
+    def __init__(self, message: str):
+        super().__init__(message)
+        logger.error(message)
+        self.message = message

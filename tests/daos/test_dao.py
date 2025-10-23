@@ -5,8 +5,8 @@ import shutil
 from pathlib import Path
 from unittest import TestCase
 
-from ecosystem.daos import DAO
-from ecosystem.models.submission import Submission
+from ecosystem.dao import DAO
+from ecosystem.submission import Submission
 
 
 def get_main_repo() -> Submission:

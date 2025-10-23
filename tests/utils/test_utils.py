@@ -7,9 +7,9 @@ from pathlib import Path
 
 import yaml
 
-from ecosystem.models.submission import Submission
-from ecosystem.utils import parse_submission_issue
-from ecosystem.daos import DAO
+from ecosystem.submission import Submission
+from ecosystem.submission_parser import parse_submission_issue
+from ecosystem.dao import DAO
 
 
 class TestUtils(TestCase):

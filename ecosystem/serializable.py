@@ -1,14 +1,6 @@
 """Utility classes for models."""
 
 from abc import ABC
-from dataclasses import field
-
-
-UnknownPackageVersion: str = "unknown"
-
-
-def new_list():  # pylint: disable=missing-function-docstring
-    return field(default_factory=list)  # pylint: disable=invalid-field-call
 
 
 class JsonSerializable(ABC):
@@ -21,9 +13,10 @@ class JsonSerializable(ABC):
         Args:
             dictionary: dict to convert
         """
+        return cls(**dictionary)
 
     def to_dict(self) -> dict:
-        """Converts repo to dict."""
+        """Converts Object to dict."""
         result = {}
         for key, val in self.__dict__.items():
             if key.startswith("_"):

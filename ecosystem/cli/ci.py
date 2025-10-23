@@ -5,9 +5,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from ecosystem.daos import DAO
-from ecosystem.utils import parse_submission_issue
-from ecosystem.utils.utils import set_actions_output
+from ecosystem.dao import DAO
+from ecosystem.submission_parser import parse_submission_issue
+from ecosystem.error_handling import set_actions_output
 
 
 class CliCI:
