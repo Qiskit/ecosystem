@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 import mdformat
 import yaml
 
-from ecosystem.models.submission import Submission
+from ecosystem.submission import Submission
 
 
 def _parse_section(section: str, label_to_id: dict[str, str]) -> tuple[str, str]:
@@ -92,4 +92,4 @@ def parse_submission_issue(body_of_issue: str) -> Submission:
     else:
         args["ibm_maintained"] = False
 
-    return Submission(**args)
+    return Submission.from_dict(args)

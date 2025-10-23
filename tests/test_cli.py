@@ -9,8 +9,8 @@ from contextlib import redirect_stdout
 from pathlib import Path
 
 from ecosystem.cli import CliCI, CliMembers
-from ecosystem.daos import DAO
-from ecosystem.models.submission import Submission
+from ecosystem.dao import DAO
+from ecosystem.submission import Submission
 
 
 def get_community_repo() -> Submission:
@@ -67,10 +67,20 @@ class TestCli(TestCase):
             "licence": "Apache License 2.0",
             "labels": ["tool", "tutorial", "paper implementation"],
             "website": "https://qiskit.org/ecosystem/",
+            "github": {"org": "Qiskit", "repo": "awesome"},
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()
         self.assertIsInstance(retrieved.pop("uuid"), str)
+        badge_md = retrieved.pop("badge")
+        self.assertIsInstance(badge_md, str)
+        self.assertTrue(
+            badge_md.startswith(
+                "[![Qiskit Ecosystem](https://img.shields.io/"
+                "endpoint?style=flat&url=https"
+            )
+        )
+        self.assertTrue(badge_md.endswith("(https://qisk.it/e)"))
         self.assertEqual(retrieved, expected)
 
         # Issue 2
@@ -91,10 +101,20 @@ class TestCli(TestCase):
             "affiliations": "Awesome Inc.",
             "ibm_maintained": False,
             "labels": [],
+            "github": {"org": "awesome", "repo": "awesome"},
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()
         self.assertIsInstance(retrieved.pop("uuid"), str)
+        badge_md = retrieved.pop("badge")
+        self.assertIsInstance(badge_md, str)
+        self.assertTrue(
+            badge_md.startswith(
+                "[![Qiskit Ecosystem](https://img.shields.io/"
+                "endpoint?style=flat&url=https"
+            )
+        )
+        self.assertTrue(badge_md.endswith("(https://qisk.it/e)"))
         self.assertEqual(retrieved, expected)
 
     def test_update_badges(self):
