@@ -8,13 +8,13 @@ File structure:
         └── repo-name.toml
 """
 
-from __future__ import annotations
+# from __future__ import annotations
 from pathlib import Path
 import shutil
 import toml
 
-from ecosystem.utils import logger
-from ecosystem.models.submission import Submission
+from ecosystem.error_handling import logger, EcosystemError
+from ecosystem.submission import Submission
 
 
 class TomlStorage:
@@ -62,12 +62,6 @@ class TomlStorage:
         for submission in data.values():
             with open(self._name_id_to_path(submission.name_id), "w") as file:
                 submission_dict = submission.to_dict()
-                if "uuid" in submission_dict:
-                    submission_dict["badge"] = (
-                        "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flaturl=https"
-                        f"%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F{submission.short_uuid})]"
-                        "(https://qisk.it/e)"
-                    )
                 toml.dump(submission_dict, file)
 
     def __enter__(self) -> dict:
@@ -76,7 +70,7 @@ class TomlStorage:
 
     def __exit__(self, _type, _value, exception):
         if exception is not None:
-            raise exception
+            raise EcosystemError
         self.write(self._data)
 
 
@@ -108,16 +102,14 @@ class DAO:
         with self.storage as data:
             del data[name_id]
 
-    def get_by_url(self, url: str) -> Submission | None:
+    def get_by_url(self, url: str) -> Submission:
         """
         Returns project by URL.
         """
         for project in self.get_all():
             if project.url == url:
                 return project
-
-        logger.info("No repo with URL : %s", url)
-        return None
+        raise ValueError(f"No repo with URL : {url}")
 
     def get_all(self) -> list[Submission]:
         """
@@ -125,7 +117,7 @@ class DAO:
         """
         return self.storage.read().values()
 
-    def update(self, name_id: str = None, **kwargs):
+    def update(self, name_id: str = None, section: str = None, **kwargs):
         """
         Update attributes of repository.
 
@@ -138,4 +130,26 @@ class DAO:
         """
         with self.storage as data:
             for arg, value in kwargs.items():
-                data[name_id].__dict__[arg] = value
+                if section is None:
+                    current_value = data[name_id].__dict__.get(arg)
+                    if current_value != value:
+                        logger.info(
+                            "Updating %s for %s: %s -> %d",
+                            name_id,
+                            arg,
+                            current_value,
+                            value,
+                        )
+                    data[name_id].__dict__[arg] = value
+                else:
+                    current_value = getattr(data[name_id].__dict__[section], arg, None)
+                    if current_value != value:
+                        logger.info(
+                            "Updating %s (%s) for %s: %s -> %d",
+                            name_id,
+                            section,
+                            arg,
+                            current_value,
+                            value,
+                        )
+                    setattr(data[name_id].__dict__[section], arg, value)

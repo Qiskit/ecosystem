@@ -2,7 +2,7 @@
 
 import unittest
 
-from ecosystem.models.submission import Submission
+from ecosystem.submission import Submission
 
 
 class TestRepository(unittest.TestCase):
