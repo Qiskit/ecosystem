@@ -24,6 +24,12 @@ class GitHubData(JsonSerializable):
         self._kwargs = kwargs or {}
         self._json_data = None
 
+    def __eq__(self, other):
+        return all([getattr(self, k, None) == getattr(other, k, None) for k in GitHubData.dict_keys])
+
+    def __str__(self):
+        return str(self.to_dict())
+
     def to_dict(self) -> dict:
         dictionary = {}
         for key in GitHubData.dict_keys:
@@ -64,23 +70,6 @@ class GitHubData(JsonSerializable):
 
         return GitHubData(owner=owner, repo=repo, tree=tree_path)
 
-        # if detect_redirect:
-        #     headers = {'Authorization': 'token ' + 'ghp_XXXX'}
-        #     response = requests.get(f'https://api.github.com/repos/
-        #     {owner}/{repo}', headers=headers)
-        #     print(response.status_code)
-        #     if not response.ok:
-        #         raise EcosystemError(f"api.github.com/repos/{owner}/{repo} returned
-        #         {response.status_code} ({response.reason})")
-        #     json_response = json.loads(response.text)
-        #     try:
-        #         github_project_url = json_response['html_url']
-        #     except AttributeError:
-        #         EcosystemError(
-        #             f"Bad JSON response for project: {owner}/{repo}
-        #             (Status: {response.status_code})")
-        #     return self.github_org_and_repo_from_url(github_project_url, detect_redirect=False)
-
     def update_json(self):
         """
         Fetches remote json data from api.github.com/repos/{self.owner}/{self.repo}
@@ -94,11 +83,15 @@ class GitHubData(JsonSerializable):
         else:
             ret = self._kwargs.get(item)
         if ret is None:
-            raise AttributeError
+            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{item}'")
         return ret
 
-    # def __setattr__(self, name, value):
-    #     if name in GitHubData.dict_keys:
-    #
-    #     else:
-    #         super().__setattr__(name, value)
+    def update_owner_repo(self):
+        if self._json_data is None:
+            self.update_json()
+        owner = self._json_data['owner']['login']
+        repo = self._json_data['name']
+        if self.owner != owner or self.repo != repo:
+            logger.info(f"{self.owner}/{self.repo} move to {owner}/{repo}")
+            self.owner = owner
+            self.repo = repo

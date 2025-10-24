@@ -82,13 +82,13 @@ class CliMembers:
                 json.dump(data, outfile, indent=4)
                 self.logger.info("Badge for %s has been updated.", project.name)
 
-    def update_stars(self):
+    def update_github(self):
         """Updates start for repositories."""
         for project in self.dao.get_all():
             project.update_github()
             stars = project.github.stars
             self.dao.update(project.name_id, stars=stars)
-            self.dao.update(project.name_id, section="github", stars=stars)
+            self.dao.update(project.name_id, github=project.github)
 
     def compile_json(self, output_file: str):
         """Compile JSON file for consumption by ibm.com"""

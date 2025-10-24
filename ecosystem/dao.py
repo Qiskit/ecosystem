@@ -69,8 +69,8 @@ class TomlStorage:
         return self._data
 
     def __exit__(self, _type, _value, exception):
-        if exception is not None:
-            raise EcosystemError
+        if _type is not None:
+            return False
         self.write(self._data)
 
 
@@ -117,7 +117,7 @@ class DAO:
         """
         return self.storage.read().values()
 
-    def update(self, name_id: str = None, section: str = None, **kwargs):
+    def update(self, name_id: str = None, **kwargs):
         """
         Update attributes of repository.
 
@@ -130,26 +130,13 @@ class DAO:
         """
         with self.storage as data:
             for arg, value in kwargs.items():
-                if section is None:
-                    current_value = data[name_id].__dict__.get(arg)
-                    if current_value != value:
-                        logger.info(
-                            "Updating %s for %s: %s -> %d",
-                            name_id,
-                            arg,
-                            current_value,
-                            value,
-                        )
-                    data[name_id].__dict__[arg] = value
-                else:
-                    current_value = getattr(data[name_id].__dict__[section], arg, None)
-                    if current_value != value:
-                        logger.info(
-                            "Updating %s (%s) for %s: %s -> %d",
-                            name_id,
-                            section,
-                            arg,
-                            current_value,
-                            value,
-                        )
-                    setattr(data[name_id].__dict__[section], arg, value)
+                current_value = data[name_id].__dict__.get(arg)
+                if current_value != value:
+                    logger.info(
+                        "Updating %s for %s: %s -> %s",
+                        name_id,
+                        arg,
+                        current_value,
+                        str(value),
+                    )
+                data[name_id].__dict__[arg] = value

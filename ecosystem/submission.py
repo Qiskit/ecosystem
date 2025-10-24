@@ -105,3 +105,4 @@ class Submission(JsonSerializable):
         Updates all the GitHub information for project self.
         """
         self.github.update_json()
+        self.github.update_owner_repo()
