@@ -54,7 +54,7 @@ class GitHubData(JsonSerializable):
             )
             url_path = new_path
         try:
-            user_org, repo = [
+            owner, repo = [
                 c for c in url_path.split("/") if c and match(r"^[A-Za-z0-9_.-]+$", c)
             ]
         except ValueError as exc:
@@ -62,22 +62,22 @@ class GitHubData(JsonSerializable):
                 f"invalid repository url: {github_project_url}"
             ) from exc
 
-        return GitHubData(owner=user_org, repo=repo, tree=tree_path)
+        return GitHubData(owner=owner, repo=repo, tree=tree_path)
 
         # if detect_redirect:
         #     headers = {'Authorization': 'token ' + 'ghp_XXXX'}
         #     response = requests.get(f'https://api.github.com/repos/
-        #     {user_org}/{repo}', headers=headers)
+        #     {owner}/{repo}', headers=headers)
         #     print(response.status_code)
         #     if not response.ok:
-        #         raise EcosystemError(f"api.github.com/repos/{user_org}/{repo} returned
+        #         raise EcosystemError(f"api.github.com/repos/{owner}/{repo} returned
         #         {response.status_code} ({response.reason})")
         #     json_response = json.loads(response.text)
         #     try:
         #         github_project_url = json_response['html_url']
         #     except AttributeError:
         #         EcosystemError(
-        #             f"Bad JSON response for project: {user_org}/{repo}
+        #             f"Bad JSON response for project: {owner}/{repo}
         #             (Status: {response.status_code})")
         #     return self.github_org_and_repo_from_url(github_project_url, detect_redirect=False)
 
