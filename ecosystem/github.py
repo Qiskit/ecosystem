@@ -15,10 +15,10 @@ class GitHubData(JsonSerializable):
     """
 
     aliases = {"stars": "stargazers_count"}
-    dict_keys = ["org", "repo", "tree", "stars"]
+    dict_keys = ["owner", "repo", "tree", "stars"]
 
-    def __init__(self, org: str, repo: str, tree: str = None, **kwargs):
-        self.org = org
+    def __init__(self, owner: str, repo: str, tree: str = None, **kwargs):
+        self.owner = owner
         self.repo = repo
         self.tree = tree
         self._kwargs = kwargs or {}
@@ -62,7 +62,7 @@ class GitHubData(JsonSerializable):
                 f"invalid repository url: {github_project_url}"
             ) from exc
 
-        return GitHubData(org=user_org, repo=repo, tree=tree_path)
+        return GitHubData(owner=user_org, repo=repo, tree=tree_path)
 
         # if detect_redirect:
         #     headers = {'Authorization': 'token ' + 'ghp_XXXX'}
@@ -83,9 +83,9 @@ class GitHubData(JsonSerializable):
 
     def update_json(self):
         """
-        Fetches remote json data from api.github.com/repos/{self.org}/{self.repo}
+        Fetches remote json data from api.github.com/repos/{self.owner}/{self.repo}
         """
-        response = request(f"api.github.com/repos/{self.org}/{self.repo}")
+        response = request(f"api.github.com/repos/{self.owner}/{self.repo}")
         self._json_data = json.loads(response.text)
 
     def __getattr__(self, item):

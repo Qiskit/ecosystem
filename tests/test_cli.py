@@ -67,7 +67,7 @@ class TestCli(TestCase):
             "licence": "Apache License 2.0",
             "labels": ["tool", "tutorial", "paper implementation"],
             "website": "https://qiskit.org/ecosystem/",
-            "github": {"org": "Qiskit", "repo": "awesome"},
+            "github": {"owner": "Qiskit", "repo": "awesome"},
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()
@@ -101,7 +101,7 @@ class TestCli(TestCase):
             "affiliations": "Awesome Inc.",
             "ibm_maintained": False,
             "labels": [],
-            "github": {"org": "awesome", "repo": "awesome"},
+            "github": {"owner": "awesome", "repo": "awesome"},
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()
