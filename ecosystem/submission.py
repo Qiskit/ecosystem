@@ -22,7 +22,7 @@ class Submission(JsonSerializable):
     """
 
     # pylint: disable=too-many-instance-attributes
-    name: str | None = None
+    name: str
     url: str | None = None
     description: str | None = None
     licence: str | None = None

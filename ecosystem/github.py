@@ -6,7 +6,7 @@ from jsonpath import findall
 from functools import reduce
 
 
-from .serializable import JsonSerializable, Alias
+from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
 from .request import request_json
 
@@ -16,9 +16,11 @@ class GitHubData(JsonSerializable):
     The GitHub data related to a project
     """
 
-    aliases = {"stars": Alias("stargazers_count", sum),
-               "private": Alias("private", lambda x: x or None)}
-    dict_keys = ["owner", "repo", "tree", "stars", "private"]
+    json_conv = {"private": lambda x: x or None,
+                 "archived": lambda x: x or None,
+                 }
+    aliases = {"stars": "stargazers_count"}
+    dict_keys = ["owner", "repo", "tree", "stars", "private", "archived"]
 
     def __init__(self, owner: str, repo: str, tree: str = None, **kwargs):
         self.owner = owner
@@ -72,19 +74,21 @@ class GitHubData(JsonSerializable):
         self._json_data = request_json(f"api.github.com/repos/{self.owner}/{self.repo}")
 
     def __getattr__(self, item):
-        reduce_func = None
-
         if self._json_data:
             if item in GitHubData.aliases:
-                item, reduce_func = GitHubData.aliases[item]
+                item = GitHubData.aliases[item]
             json_elements = findall(item, self._json_data)
+            if item in GitHubData.json_conv:
+                json_elements = [GitHubData.json_conv[item](e) for e in json_elements]
+
             if len(json_elements) == 0:
                 raise AttributeError(
                     f"'{type(self).__name__}' object has no attribute '{item}'"
                 )
-            if reduce_func:
-                return reduce(reduce_func, json_elements)
-            return json_elements[0]
+            elif len(json_elements) == 1:
+                return json_elements[0]
+            else:
+                return reduce(GitHubData.json_conv[item], json_elements)
 
         if item in self._kwargs:
             return self._kwargs[item]
