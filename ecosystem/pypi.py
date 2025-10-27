@@ -20,7 +20,7 @@ class PyPIData(JsonSerializable):
 
     dict_keys = ["project", "version", "requires_qiskit"]
     aliases = {"version": "info.version"}
-    json_conv = {}
+    json_types = {}
     reduce = {}
 
     def __init__(self, project: str, **kwargs):
@@ -72,8 +72,8 @@ class PyPIData(JsonSerializable):
                 item = PyPIData.aliases[item]
 
             json_elements = findall(item, self._pypi_json)
-            if item in PyPIData.json_conv:
-                json_elements = [PyPIData.json_conv[item](e) for e in json_elements]
+            if item in PyPIData.json_types:
+                json_elements = [PyPIData.json_types[item](e) for e in json_elements]
 
             if len(json_elements) == 1:
                 return json_elements[0]

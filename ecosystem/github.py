@@ -18,7 +18,7 @@ class GitHubData(JsonSerializable):
 
     dict_keys = ["owner", "repo", "tree", "stars", "private", "archived", "last_commit"]
     aliases = {"stars": "stargazers_count", "last_commit": "pushed_at"}
-    json_conv = {
+    json_types = {
         "private": lambda x: x or None,
         "archived": lambda x: x or None,
         "pushed_at": datetime.fromisoformat,
@@ -84,8 +84,8 @@ class GitHubData(JsonSerializable):
                 item = GitHubData.aliases[item]
 
             json_elements = findall(item, self._json_data)
-            if item in GitHubData.json_conv:
-                json_elements = [GitHubData.json_conv[item](e) for e in json_elements]
+            if item in GitHubData.json_types:
+                json_elements = [GitHubData.json_types[item](e) for e in json_elements]
 
             if len(json_elements) == 1:
                 return json_elements[0]
