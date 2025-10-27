@@ -38,8 +38,7 @@ def request_json(url: str, headers: dict[str, str] = None):
             headers["Authorization"] = "token " + token
         headers['User-Agent'] = 'github.com/Qiskit/ecosystem/'
 
-        response = requests.get(url.geturl(), headers=headers, timeout=240)
-
+    response = requests.get(url.geturl(), headers=headers, timeout=240)
     if not response.ok:
         raise EcosystemError(
             f"Bad response {url.geturl()}: {response.reason} ({response.status_code})"
