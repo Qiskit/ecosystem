@@ -2,6 +2,9 @@
 
 from urllib.parse import ParseResult
 from re import match
+from functools import reduce
+from datetime import datetime
+from jsonpath import findall
 
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
@@ -13,8 +16,14 @@ class GitHubData(JsonSerializable):
     The GitHub data related to a project
     """
 
-    aliases = {"stars": "stargazers_count"}
-    dict_keys = ["owner", "repo", "tree", "stars"]
+    dict_keys = ["owner", "repo", "tree", "stars", "private", "archived", "last_commit"]
+    aliases = {"stars": "stargazers_count", "last_commit": "pushed_at"}
+    json_types = {
+        "private": lambda x: x or None,
+        "archived": lambda x: x or None,
+        "pushed_at": datetime.fromisoformat,
+    }
+    reduce = {}
 
     def __init__(self, owner: str, repo: str, tree: str = None, **kwargs):
         self.owner = owner
@@ -29,6 +38,8 @@ class GitHubData(JsonSerializable):
             value = getattr(self, key, None)
             if value is not None:
                 dictionary[key] = value
+            if isinstance(value, datetime):
+                dictionary[key] = value.isoformat()
         return dictionary
 
     @classmethod
@@ -69,14 +80,29 @@ class GitHubData(JsonSerializable):
 
     def __getattr__(self, item):
         if self._json_data:
-            ret = self._json_data.get(GitHubData.aliases.get(item, item))
-        else:
-            ret = self._kwargs.get(item)
-        if ret is None:
+            if item in GitHubData.aliases:
+                item = GitHubData.aliases[item]
+
+            json_elements = findall(item, self._json_data)
+            if item in GitHubData.json_types:
+                json_elements = [GitHubData.json_types[item](e) for e in json_elements]
+
+            if len(json_elements) == 1:
+                return json_elements[0]
+
+            if len(json_elements) >= 2:
+                return reduce(GitHubData.reduce[item], json_elements)
+
             raise AttributeError(
-                f"'{type(self).__name__}' object has no attribute '{item}'"
+                f"'{type(self).__name__}' object has no " f"attribute '{item}'"
             )
-        return ret
+
+        if item in self._kwargs:
+            return self._kwargs[item]
+
+        raise AttributeError(
+            f"'{type(self).__name__}' object has no attribute '{item}'"
+        )
 
     def update_owner_repo(self):
         """

@@ -43,7 +43,12 @@ class TomlStorage:
         """
         data = {}
         for path in self.toml_dir.glob("*.toml"):
-            repo = Submission.from_dict(toml.load(path))
+            try:
+                repo = Submission.from_dict(toml.load(path))
+            except TypeError as exc:
+                raise EcosystemError(f"TOML empty? {path}") from exc
+            except toml.decoder.TomlDecodeError as err:
+                raise EcosystemError(f"{path} unparsable TOML. {err.args[0]}") from err
             data[path.stem] = repo
         return data
 
