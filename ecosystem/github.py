@@ -3,8 +3,8 @@
 from urllib.parse import ParseResult
 from re import match
 from functools import reduce
-from jsonpath import findall
 from datetime import datetime
+from jsonpath import findall
 
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
@@ -17,7 +17,7 @@ class GitHubData(JsonSerializable):
     """
 
     dict_keys = ["owner", "repo", "tree", "stars", "private", "archived", "last_commit"]
-    aliases = {"stars": "stargazers_count", 'last_commit': 'pushed_at'}
+    aliases = {"stars": "stargazers_count", "last_commit": "pushed_at"}
     json_conv = {
         "private": lambda x: x or None,
         "archived": lambda x: x or None,
