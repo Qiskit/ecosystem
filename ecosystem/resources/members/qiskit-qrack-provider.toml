@@ -18,3 +18,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "vm6502q"
 repo = "qiskit-qrack-provider"
 stars = 2
+
+[pypi.qiskit-qrack-provider]
+project = "qiskit-qrack-provider"
+requires_qiskit = ">=2.0.0"

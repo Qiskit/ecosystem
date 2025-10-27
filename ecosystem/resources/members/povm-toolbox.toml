@@ -16,3 +16,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "qiskit-community"
 repo = "povm-toolbox"
 stars = 38
+
+[pypi.povm-toolbox]
+project = "povm-toolbox"
+requires_qiskit = "<3,>=1.4"

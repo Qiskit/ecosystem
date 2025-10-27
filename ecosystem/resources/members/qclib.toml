@@ -13,3 +13,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "qclib"
 repo = "qclib"
 stars = 44
+
+[pypi.qclib]
+project = "qclib"
+requires_qiskit = ">=1.0.0"

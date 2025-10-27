@@ -16,3 +16,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "pyRiemann"
 repo = "pyRiemann-qiskit"
 stars = 30
+
+[pypi.pyriemann-qiskit]
+project = "pyriemann-qiskit"
+requires_qiskit = "==1.*"

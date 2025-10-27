@@ -15,3 +15,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "qiskit-community"
 repo = "qiskit-sat-synthesis"
 stars = 9
+
+[pypi.qiskit-sat-synthesis]
+project = "qiskit-sat-synthesis"
+requires_qiskit = ">=1.2.0"

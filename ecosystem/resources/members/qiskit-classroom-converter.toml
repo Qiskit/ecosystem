@@ -14,3 +14,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "KMU-quantum-classroom"
 repo = "qiskit-classroom-converter"
 stars = 2
+
+[pypi.qiskit-classroom-converter]
+project = "qiskit-classroom-converter"
+requires_qiskit = "==1.3.1"

@@ -15,3 +15,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "C2QA"
 repo = "bosonic-qiskit"
 stars = 63
+
+[pypi.bosonic-qiskit]
+project = "bosonic-qiskit"
+requires_qiskit = "==2.0.0"

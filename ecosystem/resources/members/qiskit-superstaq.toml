@@ -17,3 +17,7 @@ owner = "Infleqtion"
 repo = "client-superstaq"
 tree = "main/qiskit-superstaq"
 stars = 105
+
+[pypi.qiskit-superstaq]
+project = "qiskit-superstaq"
+requires_qiskit = ">=1.3.0"

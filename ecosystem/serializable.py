@@ -15,6 +15,8 @@ class JsonSerializable(ABC):
         return str(self.to_dict())
 
     def __eq__(self, other):
+        if not hasattr(other, 'to_dict'):
+            return False
         return self.to_dict() == other.to_dict()
 
     @classmethod

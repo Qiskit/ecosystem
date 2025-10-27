@@ -15,3 +15,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "rigetti"
 repo = "qiskit-rigetti"
 stars = 13
+
+[pypi.qiskit-rigetti]
+project = "qiskit-rigetti"
+requires_qiskit = ">=0.38.0"
