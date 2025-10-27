@@ -6,7 +6,7 @@ labels = [ "Circuit simulator",]
 ibm_maintained = true
 created_at = 1636403010.377695
 updated_at = 1636403010.377697
-stars = 606
+stars = 604
 group = "other"
 documentation = "https://qiskit.github.io/qiskit-aer/"
 uuid = "474599a7-228b-446f-ae57-636fdbe8c1c6"
@@ -15,16 +15,19 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 [github]
 owner = "Qiskit"
 repo = "qiskit-aer"
-stars = 606
+stars = 604
 
 [pypi.qiskit-aer]
 project = "qiskit-aer"
+version = "0.17.2"
 requires_qiskit = ">=1.1.0"
 
 [pypi.qiskit-aer-gpu]
 project = "qiskit-aer-gpu"
+version = "0.15.1"
 requires_qiskit = ">=1.1.0"
 
 [pypi.qiskit-aer-gpu-cu11]
 project = "qiskit-aer-gpu-cu11"
+version = "0.17.2"
 requires_qiskit = ">=1.1.0"

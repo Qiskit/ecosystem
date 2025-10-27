@@ -8,7 +8,7 @@ from packaging.utils import canonicalize_name
 
 from jsonpath import findall
 
-from .serializable import JsonSerializable, Alias
+from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
 from .request import request_json
 
@@ -18,8 +18,10 @@ class PyPIData(JsonSerializable):
     The PyPI data related to a project
     """
 
-    aliases = {"version": Alias("info.version", sum)}
     dict_keys = ["project", "version", "requires_qiskit"]
+    aliases = {"version": "info.version"}
+    json_conv = {}
+    reduce = {}
 
     def __init__(self, project: str, **kwargs):
         self.project = canonicalize_name(project, validate=True)
@@ -65,19 +67,23 @@ class PyPIData(JsonSerializable):
             pass
 
     def __getattr__(self, item):
-        reduce_func = None
-
         if self._pypi_json:
-            if item in PyPIData.pypi_aliases:
-                item, reduce_func = PyPIData.pypi_aliases[item]
+            if item in PyPIData.aliases:
+                item = PyPIData.aliases[item]
+
             json_elements = findall(item, self._pypi_json)
-            if len(json_elements) == 0:
-                raise AttributeError(
-                    f"'{type(self).__name__}' object has no attribute '{item}'"
-                )
-            if reduce_func:
-                return reduce(reduce_func, json_elements)
-            return json_elements[0]
+            if item in PyPIData.json_conv:
+                json_elements = [PyPIData.json_conv[item](e) for e in json_elements]
+
+            if len(json_elements) == 1:
+                return json_elements[0]
+
+            if len(json_elements) >= 2:
+                return reduce(PyPIData.reduce[item], json_elements)
+
+            raise AttributeError(
+                f"'{type(self).__name__}' object has no " f"attribute '{item}'"
+            )
 
         if item in self._kwargs:
             return self._kwargs[item]

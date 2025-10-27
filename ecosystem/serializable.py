@@ -4,10 +4,6 @@ from abc import ABC
 from collections import namedtuple
 
 
-# key to write in the member toml and how to fetch it from the json file and how to reduce it
-Alias = namedtuple("Alias", ["jsonpath", "reduceFunc"])
-
-
 class JsonSerializable(ABC):
     """Classes that can be serialized as json."""
 
