@@ -2,7 +2,6 @@
 
 from urllib.parse import ParseResult
 from re import match
-import json
 
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
@@ -23,12 +22,6 @@ class GitHubData(JsonSerializable):
         self.tree = tree
         self._kwargs = kwargs or {}
         self._json_data = None
-
-    def __eq__(self, other):
-        return all([getattr(self, k, None) == getattr(other, k, None) for k in GitHubData.dict_keys])
-
-    def __str__(self):
-        return str(self.to_dict())
 
     def to_dict(self) -> dict:
         dictionary = {}
@@ -64,9 +57,7 @@ class GitHubData(JsonSerializable):
                 c for c in url_path.split("/") if match(r"^[A-Za-z0-9_.-]+$", c)
             ]
         except ValueError as exc:
-            raise EcosystemError(
-                f"invalid GitHub url: {github_project_url}"
-            ) from exc
+            raise EcosystemError(f"invalid GitHub url: {github_project_url}") from exc
 
         return GitHubData(owner=owner, repo=repo, tree=tree_path)
 
@@ -82,15 +73,20 @@ class GitHubData(JsonSerializable):
         else:
             ret = self._kwargs.get(item)
         if ret is None:
-            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{item}'")
+            raise AttributeError(
+                f"'{type(self).__name__}' object has no attribute '{item}'"
+            )
         return ret
 
     def update_owner_repo(self):
+        """
+        Updates GitHub page when the repo was moved or renamed
+        """
         if self._json_data is None:
             self.update_json()
-        owner = self._json_data['owner']['login']
-        repo = self._json_data['name']
+        owner = self._json_data["owner"]["login"]
+        repo = self._json_data["name"]
         if self.owner != owner or self.repo != repo:
-            logger.info(f"{self.owner}/{self.repo} move to {owner}/{repo}")
+            logger.info("%s/%s moved to %s/%s", self.owner, self.repo, owner, repo)
             self.owner = owner
             self.repo = repo

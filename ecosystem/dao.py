@@ -72,6 +72,7 @@ class TomlStorage:
         if _type is not None:
             return False
         self.write(self._data)
+        return True
 
 
 class DAO:
@@ -109,7 +110,7 @@ class DAO:
         for project in self.get_all():
             if project.url == url:
                 return project
-        raise ValueError(f"No repo with URL : {url}")
+        raise EcosystemError(f"No repo with URL : {url}")
 
     def get_all(self) -> list[Submission]:
         """
@@ -131,12 +132,24 @@ class DAO:
         with self.storage as data:
             for arg, value in kwargs.items():
                 current_value = data[name_id].__dict__.get(arg)
-                if current_value != value:
-                    logger.info(
-                        "Updating %s for %s: %s -> %s",
-                        name_id,
-                        arg,
-                        current_value,
-                        str(value),
-                    )
+                if isinstance(value, dict):
+                    for key, vvalue in value.items():
+                        if current_value.get(key, "") != vvalue:
+                            logger.info(
+                                "Updating %s for %s-%s: %s -> %s",
+                                name_id,
+                                arg,
+                                key,
+                                current_value.get(key),
+                                str(vvalue),
+                            )
+                else:
+                    if current_value != value:
+                        logger.info(
+                            "Updating %s for %s: %s -> %s",
+                            name_id,
+                            arg,
+                            current_value,
+                            str(value),
+                        )
                 data[name_id].__dict__[arg] = value

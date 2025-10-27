@@ -1,7 +1,8 @@
 """PyPI section."""
+
 from functools import reduce
 from urllib.parse import ParseResult
-from re import match, sub
+from re import match
 from collections import namedtuple
 from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
@@ -13,7 +14,8 @@ from .error_handling import EcosystemError, logger
 from .request import request_json
 
 # key to write in the member toml and how to fetch it from the json file and how to reduce it
-Alias = namedtuple('Alias', ['jsonpath', 'reduceFunc'])
+Alias = namedtuple("Alias", ["jsonpath", "reduceFunc"])
+
 
 class PyPIData(JsonSerializable):
     """
@@ -24,14 +26,11 @@ class PyPIData(JsonSerializable):
     dict_keys = ["project", "version", "requires_qiskit"]
 
     def __init__(self, project: str, **kwargs):
-        self.project =  canonicalize_name(project, validate=True)
+        self.project = canonicalize_name(project, validate=True)
         self._kwargs = kwargs or {}
         self._pypi_json = None
 
-    def __eq__(self, other):
-        return all([getattr(self, k, None) == getattr(other, k, None) for k in PyPIData.dict_keys])
-
-    def __str__(self):
+    def __repr__(self):
         return str(self.to_dict())
 
     def to_dict(self) -> dict:
@@ -55,7 +54,7 @@ class PyPIData(JsonSerializable):
         url_path = pypi_project_url.path
 
         path_parts = [c for c in url_path.split("/") if match(r"^[A-Za-z0-9_.-]+$", c)]
-        if len(path_parts) == 2 and path_parts[0].lower() == 'project':
+        if len(path_parts) == 2 and path_parts[0].lower() == "project":
             return PyPIData(project=path_parts[1].lower())
 
         raise EcosystemError(f"invalid PyPI url: {pypi_project_url}")
@@ -70,31 +69,48 @@ class PyPIData(JsonSerializable):
             pass
 
     def __getattr__(self, item):
-        def reduce_func(items):
-            return items[0] if items > 0 else None
+        reduce_func = None
 
         if self._pypi_json:
             if item in PyPIData.aliases:
                 item, reduce_func = PyPIData.aliases[item]
             json_elements = findall(item, self._pypi_json)
-            return reduce(reduce_func, json_elements)
-        else:
-            ret = self._kwargs.get(item)
-        if ret is None:
-            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{item}'")
-        return ret
+            if len(json_elements) == 0:
+                raise AttributeError(
+                    f"'{type(self).__name__}' object has no attribute '{item}'"
+                )
+            if reduce_func:
+                return reduce(reduce_func, json_elements)
+            return json_elements[0]
+
+        if item in self._kwargs:
+            return self._kwargs[item]
+
+        raise AttributeError(
+            f"'{type(self).__name__}' object has no attribute '{item}'"
+        )
 
     @property
     def pypi_json(self):
+        """if the JSON was not fetch from PyPI, return empty dict"""
         return self._pypi_json or {}
 
     @property
     def requires_qiskit(self):
-        if 'requires_qiskit' in self._kwargs and self._kwargs['requires_qiskit']:
-            return self._kwargs['requires_qiskit']
+        """String with the specifier for "qiskit" dependency"""
+        if "requires_qiskit" in self._kwargs:
+            return self._kwargs["requires_qiskit"]
         requires_dist = self.pypi_json.get("info", {}).get("requires_dist") or []
         for requirement_str in requires_dist:
             requirement = Requirement(requirement_str)
-            if requirement.name == 'qiskit':
-                self._kwargs['requires_qiskit'] = str(requirement.specifier)
-                return str(requirement.specifier)
+            if requirement.name == "qiskit":
+                self._kwargs["requires_qiskit"] = str(requirement.specifier)
+                if self._kwargs["requires_qiskit"] == "":
+                    logger.warning(
+                        "%s depends on qiskit but with empty specifier. "
+                        'Forcing one, ">=0"',
+                        self.project,
+                    )
+                    self._kwargs["requires_qiskit"] = ">=0"
+                return self._kwargs["requires_qiskit"]
+        return None

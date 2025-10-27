@@ -53,7 +53,6 @@ class Submission(JsonSerializable):
         if self.pypi is None:
             self.pypi = {}
 
-
     @property
     def short_uuid(self):
         """just the short version of UUID"""
@@ -74,7 +73,7 @@ class Submission(JsonSerializable):
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
         if "pypi" in filtered_dict:
             for project_name, pypi_dict in filtered_dict["pypi"].items():
-                pypi_data = PyPIData.from_dict({'project': project_name} | pypi_dict)
+                pypi_data = PyPIData.from_dict({"project": project_name} | pypi_dict)
                 filtered_dict["pypi"][project_name] = pypi_data
         return Submission(**filtered_dict)
 
