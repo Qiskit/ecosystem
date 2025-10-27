@@ -21,7 +21,7 @@ class GitHubData(JsonSerializable):
     json_conv = {
         "private": lambda x: x or None,
         "archived": lambda x: x or None,
-        "pushed_at": lambda x: datetime.fromisoformat(x),
+        "pushed_at": datetime.fromisoformat,
     }
     reduce = {}
 
