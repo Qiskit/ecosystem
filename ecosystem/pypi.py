@@ -3,7 +3,6 @@
 from functools import reduce
 from urllib.parse import ParseResult
 from re import match
-from collections import namedtuple
 from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
 
@@ -12,7 +11,6 @@ from jsonpath import findall
 from .serializable import JsonSerializable, Alias
 from .error_handling import EcosystemError, logger
 from .request import request_json
-
 
 
 class PyPIData(JsonSerializable):

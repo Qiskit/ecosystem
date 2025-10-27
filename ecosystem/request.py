@@ -30,13 +30,17 @@ def parse_url(original_url: str):
 def request_json(url: str, headers: dict[str, str] = None):
     """Requests the JSON in <url> with <headers>"""
     url = parse_url(url)
-    headers = headers or {"Accept": "application/json,application/vnd.github+json,application/vnd.github.diff"}
+    headers = headers or {
+        "Accept": "application/json,"
+        "application/vnd.github+json,"
+        "application/vnd.github.diff"
+    }
 
     if url.hostname == "api.github.com":
         token = os.getenv("GH_TOKEN")
         if token:
             headers["Authorization"] = "token " + token
-        headers['User-Agent'] = 'github.com/Qiskit/ecosystem/'
+        headers["User-Agent"] = "github.com/Qiskit/ecosystem/"
 
     response = requests.get(url.geturl(), headers=headers, timeout=240)
     if not response.ok:

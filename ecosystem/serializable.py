@@ -2,11 +2,11 @@
 
 from abc import ABC
 from collections import namedtuple
-from functools import reduce
 
 
 # key to write in the member toml and how to fetch it from the json file and how to reduce it
 Alias = namedtuple("Alias", ["jsonpath", "reduceFunc"])
+
 
 class JsonSerializable(ABC):
     """Classes that can be serialized as json."""
@@ -15,7 +15,7 @@ class JsonSerializable(ABC):
         return str(self.to_dict())
 
     def __eq__(self, other):
-        if not hasattr(other, 'to_dict'):
+        if not hasattr(other, "to_dict"):
             return False
         return self.to_dict() == other.to_dict()
 

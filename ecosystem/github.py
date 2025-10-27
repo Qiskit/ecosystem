@@ -2,8 +2,8 @@
 
 from urllib.parse import ParseResult
 from re import match
-from jsonpath import findall
 from functools import reduce
+from jsonpath import findall
 
 
 from .serializable import JsonSerializable
@@ -16,11 +16,13 @@ class GitHubData(JsonSerializable):
     The GitHub data related to a project
     """
 
-    json_conv = {"private": lambda x: x or None,
-                 "archived": lambda x: x or None,
-                 }
-    aliases = {"stars": "stargazers_count"}
     dict_keys = ["owner", "repo", "tree", "stars", "private", "archived"]
+    aliases = {"stars": "stargazers_count"}
+    json_conv = {
+        "private": lambda x: x or None,
+        "archived": lambda x: x or None,
+    }
+    reduce = {}
 
     def __init__(self, owner: str, repo: str, tree: str = None, **kwargs):
         self.owner = owner
@@ -77,18 +79,20 @@ class GitHubData(JsonSerializable):
         if self._json_data:
             if item in GitHubData.aliases:
                 item = GitHubData.aliases[item]
+
             json_elements = findall(item, self._json_data)
             if item in GitHubData.json_conv:
                 json_elements = [GitHubData.json_conv[item](e) for e in json_elements]
 
-            if len(json_elements) == 0:
-                raise AttributeError(
-                    f"'{type(self).__name__}' object has no attribute '{item}'"
-                )
-            elif len(json_elements) == 1:
+            if len(json_elements) == 1:
                 return json_elements[0]
-            else:
-                return reduce(GitHubData.json_conv[item], json_elements)
+
+            if len(json_elements) >= 2:
+                return reduce(GitHubData.reduce[item], json_elements)
+
+            raise AttributeError(
+                f"'{type(self).__name__}' object has no " f"attribute '{item}'"
+            )
 
         if item in self._kwargs:
             return self._kwargs[item]
