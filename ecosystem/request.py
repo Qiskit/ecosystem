@@ -36,7 +36,7 @@ def request_json(url: str, headers: dict[str, str] = None):
         token = os.getenv("GH_TOKEN")
         if token:
             headers["Authorization"] = "token " + token
-        headers['User-Agent'] = '1ucian0'
+        headers['User-Agent'] = 'github.com/Qiskit/ecosystem/'
 
         response = requests.get(url.geturl(), headers=headers, timeout=240)
 
