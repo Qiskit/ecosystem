@@ -16,3 +16,8 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "atlytle"
 repo = "dense-ev"
 stars = 12
+
+[pypi.dense-ev]
+project = "dense-ev"
+version = "2023.5.22"
+requires_qiskit = "<0.43.0"

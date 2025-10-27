@@ -15,3 +15,8 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "qiskit-community"
 repo = "ffsim"
 stars = 60
+
+[pypi.ffsim]
+project = "ffsim"
+version = "0.0.60"
+requires_qiskit = ">=1.3"
