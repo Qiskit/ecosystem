@@ -3,6 +3,7 @@
 from functools import reduce
 from urllib.parse import ParseResult
 from re import match
+from collections import namedtuple
 from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
 
