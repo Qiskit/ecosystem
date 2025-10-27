@@ -2,8 +2,11 @@
 
 from urllib.parse import ParseResult
 from re import match
+from jsonpath import findall
+from functools import reduce
 
-from .serializable import JsonSerializable
+
+from .serializable import JsonSerializable, Alias
 from .error_handling import EcosystemError, logger
 from .request import request_json
 
@@ -13,8 +16,9 @@ class GitHubData(JsonSerializable):
     The GitHub data related to a project
     """
 
-    aliases = {"stars": "stargazers_count"}
-    dict_keys = ["owner", "repo", "tree", "stars"]
+    aliases = {"stars": Alias("stargazers_count", sum),
+               "private": Alias("private", lambda x: x or None)}
+    dict_keys = ["owner", "repo", "tree", "stars", "private"]
 
     def __init__(self, owner: str, repo: str, tree: str = None, **kwargs):
         self.owner = owner
@@ -68,15 +72,26 @@ class GitHubData(JsonSerializable):
         self._json_data = request_json(f"api.github.com/repos/{self.owner}/{self.repo}")
 
     def __getattr__(self, item):
+        reduce_func = None
+
         if self._json_data:
-            ret = self._json_data.get(GitHubData.aliases.get(item, item))
-        else:
-            ret = self._kwargs.get(item)
-        if ret is None:
-            raise AttributeError(
-                f"'{type(self).__name__}' object has no attribute '{item}'"
-            )
-        return ret
+            if item in GitHubData.aliases:
+                item, reduce_func = GitHubData.aliases[item]
+            json_elements = findall(item, self._json_data)
+            if len(json_elements) == 0:
+                raise AttributeError(
+                    f"'{type(self).__name__}' object has no attribute '{item}'"
+                )
+            if reduce_func:
+                return reduce(reduce_func, json_elements)
+            return json_elements[0]
+
+        if item in self._kwargs:
+            return self._kwargs[item]
+
+        raise AttributeError(
+            f"'{type(self).__name__}' object has no attribute '{item}'"
+        )
 
     def update_owner_repo(self):
         """

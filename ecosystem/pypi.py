@@ -3,18 +3,15 @@
 from functools import reduce
 from urllib.parse import ParseResult
 from re import match
-from collections import namedtuple
 from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
 
 from jsonpath import findall
 
-from .serializable import JsonSerializable
+from .serializable import JsonSerializable, Alias
 from .error_handling import EcosystemError, logger
 from .request import request_json
 
-# key to write in the member toml and how to fetch it from the json file and how to reduce it
-Alias = namedtuple("Alias", ["jsonpath", "reduceFunc"])
 
 
 class PyPIData(JsonSerializable):
@@ -72,8 +69,8 @@ class PyPIData(JsonSerializable):
         reduce_func = None
 
         if self._pypi_json:
-            if item in PyPIData.aliases:
-                item, reduce_func = PyPIData.aliases[item]
+            if item in PyPIData.pypi_aliases:
+                item, reduce_func = PyPIData.pypi_aliases[item]
             json_elements = findall(item, self._pypi_json)
             if len(json_elements) == 0:
                 raise AttributeError(
