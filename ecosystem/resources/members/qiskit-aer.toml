@@ -16,3 +16,8 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "Qiskit"
 repo = "qiskit-aer"
 stars = 604
+
+[pypi.qiskit-aer]
+project = "qiskit-aer"
+version = "0.17.2"
+requires_qiskit = ">=1.1.0"

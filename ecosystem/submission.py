@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 
 from .serializable import JsonSerializable
 from .github import GitHubData
+from .pypi import PyPIData
 
 
 @dataclass
@@ -38,6 +39,7 @@ class Submission(JsonSerializable):
     documentation: str | None = None
     uuid: str | None = None
     github: GitHubData | None = None
+    pypi: dict[str, PyPIData] | None = None
 
     def __post_init__(self):
         self.__dict__.setdefault("created_at", datetime.now().timestamp())
@@ -48,6 +50,9 @@ class Submission(JsonSerializable):
             self.uuid = str(uuid4())
         if self.labels is None:
             self.labels = []
+        if self.pypi is None:
+            self.pypi = {}
+
 
     @property
     def short_uuid(self):
@@ -67,6 +72,10 @@ class Submission(JsonSerializable):
         filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
         if "github" in filtered_dict:
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
+        if "pypi" in filtered_dict:
+            for project_name, pypi_dict in filtered_dict["pypi"].items():
+                pypi_data = PyPIData.from_dict({'project': project_name} | pypi_dict)
+                filtered_dict["pypi"][project_name] = pypi_data
         return Submission(**filtered_dict)
 
     def to_dict(self) -> dict:

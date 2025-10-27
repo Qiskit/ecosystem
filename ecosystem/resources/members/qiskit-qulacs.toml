@@ -16,3 +16,8 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 owner = "Gopal-Dahale"
 repo = "qiskit-qulacs"
 stars = 10
+
+[pypi.qiskit-qulacs]
+project = "qiskit-qulacs"
+version = "0.1.0"
+requires_qiskit = ">=1.0.0"

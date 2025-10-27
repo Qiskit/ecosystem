@@ -86,8 +86,7 @@ class CliMembers:
         """Updates start for repositories."""
         for project in self.dao.get_all():
             project.update_github()
-            stars = project.github.stars
-            self.dao.update(project.name_id, stars=stars)
+            self.dao.update(project.name_id, stars=project.github.stars)
             self.dao.update(project.name_id, github=project.github)
 
     def compile_json(self, output_file: str):

@@ -6,7 +6,7 @@ import json
 
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
-from .request import request
+from .request import request_json
 
 
 class GitHubData(JsonSerializable):
@@ -61,11 +61,11 @@ class GitHubData(JsonSerializable):
             url_path = new_path
         try:
             owner, repo = [
-                c for c in url_path.split("/") if c and match(r"^[A-Za-z0-9_.-]+$", c)
+                c for c in url_path.split("/") if match(r"^[A-Za-z0-9_.-]+$", c)
             ]
         except ValueError as exc:
             raise EcosystemError(
-                f"invalid repository url: {github_project_url}"
+                f"invalid GitHub url: {github_project_url}"
             ) from exc
 
         return GitHubData(owner=owner, repo=repo, tree=tree_path)
@@ -74,8 +74,7 @@ class GitHubData(JsonSerializable):
         """
         Fetches remote json data from api.github.com/repos/{self.owner}/{self.repo}
         """
-        response = request(f"api.github.com/repos/{self.owner}/{self.repo}")
-        self._json_data = json.loads(response.text)
+        self._json_data = request_json(f"api.github.com/repos/{self.owner}/{self.repo}")
 
     def __getattr__(self, item):
         if self._json_data:

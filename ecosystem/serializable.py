@@ -30,6 +30,14 @@ class JsonSerializable(ABC):
                         element.append(item.to_dict())
                     else:
                         element.append(item)
+            elif isinstance(val, dict):
+                dict_element = {}
+                for k,v in val.items():
+                    dict_element[k] = v.to_dict() if hasattr(v, 'to_dict') else v
+                if dict_element:
+                    element = dict_element
+                else:
+                    continue
             elif isinstance(val, JsonSerializable):
                 element = val.to_dict()
             else:
