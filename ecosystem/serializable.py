@@ -1,7 +1,6 @@
 """Utility classes for models."""
 
 from abc import ABC
-from collections import namedtuple
 
 
 class JsonSerializable(ABC):
