@@ -19,16 +19,16 @@ stars = 606
 last_commit = "2025-09-28T05:27:37+00:00"
 
 [pypi.qiskit-aer]
-project = "qiskit-aer"
+package_name = "qiskit-aer"
 version = "0.17.2"
 requires_qiskit = ">=1.1.0"
 
 [pypi.qiskit-aer-gpu]
-project = "qiskit-aer-gpu"
+package_name = "qiskit-aer-gpu"
 version = "0.15.1"
 requires_qiskit = ">=1.1.0"
 
 [pypi.qiskit-aer-gpu-cu11]
-project = "qiskit-aer-gpu-cu11"
+package_name = "qiskit-aer-gpu-cu11"
 version = "0.17.2"
 requires_qiskit = ">=1.1.0"

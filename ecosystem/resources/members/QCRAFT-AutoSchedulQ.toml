@@ -21,6 +21,6 @@ stars = 18
 last_commit = "2025-10-27T11:31:51+00:00"
 
 [pypi.autoscheduler]
-project = "autoscheduler"
+package_name = "autoscheduler"
 version = "1.2.1"
 requires_qiskit = "<3.0.0,>=1.1.0"
