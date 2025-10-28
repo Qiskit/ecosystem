@@ -22,3 +22,5 @@ last_commit = "2025-10-27T13:18:13+00:00"
 package_name = "qiskit-scaleway"
 version = "0.3.0"
 requires_qiskit = "~=2.1"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true

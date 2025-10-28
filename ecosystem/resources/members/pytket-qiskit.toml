@@ -21,3 +21,5 @@ last_commit = "2025-10-24T14:53:48+00:00"
 package_name = "pytket-qiskit"
 version = "0.72.0"
 requires_qiskit = ">=2.2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true

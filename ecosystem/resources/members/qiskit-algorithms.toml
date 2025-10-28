@@ -22,3 +22,5 @@ last_commit = "2025-10-27T00:13:16+00:00"
 package_name = "qiskit-algorithms"
 version = "0.4.0"
 requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true

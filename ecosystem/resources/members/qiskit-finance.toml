@@ -22,3 +22,5 @@ last_commit = "2025-10-24T19:21:38+00:00"
 package_name = "qiskit-finance"
 version = "0.4.1"
 requires_qiskit = ">=0.45"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true

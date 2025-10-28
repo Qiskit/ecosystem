@@ -19,3 +19,5 @@ last_commit = "2025-08-07T13:50:05+00:00"
 package_name = "qclib"
 version = "0.1.15"
 requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true

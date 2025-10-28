@@ -22,3 +22,5 @@ last_commit = "2024-05-30T22:10:50+00:00"
 package_name = "dense-ev"
 version = "2023.5.22"
 requires_qiskit = "<0.43.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = false

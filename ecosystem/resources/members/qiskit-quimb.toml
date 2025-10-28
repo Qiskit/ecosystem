@@ -19,3 +19,5 @@ last_commit = "2025-06-11T03:23:29+00:00"
 package_name = "qiskit-quimb"
 version = "0.0.9"
 requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true

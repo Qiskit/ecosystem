@@ -21,3 +21,5 @@ last_commit = "2025-04-09T21:16:09+00:00"
 package_name = "qiskit-rigetti"
 version = "0.4.7"
 requires_qiskit = ">=0.38.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true

@@ -22,3 +22,5 @@ last_commit = "2025-10-01T23:18:30+00:00"
 package_name = "povm-toolbox"
 version = "0.2.0"
 requires_qiskit = "<3,>=1.4"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true

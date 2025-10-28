@@ -24,3 +24,5 @@ last_commit = "2025-06-25T15:47:22+00:00"
 package_name = "qiskit-qrack-provider"
 version = "0.17.1"
 requires_qiskit = ">=2.0.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true

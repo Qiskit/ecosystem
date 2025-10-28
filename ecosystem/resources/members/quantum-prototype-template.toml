@@ -20,3 +20,5 @@ last_commit = "2024-09-11T15:59:49+00:00"
 package_name = "vqls-prototype"
 version = "0.2.0"
 requires_qiskit = ">=0.14.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
