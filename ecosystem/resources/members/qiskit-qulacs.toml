@@ -19,6 +19,10 @@ stars = 10
 last_commit = "2025-09-08T18:42:37+00:00"
 
 [pypi.qiskit-qulacs]
-project = "qiskit-qulacs"
+package_name = "qiskit-qulacs"
 version = "0.1.0"
 requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_version = "2.2.2"

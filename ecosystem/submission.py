@@ -42,8 +42,8 @@ class Submission(JsonSerializable):
     pypi: dict[str, PyPIData] | None = None
 
     def __post_init__(self):
-        self.__dict__.setdefault("created_at", datetime.now().timestamp())
-        self.__dict__.setdefault("updated_at", datetime.now().timestamp())
+        self.__dict__.setdefault("created_at", datetime.now().isoformat())
+        self.__dict__.setdefault("updated_at", datetime.now().isoformat())
         if self.github is None:
             self.github = GitHubData.from_url(urlparse(self.url))
         if self.uuid is None:
@@ -73,7 +73,9 @@ class Submission(JsonSerializable):
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
         if "pypi" in filtered_dict:
             for project_name, pypi_dict in filtered_dict["pypi"].items():
-                pypi_data = PyPIData.from_dict({"project": project_name} | pypi_dict)
+                pypi_data = PyPIData.from_dict(
+                    {"package_name": project_name} | pypi_dict
+                )
                 filtered_dict["pypi"][project_name] = pypi_data
         return Submission(**filtered_dict)
 
@@ -110,7 +112,14 @@ class Submission(JsonSerializable):
 
     def update_github(self):
         """
-        Updates all the GitHub information for project self.
+        Updates all the GitHub information in the project.
         """
         self.github.update_json()
         self.github.update_owner_repo()
+
+    def update_pypi(self):
+        """
+        Updates all the PyPI information in the project.
+        """
+        for package_name in sorted(self.pypi.keys()):
+            self.pypi[package_name].update_json()

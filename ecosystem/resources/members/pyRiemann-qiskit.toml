@@ -19,6 +19,10 @@ stars = 30
 last_commit = "2025-10-25T12:42:08+00:00"
 
 [pypi.pyriemann-qiskit]
-project = "pyriemann-qiskit"
+package_name = "pyriemann-qiskit"
 version = "0.4.2"
 requires_qiskit = "==1.*"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38.567246Z
+highest_supported_qiskit_version = "1.4.5"

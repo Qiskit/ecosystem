@@ -18,6 +18,10 @@ stars = 13
 last_commit = "2025-04-09T21:16:09+00:00"
 
 [pypi.qiskit-rigetti]
-project = "qiskit-rigetti"
+package_name = "qiskit-rigetti"
 version = "0.4.7"
 requires_qiskit = ">=0.38.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_version = "2.2.2"

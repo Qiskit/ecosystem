@@ -16,6 +16,10 @@ stars = 15
 last_commit = "2025-06-11T03:23:29+00:00"
 
 [pypi.qiskit-quimb]
-project = "qiskit-quimb"
+package_name = "qiskit-quimb"
 version = "0.0.9"
 requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_version = "2.2.2"

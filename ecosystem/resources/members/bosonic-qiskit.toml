@@ -18,6 +18,10 @@ stars = 63
 last_commit = "2025-10-27T16:17:52+00:00"
 
 [pypi.bosonic-qiskit]
-project = "bosonic-qiskit"
-version = "14.0"
+package_name = "bosonic-qiskit"
+version = "14.2"
 requires_qiskit = "==2.0.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-04-01T13:49:28.788958Z
+highest_supported_qiskit_version = "2.0.0"

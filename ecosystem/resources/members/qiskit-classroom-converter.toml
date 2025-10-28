@@ -17,6 +17,10 @@ stars = 2
 last_commit = "2025-10-23T06:09:01+00:00"
 
 [pypi.qiskit-classroom-converter]
-project = "qiskit-classroom-converter"
+package_name = "qiskit-classroom-converter"
 version = "0.6.0"
 requires_qiskit = "==1.3.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2024-12-12T23:38:12.353888Z
+highest_supported_qiskit_version = "1.3.1"

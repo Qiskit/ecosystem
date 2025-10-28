@@ -16,6 +16,10 @@ stars = 44
 last_commit = "2025-08-07T13:50:05+00:00"
 
 [pypi.qclib]
-project = "qclib"
+package_name = "qclib"
 version = "0.1.15"
 requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_version = "2.2.2"

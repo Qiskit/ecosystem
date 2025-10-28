@@ -19,6 +19,10 @@ stars = 290
 last_commit = "2025-10-24T19:21:38+00:00"
 
 [pypi.qiskit-finance]
-project = "qiskit-finance"
+package_name = "qiskit-finance"
 version = "0.4.1"
 requires_qiskit = ">=0.45"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_version = "2.2.2"

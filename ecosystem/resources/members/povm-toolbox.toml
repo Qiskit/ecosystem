@@ -19,6 +19,10 @@ stars = 38
 last_commit = "2025-10-01T23:18:30+00:00"
 
 [pypi.povm-toolbox]
-project = "povm-toolbox"
+package_name = "povm-toolbox"
 version = "0.2.0"
 requires_qiskit = "<3,>=1.4"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_version = "2.2.2"

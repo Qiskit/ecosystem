@@ -19,6 +19,10 @@ stars = 57
 last_commit = "2025-07-25T20:40:18+00:00"
 
 [pypi.piqture]
-project = "piqture"
+package_name = "piqture"
 version = "0.2.0"
 requires_qiskit = ">=2.0.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_version = "2.2.2"

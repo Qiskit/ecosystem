@@ -19,6 +19,10 @@ stars = 270
 last_commit = "2025-10-27T09:52:00+00:00"
 
 [pypi.qiskit-optimization]
-project = "qiskit-optimization"
+package_name = "qiskit-optimization"
 version = "0.7.0"
 requires_qiskit = "<3,>=1.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_version = "2.2.2"
