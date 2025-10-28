@@ -42,7 +42,7 @@ class TestDao(TestCase):
 
         dao.update(main_repo.name_id, stars=42)
         repo_from_db = dao.get_by_url(main_repo.url)
-        self.assertEqual(repo_from_db.stars, 42)
+        self.assertEqual(42, repo_from_db.stars)
 
     def test_repository_insert_and_delete(self):
         """Tests repository."""
@@ -56,4 +56,5 @@ class TestDao(TestCase):
 
         # delete entry
         dao.delete(main_repo.name_id)
-        self.assertEqual(len(dao.get_all()), 0)
+        dao.refresh_files()
+        self.assertEqual(0, len(dao.get_all()))

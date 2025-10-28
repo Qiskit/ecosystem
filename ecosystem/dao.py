@@ -10,6 +10,7 @@ File structure:
 
 # from __future__ import annotations
 from pathlib import Path
+import shutil
 import toml
 
 from ecosystem.error_handling import logger, EcosystemError
@@ -51,11 +52,22 @@ class TomlStorage:
             data[path.stem] = repo
         return data
 
+    def refresh_files(self):
+        """Forces dumping the DAO to files"""
+        # Erase existing TOML files
+        # (we erase everything to clean up any deleted repos from data)
+        if self.toml_dir.exists():
+            shutil.rmtree(self.toml_dir)
+        self.write(self._data)
+
     def write(self, data: dict):
         """
         Dump everything to TOML files from dict of types
         { key (any): repo (Submission) }
         """
+        if not self.toml_dir.exists():
+            self.toml_dir.mkdir()
+
         # Write to human-readable TOML
         for submission in data.values():
             submission_dict = submission.to_dict()
@@ -63,7 +75,8 @@ class TomlStorage:
                 toml.dump(submission_dict, file)
 
     def __enter__(self) -> dict:
-        self._data = self.read()
+        if self._data is None:
+            self._data = self.read()
         return self._data
 
     def __exit__(self, _type, _value, exception):
@@ -151,3 +164,7 @@ class DAO:
                             str(value),
                         )
                 data[name_id].__dict__[arg] = value
+
+    def refresh_files(self):
+        """Forces dumping the DAO to files"""
+        self.storage.refresh_files()
