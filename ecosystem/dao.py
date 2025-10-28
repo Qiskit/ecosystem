@@ -59,11 +59,11 @@ class TomlStorage:
         """
         # Erase existing TOML files
         # (we erase everything to clean up any deleted repos)
-        if self.toml_dir.exists():
-            shutil.rmtree(self.toml_dir)
+        # if self.toml_dir.exists():
+        #     shutil.rmtree(self.toml_dir)
 
         # Write to human-readable TOML
-        self.toml_dir.mkdir()
+        # self.toml_dir.mkdir()
         for submission in data.values():
             with open(self._name_id_to_path(submission.name_id), "w") as file:
                 submission_dict = submission.to_dict()

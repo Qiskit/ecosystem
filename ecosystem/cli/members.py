@@ -83,11 +83,18 @@ class CliMembers:
                 self.logger.info("Badge for %s has been updated.", project.name)
 
     def update_github(self):
-        """Updates start for repositories."""
+        """Updates GitHub data."""
         for project in self.dao.get_all():
             project.update_github()
             self.dao.update(project.name_id, stars=project.github.stars)
             self.dao.update(project.name_id, github=project.github)
+
+    def update_pypi(self):
+        """Updates PyPI data."""
+        for project in self.dao.get_all():
+            project.update_pypi()
+            self.dao.update(project.name_id, pypi=project.pypi)
+
 
     def compile_json(self, output_file: str):
         """Compile JSON file for consumption by ibm.com"""
