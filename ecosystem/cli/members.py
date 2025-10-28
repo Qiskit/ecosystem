@@ -101,4 +101,4 @@ class CliMembers:
             "members": [repo.to_dict() for repo in self.dao.get_all()],
             "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
         }
-        Path(output_file).write_text(json.dumps(data))
+        Path(output_file).write_text(json.dumps(data, default=str))
