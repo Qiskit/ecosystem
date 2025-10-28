@@ -97,8 +97,23 @@ class CliMembers:
 
     def compile_json(self, output_file: str):
         """Compile JSON file for consumption by ibm.com"""
+        member_data_to_export = {"name": "name",
+                                 "url": "github.url",
+                                 'ibm_maintained': 'ibm_maintained',
+                                 "stars": "github.stars",
+                                 "group": "group",
+                                 "badge": "badge",
+                                 "description": "description",
+                                 }
+
+        members = []
+        for member in self.dao.get_all():
+            # member_data = member.to_dict()
+            # for key, value in member_data.items():
+            #     if key in member_data_to_export:
+            members.append(member)
         data = {
-            "members": [repo.to_dict() for repo in self.dao.get_all()],
+            "members": members,
             "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
         }
         Path(output_file).write_text(json.dumps(data, default=str))
