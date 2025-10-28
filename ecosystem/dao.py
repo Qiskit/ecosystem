@@ -10,7 +10,6 @@ File structure:
 
 # from __future__ import annotations
 from pathlib import Path
-import shutil
 import toml
 
 from ecosystem.error_handling import logger, EcosystemError
@@ -57,16 +56,10 @@ class TomlStorage:
         Dump everything to TOML files from dict of types
         { key (any): repo (Submission) }
         """
-        # Erase existing TOML files
-        # (we erase everything to clean up any deleted repos)
-        # if self.toml_dir.exists():
-        #     shutil.rmtree(self.toml_dir)
-
         # Write to human-readable TOML
-        # self.toml_dir.mkdir()
         for submission in data.values():
+            submission_dict = submission.to_dict()
             with open(self._name_id_to_path(submission.name_id), "w") as file:
-                submission_dict = submission.to_dict()
                 toml.dump(submission_dict, file)
 
     def __enter__(self) -> dict:

@@ -95,7 +95,6 @@ class CliMembers:
             project.update_pypi()
             self.dao.update(project.name_id, pypi=project.pypi)
 
-
     def compile_json(self, output_file: str):
         """Compile JSON file for consumption by ibm.com"""
         data = {
