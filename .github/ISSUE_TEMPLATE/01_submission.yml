@@ -2,7 +2,7 @@ name: "🆕 Submit a project to the Qiskit Ecosystem"
 description: Request that a project be included in the Qiskit Ecosystem
 title: "[Submission]: <project name> "
 labels: ["submission"]
- type: Task
+type: Task
 body:
   - type: markdown
     attributes:
@@ -95,6 +95,19 @@ body:
         - quantum information
         - circuit optmization
         - paper
+  - type: dropdown
+    id: pattern_steps
+    attributes:
+      description: >
+        Can this software help a user to work in one or more steps of 
+        the [Qiskit Pattern](https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns)?
+      label: Qiskit Pattern steps
+      multiple: true
+      options:
+        - Map the problem
+        - Optimize for hardware
+        - Execute on hardware
+        - Post-process results
   - type: markdown
     attributes:
       value: "---"
