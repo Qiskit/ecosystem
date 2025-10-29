@@ -6,17 +6,18 @@ contact_info = "ept@zurich.ibm.com"
 affiliations = "IBM Quantum"
 labels = [ "Algorithms", "Applications",]
 ibm_maintained = false
-stars = 161
+stars = 162
 group = "applications"
 documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
 uuid = "39fba621-edbb-485b-a723-8a0760ab4b85"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F39fba621)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/qiskit-community/qiskit-algorithms"
 owner = "qiskit-community"
 repo = "qiskit-algorithms"
-stars = 161
-last_commit = "2025-10-27T00:13:16+00:00"
+stars = 162
+last_commit = 2025-10-28T14:47:59Z
 
 [pypi.qiskit-algorithms]
 package_name = "qiskit-algorithms"
@@ -24,5 +25,5 @@ version = "0.4.0"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"

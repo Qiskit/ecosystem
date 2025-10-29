@@ -13,10 +13,11 @@ uuid = "a942dc5d-c715-4b23-a9d6-4f2c3ee1d70b"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fa942dc5d)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/scaleway/qiskit-scaleway"
 owner = "scaleway"
 repo = "qiskit-scaleway"
 stars = 6
-last_commit = "2025-10-27T13:18:13+00:00"
+last_commit = 2025-10-27T13:18:13Z
 
 [pypi.qiskit-scaleway]
 package_name = "qiskit-scaleway"
@@ -24,5 +25,5 @@ version = "0.3.0"
 requires_qiskit = "~=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"
