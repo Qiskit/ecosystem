@@ -1,23 +1,18 @@
 name: "🆕 Submit a project to the Qiskit Ecosystem"
-description: Request that your project be included in the Qiskit ecosystem
-title: "[Submission]: "
+description: Request that a project be included in the Qiskit Ecosystem
+title: "[Submission]: <project name> "
 labels: ["submission"]
-type: Task
+ type: Task
 body:
-  # The IDs of each input must correspond with the attributes of the repository model
-  # in ecosystem/models/submission.py
   - type: markdown
     attributes:
       value: |
-        <!--
-        version 1.0
-        -->
         ### Criteria
 
-        To join the ecosystem, your project must:
+        To join the Qiskit Ecosystem, the project must:
           * Build on, interface with, or extend the [Qiskit SDK](https://github.com/Qiskit/qiskit) in some way.
           * Be compatible with Qiskit 1.0 (or newer).
-          * Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
+          * Have an [OSI-approved](https://opensource.org/licenses) open-source license (preferably Apache 2.0 or MIT).
           * Adhere to [Qiskit's Code of Conduct](https://qisk.it/coc) (you can enforce your own code of conduct in addition to this one).
           * Have maintainer activity within the last 6 months, such as a commit.
 
@@ -27,18 +22,9 @@ body:
     attributes:
       label: Project name
       description: >
-        <!-- Version 1.0 -->
         Title of your project as it will appear on
-        [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
-      placeholder: E.g. Qiskit GPU Compile
-    validations:
-      required: true
-  - type: input
-    id: url
-    attributes:
-      label: Github repo
-      description: Link to GitHub repo of project you want to submit
-      placeholder: E.g. https://github.com/owner/qiskit-gpu-compile
+        [qisk.it/ecosystem](https://qisk.it/ecosystem).
+      placeholder: Qiskit Banana Compiler
     validations:
       required: true
   - type: textarea
@@ -47,58 +33,41 @@ body:
       label: Description
       description: >
         1-2 sentences to appear under your project on
-        [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
-        Keep it under 135 characters; anything longer will be rejected.
+        [https://qisk.it/ecosystem](https://qisk.it/ecosystem).
+        Keep it under 135 characters. If empty, it will be taken from somewhere else.
       placeholder: >
-        E.g. Use your GPU to compile huge quantum circuits in seconds. Supports
-        all modern devices and operating systems.
+        Compile bananas into Qiskit quantum circuits.
+        Supports all modern devices, including Musa × paradisiaca.
       render: text
     validations:
       required: true
   - type: input
     id: contact_info
     attributes:
-      label: Email
-      placeholder: E.g. awesome.person@example.org
-    validations:
-      required: false
-  - type: dropdown
-    id: licence
-    attributes:
-      label: License
-      description: License for your project
-      options:
-        - Apache License 2.0
-        - MIT license
-        - BSD 3-Clause "New" or "Revised" license
-        - BSD 2-Clause "Simplified" or "FreeBSD" license
-        - GNU General Public License (GPL)
-        - GNU Library or "Lesser" General Public License (LGPL)
-        - Mozilla Public License 2.0
-        - Common Development and Distribution License
-        - Eclipse Public License version 2.0
-    validations:
-      required: true
-  - type: input
-    id: affiliations
-    attributes:
-      label: Affiliations
-      description: List any organisations affiliated with the project.
-      placeholder: E.g. None
+      label: Contact e-mail
+      description: Author's e-mail address for contact.
+      placeholder: author@banana-compiler.org
     validations:
       required: false
   - type: dropdown
     id: group
     attributes:
-      label: Group
+      label: Category
       description: >
-        Which group your project belongs to on
-        [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem).
+        What kind of software is this? See examples by filtering by type in
+        [qisk.it/ecosystem](https://qisk.it/ecosystem). If "other" explain later in a comment.
       multiple: false
       options:
-        - transpiler_plugin
-        - provider
         - applications
+        - compute provider
+        - circuit simulator
+        - circuit manipulation
+        - converter
+        - transpiler plugin
+        - unitary synthesis plugin
+        - high-level synthesis plugin
+        - qiskit addon
+        - game
         - other
     validations:
       required: true
@@ -107,60 +76,82 @@ body:
     attributes:
       description: >
         Labels are how users discover your project on
-        [qiskit.github.io/ecosystem](https://qiskit.github.io/ecosystem). If
+        [qisk.it/ecosystem](https://qisk.it/ecosystem). If
         you don't think any existing labels apply to your project, leave a
         comment after submitting your issue requesting a new label.
+
+         **Mark upto 5**
       label: Labels
       multiple: true
       options:
-        - Algorithms
-        - Applications
-        - Chemistry
-        - Circuit building tool
-        - Circuit simulator
-        - Compute provider
-        - Converter
-        - Cloud service
-        - Error correction
-        - Error mitigation
-        - Finance
-        - Game
-        - Machine learning
-        - Optimization
-        - Paper implementation
-        - Physics
-        - Quantum information
-        - Software development kit
-        - Transpiler plugin
+        - algorithms
+        - chemistry
+        - error correction
+        - error mitigation
+        - finance
+        - QML
+        - optimization
+        - physics
+        - quantum information
+        - circuit optmization
+        - paper
+  - type: markdown
+    attributes:
+      value: "---"
+  - type: markdown
+    attributes:
+      value: "### Websites"
+  - type: input
+    id: source_url
+    attributes:
+      label: GitHub repository
+      description: Link to GitHub repository where the source code lives. It can include branches or subfolders.
+      placeholder: https://github.com/somebody/banana-compiler
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: Website
+      description: Link to project home website, if any
+      placeholder: https://banana-compiler.org
+    validations:
+      required: false
   - type: input
     id: documentation
     attributes:
       label: Documentation
       description: Link to project's documentation website
-      placeholder: E.g. https://your-project.com/documentation
+      placeholder: https://banana-compiler.org/documentation
     validations:
       required: false
-  - type: input
-    id: website
+  - type: textarea
+    id: packages
     attributes:
-      label: Website
-      description: Link to project or company website if applicable
-      placeholder: E.g. https://your-project.com
-    validations:
-      required: false
+      label: Packages
+      description: >
+        List the links for all the packages that are built from the project, one per line.
+      placeholder: |
+        https://pypi.org/project/banana-compiler
+        https://pypi.org/project/banana-compiler-hpc
+        https://crates.io/crates/rusty-banana-compiler
+        https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
+      render: text
   - type: input
     id: reference_paper
     attributes:
       label: Reference paper
-      description: If your project is based on a paper, you can link it here.
-      placeholder: E.g. https://arxiv.org/abs/2402.00022
+      description: If the project is based on a paper, you can link it here.
+      placeholder: https://arxiv.org/abs/5555.22222
     validations:
       required: false
+  - type: markdown
+    attributes:
+      value: "---"
   - type: checkboxes
     id: terms
     attributes:
       label: Code of Conduct
-      description: By submitting this issue, you adhere to [Qiskit's Code of Conduct](https://qisk.it/coc). 
       options:
-        - label: I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)
+        - label: I agree to follow the [Qiskit's Code of Conduct](https://qisk.it/coc)
           required: true
