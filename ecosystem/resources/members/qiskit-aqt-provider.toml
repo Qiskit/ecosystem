@@ -14,10 +14,11 @@ uuid = "04f15cf5-ee50-4c77-b254-8907ed3ba407"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F04f15cf5)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/qiskit-community/qiskit-aqt-provider"
 owner = "qiskit-community"
 repo = "qiskit-aqt-provider"
 stars = 29
-last_commit = "2025-10-17T09:56:40+00:00"
+last_commit = 2025-10-17T09:56:40Z
 
 [pypi.qiskit-aqt-provider]
 package_name = "qiskit-aqt-provider"
@@ -25,5 +26,5 @@ version = "1.13.0"
 requires_qiskit = "<2,>=1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13T14:23:38.567246Z
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
 highest_supported_qiskit_version = "1.4.5"

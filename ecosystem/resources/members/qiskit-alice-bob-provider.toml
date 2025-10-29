@@ -11,10 +11,11 @@ uuid = "00f82ee3-ab46-44fc-afbb-32cb34a72339"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F00f82ee3)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider"
 owner = "Alice-Bob-SW"
 repo = "qiskit-alice-bob-provider"
 stars = 39
-last_commit = "2025-09-30T11:50:37+00:00"
+last_commit = 2025-09-30T11:50:37Z
 
 [pypi.qiskit-alice-bob-provider]
 package_name = "qiskit-alice-bob-provider"
@@ -22,5 +23,5 @@ version = "1.2.0"
 requires_qiskit = "<2.0,>=1.3.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13T14:23:38.567246Z
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
 highest_supported_qiskit_version = "1.4.5"

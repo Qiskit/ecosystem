@@ -3,10 +3,9 @@
 from urllib.parse import ParseResult
 from re import match
 from functools import reduce
-from datetime import datetime
 from jsonpath import findall
 
-from .serializable import JsonSerializable
+from .serializable import JsonSerializable, parse_datetime
 from .error_handling import EcosystemError, logger
 from .request import request_json
 
@@ -15,13 +14,12 @@ class GitHubData(JsonSerializable):
     """
     The GitHub data related to a project
     """
-
-    dict_keys = ["owner", "repo", "tree", "stars", "private", "archived", "last_commit"]
-    aliases = {"stars": "stargazers_count", "last_commit": "pushed_at"}
+    dict_keys = ["url", "owner", "repo", "tree", "stars", "private", "archived", "last_commit"]
+    aliases = {"stars": "stargazers_count", "last_commit": "pushed_at", "url": "html_url"}
     json_types = {
         "private": lambda x: x or None,
         "archived": lambda x: x or None,
-        "pushed_at": datetime.fromisoformat,
+        "pushed_at": parse_datetime,
     }
     reduce = {}
 
@@ -38,8 +36,6 @@ class GitHubData(JsonSerializable):
             value = getattr(self, key, None)
             if value is not None:
                 dictionary[key] = value
-            if isinstance(value, datetime):
-                dictionary[key] = value.isoformat()
         return dictionary
 
     @classmethod

@@ -6,17 +6,18 @@ labels = [ "Algorithms", "Machine learning", "Applications",]
 ibm_maintained = false
 created_at = 1636403010.012954
 updated_at = 1636403010.012956
-stars = 875
+stars = 877
 group = "applications"
 documentation = "https://qiskit-community.github.io/qiskit-machine-learning/"
 uuid = "18986ebc-e138-4998-8c52-16359961af0a"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F18986ebc)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/qiskit-community/qiskit-machine-learning"
 owner = "qiskit-community"
 repo = "qiskit-machine-learning"
-stars = 875
-last_commit = "2025-10-24T19:21:28+00:00"
+stars = 877
+last_commit = 2025-10-24T19:21:28Z
 
 [pypi.qiskit-machine-learning]
 package_name = "qiskit-machine-learning"
@@ -24,5 +25,5 @@ version = "0.8.4"
 requires_qiskit = "<2.0,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13T14:23:38.567246Z
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
 highest_supported_qiskit_version = "1.4.5"

@@ -10,10 +10,11 @@ uuid = "a304538c-feb7-47b2-a41f-f9fbe41de87b"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fa304538c)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/qiskit-community/qiskit-quimb"
 owner = "qiskit-community"
 repo = "qiskit-quimb"
 stars = 15
-last_commit = "2025-06-11T03:23:29+00:00"
+last_commit = 2025-06-11T03:23:29Z
 
 [pypi.qiskit-quimb]
 package_name = "qiskit-quimb"
@@ -21,5 +22,5 @@ version = "0.0.9"
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"

@@ -11,10 +11,11 @@ uuid = "bb5d0da9-1523-4756-bda2-43d970b1fc51"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fbb5d0da9)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/qiskit-community/quantum-prototype-template"
 owner = "qiskit-community"
 repo = "quantum-prototype-template"
 stars = 44
-last_commit = "2024-09-11T15:59:49+00:00"
+last_commit = 2024-09-11T15:59:49Z
 
 [pypi.vqls-prototype]
 package_name = "vqls-prototype"
@@ -22,5 +23,5 @@ version = "0.2.0"
 requires_qiskit = ">=0.14.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"
