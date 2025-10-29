@@ -14,7 +14,7 @@ body:
           * Be compatible with Qiskit 1.0 (or newer).
           * Have an [OSI-approved](https://opensource.org/licenses) open-source license (preferably Apache 2.0 or MIT).
           * Adhere to [Qiskit's Code of Conduct](https://qisk.it/coc) (you can enforce your own code of conduct in addition to this one).
-          * Have maintainer activity within the last 6 months, such as a commit.
+          * Have shown maintainer activity within the last 6 months, such as a commit.
 
         If you have any questions, please reach out through the `#qiskit-ecosystem` channel on [Slack](https://qisk.it/join-slack).
   - type: input
@@ -32,7 +32,7 @@ body:
     attributes:
       label: Description
       description: >
-        1-2 sentences to appear under your project on
+        1–2 sentences to appear under your project on
         [https://qisk.it/ecosystem](https://qisk.it/ecosystem).
         Keep it under 135 characters. If empty, it will be taken from somewhere else.
       placeholder: >
@@ -44,8 +44,8 @@ body:
   - type: input
     id: contact_info
     attributes:
-      label: Contact e-mail
-      description: Author's e-mail address for contact.
+      label: Contact email
+      description: Author’s contact email address.
       placeholder: author@banana-compiler.org
     validations:
       required: false
@@ -55,7 +55,7 @@ body:
       label: Category
       description: >
         What kind of software is this? See examples by filtering by type in
-        [qisk.it/ecosystem](https://qisk.it/ecosystem). If "other" explain later in a comment.
+        [qisk.it/ecosystem](https://qisk.it/ecosystem). If "other," please explain later in a comment.
       multiple: false
       options:
         - applications
@@ -80,7 +80,7 @@ body:
         you don't think any existing labels apply to your project, leave a
         comment after submitting your issue requesting a new label.
 
-         **Mark upto 5**
+         **Mark up to 5**
       label: Labels
       multiple: true
       options:
@@ -93,7 +93,7 @@ body:
         - optimization
         - physics
         - quantum information
-        - circuit optmization
+        - circuit optimization
         - paper
   - type: dropdown
     id: pattern_steps
@@ -118,7 +118,7 @@ body:
     id: source_url
     attributes:
       label: GitHub repository
-      description: Link to GitHub repository where the source code lives. It can include branches or subfolders.
+      description: Link to the GitHub repository where the source code lives. It can include branches or subfolders.
       placeholder: https://github.com/somebody/banana-compiler
     validations:
       required: true
@@ -126,7 +126,7 @@ body:
     id: website
     attributes:
       label: Website
-      description: Link to project home website, if any
+      description: Link to the project's home website, if any.
       placeholder: https://banana-compiler.org
     validations:
       required: false
@@ -134,7 +134,7 @@ body:
     id: documentation
     attributes:
       label: Documentation
-      description: Link to project's documentation website
+      description: Link to the project's documentation website.
       placeholder: https://banana-compiler.org/documentation
     validations:
       required: false
@@ -166,5 +166,5 @@ body:
     attributes:
       label: Code of Conduct
       options:
-        - label: I agree to follow the [Qiskit's Code of Conduct](https://qisk.it/coc)
+        - label: I agree to follow the [Qiskit Code of Conduct](https://qisk.it/coc)
           required: true
