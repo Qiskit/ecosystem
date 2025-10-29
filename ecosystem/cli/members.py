@@ -4,7 +4,7 @@ import json
 import os
 from typing import Optional, Tuple
 from pathlib import Path
-from jsonpath import findall
+from jsonpath import findall, query
 
 
 from ecosystem.dao import DAO
@@ -97,9 +97,42 @@ class CliMembers:
             project.update_pypi()
             self.dao.update(project.name_id, pypi=project.pypi)
 
+    @staticmethod
+    def filter_member_data(member_dict, data_map):
+        """takes a member dictionary and a data map,
+        and returns a dict that is filtered by the map"""
+        filtered_data = {}
+        for key, alias in data_map.items():
+            if isinstance(alias, dict):
+                data = CliMembers.filter_member_data(member_dict, alias)
+                if data:
+                    filtered_data[key] = data
+            elif isinstance(alias, list):
+                if len(alias) != 2:
+                    raise ValueError(
+                        "%s malformed. "
+                        "It needs to have exactly two elements,one "
+                        "with the query, the otherone with the selector"
+                    )
+                data = list(query(alias[0], member_dict).select(*alias[1]))
+
+            else:
+                found_all = findall(alias, member_dict)
+                if len(found_all) == 0:
+                    data = None
+                elif len(found_all) == 1:
+                    data = found_all[0]
+                else:
+                    raise ValueError(
+                        f"I dont know who to hangle multiple results for {found_all}. "
+                        "Maybe functools.reduce?"
+                    )
+            if data:
+                filtered_data[key] = data
+        return filtered_data
+
     def compile_json(self, output_file: str):
         """Compile JSON file (v0) for consumption by ibm.com"""
-
         member_data_to_export = {
             "uuid": "uuid",
             "name": "name",
@@ -118,19 +151,55 @@ class CliMembers:
             "reference_paper": "reference_paper",
             "ibm_maintained": "ibm_maintained",
         }
-        members = []
-        for member in self.dao.get_all():
-            member_dict = member.to_dict()
-            member_exportable_dict = {}
-            for key, alias in member_data_to_export.items():
-                data = findall(alias, member_dict)
-                if data:
-                    member_exportable_dict[key] = data[0]
-            members.append(member_exportable_dict)
         data = {
-            "members": members,
+            "members": [
+                CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
+                for member in self.dao.get_all()
+            ],
             "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
         }
         Path(output_file).write_text(
             json.dumps(data, default=str, separators=(",", ":"))
+        )
+
+    def compile_json_v1(self, output_file: str):
+        """Compile JSON file (v1) for consumption by ibm.com"""
+        member_data_to_export = {
+            "name": "name",
+            "description": "description",
+            "licence": "licence",
+            "subjects": "labels",
+            "type": "group",
+            "badge": "badge",
+            "ibm_maintained": "ibm_maintained",
+            "websites": {
+                "home": "website",
+                "documentation": "documentation",
+                "reference_paper": "reference_paper",
+            },
+            "github": {
+                "url": "github.url",
+                "stars": "github.stars",
+                "last_commit": "github.last_commit",
+            },
+            "python_packages": [
+                "pypi.*",
+                [
+                    "package_name",
+                    "version",
+                    "url",
+                    "compatible_with_qiskit_v1",
+                    "compatible_with_qiskit_v2",
+                ],
+            ],
+        }
+        data = {
+            "members": [
+                CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
+                for member in self.dao.get_all()
+            ],
+            "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
+        }
+        Path(output_file).write_text(
+            json.dumps(data, default=str, separators=(",", ":"), indent=4)
         )
