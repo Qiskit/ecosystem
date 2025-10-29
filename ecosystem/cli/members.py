@@ -4,6 +4,8 @@ import json
 import os
 from typing import Optional, Tuple
 from pathlib import Path
+from jsonpath import findall
+
 
 from ecosystem.dao import DAO
 from ecosystem.submission import Submission
@@ -96,24 +98,39 @@ class CliMembers:
             self.dao.update(project.name_id, pypi=project.pypi)
 
     def compile_json(self, output_file: str):
-        """Compile JSON file for consumption by ibm.com"""
-        member_data_to_export = {"name": "name",
-                                 "url": "github.url",
-                                 'ibm_maintained': 'ibm_maintained',
-                                 "stars": "github.stars",
-                                 "group": "group",
-                                 "badge": "badge",
-                                 "description": "description",
-                                 }
+        """Compile JSON file (v0) for consumption by ibm.com"""
 
+        member_data_to_export = {
+            "uuid": "uuid",
+            "name": "name",
+            "url": "github.url",
+            "description": "description",
+            "licence": "licence",
+            "contact_info": "contact_info",
+            "affiliations": "affiliations",
+            "labels": "labels",
+            "created_at": "created_at",
+            "updated_at": "updated_at",
+            "group": "group",
+            "stars": "github.stars",
+            "documentation": "documentation",
+            "website": "website",
+            "reference_paper": "reference_paper",
+            "ibm_maintained": "ibm_maintained",
+        }
         members = []
         for member in self.dao.get_all():
-            # member_data = member.to_dict()
-            # for key, value in member_data.items():
-            #     if key in member_data_to_export:
-            members.append(member)
+            member_dict = member.to_dict()
+            member_exportable_dict = {}
+            for key, alias in member_data_to_export.items():
+                data = findall(alias, member_dict)
+                if data:
+                    member_exportable_dict[key] = data[0]
+            members.append(member_exportable_dict)
         data = {
             "members": members,
             "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
         }
-        Path(output_file).write_text(json.dumps(data, default=str))
+        Path(output_file).write_text(
+            json.dumps(data, default=str, separators=(",", ":"))
+        )
