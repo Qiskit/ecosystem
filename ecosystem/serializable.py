@@ -1,6 +1,7 @@
 """Utility classes for models."""
 
 from abc import ABC
+from datetime import datetime
 
 
 class JsonSerializable(ABC):
@@ -50,3 +51,13 @@ class JsonSerializable(ABC):
                 element = val
             result[key] = element
         return result
+
+
+def parse_datetime(date_str):
+    """Normalize the datetime format from ISO format.
+    If date_str is "now", then makes a datetime with now."""
+    if date_str == "now":
+        _datetime = datetime.now()
+    else:
+        _datetime = datetime.fromisoformat(date_str)
+    return _datetime.replace(microsecond=0)

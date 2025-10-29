@@ -4,7 +4,6 @@ from functools import reduce, cached_property
 from urllib.parse import ParseResult
 from re import match
 from os import path
-from datetime import datetime
 import json
 
 from packaging.requirements import Requirement
@@ -14,7 +13,7 @@ from packaging.version import Version
 
 from jsonpath import findall
 
-from .serializable import JsonSerializable
+from .serializable import JsonSerializable, parse_datetime
 from .error_handling import EcosystemError, logger
 from .request import request_json
 
@@ -148,7 +147,7 @@ class PyPIData(JsonSerializable):
                 )
                 if not str_dates:
                     raise EcosystemError("Qiskit {str_version} has no release?")
-                last_date = max(datetime.fromisoformat(d) for d in str_dates)
+                last_date = max(parse_datetime(d) for d in str_dates)
                 self._all_qiskit_versions[str_version] = {"upload_at": last_date}
             with open(all_qiskit_versions_json, "w") as json_file:
                 json.dump(self._all_qiskit_versions, json_file, indent=4, default=str)
@@ -163,7 +162,7 @@ class PyPIData(JsonSerializable):
                 )
                 return self.all_qiskit_versions(force_update=True)
             self._all_qiskit_versions = {
-                k: {"upload_at": datetime.fromisoformat(v["upload_at"])}
+                k: {"upload_at": parse_datetime(v["upload_at"])}
                 for k, v in versions_dates_dict.items()
             }
         return self._all_qiskit_versions

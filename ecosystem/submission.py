@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 import pprint
-from datetime import datetime
 from dataclasses import dataclass, fields
 from uuid import uuid4
 from urllib.parse import urlparse
 
-from .serializable import JsonSerializable
+from .serializable import JsonSerializable, parse_datetime
 from .github import GitHubData
 from .pypi import PyPIData
 
@@ -42,8 +41,8 @@ class Submission(JsonSerializable):
     pypi: dict[str, PyPIData] | None = None
 
     def __post_init__(self):
-        self.__dict__.setdefault("created_at", datetime.now().isoformat())
-        self.__dict__.setdefault("updated_at", datetime.now().isoformat())
+        self.__dict__.setdefault("created_at", parse_datetime("now"))
+        self.__dict__.setdefault("updated_at", parse_datetime("now"))
         if self.github is None:
             self.github = GitHubData.from_url(urlparse(self.url))
         if self.uuid is None:
