@@ -32,7 +32,7 @@ body:
     attributes:
       label: Description
       description: >
-        1–2 sentences to appear under your project on
+        1-2 sentences to appear under your project on
         [https://qisk.it/ecosystem](https://qisk.it/ecosystem).
         Keep it under 135 characters. If empty, it will be taken from somewhere else.
       placeholder: >
@@ -45,7 +45,7 @@ body:
     id: contact_info
     attributes:
       label: Contact email
-      description: Author’s contact email address.
+      description: Author's contact email address.
       placeholder: author@banana-compiler.org
     validations:
       required: false
