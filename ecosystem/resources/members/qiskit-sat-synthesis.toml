@@ -12,10 +12,11 @@ uuid = "2e6b95b1-5046-4a83-8842-c0b6ea36ec12"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F2e6b95b1)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/qiskit-community/qiskit-sat-synthesis"
 owner = "qiskit-community"
 repo = "qiskit-sat-synthesis"
 stars = 9
-last_commit = "2024-12-24T07:07:21+00:00"
+last_commit = 2024-12-24T07:07:21Z
 
 [pypi.qiskit-sat-synthesis]
 package_name = "qiskit-sat-synthesis"
@@ -23,5 +24,5 @@ version = "0.0.2"
 requires_qiskit = ">=1.2.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06.921570Z
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"

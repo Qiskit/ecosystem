@@ -13,10 +13,11 @@ uuid = "fb1907a7-9af8-4c23-be0c-48841a36f2df"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Ffb1907a7)](https://qisk.it/e)"
 
 [github]
+url = "https://github.com/pyRiemann/pyRiemann-qiskit"
 owner = "pyRiemann"
 repo = "pyRiemann-qiskit"
 stars = 30
-last_commit = "2025-10-25T12:42:08+00:00"
+last_commit = 2025-10-25T12:42:08Z
 
 [pypi.pyriemann-qiskit]
 package_name = "pyriemann-qiskit"
@@ -24,5 +25,5 @@ version = "0.4.2"
 requires_qiskit = "==1.*"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13T14:23:38.567246Z
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
 highest_supported_qiskit_version = "1.4.5"
