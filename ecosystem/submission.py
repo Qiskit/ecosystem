@@ -41,8 +41,8 @@ class Submission(JsonSerializable):
     pypi: dict[str, PyPIData] | None = None
 
     def __post_init__(self):
-        self.__dict__.setdefault("created_at", parse_datetime('now'))
-        self.__dict__.setdefault("updated_at", parse_datetime('now'))
+        self.__dict__.setdefault("created_at", parse_datetime("now"))
+        self.__dict__.setdefault("updated_at", parse_datetime("now"))
         if self.github is None:
             self.github = GitHubData.from_url(urlparse(self.url))
         if self.uuid is None:

@@ -13,6 +13,7 @@ requests_cache.install_cache(
     "_ecosystem_cache", expire_after=86400, allowable_codes=(200,)
 )
 
+
 def request_json(url: str, headers: dict[str, str] = None):
     """Requests the JSON in <url> with <headers>"""
     url = parse_url(url)
@@ -34,6 +35,7 @@ def request_json(url: str, headers: dict[str, str] = None):
             f"Bad response {url.geturl()}: {response.reason} ({response.status_code})"
         )
     return json.loads(response.text)
+
 
 def parse_url(original_url: str):
     """Normalizes and parses a URL"""

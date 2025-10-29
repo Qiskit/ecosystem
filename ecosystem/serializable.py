@@ -3,6 +3,7 @@
 from abc import ABC
 from datetime import datetime
 
+
 class JsonSerializable(ABC):
     """Classes that can be serialized as json."""
 
@@ -51,10 +52,12 @@ class JsonSerializable(ABC):
             result[key] = element
         return result
 
+
 def parse_datetime(date_str):
-    if date_str == 'now':
+    """Normalize the datetime format from ISO format.
+    If date_str is "now", then makes a datetime with now."""
+    if date_str == "now":
         _datetime = datetime.now()
     else:
         _datetime = datetime.fromisoformat(date_str)
     return _datetime.replace(microsecond=0)
-

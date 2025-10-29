@@ -14,8 +14,22 @@ class GitHubData(JsonSerializable):
     """
     The GitHub data related to a project
     """
-    dict_keys = ["url", "owner", "repo", "tree", "stars", "private", "archived", "last_commit"]
-    aliases = {"stars": "stargazers_count", "last_commit": "pushed_at", "url": "html_url"}
+
+    dict_keys = [
+        "url",
+        "owner",
+        "repo",
+        "tree",
+        "stars",
+        "private",
+        "archived",
+        "last_commit",
+    ]
+    aliases = {
+        "stars": "stargazers_count",
+        "last_commit": "pushed_at",
+        "url": "html_url",
+    }
     json_types = {
         "private": lambda x: x or None,
         "archived": lambda x: x or None,
