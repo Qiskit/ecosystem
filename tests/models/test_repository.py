@@ -2,7 +2,7 @@
 
 import unittest
 
-from ecosystem.submission import Submission
+from ecosystem.member import Member
 
 
 class TestRepository(unittest.TestCase):
@@ -13,7 +13,7 @@ class TestRepository(unittest.TestCase):
         Function: Submission
                 -> from_dict
         """
-        main_repo = Submission(
+        main_repo = Member(
             name="mock-qiskit-terra",
             url="https://github.com/MockQiskit/mock-qiskit.terra",
             description="Mock description for repo.",
@@ -23,7 +23,7 @@ class TestRepository(unittest.TestCase):
             website="https://example.org",
         )
         repo_dict = main_repo.to_dict()
-        recovered = Submission.from_dict(repo_dict)
+        recovered = Member.from_dict(repo_dict)
         self.assertEqual(main_repo, recovered)
         # check configs
         self.assertEqual(

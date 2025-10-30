@@ -14,7 +14,7 @@ import shutil
 import toml
 
 from ecosystem.error_handling import logger, EcosystemError
-from ecosystem.submission import Submission
+from ecosystem.member import Member
 
 
 class TomlStorage:
@@ -44,7 +44,7 @@ class TomlStorage:
         data = {}
         for path in self.toml_dir.glob("*.toml"):
             try:
-                repo = Submission.from_dict(toml.load(path))
+                repo = Member.from_dict(toml.load(path))
             except TypeError as exc:
                 raise EcosystemError(f"TOML empty? {path}") from exc
             except toml.decoder.TomlDecodeError as err:
@@ -98,7 +98,7 @@ class DAO:
         """
         self.storage = TomlStorage(path)
 
-    def write(self, repo: Submission):
+    def write(self, repo: Member):
         """
         Update or insert repo (identified by ID).
         """
@@ -114,7 +114,7 @@ class DAO:
         with self.storage as data:
             del data[name_id]
 
-    def get_by_url(self, url: str) -> Submission:
+    def get_by_url(self, url: str) -> Member:
         """
         Returns project by URL.
         """
@@ -123,7 +123,7 @@ class DAO:
                 return project
         raise EcosystemError(f"No repo with URL : {url}")
 
-    def get_all(self) -> list[Submission]:
+    def get_all(self) -> list[Member]:
         """
         Returns list of all repositories.
         """

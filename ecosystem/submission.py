@@ -1,104 +1,32 @@
 """Submission model."""
 
-from __future__ import annotations
+from dataclasses import dataclass
+from pathlib import Path
+import yaml
 
-import pprint
-from dataclasses import dataclass, fields
-from uuid import uuid4
-from urllib.parse import urlparse
-
-from .serializable import JsonSerializable, parse_datetime
-from .github import GitHubData
-from .pypi import PyPIData
+from .request import parse_url
 
 
 @dataclass
-class Submission(JsonSerializable):
-    """Main project class.
+class Submission:
+    """Submission class.
 
     NOTE: These attribute names must correspond to field IDs in the issue
-    template (.github/ISSUE_TEMPLATE/submission.yml).
+    template (.github/ISSUE_TEMPLATE/01_submission.yml).
     """
 
-    # pylint: disable=too-many-instance-attributes
     name: str
-    url: str | None = None
-    description: str | None = None
-    licence: str | None = None
-    contact_info: str | None = None
-    affiliations: str | None = None
-    labels: list[str] | None = None
-    ibm_maintained: bool = False
-    created_at: int | None = None
-    updated_at: int | None = None
-    website: str | None = None
-    stars: int | None = None
-    group: str | None = None
-    reference_paper: str | None = None
-    documentation: str | None = None
-    uuid: str | None = None
-    github: GitHubData | None = None
-    pypi: dict[str, PyPIData] | None = None
-
-    def __post_init__(self):
-        self.__dict__.setdefault("created_at", parse_datetime("now"))
-        self.__dict__.setdefault("updated_at", parse_datetime("now"))
-        if self.github is None:
-            self.github = GitHubData.from_url(urlparse(self.url))
-        if self.uuid is None:
-            self.uuid = str(uuid4())
-        if self.labels is None:
-            self.labels = []
-        if self.pypi is None:
-            self.pypi = {}
-
-    @property
-    def short_uuid(self):
-        """just the short version of UUID"""
-        return self.uuid.split("-")[0]
-
-    @classmethod
-    def from_dict(cls, dictionary: dict):
-        """Transform dictionary to Submission.
-
-        Args:
-            dictionary: dict object
-
-        Return: Submission
-        """
-        submission_fields = [f.name for f in fields(Submission)]
-        filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
-        if "github" in filtered_dict:
-            filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
-        if "pypi" in filtered_dict:
-            for project_name, pypi_dict in filtered_dict["pypi"].items():
-                pypi_data = PyPIData.from_dict(
-                    {"package_name": project_name} | pypi_dict
-                )
-                filtered_dict["pypi"][project_name] = pypi_data
-        return Submission(**filtered_dict)
-
-    def to_dict(self) -> dict:
-        base_dict = super().to_dict()
-        base_dict["badge"] = (
-            "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https"
-            f"%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F{self.short_uuid})]"
-            "(https://qisk.it/e)"
-        )
-        return base_dict
-
-    def __eq__(self, other: "Submission"):
-        return (
-            self.url == other.url
-            and self.description == other.description
-            and self.licence == other.licence
-        )
-
-    def __repr__(self):
-        return pprint.pformat(self.to_dict(), indent=4)
-
-    def __str__(self):
-        return f"Submission({self.name} | {self.url})"
+    description: str
+    contact_info: str
+    category: str
+    labels: str
+    terms: bool
+    pattern_steps: str
+    source_url: str
+    home_url: str
+    docs_url: str
+    package_urls: str
+    paper_url: str
 
     @property
     def name_id(self):
@@ -107,18 +35,76 @@ class Submission(JsonSerializable):
         It is used to create the TOML file name
         """
         # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
-        return self.url.strip("/").split("/")[-1]
+        return self.source_url.strip("/").split("/")[-1]
 
-    def update_github(self):
-        """
-        Updates all the GitHub information in the project.
-        """
-        self.github.update_json()
-        self.github.update_owner_repo()
+    @classmethod
+    def from_formatted_issue(cls, issue_formatted):
+        md_sections = issue_formatted.split("### ")[1:]
+        label_to_id = cls._labels_ids()
+        kwargs = dict(cls._parse_section(s, label_to_id) for s in md_sections)
+        return Submission(**kwargs)
 
-    def update_pypi(self):
+    @classmethod
+    def _labels_ids(cls) -> dict[str, str]:
+        """Create a two-ways dict that maps a fields "label" and "id" with some extra information
+        - "id"
+        - "label"
+        - "type"
+        - "required"
         """
-        Updates all the PyPI information in the project.
+        issue_template = yaml.load(
+            Path(".github/ISSUE_TEMPLATE/01_submission.yml").read_text(),
+            Loader=yaml.SafeLoader,
+        )
+        label_to_id = {}
+        for form in issue_template["body"]:
+            section = {}
+            if form["type"] == "markdown":
+                continue
+            section["id"] = form.get("id")
+            section["label"] = form.get("attributes", {}).get("label")
+            section["type"] = form.get("type")
+            section["required"] = form.get("validations", {}).get("required")
+            label_to_id[section["id"]] = section
+            label_to_id[section["label"]] = section
+        return label_to_id
+
+    @staticmethod
+    def _parse_section(section: str, label_to_id: dict[str, str]):
+        """For a section, return its field ID and the content.
+        The content has no newlines and has spaces stripped.
         """
-        for package_name in sorted(self.pypi.keys()):
-            self.pypi[package_name].update_json()
+        lines = [line.strip() for line in section.split("\n") if line.strip()]
+        label = lines[0]
+        field_id = label_to_id[label]["id"]
+        field_type = label_to_id[label]["type"]
+
+        if "textarea" == field_type and lines[1].startswith("```"):
+            raw_content = lines[2:-1]
+        else:
+            raw_content = lines[1:]
+
+        if "dropdown" == field_type and "category" != field_id:
+            content = raw_content
+        elif "checkboxes" == field_type:
+            content = raw_content[0].startswith("- [x]")
+        elif field_id.endswith("_url"):
+            content = parse_url(raw_content[0]) if raw_content else None
+        elif field_id.endswith("_urls"):
+            content = [parse_url(url) for url in raw_content]
+        else:
+            content = " ".join(raw_content)
+        return field_id, content
+
+    @property
+    def is_ibm_maintained(self):
+        # if maintainer is IBMer, it is ibm maintained
+        if self.contact_info.endswith("ibm.com"):
+            return True
+        # if hosted in Qiskit GitHub organization, it is ibm maintained
+        if (
+            self.source_url.hostname == "github.com"
+            and self.source_url.path.lower().startswith("/qiskit/")
+        ):
+            return True
+        return False

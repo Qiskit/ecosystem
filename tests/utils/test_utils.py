@@ -7,7 +7,7 @@ from pathlib import Path
 
 import yaml
 
-from ecosystem.submission import Submission
+from ecosystem.member import Member
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.dao import DAO
 
@@ -30,7 +30,7 @@ class TestUtils(TestCase):
         """
         parsed_result = parse_submission_issue(self.issue_body)
 
-        self.assertTrue(isinstance(parsed_result, Submission))
+        self.assertTrue(isinstance(parsed_result, Member))
         self.assertEqual(parsed_result.name, "My awesome project")
         self.assertEqual(parsed_result.url, "http://github.com/Qiskit/awesome")
         self.assertEqual(
@@ -48,7 +48,7 @@ class TestUtils(TestCase):
     def test_issue_template_matches_repository_model(self):
         """Make sure IDs in the issue template match attributes of the Submission model."""
         issue_template = yaml.load(
-            Path(".github/ISSUE_TEMPLATE/submission.yml").read_text(),
+            Path(".github/ISSUE_TEMPLATE/01_submission.yml").read_text(),
             Loader=yaml.SafeLoader,
         )
         issue_ids = {
@@ -57,7 +57,7 @@ class TestUtils(TestCase):
             if field["type"] != "markdown"
         } - {"terms"}
 
-        repo_fields = {attr.name for attr in dataclasses.fields(Submission)}
+        repo_fields = {attr.name for attr in dataclasses.fields(Member)}
         for issue_id in issue_ids:
             self.assertIn(
                 issue_id,
