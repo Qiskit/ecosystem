@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import ParseResult
 import yaml
 
 from .request import parse_url
@@ -22,11 +23,11 @@ class Submission:
     labels: str
     terms: bool
     pattern_steps: str
-    source_url: str
-    home_url: str
-    docs_url: str
-    package_urls: str
-    paper_url: str
+    source_url: ParseResult
+    home_url: ParseResult
+    docs_url: ParseResult
+    package_urls: list[ParseResult]
+    paper_url: ParseResult
 
     @property
     def name_id(self):
@@ -35,10 +36,11 @@ class Submission:
         It is used to create the TOML file name
         """
         # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
-        return self.source_url.strip("/").split("/")[-1]
+        return self.source_url.geturl().strip("/").split("/")[-1]
 
     @classmethod
     def from_formatted_issue(cls, issue_formatted):
+        """Takes a formated issue and creates a Submission object"""
         md_sections = issue_formatted.split("### ")[1:]
         label_to_id = cls._labels_ids()
         kwargs = dict(cls._parse_section(s, label_to_id) for s in md_sections)
@@ -98,6 +100,7 @@ class Submission:
 
     @property
     def is_ibm_maintained(self):
+        """It this going to be displayed as IBM maintained?"""
         # if maintainer is IBMer, it is ibm maintained
         if self.contact_info.endswith("ibm.com"):
             return True

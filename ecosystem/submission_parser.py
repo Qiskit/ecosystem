@@ -40,5 +40,5 @@ def parse_submission_issue(body_of_issue: str) -> Submission:
     issue_formatted = mdformat.text(body_of_issue)
 
     submission = Submission.from_formatted_issue(issue_formatted)
-    # TODO: validate submission
+    # TODO: validate submission. # pylint: disable=fixme
     return Member.from_submission(submission)

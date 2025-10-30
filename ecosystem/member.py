@@ -121,6 +121,9 @@ class Member(JsonSerializable):
 
     @classmethod
     def from_submission(cls, submission):
+        """
+        Takes a submission object and creates a very basic Member object
+        """
         # TODO? licence
         return Member(
             name=submission.name,
