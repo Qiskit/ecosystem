@@ -6,12 +6,12 @@ from pathlib import Path
 from unittest import TestCase
 
 from ecosystem.dao import DAO
-from ecosystem.submission import Submission
+from ecosystem.member import Member
 
 
-def get_main_repo() -> Submission:
+def get_main_repo() -> Member:
     """Return main mock repo."""
-    return Submission(
+    return Member(
         name="mock-qiskit-terra-with-success-dev-test",
         url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
         description="Mock description for repo. wsdt",

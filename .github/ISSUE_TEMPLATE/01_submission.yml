@@ -50,7 +50,7 @@ body:
     validations:
       required: false
   - type: dropdown
-    id: group
+    id: category
     attributes:
       label: Category
       description: >
@@ -113,7 +113,7 @@ body:
       value: "---"
   - type: markdown
     attributes:
-      value: "### Websites"
+      value: "### URLs"
   - type: input
     id: source_url
     attributes:
@@ -123,27 +123,27 @@ body:
     validations:
       required: true
   - type: input
-    id: website
+    id: home_url
     attributes:
-      label: Website
-      description: Link to the project's home website, if any.
+      label: Home page
+      description: Link to the project's main site, if any.
       placeholder: https://banana-compiler.org
     validations:
       required: false
   - type: input
-    id: documentation
+    id: docs_url
     attributes:
       label: Documentation
-      description: Link to the project's documentation website.
+      description: Link to the project's documentation website, if any.
       placeholder: https://banana-compiler.org/documentation
     validations:
       required: false
   - type: textarea
-    id: packages
+    id: package_urls
     attributes:
       label: Packages
       description: >
-        List the links for all the packages that are built from the project, one per line.
+        List the links for all the packages that are built from the project, one per line. Leave it empty you there is no deploy for this project.
       placeholder: |
         https://pypi.org/project/banana-compiler
         https://pypi.org/project/banana-compiler-hpc
@@ -151,7 +151,7 @@ body:
         https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
       render: text
   - type: input
-    id: reference_paper
+    id: paper_url
     attributes:
       label: Reference paper
       description: If the project is based on a paper, you can link it here.

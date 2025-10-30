@@ -31,7 +31,7 @@ python manager.py <CMD> <NAME_OF_FUNCTION_IN_MANAGER_FILE> <POSITIONAL_ARGUMENT>
 ### Adding project to the ecosystem
 
 Anyone can add their project for review to be included in the ecosystem by
-[submitting issue](https://github.com/qiskit-community/ecosystem/issues/new?assignees=octocat&labels=&template=submission.yml&title=%5BSubmission%5D%3A+).
+[submitting issue](https://qisk.it/add-to-ecosystem/).
 
 ### Storage
 
