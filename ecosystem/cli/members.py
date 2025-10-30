@@ -8,7 +8,7 @@ from jsonpath import findall, query
 
 
 from ecosystem.dao import DAO
-from ecosystem.submission import Submission
+from ecosystem.member import Member
 from ecosystem.error_handling import logger
 
 
@@ -54,7 +54,7 @@ class CliMembers:
             repo_website: link to project website
         """
 
-        new_repo = Submission(
+        new_repo = Member(
             repo_name,
             repo_link,
             repo_description,

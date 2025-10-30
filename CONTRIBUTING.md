@@ -2,7 +2,7 @@
 
 ## Joining the Ecosystem
 To join ecosystem you need to create 
-[submission issue](https://github.com/qiskit-community/ecosystem/issues/new?labels=&template=submission.yml&title=%5BSubmission%5D%3A+) 
+[submission issue](https://qisk.it/add-to-ecosystem/) 
 and fill in all required details. That's it!
 
 
