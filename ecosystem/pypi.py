@@ -26,13 +26,14 @@ class PyPIData(JsonSerializable):
     dict_keys = [
         "package_name",
         "version",
+        "url",
         "requires_qiskit",
         "compatible_with_qiskit_v1",
         "compatible_with_qiskit_v2",
         "highest_supported_qiskit_release_date",
         "highest_supported_qiskit_version",
     ]
-    aliases = {"version": "info.version"}
+    aliases = {"version": "info.version", "url": "info.package_url"}
     json_types = {}
     reduce = {}
 

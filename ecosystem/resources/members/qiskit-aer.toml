@@ -22,6 +22,7 @@ last_commit = 2025-09-28T05:27:37Z
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
 version = "0.17.2"
+url = "https://pypi.org/project/qiskit-aer/"
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
@@ -31,6 +32,7 @@ highest_supported_qiskit_version = "2.2.2"
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
 version = "0.15.1"
+url = "https://pypi.org/project/qiskit-aer-gpu/"
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
@@ -40,6 +42,7 @@ highest_supported_qiskit_version = "2.2.2"
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
 version = "0.17.2"
+url = "https://pypi.org/project/qiskit-aer-gpu-cu11/"
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
