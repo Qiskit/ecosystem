@@ -19,3 +19,13 @@ owner = "mk0dz"
 repo = "antinature"
 stars = 3
 last_commit = 2025-08-11T18:52:41Z
+
+[pypi.antinature]
+package_name = "antinature"
+version = "0.1.2"
+url = "https://pypi.org/project/antinature/"
+requires_qiskit = "==1.4.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-03-14T17:39:31Z
+highest_supported_qiskit_version = "1.4.2"

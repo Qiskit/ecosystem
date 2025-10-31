@@ -19,3 +19,13 @@ owner = "Qiskit"
 repo = "qiskit-addon-mthree"
 stars = 48
 last_commit = 2025-08-06T19:05:30Z
+
+[pypi.mthree]
+package_name = "mthree"
+version = "3.0.0"
+url = "https://pypi.org/project/mthree/"
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

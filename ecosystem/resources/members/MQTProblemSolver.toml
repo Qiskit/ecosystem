@@ -18,3 +18,13 @@ owner = "munich-quantum-toolkit"
 repo = "problemsolver"
 stars = 53
 last_commit = 2025-10-27T15:57:21Z
+
+[pypi."mqt.problemsolver"]
+package_name = "mqt-problemsolver"
+version = "0.4"
+url = "https://pypi.org/project/mqt.problemsolver/"
+requires_qiskit = "<0.42.0,>=0.36.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2023-02-24T09:50:56Z
+highest_supported_qiskit_version = "0.41.1"

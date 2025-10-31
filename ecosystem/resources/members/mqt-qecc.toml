@@ -19,3 +19,13 @@ owner = "munich-quantum-toolkit"
 repo = "qecc"
 stars = 177
 last_commit = 2025-10-28T12:43:34Z
+
+[pypi."mqt.qcec"]
+package_name = "mqt-qcec"
+version = "3.3.0"
+url = "https://pypi.org/project/mqt.qcec/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

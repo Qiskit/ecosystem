@@ -17,3 +17,13 @@ owner = "PennyLaneAI"
 repo = "pennylane-qiskit"
 stars = 220
 last_commit = 2025-10-22T20:57:46Z
+
+[pypi.pennylane-qiskit]
+package_name = "pennylane-qiskit"
+version = "0.43.0"
+url = "https://pypi.org/project/PennyLane-qiskit/"
+requires_qiskit = "<2.2,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-08-19T15:29:40Z
+highest_supported_qiskit_version = "2.1.2"

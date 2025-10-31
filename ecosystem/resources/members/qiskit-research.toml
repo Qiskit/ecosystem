@@ -18,3 +18,13 @@ repo = "qiskit-research"
 stars = 70
 archived = true
 last_commit = 2025-08-25T14:16:21Z
+
+[pypi.qiskit-research]
+package_name = "qiskit-research"
+version = "0.0.4"
+url = "https://pypi.org/project/qiskit-research/"
+requires_qiskit = "==1.1.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2024-06-20T16:55:07Z
+highest_supported_qiskit_version = "1.1.1"

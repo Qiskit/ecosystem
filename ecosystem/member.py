@@ -32,6 +32,7 @@ class Member(JsonSerializable):
     group: str | None = None
     reference_paper: str | None = None
     documentation: str | None = None
+    packages: list[str] | None = None
     uuid: str | None = None
     github: GitHubData | None = None
     pypi: dict[str, PyPIData] | None = None

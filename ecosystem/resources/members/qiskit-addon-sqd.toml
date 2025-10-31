@@ -18,3 +18,13 @@ owner = "Qiskit"
 repo = "qiskit-addon-sqd"
 stars = 77
 last_commit = 2025-10-27T19:48:47Z
+
+[pypi.qiskit-addon-sqd]
+package_name = "qiskit-addon-sqd"
+version = "0.12.0"
+url = "https://pypi.org/project/qiskit-addon-sqd/"
+requires_qiskit = "<3,>=1.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
