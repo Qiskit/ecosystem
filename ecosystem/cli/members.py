@@ -181,6 +181,7 @@ class CliMembers:
                 "url": "github.url",
                 "stars": "github.stars",
                 "last_commit": "github.last_commit",
+                "archived": "github.archived",
             },
             "python_packages": [
                 "pypi.*",
