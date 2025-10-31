@@ -18,3 +18,13 @@ owner = "Qiskit"
 repo = "qiskit-addon-obp"
 stars = 44
 last_commit = 2025-10-27T14:35:07Z
+
+[pypi.qiskit-addon-obp]
+package_name = "qiskit-addon-obp"
+version = "0.3.0"
+url = "https://pypi.org/project/qiskit-addon-obp/"
+requires_qiskit = "<3,>=1.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

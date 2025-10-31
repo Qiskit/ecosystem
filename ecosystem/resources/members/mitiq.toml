@@ -17,3 +17,13 @@ owner = "unitaryfoundation"
 repo = "mitiq"
 stars = 402
 last_commit = 2025-10-28T17:06:55Z
+
+[pypi.mitiq]
+package_name = "mitiq"
+version = "0.47.0"
+url = "https://pypi.org/project/mitiq/"
+requires_qiskit = "~=1.4.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"

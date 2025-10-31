@@ -20,3 +20,13 @@ owner = "munich-quantum-toolkit"
 repo = "core"
 stars = 98
 last_commit = 2025-10-28T15:08:51Z
+
+[pypi."mqt.core"]
+package_name = "mqt-core"
+version = "3.3.1"
+url = "https://pypi.org/project/mqt-core/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

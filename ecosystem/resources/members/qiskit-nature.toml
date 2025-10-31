@@ -18,3 +18,13 @@ owner = "qiskit-community"
 repo = "qiskit-nature"
 stars = 353
 last_commit = 2025-10-27T01:11:23Z
+
+[pypi.qiskit-nature]
+package_name = "qiskit-nature"
+version = "0.7.2"
+url = "https://pypi.org/project/qiskit-nature/"
+requires_qiskit = ">=0.44"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
