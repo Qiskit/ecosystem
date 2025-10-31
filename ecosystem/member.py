@@ -1,5 +1,7 @@
 """Submission model."""
 
+from __future__ import annotations
+
 import pprint
 from dataclasses import dataclass, fields
 from uuid import uuid4
