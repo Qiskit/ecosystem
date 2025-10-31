@@ -19,3 +19,13 @@ owner = "CERN-IT-INNOVATION"
 repo = "quantum-gates"
 stars = 19
 last_commit = 2025-10-27T09:25:24Z
+
+[pypi.quantum-gates]
+package_name = "quantum-gates"
+version = "2.3.0"
+url = "https://pypi.org/project/quantum-gates/"
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

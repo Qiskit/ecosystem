@@ -19,3 +19,13 @@ owner = "QuantumApplicationLab"
 repo = "vqls-prototype"
 stars = 19
 last_commit = 2024-11-27T16:59:01Z
+
+[pypi.vqls-prototype]
+package_name = "vqls-prototype"
+version = "0.2.0"
+url = "https://pypi.org/project/vqls-prototype/"
+requires_qiskit = ">=0.14.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

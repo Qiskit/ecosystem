@@ -18,3 +18,11 @@ stars = 26
 last_commit = 2025-07-03T17:08:32Z
 
 [pypi.qiskit-qubit-reuse]
+package_name = "qiskit-qubit-reuse"
+version = "0.0.2"
+url = "https://pypi.org/project/qiskit-qubit-reuse/"
+requires_qiskit = ">=0.43.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

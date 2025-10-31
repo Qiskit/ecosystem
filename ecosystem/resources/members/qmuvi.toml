@@ -18,3 +18,13 @@ owner = "garymooney"
 repo = "qmuvi"
 stars = 16
 last_commit = 2025-09-04T08:49:29Z
+
+[pypi.qmuvi]
+package_name = "qmuvi"
+version = "0.3.0"
+url = "https://pypi.org/project/qmuvi/"
+requires_qiskit = "<3.0.0,>=2.1.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

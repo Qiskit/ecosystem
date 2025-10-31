@@ -17,3 +17,13 @@ owner = "QuTech-Delft"
 repo = "quantuminspire"
 stars = 74
 last_commit = 2025-10-28T13:27:27Z
+
+[pypi.quantuminspire]
+package_name = "quantuminspire"
+version = "3.3.1"
+url = "https://pypi.org/project/quantuminspire/"
+requires_qiskit = "==1.0.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2024-03-07T23:51:19Z
+highest_supported_qiskit_version = "1.0.2"

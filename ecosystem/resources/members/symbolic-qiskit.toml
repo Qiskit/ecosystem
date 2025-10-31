@@ -17,3 +17,13 @@ owner = "ianchung621"
 repo = "symbolic-qiskit"
 stars = 2
 last_commit = 2025-06-27T15:45:56Z
+
+[pypi.symbolic-qiskit]
+package_name = "symbolic-qiskit"
+version = "0.1.0a1"
+url = "https://pypi.org/project/symbolic-qiskit/"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
