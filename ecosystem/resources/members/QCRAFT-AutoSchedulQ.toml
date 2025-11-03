@@ -12,3 +12,21 @@ group = "applications"
 reference_paper = "https://www.worldscientific.com/doi/10.1142/S0218194024410018"
 documentation = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler/blob/main/README.md"
 uuid = "cec38ad8-9737-49e7-a177-3a6850784b6e"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fcec38ad8)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
+owner = "Qcraft-UEx"
+repo = "QCRAFT-AutoScheduler"
+stars = 18
+last_commit = 2025-10-28T08:42:08Z
+
+[pypi.autoscheduler]
+package_name = "autoscheduler"
+version = "1.2.1"
+url = "https://pypi.org/project/autoscheduler/"
+requires_qiskit = "<3.0.0,>=1.1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

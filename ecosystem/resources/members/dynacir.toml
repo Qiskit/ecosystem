@@ -8,3 +8,16 @@ ibm_maintained = false
 stars = 0
 group = "transpiler_plugin"
 uuid = "ee3eb036-bc4d-4342-a36d-af262eed95e4"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fee3eb036)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/derek-wang-ibm/dynacir"
+owner = "derek-wang-ibm"
+repo = "dynacir"
+stars = 0
+last_commit = 2024-03-21T16:41:46Z
+
+[pypi.dynacir]
+package_name = "dynacir"
+version = "0.1.4"
+url = "https://pypi.org/project/dynacir/"

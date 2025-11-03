@@ -10,3 +10,16 @@ stars = 21
 group = "applications"
 documentation = "https://qiskit-community.github.io/qiskit-nature-pyscf/"
 uuid = "1bfdd558-ebef-446b-aad5-1be7ecce68cd"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F1bfdd558)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-nature-pyscf"
+owner = "qiskit-community"
+repo = "qiskit-nature-pyscf"
+stars = 21
+last_commit = 2025-08-12T16:17:34Z
+
+[pypi.qiskit-nature-pyscf]
+package_name = "qiskit-nature-pyscf"
+version = "0.4.0"
+url = "https://pypi.org/project/qiskit-nature-pyscf/"

@@ -7,6 +7,24 @@ labels = [ "Circuit simulator", "Quantum information",]
 ibm_maintained = false
 created_at = 1680254616.930627
 updated_at = 1680254616.930632
-stars = 37
+stars = 38
 group = "other"
 uuid = "9350b230-d7ca-4d52-b082-9d71303478b7"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F9350b230)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/SimoneGasperini/qiskit-symb"
+owner = "SimoneGasperini"
+repo = "qiskit-symb"
+stars = 38
+last_commit = 2025-08-07T13:34:49Z
+
+[pypi.qiskit-symb]
+package_name = "qiskit-symb"
+version = "0.5.0"
+url = "https://pypi.org/project/qiskit-symb/"
+requires_qiskit = "<2.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"

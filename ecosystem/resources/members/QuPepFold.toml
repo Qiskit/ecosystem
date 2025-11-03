@@ -6,6 +6,25 @@ contact_info = "akshayuttarkar@gmail.com"
 affiliations = "R V College of Engineering MIT Vishwaprayag University"
 labels = [ "Applications",]
 ibm_maintained = false
+stars = 1
 group = "applications"
 documentation = "https://zenodo.org/records/17164557"
 uuid = "ab89baa7-39e9-482a-8157-a9bb834c5108"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fab89baa7)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/akshayuttarkarc/QuPepFold"
+owner = "akshayuttarkarc"
+repo = "QuPepFold"
+stars = 1
+last_commit = 2025-10-21T09:51:12Z
+
+[pypi.qupepfold]
+package_name = "qupepfold"
+version = "0.6.2"
+url = "https://pypi.org/project/qupepfold/"
+requires_qiskit = ">=0.39"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

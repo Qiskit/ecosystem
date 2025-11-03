@@ -1,43 +1,55 @@
 ### Project name
 
-My awesome project
-
-### Github repo
-
-http://github.com/awesome/awesome
+Qiskit Banana Compiler
 
 ### Description
 
-An awesome repo for awesome project
+```text
+Compile bananas into Qiskit quantum circuits. Supports all modern devices, including Musa × paradisiaca.
+```
 
-multiple
+### Contact email
 
-paragraphs
+author@banana-compiler.org
 
-### Email
+### Category
 
-toto@gege.com
-
-### Alternatives
-
-tititata
-
-### License
-
-Apache License 2.0
-
-### Affiliations
-
-_No response_
-
-### IBM maintenance status
-
-- [X] This project is officially maintained by IBM Quantum
+circuit manipulation
 
 ### Labels
 
-tool, tutorial, paper implementation
+error mitigation, quantum information, optimization
 
-### Website
+### Qiskit Pattern steps
 
-https://qiskit.org/ecosystem/
+Map the problem, Optimize for hardware, Execute on hardware
+
+
+### GitHub repository
+
+https://github.com/somebody/banana-compiler
+
+### Home page
+
+https://banana-compiler.org
+
+### Documentation
+
+https://banana-compiler.org/documentation
+
+### Packages
+
+```text
+https://pypi.org/project/banana-compiler
+https://pypi.org/project/banana-compiler-hpc
+https://crates.io/crates/rusty-banana-compiler
+https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
+```
+
+### Reference paper
+
+https://arxiv.org/abs/5555.22222
+
+### Code of Conduct
+
+- [x] I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)

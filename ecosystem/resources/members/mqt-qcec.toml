@@ -3,13 +3,30 @@ url = "https://github.com/cda-tum/mqt-qcec"
 description = "A tool for quantum circuit equivalence checking developed as part of the Munich Quantum Toolkit (MQT)."
 licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
-alternatives = "There are no real alternatives to this project that are as automated and connected to Qiskit and, e.g., allow for the automatic verification of transpilation results."
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "Paper implementation", "Quantum information",]
 ibm_maintained = false
 website = "https://mqt.readthedocs.io"
-stars = 103
+stars = 105
 group = "other"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qcec"
 uuid = "79415931-2d24-4959-ab15-29dfaeb139b4"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F79415931)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/munich-quantum-toolkit/qcec"
+owner = "munich-quantum-toolkit"
+repo = "qcec"
+stars = 105
+last_commit = 2025-10-27T00:55:50Z
+
+[pypi."mqt.qcec"]
+package_name = "mqt-qcec"
+version = "3.3.0"
+url = "https://pypi.org/project/mqt.qcec/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

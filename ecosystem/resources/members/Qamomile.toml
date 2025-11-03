@@ -6,7 +6,25 @@ contact_info = "h.matsuyama@j-ij.com"
 affiliations = "Jij Inc."
 labels = [ "Algorithms", "Applications", "Optimization", "Software development kit",]
 ibm_maintained = false
-stars = 8
+stars = 12
 group = "applications"
 documentation = "https://jij-inc.github.io/Qamomile/"
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F50cd2126)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/Jij-Inc/Qamomile"
+owner = "Jij-Inc"
+repo = "Qamomile"
+stars = 12
+last_commit = 2025-09-24T23:29:22Z
+
+[pypi.qamomile]
+package_name = "qamomile"
+version = "0.8.0"
+url = "https://pypi.org/project/qamomile/"
+requires_qiskit = "<3.0.0,>=2.1.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

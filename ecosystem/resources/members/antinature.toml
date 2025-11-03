@@ -3,12 +3,29 @@ url = "https://github.com/mk0dz/antinature"
 description = "A Python framework for studying antimatter systems through computational quantum chemistry approaches."
 licence = "MIT license"
 contact_info = "mukulpal108@hotmail.com"
-alternatives = "yeah there is a lot of alternative projects! pennylane by xanadu, openfermion by google and special one qiskit-nature by ibm, and yes, I was inspired by qiskit-nature to develop it! but all these modules have limitations and one of them is you can just work on matter. I am coming up with brand new module which is specially made for working on antimatter."
 affiliations = "Since I have worked independently so no organization is affiliated to the project, Even I am not an official student of any institute, So I dont have any choice but I am desirate to associate it with IBM or Cern, because work is associated to them."
 labels = [ "Chemistry",]
 ibm_maintained = false
 website = "https://antinature.vercel.app/"
-stars = 2
+stars = 3
 group = "applications"
 documentation = "https://antinature.vercel.app/docs/"
 uuid = "83868867-87d7-40c1-a0cb-7e68be6b22ad"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F83868867)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/mk0dz/antinature"
+owner = "mk0dz"
+repo = "antinature"
+stars = 3
+last_commit = 2025-08-11T18:52:41Z
+
+[pypi.antinature]
+package_name = "antinature"
+version = "0.1.2"
+url = "https://pypi.org/project/antinature/"
+requires_qiskit = "==1.4.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-03-14T17:39:31Z
+highest_supported_qiskit_version = "1.4.2"

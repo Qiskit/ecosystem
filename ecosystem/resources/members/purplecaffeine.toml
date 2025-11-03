@@ -11,3 +11,21 @@ stars = 6
 group = "other"
 documentation = "https://icekhan13.github.io/purplecaffeine/index.html"
 uuid = "a8fff49c-d8ee-4386-87b1-b28d31005823"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fa8fff49c)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/IceKhan13/purplecaffeine"
+owner = "IceKhan13"
+repo = "purplecaffeine"
+stars = 6
+last_commit = 2025-09-15T02:04:51Z
+
+[pypi.purplecaffeine]
+package_name = "purplecaffeine"
+version = "0.2.5"
+url = "https://pypi.org/project/purplecaffeine/"
+requires_qiskit = ">=0.43.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

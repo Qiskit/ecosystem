@@ -8,3 +8,21 @@ created_at = 1715085130.096724
 stars = 68
 group = "provider"
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fde20c734)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-braket-provider"
+owner = "qiskit-community"
+repo = "qiskit-braket-provider"
+stars = 68
+last_commit = 2025-10-28T01:52:06Z
+
+[pypi.qiskit-braket-provider]
+package_name = "qiskit-braket-provider"
+version = "0.7.0"
+url = "https://pypi.org/project/qiskit-braket-provider/"
+requires_qiskit = ">=0.34.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

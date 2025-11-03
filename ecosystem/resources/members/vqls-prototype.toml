@@ -3,12 +3,29 @@ url = "https://github.com/QuantumApplicationLab/vqls-prototype"
 description = "VQLS uses an optimization approach to solve systems of linear equations. Set up and deploy VQLS instances on different backends."
 licence = "Apache License 2.0"
 contact_info = "nicolas.gm.renaud@gmail.com"
-alternatives = "The prototype builds on the qiskit-textbook chapter and tutorial. The prototype allows to use the primitives and use different cost function and test circuits to optimize the parameters."
 affiliations = "Netherlands eScience Center @ Quantum Application Lab, Amsterdam NL"
 labels = [ "Algorithms", "Optimization", "Applications",]
 ibm_maintained = false
 created_at = 1683906067.55753
 updated_at = 1683906067.557535
-stars = 18
+stars = 19
 group = "applications"
 uuid = "05140a48-184b-491e-ac3c-d613ca05b3c8"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F05140a48)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/QuantumApplicationLab/vqls-prototype"
+owner = "QuantumApplicationLab"
+repo = "vqls-prototype"
+stars = 19
+last_commit = 2024-11-27T16:59:01Z
+
+[pypi.vqls-prototype]
+package_name = "vqls-prototype"
+version = "0.2.0"
+url = "https://pypi.org/project/vqls-prototype/"
+requires_qiskit = ">=0.14.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

@@ -6,6 +6,24 @@ labels = [ "Converter",]
 ibm_maintained = false
 created_at = 1661869851.523229
 updated_at = 1661869851.523229
-stars = 20
+stars = 21
 group = "other"
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F7c80aef4)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/CQCL/pytket-qiskit"
+owner = "CQCL"
+repo = "pytket-qiskit"
+stars = 21
+last_commit = 2025-10-24T14:53:48Z
+
+[pypi.pytket-qiskit]
+package_name = "pytket-qiskit"
+version = "0.72.0"
+url = "https://pypi.org/project/pytket-qiskit/"
+requires_qiskit = ">=2.2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

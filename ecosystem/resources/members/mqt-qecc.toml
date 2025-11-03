@@ -7,7 +7,25 @@ affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "Error correction",]
 ibm_maintained = false
 website = "https://mqt.readthedocs.io"
-stars = 166
+stars = 177
 group = "other"
 documentation = "https://mqt.readthedocs.io/projects/qecc/en/latest/"
 uuid = "791d4814-0ced-4f5a-94c5-908ceb4b5a90"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F791d4814)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/munich-quantum-toolkit/qecc"
+owner = "munich-quantum-toolkit"
+repo = "qecc"
+stars = 177
+last_commit = 2025-10-28T12:43:34Z
+
+[pypi."mqt.qcec"]
+package_name = "mqt-qcec"
+version = "3.3.0"
+url = "https://pypi.org/project/mqt.qcec/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

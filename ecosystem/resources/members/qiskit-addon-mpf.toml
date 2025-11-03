@@ -6,6 +6,25 @@ contact_info = "oss@zurich.ibm.com"
 labels = [ "Circuit building tool", "Physics",]
 ibm_maintained = true
 created_at = 1758737407.8760931
+stars = 33
 group = "qiskit_addon"
 documentation = "https://qiskit.github.io/qiskit-addon-mpf/"
 uuid = "99eb5c40-00ee-439c-971e-e3e2a523c83a"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F99eb5c40)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-addon-mpf"
+owner = "Qiskit"
+repo = "qiskit-addon-mpf"
+stars = 33
+last_commit = 2025-10-27T02:15:58Z
+
+[pypi.qiskit-addon-mpf]
+package_name = "qiskit-addon-mpf"
+version = "0.3.0"
+url = "https://pypi.org/project/qiskit-addon-mpf/"
+requires_qiskit = "<3,>=1.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

@@ -6,7 +6,45 @@ labels = [ "Circuit simulator",]
 ibm_maintained = true
 created_at = 1636403010.377695
 updated_at = 1636403010.377697
-stars = 596
+stars = 607
 group = "other"
 documentation = "https://qiskit.github.io/qiskit-aer/"
 uuid = "474599a7-228b-446f-ae57-636fdbe8c1c6"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F474599a7)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-aer"
+owner = "Qiskit"
+repo = "qiskit-aer"
+stars = 607
+last_commit = 2025-09-28T05:27:37Z
+
+[pypi.qiskit-aer]
+package_name = "qiskit-aer"
+version = "0.17.2"
+url = "https://pypi.org/project/qiskit-aer/"
+requires_qiskit = ">=1.1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+
+[pypi.qiskit-aer-gpu]
+package_name = "qiskit-aer-gpu"
+version = "0.15.1"
+url = "https://pypi.org/project/qiskit-aer-gpu/"
+requires_qiskit = ">=1.1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+
+[pypi.qiskit-aer-gpu-cu11]
+package_name = "qiskit-aer-gpu-cu11"
+version = "0.17.2"
+url = "https://pypi.org/project/qiskit-aer-gpu-cu11/"
+requires_qiskit = ">=1.1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

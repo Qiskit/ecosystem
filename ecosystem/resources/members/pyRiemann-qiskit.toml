@@ -6,7 +6,25 @@ contact_info = "gcattan@hotmail.fr"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
 labels = [ "Machine learning", "Applications",]
 ibm_maintained = false
-stars = 29
+stars = 30
 group = "applications"
 documentation = "https://pyriemann-qiskit.readthedocs.io/"
 uuid = "fb1907a7-9af8-4c23-be0c-48841a36f2df"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Ffb1907a7)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/pyRiemann/pyRiemann-qiskit"
+owner = "pyRiemann"
+repo = "pyRiemann-qiskit"
+stars = 30
+last_commit = 2025-10-25T12:42:08Z
+
+[pypi.pyriemann-qiskit]
+package_name = "pyriemann-qiskit"
+version = "0.4.2"
+url = "https://pypi.org/project/pyriemann-qiskit/"
+requires_qiskit = "==1.*"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"

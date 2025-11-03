@@ -10,3 +10,21 @@ stars = 12
 group = "other"
 reference_paper = "https://arxiv.org/abs/2305.11847"
 uuid = "f305aa07-74a6-4af4-bb80-e0a75672f16f"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Ff305aa07)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/atlytle/dense-ev"
+owner = "atlytle"
+repo = "dense-ev"
+stars = 12
+last_commit = 2024-05-30T22:10:50Z
+
+[pypi.dense-ev]
+package_name = "dense-ev"
+version = "2023.5.22"
+url = "https://pypi.org/project/dense-ev/"
+requires_qiskit = "<0.43.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2023-03-21T21:05:35Z
+highest_supported_qiskit_version = "0.42.1"

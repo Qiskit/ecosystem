@@ -6,6 +6,24 @@ labels = [ "Error mitigation",]
 ibm_maintained = false
 created_at = 1678827878.932437
 updated_at = 1678827878.932437
-stars = 397
+stars = 402
 group = "other"
 uuid = "a4ba9712-0aae-4660-b2df-4e6e81abb6c4"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fa4ba9712)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/unitaryfoundation/mitiq"
+owner = "unitaryfoundation"
+repo = "mitiq"
+stars = 402
+last_commit = 2025-10-28T17:06:55Z
+
+[pypi.mitiq]
+package_name = "mitiq"
+version = "0.47.0"
+url = "https://pypi.org/project/mitiq/"
+requires_qiskit = "~=1.4.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"

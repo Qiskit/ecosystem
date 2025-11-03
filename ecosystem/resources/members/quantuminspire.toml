@@ -6,6 +6,24 @@ labels = [ "Algorithms", "Software development kit",]
 ibm_maintained = false
 created_at = 1678827878.401835
 updated_at = 1678827878.401836
-stars = 72
+stars = 74
 group = "other"
 uuid = "fb1cd889-961a-4029-bb8f-229e4c4e12a4"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Ffb1cd889)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/QuTech-Delft/quantuminspire"
+owner = "QuTech-Delft"
+repo = "quantuminspire"
+stars = 74
+last_commit = 2025-10-28T13:27:27Z
+
+[pypi.quantuminspire]
+package_name = "quantuminspire"
+version = "3.3.1"
+url = "https://pypi.org/project/quantuminspire/"
+requires_qiskit = "==1.0.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2024-03-07T23:51:19Z
+highest_supported_qiskit_version = "1.0.2"

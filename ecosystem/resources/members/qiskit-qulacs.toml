@@ -10,3 +10,21 @@ stars = 10
 group = "provider"
 documentation = "https://qiskit-qulacs.netlify.app/"
 uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Febd47aa6)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
+owner = "Gopal-Dahale"
+repo = "qiskit-qulacs"
+stars = 10
+last_commit = 2025-10-27T19:03:17Z
+
+[pypi.qiskit-qulacs]
+package_name = "qiskit-qulacs"
+version = "0.1.0"
+url = "https://pypi.org/project/qiskit-qulacs/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

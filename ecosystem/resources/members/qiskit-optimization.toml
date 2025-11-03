@@ -6,7 +6,25 @@ labels = [ "Algorithms", "Optimization", "Applications",]
 ibm_maintained = false
 created_at = 1636403009.538761
 updated_at = 1636403009.538763
-stars = 265
+stars = 271
 group = "applications"
 documentation = "https://qiskit-community.github.io/qiskit-optimization/"
 uuid = "3b2ff33f-b4a3-49cd-ab32-563d282cc3bf"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F3b2ff33f)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-optimization"
+owner = "qiskit-community"
+repo = "qiskit-optimization"
+stars = 271
+last_commit = 2025-10-27T09:52:00Z
+
+[pypi.qiskit-optimization]
+package_name = "qiskit-optimization"
+version = "0.7.0"
+url = "https://pypi.org/project/qiskit-optimization/"
+requires_qiskit = "<3,>=1.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

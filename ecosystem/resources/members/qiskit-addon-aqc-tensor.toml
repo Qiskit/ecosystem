@@ -6,6 +6,25 @@ contact_info = "garrison@ibm.com"
 labels = [ "Algorithms", "Circuit building tool",]
 ibm_maintained = true
 created_at = 1758737407.8760931
+stars = 25
 group = "qiskit_addon"
 documentation = "https://qiskit.github.io/qiskit-addon-aqc-tensor/"
 uuid = "5ad8eedc-2e26-4ca9-92de-f1a5d3f3b097"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F5ad8eedc)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-addon-aqc-tensor"
+owner = "Qiskit"
+repo = "qiskit-addon-aqc-tensor"
+stars = 25
+last_commit = 2025-10-27T17:01:42Z
+
+[pypi.qiskit-addon-aqc-tensor]
+package_name = "qiskit-addon-aqc-tensor"
+version = "0.2.0"
+url = "https://pypi.org/project/qiskit-addon-aqc-tensor/"
+requires_qiskit = "<3,>=1.3.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

@@ -4,12 +4,12 @@ import json
 import os
 from typing import Optional, Tuple
 from pathlib import Path
+from jsonpath import findall, query
 
-import requests
 
-from ecosystem.daos import DAO
-from ecosystem.models.submission import Submission
-from ecosystem.utils import logger
+from ecosystem.dao import DAO
+from ecosystem.member import Member
+from ecosystem.error_handling import logger
 
 
 class CliMembers:
@@ -25,7 +25,7 @@ class CliMembers:
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = "{}/ecosystem/resources".format(self.current_dir)
+        self.resources_dir = f"{self.current_dir}/ecosystem/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -48,14 +48,13 @@ class CliMembers:
             repo_link: repo url
             repo_description: repo description
             repo_contact: repo email
-            repo_alt: repo alternatives
             repo_licence: repo licence
             repo_affiliations: repo university, company, ...
             repo_labels: comma separated labels
             repo_website: link to project website
         """
 
-        new_repo = Submission(
+        new_repo = Member(
             repo_name,
             repo_link,
             repo_description,
@@ -80,34 +79,128 @@ class CliMembers:
                 "color": "6929C4",
             }
             with open(
-                os.path.join(self.current_dir, "badges", f"{project.uuid}.json"), "w"
+                os.path.join(self.current_dir, "badges", f"{project.short_uuid}"), "w"
             ) as outfile:
                 json.dump(data, outfile, indent=4)
                 self.logger.info("Badge for %s has been updated.", project.name)
 
-    def update_stars(self):
-        """Updates start for repositories."""
+    def update_github(self):
+        """Updates GitHub data."""
         for project in self.dao.get_all():
-            stars = None
-            url = project.url[:-1] if project.url[-1] == "/" else project.url
-            url_chunks = url.split("/")
-            repo = url_chunks[-1]
-            user = url_chunks[-2]
+            project.update_github()
+            self.dao.update(project.name_id, stars=project.github.stars)
+            self.dao.update(project.name_id, github=project.github)
 
-            response = requests.get(f"http://api.github.com/repos/{user}/{repo}")
-            if not response.ok:
-                self.logger.warning("Bad response for project %s", project.url)
-                continue
+    def update_pypi(self):
+        """Updates PyPI data."""
+        for project in self.dao.get_all():
+            project.update_pypi()
+            self.dao.update(project.name_id, pypi=project.pypi)
 
-            json_data = json.loads(response.text)
-            stars = json_data.get("stargazers_count")
-            self.dao.update(project.url, stars=stars)
-            self.logger.info("Updating star count for %s: %d", project.url, stars)
+    @staticmethod
+    def filter_member_data(member_dict, data_map):
+        """takes a member dictionary and a data map,
+        and returns a dict that is filtered by the map"""
+        filtered_data = {}
+        for key, alias in data_map.items():
+            if isinstance(alias, dict):
+                data = CliMembers.filter_member_data(member_dict, alias)
+                if data:
+                    filtered_data[key] = data
+            elif isinstance(alias, list):
+                if len(alias) != 2:
+                    raise ValueError(
+                        "%s malformed. "
+                        "It needs to have exactly two elements,one "
+                        "with the query, the otherone with the selector"
+                    )
+                data = list(query(alias[0], member_dict).select(*alias[1]))
+
+            else:
+                found_all = findall(alias, member_dict)
+                if len(found_all) == 0:
+                    data = None
+                elif len(found_all) == 1:
+                    data = found_all[0]
+                else:
+                    raise ValueError(
+                        f"I dont know who to hangle multiple results for {found_all}. "
+                        "Maybe functools.reduce?"
+                    )
+            if data:
+                filtered_data[key] = data
+        return filtered_data
 
     def compile_json(self, output_file: str):
-        """Compile JSON file for consumption by ibm.com"""
+        """Compile JSON file (v0) for consumption by ibm.com"""
+        member_data_to_export = {
+            "uuid": "uuid",
+            "name": "name",
+            "url": "github.url",
+            "description": "description",
+            "licence": "licence",
+            "contact_info": "contact_info",
+            "affiliations": "affiliations",
+            "labels": "labels",
+            "created_at": "created_at",
+            "updated_at": "updated_at",
+            "group": "group",
+            "stars": "github.stars",
+            "documentation": "documentation",
+            "website": "website",
+            "reference_paper": "reference_paper",
+            "ibm_maintained": "ibm_maintained",
+        }
         data = {
-            "members": [repo.to_dict() for repo in self.dao.get_all()],
+            "members": [
+                CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
+                for member in self.dao.get_all()
+            ],
             "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
         }
-        Path(output_file).write_text(json.dumps(data))
+        Path(output_file).write_text(
+            json.dumps(data, default=str, separators=(",", ":"))
+        )
+
+    def compile_json_v1(self, output_file: str):
+        """Compile JSON file (v1) for consumption by ibm.com"""
+        member_data_to_export = {
+            "name": "name",
+            "description": "description",
+            "licence": "licence",
+            "subjects": "labels",
+            "type": "group",
+            "badge": "badge",
+            "ibm_maintained": "ibm_maintained",
+            "websites": {
+                "home": "website",
+                "documentation": "documentation",
+                "reference_paper": "reference_paper",
+            },
+            "github": {
+                "url": "github.url",
+                "stars": "github.stars",
+                "last_commit": "github.last_commit",
+                "archived": "github.archived",
+            },
+            "python_packages": [
+                "pypi.*",
+                [
+                    "package_name",
+                    "version",
+                    "url",
+                    "compatible_with_qiskit_v1",
+                    "compatible_with_qiskit_v2",
+                ],
+            ],
+        }
+        data = {
+            "members": [
+                CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
+                for member in self.dao.get_all()
+            ],
+            "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
+        }
+        Path(output_file).write_text(
+            json.dumps(data, default=str, separators=(",", ":"), indent=4)
+        )

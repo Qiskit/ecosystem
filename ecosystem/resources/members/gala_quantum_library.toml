@@ -3,7 +3,6 @@ url = "https://github.com/albayaty/gala_quantum_library"
 description = "A set of cost-effective n-bit gates based on the layouts and neighboring qubits for IBM quantum computers (n >= 3 qubits)."
 licence = "Apache License 2.0"
 contact_info = "albayaty@pdx.edu"
-alternatives = "There are no alternatives to this project."
 affiliations = "Department of Electrical and Computer Engineering at Portland State University"
 labels = [ "Circuit building tool", "Paper implementation",]
 ibm_maintained = false
@@ -11,3 +10,11 @@ stars = 1
 group = "applications"
 reference_paper = "https://doi.org/10.48550/arXiv.2311.06760"
 uuid = "36e10568-9c53-4b9b-b658-8907e5e2edb9"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F36e10568)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/albayaty/gala_quantum_library"
+owner = "albayaty"
+repo = "gala_quantum_library"
+stars = 1
+last_commit = 2024-10-20T20:35:33Z

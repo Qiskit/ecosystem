@@ -6,6 +6,25 @@ contact_info = "garrison@ibm.com"
 labels = [ "Algorithms", "Chemistry",]
 ibm_maintained = true
 created_at = 1758737407.8760931
+stars = 77
 group = "qiskit_addon"
 documentation = "https://qiskit.github.io/qiskit-addon-sqd/"
 uuid = "fe036eac-635d-46db-931e-2965a8a138a5"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Ffe036eac)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-addon-sqd"
+owner = "Qiskit"
+repo = "qiskit-addon-sqd"
+stars = 77
+last_commit = 2025-10-27T19:48:47Z
+
+[pypi.qiskit-addon-sqd]
+package_name = "qiskit-addon-sqd"
+version = "0.12.0"
+url = "https://pypi.org/project/qiskit-addon-sqd/"
+requires_qiskit = "<3,>=1.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

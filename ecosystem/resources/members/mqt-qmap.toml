@@ -3,13 +3,30 @@ url = "https://github.com/cda-tum/mqt-qmap"
 description = "A tool for quantum circuit compilation for various qubit technologies developed as part of the Munich Quantum Toolkit (MQT)."
 licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
-alternatives = "Any other layout and routing techniques for superconducting systems, Clifford synthesis approach, or compilation tool for neutral atom quantum computers."
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "Paper implementation",]
 ibm_maintained = false
 website = "https://mqt.readthedocs.io"
-stars = 120
+stars = 126
 group = "transpiler_plugin"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qmap"
 uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fd16209fb)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/munich-quantum-toolkit/qmap"
+owner = "munich-quantum-toolkit"
+repo = "qmap"
+stars = 126
+last_commit = 2025-10-27T03:15:05Z
+
+[pypi."mqt.qmap"]
+package_name = "mqt-qmap"
+version = "3.4.0"
+url = "https://pypi.org/project/mqt.qmap/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

@@ -14,10 +14,6 @@ An awesome repo for awesome project
 
 toto@gege.com
 
-### Alternatives
-
-_No response_
-
 ### License
 
 Apache License 2.0
@@ -25,10 +21,6 @@ Apache License 2.0
 ### Affiliations
 
 Awesome Inc.
-
-### IBM maintenance status
-
-- [ ] This project is officially maintained by IBM Quantum
 
 ### Labels
 

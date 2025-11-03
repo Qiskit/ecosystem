@@ -1,0 +1,45 @@
+name: Weekly | Update stats and badges
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron:  '0 9 * * 4'
+
+jobs:
+  batch_update_badges:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup variables
+      id: vars
+      run: |
+        echo "dateIseconds=$(date -Iseconds)" >> "$GITHUB_ENV"
+        echo "date_bdY=$(date +'%b %d, %Y')" >> "$GITHUB_ENV"
+        echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_ENV"
+    - uses: actions/checkout@v5
+    - uses: actions/setup-python@v6
+      with:
+          python-version: '3.13'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Update badges
+      run: python manager.py members update_badges
+
+    - name: Update stats
+      run: python manager.py members update_stars
+
+    - name: Create PR for stats and badges update
+      id: cpr
+      uses: peter-evans/create-pull-request@v7
+      with:
+        author: GitHub <noreply@github.com>
+        commit-message: Badges and stats update for ${{ env.dateIseconds }}
+        title: Badges and stats update for ${{ env.date_bdY }}
+        body: |
+          Badges and stats update
+          Time: ${{ env.dateIseconds }}
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        branch: ${{ env.pr_branch_name }}
+        labels: member update

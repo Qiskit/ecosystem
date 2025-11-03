@@ -6,7 +6,25 @@ labels = [ "Algorithms", "Chemistry", "Physics", "Applications",]
 ibm_maintained = false
 created_at = 1636403009.16708
 updated_at = 1636403009.167082
-stars = 350
+stars = 353
 group = "applications"
 documentation = "https://qiskit-community.github.io/qiskit-nature/"
 uuid = "768ba9e4-0aea-4046-a902-5c81051f001f"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F768ba9e4)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-nature"
+owner = "qiskit-community"
+repo = "qiskit-nature"
+stars = 353
+last_commit = 2025-10-27T01:11:23Z
+
+[pypi.qiskit-nature]
+package_name = "qiskit-nature"
+version = "0.7.2"
+url = "https://pypi.org/project/qiskit-nature/"
+requires_qiskit = ">=0.44"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"

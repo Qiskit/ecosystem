@@ -5,6 +5,25 @@ licence = "Apache 2.0"
 labels = [ "Compute provider", "Cloud service",]
 ibm_maintained = false
 created_at = 1715085233.375706
-stars = 31
+stars = 30
 group = "provider"
 uuid = "648ef199-ace1-4c6b-ae9c-2c0578cde0d5"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F648ef199)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/iqm-finland/qiskit-on-iqm"
+owner = "iqm-finland"
+repo = "qiskit-on-iqm"
+stars = 30
+archived = true
+last_commit = 2025-09-16T16:24:21Z
+
+[pypi.qiskit-iqm]
+package_name = "qiskit-iqm"
+version = "18.2"
+url = "https://pypi.org/project/qiskit-iqm/"
+requires_qiskit = "<1.3,>=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2024-10-03T19:47:28Z
+highest_supported_qiskit_version = "1.2.4"
