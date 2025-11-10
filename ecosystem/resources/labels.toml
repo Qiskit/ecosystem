@@ -1,0 +1,92 @@
+[[categories]]
+name = "applications"
+description = "Helps run or work with higher-than-circuit levels of abstraction"
+
+[[categories]]
+name = "compute provider"
+description = "Provides access to remote quantum computers or simulators via Qiskit primitives"
+link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/primitives"
+
+[[categories]]
+name = "circuit simulator"
+description = "Simulates a quantum computer on your local classical computer"
+
+[[categories]]
+name = "circuit manipulation"
+description = "Builds, optimizes, or modifies quantum circuits"
+
+[[categories]]
+name = "converter"
+description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs"
+
+[[categories]]
+name = "transpiler plugin"
+description = "Implements Qiskit's transpiler plugin interface to compile and optimize quantum circuits"
+link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/transpiler_plugins"
+
+[[categories]]
+name = "unitary synthesis plugin"
+description = "Implements Qiskit's unitary synthesis plugin interface to synthesize unitary operations into quantum circuits"
+link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin"
+
+[[categories]]
+name = "high-level synthesis plugin"
+description = "Implements Qiskit's HLS plugin interface to synthesize quantum circuits from more abstract operations"
+link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin"
+
+[[categories]]
+name = "qiskit addon"
+description = "Enables algorithm discovery at the utility scale"
+link = "https://quantum.cloud.ibm.com/docs/en/guides/addons"
+
+[[categories]]
+name = "game"
+description = "Games or playful educational resources"
+
+[[categories]]
+name = "other"
+description = "Projects that extend, interface with, or use Qiskit in interesting ways"
+
+[[labels]]
+name = "algorithms"
+description = "Implements quantum algorithms"
+
+[[labels]]
+name = "chemistry"
+description = "Applies quantum computing to chemistry"
+
+[[labels]]
+name = "error correction"
+description = "Performs or investigates quantum error correction"
+
+[[labels]]
+name = "error mitigation"
+description = "Tools for mitigating errors"
+
+[[labels]]
+name = "finance"
+description = "Applies quantum computing to finance"
+
+[[labels]]
+name = "QML"
+description = "Applies quantum computing to machine learning"
+
+[[labels]]
+name = "optimization"
+description = "Applies quantum computing to optimization problems"
+
+[[labels]]
+name = "physics"
+description = "Applies quantum computing to physics"
+
+[[labels]]
+name = "quantum information"
+description = "Tools for quantum information experiments"
+
+[[labels]]
+name = "circuit optimization"
+description = "Tools to optimize quantum circuits"
+
+[[labels]]
+name = "paper"
+description = "Implements ideas from a paper or it is code related to a paper"
