@@ -6,7 +6,7 @@ contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "Circuit building tool", "Converter", "Machine learning", "Software development kit", "Paper implementation",]
 ibm_maintained = false
-stars = 80
+stars = 81
 group = "transpiler_plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
 documentation = "https://mqt.readthedocs.io/projects/predictor/en/latest/"
@@ -17,8 +17,8 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/munich-quantum-toolkit/predictor"
 owner = "munich-quantum-toolkit"
 repo = "predictor"
-stars = 80
-last_commit = 2025-10-27T02:34:43Z
+stars = 81
+last_commit = 2025-11-10T09:04:05Z
 
 [pypi."mqt.predictor"]
 package_name = "mqt-predictor"
