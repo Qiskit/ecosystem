@@ -1,7 +1,8 @@
 name: 'Close stale submissions'
 on:
-  schedule:
-    - cron: '30 1 * * mon'
+  workflow_call
+  # schedule:
+  #   - cron: '30 1 * * mon'
 
 jobs:
   stale:
