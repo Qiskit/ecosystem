@@ -28,7 +28,9 @@ jobs:
       run: python manager.py members update_badges
 
     - name: Update stats
-      run: python manager.py members update_stars
+      run: python manager.py members update_github
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create PR for stats and badges update
       id: cpr
