@@ -1,7 +1,7 @@
 name: 'Close stale submissions'
 on:
   schedule:
-    - cron: '30 1 * * mon
+    - cron: '30 1 * * mon'
 
 jobs:
   stale:
