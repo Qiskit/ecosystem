@@ -97,9 +97,13 @@ class CliMembers:
             self.dao.update(project.name_id, pypi=project.pypi)
 
     @staticmethod
-    def filter_member_data(member_dict, data_map):  # pylint: disable=too-many-branches
+    def filter_member_data(
+        member_dict, data_map, forced_addition=False
+    ):  # pylint: disable=too-many-branches
         """takes a member dictionary and a data map,
-        and returns a dict that is filtered by the map"""
+        and returns a dict that is filtered by the map.
+        If forced_addition is True, all the elements of the
+        data_map will be added, even if they are empty"""
         filtered_data = {}
         for key, alias in data_map.items():
             if isinstance(alias, dict):
@@ -134,7 +138,7 @@ class CliMembers:
                         f"I dont know who to hangle multiple results for {found_all}. "
                         "Maybe functools.reduce?"
                     )
-            if data:
+            if forced_addition or data:
                 filtered_data[key] = data
         return filtered_data
 
@@ -157,7 +161,7 @@ class CliMembers:
             "documentation": "documentation",
             "website": "website",
             "reference_paper": "reference_paper",
-            "ibm_maintained": "ibm_maintained",
+            "ibm_maintained": "ibm_maintained",  # if _prefixed, then it adding it is forced
             "badge": "badge",
             "websites": {
                 "home": "website",
@@ -198,7 +202,9 @@ class CliMembers:
                 },
             },
             "members": [
-                CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
+                CliMembers.filter_member_data(
+                    member.to_dict(), member_data_to_export, forced_addition=True
+                )
                 for member in self.dao.get_all()
             ],
             "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),

@@ -151,18 +151,20 @@ class GitHubData(JsonSerializable):
             self.owner = owner
             self.repo = repo
 
-    def dependants(self):
+    def dependants(self, refresh=False):
         """get the dependant data from (cached) JSON"""
-        if self._json_dependants is None:
+        if refresh:
             self.update_json()
         return self._json_dependants
 
     @property
     def total_dependent_repositories(self):
         """Sum of repository dependants"""
-        return sum(r.get("repositories", 0) for r in self.dependants().values())
+        if self.dependants:
+            return sum(r.get("repositories", 0) for r in self.dependants.values())
 
     @property
     def total_dependent_packages(self):
         """Sum of package dependants"""
-        return sum(r.get("packages", 0) for r in self.dependants().values())
+        if self.dependants:
+            return sum(r.get("packages", 0) for r in self.dependants.values())
