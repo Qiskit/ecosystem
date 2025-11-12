@@ -5,8 +5,6 @@ licence = "Apache License 2.0"
 contact_info = "alexi@il.ibm.com"
 affiliations = "IBM"
 labels = [ "Transpiler plugin",]
-ibm_maintained = false
-stars = 9
 group = "transpiler_plugin"
 uuid = "2e6b95b1-5046-4a83-8842-c0b6ea36ec12"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F2e6b95b1)](https://qisk.it/e)"
@@ -16,6 +14,9 @@ url = "https://github.com/qiskit-community/qiskit-sat-synthesis"
 owner = "qiskit-community"
 repo = "qiskit-sat-synthesis"
 stars = 9
+license = "Apache License 2.0"
+total_dependent_repositories = 2
+total_dependent_packages = 0
 last_commit = 2024-12-24T07:07:21Z
 
 [pypi.qiskit-sat-synthesis]

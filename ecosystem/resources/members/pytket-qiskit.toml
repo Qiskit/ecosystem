@@ -3,10 +3,8 @@ url = "https://github.com/CQCL/pytket-qiskit"
 description = "Convert between Pytket (a Python interface for CQC tket) and Qiskit, and run Pytket circuits on IBM backends and simulators"
 licence = "Apache 2.0"
 labels = [ "Converter",]
-ibm_maintained = false
 created_at = 1661869851.523229
 updated_at = 1661869851.523229
-stars = 21
 group = "other"
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F7c80aef4)](https://qisk.it/e)"
@@ -16,6 +14,10 @@ url = "https://github.com/CQCL/pytket-qiskit"
 owner = "CQCL"
 repo = "pytket-qiskit"
 stars = 21
+license = "Apache License 2.0"
+description = "pytket-qiskit, extensions for pytket quantum SDK "
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-10-30T17:08:26Z
 
 [pypi.pytket-qiskit]

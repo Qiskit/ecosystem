@@ -5,8 +5,6 @@ licence = "Apache License 2.0"
 contact_info = "h.matsuyama@j-ij.com"
 affiliations = "Jij Inc."
 labels = [ "Algorithms", "Applications", "Optimization", "Software development kit",]
-ibm_maintained = false
-stars = 12
 group = "applications"
 documentation = "https://jij-inc.github.io/Qamomile/"
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
@@ -17,7 +15,10 @@ url = "https://github.com/Jij-Inc/Qamomile"
 owner = "Jij-Inc"
 repo = "Qamomile"
 stars = 12
-last_commit = 2025-11-06T10:57:06Z
+license = "Apache License 2.0"
+total_dependent_repositories = 2
+total_dependent_packages = 1
+last_commit = 2025-11-11T11:18:32Z
 
 [pypi.qamomile]
 package_name = "qamomile"

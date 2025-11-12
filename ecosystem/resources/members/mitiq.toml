@@ -3,10 +3,8 @@ url = "https://github.com/unitaryfund/mitiq"
 description = "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers."
 licence = "Apache 2.0"
 labels = [ "Error mitigation",]
-ibm_maintained = false
 created_at = 1678827878.932437
 updated_at = 1678827878.932437
-stars = 406
 group = "other"
 uuid = "a4ba9712-0aae-4660-b2df-4e6e81abb6c4"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fa4ba9712)](https://qisk.it/e)"
@@ -16,7 +14,12 @@ url = "https://github.com/unitaryfoundation/mitiq"
 owner = "unitaryfoundation"
 repo = "mitiq"
 stars = 406
-last_commit = 2025-11-10T04:28:34Z
+homepage = "https://mitiq.readthedocs.io"
+license = "GNU General Public License v3.0"
+description = "Mitiq is an open source toolkit for implementing error mitigation techniques on most current intermediate-scale quantum computers."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-10T19:49:31Z
 
 [pypi.mitiq]
 package_name = "mitiq"

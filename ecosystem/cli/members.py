@@ -88,7 +88,6 @@ class CliMembers:
         """Updates GitHub data."""
         for project in self.dao.get_all():
             project.update_github()
-            self.dao.update(project.name_id, stars=project.github.stars)
             self.dao.update(project.name_id, github=project.github)
 
     def update_pypi(self):
@@ -107,7 +106,7 @@ class CliMembers:
                 data = CliMembers.filter_member_data(member_dict, alias)
                 if data:
                     filtered_data[key] = data
-            elif isinstance(alias, list):
+            elif isinstance(alias, tuple):
                 if len(alias) != 2:
                     raise ValueError(
                         "%s malformed. "
@@ -115,7 +114,15 @@ class CliMembers:
                         "with the query, the otherone with the selector"
                     )
                 data = list(query(alias[0], member_dict).select(*alias[1]))
-
+            elif isinstance(alias, list):
+                # a list of alias in priority in case they do not exist
+                for candidate_alias in alias:
+                    candidate_value = CliMembers.filter_member_data(
+                        member_dict, {key: candidate_alias}
+                    )
+                    if len(candidate_value) == 1:
+                        data = list(candidate_value.values())[0]
+                        break
             else:
                 found_all = findall(alias, member_dict)
                 if len(found_all) == 0:
@@ -137,41 +144,19 @@ class CliMembers:
             "uuid": "uuid",
             "name": "name",
             "url": "github.url",
-            "description": "description",
-            "licence": "licence",
+            "description": ["description", "github.description"],
+            "licence": ["licence", "github.license"],
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",
             "created_at": "created_at",
             "updated_at": "updated_at",
-            "group": "group",
             "stars": "github.stars",
             "documentation": "documentation",
             "website": "website",
             "reference_paper": "reference_paper",
             "ibm_maintained": "ibm_maintained",
-        }
-        data = {
-            "members": [
-                CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
-                for member in self.dao.get_all()
-            ],
-            "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
-        }
-        Path(output_file).write_text(
-            json.dumps(data, default=str, separators=(",", ":"))
-        )
-
-    def compile_json_v1(self, output_file: str):
-        """Compile JSON file (v1) for consumption by ibm.com"""
-        member_data_to_export = {
-            "name": "name",
-            "description": "description",
-            "licence": "licence",
-            "subjects": "labels",
-            "type": "group",
             "badge": "badge",
-            "ibm_maintained": "ibm_maintained",
             "websites": {
                 "home": "website",
                 "documentation": "documentation",
@@ -183,7 +168,7 @@ class CliMembers:
                 "last_commit": "github.last_commit",
                 "archived": "github.archived",
             },
-            "python_packages": [
+            "python_packages": (
                 "pypi.*",
                 [
                     "package_name",
@@ -192,9 +177,22 @@ class CliMembers:
                     "compatible_with_qiskit_v1",
                     "compatible_with_qiskit_v2",
                 ],
-            ],
+            ),
         }
         data = {
+            "meta": {
+                "version": 1,
+                "deprecated fields": {
+                    "members.created_at": "currently not in use. To be removed in v2.",
+                    "members.updated_at": "currently not in use. To be removed in v2.",
+                    "members.contact_info": "currently not in use. To be removed in v2.",
+                    "members.affiliations": "currently not in use. To be removed in v2.",
+                    "members.group": "replaced by members.type. To be removed in v2.",
+                    "members.stars": "replaced by members.github.stars. To be removed in v2.",
+                    "members.url": "replaced by members.github.url. To be removed in v2.",
+                    "members.website": "replaced by members.website.home. To be removed in v2.",
+                },
+            },
             "members": [
                 CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
                 for member in self.dao.get_all()

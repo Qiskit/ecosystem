@@ -5,8 +5,6 @@ licence = "GNU Library or \"Lesser\" General Public License (LGPL)"
 contact_info = "gary.mooney4444@gmail.com"
 affiliations = "The University of Melbourne"
 labels = [ "Converter",]
-ibm_maintained = false
-stars = 16
 group = "other"
 documentation = "https://garymooney.github.io/qmuvi/"
 uuid = "9d4da903-9823-4ae3-a80c-22821b62931e"
@@ -17,6 +15,11 @@ url = "https://github.com/garymooney/qmuvi"
 owner = "garymooney"
 repo = "qmuvi"
 stars = 16
+homepage = "https://garymooney.github.io/qmuvi/"
+license = "GNU Lesser General Public License v2.1"
+description = "qMuVi - A python package that converts quantum circuits into audiovisual experiences, bridging the gap between complex quantum computations and human perception. Render music videos that reveal the evolution of quantum states during algorithm processing, making quantum computing more intuitive and accessible."
+total_dependent_repositories = 4
+total_dependent_packages = 0
 last_commit = 2025-09-04T08:49:29Z
 
 [pypi.qmuvi]

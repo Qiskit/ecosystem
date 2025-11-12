@@ -3,10 +3,8 @@ url = "https://github.com/rigetti/qiskit-rigetti"
 description = "Rigetti Provider for Qiskit."
 licence = "Apache 2.0"
 labels = [ "Compute provider", "Cloud service",]
-ibm_maintained = false
 created_at = 1678827878.136911
 updated_at = 1678827878.136912
-stars = 14
 group = "provider"
 uuid = "88a73f80-a247-4bb4-a6aa-f5da3ebd50c4"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F88a73f80)](https://qisk.it/e)"
@@ -16,6 +14,10 @@ url = "https://github.com/rigetti/qiskit-rigetti"
 owner = "rigetti"
 repo = "qiskit-rigetti"
 stars = 14
+license = "Apache License 2.0"
+description = "Qiskit provider serving Rigetti hardware & simulator backends."
+total_dependent_repositories = 5
+total_dependent_packages = 0
 last_commit = 2025-04-09T21:16:09Z
 
 [pypi.qiskit-rigetti]

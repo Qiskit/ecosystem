@@ -5,8 +5,6 @@ licence = "Apache License 2.0"
 contact_info = "dahalegopal27@gmail.com"
 affiliations = "Supported by the Unitary Fund microgrant program: https://unitary.fund/grants/"
 labels = [ "Circuit simulator", "Converter", "Compute provider",]
-ibm_maintained = false
-stars = 10
 group = "provider"
 documentation = "https://qiskit-qulacs.netlify.app/"
 uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
@@ -17,6 +15,11 @@ url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
 owner = "Gopal-Dahale"
 repo = "qiskit-qulacs"
 stars = 10
+homepage = "https://qiskit-qulacs.netlify.app/"
+license = "Apache License 2.0"
+description = "Execute Qiskit programs using Qulacs backend."
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-10-27T19:03:17Z
 
 [pypi.qiskit-qulacs]

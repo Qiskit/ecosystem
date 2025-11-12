@@ -5,8 +5,6 @@ licence = "MIT license"
 contact_info = "roman.wixinger@gmail.com PAOLO.DAROLD@studenti.units.it michele.grossi@cern.ch vischimichele@gmail.com dibartolomeo.giov@gmail.com"
 affiliations = "- CERN Quantum Technology Initiative (https://quantum.cern/our-governance) - University of Trieste, Quantum Mechanics group (https://www.qmts.it)"
 labels = [ "Circuit simulator",]
-ibm_maintained = false
-stars = 18
 group = "provider"
 reference_paper = "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043210"
 documentation = "https://quantum-gates.readthedocs.io/en/latest/index.html"
@@ -18,7 +16,12 @@ url = "https://github.com/CERN-IT-INNOVATION/quantum-gates"
 owner = "CERN-IT-INNOVATION"
 repo = "quantum-gates"
 stars = 18
-last_commit = 2025-11-10T18:28:40Z
+homepage = "https://quantum-gates.readthedocs.io/en/latest/"
+license = "MIT License"
+description = "Noisy Quantum Gates model for simulating the noise of quantum devices."
+total_dependent_repositories = 3
+total_dependent_packages = 0
+last_commit = 2025-11-10T23:06:20Z
 
 [pypi.quantum-gates]
 package_name = "quantum-gates"

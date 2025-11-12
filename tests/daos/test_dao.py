@@ -31,19 +31,6 @@ class TestDao(TestCase):
     def tearDown(self) -> None:
         shutil.rmtree(self.path)
 
-    def test_stars_update(self):
-        """Test update stars for repo."""
-        main_repo = get_main_repo()
-        dao = DAO(self.path)
-        dao.write(main_repo)
-
-        repo_from_db = dao.get_by_url(main_repo.url)
-        self.assertIsNone(repo_from_db.stars)
-
-        dao.update(main_repo.name_id, stars=42)
-        repo_from_db = dao.get_by_url(main_repo.url)
-        self.assertEqual(42, repo_from_db.stars)
-
     def test_repository_insert_and_delete(self):
         """Tests repository."""
         main_repo = get_main_repo()

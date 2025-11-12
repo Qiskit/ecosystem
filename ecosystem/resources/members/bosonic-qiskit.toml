@@ -3,10 +3,8 @@ url = "https://github.com/C2QA/bosonic-qiskit"
 description = "NQI C2QA project to simulate hybrid boson-qubit systems within Qiskit."
 licence = "BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"
 labels = [ "Physics", "Applications",]
-ibm_maintained = false
 created_at = 1678827878.841977
 updated_at = 1678827878.841978
-stars = 64
 group = "applications"
 uuid = "3d8fe04d-8ac0-4282-9eb6-cb458550945a"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F3d8fe04d)](https://qisk.it/e)"
@@ -16,6 +14,10 @@ url = "https://github.com/C2QA/bosonic-qiskit"
 owner = "C2QA"
 repo = "bosonic-qiskit"
 stars = 64
+license = "BSD 2-Clause \"Simplified\" License"
+description = "Extension of Qiskit to support hybrid boson-qubit simulations for the NQI C2QA effort."
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-11-10T13:55:14Z
 
 [pypi.bosonic-qiskit]
