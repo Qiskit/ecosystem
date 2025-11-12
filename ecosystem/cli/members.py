@@ -97,7 +97,7 @@ class CliMembers:
             self.dao.update(project.name_id, pypi=project.pypi)
 
     @staticmethod
-    def filter_member_data(member_dict, data_map):
+    def filter_member_data(member_dict, data_map):  # pylint: disable=too-many-branches
         """takes a member dictionary and a data map,
         and returns a dict that is filtered by the map"""
         filtered_data = {}
@@ -193,7 +193,8 @@ class CliMembers:
                     "members.stars": "replaced by members.github.stars. To be removed in v2.",
                     "members.url": "replaced by members.github.url. To be removed in v2.",
                     "members.website": "replaced by members.website.home. To be removed in v2.",
-                    "reference_paper": "replaced by members.website.reference_paper. To be removed in v2.",
+                    "reference_paper": "replaced by members.website.reference_paper. "
+                    "To be removed in v2.",
                 },
             },
             "members": [

@@ -1,12 +1,12 @@
 """Network request function."""
 
 import os
+import re
 from urllib.parse import urlparse, urlunparse
 import json
 import requests
 import requests_cache
 from bs4 import BeautifulSoup
-import re
 
 
 from .error_handling import EcosystemError
@@ -37,7 +37,7 @@ def request_json(url: str, headers: dict[str, str] = None, parser=None):
             headers["Authorization"] = "token " + token
         headers["User-Agent"] = "github.com/Qiskit/ecosystem/"
 
-    response = requests.get(url.geturl(), headers=headers)
+    response = requests.get(url.geturl(), headers=headers, timeout=240)
     if not response.ok:
         raise EcosystemError(
             f"Bad response {url.geturl()}: {response.reason} ({response.status_code})"
@@ -61,6 +61,10 @@ def parse_url(original_url: str):
 
 
 def parse_github_package_ids(html_text):
+    """
+    Find the package ids for github.com/<owner>/repo/network/
+    dependents?dependent_type=REPOSITORY&package_id=PACKAGE_ID
+    """
     soup = BeautifulSoup(html_text, "html.parser")
     pkgs_selector = soup.find("div", {"class": "select-menu-list"})
 

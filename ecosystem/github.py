@@ -52,7 +52,7 @@ class GitHubData(JsonSerializable):
         self.tree = tree
         self._kwargs = kwargs or {}
         self._json_repo = None
-        self._json_github_dependent = None
+        self._json_package_ids = None
         self._json_dependants = None
 
     def to_dict(self) -> dict:
@@ -107,7 +107,8 @@ class GitHubData(JsonSerializable):
         self._json_dependants = {}
         for package, package_id in self._json_package_ids.items():
             self._json_dependants[package] = request_json(
-                f"github.com/{self.owner}/{self.repo}/network/dependents?dependent_type=REPOSITORY&package_id={package_id}",
+                f"github.com/{self.owner}/{self.repo}/network/dependents?"
+                f"dependent_type=REPOSITORY&package_id={package_id}",
                 parser=parse_github_dependants,
             )
 
@@ -151,14 +152,17 @@ class GitHubData(JsonSerializable):
             self.repo = repo
 
     def dependants(self):
+        """get the dependant data from (cached) JSON"""
         if self._json_dependants is None:
             self.update_json()
         return self._json_dependants
 
     @property
     def total_dependent_repositories(self):
+        """Sum of repository dependants"""
         return sum(r.get("repositories", 0) for r in self.dependants().values())
 
     @property
     def total_dependent_packages(self):
+        """Sum of package dependants"""
         return sum(r.get("packages", 0) for r in self.dependants().values())
