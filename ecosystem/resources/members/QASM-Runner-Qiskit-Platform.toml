@@ -1,6 +1,6 @@
-name = "QASM-Runner-Qiskit-Platform"
+name = "QASM Runner for IBM platforms"
 url = "https://github.com/TownsendBrown/QASM-Runner-Qiskit-Platform"
-description = "Python-based CLI tool for executing OpenQASM 2.0 circuits on both real IBM Quantum hardware and local simulators. Includes support for multi-files, configurable shot count, backend selection, JSON output, and circuit diagram generation."
+description = "A command-line tool for executing OpenQASM 2.0 files on IBM Quantum hardware and simulators."
 contact_info = "stiofancondon@outlook.com"
 labels = [ "other",]
 ibm_maintained = false
