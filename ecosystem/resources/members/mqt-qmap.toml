@@ -5,9 +5,7 @@ licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "Paper implementation",]
-ibm_maintained = false
 website = "https://mqt.readthedocs.io"
-stars = 126
 group = "transpiler_plugin"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qmap"
@@ -19,7 +17,12 @@ url = "https://github.com/munich-quantum-toolkit/qmap"
 owner = "munich-quantum-toolkit"
 repo = "qmap"
 stars = 126
-last_commit = 2025-11-10T00:30:26Z
+homepage = "https://mqt.readthedocs.io/projects/qmap"
+license = "MIT License"
+description = "MQT QMAP - A tool for Quantum Circuit Mapping written in C++"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-11T00:20:10Z
 
 [pypi."mqt.qmap"]
 package_name = "mqt-qmap"

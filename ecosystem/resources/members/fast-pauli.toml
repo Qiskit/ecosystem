@@ -5,9 +5,7 @@ licence = "BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"
 contact_info = "dev@qognitive.io"
 affiliations = "Qognitive Inc"
 labels = [ "Algorithms",]
-ibm_maintained = false
 website = "https://qognitive.io"
-stars = 15
 group = "other"
 reference_paper = "https://arxiv.org/abs/2301.00560"
 documentation = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
@@ -19,6 +17,11 @@ url = "https://github.com/qognitive/fast-pauli"
 owner = "qognitive"
 repo = "fast-pauli"
 stars = 15
+homepage = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
+license = "BSD 2-Clause \"Simplified\" License"
+description = "Python/C++ library for optimized operations on Pauli matrices and Pauli strings"
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-04-09T21:51:22Z
 
 [pypi.fast-pauli]

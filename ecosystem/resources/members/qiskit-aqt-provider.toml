@@ -5,9 +5,7 @@ licence = "Apache License 2.0"
 contact_info = "info@aqt.eu"
 affiliations = "Alpine Quantum Technologies GmbH"
 labels = [ "Compute provider", "Cloud service",]
-ibm_maintained = false
 website = "https://www.aqt.eu/qc-systems/"
-stars = 29
 group = "provider"
 documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
 uuid = "04f15cf5-ee50-4c77-b254-8907ed3ba407"
@@ -18,6 +16,11 @@ url = "https://github.com/qiskit-community/qiskit-aqt-provider"
 owner = "qiskit-community"
 repo = "qiskit-aqt-provider"
 stars = 29
+homepage = "https://qiskit-community.github.io/qiskit-aqt-provider/"
+license = "Apache License 2.0"
+description = "Qiskit provider for AQT backends."
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-11-05T15:13:34Z
 
 [pypi.qiskit-aqt-provider]

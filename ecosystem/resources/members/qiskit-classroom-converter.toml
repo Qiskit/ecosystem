@@ -3,9 +3,7 @@ url = "https://github.com/KMU-quantum-classroom/qiskit-classroom-converter"
 description = "Convert between circuits, matrices, and bra-ket strings."
 licence = "Apache License 2.0"
 labels = [ "Converter",]
-ibm_maintained = false
 website = "https://github.com/KMU-quantum-classroom"
-stars = 2
 group = "other"
 uuid = "bc3b8894-7e2b-4fa3-8cd2-550e58e4133b"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fbc3b8894)](https://qisk.it/e)"
@@ -15,6 +13,11 @@ url = "https://github.com/KMU-quantum-classroom/qiskit-classroom-converter"
 owner = "KMU-quantum-classroom"
 repo = "qiskit-classroom-converter"
 stars = 2
+homepage = "https://pypi.org/project/qiskit-classroom-converter/"
+license = "Apache License 2.0"
+description = "qiskit classroom's quantum circuit / bra-ket notation / matrix  converter package"
+total_dependent_repositories = 3
+total_dependent_packages = 1
 last_commit = 2025-10-23T06:09:01Z
 
 [pypi.qiskit-classroom-converter]

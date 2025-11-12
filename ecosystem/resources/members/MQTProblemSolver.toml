@@ -5,8 +5,6 @@ licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "Software development kit", "Paper implementation", "Applications",]
-ibm_maintained = false
-stars = 53
 group = "applications"
 reference_paper = "https://arxiv.org/pdf/2210.14928"
 uuid = "4262945e-f1af-441a-ad38-c803a5c6df0b"
@@ -17,6 +15,10 @@ url = "https://github.com/munich-quantum-toolkit/problemsolver"
 owner = "munich-quantum-toolkit"
 repo = "problemsolver"
 stars = 53
+license = "MIT License"
+description = "MQT ProblemSolver - A MQT Tool for Solving Problems Using Quantum Computing"
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-11-10T16:48:10Z
 
 [pypi."mqt.problemsolver"]

@@ -26,8 +26,8 @@ class Member(JsonSerializable):
     created_at: int | None = None
     updated_at: int | None = None
     website: str | None = None
-    stars: int | None = None
     group: str | None = None
+    category: str | None = None
     reference_paper: str | None = None
     documentation: str | None = None
     packages: list[str] | None = None
@@ -80,6 +80,8 @@ class Member(JsonSerializable):
             f"%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F{self.short_uuid})]"
             "(https://qisk.it/e)"
         )
+        if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
+            del base_dict["ibm_maintained"]
         return base_dict
 
     def __eq__(self, other: "Member"):

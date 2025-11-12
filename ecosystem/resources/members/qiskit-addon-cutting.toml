@@ -7,7 +7,6 @@ labels = [ "Circuit building tool",]
 ibm_maintained = true
 created_at = 1670427445.884067
 updated_at = 1758737407.8760931
-stars = 94
 group = "qiskit_addon"
 documentation = "https://qiskit.github.io/qiskit-addon-cutting/"
 uuid = "b8a6cb2a-e38f-46a5-b714-37ddb1e562e4"
@@ -18,6 +17,11 @@ url = "https://github.com/Qiskit/qiskit-addon-cutting"
 owner = "Qiskit"
 repo = "qiskit-addon-cutting"
 stars = 94
+homepage = "https://qiskit.github.io/qiskit-addon-cutting/"
+license = "Apache License 2.0"
+description = "Reduce width and depth of quantum circuits by cutting gates and wires."
+total_dependent_repositories = 10
+total_dependent_packages = 1
 last_commit = 2025-11-07T21:58:18Z
 
 [pypi.qiskit-addon-cutting]

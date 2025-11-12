@@ -5,9 +5,7 @@ licence = "MIT license"
 contact_info = "jgaralo@unex.es"
 affiliations = "University of Extremadura, Spain"
 labels = [ "Paper implementation", "Applications",]
-ibm_maintained = false
 website = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
-stars = 18
 group = "applications"
 reference_paper = "https://www.worldscientific.com/doi/10.1142/S0218194024410018"
 documentation = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler/blob/main/README.md"
@@ -19,6 +17,10 @@ url = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
 owner = "Qcraft-UEx"
 repo = "QCRAFT-AutoScheduler"
 stars = 18
+license = "Other"
+description = "QCRAFT AutoScheduler: a library that allows users to automatically schedule the execution of their own quantum circuits, improving efficiency and reducing execution times in quantum computing environments."
+total_dependent_repositories = 3
+total_dependent_packages = 0
 last_commit = 2025-10-28T08:42:08Z
 
 [pypi.autoscheduler]

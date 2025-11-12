@@ -3,10 +3,8 @@ url = "https://github.com/qiskit-community/qiskit-machine-learning"
 description = "Use flexible building blocks, such as quantum kernels and neural networks, to create quantum machine learning algorithms."
 licence = "Apache 2.0"
 labels = [ "Algorithms", "Machine learning", "Applications",]
-ibm_maintained = false
 created_at = 1636403010.012954
 updated_at = 1636403010.012956
-stars = 881
 group = "applications"
 documentation = "https://qiskit-community.github.io/qiskit-machine-learning/"
 uuid = "18986ebc-e138-4998-8c52-16359961af0a"
@@ -16,7 +14,12 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/qiskit-community/qiskit-machine-learning"
 owner = "qiskit-community"
 repo = "qiskit-machine-learning"
-stars = 881
+stars = 882
+homepage = "https://qiskit-community.github.io/qiskit-machine-learning/"
+license = "Apache License 2.0"
+description = "Quantum Machine Learning"
+total_dependent_repositories = 516
+total_dependent_packages = 21
 last_commit = 2025-11-10T17:37:14Z
 
 [pypi.qiskit-machine-learning]

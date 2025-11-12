@@ -5,8 +5,6 @@ licence = "MIT license"
 contact_info = "akshayuttarkar@gmail.com"
 affiliations = "R V College of Engineering MIT Vishwaprayag University"
 labels = [ "Applications",]
-ibm_maintained = false
-stars = 1
 group = "applications"
 documentation = "https://zenodo.org/records/17164557"
 uuid = "ab89baa7-39e9-482a-8157-a9bb834c5108"
@@ -17,6 +15,10 @@ url = "https://github.com/akshayuttarkarc/QuPepFold"
 owner = "akshayuttarkarc"
 repo = "QuPepFold"
 stars = 1
+license = "MIT License"
+description = "QupepFold is a small, research-oriented toolkit that turns short amino-acid sequences into quantum bitstring encodings, optimizes them with a CVaR-VQE routine, and exports 3D PDB files"
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-10-21T09:51:12Z
 
 [pypi.qupepfold]

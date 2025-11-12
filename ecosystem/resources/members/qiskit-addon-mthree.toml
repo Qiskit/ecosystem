@@ -7,7 +7,6 @@ labels = [ "Error mitigation",]
 ibm_maintained = true
 created_at = 1678827878.805163
 updated_at = 1678827878.805164
-stars = 48
 group = "qiskit_addon"
 documentation = "https://qiskit.github.io/qiskit-addon-mthree"
 uuid = "875968b2-f9e9-44a9-a5dc-4db9c4805021"
@@ -18,6 +17,11 @@ url = "https://github.com/Qiskit/qiskit-addon-mthree"
 owner = "Qiskit"
 repo = "qiskit-addon-mthree"
 stars = 48
+homepage = "https://qiskit.github.io/qiskit-addon-mthree/"
+license = "Apache License 2.0"
+description = "Matrix-free Measurement Mitigation"
+total_dependent_repositories = 115
+total_dependent_packages = 9
 last_commit = 2025-08-06T19:05:30Z
 
 [pypi.mthree]
