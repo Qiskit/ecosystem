@@ -160,11 +160,13 @@ class GitHubData(JsonSerializable):
     @property
     def total_dependent_repositories(self):
         """Sum of repository dependants"""
-        if self.dependants:
-            return sum(r.get("repositories", 0) for r in self.dependants.values())
+        if self.dependants():
+            return sum(r.get("repositories", 0) for r in self.dependants().values())
+        return None
 
     @property
     def total_dependent_packages(self):
         """Sum of package dependants"""
-        if self.dependants:
-            return sum(r.get("packages", 0) for r in self.dependants.values())
+        if self.dependants():
+            return sum(r.get("packages", 0) for r in self.dependants().values())
+        return None
