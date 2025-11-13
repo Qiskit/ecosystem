@@ -60,6 +60,25 @@ def parse_url(original_url: str):
     )
 
 
+def parse_github_front_page(html_text):
+    """
+    Gets data from the front page github.com/<owner>/<repo>
+    {
+    estimated_contributors = int
+    }
+    """
+    soup = BeautifulSoup(html_text, "html.parser")
+    found = soup.find("a", {"href": re.compile(r"graphs/contributors")})
+    if found is None:
+        return None
+    contributor_text = found.get_text()
+    for line in contributor_text.split("\n"):
+        candidate = line.strip()
+        if candidate.isdigit():
+            return {"estimated_contributors": int(candidate)}
+    return {}
+
+
 def parse_github_package_ids(html_text):
     """
     Find the package ids for github.com/<owner>/repo/network/

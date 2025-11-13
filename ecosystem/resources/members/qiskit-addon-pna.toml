@@ -5,7 +5,6 @@ licence = "Apache License 2.0"
 contact_info = "garrison@ibm.com"
 labels = []
 ibm_maintained = true
-stars = 4
 group = "qiskit_addon"
 documentation = "https://qiskit.github.io/qiskit-addon-pna/"
 uuid = "4cb3b182-7484-445f-897b-ded8e295d755"
@@ -15,8 +14,14 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/Qiskit/qiskit-addon-pna"
 owner = "Qiskit"
 repo = "qiskit-addon-pna"
-stars = 4
-last_commit = 2025-11-10T17:23:31Z
+stars = 5
+homepage = "https://qiskit.github.io/qiskit-addon-pna/"
+license = "Apache License 2.0"
+description = "Mitigate gate noise in expectation values by propagating the observable through the inverse noise channel."
+estimated_contributors = 9
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-12T18:17:50Z
 
 [pypi.qiskit-addon-pna]
 package_name = "qiskit-addon-pna"

@@ -17,6 +17,7 @@ repo = "dense-ev"
 stars = 12
 license = "Apache License 2.0"
 description = "Expectation value measurements in Qiskit using optimal dense grouping. Dense-ev provides an improvement of ~2^m over naive grouping and (3/2)^m over qubit-wise commuting groups. https://arxiv.org/abs/2305.11847"
+estimated_contributors = 2
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-05-30T22:10:50Z
