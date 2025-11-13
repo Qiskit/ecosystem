@@ -7,7 +7,12 @@ from jsonpath import findall
 
 from .serializable import JsonSerializable, parse_datetime
 from .error_handling import EcosystemError, logger
-from .request import request_json, parse_github_package_ids, parse_github_dependants
+from .request import (
+    request_json,
+    parse_github_package_ids,
+    parse_github_dependants,
+    parse_github_front_page,
+)
 
 
 class GitHubData(JsonSerializable):
@@ -24,6 +29,7 @@ class GitHubData(JsonSerializable):
         "homepage",
         "license",
         "description",
+        "estimated_contributors",
         "total_dependent_repositories",
         "total_dependent_packages",
         "private",
@@ -54,6 +60,7 @@ class GitHubData(JsonSerializable):
         self._json_repo = None
         self._json_package_ids = None
         self._json_dependants = None
+        self._json_front_page = None
 
     def to_dict(self) -> dict:
         dictionary = {}
@@ -98,8 +105,13 @@ class GitHubData(JsonSerializable):
         Fetches remote data from:
           - api.github.com/repos/{self.owner}/{self.repo}
           - github.com/{self.owner}/{self.repo}/network/dependents
+          - github.com/{self.owner}/{self.repo}
         """
         self._json_repo = request_json(f"api.github.com/repos/{self.owner}/{self.repo}")
+        self._json_front_page = request_json(
+            f"github.com/{self.owner}/{self.repo}/",
+            parser=parse_github_front_page,
+        )
         self._json_package_ids = request_json(
             f"github.com/{self.owner}/{self.repo}/network/dependents?dependent_type=REPOSITORY",
             parser=parse_github_package_ids,
@@ -156,6 +168,19 @@ class GitHubData(JsonSerializable):
         if refresh:
             self.update_json()
         return self._json_dependants
+
+    def front_page_data(self, refresh=False):
+        """get the front page data from (cached) JSON"""
+        if refresh:
+            self.update_json()
+        return self._json_front_page
+
+    @property
+    def estimated_contributors(self):
+        """..."""
+        if self.front_page_data():
+            return self.front_page_data()["estimated_contributors"]
+        return None
 
     @property
     def total_dependent_repositories(self):
