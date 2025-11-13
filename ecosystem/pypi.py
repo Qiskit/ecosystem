@@ -10,8 +10,10 @@ from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
 from packaging.specifiers import SpecifierSet
 from packaging.version import Version
+import pypistats
 
 from jsonpath import findall
+
 
 from .serializable import JsonSerializable, parse_datetime
 from .error_handling import EcosystemError, logger
@@ -32,6 +34,8 @@ class PyPIData(JsonSerializable):
         "compatible_with_qiskit_v2",
         "highest_supported_qiskit_release_date",
         "highest_supported_qiskit_version",
+        "last_month_downloads",
+        "last_180_days_downloads",
     ]
     aliases = {"version": "info.version", "url": "info.package_url"}
     json_types = {}
@@ -41,6 +45,7 @@ class PyPIData(JsonSerializable):
         self.package_name = canonicalize_name(package_name, validate=True)
         self._kwargs = kwargs or {}
         self._pypi_json = None
+        self._pypistats_json = None
         self._all_qiskit_versions = None
 
     def __repr__(self):
@@ -81,6 +86,7 @@ class PyPIData(JsonSerializable):
             self._pypi_json = request_json(f"pypi.org/pypi/{self.package_name}/json")
         except EcosystemError:
             pass
+        self._pypistats_json = self.request_pypistats()
 
     def __getattr__(self, item):
         if self._pypi_json:
@@ -222,3 +228,33 @@ class PyPIData(JsonSerializable):
             if qiskit_specifier.contains(qiskit_version):
                 return qiskit_version, version_data["upload_at"]
         return None
+
+    def request_pypistats(self):
+        """uses pypistats to get stats about python package"""
+        getters = ["recent", "overall", "python_minor", "system"]
+        ret = {}
+        for getter in getters:
+            raw_data = json.loads(
+                getattr(pypistats, getter)(self.package_name, format="json")
+            )
+            if isinstance(raw_data["data"], list):
+                ret[raw_data["type"]] = {
+                    i["category"]: i["downloads"] for i in raw_data["data"]
+                }
+            else:
+                ret[raw_data["type"]] = raw_data["data"]
+        return ret
+
+    @property
+    def last_month_downloads(self):
+        if self._pypistats_json:
+            return self._pypistats_json.get("recent_downloads", {}).get("last_month")
+        return self._kwargs.get("last_month_downloads")
+
+    @property
+    def last_180_days_downloads(self):
+        if self._pypistats_json:
+            return self._pypistats_json.get("overall_downloads", {}).get(
+                "without_mirrors"
+            )
+        return self._kwargs.get("last_180_days_downloads")
