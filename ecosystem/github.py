@@ -180,18 +180,18 @@ class GitHubData(JsonSerializable):
         """..."""
         if self.front_page_data():
             return self.front_page_data()["estimated_contributors"]
-        return None
+        return self._kwargs.get("estimated_contributors")
 
     @property
     def total_dependent_repositories(self):
         """Sum of repository dependants"""
         if self.dependants():
             return sum(r.get("repositories", 0) for r in self.dependants().values())
-        return None
+        return self._kwargs.get("total_dependent_repositories")
 
     @property
     def total_dependent_packages(self):
         """Sum of package dependants"""
         if self.dependants():
             return sum(r.get("packages", 0) for r in self.dependants().values())
-        return None
+        return self._kwargs.get("total_dependent_packages")
