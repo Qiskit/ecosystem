@@ -5,9 +5,7 @@ licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "Paper implementation", "Quantum information",]
-ibm_maintained = false
 website = "https://mqt.readthedocs.io"
-stars = 105
 group = "other"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qcec"
@@ -19,6 +17,11 @@ url = "https://github.com/munich-quantum-toolkit/qcec"
 owner = "munich-quantum-toolkit"
 repo = "qcec"
 stars = 105
+homepage = "https://mqt.readthedocs.io/projects/qcec"
+license = "MIT License"
+description = "MQT QCEC - A tool for Quantum Circuit Equivalence Checking"
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-11-10T16:43:11Z
 
 [pypi."mqt.qcec"]

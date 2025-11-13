@@ -6,7 +6,6 @@ contact_info = "oss@zurich.ibm.com"
 labels = [ "Circuit building tool", "Physics",]
 ibm_maintained = true
 created_at = 1758737407.8760931
-stars = 33
 group = "qiskit_addon"
 documentation = "https://qiskit.github.io/qiskit-addon-mpf/"
 uuid = "99eb5c40-00ee-439c-971e-e3e2a523c83a"
@@ -17,6 +16,11 @@ url = "https://github.com/Qiskit/qiskit-addon-mpf"
 owner = "Qiskit"
 repo = "qiskit-addon-mpf"
 stars = 33
+homepage = "https://qiskit.github.io/qiskit-addon-mpf/"
+license = "Apache License 2.0"
+description = "Reducing the Trotter error of Hamiltonian dynamics with multi-product formulas"
+total_dependent_repositories = 5
+total_dependent_packages = 0
 last_commit = 2025-11-01T02:08:51Z
 
 [pypi.qiskit-addon-mpf]

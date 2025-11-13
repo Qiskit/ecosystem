@@ -5,8 +5,6 @@ licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "Circuit building tool", "Converter", "Machine learning", "Software development kit", "Paper implementation",]
-ibm_maintained = false
-stars = 81
 group = "transpiler_plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
 documentation = "https://mqt.readthedocs.io/projects/predictor/en/latest/"
@@ -18,6 +16,10 @@ url = "https://github.com/munich-quantum-toolkit/predictor"
 owner = "munich-quantum-toolkit"
 repo = "predictor"
 stars = 81
+license = "MIT License"
+description = "MQT Predictor - A Tool for Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing"
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-11-10T09:04:05Z
 
 [pypi."mqt.predictor"]

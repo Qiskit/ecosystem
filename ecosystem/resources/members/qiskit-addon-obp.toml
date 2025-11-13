@@ -6,7 +6,6 @@ contact_info = "garrison@ibm.com"
 labels = [ "Algorithms", "Circuit building tool",]
 ibm_maintained = true
 created_at = 1758737407.8760931
-stars = 44
 group = "qiskit_addon"
 documentation = "https://qiskit.github.io/qiskit-addon-obp/"
 uuid = "e3e67d5e-66f8-4698-9e20-b97cfa8c5c48"
@@ -17,6 +16,11 @@ url = "https://github.com/Qiskit/qiskit-addon-obp"
 owner = "Qiskit"
 repo = "qiskit-addon-obp"
 stars = 44
+homepage = "https://qiskit.github.io/qiskit-addon-obp/"
+license = "Apache License 2.0"
+description = "Reducing depth of circuits with operator backpropagation"
+total_dependent_repositories = 11
+total_dependent_packages = 0
 last_commit = 2025-11-01T14:07:51Z
 
 [pypi.qiskit-addon-obp]

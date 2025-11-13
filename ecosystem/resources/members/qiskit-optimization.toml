@@ -3,10 +3,8 @@ url = "https://github.com/qiskit-community/qiskit-optimization"
 description = "Model optimization problems, convert them between different representations, and solve them with quantum algorithms."
 licence = "Apache 2.0"
 labels = [ "Algorithms", "Optimization", "Applications",]
-ibm_maintained = false
 created_at = 1636403009.538761
 updated_at = 1636403009.538763
-stars = 271
 group = "applications"
 documentation = "https://qiskit-community.github.io/qiskit-optimization/"
 uuid = "3b2ff33f-b4a3-49cd-ab32-563d282cc3bf"
@@ -17,6 +15,11 @@ url = "https://github.com/qiskit-community/qiskit-optimization"
 owner = "qiskit-community"
 repo = "qiskit-optimization"
 stars = 271
+homepage = "https://qiskit-community.github.io/qiskit-optimization/"
+license = "Apache License 2.0"
+description = "Quantum Optimization"
+total_dependent_repositories = 397
+total_dependent_packages = 36
 last_commit = 2025-10-27T09:52:00Z
 
 [pypi.qiskit-optimization]

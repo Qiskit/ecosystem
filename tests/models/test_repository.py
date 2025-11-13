@@ -19,14 +19,8 @@ class TestRepository(unittest.TestCase):
             description="Mock description for repo.",
             licence="Apache 2.0",
             labels=["mock", "tests"],
-            stars=42,
             website="https://example.org",
         )
         repo_dict = main_repo.to_dict()
         recovered = Member.from_dict(repo_dict)
         self.assertEqual(main_repo, recovered)
-        # check configs
-        self.assertEqual(
-            main_repo.stars,
-            recovered.stars,
-        )

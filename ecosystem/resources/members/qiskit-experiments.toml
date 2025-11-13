@@ -6,7 +6,6 @@ labels = [ "Algorithms",]
 ibm_maintained = true
 created_at = 1661785302.25299
 updated_at = 1661785302.25299
-stars = 184
 group = "other"
 documentation = "https://qiskit-community.github.io/qiskit-experiments/"
 uuid = "6e94a8b7-65a7-4fee-b71e-25191203fa49"
@@ -17,6 +16,11 @@ url = "https://github.com/qiskit-community/qiskit-experiments"
 owner = "qiskit-community"
 repo = "qiskit-experiments"
 stars = 184
+homepage = "https://qiskit-community.github.io/qiskit-experiments/"
+license = "Apache License 2.0"
+description = "Qiskit Experiments"
+total_dependent_repositories = 173
+total_dependent_packages = 12
 last_commit = 2025-11-05T18:38:39Z
 
 [pypi.qiskit-experiments]

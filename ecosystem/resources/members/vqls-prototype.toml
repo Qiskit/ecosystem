@@ -5,10 +5,8 @@ licence = "Apache License 2.0"
 contact_info = "nicolas.gm.renaud@gmail.com"
 affiliations = "Netherlands eScience Center @ Quantum Application Lab, Amsterdam NL"
 labels = [ "Algorithms", "Optimization", "Applications",]
-ibm_maintained = false
 created_at = 1683906067.55753
 updated_at = 1683906067.557535
-stars = 19
 group = "applications"
 uuid = "05140a48-184b-491e-ac3c-d613ca05b3c8"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F05140a48)](https://qisk.it/e)"
@@ -18,6 +16,10 @@ url = "https://github.com/QuantumApplicationLab/vqls-prototype"
 owner = "QuantumApplicationLab"
 repo = "vqls-prototype"
 stars = 19
+license = "Apache License 2.0"
+description = "A Variational Quantum Linear Solver Prototype for Qiskit"
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2024-11-27T16:59:01Z
 
 [pypi.vqls-prototype]

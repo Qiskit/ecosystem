@@ -65,7 +65,6 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "contact_info": "author@banana-compiler.org",
-            "ibm_maintained": False,
             "labels": ["error mitigation, quantum information, optimization"],
             "website": "https://banana-compiler.org",
             "documentation": "https://banana-compiler.org/documentation",
@@ -86,40 +85,6 @@ class TestCli(TestCase):
         )
         self.assertTrue(badge_md.endswith("(https://qisk.it/e)"))
         self.assertEqual(expected, retrieved)
-
-        # # Issue 2
-        # captured_output = io.StringIO()
-        # with redirect_stdout(captured_output):
-        #     CliCI.add_member_from_issue(self.issue_body_2, resources_dir=self.path)
-        #
-        # output_value = captured_output.getvalue().split("\n")
-        # self.assertEqual(output_value[0], "SUBMISSION_NAME=My awesome project")
-        #
-        # retrieved_repos = DAO(self.path).get_all()
-        # expected = {
-        #     "name": "My awesome project",
-        #     "url": "http://github.com/awesome/awesome",
-        #     "description": "An awesome repo for awesome project",
-        #     "contact_info": "toto@gege.com",
-        #     "licence": "Apache License 2.0",
-        #     "affiliations": "Awesome Inc.",
-        #     "ibm_maintained": False,
-        #     "labels": [],
-        #     "github": {"owner": "awesome", "repo": "awesome"},
-        # }
-        # self.assertEqual(len(retrieved_repos), 1)
-        # retrieved = list(retrieved_repos)[0].to_dict()
-        # self.assertIsInstance(retrieved.pop("uuid"), str)
-        # badge_md = retrieved.pop("badge")
-        # self.assertIsInstance(badge_md, str)
-        # self.assertTrue(
-        #     badge_md.startswith(
-        #         "[![Qiskit Ecosystem](https://img.shields.io/"
-        #         "endpoint?style=flat&url=https"
-        #     )
-        # )
-        # self.assertTrue(badge_md.endswith("(https://qisk.it/e)"))
-        # self.assertEqual(retrieved, expected)
 
     def test_update_badges(self):
         """Tests creating badges."""

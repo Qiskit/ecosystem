@@ -6,7 +6,6 @@ labels = [ "Circuit simulator",]
 ibm_maintained = true
 created_at = 1636403010.377695
 updated_at = 1636403010.377697
-stars = 612
 group = "other"
 documentation = "https://qiskit.github.io/qiskit-aer/"
 uuid = "474599a7-228b-446f-ae57-636fdbe8c1c6"
@@ -17,6 +16,11 @@ url = "https://github.com/Qiskit/qiskit-aer"
 owner = "Qiskit"
 repo = "qiskit-aer"
 stars = 612
+homepage = "https://qiskit.github.io/qiskit-aer/"
+license = "Apache License 2.0"
+description = "Aer is a high performance simulator for quantum circuits that includes noise models"
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-09-28T05:27:37Z
 
 [pypi.qiskit-aer]

@@ -5,8 +5,6 @@ licence = "BSD 3-Clause \"New\" or \"Revised\" license"
 contact_info = "gcattan@hotmail.fr"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
 labels = [ "Machine learning", "Applications",]
-ibm_maintained = false
-stars = 30
 group = "applications"
 documentation = "https://pyriemann-qiskit.readthedocs.io/"
 uuid = "fb1907a7-9af8-4c23-be0c-48841a36f2df"
@@ -17,6 +15,11 @@ url = "https://github.com/pyRiemann/pyRiemann-qiskit"
 owner = "pyRiemann"
 repo = "pyRiemann-qiskit"
 stars = 30
+homepage = "https://pyriemann-qiskit.readthedocs.io/"
+license = "BSD 3-Clause \"New\" or \"Revised\" License"
+description = "A library for machine learning and quantum programming based on pyRiemann and Qiskit projects"
+total_dependent_repositories = 3
+total_dependent_packages = 0
 last_commit = 2025-11-03T15:17:36Z
 
 [pypi.pyriemann-qiskit]

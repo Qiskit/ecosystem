@@ -3,10 +3,8 @@ url = "https://github.com/QuTech-Delft/quantuminspire"
 description = "This platform allows you to execute quantum algorithms using the cQASM language."
 licence = "Apache 2.0"
 labels = [ "Algorithms", "Software development kit",]
-ibm_maintained = false
 created_at = 1678827878.401835
 updated_at = 1678827878.401836
-stars = 74
 group = "other"
 uuid = "fb1cd889-961a-4029-bb8f-229e4c4e12a4"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Ffb1cd889)](https://qisk.it/e)"
@@ -16,7 +14,11 @@ url = "https://github.com/QuTech-Delft/quantuminspire"
 owner = "QuTech-Delft"
 repo = "quantuminspire"
 stars = 74
-last_commit = 2025-11-07T20:16:37Z
+license = "Apache License 2.0"
+description = "Quantum Inspire SDK"
+total_dependent_repositories = 26
+total_dependent_packages = 3
+last_commit = 2025-11-10T20:20:58Z
 
 [pypi.quantuminspire]
 package_name = "quantuminspire"

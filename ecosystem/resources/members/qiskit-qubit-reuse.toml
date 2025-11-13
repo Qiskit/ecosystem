@@ -4,8 +4,6 @@ description = "A Qiskit transpiler stage plugin that reuses qubits through mid-c
 licence = "Apache License 2.0"
 affiliations = "IBM"
 labels = [ "Paper implementation", "Transpiler plugin",]
-ibm_maintained = false
-stars = 26
 group = "transpiler_plugin"
 uuid = "c9369922-7e0d-4b77-b00a-329472b57a34"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fc9369922)](https://qisk.it/e)"
@@ -15,6 +13,10 @@ url = "https://github.com/qiskit-community/qiskit-qubit-reuse"
 owner = "qiskit-community"
 repo = "qiskit-qubit-reuse"
 stars = 26
+license = "Apache License 2.0"
+description = "A Qiskit transpiler stage plugin to enable qubit reuse via mid-circuit measurement and reset."
+total_dependent_repositories = 2
+total_dependent_packages = 0
 last_commit = 2025-07-03T17:08:32Z
 
 [pypi.qiskit-qubit-reuse]

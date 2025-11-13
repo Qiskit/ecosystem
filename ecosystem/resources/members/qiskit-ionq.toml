@@ -4,10 +4,8 @@ description = "This project contains a provider that allows access to IonQ ion t
 licence = "Apache 2.0"
 contact_info = ""
 labels = [ "Compute provider", "Cloud service",]
-ibm_maintained = false
 created_at = 1670427446.011674
 updated_at = 1670427446.011675
-stars = 51
 group = "provider"
 uuid = "9dec814e-feb8-49c2-818a-f6a2503d38c5"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F9dec814e)](https://qisk.it/e)"
@@ -17,6 +15,11 @@ url = "https://github.com/qiskit-community/qiskit-ionq"
 owner = "qiskit-community"
 repo = "qiskit-ionq"
 stars = 51
+homepage = "https://qiskit-community.github.io/qiskit-ionq/"
+license = "Apache License 2.0"
+description = "Qiskit provider for IonQ backends"
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-10-27T16:08:20Z
 
 [pypi.qiskit-ionq]

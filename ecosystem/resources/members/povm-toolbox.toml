@@ -5,8 +5,6 @@ licence = "Apache License 2.0"
 contact_info = "oss@zurich.ibm.com"
 affiliations = "_No response_"
 labels = [ "Quantum information", "Algorithms", "Circuit building tool",]
-ibm_maintained = false
-stars = 38
 group = "other"
 documentation = "https://qiskit-community.github.io/povm-toolbox/"
 uuid = "1fb3d426-e458-4c7a-be9e-e31a758bb872"
@@ -17,6 +15,11 @@ url = "https://github.com/qiskit-community/povm-toolbox"
 owner = "qiskit-community"
 repo = "povm-toolbox"
 stars = 38
+homepage = "https://qiskit-community.github.io/povm-toolbox/"
+license = "Apache License 2.0"
+description = "A toolbox for the implementation of positive operator-valued measures (POVMs)."
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2025-11-05T11:02:15Z
 
 [pypi.povm-toolbox]
