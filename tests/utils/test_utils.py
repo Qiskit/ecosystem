@@ -64,11 +64,11 @@ class TestUtils(TestCase):
     #             msg="\nA field exists in the issue template but not in the Submission class.",
     #         )
 
-    def test_decription_lengths(self):
+    def test_description_lengths(self):
         """Make sure IDs in the issue template match attributes of the Submission model."""
         dao = DAO("ecosystem/resources")
         for repo in dao.get_all():
-            if len(repo.description) > 135:
+            if repo.description and len(repo.description) > 135:
                 raise AssertionError(
                     f'Description for "{repo.name}" is too long!\n'
                     f"Rephrase to under 135 characters (currently {len(repo.description)})"

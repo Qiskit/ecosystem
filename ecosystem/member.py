@@ -104,7 +104,8 @@ class Member(JsonSerializable):
         It is used to create the TOML file name
         """
         # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
-        return self.url.strip("/").split("/")[-1]
+        repo_dir = self.url.strip("/").split("/")[-1]
+        return repo_dir.lower().replace(".", "_")
 
     def update_github(self):
         """
