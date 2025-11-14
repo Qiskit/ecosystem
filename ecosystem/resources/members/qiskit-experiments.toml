@@ -19,13 +19,11 @@ stars = 184
 homepage = "https://qiskit-community.github.io/qiskit-experiments/"
 license = "Apache License 2.0"
 description = "Qiskit Experiments"
-total_dependent_repositories = 173
-total_dependent_packages = 12
 last_commit = 2025-11-05T18:38:39Z
 
 [pypi.qiskit-experiments]
 package_name = "qiskit-experiments"
-version = "0.12.0"
+version = "0.13.0"
 url = "https://pypi.org/project/qiskit-experiments/"
 requires_qiskit = ">=1.3"
 compatible_with_qiskit_v1 = true

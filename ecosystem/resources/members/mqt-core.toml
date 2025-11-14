@@ -20,13 +20,11 @@ stars = 99
 homepage = "https://mqt.readthedocs.io/projects/core"
 license = "MIT License"
 description = "MQT Core - The Backbone of the Munich Quantum Toolkit"
-total_dependent_repositories = 42
-total_dependent_packages = 0
-last_commit = 2025-11-11T10:45:48Z
+last_commit = 2025-11-13T17:15:27Z
 
 [pypi."mqt.core"]
 package_name = "mqt-core"
-version = "3.3.1"
+version = "3.3.3"
 url = "https://pypi.org/project/mqt-core/"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
