@@ -12,7 +12,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/qiskit-community/qiskit-braket-provider"
 owner = "qiskit-community"
 repo = "qiskit-braket-provider"
-stars = 69
+stars = 70
 homepage = "https://qiskit-community.github.io/qiskit-braket-provider/"
 license = "Apache License 2.0"
 description = "Qiskit-Braket provider to execute Qiskit programs on quantum computing hardware devices through Amazon Braket."
@@ -30,3 +30,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 7989
+last_180_days_downloads = 40934

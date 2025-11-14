@@ -14,7 +14,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/Qiskit/qiskit-addon-opt-mapper"
 owner = "Qiskit"
 repo = "qiskit-addon-opt-mapper"
-stars = 10
+stars = 11
 homepage = "https://qiskit.github.io/qiskit-addon-opt-mapper/"
 license = "Apache License 2.0"
 description = "Mapping combinatorial optimization problems to quantum computers"
@@ -32,3 +32,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 560
+last_180_days_downloads = 560

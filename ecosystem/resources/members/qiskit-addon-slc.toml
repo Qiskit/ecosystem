@@ -18,10 +18,10 @@ stars = 1
 homepage = "https://qiskit.github.io/qiskit-addon-slc/"
 license = "Apache License 2.0"
 description = "Reducing PEC sampling overhead with shaded lightcones"
-estimated_contributors = 7
+estimated_contributors = 8
 total_dependent_repositories = 1
 total_dependent_packages = 0
-last_commit = 2025-11-06T16:58:06Z
+last_commit = 2025-11-13T19:48:12Z
 
 [pypi.qiskit-addon-slc]
 package_name = "qiskit-addon-slc"
@@ -32,3 +32,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 173
+last_180_days_downloads = 173

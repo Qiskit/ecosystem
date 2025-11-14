@@ -19,7 +19,7 @@ license = "MIT License"
 description = "MQT ProblemSolver - A MQT Tool for Solving Problems Using Quantum Computing"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2025-11-10T16:48:10Z
+last_commit = 2025-11-13T01:22:42Z
 
 [pypi."mqt.problemsolver"]
 package_name = "mqt-problemsolver"
@@ -30,3 +30,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2023-02-24T09:50:56Z
 highest_supported_qiskit_version = "0.41.1"
+last_month_downloads = 15
+last_180_days_downloads = 168

@@ -15,7 +15,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/Qiskit/qiskit-addon-sqd"
 owner = "Qiskit"
 repo = "qiskit-addon-sqd"
-stars = 79
+stars = 80
 homepage = "https://qiskit.github.io/qiskit-addon-sqd/"
 license = "Apache License 2.0"
 description = "Sample-based Quantum Diagonalization: Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
@@ -33,3 +33,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 4239
+last_180_days_downloads = 26361

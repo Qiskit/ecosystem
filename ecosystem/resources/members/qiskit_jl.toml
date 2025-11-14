@@ -1,0 +1,21 @@
+name = "Qiskit.jl"
+url = "https://github.com/Qiskit/Qiskit.jl/"
+contact_info = "garrison@ibm.com"
+labels = [ "Converter",]
+ibm_maintained = true
+group = "language bindings"
+documentation = "https://qiskit.github.io/Qiskit.jl/"
+uuid = "50b8eb33-872d-44a4-b8f8-5fafa7712393"
+badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F50b8eb33)](https://qisk.it/e)"
+
+[github]
+url = "https://github.com/Qiskit/Qiskit.jl"
+owner = "Qiskit"
+repo = "Qiskit.jl"
+stars = 5
+license = "Apache License 2.0"
+description = "Julia binding for Qiskit"
+estimated_contributors = 3
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-13T21:30:48Z

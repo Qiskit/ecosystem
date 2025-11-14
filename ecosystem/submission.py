@@ -36,7 +36,8 @@ class Submission:
         It is used to create the TOML file name
         """
         # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
-        return self.source_url.geturl().strip("/").split("/")[-1]
+        repo_dir = self.source_url.geturl().strip("/").split("/")[-1]
+        return repo_dir.lower().replace(".", "_")
 
     @classmethod
     def from_formatted_issue(cls, issue_formatted):
