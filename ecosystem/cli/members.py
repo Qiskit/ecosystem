@@ -153,15 +153,13 @@ class CliMembers:
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",
-            "created_at": "created_at",
-            "updated_at": "updated_at",
-            "group": "category",
-            "category": "category",
+            "group": "group",
+            "category": "group",
             "stars": "github.stars",
             "documentation": "documentation",
             "website": "website",
             "reference_paper": "reference_paper",
-            "ibm_maintained": "ibm_maintained",  # if _prefixed, then it adding it is forced
+            "ibm_maintained": "ibm_maintained",
             "badge": "badge",
             "websites": {
                 "home": "website",
@@ -202,9 +200,7 @@ class CliMembers:
                 },
             },
             "members": [
-                CliMembers.filter_member_data(
-                    member.to_dict(), member_data_to_export, forced_addition=True
-                )
+                CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
                 for member in self.dao.get_all()
             ],
             "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
