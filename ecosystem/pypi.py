@@ -247,12 +247,14 @@ class PyPIData(JsonSerializable):
 
     @property
     def last_month_downloads(self):
+        """Last month downloads say something about current popularity"""
         if self._pypistats_json:
             return self._pypistats_json.get("recent_downloads", {}).get("last_month")
         return self._kwargs.get("last_month_downloads")
 
     @property
     def last_180_days_downloads(self):
+        """Last 180-day downloads say something about current popularity"""
         if self._pypistats_json:
             return self._pypistats_json.get("overall_downloads", {}).get(
                 "without_mirrors"
