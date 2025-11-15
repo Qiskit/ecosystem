@@ -48,6 +48,7 @@ class GitHubData(JsonSerializable):
         "private": lambda x: x or None,
         "archived": lambda x: x or None,
         "disabled": lambda x: x or None,
+        "description": lambda x: x[:131] + "..." if len(str(x)) > 135 else x,
         "pushed_at": parse_datetime,
     }
     reduce = {}
