@@ -1,6 +1,7 @@
 """CliMembers class for controlling all CLI functions."""
 
 import json
+import tomllib
 import os
 from typing import Optional, Tuple
 from pathlib import Path
@@ -97,7 +98,7 @@ class CliMembers:
             self.dao.update(project.name_id, pypi=project.pypi)
 
     @staticmethod
-    def filter_member_data(
+    def filter_data(
         member_dict, data_map, forced_addition=False
     ):  # pylint: disable=too-many-branches
         """takes a member dictionary and a data map,
@@ -107,7 +108,7 @@ class CliMembers:
         filtered_data = {}
         for key, alias in data_map.items():
             if isinstance(alias, dict):
-                data = CliMembers.filter_member_data(member_dict, alias)
+                data = CliMembers.filter_data(member_dict, alias)
                 if data:
                     filtered_data[key] = data
             elif isinstance(alias, tuple):
@@ -121,7 +122,7 @@ class CliMembers:
             elif isinstance(alias, list):
                 # a list of alias in priority in case they do not exist
                 for candidate_alias in alias:
-                    candidate_value = CliMembers.filter_member_data(
+                    candidate_value = CliMembers.filter_data(
                         member_dict, {key: candidate_alias}
                     )
                     if len(candidate_value) == 1:
@@ -183,6 +184,24 @@ class CliMembers:
                 ],
             ),
         }
+        # {"Types": [{"name": ..., "description": ...}],
+        #  "Subjects": [{"name": ..., "description": ...}]}
+        labels_data_to_export = {
+            "Types": (
+                "categories.*",
+                [
+                    "name",
+                    "description",
+                ],
+            ),
+            "Subjects": (
+                "labels.*",
+                [
+                    "name",
+                    "description",
+                ],
+            ),
+        }
         data = {
             "meta": {
                 "version": 1,
@@ -200,11 +219,20 @@ class CliMembers:
                 },
             },
             "members": [
-                CliMembers.filter_member_data(member.to_dict(), member_data_to_export)
+                CliMembers.filter_data(member.to_dict(), member_data_to_export)
                 for member in self.dao.get_all()
             ],
-            "labels": json.loads(Path(self.resources_dir, "labels.json").read_text()),
+            "labels": CliMembers.load_labels_toml(
+                Path(self.resources_dir, "labels.toml"), labels_data_to_export
+            ),
         }
         Path(output_file).write_text(
             json.dumps(data, default=str, separators=(",", ":"), indent=4)
         )
+
+    @staticmethod
+    def load_labels_toml(filename, label_data_to_export):
+        """loads labels.toml and returns a json with the mapping in label_data_to_export"""
+        with open(filename, "rb") as f:
+            data = tomllib.load(f)
+        return CliMembers.filter_data(data, label_data_to_export)
