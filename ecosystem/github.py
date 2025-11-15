@@ -206,6 +206,7 @@ class GitHubData(JsonSerializable):
 
     @property
     def last_activity(self):
+        """The creation of the last event"""
         if self._json_events:
             return parse_datetime(self._json_events[0]["created_at"])
         return self._kwargs.get("last_activity")
