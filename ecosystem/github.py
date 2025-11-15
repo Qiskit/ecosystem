@@ -36,6 +36,7 @@ class GitHubData(JsonSerializable):
         "archived",
         "disabled",
         "last_commit",
+        "last_activity",
     ]
     aliases = {
         "stars": "stargazers_count",
@@ -59,6 +60,7 @@ class GitHubData(JsonSerializable):
         self.tree = tree
         self._kwargs = kwargs or {}
         self._json_repo = None
+        self._json_events = None
         self._json_package_ids = None
         self._json_dependants = None
         self._json_front_page = None
@@ -107,8 +109,13 @@ class GitHubData(JsonSerializable):
           - api.github.com/repos/{self.owner}/{self.repo}
           - github.com/{self.owner}/{self.repo}/network/dependents
           - github.com/{self.owner}/{self.repo}
+          - api.github.com/networks/{self.owner}/{self.repo}/events
+
         """
         self._json_repo = request_json(f"api.github.com/repos/{self.owner}/{self.repo}")
+        self._json_events = request_json(
+            f"api.github.com/networks/{self.owner}/{self.repo}/events"
+        )
         self._json_front_page = request_json(
             f"github.com/{self.owner}/{self.repo}/",
             parser=parse_github_front_page,
@@ -196,3 +203,10 @@ class GitHubData(JsonSerializable):
         if self.dependants():
             return sum(r.get("packages", 0) for r in self.dependants().values())
         return self._kwargs.get("total_dependent_packages")
+
+    @property
+    def last_activity(self):
+        """The creation of the last event"""
+        if self._json_events:
+            return parse_datetime(self._json_events[0]["created_at"])
+        return self._kwargs.get("last_activity")
