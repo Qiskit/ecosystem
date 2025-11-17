@@ -1,25 +1,16 @@
 """Julia section."""
 
-from functools import reduce, cached_property
+from functools import reduce
 from urllib.parse import ParseResult
 from datetime import datetime
 
 import tomllib
-from re import match
-from os import path
-import json
-
-from packaging.requirements import Requirement
-from packaging.utils import canonicalize_name
-from packaging.specifiers import SpecifierSet
-from packaging.version import Version
-import pypistats
 
 from jsonpath import findall
 
 
-from .serializable import JsonSerializable, parse_datetime
-from .error_handling import EcosystemError, logger
+from .serializable import JsonSerializable
+from .error_handling import EcosystemError
 from .request import request_json, parse_url, parse_juliapackages
 
 
@@ -57,10 +48,13 @@ class JuliaData(JsonSerializable):
         self.package_name = package_name
         self.registry = registry or "General"
         self._kwargs = kwargs or {}
+
         self.juliapackages_url = juliapackages_url
-        self._juliahub_json = None
         self.juliahub_url = None
         self.general_registry_url = None
+
+        self._juliahub_json = None
+        self._juliapackages_json = None
 
     def __repr__(self):
         return str(self.to_dict())
@@ -98,10 +92,9 @@ class JuliaData(JsonSerializable):
         elif "juliapackages.com" in julia_project_url.hostname:
             if len(url_path_parts) == 2 and url_path_parts[0] == "p":
                 return JuliaData(juliapackages_url=julia_project_url.geturl())
-            else:
-                raise EcosystemError(
-                    f"invalid juliapackages.com url: {julia_project_url.geturl()}"
-                )
+            raise EcosystemError(
+                f"invalid juliapackages.com url: {julia_project_url.geturl()}"
+            )
         if package_name is None:
             return None
         return JuliaData(package_name=package_name, registry=registry)
@@ -170,7 +163,8 @@ class JuliaData(JsonSerializable):
         """updates general_registry_url if exists and returns 2xx. Otherwise, nothing"""
         if self.registry == "General":
             registry = request_json(
-                "https://raw.githubusercontent.com/JuliaRegistries/General/refs/heads/master/Registry.toml",
+                "https://raw.githubusercontent.com/JuliaRegistries/"
+                "General/refs/heads/master/Registry.toml",
                 parser=tomllib.loads,
             )
         else:
