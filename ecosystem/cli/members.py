@@ -171,6 +171,10 @@ class CliMembers:
                 "url": "github.url",
                 "stars": "github.stars",
                 "last_commit": "github.last_commit",
+                "last_activity": "github.last_activity",
+                "total_dependent_packages": "github.total_dependent_packages",
+                "total_dependent_repositories": "github.total_dependent_repositories",
+                "estimated_contributors": "github.estimated_contributors",
                 "archived": "github.archived",
             },
             "python_packages": (
@@ -181,6 +185,9 @@ class CliMembers:
                     "url",
                     "compatible_with_qiskit_v1",
                     "compatible_with_qiskit_v2",
+                    "last_month_downloads",
+                    "highest_supported_qiskit_version",
+                    "highest_supported_qiskit_release_date",
                 ],
             ),
         }
