@@ -144,3 +144,29 @@ def parse_github_dependants(html_text):
         ret["packages"] = pkg_stat
 
     return ret
+
+
+def parse_juliapackages(html_text):
+    """
+    Gets data from the front page https://juliapackages.com/p/<package>/
+    {
+    package_name = str
+    repo_url = str
+    }
+    """
+    ret = {}
+    soup = BeautifulSoup(html_text, "html.parser")
+    found = soup.find("h2")
+    if found is not None:
+        package_name = found.get_text().strip()
+        if package_name.endswith(".jl"):
+            package_name = package_name[:-3]
+        ret["package_name"] = package_name
+
+    found = soup.find("span", {"class": "shadow-sm rounded-md"}).find(
+        "a", {"href": re.compile(r"github.com")}
+    )
+    if found is not None:
+        ret["repo_url"] = found["href"].strip()
+
+    return ret

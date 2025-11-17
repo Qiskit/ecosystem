@@ -8,7 +8,6 @@ labels = [ "Algorithms", "Optimization", "Applications",]
 created_at = 1673642669.650459
 updated_at = 1673642669.650464
 group = "applications"
-packages = [ "https://juliapackages.com/p/qiskitopt",]
 uuid = "fd796b7d-2775-4ece-89f0-778066552014"
 badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Ffd796b7d)](https://qisk.it/e)"
 
@@ -24,3 +23,14 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-06-19T13:04:10Z
 last_activity = 2025-11-06T15:40:10Z
+
+[julia]
+package_name = "QiskitOpt"
+registry = "General"
+version = "0.3.0"
+description = "JuMP wrapper for IBMQ Optimization Algorithms (ft QUBODrivers.jl)"
+license = "MIT"
+owner = "psrenergy"
+release_date = 2024-05-01
+juliahub_url = "https://juliahub.com/ui/Packages/General/QiskitOpt"
+general_registry_url = "https://github.com/JuliaRegistries/General/tree/master/Q/QiskitOpt"

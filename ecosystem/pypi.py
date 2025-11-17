@@ -66,7 +66,7 @@ class PyPIData(JsonSerializable):
         'https://pypi.org/project/<package_name>/'.
         Returns None if the given URL is not a PyPI url
         """
-        if "pypi.org" not in pypi_project_url:
+        if "pypi.org" not in pypi_project_url.hostname:
             # pypi_project_url is not a PyPI URL
             return None
 

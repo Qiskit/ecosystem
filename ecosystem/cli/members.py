@@ -97,6 +97,12 @@ class CliMembers:
             project.update_pypi()
             self.dao.update(project.name_id, pypi=project.pypi)
 
+    def update_julia(self):
+        """Updates Julia data."""
+        for project in self.dao.get_all():
+            project.update_julia()
+            self.dao.update(project.name_id, julia=project.julia)
+
     @staticmethod
     def filter_data(
         member_dict, data_map, forced_addition=False
