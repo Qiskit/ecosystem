@@ -7,7 +7,9 @@ import json
 import requests
 import requests_cache
 from bs4 import BeautifulSoup
-
+import csv
+import gzip
+from io import BytesIO
 
 from .error_handling import EcosystemError
 
@@ -17,7 +19,9 @@ requests_cache.install_cache(
 )
 
 
-def request_json(url: str, headers: dict[str, str] = None, parser=None):
+def request_json(
+    url: str, headers: dict[str, str] = None, parser=None, content_handler=None
+):
     """Requests the JSON in <url> with <headers>"""
     if parser is None:
         parser = json.loads
@@ -42,7 +46,11 @@ def request_json(url: str, headers: dict[str, str] = None, parser=None):
         raise EcosystemError(
             f"Bad response {url.geturl()}: {response.reason} ({response.status_code})"
         )
-    return parser(response.text)
+    if content_handler:
+        content = content_handler(response.content)
+    else:
+        content = response.text
+    return parser(content)
 
 
 def parse_url(original_url: str):
@@ -170,3 +178,26 @@ def parse_juliapackages(html_text):
         ret["repo_url"] = found["href"].strip()
 
     return ret
+
+
+# def request_julia_stats(pkg_uuid):
+#     url = "https://julialang-logs.s3.amazonaws.com/public_outputs/current/package_requests.csv.gz"
+#     r = requests.get(url)
+#
+#     i = BytesIO(r.content)
+#     with gzip.open(i, "rt") as gz_file:
+#         csv_reader = csv.DictReader(gz_file)
+#         for row in csv_reader:
+#             if row["package_uuid"] == pkg_uuid:
+#                 return row
+
+
+def find_first_in_csv_gz(subdict_to_find):
+    def parse_csv_gz(file_like):
+        with gzip.open(file_like, "rt") as gz_file:
+            csv_reader = csv.DictReader(gz_file)
+            for row in csv_reader:
+                if all(row[k] == v for k, v in subdict_to_find.items() if k in row):
+                    return row
+
+    return parse_csv_gz

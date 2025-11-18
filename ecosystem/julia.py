@@ -3,6 +3,8 @@
 from functools import reduce
 from urllib.parse import ParseResult
 from datetime import datetime
+from io import BytesIO
+
 
 import tomllib
 
@@ -11,7 +13,7 @@ from jsonpath import findall
 
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError
-from .request import request_json, parse_url, parse_juliapackages
+from .request import request_json, parse_url, parse_juliapackages, find_first_in_csv_gz
 
 
 class JuliaData(JsonSerializable):
@@ -23,13 +25,14 @@ class JuliaData(JsonSerializable):
         "package_name",
         "registry",
         "version",
-        "description",
         "license",
         "owner",
         "homepage",
         "release_date",
         "juliahub_url",
         "general_registry_url",
+        "uuid",
+        "estimated_uniq_users",
     ]
     aliases = {}
     json_types = {
@@ -55,6 +58,7 @@ class JuliaData(JsonSerializable):
 
         self._juliahub_json = None
         self._juliapackages_json = None
+        self._package_requests_json = None
 
     def __repr__(self):
         return str(self.to_dict())
@@ -101,7 +105,9 @@ class JuliaData(JsonSerializable):
 
     def update_json(self):
         """
-        Fetches remote json data from juliahub.com/docs/<registry>/<package_name>/stable/pkg.json
+        Fetches remote json data from:
+         - juliahub.com/docs/<registry>/<package_name>/stable/pkg.json
+         - juliapackages.com/p/<package_name>
         """
         if self.package_name is None and self.juliapackages_url is not None:
             self._juliapackages_json = request_json(
@@ -116,6 +122,16 @@ class JuliaData(JsonSerializable):
             self.get_juliahub_url()
         except EcosystemError:
             pass
+        if self.uuid:
+            # see https://discourse.julialang.org/t/announcing-package-download-stats/69073
+            url = "https://julialang-logs.s3.amazonaws.com/public_outputs/current/package_requests.csv.gz"
+            self._package_requests_json = request_json(
+                url,
+                parser=find_first_in_csv_gz(
+                    {"package_uuid": self.uuid, "status": "200", "client_type": "user"}
+                ),
+                content_handler=BytesIO,
+            )
         self.get_general_registry_url()
 
     def __getattr__(self, item):
@@ -182,3 +198,9 @@ class JuliaData(JsonSerializable):
                 self.general_registry_url = parse_url(url).geturl()
         except EcosystemError:
             self.general_registry_url = None
+
+    @property
+    def estimated_uniq_users(self):
+        if self._package_requests_json is None:
+            return self._kwargs.get("estimated_uniq_users")
+        return self._package_requests_json.get("request_addrs")

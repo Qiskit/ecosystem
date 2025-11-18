@@ -65,6 +65,8 @@ class Member(JsonSerializable):
         """
         submission_fields = [f.name for f in fields(Member)]
         filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
+        if "julia" in filtered_dict:
+            filtered_dict["julia"] = JuliaData.from_dict(filtered_dict["julia"])
         if "github" in filtered_dict:
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
         if "pypi" in filtered_dict:
@@ -127,7 +129,8 @@ class Member(JsonSerializable):
         """
         Updates all the Julia information in the project.
         """
-        self.julia.update_json()
+        if self.julia:
+            self.julia.update_json()
 
     @classmethod
     def from_submission(cls, submission):
