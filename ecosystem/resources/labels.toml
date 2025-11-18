@@ -1,55 +1,55 @@
 [[categories]]
-name = "applications"
+name = "Applications"
 description = "Helps run or work with higher-than-circuit levels of abstraction"
 
 [[categories]]
-name = "compute provider"
+name = "Compute provider"
 description = "Provides access to remote quantum computers or simulators via Qiskit primitives"
 link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/primitives"
 
 [[categories]]
-name = "circuit simulator"
+name = "Circuit simulator"
 description = "Simulates a quantum computer on your local classical computer"
 
 [[categories]]
-name = "circuit manipulation"
+name = "Circuit manipulation"
 description = "Builds, optimizes, or modifies quantum circuits"
 
 [[categories]]
-name = "converter"
+name = "Converter"
 description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs"
 
 [[categories]]
-name = "transpiler plugin"
+name = "Transpiler plugin"
 description = "Implements Qiskit's transpiler plugin interface to compile and optimize quantum circuits"
 link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/transpiler_plugins"
 
 [[categories]]
-name = "unitary synthesis plugin"
+name = "Unitary synthesis plugin"
 description = "Implements Qiskit's unitary synthesis plugin interface to synthesize unitary operations into quantum circuits"
 link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin"
 
 [[categories]]
-name = "high-level synthesis plugin"
+name = "High-level synthesis plugin"
 description = "Implements Qiskit's HLS plugin interface to synthesize quantum circuits from more abstract operations"
 link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin"
 
 [[categories]]
-name = "qiskit addon"
+name = "Qiskit addon"
 description = "Enables algorithm discovery at the utility scale"
 link = "https://quantum.cloud.ibm.com/docs/en/guides/addons"
 
 [[categories]]
-name = "language bindings"
+name = "Language bindings"
 description = "Offers Qiskit functionality through wrappers or interfaces built in other-than-Python programming languages."
 link = "https://quantum.cloud.ibm.com/docs/en/guides/addons"
 
 [[categories]]
-name = "game"
+name = "Game"
 description = "Games or playful educational resources"
 
 [[categories]]
-name = "other"
+name = "Other"
 description = "Projects that extend, interface with, or use Qiskit in interesting ways"
 
 [[labels]]
