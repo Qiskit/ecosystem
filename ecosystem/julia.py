@@ -32,7 +32,7 @@ class JuliaData(JsonSerializable):
         "juliahub_url",
         "general_registry_url",
         "uuid",
-        "estimated_uniq_users",
+        "estimated_unique_users",
     ]
     aliases = {}
     json_types = {
@@ -124,7 +124,10 @@ class JuliaData(JsonSerializable):
             pass
         if self.uuid:
             # see https://discourse.julialang.org/t/announcing-package-download-stats/69073
-            url = "https://julialang-logs.s3.amazonaws.com/public_outputs/current/package_requests.csv.gz"
+            url = (
+                "https://julialang-logs.s3.amazonaws.com/public_outputs/"
+                "current/package_requests.csv.gz"
+            )
             self._package_requests_json = request_json(
                 url,
                 parser=find_first_in_csv_gz(
@@ -200,7 +203,8 @@ class JuliaData(JsonSerializable):
             self.general_registry_url = None
 
     @property
-    def estimated_uniq_users(self):
+    def estimated_unique_users(self):
+        """unique IPs requesting users"""
         if self._package_requests_json is None:
-            return self._kwargs.get("estimated_uniq_users")
+            return self._kwargs.get("estimated_unique_users")
         return self._package_requests_json.get("request_addrs")

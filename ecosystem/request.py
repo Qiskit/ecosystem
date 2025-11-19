@@ -4,12 +4,12 @@ import os
 import re
 from urllib.parse import urlparse, urlunparse
 import json
+import csv
+import gzip
+
 import requests
 import requests_cache
 from bs4 import BeautifulSoup
-import csv
-import gzip
-from io import BytesIO
 
 from .error_handling import EcosystemError
 
@@ -193,11 +193,14 @@ def parse_juliapackages(html_text):
 
 
 def find_first_in_csv_gz(subdict_to_find):
+    """Returns a parser for csv after filtering based on subdict_to_find"""
+
     def parse_csv_gz(file_like):
         with gzip.open(file_like, "rt") as gz_file:
             csv_reader = csv.DictReader(gz_file)
             for row in csv_reader:
                 if all(row[k] == v for k, v in subdict_to_find.items() if k in row):
                     return row
+        return None
 
     return parse_csv_gz
