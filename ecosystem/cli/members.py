@@ -11,6 +11,7 @@ from jsonpath import findall, query
 from ecosystem.dao import DAO
 from ecosystem.member import Member
 from ecosystem.error_handling import logger
+from ecosystem.validation import validate_member
 
 
 class CliMembers:
@@ -29,6 +30,15 @@ class CliMembers:
         self.resources_dir = f"{self.current_dir}/ecosystem/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
+
+    def validate(self):
+        """validate members in <self.resources_dir>/members"""
+        for member in self.dao.get_all():
+            passing, not_passing = validate_member(member)
+            if not passing:
+                logger.error("%s has no validations?", member.name_id)
+            if not not_passing:
+                logger.info("%s ✓", member.name_id)
 
     def add_repo_2db(
         self,
