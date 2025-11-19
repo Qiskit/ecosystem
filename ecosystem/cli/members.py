@@ -34,9 +34,11 @@ class CliMembers:
     def validate(self):
         """validate members in <self.resources_dir>/members"""
         for member in self.dao.get_all():
-            validation = validate_member(member)
-            if not validation.valid:
-                print(f"{member.name_id}: {validation.reason}")
+            passing, not_passing = validate_member(member)
+            if not passing:
+                logger.error("%s has no validations?", member.name_id)
+            if not not_passing:
+                logger.info("%s ✓", member.name_id)
 
     def add_repo_2db(
         self,
