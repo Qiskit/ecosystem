@@ -4,10 +4,12 @@ import os
 import re
 from urllib.parse import urlparse, urlunparse
 import json
+import csv
+import gzip
+
 import requests
 import requests_cache
 from bs4 import BeautifulSoup
-
 
 from .error_handling import EcosystemError
 
@@ -17,7 +19,9 @@ requests_cache.install_cache(
 )
 
 
-def request_json(url: str, headers: dict[str, str] = None, parser=None):
+def request_json(
+    url: str, headers: dict[str, str] = None, parser=None, content_handler=None
+):
     """Requests the JSON in <url> with <headers>"""
     if parser is None:
         parser = json.loads
@@ -42,7 +46,11 @@ def request_json(url: str, headers: dict[str, str] = None, parser=None):
         raise EcosystemError(
             f"Bad response {url.geturl()}: {response.reason} ({response.status_code})"
         )
-    return parser(response.text)
+    if content_handler:
+        content = content_handler(response.content)
+    else:
+        content = response.text
+    return parser(content)
 
 
 def parse_url(original_url: str):
@@ -144,3 +152,55 @@ def parse_github_dependants(html_text):
         ret["packages"] = pkg_stat
 
     return ret
+
+
+def parse_juliapackages(html_text):
+    """
+    Gets data from the front page https://juliapackages.com/p/<package>/
+    {
+    package_name = str
+    repo_url = str
+    }
+    """
+    ret = {}
+    soup = BeautifulSoup(html_text, "html.parser")
+    found = soup.find("h2")
+    if found is not None:
+        package_name = found.get_text().strip()
+        if package_name.endswith(".jl"):
+            package_name = package_name[:-3]
+        ret["package_name"] = package_name
+
+    found = soup.find("span", {"class": "shadow-sm rounded-md"}).find(
+        "a", {"href": re.compile(r"github.com")}
+    )
+    if found is not None:
+        ret["repo_url"] = found["href"].strip()
+
+    return ret
+
+
+# def request_julia_stats(pkg_uuid):
+#     url = "https://julialang-logs.s3.amazonaws.com/public_outputs/current/package_requests.csv.gz"
+#     r = requests.get(url)
+#
+#     i = BytesIO(r.content)
+#     with gzip.open(i, "rt") as gz_file:
+#         csv_reader = csv.DictReader(gz_file)
+#         for row in csv_reader:
+#             if row["package_uuid"] == pkg_uuid:
+#                 return row
+
+
+def find_first_in_csv_gz(subdict_to_find):
+    """Returns a parser for csv after filtering based on subdict_to_find"""
+
+    def parse_csv_gz(file_like):
+        with gzip.open(file_like, "rt") as gz_file:
+            csv_reader = csv.DictReader(gz_file)
+            for row in csv_reader:
+                if all(row[k] == v for k, v in subdict_to_find.items() if k in row):
+                    return row
+        return None
+
+    return parse_csv_gz

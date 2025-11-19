@@ -24,7 +24,7 @@ class TomlStorage:
     Can use as a context manager like so:
 
     with TomlStorage() as data:  # Data is read from TOML files
-        data[url] = new_repo     # Mutate the data
+        data[name_id] = new_repo # Mutate the data
                                  # Changes are saved on exit
     """
 
@@ -121,6 +121,13 @@ class DAO:
             if project.url == url:
                 return project
         raise EcosystemError(f"No repo with URL : {url}")
+
+    def __getitem__(self, name_id):
+        """gets a project by name in the most inefficient way"""
+        for project in self.get_all():
+            if project.name_id == name_id:
+                return project
+        raise KeyError(f"No project with name : {name_id}")
 
     def get_all(self) -> list[Member]:
         """
