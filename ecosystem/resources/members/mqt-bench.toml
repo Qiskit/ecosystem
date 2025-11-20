@@ -4,7 +4,7 @@ description = "A circuit benchmark suite offering the same algorithms across abs
 licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
-labels = ["circuit manipulation", "research",]
+labels = [ "circuit manipulation", "research",]
 website = "https://www.cda.cit.tum.de/mqtbench/"
 group = "Application"
 reference_paper = "https://quantum-journal.org/papers/q-2023-07-20-1062/"
@@ -16,14 +16,14 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/munich-quantum-toolkit/bench"
 owner = "munich-quantum-toolkit"
 repo = "bench"
-stars = 103
+stars = 104
 homepage = "https://mqt-bench.app/"
 license = "MIT License"
 description = "MQT Bench - An MQT Tool for Benchmarking Quantum Software Tools"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2025-11-15T08:12:53Z
-last_activity = 2025-11-15T08:39:50Z
+last_commit = 2025-11-20T00:02:36Z
+last_activity = 2025-11-20T00:02:37Z
 
 [pypi."mqt.bench"]
 package_name = "mqt-bench"

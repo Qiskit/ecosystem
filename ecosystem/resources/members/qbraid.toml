@@ -4,7 +4,7 @@ description = "The qBraid-SDK is a Python toolkit for cross-framework abstractio
 licence = "GNU General Public License (GPL)"
 contact_info = "ryanhill@qbraid.com"
 affiliations = "qBraid Co."
-labels = [ "circuit manipulation", "openqasm"]
+labels = [ "circuit manipulation", "openqasm",]
 created_at = 1690263743.561744
 updated_at = 1690263743.56175
 website = "https://qbraid.com"
@@ -16,7 +16,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/qBraid/qBraid"
 owner = "qBraid"
 repo = "qBraid"
-stars = 102
+stars = 103
 homepage = "https://docs.qbraid.com/sdk"
 license = "Apache License 2.0"
 description = "A platform-agnostic quantum runtime framework"
@@ -24,7 +24,7 @@ estimated_contributors = 35
 total_dependent_repositories = 26
 total_dependent_packages = 15
 last_commit = 2025-11-10T21:09:53Z
-last_activity = 2025-11-10T21:09:54Z
+last_activity = 2025-11-20T01:00:29Z
 
 [pypi.qbraid]
 package_name = "qbraid"
