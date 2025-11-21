@@ -1,170 +1,184 @@
-name: "🆕 Submit a project to the Qiskit Ecosystem"
+name: 🆕 Submit a project to the Qiskit Ecosystem
 description: Request that a project be included in the Qiskit Ecosystem
-title: "[Submission]: <project name> "
-labels: ["submission"]
+title: '[Submission]: <project name> '
+labels: [submission]
 type: Task
 body:
-  - type: markdown
-    attributes:
-      value: |
-        ### Criteria
+- type: markdown
+  attributes:
+    value: |
+      ### Criteria
 
-        To join the Qiskit Ecosystem, the project must:
-          * Build on, interface with, or extend the [Qiskit SDK](https://github.com/Qiskit/qiskit) in some way.
-          * Be compatible with Qiskit 1.0 (or newer).
-          * Have an [OSI-approved](https://opensource.org/licenses) open-source license (preferably Apache 2.0 or MIT).
-          * Adhere to [Qiskit's Code of Conduct](https://qisk.it/coc) (you can enforce your own code of conduct in addition to this one).
-          * Have shown maintainer activity within the last 6 months, such as a commit.
+      To join the Qiskit Ecosystem, the project must:
+        * Build on, interface with, or extend the [Qiskit SDK](https://github.com/Qiskit/qiskit) in some way.
+        * Be compatible with Qiskit 1.0 (or newer).
+        * Have an [OSI-approved](https://opensource.org/licenses) open-source license (preferably Apache 2.0 or MIT).
+        * Adhere to [Qiskit's Code of Conduct](https://qisk.it/coc) (you can enforce your own code of conduct in addition to this one).
+        * Have shown maintainer activity within the last 6 months, such as a commit.
 
-        If you have any questions, please reach out through the `#qiskit-ecosystem` channel on [Slack](https://qisk.it/join-slack).
-  - type: input
-    id: name
-    attributes:
-      label: Project name
-      description: >
-        Title of your project as it will appear on
-        [qisk.it/ecosystem](https://qisk.it/ecosystem).
-      placeholder: Qiskit Banana Compiler
-    validations:
-      required: true
-  - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: >
-        1-2 sentences to appear under your project on
-        [https://qisk.it/ecosystem](https://qisk.it/ecosystem).
-        Keep it under 135 characters. If empty, it will be taken from somewhere else.
-      placeholder: >
-        Compile bananas into Qiskit quantum circuits.
-        Supports all modern devices, including Musa × paradisiaca.
-      render: text
-    validations:
-      required: true
-  - type: input
-    id: contact_info
-    attributes:
-      label: Contact email
-      description: Author's contact email address.
-      placeholder: author@banana-compiler.org
-    validations:
-      required: false
-  - type: dropdown
-    id: category
-    attributes:
-      label: Category
-      description: >
-        What kind of software is this? See examples by filtering by type in
-        [qisk.it/ecosystem](https://qisk.it/ecosystem). If "other," please explain later in a comment.
-      multiple: false
-      options:
-        - applications
-        - compute provider
-        - circuit simulator
-        - circuit manipulation
-        - converter
-        - transpiler plugin
-        - unitary synthesis plugin
-        - high-level synthesis plugin
-        - qiskit addon
-        - game
-        - other
-    validations:
-      required: true
-  - type: dropdown
-    id: labels
-    attributes:
-      description: >
-        Labels are how users discover your project on
-        [qisk.it/ecosystem](https://qisk.it/ecosystem). If
-        you don't think any existing labels apply to your project, leave a
-        comment after submitting your issue requesting a new label.
+      If you have any questions, please reach out through the `#qiskit-ecosystem` channel on [Slack](https://qisk.it/join-slack).
+- type: input
+  id: name
+  attributes:
+    label: Project name
+    description: >
+      Title of your project as it will appear on
+      [qisk.it/ecosystem](https://qisk.it/ecosystem).
+    placeholder: Qiskit Banana Compiler
+  validations:
+    required: true
+- type: textarea
+  id: description
+  attributes:
+    label: Description
+    description: >
+      1-2 sentences to appear under your project on
+      [https://qisk.it/ecosystem](https://qisk.it/ecosystem).
+      Keep it under 135 characters. If empty, it will be taken from somewhere else.
+    placeholder: >
+      Compile bananas into Qiskit quantum circuits.
+      Supports all modern devices, including Musa × paradisiaca.
+    render: text
+  validations:
+    required: true
+- type: input
+  id: contact_info
+  attributes:
+    label: Contact email
+    description: Author's contact email address.
+    placeholder: author@banana-compiler.org
+  validations:
+    required: false
+- type: dropdown
+  id: category
+  attributes:
+    label: Category
+    description: >
+      What kind of software is this? See examples by filtering by type in
+      [qisk.it/ecosystem](https://qisk.it/ecosystem). If "other," please explain later
+      in a comment.
+    multiple: false
+    options:
+    - SDK
+    - Application
+    - Tooling
+    - Compute provider
+    - Circuit simulator
+    - Converter
+    - Transpiler plugin
+    - Unitary synthesis plugin
+    - High-level synthesis plugin
+    - Qiskit addon
+    - Game
+    - Paper artifact
+    - Other
+  validations:
+    required: true
+- type: dropdown
+  id: labels
+  attributes:
+    description: >
+      Labels are how users discover your project on
+      [qisk.it/ecosystem](https://qisk.it/ecosystem). If
+      you don't think any existing labels apply to your project, leave a
+      comment after submitting your issue requesting a new label.
 
-         **Mark up to 5**
-      label: Labels
-      multiple: true
-      options:
-        - algorithms
-        - chemistry
-        - error correction
-        - error mitigation
-        - finance
-        - QML
-        - optimization
-        - physics
-        - quantum information
-        - circuit optimization
-        - paper
-  - type: dropdown
-    id: pattern_steps
-    attributes:
-      description: >
-        Can this software help a user to work in one or more steps of 
-        the [Qiskit Pattern](https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns)?
-      label: Qiskit Pattern steps
-      multiple: true
-      options:
-        - Map the problem
-        - Optimize for hardware
-        - Execute on hardware
-        - Post-process results
-  - type: markdown
-    attributes:
-      value: "---"
-  - type: markdown
-    attributes:
-      value: "### URLs"
-  - type: input
-    id: source_url
-    attributes:
-      label: GitHub repository
-      description: Link to the GitHub repository where the source code lives. It can include branches or subfolders.
-      placeholder: https://github.com/somebody/banana-compiler
-    validations:
+       **Mark up to 5**
+    label: Labels
+    multiple: true
+    options:
+    - chemistry
+    - C
+    - C++
+    - Julia
+    - Rust
+    - OCaml
+    - error correction
+    - error mitigation
+    - finance
+    - QML
+    - optimization
+    - physics
+    - provider
+    - cloud service
+    - HPC
+    - quantum information
+    - research
+    - demo
+    - circuit manipulation
+    - circuit building
+    - openqasm
+- type: dropdown
+  id: pattern_steps
+  attributes:
+    description: >
+      Can this software help a user to work in one or more steps of  the [Qiskit Pattern](https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns)?
+    label: Qiskit Pattern steps
+    multiple: true
+    options:
+    - Map the problem
+    - Optimize for hardware
+    - Execute on hardware
+    - Post-process results
+- type: markdown
+  attributes:
+    value: '---'
+- type: markdown
+  attributes:
+    value: '### URLs'
+- type: input
+  id: source_url
+  attributes:
+    label: GitHub repository
+    description: Link to the GitHub repository where the source code lives. It 
+      can include branches or subfolders.
+    placeholder: https://github.com/somebody/banana-compiler
+  validations:
+    required: true
+- type: input
+  id: home_url
+  attributes:
+    label: Home page
+    description: Link to the project's main site, if any.
+    placeholder: https://banana-compiler.org
+  validations:
+    required: false
+- type: input
+  id: docs_url
+  attributes:
+    label: Documentation
+    description: Link to the project's documentation website, if any.
+    placeholder: https://banana-compiler.org/documentation
+  validations:
+    required: false
+- type: textarea
+  id: package_urls
+  attributes:
+    label: Packages
+    description: >
+      List the links for all the packages that are built from the project, one per
+      line. Leave it empty you there is no deploy for this project.
+    placeholder: |
+      https://pypi.org/project/banana-compiler
+      https://pypi.org/project/banana-compiler-hpc
+      https://crates.io/crates/rusty-banana-compiler
+      https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
+    render: text
+- type: input
+  id: paper_url
+  attributes:
+    label: Reference paper
+    description: If the project is based on a paper, you can link it here.
+    placeholder: https://arxiv.org/abs/5555.22222
+  validations:
+    required: false
+- type: markdown
+  attributes:
+    value: '---'
+- type: checkboxes
+  id: terms
+  attributes:
+    label: Code of Conduct
+    options:
+    - label: I agree to follow the [Qiskit Code of Conduct](https://qisk.it/coc)
       required: true
-  - type: input
-    id: home_url
-    attributes:
-      label: Home page
-      description: Link to the project's main site, if any.
-      placeholder: https://banana-compiler.org
-    validations:
-      required: false
-  - type: input
-    id: docs_url
-    attributes:
-      label: Documentation
-      description: Link to the project's documentation website, if any.
-      placeholder: https://banana-compiler.org/documentation
-    validations:
-      required: false
-  - type: textarea
-    id: package_urls
-    attributes:
-      label: Packages
-      description: >
-        List the links for all the packages that are built from the project, one per line. Leave it empty you there is no deploy for this project.
-      placeholder: |
-        https://pypi.org/project/banana-compiler
-        https://pypi.org/project/banana-compiler-hpc
-        https://crates.io/crates/rusty-banana-compiler
-        https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
-      render: text
-  - type: input
-    id: paper_url
-    attributes:
-      label: Reference paper
-      description: If the project is based on a paper, you can link it here.
-      placeholder: https://arxiv.org/abs/5555.22222
-    validations:
-      required: false
-  - type: markdown
-    attributes:
-      value: "---"
-  - type: checkboxes
-    id: terms
-    attributes:
-      label: Code of Conduct
-      options:
-        - label: I agree to follow the [Qiskit Code of Conduct](https://qisk.it/coc)
-          required: true
