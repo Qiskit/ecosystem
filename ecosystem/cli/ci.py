@@ -1,10 +1,13 @@
 """CliCI class for controlling all CLI functions."""
 
+import sys
 from pathlib import Path
+from ruamel.yaml import YAML
 
 from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
+from ecosystem.labels import LabelsToml
 
 
 class CliCI:
@@ -34,3 +37,31 @@ class CliCI:
         parsed_result = parse_submission_issue(body)
         DAO(path=resources_dir).write(parsed_result)
         set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
+
+    @staticmethod
+    def update_issue_template(
+        template_path: str, *, resources_dir: str | None = None
+    ) -> None:
+        """Parse an issue created from the issue template and add the member to the database
+
+        Args:
+            template_path: Path to the issue template to update
+            resources_dir: Path to the resources directory
+        """
+
+        labels_toml = LabelsToml()
+
+        yaml = YAML()
+        stream = open(template_path, "r")
+        data = yaml.load(stream)
+
+        for section in data["body"]:
+            if "id" not in section:
+                continue
+            if section["id"] == "labels":
+                section["attributes"]["options"] = labels_toml.label_names
+            elif section["id"] == "category":
+                section["attributes"]["options"] = labels_toml.category_names
+
+        with open(template_path, "w") as yaml_file:
+            yaml.dump(data, yaml_file)
