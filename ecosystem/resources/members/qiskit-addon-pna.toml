@@ -14,7 +14,7 @@ badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=htt
 url = "https://github.com/Qiskit/qiskit-addon-pna"
 owner = "Qiskit"
 repo = "qiskit-addon-pna"
-stars = 5
+stars = 6
 homepage = "https://qiskit.github.io/qiskit-addon-pna/"
 license = "Apache License 2.0"
 description = "Mitigate gate noise in expectation values by propagating the observable through the inverse noise channel."
@@ -22,16 +22,16 @@ estimated_contributors = 9
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-11-13T21:20:08Z
-last_activity = 2025-11-13T21:20:08Z
+last_activity = 2025-11-20T14:19:06Z
 
 [pypi.qiskit-addon-pna]
 package_name = "qiskit-addon-pna"
-version = "0.1.0"
+version = "0.2.0"
 url = "https://pypi.org/project/qiskit-addon-pna/"
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
 highest_supported_qiskit_version = "2.2.2"
-last_month_downloads = 141
-last_180_days_downloads = 141
+last_month_downloads = 394
+last_180_days_downloads = 394
