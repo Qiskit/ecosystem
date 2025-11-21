@@ -1,6 +1,5 @@
 """CliCI class for controlling all CLI functions."""
 
-import sys
 from pathlib import Path
 from ruamel.yaml import YAML
 
@@ -49,11 +48,11 @@ class CliCI:
             resources_dir: Path to the resources directory
         """
 
-        labels_toml = LabelsToml()
+        labels_toml = LabelsToml(resources_dir=resources_dir)
 
         yaml = YAML()
-        stream = open(template_path, "r")
-        data = yaml.load(stream)
+        with open(template_path, "r") as yaml_file:
+            data = yaml.load(yaml_file)
 
         for section in data["body"]:
             if "id" not in section:

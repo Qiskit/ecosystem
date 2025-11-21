@@ -1,6 +1,13 @@
 """Validation module"""
 
-"""
+from ecosystem.error_handling import logger
+
+from .base import MemberValidator
+from .labels import *
+
+# pylint: disable=pointless-string-statement
+
+"""  
 TODO json:
  - check no member repetition
  - check against schema
@@ -12,11 +19,6 @@ TODO member:
  - check description length
  - check "website" is not the github repo or similar
 """
-
-from ecosystem.error_handling import logger
-from .base import MemberValidator
-from .labels import *
-
 
 def _all_subclasses(cls):
     return set(cls.__subclasses__()).union(
