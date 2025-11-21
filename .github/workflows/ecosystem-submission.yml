@@ -60,7 +60,6 @@ jobs:
       cancel-in-progress: true
     if: >
       startsWith(github.event.issue.title, '[Submission]:')
-      && github.event.action == 'closed'
       && github.event.pull_request.merged == true
       && contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
@@ -73,11 +72,6 @@ jobs:
           Hello @${{ github.event.issue.user.login }}! You joined the Qiskit ecosystem recently, here are some follow up actions you can take to make the most of the program:
 
           :speech_balloon: Join other Qiskit ecosystem developers in the [Slack channel #qiskit-ecosystem](https://qiskit.slack.com/archives/C04RHE56N93) (if you are not in the Qiskit workspace yet, [sign up](https://qisk.it/join-slack))
-
-          :mega: Showcase your project by
-
-          * [Writing a blog for your project](https://github.com/qiskit-community/ecosystem/wiki/Write-a-Blog-for-your-Project): reach out to Abby Mitchell via Slack or [email](mailto:abby.s.mitchell@ibm.com) if you'd like to be featured on the Qiskit blog
-          * Presenting at a [Qiskit Demoday](https://github.com/Qiskit/feedback/wiki/Qiskit-DemoDays): reach out to Luciano Bello via Slack or [email](mailto:BEL@zurich.ibm.com) to request a slot to demo your project)
 
           :stethoscope: Get support integrating with Qiskit, including updating your project to Qiskit 1.0, using our [documentation theme](https://github.com/Qiskit/qiskit_sphinx_theme), and integrating with the transpiler plugin system. Reach out to Frank Harkins via [email](mailto:francis.harkins@ibm.com) for any questions or suggestions about working with Qiskit.
 

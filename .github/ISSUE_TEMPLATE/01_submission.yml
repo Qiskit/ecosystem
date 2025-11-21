@@ -2,7 +2,6 @@ name: 🆕 Submit a project to the Qiskit Ecosystem
 description: Request that a project be included in the Qiskit Ecosystem
 title: '[Submission]: <project name> '
 labels: [submission]
-type: Task
 body:
 - type: markdown
   attributes:
@@ -59,6 +58,7 @@ body:
       in a comment.
     multiple: false
     options:
+    - Other
     - SDK
     - Application
     - Tooling
@@ -71,7 +71,7 @@ body:
     - Qiskit addon
     - Game
     - Paper artifact
-    - Other
+    default: 0
   validations:
     required: true
 - type: dropdown
