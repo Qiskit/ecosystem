@@ -65,19 +65,22 @@ jobs:
       && contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
     steps:
+    - id: get-id
+      run: |
+        id=$(echo ${{github.event.issue.title}} | cut -d: -f2- )
+        echo "::set-output name=id::$id"
     - name: Create comment on success
       uses: peter-evans/create-or-update-comment@v3
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-              Hello @${{ github.event.issue.user.login }}! ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} is now part of the Qiskit Ecosystem. Here are some follow up actions you can take to get the most out of the program:
+              Hello @${{ github.event.issue.user.login }},
 
-              :speech_balloon: Join other Qiskit ecosystem developers in the Slack channel #qiskit-ecosystem at https://qiskit.slack.com/archives/C04RHE56N93. If you are not in the Qiskit workspace yet, sign up at https://qisk.it/join-slack
+              **${{ steps.get-id.outputs.id }} is now part of the Qiskit Ecosystem**. Here are some follow up actions you can take to get the most out of the program:
 
-              :white_check_mark: Use the Qiskit theme for your documentation at https://github.com/Qiskit/qiskit_sphinx_theme
-
-              :stethoscope: Keep an eye on the criteria compliance
-
-              :purple_heart: Add the Qiskit Ecosystem badge to your README
+              - :speech_balloon: Join other Qiskit ecosystem developers in the Slack [channel `#qiskit-ecosystem`](https://qiskit.slack.com/archives/C04RHE56N93). If you are not in the Qiskit workspace yet, sign up at https://qisk.it/join-slack
+              - :white_check_mark: Use the Qiskit theme for your documentation at https://github.com/Qiskit/qiskit_sphinx_theme
+              - :stethoscope: Keep an eye on the criteria compliance
+              - :purple_heart: Add the Qiskit Ecosystem badge to your README
 
               It is great to have you in the ecosystem.
