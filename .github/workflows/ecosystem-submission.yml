@@ -70,12 +70,14 @@ jobs:
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-          Hello @${{ github.event.issue.user.login }}! ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} joined the Qiskit ecosystem recently, here are some follow up actions you can take to make the most of the program:
+              Hello @${{ github.event.issue.user.login }}! ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} is now part of the Qiskit Ecosystem. Here are some follow up actions you can take to get the most out of the program:
 
-          :speech_balloon: Join other Qiskit ecosystem developers in the [Slack channel #qiskit-ecosystem](https://qiskit.slack.com/archives/C04RHE56N93) (if you are not in the Qiskit workspace yet, [sign up](https://qisk.it/join-slack))
+              :speech_balloon: Join other Qiskit ecosystem developers in the Slack channel #qiskit-ecosystem at https://qiskit.slack.com/archives/C04RHE56N93. If you are not in the Qiskit workspace yet, sign up at https://qisk.it/join-slack
 
-          :stethoscope: Use the Qiskit theme for your [documentation theme](https://github.com/Qiskit/qiskit_sphinx_theme).
+              :white_check_mark: Use the Qiskit theme for your documentation at https://github.com/Qiskit/qiskit_sphinx_theme
 
-          :purple_heart: Add the Qiskit Ecosystem badge in your README.
+              :stethoscope: Keep an eye on the criteria compliance
 
-          It's great having you as a part of the ecosystem!
+              :purple_heart: Add the Qiskit Ecosystem badge to your README
+
+              It is great to have you in the ecosystem.
