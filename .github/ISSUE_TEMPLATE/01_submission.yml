@@ -58,7 +58,7 @@ body:
       in a comment.
     multiple: false
     options:
-    - Other
+    - Select one...
     - SDK
     - Application
     - Tooling
@@ -71,6 +71,7 @@ body:
     - Qiskit addon
     - Game
     - Paper artifact
+    - Other
     default: 0
   validations:
     required: true

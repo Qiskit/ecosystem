@@ -60,7 +60,9 @@ class CliCI:
             if section["id"] == "labels":
                 section["attributes"]["options"] = labels_toml.label_names
             elif section["id"] == "category":
-                section["attributes"]["options"] = labels_toml.category_names
+                section["attributes"]["options"] = [
+                    "Select one..."
+                ] + labels_toml.category_names
 
         with open(template_path, "w") as yaml_file:
             yaml.dump(data, yaml_file)
