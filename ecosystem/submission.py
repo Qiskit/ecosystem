@@ -89,11 +89,13 @@ class Submission:
         else:
             raw_content = lines[1:]
 
-        if "dropdown" == field_type:
-            if "category" == field_id and "Select" in raw_content:
+        if "category" == field_id:
+            if "Select" in raw_content:
                 content = "other"
             else:
                 content = " ".join(raw_content)
+        elif "dropdown" == field_type:
+            content = raw_content
         elif "checkboxes" == field_type:
             content = raw_content[0].startswith("- [x]")
         elif field_id.endswith("_url"):
