@@ -91,9 +91,9 @@ class Submission:
 
         if "dropdown" == field_type:
             if "category" == field_id and "Select" in raw_content:
-                content = None
+                content = "other"
             else:
-                content = raw_content
+                content = " ".join(raw_content)
         elif "checkboxes" == field_type:
             content = raw_content[0].startswith("- [x]")
         elif field_id.endswith("_url"):
