@@ -158,4 +158,5 @@ class Member(JsonSerializable):
             reference_paper=reference_paper,
             documentation=documentation,
             github=GitHubData.from_url(submission.source_url),
+            packages=submission.package_urls,
         )
