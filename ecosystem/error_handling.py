@@ -52,7 +52,9 @@ def set_actions_output(outputs: List[Tuple[str, Union[str, bool, float, int]]]) 
 class EcosystemError(Exception):
     """Base class for Ecosystem exceptions."""
 
-    def __init__(self, message: str):
+    def __init__(self, message: str, logger_level=None):
         super().__init__(message)
-        logger.error(message)
+        if logger_level is None:
+            logger_level = logger.error
+        logger_level(message)
         self.message = message

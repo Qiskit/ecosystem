@@ -138,16 +138,24 @@ class Member(JsonSerializable):
         Takes a submission object and creates a very basic Member object
         """
         # TODO? licence
+
+        url = submission.source_url.geturl() if submission.source_url else None
+        website = submission.home_url.geturl() if submission.home_url else None
+        reference_paper = (
+            submission.paper_url.geturl() if submission.paper_url else None
+        )
+        documentation = submission.docs_url.geturl() if submission.docs_url else None
+
         return Member(
             name=submission.name,
-            url=submission.source_url.geturl(),
+            url=url,
             description=submission.description,
             contact_info=submission.contact_info,
             labels=submission.labels,
             ibm_maintained=submission.is_ibm_maintained,
-            website=submission.home_url.geturl(),
+            website=website,
             group=submission.category,
-            reference_paper=submission.paper_url.geturl(),
-            documentation=submission.docs_url.geturl(),
+            reference_paper=reference_paper,
+            documentation=documentation,
             github=GitHubData.from_url(submission.source_url),
         )

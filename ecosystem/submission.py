@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import ParseResult
 import yaml
 
+from .error_handling import EcosystemError
 from .request import parse_url
 
 
@@ -74,6 +75,7 @@ class Submission:
 
     @staticmethod
     def _parse_section(section: str, label_to_id: dict[str, str]):
+        # pylint: disable=too-many-branches
         """For a section, return its field ID and the content.
         The content has no newlines and has spaces stripped.
         """
@@ -87,23 +89,38 @@ class Submission:
         else:
             raw_content = lines[1:]
 
-        if "dropdown" == field_type and "category" != field_id:
-            content = raw_content
+        if "dropdown" == field_type:
+            if "category" == field_id and "Select" in raw_content:
+                content = None
+            else:
+                content = raw_content
         elif "checkboxes" == field_type:
             content = raw_content[0].startswith("- [x]")
         elif field_id.endswith("_url"):
-            content = parse_url(raw_content[0]) if raw_content else None
+            try:
+                content = parse_url(raw_content[0]) if raw_content else None
+            except EcosystemError:
+                content = None
         elif field_id.endswith("_urls"):
-            content = [parse_url(url) for url in raw_content]
+            content = []
+            for url in raw_content:
+                try:
+                    content.append(parse_url(url))
+                except EcosystemError:
+                    pass
         else:
             content = " ".join(raw_content)
+
+        if content == "_No response_":
+            content = None
+
         return field_id, content
 
     @property
     def is_ibm_maintained(self):
         """It this going to be displayed as IBM maintained?"""
         # if maintainer is IBMer, it is ibm maintained
-        if self.contact_info.endswith("ibm.com"):
+        if self.contact_info and self.contact_info.endswith("ibm.com"):
             return True
         # if hosted in Qiskit GitHub organization, it is ibm maintained
         if (

@@ -55,6 +55,11 @@ def request_json(
 
 def parse_url(original_url: str):
     """Normalizes and parses a URL"""
+    if "_No response_" in original_url:
+        raise EcosystemError(
+            f"{original_url} does not look like a URL", logger_level=lambda x: x
+        )
+
     url = urlparse(original_url)
     scheme = "https"
     if url.netloc:
