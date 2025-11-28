@@ -10,7 +10,6 @@ group = "Other"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qcec"
 uuid = "79415931-2d24-4959-ab15-29dfaeb139b4"
-badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F79415931)](https://qisk.it/e)"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/qcec"
@@ -22,8 +21,8 @@ license = "MIT License"
 description = "MQT QCEC - A tool for Quantum Circuit Equivalence Checking"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2025-11-15T14:17:56Z
-last_activity = 2025-11-15T14:17:56Z
+last_commit = 2025-11-28T03:58:56Z
+last_activity = 2025-11-28T03:58:56Z
 
 [pypi."mqt.qcec"]
 package_name = "mqt-qcec"

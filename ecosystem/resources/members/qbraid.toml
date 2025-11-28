@@ -10,21 +10,20 @@ updated_at = 1690263743.56175
 website = "https://qbraid.com"
 group = "SDK"
 uuid = "c5b19e1a-cdde-4f31-b9d2-62c7709da809"
-badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fc5b19e1a)](https://qisk.it/e)"
 
 [github]
 url = "https://github.com/qBraid/qBraid"
 owner = "qBraid"
 repo = "qBraid"
-stars = 102
+stars = 103
 homepage = "https://docs.qbraid.com/sdk"
 license = "Apache License 2.0"
 description = "A platform-agnostic quantum runtime framework"
 estimated_contributors = 35
-total_dependent_repositories = 26
+total_dependent_repositories = 27
 total_dependent_packages = 15
-last_commit = 2025-11-10T21:09:53Z
-last_activity = 2025-11-10T21:09:54Z
+last_commit = 2025-11-24T21:25:54Z
+last_activity = 2025-11-24T21:25:55Z
 
 [pypi.qbraid]
 package_name = "qbraid"

@@ -8,20 +8,19 @@ updated_at = 1636403010.012956
 group = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-machine-learning/"
 uuid = "18986ebc-e138-4998-8c52-16359961af0a"
-badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F18986ebc)](https://qisk.it/e)"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-machine-learning"
 owner = "qiskit-community"
 repo = "qiskit-machine-learning"
-stars = 884
+stars = 888
 homepage = "https://qiskit-community.github.io/qiskit-machine-learning/"
 license = "Apache License 2.0"
-description = "Quantum Machine Learning"
+description = "An open-source library built on Qiskit for quantum machine learning tasks at scale on quantum hardware and classical simulators"
 total_dependent_repositories = 518
 total_dependent_packages = 21
-last_commit = 2025-11-10T17:37:14Z
-last_activity = 2025-11-14T09:35:13Z
+last_commit = 2025-11-25T18:18:56Z
+last_activity = 2025-11-28T14:02:46Z
 
 [pypi.qiskit-machine-learning]
 package_name = "qiskit-machine-learning"

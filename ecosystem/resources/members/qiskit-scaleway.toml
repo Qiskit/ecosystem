@@ -8,7 +8,6 @@ website = "https://www.scaleway.com"
 group = "Compute provider"
 documentation = "https://pypi.org/project/qiskit-scaleway/"
 uuid = "a942dc5d-c715-4b23-a9d6-4f2c3ee1d70b"
-badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fa942dc5d)](https://qisk.it/e)"
 
 [github]
 url = "https://github.com/scaleway/qiskit-scaleway"
@@ -20,8 +19,8 @@ description = "Scaleway provider implementation for Qiskit SDK"
 estimated_contributors = 5
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2025-11-14T13:16:51Z
-last_activity = 2025-11-14T13:02:16Z
+last_commit = 2025-11-24T16:42:24Z
+last_activity = 2025-11-25T18:53:35Z
 
 [pypi.qiskit-scaleway]
 package_name = "qiskit-scaleway"

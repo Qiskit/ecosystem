@@ -8,21 +8,20 @@ ibm_maintained = true
 group = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-opt-mapper/"
 uuid = "ef4e120a-f308-4462-86b6-10e7c7ba17c7"
-badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fef4e120a)](https://qisk.it/e)"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-opt-mapper"
 owner = "Qiskit"
 repo = "qiskit-addon-opt-mapper"
-stars = 11
+stars = 12
 homepage = "https://qiskit.github.io/qiskit-addon-opt-mapper/"
 license = "Apache License 2.0"
 description = "Mapping combinatorial optimization problems to quantum computers"
-estimated_contributors = 22
+estimated_contributors = 23
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2025-11-07T10:50:33Z
-last_activity = 2025-11-13T03:52:26Z
+last_commit = 2025-11-27T14:34:07Z
+last_activity = 2025-11-27T14:34:30Z
 
 [pypi.qiskit-addon-opt-mapper]
 package_name = "qiskit-addon-opt-mapper"

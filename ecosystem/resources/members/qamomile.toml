@@ -8,19 +8,18 @@ labels = [ "optimization",]
 group = "SDK"
 documentation = "https://jij-inc.github.io/Qamomile/"
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
-badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F50cd2126)](https://qisk.it/e)"
 
 [github]
 url = "https://github.com/Jij-Inc/Qamomile"
 owner = "Jij-Inc"
 repo = "Qamomile"
-stars = 12
+stars = 13
 license = "Apache License 2.0"
 estimated_contributors = 13
 total_dependent_repositories = 2
 total_dependent_packages = 1
-last_commit = 2025-11-13T05:47:23Z
-last_activity = 2025-11-13T07:21:22Z
+last_commit = 2025-11-22T00:09:47Z
+last_activity = 2025-11-25T07:31:09Z
 
 [pypi.qamomile]
 package_name = "qamomile"

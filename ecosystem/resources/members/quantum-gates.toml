@@ -9,7 +9,6 @@ group = "Circuit simulator"
 reference_paper = "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043210"
 documentation = "https://quantum-gates.readthedocs.io/en/latest/index.html"
 uuid = "dd5d5bad-1523-4f3e-aff2-7d474b53d27a"
-badge = "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2Fdd5d5bad)](https://qisk.it/e)"
 
 [github]
 url = "https://github.com/CERN-IT-INNOVATION/quantum-gates"
@@ -22,8 +21,8 @@ description = "Noisy Quantum Gates model for simulating the noise of quantum dev
 estimated_contributors = 5
 total_dependent_repositories = 3
 total_dependent_packages = 0
-last_commit = 2025-11-11T21:13:19Z
-last_activity = 2025-11-11T21:13:20Z
+last_commit = 2025-11-20T13:18:14Z
+last_activity = 2025-11-20T13:18:15Z
 
 [pypi.quantum-gates]
 package_name = "quantum-gates"
