@@ -13,7 +13,7 @@ from jsonpath import findall
 
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError
-from .request import request_json, parse_url, parse_juliapackages, find_first_in_csv_gz
+from .request import request_json, URL, parse_juliapackages, find_first_in_csv_gz
 
 
 class JuliaData(JsonSerializable):
@@ -174,7 +174,7 @@ class JuliaData(JsonSerializable):
         try:
             empty = request_json(url, parser=lambda x: {})
             if empty == {}:
-                self.juliahub_url = parse_url(url).geturl()
+                self.juliahub_url = URL(url)
         except EcosystemError:
             self.juliahub_url = None
 
@@ -198,7 +198,7 @@ class JuliaData(JsonSerializable):
         try:
             empty = request_json(url, parser=lambda x: {})
             if empty == {}:
-                self.general_registry_url = parse_url(url).geturl()
+                self.general_registry_url = URL(url)
         except EcosystemError:
             self.general_registry_url = None
 

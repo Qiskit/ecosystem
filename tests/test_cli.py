@@ -71,6 +71,12 @@ class TestCli(TestCase):
             "reference_paper": "https://arxiv.org/abs/5555.22222",
             "github": {"owner": "somebody", "repo": "banana-compiler"},
             "group": "circuit manipulation",
+            "packages": [
+                "https://pypi.org/project/banana-compiler",
+                "https://pypi.org/project/banana-compiler-hpc",
+                "https://crates.io/crates/rusty-banana-compiler",
+                "https://marketplace.visualstudio.com/items?itemName=banana-code-assistance",
+            ],
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()

@@ -38,7 +38,7 @@ class TestDao(TestCase):
 
         # insert entry
         dao.write(main_repo)
-        fetched_repo = dao.get_by_url(main_repo.url)
+        fetched_repo = dao.get_by_url(str(main_repo.url))
         self.assertEqual(main_repo, fetched_repo)
 
         # delete entry

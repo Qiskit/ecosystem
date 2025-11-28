@@ -1,6 +1,5 @@
 """GitHub section."""
 
-from urllib.parse import ParseResult
 from re import match
 from functools import reduce
 from jsonpath import findall
@@ -12,6 +11,7 @@ from .request import (
     parse_github_package_ids,
     parse_github_dependants,
     parse_github_front_page,
+    URL,
 )
 
 
@@ -74,12 +74,12 @@ class GitHubData(JsonSerializable):
         return dictionary
 
     @classmethod
-    def from_url(cls, github_project_url: ParseResult):
+    def from_url(cls, github_project_url: URL):
         """
         Builds a GitHubSection from an url. Returns None
         if the given url is not a GitHub url
         """
-        if "github.com" not in github_project_url:
+        if "github.com" not in github_project_url.hostname:
             # github_project_url is not a GitHub URL
             return None
 

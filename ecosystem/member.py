@@ -1,47 +1,66 @@
 """Submission model."""
 
 import pprint
-from dataclasses import dataclass, fields
 from uuid import uuid4
-from urllib.parse import urlparse
 
 from .julia import JuliaData
 from .serializable import JsonSerializable, parse_datetime
 from .github import GitHubData
 from .pypi import PyPIData
+from .request import URL
 
 
-@dataclass
-class Member(JsonSerializable):
+class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     """main Members class that represent a single entry in the Ecosystem."""
 
-    # pylint: disable=too-many-instance-attributes
-    name: str
-    url: str | None = None
-    description: str | None = None
-    licence: str | None = None
-    contact_info: str | None = None
-    affiliations: str | None = None
-    labels: list[str] | None = None
-    ibm_maintained: bool = False
-    created_at: int | None = None
-    updated_at: int | None = None
-    website: str | None = None
-    group: str | None = None
-    category: str | None = None
-    reference_paper: str | None = None
-    documentation: str | None = None
-    packages: list[str] | None = None
-    uuid: str | None = None
-    github: GitHubData | None = None
-    pypi: dict[str, PyPIData] | None = None
-    julia: JuliaData | None = None
+    def __init__(  # pylint: disable=too-many-arguments, too-many-locals
+        self,
+        name: str,
+        url: str | URL | None = None,
+        description: str | None = None,
+        licence: str | None = None,
+        contact_info: str | None = None,
+        affiliations: str | None = None,
+        labels: list[str] | None = None,
+        ibm_maintained: bool = False,
+        created_at: int | None = None,
+        updated_at: int | None = None,
+        website: str | None = None,
+        group: str | None = None,
+        category: str | None = None,
+        reference_paper: URL | None = None,
+        documentation: URL | None = None,
+        packages: list[URL] | None = None,
+        uuid: str | None = None,
+        github: GitHubData | None = None,
+        pypi: dict[str, PyPIData] | None = None,
+        julia: JuliaData | None = None,
+    ):
+        self.name = name
+        self.url = URL(url) if isinstance(url, str) else url
+        self.description = description
+        self.licence = licence
+        self.contact_info = contact_info
+        self.affiliations = affiliations
+        self.labels = labels
+        self.ibm_maintained = ibm_maintained
+        self.created_at = created_at
+        self.updated_at = updated_at
+        self.website = website
+        self.group = group
+        self.category = category
+        self.reference_paper = reference_paper
+        self.documentation = documentation
+        self.packages = packages
+        self.uuid = uuid
+        self.github = github
+        self.pypi = pypi
+        self.julia = julia
 
-    def __post_init__(self):
         self.__dict__.setdefault("created_at", parse_datetime("now"))
         self.__dict__.setdefault("updated_at", parse_datetime("now"))
         if self.github is None:
-            self.github = GitHubData.from_url(urlparse(self.url))
+            self.github = GitHubData.from_url(self.url)
         if self.uuid is None:
             self.uuid = str(uuid4())
         if self.labels is None:
@@ -63,7 +82,7 @@ class Member(JsonSerializable):
 
         Return: Member
         """
-        submission_fields = [f.name for f in fields(Member)]
+        submission_fields = vars(Member)["__static_attributes__"]
         filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
         if "julia" in filtered_dict:
             filtered_dict["julia"] = JuliaData.from_dict(filtered_dict["julia"])
@@ -108,7 +127,7 @@ class Member(JsonSerializable):
         It is used to create the TOML file name
         """
         # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
-        repo_dir = self.url.strip("/").split("/")[-1]
+        repo_dir = self.url.path.rstrip("/").split("/")[-1]
         return repo_dir.lower().replace(".", "_")
 
     def update_github(self):
@@ -137,26 +156,17 @@ class Member(JsonSerializable):
         """
         Takes a submission object and creates a very basic Member object
         """
-        # TODO? licence
-
-        url = submission.source_url.geturl() if submission.source_url else None
-        website = submission.home_url.geturl() if submission.home_url else None
-        reference_paper = (
-            submission.paper_url.geturl() if submission.paper_url else None
-        )
-        documentation = submission.docs_url.geturl() if submission.docs_url else None
-
         return Member(
             name=submission.name,
-            url=url,
+            url=submission.source_url,
             description=submission.description,
             contact_info=submission.contact_info,
             labels=submission.labels,
             ibm_maintained=submission.is_ibm_maintained,
-            website=website,
+            website=submission.home_url,
             group=submission.category,
-            reference_paper=reference_paper,
-            documentation=documentation,
+            reference_paper=submission.paper_url,
+            documentation=submission.docs_url,
             github=GitHubData.from_url(submission.source_url),
             packages=submission.package_urls,
         )

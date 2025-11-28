@@ -6,7 +6,7 @@ from urllib.parse import ParseResult
 import yaml
 
 from .error_handling import EcosystemError
-from .request import parse_url
+from .request import URL
 
 
 @dataclass
@@ -100,14 +100,14 @@ class Submission:
             content = raw_content[0].startswith("- [x]")
         elif field_id.endswith("_url"):
             try:
-                content = parse_url(raw_content[0]) if raw_content else None
+                content = URL(raw_content[0]) if raw_content else None
             except EcosystemError:
                 content = None
         elif field_id.endswith("_urls"):
             content = []
             for url in raw_content:
                 try:
-                    content.append(parse_url(url))
+                    content.append(URL(url))
                 except EcosystemError:
                     pass
         else:

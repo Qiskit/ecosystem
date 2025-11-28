@@ -3,6 +3,8 @@
 from abc import ABC
 from datetime import datetime
 
+from ecosystem.request import URL
+
 
 class JsonSerializable(ABC):
     """Classes that can be serialized as json."""
@@ -24,7 +26,7 @@ class JsonSerializable(ABC):
         """
         return cls(**dictionary)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict:  # pylint: disable=too-many-branches
         """Converts Object to dict."""
         result = {}
         for key, val in self.__dict__.items():
@@ -35,6 +37,8 @@ class JsonSerializable(ABC):
                 for item in val:
                     if isinstance(item, JsonSerializable):
                         element.append(item.to_dict())
+                    if isinstance(item, URL):
+                        element.append(str(item))
                     else:
                         element.append(item)
             elif isinstance(val, dict):
@@ -47,6 +51,8 @@ class JsonSerializable(ABC):
                     continue
             elif isinstance(val, JsonSerializable):
                 element = val.to_dict()
+            elif isinstance(val, URL):
+                element = str(val)
             else:
                 element = val
             result[key] = element

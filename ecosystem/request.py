@@ -25,7 +25,7 @@ def request_json(
     """Requests the JSON in <url> with <headers>"""
     if parser is None:
         parser = json.loads
-    url = parse_url(url)
+    url = URL(url)
     headers = headers or {
         "Accept": "application/json,"
         "application/vnd.github+json,"
@@ -41,10 +41,10 @@ def request_json(
             headers["Authorization"] = "token " + token
         headers["User-Agent"] = "github.com/Qiskit/ecosystem/"
 
-    response = requests.get(url.geturl(), headers=headers, timeout=240)
+    response = requests.get(str(url), headers=headers, timeout=240)
     if not response.ok:
         raise EcosystemError(
-            f"Bad response {url.geturl()}: {response.reason} ({response.status_code})"
+            f"Bad response {str(url)}: {response.reason} ({response.status_code})"
         )
     if content_handler:
         content = content_handler(response.content)
@@ -53,24 +53,54 @@ def request_json(
     return parser(content)
 
 
-def parse_url(original_url: str):
-    """Normalizes and parses a URL"""
-    if "_No response_" in original_url:
-        raise EcosystemError(
-            f"{original_url} does not look like a URL", logger_level=lambda x: x
+class URL:
+    """Wraps URLs"""
+
+    def __init__(self, original_url: str):
+        self.original_url = original_url
+        self._parse_result = None
+        self.logger = True
+
+    def parse_url(self):
+        """Normalizes and parses a URL"""
+        logger_level = None if self.logger else lambda x: x
+        if "_No response_" in self.original_url:
+            raise EcosystemError(
+                f"{self.original_url} does not look like a URL",
+                logger_level=logger_level,
+            )
+
+        url = urlparse(self.original_url)
+        scheme = "https"
+        if url.netloc:
+            netloc, path = url.hostname, url.path
+        else:
+            url_path_parts = url.path.split("/")
+            netloc = url_path_parts[0]
+            path = "/".join(url_path_parts[1:])
+        self._parse_result = urlparse(
+            urlunparse((scheme, netloc.lower(), path, url.params, url.query, ""))
         )
 
-    url = urlparse(original_url)
-    scheme = "https"
-    if url.netloc:
-        netloc, path = url.hostname, url.path
-    else:
-        url_path_parts = url.path.split("/")
-        netloc = url_path_parts[0]
-        path = "/".join(url_path_parts[1:])
-    return urlparse(
-        urlunparse((scheme, netloc.lower(), path, url.params, url.query, ""))
-    )
+    @property
+    def hostname(self):
+        """ Hostname part of the URL """
+        if self._parse_result is None:
+            self.parse_url()
+        return self._parse_result.hostname
+
+    @property
+    def path(self):
+        """ Path part of the URL """
+        if self._parse_result is None:
+            self.parse_url()
+        return self._parse_result.path
+
+    def __eq__(self, other):
+        return str(self) == str(other)
+
+    def __str__(self):
+        return self._parse_result.geturl() if self._parse_result else self.original_url
 
 
 def parse_github_front_page(html_text):
