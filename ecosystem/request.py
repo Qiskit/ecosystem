@@ -84,14 +84,14 @@ class URL:
 
     @property
     def hostname(self):
-        """ Hostname part of the URL """
+        """Hostname part of the URL"""
         if self._parse_result is None:
             self.parse_url()
         return self._parse_result.hostname
 
     @property
     def path(self):
-        """ Path part of the URL """
+        """Path part of the URL"""
         if self._parse_result is None:
             self.parse_url()
         return self._parse_result.path
