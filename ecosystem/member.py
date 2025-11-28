@@ -98,11 +98,6 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
 
     def to_dict(self) -> dict:
         base_dict = super().to_dict()
-        base_dict["badge"] = (
-            "[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https"
-            f"%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fb%2F{self.short_uuid})]"
-            "(https://qisk.it/e)"
-        )
         if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
             del base_dict["ibm_maintained"]
         return base_dict
@@ -129,6 +124,15 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
         repo_dir = self.url.path.rstrip("/").split("/")[-1]
         return repo_dir.lower().replace(".", "_")
+
+    @property
+    def badge(self):
+        """Markdown with the badge for README"""
+        return (
+            "[![Qiskit Ecosystem](https://img.shields.io/endpoint?"
+            "style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%"
+            f"2Fb%2F{self.short_uuid})](https://qisk.it/e)"
+        )
 
     def update_github(self):
         """
