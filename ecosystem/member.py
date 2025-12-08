@@ -7,7 +7,7 @@ from .julia import JuliaData
 from .serializable import JsonSerializable, parse_datetime
 from .github import GitHubData
 from .pypi import PyPIData
-from .request import URL
+from .request import URL, request_json
 
 
 class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
@@ -32,6 +32,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         documentation: URL | None = None,
         packages: list[URL] | None = None,
         uuid: str | None = None,
+        badge: str | None = None,
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
         julia: JuliaData | None = None,
@@ -56,6 +57,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.github = github
         self.pypi = pypi
         self.julia = julia
+        self.badge = badge
 
         self.__dict__.setdefault("created_at", parse_datetime("now"))
         self.__dict__.setdefault("updated_at", parse_datetime("now"))
@@ -100,7 +102,6 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         base_dict = super().to_dict()
         if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
             del base_dict["ibm_maintained"]
-        base_dict["badge"] = self.badge
         return base_dict
 
     def __eq__(self, other: "Member"):
@@ -127,12 +128,12 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         return repo_dir.lower().replace(".", "_")
 
     @property
-    def badge(self):
+    def badge_md(self):
         """Markdown with the badge for README"""
         return (
-            "[![Qiskit Ecosystem](https://img.shields.io/endpoint?"
-            "style=flat&url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%"
-            f"2Fb%2F{self.short_uuid})](https://qisk.it/e)"
+            f"[![Qiskit Ecosystem]({self.badge})](https://qisk.it/e)"
+            if self.badge
+            else None
         )
 
     def update_github(self):
@@ -141,6 +142,24 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """
         self.github.update_json()
         self.github.update_owner_repo()
+
+    def _create_qisk_dot_it_link_for_badge(self):
+        data = {
+            "long_url": "https://img.shields.io/endpoint?style=flat&url="
+            f"https://qiskit.github.io/ecosystem/b/{self.short_uuid}",
+            "domain": "qisk.it",
+            "keyword": f"e-{self.short_uuid}",
+            "group_guid": "Bj9rgMHKfxH",
+            "title": f'Qiskit ecosystem "{self.name}" badge',
+            "tags": ["qiskit ecosystem badge", "permanent _do NOT remove_"],
+        }
+        response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
+        return response["link"]
+
+    def update_badge(self):
+        """If not there yet, creates a new Bitly link for the badge"""
+        if self.badge is None:
+            self.badge = self._create_qisk_dot_it_link_for_badge()
 
     def update_pypi(self):
         """

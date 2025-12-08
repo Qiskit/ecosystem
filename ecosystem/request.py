@@ -20,9 +20,16 @@ requests_cache.install_cache(
 
 
 def request_json(
-    url: str, headers: dict[str, str] = None, parser=None, content_handler=None
+    url: str,
+    headers: dict[str, str] = None,
+    post=None,
+    parser=None,
+    content_handler=None,
 ):
-    """Requests the JSON in <url> with <headers>"""
+    """Requests the JSON in <url> with <headers>
+
+    if post is set with a dictionary, then that dict is sent as POST's JSON
+    """
     if parser is None:
         parser = json.loads
     url = URL(url)
@@ -41,7 +48,16 @@ def request_json(
             headers["Authorization"] = "token " + token
         headers["User-Agent"] = "github.com/Qiskit/ecosystem/"
 
-    response = requests.get(str(url), headers=headers, timeout=240)
+    if url.hostname.endswith("bitly.com"):
+        token = os.getenv("BITLY_TOKEN")
+        if token:
+            headers["Authorization"] = "Bearer " + token
+
+    if post is None:
+        response = requests.get(str(url), headers=headers, timeout=240)
+    else:
+        response = requests.post(str(url), headers=headers, timeout=240, json=post)
+
     if not response.ok:
         raise EcosystemError(
             f"Bad response {str(url)}: {response.reason} ({response.status_code})"

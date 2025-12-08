@@ -94,6 +94,49 @@ class CliMembers:
             ) as outfile:
                 json.dump(data, outfile, indent=4)
                 self.logger.info("Badge for %s has been updated.", project.name)
+            project.update_badge()
+            self.dao.update(project.name_id, badge=project.badge)
+
+    def update_badge_list(self):
+        """Updates badge list in qisk.it/ecosystem-badges."""
+        start_tag = "<!-- start:table-badge -->"
+        end_tag = "<!-- end:table-badge -->"
+
+        projects = []
+        for project in self.dao.get_all():
+            if project.badge is None:
+                continue
+            projects.append((project.name, project.badge, project.badge_md))
+
+        projects.sort(key=lambda x: x[0].casefold())
+
+        lines = [
+            "",
+            "<table>",
+            '<tr><th width="10%">Member</th><th width="60%">Badge</th><th>MD Code</th></tr>',
+        ]
+        for name, badge, badge_md in projects:
+            lines.append(
+                "<tr>"
+                f"<td>{name}</td>"
+                f'<td><img src="{badge}" /></td>'
+                f'<td><pre class="notranslate"><code>{badge_md}</code> &nbsp; </pre></td>'
+                "</tr>"
+            )
+        lines.append("</table>\n")
+        readme_md = os.path.join(self.current_dir, "badges", "README.md")
+
+        with open(readme_md, "r") as readme_file:
+            content = readme_file.read()
+
+        to_replace = content[
+            content.find(start_tag) + len(start_tag) : content.rfind(end_tag)
+        ]
+
+        new_content = content.replace(to_replace, "\n".join(lines))
+
+        with open(readme_md, "w") as outfile:
+            outfile.write(new_content)
 
     def update_github(self):
         """Updates GitHub data."""
