@@ -51,7 +51,7 @@ jobs:
 
           ---
           Closes #${{ github.event.issue.number }}
-        branch: submission-${{ github.event.issue.number }}
+        branch: submission-${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
         labels: submission
 
   followup_workflow:

@@ -6,7 +6,7 @@ from .submission import Submission
 from .member import Member
 
 
-def parse_submission_issue(body_of_issue: str) -> Submission:
+def parse_submission_issue(body_of_issue: str) -> Member:
     """Parse issue body.
 
     The GitHub issue is a collection of "fields", each of which has a
@@ -34,7 +34,7 @@ def parse_submission_issue(body_of_issue: str) -> Submission:
     Args:
         body_of_issue: body of an GitHub issue in markdown
 
-    Return: Submission
+    Return: Member
     """
 
     issue_formatted = mdformat.text(body_of_issue)

@@ -30,16 +30,6 @@ class Submission:
     package_urls: list[ParseResult]
     paper_url: ParseResult
 
-    @property
-    def name_id(self):
-        """
-        A unique and human-readable way to identify a submission
-        It is used to create the TOML file name
-        """
-        # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
-        repo_dir = self.source_url.geturl().strip("/").split("/")[-1]
-        return repo_dir.lower().replace(".", "_")
-
     @classmethod
     def from_formatted_issue(cls, issue_formatted):
         """Takes a formated issue and creates a Submission object"""
@@ -95,7 +85,8 @@ class Submission:
             else:
                 content = " ".join(raw_content)
         elif "dropdown" == field_type:
-            content = raw_content
+            # removes items starting with "_", like "_No response_"
+            content = [i for i in raw_content if not i.startswith("_")]
         elif "checkboxes" == field_type:
             content = raw_content[0].startswith("- [x]")
         elif field_id.endswith("_url"):

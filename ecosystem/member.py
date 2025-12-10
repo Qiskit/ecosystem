@@ -2,6 +2,7 @@
 
 import pprint
 from uuid import uuid4
+import re
 
 from .julia import JuliaData
 from .serializable import JsonSerializable, parse_datetime
@@ -120,12 +121,14 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     @property
     def name_id(self):
         """
-        A unique and human-readable way to identify a submission
+        A unique and human-readable-ish way to identify a submission.
+        Remove all non-ASCII chars, lowers the case, and truncates until 10th char.
+        Plus short_uuid.
+
         It is used to create the TOML file name
         """
-        # TODO: it is not uniq tho. Maybe add a random number at the end?  pylint: disable=W0511
-        repo_dir = self.url.path.rstrip("/").split("/")[-1]
-        return repo_dir.lower().replace(".", "_")
+        flat_name = re.sub("[^A-Za-z0-9]+", "", self.name).lower()[:10]
+        return f"{flat_name}_{self.short_uuid}"
 
     @property
     def badge_md(self):
