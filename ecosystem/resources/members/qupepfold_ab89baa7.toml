@@ -1,0 +1,36 @@
+name = "QuPepFold"
+url = "https://github.com/akshayuttarkarc/QuPepFold"
+description = "A small, research-oriented toolkit that turns short amino-acid sequences into quantum bitstring encodings and exports PDB files."
+licence = "MIT license"
+contact_info = "akshayuttarkar@gmail.com"
+affiliations = "R V College of Engineering MIT Vishwaprayag University"
+labels = [ "chemistry",]
+group = "Application"
+documentation = "https://zenodo.org/records/17164557"
+uuid = "ab89baa7-39e9-482a-8157-a9bb834c5108"
+badge = "https://qisk.it/e-ab89baa7"
+
+[github]
+url = "https://github.com/akshayuttarkarc/QuPepFold"
+owner = "akshayuttarkarc"
+repo = "QuPepFold"
+stars = 1
+license = "MIT License"
+description = "QupepFold is a small, research-oriented toolkit that turns short amino-acid sequences into quantum bitstring encodings, optimizes t..."
+estimated_contributors = 2
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-10-21T09:51:12Z
+last_activity = 2025-10-21T09:51:13Z
+
+[pypi.qupepfold]
+package_name = "qupepfold"
+version = "0.6.2"
+url = "https://pypi.org/project/qupepfold/"
+requires_qiskit = ">=0.39"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 90
+last_180_days_downloads = 1161

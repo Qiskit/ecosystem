@@ -1,0 +1,37 @@
+name = "MQT QAO"
+url = "https://github.com/cda-tum/mqt-qao"
+description = "Translate optimization problems into quantum-compliant formats and solve them with major quantum solvers."
+licence = "MIT license"
+contact_info = "quantum.cda@xcit.tum.de"
+affiliations = "Technical University of Munich (TUM), Germany Politecnico di Torino, Italy"
+labels = [ "circuit manipulation", "optimization",]
+group = "Application"
+reference_paper = "https://arxiv.org/abs/2406.12840"
+documentation = "https://mqt.readthedocs.io/projects/qao/en/latest/"
+uuid = "6d4c69e4-1e47-486c-b00f-8a60ae5e01d4"
+badge = "https://qisk.it/e-6d4c69e4"
+
+[github]
+url = "https://github.com/cda-tum/mqt-qao"
+owner = "cda-tum"
+repo = "mqt-qao"
+stars = 28
+license = "MIT License"
+description = "MQT Quantum Auto Optimizer - A MQT Tool for Solving Optimization Problems with Quantum Computers"
+estimated_contributors = 7
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-12-08T17:32:51Z
+last_activity = 2025-12-08T17:32:51Z
+
+[pypi."mqt.qao"]
+package_name = "mqt-qao"
+version = "0.3.0"
+url = "https://pypi.org/project/mqt.qao/"
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 28
+last_180_days_downloads = 191

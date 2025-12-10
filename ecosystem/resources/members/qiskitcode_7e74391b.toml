@@ -1,0 +1,23 @@
+name = "Qiskit Code Assistant for VSCode"
+url = "https://github.com/Qiskit/qiskit-code-assistant-vscode"
+description = "VSCode extension to use the Qiskit Code Assistant"
+labels = [ "cloud service",]
+ibm_maintained = true
+group = "Tooling"
+packages = [ "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode", "https://open-vsx.org/extension/qiskit/qiskit-vscode",]
+uuid = "7e74391b-0b86-46d6-bcd5-d2305c9e5338"
+badge = "https://qisk.it/e-7e74391b"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-code-assistant-vscode"
+owner = "Qiskit"
+repo = "qiskit-code-assistant-vscode"
+stars = 95
+homepage = "https://marketplace.visualstudio.com/items?itemName=Qiskit.qiskit-vscode"
+license = "Apache License 2.0"
+description = "A VSCode extension to use the Qiskit Code Assistant (Beta)"
+estimated_contributors = 12
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-27T00:26:51Z
+last_activity = 2025-12-03T06:31:16Z

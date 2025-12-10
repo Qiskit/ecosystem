@@ -1,0 +1,36 @@
+name = "MQT Predictor"
+url = "https://github.com/cda-tum/mqt-predictor"
+description = "Automatically select a suitable quantum device for a circuit and get an optimized compiler for the selected device."
+licence = "MIT license"
+contact_info = "quantum.cda@xcit.tum.de"
+affiliations = "Technical University of Munich (TUM), Germany"
+labels = [ "circuit manipulation", "research",]
+group = "Transpiler plugin"
+reference_paper = "https://arxiv.org/pdf/2310.06889"
+documentation = "https://mqt.readthedocs.io/projects/predictor/en/latest/"
+uuid = "9d5e2ef2-cac6-479e-a2f9-8014d54403e4"
+badge = "https://qisk.it/e-9d5e2ef2"
+
+[github]
+url = "https://github.com/munich-quantum-toolkit/predictor"
+owner = "munich-quantum-toolkit"
+repo = "predictor"
+stars = 81
+license = "MIT License"
+description = "MQT Predictor - A Tool for Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-12-08T01:28:12Z
+last_activity = 2025-12-08T14:37:40Z
+
+[pypi."mqt.predictor"]
+package_name = "mqt-predictor"
+version = "2.3.0"
+url = "https://pypi.org/project/mqt.predictor/"
+requires_qiskit = "!=1.3.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 178
+last_180_days_downloads = 761

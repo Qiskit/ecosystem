@@ -1,0 +1,24 @@
+name = "Implicit solvent model template"
+url = "https://github.com/qiskit-community/qiskit-function-templates/tree/main/chemistry/sqd_pcm"
+description = "A Qiskit Function template for the implicit solvent model with SQD Qiskit addon, from IBM Quantum partnership with Cleveland Clinic"
+licence = "Apache License 2.0"
+affiliations = "Cleveland Clinic"
+labels = [ "chemistry",]
+ibm_maintained = true
+group = "Application"
+reference_paper = "https://pubs.acs.org/doi/10.1021/acs.jpcb.5c01030"
+uuid = "fac11d8c-c0f4-426e-8c20-ac009726d417"
+badge = "https://qisk.it/e-fac11d8c"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-function-templates"
+owner = "qiskit-community"
+repo = "qiskit-function-templates"
+tree = "main/chemistry/sqd_pcm"
+stars = 19
+license = "Apache License 2.0"
+estimated_contributors = 13
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-19T09:14:23Z
+last_activity = 2025-11-21T16:47:43Z

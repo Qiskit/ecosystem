@@ -1,0 +1,36 @@
+name = "Qiskit Qrack Provider"
+url = "https://github.com/vm6502q/qiskit-qrack-provider"
+description = "Supports near-Clifford, Schmidt-decomposition, quantum binary decision diagrams, and more. Scales from minimal setups to multiple GPUs."
+licence = "Apache License 2.0"
+contact_info = "dan@unitary.fund"
+affiliations = "Unitary Foundation, github.com/vm6502q"
+labels = []
+website = "https://github.com/unitaryfund/qrack"
+group = "Compute provider"
+reference_paper = "https://arxiv.org/abs/2304.14969"
+documentation = "https://qrack.readthedocs.io/en/latest/"
+uuid = "43cd849a-f5a7-4107-bca9-c19c6cbefc5f"
+badge = "https://qisk.it/e-43cd849a"
+
+[github]
+url = "https://github.com/vm6502q/qiskit-qrack-provider"
+owner = "vm6502q"
+repo = "qiskit-qrack-provider"
+stars = 2
+license = "Apache License 2.0"
+description = "Qrack provider for Qiskit"
+total_dependent_repositories = 6
+total_dependent_packages = 1
+last_commit = 2025-06-25T15:47:22Z
+
+[pypi.qiskit-qrack-provider]
+package_name = "qiskit-qrack-provider"
+version = "0.17.1"
+url = "https://pypi.org/project/qiskit-qrack-provider/"
+requires_qiskit = ">=2.0.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 706
+last_180_days_downloads = 7486

@@ -1,0 +1,36 @@
+name = "qiskit-symb"
+url = "https://github.com/SimoneGasperini/qiskit-symb"
+description = "Symbolic evaluation of statevectors, density matrices, and unitary operators created from parameterized circuits in Qiskit."
+licence = "Apache License 2.0"
+contact_info = "simone.gasperini4@unibo.it"
+labels = [ "quantum information",]
+created_at = 1680254616.930627
+updated_at = 1680254616.930632
+group = "Circuit simulator"
+uuid = "9350b230-d7ca-4d52-b082-9d71303478b7"
+badge = "https://qisk.it/e-9350b230"
+
+[github]
+url = "https://github.com/SimoneGasperini/qiskit-symb"
+owner = "SimoneGasperini"
+repo = "qiskit-symb"
+stars = 38
+homepage = "https://pypi.org/project/qiskit-symb/"
+license = "Apache License 2.0"
+description = "Symbolic evaluation of parameterized quantum circuits in Qiskit"
+estimated_contributors = 3
+total_dependent_repositories = 7
+total_dependent_packages = 1
+last_commit = 2025-08-07T13:34:49Z
+
+[pypi.qiskit-symb]
+package_name = "qiskit-symb"
+version = "0.5.0"
+url = "https://pypi.org/project/qiskit-symb/"
+requires_qiskit = "<2.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"
+last_month_downloads = 287
+last_180_days_downloads = 1056

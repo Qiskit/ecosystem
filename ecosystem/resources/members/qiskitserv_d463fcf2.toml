@@ -1,0 +1,38 @@
+name = "Qiskit Serverless"
+url = "https://github.com/Qiskit/qiskit-serverless"
+description = "Execute Qiskit programs as long-running jobs and distribute them across many CPUs, GPUs, and QPUs."
+licence = "Apache License 2.0"
+contact_info = "sanket@ibm.com"
+labels = [ "cloud service", "HPC",]
+ibm_maintained = true
+created_at = 1670427445.627174
+updated_at = 1670427445.627175
+group = "SDK"
+uuid = "d463fcf2-9e98-4d16-af3b-25ec29b650f7"
+badge = "https://qisk.it/e-d463fcf2"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-serverless"
+owner = "Qiskit"
+repo = "qiskit-serverless"
+stars = 104
+homepage = "https://qiskit.github.io/qiskit-serverless/"
+license = "Apache License 2.0"
+description = "A programming model for leveraging quantum and classical resources"
+estimated_contributors = 29
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-12-08T21:05:10Z
+last_activity = 2025-12-08T21:05:11Z
+
+[pypi.qiskit-serverless]
+package_name = "qiskit-serverless"
+version = "0.27.1"
+url = "https://pypi.org/project/qiskit-serverless/"
+requires_qiskit = "<3,>=1.4"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 7048
+last_180_days_downloads = 49213

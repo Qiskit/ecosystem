@@ -1,0 +1,38 @@
+name = "Noisy Quantum Gates"
+url = "https://github.com/CERN-IT-INNOVATION/quantum-gates"
+description = "Provider with a novel approach for simulating quantum circuits with a realistic noise integrated into gates and modular design."
+licence = "MIT license"
+contact_info = "roman.wixinger@gmail.com PAOLO.DAROLD@studenti.units.it michele.grossi@cern.ch vischimichele@gmail.com dibartolomeo.giov@gmail.com"
+affiliations = "- CERN Quantum Technology Initiative (https://quantum.cern/our-governance) - University of Trieste, Quantum Mechanics group (https://www.qmts.it)"
+labels = [ "provider",]
+group = "Circuit simulator"
+reference_paper = "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043210"
+documentation = "https://quantum-gates.readthedocs.io/en/latest/index.html"
+uuid = "dd5d5bad-1523-4f3e-aff2-7d474b53d27a"
+badge = "https://qisk.it/e-dd5d5bad"
+
+[github]
+url = "https://github.com/CERN-IT-INNOVATION/quantum-gates"
+owner = "CERN-IT-INNOVATION"
+repo = "quantum-gates"
+stars = 18
+homepage = "https://quantum-gates.readthedocs.io/en/latest/"
+license = "MIT License"
+description = "Noisy Quantum Gates model for simulating the noise of quantum devices."
+estimated_contributors = 8
+total_dependent_repositories = 3
+total_dependent_packages = 0
+last_commit = 2025-12-06T14:57:26Z
+last_activity = 2025-12-07T16:40:46Z
+
+[pypi.quantum-gates]
+package_name = "quantum-gates"
+version = "2.3.0"
+url = "https://pypi.org/project/quantum-gates/"
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 2497
+last_180_days_downloads = 4792

@@ -1,0 +1,61 @@
+name = "Aer"
+url = "https://github.com/Qiskit/qiskit-aer"
+description = "High-performance quantum computing simulators with realistic noise models."
+licence = "Apache 2.0"
+labels = [ "provider",]
+ibm_maintained = true
+created_at = 1636403010.377695
+updated_at = 1636403010.377697
+group = "Circuit simulator"
+documentation = "https://qiskit.github.io/qiskit-aer/"
+uuid = "474599a7-228b-446f-ae57-636fdbe8c1c6"
+badge = "https://qisk.it/e-474599a7"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-aer"
+owner = "Qiskit"
+repo = "qiskit-aer"
+stars = 620
+homepage = "https://qiskit.github.io/qiskit-aer/"
+license = "Apache License 2.0"
+description = "Aer is a high performance simulator for quantum circuits that includes noise models"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-25T18:23:08Z
+last_activity = 2025-12-08T02:38:23Z
+
+[pypi.qiskit-aer]
+package_name = "qiskit-aer"
+version = "0.17.2"
+url = "https://pypi.org/project/qiskit-aer/"
+requires_qiskit = ">=1.1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 579660
+last_180_days_downloads = 3253755
+
+[pypi.qiskit-aer-gpu]
+package_name = "qiskit-aer-gpu"
+version = "0.15.1"
+url = "https://pypi.org/project/qiskit-aer-gpu/"
+requires_qiskit = ">=1.1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 4896
+last_180_days_downloads = 33335
+
+[pypi.qiskit-aer-gpu-cu11]
+package_name = "qiskit-aer-gpu-cu11"
+version = "0.17.2"
+url = "https://pypi.org/project/qiskit-aer-gpu-cu11/"
+requires_qiskit = ">=1.1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 1615
+last_180_days_downloads = 6794

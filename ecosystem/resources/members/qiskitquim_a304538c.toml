@@ -1,0 +1,34 @@
+name = "qiskit-quimb"
+url = "https://github.com/qiskit-community/qiskit-quimb"
+description = "Simulate Qiskit circuits using quimb."
+licence = "Apache License 2.0"
+labels = []
+group = "Circuit simulator"
+uuid = "a304538c-feb7-47b2-a41f-f9fbe41de87b"
+badge = "https://qisk.it/e-a304538c"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-quimb"
+owner = "qiskit-community"
+repo = "qiskit-quimb"
+stars = 15
+homepage = "https://qiskit-community.github.io/qiskit-quimb/"
+license = "Apache License 2.0"
+description = "Simulate Qiskit circuits using quimb."
+estimated_contributors = 2
+total_dependent_repositories = 6
+total_dependent_packages = 2
+last_commit = 2025-06-11T03:23:29Z
+last_activity = 2025-11-07T11:01:09Z
+
+[pypi.qiskit-quimb]
+package_name = "qiskit-quimb"
+version = "0.0.9"
+url = "https://pypi.org/project/qiskit-quimb/"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 3138
+last_180_days_downloads = 24208

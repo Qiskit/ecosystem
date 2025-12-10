@@ -1,0 +1,36 @@
+name = "Variational Quantum Linear Solver Prototype"
+url = "https://github.com/QuantumApplicationLab/vqls-prototype"
+description = "VQLS uses an optimization approach to solve systems of linear equations. Set up and deploy VQLS instances on different backends."
+licence = "Apache License 2.0"
+contact_info = "nicolas.gm.renaud@gmail.com"
+affiliations = "Netherlands eScience Center @ Quantum Application Lab, Amsterdam NL"
+labels = [ "optimization",]
+created_at = 1683906067.55753
+updated_at = 1683906067.557535
+group = "Application"
+uuid = "05140a48-184b-491e-ac3c-d613ca05b3c8"
+badge = "https://qisk.it/e-05140a48"
+
+[github]
+url = "https://github.com/QuantumApplicationLab/vqls-prototype"
+owner = "QuantumApplicationLab"
+repo = "vqls-prototype"
+stars = 19
+license = "Apache License 2.0"
+description = "A Variational Quantum Linear Solver Prototype for Qiskit"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2024-11-27T16:59:01Z
+last_activity = 2025-11-25T07:19:31Z
+
+[pypi.vqls-prototype]
+package_name = "vqls-prototype"
+version = "0.2.0"
+url = "https://pypi.org/project/vqls-prototype/"
+requires_qiskit = ">=0.14.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 241
+last_180_days_downloads = 472

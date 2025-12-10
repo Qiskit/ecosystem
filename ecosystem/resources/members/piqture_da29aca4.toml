@@ -1,0 +1,37 @@
+name = "piQture"
+url = "https://github.com/SaashaJoshi/piQture"
+description = "Develop, execute, and train Quantum Machine Learning models tailored for image processing tasks. Seamlessly integrated with Qiskit."
+licence = "Apache License 2.0"
+contact_info = "saashajoshi08@gmail.com"
+affiliations = "University of Victoria"
+labels = [ "QML",]
+group = "Application"
+reference_paper = "https://hdl.handle.net/1828/16627"
+uuid = "da29aca4-ba28-4d62-942b-f4c5371e7b6e"
+badge = "https://qisk.it/e-da29aca4"
+
+[github]
+url = "https://github.com/SaashaJoshi/piQture"
+owner = "SaashaJoshi"
+repo = "piQture"
+stars = 58
+homepage = "https://saashajoshi.github.io/piQture/"
+license = "Apache License 2.0"
+description = "piQture: A quantum machine learning library for image processing."
+estimated_contributors = 10
+total_dependent_repositories = 3
+total_dependent_packages = 0
+last_commit = 2025-11-20T16:40:44Z
+last_activity = 2025-11-20T16:40:44Z
+
+[pypi.piqture]
+package_name = "piqture"
+version = "0.2.0"
+url = "https://pypi.org/project/piQture/"
+requires_qiskit = ">=2.0.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 13
+last_180_days_downloads = 293

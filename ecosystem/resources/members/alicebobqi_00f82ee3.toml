@@ -1,0 +1,35 @@
+name = "Alice & Bob Qiskit provider"
+url = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider"
+description = "Access Alice & Bob QPUs and emulators using Qiskit."
+licence = "Apache 2.0"
+labels = [ "cloud service",]
+created_at = 1715084994.136498
+group = "Compute provider"
+uuid = "00f82ee3-ab46-44fc-afbb-32cb34a72339"
+badge = "https://qisk.it/e-00f82ee3"
+
+[github]
+url = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider"
+owner = "Alice-Bob-SW"
+repo = "qiskit-alice-bob-provider"
+stars = 42
+homepage = "https://felis.alice-bob.com/docs/"
+license = "Apache License 2.0"
+description = "Qiskit provider to execute quantum circuits on Alice & Bob cat qubits"
+estimated_contributors = 8
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-09-30T11:50:37Z
+last_activity = 2025-11-19T01:54:34Z
+
+[pypi.qiskit-alice-bob-provider]
+package_name = "qiskit-alice-bob-provider"
+version = "1.2.0"
+url = "https://pypi.org/project/qiskit-alice-bob-provider/"
+requires_qiskit = "<2.0,>=1.3.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"
+last_month_downloads = 272
+last_180_days_downloads = 2173

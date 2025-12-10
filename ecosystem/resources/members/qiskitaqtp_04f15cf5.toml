@@ -1,0 +1,38 @@
+name = "Qiskit AQT Provider"
+url = "https://github.com/qiskit-community/qiskit-aqt-provider"
+description = "Qiskit provider for ion-trap quantum computers from Alpine Quantum Technologies (AQT)."
+licence = "Apache License 2.0"
+contact_info = "info@aqt.eu"
+affiliations = "Alpine Quantum Technologies GmbH"
+labels = [ "cloud service",]
+website = "https://www.aqt.eu/qc-systems/"
+group = "Compute provider"
+documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
+uuid = "04f15cf5-ee50-4c77-b254-8907ed3ba407"
+badge = "https://qisk.it/e-04f15cf5"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-aqt-provider"
+owner = "qiskit-community"
+repo = "qiskit-aqt-provider"
+stars = 30
+homepage = "https://qiskit-community.github.io/qiskit-aqt-provider/"
+license = "Apache License 2.0"
+description = "Qiskit provider for AQT backends."
+estimated_contributors = 19
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-12-06T04:51:19Z
+last_activity = 2025-12-06T04:51:19Z
+
+[pypi.qiskit-aqt-provider]
+package_name = "qiskit-aqt-provider"
+version = "1.14.0"
+url = "https://pypi.org/project/qiskit-aqt-provider/"
+requires_qiskit = "<2,>=1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"
+last_month_downloads = 1156
+last_180_days_downloads = 10704

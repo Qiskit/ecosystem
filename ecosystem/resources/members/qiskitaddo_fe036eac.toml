@@ -1,0 +1,38 @@
+name = "qiskit-addon-sqd"
+url = "https://github.com/Qiskit/qiskit-addon-sqd"
+description = "Sample-based quantum diagonalization. Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
+licence = "Apache License 2.0"
+contact_info = "garrison@ibm.com"
+labels = [ "chemistry",]
+ibm_maintained = true
+created_at = 1758737407.8760931
+group = "Qiskit addon"
+documentation = "https://qiskit.github.io/qiskit-addon-sqd/"
+uuid = "fe036eac-635d-46db-931e-2965a8a138a5"
+badge = "https://qisk.it/e-fe036eac"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-addon-sqd"
+owner = "Qiskit"
+repo = "qiskit-addon-sqd"
+stars = 81
+homepage = "https://qiskit.github.io/qiskit-addon-sqd/"
+license = "Apache License 2.0"
+description = "Sample-based Quantum Diagonalization: Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
+estimated_contributors = 17
+total_dependent_repositories = 10
+total_dependent_packages = 1
+last_commit = 2025-12-02T19:47:03Z
+last_activity = 2025-12-02T19:47:04Z
+
+[pypi.qiskit-addon-sqd]
+package_name = "qiskit-addon-sqd"
+version = "0.12.0"
+url = "https://pypi.org/project/qiskit-addon-sqd/"
+requires_qiskit = "<3,>=1.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 4239
+last_180_days_downloads = 26361

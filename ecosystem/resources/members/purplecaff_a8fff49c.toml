@@ -1,0 +1,37 @@
+name = "PurpleCaffeine"
+url = "https://github.com/IceKhan13/purplecaffeine"
+description = "Project is aimed to create simple general interface to track quantum experiments, store and search them in an easy way."
+licence = "Apache License 2.0"
+affiliations = "QAMP"
+labels = []
+created_at = 1688661859.080258
+updated_at = 1688661859.080264
+group = "Other"
+documentation = "https://icekhan13.github.io/purplecaffeine/index.html"
+uuid = "a8fff49c-d8ee-4386-87b1-b28d31005823"
+badge = "https://qisk.it/e-a8fff49c"
+
+[github]
+url = "https://github.com/IceKhan13/purplecaffeine"
+owner = "IceKhan13"
+repo = "purplecaffeine"
+stars = 6
+homepage = "https://icekhan13.github.io/purplecaffeine/"
+license = "Apache License 2.0"
+description = "Project is aimed to create simple general interface to track quantum experiments, store and search them in an easy way."
+estimated_contributors = 8
+total_dependent_repositories = 4
+total_dependent_packages = 0
+last_commit = 2025-09-15T02:04:51Z
+
+[pypi.purplecaffeine]
+package_name = "purplecaffeine"
+version = "0.2.5"
+url = "https://pypi.org/project/purplecaffeine/"
+requires_qiskit = ">=0.43.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 17
+last_180_days_downloads = 156

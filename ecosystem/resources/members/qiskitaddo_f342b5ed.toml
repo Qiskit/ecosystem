@@ -1,0 +1,25 @@
+name = "qiskit-addon-sqd-hpc"
+url = "https://github.com/Qiskit/qiskit-addon-sqd-hpc"
+description = "A modern C++ software library to enable large-scale SQD calculations on high-performance computing (HPC) systems."
+licence = "Apache License 2.0"
+contact_info = "garrison@ibm.com"
+labels = [ "chemistry", "C++",]
+ibm_maintained = true
+website = "https://qiskit.github.io/qiskit-addon-sqd-hpc/"
+group = "Qiskit addon"
+uuid = "f342b5ed-2136-4f7a-bd00-a0a7d2df3493"
+badge = "https://qisk.it/e-f342b5ed"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-addon-sqd-hpc"
+owner = "Qiskit"
+repo = "qiskit-addon-sqd-hpc"
+stars = 10
+homepage = "https://qiskit.github.io/qiskit-addon-sqd-hpc/"
+license = "Apache License 2.0"
+description = "qiskit-addon-sqd-hpc is a modern C++17/20 software library to enable large-scale sample-based quantum diagonalization (SQD) calcula..."
+estimated_contributors = 3
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-24T17:31:21Z
+last_activity = 2025-12-03T16:46:06Z

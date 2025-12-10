@@ -1,0 +1,36 @@
+name = "Qiskit Qulacs"
+url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
+description = "Qiskit-Qulacs allows users to execute Qiskit programs using Qulacs backend."
+licence = "Apache License 2.0"
+contact_info = "dahalegopal27@gmail.com"
+labels = [ "provider",]
+group = "Compute provider"
+documentation = "https://qiskit-qulacs.netlify.app/"
+uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
+badge = "https://qisk.it/e-ebd47aa6"
+
+[github]
+url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
+owner = "Gopal-Dahale"
+repo = "qiskit-qulacs"
+stars = 10
+homepage = "https://qiskit-qulacs.netlify.app/"
+license = "Apache License 2.0"
+description = "Execute Qiskit programs using Qulacs backend."
+estimated_contributors = 2
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-24T18:31:39Z
+last_activity = 2025-11-24T18:31:40Z
+
+[pypi.qiskit-qulacs]
+package_name = "qiskit-qulacs"
+version = "0.1.0"
+url = "https://pypi.org/project/qiskit-qulacs/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 376
+last_180_days_downloads = 3044

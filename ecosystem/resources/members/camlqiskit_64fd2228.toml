@@ -1,0 +1,23 @@
+name = "caml_qiskit"
+url = "https://github.com/dakk/caml_qiskit"
+description = "OCaml wrapper for Qiskit quantum computing toolkit"
+licence = "MIT license"
+contact_info = "gessadavide@gmail.com"
+labels = [ "OCaml",]
+group = "Converter"
+documentation = "https://dakk.github.io/caml_qiskit/"
+packages = [ "https://opam.ocaml.org/packages/qiskit/",]
+uuid = "64fd2228-855b-4f30-9a1d-b64904ea80b4"
+badge = "https://qisk.it/e-64fd2228"
+
+[github]
+url = "https://github.com/dakk/caml_qiskit"
+owner = "dakk"
+repo = "caml_qiskit"
+stars = 8
+homepage = "https://dakk.github.io/caml_qiskit/"
+license = "MIT License"
+description = "OCaml wrapper for Qiskit quantum computing toolkit"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2024-03-13T15:46:41Z

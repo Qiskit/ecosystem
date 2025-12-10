@@ -1,0 +1,39 @@
+name = "M3"
+url = "https://github.com/Qiskit/qiskit-addon-mthree"
+description = "Matrix-free Measurement Mitigation (M3). Reduce the effects of readout errors from noisy quantum hardware."
+licence = "Apache 2.0"
+contact_info = ""
+labels = [ "error mitigation",]
+ibm_maintained = true
+created_at = 1678827878.805163
+updated_at = 1678827878.805164
+group = "Qiskit addon"
+documentation = "https://qiskit.github.io/qiskit-addon-mthree"
+uuid = "875968b2-f9e9-44a9-a5dc-4db9c4805021"
+badge = "https://qisk.it/e-875968b2"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-addon-mthree"
+owner = "Qiskit"
+repo = "qiskit-addon-mthree"
+stars = 48
+homepage = "https://qiskit.github.io/qiskit-addon-mthree/"
+license = "Apache License 2.0"
+description = "Matrix-free Measurement Mitigation"
+estimated_contributors = 16
+total_dependent_repositories = 116
+total_dependent_packages = 10
+last_commit = 2025-08-06T19:05:30Z
+last_activity = 2025-11-28T15:44:43Z
+
+[pypi.mthree]
+package_name = "mthree"
+version = "3.0.0"
+url = "https://pypi.org/project/mthree/"
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 18126
+last_180_days_downloads = 60611

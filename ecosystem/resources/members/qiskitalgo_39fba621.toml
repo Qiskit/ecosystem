@@ -1,0 +1,36 @@
+name = "Qiskit Algorithms"
+url = "https://github.com/qiskit-community/qiskit-algorithms"
+description = "A library of quantum algorithms for near-term quantum devices with short-depth circuits."
+licence = "Apache License 2.0"
+contact_info = "ept@zurich.ibm.com"
+affiliations = "IBM Quantum"
+labels = []
+group = "Application"
+documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
+uuid = "39fba621-edbb-485b-a723-8a0760ab4b85"
+badge = "https://qisk.it/e-39fba621"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-algorithms"
+owner = "qiskit-community"
+repo = "qiskit-algorithms"
+stars = 170
+homepage = "https://qiskit-community.github.io/qiskit-algorithms/"
+license = "Apache License 2.0"
+description = "A library of quantum algorithms for Qiskit."
+total_dependent_repositories = 523
+total_dependent_packages = 44
+last_commit = 2025-11-21T00:19:12Z
+last_activity = 2025-12-08T21:58:23Z
+
+[pypi.qiskit-algorithms]
+package_name = "qiskit-algorithms"
+version = "0.4.0"
+url = "https://pypi.org/project/qiskit-algorithms/"
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 109504
+last_180_days_downloads = 483016

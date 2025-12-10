@@ -1,0 +1,36 @@
+name = "Qiskit Scaleway"
+url = "https://github.com/scaleway/qiskit-scaleway"
+description = "A Python package to run quantum circuits on Scaleway infrastructure, providing access to simulators on powerful hardware (CPU and GPU)."
+licence = "Apache License 2.0"
+contact_info = "lmerbouche@scaleway.com"
+labels = [ "provider", "cloud service",]
+website = "https://www.scaleway.com"
+group = "Compute provider"
+documentation = "https://pypi.org/project/qiskit-scaleway/"
+uuid = "a942dc5d-c715-4b23-a9d6-4f2c3ee1d70b"
+badge = "https://qisk.it/e-a942dc5d"
+
+[github]
+url = "https://github.com/scaleway/qiskit-scaleway"
+owner = "scaleway"
+repo = "qiskit-scaleway"
+stars = 7
+license = "Apache License 2.0"
+description = "Scaleway provider implementation for Qiskit SDK"
+estimated_contributors = 5
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-12-03T12:48:43Z
+last_activity = 2025-12-03T15:39:24Z
+
+[pypi.qiskit-scaleway]
+package_name = "qiskit-scaleway"
+version = "0.3.3"
+url = "https://pypi.org/project/qiskit-scaleway/"
+requires_qiskit = "~=2.1"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 412
+last_180_days_downloads = 1957

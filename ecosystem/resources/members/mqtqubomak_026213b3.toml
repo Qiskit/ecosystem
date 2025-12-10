@@ -1,0 +1,40 @@
+name = "MQT QUBOMaker"
+url = "https://github.com/cda-tum/mqt-qubomaker"
+description = "A framework to generate QUBO formulations for optimization problems based on a selection of constraints that define the problem."
+licence = "MIT license"
+contact_info = "quantum.cda@xcit.tum.de"
+affiliations = "Technical University of Munich (TUM), Germany"
+labels = [ "optimization", "quantum information",]
+website = "https://mqt.readthedocs.io"
+group = "Application"
+reference_paper = "https://arxiv.org/abs/2404.10820"
+documentation = "https://mqt.readthedocs.io/projects/qubomaker"
+uuid = "026213b3-a2cd-4281-b49d-8516c6cd73ae"
+badge = "https://qisk.it/e-026213b3"
+
+[github]
+url = "https://github.com/cda-tum/mqt-qubomaker"
+owner = "cda-tum"
+repo = "mqt-qubomaker"
+stars = 29
+homepage = "https://cda-tum.github.io/mqt-qubomaker/"
+license = "MIT License"
+description = "A framework for the automatic generation of QUBO formulations for optimization problems."
+estimated_contributors = 6
+total_dependent_repositories = 0
+total_dependent_packages = 0
+archived = true
+last_commit = 2025-10-27T13:07:37Z
+last_activity = 2025-10-27T13:07:37Z
+
+[pypi."mqt.qubomaker"]
+package_name = "mqt-qubomaker"
+version = "1.0.1"
+url = "https://pypi.org/project/mqt.qubomaker/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 53
+last_180_days_downloads = 142

@@ -1,0 +1,31 @@
+name = "Qiskit.jl"
+url = "https://github.com/Qiskit/Qiskit.jl/"
+contact_info = "garrison@ibm.com"
+labels = [ "Julia",]
+ibm_maintained = true
+group = "SDK"
+documentation = "https://qiskit.github.io/Qiskit.jl/"
+uuid = "50b8eb33-872d-44a4-b8f8-5fafa7712393"
+badge = "https://qisk.it/e-50b8eb33"
+
+[github]
+url = "https://github.com/Qiskit/Qiskit.jl"
+owner = "Qiskit"
+repo = "Qiskit.jl"
+stars = 10
+license = "Apache License 2.0"
+description = "Julia binding for Qiskit"
+estimated_contributors = 4
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-11-22T05:24:05Z
+last_activity = 2025-12-06T06:55:04Z
+
+[julia]
+package_name = "Qiskit"
+registry = "General"
+version = "0.3.0"
+license = "Apache-2.0"
+owner = "Qiskit"
+release_date = 2025-11-01
+uuid = "91d9a17d-f964-4b6c-a3c4-2f4cfdea2c95"

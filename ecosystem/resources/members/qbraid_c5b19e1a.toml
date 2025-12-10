@@ -1,0 +1,39 @@
+name = "qBraid"
+url = "https://github.com/qBraid/qBraid"
+description = "The qBraid-SDK is a Python toolkit for cross-framework abstraction, transpilation, and execution of quantum programs."
+licence = "GNU General Public License (GPL)"
+contact_info = "ryanhill@qbraid.com"
+affiliations = "qBraid Co."
+labels = [ "circuit manipulation", "openqasm",]
+created_at = 1690263743.561744
+updated_at = 1690263743.56175
+website = "https://qbraid.com"
+group = "SDK"
+uuid = "c5b19e1a-cdde-4f31-b9d2-62c7709da809"
+badge = "https://qisk.it/e-c5b19e1a"
+
+[github]
+url = "https://github.com/qBraid/qBraid"
+owner = "qBraid"
+repo = "qBraid"
+stars = 103
+homepage = "https://docs.qbraid.com/sdk"
+license = "Apache License 2.0"
+description = "A platform-agnostic quantum runtime framework"
+estimated_contributors = 35
+total_dependent_repositories = 27
+total_dependent_packages = 15
+last_commit = 2025-12-08T21:06:52Z
+last_activity = 2025-12-08T21:06:53Z
+
+[pypi.qbraid]
+package_name = "qbraid"
+version = "0.10.0"
+url = "https://pypi.org/project/qbraid/"
+requires_qiskit = "<3.0,>=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 28557
+last_180_days_downloads = 94874
