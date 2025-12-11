@@ -16,6 +16,7 @@ Submit an issue if you want to change something
 <!-- start:table-badge -->
 <table>
 <tr><th width="10%">Member</th><th width="60%">Badge</th><th>MD Code</th></tr>
+<tr><td>(Large-scale) Quantum Network Coding</td><td><img src="https://qisk.it/e-67bfc31d" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-67bfc31d)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>Aer</td><td><img src="https://qisk.it/e-474599a7" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-474599a7)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>Alice & Bob Qiskit provider</td><td><img src="https://qisk.it/e-00f82ee3" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-00f82ee3)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>antinature</td><td><img src="https://qisk.it/e-83868867" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-83868867)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
@@ -86,8 +87,8 @@ Submit an issue if you want to change something
 <tr><td>Qiskit SAT Synthesis</td><td><img src="https://qisk.it/e-2e6b95b1" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-2e6b95b1)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>Qiskit Scaleway</td><td><img src="https://qisk.it/e-a942dc5d" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-a942dc5d)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>Qiskit Serverless</td><td><img src="https://qisk.it/e-d463fcf2" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-d463fcf2)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
-<tr><td>qiskit-addon-aqc-tensor</td><td><img src="https://qisk.it/e-ef4e120a" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-ef4e120a)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>qiskit-addon-aqc-tensor</td><td><img src="https://qisk.it/e-5ad8eedc" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-5ad8eedc)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
+<tr><td>qiskit-addon-aqc-tensor</td><td><img src="https://qisk.it/e-ef4e120a" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-ef4e120a)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>qiskit-addon-cutting</td><td><img src="https://qisk.it/e-b8a6cb2a" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-b8a6cb2a)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>qiskit-addon-mpf</td><td><img src="https://qisk.it/e-99eb5c40" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-99eb5c40)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
 <tr><td>qiskit-addon-obp</td><td><img src="https://qisk.it/e-e3e67d5e" /></td><td><pre class="notranslate"><code>[![Qiskit Ecosystem](https://qisk.it/e-e3e67d5e)](https://qisk.it/e)</code> &nbsp; </pre></td></tr>
