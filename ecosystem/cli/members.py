@@ -31,9 +31,15 @@ class CliMembers:
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
-    def validate(self):
-        """validate members in <self.resources_dir>/members"""
+    def validate(self, name=None):
+        """validate members in <self.resources_dir>/members.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
         for member in self.dao.get_all():
+            if name and name not in member.name_id:
+                continue
             passing, not_passing = validate_member(member)
             if not passing:
                 logger.error("%s has no validations?", member.name_id)
@@ -138,15 +144,29 @@ class CliMembers:
         with open(readme_md, "w") as outfile:
             outfile.write(new_content)
 
-    def update_github(self):
-        """Updates GitHub data."""
+    def update_github(self, name=None):
+        """
+        Updates GitHub data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
         for project in self.dao.get_all():
+            if name and name not in project.name_id:
+                continue
             project.update_github()
             self.dao.update(project.name_id, github=project.github)
 
-    def update_pypi(self):
-        """Updates PyPI data."""
+    def update_pypi(self, name=None):
+        """
+        Updates PyPI data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
         for project in self.dao.get_all():
+            if name and name not in project.name_id:
+                continue
             project.update_pypi()
             self.dao.update(project.name_id, pypi=project.pypi)
 
