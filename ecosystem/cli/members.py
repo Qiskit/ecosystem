@@ -6,6 +6,7 @@ import os
 from typing import Optional, Tuple
 from pathlib import Path
 from jsonpath import findall, query
+import re
 
 
 from ecosystem.dao import DAO
@@ -112,21 +113,23 @@ class CliMembers:
         for project in self.dao.get_all():
             if project.badge is None:
                 continue
-            projects.append((project.name, project.badge, project.badge_md))
+            projects.append(
+                (project.name, project.badge, project.badge_md, project.name_id)
+            )
 
-        projects.sort(key=lambda x: x[0].casefold())
+        projects.sort(key=lambda x: re.sub("[^A-Za-z0-9]+", "", x[0]).lower())
 
         lines = [
             "",
             "<table>",
-            '<tr><th width="10%">Member</th><th width="60%">Badge</th><th>MD Code</th></tr>',
+            "<tr><th>Member</th><th>Badge (click for full size)</th><th>MD Code</th></tr>",
         ]
-        for name, badge, badge_md in projects:
+        for name, badge, badge_md, name_id in projects:
             lines.append(
                 "<tr>"
-                f"<td>{name}</td>"
+                f'<td><a href="../ecosystem/resources/members/{name_id}.toml" >{name}</a></td>'
                 f'<td><img src="{badge}" /></td>'
-                f'<td><pre class="notranslate"><code>{badge_md}</code> &nbsp; </pre></td>'
+                f"<td>\n\n```markdown\n{badge_md}  \n```\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")

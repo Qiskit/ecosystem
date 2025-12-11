@@ -32,9 +32,7 @@ To join the ecosystem, your project must:
   - New projects should be compatible with the [V2 primitives](https://docs.quantum.ibm.com/migration-guides/v2-primitives).
 
 Once your submission has been approved and merged, it will appear on [www.ibm.com/quantum/ecosystem](https://www.ibm.com/quantum/ecosystem) within a few days.
-You will also be able to add the [Qiskit Ecosystem badge in your `README.md`](qisk.it/ecosystem-badges). 
-
-You can change the badge style by changing `style=` in the url (see [shields.io for more information](https://shields.io/badges/endpoint-badge). 
+You will also be able to add the [Qiskit Ecosystem badge in your `README.md`](https://qisk.it/ecosystem-badges). 
 
 ## How to update project information
 
