@@ -143,8 +143,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """
         Updates all the GitHub information in the project.
         """
-        self.github.update_json()
-        self.github.update_owner_repo()
+        if self.github:
+            self.github.update_json()
+            self.github.update_owner_repo()
 
     def _create_qisk_dot_it_link_for_badge(self):
         data = {
