@@ -4,7 +4,7 @@
 Once your project is part of the [Qiskit Ecosystem website](https://qisk.it/ecosystem), you can add the badge to your `README.md`:
 
 1. Find your project in the following table.
-2. Copy the code in "MD Code" column.
+2. Copy the code in **MarkDown code** column.
 3. Paste it into your `README.md`.
 
 <!--
@@ -15,781 +15,781 @@ Submit an issue if you want to change something
 
 <!-- start:table-badge -->
 <table>
-<tr><th>Member</th><th>Badge (click for full size)</th><th>MD Code</th></tr>
+<tr><th>Member</th><th>Badge (click for full size)</th><th>MarkDown code</th></tr>
 <tr><td><a href="../ecosystem/resources/members/aer_474599a7.toml" >Aer</a></td><td><img src="https://qisk.it/e-474599a7" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-474599a7)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-474599a7)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/alicebobqi_00f82ee3.toml" >Alice & Bob Qiskit provider</a></td><td><img src="https://qisk.it/e-00f82ee3" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-00f82ee3)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-00f82ee3)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/antinature_83868867.toml" >antinature</a></td><td><img src="https://qisk.it/e-83868867" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-83868867)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-83868867)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/azurequant_8abf631e.toml" >Azure Quantum</a></td><td><img src="https://qisk.it/qe-8abf631e" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/qe-8abf631e)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/qe-8abf631e)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/bosonicqis_3d8fe04d.toml" >Bosonic Qiskit</a></td><td><img src="https://qisk.it/e-3d8fe04d" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-3d8fe04d)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-3d8fe04d)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/calanquant_8868c7af.toml" >CALA-n Quantum Library</a></td><td><img src="https://qisk.it/e-8868c7af" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-8868c7af)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-8868c7af)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/camlqiskit_64fd2228.toml" >caml_qiskit</a></td><td><img src="https://qisk.it/e-64fd2228" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-64fd2228)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-64fd2228)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/conditiona_dc917437.toml" >Conditional Measurement Toolbox</a></td><td><img src="https://qisk.it/e-dc917437" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-dc917437)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-dc917437)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/denseev_f305aa07.toml" >dense-ev</a></td><td><img src="https://qisk.it/e-f305aa07" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-f305aa07)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-f305aa07)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/dsmswap_beaaab32.toml" >dsm-swap</a></td><td><img src="https://qisk.it/e-beaaab32" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-beaaab32)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-beaaab32)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/dynacir_ee3eb036.toml" >dynacir</a></td><td><img src="https://qisk.it/e-ee3eb036" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-ee3eb036)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-ee3eb036)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/fadamvqe_e4d840cb.toml" >FAdam-VQE</a></td><td><img src="https://qisk.it/e-e4d840cb" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-e4d840cb)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-e4d840cb)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/fastpauli_b4d78374.toml" >fast-pauli</a></td><td><img src="https://qisk.it/e-b4d78374" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-b4d78374)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-b4d78374)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/ffsim_8bbab14b.toml" >ffsim</a></td><td><img src="https://qisk.it/e-8bbab14b" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-8bbab14b)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-8bbab14b)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/galanquant_36e10568.toml" >GALA-n Quantum Library</a></td><td><img src="https://qisk.it/e-36e10568" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-36e10568)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-36e10568)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/grovercont_40b3b309.toml" >Grover controlled-diffuser (CUs)</a></td><td><img src="https://qisk.it/e-40b3b309" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-40b3b309)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-40b3b309)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/hamiltonia_569f773e.toml" >Hamiltonian simulation template</a></td><td><img src="https://qisk.it/e-569f773e" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-569f773e)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-569f773e)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/implicitso_fac11d8c.toml" >Implicit solvent model template</a></td><td><img src="https://qisk.it/e-fac11d8c" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-fac11d8c)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-fac11d8c)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/largescale_67bfc31d.toml" >(Large-scale) Quantum Network Coding</a></td><td><img src="https://qisk.it/e-67bfc31d" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-67bfc31d)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-67bfc31d)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/m3_875968b2.toml" >M3</a></td><td><img src="https://qisk.it/e-875968b2" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-875968b2)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-875968b2)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mitiq_a4ba9712.toml" >Mitiq</a></td><td><img src="https://qisk.it/e-a4ba9712" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-a4ba9712)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-a4ba9712)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtbench_06f1e81e.toml" >MQT Bench</a></td><td><img src="https://qisk.it/e-06f1e81e" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-06f1e81e)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-06f1e81e)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtcore_2309e6fb.toml" >MQT Core</a></td><td><img src="https://qisk.it/e-2309e6fb" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-2309e6fb)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-2309e6fb)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtddsim_b852a97c.toml" >MQT DDSIM</a></td><td><img src="https://qisk.it/e-b852a97c" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-b852a97c)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-b852a97c)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtpredict_9d5e2ef2.toml" >MQT Predictor</a></td><td><img src="https://qisk.it/e-9d5e2ef2" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-9d5e2ef2)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-9d5e2ef2)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtproblem_4262945e.toml" >MQT ProblemSolver</a></td><td><img src="https://qisk.it/e-4262945e" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-4262945e)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-4262945e)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtqao_6d4c69e4.toml" >MQT QAO</a></td><td><img src="https://qisk.it/e-6d4c69e4" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-6d4c69e4)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-6d4c69e4)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtqcec_79415931.toml" >MQT QCEC</a></td><td><img src="https://qisk.it/e-79415931" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-79415931)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-79415931)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtqecc_791d4814.toml" >MQT QECC</a></td><td><img src="https://qisk.it/e-791d4814" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-791d4814)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-791d4814)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtqmap_d16209fb.toml" >MQT QMAP</a></td><td><img src="https://qisk.it/e-d16209fb" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-d16209fb)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-d16209fb)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/mqtqubomak_026213b3.toml" >MQT QUBOMaker</a></td><td><img src="https://qisk.it/e-026213b3" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-026213b3)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-026213b3)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/noisyquant_dd5d5bad.toml" >Noisy Quantum Gates</a></td><td><img src="https://qisk.it/e-dd5d5bad" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-dd5d5bad)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-dd5d5bad)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/pennylaneq_cfbecefc.toml" >Pennylane-Qiskit</a></td><td><img src="https://qisk.it/e-cfbecefc" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-cfbecefc)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-cfbecefc)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/piqture_da29aca4.toml" >piQture</a></td><td><img src="https://qisk.it/e-da29aca4" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-da29aca4)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-da29aca4)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/povmtoolbo_1fb3d426.toml" >POVM Toolbox</a></td><td><img src="https://qisk.it/e-1fb3d426" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-1fb3d426)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-1fb3d426)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/purplecaff_a8fff49c.toml" >PurpleCaffeine</a></td><td><img src="https://qisk.it/e-a8fff49c" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-a8fff49c)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-a8fff49c)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/pyriemannq_fb1907a7.toml" >pyRiemann-qiskit</a></td><td><img src="https://qisk.it/e-fb1907a7" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-fb1907a7)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-fb1907a7)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/pytketqisk_7c80aef4.toml" >pytket-qiskit</a></td><td><img src="https://qisk.it/e-7c80aef4" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-7c80aef4)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-7c80aef4)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qamomile_50cd2126.toml" >Qamomile</a></td><td><img src="https://qisk.it/e-50cd2126" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-50cd2126)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-50cd2126)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qasmrunner_5b05d5a3.toml" >QASM Runner for IBM platforms</a></td><td><img src="https://qisk.it/e-5b05d5a3" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-5b05d5a3)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-5b05d5a3)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qbraid_c5b19e1a.toml" >qBraid</a></td><td><img src="https://qisk.it/e-c5b19e1a" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-c5b19e1a)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-c5b19e1a)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qclib_727120b2.toml" >Qclib</a></td><td><img src="https://qisk.it/e-727120b2" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-727120b2)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-727120b2)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qcraftauto_cec38ad8.toml" >QCRAFT AutoScheduler</a></td><td><img src="https://qisk.it/e-cec38ad8" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-cec38ad8)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-cec38ad8)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qdao_c39a1176.toml" >qdao</a></td><td><img src="https://qisk.it/e-c39a1176" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-c39a1176)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-c39a1176)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qelm_8b3685bb.toml" >QELM</a></td><td><img src="https://qisk.it/e-8b3685bb" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-8b3685bb)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-8b3685bb)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_ef4e120a.toml" >qiskit-addon-aqc-tensor</a></td><td><img src="https://qisk.it/e-ef4e120a" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-ef4e120a)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-ef4e120a)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_5ad8eedc.toml" >qiskit-addon-aqc-tensor</a></td><td><img src="https://qisk.it/e-5ad8eedc" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-5ad8eedc)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-5ad8eedc)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_b8a6cb2a.toml" >qiskit-addon-cutting</a></td><td><img src="https://qisk.it/e-b8a6cb2a" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-b8a6cb2a)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-b8a6cb2a)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_99eb5c40.toml" >qiskit-addon-mpf</a></td><td><img src="https://qisk.it/e-99eb5c40" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-99eb5c40)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-99eb5c40)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_e3e67d5e.toml" >qiskit-addon-obp</a></td><td><img src="https://qisk.it/e-e3e67d5e" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-e3e67d5e)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-e3e67d5e)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_4cb3b182.toml" >qiskit-addon-pna</a></td><td><img src="https://qisk.it/e-4cb3b182" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-4cb3b182)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-4cb3b182)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_189aa71b.toml" >qiskit-addon-slc</a></td><td><img src="https://qisk.it/e-189aa71b" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-189aa71b)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-189aa71b)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_fe036eac.toml" >qiskit-addon-sqd</a></td><td><img src="https://qisk.it/e-fe036eac" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-fe036eac)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-fe036eac)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_f342b5ed.toml" >qiskit-addon-sqd-hpc</a></td><td><img src="https://qisk.it/e-f342b5ed" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-f342b5ed)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-f342b5ed)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitalgo_39fba621.toml" >Qiskit Algorithms</a></td><td><img src="https://qisk.it/e-39fba621" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-39fba621)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-39fba621)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaqtp_04f15cf5.toml" >Qiskit AQT Provider</a></td><td><img src="https://qisk.it/e-04f15cf5" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-04f15cf5)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-04f15cf5)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitbrak_de20c734.toml" >Qiskit Braket provider</a></td><td><img src="https://qisk.it/e-de20c734" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-de20c734)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-de20c734)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitc_254bd1b0.toml" >Qiskit C++</a></td><td><img src="https://qisk.it/e-254bd1b0" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-254bd1b0)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-254bd1b0)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitclas_bc3b8894.toml" >qiskit-classroom-converter</a></td><td><img src="https://qisk.it/e-bc3b8894" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-bc3b8894)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-bc3b8894)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitcode_7e74391b.toml" >Qiskit Code Assistant for VSCode</a></td><td><img src="https://qisk.it/e-7e74391b" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-7e74391b)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-7e74391b)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitdyna_4bf110b1.toml" >Qiskit Dynamics</a></td><td><img src="https://qisk.it/e-4bf110b1" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-4bf110b1)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-4bf110b1)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitexpe_6e94a8b7.toml" >Qiskit Experiments</a></td><td><img src="https://qisk.it/e-6e94a8b7" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-6e94a8b7)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-6e94a8b7)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitfina_8ebeec26.toml" >Qiskit Finance</a></td><td><img src="https://qisk.it/e-8ebeec26" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-8ebeec26)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-8ebeec26)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitibmr_964baff2.toml" >qiskit-ibm-runtime C</a></td><td><img src="https://qisk.it/e-964baff2" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-964baff2)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-964baff2)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitinsp_1513e7fe.toml" >Qiskit Inspect</a></td><td><img src="https://qisk.it/e-1513e7fe" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-1513e7fe)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-1513e7fe)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitinst_7352f04f.toml" >Qiskit Installer for Windows</a></td><td><img src="https://qisk.it/e-7352f04f" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-7352f04f)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-7352f04f)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitionq_9dec814e.toml" >Qiskit IonQ Provider</a></td><td><img src="https://qisk.it/e-9dec814e" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-9dec814e)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-9dec814e)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitjl_50b8eb33.toml" >Qiskit.jl</a></td><td><img src="https://qisk.it/e-50b8eb33" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-50b8eb33)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-50b8eb33)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitmach_18986ebc.toml" >Qiskit Machine Learning</a></td><td><img src="https://qisk.it/e-18986ebc" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-18986ebc)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-18986ebc)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitnatu_768ba9e4.toml" >Qiskit Nature</a></td><td><img src="https://qisk.it/e-768ba9e4" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-768ba9e4)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-768ba9e4)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitnatu_a08d66f6.toml" >Qiskit Nature + CP2K Embedding</a></td><td><img src="https://qisk.it/e-a08d66f6" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-a08d66f6)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-a08d66f6)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitnatu_1bfdd558.toml" >Qiskit Nature PySCF</a></td><td><img src="https://qisk.it/e-1bfdd558" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-1bfdd558)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-1bfdd558)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitoniq_648ef199.toml" >Qiskit on IQM</a></td><td><img src="https://qisk.it/e-648ef199" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-648ef199)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-648ef199)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitopti_3b2ff33f.toml" >Qiskit Optimization</a></td><td><img src="https://qisk.it/e-3b2ff33f" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-3b2ff33f)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-3b2ff33f)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitoptj_fd796b7d.toml" >QiskitOpt.jl</a></td><td><img src="https://qisk.it/e-fd796b7d" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-fd796b7d)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-fd796b7d)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitqec_f00eb2fa.toml" >Qiskit QEC</a></td><td><img src="https://qisk.it/e-f00eb2fa" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-f00eb2fa)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-f00eb2fa)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitqrac_43cd849a.toml" >Qiskit Qrack Provider</a></td><td><img src="https://qisk.it/e-43cd849a" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-43cd849a)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-43cd849a)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitquan_d5d174ee.toml" >Qiskit Quantinuum provider</a></td><td><img src="https://qisk.it/e-d5d174ee" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-d5d174ee)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-d5d174ee)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitqubi_c9369922.toml" >qiskit-qubit-reuse</a></td><td><img src="https://qisk.it/e-c9369922" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-c9369922)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-c9369922)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitquim_a304538c.toml" >qiskit-quimb</a></td><td><img src="https://qisk.it/e-a304538c" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-a304538c)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-a304538c)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitqula_ebd47aa6.toml" >Qiskit Qulacs</a></td><td><img src="https://qisk.it/e-ebd47aa6" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-ebd47aa6)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-ebd47aa6)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitrese_8794efa6.toml" >Qiskit Research</a></td><td><img src="https://qisk.it/e-8794efa6" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-8794efa6)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-8794efa6)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitrige_88a73f80.toml" >Qiskit Rigetti Provider</a></td><td><img src="https://qisk.it/e-88a73f80" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-88a73f80)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-88a73f80)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitrs_0f1aa4a6.toml" >qiskit-rs</a></td><td><img src="https://qisk.it/e-0f1aa4a6" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-0f1aa4a6)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-0f1aa4a6)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitsats_2e6b95b1.toml" >Qiskit SAT Synthesis</a></td><td><img src="https://qisk.it/e-2e6b95b1" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-2e6b95b1)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-2e6b95b1)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitscal_a942dc5d.toml" >Qiskit Scaleway</a></td><td><img src="https://qisk.it/e-a942dc5d" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-a942dc5d)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-a942dc5d)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitserv_d463fcf2.toml" >Qiskit Serverless</a></td><td><img src="https://qisk.it/e-d463fcf2" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-d463fcf2)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-d463fcf2)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitsupe_76ae525f.toml" >qiskit-superstaq</a></td><td><img src="https://qisk.it/e-76ae525f" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-76ae525f)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-76ae525f)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitsymb_9350b230.toml" >qiskit-symb</a></td><td><img src="https://qisk.it/e-9350b230" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-9350b230)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-9350b230)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qlasskit_42b0f0f5.toml" >qlasskit</a></td><td><img src="https://qisk.it/e-42b0f0f5" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-42b0f0f5)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-42b0f0f5)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qmuvi_9d4da903.toml" >qMuVi</a></td><td><img src="https://qisk.it/e-9d4da903" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-9d4da903)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-9d4da903)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qomm_b1285a61.toml" >qOMM</a></td><td><img src="https://qisk.it/e-b1285a61" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-b1285a61)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-b1285a61)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qoptkit_d94095eb.toml" >QoptKIT</a></td><td><img src="https://qisk.it/e-d94095eb" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-d94095eb)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-d94095eb)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qpong_56eb0ca6.toml" >QPong</a></td><td><img src="https://qisk.it/e-56eb0ca6" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-56eb0ca6)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-56eb0ca6)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/quantumdeb_3728ab3d.toml" >Quantum Debugger</a></td><td><img src="https://qisk.it/e-3728ab3d" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-3728ab3d)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-3728ab3d)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/quantumins_fb1cd889.toml" >Quantum Inspire SDK</a></td><td><img src="https://qisk.it/e-fb1cd889" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-fb1cd889)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-fb1cd889)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/quantumker_6daa87ef.toml" >Quantum Kernel Training</a></td><td><img src="https://qisk.it/e-6daa87ef" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-6daa87ef)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-6daa87ef)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/quantummas_e6e7a086.toml" >Quantum MasterChef</a></td><td><img src="https://qisk.it/e-e6e7a086" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-e6e7a086)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-e6e7a086)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/quantumnet_0533cf1a.toml" >Quantum Network Coding</a></td><td><img src="https://qisk.it/e-0533cf1a" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-0533cf1a)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-0533cf1a)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/quantumpro_bb5d0da9.toml" >Quantum Prototype Template</a></td><td><img src="https://qisk.it/e-bb5d0da9" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-bb5d0da9)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-bb5d0da9)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qubit_5870b3e3.toml" >Qubit</a></td><td><img src="https://qisk.it/e-5870b3e3" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-5870b3e3)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-5870b3e3)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qupepfold_ab89baa7.toml" >QuPepFold</a></td><td><img src="https://qisk.it/e-ab89baa7" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-ab89baa7)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-ab89baa7)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qupython_bad95659.toml" >quPython</a></td><td><img src="https://qisk.it/e-bad95659" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-bad95659)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-bad95659)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qutesprogr_79b52453.toml" >Qutes Programming Language</a></td><td><img src="https://qisk.it/e-79b52453" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-79b52453)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-79b52453)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/qx86_a68e9142.toml" >Qx86</a></td><td><img src="https://qisk.it/e-a68e9142" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-a68e9142)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-a68e9142)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/rasqberry_dfa4cfd2.toml" >RasQberry</a></td><td><img src="https://qisk.it/e-dfa4cfd2" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-dfa4cfd2)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-dfa4cfd2)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/symbolicqi_e10b8307.toml" >symbolic-qiskit</a></td><td><img src="https://qisk.it/e-e10b8307" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-e10b8307)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-e10b8307)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/torchquant_6fefeede.toml" >TorchQuantum</a></td><td><img src="https://qisk.it/e-6fefeede" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-6fefeede)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-6fefeede)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/truncatedv_6e4000a2.toml" >truncated Variational Hamiltonian Ansatz tVHA</a></td><td><img src="https://qisk.it/e-6e4000a2" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-6e4000a2)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-6e4000a2)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/variationa_05140a48.toml" >Variational Quantum Linear Solver Prototype</a></td><td><img src="https://qisk.it/e-05140a48" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-05140a48)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-05140a48)](https://qisk.it/e)
 ```
 
 </td></tr>
 <tr><td><a href="../ecosystem/resources/members/zoosecodes_255ca532.toml" >zoose-codespace</a></td><td><img src="https://qisk.it/e-255ca532" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-255ca532)](https://qisk.it/e)  
+[![Qiskit Ecosystem](https://qisk.it/e-255ca532)](https://qisk.it/e)
 ```
 
 </td></tr>

@@ -122,7 +122,7 @@ class CliMembers:
         lines = [
             "",
             "<table>",
-            "<tr><th>Member</th><th>Badge (click for full size)</th><th>MD Code</th></tr>",
+            "<tr><th>Member</th><th>Badge (click for full size)</th><th>MarkDown code</th></tr>",
         ]
         for name, badge, badge_md, name_id in projects:
             lines.append(
