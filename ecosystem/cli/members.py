@@ -129,7 +129,7 @@ class CliMembers:
                 "<tr>"
                 f'<td><a href="../ecosystem/resources/members/{name_id}.toml" >{name}</a></td>'
                 f'<td><img src="{badge}" /></td>'
-                f"<td>\n\n```markdown\n{badge_md}  \n```\n\n</td>"
+                f"<td>\n\n```markdown\n{badge_md}\n```\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")
