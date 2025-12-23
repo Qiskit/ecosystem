@@ -32,7 +32,7 @@ While Apache 2.0 or MIT are preferred, [any license approved by OSI](https://ope
 
 ---
 
-### <a id='COC'>Adhere to the Qiskit CoC</a>
+<h3 id="COC">Adhere to the Qiskit CoC</h3>
 
 |   id  | applies to | category | related to |
 |  :---:  | :---: | :---: | :---: |
@@ -102,3 +102,4 @@ If the project build Python packages that depend on Qiskit SDK, the license-rela
 If the project implements a Qiskit primitive interface, it should be compatible with the [V2 primitives](https://docs.quantum.ibm.com/migration-guides/v2-primitives) API.
 
 ---
+
