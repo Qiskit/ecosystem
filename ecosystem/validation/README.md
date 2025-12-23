@@ -4,7 +4,19 @@
 Once your project is part of the [Qiskit Ecosystem website](https://qisk.it/ecosystem), some checks will be ran on the project regularly.
 If your project file has one or more `[validation.*]` entries, it is because some of those validation checks failed on the project.
 
-Take a look to the following details on how you can fix the problems found in the a project.
+<details>
+<summary>Joining criteria</summary>
+
+To join the Qiskit Ecosystem, a project must:
+
+  - [[000](#000)] Build on, interface with, or extend the [Qiskit SDK](https://github.com/Qiskit/qiskit) in a meaningful way.
+  - [[Q20](#Q20)] Be compatible with the Qiskit SDK v2.0 (or newer).
+  - [[001](#001)] Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
+  - [[COC](#COC)] Adhere to the [Qiskit code of conduct](https://qisk.it/coc) (you can enforce your own code of conduct in addition to this).
+  - [[G00](#G00)] Have maintainer activity within the last 6 months, such as a commit.
+  - [[P20](#P20)] New projects should be compatible with the [V2 primitives](https://docs.quantum.ibm.com/migration-guides/v2-primitives).
+
+</details>
 
 ---
 
@@ -102,4 +114,5 @@ If the project build Python packages that depend on Qiskit SDK, the license-rela
 If the project implements a Qiskit primitive interface, it should be compatible with the [V2 primitives](https://docs.quantum.ibm.com/migration-guides/v2-primitives) API.
 
 ---
+
 
