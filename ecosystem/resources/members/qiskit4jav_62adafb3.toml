@@ -1,0 +1,13 @@
+name = "Qiskit4Java"
+url = "https://github.com/gnietof/QREST"
+description = "A set of Java classes which allow interfacing with IBM Quantum from Java. The idea is being able to run primitives from Java without having to deal with Python. So, classes to deal with Pauli, Primitives, Backends ... are included."
+contact_info = "genaro@es.ibm.com"
+labels = []
+ibm_maintained = true
+group = "SDK"
+packages = []
+uuid = "62adafb3-291b-470c-95e1-40f4d7ad8a97"
+
+[github]
+owner = "gnietof"
+repo = "QREST"
