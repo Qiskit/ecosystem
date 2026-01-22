@@ -5,8 +5,8 @@ import tomllib
 import os
 from typing import Optional, Tuple
 from pathlib import Path
-import re
 from jsonpath import findall, query
+import re
 
 
 from ecosystem.dao import DAO
