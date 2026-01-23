@@ -37,7 +37,7 @@ jobs:
           git config user.name 'GitHub'
           git config user.email 'noreply@github.com'
           python manager.py members update_github ${{ steps.get-id.outputs.id }}
-          git commit -am "Modify tracked file during workflow"
+          git commit -am "Modify tracked file during workflow" --allow-empty
       - name: Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

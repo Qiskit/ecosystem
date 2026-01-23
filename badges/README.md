@@ -4,7 +4,7 @@
 Once your project is part of the [Qiskit Ecosystem website](https://qisk.it/ecosystem), you can add the badge to your `README.md`:
 
 1. Find your project in the following table.
-2. Copy the code in **MarkDown code** column.
+2. Copy the code in **Markdown code** column.
 3. Paste it into your `README.md`.
 
 <!--
@@ -15,7 +15,7 @@ Submit an issue if you want to change something
 
 <!-- start:table-badge -->
 <table>
-<tr><th>Member</th><th>Badge (click for full size)</th><th>MarkDown code</th></tr>
+<tr><th>Member</th><th>Badge (click for full size)</th><th>Markdown code</th></tr>
 <tr><td><a href="../ecosystem/resources/members/aer_474599a7.toml" >Aer</a></td><td><img src="https://qisk.it/e-474599a7" /></td><td>
 
 ```markdown

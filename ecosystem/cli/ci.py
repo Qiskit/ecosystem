@@ -42,7 +42,7 @@ class CliCI:
     def update_issue_template(
         template_path: str, *, resources_dir: str | None = None
     ) -> None:
-        """Parse an issue created from the issue template and add the member to the database
+        """Updates the labels and categories in the issue template
 
         Args:
             template_path: Path to the issue template to update
