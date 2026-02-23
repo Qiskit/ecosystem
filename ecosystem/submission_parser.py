@@ -40,5 +40,9 @@ def parse_submission_issue(body_of_issue: str) -> Member:
     issue_formatted = mdformat.text(body_of_issue)
 
     submission = Submission.from_formatted_issue(issue_formatted)
-    # TODO: validate submission. # pylint: disable=fixme
+    
+    submission_fields = ['name','url','description','contact_info','labels','ibm_maintained','website','group','reference_paper','documentation','github','packages']
+    is__submission_valid = all(hasattr(submission, field) for field in submission_fields)
+    if is__submission_valid == False:
+        raise ValueError('Submission is missing required data')
     return Member.from_submission(submission)
