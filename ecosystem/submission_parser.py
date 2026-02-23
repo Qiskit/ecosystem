@@ -27,6 +27,7 @@ def parse_submission_issue(body_of_issue: str) -> Member:
     then, using the issue template, transforms labels to IDs to create a
     dictionary { id: content }. Since the IDs match arguments of the Submission
     constructor, this dict is the "args" needed to create the Submission object.
+    In the other case, function will raise ValueError.
 
     Since users can only submit strings, we map the string "_No response_" to
     None and parse the "labels" field into a list.
