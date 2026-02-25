@@ -1,0 +1,11 @@
+name = "HLQuantum"
+url = "https://github.com/AlinDanielFerenczi/HLQuantum"
+description = "A human oriented high-level Python package designed to simplify working with quantum algorithms and developing complex systems."
+labels = [ "circuit manipulation, circuit building, research",]
+group = "High-level synthesis plugin"
+packages = [ "https://pypi.org/manage/project/hlquantum",]
+uuid = "50bd99f2-dbd5-4759-b19d-6f5ecdf9e0da"
+
+[github]
+owner = "AlinDanielFerenczi"
+repo = "HLQuantum"
