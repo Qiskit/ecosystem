@@ -27,6 +27,7 @@ def parse_submission_issue(body_of_issue: str) -> Member:
     then, using the issue template, transforms labels to IDs to create a
     dictionary { id: content }. Since the IDs match arguments of the Submission
     constructor, this dict is the "args" needed to create the Submission object.
+    In the other case, function will raise ValueError.
 
     Since users can only submit strings, we map the string "_No response_" to
     None and parse the "labels" field into a list.
@@ -40,5 +41,9 @@ def parse_submission_issue(body_of_issue: str) -> Member:
     issue_formatted = mdformat.text(body_of_issue)
 
     submission = Submission.from_formatted_issue(issue_formatted)
-    # TODO: validate submission. # pylint: disable=fixme
+    
+    submission_fields = ['name','url','description','contact_info','labels','ibm_maintained','website','group','reference_paper','documentation','github','packages']
+    is__submission_valid = all(hasattr(submission, field) for field in submission_fields)
+    if is__submission_valid == False:
+        raise ValueError('Submission is missing required data')
     return Member.from_submission(submission)
