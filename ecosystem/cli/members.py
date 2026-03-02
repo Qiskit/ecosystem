@@ -3,15 +3,17 @@
 import json
 import tomllib
 import os
+import re
 from typing import Optional, Tuple
 from pathlib import Path
 from jsonpath import findall, query
-import re
 
 
 from ecosystem.dao import DAO
+from ecosystem.github import GitHubData
 from ecosystem.member import Member
 from ecosystem.error_handling import logger
+from ecosystem.pypi import PyPIData
 from ecosystem.validation import validate_member
 
 
@@ -84,6 +86,43 @@ class CliMembers:
             website=repo_website,
         )
         self.dao.write(new_repo)
+
+    def upsert_sections(self, name=None):
+        """Create or update sections in a member.
+        It is fully local, no validation or internet fetch.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all():
+            if name and name not in project.name_id:
+                continue
+
+            # github section
+            if not project.github:
+                project.github = GitHubData.from_url(project.url)
+
+            # package sections
+            if not project.packages:
+                project.packages = []
+
+            keep_in_packages = []
+            while len(project.packages) > 0:
+                package = project.packages.pop(0)
+                pypi = PyPIData.from_url(package)
+                if pypi:
+                    project.pypi[pypi.package_name] = pypi
+                else:
+                    keep_in_packages.append(package)
+                    self.logger.info("package %s not supported yet", package)
+
+            self.dao.update(
+                project.name_id,
+                github=project.github,
+                pypi=project.pypi,
+                packages=keep_in_packages or None,
+            )
 
     def update_badges(self):
         """Updates badges for projects."""

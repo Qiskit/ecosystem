@@ -1,7 +1,6 @@
 """PyPI section."""
 
 from functools import reduce, cached_property
-from urllib.parse import ParseResult
 from re import match
 from os import path
 import json
@@ -60,14 +59,14 @@ class PyPIData(JsonSerializable):
         return dictionary
 
     @classmethod
-    def from_url(cls, pypi_project_url: ParseResult):
+    def from_url(cls, pypi_project_url):
         """
-        Builds a PyPISection from an URL (ParseResult) that looks like
+        Builds a PyPISection from an URL that looks like
         'https://pypi.org/project/<package_name>/'.
         Returns None if the given URL is not a PyPI url
         """
         if "pypi.org" not in pypi_project_url.hostname:
-            # pypi_project_url is not a PyPI URL
+            # pypi_project_url is not a PyPI url
             return None
 
         url_path = pypi_project_url.path

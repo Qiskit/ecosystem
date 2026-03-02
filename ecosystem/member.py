@@ -56,20 +56,16 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.packages = packages
         self.uuid = uuid
         self.github = github
-        self.pypi = pypi
+        self.pypi = pypi or {}
         self.julia = julia
         self.badge = badge
 
         self.__dict__.setdefault("created_at", parse_datetime("now"))
         self.__dict__.setdefault("updated_at", parse_datetime("now"))
-        if self.github is None:
-            self.github = GitHubData.from_url(self.url)
         if self.uuid is None:
             self.uuid = str(uuid4())
         if self.labels is None:
             self.labels = []
-        if self.pypi is None:
-            self.pypi = {}
 
     @property
     def short_uuid(self):
@@ -97,6 +93,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                     {"package_name": project_name} | pypi_dict
                 )
                 filtered_dict["pypi"][project_name] = pypi_data
+        if "packages" in filtered_dict:
+            filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
         return Member(**filtered_dict)
 
     def to_dict(self) -> dict:
