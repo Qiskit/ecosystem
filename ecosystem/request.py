@@ -118,6 +118,9 @@ class URL:
     def __str__(self):
         return self._parse_result.geturl() if self._parse_result else self.original_url
 
+    def __repr__(self):
+        return f"URL('{self}')"
+
 
 def parse_github_front_page(html_text):
     """
