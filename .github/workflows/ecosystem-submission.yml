@@ -40,17 +40,19 @@ jobs:
         ISSUE_NUMBER: ${{ github.event.issue.number }}
       run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
-    # Comment in the issue if failing
-    - name: Make comment on failed GA
+    # Comment in the submission fails
+    - name: Make comment on failed submission
+      id: failed
       if: failure()
       uses: peter-evans/create-or-update-comment@v5
       env:
-        LOG_URL: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+        run: |
+          echo "::set-output name=logurl::$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.issue.number }}
         body: |
-          The submission failed. [Check out the logs](${{ env.LOG_URL }}).
+          The submission failed. [Check out the logs](${{ steps.failed.outputs.logurl }}).
 
     # Create PR
     - name: Commit changes and create pull request
