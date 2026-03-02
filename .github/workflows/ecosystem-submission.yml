@@ -48,7 +48,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.issue.number }}
         body: |
-          The submission failed. [Check out the logs]({{github.server_url}}/{{}}github.repository/actions/runs/${{ env.github.run.id }}).
+          The submission failed. [Check out the logs](${{github.server_url}}/${{github.repository}}/actions/runs/${{ github.run.id }}).
 
     # Create PR
     - name: Commit changes and create pull request
