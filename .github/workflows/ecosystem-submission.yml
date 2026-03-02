@@ -9,9 +9,6 @@ on:
   issues:
     types: [opened, edited, reopened, closed]
 
-env:
-  logURL: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
-
 jobs:
   submission_workflow:
     concurrency:
@@ -51,7 +48,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.issue.number }}
         body: |
-          The submission failed. [Check out the logs](${{ env.logURL }}).
+          The submission failed. [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
 
     # Create PR
     - name: Commit changes and create pull request
