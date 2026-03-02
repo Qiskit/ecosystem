@@ -1,20 +1,18 @@
-name: Update request
+name: 🔄 Update request
 description: Update (or remove) information about your project
 title: "[Project update]: "
-labels: [update request]
-assignees:
-  - octocat
+labels: [member update]
 body:
   - type: markdown
     attributes:
       value: |
-        Explain the updates you'd like to see.
+        Explain the update you are requesting. You can also request a removal. In anycase, feel free to cancel this issue submission and open a PR directly with your suggested changes. You can also open a PR to address this issue later. The PR should modify a single file in https://github.com/Qiskit/ecosystem/blob/main/ecosystem/resources/members
   - type: input
-    id: repo
+    id: member_id
     attributes:
-      label: Github repo
+      label: Project name
       description: |
-        Name of Ecosytem project to update information for
+        Name of Ecosytem project to update or remove.
     validations:
       required: true
   - type: textarea
@@ -22,14 +20,7 @@ body:
     attributes:
       label: Description
       description: |
-        Mention the field you'd like to update, and tell us what you'd like to update the field to. You can request updates to the following fields:
-          - Repo URL
-          - Description
-          - Email
-          - Licence
-          - Affiliations
-          - Tags
-          - Website
-      placeholder: E.g. Change contact information to example@example.com
+        Mention the field you'd like to update, and tell us what you'd like to update the field to. You can also explain why you would like to remove a project from the ecosystem, if that is the case.
+      placeholder: e.g. The documentation got moved to https://docs.bananaproject.org
     validations:
       required: true
