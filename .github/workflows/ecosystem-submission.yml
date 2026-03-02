@@ -41,13 +41,12 @@ jobs:
       run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
     # Comment in the submission fails
+    - id: failed
+      run: |
+        echo "::set-output name=logurl::$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
     - name: Make comment on failed submission
-      id: failed
       if: failure()
       uses: peter-evans/create-or-update-comment@v5
-      env:
-        run: |
-          echo "::set-output name=logurl::$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.issue.number }}
