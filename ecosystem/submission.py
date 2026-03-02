@@ -27,8 +27,8 @@ class Submission:
     source_url: ParseResult
     home_url: ParseResult
     docs_url: ParseResult
-    package_urls: list[ParseResult]
-    paper_url: ParseResult
+    package_urls: list[URL]
+    paper_url: URL
 
     @classmethod
     def from_formatted_issue(cls, issue_formatted):
@@ -125,4 +125,7 @@ class Submission:
             and self.source_url.path.lower().startswith("/qiskit/")
         ):
             return True
+        return False
+
+    def validate(self):
         return False

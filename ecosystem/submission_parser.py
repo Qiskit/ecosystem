@@ -2,6 +2,7 @@
 
 import mdformat
 
+from .error_handling import EcosystemError
 from .submission import Submission
 from .member import Member
 
@@ -35,7 +36,7 @@ def parse_submission_issue(
 
     Args:
         body_of_issue: body of an GitHub issue in markdown
-        parse_submission_issue: issue number that originated the submission
+        issue_number: issue number that originated the submission
 
     Return: Member
     """
@@ -43,5 +44,6 @@ def parse_submission_issue(
     issue_formatted = mdformat.text(body_of_issue)
 
     submission = Submission.from_formatted_issue(issue_formatted)
-    # TODO: validate submission. # pylint: disable=fixme
+    if not submission.validate():
+        raise EcosystemError(f"Submission #{issue_number} did not pass validation!")
     return Member.from_submission(submission, issue_number)
