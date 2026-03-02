@@ -38,6 +38,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           python manager.py members upsert_sections ${{ steps.get-id.outputs.id }}
           python manager.py members update_github ${{ steps.get-id.outputs.id }}
+          python manager.py members update_pypi ${{ steps.get-id.outputs.id }}
           git commit -am "Update stats on unmerged submission" --allow-empty
       - name: Push changes
         env:
