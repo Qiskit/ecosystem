@@ -40,13 +40,23 @@ jobs:
         ISSUE_NUMBER: ${{ github.event.issue.number }}
       run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
+    - name: Find Comment bot comment
+      uses: peter-evans/find-comment@v3
+      id: fc
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        comment-author: 'github-actions[bot]'
+        body-includes: Check out the logs
+
     # Comment in the submission fails
     - name: Make comment on failed submission
       if: failure()
       uses: peter-evans/create-or-update-comment@v5
       with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
         token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.issue.number }}
+        edit-mode: replace
         body: |
           The submission failed.
           [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).

@@ -128,4 +128,13 @@ class Submission:
         return False
 
     def validate(self):
+        """
+        Returns a JSON with validation
+        {
+        date: ,
+        validations: [
+         {name: str, result: str, advice: str}
+        ]
+        }
+        """
         return False
