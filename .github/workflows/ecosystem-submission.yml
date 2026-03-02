@@ -44,11 +44,13 @@ jobs:
     - name: Make comment on failed GA
       if: failure()
       uses: peter-evans/create-or-update-comment@v5
+      env:
+        LOG_URL: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.issue.number }}
         body: |
-          The submission failed. [Check out the logs]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID).
+          The submission failed. [Check out the logs]($LOG_URL).
 
     # Create PR
     - name: Commit changes and create pull request
