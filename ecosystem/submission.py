@@ -86,7 +86,11 @@ class Submission:
                 content = " ".join(raw_content)
         elif "dropdown" == field_type:
             # removes items starting with "_", like "_No response_"
-            content = [i for i in raw_content if not i.startswith("_")]
+            content = [
+                i.strip()
+                for i in raw_content[0].split(",")
+                if not i.strip().startswith("_")
+            ]
         elif "checkboxes" == field_type:
             content = raw_content[0].startswith("- [x]")
         elif field_id.endswith("_url"):

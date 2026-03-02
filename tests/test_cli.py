@@ -66,7 +66,7 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "contact_info": "author@banana-compiler.org",
-            "labels": ["error mitigation, quantum information, optimization"],
+            "labels": ["error mitigation", "quantum information", "optimization"],
             "website": "https://banana-compiler.org",
             "documentation": "https://banana-compiler.org/documentation",
             "reference_paper": "https://arxiv.org/abs/5555.22222",

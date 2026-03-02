@@ -67,7 +67,7 @@ jobs:
     steps:
     - id: get-id
       run: |
-        id=$(echo ${{github.event.issue.title}} | cut -d: -f2- )
+        id=$(echo ${{github.event.issue.title}} | cut -d: -f2- | awk '{$1=$1};1')
         echo "::set-output name=id::$id"
     - name: Create comment on success
       uses: peter-evans/create-or-update-comment@v3
