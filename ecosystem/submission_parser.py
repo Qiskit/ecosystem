@@ -6,7 +6,9 @@ from .submission import Submission
 from .member import Member
 
 
-def parse_submission_issue(body_of_issue: str) -> Member:
+def parse_submission_issue(
+    body_of_issue: str, issue_number: int | None = None
+) -> Member:
     """Parse issue body.
 
     The GitHub issue is a collection of "fields", each of which has a
@@ -33,6 +35,7 @@ def parse_submission_issue(body_of_issue: str) -> Member:
 
     Args:
         body_of_issue: body of an GitHub issue in markdown
+        parse_submission_issue: issue number that originated the submission
 
     Return: Member
     """
@@ -41,4 +44,4 @@ def parse_submission_issue(body_of_issue: str) -> Member:
 
     submission = Submission.from_formatted_issue(issue_formatted)
     # TODO: validate submission. # pylint: disable=fixme
-    return Member.from_submission(submission)
+    return Member.from_submission(submission, issue_number)

@@ -37,7 +37,8 @@ jobs:
       id: parse-issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
-      run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY"
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
+      run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
     # Create PR
     - name: Commit changes and create pull request
