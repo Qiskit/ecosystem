@@ -17,6 +17,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     def __init__(  # pylint: disable=too-many-arguments, too-many-locals
         self,
         name: str,
+        submission_number: int | None = None,
         url: str | URL | None = None,
         description: str | None = None,
         licence: str | None = None,
@@ -39,6 +40,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         julia: JuliaData | None = None,
     ):
         self.name = name
+        self.submission_number = submission_number
         self.url = URL(url) if isinstance(url, str) else url
         self.description = description
         self.licence = licence
@@ -178,12 +180,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             self.julia.update_json()
 
     @classmethod
-    def from_submission(cls, submission):
+    def from_submission(cls, submission, issue_number: str = None):
         """
         Takes a submission object and creates a very basic Member object
         """
         return Member(
             name=submission.name,
+            submission_number=issue_number,
             url=submission.source_url,
             description=submission.description,
             contact_info=submission.contact_info,
