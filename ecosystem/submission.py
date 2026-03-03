@@ -129,12 +129,20 @@ class Submission:
 
     def validate(self):
         """
-        Returns a JSON with validation
+        Returns a JSON with validation results
         {
-        date: ,
+        date: date,
+        summary: ...
         validations: [
-         {name: str, result: str, advice: str}
+         {name: str, result: "passed" | "failed", advice: str}
         ]
         }
         """
-        return False
+        return {
+            "date": "TODO",
+            "summary": {"passed": 1, "failed": 0, "total": 2},
+            "validations": [
+                {"name": "test_name0", "result": "passed", "notes": "TODO"},
+                {"name": "test_name1", "result": "failed", "notes": "TODO"},
+            ],
+        }

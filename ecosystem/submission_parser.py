@@ -44,6 +44,10 @@ def parse_submission_issue(
     issue_formatted = mdformat.text(body_of_issue)
 
     submission = Submission.from_formatted_issue(issue_formatted)
-    if not submission.validate():
-        raise EcosystemError(f"Submission #{issue_number} did not pass validation!")
+    validations = submission.validate()
+    print("## Error")
+    print("")
+    print("Error summary")
+    if validations["summary"]["failed"] != 0:
+        raise EcosystemError(f"Submission #{issue_number} did not pass validation.")
     return Member.from_submission(submission, issue_number)
