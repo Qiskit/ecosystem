@@ -45,9 +45,8 @@ def parse_submission_issue(
 
     submission = Submission.from_formatted_issue(issue_formatted)
     validations = submission.validate()
-    print("## Error")
-    print("")
-    print("Error summary")
     if validations["summary"]["failed"] != 0:
         raise EcosystemError(f"Submission #{issue_number} did not pass validation.")
+    else:
+        print(f"::notice title = Submission #{issue_number}::all the fields validated.")
     return Member.from_submission(submission, issue_number)
