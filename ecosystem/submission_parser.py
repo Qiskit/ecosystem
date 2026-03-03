@@ -2,7 +2,6 @@
 
 import mdformat
 
-from .error_handling import EcosystemError
 from .submission import Submission
 from .member import Member
 
@@ -45,19 +44,14 @@ def parse_submission_issue(
 
     submission = Submission.from_formatted_issue(issue_formatted)
     validations = submission.validate()
-    print(f"::notice title = Summary::{validations["summary"]}")
-    should_raise = False
+    print(f"::notice ::Summary%0A{validations["summary"]}")
+    all_good = True
     for validation in validations["validations"]:
         if not validation["passed"]:
             print(
-                f"::error title = Error in field {validation["field"]}::{validation["notes"]}."
+                f"::error file={validation["filename"]},line={validation["firstlineno"]},endLine={validation["lastlineno"]}::Field {validation["field"]}: {validation["notes"]}."
             )
-            print(
-                f"::error title = Error in field {validation["field"]}::{validation["notes"]}."
-            )
-            should_raise = True
-    if should_raise:
-        raise EcosystemError(f"Submission #{issue_number} did not pass validation.")
-    else:
-        print(f"::notice title = Submission #{issue_number}::all the fields are valid.")
+            all_good = False
+    if all_good:
+        print(f"::notice::Submission #{issue_number}: all the fields are valid.")
     return Member.from_submission(submission, issue_number)

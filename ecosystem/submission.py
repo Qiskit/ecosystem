@@ -148,9 +148,14 @@ class Submission:
             ]
             for validation_str in validations_for_a_field:
                 validation_method = getattr(self, validation_str)
+                code = validation_method.__func__.__code__
                 ret["validations"].append(
                     {
                         "field": key,
+                        "filename": f"ecosystem/"
+                        f"{code.co_filename.split('ecosystem')[-1]}",
+                        "firstlineno": list(code.co_positions())[0][0],
+                        "lastlineno": list(code.co_positions())[-1][0],
                         "passed": validation_method(value),
                         "notes": validation_method.__doc__.strip(),
                     }
