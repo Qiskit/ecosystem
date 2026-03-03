@@ -1,7 +1,7 @@
 """Parser for issue submission."""
 
-import mdformat
 import sys
+import mdformat
 
 from .submission import Submission
 from .member import Member
@@ -49,15 +49,10 @@ def parse_submission_issue(
     all_good = True
     for validation in validations["validations"]:
         if not validation["passed"]:
-            print(f"::error::Field {validation["field"]}: {validation["notes"]}.")
+            print(f"::error::Field '{validation["field"]}': {validation["notes"]}.")
             all_good = False
     if all_good:
         print(f"::notice::Submission #{issue_number}: all the fields are valid.")
     else:
-        sys.exit(
-            f"""
-::error::Field {validation["field"]}: {validation["notes"]}.
-::error::Field {validation["field"]}: {validation["notes"]}.
-        """
-        )
+        sys.exit(1)
     return Member.from_submission(submission, issue_number)

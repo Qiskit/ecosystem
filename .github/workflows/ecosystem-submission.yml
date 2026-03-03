@@ -48,36 +48,6 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         comment-author: 'github-actions[bot]'
         body-includes: Check out the logs
-
-    # Comment in the validated submission
-    - name: Make comment on validated submission
-      if: success()
-      uses: peter-evans/create-or-update-comment@v5
-      with:
-        comment-id: ${{ steps.fc.outputs.comment-id }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        issue-number: ${{ github.event.issue.number }}
-        edit-mode: replace
-        body: |
-          The submission is validated. Creating a PR...
-          [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
-          
-          > [!NOTE]  
-          > The submitted project is not yet approved. It will be once the PR is reviewed and merged. 
-
-      # Comment in the submission fails
-    - name: Make comment on failed submission
-      if: failure()
-      uses: peter-evans/create-or-update-comment@v5
-      with:
-        comment-id: ${{ steps.fc.outputs.comment-id }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        issue-number: ${{ github.event.issue.number }}
-        edit-mode: replace
-        body: |
-          The submission failed.
-          [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
-
     # Create PR
     - name: Commit changes and create pull request
       id: cpr
@@ -92,6 +62,44 @@ jobs:
           Closes #${{ github.event.issue.number }}
         branch: submission-${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
         labels: submission
+
+    # Comment in the validated submission
+    - name: Make comment on validated submission
+      if: success() && ${{ steps.cpr.outputs.pull-request-number }}
+      uses: peter-evans/create-or-update-comment@v5
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        issue-number: ${{ github.event.issue.number }}
+        edit-mode: replace
+        body: |
+          The submission is validated. Creating a PR...
+          [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
+          
+          > [!NOTE]  
+          > The submitted project is not yet approved. It will be once #${{ github.event.issue.number }} is reviewed and merged. 
+
+    - name: Close Issue
+      run: gh issue close ${{ github.event.issue.number }}
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Comment in the submission fails
+    - name: Make comment on failed submission
+      if: failure()
+      uses: peter-evans/create-or-update-comment@v5
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        issue-number: ${{ github.event.issue.number }}
+        edit-mode: replace
+        body: |
+          The submission failed.
+          [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
+
+          > [!TIP]
+          > Edit the issue (using the ellipsis buttom on the right-upper corner) and try to fix the issues.
+          > The validation will re-run automtaically after that.
 
   followup_workflow:
     concurrency:
