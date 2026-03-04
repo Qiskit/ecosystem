@@ -37,7 +37,6 @@ class CliCI:
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
 
         member = parse_submission_issue(body, number)
-        member.upsert_sections()
         DAO(path=resources_dir).write(member)
         set_actions_output([("SUBMISSION_NAME", member.name)])
         set_actions_output([("SUBMISSION_SHORT_UUID", member.short_uuid)])
@@ -73,9 +72,7 @@ class CliCI:
             yaml.dump(data, yaml_file)
 
     @staticmethod
-    def validate_new_member_data(
-        member_id: str, *, resources_dir: str | None = None
-    ) -> None:
+    def create_sections(member_id: str, *, resources_dir: str | None = None) -> None:
         """TODO
 
         Args:
@@ -87,10 +84,10 @@ class CliCI:
 
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
 
-        # parsed_result = parse_submission_issue(body, number)
-        # DAO(path=resources_dir).write(parsed_result)
-        # set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
-        # set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
+        dao = DAO(path=resources_dir)
+        for member in dao.get_all(member_id):
+            member.upsert_sections()
+            dao.write(member)
 
     @staticmethod
     def fetch_new_member_data(
@@ -107,6 +104,7 @@ class CliCI:
 
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
 
-        for member in DAO(path=resources_dir).get_all(member_id):
+        dao = DAO(path=resources_dir)
+        for member in dao.get_all(member_id):
             member.update_data()
-            DAO(path=resources_dir).write(member)
+            dao.write(member)

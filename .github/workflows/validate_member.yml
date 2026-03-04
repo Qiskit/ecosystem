@@ -1,0 +1,35 @@
+name: Validate a member candidate
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '**.yml'
+
+jobs:
+  validate_candidate:
+    if: >
+      ${{ contains(github.event.pull_request.head.ref, 'submission')
+      && contains(github.event.pull_request.labels.*.name, 'submission') }}
+    runs-on: ubuntu-latest
+    env:
+      python-version: "3.13"
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ env.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    - name: Setup member id
+      id: get-id
+      run: |
+        id=$(echo ${{ github.event.pull_request.head.ref }} | cut -d- -f2 )
+        echo "::set-output name=id::$id"
+    - name: Validate member TOML
+      run: |
+        python member validate ${{ steps.get-id.outputs.id }}
