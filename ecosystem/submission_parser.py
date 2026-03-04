@@ -45,10 +45,13 @@ def parse_submission_issue(
 
     submission = Submission.from_formatted_issue(issue_formatted)
     validations = submission.validate()
-    print(f"::notice ::{validations["summary"]}")
+    print(
+        f"::notice ::{validations["summary"]}"
+    )  # TODO this is too CI for being here. Consider make it simpler
     all_good = True
     for validation in validations["validations"]:
         if not validation["passed"]:
+            # TODO refer to the fields as in the submission issue, so the submitter can fix the problems
             print(f"::error::Field '{validation["field"]}': {validation["notes"]}.")
             all_good = False
     if all_good:

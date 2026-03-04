@@ -138,10 +138,7 @@ class Submission:
             ],
         }
         """
-        ret = {
-            "summary": {"passed": 1, "failed": 0, "total": 2},
-            "validations": [],
-        }
+        ret = {"validations": []}
         for key, value in self.__dict__.items():
             validations_for_a_field = [
                 m for m in dir(self) if m.startswith(f"_validate_{key}")

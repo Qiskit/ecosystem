@@ -29,15 +29,6 @@ jobs:
         ISSUE_NUMBER: ${{ github.event.issue.number }}
       run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
-    - name: Find Comment bot comment
-      uses: peter-evans/find-comment@v3
-      if: always()
-      id: fc
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        comment-author: 'github-actions[bot]'
-        body-includes: Check out the logs
-
     - name: Commit changes and create pull request
       id: cpr
       uses: peter-evans/create-pull-request@v7
@@ -52,8 +43,17 @@ jobs:
         branch: submission-${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
         labels: submission
 
+    - name: Find Comment bot comment
+      uses: peter-evans/find-comment@v3
+      if: always()
+      id: fc
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        comment-author: 'github-actions[bot]'
+        body-includes: Check out the logs
+
     - name: Make comment on validated submission
-      if: success() && ${{ steps.cpr.outputs.pull-request-number }}
+      if: success() && steps.cpr.outputs.pull-request-number
       uses: peter-evans/create-or-update-comment@v5
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}

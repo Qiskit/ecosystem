@@ -34,12 +34,13 @@ class CliCI:
             None (side effect is updating database and writing actions output)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem/resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
 
-        parsed_result = parse_submission_issue(body, number)
-        DAO(path=resources_dir).write(parsed_result)
-        set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
-        set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
+        member = parse_submission_issue(body, number)
+        member.upsert_sections()
+        DAO(path=resources_dir).write(member)
+        set_actions_output([("SUBMISSION_NAME", member.name)])
+        set_actions_output([("SUBMISSION_SHORT_UUID", member.short_uuid)])
 
     @staticmethod
     def update_issue_template(
@@ -70,3 +71,42 @@ class CliCI:
 
         with open(template_path, "w") as yaml_file:
             yaml.dump(data, yaml_file)
+
+    @staticmethod
+    def validate_new_member_data(
+        member_id: str, *, resources_dir: str | None = None
+    ) -> None:
+        """TODO
+
+        Args:
+            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+
+        Returns:
+            None (side effect is updating database and writing actions output)
+        """
+
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+
+        # parsed_result = parse_submission_issue(body, number)
+        # DAO(path=resources_dir).write(parsed_result)
+        # set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
+        # set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
+
+    @staticmethod
+    def fetch_new_member_data(
+        member_id: str, *, resources_dir: str | None = None
+    ) -> None:
+        """TODO
+
+        Args:
+            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+
+        Returns:
+            None (side effect is updating database and writing actions output)
+        """
+
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+
+        for member in DAO(path=resources_dir).get_all(member_id):
+            member.update_data()
+            DAO(path=resources_dir).write(member)
