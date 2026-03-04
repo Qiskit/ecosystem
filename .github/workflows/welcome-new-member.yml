@@ -12,8 +12,8 @@ jobs:
     steps:
     - id: get-id
       run: |
-        project_name=$(echo ${{github.event.pull_request.bodyText}} | grep "Nomination for" | cut -d: -f2- | awk '{$1=$1};1')
-        nominator=$(echo ${{github.event.pull_request.bodyText}} | grep ", via" | | cut -d@ -f2- | cut -d, -f1 | awk '{$1=$1};1')
+        project_name=$(echo ${{github.event.pull_request.body}} | grep "Nomination for" | cut -d: -f2- | awk '{$1=$1};1')
+        nominator=$(echo ${{github.event.pull_request.body}} | grep ", via" | | cut -d@ -f2- | cut -d, -f1 | awk '{$1=$1};1')
         echo "::set-output name=project_name::$project_name"
         echo "::set-output name=nominator::@$nominator"
     - name: Create comment on success
