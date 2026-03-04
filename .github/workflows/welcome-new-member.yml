@@ -7,7 +7,7 @@ on:
 
 jobs:
   if_new_member:
-    if: github.event.pull_request.merged == true && contains(github.event.issue.labels.*.name, 'submission')
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'submission')
     runs-on: ubuntu-latest
     steps:
     - id: get-id

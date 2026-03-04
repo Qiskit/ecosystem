@@ -44,9 +44,9 @@ jobs:
       uses: peter-evans/create-pull-request@v7
       with:
         commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to the Qiskit Ecosystem.
-        title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to the Qiskit Ecosystem
+        title: Nominate ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to the Qiskit Ecosystem
         body: |
-          Nomination for: steps.parse-issue.outputs.SUBMISSION_NAME
+          Nomination for: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
           
           By @${{ github.event.issue.user.login }}, via #${{ github.event.issue.number }}
 
@@ -62,7 +62,7 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         edit-mode: replace
         body: |
-          The submission is validated. Let's close this issue and start the conversation about this projectt in #${{ steps.cpr.outputs.pull-request-number }}.
+          The submission is validated. Let's close this issue and start the conversation about this project in #${{ steps.cpr.outputs.pull-request-number }}.
           [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
           
           > [!NOTE]  
