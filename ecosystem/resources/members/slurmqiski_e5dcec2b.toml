@@ -1,0 +1,15 @@
+name = "slurm-qiskit-cluster"
+submission_number = 1027
+url = "https://github.com/dmeliksetian/slurm-qiskit-cluster"
+description = "A containerized, GPU-accelerated Slurm cluster for local development and testing of Qiskit/QRMI workloads on Linux and WSL2."
+contact_info = "dikran.s.meliksetian@gmail.com"
+labels = [ "HPC", "cloud service", "demo", "research",]
+website = "https://dikranmeliksetian.com."
+group = "Tooling"
+documentation = "https://github.com/dmeliksetian/slurm-qiskit-cluster/blob/main/InstallationGuide.md."
+packages = []
+uuid = "e5dcec2b-bfd8-44f5-ba31-65a2aa50c036"
+
+[github]
+owner = "dmeliksetian"
+repo = "slurm-qiskit-cluster"
