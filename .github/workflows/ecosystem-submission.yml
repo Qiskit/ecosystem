@@ -1,26 +1,17 @@
 name: Ecosystem | Submission
 
-###
-# - install deps
-# - parse issue
-# - create pr
-
 on:
   issues:
-    types: [opened, edited, reopened, closed]
+    types: [opened, edited, reopened]
 
 jobs:
   submission_workflow:
-    concurrency:
-      group: ci-${{ github.event.issue.title }}
-      cancel-in-progress: true
-    if: (startsWith(github.event.issue.title, '[Submission]:') && github.event.action != 'closed')
+    if: (startsWith(github.event.issue.title, '[Submission]:'))
     runs-on: ubuntu-latest
     env:
-      tox_env: "py39"
+      tox_env: "py313"
       python-version: "3.13"
     steps:
-    # setup deps
     - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v4
@@ -32,7 +23,6 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    # Python workflow
     - name: Parse submission
       id: parse-issue
       env:
@@ -48,22 +38,21 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         comment-author: 'github-actions[bot]'
         body-includes: Check out the logs
-    # Create PR
+
     - name: Commit changes and create pull request
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
-        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
-        title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to the Qiskit Ecosystem.
+        title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to the Qiskit Ecosystem
         body: |
-          Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+          Nomination for: steps.parse-issue.outputs.SUBMISSION_NAME
+          
+          By @${{ github.event.issue.user.login }}, via #${{ github.event.issue.number }}
 
-          ---
-          Closes #${{ github.event.issue.number }}
         branch: submission-${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
         labels: submission
 
-    # Comment in the validated submission
     - name: Make comment on validated submission
       if: success() && ${{ steps.cpr.outputs.pull-request-number }}
       uses: peter-evans/create-or-update-comment@v5
@@ -73,18 +62,17 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         edit-mode: replace
         body: |
-          The submission is validated. Creating a PR...
+          The submission is validated. Let's close this issue and start the conversation about this projectt in #${{ steps.cpr.outputs.pull-request-number }}.
           [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
           
           > [!NOTE]  
-          > The submitted project is not yet approved. It will be once #${{ github.event.issue.number }} is reviewed and merged. 
+          > The submitted project is not yet approved. It will be once #${{ steps.cpr.outputs.pull-request-number }} is reviewed and merged. 
 
     - name: Close Issue
       run: gh issue close ${{ github.event.issue.number }}
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Comment in the submission fails
     - name: Make comment on failed submission
       if: failure()
       uses: peter-evans/create-or-update-comment@v5
@@ -98,36 +86,5 @@ jobs:
           [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
 
           > [!TIP]
-          > Edit the issue (using the ellipsis buttom on the right-upper corner) and try to fix the issues.
-          > The validation will re-run automtaically after that.
-
-  followup_workflow:
-    concurrency:
-      group: ci-${{ github.event.issue.title }}
-      cancel-in-progress: true
-    if: >
-      startsWith(github.event.issue.title, '[Submission]:')
-      && github.event.action == 'closed'
-      && github.event.issue.state_reason == 'completed'
-      && contains(github.event.issue.labels.*.name, 'submission')
-    runs-on: ubuntu-latest
-    steps:
-    - id: get-id
-      run: |
-        id=$(echo ${{github.event.issue.title}} | cut -d: -f2- | awk '{$1=$1};1')
-        echo "::set-output name=id::$id"
-    - name: Create comment on success
-      uses: peter-evans/create-or-update-comment@v3
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        body: |
-              Hello @${{ github.event.issue.user.login }},
-
-              **${{ steps.get-id.outputs.id }} is now part of the Qiskit Ecosystem**. Here are some follow up actions you can take to get the most out of the program:
-
-              - :speech_balloon: Join other Qiskit ecosystem developers in the Slack [channel `#qiskit-ecosystem`](https://qiskit.slack.com/archives/C04RHE56N93). If you are not in the Qiskit workspace yet, sign up at https://qisk.it/join-slack
-              - :white_check_mark: Use the [Qiskit theme](https://github.com/Qiskit/qiskit_sphinx_theme) for your documentation
-              - :stethoscope: Keep an eye on the criteria compliance
-              - :purple_heart: Add the [Qiskit Ecosystem badge](https://qisk.it/ecosystem-badges) to your `README.md`
-
-              It is great to have you in the ecosystem.
+          > Edit the issue (using the ellipsis buttom on the right-upper corner) and try to fix the problems in the data validation.
+          > The validation testing will re-run automtaically after that.
