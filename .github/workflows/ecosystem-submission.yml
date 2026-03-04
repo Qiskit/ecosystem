@@ -9,7 +9,6 @@ jobs:
     if: (startsWith(github.event.issue.title, '[Submission]:'))
     runs-on: ubuntu-latest
     env:
-      tox_env: "py313"
       python-version: "3.13"
     steps:
     - uses: actions/checkout@v3
