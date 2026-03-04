@@ -61,11 +61,15 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         edit-mode: replace
         body: |
-          The submission is validated. Let's close this issue and start the conversation about this project in #${{ steps.cpr.outputs.pull-request-number }}.
-          [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
+          The submission is validated :white_check_mark:
           
-          > [!NOTE]  
-          > The submitted project is not yet approved. It will be once PR#${{ steps.cpr.outputs.pull-request-number }} is reviewed and merged. You can still make changes as comments in that PR.
+          Let's close this issue in favor of the PR #${{ steps.cpr.outputs.pull-request-number }}. We can move the conversation about this project there.
+
+          > [!IMPORTANT]  
+          > The submitted project is not yet approved. It will be once PR #${{ steps.cpr.outputs.pull-request-number }} is reviewed and merged.
+          > You can still make changes as code comments in that PR.
+           
+          <sub>Curious about the submission validation? [Check out the logs here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).</sub>
 
     - name: Close Issue
       run: gh issue close ${{ github.event.issue.number }}
@@ -81,9 +85,10 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         edit-mode: replace
         body: |
-          The submission failed.
+          The submission failed :x:
+
           [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
 
           > [!TIP]
-          > Edit the issue (using the ellipsis buttom on the right-upper corner) and try to fix the problems in the data validation.
-          > The validation testing will re-run automtaically after that.
+          > Edit the issue (using the ellipsis button on the upper-right corner) and try to fix the problems in the data validation.
+          > The validation will re-run automatically after that. Once the validations pass, this issue will be closed and a PR will be created.

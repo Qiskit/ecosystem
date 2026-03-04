@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/stale@v10
         with:
-          stale-issue-message: 'This submission is stale because it has been open 20 days with no activity. Comment or this will be closed in 10 days.'
+          stale-issue-message: 'This submission is stale because it has been open 20 days with no activity. It probably got stack on some of the validations. Have look, it will be closed in 10 days.'
           stale-pr-message: 'This submission is stale because it has been open for 20 days with no activity. Please address any comments from the review; otherwise, it will be closed in 10 days.'
           close-issue-message: 'This submission was closed because it has been stalled. Feel free to submit a new request if you still want this project to be part of the Qiskit Ecosystem.'
           days-before-stale: 20

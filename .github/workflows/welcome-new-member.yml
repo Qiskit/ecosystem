@@ -21,7 +21,7 @@ jobs:
       with:
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-              Hello ${{ steps.get-id.outputs.project_name }},
+              Hello ${{ steps.get-id.outputs.nominator }},
 
               **${{ steps.get-id.outputs.project_name }} is now part of the Qiskit Ecosystem**. Here are some follow up actions you can take to get the most out of the program:
 
