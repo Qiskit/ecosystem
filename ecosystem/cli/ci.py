@@ -16,15 +16,18 @@ class CliCI:
     Each public method of this class is CLI command
     and arguments for method are options/flags for this command.
 
-    Ex: `python manager.py ci parser_issue --body="<SOME_MARKDOWN>"`
+    Ex: `python manager.py ci add_member_from_issue --body="<SOME_MARKDOWN>"`
     """
 
     @staticmethod
-    def add_member_from_issue(body: str, *, resources_dir: str | None = None) -> None:
+    def add_member_from_issue(
+        body: str, *, number: int | None = None, resources_dir: str | None = None
+    ) -> None:
         """Parse an issue created from the issue template and add the member to the database
 
         Args:
             body: body of the created issue
+            number: issue number. optional.
             resources_dir: (For testing) Path to the working directory
 
         Returns:
@@ -33,7 +36,7 @@ class CliCI:
 
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem/resources"))
 
-        parsed_result = parse_submission_issue(body)
+        parsed_result = parse_submission_issue(body, number)
         DAO(path=resources_dir).write(parsed_result)
         set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
         set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])

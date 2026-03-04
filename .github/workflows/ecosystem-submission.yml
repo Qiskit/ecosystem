@@ -37,7 +37,8 @@ jobs:
       id: parse-issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
-      run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY"
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
+      run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
     # Create PR
     - name: Commit changes and create pull request
@@ -67,7 +68,7 @@ jobs:
     steps:
     - id: get-id
       run: |
-        id=$(echo ${{github.event.issue.title}} | cut -d: -f2- )
+        id=$(echo ${{github.event.issue.title}} | cut -d: -f2- | awk '{$1=$1};1')
         echo "::set-output name=id::$id"
     - name: Create comment on success
       uses: peter-evans/create-or-update-comment@v3

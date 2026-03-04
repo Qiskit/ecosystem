@@ -41,7 +41,7 @@ class TestUtils(TestCase):
         self.assertEqual(parsed_result.ibm_maintained, False)
         self.assertEqual(
             parsed_result.labels,
-            ["error mitigation, quantum information, optimization"],
+            ["error mitigation", "quantum information", "optimization"],
         )
 
     # def test_issue_template_matches_repository_model(self):

@@ -31,6 +31,9 @@ class TestCli(TestCase):
     def setUp(self) -> None:
         self.path = Path(tempfile.mkdtemp())
         (self.path / "members").mkdir(parents=True, exist_ok=True)
+        (self.path / "badges").mkdir(parents=True, exist_ok=True)
+        with open(self.path / "badges" / "README.md", "w") as file:
+            file.write("\n<!-- start:table-badge -->\n<!-- end:table-badge -->\n")
         with open(self.path / "labels.json", "w") as file:
             file.write("{}")
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -66,7 +69,7 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "contact_info": "author@banana-compiler.org",
-            "labels": ["error mitigation, quantum information, optimization"],
+            "labels": ["error mitigation", "quantum information", "optimization"],
             "website": "https://banana-compiler.org",
             "documentation": "https://banana-compiler.org/documentation",
             "reference_paper": "https://arxiv.org/abs/5555.22222",
@@ -94,6 +97,7 @@ class TestCli(TestCase):
 
         cli_members = CliMembers(root_path=os.path.join(self.current_dir, ".."))
         cli_members.resources_dir = self.path
+        cli_members.current_dir = self.path
         cli_members.dao = dao
 
         # create badges

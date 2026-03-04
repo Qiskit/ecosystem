@@ -17,6 +17,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     def __init__(  # pylint: disable=too-many-arguments, too-many-locals
         self,
         name: str,
+        submission_number: int | None = None,
         url: str | URL | None = None,
         description: str | None = None,
         licence: str | None = None,
@@ -39,6 +40,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         julia: JuliaData | None = None,
     ):
         self.name = name
+        self.submission_number = submission_number
         self.url = URL(url) if isinstance(url, str) else url
         self.description = description
         self.licence = licence
@@ -56,20 +58,16 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.packages = packages
         self.uuid = uuid
         self.github = github
-        self.pypi = pypi
+        self.pypi = pypi or {}
         self.julia = julia
         self.badge = badge
 
         self.__dict__.setdefault("created_at", parse_datetime("now"))
         self.__dict__.setdefault("updated_at", parse_datetime("now"))
-        if self.github is None:
-            self.github = GitHubData.from_url(self.url)
         if self.uuid is None:
             self.uuid = str(uuid4())
         if self.labels is None:
             self.labels = []
-        if self.pypi is None:
-            self.pypi = {}
 
     @property
     def short_uuid(self):
@@ -97,6 +95,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                     {"package_name": project_name} | pypi_dict
                 )
                 filtered_dict["pypi"][project_name] = pypi_data
+        if "packages" in filtered_dict:
+            filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
         return Member(**filtered_dict)
 
     def to_dict(self) -> dict:
@@ -180,12 +180,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             self.julia.update_json()
 
     @classmethod
-    def from_submission(cls, submission):
+    def from_submission(cls, submission, issue_number: str = None):
         """
         Takes a submission object and creates a very basic Member object
         """
         return Member(
             name=submission.name,
+            submission_number=issue_number,
             url=submission.source_url,
             description=submission.description,
             contact_info=submission.contact_info,

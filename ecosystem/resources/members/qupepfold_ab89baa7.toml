@@ -1,12 +1,12 @@
 name = "QuPepFold"
 url = "https://github.com/akshayuttarkarc/QuPepFold"
-description = "A small, research-oriented toolkit that turns short amino-acid sequences into quantum bitstring encodings and exports PDB files."
+description = "Research-oriented toolkit for turning amino-acid sequences into quantum bitstring encodings. Peer-reviewed and published in PLOS ONE."
 licence = "MIT license"
 contact_info = "akshayuttarkar@gmail.com"
 affiliations = "R V College of Engineering MIT Vishwaprayag University"
 labels = [ "chemistry",]
-group = "Application"
-documentation = "https://zenodo.org/records/17164557"
+group = "Paper artifact"
+reference_paper = "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0342012"
 uuid = "ab89baa7-39e9-482a-8157-a9bb834c5108"
 badge = "https://qisk.it/e-ab89baa7"
 
@@ -20,8 +20,8 @@ description = "QupepFold is a small, research-oriented toolkit that turns short 
 estimated_contributors = 2
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-02-04T09:52:47Z
-last_activity = 2026-02-04T09:52:47Z
+last_commit = 2026-02-09T06:24:23Z
+last_activity = 2026-02-09T06:24:23Z
 
 [pypi.qupepfold]
 package_name = "qupepfold"
