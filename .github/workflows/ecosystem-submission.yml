@@ -31,12 +31,9 @@ jobs:
 
     - name: Validate submission
       id: valid-issue
-      env:
-        ISSUE_BODY: ${{ github.event.issue.body }}
-        ISSUE_NUMBER: ${{ github.event.issue.number }}
       run: |
         python manager.py ci create_sections ${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
-        python manager.py member validate ${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
+        python manager.py ci validate_new_member_yml ${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
 
     - name: Commit changes and create pull request
       id: cpr
