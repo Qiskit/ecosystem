@@ -25,7 +25,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-    - name: Setup member id
+    - name: Fetch member id
       id: get-id
       run: |
         id=$(echo ${{ github.event.pull_request.head.ref }} | cut -d- -f2 )
