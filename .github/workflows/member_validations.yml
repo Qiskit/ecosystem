@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate_candidate:
-    name: Validate a candidate
+    name: Validate unmerged candidate
     if: >
       ${{ contains(github.event.pull_request.head.ref, 'submission')
       && contains(github.event.pull_request.labels.*.name, 'submission') }}
