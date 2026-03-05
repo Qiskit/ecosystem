@@ -3,8 +3,8 @@ name: Sourcecode tests
 on:
   workflow_dispatch:
   pull_request:
-    paths-ignore:
-      - '**.yml'
+    paths:
+      - '!ecosystem/resources/members/*.yml'
 
 jobs:
   lint:
