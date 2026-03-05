@@ -38,9 +38,10 @@ jobs:
 
     - name: Create PR for stats and badges update
       id: cpr
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
       uses: peter-evans/create-pull-request@v7
       with:
-        author: GitHub <noreply@github.com>
         commit-message: Badges and stats update for ${{ env.dateIseconds }}
         title: Badges and stats update for ${{ env.date_bdY }}
         body: |
