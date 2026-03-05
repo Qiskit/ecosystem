@@ -10,11 +10,8 @@ from jsonpath import findall, query
 
 
 from ecosystem.dao import DAO
-from ecosystem.github import GitHubData
 from ecosystem.member import Member
 from ecosystem.error_handling import logger
-from ecosystem.pypi import PyPIData
-from ecosystem.validation import validate_member
 
 
 class CliMembers:
@@ -33,19 +30,6 @@ class CliMembers:
         self.resources_dir = f"{self.current_dir}/ecosystem/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
-
-    def validate(self, name=None):
-        """validate members in <self.resources_dir>/members.
-        If <name> is not given, runs on all the members.
-        Otherwise, all the members with name_id that contains <name>
-        as substring are checked.
-        """
-        for member in self.dao.get_all(name):
-            passing, not_passing = validate_member(member)
-            if not passing:
-                logger.error("%s has no validations?", member.name_id)
-            if not not_passing:
-                logger.info("%s ✓", member.name_id)
 
     def add_repo_2db(
         self,

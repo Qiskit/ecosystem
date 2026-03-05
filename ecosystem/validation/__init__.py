@@ -1,5 +1,7 @@
 """Validation module"""
 
+from dataclasses import dataclass
+
 from ecosystem.error_handling import logger
 
 from .base import MemberValidator
@@ -27,6 +29,12 @@ def _all_subclasses(cls):
     )
 
 
+@dataclass
+class Validation:
+    name: str
+    class_obj: float
+
+
 def validate_member(member):
     """Runs all the validation for a member"""
     passing = []
@@ -39,10 +47,10 @@ def validate_member(member):
         )
         try:
             sc.validate(member)
-            passing.append(validation_name)
+            passing.append(Validation(validation_name, sc))
         except NotImplementedError:
             continue
         except AssertionError as assertion:
             logger.error(str(assertion))
-            not_passing.append(validation_name)
+            not_passing.append(Validation(validation_name, sc))
     return passing, not_passing

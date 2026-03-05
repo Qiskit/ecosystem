@@ -7,6 +7,7 @@ from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
 from ecosystem.labels import LabelsToml
+from ecosystem.validation import validate_member
 
 
 class CliCI:
@@ -108,3 +109,34 @@ class CliCI:
         for member in dao.get_all(member_id):
             member.update_data()
             dao.write(member)
+
+    @staticmethod
+    def validate_new_member_yml(
+        member_id: str, *, resources_dir: str | None = None
+    ) -> None:
+        """TODO
+
+        Args:
+            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+
+        Returns:
+            None (side effect is updating database and writing actions output)
+        """
+
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+
+        dao = DAO(path=resources_dir)
+        for member in dao.get_all(member_id):
+            passing, not_passing = validate_member(member)
+            if not passing:
+                print(
+                    f"::warning:: {member.name} ({member.name_id}) has no validations?"
+                )
+            if not not_passing:
+                print(f"::notice:: {member.name} ({member.name_id}) passed ✅")
+            for failing_validation in not_passing:
+                print(
+                    f"::error:: {member.name} ({member.name_id}) - "
+                    f"{failing_validation.name} failed ❌: "
+                    f"{failing_validation.class_obj.__doc__}"
+                )
