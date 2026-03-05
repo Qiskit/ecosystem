@@ -40,3 +40,11 @@ class ValidLabel(Valid_TOML_Labels):
 
     def test(self):
         self.assertSubset(self.member.labels, self.labels)
+
+
+class ValidOneLabel(Valid_TOML_Labels):
+    """member.labels must have one label"""
+
+    def test(self):
+        if len(self.member.labels) == 0:
+            raise AssertionError("No label?")
