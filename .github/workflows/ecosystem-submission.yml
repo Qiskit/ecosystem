@@ -30,7 +30,7 @@ jobs:
       run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
     - name: Validate submission
-      id: parse-issue
+      id: valid-issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
