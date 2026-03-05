@@ -27,8 +27,14 @@ jobs:
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
+      run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
+
+    - name: Validate submission
+      id: parse-issue
+      env:
+        ISSUE_BODY: ${{ github.event.issue.body }}
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
       run: |
-        python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
         python manager.py ci create_sections ${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
         python manager.py member validate ${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
 
