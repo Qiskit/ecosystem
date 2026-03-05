@@ -48,3 +48,9 @@ class ValidOneLabel(Valid_TOML_Labels):
     def test(self):
         if len(self.member.labels) == 0:
             raise AssertionError("No label?")
+
+# TODO
+#     def _validate_name_test(self, value: str):
+#         """A good project name should not contain the substring "test" """
+#         return "test" not in value.lower()
+#

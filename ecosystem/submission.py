@@ -127,39 +127,3 @@ class Submission:
             return True
         return False
 
-    def validate(self):
-        """
-        Returns a JSON with validation results
-        {
-            "summary": {"passed": 1, "failed": 0, "total": 2},
-            "validations": [
-                {"field": str, "passed": bool, "notes": str},
-                {"field": str, "passed": bool, "notes": str},
-            ],
-        }
-        """
-        ret = {"validations": []}
-        for key, value in self.__dict__.items():
-            validations_for_a_field = [
-                m for m in dir(self) if m.startswith(f"_validate_{key}")
-            ]
-            for validation_str in validations_for_a_field:
-                validation_method = getattr(self, validation_str)
-                ret["validations"].append(
-                    {
-                        "field": key,
-                        "passed": validation_method(value),
-                        "notes": validation_method.__doc__.strip(),
-                    }
-                )
-        passed_or_not = [v["passed"] for v in ret["validations"]]
-        ret["summary"] = {
-            "passed": sum(passed_or_not),
-            "failed": len(passed_or_not) - sum(passed_or_not),
-            "total": len(passed_or_not),
-        }
-        return ret
-
-    def _validate_name_test(self, value: str):
-        """A good project name should not contain the substring "test" """
-        return "test" not in value.lower()
