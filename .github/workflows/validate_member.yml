@@ -33,4 +33,4 @@ jobs:
         echo "::set-output name=id::$id"
     - name: Validate member TOML
       run: |
-        python member validate ${{ steps.get-id.outputs.id }}
+        python ci validate_new_member_yml ${{ steps.get-id.outputs.id }}

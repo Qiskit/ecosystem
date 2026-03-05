@@ -126,4 +126,3 @@ class Submission:
         ):
             return True
         return False
-
