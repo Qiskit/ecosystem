@@ -10,6 +10,10 @@ from .labels import *
 # pylint: disable=pointless-string-statement
 
 """  
+BIG TODO:
+MOVE THE VALIDATIONS TO REGULAR PYTHON-BASED TESTS.
+THIS CUSTOM VALIDATION DISCOVERY LOOKS TOO MUCH TO UNITTEST DISCOVERY
+
 TODO json:
  - check no member repetition
  - check against schema
@@ -30,7 +34,7 @@ def _all_subclasses(cls):
 
 
 @dataclass
-class Validation:
+class Validation:  # pylint: disable=missing-class-docstring
     name: str
     class_obj: float
 

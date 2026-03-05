@@ -50,7 +50,7 @@ class ValidOneLabel(Valid_TOML_Labels):
             raise AssertionError("No label?")
 
 
-# TODO
+# TODO  # pylint: disable=fixme
 #     def _validate_name_test(self, value: str):
 #         """A good project name should not contain the substring "test" """
 #         return "test" not in value.lower()

@@ -166,6 +166,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             self.badge = self._create_qisk_dot_it_link_for_badge()
 
     def update_data(self):
+        """Update all the member data in each existing section"""
         to_update = [
             "github",
             "pypi",
