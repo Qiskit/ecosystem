@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
+      GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}
@@ -32,14 +33,12 @@ jobs:
     - name: Validate submission
       id: valid-issue
       run: |
-        python manager.py ci create_sections ${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
-        python manager.py ci validate_new_member_yml ${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
+        python manager.py ci create_sections "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
+        python manager.py ci validate_new_member_yml "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
 
     - name: Commit changes and create pull request
       id: cpr
       uses: peter-evans/create-pull-request@v7
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
       with:
         commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to the Qiskit Ecosystem.
         title: Nominate ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to the Qiskit Ecosystem
@@ -65,7 +64,6 @@ jobs:
       uses: peter-evans/create-or-update-comment@v5
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
-        token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.issue.number }}
         edit-mode: replace
         body: |
@@ -81,15 +79,12 @@ jobs:
 
     - name: Close Issue
       run: gh issue close ${{ github.event.issue.number }}
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Make comment on failed submission
       if: failure()
       uses: peter-evans/create-or-update-comment@v5
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
-        token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ github.event.issue.number }}
         edit-mode: replace
         body: |
