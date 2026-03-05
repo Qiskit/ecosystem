@@ -126,6 +126,7 @@ class CliCI:
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
 
         dao = DAO(path=resources_dir)
+        should_raise = False
         for member in dao.get_all(member_id):
             passing, not_passing = validate_member(member)
             if not passing:
@@ -140,3 +141,7 @@ class CliCI:
                     f"{failing_validation.name} failed ❌: "
                     f"{failing_validation.class_obj.__doc__}"
                 )
+                should_raise = True
+
+        if should_raise:
+            raise Exception("validate_new_member_yml failed")
