@@ -43,6 +43,8 @@ class ValidLabel(Valid_TOML_Labels):
 
 
 class ValidNameNoTestSubstring(MemberValidator):
+    """member.name should not include the substring 'test'"""
+
     def test(self):
-        if "test" in self.member.name.lower() == 0:
+        if "test" in self.member.name.lower():
             raise AssertionError("The word test in the name")

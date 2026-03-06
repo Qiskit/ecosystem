@@ -11,9 +11,6 @@ jobs:
     env:
       python-version: "3.13"
       GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}
@@ -69,6 +66,7 @@ jobs:
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.issue.number }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         edit-mode: replace
         body: |
           The submission is validated :white_check_mark:
@@ -81,7 +79,9 @@ jobs:
            
           <sub>Curious about the submission validation? [Check out the logs here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).</sub>
 
-    - name: Close Issue
+    - name: Close issue
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh issue close ${{ github.event.issue.number }}
 
     - name: Make comment on failed submission
@@ -90,6 +90,7 @@ jobs:
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.issue.number }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         edit-mode: replace
         body: |
           The submission failed :x:
