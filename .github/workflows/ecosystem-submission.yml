@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
-      GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}
