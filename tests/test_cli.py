@@ -73,7 +73,6 @@ class TestCli(TestCase):
             "website": "https://banana-compiler.org",
             "documentation": "https://banana-compiler.org/documentation",
             "reference_paper": "https://arxiv.org/abs/5555.22222",
-            "github": {"owner": "somebody", "repo": "banana-compiler"},
             "group": "circuit manipulation",
             "packages": [
                 "https://pypi.org/project/banana-compiler",

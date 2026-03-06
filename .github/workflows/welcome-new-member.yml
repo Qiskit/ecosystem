@@ -1,0 +1,33 @@
+name: Ecosystem | New member
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  if_new_member:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'submission')
+    runs-on: ubuntu-latest
+    steps:
+    - id: get-id
+      run: |
+        project_name=$(echo "${{github.event.pull_request.body}}" | grep "Nomination for" | cut -d: -f2- | awk '{$1=$1};1')
+        nominator=$(echo "${{github.event.pull_request.body}}" | grep ", via" | cut -d@ -f2- | cut -d, -f1 | awk '{$1=$1};1')
+        echo "::set-output name=project_name::$project_name"
+        echo "::set-output name=nominator::@$nominator"
+    - name: Create comment on success
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+              Hello ${{ steps.get-id.outputs.nominator }},
+
+              **${{ steps.get-id.outputs.project_name }} is now part of the Qiskit Ecosystem**. Here are some follow up actions you can take to get the most out of the program:
+
+              - :speech_balloon: Join other Qiskit ecosystem developers in the Slack [channel `#qiskit-ecosystem`](https://qiskit.slack.com/archives/C04RHE56N93). If you are not in the Qiskit workspace yet, sign up at https://qisk.it/join-slack
+              - :white_check_mark: Use the [Qiskit theme](https://github.com/Qiskit/qiskit_sphinx_theme) for your documentation
+              - :stethoscope: Keep an eye on the criteria compliance
+              - :purple_heart: Add the [Qiskit Ecosystem badge](https://qisk.it/ecosystem-badges) to the project `README.md`
+
+              It is great to have this project in the Qiskit Ecosystem. Thanks for nominating it `:)`.

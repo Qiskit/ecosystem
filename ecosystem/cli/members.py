@@ -10,11 +10,8 @@ from jsonpath import findall, query
 
 
 from ecosystem.dao import DAO
-from ecosystem.github import GitHubData
 from ecosystem.member import Member
 from ecosystem.error_handling import logger
-from ecosystem.pypi import PyPIData
-from ecosystem.validation import validate_member
 
 
 class CliMembers:
@@ -33,21 +30,6 @@ class CliMembers:
         self.resources_dir = f"{self.current_dir}/ecosystem/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
-
-    def validate(self, name=None):
-        """validate members in <self.resources_dir>/members.
-        If <name> is not given, runs on all the members.
-        Otherwise, all the members with name_id that contains <name>
-        as substring are checked.
-        """
-        for member in self.dao.get_all():
-            if name and name not in member.name_id:
-                continue
-            passing, not_passing = validate_member(member)
-            if not passing:
-                logger.error("%s has no validations?", member.name_id)
-            if not not_passing:
-                logger.info("%s ✓", member.name_id)
 
     def add_repo_2db(
         self,
@@ -87,46 +69,9 @@ class CliMembers:
         )
         self.dao.write(new_repo)
 
-    def upsert_sections(self, name=None):
-        """Create or update sections in a member.
-        It is fully local, no validation or internet fetch.
-
-        If <name> is not given, runs on all the members.
-        Otherwise, all the members with name_id that contains <name>
-        as substring are checked.
-        """
-        for project in self.dao.get_all():
-            if name and name not in project.name_id:
-                continue
-
-            # github section
-            if not project.github:
-                project.github = GitHubData.from_url(project.url)
-
-            # package sections
-            if not project.packages:
-                project.packages = []
-
-            keep_in_packages = []
-            while len(project.packages) > 0:
-                package = project.packages.pop(0)
-                pypi = PyPIData.from_url(package)
-                if pypi:
-                    project.pypi[pypi.package_name] = pypi
-                else:
-                    keep_in_packages.append(package)
-                    self.logger.info("package %s not supported yet", package)
-
-            self.dao.update(
-                project.name_id,
-                github=project.github,
-                pypi=project.pypi,
-                packages=keep_in_packages or None,
-            )
-
-    def update_badges(self):
+    def update_badges(self, name=None):
         """Updates badges for projects."""
-        for project in self.dao.get_all():
+        for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
             data = {
                 "schemaVersion": 1,
@@ -193,28 +138,31 @@ class CliMembers:
         Otherwise, all the members with name_id that contains <name>
         as substring are checked.
         """
-        for project in self.dao.get_all():
-            if name and name not in project.name_id:
-                continue
+        for project in self.dao.get_all(name):
             project.update_github()
             self.dao.update(project.name_id, github=project.github)
 
     def update_pypi(self, name=None):
         """
         Updates PyPI data.
+
+        f <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_pypi()
+            self.dao.update(project.name_id, pypi=project.pypi)
+
+    def update_julia(self, name=None):
+        """
+        Updates Julia data.
+
         If <name> is not given, runs on all the members.
         Otherwise, all the members with name_id that contains <name>
         as substring are checked.
         """
-        for project in self.dao.get_all():
-            if name and name not in project.name_id:
-                continue
-            project.update_pypi()
-            self.dao.update(project.name_id, pypi=project.pypi)
-
-    def update_julia(self):
-        """Updates Julia data."""
-        for project in self.dao.get_all():
+        for project in self.dao.get_all(name):
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
 

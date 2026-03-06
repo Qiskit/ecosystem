@@ -35,13 +35,18 @@ class TomlStorage:
     def _name_id_to_path(self, name_id):
         return self.toml_dir / f"{name_id}.toml"
 
-    def read(self) -> dict:
+    def read(self, short_id=None) -> dict:
         """
         Search for TOML files and read into dict with types:
         { url (str): repo (Submission) }
         """
         data = {}
-        for path in self.toml_dir.glob("*.toml"):
+        toml_patter = "*.toml"
+        if short_id:
+            toml_patter = (
+                f"*_{short_id}.toml" if len(short_id) == 8 else f"*{short_id}.toml"
+            )
+        for path in self.toml_dir.glob(toml_patter):
             try:
                 repo = Member.from_dict(toml.load(path))
             except TypeError as exc:
@@ -129,11 +134,11 @@ class DAO:
                 return project
         raise KeyError(f"No project with name : {name_id}")
 
-    def get_all(self) -> list[Member]:
+    def get_all(self, short_id: str | None = None) -> list[Member]:
         """
         Returns list of all repositories.
         """
-        return self.storage.read().values()
+        return self.storage.read(short_id).values()
 
     def update(self, name_id: str = None, **kwargs):
         """

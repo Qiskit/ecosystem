@@ -7,6 +7,7 @@ from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
 from ecosystem.labels import LabelsToml
+from ecosystem.validation import validate_member
 
 
 class CliCI:
@@ -34,12 +35,12 @@ class CliCI:
             None (side effect is updating database and writing actions output)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem/resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
 
-        parsed_result = parse_submission_issue(body, number)
-        DAO(path=resources_dir).write(parsed_result)
-        set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
-        set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
+        member = parse_submission_issue(body, number)
+        DAO(path=resources_dir).write(member)
+        set_actions_output([("SUBMISSION_NAME", member.name)])
+        set_actions_output([("SUBMISSION_SHORT_UUID", member.short_uuid)])
 
     @staticmethod
     def update_issue_template(
@@ -70,3 +71,77 @@ class CliCI:
 
         with open(template_path, "w") as yaml_file:
             yaml.dump(data, yaml_file)
+
+    @staticmethod
+    def create_sections(member_id: str, *, resources_dir: str | None = None) -> None:
+        """TODO
+
+        Args:
+            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+
+        Returns:
+            None (side effect is updating database and writing actions output)
+        """
+
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+
+        dao = DAO(path=resources_dir)
+        for member in dao.get_all(member_id):
+            member.upsert_sections()
+            dao.write(member)
+
+    @staticmethod
+    def fetch_new_member_data(
+        member_id: str, *, resources_dir: str | None = None
+    ) -> None:
+        """TODO
+
+        Args:
+            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+
+        Returns:
+            None (side effect is updating database and writing actions output)
+        """
+
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+
+        dao = DAO(path=resources_dir)
+        for member in dao.get_all(member_id):
+            member.update_data()
+            dao.write(member)
+
+    @staticmethod
+    def validate_new_member_yml(
+        member_id: str, *, resources_dir: str | None = None
+    ) -> None:
+        """TODO
+
+        Args:
+            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+
+        Returns:
+            None (it has no side-effect)
+        """
+
+        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+
+        dao = DAO(path=resources_dir)
+        should_raise = False
+        for member in dao.get_all(member_id):
+            passing, not_passing = validate_member(member)
+            if not passing:
+                print(
+                    f"::warning:: {member.name} ({member.name_id}) has no validations?"
+                )
+            if not not_passing:
+                print(f"::notice:: {member.name} ({member.name_id}) passed ✅")
+            for failing_validation in not_passing:
+                print(
+                    f"::error:: {member.name} ({member.name_id}) - "
+                    f"{failing_validation.name} failed ❌: "
+                    f"{failing_validation.class_obj.__doc__}"
+                )
+                should_raise = True
+
+        if should_raise:
+            raise Exception("validate_new_member_yml failed")
