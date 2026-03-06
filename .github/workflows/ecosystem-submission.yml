@@ -40,7 +40,7 @@ jobs:
       uses: peter-evans/create-pull-request@v7
       with:
         token: ${{ secrets.REPO_SCOPED_TOKEN }}
-        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member.
+        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
         body: |
           Nomination for: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
