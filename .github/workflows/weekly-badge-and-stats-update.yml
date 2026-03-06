@@ -40,7 +40,7 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
-        author: GitHub <noreply@github.com>
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
         commit-message: Badges and stats update for ${{ env.dateIseconds }}
         title: Badges and stats update for ${{ env.date_bdY }}
         body: |
