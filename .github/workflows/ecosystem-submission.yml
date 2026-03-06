@@ -45,6 +45,7 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
         commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
         body: |
