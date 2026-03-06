@@ -8,7 +8,7 @@ jobs:
   create_stats:
     if: >
       github.event.review.state == 'approved'
-      && startsWith(github.event.pull_request.title, 'Nominate ')
+      && startsWith(github.event.pull_request.title, 'Add ')
       && contains(github.event.pull_request.labels.*.name, 'submission')
     runs-on: ubuntu-latest
     env:

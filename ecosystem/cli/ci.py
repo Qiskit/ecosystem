@@ -120,7 +120,7 @@ class CliCI:
             member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
 
         Returns:
-            None (side effect is updating database and writing actions output)
+            None (it has no side-effect)
         """
 
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
