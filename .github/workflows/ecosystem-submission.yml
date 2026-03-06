@@ -11,6 +11,9 @@ jobs:
     env:
       python-version: "3.13"
       GITHUB_TOKEN: ${{ secrets.REPO_SCOPED_TOKEN }}
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}

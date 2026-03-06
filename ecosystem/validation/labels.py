@@ -41,6 +41,7 @@ class ValidLabel(Valid_TOML_Labels):
     def test(self):
         self.assertSubset(self.member.labels, self.labels)
 
+
 class ValidNameNoTestSubstring(MemberValidator):
     def test(self):
         if "test" in self.member.name.lower() == 0:
