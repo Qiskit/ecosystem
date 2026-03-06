@@ -41,8 +41,7 @@ class ValidLabel(Valid_TOML_Labels):
     def test(self):
         self.assertSubset(self.member.labels, self.labels)
 
-# TODO  # pylint: disable=fixme
-#     def _validate_name_test(self, value: str):
-#         """A good project name should not contain the substring "test" """
-#         return "test" not in value.lower()
-#
+class ValidNameNoTestSubstring(MemberValidator):
+    def test(self):
+        if "test" in self.member.name.lower() == 0:
+            raise AssertionError("The word test in the name")
