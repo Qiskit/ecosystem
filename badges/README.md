@@ -135,10 +135,10 @@ Submit an issue if you want to change something
 ```
 
 </td></tr>
-<tr><td><a href="../ecosystem/resources/members/hlquantum_50bd99f2.toml" >HLQuantum</a></td><td><img src="https://img.shields.io/endpoint?style=flat&url=https://qiskit.github.io/ecosystem/b/50bd99f2" /></td><td>
+<tr><td><a href="../ecosystem/resources/members/hlquantum_50bd99f2.toml" >HLQuantum</a></td><td><img src="https://qisk.it/e-50bd99f2" /></td><td>
 
 ```markdown
-[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https://qiskit.github.io/ecosystem/b/50bd99f2)](https://qisk.it/e)
+[![Qiskit Ecosystem](https://qisk.it/e-50bd99f2)](https://qisk.it/e)
 ```
 
 </td></tr>
