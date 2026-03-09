@@ -135,6 +135,13 @@ Submit an issue if you want to change something
 ```
 
 </td></tr>
+<tr><td><a href="../ecosystem/resources/members/hlquantum_50bd99f2.toml" >HLQuantum</a></td><td><img src="https://img.shields.io/endpoint?style=flat&url=https://qiskit.github.io/ecosystem/b/50bd99f2" /></td><td>
+
+```markdown
+[![Qiskit Ecosystem](https://img.shields.io/endpoint?style=flat&url=https://qiskit.github.io/ecosystem/b/50bd99f2)](https://qisk.it/e)
+```
+
+</td></tr>
 <tr><td><a href="../ecosystem/resources/members/implicitso_fac11d8c.toml" >Implicit solvent model template</a></td><td><img src="https://qisk.it/e-fac11d8c" /></td><td>
 
 ```markdown
@@ -331,17 +338,17 @@ Submit an issue if you want to change something
 ```
 
 </td></tr>
-<tr><td><a href="../ecosystem/resources/members/qiskitaddo_5ad8eedc.toml" >qiskit-addon-aqc-tensor</a></td><td><img src="https://qisk.it/e-5ad8eedc" /></td><td>
-
-```markdown
-[![Qiskit Ecosystem](https://qisk.it/e-5ad8eedc)](https://qisk.it/e)
-```
-
-</td></tr>
 <tr><td><a href="../ecosystem/resources/members/qiskitaddo_ef4e120a.toml" >qiskit-addon-aqc-tensor</a></td><td><img src="https://qisk.it/e-ef4e120a" /></td><td>
 
 ```markdown
 [![Qiskit Ecosystem](https://qisk.it/e-ef4e120a)](https://qisk.it/e)
+```
+
+</td></tr>
+<tr><td><a href="../ecosystem/resources/members/qiskitaddo_5ad8eedc.toml" >qiskit-addon-aqc-tensor</a></td><td><img src="https://qisk.it/e-5ad8eedc" /></td><td>
+
+```markdown
+[![Qiskit Ecosystem](https://qisk.it/e-5ad8eedc)](https://qisk.it/e)
 ```
 
 </td></tr>
