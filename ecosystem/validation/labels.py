@@ -40,3 +40,11 @@ class ValidLabel(Valid_TOML_Labels):
 
     def test(self):
         self.assertSubset(self.member.labels, self.labels)
+
+
+class ValidNameNoTestSubstring(MemberValidator):
+    """member.name should not include the substring 'test'"""
+
+    def test(self):
+        if "test" in self.member.name.lower():
+            raise AssertionError("The word test in the name")

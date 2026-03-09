@@ -112,11 +112,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             and self.licence == other.licence
         )
 
-    def __repr__(self):
-        return pprint.pformat(self.to_dict(), indent=4)
-
     def __str__(self):
-        return f"Submission({self.name} | {self.url})"
+        return f"Member({pprint.pformat(self.to_dict(), indent=4)})"
+
+    def __repr__(self):
+        return f"Member<{self.name} | {self.url}>"
 
     @property
     def name_id(self):
@@ -165,6 +165,17 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         if self.badge is None:
             self.badge = self._create_qisk_dot_it_link_for_badge()
 
+    def update_data(self):
+        """Update all the member data in each existing section"""
+        to_update = [
+            "github",
+            "pypi",
+            "julia",
+        ]
+        for update_method_str in to_update:
+            update_method = getattr(self, f"update_{update_method_str}")
+            update_method()
+
     def update_pypi(self):
         """
         Updates all the PyPI information in the project.
@@ -178,6 +189,32 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """
         if self.julia:
             self.julia.update_json()
+
+    def upsert_sections(self):
+        """Create or update sections in a member.
+        It is fully local, no validation or internet fetch.
+         * github
+         * pypi
+        """
+
+        # github section
+        if not self.github:
+            self.github = GitHubData.from_url(self.url)
+
+        # package sections
+        if not self.packages:
+            self.packages = []
+
+        keep_in_packages = []
+        while len(self.packages) > 0:
+            package = self.packages.pop(0)
+            pypi = PyPIData.from_url(package)
+            if pypi:
+                self.pypi[pypi.package_name] = pypi
+            else:
+                keep_in_packages.append(package)
+
+        self.packages = keep_in_packages
 
     @classmethod
     def from_submission(cls, submission, issue_number: str = None):
@@ -196,6 +233,5 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             group=submission.category,
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
-            github=GitHubData.from_url(submission.source_url),
             packages=submission.package_urls,
         )

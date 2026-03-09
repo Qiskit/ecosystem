@@ -35,7 +35,7 @@ def parse_submission_issue(
 
     Args:
         body_of_issue: body of an GitHub issue in markdown
-        parse_submission_issue: issue number that originated the submission
+        issue_number: issue number that originated the submission
 
     Return: Member
     """
@@ -43,5 +43,4 @@ def parse_submission_issue(
     issue_formatted = mdformat.text(body_of_issue)
 
     submission = Submission.from_formatted_issue(issue_formatted)
-    # TODO: validate submission. # pylint: disable=fixme
     return Member.from_submission(submission, issue_number)

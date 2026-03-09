@@ -21,7 +21,7 @@ jobs:
             python-version: '3.13'
         - name: Install tox
           run: python -m pip install -U tox
-        - name: Build
+        - name: Build website
           run: tox -e website
         - name: Upload Artifacts
           uses: actions/upload-pages-artifact@v3

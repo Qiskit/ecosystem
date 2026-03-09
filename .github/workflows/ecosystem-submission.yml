@@ -1,26 +1,16 @@
 name: Ecosystem | Submission
 
-###
-# - install deps
-# - parse issue
-# - create pr
-
 on:
   issues:
-    types: [opened, edited, reopened, closed]
+    types: [opened, edited, reopened]
 
 jobs:
   submission_workflow:
-    concurrency:
-      group: ci-${{ github.event.issue.title }}
-      cancel-in-progress: true
-    if: (startsWith(github.event.issue.title, '[Submission]:') && github.event.action != 'closed')
+    if: (startsWith(github.event.issue.title, '[Submission]:'))
     runs-on: ubuntu-latest
     env:
-      tox_env: "py39"
       python-version: "3.13"
     steps:
-    # setup deps
     - uses: actions/checkout@v3
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v4
@@ -32,56 +22,80 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    # Python workflow
     - name: Parse submission
       id: parse-issue
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
-      run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
+      run:
+        python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
-    # Create PR
+    - name: Validate submission
+      id: valid-issue
+      run: |
+        python manager.py ci validate_new_member_yml "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
+
     - name: Commit changes and create pull request
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
-        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
-        title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
+        title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
         body: |
-          Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} to list.
+          Nomination for: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
+          
+          By @${{ github.event.issue.user.login }}, via #${{ github.event.issue.number }}
 
-          ---
-          Closes #${{ github.event.issue.number }}
         branch: submission-${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
         labels: submission
 
-  followup_workflow:
-    concurrency:
-      group: ci-${{ github.event.issue.title }}
-      cancel-in-progress: true
-    if: >
-      startsWith(github.event.issue.title, '[Submission]:')
-      && github.event.action == 'closed'
-      && github.event.issue.state_reason == 'completed'
-      && contains(github.event.issue.labels.*.name, 'submission')
-    runs-on: ubuntu-latest
-    steps:
-    - id: get-id
-      run: |
-        id=$(echo ${{github.event.issue.title}} | cut -d: -f2- | awk '{$1=$1};1')
-        echo "::set-output name=id::$id"
-    - name: Create comment on success
-      uses: peter-evans/create-or-update-comment@v3
+    - name: Find Comment bot comment
+      uses: peter-evans/find-comment@v3
+      if: always()
+      id: fc
       with:
         issue-number: ${{ github.event.issue.number }}
+        comment-author: 'github-actions[bot]'
+        body-includes: Check out the logs
+
+    - name: Make comment on validated submission
+      if: success() && steps.cpr.outputs.pull-request-number
+      uses: peter-evans/create-or-update-comment@v5
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        issue-number: ${{ github.event.issue.number }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        edit-mode: replace
         body: |
-              Hello @${{ github.event.issue.user.login }},
+          The submission is validated :white_check_mark:
+          
+          Let's close this issue in favor of the PR #${{ steps.cpr.outputs.pull-request-number }}. We can move the conversation about this project there.
 
-              **${{ steps.get-id.outputs.id }} is now part of the Qiskit Ecosystem**. Here are some follow up actions you can take to get the most out of the program:
+          > [!IMPORTANT]  
+          > The submitted project is not yet approved. It will be once PR #${{ steps.cpr.outputs.pull-request-number }} is reviewed and merged.
+          > You can still make changes as code comments in that PR.
+           
+          <sub>Curious about the submission validation? [Check out the logs here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).</sub>
 
-              - :speech_balloon: Join other Qiskit ecosystem developers in the Slack [channel `#qiskit-ecosystem`](https://qiskit.slack.com/archives/C04RHE56N93). If you are not in the Qiskit workspace yet, sign up at https://qisk.it/join-slack
-              - :white_check_mark: Use the [Qiskit theme](https://github.com/Qiskit/qiskit_sphinx_theme) for your documentation
-              - :stethoscope: Keep an eye on the criteria compliance
-              - :purple_heart: Add the [Qiskit Ecosystem badge](https://qisk.it/ecosystem-badges) to your `README.md`
+    - name: Close issue
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh issue close ${{ github.event.issue.number }}
 
-              It is great to have you in the ecosystem.
+    - name: Make comment on failed submission
+      if: failure()
+      uses: peter-evans/create-or-update-comment@v5
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        issue-number: ${{ github.event.issue.number }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        edit-mode: replace
+        body: |
+          The submission failed :x:
+
+          [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
+
+          > [!TIP]
+          > Edit the issue (using the ellipsis button on the upper-right corner) and try to fix the problems in the data validation.
+          > The validation will re-run automatically after that. Once the validations pass, this issue will be closed and a PR will be created.
