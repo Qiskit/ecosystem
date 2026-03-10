@@ -6,7 +6,7 @@ on:
 
 jobs:
   submission_workflow:
-    if: (startsWith(github.event.issue.title, '[Submission]:'))
+    if: startsWith(github.event.issue.title, '[Submission]:') && contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
@@ -27,12 +27,12 @@ jobs:
       env:
         ISSUE_BODY: ${{ github.event.issue.body }}
         ISSUE_NUMBER: ${{ github.event.issue.number }}
-      run: python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
+      run:
+        python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
     - name: Validate submission
       id: valid-issue
       run: |
-#        python manager.py ci create_sections "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
         python manager.py ci validate_new_member_yml "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
 
     - name: Commit changes and create pull request
@@ -40,7 +40,12 @@ jobs:
       uses: peter-evans/create-pull-request@v7
       with:
         token: ${{ secrets.REPO_SCOPED_TOKEN }}
-        commit-message: Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
+        commit-message: |
+          Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
+        
+        
+          Co-authored-by: ${{ github.event.issue.user.login }} <${{ github.event.issue.user.login }}@users.noreply.github.com>
+
         title: Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
         body: |
           Nomination for: ${{ steps.parse-issue.outputs.SUBMISSION_NAME }}
