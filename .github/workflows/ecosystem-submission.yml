@@ -6,7 +6,7 @@ on:
 
 jobs:
   submission_workflow:
-    if: startsWith(github.event.issue.title, '[Submission]:') && contains(github.event.pull_request.labels.*.name, 'submission')
+    if: startsWith(github.event.issue.title, '[Submission]:') && contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
