@@ -1,0 +1,11 @@
+name = "qb-compiler"
+submission_number = 1044
+url = "https://github.com/mwpwalshe/qb-compiler"
+description = "Open-source quantum compiler and execution intelligence toolkit that helps you decide whether to run, where to run, and how to compile for a chosen backend."
+contact_info = "michael.walshe@qubitboost.io"
+labels = [ "optimization", "circuit manipulation", "error mitigation",]
+website = "https://qubitboost.io/compiler"
+group = "Transpiler plugin"
+documentation = "https://github.com/mwpwalshe/qb-compiler#readme"
+packages = [ "https://pypi.org/project/qb-compiler/",]
+uuid = "87f7103d-8ba9-4b4b-aafb-2f29ad9add1e"
