@@ -1,0 +1,11 @@
+name = "qb-compiler"
+submission_number = 1044
+url = "https://github.com/mwpwalshe/qb-compiler"
+description = "Quantum execution intelligence toolkit for circuit viability checks, backend analysis, calibration-aware compilation and hardware-aware execution workflows."
+contact_info = "michael.walshe@qubitboost.io"
+labels = [ "optimization", "circuit manipulation", "error mitigation",]
+website = "https://qubitboost.io/compiler"
+group = "Transpiler plugin"
+documentation = "https://github.com/mwpwalshe/qb-compiler#readme"
+packages = [ "https://pypi.org/project/qb-compiler/",]
+uuid = "3e4b8614-8a01-4c4c-a574-f49fac19776b"
