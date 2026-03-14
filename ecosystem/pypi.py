@@ -66,7 +66,7 @@ class PyPIData(JsonSerializable):
         Returns None if the given URL is not a PyPI url
         """
         if "pypi.org" not in pypi_project_url.hostname:
-            # pypi_project_url is not a PyPI url
+            # pypi_project_url is not a PyPI URL
             return None
 
         url_path = pypi_project_url.path
