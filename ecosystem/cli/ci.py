@@ -37,10 +37,10 @@ class CliCI:
 
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
 
-        member = parse_submission_issue(body, number)
-        DAO(path=resources_dir).write(member)
-        set_actions_output([("SUBMISSION_NAME", member.name)])
-        set_actions_output([("SUBMISSION_SHORT_UUID", member.short_uuid)])
+        parsed_result = parse_submission_issue(body, number)
+        DAO(path=resources_dir).write(parsed_result)
+        set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
+        set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
 
     @staticmethod
     def update_issue_template(

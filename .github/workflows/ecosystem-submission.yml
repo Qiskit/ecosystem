@@ -2,7 +2,7 @@ name: Ecosystem | Submission
 
 on:
   issues:
-    types: [opened, edited, reopened]
+    types: [opened, edited, reopened, transferred, labeled]
 
 jobs:
   submission_workflow:
@@ -39,7 +39,7 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
-        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+        draft: always-true
         commit-message: |
           Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
         

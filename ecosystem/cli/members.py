@@ -145,8 +145,7 @@ class CliMembers:
     def update_pypi(self, name=None):
         """
         Updates PyPI data.
-
-        f <name> is not given, runs on all the members.
+        If <name> is not given, runs on all the members.
         Otherwise, all the members with name_id that contains <name>
         as substring are checked.
         """

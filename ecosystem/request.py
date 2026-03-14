@@ -6,12 +6,13 @@ from urllib.parse import urlparse, urlunparse
 import json
 import csv
 import gzip
+import time
 
 import requests
 import requests_cache
 from bs4 import BeautifulSoup
 
-from .error_handling import EcosystemError
+from .error_handling import EcosystemError, logger
 
 # 86400 seconds == 1 day
 requests_cache.install_cache(
@@ -26,6 +27,7 @@ def request_json(
     parser=None,
     content_handler=None,
 ):
+    # pylint: disable=too-many-branches
     """Requests the JSON in <url> with <headers>
 
     if post is set with a dictionary, then that dict is sent as POST's JSON
@@ -59,6 +61,16 @@ def request_json(
         response = requests.post(str(url), headers=headers, timeout=240, json=post)
 
     if not response.ok:
+        if "rate" in response.reason:
+            wait_for = 60
+            if "X-RateLimit-Reset" in response.headers:
+                wait_for = int(response.headers["X-RateLimit-Reset"]) - int(time.time())
+            logger.info("Wait %s before retrying...", wait_for)
+
+            time.sleep(wait_for)
+            return request_json(
+                url.original_url, headers, post, parser, content_handler
+            )
         raise EcosystemError(
             f"Bad response {str(url)}: {response.reason} ({response.status_code})"
         )
@@ -66,7 +78,12 @@ def request_json(
         content = content_handler(response.content)
     else:
         content = response.text
-    return parser(content)
+    ret = parser(content)
+    if isinstance(ret, dict) and "created_at" not in ret:
+        ret["_requested_at_"] = response.created_at
+    else:
+        print("where should I put the time of the request?")
+    return ret
 
 
 class URL:
