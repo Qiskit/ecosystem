@@ -138,7 +138,7 @@ class DAO:
         """
         Returns list of all repositories.
         """
-        return self.storage.read(str(short_id)).values()
+        return self.storage.read(str(short_id) if short_id else None).values()
 
     def update(self, name_id: str = None, **kwargs):
         """
