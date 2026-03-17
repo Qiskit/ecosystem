@@ -37,7 +37,7 @@ class JsonSerializable(ABC):
                 for item in val:
                     if isinstance(item, JsonSerializable):
                         element.append(item.to_dict())
-                    if isinstance(item, URL):
+                    elif isinstance(item, URL):
                         element.append(str(item))
                     else:
                         element.append(item)
