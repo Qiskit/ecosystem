@@ -8,6 +8,9 @@ jobs:
   submission_workflow:
     if: contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     env:
       python-version: "3.13"
     steps:
