@@ -3,7 +3,8 @@ name: Sourcecode tests
 on:
   workflow_dispatch:
   pull_request:
-#    paths-ignore:   TODO do not run sourcecode tests when only **.toml are affected
+    paths-ignore:
+      - 'ecosystem/resources/members/*.toml'
 
 jobs:
   lint:
