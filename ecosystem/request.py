@@ -139,15 +139,15 @@ class URL:
         return f"URL('{self}')"
 
 
-def parse_github_front_page(html_text):
+def parse_github_contributors_sidebar(html_text):
     """
-    Gets data from the front page github.com/<owner>/<repo>
+    Gets data from the front page github.com/<owner>/<repo>/contributors_list?deferred=true
     {
     estimated_contributors = int
     }
     """
     soup = BeautifulSoup(html_text, "html.parser")
-    found = soup.find("a", {"href": re.compile(r"graphs/contributors")})
+    found = soup.find("span", attrs={"title": "3"})
     if found is None:
         return None
     contributor_text = found.get_text()
