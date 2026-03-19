@@ -3,6 +3,7 @@ name: Member validations
 on:
   workflow_dispatch:
   pull_request:
+    types: [ ready_for_review ]
     paths:
       - '**.toml'
 jobs:
@@ -14,22 +15,43 @@ jobs:
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python ${{ env.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ env.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install -r requirements-dev.txt
-    - name: Fetch member id
-      id: get-id
-      run: |
-        id=$(echo ${{ github.event.pull_request.head.ref }} | cut -d- -f2 )
-        echo "::set-output name=id::$id"
-    - name: Validate member TOML
-      run: |
-        python manager.py ci validate_new_member_yml ${{ steps.get-id.outputs.id }}
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - uses: actions/checkout@v5
+      - name: Checkout PR
+        run: |
+          gh pr checkout ${{ github.event.pull_request.number }}
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Fetch member id
+        id: get-id
+        run: |
+          id=$(echo ${{ github.event.pull_request.head.ref }} | cut -d- -f2 )
+          echo "::set-output name=id::$id"
+      - name: Initial validatation
+        run: python manager.py ci validate_new_member_yml ${{ steps.get-id.outputs.id }}
+      - name: Create sections
+        run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }}
+      - name: Section validatation
+        run: python manager.py ci validate_new_member_yml ${{ steps.get-id.outputs.id }}
+      - name: Commit sections
+        if: success()
+        run: git commit -am "Update sections on unmerged submission" --allow-empty
+      - name: Fetch data
+        run: python manager.py ci fetch_new_member_data ${{ steps.get-id.outputs.id }}
+      - name: Data validatation
+        run: python manager.py ci validate_new_member_yml ${{ steps.get-id.outputs.id }}
+      - name: Commit data
+        if: success()
+        run: git commit -am "Update data on unmerged submission" --allow-empty
+      - name: Push sections
+        if: always()
+        run: git push --verbose

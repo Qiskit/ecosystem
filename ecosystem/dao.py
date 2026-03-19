@@ -35,7 +35,7 @@ class TomlStorage:
     def _name_id_to_path(self, name_id):
         return self.toml_dir / f"{name_id}.toml"
 
-    def read(self, short_id=None) -> dict:
+    def read(self, short_id: str = None) -> dict:
         """
         Search for TOML files and read into dict with types:
         { url (str): repo (Submission) }
@@ -138,7 +138,7 @@ class DAO:
         """
         Returns list of all repositories.
         """
-        return self.storage.read(short_id).values()
+        return self.storage.read(str(short_id) if short_id else None).values()
 
     def update(self, name_id: str = None, **kwargs):
         """
