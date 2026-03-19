@@ -51,7 +51,7 @@ jobs:
           git commit -am "Update sections on unmerged submission" --allow-empty
       - name: Fetch data
         run: |
-          python ci fetch_new_member_data ${{ steps.get-id.outputs.id }}
+          python manager.py ci fetch_new_member_data ${{ steps.get-id.outputs.id }}
       - name: Data validatation
         run: |
           python manager.py ci validate_new_member_yml ${{ steps.get-id.outputs.id }}
