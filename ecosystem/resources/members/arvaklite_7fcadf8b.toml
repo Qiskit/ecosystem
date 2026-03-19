@@ -6,5 +6,12 @@ contact_info = "daniel@hal-contract.org"
 labels = [ "circuit manipulation", "Rust", "optimization", "HPC",]
 website = "https://arvak.io"
 group = "Transpiler plugin"
-packages = [ "https://pypi.org/project/arvak-lite",]
+packages = []
 uuid = "7fcadf8b-f043-4eac-a491-9783a1c00cfe"
+
+[github]
+owner = "hiq-lab"
+repo = "arvak-lite"
+
+[pypi.arvak-lite]
+package_name = "arvak-lite"
