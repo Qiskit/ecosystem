@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Set up Python
         uses: actions/setup-python@v6
