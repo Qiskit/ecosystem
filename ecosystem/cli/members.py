@@ -93,8 +93,11 @@ class CliMembers:
 
     def update_badge_list(self):
         """Updates badge list in qisk.it/ecosystem-badges."""
-        start_tag = "<!-- start:table-badge -->"
-        end_tag = "<!-- end:table-badge -->"
+        output_file = os.path.join(
+            self.current_dir, "docs", "assets", "badges_table.md"
+        )
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        Path(output_file).touch(exist_ok=True)
 
         projects = []
         for project in self.dao.get_all():
@@ -114,25 +117,15 @@ class CliMembers:
         for name, badge, badge_md, name_id in projects:
             lines.append(
                 "<tr>"
-                f'<td><a href="../ecosystem/resources/members/{name_id}.toml" >{name}</a></td>'
-                f'<td><img src="{badge}" /></td>'
+                f'<td><a href="https://github.com/Qiskit/ecosystem/tree/main/ecosystem/resources/members/{name_id}.toml">{name}</a></td>'
+                f'<td><a href="{badge}"><img src="{badge}" /></a></td>'
                 f"<td>\n\n```markdown\n{badge_md}\n```\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")
-        readme_md = os.path.join(self.current_dir, "badges.md")
 
-        with open(readme_md, "r") as readme_file:
-            content = readme_file.read()
-
-        to_replace = content[
-            content.find(start_tag) + len(start_tag) : content.rfind(end_tag)
-        ]
-
-        new_content = content.replace(to_replace, "\n".join(lines))
-
-        with open(readme_md, "w") as outfile:
-            outfile.write(new_content)
+        with open(output_file, "w") as outfile:
+            outfile.writelines(lines)
 
     def update_github(self, name=None):
         """
