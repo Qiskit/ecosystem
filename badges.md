@@ -79,6 +79,13 @@ Submit an issue if you want to change something
 ```
 
 </td></tr>
+<tr><td><a href="../ecosystem/resources/members/doqumentat_dd84980a.toml" >doQumentation.org</a></td><td><img src="https://qisk.it/e-dd84980a" /></td><td>
+
+```markdown
+[![Qiskit Ecosystem](https://qisk.it/e-dd84980a)](https://qisk.it/e)
+```
+
+</td></tr>
 <tr><td><a href="../ecosystem/resources/members/dsmswap_beaaab32.toml" >dsm-swap</a></td><td><img src="https://qisk.it/e-beaaab32" /></td><td>
 
 ```markdown
