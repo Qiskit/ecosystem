@@ -32,7 +32,7 @@ class TestCli(TestCase):
         self.path = Path(tempfile.mkdtemp())
         (self.path / "members").mkdir(parents=True, exist_ok=True)
         (self.path / "badges").mkdir(parents=True, exist_ok=True)
-        with open(self.path / "badges" / "README.md", "w") as file:
+        with open(self.path / "badges.md", "w") as file:
             file.write("\n<!-- start:table-badge -->\n<!-- end:table-badge -->\n")
         with open(self.path / "labels.json", "w") as file:
             file.write("{}")

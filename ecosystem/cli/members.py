@@ -69,8 +69,11 @@ class CliMembers:
         )
         self.dao.write(new_repo)
 
-    def update_badges(self, name=None):
+    def update_badges(self, name=None, output_directory: str = None):
         """Updates badges for projects."""
+        if not output_directory:
+            output_directory = os.path.join(self.current_dir, "badges")
+        Path(output_directory).mkdir(parents=True, exist_ok=True)
         for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
             data = {
@@ -81,7 +84,7 @@ class CliMembers:
                 "color": "6929C4",
             }
             with open(
-                os.path.join(self.current_dir, "badges", f"{project.short_uuid}"), "w"
+                os.path.join(output_directory, str(project.short_uuid)), "w"
             ) as outfile:
                 json.dump(data, outfile, indent=4)
                 self.logger.info("Badge for %s has been updated.", project.name)
@@ -117,7 +120,7 @@ class CliMembers:
                 "</tr>"
             )
         lines.append("</table>\n")
-        readme_md = os.path.join(self.current_dir, "badges", "README.md")
+        readme_md = os.path.join(self.current_dir, "badges.md")
 
         with open(readme_md, "r") as readme_file:
             content = readme_file.read()
