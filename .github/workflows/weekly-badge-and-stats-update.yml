@@ -15,7 +15,7 @@ jobs:
         echo "dateIseconds=$(date -Iseconds)" >> "$GITHUB_ENV"
         echo "date_bdY=$(date +'%b %d, %Y')" >> "$GITHUB_ENV"
         echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_ENV"
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - uses: actions/setup-python@v6
       with:
           python-version: '3.13'
