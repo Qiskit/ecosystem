@@ -1,0 +1,23 @@
+[000]
+title = "Build on, interface with, or extend the Qiskit in a meaningful way"
+description = "Software in the Qiskit Ecosystem should related to Qiskit projects in some meaningful way. Software that manipulate Qiskit data structure (such as transpiler plugins) are good examples of that. If the connection with Qiskit is not that obvious, consider having a tutorial or how-to guide explaining a use-case for Qiskit users."
+applies_to = "all"
+category = "SUBMISSION"
+importance = "CRITICAL"
+
+[010]
+title = "member.name should not include the substring 'test'"
+description = "Projects in the Qiskit Ecosystem should related"
+applies_to = "all"
+affects = "member.name"
+category = "SUBMISSION"
+checker = "test_name.py::test_valid_name_no_test_substring"
+importance = "RECOMENDATION"
+
+[[importance]]
+name = "CRITICAL"
+description = "This is a must."
+
+[[importance]]
+name = "RECOMENDATION"
+description = "This is a recomendation."

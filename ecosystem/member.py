@@ -8,6 +8,7 @@ from .julia import JuliaData
 from .serializable import JsonSerializable, parse_datetime
 from .github import GitHubData
 from .pypi import PyPIData
+from .check import CheckData
 from .request import URL, request_json
 
 
@@ -35,6 +36,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         packages: list[URL] | None = None,
         uuid: str | None = None,
         badge: str | None = None,
+        checks: dict[str, CheckData] | None = None,
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
         julia: JuliaData | None = None,
@@ -58,6 +60,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.packages = packages
         self.uuid = uuid
         self.github = github
+        self.checks = checks or {}
         self.pypi = pypi or {}
         self.julia = julia
         self.badge = badge
@@ -97,6 +100,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 filtered_dict["pypi"][project_name] = pypi_data
         if "packages" in filtered_dict:
             filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
+        if "checks" in filtered_dict:
+            filtered_dict["checks"] = [
+                CheckData(id, **kwargs)
+                for id, kwargs in filtered_dict["checks"].items()
+            ]
         return Member(**filtered_dict)
 
     def to_dict(self) -> dict:
@@ -235,3 +243,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             documentation=submission.docs_url,
             packages=submission.package_urls,
         )
+
+    @property
+    def xfails(self):
+        return [check for check in self.checks if check.xfailed]

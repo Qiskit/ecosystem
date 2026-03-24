@@ -22,9 +22,18 @@ TODO member:
  - if cannot be fixed, collect an "issues" property in the member toml
  - check description length
  - check "website" is not the github repo or similar
+ 
+ members handle of checks:
+
+[checks.010]   # a way to skip checks. Give an explanation (or a link to the discussion)
+xfailed =  "skip this because that"
+
+[checks.001]  # this check failed. since is when that failure was detected (it might be relevant for warnings)
+details = "explain why this member fails this check"
+since = 2025-10-22T14:47:06Z
+ 
 """
 
-import time
 import pytest
 
 
@@ -37,8 +46,11 @@ class ValidationReport:
         self.failed = []
         self.xfailed = []
         self.skipped = []
-        self.xfails = {
-            "test_name.py::test_valid_name_no_test_substring": "because life is complicated"
+
+    @property
+    def xfails(self):
+        return {
+            checkdata.checker: checkdata.xfailed for checkdata in self._member.xfails
         }
 
     def pytest_itemcollected(self, item):
