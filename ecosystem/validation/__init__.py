@@ -1,13 +1,9 @@
 """Validation module"""
 
-from dataclasses import dataclass
-from tabnanny import verbose
-
-from ecosystem.error_handling import logger
+import pytest
 
 # pylint: disable=pointless-string-statement
-
-"""  
+"""
 BIG TODO:
 MOVE THE VALIDATIONS TO REGULAR PYTHON-BASED TESTS.
 THIS CUSTOM VALIDATION DISCOVERY LOOKS TOO MUCH TO UNITTEST DISCOVERY
@@ -24,20 +20,23 @@ TODO member:
  - check "website" is not the github repo or similar
  
  members handle of checks:
-
-[checks.010]   # a way to skip checks. Give an explanation (or a link to the discussion)
+ 
+# a way to skip checks. Give an explanation (or a link to the discussion)
+[checks.010]   
 xfailed =  "skip this because that"
 
-[checks.001]  # this check failed. since is when that failure was detected (it might be relevant for warnings)
+# this check failed. since is when that failure was detected 
+# (it might be relevant for warnings)
+[checks.001]  
 details = "explain why this member fails this check"
 since = 2025-10-22T14:47:06Z
  
 """
 
-import pytest
-
 
 class ValidationReport:
+    # pylint: disable=missing-function-docstring, missing-class-docstring
+
     def __init__(self, member):
         self._member = member
         self.collected = 0
@@ -54,10 +53,12 @@ class ValidationReport:
         }
 
     def pytest_itemcollected(self, item):
+        # pylint: disable=protected-access
         item._nodeid = "/".join(item.nodeid.split("/")[2:])
 
     @pytest.hookimpl(hookwrapper=True)
-    def pytest_runtest_makereport(self, item, call):
+    def pytest_runtest_makereport(self, item, call):  # pylint: disable=unused-argument
+
         outcome = yield
         report = outcome.get_result()
         if report.when == "call":
@@ -76,7 +77,9 @@ class ValidationReport:
             if item.nodeid in self.xfails:
                 item.add_marker(pytest.mark.xfail(reason=self.xfails[item.nodeid]))
 
-    def pytest_terminal_summary(self, terminalreporter, exitstatus):
+    def pytest_terminal_summary(
+        self, terminalreporter, exitstatus
+    ):  # pylint: disable=unused-argument
         self.exitcode = exitstatus.value if hasattr(exitstatus, "value") else exitstatus
 
     @pytest.fixture

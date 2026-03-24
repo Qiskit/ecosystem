@@ -102,8 +102,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
         if "checks" in filtered_dict:
             filtered_dict["checks"] = [
-                CheckData(id, **kwargs)
-                for id, kwargs in filtered_dict["checks"].items()
+                CheckData(id_, **kwargs)
+                for id_, kwargs in filtered_dict["checks"].items()
             ]
         return Member(**filtered_dict)
 
@@ -246,4 +246,5 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
 
     @property
     def xfails(self):
+        """list of xfails for a self member"""
         return [check for check in self.checks if check.xfailed]

@@ -23,6 +23,7 @@ class ChecksToml:
         self._data = data
 
     def check(self, checkid):
+        """Given an ID for a check, the details"""
         return self._data[checkid]
 
 
@@ -34,8 +35,8 @@ class CheckData(JsonSerializable):
     dict_keys = ["id", "xfailed", "since", "details"]
     labels_toml = ChecksToml()
 
-    def __init__(self, id: str, xfailed=None, since=None, details=None):
-        self.id = id
+    def __init__(self, id_: str, xfailed=None, since=None, details=None):
+        self.id = id_
         self.xfailed = xfailed
         self.since = since
         self.details = details

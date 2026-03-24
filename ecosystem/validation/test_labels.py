@@ -1,5 +1,8 @@
 """Validations involving ecosystem/resources/labels.toml"""
 
+# pylint: disable=missing-function-docstring, redefined-outer-name
+
+
 from os import path
 from pathlib import Path
 import tomllib

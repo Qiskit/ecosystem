@@ -130,7 +130,7 @@ class CliCI:
             if report.exitcode == 0:
                 print(f"::notice::  {member.name} ({member.name_id}) ✅")
                 if report.xfailed:
-                    print(f"::group:: some expected fail ☑️")
+                    print("::group:: some expected fail ☑️")
                     for xfailed in report.xfailed:
                         print(f"::notice:: {xfailed.nodeid} - {xfailed.wasxfail}️")
                     print("::endgroup::")
