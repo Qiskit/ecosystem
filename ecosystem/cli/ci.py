@@ -135,7 +135,7 @@ class CliCI:
                         print(f"::notice:: {xfailed.nodeid} - {xfailed.wasxfail}️")
                     print("::endgroup::")
             else:
-                for test in report.tests:
+                for test in report.failed:
                     if test.passed:
                         continue
                     print(

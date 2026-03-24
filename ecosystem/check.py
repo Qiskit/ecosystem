@@ -25,6 +25,7 @@ class ChecksToml:
     def check(self, checkid):
         return self._data[checkid]
 
+
 class CheckData(JsonSerializable):
     """
     The validation data related to a project
