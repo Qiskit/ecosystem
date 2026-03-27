@@ -24,13 +24,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Update badges
-      env:
-        BITLY_TOKEN: ${{ secrets.BITLY_TOKEN }}
-      run: |
-        python manager.py members update_badges
-        python manager.py members update_badge_list
-
     - name: Update stats
       run: python manager.py members update_github
       env:
