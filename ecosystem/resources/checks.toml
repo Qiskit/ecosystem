@@ -21,3 +21,27 @@ description = "This is a must."
 [[importance]]
 name = "RECOMENDATION"
 description = "This is a recomendation."
+
+[[categories]]
+name = "SUBMISSION"
+description = "Validations done one time when a project is submitted."
+
+[[categories]]
+name = "METADATA"
+description = "There is an issue about the member metadata used in the ecosystem. It is not an upstream error."
+
+[[categories]]
+name = "GENERAL"
+description = """General criteria that might be implemented differently, depending on the project. Check the "related to" validations to see which might apply to a specific repository, software, or package."""
+
+[[categories]]
+name = "ACTIVITY"
+description = "The project might not have a level of activity to be considered well-maintained."
+
+[[categories]]
+name = "OSS"
+description = "There is an issue with some of the open-source aspect of the project."
+
+[[categories]]
+name = "OUT-OF-DATE"
+description = "The project might not follow the last best-practices or connects to Qiskit in a way that is considered old-fashioned, currently unsupported, or deprecated."

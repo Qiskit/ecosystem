@@ -43,3 +43,11 @@ class CheckData(JsonSerializable):
 
     def __getattr__(self, name):
         return self.labels_toml.check(self.id)[name]
+
+    def importance(self):
+        """Returns dict name->description with the possible importance values"""
+        return {i["name"]: i["description"] for i in self.labels_toml["importance"]}
+
+    def categories(self):
+        """Returns dict name->description with the categories"""
+        return {i["name"]: i["description"] for i in self.labels_toml["categories"]}
