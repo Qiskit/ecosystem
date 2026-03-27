@@ -36,7 +36,7 @@ jobs:
     - name: Validate submission
       id: valid-issue
       run: |
-        python manager.py ci validate_new_member_yml "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
+        python manager.py ci validate_member "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
 
     - name: Commit changes and create pull request
       id: cpr
