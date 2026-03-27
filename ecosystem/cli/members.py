@@ -116,9 +116,8 @@ class CliMembers:
         ]
         for name, badge, badge_md, name_id in projects:
             lines.append(
-                "<tr>"
-                '<td><a href="https://github.com/Qiskit/ecosystem/tree/main/'
-                f'ecosystem/resources/members/{name_id}.toml">{name}</a></td>'
+                '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main/ecosystem"'
+                f'/resources/members/{name_id}.toml">{name}</a></td>'
                 f'<td><a href="{badge}"><img src="{badge}" /></a></td>'
                 f"<td>\n\n```markdown\n{badge_md}\n```\n\n</td>"
                 "</tr>"
