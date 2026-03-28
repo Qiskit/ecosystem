@@ -24,11 +24,12 @@ class Submission:
     labels: str
     terms: bool
     pattern_steps: str
-    source_url: ParseResult
-    home_url: ParseResult
-    docs_url: ParseResult
+    source_url: URL
+    home_url: URL
+    docs_url: URL
     package_urls: list[URL]
     paper_url: URL
+    skip: list[str]
 
     @classmethod
     def from_formatted_issue(cls, issue_formatted):
@@ -68,11 +69,16 @@ class Submission:
         # pylint: disable=too-many-branches
         """For a section, return its field ID and the content.
         The content has no newlines and has spaces stripped.
+
+        Returns None if section not found in <label_to_id>
         """
         lines = [line.strip() for line in section.split("\n") if line.strip()]
         label = lines[0]
-        field_id = label_to_id[label]["id"]
-        field_type = label_to_id[label]["type"]
+        if label in label_to_id:
+            field_id = label_to_id[label]["id"]
+            field_type = label_to_id[label]["type"]
+        elif "skip checks" in label.lower():
+            return "skip", [l.split(": ") for l in lines if ":" in l]
 
         if "textarea" == field_type and lines[1].startswith("```"):
             raw_content = lines[2:-1]

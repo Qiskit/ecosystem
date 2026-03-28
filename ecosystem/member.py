@@ -101,10 +101,10 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         if "packages" in filtered_dict:
             filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
         if "checks" in filtered_dict:
-            filtered_dict["checks"] = [
-                CheckData(id_, **kwargs)
+            filtered_dict["checks"] = {
+                id_: CheckData(id_, **kwargs)
                 for id_, kwargs in filtered_dict["checks"].items()
-            ]
+            }
         return Member(**filtered_dict)
 
     def to_dict(self) -> dict:
@@ -229,6 +229,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """
         Takes a submission object and creates a very basic Member object
         """
+        skip_checks = {}
+        for check_id, reason in submission.skip:
+            skip_checks[check_id] = CheckData(check_id, xfailed=reason)
         return Member(
             name=submission.name,
             submission_number=issue_number,
@@ -242,6 +245,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
             packages=submission.package_urls,
+            checks=skip_checks or None,
         )
 
     @property
