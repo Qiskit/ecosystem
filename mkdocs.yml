@@ -1,0 +1,17 @@
+site_name: Qiskit Ecosystem documentation
+site_url: https://qiskit.github.io/ecosystem/
+
+theme:
+  name: material
+  palette:
+    primary: deep purple
+  logo: img/logo.png
+  features:
+    - content.code.copy
+
+plugins:
+  - search
+  - table-reader
+
+nav:
+  - Badges: badges.md

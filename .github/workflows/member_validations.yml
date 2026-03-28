@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Checkout PR
         run: |
           gh pr checkout ${{ github.event.pull_request.number }}
@@ -37,18 +37,18 @@ jobs:
           id=$(echo ${{ github.event.pull_request.head.ref }} | cut -d- -f2 )
           echo "::set-output name=id::$id"
       - name: Initial validatation
-        run: python manager.py ci validate_new_member_yml ${{ steps.get-id.outputs.id }}
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
       - name: Create sections
         run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }}
       - name: Section validatation
-        run: python manager.py ci validate_new_member_yml ${{ steps.get-id.outputs.id }}
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
       - name: Commit sections
         if: success()
         run: git commit -am "Update sections on unmerged submission" --allow-empty
       - name: Fetch data
         run: python manager.py ci fetch_new_member_data ${{ steps.get-id.outputs.id }}
       - name: Data validatation
-        run: python manager.py ci validate_new_member_yml ${{ steps.get-id.outputs.id }}
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
       - name: Commit data
         if: success()
         run: git commit -am "Update data on unmerged submission" --allow-empty
