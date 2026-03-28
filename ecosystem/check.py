@@ -35,11 +35,22 @@ class CheckData(JsonSerializable):
     dict_keys = ["id", "xfailed", "since", "details"]
     labels_toml = ChecksToml()
 
-    def __init__(self, id_: str, xfailed=None, since=None, details=None):
+    def __init__(self, id_: str, xfailed=None, since=None, details=None, **_):
         self.id = id_
         self.xfailed = xfailed
         self.since = since
         self.details = details
+
+    def to_dict(self) -> dict:
+        ret = {}
+        if self.xfailed:
+            ret["xfailed"] = self.xfailed
+        if self.since:
+            ret["since"] = self.since
+        if self.details:
+            ret["details"] = self.details
+
+        return ret
 
     def __getattr__(self, name):
         return self.labels_toml.check(self.id)[name]
