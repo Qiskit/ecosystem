@@ -1,0 +1,14 @@
+name = "pytest-quantum"
+submission_number = 1057
+url = "https://github.com/qbench/pytest-quantum"
+description = "Cross-framework pytest plugin for quantum testing. Statistical assertions, fixtures, and unitary verification for Qiskit, Cirq, PennyLane & more"
+contact_info = "tejasghatule12345@gmail.com"
+labels = [ "circuit building",]
+website = "https://github.com/qbench/pytest-quantum"
+group = "Tooling"
+documentation = "https://pytest-quantum.readthedocs.io"
+packages = [ "https://pypi.org/project/pytest-quantum",]
+uuid = "a0da49ba-6ae7-4b61-b39e-0c238727be0a"
+
+[checks.010]
+xfailed = "A pytest plugin. See https://github.com/Qiskit/ecosystem/issues/1057#issuecomment-4103009658"
