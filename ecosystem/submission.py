@@ -2,7 +2,6 @@
 
 from dataclasses import dataclass
 from pathlib import Path
-from urllib.parse import ParseResult
 import yaml
 
 from .error_handling import EcosystemError
@@ -74,11 +73,11 @@ class Submission:
         """
         lines = [line.strip() for line in section.split("\n") if line.strip()]
         label = lines[0]
-        if label in label_to_id:
-            field_id = label_to_id[label]["id"]
-            field_type = label_to_id[label]["type"]
-        elif "skip checks" in label.lower():
+        if "skip checks" in label.lower():
             return "skip", [l.split(": ") for l in lines if ":" in l]
+
+        field_id = label_to_id[label]["id"]
+        field_type = label_to_id[label]["type"]
 
         if "textarea" == field_type and lines[1].startswith("```"):
             raw_content = lines[2:-1]
