@@ -3,15 +3,16 @@ name: Sourcecode tests
 on:
   workflow_dispatch:
   pull_request:
-#    paths-ignore:   TODO do not run sourcecode tests when only **.toml are affected
+    paths-ignore:
+      - 'ecosystem/resources/members/*.toml'
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     - name: Set up Python 3.13
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
           python-version: '3.13'
     - name: Install tox
@@ -29,9 +30,9 @@ jobs:
       matrix:
         python-version: [3.13]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Set up tox env
@@ -54,9 +55,9 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     - name: Set up Python 3.13
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
           python-version: '3.13'
     - name: Install dependencies

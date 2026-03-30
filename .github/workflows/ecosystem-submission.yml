@@ -2,18 +2,21 @@ name: Ecosystem | Submission
 
 on:
   issues:
-    types: [opened, edited, reopened]
+    types: [opened, edited, reopened, transferred, labeled]
 
 jobs:
   submission_workflow:
     if: contains(github.event.issue.labels.*.name, 'submission')
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     env:
       python-version: "3.13"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     - name: Set up Python ${{ env.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ env.python-version }}
     - name: Install dependencies
@@ -33,13 +36,13 @@ jobs:
     - name: Validate submission
       id: valid-issue
       run: |
-        python manager.py ci validate_new_member_yml "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
+        python manager.py ci validate_member "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
 
     - name: Commit changes and create pull request
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
-        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+        draft: always-true
         commit-message: |
           Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
         
