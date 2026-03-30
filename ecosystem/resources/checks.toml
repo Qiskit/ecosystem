@@ -12,7 +12,23 @@ applies_to = "all"
 affects = ["member.name"]
 category = "SUBMISSION"
 checker = "test_name.py::test_valid_name_no_test_substring"
-importance = "RECOMENDATION"
+importance = "RECOMMENDATION
+
+[011]
+title = "Do not repeat URLs in the submission"
+description = "Having the same URL for, for example member.website and member.documentation is unnecessary. Keep better fit and remove the other one.""
+applies_to = "all"
+affects = ["member.website", "member.url", "member.documentation", "member.packages.*"]
+category = "SUBMISSION"
+importance = "STRONG-RECOMMENDATION"
+
+[012]
+title = "URLs must exists"
+description = "None of the URLs must not return 404s or other forms of permanent errors. Rediractions are accepted."
+applies_to = "all"
+affects = ["member.website", "member.url", "member.documentation", "member.packages.*"]
+category = "SUBMISSION"
+importance = "IMPORTANT"
 
 [COC]
 title="Adhere to the Qiskit CoC"
@@ -63,11 +79,19 @@ description = "If the project implements a Qiskit primitive interface, it should
 
 [[importance]]
 name = "CRITICAL"
-description = "This is a must."
+description = "This is a must-pass and there is no room for negotiation. Failing this test results in immediate removal."
 
 [[importance]]
-name = "RECOMENDATION"
-description = "This is a recomendation."
+name = "IMPORTANT"
+description = "If this check is on a candidate, the merge wont happen until the check passes. If affects an existing member, there will be a grace period for fixing it."
+
+[[importance]]
+name = "STRONG-RECOMMENDATION"
+description = "This is a strong-recommendation that can be waved if there is a really really good reason for it."
+
+[[importance]]
+name = "RECOMMENDATION"
+description = "This is a recomendation. You might have to argue way this check does not apply to a specific project."
 
 [[categories]]
 name = "SUBMISSION"
