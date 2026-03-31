@@ -16,15 +16,15 @@ badge = "https://qisk.it/e-c5b19e1a"
 url = "https://github.com/qBraid/qBraid"
 owner = "qBraid"
 repo = "qBraid"
-stars = 107
+stars = 108
 homepage = "https://docs.qbraid.com/v2/sdk"
 license = "Apache License 2.0"
 description = "A platform-agnostic quantum runtime framework"
 estimated_contributors = 35
 total_dependent_repositories = 34
-total_dependent_packages = 16
-last_commit = 2026-03-23T21:25:01Z
-last_activity = 2026-03-27T11:45:17Z
+total_dependent_packages = 17
+last_commit = 2026-03-30T22:10:25Z
+last_activity = 2026-03-30T22:10:26Z
 
 [pypi.qbraid]
 package_name = "qbraid"
@@ -37,5 +37,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 22152
-last_180_days_downloads = 93220
+last_month_downloads = 22857
+last_180_days_downloads = 93755
