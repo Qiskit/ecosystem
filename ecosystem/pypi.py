@@ -9,7 +9,6 @@ from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
 from packaging.specifiers import SpecifierSet
 from packaging.version import Version
-import pypistats
 
 from jsonpath import findall
 
@@ -122,6 +121,7 @@ class PyPIData(JsonSerializable):
 
     @property
     def last_release_date(self):
+        """Date of the last release in PyPI"""
         if "last_release_date" in self._kwargs:
             return self._kwargs["last_release_date"]
         last_release = self.pypi_json.get("releases", {}).get(self.version, None)

@@ -163,6 +163,7 @@ class DAO:
 
     @classmethod
     def log_update(cls, current_value, new_value, arg, project):
+        """Logs the update in the DAO"""
         if isinstance(new_value, dict) and isinstance(current_value, dict):
             for key, n_value in new_value.items():
                 c_value = current_value.get(key, "")
