@@ -24,12 +24,14 @@ last_activity = 2026-03-19T18:14:34Z
 
 [pypi.pennylane-qiskit]
 package_name = "pennylane-qiskit"
-version = "0.43.0"
+version = "0.44.1"
+last_release_date = 2026-01-22T22:16:30
+license = "Apache License 2.0"
 url = "https://pypi.org/project/PennyLane-qiskit/"
 requires_qiskit = "<2.2,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-08-19T15:29:40Z
 highest_supported_qiskit_version = "2.1.2"
-last_month_downloads = 21426
-last_180_days_downloads = 111736
+last_month_downloads = 24114
+last_180_days_downloads = 130045

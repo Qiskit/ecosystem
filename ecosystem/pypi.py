@@ -27,6 +27,8 @@ class PyPIData(JsonSerializable):
     dict_keys = [
         "package_name",
         "version",
+        "last_release_date",
+        "license",
         "url",
         "requires_qiskit",
         "compatible_with_qiskit_v1",
@@ -36,7 +38,11 @@ class PyPIData(JsonSerializable):
         "last_month_downloads",
         "last_180_days_downloads",
     ]
-    aliases = {"version": "info.version", "url": "info.package_url"}
+    aliases = {
+        "version": "info.version",
+        "url": "info.package_url",
+        "license": "info.license",
+    }
     json_types = {}
     reduce = {}
 
@@ -85,7 +91,8 @@ class PyPIData(JsonSerializable):
             self._pypi_json = request_json(f"pypi.org/pypi/{self.package_name}/json")
         except EcosystemError:
             pass
-        self._pypistats_json = self.request_pypistats()
+        if self._pypistats_json is None:
+            self._pypistats_json = self.request_pypistats()
 
     def __getattr__(self, item):
         if self._pypi_json:
@@ -111,6 +118,17 @@ class PyPIData(JsonSerializable):
 
         raise AttributeError(
             f"'{type(self).__name__}' object has no attribute '{item}'"
+        )
+
+    @property
+    def last_release_date(self):
+        if "last_release_date" in self._kwargs:
+            return self._kwargs["last_release_date"]
+        last_release = self.pypi_json.get("releases", {}).get(self.version, None)
+        return (
+            max(parse_datetime(r["upload_time"]) for r in last_release)
+            if last_release
+            else None
         )
 
     @property
@@ -230,15 +248,28 @@ class PyPIData(JsonSerializable):
 
     def request_pypistats(self):
         """uses pypistats to get stats about python package"""
-        getters = ["recent", "overall", "python_minor", "system"]
+        getters = ["recent", "overall"]
         ret = {}
         for getter in getters:
-            raw_data = json.loads(
-                getattr(pypistats, getter)(self.package_name, format="json")
+            raw_data = request_json(
+                f"https://pypistats.org/api/packages/{self.package_name}/{getter}",
+                delay=3,
             )
+            # raw_data = json.loads(
+            #     getattr(pypistats, getter)(self.package_name, format="json")
+            # )
             if isinstance(raw_data["data"], list):
                 ret[raw_data["type"]] = {
-                    i["category"]: i["downloads"] for i in raw_data["data"]
+                    "with_mirrors": sum(
+                        i["downloads"]
+                        for i in raw_data["data"]
+                        if i["category"] == "with_mirrors"
+                    ),
+                    "without_mirrors": sum(
+                        i["downloads"]
+                        for i in raw_data["data"]
+                        if i["category"] == "without_mirrors"
+                    ),
                 }
             else:
                 ret[raw_data["type"]] = raw_data["data"]

@@ -27,35 +27,41 @@ last_activity = 2026-03-26T19:52:11Z
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
 version = "0.17.2"
+last_release_date = 2026-02-04T21:30:59
+license = "Apache 2.0"
 url = "https://pypi.org/project/qiskit-aer/"
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
-highest_supported_qiskit_version = "2.2.2"
-last_month_downloads = 579660
-last_180_days_downloads = 3253755
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 523997
+last_180_days_downloads = 3075016
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
 version = "0.15.1"
+last_release_date = 2024-09-13T07:46:14
+license = "Apache 2.0"
 url = "https://pypi.org/project/qiskit-aer-gpu/"
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
-highest_supported_qiskit_version = "2.2.2"
-last_month_downloads = 4896
-last_180_days_downloads = 33335
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 3779
+last_180_days_downloads = 28870
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
 version = "0.17.2"
+last_release_date = 2025-09-17T14:11:56
+license = "Apache 2.0"
 url = "https://pypi.org/project/qiskit-aer-gpu-cu11/"
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
-highest_supported_qiskit_version = "2.2.2"
-last_month_downloads = 1615
-last_180_days_downloads = 6794
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 2076
+last_180_days_downloads = 12233

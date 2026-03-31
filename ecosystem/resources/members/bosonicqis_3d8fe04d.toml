@@ -23,12 +23,14 @@ last_activity = 2026-03-25T20:54:51Z
 
 [pypi.bosonic-qiskit]
 package_name = "bosonic-qiskit"
-version = "14.1.1"
+version = "15.1"
+last_release_date = 2025-12-09T17:38:25
+license = "Copyright 2022 Battelle Memorial Institute\n        \n        Redistribution and use in source and binary forms, with or without modification,\n        are permitted provided that the following conditions are met:\n        \n        1. Redistributions of source code must retain the above copyright notice, this\n           list of conditions and the following disclaimer.\n        \n        2. Redistributions in binary form must reproduce the above copyright notice,\n           this list of conditions and the following disclaimer in the documentation\n           and/or other materials provided with the distribution.\n        \n        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\n        ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n        WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR\n        ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n        (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n        LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON\n        ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n        SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n        "
 url = "https://pypi.org/project/bosonic-qiskit/"
 requires_qiskit = "==2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-04-01T13:49:28Z
 highest_supported_qiskit_version = "2.0.0"
-last_month_downloads = 487
-last_180_days_downloads = 1560
+last_month_downloads = 195
+last_180_days_downloads = 2276
