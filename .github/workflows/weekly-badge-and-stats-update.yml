@@ -24,9 +24,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Create sections
-      run: python manager.py ci create_sections
-
     - name: Update GitHub stats
       run: python manager.py members update_github
       env:
