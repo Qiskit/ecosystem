@@ -40,7 +40,7 @@ class PyPIData(JsonSerializable):
     aliases = {
         "version": "info.version",
         "url": "info.package_url",
-        "license": "info.license",
+        "license": "info.license_expression",
     }
     json_types = {}
     reduce = {}
