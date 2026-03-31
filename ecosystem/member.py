@@ -230,8 +230,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         Takes a submission object and creates a very basic Member object
         """
         skip_checks = {}
-        for check_id, reason in submission.skip:
-            skip_checks[check_id] = CheckData(check_id, xfailed=reason)
+        if submission.skip:
+            for check_id, reason in submission.skip:
+                skip_checks[check_id] = CheckData(check_id, xfailed=reason)
         return Member(
             name=submission.name,
             submission_number=issue_number,
