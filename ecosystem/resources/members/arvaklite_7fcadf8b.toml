@@ -15,11 +15,11 @@ owner = "hiq-lab"
 repo = "arvak-lite"
 stars = 0
 license = "GNU Lesser General Public License v3.0"
-description = "Arvak quantum circuit compiler exposed as a transpiler plugin for Qiskit."
+description = "Lightweight quantum circuit compiler — drop-in transpiler for Qiskit, Cirq, Pulser, PennyLane. Powered by Arvak."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-03-08T14:02:22Z
-last_activity = 2026-03-08T14:02:29Z
+last_commit = 2026-03-30T20:28:39Z
+last_activity = 2026-03-30T20:28:40Z
 
 [pypi.arvak-lite]
 package_name = "arvak-lite"
