@@ -1,0 +1,128 @@
+[000]
+title = "Build on, interface with, or extend the Qiskit in a meaningful way"
+description = "Software in the Qiskit Ecosystem should related to Qiskit projects in some meaningful way. Software that manipulate Qiskit data structure (such as transpiler plugins) are good examples of that. If the connection with Qiskit is not that obvious, consider having a tutorial or how-to guide explaining a use-case for Qiskit users."
+applies_to = "all"
+category = "SUBMISSION"
+importance = "CRITICAL"
+
+[010]
+title = "member.name should not include the substring 'test'"
+description = "Projects in the Qiskit Ecosystem should related"
+applies_to = "all"
+affects = ["member.name"]
+category = "SUBMISSION"
+checker = "test_name.py::test_valid_name_no_test_substring"
+importance = "RECOMMENDATION"
+
+[011]
+title = "Do not repeat URLs in the submission"
+description = "Having the same URL for, for example member.website and member.documentation is unnecessary. Keep better fit and remove the other one."
+applies_to = "all"
+affects = ["member.website", "member.url", "member.documentation", "member.packages.*"]
+category = "SUBMISSION"
+importance = "STRONG-RECOMMENDATION"
+
+[012]
+title = "URLs must exists"
+description = "None of the URLs must not return 404s or other forms of permanent errors. Rediractions are accepted."
+applies_to = "all"
+affects = ["member.website", "member.url", "member.documentation", "member.packages.*", "member.pypi.*.url"]
+category = "SUBMISSION"
+importance = "IMPORTANT"
+
+[013]
+title = "URLs use a secure schema"
+description = "All the URLs must use HTTTPS (HyperText Transfer Protocol Secure) schema."
+applies_to = "all"
+affects = ["member.website", "member.url", "member.documentation", "member.packages.*", "member.pypi.*.url"]
+checker = "test_url.py::TestURLs::test_http"
+category = "SUBMISSION"
+importance = "IMPORTANT"
+
+[COC]
+title="Adhere to the Qiskit CoC"
+applies_to = "all"
+category = "SUBMISSION"
+description = "Project submitters should adhere to the Qiskit code of conduct. If the submitter is the project maintainer, they can enforce your their code of conduct in addition to the one coming from Qiskit."
+importance = "CRITICAL"
+
+[Q20]
+title = "Be compatible with the Qiskit SDK v2 or newer"
+applies_to = "all"
+category = "GENERAL"
+related_to = ["PQ2"]
+description = "If the software depends on Qiskit SDK in some way, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
+
+[G06]
+title = "Have maintainer activity within the last 6 months"
+applies_to = "GitHub projects"
+affects = ['member.github.last_activity']
+category = "ACTIVITY"
+description = "Projects available on GitHub should have some activity within the last 6 months, such as a commit."
+
+[PQ1]
+title = "Be installable with qiskit>=1.0"
+applies_to = "Python packages"
+affects = ['member.pypi.*.compatible_with_qiskit_v1']
+category = "OUT-OF-DATE"
+description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v1.0 or newer."
+
+[PQ2]
+title = "Be installable with qiskit>=2.0"
+applies_to = "Python packages"
+affects = ['member.pypi.*.compatible_with_qiskit_v2']
+category = "OUT-OF-DATE"
+description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer."
+
+[P00]
+title = "Python package license-related metadata should refer to a OSI-approved license"
+applies_to = "Python packages"
+affects = ['member.pypi.*.license']
+category = "OSS"
+description ="The license-related metadata in PyPA should be an OSI-approved open-source license."
+
+[020]
+title = "Primitive interface should be v2-compatible"
+affects = 'label:"Compute provider"'
+category = "OUT-OF-DATE"
+description = "If the project implements a Qiskit primitive interface, it should be compatible with the V2 primitives API."
+
+[[importance]]
+name = "CRITICAL"
+description = "This is a must-pass and there is no room for negotiation. Failing this test results in immediate removal."
+
+[[importance]]
+name = "IMPORTANT"
+description = "If this check is on a candidate, the merge wont happen until the check passes. If affects an existing member, there will be a grace period for fixing it."
+
+[[importance]]
+name = "STRONG-RECOMMENDATION"
+description = "This is a strong-recommendation that can be waved if there is a really really good reason for it."
+
+[[importance]]
+name = "RECOMMENDATION"
+description = "This is a recomendation. You might have to argue way this check does not apply to a specific project."
+
+[[categories]]
+name = "SUBMISSION"
+description = "Validations done one time when a project is submitted."
+
+[[categories]]
+name = "METADATA"
+description = "There is an issue about the member metadata used in the ecosystem. It is not an upstream error."
+
+[[categories]]
+name = "GENERAL"
+description = """General criteria that might be implemented differently, depending on the project. Check the "related to" validations to see which might apply to a specific repository, software, or package."""
+
+[[categories]]
+name = "ACTIVITY"
+description = "The project might not have a level of activity to be considered well-maintained."
+
+[[categories]]
+name = "OSS"
+description = "There is an issue with some of the open-source aspect of the project."
+
+[[categories]]
+name = "OUT-OF-DATE"
+description = "The project might not follow the last best-practices or connects to Qiskit in a way that is considered old-fashioned, currently unsupported, or deprecated."

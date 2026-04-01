@@ -4,11 +4,14 @@ import pprint
 from uuid import uuid4
 import re
 
+from .error_handling import EcosystemError
 from .julia import JuliaData
 from .serializable import JsonSerializable, parse_datetime
 from .github import GitHubData
 from .pypi import PyPIData
+from .check import CheckData
 from .request import URL, request_json
+from .validation import validate_member
 
 
 class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
@@ -35,6 +38,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         packages: list[URL] | None = None,
         uuid: str | None = None,
         badge: str | None = None,
+        checks: dict[str, CheckData] | None = None,
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
         julia: JuliaData | None = None,
@@ -58,6 +62,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.packages = packages
         self.uuid = uuid
         self.github = github
+        self.checks = checks or {}
         self.pypi = pypi or {}
         self.julia = julia
         self.badge = badge
@@ -97,6 +102,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 filtered_dict["pypi"][project_name] = pypi_data
         if "packages" in filtered_dict:
             filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
+        if "checks" in filtered_dict:
+            filtered_dict["checks"] = {
+                id_: CheckData(id_, **kwargs)
+                for id_, kwargs in filtered_dict["checks"].items()
+            }
         return Member(**filtered_dict)
 
     def to_dict(self) -> dict:
@@ -160,8 +170,23 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
         return response["link"]
 
+    def _qisk_dot_it_link_exists(self):
+        try:
+            request_json(
+                f"https://api-ssl.bitly.com/v4/bitlinks/qisk.it/e-{self.short_uuid}",
+                parser=lambda x: {},
+            )
+        except EcosystemError as error:
+            if "Not Found (404)" in error.message:
+                return None
+            if "Unauthorized (401)" in error.message:
+                return "UNAUTHORIZED"
+            raise error
+        return f"https://qisk.it/e-{self.short_uuid}"
+
     def update_badge(self):
         """If not there yet, creates a new Bitly link for the badge"""
+        self.badge = self._qisk_dot_it_link_exists()
         if self.badge is None:
             self.badge = self._create_qisk_dot_it_link_for_badge()
 
@@ -221,6 +246,10 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """
         Takes a submission object and creates a very basic Member object
         """
+        skip_checks = {}
+        if submission.skip:
+            for check_id, reason in submission.skip:
+                skip_checks[check_id] = CheckData(check_id, xfailed=reason)
         return Member(
             name=submission.name,
             submission_number=issue_number,
@@ -234,4 +263,23 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
             packages=submission.package_urls,
+            checks=skip_checks or None,
         )
+
+    @property
+    def xfails(self):
+        """list of xfails for a self member"""
+        return [
+            check
+            for checkid, check in self.checks.items()
+            if hasattr(check, "xfailed") and check.xfailed
+        ]
+
+    def update_checkups(self):
+        """Runs validation tests and updates the check-ups sections"""
+        checkups = {}
+        report = validate_member(self, verbose_level="-q")
+        for test in report.xfailed + report.failed:
+            checkup_data = CheckData.from_report(test)
+            checkups[checkup_data.id] = checkup_data
+        self.checks = checkups

@@ -15,24 +15,26 @@ badge = "https://qisk.it/e-8b3685bb"
 url = "https://github.com/R-D-BioTech-Alaska/Qelm"
 owner = "R-D-BioTech-Alaska"
 repo = "Qelm"
-stars = 25
+stars = 26
 homepage = "https://www.Qelm.org"
 license = "Other"
 description = "Qelm - Quantum Enhanced Language Model"
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-03-12T03:40:28Z
-last_activity = 2026-03-12T03:40:28Z
+last_commit = 2026-04-01T03:45:53Z
+last_activity = 2026-04-01T03:45:54Z
 
 [pypi.qelm]
 package_name = "qelm"
 version = "0.1.4"
+last_release_date = 2025-07-28T07:23:56
+license = "MIT"
 url = "https://pypi.org/project/qelm/"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
-highest_supported_qiskit_version = "2.2.2"
-last_month_downloads = 21
-last_180_days_downloads = 11970
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 32
+last_180_days_downloads = 159
