@@ -1,0 +1,34 @@
+name = "Double Quant"
+submission_number = 1070
+url = "https://github.com/11D-Beyonder/double-quant"
+description = "Double Quant means (Qunat)um (Quant)itative, which is a high-performance quantum computing framework for solving quantitative finance problems."
+contact_info = "ztz20001117@gmail.com"
+labels = [ "finance",]
+group = "Application"
+packages = []
+uuid = "6e4e5010-7f25-4f03-9724-c9088b4ce0e0"
+
+[github]
+url = "https://github.com/11D-Beyonder/double-quant"
+owner = "11D-Beyonder"
+repo = "double-quant"
+stars = 0
+license = "GNU General Public License v3.0"
+description = "A high-performance quantum computing framework for solving quantitative finance problems."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-03-31T03:54:00Z
+last_activity = 2026-03-31T03:54:00Z
+
+[pypi.double-quant]
+package_name = "double-quant"
+version = "0.0.1a2"
+last_release_date = 2026-03-30T11:28:26
+url = "https://pypi.org/project/double-quant/"
+requires_qiskit = ">=2.2.3"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 206
+last_180_days_downloads = 206
