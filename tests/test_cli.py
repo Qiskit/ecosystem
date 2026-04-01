@@ -4,7 +4,7 @@ import io
 import os
 import shutil
 import tempfile
-from unittest import TestCase
+from unittest import TestCase, mock
 from contextlib import redirect_stdout
 from pathlib import Path
 
@@ -23,6 +23,21 @@ def get_community_repo() -> Member:
         labels=["mock", "tests", "wsdt"],
         badge="https://qisk.it/e",
     )
+
+
+def mocked_get_request(*_args, **_kwargs):
+    """For mocking a 200 response to a http request"""
+    return type(
+        "MockResponse",
+        (object,),
+        {
+            "status_code": 200,
+            "elapsed": 100,
+            "ok": True,
+            "created_at": None,
+            "text": "",
+        },
+    )()
 
 
 class TestCli(TestCase):
@@ -136,8 +151,14 @@ class TestCli(TestCase):
             "group": "circuit manipulation",
             "packages": [],
             "checks": {
-                "010": {"xfailed": 'This project is allow to have "test" in its name'},
-                "COC": {"xfailed": "This project does not need to agree the CoC"},
+                "010": {
+                    "importance": "RECOMMENDATION",
+                    "xfailed": 'This project is allow to have "test" in its name',
+                },
+                "COC": {
+                    "importance": "CRITICAL",
+                    "xfailed": "This project does not need to agree the CoC",
+                },
             },
         }
         self.assertEqual(len(retrieved_repos), 1)
@@ -145,6 +166,7 @@ class TestCli(TestCase):
         self.assertIsInstance(retrieved.pop("uuid"), str)
         self.assertDictEqual(expected, retrieved)
 
+    @mock.patch("requests.get", new=mocked_get_request)
     def test_update_badges(self):
         """Tests creating badges."""
         commu_success = get_community_repo()

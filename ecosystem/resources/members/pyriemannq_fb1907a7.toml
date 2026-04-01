@@ -21,17 +21,18 @@ description = "A library for machine learning and quantum programming based on p
 estimated_contributors = 12
 total_dependent_repositories = 3
 total_dependent_packages = 0
-last_commit = 2026-03-08T12:12:51Z
-last_activity = 2026-03-25T20:55:12Z
+last_commit = 2026-04-01T09:25:39Z
+last_activity = 2026-04-01T09:32:47Z
 
 [pypi.pyriemann-qiskit]
 package_name = "pyriemann-qiskit"
 version = "0.4.2"
+last_release_date = 2025-09-04T21:07:23
 url = "https://pypi.org/project/pyriemann-qiskit/"
 requires_qiskit = "==1.*"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 54
-last_180_days_downloads = 325
+last_month_downloads = 41
+last_180_days_downloads = 350

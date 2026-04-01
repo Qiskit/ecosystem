@@ -14,7 +14,7 @@ badge = "https://qisk.it/e-768ba9e4"
 url = "https://github.com/qiskit-community/qiskit-nature"
 owner = "qiskit-community"
 repo = "qiskit-nature"
-stars = 376
+stars = 375
 homepage = "https://qiskit-community.github.io/qiskit-nature/"
 license = "Apache License 2.0"
 description = "Qiskit Nature is an open-source, quantum computing, framework for solving quantum mechanical natural science problems."
@@ -26,11 +26,12 @@ last_activity = 2026-03-19T15:09:41Z
 [pypi.qiskit-nature]
 package_name = "qiskit-nature"
 version = "0.7.2"
+last_release_date = 2024-02-23T10:20:50
 url = "https://pypi.org/project/qiskit-nature/"
 requires_qiskit = ">=0.44"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
-highest_supported_qiskit_version = "2.2.2"
-last_month_downloads = 47587
-last_180_days_downloads = 165630
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 32804
+last_180_days_downloads = 233587

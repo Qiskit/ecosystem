@@ -14,7 +14,7 @@ badge = "https://qisk.it/e-39fba621"
 url = "https://github.com/qiskit-community/qiskit-algorithms"
 owner = "qiskit-community"
 repo = "qiskit-algorithms"
-stars = 176
+stars = 175
 homepage = "https://qiskit-community.github.io/qiskit-algorithms/"
 license = "Apache License 2.0"
 description = "A library of quantum algorithms for Qiskit."
@@ -26,11 +26,12 @@ last_activity = 2026-03-23T09:46:14Z
 [pypi.qiskit-algorithms]
 package_name = "qiskit-algorithms"
 version = "0.4.0"
+last_release_date = 2025-08-29T18:32:24
 url = "https://pypi.org/project/qiskit-algorithms/"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
-highest_supported_qiskit_version = "2.2.2"
-last_month_downloads = 109504
-last_180_days_downloads = 483016
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 93757
+last_180_days_downloads = 561187

@@ -1,4 +1,4 @@
-name: Weekly | Update stats and badges
+name: Weekly | Update member data
 
 on:
   workflow_dispatch:
@@ -7,6 +7,7 @@ on:
 
 jobs:
   batch_update_badges:
+    name: "Update members data"
     runs-on: ubuntu-latest
     steps:
     - name: Setup variables
@@ -24,21 +25,30 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Update stats
+    - name: Update GitHub data
       run: python manager.py members update_github
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Update PyPI data
+      run: python manager.py members update_pypi
+
+    - name: Update Julia data
+      run: python manager.py members update_julia
+
+    - name: Update checkups data
+      run: python manager.py members update_checkups
 
     - name: Create PR for stats and badges update
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
         author: GitHub <noreply@github.com>
-        commit-message: Badges and stats update for ${{ env.dateIseconds }}
-        title: Badges and stats update for ${{ env.date_bdY }}
+        commit-message: Member data update for ${{ env.dateIseconds }}
+        title: Member data update for ${{ env.date_bdY }}
         body: |
-          Badges and stats update
-          Time: ${{ env.dateIseconds }}
+          Member data update
+          when: ${{ env.dateIseconds }}
           ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         branch: ${{ env.pr_branch_name }}
         labels: member update

@@ -19,17 +19,18 @@ description = "Quantum Inspire SDK"
 estimated_contributors = 9
 total_dependent_repositories = 26
 total_dependent_packages = 3
-last_commit = 2026-03-27T10:23:57Z
-last_activity = 2026-03-27T10:23:58Z
+last_commit = 2026-04-01T09:30:44Z
+last_activity = 2026-04-01T09:38:06Z
 
 [pypi.quantuminspire]
 package_name = "quantuminspire"
-version = "3.3.1"
+version = "3.5.1"
+last_release_date = 2026-01-19T12:28:56
 url = "https://pypi.org/project/quantuminspire/"
 requires_qiskit = "==1.0.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-03-07T23:51:19Z
 highest_supported_qiskit_version = "1.0.2"
-last_month_downloads = 3022
-last_180_days_downloads = 13096
+last_month_downloads = 3438
+last_180_days_downloads = 22447

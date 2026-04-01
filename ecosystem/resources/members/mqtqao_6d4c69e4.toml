@@ -21,17 +21,18 @@ description = "MQT Quantum Auto Optimizer - A MQT Tool for Solving Optimization 
 estimated_contributors = 7
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-03-23T17:30:05Z
-last_activity = 2026-03-23T17:30:07Z
+last_commit = 2026-03-30T17:24:59Z
+last_activity = 2026-03-30T17:25:00Z
 
 [pypi."mqt.qao"]
 package_name = "mqt-qao"
 version = "0.3.0"
+last_release_date = 2024-12-01T10:52:55
 url = "https://pypi.org/project/mqt.qao/"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
-highest_supported_qiskit_version = "2.2.2"
-last_month_downloads = 28
-last_180_days_downloads = 191
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 29
+last_180_days_downloads = 196
