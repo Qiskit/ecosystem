@@ -26,7 +26,16 @@ importance = "STRONG-RECOMMENDATION"
 title = "URLs must exists"
 description = "None of the URLs must not return 404s or other forms of permanent errors. Rediractions are accepted."
 applies_to = "all"
-affects = ["member.website", "member.url", "member.documentation", "member.packages.*"]
+affects = ["member.website", "member.url", "member.documentation", "member.packages.*", "member.pypi.*.url"]
+category = "SUBMISSION"
+importance = "IMPORTANT"
+
+[013]
+title = "URLs use a secure schema"
+description = "All the URLs must use HTTTPS (HyperText Transfer Protocol Secure) schema."
+applies_to = "all"
+affects = ["member.website", "member.url", "member.documentation", "member.packages.*", "member.pypi.*.url"]
+checker = "test_url.py::TestURLs::test_http"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 

@@ -10,6 +10,7 @@ from .github import GitHubData
 from .pypi import PyPIData
 from .check import CheckData
 from .request import URL, request_json
+from .validation import validate_member
 
 
 class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
@@ -252,4 +253,17 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     @property
     def xfails(self):
         """list of xfails for a self member"""
-        return [check for check in self.checks if check.xfailed]
+        return [
+            check
+            for checkid, check in self.checks.items()
+            if hasattr(check, "xfailed") and check.xfailed
+        ]
+
+    def update_checkups(self):
+        """Runs validation tests and updates the check-ups sections"""
+        checkups = {}
+        report = validate_member(self, verbose_level="-q")
+        for test in report.xfailed + report.failed:
+            checkup_data = CheckData.from_report(test)
+            checkups[checkup_data.id] = checkup_data
+        self.checks = checkups
