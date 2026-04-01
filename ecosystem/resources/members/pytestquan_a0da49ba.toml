@@ -1,0 +1,38 @@
+name = "pytest-quantum"
+submission_number = 1057
+url = "https://github.com/qbench/pytest-quantum"
+description = "Cross-framework pytest plugin for quantum testing. Statistical assertions, fixtures, and unitary verification for Qiskit, Cirq, PennyLane & more"
+contact_info = "tejasghatule12345@gmail.com"
+labels = [ "circuit building",]
+website = "https://github.com/qbench/pytest-quantum"
+group = "Tooling"
+documentation = "https://pytest-quantum.readthedocs.io"
+packages = []
+uuid = "a0da49ba-6ae7-4b61-b39e-0c238727be0a"
+
+[github]
+url = "https://github.com/qbench/pytest-quantum"
+owner = "qbench"
+repo = "pytest-quantum"
+stars = 2
+homepage = "https://pypi.org/project/pytest-quantum/"
+license = "MIT License"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-03-22T09:04:40Z
+last_activity = 2026-03-29T05:32:53Z
+
+[checks.010]
+xfailed = "A pytest plugin. See https://github.com/Qiskit/ecosystem/issues/1057#issuecomment-4103009658"
+
+[pypi.pytest-quantum]
+package_name = "pytest-quantum"
+version = "1.0.0"
+url = "https://pypi.org/project/pytest-quantum/"
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-22T14:47:06Z
+highest_supported_qiskit_version = "2.2.2"
+last_month_downloads = 617
+last_180_days_downloads = 617
