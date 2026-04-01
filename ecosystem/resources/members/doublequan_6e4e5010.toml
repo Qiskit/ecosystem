@@ -5,5 +5,12 @@ description = "Double Quant means (Qunat)um (Quant)itative, which is a high-perf
 contact_info = "ztz20001117@gmail.com"
 labels = [ "finance",]
 group = "Application"
-packages = [ "https://pypi.org/project/double-quant/",]
+packages = []
 uuid = "6e4e5010-7f25-4f03-9724-c9088b4ce0e0"
+
+[github]
+owner = "11D-Beyonder"
+repo = "double-quant"
+
+[pypi.double-quant]
+package_name = "double-quant"
