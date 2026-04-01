@@ -136,8 +136,14 @@ class TestCli(TestCase):
             "group": "circuit manipulation",
             "packages": [],
             "checks": {
-                "010": {"xfailed": 'This project is allow to have "test" in its name'},
-                "COC": {"xfailed": "This project does not need to agree the CoC"},
+                "010": {
+                    "importance": "RECOMMENDATION",
+                    "xfailed": 'This project is allow to have "test" in its name',
+                },
+                "COC": {
+                    "importance": "CRITICAL",
+                    "xfailed": "This project does not need to agree the CoC",
+                },
             },
         }
         self.assertEqual(len(retrieved_repos), 1)

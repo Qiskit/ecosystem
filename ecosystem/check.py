@@ -56,6 +56,12 @@ class CheckData(JsonSerializable):
         ret["importance"] = self.importance
         return ret
 
+    @property
+    def importance(self):
+        if "importance" in self.labels_toml.checkup(self.id):
+            return self.labels_toml.checkup(self.id)["importance"]
+        return None
+
     def __repr__(self):
         return str(self.to_dict())
 
