@@ -4,6 +4,7 @@ import pprint
 from uuid import uuid4
 import re
 
+from .error_handling import EcosystemError
 from .julia import JuliaData
 from .serializable import JsonSerializable, parse_datetime
 from .github import GitHubData
@@ -169,8 +170,21 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
         return response["link"]
 
+    def _qisk_dot_it_link_exists(self):
+        try:
+            request_json(
+                f"https://api-ssl.bitly.com/v4/bitlinks/qisk.it/e-{self.short_uuid}",
+                parser=lambda x: {},
+            )
+        except EcosystemError as error:
+            if "Not Found (404)" in error.message:
+                return None
+            raise error
+        return f"https://qisk.it/e-{self.short_uuid}"
+
     def update_badge(self):
         """If not there yet, creates a new Bitly link for the badge"""
+        self.badge = self._qisk_dot_it_link_exists()
         if self.badge is None:
             self.badge = self._create_qisk_dot_it_link_for_badge()
 
