@@ -179,6 +179,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         except EcosystemError as error:
             if "Not Found (404)" in error.message:
                 return None
+            if "Unauthorized (401)" in error.message:
+                return "UNAUTHORIZED"
             raise error
         return f"https://qisk.it/e-{self.short_uuid}"
 
