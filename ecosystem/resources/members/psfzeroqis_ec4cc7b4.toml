@@ -1,0 +1,21 @@
+name = "psf-zero-qiskit"
+submission_number = 1058
+url = "https://github.com/love-os-architect/psf-zero"
+description = "A geometric quantum-control extension for Qiskit that stabilizes phase and amplitude under noise via projective regularization (/0), exponential phase tracking (EIT), and SU(2) geodesic updates. Designed to mitigate decoherence spikes, pulse overshoot, and phase-unlock events."
+contact_info = "love.os.architect@proton.me"
+labels = [ "error mitigation", "optimization", "Python"]
+website = "https://github.com/love-os-architect/README/tree/main"
+group = "Tooling"
+documentation = "https://github.com/love-os-architect/README/blob/main/LOVE_OS_WHITE_PAPER_V1.md"
+packages = []
+uuid = "ec4cc7b4-0953-4a29-bea9-d9abeeddc16a"
+
+[github]
+url = "https://github.com/love-os-architect/psf-zero"
+owner = "love-os-architect"
+repo = "psf-zero"
+stars = 0
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-04-01T14:36:06Z
+last_activity = 2026-04-01T14:36:07Z
