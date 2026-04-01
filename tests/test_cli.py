@@ -4,7 +4,7 @@ import io
 import os
 import shutil
 import tempfile
-from unittest import TestCase
+from unittest import TestCase, mock
 from contextlib import redirect_stdout
 from pathlib import Path
 
@@ -23,6 +23,18 @@ def get_community_repo() -> Member:
         labels=["mock", "tests", "wsdt"],
         badge="https://qisk.it/e",
     )
+
+
+def mocked_get_request(*args, **kwargs):
+    return mockResponse()
+
+
+class mockResponse:
+    status_code = 200
+    elapsed = 100
+    ok = True
+    created_at = None
+    text = {}
 
 
 class TestCli(TestCase):
@@ -151,6 +163,7 @@ class TestCli(TestCase):
         self.assertIsInstance(retrieved.pop("uuid"), str)
         self.assertDictEqual(expected, retrieved)
 
+    @mock.patch("requests.get", new=mocked_get_request)
     def test_update_badges(self):
         """Tests creating badges."""
         commu_success = get_community_repo()
