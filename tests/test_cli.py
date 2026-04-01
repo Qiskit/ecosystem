@@ -25,16 +25,19 @@ def get_community_repo() -> Member:
     )
 
 
-def mocked_get_request(*args, **kwargs):
-    return mockResponse()
-
-
-class mockResponse:
-    status_code = 200
-    elapsed = 100
-    ok = True
-    created_at = None
-    text = {}
+def mocked_get_request(*_args, **_kwargs):
+    """For mocking a 200 response to a http request"""
+    return type(
+        "MockResponse",
+        (object,),
+        {
+            "status_code": 200,
+            "elapsed": 100,
+            "ok": True,
+            "created_at": None,
+            "text": "",
+        },
+    )()
 
 
 class TestCli(TestCase):
