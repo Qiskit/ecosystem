@@ -5,6 +5,7 @@
 ![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![Sourcecode tests](https://github.com/Qiskit/ecosystem/actions/workflows/tests.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/tests.yml)
+[![Deploy Website](https://github.com/Qiskit/ecosystem/actions/workflows/deploy-website.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/deploy-website.yml)
 
 <!--lint enable double-link-->
 
@@ -52,5 +53,4 @@ See the [open issues](https://github.com/qiskit-community/ecosystem/issues) for 
 ## Automatic updates
 
 Each week, a [GitHub Action](.github/workflows/weekly-badge-and-stats-update.yml) runs to update member stats and badges.
-It automatically [creates a pull request](https://github.com/Qiskit/ecosystem/issues?q=label%3A%22member%20update%22) that needs to be reviewed and merged by a maintaner.
-[![Weekly | Update stats and badges](https://github.com/Qiskit/ecosystem/actions/workflows/weekly-badge-and-stats-update.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/weekly-badge-and-stats-update.yml)
+It automatically [creates a pull request](https://github.com/Qiskit/ecosystem/issues?q=label%3A%22member%20update%22) that needs to be reviewed and merged by a maintaner [![Weekly | Update member data](https://github.com/Qiskit/ecosystem/actions/workflows/weekly-update.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/weekly-update.yml)
