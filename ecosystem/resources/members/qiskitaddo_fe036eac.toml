@@ -20,10 +20,10 @@ homepage = "https://qiskit.github.io/qiskit-addon-sqd/"
 license = "Apache License 2.0"
 description = "Sample-based Quantum Diagonalization: Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 estimated_contributors = 17
-total_dependent_repositories = 11
-total_dependent_packages = 1
-last_commit = 2026-04-01T14:23:51Z
-last_activity = 2025-10-24T02:16:39Z
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-04-02T02:15:39Z
+last_activity = 2026-04-02T02:15:40Z
 
 [pypi.qiskit-addon-sqd]
 package_name = "qiskit-addon-sqd"
@@ -35,5 +35,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 3596
-last_180_days_downloads = 19259
+last_month_downloads = 3723
+last_180_days_downloads = 19244
