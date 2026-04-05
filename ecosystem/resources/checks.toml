@@ -39,6 +39,15 @@ checker = "test_url.py::TestURLs::test_http"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
+[014]
+title = "Description too long"
+description = "Member description cannot be longer than 135 characters because front-end design limitations."
+applies_to = "all"
+affects = ["memeber.description"]
+checker = "test_description.py::test_description_len_135"
+category = "SUBMISSION"
+importance = "CRITICAL"
+
 [COC]
 title="Adhere to the Qiskit CoC"
 applies_to = "all"

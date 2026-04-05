@@ -54,7 +54,7 @@ class ValidationReport:
                 for mark in item.iter_markers():
                     setattr(report, mark.name, mark)
                 self.failed.append(report)
-            elif report.wasxfail:
+            elif hasattr(report, "wasxfail") and report.wasxfail:
                 self.xfailed.append(report)
             else:
                 self.skipped.append(report)
