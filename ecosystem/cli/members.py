@@ -83,6 +83,7 @@ class CliMembers:
                 "namedLogo": "Qiskit",
                 "message": project.name,
                 "color": "6929C4",
+                "isError": "true",
             }
             with open(
                 os.path.join(output_directory, str(project.short_uuid)), "w"
