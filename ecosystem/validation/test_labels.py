@@ -26,7 +26,7 @@ def labels(toml_file_data):
 
 def test_valid_label(member, labels):
     for label in member.labels:
-        assert label in labels, "all member.labels should exist in labels.toml"
+        assert label in labels, f"the label '{label}' does not exist in labels.toml"
 
 
 @pytest.fixture
