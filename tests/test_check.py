@@ -24,7 +24,9 @@ class TestChecksTOML(TestCase):
                     self.collected.append(item.nodeid.split("/")[-1])
 
         testcollector = TestCollector()
-        pytest.main(["--collect-only", "ecosystem/validation"], plugins=[testcollector])
+        pytest.main(
+            ["--collect-only", "-q", "ecosystem/validation"], plugins=[testcollector]
+        )
         self.collected_checks = testcollector.collected
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -91,4 +93,4 @@ class TestChecksTOML(TestCase):
         """Tests if names in meta categories are unique."""
         for cat in self.meta_categories:
             with self.subTest(cat):
-                self.assertHasNoDuplicates([c["name"] for c in cat])
+                self.assertHasNoDuplicates([c["name"] for c in self.checks_toml[cat]])

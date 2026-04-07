@@ -5,6 +5,15 @@ applies_to = "all"
 category = "SUBMISSION"
 importance = "CRITICAL"
 
+[008]
+title = "Category have to exist"
+description = "All `member.category` should exist in labels.toml"
+applies_to = "all"
+affects = ["member.category"]
+category = "SUBMISSION"
+checker = "test_labels.py::test_valid_category"
+importance = "CRITICAL"
+
 [009]
 title = "Labels have to exist"
 description = "All `member.labels` should exist in labels.toml"
