@@ -60,30 +60,6 @@ name = "chemistry"
 description = "Applies quantum computing to chemistry"
 
 [[labels]]
-name = "C"
-description = "API callable from C programming language"
-
-[[labels]]
-name = "C++"
-description = "API callable from C++ programming language"
-
-[[labels]]
-name = "Julia"
-description = "API callable from Julia programming language"
-
-[[labels]]
-name = "Rust"
-description = "API callable from Rust programming language"
-
-[[labels]]
-name = "OCaml"
-description = "API callable from OCaml programming language"
-
-[[labels]]
-name = "Java"
-description = "API callable from Java programming language"
-
-[[labels]]
 name = "error correction"
 description = "Performs or investigates quantum error correction"
 
@@ -144,3 +120,54 @@ description = "Builds and outputs Qiskit quantum circuits."
 name = "openqasm"
 description = "Interfaces with OpenQASM."
 
+[[intefaces]]
+name = "Python"
+description = "API callable from Python programming language"
+
+[[intefaces]]
+name = "C"
+description = "API callable from C programming language"
+
+[[intefaces]]
+name = "C++"
+description = "API callable from C++ programming language"
+
+[[intefaces]]
+name = "Julia"
+description = "API callable from Julia programming language"
+
+[[intefaces]]
+name = "Rust"
+description = "API callable from Rust programming language"
+
+[[intefaces]]
+name = "OCaml"
+description = "API callable from OCaml programming language"
+
+[[intefaces]]
+name = "Java"
+description = "API callable from Java programming language"
+
+[[intefaces]]
+name = "Other language"
+description = "API callable from a programming language not yet listed "
+
+[[intefaces]]
+name = "Command-line interface (CLI)"
+description = "Software can be used from the command-line as a standalone program"
+
+[[intefaces]]
+name = "Graphical User Interface (GUI)"
+description = "Software can be used from a graphical inteface, as standalone program"
+
+[[intefaces]]
+name = "Web interface"
+description = "Software has a web inteface"
+
+[[intefaces]]
+name = "Web interface"
+description = "Software has a web inteface"
+
+[[intefaces]]
+name = "Other interface"
+description = "The way to interact with this software is not listed yet"
