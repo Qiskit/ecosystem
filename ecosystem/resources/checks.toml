@@ -5,6 +5,15 @@ applies_to = "all"
 category = "SUBMISSION"
 importance = "CRITICAL"
 
+[009]
+title = "Labels have to exist"
+description = "All `member.labels` should exist in labels.toml"
+applies_to = "all"
+affects = ["member.labels.*"]
+category = "SUBMISSION"
+checker = "test_labels.py::test_valid_label"
+importance = "CRITICAL"
+
 [010]
 title = "member.name should not include the substring 'test'"
 description = "Projects in the Qiskit Ecosystem should related"
