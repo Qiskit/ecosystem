@@ -1,14 +1,10 @@
-from ecosystem.labels import LabelsToml
-
 """Tests for GitHub Templates."""
 
 import os
 from unittest import TestCase
 from ruamel.yaml import YAML
 
-from ecosystem.member import Member
-from ecosystem.submission_parser import parse_submission_issue
-from ecosystem.dao import DAO
+from ecosystem.labels import LabelsToml
 
 
 class Test01submission(TestCase):
@@ -24,6 +20,7 @@ class Test01submission(TestCase):
             self.issue_template = yaml.load(issue_template_file)
 
     def test_categories(self):
+        """categories in the template should exist in labels.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "category":
                 self.assertIn("attributes", section)
@@ -34,6 +31,7 @@ class Test01submission(TestCase):
                 )
 
     def test_labels(self):
+        """labels in the template should exist in labels.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "labels":
                 self.assertIn("attributes", section)
@@ -43,6 +41,7 @@ class Test01submission(TestCase):
                 )
 
     def test_interfaces(self):
+        """interfaces in the template should exist in labels.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "interfaces":
                 self.assertIn("attributes", section)
@@ -50,3 +49,5 @@ class Test01submission(TestCase):
                 self.assertEqual(
                     section["attributes"]["options"], self.labels_toml.interface_names
                 )
+
+    # TODO Qiskit patterns entry  # pylint: disable=fixme

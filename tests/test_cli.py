@@ -121,7 +121,7 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
-            "interface": ["Otherx`"],
+            "interface": ["Other"],
             "group": "circuit manipulation",
             "packages": [],
         }
