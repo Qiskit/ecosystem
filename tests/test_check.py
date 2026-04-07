@@ -1,9 +1,9 @@
 """Tests for ecosystem/check.py."""
 
 import os
-import pytest
 import tomllib
 from unittest import TestCase
+import pytest
 
 
 class TestChecksTOML(TestCase):
@@ -15,7 +15,9 @@ class TestChecksTOML(TestCase):
 
     def setUp(self) -> None:
 
-        class TestCollector:
+        class TestCollector:  # pylint: disable=missing-function-docstring
+            """To collect the collected tests"""
+
             def __init__(self):
                 self.collected = []
 
@@ -37,11 +39,11 @@ class TestChecksTOML(TestCase):
 
     def test_valid_entries(self):
         """Tests entries in checks.toml have the right fields"""
-        for id, entry in self.checks_toml.items():
-            if id in self.meta_categories:
+        for id_, entry in self.checks_toml.items():
+            if id_ in self.meta_categories:
                 continue
-            with self.subTest(id=id):
-                self.assertEqual(len(id), 3, msg=f"{id} is not a valid checkup ID")
+            with self.subTest(id=id_):
+                self.assertEqual(len(id_), 3, msg=f"{id_} is not a valid checkup ID")
                 for mandatory_key in self.mandatory_keys:
                     self.assertIn(
                         mandatory_key, entry, f"mandatory key {mandatory_key} missed"
@@ -73,14 +75,16 @@ class TestChecksTOML(TestCase):
             with self.subTest(checker_in_toml):
                 self.assertIn(checker_in_toml, self.collected_checks)
 
-    def assertHasNoDuplicates(self, iterable, msg=None):
+    def assertHasNoDuplicates(self, iterable, msg=None):  # pylint: disable=invalid-name
         """Check for duplicated elements in iterable"""
         unique = set(iterable)
         if len(iterable) != len(set(iterable)):
-            standardMsg = "There are repetitions: %" % (
-                {i: iterable.count(i) for i in unique if iterable.count(i) > 1},
+            standard_msg = (
+                f"There are repetitions: { {i: iterable.count(i) for i in unique
+                                                       if iterable.count(i) > 1}
+            }"
             )
-            self.fail(self._formatMessage(msg, standardMsg))
+            self.fail(self._formatMessage(msg, standard_msg))
 
     def test_checkers_entries(self):
         """Tests if titles in checks.toml are unique. If not, probably a bad copy-paste"""
