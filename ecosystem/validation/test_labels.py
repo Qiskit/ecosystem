@@ -38,7 +38,7 @@ def test_valid_interfaces(member, interfaces):
     """007"""
     assert (
         hasattr(member, "interface") and member.interface
-    ), f"the interface entry is mandatory"
+    ), "the interface entry is mandatory"
 
     for interface in member.interface:
         assert (
