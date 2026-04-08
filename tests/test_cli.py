@@ -87,7 +87,7 @@ class TestCli(TestCase):
             "website": "https://banana-compiler.org",
             "documentation": "https://banana-compiler.org/documentation",
             "reference_paper": "https://arxiv.org/abs/5555.22222",
-            "group": "circuit manipulation",
+            "category": "circuit manipulation",
             "packages": [
                 "https://pypi.org/project/banana-compiler",
                 "https://pypi.org/project/banana-compiler-hpc",
@@ -122,7 +122,7 @@ class TestCli(TestCase):
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
             "interface": ["Other"],
-            "group": "circuit manipulation",
+            "category": "circuit manipulation",
             "packages": [],
         }
         self.assertEqual(len(retrieved_repos), 1)
@@ -151,7 +151,7 @@ class TestCli(TestCase):
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
             "interface": ["Python"],
-            "group": "circuit manipulation",
+            "category": "circuit manipulation",
             "packages": [],
             "checks": {
                 "010": {
