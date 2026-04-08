@@ -258,7 +258,7 @@ class CliMembers:
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",
-            "group": "group",
+            "group": "category",
             "category": "group",
             "stars": "github.stars",
             "documentation": "documentation",
