@@ -33,8 +33,3 @@ homepage = "https://qiskit.github.io/Qiskit.jl/"
 release_date = 2026-02-01
 uuid = "91d9a17d-f964-4b6c-a3c4-2f4cfdea2c95"
 estimated_unique_users = 5
-
-[checks.007]
-since = 2026-04-08T16:22:41.423405
-details = "the interface 'Julia' does not exist in labels.toml"
-importance = "CRITICAL"

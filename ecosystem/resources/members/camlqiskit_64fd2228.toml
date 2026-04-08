@@ -22,8 +22,3 @@ description = "OCaml wrapper for Qiskit quantum computing toolkit"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-03-13T15:46:41Z
-
-[checks.007]
-since = 2026-04-08T16:23:01.525743
-details = "the interface 'OCaml' does not exist in labels.toml"
-importance = "CRITICAL"

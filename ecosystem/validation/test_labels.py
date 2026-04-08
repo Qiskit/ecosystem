@@ -42,7 +42,7 @@ def test_valid_interfaces(member, interfaces):
 
     for interface in member.interface:
         assert (
-            interfaces in interfaces
+            interface in interfaces
         ), f"the interface '{interface}' does not exist in labels.toml"
 
 
