@@ -20,19 +20,21 @@ def toml_file_data():
 
 
 @pytest.fixture
-def labels(toml_file_data):
-    return [c["name"] for c in toml_file_data["labels"]]
-
-
-def test_valid_label(member, labels):
-    for label in member.labels:
-        assert label in labels, f"the label '{label}' does not exist in labels.toml"
-
-
-@pytest.fixture
 def categories(toml_file_data):
     return [c["name"] for c in toml_file_data["categories"]]
 
 
+@pytest.fixture
+def labels(toml_file_data):
+    return [c["name"] for c in toml_file_data["labels"]]
+
+
 def test_valid_category(member, categories):
-    assert member.group in categories, "member.group should exist in labels.toml"
+    """008"""
+    assert member.category in categories, "member.group should exist in labels.toml"
+
+
+def test_valid_label(member, labels):
+    """009"""
+    for label in member.labels:
+        assert label in labels, f"the label '{label}' does not exist in labels.toml"
