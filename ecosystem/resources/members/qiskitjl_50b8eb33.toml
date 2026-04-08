@@ -1,7 +1,8 @@
 name = "Qiskit.jl"
 url = "https://github.com/Qiskit/Qiskit.jl/"
 contact_info = "garrison@ibm.com"
-labels = [ "Julia",]
+labels = []
+interface = [ "Julia",]
 ibm_maintained = true
 group = "SDK"
 documentation = "https://qiskit.github.io/Qiskit.jl/"
