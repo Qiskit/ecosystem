@@ -36,3 +36,15 @@ def categories(toml_file_data):
 
 def test_valid_category(member, categories):
     assert member.group in categories, "member.group should exist in labels.toml"
+
+
+@pytest.fixture
+def interfaces(toml_file_data):
+    return [c["name"] for c in toml_file_data["interfaces"]]
+
+
+def test_valid_interfaces(member, interfaces):
+    for interface in member.interfaces:
+        assert (
+            interfaces in interfaces
+        ), f"the interface '{interface}' does not exist in labels.toml"
