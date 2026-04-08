@@ -20,6 +20,11 @@ total_dependent_packages = 0
 last_commit = 2024-03-21T16:41:46Z
 last_activity = 2025-11-19T17:28:13Z
 
+[checks.007]
+since = 2026-04-08T16:22:59.679221
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.dynacir]
 package_name = "dynacir"
 version = "0.1.4"

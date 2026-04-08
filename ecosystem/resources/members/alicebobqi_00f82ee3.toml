@@ -22,6 +22,11 @@ total_dependent_packages = 0
 last_commit = 2025-09-30T11:50:37Z
 last_activity = 2026-03-24T10:31:26Z
 
+[checks.007]
+since = 2026-04-08T16:22:49.256395
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-alice-bob-provider]
 package_name = "qiskit-alice-bob-provider"
 version = "1.2.0"

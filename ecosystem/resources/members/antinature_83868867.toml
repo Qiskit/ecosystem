@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2025-08-11T18:52:41Z
 last_activity = 2026-03-27T14:09:07Z
 
+[checks.007]
+since = 2026-04-08T16:22:43.641353
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.antinature]
 package_name = "antinature"
 version = "0.1.2"

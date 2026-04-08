@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-02-09T06:24:23Z
 last_activity = 2026-03-17T12:09:03Z
 
+[checks.007]
+since = 2026-04-08T16:22:50.002200
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qupepfold]
 package_name = "qupepfold"
 version = "0.8.0"

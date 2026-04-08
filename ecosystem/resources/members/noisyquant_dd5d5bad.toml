@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-29T13:06:33Z
 last_activity = 2026-03-30T20:09:05Z
 
+[checks.007]
+since = 2026-04-08T16:23:02.775449
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.quantum-gates]
 package_name = "quantum-gates"
 version = "2.3.0"

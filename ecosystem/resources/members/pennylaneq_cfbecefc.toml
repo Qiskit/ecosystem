@@ -22,6 +22,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-19T18:14:34Z
 last_activity = 2026-03-30T22:46:46Z
 
+[checks.007]
+since = 2026-04-08T16:22:52.999175
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.pennylane-qiskit]
 package_name = "pennylane-qiskit"
 version = "0.44.1"

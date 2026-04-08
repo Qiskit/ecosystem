@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-31T14:22:14Z
 last_activity = 2026-04-01T21:26:26Z
 
+[checks.007]
+since = 2026-04-08T16:22:45.190367
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-addon-aqc-tensor]
 package_name = "qiskit-addon-aqc-tensor"
 version = "0.2.0"

@@ -18,3 +18,8 @@ description = "Welcome to Quantum MasterChef, a unique and immersive quantum com
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-05-10T00:23:52Z
+
+[checks.007]
+since = 2026-04-08T16:22:47.238028
+details = "the interface entry is mandatory"
+importance = "CRITICAL"

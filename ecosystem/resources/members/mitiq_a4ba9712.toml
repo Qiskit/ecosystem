@@ -22,6 +22,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T21:26:08Z
 last_activity = 2026-04-01T22:15:23Z
 
+[checks.007]
+since = 2026-04-08T16:23:00.448700
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.mitiq]
 package_name = "mitiq"
 version = "1.0.0"

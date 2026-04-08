@@ -25,6 +25,11 @@ total_dependent_packages = 3
 last_commit = 2026-04-01T23:04:14Z
 last_activity = 2026-04-01T23:04:15Z
 
+[checks.007]
+since = 2026-04-08T16:22:38.478875
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-aqt-provider]
 package_name = "qiskit-aqt-provider"
 version = "1.14.0"

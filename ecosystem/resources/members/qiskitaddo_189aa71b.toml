@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-04-02T08:24:28Z
 last_activity = 2026-04-02T08:24:28Z
 
+[checks.007]
+since = 2026-04-08T16:22:55.349896
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-addon-slc]
 package_name = "qiskit-addon-slc"
 version = "0.1.0"

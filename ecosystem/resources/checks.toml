@@ -5,9 +5,18 @@ applies_to = "all"
 category = "SUBMISSION"
 importance = "CRITICAL"
 
+[007]
+title = "Interface have to exist"
+description = "All `member.interface` should exist in labels.toml"
+applies_to = "all"
+affects = ["member.interface.*"]
+category = "SUBMISSION"
+checker = "test_labels.py::test_valid_interfaces"
+importance = "CRITICAL"
+
 [008]
 title = "Category have to exist"
-description = "All `member.category` should exist in labels.toml"
+description = "`member.category` should exist in labels.toml"
 applies_to = "all"
 affects = ["member.category"]
 category = "SUBMISSION"

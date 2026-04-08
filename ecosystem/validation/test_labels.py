@@ -20,6 +20,11 @@ def toml_file_data():
 
 
 @pytest.fixture
+def interfaces(toml_file_data):
+    return [c["name"] for c in toml_file_data["interfaces"]]
+
+
+@pytest.fixture
 def categories(toml_file_data):
     return [c["name"] for c in toml_file_data["categories"]]
 
@@ -27,6 +32,18 @@ def categories(toml_file_data):
 @pytest.fixture
 def labels(toml_file_data):
     return [c["name"] for c in toml_file_data["labels"]]
+
+
+def test_valid_interfaces(member, interfaces):
+    """007"""
+    assert (
+        hasattr(member, "interface") and member.interface
+    ), "the interface entry is mandatory"
+
+    for interface in member.interface:
+        assert (
+            interface in interfaces
+        ), f"the interface '{interface}' does not exist in labels.toml"
 
 
 def test_valid_category(member, categories):

@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2025-11-20T16:40:44Z
 last_activity = 2026-01-24T11:27:38Z
 
+[checks.007]
+since = 2026-04-08T16:23:02.284539
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.piqture]
 package_name = "piqture"
 version = "0.2.0"

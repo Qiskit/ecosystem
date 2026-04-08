@@ -23,6 +23,11 @@ total_dependent_packages = 32
 last_commit = 2025-12-12T01:08:18Z
 last_activity = 2026-03-19T15:09:41Z
 
+[checks.007]
+since = 2026-04-08T16:22:51.514146
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-nature]
 package_name = "qiskit-nature"
 version = "0.7.2"

@@ -22,6 +22,11 @@ total_dependent_packages = 0
 last_commit = 2025-04-09T21:16:09Z
 last_activity = 2026-03-17T08:32:38Z
 
+[checks.007]
+since = 2026-04-08T16:22:44.879491
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-rigetti]
 package_name = "qiskit-rigetti"
 version = "0.4.7"

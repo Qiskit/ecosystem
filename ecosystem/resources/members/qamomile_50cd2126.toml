@@ -22,6 +22,11 @@ total_dependent_packages = 1
 last_commit = 2026-03-30T11:40:45Z
 last_activity = 2026-04-01T08:45:47Z
 
+[checks.007]
+since = 2026-04-08T16:23:03.521067
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qamomile]
 package_name = "qamomile"
 version = "0.10.0"

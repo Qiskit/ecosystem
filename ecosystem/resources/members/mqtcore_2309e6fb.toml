@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-04-01T19:35:21Z
 last_activity = 2026-04-02T09:06:08Z
 
+[checks.007]
+since = 2026-04-08T16:22:35.215603
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.core"]
 package_name = "mqt-core"
 version = "3.4.1"

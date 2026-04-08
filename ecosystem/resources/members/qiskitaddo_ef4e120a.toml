@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-04-02T08:26:28Z
 last_activity = 2026-04-02T08:26:28Z
 
+[checks.007]
+since = 2026-04-08T16:22:37.450347
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-addon-opt-mapper]
 package_name = "qiskit-addon-opt-mapper"
 version = "0.1.0"

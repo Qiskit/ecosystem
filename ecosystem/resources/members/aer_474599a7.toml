@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-02-26T01:13:33Z
 last_activity = 2026-04-01T21:30:32Z
 
+[checks.007]
+since = 2026-04-08T16:23:04.017735
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
 version = "0.17.2"

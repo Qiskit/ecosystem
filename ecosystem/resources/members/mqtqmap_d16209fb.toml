@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T05:04:17Z
 last_activity = 2026-03-31T02:05:05Z
 
+[checks.007]
+since = 2026-04-08T16:22:44.628277
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.qmap"]
 package_name = "mqt-qmap"
 version = "3.6.0"

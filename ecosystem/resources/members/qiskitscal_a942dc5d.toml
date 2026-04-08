@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-10T18:13:44Z
 last_activity = 2026-03-11T09:00:04Z
 
+[checks.007]
+since = 2026-04-08T16:22:58.384238
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-scaleway]
 package_name = "qiskit-scaleway"
 version = "0.3.10"

@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-04-02T03:27:12Z
 last_activity = 2026-04-02T03:27:13Z
 
+[checks.007]
+since = 2026-04-08T16:22:40.018949
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qelm]
 package_name = "qelm"
 version = "0.1.4"

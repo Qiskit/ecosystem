@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-04-02T02:15:39Z
 last_activity = 2026-04-02T02:15:40Z
 
+[checks.007]
+since = 2026-04-08T16:22:58.135159
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-addon-sqd]
 package_name = "qiskit-addon-sqd"
 version = "0.12.1"

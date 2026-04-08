@@ -23,6 +23,11 @@ total_dependent_packages = 1
 last_commit = 2025-10-28T01:51:40Z
 last_activity = 2026-04-01T07:32:12Z
 
+[checks.007]
+since = 2026-04-08T16:22:47.505314
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.torchquantum]
 package_name = "torchquantum"
 version = "0.1.8"

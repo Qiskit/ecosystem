@@ -19,6 +19,11 @@ total_dependent_packages = 1
 last_commit = 2026-03-23T21:35:51Z
 last_activity = 2026-03-24T13:25:24Z
 
+[checks.007]
+since = 2026-04-08T16:22:59.186666
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qclib]
 package_name = "qclib"
 version = "0.1.15"

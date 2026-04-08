@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-04-02T07:17:10Z
 last_activity = 2026-04-02T07:17:11Z
 
+[checks.007]
+since = 2026-04-08T16:22:52.017483
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.povm-toolbox]
 package_name = "povm-toolbox"
 version = "0.2.0"

@@ -23,6 +23,11 @@ archived = true
 last_commit = 2025-10-23T06:09:01Z
 last_activity = 2025-12-08T19:31:05Z
 
+[checks.007]
+since = 2026-04-08T16:22:43.886138
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-classroom-converter]
 package_name = "qiskit-classroom-converter"
 version = "0.6.0"

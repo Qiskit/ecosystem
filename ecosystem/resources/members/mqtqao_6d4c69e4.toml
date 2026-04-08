@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T17:24:59Z
 last_activity = 2026-03-30T17:25:00Z
 
+[checks.007]
+since = 2026-04-08T16:23:00.695279
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.qao"]
 package_name = "mqt-qao"
 version = "0.3.0"

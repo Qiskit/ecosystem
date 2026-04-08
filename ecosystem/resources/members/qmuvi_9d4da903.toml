@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2025-11-19T05:20:57Z
 last_activity = 2026-03-03T09:59:47Z
 
+[checks.007]
+since = 2026-04-08T16:22:36.418736
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qmuvi]
 package_name = "qmuvi"
 version = "0.3.0"

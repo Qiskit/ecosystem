@@ -24,6 +24,11 @@ total_dependent_packages = 1
 last_commit = 2026-03-12T15:30:32Z
 last_activity = 2026-03-12T15:30:36Z
 
+[checks.007]
+since = 2026-04-08T16:22:57.381383
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-symb]
 package_name = "qiskit-symb"
 version = "0.6.0"
