@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-01-03T11:55:19Z
 last_activity = 2026-03-26T08:48:40Z
 
+[checks.007]
+since = 2026-04-08T16:22:44.126727
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qlasskit]
 package_name = "qlasskit"
 version = "0.1.39"

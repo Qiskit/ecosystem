@@ -24,6 +24,11 @@ total_dependent_packages = 8
 last_commit = 2026-04-02T01:46:46Z
 last_activity = 2026-04-02T01:46:47Z
 
+[checks.007]
+since = 2026-04-08T16:22:42.175868
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-superstaq]
 package_name = "qiskit-superstaq"
 version = "0.5.64"

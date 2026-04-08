@@ -23,6 +23,11 @@ total_dependent_packages = 41
 last_commit = 2026-04-01T05:54:16Z
 last_activity = 2026-04-01T05:54:16Z
 
+[checks.007]
+since = 2026-04-08T16:22:55.879857
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-optimization]
 package_name = "qiskit-optimization"
 version = "0.7.0"

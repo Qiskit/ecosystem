@@ -20,3 +20,8 @@ description = "GALA-n Quantum Library"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-10-20T20:35:33Z
+
+[checks.007]
+since = 2026-04-08T16:22:54.821834
+details = "the interface entry is mandatory"
+importance = "CRITICAL"

@@ -26,6 +26,11 @@ total_dependent_packages = 17
 last_commit = 2026-04-02T06:51:42Z
 last_activity = 2026-04-02T06:57:57Z
 
+[checks.007]
+since = 2026-04-08T16:22:56.879603
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qbraid]
 package_name = "qbraid"
 version = "0.11.1"

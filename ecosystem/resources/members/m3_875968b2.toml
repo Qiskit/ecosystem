@@ -26,6 +26,11 @@ total_dependent_packages = 10
 last_commit = 2025-08-06T19:05:30Z
 last_activity = 2026-01-20T09:00:57Z
 
+[checks.007]
+since = 2026-04-08T16:22:51.766428
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.mthree]
 package_name = "mthree"
 version = "3.0.0"

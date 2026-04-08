@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-19T16:13:02Z
 last_activity = 2026-03-19T16:13:21Z
 
+[checks.007]
+since = 2026-04-08T16:10:21.099978
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-ionq]
 package_name = "qiskit-ionq"
 version = "1.0.2"

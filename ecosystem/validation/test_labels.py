@@ -36,7 +36,11 @@ def labels(toml_file_data):
 
 def test_valid_interfaces(member, interfaces):
     """007"""
-    for interface in member.interfaces:
+    assert (
+        hasattr(member, "interface") and member.interface
+    ), f"the interface entry is mandatory"
+
+    for interface in member.interface:
         assert (
             interfaces in interfaces
         ), f"the interface '{interface}' does not exist in labels.toml"

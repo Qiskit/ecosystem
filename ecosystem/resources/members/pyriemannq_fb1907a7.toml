@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-04-01T09:25:39Z
 last_activity = 2026-04-01T09:32:47Z
 
+[checks.007]
+since = 2026-04-08T16:22:56.633490
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.pyriemann-qiskit]
 package_name = "pyriemann-qiskit"
 version = "0.4.2"

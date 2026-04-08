@@ -18,3 +18,8 @@ license = "MIT License"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-09-21T08:46:46Z
+
+[checks.007]
+since = 2026-04-08T16:22:38.720893
+details = "the interface entry is mandatory"
+importance = "CRITICAL"

@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-31T12:44:24Z
 last_activity = 2026-03-31T12:44:25Z
 
+[checks.007]
+since = 2026-04-08T16:22:45.694636
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.qcec"]
 package_name = "mqt-qcec"
 version = "3.5.0"

@@ -22,6 +22,11 @@ total_dependent_packages = 3
 last_commit = 2026-04-01T09:30:44Z
 last_activity = 2026-04-01T09:38:06Z
 
+[checks.007]
+since = 2026-04-08T16:22:48.759886
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.quantuminspire]
 package_name = "quantuminspire"
 version = "3.5.1"

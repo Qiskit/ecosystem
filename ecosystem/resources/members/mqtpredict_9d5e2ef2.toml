@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T01:30:30Z
 last_activity = 2026-04-01T17:24:41Z
 
+[checks.007]
+since = 2026-04-08T16:22:38.229722
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.predictor"]
 package_name = "mqt-predictor"
 version = "2.3.0"

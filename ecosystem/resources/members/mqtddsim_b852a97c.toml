@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T09:45:19Z
 last_activity = 2026-03-30T09:45:15Z
 
+[checks.007]
+since = 2026-04-08T16:22:52.263378
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.ddsim"]
 package_name = "mqt-ddsim"
 version = "2.2.0"

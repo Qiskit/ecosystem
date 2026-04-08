@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T02:43:38Z
 last_activity = 2026-03-30T02:43:42Z
 
+[checks.007]
+since = 2026-04-08T16:22:55.612389
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.problemsolver"]
 package_name = "mqt-problemsolver"
 version = "0.4"

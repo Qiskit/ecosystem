@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-01T00:58:28Z
 last_activity = 2026-03-01T00:58:28Z
 
+[checks.007]
+since = 2026-04-08T16:22:41.915958
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-addon-pna]
 package_name = "qiskit-addon-pna"
 version = "0.2.0"

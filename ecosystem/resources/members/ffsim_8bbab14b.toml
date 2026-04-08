@@ -23,6 +23,11 @@ total_dependent_packages = 3
 last_commit = 2026-04-02T04:15:01Z
 last_activity = 2026-04-02T07:19:54Z
 
+[checks.007]
+since = 2026-04-08T16:22:49.504226
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.ffsim]
 package_name = "ffsim"
 version = "0.0.74"

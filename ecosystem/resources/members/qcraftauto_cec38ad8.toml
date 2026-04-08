@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2025-10-28T08:42:08Z
 last_activity = 2025-10-28T08:42:09Z
 
+[checks.007]
+since = 2026-04-08T16:22:39.561385
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.autoscheduler]
 package_name = "autoscheduler"
 version = "1.2.1"

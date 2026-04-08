@@ -20,3 +20,8 @@ description = "Implementation of the (truncated) Variational Hamiltonian Ansatz 
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-07-22T09:46:14Z
+
+[checks.007]
+since = 2026-04-08T16:22:40.391581
+details = "the interface entry is mandatory"
+importance = "CRITICAL"

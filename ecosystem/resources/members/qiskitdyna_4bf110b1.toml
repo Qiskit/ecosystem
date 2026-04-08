@@ -25,6 +25,11 @@ archived = true
 last_commit = 2025-10-07T18:43:19Z
 last_activity = 2026-03-28T19:07:06Z
 
+[checks.007]
+since = 2026-04-08T16:23:03.275862
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-dynamics]
 package_name = "qiskit-dynamics"
 version = "0.6.0"

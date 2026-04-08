@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T20:28:39Z
 last_activity = 2026-03-30T20:28:40Z
 
+[checks.007]
+since = 2026-04-08T16:22:49.753885
+details = "the interface 'Python' does not exist in labels.toml"
+importance = "CRITICAL"
+
 [pypi.arvak-lite]
 package_name = "arvak-lite"
 version = "0.1.1"

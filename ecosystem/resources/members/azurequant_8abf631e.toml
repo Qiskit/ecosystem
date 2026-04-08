@@ -22,6 +22,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-31T23:40:15Z
 last_activity = 2026-04-01T19:58:00Z
 
+[checks.007]
+since = 2026-04-08T16:22:45.453639
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.azure-quantum]
 package_name = "azure-quantum"
 version = "3.8.0"

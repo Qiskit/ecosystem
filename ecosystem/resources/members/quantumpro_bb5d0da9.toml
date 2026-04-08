@@ -20,6 +20,11 @@ total_dependent_packages = 0
 last_commit = 2024-09-11T15:59:49Z
 last_activity = 2026-03-25T11:18:32Z
 
+[checks.007]
+since = 2026-04-08T16:23:03.026952
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.vqls-prototype]
 package_name = "vqls-prototype"
 version = "0.2.0"
