@@ -11,8 +11,26 @@ packages = []
 uuid = "0a8128d0-2398-411b-a08e-737e2b198387"
 
 [github]
+url = "https://github.com/evmckinney9/gulps"
 owner = "evmckinney9"
 repo = "gulps"
+stars = 4
+license = "Apache License 2.0"
+description = "optimally compile arbitary two-qubit unitaries"
+total_dependent_repositories = 2
+total_dependent_packages = 0
+last_commit = 2026-04-09T19:56:10Z
+last_activity = 2026-04-09T19:56:16Z
 
 [pypi.gulps]
 package_name = "gulps"
+version = "0.3.4"
+last_release_date = 2026-03-27T23:49:53
+url = "https://pypi.org/project/gulps/"
+requires_qiskit = "<3,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 507
+last_180_days_downloads = 507
