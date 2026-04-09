@@ -16,9 +16,9 @@ jobs:
       run: |
         echo "datetime=$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
         echo "pr_branch_name=batch_checks_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_OUTPUT"
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     - name: Set up Python 3.13
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v6
       with:
           python-version: '3.13'
     - name: Install dependencies
@@ -30,7 +30,7 @@ jobs:
     - name: Commit changes
       run: |
         git pull --rebase --autostash
-        git add ecosystem/resources/
+        git add resources/
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git commit -m "Merge temp files for ${{ github.event.inputs.branch }}" --allow-empty

@@ -1,5 +1,6 @@
 """CliMembers class for controlling all CLI functions."""
 
+import datetime
 import json
 import tomllib
 import os
@@ -27,7 +28,7 @@ class CliMembers:
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = f"{self.current_dir}/ecosystem/resources"
+        self.resources_dir = f"{self.current_dir}/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -69,8 +70,11 @@ class CliMembers:
         )
         self.dao.write(new_repo)
 
-    def update_badges(self, name=None):
+    def update_badges(self, name=None, output_directory: str = None):
         """Updates badges for projects."""
+        if not output_directory:
+            output_directory = os.path.join(self.current_dir, "badges")
+        Path(output_directory).mkdir(parents=True, exist_ok=True)
         for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
             data = {
@@ -79,9 +83,10 @@ class CliMembers:
                 "namedLogo": "Qiskit",
                 "message": project.name,
                 "color": "6929C4",
+                "isError": "true",
             }
             with open(
-                os.path.join(self.current_dir, "badges", f"{project.short_uuid}"), "w"
+                os.path.join(output_directory, str(project.short_uuid)), "w"
             ) as outfile:
                 json.dump(data, outfile, indent=4)
                 self.logger.info("Badge for %s has been updated.", project.name)
@@ -90,8 +95,11 @@ class CliMembers:
 
     def update_badge_list(self):
         """Updates badge list in qisk.it/ecosystem-badges."""
-        start_tag = "<!-- start:table-badge -->"
-        end_tag = "<!-- end:table-badge -->"
+        output_file = os.path.join(
+            self.current_dir, "docs", "assets", "badges_table.md"
+        )
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        Path(output_file).touch(exist_ok=True)
 
         projects = []
         for project in self.dao.get_all():
@@ -110,26 +118,16 @@ class CliMembers:
         ]
         for name, badge, badge_md, name_id in projects:
             lines.append(
-                "<tr>"
-                f'<td><a href="../ecosystem/resources/members/{name_id}.toml" >{name}</a></td>'
-                f'<td><img src="{badge}" /></td>'
+                '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main/ecosystem"'
+                f'/resources/members/{name_id}.toml">{name}</a></td>'
+                f'<td><a href="{badge}"><img src="{badge}" /></a></td>'
                 f"<td>\n\n```markdown\n{badge_md}\n```\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")
-        readme_md = os.path.join(self.current_dir, "badges", "README.md")
 
-        with open(readme_md, "r") as readme_file:
-            content = readme_file.read()
-
-        to_replace = content[
-            content.find(start_tag) + len(start_tag) : content.rfind(end_tag)
-        ]
-
-        new_content = content.replace(to_replace, "\n".join(lines))
-
-        with open(readme_md, "w") as outfile:
-            outfile.write(new_content)
+        with open(output_file, "w") as outfile:
+            outfile.writelines(lines)
 
     def update_github(self, name=None):
         """
@@ -145,8 +143,7 @@ class CliMembers:
     def update_pypi(self, name=None):
         """
         Updates PyPI data.
-
-        f <name> is not given, runs on all the members.
+        If <name> is not given, runs on all the members.
         Otherwise, all the members with name_id that contains <name>
         as substring are checked.
         """
@@ -165,6 +162,44 @@ class CliMembers:
         for project in self.dao.get_all(name):
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
+
+    def update_checkups(self, name=None):
+        """
+        Updates checkups data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_checkups()
+            if project.checks:
+                today = datetime.datetime.today()
+                for checkup_id, checkup in project.checks.items():
+                    if checkup.xfailed:
+                        self.logger.info(
+                            "☑️ %s expected to fail checkup %s: %s ",
+                            project.name,
+                            checkup_id,
+                            checkup.xfailed,
+                        )
+                        continue
+                    days_since = (today - checkup.since).days
+                    for_x_days = (
+                        f"for {days_since} days" if days_since else "since today"
+                    )
+                    self.logger.info(
+                        "❌ %s failed checkup %s (%s)",
+                        project.name,
+                        checkup_id,
+                        for_x_days,
+                    )
+            else:
+                self.logger.info(
+                    "✅ %s (%s) passed all the checkups",
+                    project.name,
+                    project.name_id,
+                )
+            self.dao.update(project.name_id, checks=project.checks)
 
     @staticmethod
     def filter_data(
@@ -223,8 +258,8 @@ class CliMembers:
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",
-            "group": "group",
-            "category": "group",
+            "group": "category",
+            "category": "category",
             "stars": "github.stars",
             "documentation": "documentation",
             "website": "website",

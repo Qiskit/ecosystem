@@ -1,18 +1,10 @@
 """Validation module"""
 
-from dataclasses import dataclass
-
-from ecosystem.error_handling import logger
-
-from .base import MemberValidator
-from .labels import *
+import pytest
+from ecosystem.validation.conftest import ValidationReport
 
 # pylint: disable=pointless-string-statement
-
-"""  
-BIG TODO:
-MOVE THE VALIDATIONS TO REGULAR PYTHON-BASED TESTS.
-THIS CUSTOM VALIDATION DISCOVERY LOOKS TOO MUCH TO UNITTEST DISCOVERY
+"""
 
 TODO json:
  - check no member repetition
@@ -22,39 +14,32 @@ TODO member:
  - check that is has a category (or Other, otherwise)
  - if label "research" check if there is a paper
  - if cannot be fixed, collect an "issues" property in the member toml
- - check description length
  - check "website" is not the github repo or similar
+ 
+ members handle of checks:
+ 
+# a way to skip checks. Give an explanation (or a link to the discussion)
+[checks.010]   
+xfailed =  "skip this because that"
+
+# this check failed. since is when that failure was detected 
+# (it might be relevant for warnings)
+[checks.001]  
+details = "explain why this member fails this check"
+since = 2025-10-22T14:47:06Z
+ 
 """
 
 
-def _all_subclasses(cls):
-    return set(cls.__subclasses__()).union(
-        [s for c in cls.__subclasses__() for s in _all_subclasses(c)]
+def validate_member(member, verbose_level=None):
+    """Runs all the validation for a member
+    verbose_level: -v, -vv, -q
+    """
+    report = ValidationReport(member)
+    if verbose_level is None:
+        verbose_level = "-q"
+    pytest.main(
+        ["ecosystem/validation", "--tb=no", "-rN", verbose_level, "--no-header"],
+        plugins=[report],
     )
-
-
-@dataclass
-class Validation:  # pylint: disable=missing-class-docstring
-    name: str
-    class_obj: float
-
-
-def validate_member(member):
-    """Runs all the validation for a member"""
-    passing = []
-    not_passing = []
-    for subclass in _all_subclasses(MemberValidator):
-        sc = subclass()
-        validation_name = (
-            f"{sc.__class__.__module__.replace('ecosystem.validation.','')}"
-            f".{str(sc.__class__.__name__)}"
-        )
-        try:
-            sc.validate(member)
-            passing.append(Validation(validation_name, sc))
-        except NotImplementedError:
-            continue
-        except AssertionError as assertion:
-            logger.error(str(assertion))
-            not_passing.append(Validation(validation_name, sc))
-    return passing, not_passing
+    return report

@@ -4,7 +4,7 @@ import io
 import os
 import shutil
 import tempfile
-from unittest import TestCase
+from unittest import TestCase, mock
 from contextlib import redirect_stdout
 from pathlib import Path
 
@@ -25,15 +25,27 @@ def get_community_repo() -> Member:
     )
 
 
+def mocked_get_request(*_args, **_kwargs):
+    """For mocking a 200 response to a http request"""
+    return type(
+        "MockResponse",
+        (object,),
+        {
+            "status_code": 200,
+            "elapsed": 100,
+            "ok": True,
+            "created_at": None,
+            "text": "<title>Qiskit Ecosystem:</title>",
+        },
+    )()
+
+
 class TestCli(TestCase):
     """Test class for cli."""
 
     def setUp(self) -> None:
         self.path = Path(tempfile.mkdtemp())
         (self.path / "members").mkdir(parents=True, exist_ok=True)
-        (self.path / "badges").mkdir(parents=True, exist_ok=True)
-        with open(self.path / "badges" / "README.md", "w") as file:
-            file.write("\n<!-- start:table-badge -->\n<!-- end:table-badge -->\n")
         with open(self.path / "labels.json", "w") as file:
             file.write("{}")
         self.current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -41,20 +53,21 @@ class TestCli(TestCase):
             self.issue_body = issue_body_file.read()
         with open(f"{self.current_dir}/resources/issue_2.md", "r") as issue_body_file:
             self.issue_body_2 = issue_body_file.read()
+        with open(
+            f"{self.current_dir}/resources/issue_skip.md", "r"
+        ) as issue_body_file:
+            self.issue_body_skip = issue_body_file.read()
 
     def tearDown(self) -> None:
         shutil.rmtree(self.path)
 
     def test_add_member_from_issue(self):
-        # TODO, split parsing issue1 and issue2 in two different tests
-        """Tests issue parsing function.
+        """Tests /resources/issue.md parsing function.
         Function: Cli
                 -> parser_issue
-        Args:
-            issue_body
         """
 
-        # Issue 1
+        # /resources/issue.md
         captured_output = io.StringIO()
         with redirect_stdout(captured_output):
             CliCI.add_member_from_issue(self.issue_body, resources_dir=self.path)
@@ -70,10 +83,11 @@ class TestCli(TestCase):
             "Supports all modern devices, including Musa × paradisiaca.",
             "contact_info": "author@banana-compiler.org",
             "labels": ["error mitigation", "quantum information", "optimization"],
+            "interface": ["Python"],
             "website": "https://banana-compiler.org",
             "documentation": "https://banana-compiler.org/documentation",
             "reference_paper": "https://arxiv.org/abs/5555.22222",
-            "group": "circuit manipulation",
+            "category": "circuit manipulation",
             "packages": [
                 "https://pypi.org/project/banana-compiler",
                 "https://pypi.org/project/banana-compiler-hpc",
@@ -84,8 +98,78 @@ class TestCli(TestCase):
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()
         self.assertIsInstance(retrieved.pop("uuid"), str)
-        self.assertEqual(expected, retrieved)
+        self.assertDictEqual(expected, retrieved)
 
+    def test_add_member_from_issue_2(self):
+        """Tests /resources/issue_2.md parsing function.
+        Function: Cli
+                -> parser_issue
+        """
+
+        # /resources/issue_2.md
+        captured_output = io.StringIO()
+        with redirect_stdout(captured_output):
+            CliCI.add_member_from_issue(self.issue_body_2, resources_dir=self.path)
+
+        output_value = captured_output.getvalue().split("\n")
+        self.assertEqual("SUBMISSION_NAME=Qiskit Banana Compiler", output_value[0])
+
+        retrieved_repos = DAO(self.path).get_all()
+        expected = {
+            "name": "Qiskit Banana Compiler",
+            "url": "https://github.com/somebody/banana-compiler",
+            "description": "Compile bananas into Qiskit quantum circuits. "
+            "Supports all modern devices, including Musa × paradisiaca.",
+            "labels": [],
+            "interface": ["Other"],
+            "category": "circuit manipulation",
+            "packages": [],
+        }
+        self.assertEqual(len(retrieved_repos), 1)
+        retrieved = list(retrieved_repos)[0].to_dict()
+        self.assertIsInstance(retrieved.pop("uuid"), str)
+        self.assertDictEqual(expected, retrieved)
+
+    def test_add_member_from_issue_skip(self):
+        """Tests /resources/issue_skip.md parsing function.
+        An issue with skip checks
+        """
+
+        # /resources/issue_skip.md
+        captured_output = io.StringIO()
+        with redirect_stdout(captured_output):
+            CliCI.add_member_from_issue(self.issue_body_skip, resources_dir=self.path)
+
+        output_value = captured_output.getvalue().split("\n")
+        self.assertEqual("SUBMISSION_NAME=Qiskit Banana Compiler", output_value[0])
+
+        retrieved_repos = DAO(self.path).get_all()
+        expected = {
+            "name": "Qiskit Banana Compiler",
+            "url": "https://github.com/somebody/banana-compiler",
+            "description": "Compile bananas into Qiskit quantum circuits. "
+            "Supports all modern devices, including Musa × paradisiaca.",
+            "labels": [],
+            "interface": ["Python"],
+            "category": "circuit manipulation",
+            "packages": [],
+            "checks": {
+                "010": {
+                    "importance": "RECOMMENDATION",
+                    "xfailed": 'This project is allow to have "test" in its name',
+                },
+                "COC": {
+                    "importance": "CRITICAL",
+                    "xfailed": "This project does not need to agree the CoC",
+                },
+            },
+        }
+        self.assertEqual(len(retrieved_repos), 1)
+        retrieved = list(retrieved_repos)[0].to_dict()
+        self.assertIsInstance(retrieved.pop("uuid"), str)
+        self.assertDictEqual(expected, retrieved)
+
+    @mock.patch("requests.get", new=mocked_get_request)
     def test_update_badges(self):
         """Tests creating badges."""
         commu_success = get_community_repo()

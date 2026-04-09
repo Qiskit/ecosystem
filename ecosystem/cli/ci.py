@@ -1,12 +1,11 @@
 """CliCI class for controlling all CLI functions."""
 
+import sys
 from pathlib import Path
-from ruamel.yaml import YAML
 
 from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
-from ecosystem.labels import LabelsToml
 from ecosystem.validation import validate_member
 
 
@@ -37,53 +36,23 @@ class CliCI:
 
         resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
 
-        member = parse_submission_issue(body, number)
-        DAO(path=resources_dir).write(member)
-        set_actions_output([("SUBMISSION_NAME", member.name)])
-        set_actions_output([("SUBMISSION_SHORT_UUID", member.short_uuid)])
-
-    @staticmethod
-    def update_issue_template(
-        template_path: str, *, resources_dir: str | None = None
-    ) -> None:
-        """Updates the labels and categories in the issue template
-
-        Args:
-            template_path: Path to the issue template to update
-            resources_dir: Path to the resources directory
-        """
-
-        labels_toml = LabelsToml(resources_dir=resources_dir)
-
-        yaml = YAML()
-        with open(template_path, "r") as yaml_file:
-            data = yaml.load(yaml_file)
-
-        for section in data["body"]:
-            if "id" not in section:
-                continue
-            if section["id"] == "labels":
-                section["attributes"]["options"] = labels_toml.label_names
-            elif section["id"] == "category":
-                section["attributes"]["options"] = [
-                    "Select one..."
-                ] + labels_toml.category_names
-
-        with open(template_path, "w") as yaml_file:
-            yaml.dump(data, yaml_file)
+        parsed_result = parse_submission_issue(body, number)
+        DAO(path=resources_dir).write(parsed_result)
+        set_actions_output([("SUBMISSION_NAME", parsed_result.name)])
+        set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
 
     @staticmethod
     def create_sections(member_id: str, *, resources_dir: str | None = None) -> None:
         """TODO
 
         Args:
-            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+            member_id: loads the file ../resources/*_<member_id>.toml
 
         Returns:
             None (side effect is updating database and writing actions output)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
 
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
@@ -97,13 +66,13 @@ class CliCI:
         """TODO
 
         Args:
-            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+            member_id: loads the file ../resources/*_<member_id>.toml
 
         Returns:
             None (side effect is updating database and writing actions output)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
 
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
@@ -111,37 +80,36 @@ class CliCI:
             dao.write(member)
 
     @staticmethod
-    def validate_new_member_yml(
-        member_id: str, *, resources_dir: str | None = None
-    ) -> None:
+    def validate_member(member_id: str, *, resources_dir: str | None = None) -> None:
         """TODO
 
         Args:
-            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+            member_id: loads the file ../resources/*_<member_id>.toml
 
         Returns:
             None (it has no side-effect)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
 
         dao = DAO(path=resources_dir)
-        should_raise = False
         for member in dao.get_all(member_id):
-            passing, not_passing = validate_member(member)
-            if not passing:
-                print(
-                    f"::warning:: {member.name} ({member.name_id}) has no validations?"
-                )
-            if not not_passing:
-                print(f"::notice:: {member.name} ({member.name_id}) passed ✅")
-            for failing_validation in not_passing:
-                print(
-                    f"::error:: {member.name} ({member.name_id}) - "
-                    f"{failing_validation.name} failed ❌: "
-                    f"{failing_validation.class_obj.__doc__}"
-                )
-                should_raise = True
-
-        if should_raise:
-            raise Exception("validate_new_member_yml failed")
+            report = validate_member(member, verbose_level="-v")
+            if report.exitcode == 0:
+                print(f"::notice::  {member.name} ({member.name_id}) ✅")
+                if report.xfailed:
+                    print("::group:: some expected fail ☑️")
+                    for xfailed in report.xfailed:
+                        print(f"::notice:: {xfailed.nodeid} - {xfailed.wasxfail}️")
+                    print("::endgroup::")
+            else:
+                for test in report.failed:
+                    if test.passed:
+                        continue
+                    print(
+                        f"::error:: {member.name} ({member.name_id}) - "
+                        f"{test.nodeid} failed ❌\n"
+                    )
+                    print(f"::group:: {test.longreprtext}")
+                    print("::endgroup::")
+                sys.exit(report.exitcode)

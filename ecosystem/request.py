@@ -6,12 +6,13 @@ from urllib.parse import urlparse, urlunparse
 import json
 import csv
 import gzip
+import time
 
 import requests
 import requests_cache
 from bs4 import BeautifulSoup
 
-from .error_handling import EcosystemError
+from .error_handling import EcosystemError, logger
 
 # 86400 seconds == 1 day
 requests_cache.install_cache(
@@ -25,7 +26,9 @@ def request_json(
     post=None,
     parser=None,
     content_handler=None,
+    delay=None,
 ):
+    # pylint: disable=too-many-branches
     """Requests the JSON in <url> with <headers>
 
     if post is set with a dictionary, then that dict is sent as POST's JSON
@@ -53,12 +56,26 @@ def request_json(
         if token:
             headers["Authorization"] = "Bearer " + token
 
+    if delay:
+        if delay >= 300:
+            raise EcosystemError(f"delay for fetching {url} too long: {delay} sec")
+        if delay >= 5:
+            logger.info("Wait %s before fetching %s", delay, url)
+        time.sleep(delay)
+
     if post is None:
         response = requests.get(str(url), headers=headers, timeout=240)
     else:
         response = requests.post(str(url), headers=headers, timeout=240, json=post)
 
     if not response.ok:
+        if "rate" in response.reason or response.status_code == 429:
+            wait_for = delay * 1.5 if delay else 60
+            if "X-RateLimit-Reset" in response.headers:
+                wait_for = int(response.headers["X-RateLimit-Reset"]) - int(time.time())
+            return request_json(
+                url.original_url, headers, post, parser, content_handler, wait_for
+            )
         raise EcosystemError(
             f"Bad response {str(url)}: {response.reason} ({response.status_code})"
         )
@@ -66,7 +83,14 @@ def request_json(
         content = content_handler(response.content)
     else:
         content = response.text
-    return parser(content)
+    ret = parser(content)
+    if ret is None:
+        return ret
+    if isinstance(ret, dict):
+        ret["_requested_at_"] = response.created_at
+    else:
+        ret = {"data": ret, "_requested_at_": response.created_at}
+    return ret
 
 
 class URL:
@@ -122,15 +146,15 @@ class URL:
         return f"URL('{self}')"
 
 
-def parse_github_front_page(html_text):
+def parse_github_contributors_sidebar(html_text):
     """
-    Gets data from the front page github.com/<owner>/<repo>
+    Gets data from the front page github.com/<owner>/<repo>/contributors_list?deferred=true
     {
     estimated_contributors = int
     }
     """
     soup = BeautifulSoup(html_text, "html.parser")
-    found = soup.find("a", {"href": re.compile(r"graphs/contributors")})
+    found = soup.find("span", attrs={"title": "3"})
     if found is None:
         return None
     contributor_text = found.get_text()
@@ -253,8 +277,16 @@ def find_first_in_csv_gz(subdict_to_find):
         with gzip.open(file_like, "rt") as gz_file:
             csv_reader = csv.DictReader(gz_file)
             for row in csv_reader:
-                if all(row[k] == v for k, v in subdict_to_find.items() if k in row):
-                    return row
-        return None
+                if "statuses" in subdict_to_find:
+                    for status in subdict_to_find["statuses"]:
+                        to_find = dict(subdict_to_find)
+                        del to_find["statuses"]
+                        to_find["status"] = status
+                        if all(row[k] == v for k, v in to_find.items() if k in row):
+                            return row
+                else:
+                    if all(row[k] == v for k, v in subdict_to_find.items() if k in row):
+                        return row
+        return {}
 
     return parse_csv_gz

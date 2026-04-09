@@ -10,7 +10,7 @@ from .request import (
     request_json,
     parse_github_package_ids,
     parse_github_dependants,
-    parse_github_front_page,
+    parse_github_contributors_sidebar,
     URL,
 )
 
@@ -63,7 +63,7 @@ class GitHubData(JsonSerializable):
         self._json_events = None
         self._json_package_ids = None
         self._json_dependants = None
-        self._json_front_page = None
+        self._json_contributors_sidebar = None
 
     def to_dict(self) -> dict:
         dictionary = {}
@@ -116,9 +116,9 @@ class GitHubData(JsonSerializable):
         self._json_events = request_json(
             f"api.github.com/networks/{self.owner}/{self.repo}/events"
         )
-        self._json_front_page = request_json(
-            f"github.com/{self.owner}/{self.repo}/",
-            parser=parse_github_front_page,
+        self._json_contributors_sidebar = request_json(
+            f"github.com/{self.owner}/{self.repo}/contributors_list?deferred=true",
+            parser=parse_github_contributors_sidebar,
         )
         self._json_package_ids = request_json(
             f"github.com/{self.owner}/{self.repo}/network/dependents?dependent_type=REPOSITORY",
@@ -177,17 +177,17 @@ class GitHubData(JsonSerializable):
             self.update_json()
         return self._json_dependants
 
-    def front_page_data(self, refresh=False):
+    def contributors_sidebar_data(self, refresh=False):
         """get the front page data from (cached) JSON"""
         if refresh:
             self.update_json()
-        return self._json_front_page
+        return self._json_contributors_sidebar
 
     @property
     def estimated_contributors(self):
         """..."""
-        if self.front_page_data():
-            return self.front_page_data()["estimated_contributors"]
+        if self.contributors_sidebar_data():
+            return self.contributors_sidebar_data()["estimated_contributors"]
         return self._kwargs.get("estimated_contributors")
 
     @property
@@ -207,6 +207,6 @@ class GitHubData(JsonSerializable):
     @property
     def last_activity(self):
         """The creation of the last event"""
-        if self._json_events:
-            return parse_datetime(self._json_events[0]["created_at"])
+        if self._json_events and self._json_events["data"]:
+            return parse_datetime(self._json_events["data"][0]["created_at"])
         return self._kwargs.get("last_activity")

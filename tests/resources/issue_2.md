@@ -1,31 +1,55 @@
 ### Project name
 
-My awesome project
-
-### Github repo
-
-http://github.com/awesome/awesome
+Qiskit Banana Compiler
 
 ### Description
 
-An awesome repo for awesome project
+```text
+Compile bananas into Qiskit quantum circuits. Supports all modern devices, including Musa × paradisiaca.
+```
 
-### Email
+### Contact email
 
-toto@gege.com
+_No response_
 
-### License
+### Category
 
-Apache License 2.0
-
-### Affiliations
-
-Awesome Inc.
+circuit manipulation
 
 ### Labels
 
 _No response_
 
-### Website
+### Interface/API
+
+Other
+
+### Qiskit Pattern steps
 
 _No response_
+
+
+### GitHub repository
+
+https://github.com/somebody/banana-compiler
+
+### Home page
+
+_No response_
+
+### Documentation
+
+_No response_
+
+### Packages
+
+```text
+```
+
+### Reference paper
+
+_No response_
+
+### Code of Conduct
+
+- [x] I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)

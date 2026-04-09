@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Explain the update you are requesting. You can also request a removal.
-        In any case, feel free to cancel this issue submission and [open a PR directly](../compare) with your suggested changes. You may also open a PR later to address this issue. The PR should modify a single file in https://github.com/Qiskit/ecosystem/blob/main/ecosystem/resources/members
+        In any case, feel free to cancel this issue submission and [open a PR directly](../compare) with your suggested changes. You may also open a PR later to address this issue. The PR should modify a single file in https://github.com/Qiskit/ecosystem/blob/main/resources/members
   - type: input
     id: member_name
     attributes:
