@@ -70,6 +70,7 @@ jobs:
         unset CI
         tox ${{ env.TOX_ENV }}
     - name: Build website
+      if: steps.changes.outputs.changed == 'true'
       run: tox -e website
   coverage:
     runs-on: ubuntu-latest
