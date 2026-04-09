@@ -7,7 +7,7 @@ import pytest
 
 
 class TestChecksTOML(TestCase):
-    """Tests related to ecosystem/resources/checks.toml."""
+    """Tests related to resources/checks.toml."""
 
     meta_categories = ["categories", "importance"]
     mandatory_keys = ["title", "description", "applies_to", "category", "importance"]
@@ -32,9 +32,7 @@ class TestChecksTOML(TestCase):
         self.collected_checks = testcollector.collected
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        with open(
-            f"{current_dir}/../ecosystem/resources/checks.toml", "rb"
-        ) as checks_toml:
+        with open(f"{current_dir}/../resources/checks.toml", "rb") as checks_toml:
             self.checks_toml = tomllib.load(checks_toml)
 
     def test_valid_entries(self):

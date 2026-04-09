@@ -1,4 +1,4 @@
-"""Validations involving ecosystem/resources/labels.toml"""
+"""Validations involving resources/labels.toml"""
 
 # pylint: disable=missing-function-docstring, redefined-outer-name
 
@@ -12,8 +12,8 @@ import pytest
 
 @pytest.fixture
 def toml_file_data():
-    dir_path = path.dirname(path.realpath(__file__))
-    labels_toml = path.abspath(Path(dir_path, "..", "resources", "labels.toml"))
+    root_path = Path(__file__).parent.parent.parent.resolve()
+    labels_toml = path.abspath(Path(root_path, "resources", "labels.toml"))
     with open(labels_toml, "rb") as f:
         data = tomllib.load(f)
     return data
@@ -38,7 +38,7 @@ def test_valid_interfaces(member, interfaces):
     """007"""
     assert (
         hasattr(member, "interface") and member.interface
-    ), "the interface entry is mandatory"
+    ), "the entry `member.interface` does not exist and it is mandatory"
 
     for interface in member.interface:
         assert (

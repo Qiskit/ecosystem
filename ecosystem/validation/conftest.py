@@ -23,6 +23,7 @@ class ValidationReport:
         self.failed = []
         self.xfailed = []
         self.skipped = []
+        self.internalerror = []
 
     @property
     def xfails(self):
@@ -58,6 +59,9 @@ class ValidationReport:
                 self.xfailed.append(report)
             else:
                 self.skipped.append(report)
+        elif report.when == "setup" and report.failed:
+            # internal error: the test failed to run because it is somehow wrongly set
+            self.internalerror.append(report)
 
     def pytest_collection_modifyitems(self, items):
         self.collected = len(items)

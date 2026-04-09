@@ -66,7 +66,7 @@ class TestUtils(TestCase):
 
     def test_description_lengths(self):
         """Make sure IDs in the issue template match attributes of the Submission model."""
-        dao = DAO("ecosystem/resources")
+        dao = DAO("resources")
         for repo in dao.get_all():
             if repo.description and len(repo.description) > 135:
                 raise AssertionError(
