@@ -36,7 +36,7 @@ Anyone can add their project for review to be included in the ecosystem by
 ### Storage
 
 We store each member of the ecosystem as a TOML file under
-[`ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/resources/members);
+[`resources/members`](https://github.com/qiskit/ecosystem/blob/main/resources/members);
 these are the files you should edit when adding / updating members to the
 ecosystem. Access to these files is handled programmatically through the
 [`DAO`](https://github.com/qiskit-community/ecosystem/blob/main/ecosystem/daos/dao.py)

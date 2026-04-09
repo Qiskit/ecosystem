@@ -1,0 +1,25 @@
+name = "qOMM"
+url = "https://github.com/renlililoli/OMM"
+description = "Implementation of the quantum orbital minimization method to calculate the ground state and first few excited states of a Hamiltonian."
+licence = "MIT license"
+contact_info = "renlililoli@163.com"
+labels = []
+category = "Other"
+reference_paper = "https://arxiv.org/abs/2201.07963"
+uuid = "b1285a61-8b2d-4f0a-8afd-678d6e57e0a9"
+badge = "https://qisk.it/e-b1285a61"
+
+[github]
+url = "https://github.com/renlililoli/OMM"
+owner = "renlililoli"
+repo = "OMM"
+stars = 1
+license = "MIT License"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2024-09-21T08:46:46Z
+
+[checks.007]
+since = 2026-04-08T16:22:38.720893
+details = "the entry `member.interface` does not exist and it is mandatory"
+importance = "CRITICAL"

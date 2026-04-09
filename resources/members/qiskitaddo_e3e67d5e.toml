@@ -1,0 +1,45 @@
+name = "qiskit-addon-obp"
+url = "https://github.com/Qiskit/qiskit-addon-obp"
+description = "Reduce depth of circuits with operator backpropagation (OBP)."
+licence = "Apache License 2.0"
+contact_info = "garrison@ibm.com"
+labels = [ "circuit manipulation",]
+ibm_maintained = true
+created_at = 1758737407.8760931
+category = "Qiskit addon"
+documentation = "https://qiskit.github.io/qiskit-addon-obp/"
+uuid = "e3e67d5e-66f8-4698-9e20-b97cfa8c5c48"
+badge = "https://qisk.it/e-e3e67d5e"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-addon-obp"
+owner = "Qiskit"
+repo = "qiskit-addon-obp"
+stars = 45
+homepage = "https://qiskit.github.io/qiskit-addon-obp/"
+license = "Apache License 2.0"
+description = "Reducing depth of circuits with operator backpropagation"
+estimated_contributors = 13
+total_dependent_repositories = 12
+total_dependent_packages = 0
+last_commit = 2026-02-01T14:04:58Z
+last_activity = 2026-02-01T14:07:08Z
+
+[checks.007]
+since = 2026-04-08T16:22:51.012043
+details = "the entry `member.interface` does not exist and it is mandatory"
+importance = "CRITICAL"
+
+[pypi.qiskit-addon-obp]
+package_name = "qiskit-addon-obp"
+version = "0.3.0"
+last_release_date = 2025-05-22T14:53:12
+license = "Apache-2.0"
+url = "https://pypi.org/project/qiskit-addon-obp/"
+requires_qiskit = "<3,>=1.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 4967
+last_180_days_downloads = 19083

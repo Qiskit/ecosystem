@@ -1,0 +1,31 @@
+name = "doQumentation.org"
+submission_number = 1041
+url = "https://github.com/JanLahmann/doQumentation"
+description = "doQumentation — Open-source website for IBM Quantum's tutorials with interactive code execution via Binder, Colab, and Code Engine."
+contact_info = "jan@lahmann-online.de"
+labels = []
+website = "https://doqumentation.org/"
+category = "Other"
+documentation = "https://doqumentation.org/features"
+packages = []
+uuid = "dd84980a-80a7-4aca-8d8f-8ca0a4177144"
+badge = "https://qisk.it/e-dd84980a"
+
+[github]
+url = "https://github.com/JanLahmann/doQumentation"
+owner = "JanLahmann"
+repo = "doQumentation"
+stars = 0
+homepage = "https://doQumentation.org"
+license = "Apache License 2.0"
+description = "Open-source frontend for IBM Quantum's tutorials and learning platform. Browse, execute code, and run offline."
+estimated_contributors = 3
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-04-02T06:28:07Z
+last_activity = 2026-04-02T06:28:07Z
+
+[checks.007]
+since = 2026-04-08T16:22:52.502576
+details = "the entry `member.interface` does not exist and it is mandatory"
+importance = "CRITICAL"

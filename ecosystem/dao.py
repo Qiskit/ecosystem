@@ -154,28 +154,29 @@ class DAO:
         with self.storage as data:
             for arg, value in kwargs.items():
                 current_value = data[name_id].__dict__.get(arg)
-                if isinstance(value, dict):
-                    for key, vvalue in value.items():
-                        if current_value.get(key, "") != vvalue:
-                            logger.info(
-                                "Updating %s for %s-%s: %s -> %s",
-                                name_id,
-                                arg,
-                                key,
-                                current_value.get(key),
-                                str(vvalue),
-                            )
-                else:
-                    if current_value != value:
-                        logger.info(
-                            "Updating %s for %s: %s -> %s",
-                            name_id,
-                            arg,
-                            current_value,
-                            str(value),
-                        )
+                DAO.log_update(current_value, value, arg, name_id)
                 data[name_id].__dict__[arg] = value
 
     def refresh_files(self):
         """Forces dumping the DAO to files"""
         self.storage.refresh_files()
+
+    @classmethod
+    def log_update(cls, current_value, new_value, arg, project):
+        """Logs the update in the DAO"""
+        if isinstance(new_value, dict) and isinstance(current_value, dict):
+            for key, n_value in new_value.items():
+                c_value = current_value.get(key, "")
+                if c_value != n_value:
+                    DAO.log_update(c_value, n_value, f"{arg}.{key}", project)
+        elif hasattr(new_value, "to_dict") and hasattr(current_value, "to_dict"):
+            DAO.log_update(current_value.to_dict(), new_value.to_dict(), arg, project)
+        else:
+            if current_value != new_value:
+                logger.info(
+                    "Updating %s: %s (%s -> %s)",
+                    project,
+                    arg,
+                    current_value,
+                    str(new_value),
+                )

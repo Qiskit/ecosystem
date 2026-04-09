@@ -20,6 +20,10 @@ circuit manipulation
 
 _No response_
 
+### Interface/API
+
+Other
+
 ### Qiskit Pattern steps
 
 _No response_
