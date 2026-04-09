@@ -28,7 +28,7 @@ class CliMembers:
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = f"{self.current_dir}/ecosystem/resources"
+        self.resources_dir = f"{self.current_dir}/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -259,7 +259,7 @@ class CliMembers:
             "affiliations": "affiliations",
             "labels": "labels",
             "group": "category",
-            "category": "group",
+            "category": "category",
             "stars": "github.stars",
             "documentation": "documentation",
             "website": "website",

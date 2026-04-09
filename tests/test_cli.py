@@ -35,7 +35,7 @@ def mocked_get_request(*_args, **_kwargs):
             "elapsed": 100,
             "ok": True,
             "created_at": None,
-            "text": "",
+            "text": "<title>Qiskit Ecosystem:</title>",
         },
     )()
 

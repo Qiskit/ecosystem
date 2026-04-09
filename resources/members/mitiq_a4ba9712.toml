@@ -1,0 +1,41 @@
+name = "Mitiq"
+url = "https://github.com/unitaryfund/mitiq"
+description = "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers."
+licence = "Apache 2.0"
+labels = [ "error mitigation",]
+created_at = 1678827878.932437
+updated_at = 1678827878.932437
+category = "SDK"
+uuid = "a4ba9712-0aae-4660-b2df-4e6e81abb6c4"
+badge = "https://qisk.it/e-a4ba9712"
+
+[github]
+url = "https://github.com/unitaryfoundation/mitiq"
+owner = "unitaryfoundation"
+repo = "mitiq"
+stars = 423
+homepage = "https://mitiq.readthedocs.io"
+license = "GNU General Public License v3.0"
+description = "Mitiq is an open source toolkit for implementing error mitigation techniques on most current intermediate-scale quantum computers."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-03-30T21:26:08Z
+last_activity = 2026-04-01T22:15:23Z
+
+[checks.007]
+since = 2026-04-08T16:23:00.448700
+details = "the entry `member.interface` does not exist and it is mandatory"
+importance = "CRITICAL"
+
+[pypi.mitiq]
+package_name = "mitiq"
+version = "1.0.0"
+last_release_date = 2026-03-25T13:26:59
+url = "https://pypi.org/project/mitiq/"
+requires_qiskit = "~=1.4.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"
+last_month_downloads = 14751
+last_180_days_downloads = 76464
