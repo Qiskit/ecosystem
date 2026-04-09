@@ -4,8 +4,15 @@ url = "https://github.com/evmckinney9/gulps"
 description = "Compile two-qubit unitaries into arbitrary ISAs"
 contact_info = "evmckinney9@gmail.com"
 labels = [ "circuit building",]
-interface = ["Python", ]
+interface = [ "Python",]
 category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2505.00543"
-packages = [ "https://pypi.org/project/gulps/",]
+packages = []
 uuid = "0a8128d0-2398-411b-a08e-737e2b198387"
+
+[github]
+owner = "evmckinney9"
+repo = "gulps"
+
+[pypi.gulps]
+package_name = "gulps"
