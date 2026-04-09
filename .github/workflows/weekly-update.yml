@@ -43,7 +43,7 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
-        author: GitHub <noreply@github.com>
+        author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
         commit-message: Member data update for ${{ env.dateIseconds }}
         title: Member data update for ${{ env.date_bdY }}
         body: |

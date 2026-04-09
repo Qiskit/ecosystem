@@ -3,25 +3,35 @@ name: Sourcecode tests
 on:
   workflow_dispatch:
   pull_request:
-    paths-ignore:
-      - 'ecosystem/resources/members/*.toml'
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
+    - name: Check if /ecosystem or /tests changed
+      id: changes
+      run: |
+        if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(ecosystem|tests)/' ''; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
     - name: Set up Python 3.13
+      if: steps.changes.outputs.changed == 'true'
       uses: actions/setup-python@v6
       with:
           python-version: '3.13'
     - name: Install tox
+      if: steps.changes.outputs.changed == 'true'
       run: |
         python -m pip install --upgrade pip
         pip install tox
     - name: Run styles check
+      if: steps.changes.outputs.changed == 'true'
       run: tox -elint
     - name: Run black
+      if: steps.changes.outputs.changed == 'true'
       run: tox -eblack
   tests:
     runs-on: ubuntu-latest
@@ -31,6 +41,14 @@ jobs:
         python-version: [3.13]
     steps:
     - uses: actions/checkout@v6
+    - name: Check if /ecosystem or /tests changed
+      id: changes
+      run: |
+        if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(ecosystem|tests)/' ''; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
       with:
@@ -47,25 +65,38 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
     - name: Test using tox envs
+      if: steps.changes.outputs.changed == 'true'
       run: |
         unset CI
         tox ${{ env.TOX_ENV }}
     - name: Build website
+      if: steps.changes.outputs.changed == 'true'
       run: tox -e website
   coverage:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
+    - name: Check if /ecosystem or /tests changed
+      id: changes
+      run: |
+        if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(ecosystem|tests)/' ''; then
+          echo "changed=true" >> $GITHUB_OUTPUT
+        else
+          echo "changed=false" >> $GITHUB_OUTPUT
+        fi
     - name: Set up Python 3.13
+      if: steps.changes.outputs.changed == 'true'
       uses: actions/setup-python@v6
       with:
           python-version: '3.13'
     - name: Install dependencies
+      if: steps.changes.outputs.changed == 'true'
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
     - name: Run coverage
+      if: steps.changes.outputs.changed == 'true'
       run: |
         unset CI
         tox -ecoverage

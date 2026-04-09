@@ -89,12 +89,6 @@ body:
     multiple: true
     options:
     - chemistry
-    - C
-    - C++
-    - Julia
-    - Rust
-    - OCaml
-    - Java
     - error correction
     - error mitigation
     - finance
@@ -110,6 +104,30 @@ body:
     - circuit manipulation
     - circuit building
     - openqasm
+- type: dropdown
+  id: interface
+  validations:
+    required: true
+  attributes:
+    description: >
+      How does a user inteface with this software? From which langunge can it it be
+      called?
+      Choose more than one if necessary.
+    label: Interface/API
+    multiple: true
+    options:
+    - Python
+    - Rust
+    - C
+    - C++
+    - Julia
+    - OCaml
+    - Java
+    - Other language
+    - Command-line interface (CLI)
+    - Graphical User Interface (GUI)
+    - Web inteface
+    - Other interface
 - type: dropdown
   id: pattern_steps
   attributes:

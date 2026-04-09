@@ -84,10 +84,12 @@ def request_json(
     else:
         content = response.text
     ret = parser(content)
-    if isinstance(ret, dict) and "created_at" not in ret:
+    if ret is None:
+        return ret
+    if isinstance(ret, dict):
         ret["_requested_at_"] = response.created_at
     else:
-        print("where should I put the time of the request?")
+        ret = {"data": ret, "_requested_at_": response.created_at}
     return ret
 
 
