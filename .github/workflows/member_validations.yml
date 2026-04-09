@@ -47,7 +47,7 @@ jobs:
         if: failure()
         uses: peter-evans/create-or-update-comment@v5
         with:
-          issue-number: ${{ github.event.pr.number }}
+          issue-number: ${{ github.event.pull_request.number }}
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
             The submission failed :x:
