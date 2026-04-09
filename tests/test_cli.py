@@ -83,10 +83,11 @@ class TestCli(TestCase):
             "Supports all modern devices, including Musa × paradisiaca.",
             "contact_info": "author@banana-compiler.org",
             "labels": ["error mitigation", "quantum information", "optimization"],
+            "interface": ["Python"],
             "website": "https://banana-compiler.org",
             "documentation": "https://banana-compiler.org/documentation",
             "reference_paper": "https://arxiv.org/abs/5555.22222",
-            "group": "circuit manipulation",
+            "category": "circuit manipulation",
             "packages": [
                 "https://pypi.org/project/banana-compiler",
                 "https://pypi.org/project/banana-compiler-hpc",
@@ -120,7 +121,8 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
-            "group": "circuit manipulation",
+            "interface": ["Other"],
+            "category": "circuit manipulation",
             "packages": [],
         }
         self.assertEqual(len(retrieved_repos), 1)
@@ -148,7 +150,8 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
-            "group": "circuit manipulation",
+            "interface": ["Python"],
+            "category": "circuit manipulation",
             "packages": [],
             "checks": {
                 "010": {

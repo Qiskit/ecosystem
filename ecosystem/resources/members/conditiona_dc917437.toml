@@ -3,7 +3,7 @@ url = "https://github.com/alexg-jpg/conditional-measurements"
 description = "A software library (in progress) for implementing conditional projective measurement operations in Qiskit."
 contact_info = "alexander.greenwood@mail.utoronto.ca"
 labels = []
-group = "Other"
+category = "Other"
 reference_paper = "https://arxiv.org/abs/2508.09110"
 uuid = "dc917437-3b51-4ea8-9bdb-e2eaa2114cd5"
 badge = "https://qisk.it/e-dc917437"
@@ -19,3 +19,8 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-11-13T20:11:59Z
 last_activity = 2025-12-01T23:51:35Z
+
+[checks.007]
+since = 2026-04-08T16:22:44.380977
+details = "the interface entry is mandatory"
+importance = "CRITICAL"

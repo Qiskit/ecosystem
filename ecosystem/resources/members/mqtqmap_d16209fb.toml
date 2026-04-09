@@ -6,7 +6,7 @@ contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "research", "circuit manipulation",]
 website = "https://mqt.readthedocs.io"
-group = "Transpiler plugin"
+category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qmap"
 uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"
@@ -23,7 +23,12 @@ description = "MQT QMAP - A tool for Quantum Circuit Mapping written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-30T05:04:17Z
-last_activity = 2026-03-30T05:04:12Z
+last_activity = 2026-03-31T02:05:05Z
+
+[checks.007]
+since = 2026-04-08T16:22:44.628277
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
 
 [pypi."mqt.qmap"]
 package_name = "mqt-qmap"
@@ -36,5 +41,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 2146
-last_180_days_downloads = 25182
+last_month_downloads = 2220
+last_180_days_downloads = 24994

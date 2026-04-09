@@ -60,30 +60,6 @@ name = "chemistry"
 description = "Applies quantum computing to chemistry"
 
 [[labels]]
-name = "C"
-description = "API callable from C programming language"
-
-[[labels]]
-name = "C++"
-description = "API callable from C++ programming language"
-
-[[labels]]
-name = "Julia"
-description = "API callable from Julia programming language"
-
-[[labels]]
-name = "Rust"
-description = "API callable from Rust programming language"
-
-[[labels]]
-name = "OCaml"
-description = "API callable from OCaml programming language"
-
-[[labels]]
-name = "Java"
-description = "API callable from Java programming language"
-
-[[labels]]
 name = "error correction"
 description = "Performs or investigates quantum error correction"
 
@@ -144,3 +120,54 @@ description = "Builds and outputs Qiskit quantum circuits."
 name = "openqasm"
 description = "Interfaces with OpenQASM."
 
+[[interfaces]]
+name = "Python"
+description = "API callable from Python programming language"
+
+[[interfaces]]
+name = "C"
+description = "API callable from C programming language"
+
+[[interfaces]]
+name = "C++"
+description = "API callable from C++ programming language"
+
+[[interfaces]]
+name = "Julia"
+description = "API callable from Julia programming language"
+
+[[interfaces]]
+name = "Rust"
+description = "API callable from Rust programming language"
+
+[[interfaces]]
+name = "OCaml"
+description = "API callable from OCaml programming language"
+
+[[interfaces]]
+name = "Java"
+description = "API callable from Java programming language"
+
+[[interfaces]]
+name = "Other language"
+description = "API callable from a programming language not yet listed "
+
+[[interfaces]]
+name = "Command-line interface (CLI)"
+description = "Software can be used from the command-line as a standalone program"
+
+[[interfaces]]
+name = "Graphical User Interface (GUI)"
+description = "Software can be used from a graphical inteface, as standalone program"
+
+[[interfaces]]
+name = "Web interface"
+description = "Software has a web inteface"
+
+[[interfaces]]
+name = "Web interface"
+description = "Software has a web inteface"
+
+[[interfaces]]
+name = "Other interface"
+description = "The way to interact with this software is not listed yet"

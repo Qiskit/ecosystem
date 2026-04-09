@@ -5,7 +5,7 @@ licence = "Apache 2.0"
 labels = []
 created_at = 1661869851.523229
 updated_at = 1661869851.523229
-group = "Converter"
+category = "Converter"
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
 badge = "https://qisk.it/e-7c80aef4"
 
@@ -22,6 +22,11 @@ total_dependent_packages = 0
 last_commit = 2026-02-04T09:27:52Z
 last_activity = 2026-03-12T13:46:54Z
 
+[checks.007]
+since = 2026-04-08T16:22:40.930060
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.pytket-qiskit]
 package_name = "pytket-qiskit"
 version = "0.77.0"
@@ -32,5 +37,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 44974
-last_180_days_downloads = 286556
+last_month_downloads = 44714
+last_180_days_downloads = 285241

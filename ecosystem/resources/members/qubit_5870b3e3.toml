@@ -5,7 +5,7 @@ licence = "MIT license"
 contact_info = "contact@qelm.org"
 affiliations = "R&D BioTech Alaska"
 labels = []
-group = "Circuit simulator"
+category = "Circuit simulator"
 uuid = "5870b3e3-0c86-4506-aa73-1d6b1f172b7c"
 badge = "https://qisk.it/e-5870b3e3"
 
@@ -20,3 +20,8 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-02-18T03:21:18Z
 last_activity = 2026-02-18T03:21:18Z
+
+[checks.007]
+since = 2026-04-08T16:22:40.685136
+details = "the interface entry is mandatory"
+importance = "CRITICAL"

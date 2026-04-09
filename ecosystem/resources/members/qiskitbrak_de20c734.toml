@@ -4,7 +4,7 @@ description = "Execute Qiskit programs on AWS quantum computing hardware devices
 licence = "Apache 2.0"
 labels = [ "provider", "cloud service",]
 created_at = 1715085130.096724
-group = "Compute provider"
+category = "Compute provider"
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
 badge = "https://qisk.it/e-de20c734"
 
@@ -19,8 +19,13 @@ description = "Qiskit-Braket provider to execute Qiskit programs on devices via 
 estimated_contributors = 41
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-03-30T17:30:32Z
-last_activity = 2026-03-30T17:30:33Z
+last_commit = 2026-04-02T03:42:29Z
+last_activity = 2026-04-02T03:42:29Z
+
+[checks.007]
+since = 2026-04-08T16:22:48.256101
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
 
 [pypi.qiskit-braket-provider]
 package_name = "qiskit-braket-provider"
@@ -32,5 +37,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 6586
-last_180_days_downloads = 37513
+last_month_downloads = 6701
+last_180_days_downloads = 37550

@@ -5,7 +5,7 @@ licence = "Apache License 2.0"
 contact_info = "atlytle@gmail.com"
 affiliations = "University of Illinois at Urbana-Champaign"
 labels = []
-group = "Paper artifact"
+category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2305.11847"
 uuid = "f305aa07-74a6-4af4-bb80-e0a75672f16f"
 badge = "https://qisk.it/e-f305aa07"
@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2024-05-30T22:10:50Z
 last_activity = 2026-01-01T23:21:05Z
 
+[checks.007]
+since = 2026-04-08T16:22:58.630759
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.dense-ev]
 package_name = "dense-ev"
 version = "2023.5.22"
@@ -33,5 +38,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2023-03-21T21:05:35Z
 highest_supported_qiskit_version = "0.42.1"
-last_month_downloads = 13
-last_180_days_downloads = 147
+last_month_downloads = 15
+last_180_days_downloads = 148

@@ -5,7 +5,7 @@ licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "circuit manipulation", "research",]
-group = "Transpiler plugin"
+category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
 documentation = "https://mqt.readthedocs.io/projects/predictor/en/latest/"
 uuid = "9d5e2ef2-cac6-479e-a2f9-8014d54403e4"
@@ -21,7 +21,12 @@ description = "MQT Predictor - A Tool for Automatic Device Selection with Device
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-30T01:30:30Z
-last_activity = 2026-03-30T18:23:19Z
+last_activity = 2026-04-01T17:24:41Z
+
+[checks.007]
+since = 2026-04-08T16:22:38.229722
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
 
 [pypi."mqt.predictor"]
 package_name = "mqt-predictor"
@@ -34,5 +39,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 768
-last_180_days_downloads = 5019
+last_month_downloads = 677
+last_180_days_downloads = 5011

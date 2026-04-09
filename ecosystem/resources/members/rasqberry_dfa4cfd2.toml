@@ -6,7 +6,7 @@ contact_info = "Jan.lahmann@de.ibm.com"
 labels = [ "demo",]
 created_at = 1674598082.072493
 updated_at = 1674598082.072494
-group = "Game"
+category = "Game"
 uuid = "dfa4cfd2-0ef5-4536-b7ec-47cc982ed0d9"
 badge = "https://qisk.it/e-dfa4cfd2"
 
@@ -22,3 +22,8 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-10-28T10:02:29Z
 last_activity = 2026-03-28T18:53:49Z
+
+[checks.007]
+since = 2026-04-08T16:22:37.109421
+details = "the interface entry is mandatory"
+importance = "CRITICAL"

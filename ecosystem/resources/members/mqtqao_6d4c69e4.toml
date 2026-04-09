@@ -5,7 +5,7 @@ licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany Politecnico di Torino, Italy"
 labels = [ "circuit manipulation", "optimization",]
-group = "Application"
+category = "Application"
 reference_paper = "https://arxiv.org/abs/2406.12840"
 documentation = "https://mqt.readthedocs.io/projects/qao/en/latest/"
 uuid = "6d4c69e4-1e47-486c-b00f-8a60ae5e01d4"
@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T17:24:59Z
 last_activity = 2026-03-30T17:25:00Z
 
+[checks.007]
+since = 2026-04-08T16:23:00.695279
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.qao"]
 package_name = "mqt-qao"
 version = "0.3.0"
@@ -34,5 +39,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 29
-last_180_days_downloads = 199
+last_month_downloads = 31
+last_180_days_downloads = 196

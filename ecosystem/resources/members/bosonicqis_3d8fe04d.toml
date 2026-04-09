@@ -4,7 +4,7 @@ description = "NQI C2QA project to simulate hybrid boson-qubit systems within Qi
 labels = [ "physics",]
 created_at = 1678827878.841977
 updated_at = 1678827878.841978
-group = "Application"
+category = "Application"
 uuid = "3d8fe04d-8ac0-4282-9eb6-cb458550945a"
 badge = "https://qisk.it/e-3d8fe04d"
 
@@ -21,6 +21,11 @@ total_dependent_packages = 0
 last_commit = 2026-02-19T19:36:21Z
 last_activity = 2026-03-25T20:54:51Z
 
+[checks.007]
+since = 2026-04-08T16:22:54.078424
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.bosonic-qiskit]
 package_name = "bosonic-qiskit"
 version = "15.1"
@@ -31,5 +36,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-04-01T13:49:28Z
 highest_supported_qiskit_version = "2.0.0"
-last_month_downloads = 197
+last_month_downloads = 195
 last_180_days_downloads = 2280

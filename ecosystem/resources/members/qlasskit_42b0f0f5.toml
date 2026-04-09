@@ -5,7 +5,7 @@ licence = "Apache License 2.0"
 contact_info = "gessadavide@gmail.com"
 labels = []
 website = "https://dakk.github.io/qlasskit/"
-group = "Converter"
+category = "Converter"
 uuid = "42b0f0f5-bdbd-4008-8749-955b496dab08"
 badge = "https://qisk.it/e-42b0f0f5"
 
@@ -23,10 +23,15 @@ total_dependent_packages = 0
 last_commit = 2026-01-03T11:55:19Z
 last_activity = 2026-03-26T08:48:40Z
 
+[checks.007]
+since = 2026-04-08T16:22:44.126727
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qlasskit]
 package_name = "qlasskit"
 version = "0.1.39"
 last_release_date = 2026-01-03T11:54:54
 url = "https://pypi.org/project/qlasskit/"
-last_month_downloads = 176
-last_180_days_downloads = 1194
+last_month_downloads = 180
+last_180_days_downloads = 1179

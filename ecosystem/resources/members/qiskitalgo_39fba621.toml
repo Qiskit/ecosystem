@@ -5,7 +5,7 @@ licence = "Apache License 2.0"
 contact_info = "ept@zurich.ibm.com"
 affiliations = "IBM Quantum"
 labels = []
-group = "Application"
+category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
 uuid = "39fba621-edbb-485b-a723-8a0760ab4b85"
 badge = "https://qisk.it/e-39fba621"
@@ -23,6 +23,11 @@ total_dependent_packages = 53
 last_commit = 2025-12-15T00:08:40Z
 last_activity = 2026-03-23T09:46:14Z
 
+[checks.007]
+since = 2026-04-08T16:22:50.253545
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-algorithms]
 package_name = "qiskit-algorithms"
 version = "0.4.0"
@@ -33,5 +38,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 90529
-last_180_days_downloads = 564261
+last_month_downloads = 92798
+last_180_days_downloads = 561645

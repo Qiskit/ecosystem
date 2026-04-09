@@ -83,6 +83,7 @@ class CliMembers:
                 "namedLogo": "Qiskit",
                 "message": project.name,
                 "color": "6929C4",
+                "isError": "true",
             }
             with open(
                 os.path.join(output_directory, str(project.short_uuid)), "w"
@@ -257,7 +258,7 @@ class CliMembers:
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",
-            "group": "group",
+            "group": "category",
             "category": "group",
             "stars": "github.stars",
             "documentation": "documentation",

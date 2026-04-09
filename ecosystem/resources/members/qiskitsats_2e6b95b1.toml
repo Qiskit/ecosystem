@@ -5,7 +5,7 @@ licence = "Apache License 2.0"
 contact_info = "alexi@il.ibm.com"
 affiliations = "IBM"
 labels = []
-group = "High-level synthesis plugin"
+category = "High-level synthesis plugin"
 uuid = "2e6b95b1-5046-4a83-8842-c0b6ea36ec12"
 badge = "https://qisk.it/e-2e6b95b1"
 
@@ -21,6 +21,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-29T12:17:06Z
 last_activity = 2026-03-29T12:17:07Z
 
+[checks.007]
+since = 2026-04-08T16:23:00.945226
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-sat-synthesis]
 package_name = "qiskit-sat-synthesis"
 version = "0.0.2"
@@ -31,5 +36,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 18
-last_180_days_downloads = 145
+last_month_downloads = 19
+last_180_days_downloads = 144

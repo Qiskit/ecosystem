@@ -5,7 +5,7 @@ licence = "Apache License 2.0"
 contact_info = "h.matsuyama@j-ij.com"
 affiliations = "Jij Inc."
 labels = [ "optimization",]
-group = "SDK"
+category = "SDK"
 documentation = "https://jij-inc.github.io/Qamomile/"
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
 badge = "https://qisk.it/e-50cd2126"
@@ -20,7 +20,12 @@ estimated_contributors = 15
 total_dependent_repositories = 2
 total_dependent_packages = 1
 last_commit = 2026-03-30T11:40:45Z
-last_activity = 2026-03-30T11:40:46Z
+last_activity = 2026-04-01T08:45:47Z
+
+[checks.007]
+since = 2026-04-08T16:23:03.521067
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
 
 [pypi.qamomile]
 package_name = "qamomile"
@@ -32,5 +37,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 960
-last_180_days_downloads = 4079
+last_month_downloads = 918
+last_180_days_downloads = 4082

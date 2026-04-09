@@ -1,9 +1,10 @@
 name = "qiskit-ibm-runtime C"
 url = "https://github.com/Qiskit/qiskit-ibm-runtime-c/"
 contact_info = ""
-labels = [ "C", "provider",]
+labels = [ "provider",]
+interface = [ "C",]
 ibm_maintained = true
-group = "Compute provider"
+category = "Compute provider"
 uuid = "964baff2-3155-4944-94c4-738961df7d6b"
 badge = "https://qisk.it/e-964baff2"
 
@@ -18,4 +19,4 @@ estimated_contributors = 4
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-02-21T13:17:13Z
-last_activity = 2026-03-30T22:39:32Z
+last_activity = 2026-04-01T22:15:35Z

@@ -5,7 +5,7 @@ licence = "GNU Library or \"Lesser\" General Public License (LGPL)"
 contact_info = "gary.mooney4444@gmail.com"
 affiliations = "The University of Melbourne"
 labels = [ "demo",]
-group = "Converter"
+category = "Converter"
 documentation = "https://garymooney.github.io/qmuvi/"
 uuid = "9d4da903-9823-4ae3-a80c-22821b62931e"
 badge = "https://qisk.it/e-9d4da903"
@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2025-11-19T05:20:57Z
 last_activity = 2026-03-03T09:59:47Z
 
+[checks.007]
+since = 2026-04-08T16:22:36.418736
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qmuvi]
 package_name = "qmuvi"
 version = "0.3.0"
@@ -34,5 +39,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 21
-last_180_days_downloads = 316
+last_month_downloads = 23
+last_180_days_downloads = 310

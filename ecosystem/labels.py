@@ -29,3 +29,8 @@ class LabelsToml:
     def label_names(self):
         """List of labels, just the names"""
         return [c["name"] for c in self._data["labels"]]
+
+    @property
+    def interface_names(self):
+        """List of intefaces, just the names"""
+        return [c["name"] for c in self._data["interfaces"]]

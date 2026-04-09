@@ -6,7 +6,7 @@ contact_info = "axelpetit@yonsei.ac.kr"
 affiliations = ""
 labels = []
 website = "https://ket-q.github.io/qiskit_windows_installer/"
-group = "Other"
+category = "Other"
 uuid = "7352f04f-0223-4082-bdd9-9e3e207a35da"
 badge = "https://qisk.it/e-7352f04f"
 
@@ -22,3 +22,8 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-30T10:22:05Z
 last_activity = 2026-03-30T10:22:06Z
+
+[checks.007]
+since = 2026-04-08T16:22:42.906739
+details = "the interface entry is mandatory"
+importance = "CRITICAL"

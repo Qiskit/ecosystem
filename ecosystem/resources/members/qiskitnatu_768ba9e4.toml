@@ -5,7 +5,7 @@ licence = "Apache 2.0"
 labels = [ "chemistry", "physics",]
 created_at = 1636403009.16708
 updated_at = 1636403009.167082
-group = "Application"
+category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-nature/"
 uuid = "768ba9e4-0aea-4046-a902-5c81051f001f"
 badge = "https://qisk.it/e-768ba9e4"
@@ -23,6 +23,11 @@ total_dependent_packages = 32
 last_commit = 2025-12-12T01:08:18Z
 last_activity = 2026-03-19T15:09:41Z
 
+[checks.007]
+since = 2026-04-08T16:22:51.514146
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-nature]
 package_name = "qiskit-nature"
 version = "0.7.2"
@@ -33,5 +38,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 32536
-last_180_days_downloads = 233590
+last_month_downloads = 32383
+last_180_days_downloads = 233647

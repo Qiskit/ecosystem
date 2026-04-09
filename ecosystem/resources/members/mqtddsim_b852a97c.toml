@@ -6,7 +6,7 @@ contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "research",]
 website = "https://mqt.readthedocs.io"
-group = "Circuit simulator"
+category = "Circuit simulator"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/ddsim"
 uuid = "b852a97c-eef8-46aa-a635-9c56a66e6ee0"
@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T09:45:19Z
 last_activity = 2026-03-30T09:45:15Z
 
+[checks.007]
+since = 2026-04-08T16:22:52.263378
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.ddsim"]
 package_name = "mqt-ddsim"
 version = "2.2.0"
@@ -36,5 +41,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 2634
-last_180_days_downloads = 20996
+last_month_downloads = 2835
+last_180_days_downloads = 19682

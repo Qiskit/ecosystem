@@ -6,7 +6,7 @@ contact_info = "garrison@ibm.com"
 labels = [ "chemistry",]
 ibm_maintained = true
 created_at = 1758737407.8760931
-group = "Qiskit addon"
+category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-sqd/"
 uuid = "fe036eac-635d-46db-931e-2965a8a138a5"
 badge = "https://qisk.it/e-fe036eac"
@@ -20,10 +20,15 @@ homepage = "https://qiskit.github.io/qiskit-addon-sqd/"
 license = "Apache License 2.0"
 description = "Sample-based Quantum Diagonalization: Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 estimated_contributors = 17
-total_dependent_repositories = 11
-total_dependent_packages = 1
-last_commit = 2026-03-30T18:45:26Z
-last_activity = 2026-03-30T18:45:26Z
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-04-02T02:15:39Z
+last_activity = 2026-04-02T02:15:40Z
+
+[checks.007]
+since = 2026-04-08T16:22:58.135159
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
 
 [pypi.qiskit-addon-sqd]
 package_name = "qiskit-addon-sqd"
@@ -35,5 +40,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 3496
-last_180_days_downloads = 19292
+last_month_downloads = 3723
+last_180_days_downloads = 19244

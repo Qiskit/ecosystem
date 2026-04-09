@@ -6,7 +6,7 @@ contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "research", "quantum information",]
 website = "https://mqt.readthedocs.io"
-group = "Other"
+category = "Other"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qcec"
 uuid = "79415931-2d24-4959-ab15-29dfaeb139b4"
@@ -25,6 +25,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T04:54:03Z
 last_activity = 2026-03-30T04:53:58Z
 
+[checks.007]
+since = 2026-04-08T16:22:59.928875
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.qcec"]
 package_name = "mqt-qcec"
 version = "3.5.0"
@@ -36,5 +41,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 8498
-last_180_days_downloads = 50580
+last_month_downloads = 8325
+last_180_days_downloads = 50249

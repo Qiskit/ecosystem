@@ -5,7 +5,7 @@ licence = "Apache License 2.0"
 contact_info = "garrison@ibm.com"
 labels = []
 ibm_maintained = true
-group = "Qiskit addon"
+category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-pna/"
 uuid = "4cb3b182-7484-445f-897b-ded8e295d755"
 badge = "https://qisk.it/e-4cb3b182"
@@ -24,6 +24,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-01T00:58:28Z
 last_activity = 2026-03-01T00:58:28Z
 
+[checks.007]
+since = 2026-04-08T16:22:41.915958
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-addon-pna]
 package_name = "qiskit-addon-pna"
 version = "0.2.0"
@@ -34,5 +39,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 58
-last_180_days_downloads = 640
+last_month_downloads = 69
+last_180_days_downloads = 651

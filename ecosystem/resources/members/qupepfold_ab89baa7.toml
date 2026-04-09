@@ -5,7 +5,7 @@ licence = "MIT license"
 contact_info = "akshayuttarkar@gmail.com"
 affiliations = "R V College of Engineering MIT Vishwaprayag University"
 labels = [ "chemistry",]
-group = "Paper artifact"
+category = "Paper artifact"
 reference_paper = "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0342012"
 uuid = "ab89baa7-39e9-482a-8157-a9bb834c5108"
 badge = "https://qisk.it/e-ab89baa7"
@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-02-09T06:24:23Z
 last_activity = 2026-03-17T12:09:03Z
 
+[checks.007]
+since = 2026-04-08T16:22:50.002200
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qupepfold]
 package_name = "qupepfold"
 version = "0.8.0"
@@ -33,5 +38,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 101
-last_180_days_downloads = 861
+last_month_downloads = 228
+last_180_days_downloads = 989

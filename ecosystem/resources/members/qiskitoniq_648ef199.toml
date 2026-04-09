@@ -4,7 +4,7 @@ description = "Qiskit adapter for IQM's quantum computers."
 licence = "Apache 2.0"
 labels = [ "provider", "cloud service",]
 created_at = 1715085233.375706
-group = "Compute provider"
+category = "Compute provider"
 uuid = "648ef199-ace1-4c6b-ae9c-2c0578cde0d5"
 badge = "https://qisk.it/e-648ef199"
 
@@ -22,6 +22,11 @@ total_dependent_packages = 0
 archived = true
 last_commit = 2025-09-16T16:24:21Z
 
+[checks.007]
+since = 2026-04-08T16:22:37.968592
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi.qiskit-iqm]
 package_name = "qiskit-iqm"
 version = "18.2"
@@ -32,5 +37,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-10-03T19:47:28Z
 highest_supported_qiskit_version = "1.2.4"
-last_month_downloads = 2511
-last_180_days_downloads = 23205
+last_month_downloads = 2814
+last_180_days_downloads = 22867

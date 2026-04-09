@@ -5,6 +5,33 @@ applies_to = "all"
 category = "SUBMISSION"
 importance = "CRITICAL"
 
+[007]
+title = "Interface have to exist"
+description = "All `member.interface` should exist in labels.toml"
+applies_to = "all"
+affects = ["member.interface.*"]
+category = "SUBMISSION"
+checker = "test_labels.py::test_valid_interfaces"
+importance = "CRITICAL"
+
+[008]
+title = "Category have to exist"
+description = "`member.category` should exist in labels.toml"
+applies_to = "all"
+affects = ["member.category"]
+category = "SUBMISSION"
+checker = "test_labels.py::test_valid_category"
+importance = "CRITICAL"
+
+[009]
+title = "Labels have to exist"
+description = "All `member.labels` should exist in labels.toml"
+applies_to = "all"
+affects = ["member.labels.*"]
+category = "SUBMISSION"
+checker = "test_labels.py::test_valid_label"
+importance = "CRITICAL"
+
 [010]
 title = "member.name should not include the substring 'test'"
 description = "Projects in the Qiskit Ecosystem should related"
@@ -39,6 +66,15 @@ checker = "test_url.py::TestURLs::test_http"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
+[014]
+title = "Description too long"
+description = "Member description cannot be longer than 135 characters because front-end design limitations."
+applies_to = "all"
+affects = ["memeber.description"]
+checker = "test_description.py::test_description_len_135"
+category = "SUBMISSION"
+importance = "CRITICAL"
+
 [COC]
 title="Adhere to the Qiskit CoC"
 applies_to = "all"
@@ -52,13 +88,15 @@ applies_to = "all"
 category = "GENERAL"
 related_to = ["PQ2"]
 description = "If the software depends on Qiskit SDK in some way, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
+importance = "CRITICAL"
 
 [G06]
 title = "Have maintainer activity within the last 6 months"
 applies_to = "GitHub projects"
 affects = ['member.github.last_activity']
 category = "ACTIVITY"
-description = "Projects available on GitHub should have some activity within the last 6 months, such as a commit."
+description = "Projects that are not paper-assets and are available on GitHub should have some activity within the last 6 months, such as a commit."
+importance = "CRITICAL"
 
 [PQ1]
 title = "Be installable with qiskit>=1.0"
@@ -66,6 +104,7 @@ applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v1']
 category = "OUT-OF-DATE"
 description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v1.0 or newer."
+importance = "CRITICAL"
 
 [PQ2]
 title = "Be installable with qiskit>=2.0"
@@ -73,6 +112,7 @@ applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v2']
 category = "OUT-OF-DATE"
 description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer."
+importance = "CRITICAL"
 
 [P00]
 title = "Python package license-related metadata should refer to a OSI-approved license"
@@ -80,12 +120,14 @@ applies_to = "Python packages"
 affects = ['member.pypi.*.license']
 category = "OSS"
 description ="The license-related metadata in PyPA should be an OSI-approved open-source license."
+importance = "CRITICAL"
 
 [020]
 title = "Primitive interface should be v2-compatible"
-affects = 'label:"Compute provider"'
+applies_to = 'label:"Compute provider"'
 category = "OUT-OF-DATE"
 description = "If the project implements a Qiskit primitive interface, it should be compatible with the V2 primitives API."
+importance = "CRITICAL"
 
 [[importance]]
 name = "CRITICAL"

@@ -5,7 +5,7 @@ licence = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "research",]
-group = "Application"
+category = "Application"
 reference_paper = "https://arxiv.org/pdf/2210.14928"
 uuid = "4262945e-f1af-441a-ad38-c803a5c6df0b"
 badge = "https://qisk.it/e-4262945e"
@@ -23,6 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-03-30T02:43:38Z
 last_activity = 2026-03-30T02:43:42Z
 
+[checks.007]
+since = 2026-04-08T16:22:55.612389
+details = "the interface entry is mandatory"
+importance = "CRITICAL"
+
 [pypi."mqt.problemsolver"]
 package_name = "mqt-problemsolver"
 version = "0.4"
@@ -33,5 +38,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2023-02-24T09:50:56Z
 highest_supported_qiskit_version = "0.41.1"
-last_month_downloads = 24
+last_month_downloads = 28
 last_180_days_downloads = 173
