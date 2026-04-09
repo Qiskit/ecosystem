@@ -12,7 +12,7 @@ class Test01submission(TestCase):
 
     def setUp(self) -> None:
         root_dir = f"{os.path.dirname(os.path.abspath(__file__))}/../../"
-        self.labels_toml = LabelsToml(resources_dir=f"{root_dir}/ecosystem/resources")
+        self.labels_toml = LabelsToml(resources_dir=f"{root_dir}/resources")
         yaml = YAML()
         with open(
             f"{root_dir}/.github/ISSUE_TEMPLATE/01_submission.yml", "r"
