@@ -1,5 +1,6 @@
 """CliMembers class for controlling all CLI functions."""
 
+import datetime
 import json
 import tomllib
 import os
@@ -27,7 +28,7 @@ class CliMembers:
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = f"{self.current_dir}/ecosystem/resources"
+        self.resources_dir = f"{self.current_dir}/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -82,6 +83,7 @@ class CliMembers:
                 "namedLogo": "Qiskit",
                 "message": project.name,
                 "color": "6929C4",
+                "isError": "true",
             }
             with open(
                 os.path.join(output_directory, str(project.short_uuid)), "w"
@@ -161,6 +163,44 @@ class CliMembers:
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
 
+    def update_checkups(self, name=None):
+        """
+        Updates checkups data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_checkups()
+            if project.checks:
+                today = datetime.datetime.today()
+                for checkup_id, checkup in project.checks.items():
+                    if checkup.xfailed:
+                        self.logger.info(
+                            "☑️ %s expected to fail checkup %s: %s ",
+                            project.name,
+                            checkup_id,
+                            checkup.xfailed,
+                        )
+                        continue
+                    days_since = (today - checkup.since).days
+                    for_x_days = (
+                        f"for {days_since} days" if days_since else "since today"
+                    )
+                    self.logger.info(
+                        "❌ %s failed checkup %s (%s)",
+                        project.name,
+                        checkup_id,
+                        for_x_days,
+                    )
+            else:
+                self.logger.info(
+                    "✅ %s (%s) passed all the checkups",
+                    project.name,
+                    project.name_id,
+                )
+            self.dao.update(project.name_id, checks=project.checks)
+
     @staticmethod
     def filter_data(
         member_dict, data_map, forced_addition=False
@@ -218,8 +258,8 @@ class CliMembers:
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",
-            "group": "group",
-            "category": "group",
+            "group": "category",
+            "category": "category",
             "stars": "github.stars",
             "documentation": "documentation",
             "website": "website",
