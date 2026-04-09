@@ -131,7 +131,11 @@ class JuliaData(JsonSerializable):
             self._package_requests_json = request_json(
                 url,
                 parser=find_first_in_csv_gz(
-                    {"package_uuid": self.uuid, "status": "200", "client_type": "user"}
+                    {
+                        "package_uuid": self.uuid,
+                        "statuses": ["200", "302", "301"],
+                        "client_type": "user",
+                    }
                 ),
                 content_handler=BytesIO,
             )
@@ -207,4 +211,4 @@ class JuliaData(JsonSerializable):
         """unique IPs requesting users"""
         if self._package_requests_json is None:
             return self._kwargs.get("estimated_unique_users")
-        return self._package_requests_json.get("request_addrs")
+        return int(self._package_requests_json.get("request_addrs"))

@@ -26,6 +26,7 @@ def request_json(
     post=None,
     parser=None,
     content_handler=None,
+    delay=None,
 ):
     # pylint: disable=too-many-branches
     """Requests the JSON in <url> with <headers>
@@ -55,21 +56,25 @@ def request_json(
         if token:
             headers["Authorization"] = "Bearer " + token
 
+    if delay:
+        if delay >= 300:
+            raise EcosystemError(f"delay for fetching {url} too long: {delay} sec")
+        if delay >= 5:
+            logger.info("Wait %s before fetching %s", delay, url)
+        time.sleep(delay)
+
     if post is None:
         response = requests.get(str(url), headers=headers, timeout=240)
     else:
         response = requests.post(str(url), headers=headers, timeout=240, json=post)
 
     if not response.ok:
-        if "rate" in response.reason:
-            wait_for = 60
+        if "rate" in response.reason or response.status_code == 429:
+            wait_for = delay * 1.5 if delay else 60
             if "X-RateLimit-Reset" in response.headers:
                 wait_for = int(response.headers["X-RateLimit-Reset"]) - int(time.time())
-            logger.info("Wait %s before retrying...", wait_for)
-
-            time.sleep(wait_for)
             return request_json(
-                url.original_url, headers, post, parser, content_handler
+                url.original_url, headers, post, parser, content_handler, wait_for
             )
         raise EcosystemError(
             f"Bad response {str(url)}: {response.reason} ({response.status_code})"
@@ -79,10 +84,12 @@ def request_json(
     else:
         content = response.text
     ret = parser(content)
-    if isinstance(ret, dict) and "created_at" not in ret:
+    if ret is None:
+        return ret
+    if isinstance(ret, dict):
         ret["_requested_at_"] = response.created_at
     else:
-        print("where should I put the time of the request?")
+        ret = {"data": ret, "_requested_at_": response.created_at}
     return ret
 
 
@@ -270,8 +277,16 @@ def find_first_in_csv_gz(subdict_to_find):
         with gzip.open(file_like, "rt") as gz_file:
             csv_reader = csv.DictReader(gz_file)
             for row in csv_reader:
-                if all(row[k] == v for k, v in subdict_to_find.items() if k in row):
-                    return row
-        return None
+                if "statuses" in subdict_to_find:
+                    for status in subdict_to_find["statuses"]:
+                        to_find = dict(subdict_to_find)
+                        del to_find["statuses"]
+                        to_find["status"] = status
+                        if all(row[k] == v for k, v in to_find.items() if k in row):
+                            return row
+                else:
+                    if all(row[k] == v for k, v in subdict_to_find.items() if k in row):
+                        return row
+        return {}
 
     return parse_csv_gz

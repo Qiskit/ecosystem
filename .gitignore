@@ -133,14 +133,11 @@ dmypy.json
 
 .DS_Store
 
-# Local testing
-/ecosystem/resources/cloned_repo_directory/
-/resources
-/tests/resources
-
 # Generated files
 website/
+badges/
 docs/assets/
+all_qiskit_versions.json
 
 # Request cache
 *_cache.sqlite

@@ -1,6 +1,8 @@
 """Submission model."""
 
 from dataclasses import dataclass
+from typing import Optional
+
 from pathlib import Path
 import yaml
 
@@ -20,7 +22,8 @@ class Submission:
     description: str
     contact_info: str
     category: str
-    labels: str
+    labels: list[str]
+    interface: list[str]
     terms: bool
     pattern_steps: str
     source_url: URL
@@ -28,7 +31,7 @@ class Submission:
     docs_url: URL
     package_urls: list[URL]
     paper_url: URL
-    skip: list[str]
+    skip: Optional[list[str]] = None
 
     @classmethod
     def from_formatted_issue(cls, issue_formatted):

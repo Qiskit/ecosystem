@@ -1,0 +1,37 @@
+name = "arvak-lite"
+submission_number = 1036
+url = "https://github.com/hiq-lab/arvak-lite"
+description = "Drop-in Qiskit transpiler plugin powered by a Rust-native compiler. 34x faster circuit optimization."
+contact_info = "daniel@hal-contract.org"
+labels = [ "circuit manipulation", "optimization", "HPC",]
+interface = [ "Python",]
+website = "https://arvak.io"
+category = "Transpiler plugin"
+packages = []
+uuid = "7fcadf8b-f043-4eac-a491-9783a1c00cfe"
+badge = "https://qisk.it/e-7fcadf8b"
+
+[github]
+url = "https://github.com/hiq-lab/arvak-lite"
+owner = "hiq-lab"
+repo = "arvak-lite"
+stars = 0
+license = "GNU Lesser General Public License v3.0"
+description = "Lightweight quantum circuit compiler — drop-in transpiler for Qiskit, Cirq, Pulser, PennyLane. Powered by Arvak."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-03-30T20:28:39Z
+last_activity = 2026-03-30T20:28:40Z
+
+[pypi.arvak-lite]
+package_name = "arvak-lite"
+version = "0.1.1"
+last_release_date = 2026-03-08T14:02:53
+url = "https://pypi.org/project/arvak-lite/"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 62
+last_180_days_downloads = 242

@@ -30,7 +30,7 @@ jobs:
     - name: Commit changes
       run: |
         git pull --rebase --autostash
-        git add ecosystem/resources/
+        git add resources/
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git commit -m "Merge temp files for ${{ github.event.inputs.branch }}" --allow-empty

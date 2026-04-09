@@ -4,12 +4,14 @@ import pprint
 from uuid import uuid4
 import re
 
+from .error_handling import EcosystemError
 from .julia import JuliaData
 from .serializable import JsonSerializable, parse_datetime
 from .github import GitHubData
 from .pypi import PyPIData
 from .check import CheckData
 from .request import URL, request_json
+from .validation import validate_member
 
 
 class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
@@ -25,11 +27,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         contact_info: str | None = None,
         affiliations: str | None = None,
         labels: list[str] | None = None,
+        interface: list[str] | None = None,
         ibm_maintained: bool = False,
         created_at: int | None = None,
         updated_at: int | None = None,
         website: str | None = None,
-        group: str | None = None,
         category: str | None = None,
         reference_paper: URL | None = None,
         documentation: URL | None = None,
@@ -49,11 +51,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.contact_info = contact_info
         self.affiliations = affiliations
         self.labels = labels
+        self.interface = interface
         self.ibm_maintained = ibm_maintained
         self.created_at = created_at
         self.updated_at = updated_at
         self.website = website
-        self.group = group
         self.category = category
         self.reference_paper = reference_paper
         self.documentation = documentation
@@ -168,8 +170,20 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
         return response["link"]
 
+    def _qisk_dot_it_link_exists(self):
+        qisk_dot_it_link_check = request_json(
+            f"https://qisk.it/e-{self.short_uuid}",
+            parser=lambda x: {"exists": "<title>Qiskit Ecosystem:" in x},
+        )
+        return (
+            f"https://qisk.it/e-{self.short_uuid}"
+            if qisk_dot_it_link_check["exists"]
+            else None
+        )
+
     def update_badge(self):
         """If not there yet, creates a new Bitly link for the badge"""
+        self.badge = self._qisk_dot_it_link_exists()
         if self.badge is None:
             self.badge = self._create_qisk_dot_it_link_for_badge()
 
@@ -230,8 +244,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         Takes a submission object and creates a very basic Member object
         """
         skip_checks = {}
-        for check_id, reason in submission.skip:
-            skip_checks[check_id] = CheckData(check_id, xfailed=reason)
+        if submission.skip:
+            for check_id, reason in submission.skip:
+                skip_checks[check_id] = CheckData(check_id, xfailed=reason)
         return Member(
             name=submission.name,
             submission_number=issue_number,
@@ -239,9 +254,10 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             description=submission.description,
             contact_info=submission.contact_info,
             labels=submission.labels,
+            interface=submission.interface,
             ibm_maintained=submission.is_ibm_maintained,
             website=submission.home_url,
-            group=submission.category,
+            category=submission.category,
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
             packages=submission.package_urls,
@@ -251,4 +267,29 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     @property
     def xfails(self):
         """list of xfails for a self member"""
-        return [check for check in self.checks if check.xfailed]
+        return [
+            check
+            for checkid, check in self.checks.items()
+            if hasattr(check, "xfailed") and check.xfailed
+        ]
+
+    def update_checkups(self):
+        """Runs validation tests and updates the check-ups sections"""
+        checkups = {}
+        report = validate_member(self, verbose_level="-q")
+        if report.internalerror:
+            raise ExceptionGroup(
+                "internal error",
+                [
+                    EcosystemError(
+                        f"{internalerror.longreprtext}\n"
+                        f"{internalerror.nodeid}\n"
+                        f"{internalerror.location[0]}:{internalerror.location[1]}"
+                    )
+                    for internalerror in report.internalerror
+                ],
+            )
+        for test in report.xfailed + report.failed:
+            checkup_data = CheckData.from_report(test)
+            checkups[checkup_data.id] = checkup_data
+        self.checks = checkups
