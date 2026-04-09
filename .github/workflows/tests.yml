@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths-ignore:
-      - 'ecosystem/resources/members/*.toml'
+      - 'resources/members/*.toml'
 
 jobs:
   lint:

@@ -7,7 +7,7 @@ import pytest
 
 
 class TestChecksTOML(TestCase):
-    """Tests related to ecosystem/resources/checks.toml."""
+    """Tests related to resources/checks.toml."""
 
     meta_categories = ["categories", "importance"]
     mandatory_keys = ["title", "description", "applies_to", "category", "importance"]

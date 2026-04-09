@@ -46,13 +46,13 @@ class CliCI:
         """TODO
 
         Args:
-            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+            member_id: loads the file ../resources/*_<member_id>.toml
 
         Returns:
             None (side effect is updating database and writing actions output)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
 
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
@@ -66,13 +66,13 @@ class CliCI:
         """TODO
 
         Args:
-            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+            member_id: loads the file ../resources/*_<member_id>.toml
 
         Returns:
             None (side effect is updating database and writing actions output)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
 
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
@@ -84,13 +84,13 @@ class CliCI:
         """TODO
 
         Args:
-            member_id: loads the file ../ecosystem/resources/*_<member_id>.toml
+            member_id: loads the file ../resources/*_<member_id>.toml
 
         Returns:
             None (it has no side-effect)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
 
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
