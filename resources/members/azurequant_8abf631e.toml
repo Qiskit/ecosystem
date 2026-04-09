@@ -24,7 +24,7 @@ last_activity = 2026-04-01T19:58:00Z
 
 [checks.007]
 since = 2026-04-08T16:22:45.453639
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"
 
 [pypi.azure-quantum]

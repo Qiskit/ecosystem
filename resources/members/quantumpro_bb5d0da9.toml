@@ -22,7 +22,7 @@ last_activity = 2026-03-25T11:18:32Z
 
 [checks.007]
 since = 2026-04-08T16:23:03.026952
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"
 
 [pypi.vqls-prototype]

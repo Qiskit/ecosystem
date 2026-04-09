@@ -27,7 +27,7 @@ last_activity = 2026-03-30T04:53:58Z
 
 [checks.007]
 since = 2026-04-08T16:22:59.928875
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"
 
 [pypi."mqt.qcec"]

@@ -24,7 +24,7 @@ last_activity = 2026-03-17T08:32:38Z
 
 [checks.007]
 since = 2026-04-08T16:22:44.879491
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"
 
 [pypi.qiskit-rigetti]

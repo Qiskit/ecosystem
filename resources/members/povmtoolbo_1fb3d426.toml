@@ -25,7 +25,7 @@ last_activity = 2026-04-02T07:17:11Z
 
 [checks.007]
 since = 2026-04-08T16:22:52.017483
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"
 
 [pypi.povm-toolbox]

@@ -28,7 +28,7 @@ last_activity = 2025-10-31T17:43:20Z
 
 [checks.007]
 since = 2026-04-08T16:22:56.127265
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"
 
 [pypi.fast-pauli]

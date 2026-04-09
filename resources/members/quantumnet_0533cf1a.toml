@@ -23,5 +23,5 @@ last_activity = 2025-12-09T19:16:44Z
 
 [checks.007]
 since = 2026-04-08T16:23:02.032022
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"

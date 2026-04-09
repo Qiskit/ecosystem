@@ -26,5 +26,5 @@ last_commit = 2025-02-21T13:55:43Z
 
 [checks.007]
 since = 2026-04-08T16:22:56.382479
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"

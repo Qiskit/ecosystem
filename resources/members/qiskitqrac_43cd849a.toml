@@ -25,7 +25,7 @@ last_commit = 2025-06-25T15:47:22Z
 
 [checks.007]
 since = 2026-04-08T16:22:49.011096
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"
 
 [pypi.qiskit-qrack-provider]

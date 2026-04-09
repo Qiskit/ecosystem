@@ -27,7 +27,7 @@ last_activity = 2025-12-20T14:52:32Z
 
 [checks.007]
 since = 2026-04-08T16:22:43.394083
-details = "the interface entry is mandatory"
+details = "the entry `member.interface` does not exist and it is mandatory"
 importance = "CRITICAL"
 
 [pypi.purplecaffeine]
