@@ -37,7 +37,7 @@ You will also be able to add the [Qiskit Ecosystem badge in your `README.md`](ht
 
 ## How to update project information
 
-To change your project's information, edit your project's file in [`./ecosystem/resources/members`](https://github.com/qiskit-community/ecosystem/tree/main/ecosystem/resources/members)
+To change your project's information, edit your project's file in [`members/`](https://github.com/qiskit-community/ecosystem/tree/main/ecosystem/members)
 and make a pull request with the updated information.
 You can also [open an issue](https://github.com/qiskit-community/ecosystem/issues/new?template=update.yml) asking us to do it, or asking us to remove your project from the Ecosystem.
 

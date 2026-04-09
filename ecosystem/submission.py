@@ -22,7 +22,8 @@ class Submission:
     description: str
     contact_info: str
     category: str
-    labels: str
+    labels: list[str]
+    interface: list[str]
     terms: bool
     pattern_steps: str
     source_url: URL

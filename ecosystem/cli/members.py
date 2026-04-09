@@ -28,7 +28,7 @@ class CliMembers:
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = f"{self.current_dir}/ecosystem/resources"
+        self.resources_dir = f"{self.current_dir}/resources"
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -83,6 +83,7 @@ class CliMembers:
                 "namedLogo": "Qiskit",
                 "message": project.name,
                 "color": "6929C4",
+                "isError": "true",
             }
             with open(
                 os.path.join(output_directory, str(project.short_uuid)), "w"
@@ -257,8 +258,8 @@ class CliMembers:
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",
-            "group": "group",
-            "category": "group",
+            "group": "category",
+            "category": "category",
             "stars": "github.stars",
             "documentation": "documentation",
             "website": "website",

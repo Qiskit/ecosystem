@@ -14,7 +14,6 @@ TODO member:
  - check that is has a category (or Other, otherwise)
  - if label "research" check if there is a paper
  - if cannot be fixed, collect an "issues" property in the member toml
- - check description length
  - check "website" is not the github repo or similar
  
  members handle of checks:
