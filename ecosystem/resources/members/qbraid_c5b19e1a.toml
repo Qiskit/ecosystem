@@ -21,10 +21,10 @@ homepage = "https://docs.qbraid.com/v2/sdk"
 license = "Apache License 2.0"
 description = "A platform-agnostic quantum runtime framework"
 estimated_contributors = 35
-total_dependent_repositories = 34
+total_dependent_repositories = 35
 total_dependent_packages = 17
-last_commit = 2026-04-02T06:51:42Z
-last_activity = 2026-04-02T06:57:57Z
+last_commit = 2026-04-08T10:50:56Z
+last_activity = 2026-04-08T10:50:56Z
 
 [checks.007]
 since = 2026-04-08T16:22:56.879603
@@ -42,5 +42,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 22193
-last_180_days_downloads = 93862
+last_month_downloads = 19346
+last_180_days_downloads = 94890

@@ -13,14 +13,14 @@ badge = "https://qisk.it/e-a4ba9712"
 url = "https://github.com/unitaryfoundation/mitiq"
 owner = "unitaryfoundation"
 repo = "mitiq"
-stars = 423
+stars = 425
 homepage = "https://mitiq.readthedocs.io"
 license = "GNU General Public License v3.0"
 description = "Mitiq is an open source toolkit for implementing error mitigation techniques on most current intermediate-scale quantum computers."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-03-30T21:26:08Z
-last_activity = 2026-04-01T22:15:23Z
+last_commit = 2026-04-08T22:04:28Z
+last_activity = 2026-04-08T22:17:20Z
 
 [checks.007]
 since = 2026-04-08T16:23:00.448700
@@ -37,5 +37,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 14751
-last_180_days_downloads = 76464
+last_month_downloads = 17877
+last_180_days_downloads = 79955

@@ -20,10 +20,10 @@ stars = 115
 homepage = "https://mqt.readthedocs.io/projects/core"
 license = "MIT License"
 description = "MQT Core - The Backbone of the Munich Quantum Toolkit"
-total_dependent_repositories = 40
+total_dependent_repositories = 50
 total_dependent_packages = 0
-last_commit = 2026-04-01T19:35:21Z
-last_activity = 2026-04-02T09:06:08Z
+last_commit = 2026-04-08T23:01:39Z
+last_activity = 2026-04-08T23:01:40Z
 
 [checks.007]
 since = 2026-04-08T16:22:35.215603
@@ -41,5 +41,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 19837
-last_180_days_downloads = 238934
+last_month_downloads = 21239
+last_180_days_downloads = 236549

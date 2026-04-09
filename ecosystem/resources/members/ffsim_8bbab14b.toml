@@ -13,15 +13,15 @@ badge = "https://qisk.it/e-8bbab14b"
 url = "https://github.com/qiskit-community/ffsim"
 owner = "qiskit-community"
 repo = "ffsim"
-stars = 71
+stars = 72
 homepage = "https://qiskit-community.github.io/ffsim/"
 license = "Apache License 2.0"
 description = "Faster simulation of fermionic quantum circuits."
 estimated_contributors = 12
 total_dependent_repositories = 12
 total_dependent_packages = 3
-last_commit = 2026-04-02T04:15:01Z
-last_activity = 2026-04-02T07:19:54Z
+last_commit = 2026-04-08T20:20:10Z
+last_activity = 2026-04-09T07:49:29Z
 
 [checks.007]
 since = 2026-04-08T16:22:49.504226
@@ -30,7 +30,7 @@ importance = "CRITICAL"
 
 [pypi.ffsim]
 package_name = "ffsim"
-version = "0.0.74"
+version = "0.0.75"
 last_release_date = 2026-03-28T16:13:03
 url = "https://pypi.org/project/ffsim/"
 requires_qiskit = ">=1.3"
@@ -38,5 +38,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 9220
-last_180_days_downloads = 57305
+last_month_downloads = 10927
+last_180_days_downloads = 59803
