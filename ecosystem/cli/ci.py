@@ -34,7 +34,7 @@ class CliCI:
             None (side effect is updating database and writing actions output)
         """
 
-        resources_dir = Path(resources_dir or (Path.cwd() / "ecosystem" / "resources"))
+        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
 
         parsed_result = parse_submission_issue(body, number)
         DAO(path=resources_dir).write(parsed_result)

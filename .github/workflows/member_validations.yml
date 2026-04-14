@@ -3,7 +3,7 @@ name: Member validations
 on:
   workflow_dispatch:
   pull_request:
-    types: [ ready_for_review, edited]
+    types: [ ready_for_review, synchronize]
     paths:
       - '**.toml'
 jobs:

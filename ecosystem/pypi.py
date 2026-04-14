@@ -251,13 +251,16 @@ class PyPIData(JsonSerializable):
         getters = ["recent", "overall"]
         ret = {}
         for getter in getters:
-            raw_data = request_json(
-                f"https://pypistats.org/api/packages/{self.package_name}/{getter}",
-                delay=3,
-            )
-            # raw_data = json.loads(
-            #     getattr(pypistats, getter)(self.package_name, format="json")
-            # )
+            try:
+                raw_data = request_json(
+                    f"https://pypistats.org/api/packages/{self.package_name}/{getter}",
+                    delay=3,
+                )
+            except EcosystemError as err:
+                if "Not Found (404)" in err.message:
+                    return ret
+                raise err
+
             if isinstance(raw_data["data"], list):
                 ret[raw_data["type"]] = {
                     "with_mirrors": sum(
