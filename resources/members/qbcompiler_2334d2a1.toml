@@ -12,8 +12,28 @@ packages = []
 uuid = "2334d2a1-93bc-4652-8e15-ac395b2d3dd9"
 
 [github]
+url = "https://github.com/mwpwalshe/qb-compiler"
 owner = "mwpwalshe"
 repo = "qb-compiler"
+stars = 0
+homepage = "https://qubitboost.io/compiler"
+license = "Apache License 2.0"
+description = "Quantum execution intelligence toolkit for circuit preflight checks, backend analysis, calibration-aware compilation, and hardware-..."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-04-11T11:48:30Z
+last_activity = 2026-04-11T11:48:31Z
 
 [pypi.qb-compiler]
 package_name = "qb-compiler"
+version = "0.2.3"
+last_release_date = 2026-03-14T16:16:04
+license = "Apache-2.0"
+url = "https://pypi.org/project/qb-compiler/"
+requires_qiskit = "<2.0,>=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_version = "1.4.5"
+last_month_downloads = 126
+last_180_days_downloads = 723
