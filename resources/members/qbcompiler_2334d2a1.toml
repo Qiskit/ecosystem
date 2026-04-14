@@ -4,9 +4,16 @@ url = "https://github.com/mwpwalshe/qb-compiler"
 description = "Calibration-aware quantum circuit compiler. Uses today's hardware noise data for smarter qubit mapping and routing."
 contact_info = "michael.walshe@qubitboost.io"
 labels = [ "circuit manipulation", "error mitigation",]
+interface = [ "Python",]
 website = "https://qubitboost.io/compiler"
-interface = ["Python"]
 category = "Transpiler plugin"
 documentation = "https://mwpwalshe.github.io/qb-compiler/"
-packages = [ "https://pypi.org/project/qb-compiler/",]
+packages = []
 uuid = "2334d2a1-93bc-4652-8e15-ac395b2d3dd9"
+
+[github]
+owner = "mwpwalshe"
+repo = "qb-compiler"
+
+[pypi.qb-compiler]
+package_name = "qb-compiler"
