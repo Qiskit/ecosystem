@@ -6,5 +6,12 @@ contact_info = "keunjunpark0925@gmail.com"
 labels = [ "QML", "optimization", "HPC", "provider",]
 interface = [ "Python",]
 category = "Circuit simulator"
-packages = ["https://pypi.org/project/qiskit-trev"]
+packages = []
 uuid = "e2beb4ad-418d-4dca-b789-02567d385528"
+
+[github]
+owner = "keunjunpark"
+repo = "qiskit-trev"
+
+[pypi.qiskit-trev]
+package_name = "qiskit-trev"
