@@ -16,14 +16,14 @@ badge = "https://qisk.it/e-d16209fb"
 url = "https://github.com/munich-quantum-toolkit/qmap"
 owner = "munich-quantum-toolkit"
 repo = "qmap"
-stars = 131
+stars = 132
 homepage = "https://mqt.readthedocs.io/projects/qmap"
 license = "MIT License"
 description = "MQT QMAP - A tool for Quantum Circuit Mapping written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-08T23:03:07Z
-last_activity = 2026-04-08T23:03:03Z
+last_commit = 2026-04-13T07:26:47Z
+last_activity = 2026-04-13T19:54:28Z
 
 [checks.007]
 since = 2026-04-08T16:22:44.628277
@@ -41,5 +41,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 2129
-last_180_days_downloads = 25005
+last_month_downloads = 2268
+last_180_days_downloads = 26040
