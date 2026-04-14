@@ -7,4 +7,9 @@ labels = [ "circuit manipulation", "openqasm", "circuit building", "provider",]
 interface = [ "Python",]
 website = "https://witchinghourmac.com"
 category = "Tooling"
+packages = []
 uuid = "5907eb1e-6ecd-4d5b-9f28-f302b23ace0e"
+
+[github]
+owner = "witchinghourartcollective"
+repo = "witching-hour-qiskit"
