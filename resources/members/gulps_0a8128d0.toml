@@ -17,14 +17,15 @@ repo = "gulps"
 stars = 4
 license = "Apache License 2.0"
 description = "optimally compile arbitary two-qubit unitaries"
+estimated_contributors = 3
 total_dependent_repositories = 2
 total_dependent_packages = 0
-last_commit = 2026-04-09T19:56:10Z
-last_activity = 2026-04-09T19:56:16Z
+last_commit = 2026-04-13T21:29:20Z
+last_activity = 2026-04-13T21:33:38Z
 
 [pypi.gulps]
 package_name = "gulps"
-version = "0.3.4"
+version = "0.3.5"
 last_release_date = 2026-03-27T23:49:53
 url = "https://pypi.org/project/gulps/"
 requires_qiskit = "<3,>=2.0"
@@ -32,5 +33,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 507
-last_180_days_downloads = 507
+last_month_downloads = 638
+last_180_days_downloads = 638
