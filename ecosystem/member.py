@@ -167,7 +167,12 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             "title": f'Qiskit ecosystem "{self.name}" badge',
             "tags": ["qiskit ecosystem badge", "permanent _do NOT remove_"],
         }
-        response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
+        try:
+            response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
+        except EcosystemError as err:
+            if "Bad Request (400)" in err.message:
+                return None  # Sometimes, bitly errors 400 for some server-side reason
+            raise err
         return response["link"]
 
     def _qisk_dot_it_link_exists(self):
