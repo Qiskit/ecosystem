@@ -27,6 +27,7 @@ last_activity = 2026-04-14T07:30:01Z
 [checks.007]
 since = 2026-04-08T16:22:37.450347
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.qiskit-addon-opt-mapper]

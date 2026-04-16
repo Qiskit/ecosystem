@@ -296,5 +296,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             )
         for test in report.xfailed + report.failed:
             checkup_data = CheckData.from_report(test)
+            if checkup_data.id in self.checks:
+                # Fields to preserve
+                checkup_data.discussion = self.checks[checkup_data.id].discussion
             checkups[checkup_data.id] = checkup_data
         self.checks = checkups

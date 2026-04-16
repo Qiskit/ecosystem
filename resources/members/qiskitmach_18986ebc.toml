@@ -26,6 +26,7 @@ last_activity = 2026-04-15T19:32:08Z
 [checks.007]
 since = 2026-04-08T16:22:57.127469
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.qiskit-machine-learning]

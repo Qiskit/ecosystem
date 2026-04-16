@@ -25,6 +25,7 @@ last_activity = 2026-04-16T07:24:19Z
 [checks.007]
 since = 2026-04-08T16:23:03.521067
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.qamomile]
