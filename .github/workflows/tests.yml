@@ -73,6 +73,7 @@ jobs:
       if: steps.changes.outputs.changed == 'true'
       run: tox -e website
   coverage:
+    if: github.repository_owner == 'Qiskit'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
@@ -100,3 +101,7 @@ jobs:
       run: |
         unset CI
         tox -ecoverage
+    - name: Coveralls upload
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
