@@ -18,8 +18,8 @@ license = "GNU General Public License v3.0"
 description = "A high-performance quantum computing framework for solving quantitative finance problems."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-03T05:00:27Z
-last_activity = 2026-04-03T05:00:27Z
+last_commit = 2026-04-15T05:43:47Z
+last_activity = 2026-04-15T05:43:36Z
 
 [checks.014]
 since = 2026-04-14T08:12:50.128851
@@ -28,7 +28,7 @@ importance = "CRITICAL"
 
 [pypi.double-quant]
 package_name = "double-quant"
-version = "0.0.1a2"
+version = "0.0.1a3"
 last_release_date = 2026-03-30T11:28:26
 url = "https://pypi.org/project/double-quant/"
 requires_qiskit = ">=2.2.3"
@@ -36,5 +36,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 237
-last_180_days_downloads = 237
+last_month_downloads = 346
+last_180_days_downloads = 346

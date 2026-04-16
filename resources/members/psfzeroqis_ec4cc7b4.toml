@@ -17,5 +17,10 @@ repo = "psf-zero"
 stars = 0
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-01T14:36:06Z
-last_activity = 2026-04-01T14:36:07Z
+last_commit = 2026-04-11T12:38:00Z
+last_activity = 2026-04-11T12:38:00Z
+
+[checks.014]
+since = 2026-04-16T09:51:26.369264
+details = "Description is 277-character long"
+importance = "CRITICAL"
