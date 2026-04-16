@@ -15,14 +15,14 @@ badge = "https://qisk.it/e-474599a7"
 url = "https://github.com/Qiskit/qiskit-aer"
 owner = "Qiskit"
 repo = "qiskit-aer"
-stars = 650
+stars = 652
 homepage = "https://qiskit.github.io/qiskit-aer/"
 license = "Apache License 2.0"
 description = "Aer is a high performance simulator for quantum circuits that includes noise models"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-02-26T01:13:33Z
-last_activity = 2026-04-13T07:58:25Z
+last_activity = 2026-04-16T07:39:46Z
 
 [checks.007]
 since = 2026-04-08T16:23:04.017735
@@ -40,8 +40,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 524546
-last_180_days_downloads = 3135644
+last_month_downloads = 531044
+last_180_days_downloads = 3148921
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
@@ -53,8 +53,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 3567
-last_180_days_downloads = 28222
+last_month_downloads = 3547
+last_180_days_downloads = 28106
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
@@ -66,5 +66,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 1983
-last_180_days_downloads = 12894
+last_month_downloads = 2067
+last_180_days_downloads = 12972

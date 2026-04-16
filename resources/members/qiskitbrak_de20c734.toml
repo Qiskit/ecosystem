@@ -12,15 +12,15 @@ badge = "https://qisk.it/e-de20c734"
 url = "https://github.com/qiskit-community/qiskit-braket-provider"
 owner = "qiskit-community"
 repo = "qiskit-braket-provider"
-stars = 77
+stars = 78
 homepage = "https://qiskit-community.github.io/qiskit-braket-provider/"
 license = "Apache License 2.0"
 description = "Qiskit-Braket provider to execute Qiskit programs on devices via Amazon Braket."
 estimated_contributors = 41
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-10T23:26:17Z
-last_activity = 2026-04-13T13:45:28Z
+last_commit = 2026-04-16T05:47:36Z
+last_activity = 2026-04-16T05:55:56Z
 
 [checks.007]
 since = 2026-04-08T16:22:48.256101
@@ -38,5 +38,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 6246
-last_180_days_downloads = 38519
+last_month_downloads = 6620
+last_180_days_downloads = 38890
