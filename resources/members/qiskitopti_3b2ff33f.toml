@@ -26,8 +26,8 @@ last_activity = 2026-04-07T05:20:52Z
 [checks.007]
 since = 2026-04-08T16:22:55.879857
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "CRITICAL"
 
 [pypi.qiskit-optimization]
 package_name = "qiskit-optimization"

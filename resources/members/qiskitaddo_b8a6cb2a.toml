@@ -29,8 +29,8 @@ last_activity = 2026-04-14T04:56:38Z
 [checks.007]
 since = 2026-04-08T16:22:47.753655
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "CRITICAL"
 
 [pypi.qiskit-addon-cutting]
 package_name = "qiskit-addon-cutting"

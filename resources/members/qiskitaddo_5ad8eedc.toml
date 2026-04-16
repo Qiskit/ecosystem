@@ -28,8 +28,8 @@ last_activity = 2026-04-02T16:40:25Z
 [checks.007]
 since = 2026-04-08T16:22:45.190367
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "CRITICAL"
 
 [pypi.qiskit-addon-aqc-tensor]
 package_name = "qiskit-addon-aqc-tensor"

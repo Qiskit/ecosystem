@@ -27,8 +27,8 @@ last_activity = 2026-04-13T20:31:25Z
 [checks.007]
 since = 2026-04-08T16:22:42.175868
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "CRITICAL"
 
 [pypi.qiskit-superstaq]
 package_name = "qiskit-superstaq"

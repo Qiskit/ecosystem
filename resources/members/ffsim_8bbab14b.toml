@@ -26,8 +26,8 @@ last_activity = 2026-04-14T07:37:32Z
 [checks.007]
 since = 2026-04-08T16:22:49.504226
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "CRITICAL"
 
 [pypi.ffsim]
 package_name = "ffsim"

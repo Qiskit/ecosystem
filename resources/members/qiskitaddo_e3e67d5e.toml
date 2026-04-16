@@ -28,8 +28,8 @@ last_activity = 2026-02-01T14:07:08Z
 [checks.007]
 since = 2026-04-08T16:22:51.012043
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "CRITICAL"
 
 [pypi.qiskit-addon-obp]
 package_name = "qiskit-addon-obp"

@@ -26,8 +26,8 @@ last_activity = 2026-01-01T23:21:05Z
 [checks.007]
 since = 2026-04-08T16:22:58.630759
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "CRITICAL"
 
 [pypi.dense-ev]
 package_name = "dense-ev"
