@@ -25,6 +25,7 @@ last_activity = 2026-04-12T02:07:11Z
 [checks.007]
 since = 2026-04-08T16:22:52.999175
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.pennylane-qiskit]
@@ -37,5 +38,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-08-19T15:29:40Z
 highest_supported_qiskit_version = "2.1.2"
-last_month_downloads = 20711
-last_180_days_downloads = 125791
+last_month_downloads = 19833
+last_180_days_downloads = 126030

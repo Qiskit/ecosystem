@@ -30,6 +30,7 @@ last_activity = 2026-03-27T10:17:42Z
 [checks.007]
 since = 2026-04-08T16:22:39.263054
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi."mqt.qubomaker"]
@@ -42,5 +43,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 60
-last_180_days_downloads = 489
+last_month_downloads = 87
+last_180_days_downloads = 514

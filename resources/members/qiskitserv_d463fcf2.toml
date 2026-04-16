@@ -22,12 +22,13 @@ description = "A programming model for leveraging quantum and classical resource
 estimated_contributors = 31
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-13T23:57:14Z
-last_activity = 2026-04-14T00:07:32Z
+last_commit = 2026-04-16T04:41:15Z
+last_activity = 2026-04-16T04:41:16Z
 
 [checks.007]
 since = 2026-04-08T16:23:02.526634
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.qiskit-serverless]
@@ -40,5 +41,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 12519
-last_180_days_downloads = 50136
+last_month_downloads = 12758
+last_180_days_downloads = 50786

@@ -12,25 +12,26 @@ badge = "https://qisk.it/e-8abf631e"
 url = "https://github.com/microsoft/azure-quantum-python"
 owner = "microsoft"
 repo = "azure-quantum-python"
-stars = 146
+stars = 147
 homepage = "https://learn.microsoft.com/azure/quantum/"
 license = "MIT License"
 description = "The azure-quantum python package submits jobs to the Azure Quantum service."
 estimated_contributors = 60
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-09T18:31:18Z
-last_activity = 2026-04-09T21:01:07Z
+last_commit = 2026-04-15T21:11:01Z
+last_activity = 2026-04-16T03:01:09Z
 
 [checks.007]
 since = 2026-04-08T16:22:45.453639
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.azure-quantum]
 package_name = "azure-quantum"
-version = "3.8.1"
+version = "3.8.2"
 last_release_date = 2026-03-23T22:35:28
 url = "https://pypi.org/project/azure-quantum/"
-last_month_downloads = 21572
-last_180_days_downloads = 122252
+last_month_downloads = 21569
+last_180_days_downloads = 120077

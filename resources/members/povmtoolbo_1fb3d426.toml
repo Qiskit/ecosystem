@@ -26,6 +26,7 @@ last_activity = 2026-04-14T07:58:52Z
 [checks.007]
 since = 2026-04-08T16:22:52.017483
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.povm-toolbox]
@@ -39,5 +40,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 695
-last_180_days_downloads = 2551
+last_month_downloads = 377
+last_180_days_downloads = 2531

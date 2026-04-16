@@ -25,6 +25,7 @@ last_activity = 2026-04-11T15:26:36Z
 [checks.007]
 since = 2026-04-08T16:22:48.509137
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.qiskit-quantinuum-provider]
@@ -32,5 +33,5 @@ package_name = "qiskit-quantinuum-provider"
 version = "0.4.1"
 last_release_date = 2024-07-22T21:18:53
 url = "https://pypi.org/project/qiskit-quantinuum-provider/"
-last_month_downloads = 20
+last_month_downloads = 21
 last_180_days_downloads = 108

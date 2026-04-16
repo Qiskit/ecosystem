@@ -22,11 +22,12 @@ estimated_contributors = 9
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-01T00:58:28Z
-last_activity = 2026-03-01T00:58:28Z
+last_activity = 2026-04-14T15:43:26Z
 
 [checks.007]
 since = 2026-04-08T16:22:41.915958
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
 [pypi.qiskit-addon-pna]
@@ -40,4 +41,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
 highest_supported_qiskit_version = "2.3.1"
 last_month_downloads = 76
-last_180_days_downloads = 686
+last_180_days_downloads = 688
