@@ -7,6 +7,7 @@ import tomllib
 
 
 from .serializable import JsonSerializable
+from .request import URL
 
 
 class ChecksToml:
@@ -41,11 +42,14 @@ class CheckData(JsonSerializable):
 
     labels_toml = ChecksToml()
 
-    def __init__(self, id_: str, xfailed=None, since=None, details=None, **_):
+    def __init__(
+        self, id_: str, xfailed=None, since=None, details=None, discussion=None, **_
+    ):
         self.id = id_
         self.xfailed = xfailed
         self.since = since
         self.details = details
+        self.discussion: str | URL | None = discussion
 
     def to_dict(self) -> dict:
         ret = super().to_dict()
