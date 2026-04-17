@@ -45,7 +45,8 @@ importance = "RECOMMENDATION"
 title = "Do not repeat URLs in the submission"
 description = "Having the same URL for, for example member.website and member.documentation is unnecessary. Keep better fit and remove the other one."
 applies_to = "all"
-affects = ["member.website", "member.url", "member.documentation", "member.packages.*"]
+affects = ["member.website", "member.url", "member.documentation", "member.packages.*", "member.pypi.*.url"]
+checker = "test_url.py::TestURLs::test_duplicate_urls"
 category = "SUBMISSION"
 importance = "STRONG-RECOMMENDATION"
 
