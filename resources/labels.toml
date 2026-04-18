@@ -1,6 +1,8 @@
 [[categories]]
 name = "SDK"
 description = "A software development kit. Provides an interface to build software on top of it. "
+section = "sdk"
+
 
 [[categories]]
 name = "Application"
@@ -13,30 +15,20 @@ description = "Helps to develop quantum programs, such as IDEs, debuggers, or ot
 [[categories]]
 name = "Compute provider"
 description = "Provides access to remote quantum computers (or remote simulators) via Qiskit primitives"
-link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/primitives"
+section = "compute-provider"
 
 [[categories]]
 name = "Circuit simulator"
 description = "Simulates a quantum computer on your local classical computer"
 
 [[categories]]
+name = "Transpiler plugin"
+description = "Implements Qiskit's transpiler plugin interface for a transpiler stage or synthesis"
+
+
+[[categories]]
 name = "Converter"
 description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs or tools"
-
-[[categories]]
-name = "Transpiler plugin"
-description = "Implements Qiskit's transpiler plugin interface to compile and optimize quantum circuits"
-link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/transpiler_plugins"
-
-[[categories]]
-name = "Unitary synthesis plugin"
-description = "Implements Qiskit's unitary synthesis plugin interface to synthesize unitary operations into quantum circuits"
-link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin"
-
-[[categories]]
-name = "High-level synthesis plugin"
-description = "Implements Qiskit's HLS plugin interface to synthesize quantum circuits from more abstract operations"
-link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin"
 
 [[categories]]
 name = "Qiskit addon"
@@ -58,6 +50,20 @@ description = "Projects that extend, interface with, or use Qiskit in interestin
 [[labels]]
 name = "chemistry"
 description = "Applies quantum computing to chemistry"
+
+[[labels]]
+name = "transpiler stage"
+description = "Implements Qiskit's transpiler plugin interface to compile and optimize quantum circuts"
+
+[[labels]]
+name = "unitary synthesis"
+description = "Implements Qiskit's unitary synthesis plugin interface to synthesize unitary operations into quantum circuits"
+link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin"
+
+[[labels]]
+name = "high-level synthesis"
+description = "Implements Qiskit's HLS plugin interface to synthesize quantum circuits from more abstract operations"
+link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin"
 
 [[labels]]
 name = "error correction"

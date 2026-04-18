@@ -8,9 +8,10 @@ import re
 from typing import Optional, Tuple
 from pathlib import Path
 from jsonpath import findall, query
-
+from slugify import slugify
 
 from ecosystem.dao import DAO
+from ecosystem.labels import LabelsToml
 from ecosystem.member import Member
 from ecosystem.error_handling import logger
 
@@ -29,6 +30,7 @@ class CliMembers:
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = f"{self.current_dir}/resources"
+        self.labels_toml = LabelsToml(resources_dir=self.resources_dir)
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -92,6 +94,76 @@ class CliMembers:
                 self.logger.info("Badge for %s has been updated.", project.name)
             project.update_badge()
             self.dao.update(project.name_id, badge=project.badge)
+
+    def update_docs_assets(self):
+        """Updates the files in docs/assets/ to build the docs"""
+        self.update_badge_list()
+        self.update_assets_categories()
+        self.update_assets_labels()
+        self.update_assets_interfaces()
+
+    def update_assets_categories(self):
+        """Updates category descriptions in docs/assets/categories.json and docs/assets/categories.md"""
+        self.update_assets_classification("categories", "category")
+
+    def update_assets_labels(self):
+        """Updates category descriptions in docs/assets/labels.json and docs/assets/labels.md"""
+        self.update_assets_classification("labels", "label")
+
+    def update_assets_interfaces(self):
+        """Updates category descriptions in docs/assets/labels.json and docs/assets/labels.md"""
+        self.update_assets_classification("interfaces", "interface")
+
+    def update_assets_classification(self, classification, classification_singular):
+        """Updates docs/assets/<classification>.json and docs/assets/<classification>.md"""
+        assets_dir = os.path.join(self.current_dir, "docs", "assets")
+
+        classification_json = os.path.join(assets_dir, f"{classification}.json")
+        os.makedirs(os.path.dirname(classification_json), exist_ok=True)
+        Path(classification_json).touch(exist_ok=True)
+
+        classification_md = os.path.join(assets_dir, f"{classification}.md")
+        os.makedirs(os.path.dirname(classification_md), exist_ok=True)
+        Path(classification_md).touch(exist_ok=True)
+
+        short_description = []
+        lines = []
+
+        classification_names = sorted(
+            getattr(self.labels_toml, f"{classification_singular}_names")
+        )
+        for other in ["Other", "Other interface", "Other language"]:
+            if other in classification_names:
+                classification_names.append(
+                    classification_names.pop(classification_names.index(other))
+                )
+
+        for name in classification_names:
+            description = getattr(
+                self.labels_toml, f"{classification_singular}_descriptions"
+            )[name]
+            section_name = getattr(
+                self.labels_toml, f"{classification_singular}_sections"
+            )[name] or slugify(name)
+            section_text_md = os.path.join(
+                assets_dir, classification, f"{section_name}.md"
+            )
+            short_description.append(
+                {
+                    classification_singular.capitalize(): f"{name}",
+                    "Short description": description or "",
+                }
+            )
+            if os.path.isfile(section_text_md):
+                with open(section_text_md, "r") as file:
+                    description = file.read()
+            lines += [f"## {name}", "\n\n", description, "\n\n"]
+
+        with open(classification_json, "w") as f:
+            json.dump(short_description, f)
+
+        with open(classification_md, "w") as outfile:
+            outfile.writelines(lines)
 
     def update_badge_list(self):
         """Updates badge list in qisk.it/ecosystem-badges."""
@@ -299,7 +371,7 @@ class CliMembers:
         #  "Subjects": [{"name": ..., "description": ...}]}
         labels_data_to_export = {
             "Types": (
-                "categories.*",
+                "category_names.*",
                 [
                     "name",
                     "description",

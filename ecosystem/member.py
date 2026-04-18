@@ -2,7 +2,7 @@
 
 import pprint
 from uuid import uuid4
-import re
+from slugify import slugify
 
 from .error_handling import EcosystemError
 from .julia import JuliaData
@@ -137,7 +137,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
 
         It is used to create the TOML file name
         """
-        flat_name = re.sub("[^A-Za-z0-9]+", "", self.name).lower()[:10]
+        flat_name = slugify(
+            self.name, max_length=11, separator="", replacements=[["qiskit", "qk"]]
+        )
         return f"{flat_name}_{self.short_uuid}"
 
     @property

@@ -93,5 +93,5 @@ class CheckData(JsonSerializable):
         return {i["name"]: i["description"] for i in self.labels_toml["importance"]}
 
     def categories(self):
-        """Returns dict name->description with the categories"""
-        return {i["name"]: i["description"] for i in self.labels_toml["categories"]}
+        """Returns dict name->description with the category_names"""
+        return {i["name"]: i["description"] for i in self.labels_toml["category_names"]}
