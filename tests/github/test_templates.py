@@ -20,14 +20,14 @@ class Test01submission(TestCase):
             self.issue_template = yaml.load(issue_template_file)
 
     def test_categories(self):
-        """categories in the template should exist in labels.toml"""
+        """category_names in the template should exist in labels.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "category":
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
                     section["attributes"]["options"],
-                    ["Select one..."] + self.labels_toml.category_names,
+                    ["Select one..."] + self.labels_toml.category_names.keys(),
                 )
 
     def test_labels(self):

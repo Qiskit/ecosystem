@@ -26,7 +26,7 @@ def interfaces(toml_file_data):
 
 @pytest.fixture
 def categories(toml_file_data):
-    return [c["name"] for c in toml_file_data["categories"]]
+    return [c["name"] for c in toml_file_data["category_names"]]
 
 
 @pytest.fixture
