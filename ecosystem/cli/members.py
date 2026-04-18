@@ -132,7 +132,7 @@ class CliMembers:
         classification_names = sorted(
             getattr(self.labels_toml, f"{classification_singular}_names")
         )
-        for other in ["Other", "other"]:
+        for other in ["Other", "Other interface", "Other language"]:
             if other in classification_names:
                 classification_names.append(
                     classification_names.pop(classification_names.index(other))
