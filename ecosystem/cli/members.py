@@ -146,7 +146,7 @@ class CliMembers:
                 self.labels_toml, f"{classification_singular}_sections"
             )[name] or slugify(name)
             section_text_md = os.path.join(
-                assets_dir, classification, f"{section_name}.md"
+                self.resources_dir, classification, f"{section_name}.md"
             )
             short_description.append(
                 {
