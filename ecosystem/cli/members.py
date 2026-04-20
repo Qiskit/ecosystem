@@ -11,7 +11,7 @@ from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.dao import DAO
-from ecosystem.classification_toml import ClassificationToml
+from ecosystem.classifications import ClassificationsToml
 from ecosystem.member import Member
 from ecosystem.error_handling import logger
 
@@ -30,7 +30,7 @@ class CliMembers:
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = f"{self.current_dir}/resources"
-        self.labels_toml = ClassificationToml(resources_dir=self.resources_dir)
+        self.labels_toml = ClassificationsToml(resources_dir=self.resources_dir)
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -371,7 +371,7 @@ class CliMembers:
         #  "Subjects": [{"name": ..., "description": ...}]}
         labels_data_to_export = {
             "Types": (
-                "category_names.*",
+                "categories.*",
                 [
                     "name",
                     "description",

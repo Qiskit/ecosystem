@@ -1,11 +1,11 @@
-"""Handles the labels.toml file"""
+"""Handles the /resources/classifications.toml file"""
 
 from pathlib import Path
 
 import tomllib
 
 
-class ClassificationToml:
+class ClassificationsToml:
     """handles /resources/classifications.toml"""
 
     def __init__(self, toml_filename: str = None, resources_dir: str = None):
