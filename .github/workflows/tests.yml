@@ -12,7 +12,7 @@ jobs:
     - name: Check if /ecosystem or /tests changed
       id: changes
       run: |
-        if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(ecosystem|tests)/' ''; then
+        if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(ecosystem|tests)/' ; then
           echo "changed=true" >> $GITHUB_OUTPUT
         else
           echo "changed=false" >> $GITHUB_OUTPUT
