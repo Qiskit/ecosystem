@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
     - name: Check if /ecosystem or /tests changed
       id: changes
       run: |
@@ -41,6 +43,8 @@ jobs:
         python-version: [3.13]
     steps:
     - uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
     - name: Check if /ecosystem or /tests changed
       id: changes
       run: |
