@@ -19,6 +19,7 @@ jobs:
         else
           echo "changed=false" >> $GITHUB_OUTPUT
         fi
+        echo $GITHUB_OUTPUT
     - name: Set up Python 3.13
       if: steps.changes.outputs.changed == 'true'
       uses: actions/setup-python@v6
@@ -53,6 +54,7 @@ jobs:
         else
           echo "changed=false" >> $GITHUB_OUTPUT
         fi
+        echo $GITHUB_OUTPUT
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
       with:
@@ -91,6 +93,7 @@ jobs:
         else
           echo "changed=false" >> $GITHUB_OUTPUT
         fi
+        echo $GITHUB_OUTPUT
     - name: Set up Python 3.13
       if: steps.changes.outputs.changed == 'true'
       uses: actions/setup-python@v6
