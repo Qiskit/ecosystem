@@ -13,32 +13,21 @@ description = "Helps to develop quantum programs, such as IDEs, debuggers, or ot
 [[categories]]
 name = "Compute provider"
 description = "Provides access to remote quantum computers (or remote simulators) via Qiskit primitives"
+link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/primitives"
 
 [[categories]]
 name = "Circuit simulator"
 description = "Simulates a quantum computer on your local classical computer"
 
 [[categories]]
-name = "Transpiler stage plugin"
-description = "Implements Qiskit's transpiler stage plugin interface"
-
-[[categories]]
-name = "Unitary synthesis plugin"
-description = "Implements Qiskit's unitary synthesis plugin interface to synthesize unitary operations into quantum circuits"
-
-[[categories]]
-name = "High-level synthesis plugin"
-description = "Implements Qiskit's HLS plugin interface to synthesize quantum circuits from more abstract operations"
-link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin"
-
-
-[[categories]]
 name = "Converter"
 description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs or tools"
+
 
 [[categories]]
 name = "Qiskit addon"
 description = "Enables algorithm discovery at the utility scale"
+link = "https://quantum.cloud.ibm.com/docs/en/guides/addons"
 
 [[categories]]
 name = "Game"

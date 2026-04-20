@@ -4,7 +4,7 @@ import os
 from unittest import TestCase
 from ruamel.yaml import YAML
 
-from ecosystem.labels import ClassificationToml
+from ecosystem.classifications import ClassificationsToml
 
 
 class Test01submission(TestCase):
@@ -12,7 +12,7 @@ class Test01submission(TestCase):
 
     def setUp(self) -> None:
         root_dir = f"{os.path.dirname(os.path.abspath(__file__))}/../../"
-        self.labels_toml = ClassificationToml(resources_dir=f"{root_dir}/resources")
+        self.labels_toml = ClassificationsToml(resources_dir=f"{root_dir}/resources")
         yaml = YAML()
         with open(
             f"{root_dir}/.github/ISSUE_TEMPLATE/01_submission.yml", "r"
@@ -26,8 +26,8 @@ class Test01submission(TestCase):
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
-                    section["attributes"]["options"],
-                    ["Select one..."] + self.labels_toml.category_names.keys(),
+                    list(section["attributes"]["options"]),
+                    ["Select one..."] + self.labels_toml.category_names,
                 )
 
     def test_labels(self):
@@ -37,7 +37,7 @@ class Test01submission(TestCase):
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
-                    section["attributes"]["options"], self.labels_toml.label_names
+                    list(section["attributes"]["options"]), self.labels_toml.label_names
                 )
 
     def test_interfaces(self):
