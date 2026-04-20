@@ -5,16 +5,16 @@ from pathlib import Path
 import tomllib
 
 
-class LabelsToml:
-    """handles labels.toml"""
+class ClassificationToml:
+    """handles /resources/classifications.toml"""
 
     def __init__(self, toml_filename: str = None, resources_dir: str = None):
 
-        resources_dir = Path(
-            resources_dir or Path.joinpath(Path.cwd(), "ecosystem", "resources")
-        )
+        resources_dir = Path(resources_dir or Path.joinpath(Path.cwd(), "resources"))
 
-        toml_filename = toml_filename or Path.joinpath(resources_dir, "labels.toml")
+        toml_filename = toml_filename or Path.joinpath(
+            resources_dir, "classifications.toml"
+        )
 
         with open(toml_filename, "rb") as f:
             data = tomllib.load(f)
