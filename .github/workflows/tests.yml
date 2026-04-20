@@ -102,6 +102,7 @@ jobs:
         unset CI
         tox -ecoverage
     - name: Coveralls upload
+      if: success()
       uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
