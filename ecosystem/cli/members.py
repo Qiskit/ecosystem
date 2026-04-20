@@ -111,7 +111,7 @@ class CliMembers:
         self.update_assets_classification("labels", "label")
 
     def update_assets_interfaces(self):
-        """Updates category descriptions in docs/assets/labels.json and docs/assets/labels.md"""
+        """Updates category descriptions in docs/assets/interfaces.json and docs/assets/interfaces.md"""
         self.update_assets_classification("interfaces", "interface")
 
     def update_assets_classification(self, classification, classification_singular):
