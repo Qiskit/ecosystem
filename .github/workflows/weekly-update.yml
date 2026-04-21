@@ -8,6 +8,7 @@ on:
 jobs:
   batch_update_badges:
     name: "Update members data"
+    if: github.repository_owner == 'Qiskit'
     runs-on: ubuntu-latest
     steps:
     - name: Setup variables
