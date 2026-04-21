@@ -138,6 +138,7 @@ jobs:
       run: |
         unset CI
         tox -ecoverage
+        coverage xml
     - name: Coveralls upload
       if: success() && steps.changes.outputs.changed == 'true'
       uses: coverallsapp/github-action@v2
