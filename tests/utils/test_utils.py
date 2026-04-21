@@ -5,7 +5,6 @@ from unittest import TestCase
 
 from ecosystem.member import Member
 from ecosystem.submission_parser import parse_submission_issue
-from ecosystem.dao import DAO
 
 
 class TestUtils(TestCase):
