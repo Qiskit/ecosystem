@@ -10,16 +10,25 @@ jobs:
     steps:
     - uses: actions/checkout@v6
       with:
-        fetch-depth: 0
+        fetch-depth: 0  # get the full history
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v47
+    - name: List all changed files
+      run: |
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          echo "$file was changed"
+        done
     - name: Check if /ecosystem or /tests changed
       id: changes
       run: |
-        if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(ecosystem|tests)/' ; then
-          echo "changed=true" >> $GITHUB_OUTPUT
-        else
-          echo "changed=false" >> $GITHUB_OUTPUT
-        fi
-        echo $GITHUB_OUTPUT
+        echo "changed=false" >> $GITHUB_OUTPUT
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          if echo $file | grep -E '^(ecosystem|tests)/'; then
+            echo "changed=true"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+        done
     - name: Set up Python 3.13
       if: steps.changes.outputs.changed == 'true'
       uses: actions/setup-python@v6
@@ -45,16 +54,25 @@ jobs:
     steps:
     - uses: actions/checkout@v6
       with:
-        fetch-depth: 0
+        fetch-depth: 0  # get the full history
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v47
+    - name: List all changed files
+      run: |
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          echo "$file was changed"
+        done
     - name: Check if /ecosystem or /tests changed
       id: changes
       run: |
-        if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -E '^(ecosystem|tests)/'; then
-          echo "changed=true" >> $GITHUB_OUTPUT
-        else
-          echo "changed=false" >> $GITHUB_OUTPUT
-        fi
-        echo $GITHUB_OUTPUT
+        echo "changed=false" >> $GITHUB_OUTPUT
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          if echo $file | grep -E '^(ecosystem|tests)/'; then
+            echo "changed=true"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+        done
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
       with:
@@ -70,6 +88,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
+        pip install coverage
     - name: Test using tox envs
       if: steps.changes.outputs.changed == 'true'
       run: |
