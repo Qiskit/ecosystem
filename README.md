@@ -6,6 +6,7 @@
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![Sourcecode tests](https://github.com/Qiskit/ecosystem/actions/workflows/tests.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/tests.yml)
 [![Deploy Website](https://github.com/Qiskit/ecosystem/actions/workflows/deploy-website.yml/badge.svg?event=push)](https://github.com/Qiskit/ecosystem/actions/workflows/deploy-website.yml)
+[![Coverage Status](https://coveralls.io/repos/github/Qiskit/ecosystem/badge.svg)](https://coveralls.io/github/Qiskit/ecosystem)
 
 <!--lint enable double-link-->
 
