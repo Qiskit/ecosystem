@@ -96,7 +96,7 @@ jobs:
     - name: Check if /ecosystem or /tests changed
       id: changes
       run: |
-        if echo ${{ steps.changed-files.outputs.all_changed_files }} | grep -E '^(ecosystem|tests)/'; then
+        if echo ${{ steps.changed-files.outputs.all_changed_files }} | grep -f -E '^(ecosystem|tests)/'; then
           echo "changed=true"
         echo "changed=true" >> $GITHUB_OUTPUT
         else
