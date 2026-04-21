@@ -96,14 +96,13 @@ jobs:
     - name: Check if /ecosystem or /tests changed
       id: changes
       run: |
-        if echo "${{ steps.changed-files.outputs.all_changed_files }}" | grep -E '^(ecosystem|tests)/'; then
-          echo "changed=true"
-        echo "changed=true" >> $GITHUB_OUTPUT
-        else
-          echo "changed=false"
         echo "changed=false" >> $GITHUB_OUTPUT
-        fi
-        echo $GITHUB_OUTPUT
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          if echo $file | grep -E '^(ecosystem|tests)/'; then
+            echo "changed=true"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+        done
     - name: Set up Python 3.13
       if: steps.changes.outputs.changed == 'true'
       uses: actions/setup-python@v6
