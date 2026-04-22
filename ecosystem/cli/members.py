@@ -405,8 +405,8 @@ class CliMembers:
                 CliMembers.filter_data(member.to_dict(), member_data_to_export)
                 for member in self.dao.get_all()
             ],
-            "labels": CliMembers.load_labels_toml(
-                Path(self.resources_dir, "labels.toml"), labels_data_to_export
+            "labels": CliMembers.load_classifications_toml(
+                Path(self.resources_dir, "classifications.toml"), labels_data_to_export
             ),
         }
         Path(output_file).write_text(
@@ -414,8 +414,8 @@ class CliMembers:
         )
 
     @staticmethod
-    def load_labels_toml(filename, label_data_to_export):
-        """loads labels.toml and returns a json with the mapping in label_data_to_export"""
+    def load_classifications_toml(filename, label_data_to_export):
+        """loads classifications.toml and returns a json with the mapping in label_data_to_export"""
         with open(filename, "rb") as f:
             data = tomllib.load(f)
         return CliMembers.filter_data(data, label_data_to_export)
