@@ -30,7 +30,9 @@ class CliMembers:
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = f"{self.current_dir}/resources"
-        self.labels_toml = ClassificationsToml(resources_dir=self.resources_dir)
+        self.classifications_toml = ClassificationsToml(
+            resources_dir=self.resources_dir
+        )
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -130,7 +132,7 @@ class CliMembers:
         lines = []
 
         classification_names = sorted(
-            getattr(self.labels_toml, f"{classification_singular}_names")
+            getattr(self.classifications_toml, f"{classification_singular}_names")
         )
         for other in ["Other", "Other interface", "Other language"]:
             if other in classification_names:
@@ -140,17 +142,17 @@ class CliMembers:
 
         for name in classification_names:
             description = getattr(
-                self.labels_toml, f"{classification_singular}_descriptions"
+                self.classifications_toml, f"{classification_singular}_descriptions"
             )[name]
             section_name = getattr(
-                self.labels_toml, f"{classification_singular}_sections"
+                self.classifications_toml, f"{classification_singular}_sections"
             )[name] or slugify(name)
             section_text_md = os.path.join(
                 self.resources_dir, classification, f"{section_name}.md"
             )
             short_description.append(
                 {
-                    classification_singular.capitalize(): f"{name}",
+                    classification_singular.capitalize(): f"[{name}](#{section_name})",
                     "Short description": description or "",
                 }
             )
