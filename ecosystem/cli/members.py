@@ -103,15 +103,15 @@ class CliMembers:
         self.update_assets_interfaces()
 
     def update_assets_categories(self):
-        """Updates category descriptions in docs/assets/categories.json and docs/assets/categories.md"""
+        """Updates categories.json and categories.md docs/assets/"""
         self.update_assets_classification("categories", "category")
 
     def update_assets_labels(self):
-        """Updates category descriptions in docs/assets/labels.json and docs/assets/labels.md"""
+        """Updates labels.json and labels.md docs/assets/"""
         self.update_assets_classification("labels", "label")
 
     def update_assets_interfaces(self):
-        """Updates category descriptions in docs/assets/interfaces.json and docs/assets/interfaces.md"""
+        """Updates interfaces.json and interfaces.md docs/assets/"""
         self.update_assets_classification("interfaces", "interface")
 
     def update_assets_classification(self, classification, classification_singular):

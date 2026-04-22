@@ -22,10 +22,12 @@ class ClassificationsToml:
 
     @property
     def category_descriptions(self):
+        """Returns dict category_name -> description"""
         return {c["name"]: c.get("description") for c in self._data["categories"]}
 
     @property
     def category_sections(self):
+        """Returns dict category_name -> section"""
         return {c["name"]: c.get("section") for c in self._data["categories"]}
 
     @property
@@ -35,10 +37,12 @@ class ClassificationsToml:
 
     @property
     def label_descriptions(self):
+        """Returns dict label_name -> description"""
         return {c["name"]: c.get("description") for c in self._data["labels"]}
 
     @property
     def label_sections(self):
+        """Returns dict label_name -> section"""
         return {c["name"]: c.get("section") for c in self._data["labels"]}
 
     @property
@@ -48,10 +52,12 @@ class ClassificationsToml:
 
     @property
     def interface_descriptions(self):
+        """Returns dict interface_name -> description"""
         return {c["name"]: c.get("description") for c in self._data["interfaces"]}
 
     @property
     def interface_sections(self):
+        """Returns dict interface_name -> section"""
         return {c["name"]: c.get("section") for c in self._data["interfaces"]}
 
     @property
