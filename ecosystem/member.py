@@ -138,7 +138,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         It is used to create the TOML file name
         """
         flat_name = slugify(
-            self.name, max_length=11, separator="", replacements=[["qiskit", "qk"]]
+            self.name,
+            max_length=11,
+            separator="",
+            stopwords=["qiskit"],
+            replacements=[["qiskit-addon", ""]],
         )
         return f"{flat_name}_{self.short_uuid}"
 
