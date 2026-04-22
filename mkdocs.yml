@@ -8,10 +8,21 @@ theme:
   logo: img/logo.png
   features:
     - content.code.copy
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.integrate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
 
 plugins:
   - search
   - table-reader
 
 nav:
+  - Categories: categories.md
+  - Labels: labels.md
+  - Interfaces: interfaces.md
   - Badges: badges.md
