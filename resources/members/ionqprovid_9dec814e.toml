@@ -8,7 +8,6 @@ created_at = 1670427446.011674
 updated_at = 1670427446.011675
 category = "Compute provider"
 uuid = "9dec814e-feb8-49c2-818a-f6a2503d38c5"
-badge = "https://qisk.it/e-9dec814e"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-ionq"
@@ -23,6 +22,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-19T16:13:02Z
 last_activity = 2026-04-11T15:26:14Z
+
+[badge]
+url = "https://qisk.it/e-9dec814e"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:10:21.099978

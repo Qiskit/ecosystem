@@ -10,7 +10,6 @@ category = "Transpiler plugin"
 documentation = "https://mwpwalshe.github.io/qb-compiler/"
 packages = []
 uuid = "2334d2a1-93bc-4652-8e15-ac395b2d3dd9"
-badge = "https://qisk.it/e-2334d2a1"
 
 [github]
 url = "https://github.com/mwpwalshe/qb-compiler"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-11T11:48:30Z
 last_activity = 2026-04-11T11:48:31Z
+
+[badge]
+url = "https://qisk.it/e-2334d2a1"
+style = "flat"
 
 [pypi.qb-compiler]
 package_name = "qb-compiler"

@@ -8,7 +8,6 @@ ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-slc/"
 uuid = "189aa71b-6ad7-4c23-8ae5-81c369e415b3"
-badge = "https://qisk.it/e-189aa71b"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-slc"
@@ -23,6 +22,10 @@ total_dependent_repositories = 1
 total_dependent_packages = 0
 last_commit = 2026-04-02T08:24:28Z
 last_activity = 2026-04-03T01:00:19Z
+
+[badge]
+url = "https://qisk.it/e-189aa71b"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:55.349896

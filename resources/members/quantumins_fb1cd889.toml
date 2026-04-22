@@ -7,7 +7,6 @@ created_at = 1678827878.401835
 updated_at = 1678827878.401836
 category = "SDK"
 uuid = "fb1cd889-961a-4029-bb8f-229e4c4e12a4"
-badge = "https://qisk.it/e-fb1cd889"
 
 [github]
 url = "https://github.com/QuTech-Delft/quantuminspire"
@@ -21,6 +20,10 @@ total_dependent_repositories = 26
 total_dependent_packages = 3
 last_commit = 2026-04-16T13:11:49Z
 last_activity = 2026-04-16T13:13:49Z
+
+[badge]
+url = "https://qisk.it/e-fb1cd889"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:48.759886

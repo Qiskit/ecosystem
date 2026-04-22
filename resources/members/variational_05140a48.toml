@@ -9,7 +9,6 @@ created_at = 1683906067.55753
 updated_at = 1683906067.557535
 category = "Application"
 uuid = "05140a48-184b-491e-ac3c-d613ca05b3c8"
-badge = "https://qisk.it/e-05140a48"
 
 [github]
 url = "https://github.com/QuantumApplicationLab/vqls-prototype"
@@ -22,6 +21,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-11-27T16:59:01Z
 last_activity = 2026-04-11T06:48:04Z
+
+[badge]
+url = "https://qisk.it/e-05140a48"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:54.329964

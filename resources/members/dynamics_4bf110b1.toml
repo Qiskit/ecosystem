@@ -9,7 +9,6 @@ updated_at = 1628883441.121111
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-dynamics/"
 uuid = "4bf110b1-5e54-4540-8338-d7d0fb7801d0"
-badge = "https://qisk.it/e-4bf110b1"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-dynamics"
@@ -24,6 +23,10 @@ total_dependent_packages = 0
 archived = true
 last_commit = 2025-10-07T18:43:19Z
 last_activity = 2026-04-10T09:08:42Z
+
+[badge]
+url = "https://qisk.it/e-4bf110b1"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:03.275862

@@ -8,7 +8,6 @@ labels = [ "optimization",]
 category = "SDK"
 documentation = "https://jij-inc.github.io/Qamomile/"
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
-badge = "https://qisk.it/e-50cd2126"
 
 [github]
 url = "https://github.com/Jij-Inc/Qamomile"
@@ -21,6 +20,10 @@ total_dependent_repositories = 2
 total_dependent_packages = 1
 last_commit = 2026-04-16T07:24:19Z
 last_activity = 2026-04-16T07:24:19Z
+
+[badge]
+url = "https://qisk.it/e-50cd2126"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:03.521067

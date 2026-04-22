@@ -10,7 +10,6 @@ category = "Application"
 reference_paper = "https://arxiv.org/abs/2301.00560"
 documentation = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
 uuid = "b4d78374-40eb-4118-bb22-45e97b2dc0c5"
-badge = "https://qisk.it/e-b4d78374"
 
 [github]
 url = "https://github.com/qognitive/fast-pauli"
@@ -25,6 +24,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-04-09T21:51:22Z
 last_activity = 2025-10-31T17:43:20Z
+
+[badge]
+url = "https://qisk.it/e-b4d78374"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:56.127265

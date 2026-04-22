@@ -8,7 +8,6 @@ interface = [ "Python",]
 category = "Circuit simulator"
 packages = []
 uuid = "e2beb4ad-418d-4dca-b789-02567d385528"
-badge = "https://qisk.it/e-e2beb4ad"
 
 [github]
 url = "https://github.com/keunjunpark/qiskit-trev"
@@ -20,6 +19,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-14T20:40:51Z
 last_activity = 2026-04-14T20:40:52Z
+
+[badge]
+url = "https://qisk.it/e-e2beb4ad"
+style = "flat"
 
 [pypi.qiskit-trev]
 package_name = "qiskit-trev"

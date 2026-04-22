@@ -9,7 +9,6 @@ created_at = 1758737407.8760931
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-mpf/"
 uuid = "99eb5c40-00ee-439c-971e-e3e2a523c83a"
-badge = "https://qisk.it/e-99eb5c40"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-mpf"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-30T02:18:29Z
 last_activity = 2026-03-30T02:18:32Z
+
+[badge]
+url = "https://qisk.it/e-99eb5c40"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:42.662976

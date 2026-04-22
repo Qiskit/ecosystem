@@ -9,7 +9,6 @@ created_at = 1758737407.8760931
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-aqc-tensor/"
 uuid = "5ad8eedc-2e26-4ca9-92de-f1a5d3f3b097"
-badge = "https://qisk.it/e-5ad8eedc"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-aqc-tensor"
@@ -24,6 +23,10 @@ total_dependent_repositories = 7
 total_dependent_packages = 0
 last_commit = 2026-03-31T14:22:14Z
 last_activity = 2026-04-02T16:40:25Z
+
+[badge]
+url = "https://qisk.it/e-5ad8eedc"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:45.190367

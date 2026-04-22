@@ -10,7 +10,6 @@ category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qmap"
 uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"
-badge = "https://qisk.it/e-d16209fb"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/qmap"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-13T07:26:47Z
 last_activity = 2026-04-14T23:46:01Z
+
+[badge]
+url = "https://qisk.it/e-d16209fb"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:44.628277

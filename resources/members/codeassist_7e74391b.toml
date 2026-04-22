@@ -6,7 +6,6 @@ ibm_maintained = true
 category = "Tooling"
 packages = [ "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode", "https://open-vsx.org/extension/qiskit/qiskit-vscode",]
 uuid = "7e74391b-0b86-46d6-bcd5-d2305c9e5338"
-badge = "https://qisk.it/e-7e74391b"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-code-assistant-vscode"
@@ -21,6 +20,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-14T14:12:01Z
 last_activity = 2026-04-14T14:12:02Z
+
+[badge]
+url = "https://qisk.it/e-7e74391b"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:01.784336

@@ -5,7 +5,6 @@ licence = "Apache License 2.0"
 labels = [ "circuit manipulation", "research",]
 category = "SDK"
 uuid = "727120b2-7559-453e-beb3-0ab33fb60a4a"
-badge = "https://qisk.it/e-727120b2"
 
 [github]
 url = "https://github.com/qclib/qclib"
@@ -18,6 +17,10 @@ total_dependent_repositories = 14
 total_dependent_packages = 1
 last_commit = 2026-04-07T20:14:09Z
 last_activity = 2026-04-07T20:14:31Z
+
+[badge]
+url = "https://qisk.it/e-727120b2"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:59.186666

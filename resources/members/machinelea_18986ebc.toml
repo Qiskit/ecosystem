@@ -8,7 +8,6 @@ updated_at = 1636403010.012956
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-machine-learning/"
 uuid = "18986ebc-e138-4998-8c52-16359961af0a"
-badge = "https://qisk.it/e-18986ebc"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-machine-learning"
@@ -22,6 +21,10 @@ total_dependent_repositories = 542
 total_dependent_packages = 24
 last_commit = 2026-04-08T09:24:32Z
 last_activity = 2026-04-15T19:32:08Z
+
+[badge]
+url = "https://qisk.it/e-18986ebc"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:57.127469

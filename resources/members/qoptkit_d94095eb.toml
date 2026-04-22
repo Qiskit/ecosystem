@@ -8,7 +8,6 @@ labels = []
 category = "Converter"
 documentation = "https://soqcsadmin.github.io/QoptKIT/"
 uuid = "d94095eb-85cf-42ea-a70e-fa1735225b68"
-badge = "https://qisk.it/e-d94095eb"
 
 [github]
 url = "https://github.com/SOQCSAdmin/QoptKIT"
@@ -21,6 +20,10 @@ description = "Optical circuits in Qiskit. Translate Qiskit circuits to quantum-
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-03-10T17:29:40Z
+
+[badge]
+url = "https://qisk.it/e-d94095eb"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:01.199922

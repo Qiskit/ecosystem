@@ -7,7 +7,6 @@ created_at = 1678827878.782751
 updated_at = 1678827878.782752
 category = "Converter"
 uuid = "cfbecefc-6cf7-49a6-99c5-049dae76fdcc"
-badge = "https://qisk.it/e-cfbecefc"
 
 [github]
 url = "https://github.com/PennyLaneAI/pennylane-qiskit"
@@ -21,6 +20,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-12T02:01:56Z
 last_activity = 2026-04-12T02:07:11Z
+
+[badge]
+url = "https://qisk.it/e-cfbecefc"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:52.999175

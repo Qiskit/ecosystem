@@ -8,7 +8,6 @@ updated_at = 1636403009.368609
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-finance/"
 uuid = "8ebeec26-5043-4423-9cdc-bfa92bd4ad63"
-badge = "https://qisk.it/e-8ebeec26"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-finance"
@@ -22,6 +21,10 @@ total_dependent_repositories = 142
 total_dependent_packages = 5
 last_commit = 2025-12-12T19:08:07Z
 last_activity = 2026-04-14T10:31:55Z
+
+[badge]
+url = "https://qisk.it/e-8ebeec26"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:04.764612

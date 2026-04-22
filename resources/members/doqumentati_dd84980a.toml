@@ -9,7 +9,6 @@ category = "Other"
 documentation = "https://doqumentation.org/features"
 packages = []
 uuid = "dd84980a-80a7-4aca-8d8f-8ca0a4177144"
-badge = "https://qisk.it/e-dd84980a"
 
 [github]
 url = "https://github.com/JanLahmann/doQumentation"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-16T06:37:52Z
 last_activity = 2026-04-16T06:37:53Z
+
+[badge]
+url = "https://qisk.it/e-dd84980a"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:52.502576

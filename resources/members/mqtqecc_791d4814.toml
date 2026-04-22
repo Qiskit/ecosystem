@@ -9,7 +9,6 @@ website = "https://mqt.readthedocs.io"
 category = "Other"
 documentation = "https://mqt.readthedocs.io/projects/qecc/en/latest/"
 uuid = "791d4814-0ced-4f5a-94c5-908ceb4b5a90"
-badge = "https://qisk.it/e-791d4814"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/qecc"
@@ -23,6 +22,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-13T03:33:43Z
 last_activity = 2026-04-14T16:28:50Z
+
+[badge]
+url = "https://qisk.it/e-791d4814"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:45.694636

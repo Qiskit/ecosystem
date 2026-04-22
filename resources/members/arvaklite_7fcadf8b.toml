@@ -9,7 +9,6 @@ website = "https://arvak.io"
 category = "Transpiler plugin"
 packages = []
 uuid = "7fcadf8b-f043-4eac-a491-9783a1c00cfe"
-badge = "https://qisk.it/e-7fcadf8b"
 
 [github]
 url = "https://github.com/hiq-lab/arvak-lite"
@@ -22,6 +21,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-30T20:28:39Z
 last_activity = 2026-03-30T20:28:40Z
+
+[badge]
+url = "https://qisk.it/e-7fcadf8b"
+style = "flat"
 
 [pypi.arvak-lite]
 package_name = "arvak-lite"

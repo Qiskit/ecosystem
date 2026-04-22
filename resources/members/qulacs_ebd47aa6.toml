@@ -7,7 +7,6 @@ labels = [ "provider",]
 category = "Compute provider"
 documentation = "https://qiskit-qulacs.netlify.app/"
 uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
-badge = "https://qisk.it/e-ebd47aa6"
 
 [github]
 url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
@@ -22,6 +21,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-12-15T18:09:13Z
 last_activity = 2025-12-15T18:09:14Z
+
+[badge]
+url = "https://qisk.it/e-ebd47aa6"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:35.907114

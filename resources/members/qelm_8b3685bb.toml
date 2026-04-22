@@ -9,7 +9,6 @@ category = "Application"
 reference_paper = "https://doi.org/10.13140/RG.2.2.11844.90243"
 documentation = "https://github.com/R-D-BioTech-Alaska/Qelm/tree/main/Documentation"
 uuid = "8b3685bb-451f-4d3d-abac-61a5ce48708f"
-badge = "https://qisk.it/e-8b3685bb"
 
 [github]
 url = "https://github.com/R-D-BioTech-Alaska/Qelm"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-16T03:47:52Z
 last_activity = 2026-04-16T03:47:53Z
+
+[badge]
+url = "https://qisk.it/e-8b3685bb"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:40.018949

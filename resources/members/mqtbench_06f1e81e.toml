@@ -10,7 +10,6 @@ category = "Application"
 reference_paper = "https://quantum-journal.org/papers/q-2023-07-20-1062/"
 documentation = "https://mqt.readthedocs.io/projects/bench/en/latest/"
 uuid = "06f1e81e-e82a-4fc2-88b5-60b532248af1"
-badge = "https://qisk.it/e-06f1e81e"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/bench"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-16T08:18:22Z
 last_activity = 2026-04-16T08:18:22Z
+
+[badge]
+url = "https://qisk.it/e-06f1e81e"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:53.582154
