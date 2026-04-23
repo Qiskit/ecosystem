@@ -25,6 +25,11 @@ last_activity = 2026-04-11T15:26:36Z
 url = "https://qisk.it/e-d5d174ee"
 style = "flat"
 
+[checks.G05]
+since = 2026-04-23T22:50:51.723784
+details = "github.archived and member.status must exist and be `archived`"
+importance = "CRITICAL"
+
 [checks.007]
 since = 2026-04-08T16:22:48.509137
 details = "the entry `member.interface` does not exist and it is mandatory"
