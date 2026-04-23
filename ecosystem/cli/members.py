@@ -279,7 +279,7 @@ class CliMembers:
                         f"{checkup.cure_period_in_days - days_since} days left in the cure period"
                         if days_since
                         else "since today, "
-                             f"so {checkup.cure_period_in_days}-day cure period starts now"
+                        f"so {checkup.cure_period_in_days}-day cure period starts now"
                     )
                     self.logger.info(
                         "❌ %s (%s) failed checkup %s (%s)",
