@@ -26,9 +26,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Update Badge data
-      run: python manager.py members update_badge
-
     - name: Update GitHub data
       run: python manager.py members update_github
       env:
@@ -43,7 +40,10 @@ jobs:
     - name: Update checkups data
       run: python manager.py members update_checkups
 
-    - name: Create PR for stats and badges update
+    - name: Update Badge data
+      run: python manager.py members update_badge
+
+    - name: Create PR for new data
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
