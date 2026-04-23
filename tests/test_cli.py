@@ -16,11 +16,12 @@ from ecosystem.member import Member
 def get_community_repo() -> Member:
     """Return main mock repo."""
     return Member(
-        name="mock-qiskit-terra",
-        url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
-        description="Mock description for repo. wsdt",
+        name="mock-qiskit",
+        url="https://github.com/MockQiskit/mock-qiskit",
+        description="Mock description for repo",
         licence="Apache 2.0",
-        labels=["mock", "tests", "wsdt"],
+        labels=["mock", "tests"],
+        badge="https://qisk.it/e",
     )
 
 

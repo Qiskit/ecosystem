@@ -94,7 +94,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         if "julia" in filtered_dict:
             filtered_dict["julia"] = JuliaData.from_dict(filtered_dict["julia"])
         if "badge" in filtered_dict:
-            filtered_dict["badge"] = BadgeData.from_dict(filtered_dict["badge"])
+            filtered_dict["badge"] = (
+                BadgeData(url=filtered_dict["badge"])
+                if isinstance(filtered_dict["badge"], str)
+                else BadgeData.from_dict(filtered_dict["badge"])
+            )
         if "github" in filtered_dict:
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
         if "pypi" in filtered_dict:

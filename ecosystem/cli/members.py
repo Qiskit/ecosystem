@@ -81,10 +81,12 @@ class CliMembers:
         Path(output_directory).mkdir(parents=True, exist_ok=True)
         for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
+            if project.badge is None:
+                continue
             data = {
                 "schemaVersion": project.badge.schemaVersion or 1,
                 "label": project.badge.label or "Qiskit Ecosystem",
-                "namedLogo": project.badge.namedLogo or "Qiskit",
+                "namedLogo": "Qiskit",
                 "message": project.badge.message or project.name,
                 "color": project.badge.color or "6929C4",
                 "isError": project.badge.isError or "true",
