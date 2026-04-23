@@ -182,3 +182,27 @@ description = "The project needs to review some of the check up issues to stay i
 [[status]]
 name = "Alumni"
 description = "The project used to be part of the Qiskit Ecosystem"
+
+[[support]]
+name = "stable"
+description = "The project is actively maintained and the code is considered stable. Recommended for production."
+
+[[support]]
+name = "archived"
+description = "The project is no longer supported and the code repository is archived."
+
+[[support]]
+name = "abandoned"
+description = "The project appears to be abandoned, as there has been no activity in the last 2 years."
+
+[[support]]
+name = "outdated"
+description = "The project does not run with supported versions of Qiskit."
+
+[[support]]
+name = "experimental"
+description = "The project is under active development and breaking changes may be introduced at any point. Use in production with caution."
+
+[[support]]
+name = "bugfixing"
+description = "The project is maintained and bugs are being fixed, but no new features or improvements are being added."

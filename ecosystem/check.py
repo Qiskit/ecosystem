@@ -25,6 +25,13 @@ class ChecksToml:
         """Given an ID for a check, the details"""
         return self._data[checkup_id]
 
+    def importance(self, importance_name):
+        """Given an importance_name, returns the details"""
+        for importance in self._data["importance"]:
+            if importance["name"] == importance_name:
+                return importance
+        raise KeyError("importance name not found")
+
     def id_by_pytest_node(self, node_id):
         """Given a PyTest node ID, find the test ID"""
         for id_, checkup in self._data.items():
@@ -40,7 +47,7 @@ class CheckData(JsonSerializable):
     The validation data related to a project
     """
 
-    labels_toml = ChecksToml()
+    checks_toml = ChecksToml()
 
     def __init__(
         self, id_: str, xfailed=None, since=None, details=None, discussion=None, **_
@@ -60,15 +67,15 @@ class CheckData(JsonSerializable):
     @property
     def importance(self):
         """get the importance of the check"""
-        if "importance" in self.labels_toml.checkup(self.id):
-            return self.labels_toml.checkup(self.id)["importance"]
+        if "importance" in self.checks_toml.checkup(self.id):
+            return self.checks_toml.checkup(self.id)["importance"]
         return None
 
     def __repr__(self):
         return str(self.to_dict())
 
     def __getattr__(self, name):
-        return self.labels_toml.checkup(self.id)[name]
+        return self.checks_toml.checkup(self.id)[name]
 
     @classmethod
     def from_report(cls, pytest_report):
@@ -76,7 +83,7 @@ class CheckData(JsonSerializable):
         assertion_msg = (
             pytest_report.longreprtext.partition("\n")[0].split(":", 1)[1].strip()
         )
-        test_id = cls.labels_toml.id_by_pytest_node(pytest_report.nodeid)
+        test_id = cls.checks_toml.id_by_pytest_node(pytest_report.nodeid)
         if hasattr(pytest_report, "wasxfail") and pytest_report.wasxfail:
             return CheckData(
                 test_id, details=assertion_msg, xfailed=pytest_report.wasxfail
@@ -90,8 +97,20 @@ class CheckData(JsonSerializable):
 
     def importances(self):
         """Returns dict name->description with the possible importance values"""
-        return {i["name"]: i["description"] for i in self.labels_toml["importance"]}
+        return {i["name"]: i["description"] for i in self.checks_toml["importance"]}
 
     def categories(self):
         """Returns dict name->description with the categories"""
-        return {i["name"]: i["description"] for i in self.labels_toml["categories"]}
+        return {i["name"]: i["description"] for i in self.checks_toml["categories"]}
+
+    @property
+    def cure_period_in_days(self):
+        """The check level cure_period_in_days has precedence over the importance level"""
+        cure_period_in_days = None
+        importance_level = self.checks_toml.importance(self.importance)
+        if "cure_period_in_days" in importance_level:
+            cure_period_in_days = importance_level["cure_period_in_days"]
+        check_level = self.checks_toml.checkup(self.id)
+        if "cure_period_in_days" in check_level:
+            cure_period_in_days = check_level["cure_period_in_days"]
+        return cure_period_in_days
