@@ -303,6 +303,7 @@ class CliMembers:
             for check in project.checks.values():
                 if check.xfailed:
                     continue
+                # check.cure_period_in_days
                 ...  # check if the tolarenace passed (alumni) or not (under review).
 
     @staticmethod

@@ -21,9 +21,10 @@ class ClassificationsToml:
         self._data = data
 
     def __getattr__(self, attr):
-        """
+        """Classifications are categories, labels, and other from classifications.toml
         - <classification>_names: List of the name of a particular classificaiton
         - <classification>_descriptions: Dict <classificaiton>_name -> description
+        - <classification>_sections: Dict <classificaiton>_name -> section
         """
         if attr.endswith("_names"):
             classification = attr[: -len("_names")]
@@ -35,18 +36,3 @@ class ClassificationsToml:
             classification = attr[: -len("_sections")]
             return {c["name"]: c.get("section") for c in self._data[classification]}
         raise AttributeError(attr)
-
-    @property
-    def category_sections(self):
-        """Returns dict category_name -> section"""
-        return {c["name"]: c.get("section") for c in self._data["categories"]}
-
-    @property
-    def label_sections(self):
-        """Returns dict label_name -> section"""
-        return {c["name"]: c.get("section") for c in self._data["labels"]}
-
-    @property
-    def interface_sections(self):
-        """Returns dict interface_name -> section"""
-        return {c["name"]: c.get("section") for c in self._data["interfaces"]}
