@@ -105,9 +105,14 @@ class CliMembers:
     def update_docs_assets(self):
         """Updates the files in docs/assets/ to build the docs"""
         self.update_badge_list()
+        self.update_assets_status()
         self.update_assets_categories()
         self.update_assets_labels()
         self.update_assets_interfaces()
+
+    def update_assets_status(self):
+        """Updates categories.json and categories.md docs/assets/"""
+        self.update_assets_classification("status", "status")
 
     def update_assets_categories(self):
         """Updates categories.json and categories.md docs/assets/"""
@@ -137,7 +142,7 @@ class CliMembers:
         lines = []
 
         classification_names = sorted(
-            getattr(self.classifications_toml, f"{classification_singular}_names")
+            getattr(self.classifications_toml, f"{classification}_names")
         )
         for other in ["Other", "Other interface", "Other language"]:
             if other in classification_names:
@@ -147,10 +152,10 @@ class CliMembers:
 
         for name in classification_names:
             description = getattr(
-                self.classifications_toml, f"{classification_singular}_descriptions"
+                self.classifications_toml, f"{classification}_descriptions"
             )[name]
             section_name = getattr(
-                self.classifications_toml, f"{classification_singular}_sections"
+                self.classifications_toml, f"{classification}_sections"
             )[name] or slugify(name)
             section_text_md = os.path.join(
                 self.resources_dir, classification, f"{section_name}.md"
@@ -291,6 +296,14 @@ class CliMembers:
                     project.name_id,
                 )
             self.dao.update(project.name_id, checks=project.checks)
+
+    def update_status(self, name=None):
+        """Check if a project should be moved to "Under review" or "Alumni" """
+        for project in self.dao.get_all(name):
+            for check in project.checks.values():
+                if check.xfailed:
+                    continue
+                ...  # check if the tolarenace passed (alumni) or not (under review).
 
     @staticmethod
     def filter_data(

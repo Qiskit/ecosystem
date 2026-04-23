@@ -20,10 +20,21 @@ class ClassificationsToml:
             data = tomllib.load(f)
         self._data = data
 
-    @property
-    def category_descriptions(self):
-        """Returns dict category_name -> description"""
-        return {c["name"]: c.get("description") for c in self._data["categories"]}
+    def __getattr__(self, attr):
+        """
+        - <classification>_names: List of the name of a particular classificaiton
+        - <classification>_descriptions: Dict <classificaiton>_name -> description
+        """
+        if attr.endswith("_names"):
+            classification = attr[: -len("_names")]
+            return [c["name"] for c in self._data[classification]]
+        elif attr.endswith("_descriptions"):
+            classification = attr[: -len("_descriptions")]
+            return {c["name"]: c.get("description") for c in self._data[classification]}
+        elif attr.endswith("_sections"):
+            classification = attr[: -len("_sections")]
+            return {c["name"]: c.get("section") for c in self._data[classification]}
+        raise AttributeError(attr)
 
     @property
     def category_sections(self):
@@ -31,36 +42,11 @@ class ClassificationsToml:
         return {c["name"]: c.get("section") for c in self._data["categories"]}
 
     @property
-    def category_names(self):
-        """List of categories, just the names"""
-        return [c["name"] for c in self._data["categories"]]
-
-    @property
-    def label_descriptions(self):
-        """Returns dict label_name -> description"""
-        return {c["name"]: c.get("description") for c in self._data["labels"]}
-
-    @property
     def label_sections(self):
         """Returns dict label_name -> section"""
         return {c["name"]: c.get("section") for c in self._data["labels"]}
 
     @property
-    def label_names(self):
-        """List of labels, just the names"""
-        return [c["name"] for c in self._data["labels"]]
-
-    @property
-    def interface_descriptions(self):
-        """Returns dict interface_name -> description"""
-        return {c["name"]: c.get("description") for c in self._data["interfaces"]}
-
-    @property
     def interface_sections(self):
         """Returns dict interface_name -> section"""
         return {c["name"]: c.get("section") for c in self._data["interfaces"]}
-
-    @property
-    def interface_names(self):
-        """List of intefaces, just the names"""
-        return [c["name"] for c in self._data["interfaces"]]
