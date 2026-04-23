@@ -13,6 +13,7 @@ affects = ["member.interface.*"]
 category = "SUBMISSION"
 checker = "test_labels.py::test_valid_interfaces"
 importance = "CRITICAL"
+tolerance_days = 99999
 
 [008]
 title = "Category have to exist"
@@ -132,10 +133,12 @@ importance = "CRITICAL"
 [[importance]]
 name = "CRITICAL"
 description = "This is a must-pass and there is no room for negotiation. Failing this test results in immediate removal."
+tolerance_days = 0
 
 [[importance]]
 name = "IMPORTANT"
 description = "If this check is on a candidate, the merge wont happen until the check passes. If affects an existing member, there will be a grace period for fixing it."
+tolerance_days = 90
 
 [[importance]]
 name = "STRONG-RECOMMENDATION"
@@ -160,11 +163,14 @@ description = """General criteria that might be implemented differently, dependi
 [[categories]]
 name = "ACTIVITY"
 description = "The project might not have a level of activity to be considered well-maintained."
+tolerance_days = 90
 
 [[categories]]
 name = "OSS"
 description = "There is an issue with some of the open-source aspect of the project."
+tolerance_days = 90
 
 [[categories]]
 name = "OUT-OF-DATE"
 description = "The project might not follow the last best-practices or connects to Qiskit in a way that is considered old-fashioned, currently unsupported, or deprecated."
+tolerance_days = 180
