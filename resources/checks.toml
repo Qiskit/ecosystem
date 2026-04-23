@@ -90,6 +90,15 @@ related_to = ["PQ2"]
 description = "If the software depends on Qiskit SDK in some way, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
 importance = "CRITICAL"
 
+[G05]
+title = "GitHub repository is archived"
+applies_to = "GitHub projects"
+affects = ['github.archived', "status != archived"]
+category = "ACTIVITY"
+description = "Projects that are not paper-assets and are available on an archived GitHub repository should have `archived` status."
+importance = "CRITICAL"
+checker = "test_github.py::test_archived"
+
 [G06]
 title = "Have maintainer activity within the last 6 months"
 applies_to = "GitHub projects"
