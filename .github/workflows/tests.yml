@@ -136,6 +136,7 @@ jobs:
     - name: Run tests with coverage
       if: steps.changes.outputs.changed == 'true'
       run: |
+        unset CI
         tox -ecoverage
         coverage xml  # generates coverage.xml
 
