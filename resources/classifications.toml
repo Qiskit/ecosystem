@@ -166,3 +166,27 @@ description = "Software has a web inteface"
 [[interfaces]]
 name = "Other interface"
 description = "The way to interact with this software is not listed yet"
+
+[[support]]
+name = "well-maintained and stable"
+description = "The project is actively maintained and stable. Recommended for production."
+
+[[support]]
+name = "archived"
+description = "The project is no longer supported and the code repository is archived."
+
+[[support]]
+name = "abandoned"
+description = "The project appears to be abandoned, as there has been no activity in the last 2 years."
+
+[[support]]
+name = "outdated"
+description = "The project does not run with the supported versions of the stack."
+
+[[support]]
+name = "experimental"
+description = "The project is under active development and breaking changes may be introduced at any point. Use in production with caution."
+
+[[support]]
+name = "bugfixing"
+description = "The project is maintained and bugs are being fixed, but no new features or improvements are being added."
