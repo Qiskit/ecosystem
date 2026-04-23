@@ -10,7 +10,6 @@ category = "Application"
 reference_paper = "https://arxiv.org/abs/2404.10820"
 documentation = "https://mqt.readthedocs.io/projects/qubomaker"
 uuid = "026213b3-a2cd-4281-b49d-8516c6cd73ae"
-badge = "https://qisk.it/e-026213b3"
 
 [github]
 url = "https://github.com/cda-tum/mqt-qubomaker"
@@ -26,6 +25,10 @@ total_dependent_packages = 0
 archived = true
 last_commit = 2025-10-27T13:07:37Z
 last_activity = 2026-03-27T10:17:42Z
+
+[badge]
+url = "https://qisk.it/e-026213b3"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:39.263054

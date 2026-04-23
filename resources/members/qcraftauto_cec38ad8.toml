@@ -10,7 +10,6 @@ category = "Tooling"
 reference_paper = "https://www.worldscientific.com/doi/10.1142/S0218194024410018"
 documentation = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler/blob/main/README.md"
 uuid = "cec38ad8-9737-49e7-a177-3a6850784b6e"
-badge = "https://qisk.it/e-cec38ad8"
 
 [github]
 url = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
@@ -24,6 +23,10 @@ total_dependent_repositories = 3
 total_dependent_packages = 0
 last_commit = 2025-10-28T08:42:08Z
 last_activity = 2025-10-28T08:42:09Z
+
+[badge]
+url = "https://qisk.it/e-cec38ad8"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:39.561385

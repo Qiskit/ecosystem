@@ -9,7 +9,6 @@ created_at = 1758737407.8760931
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-obp/"
 uuid = "e3e67d5e-66f8-4698-9e20-b97cfa8c5c48"
-badge = "https://qisk.it/e-e3e67d5e"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-obp"
@@ -24,6 +23,10 @@ total_dependent_repositories = 12
 total_dependent_packages = 0
 last_commit = 2026-02-01T14:04:58Z
 last_activity = 2026-02-01T14:07:08Z
+
+[badge]
+url = "https://qisk.it/e-e3e67d5e"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:51.012043

@@ -8,7 +8,6 @@ labels = [ "demo",]
 category = "Converter"
 documentation = "https://garymooney.github.io/qmuvi/"
 uuid = "9d4da903-9823-4ae3-a80c-22821b62931e"
-badge = "https://qisk.it/e-9d4da903"
 
 [github]
 url = "https://github.com/garymooney/qmuvi"
@@ -23,6 +22,10 @@ total_dependent_repositories = 4
 total_dependent_packages = 0
 last_commit = 2025-11-19T05:20:57Z
 last_activity = 2026-03-03T09:59:47Z
+
+[badge]
+url = "https://qisk.it/e-9d4da903"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:36.418736

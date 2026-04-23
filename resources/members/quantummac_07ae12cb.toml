@@ -9,7 +9,6 @@ category = "Compute provider"
 documentation = "https://arthurostrauss.github.io/qiskit-qm-provider/"
 packages = []
 uuid = "07ae12cb-5d1e-4d62-bc32-1d8ddfba748e"
-badge = "https://qisk.it/e-07ae12cb"
 
 [github]
 url = "https://github.com/arthurostrauss/qiskit-qm-provider"
@@ -23,6 +22,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-07T12:06:13Z
 last_activity = 2026-04-07T12:06:14Z
+
+[badge]
+url = "https://qisk.it/e-07ae12cb"
+style = "flat"
 
 [pypi.qiskit-qm-provider]
 package_name = "qiskit-qm-provider"

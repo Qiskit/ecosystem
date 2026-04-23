@@ -8,7 +8,6 @@ ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-opt-mapper/"
 uuid = "ef4e120a-f308-4462-86b6-10e7c7ba17c7"
-badge = "https://qisk.it/e-ef4e120a"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-opt-mapper"
@@ -23,6 +22,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-14T07:30:00Z
 last_activity = 2026-04-14T07:30:01Z
+
+[badge]
+url = "https://qisk.it/e-ef4e120a"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:37.450347

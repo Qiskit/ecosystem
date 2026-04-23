@@ -9,7 +9,6 @@ updated_at = 1670402642.907662
 website = "https://ianreppel.org/zoose-codespace/"
 category = "Other"
 uuid = "255ca532-6ea0-404d-a7dc-7181cca2e5bd"
-badge = "https://qisk.it/e-255ca532"
 
 [github]
 url = "https://github.com/ianreppel/zoose-codespace"
@@ -23,6 +22,10 @@ estimated_contributors = 2
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-02-21T13:55:43Z
+
+[badge]
+url = "https://qisk.it/e-255ca532"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:56.382479

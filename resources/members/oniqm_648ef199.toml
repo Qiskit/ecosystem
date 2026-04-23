@@ -6,7 +6,6 @@ labels = [ "provider", "cloud service",]
 created_at = 1715085233.375706
 category = "Compute provider"
 uuid = "648ef199-ace1-4c6b-ae9c-2c0578cde0d5"
-badge = "https://qisk.it/e-648ef199"
 
 [github]
 url = "https://github.com/iqm-finland/qiskit-on-iqm"
@@ -22,6 +21,10 @@ total_dependent_packages = 0
 archived = true
 last_commit = 2025-09-16T16:24:21Z
 last_activity = 2026-04-10T08:00:19Z
+
+[badge]
+url = "https://qisk.it/e-648ef199"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:37.968592

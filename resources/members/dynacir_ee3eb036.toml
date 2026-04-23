@@ -6,7 +6,6 @@ affiliations = "IBM Quantum"
 labels = [ "circuit manipulation",]
 category = "Transpiler plugin"
 uuid = "ee3eb036-bc4d-4342-a36d-af262eed95e4"
-badge = "https://qisk.it/e-ee3eb036"
 
 [github]
 url = "https://github.com/derek-wang-ibm/dynacir"
@@ -19,6 +18,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-03-21T16:41:46Z
 last_activity = 2025-11-19T17:28:13Z
+
+[badge]
+url = "https://qisk.it/e-ee3eb036"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:59.679221

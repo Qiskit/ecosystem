@@ -9,7 +9,6 @@ created_at = 1670427445.627174
 updated_at = 1670427445.627175
 category = "SDK"
 uuid = "d463fcf2-9e98-4d16-af3b-25ec29b650f7"
-badge = "https://qisk.it/e-d463fcf2"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-serverless"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-16T12:52:57Z
 last_activity = 2026-04-16T13:00:57Z
+
+[badge]
+url = "https://qisk.it/e-d463fcf2"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:02.526634

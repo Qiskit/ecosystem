@@ -7,7 +7,6 @@ labels = [ "chemistry",]
 website = "https://qiskit-community.github.io/ffsim/"
 category = "Circuit simulator"
 uuid = "8bbab14b-6cbb-4e09-8040-d5afd359deec"
-badge = "https://qisk.it/e-8bbab14b"
 
 [github]
 url = "https://github.com/qiskit-community/ffsim"
@@ -22,6 +21,10 @@ total_dependent_repositories = 12
 total_dependent_packages = 3
 last_commit = 2026-04-14T21:01:53Z
 last_activity = 2026-04-16T02:59:43Z
+
+[badge]
+url = "https://qisk.it/e-8bbab14b"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:49.504226

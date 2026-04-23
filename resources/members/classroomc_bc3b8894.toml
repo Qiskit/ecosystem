@@ -6,7 +6,6 @@ labels = []
 website = "https://github.com/KMU-quantum-classroom"
 category = "Converter"
 uuid = "bc3b8894-7e2b-4fa3-8cd2-550e58e4133b"
-badge = "https://qisk.it/e-bc3b8894"
 
 [github]
 url = "https://github.com/KMU-quantum-classroom/qiskit-classroom-converter"
@@ -22,6 +21,10 @@ total_dependent_packages = 0
 archived = true
 last_commit = 2025-10-23T06:09:01Z
 last_activity = 2025-12-08T19:31:05Z
+
+[badge]
+url = "https://qisk.it/e-bc3b8894"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:43.886138

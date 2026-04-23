@@ -9,7 +9,6 @@ created_at = 1758737407.8760931
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-sqd/"
 uuid = "fe036eac-635d-46db-931e-2965a8a138a5"
-badge = "https://qisk.it/e-fe036eac"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-sqd"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-02T02:15:39Z
 last_activity = 2026-04-16T02:34:22Z
+
+[badge]
+url = "https://qisk.it/e-fe036eac"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:58.135159

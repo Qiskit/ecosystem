@@ -7,7 +7,6 @@ created_at = 1661869851.523229
 updated_at = 1661869851.523229
 category = "Converter"
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
-badge = "https://qisk.it/e-7c80aef4"
 
 [github]
 url = "https://github.com/Quantinuum/pytket-qiskit"
@@ -21,6 +20,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-02-04T09:27:52Z
 last_activity = 2026-03-12T13:46:54Z
+
+[badge]
+url = "https://qisk.it/e-7c80aef4"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:40.930060

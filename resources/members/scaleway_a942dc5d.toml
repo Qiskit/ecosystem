@@ -8,7 +8,6 @@ website = "https://www.scaleway.com"
 category = "Compute provider"
 documentation = "https://pypi.org/project/qiskit-scaleway/"
 uuid = "a942dc5d-c715-4b23-a9d6-4f2c3ee1d70b"
-badge = "https://qisk.it/e-a942dc5d"
 
 [github]
 url = "https://github.com/scaleway/qiskit-scaleway"
@@ -22,6 +21,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-10T18:13:44Z
 last_activity = 2026-03-11T09:00:04Z
+
+[badge]
+url = "https://qisk.it/e-a942dc5d"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:58.384238

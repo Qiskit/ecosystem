@@ -6,7 +6,6 @@ labels = [ "quantum information",]
 category = "Application"
 reference_paper = "https://ieeexplore.ieee.org/document/8019800"
 uuid = "67bfc31d-8b98-4c10-8ac2-fba3c59e2732"
-badge = "https://qisk.it/e-67bfc31d"
 
 [github]
 url = "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding"
@@ -18,6 +17,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-12-09T18:55:12Z
 last_activity = 2025-12-09T18:55:13Z
+
+[badge]
+url = "https://qisk.it/e-67bfc31d"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:43.152887

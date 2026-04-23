@@ -10,7 +10,6 @@ category = "Circuit simulator"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/ddsim"
 uuid = "b852a97c-eef8-46aa-a635-9c56a66e6ee0"
-badge = "https://qisk.it/e-b852a97c"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/ddsim"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-13T01:41:28Z
 last_activity = 2026-04-13T01:41:19Z
+
+[badge]
+url = "https://qisk.it/e-b852a97c"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:52.263378

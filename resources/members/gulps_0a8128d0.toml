@@ -9,7 +9,6 @@ category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2505.00543"
 packages = []
 uuid = "0a8128d0-2398-411b-a08e-737e2b198387"
-badge = "https://qisk.it/e-0a8128d0"
 
 [github]
 url = "https://github.com/evmckinney9/gulps"
@@ -23,6 +22,10 @@ total_dependent_repositories = 2
 total_dependent_packages = 0
 last_commit = 2026-04-15T21:57:04Z
 last_activity = 2026-04-15T22:42:10Z
+
+[badge]
+url = "https://qisk.it/e-0a8128d0"
+style = "flat"
 
 [pypi.gulps]
 package_name = "gulps"

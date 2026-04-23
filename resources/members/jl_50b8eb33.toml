@@ -7,7 +7,6 @@ ibm_maintained = true
 category = "SDK"
 documentation = "https://qiskit.github.io/Qiskit.jl/"
 uuid = "50b8eb33-872d-44a4-b8f8-5fafa7712393"
-badge = "https://qisk.it/e-50b8eb33"
 
 [github]
 url = "https://github.com/Qiskit/Qiskit.jl"
@@ -33,3 +32,7 @@ homepage = "https://qiskit.github.io/Qiskit.jl/"
 release_date = 2026-02-01
 uuid = "91d9a17d-f964-4b6c-a3c4-2f4cfdea2c95"
 estimated_unique_users = 5
+
+[badge]
+url = "https://qisk.it/e-50b8eb33"
+style = "flat"

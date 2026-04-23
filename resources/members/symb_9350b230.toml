@@ -8,7 +8,6 @@ created_at = 1680254616.930627
 updated_at = 1680254616.930632
 category = "Circuit simulator"
 uuid = "9350b230-d7ca-4d52-b082-9d71303478b7"
-badge = "https://qisk.it/e-9350b230"
 
 [github]
 url = "https://github.com/SimoneGasperini/qiskit-symb"
@@ -23,6 +22,10 @@ total_dependent_repositories = 7
 total_dependent_packages = 1
 last_commit = 2026-03-12T15:30:32Z
 last_activity = 2026-03-12T15:30:36Z
+
+[badge]
+url = "https://qisk.it/e-9350b230"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:57.381383

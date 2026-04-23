@@ -10,7 +10,6 @@ category = "Other"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qcec"
 uuid = "79415931-2d24-4959-ab15-29dfaeb139b4"
-badge = "https://qisk.it/e-79415931"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/qcec"
@@ -24,6 +23,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-13T02:05:01Z
 last_activity = 2026-04-14T16:27:29Z
+
+[badge]
+url = "https://qisk.it/e-79415931"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:59.928875

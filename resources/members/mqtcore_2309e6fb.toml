@@ -10,7 +10,6 @@ category = "Converter"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/core"
 uuid = "2309e6fb-3077-4c8e-af3f-bddf4d6cb458"
-badge = "https://qisk.it/e-2309e6fb"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/core"
@@ -24,6 +23,10 @@ total_dependent_repositories = 43
 total_dependent_packages = 0
 last_commit = 2026-04-15T09:21:59Z
 last_activity = 2026-04-16T13:24:13Z
+
+[badge]
+url = "https://qisk.it/e-2309e6fb"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:35.215603

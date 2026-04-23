@@ -8,7 +8,6 @@ created_at = 1645480343.964777
 updated_at = 1645480343.964777
 category = "Application"
 uuid = "6daa87ef-87ea-4dc9-aeed-3b9e8d202fd9"
-badge = "https://qisk.it/e-6daa87ef"
 
 [github]
 url = "https://github.com/qiskit-community/prototype-quantum-kernel-training"
@@ -23,6 +22,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-03-31T17:02:36Z
 last_activity = 2026-03-29T08:59:49Z
+
+[badge]
+url = "https://qisk.it/e-6daa87ef"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:41.174672

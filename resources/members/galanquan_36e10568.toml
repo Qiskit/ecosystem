@@ -8,7 +8,6 @@ labels = [ "circuit building", "research",]
 category = "Application"
 reference_paper = "https://doi.org/10.48550/arXiv.2311.06760"
 uuid = "36e10568-9c53-4b9b-b658-8907e5e2edb9"
-badge = "https://qisk.it/e-36e10568"
 
 [github]
 url = "https://github.com/albayaty/gala_quantum_library"
@@ -20,6 +19,10 @@ description = "GALA-n Quantum Library"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-10-20T20:35:33Z
+
+[badge]
+url = "https://qisk.it/e-36e10568"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:54.821834

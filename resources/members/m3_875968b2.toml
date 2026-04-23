@@ -10,7 +10,6 @@ updated_at = 1678827878.805164
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-mthree"
 uuid = "875968b2-f9e9-44a9-a5dc-4db9c4805021"
-badge = "https://qisk.it/e-875968b2"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-mthree"
@@ -25,6 +24,10 @@ total_dependent_repositories = 117
 total_dependent_packages = 10
 last_commit = 2025-08-06T19:05:30Z
 last_activity = 2026-01-20T09:00:57Z
+
+[badge]
+url = "https://qisk.it/e-875968b2"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:51.766428

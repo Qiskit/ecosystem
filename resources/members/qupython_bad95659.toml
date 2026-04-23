@@ -6,7 +6,6 @@ contact_info = "frankharkins@hotmail.co.uk"
 labels = [ "circuit building",]
 category = "SDK"
 uuid = "bad95659-420a-4529-97d0-80e52532fc90"
-badge = "https://qisk.it/e-bad95659"
 
 [github]
 url = "https://github.com/frankharkins/quPython"
@@ -21,6 +20,10 @@ total_dependent_repositories = 5
 total_dependent_packages = 0
 last_commit = 2024-10-09T21:34:04Z
 last_activity = 2026-01-31T21:44:44Z
+
+[badge]
+url = "https://qisk.it/e-bad95659"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:53.324798
