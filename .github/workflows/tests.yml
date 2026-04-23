@@ -133,15 +133,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-    - name: Run coverage
+    - name: Run tests with coverage
       if: steps.changes.outputs.changed == 'true'
       run: |
-        unset CI
         tox -ecoverage
-        coverage xml
-    - name: Coveralls upload
+        coverage xml  # generates coverage.xml
+
+    - name: Upload coverage to Coveralls
       if: success() && steps.changes.outputs.changed == 'true'
       uses: coverallsapp/github-action@v2
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
         format: cobertura
+        file: coverage.xml
