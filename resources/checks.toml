@@ -7,7 +7,7 @@ importance = "CRITICAL"
 
 [007]
 title = "Interface have to exist"
-description = "All `member.interface` should exist in labels.toml"
+description = "All `member.interface` should exist in https://qisk.it/ecosystem-interfaces"
 applies_to = "all"
 affects = ["member.interface.*"]
 category = "SUBMISSION"
@@ -16,7 +16,7 @@ importance = "CRITICAL"
 
 [008]
 title = "Category have to exist"
-description = "`member.category` should exist in labels.toml"
+description = "`member.category` should exist in https://qisk.it/ecosystem-categories"
 applies_to = "all"
 affects = ["member.category"]
 category = "SUBMISSION"
@@ -25,7 +25,7 @@ importance = "CRITICAL"
 
 [009]
 title = "Labels have to exist"
-description = "All `member.labels` should exist in labels.toml"
+description = "All `member.labels` should exist in https://qisk.it/ecosystem-labels"
 applies_to = "all"
 affects = ["member.labels.*"]
 category = "SUBMISSION"

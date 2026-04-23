@@ -19,18 +19,8 @@ name = "Circuit simulator"
 description = "Simulates a quantum computer on your local classical computer"
 
 [[categories]]
-name = "Transpiler stage plugin"
-description = "Implements Qiskit's transpiler stage plugin interface"
-
-[[categories]]
-name = "Unitary synthesis plugin"
-description = "Implements Qiskit's unitary synthesis plugin interface to synthesize unitary operations into quantum circuits"
-
-[[categories]]
-name = "High-level synthesis plugin"
-description = "Implements Qiskit's HLS plugin interface to synthesize quantum circuits from more abstract operations"
-link = "https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin"
-
+name = "Transpiler plugin"
+description = "Implements Qiskit's transpiler plugin interface"
 
 [[categories]]
 name = "Converter"
@@ -106,12 +96,20 @@ name = "demo"
 description = "Implements a demo or a proof of concept."
 
 [[labels]]
-name = "circuit manipulation"
-description = "Optimizes or modifies Qiskit quantum circuits."
-
-[[labels]]
 name = "circuit building"
 description = "Builds and outputs Qiskit quantum circuits."
+
+[[labels]]
+name = "circuit optimization"
+description = "Optimizes Qiskit quantum circuits."
+
+[[labels]]
+name = "unitary synthesis"
+description = "Synthesizes unitary operations into quantum circuits or operations."
+
+[[labels]]
+name = "high-level synthesis"
+description = "Synthesizes quantum circuits or operations from more abstract operation boxes."
 
 [[labels]]
 name = "openqasm"
