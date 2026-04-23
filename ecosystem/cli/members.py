@@ -278,8 +278,9 @@ class CliMembers:
                         f"for {days_since} days" if days_since else "since today"
                     )
                     self.logger.info(
-                        "❌ %s failed checkup %s (%s)",
+                        "❌ %s (%s) failed checkup %s (%s)",
                         project.name,
+                        project.name_id,
                         checkup_id,
                         for_x_days,
                     )

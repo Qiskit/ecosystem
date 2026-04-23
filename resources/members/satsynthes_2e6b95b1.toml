@@ -30,6 +30,11 @@ details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "CRITICAL"
 
+[checks.008]
+since = 2026-04-23T18:17:37.676459
+details = "member.group should exist in labels.toml"
+importance = "CRITICAL"
+
 [pypi.qiskit-sat-synthesis]
 package_name = "qiskit-sat-synthesis"
 version = "0.0.2"

@@ -64,9 +64,7 @@ body:
     - Tooling
     - Compute provider
     - Circuit simulator
-    - Transpiler stage plugin
-    - Unitary synthesis plugin
-    - High-level synthesis plugin
+    - Transpiler plugin
     - Converter
     - Qiskit addon
     - Game
@@ -101,8 +99,10 @@ body:
     - quantum information
     - research
     - demo
-    - circuit manipulation
     - circuit building
+    - circuit optimization
+    - unitary synthesis
+    - high-level synthesis
     - openqasm
 - type: dropdown
   id: interface
