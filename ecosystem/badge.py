@@ -14,6 +14,7 @@ class BadgeData(JsonSerializable):
     https://img.shields.io/badges/endpoint-badge
     """
 
+    # pylint: disable=invalid-name
     url: str | URL  # the bitly link to the badge
     style: Optional[str] = None  # default: "flat"
     endpoint: Optional[str | URL] = None
@@ -29,3 +30,5 @@ class BadgeData(JsonSerializable):
     def __post_init__(self):
         self.url = self.url if isinstance(self.url, URL) else URL(self.url)
         self.style = "flat" if self.style is None else str(self.style)
+
+    # def from_dict(self):

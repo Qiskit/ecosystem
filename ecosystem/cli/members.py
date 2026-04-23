@@ -74,28 +74,31 @@ class CliMembers:
         )
         self.dao.write(new_repo)
 
-    def update_badges(self, name=None, output_directory: str = None):
-        """Updates badges for projects."""
+    def create_badge_endpoints(self, name=None, output_directory: str = None):
+        """TODO."""
         if not output_directory:
             output_directory = os.path.join(self.current_dir, "badges")
         Path(output_directory).mkdir(parents=True, exist_ok=True)
         for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
             data = {
-                "schemaVersion": 1,
-                "label": "Qiskit Ecosystem",
-                "namedLogo": "Qiskit",
-                "message": project.name,
-                "color": "6929C4",
-                "isError": "true",
+                "schemaVersion": project.badge.schemaVersion or 1,
+                "label": project.badge.label or "Qiskit Ecosystem",
+                "namedLogo": project.badge.namedLogo or "Qiskit",
+                "message": project.badge.message or project.name,
+                "color": project.badge.color or "6929C4",
+                "isError": project.badge.isError or "true",
+                "style": project.badge.style or "flat",
             }
             with open(
                 os.path.join(output_directory, str(project.short_uuid)), "w"
             ) as outfile:
                 json.dump(data, outfile, indent=4)
-                self.logger.info("Badge for %s has been updated.", project.name)
-            project.update_badge()
-            self.dao.update(project.name_id, badge=project.badge)
+                self.logger.info(
+                    "Badge %s endpoint: %s",
+                    project.name,
+                    os.path.join(output_directory, str(project.short_uuid)),
+                )
 
     def update_docs_assets(self):
         """Updates the files in docs/assets/ to build the docs"""
@@ -202,6 +205,17 @@ class CliMembers:
 
         with open(output_file, "w") as outfile:
             outfile.writelines(lines)
+
+    def update_badge(self, name=None):
+        """
+        Updates Badge data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are updated.
+        """
+        for project in self.dao.get_all(name):
+            project.update_badge()
+            self.dao.update(project.name_id, badge=project.badge)
 
     def update_github(self, name=None):
         """

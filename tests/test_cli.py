@@ -21,7 +21,6 @@ def get_community_repo() -> Member:
         description="Mock description for repo. wsdt",
         licence="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
-        badge="https://qisk.it/e",
     )
 
 
@@ -170,7 +169,7 @@ class TestCli(TestCase):
         self.assertDictEqual(expected, retrieved)
 
     @mock.patch("requests.get", new=mocked_get_request)
-    def test_update_badges(self):
+    def test_create_badge_endpoints(self):
         """Tests creating badges."""
         commu_success = get_community_repo()
         dao = DAO(self.path)
@@ -183,8 +182,8 @@ class TestCli(TestCase):
         cli_members.current_dir = self.path
         cli_members.dao = dao
 
-        # create badges
-        cli_members.update_badges()
+        # create badge endpoints
+        cli_members.create_badge_endpoints()
 
         # gets a short url and updates the list in qisk.it/ecosystem-badges
         cli_members.update_badge_list()

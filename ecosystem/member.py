@@ -4,12 +4,13 @@ import pprint
 from uuid import uuid4
 from slugify import slugify
 
-from .error_handling import EcosystemError
+from .error_handling import EcosystemError, logger
 from .julia import JuliaData
 from .serializable import JsonSerializable, parse_datetime
 from .github import GitHubData
 from .pypi import PyPIData
 from .check import CheckData
+from .badge import BadgeData
 from .request import URL, request_json
 from .validation import validate_member
 
@@ -37,7 +38,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         documentation: URL | None = None,
         packages: list[URL] | None = None,
         uuid: str | None = None,
-        badge: str | None = None,
+        badge: str | BadgeData = None,
         checks: dict[str, CheckData] | None = None,
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
@@ -92,6 +93,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
         if "julia" in filtered_dict:
             filtered_dict["julia"] = JuliaData.from_dict(filtered_dict["julia"])
+        if "badge" in filtered_dict:
+            filtered_dict["badge"] = BadgeData.from_dict(filtered_dict["badge"])
         if "github" in filtered_dict:
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
         if "pypi" in filtered_dict:
@@ -164,11 +167,15 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             self.github.update_owner_repo()
 
     def _create_qisk_dot_it_link_for_badge(self):
+        long_url = (
+            "https://img.shields.io/endpoint?url="
+            f"https://qiskit.github.io/ecosystem/b/{self.short_uuid}"
+        )
+        keyword = f"e-{self.short_uuid}"
         data = {
-            "long_url": "https://img.shields.io/endpoint?style=flat&url="
-            f"https://qiskit.github.io/ecosystem/b/{self.short_uuid}",
+            "long_url": long_url,
             "domain": "qisk.it",
-            "keyword": f"e-{self.short_uuid}",
+            "keyword": keyword,
             "group_guid": "Bj9rgMHKfxH",
             "title": f'Qiskit ecosystem "{self.name}" badge',
             "tags": ["qiskit ecosystem badge", "permanent _do NOT remove_"],
@@ -179,6 +186,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             if "Bad Request (400)" in err.message:
                 return None  # Sometimes, bitly errors 400 for some server-side reason
             raise err
+        logger.info(
+            "Bitly short link created: %s -> %s ", f"qisk.it/{keyword}", long_url
+        )
         return response["link"]
 
     def _qisk_dot_it_link_exists(self):
@@ -194,9 +204,12 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
 
     def update_badge(self):
         """If not there yet, creates a new Bitly link for the badge"""
-        self.badge = self._qisk_dot_it_link_exists()
         if self.badge is None:
-            self.badge = self._create_qisk_dot_it_link_for_badge()
+            badge_url = (
+                self._qisk_dot_it_link_exists()
+                or self._create_qisk_dot_it_link_for_badge()
+            )
+            self.badge = BadgeData(url=badge_url)
 
     def update_data(self):
         """Update all the member data in each existing section"""
