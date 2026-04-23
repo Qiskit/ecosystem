@@ -275,7 +275,11 @@ class CliMembers:
                         continue
                     days_since = (today - checkup.since).days
                     for_x_days = (
-                        f"for {days_since} days" if days_since else "since today"
+                        f"for {days_since} days, so "
+                        f"{checkup.cure_period_in_days - days_since} days left in the cure period"
+                        if days_since
+                        else "since today, "
+                             f"so {checkup.cure_period_in_days}-day cure period starts now"
                     )
                     self.logger.info(
                         "❌ %s (%s) failed checkup %s (%s)",
