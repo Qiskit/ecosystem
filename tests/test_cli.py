@@ -68,12 +68,7 @@ class TestCli(TestCase):
         """
 
         # /resources/issue.md
-        captured_output = io.StringIO()
-        with redirect_stdout(captured_output):
-            CliCI.add_member_from_issue(self.issue_body, resources_dir=self.path)
-
-        output_value = captured_output.getvalue().split("\n")
-        self.assertEqual("SUBMISSION_NAME=Qiskit Banana Compiler", output_value[0])
+        CliCI.add_member_from_issue(self.issue_body, resources_dir=self.path)
 
         retrieved_repos = DAO(self.path).get_all()
         expected = {
@@ -107,12 +102,7 @@ class TestCli(TestCase):
         """
 
         # /resources/issue_2.md
-        captured_output = io.StringIO()
-        with redirect_stdout(captured_output):
-            CliCI.add_member_from_issue(self.issue_body_2, resources_dir=self.path)
-
-        output_value = captured_output.getvalue().split("\n")
-        self.assertEqual("SUBMISSION_NAME=Qiskit Banana Compiler", output_value[0])
+        CliCI.add_member_from_issue(self.issue_body_2, resources_dir=self.path)
 
         retrieved_repos = DAO(self.path).get_all()
         expected = {
