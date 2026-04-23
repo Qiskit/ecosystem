@@ -8,7 +8,6 @@ labels = [ "chemistry", "research", "physics",]
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2505.19772"
 uuid = "6e4000a2-3a09-43ff-b738-d4b17a0df011"
-badge = "https://qisk.it/e-6e4000a2"
 
 [github]
 url = "https://github.com/cpossel/tvha"
@@ -20,6 +19,10 @@ description = "Implementation of the (truncated) Variational Hamiltonian Ansatz 
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-07-22T09:46:14Z
+
+[badge]
+url = "https://qisk.it/e-6e4000a2"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:40.391581

@@ -7,7 +7,6 @@ created_at = 1678827878.136911
 updated_at = 1678827878.136912
 category = "Compute provider"
 uuid = "88a73f80-a247-4bb4-a6aa-f5da3ebd50c4"
-badge = "https://qisk.it/e-88a73f80"
 
 [github]
 url = "https://github.com/rigetti/qiskit-rigetti"
@@ -21,6 +20,10 @@ total_dependent_repositories = 5
 total_dependent_packages = 0
 last_commit = 2025-04-09T21:16:09Z
 last_activity = 2026-04-11T15:26:38Z
+
+[badge]
+url = "https://qisk.it/e-88a73f80"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:44.879491

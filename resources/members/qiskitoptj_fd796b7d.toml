@@ -10,7 +10,6 @@ created_at = 1673642669.650459
 updated_at = 1673642669.650464
 category = "Application"
 uuid = "fd796b7d-2775-4ece-89f0-778066552014"
-badge = "https://qisk.it/e-fd796b7d"
 
 [github]
 url = "https://github.com/JuliaQUBO/QiskitOpt.jl"
@@ -34,3 +33,7 @@ owner = "psrenergy"
 release_date = 2024-05-01
 uuid = "81b20daf-e62b-4502-a0d1-aa084de80e33"
 estimated_unique_users = 20
+
+[badge]
+url = "https://qisk.it/e-fd796b7d"
+style = "flat"

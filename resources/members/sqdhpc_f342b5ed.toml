@@ -9,7 +9,6 @@ ibm_maintained = true
 website = "https://qiskit.github.io/qiskit-addon-sqd-hpc/"
 category = "Qiskit addon"
 uuid = "f342b5ed-2136-4f7a-bd00-a0a7d2df3493"
-badge = "https://qisk.it/e-f342b5ed"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-sqd-hpc"
@@ -24,3 +23,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-30T15:54:59Z
 last_activity = 2026-04-09T14:38:01Z
+
+[badge]
+url = "https://qisk.it/e-f342b5ed"
+style = "flat"

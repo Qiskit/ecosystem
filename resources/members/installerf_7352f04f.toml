@@ -8,7 +8,6 @@ labels = []
 website = "https://ket-q.github.io/qiskit_windows_installer/"
 category = "Other"
 uuid = "7352f04f-0223-4082-bdd9-9e3e207a35da"
-badge = "https://qisk.it/e-7352f04f"
 
 [github]
 url = "https://github.com/ket-q/qiskit_windows_installer"
@@ -22,6 +21,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-30T10:22:05Z
 last_activity = 2026-03-30T10:22:06Z
+
+[badge]
+url = "https://qisk.it/e-7352f04f"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:42.906739

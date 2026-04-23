@@ -8,7 +8,6 @@ updated_at = 1636403009.167082
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-nature/"
 uuid = "768ba9e4-0aea-4046-a902-5c81051f001f"
-badge = "https://qisk.it/e-768ba9e4"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-nature"
@@ -22,6 +21,10 @@ total_dependent_repositories = 319
 total_dependent_packages = 33
 last_commit = 2025-12-12T01:08:18Z
 last_activity = 2026-04-15T19:30:44Z
+
+[badge]
+url = "https://qisk.it/e-768ba9e4"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:51.514146

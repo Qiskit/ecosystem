@@ -8,7 +8,6 @@ labels = [ "QML",]
 category = "Application"
 documentation = "https://pyriemann-qiskit.readthedocs.io/"
 uuid = "fb1907a7-9af8-4c23-be0c-48841a36f2df"
-badge = "https://qisk.it/e-fb1907a7"
 
 [github]
 url = "https://github.com/pyRiemann/pyRiemann-qiskit"
@@ -23,6 +22,10 @@ total_dependent_repositories = 3
 total_dependent_packages = 0
 last_commit = 2026-04-01T09:25:39Z
 last_activity = 2026-04-01T09:32:47Z
+
+[badge]
+url = "https://qisk.it/e-fb1907a7"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:56.633490

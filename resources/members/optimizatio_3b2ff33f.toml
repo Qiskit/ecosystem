@@ -8,7 +8,6 @@ updated_at = 1636403009.538763
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-optimization/"
 uuid = "3b2ff33f-b4a3-49cd-ab32-563d282cc3bf"
-badge = "https://qisk.it/e-3b2ff33f"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-optimization"
@@ -22,6 +21,10 @@ total_dependent_repositories = 412
 total_dependent_packages = 42
 last_commit = 2026-04-01T05:54:16Z
 last_activity = 2026-04-15T13:08:00Z
+
+[badge]
+url = "https://qisk.it/e-3b2ff33f"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:55.879857

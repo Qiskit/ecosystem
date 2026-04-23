@@ -8,7 +8,6 @@ labels = [ "research",]
 category = "Application"
 reference_paper = "https://arxiv.org/pdf/2210.14928"
 uuid = "4262945e-f1af-441a-ad38-c803a5c6df0b"
-badge = "https://qisk.it/e-4262945e"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/problemsolver"
@@ -22,6 +21,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-13T02:11:07Z
 last_activity = 2026-04-13T02:11:09Z
+
+[badge]
+url = "https://qisk.it/e-4262945e"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:55.612389

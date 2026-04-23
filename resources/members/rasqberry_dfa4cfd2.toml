@@ -8,7 +8,6 @@ created_at = 1674598082.072493
 updated_at = 1674598082.072494
 category = "Game"
 uuid = "dfa4cfd2-0ef5-4536-b7ec-47cc982ed0d9"
-badge = "https://qisk.it/e-dfa4cfd2"
 
 [github]
 url = "https://github.com/JanLahmann/RasQberry"
@@ -22,6 +21,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-10-28T10:02:29Z
 last_activity = 2026-04-06T21:54:54Z
+
+[badge]
+url = "https://qisk.it/e-dfa4cfd2"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:37.109421

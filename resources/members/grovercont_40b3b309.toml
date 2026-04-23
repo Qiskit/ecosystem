@@ -8,7 +8,6 @@ labels = [ "circuit manipulation", "research",]
 category = "Application"
 reference_paper = "https://doi.org/10.21203/rs.3.rs-2997276/v1"
 uuid = "40b3b309-0dfa-482a-89a6-cbaffd18b7ba"
-badge = "https://qisk.it/e-40b3b309"
 
 [github]
 url = "https://github.com/albayaty/grover_controlled_diffuser"
@@ -20,6 +19,10 @@ description = "Grover controlled-diffuser (CUs) for Grover's algorithm"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-10-20T20:34:29Z
+
+[badge]
+url = "https://qisk.it/e-40b3b309"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:46.990807

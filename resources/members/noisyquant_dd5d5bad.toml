@@ -9,7 +9,6 @@ category = "Circuit simulator"
 reference_paper = "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043210"
 documentation = "https://quantum-gates.readthedocs.io/en/latest/index.html"
 uuid = "dd5d5bad-1523-4f3e-aff2-7d474b53d27a"
-badge = "https://qisk.it/e-dd5d5bad"
 
 [github]
 url = "https://github.com/CERN-QTI/quantum-gates"
@@ -24,6 +23,10 @@ total_dependent_repositories = 3
 total_dependent_packages = 0
 last_commit = 2026-04-08T09:11:16Z
 last_activity = 2026-04-15T07:18:24Z
+
+[badge]
+url = "https://qisk.it/e-dd5d5bad"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:02.775449

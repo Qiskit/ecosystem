@@ -9,7 +9,6 @@ website = "https://www.aqt.eu/qc-systems/"
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
 uuid = "04f15cf5-ee50-4c77-b254-8907ed3ba407"
-badge = "https://qisk.it/e-04f15cf5"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-aqt-provider"
@@ -24,6 +23,10 @@ total_dependent_repositories = 17
 total_dependent_packages = 3
 last_commit = 2026-04-16T12:59:50Z
 last_activity = 2026-04-16T12:59:51Z
+
+[badge]
+url = "https://qisk.it/e-04f15cf5"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:38.478875

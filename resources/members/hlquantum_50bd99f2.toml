@@ -4,7 +4,6 @@ description = "A human oriented high-level Python package designed to simplify w
 labels = [ "circuit manipulation", "circuit building", "research",]
 category = "SDK"
 uuid = "50bd99f2-dbd5-4759-b19d-6f5ecdf9e0da"
-badge = "https://qisk.it/e-50bd99f2"
 
 [github]
 url = "https://github.com/AlinDanielFerenczi/HLQuantum"
@@ -17,6 +16,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-11T14:18:34Z
 last_activity = 2026-03-30T12:38:19Z
+
+[badge]
+url = "https://qisk.it/e-50bd99f2"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:51.271815

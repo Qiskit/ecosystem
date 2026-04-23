@@ -9,7 +9,6 @@ category = "Application"
 reference_paper = "https://arxiv.org/abs/2406.12840"
 documentation = "https://mqt.readthedocs.io/projects/qao/en/latest/"
 uuid = "6d4c69e4-1e47-486c-b00f-8a60ae5e01d4"
-badge = "https://qisk.it/e-6d4c69e4"
 
 [github]
 url = "https://github.com/cda-tum/mqt-qao"
@@ -23,6 +22,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-13T17:26:19Z
 last_activity = 2026-04-13T17:26:19Z
+
+[badge]
+url = "https://qisk.it/e-6d4c69e4"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:00.695279

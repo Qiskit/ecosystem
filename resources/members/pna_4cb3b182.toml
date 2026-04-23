@@ -8,7 +8,6 @@ ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-pna/"
 uuid = "4cb3b182-7484-445f-897b-ded8e295d755"
-badge = "https://qisk.it/e-4cb3b182"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-pna"
@@ -23,6 +22,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-01T00:58:28Z
 last_activity = 2026-04-14T15:43:26Z
+
+[badge]
+url = "https://qisk.it/e-4cb3b182"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:41.915958

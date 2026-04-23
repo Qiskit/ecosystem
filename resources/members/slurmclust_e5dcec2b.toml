@@ -9,7 +9,6 @@ category = "Tooling"
 documentation = "https://github.com/dmeliksetian/slurm-qiskit-cluster/blob/main/InstallationGuide.md"
 packages = []
 uuid = "e5dcec2b-bfd8-44f5-ba31-65a2aa50c036"
-badge = "https://qisk.it/e-e5dcec2b"
 
 [github]
 url = "https://github.com/dmeliksetian/slurm-qiskit-cluster"
@@ -23,3 +22,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-15T21:40:19Z
 last_activity = 2026-04-16T01:52:15Z
+
+[badge]
+url = "https://qisk.it/e-e5dcec2b"
+style = "flat"

@@ -9,7 +9,6 @@ category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
 documentation = "https://mqt.readthedocs.io/projects/predictor/en/latest/"
 uuid = "9d5e2ef2-cac6-479e-a2f9-8014d54403e4"
-badge = "https://qisk.it/e-9d5e2ef2"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/predictor"
@@ -22,6 +21,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-16T12:23:32Z
 last_activity = 2026-04-16T12:23:33Z
+
+[badge]
+url = "https://qisk.it/e-9d5e2ef2"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:38.229722

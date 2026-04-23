@@ -8,7 +8,6 @@ interface = [ "Python",]
 category = "Application"
 packages = []
 uuid = "6e4e5010-7f25-4f03-9724-c9088b4ce0e0"
-badge = "https://qisk.it/e-6e4e5010"
 
 [github]
 url = "https://github.com/11D-Beyonder/double-quant"
@@ -21,6 +20,10 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-15T05:43:47Z
 last_activity = 2026-04-15T05:43:36Z
+
+[badge]
+url = "https://qisk.it/e-6e4e5010"
+style = "flat"
 
 [checks.014]
 since = 2026-04-14T08:12:50.128851

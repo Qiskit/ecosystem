@@ -9,7 +9,6 @@ category = "Unitary synthesis plugin"
 documentation = "https://github.com/love-os-architect/README/blob/main/LOVE_OS_WHITE_PAPER_V1.md"
 packages = []
 uuid = "ec4cc7b4-0953-4a29-bea9-d9abeeddc16a"
-badge = "https://qisk.it/e-ec4cc7b4"
 
 [github]
 url = "https://github.com/love-os-architect/psf-zero"
@@ -20,3 +19,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-16T11:27:36Z
 last_activity = 2026-04-16T11:27:36Z
+
+[badge]
+url = "https://qisk.it/e-ec4cc7b4"
+style = "flat"

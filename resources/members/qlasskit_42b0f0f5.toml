@@ -7,7 +7,6 @@ labels = []
 website = "https://dakk.github.io/qlasskit/"
 category = "Converter"
 uuid = "42b0f0f5-bdbd-4008-8749-955b496dab08"
-badge = "https://qisk.it/e-42b0f0f5"
 
 [github]
 url = "https://github.com/dakk/qlasskit"
@@ -22,6 +21,10 @@ total_dependent_repositories = 3
 total_dependent_packages = 0
 last_commit = 2026-01-03T11:55:19Z
 last_activity = 2026-03-26T08:48:40Z
+
+[badge]
+url = "https://qisk.it/e-42b0f0f5"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:44.126727
