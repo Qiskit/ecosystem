@@ -167,9 +167,25 @@ description = "Software has a web inteface"
 name = "Other interface"
 description = "The way to interact with this software is not listed yet"
 
+[[status]]
+name = "Qiskit Project"
+description = "Approved Qiskt Project"
+
+[[status]]
+name = "Member"
+description = "The project is an approved member of the Qiskit Ecosystem"
+
+[[status]]
+name = "Under review"
+description = "The project needs to review some of the check up issues to stay in the Qiskit Ecosystem"
+
+[[status]]
+name = "Alumni"
+description = "The project used to be part of the Qiskit Ecosystem"
+
 [[support]]
-name = "well-maintained and stable"
-description = "The project is actively maintained and stable. Recommended for production."
+name = "stable"
+description = "The project is actively maintained and the code is considered stable. Recommended for production."
 
 [[support]]
 name = "archived"
@@ -181,7 +197,7 @@ description = "The project appears to be abandoned, as there has been no activit
 
 [[support]]
 name = "outdated"
-description = "The project does not run with the supported versions of the stack."
+description = "The project does not run with supported versions of Qiskit."
 
 [[support]]
 name = "experimental"

@@ -44,6 +44,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         pypi: dict[str, PyPIData] | None = None,
         julia: JuliaData | None = None,
         support: str | None = None,
+        status: str | None = None,
     ):
         self.name = name
         self.submission_number = submission_number
@@ -69,6 +70,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.julia = julia
         self.badge = badge
         self.support = support
+        self.status = status
 
         self.__dict__.setdefault("created_at", parse_datetime("now"))
         self.__dict__.setdefault("updated_at", parse_datetime("now"))
