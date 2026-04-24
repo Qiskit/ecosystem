@@ -29,10 +29,10 @@ class ClassificationsToml:
         if attr.endswith("_names"):
             classification = attr[: -len("_names")]
             return [c["name"] for c in self._data[classification]]
-        elif attr.endswith("_descriptions"):
+        if attr.endswith("_descriptions"):
             classification = attr[: -len("_descriptions")]
             return {c["name"]: c.get("description") for c in self._data[classification]}
-        elif attr.endswith("_sections"):
+        if attr.endswith("_sections"):
             classification = attr[: -len("_sections")]
             return {c["name"]: c.get("section") for c in self._data[classification]}
         raise AttributeError(attr)

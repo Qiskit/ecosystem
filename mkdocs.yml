@@ -22,8 +22,10 @@ plugins:
   - table-reader
 
 nav:
-  - Status: status.md
-  - Categories: categories.md
-  - Labels: labels.md
-  - Interfaces: interfaces.md
-  - Badges: badges.md
+  - Classifications:
+    - Status: status.md
+    - Categories: categories.md
+    - Labels: labels.md
+    - Interfaces: interfaces.md
+    - Support: support.md
+    - Badges: badges.md

@@ -13,7 +13,7 @@ affects = ["member.interface.*"]
 category = "SUBMISSION"
 checker = "test_labels.py::test_valid_interfaces"
 importance = "CRITICAL"
-cure_period_in_days = 99999  # Remove once https://github.com/Qiskit/ecosystem/issues/1083 is fixed
+cure_period_in_days = false  # Remove once https://github.com/Qiskit/ecosystem/issues/1083 is fixed
 
 [008]
 title = "Category have to exist"

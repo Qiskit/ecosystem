@@ -1,6 +1,6 @@
 """CliMembers class for controlling all CLI functions."""
 
-import datetime
+from datetime import datetime, timedelta
 import json
 import tomllib
 import os
@@ -83,12 +83,24 @@ class CliMembers:
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
             if project.badge is None:
                 continue
+
+            status = None
+            if project.status in ["Alumni", "Under revision"]:
+                # if status is "Alumni" or "Under revision", put in in the message
+                status = project.status
+
+            status_color = None
+            if project.status == "Under revision":
+                # if status is "Under revision", set status color to orange as a warning.
+                # Color from triadic palette:  https://www.color-hex.com/color/6929c4
+                status_color = "c46929"
+
             data = {
                 "schemaVersion": project.badge.schemaVersion or 1,
                 "label": project.badge.label or "Qiskit Ecosystem",
                 "namedLogo": "Qiskit",
-                "message": project.badge.message or project.name,
-                "color": project.badge.color or "6929C4",
+                "message": project.badge.message or status or project.name,
+                "color": project.badge.color or status_color or "6929C4",
                 "isError": project.badge.isError or "true",
                 "style": project.badge.style or "flat",
             }
@@ -106,13 +118,18 @@ class CliMembers:
         """Updates the files in docs/assets/ to build the docs"""
         self.update_badge_list()
         self.update_assets_status()
+        self.update_assets_support()
         self.update_assets_categories()
         self.update_assets_labels()
         self.update_assets_interfaces()
 
     def update_assets_status(self):
-        """Updates categories.json and categories.md docs/assets/"""
-        self.update_assets_classification("status", "status")
+        """Updates status.json and status.md docs/assets/"""
+        self.update_assets_classification("status", "status  classification")
+
+    def update_assets_support(self):
+        """Updates support.json and support.md docs/assets/"""
+        self.update_assets_classification("support", "support classification")
 
     def update_assets_categories(self):
         """Updates categories.json and categories.md docs/assets/"""
@@ -268,7 +285,7 @@ class CliMembers:
         for project in self.dao.get_all(name):
             project.update_checkups()
             if project.checks:
-                today = datetime.datetime.today()
+                today = datetime.today()
                 for checkup_id, checkup in project.checks.items():
                     if checkup.xfailed:
                         self.logger.info(
@@ -304,11 +321,30 @@ class CliMembers:
     def update_status(self, name=None):
         """Check if a project should be moved to "Under review" or "Alumni" """
         for project in self.dao.get_all(name):
+            if project.status == "Qiskit Project":
+                # Qiskit Project status is governed differently,
+                # not via checkups in Qiskit Ecosystem.
+                continue
+
+            if project.status == "Under review":
+                # reset "Under review" status. It will be set back if it is still true.
+                project.status = None
+
             for check in project.checks.values():
                 if check.xfailed:
+                    # Xfails do not affect the status
                     continue
-                # check.cure_period_in_days
-                ...  # check if the tolarenace passed (alumni) or not (under review).
+                if not check.cure_period_in_days:
+                    # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
+                    continue
+                deadline = check.since + timedelta(days=check.cure_period_in_days)
+                if datetime.today() > deadline:
+                    # deadline passed
+                    project.status = "Alumni"
+                else:
+                    # still in cure period
+                    project.status = "Under review"
+            self.dao.update(project.name_id, status=project.status)
 
     @staticmethod
     def filter_data(
@@ -439,8 +475,12 @@ class CliMembers:
                 },
             },
             "members": [
-                CliMembers.filter_data(member.to_dict(), member_data_to_export)
+                CliMembers.filter_data(
+                    member.to_dict(),
+                    member_data_to_export,
+                )
                 for member in self.dao.get_all()
+                if member.status != "Alumni"
             ],
             "labels": CliMembers.load_classifications_toml(
                 Path(self.resources_dir, "classifications.toml"), labels_data_to_export
