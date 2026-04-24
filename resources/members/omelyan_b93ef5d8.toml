@@ -1,0 +1,11 @@
+name = "qiskit-omelyan"
+submission_number = 1113
+url = "https://github.com/MarkoMalezic/qiskit-omelyan"
+description = "Omelyan-type symmetric product formulas for PauliEvolutionGate synthesis in Qiskit"
+contact_info = "malezic15@gmail.com"
+labels = [ "circuit building", "circuit optimization", "unitary synthesis", "research",]
+interface = [ "Python",]
+category = "Circuit simulator"
+reference_paper = "https://arxiv.org/abs/2601.18756"
+packages = [ "https://pypi.org/project/qiskit-omelyan/",]
+uuid = "b93ef5d8-cb4f-4288-aa1d-acb037bca93d"
