@@ -1,6 +1,11 @@
-# Project Overview
+---
+hide:
+  - edit
+---
 
-The Ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
+# Qiskit Ecosystem project overview
+
+The Qiskit Ecosystem consists of projects, tools, utilities, libraries and tutorials from a broad community of developers and researchers.
 The goal of the Ecosystem is to recognize, support and accelerate development of quantum technologies using Qiskit.
 
 ## Contents
