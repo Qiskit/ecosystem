@@ -27,7 +27,7 @@ style = "flat"
 
 [checks.G05]
 since = 2026-04-23T22:50:51.723784
-details = "github.archived and member.status must exist and be `archived`"
+details = "GitHub repository archived, so member.status must be `archived`"
 importance = "CRITICAL"
 
 [checks.007]
@@ -41,5 +41,5 @@ package_name = "qiskit-quantinuum-provider"
 version = "0.4.1"
 last_release_date = 2024-07-22T21:18:53
 url = "https://pypi.org/project/qiskit-quantinuum-provider/"
-last_month_downloads = 21
-last_180_days_downloads = 108
+last_month_downloads = 35
+last_180_days_downloads = 121

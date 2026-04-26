@@ -8,18 +8,18 @@ category = "Compute provider"
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
 
 [github]
-url = "https://github.com/qiskit-community/qiskit-braket-provider"
-owner = "qiskit-community"
+url = "https://github.com/amazon-braket/qiskit-braket-provider"
+owner = "amazon-braket"
 repo = "qiskit-braket-provider"
-stars = 78
-homepage = "https://qiskit-community.github.io/qiskit-braket-provider/"
-license = "Apache License 2.0"
+stars = 79
+homepage = "https://amazon-braket.github.io/qiskit-braket-provider/"
+license = "Other"
 description = "Qiskit-Braket provider to execute Qiskit programs on devices via Amazon Braket."
 estimated_contributors = 41
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-16T05:47:36Z
-last_activity = 2026-04-16T05:55:56Z
+last_commit = 2026-04-26T14:35:43Z
+last_activity = 2026-04-26T14:35:44Z
 
 [badge]
 url = "https://qisk.it/e-de20c734"
@@ -33,13 +33,13 @@ importance = "CRITICAL"
 
 [pypi.qiskit-braket-provider]
 package_name = "qiskit-braket-provider"
-version = "0.12.0"
+version = "0.13.1"
 last_release_date = 2026-03-12T02:31:24
 url = "https://pypi.org/project/qiskit-braket-provider/"
 requires_qiskit = ">=0.34.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 6620
-last_180_days_downloads = 38890
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 7384
+last_180_days_downloads = 40703
