@@ -32,7 +32,7 @@ style = "flat"
 
 [checks.G05]
 since = 2026-04-23T22:50:43.520276
-details = "github.archived and member.status must exist and be `archived`"
+details = "GitHub repository archived, so member.status must be `archived`"
 importance = "CRITICAL"
 
 [checks.007]
@@ -49,7 +49,7 @@ url = "https://pypi.org/project/mqt.qubomaker/"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-16T19:34:58Z
-highest_supported_qiskit_version = "2.4.0"
-last_month_downloads = 87
-last_180_days_downloads = 514
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 139
+last_180_days_downloads = 564

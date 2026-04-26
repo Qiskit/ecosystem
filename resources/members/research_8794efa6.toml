@@ -29,7 +29,7 @@ style = "flat"
 
 [checks.G05]
 since = 2026-04-23T22:50:49.597223
-details = "github.archived and member.status must exist and be `archived`"
+details = "GitHub repository archived, so member.status must be `archived`"
 importance = "CRITICAL"
 
 [checks.007]
@@ -48,5 +48,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-06-20T16:55:07Z
 highest_supported_qiskit_version = "1.1.1"
-last_month_downloads = 51
-last_180_days_downloads = 567
+last_month_downloads = 65
+last_180_days_downloads = 575

@@ -15,15 +15,15 @@ uuid = "875968b2-f9e9-44a9-a5dc-4db9c4805021"
 url = "https://github.com/Qiskit/qiskit-addon-mthree"
 owner = "Qiskit"
 repo = "qiskit-addon-mthree"
-stars = 49
+stars = 50
 homepage = "https://qiskit.github.io/qiskit-addon-mthree/"
 license = "Apache License 2.0"
 description = "Matrix-free Measurement Mitigation"
 estimated_contributors = 16
-total_dependent_repositories = 117
+total_dependent_repositories = 118
 total_dependent_packages = 10
 last_commit = 2025-08-06T19:05:30Z
-last_activity = 2026-01-20T09:00:57Z
+last_activity = 2026-04-16T15:41:11Z
 
 [badge]
 url = "https://qisk.it/e-875968b2"
@@ -43,7 +43,7 @@ url = "https://pypi.org/project/mthree/"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-16T19:34:58Z
-highest_supported_qiskit_version = "2.4.0"
-last_month_downloads = 39834
-last_180_days_downloads = 105761
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 40900
+last_180_days_downloads = 118317
