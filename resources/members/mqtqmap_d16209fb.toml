@@ -15,14 +15,14 @@ uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"
 url = "https://github.com/munich-quantum-toolkit/qmap"
 owner = "munich-quantum-toolkit"
 repo = "qmap"
-stars = 133
+stars = 134
 homepage = "https://mqt.readthedocs.io/projects/qmap"
 license = "MIT License"
 description = "MQT QMAP - A tool for Quantum Circuit Mapping written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-13T07:26:47Z
-last_activity = 2026-04-14T23:46:01Z
+last_commit = 2026-04-25T06:28:40Z
+last_activity = 2026-04-25T06:28:36Z
 
 [badge]
 url = "https://qisk.it/e-d16209fb"
@@ -43,7 +43,7 @@ url = "https://pypi.org/project/mqt.qmap/"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 2215
-last_180_days_downloads = 24581
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 2228
+last_180_days_downloads = 24670

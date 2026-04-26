@@ -20,7 +20,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 archived = true
 last_commit = 2025-09-16T16:24:21Z
-last_activity = 2026-04-10T08:00:19Z
+last_activity = 2026-04-16T14:38:53Z
 
 [badge]
 url = "https://qisk.it/e-648ef199"
@@ -28,7 +28,7 @@ style = "flat"
 
 [checks.G05]
 since = 2026-04-23T22:50:49.067317
-details = "github.archived and member.status must exist and be `archived`"
+details = "GitHub repository archived, so member.status must be `archived`"
 importance = "CRITICAL"
 
 [checks.007]
@@ -47,5 +47,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-10-03T19:47:28Z
 highest_supported_qiskit_version = "1.2.4"
-last_month_downloads = 2883
-last_180_days_downloads = 22939
+last_month_downloads = 3458
+last_180_days_downloads = 23910
