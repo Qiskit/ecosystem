@@ -1,3 +1,5 @@
+"""Generate project pages for https://qiskit.github.io/ecosystem/p/"""
+
 import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
@@ -126,10 +128,10 @@ def classification_card(p):
         ] + annotation
     if p.ibm_maintained:
         ret += [
-            f"    :material-office-building: IBM maintained (1)",
+            "    :material-office-building: IBM maintained (1)",
             "    { .annotate }",
             "",
-            f"    1.  [All the projects maintained by IBM](#)",
+            "    1.  [All the projects maintained by IBM](#)",
             "",
         ]
     return ret
@@ -165,40 +167,36 @@ def general_summary(p):
         + urls_card(p)
         + ["</div>"]
     )
-    """
-    
-    :material-api: Main interface `Python` (1)
-    { .annotate }
-    
-    1.  [All the projects with `Python` interface](#)
-    
-    :material-label: `Circuit simulator` (1)
-    { .annotate }
-    
-    1.  [All the projects `Circuit simulator` category](#)
-    
-    :material-tag-multiple-outline: `provider` (1) `other` (2)
-    { .annotate }
-
-    1.  [All the projects with `provider` label ](#)
-    2.  [All the projects with `other` label](#)
-    
-    :material-office-building: IBM maintained (1)
-    { .annotate }
-
-    1.  [All the projects maintained by IBM](#)
-
-- :material-web: **URLs** 
-
-    ---
-
-    :material-web-box: [Website](#)  
-    :octicons-file-code-16: [Source code](#)  
-    :material-file-document: [Documentation](https://qiskit.github.io/qiskit-aer/)
-
-</div>
-
-    """
+    #     :material-api: Main interface `Python` (1)
+    #     { .annotate }
+    #
+    #     1.  [All the projects with `Python` interface](#)
+    #
+    #     :material-label: `Circuit simulator` (1)
+    #     { .annotate }
+    #
+    #     1.  [All the projects `Circuit simulator` category](#)
+    #
+    #     :material-tag-multiple-outline: `provider` (1) `other` (2)
+    #     { .annotate }
+    #
+    #     1.  [All the projects with `provider` label ](#)
+    #     2.  [All the projects with `other` label](#)
+    #
+    #     :material-office-building: IBM maintained (1)
+    #     { .annotate }
+    #
+    #     1.  [All the projects maintained by IBM](#)
+    #
+    # - :material-web: **URLs**
+    #
+    #     ---
+    #
+    #     :material-web-box: [Website](#)
+    #     :octicons-file-code-16: [Source code](#)
+    #     :material-file-document: [Documentation](https://qiskit.github.io/qiskit-aer/)
+    #
+    # </div>
 
 
 nav = mkdocs_gen_files.Nav()
