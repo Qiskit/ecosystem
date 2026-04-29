@@ -346,6 +346,21 @@ class CliMembers:
                     project.status = "Under review"
             self.dao.update(project.name_id, status=project.status)
 
+    def update_support(self, name=None):
+        """Check if a project should move to (in that order of precedence):
+        - archived
+        - outdated
+        - abandoned
+        """
+        for project in self.dao.get_all(name):
+            previous_support = project.support
+            if previous_support in ["archived", "outdated", "abandoned"]:
+                # reset automatic  status. It will be set back if it is still true.
+                project.support = None
+
+            project.update_support()
+            self.dao.update(project.name_id, support=project.support)
+
     @staticmethod
     def filter_data(
         member_dict, data_map, forced_addition=False
