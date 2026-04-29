@@ -190,19 +190,31 @@ description = "The project is actively maintained and the code is considered sta
 [[support]]
 name = "archived"
 description = "The project is no longer supported and the code repository is archived."
+show_in_submission_template = false
 
 [[support]]
 name = "abandoned"
 description = "The project appears to be abandoned, as there has been no activity in the last 2 years."
+show_in_submission_template = false
 
 [[support]]
 name = "outdated"
 description = "The project does not run with supported versions of Qiskit."
+show_in_submission_template = false
 
 [[support]]
 name = "experimental"
 description = "The project is under active development and breaking changes may be introduced at any point. Use in production with caution."
 
 [[support]]
-name = "bugfixing"
-description = "The project is maintained and bugs are being fixed, but no new features or improvements are being added."
+name = "bugfixing only"
+description = "The project is minimally maintained. Bugs are fixed and dependencies are kept up to date, but no new features are planned."
+
+[[support]]
+name = "as-is"
+description = "The project has no active maintenance expectations."
+
+[[support]]
+name = "deprecated"
+description = "The project still functional but no longer recommended for use."
+show_in_submission_template = false
