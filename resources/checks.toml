@@ -11,7 +11,7 @@ description = "All `member.interface` should exist in https://qisk.it/ecosystem-
 applies_to = "all"
 affects = ["member.interface.*"]
 category = "SUBMISSION"
-checker = "test_labels.py::test_valid_interfaces"
+checker = "test_classifications.py::test_valid_interfaces"
 importance = "CRITICAL"
 cure_period_in_days = false  # Remove once https://github.com/Qiskit/ecosystem/issues/1083 is fixed
 
@@ -21,7 +21,7 @@ description = "`member.category` should exist in https://qisk.it/ecosystem-categ
 applies_to = "all"
 affects = ["member.category"]
 category = "SUBMISSION"
-checker = "test_labels.py::test_valid_category"
+checker = "test_classifications.py::test_valid_category"
 importance = "CRITICAL"
 
 [009]
@@ -30,7 +30,7 @@ description = "All `member.labels` should exist in https://qisk.it/ecosystem-lab
 applies_to = "all"
 affects = ["member.labels.*"]
 category = "SUBMISSION"
-checker = "test_labels.py::test_valid_label"
+checker = "test_classifications.py::test_valid_label"
 importance = "CRITICAL"
 
 [010]

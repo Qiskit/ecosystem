@@ -3,7 +3,8 @@ description: Request that a project be included in the Qiskit Ecosystem
 title: '[Submission]: <project name> '
 labels: [submission]
 body:
-- type: markdown
+- id: criteria
+  type: markdown
   attributes:
     value: |
       ### Criteria
@@ -16,8 +17,8 @@ body:
         * Have shown maintainer activity within the last 6 months, such as a commit.
 
       If you have any questions, please reach out through the `#qiskit-ecosystem` channel on [Slack](https://qisk.it/join-slack).
-- type: input
-  id: name
+- id: name
+  type: input
   attributes:
     label: Project name
     description: >
@@ -26,8 +27,8 @@ body:
     placeholder: Qiskit Banana Compiler
   validations:
     required: true
-- type: textarea
-  id: description
+- id: description
+  type: textarea
   attributes:
     label: Description
     description: >
@@ -40,16 +41,16 @@ body:
     render: text
   validations:
     required: true
-- type: input
-  id: contact_info
+- id: contact_info
+  type: input
   attributes:
     label: Contact email
     description: Author's contact email address.
     placeholder: author@banana-compiler.org
   validations:
     required: false
-- type: dropdown
-  id: category
+- id: category
+  type: dropdown
   attributes:
     label: Category
     description: >
@@ -73,14 +74,14 @@ body:
     default: 0
   validations:
     required: true
-- type: dropdown
-  id: labels
+- id: labels
+  type: dropdown
   attributes:
     description: >
       Labels are how users discover your project on
       [qisk.it/ecosystem](https://qisk.it/ecosystem). If
       you don't think any existing labels apply to your project, leave a
-      comment after submitting your issue requesting a new label.
+      comment after submitting your issue requesting a new label. [More info for each label classification](https://qisk.it/ecosystem-labels)
 
        **Mark up to 5**
     label: Labels
@@ -104,16 +105,15 @@ body:
     - unitary synthesis
     - high-level synthesis
     - openqasm
-- type: dropdown
-  id: interface
+- id: interface
+  type: dropdown
   validations:
     required: true
   attributes:
-    description: >
-      How does a user inteface with this software? From which langunge can it it be
-      called?
-      Choose more than one if necessary.
     label: Interface/API
+    description: >
+      How does a user inteface with this software? From which language can it it be called? [More info for each interface classification](https://qisk.it/ecosystem-interfaces)
+      Choose more than one if necessary.
     multiple: true
     options:
     - Python
@@ -128,12 +128,28 @@ body:
     - Graphical User Interface (GUI)
     - Web inteface
     - Other interface
-- type: dropdown
-  id: pattern_steps
+- id: support
+  type: dropdown
   attributes:
+    label: Support expecations
+    description: >
+      What's the maintaince expectation for this project? [More info for each support classification](https://qisk.it/ecosystem-support)
+    multiple: false
+    options:
+    - Select one...
+    - stable
+    - experimental
+    - bugfixing only
+    - as-is
+    default: 0
+  validations:
+    required: true
+- id: pattern_steps
+  type: dropdown
+  attributes:
+    label: Qiskit Pattern steps
     description: >
       Can this software help a user to work in one or more steps of  the [Qiskit Pattern](https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns)?
-    label: Qiskit Pattern steps
     multiple: true
     options:
     - Map the problem
@@ -146,8 +162,8 @@ body:
 - type: markdown
   attributes:
     value: '### URLs'
-- type: input
-  id: source_url
+- id: source_url
+  type: input
   attributes:
     label: GitHub repository
     description: Link to the GitHub repository where the source code lives. It 
@@ -155,24 +171,24 @@ body:
     placeholder: https://github.com/somebody/banana-compiler
   validations:
     required: true
-- type: input
-  id: home_url
+- id: home_url
+  type: input
   attributes:
     label: Home page
     description: Link to the project's main site, if any.
     placeholder: https://banana-compiler.org
   validations:
     required: false
-- type: input
-  id: docs_url
+- id: docs_url
+  type: input
   attributes:
     label: Documentation
     description: Link to the project's documentation website, if any.
     placeholder: https://banana-compiler.org/documentation
   validations:
     required: false
-- type: textarea
-  id: package_urls
+- id: package_urls
+  type: textarea
   attributes:
     label: Packages
     description: >
@@ -184,8 +200,8 @@ body:
       https://crates.io/crates/rusty-banana-compiler
       https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
     render: text
-- type: input
-  id: paper_url
+- id: paper_url
+  type: input
   attributes:
     label: Reference paper
     description: If the project is based on a paper, you can link it here.
@@ -195,8 +211,8 @@ body:
 - type: markdown
   attributes:
     value: '---'
-- type: checkboxes
-  id: terms
+- id: terms
+  type: checkboxes
   attributes:
     label: Code of Conduct
     options:
