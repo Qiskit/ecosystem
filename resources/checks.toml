@@ -9,10 +9,26 @@ importance = "CRITICAL"
 title = "Have a clear support expectation and, if actively maintained, show signs of that activity."
 applies_to = "all"
 category = "GENERAL"
-related_to = []
+related_to = ["G05"]
 description = "Actively maintained projects should show signs of that. This includes recent activity in the code repository (such as commits, issue responses, or pull requests) as well as reasonably up-to-date package releases. Projects with no observable activity over an extended period may be considered abandoned."
 importance = "CRITICAL"
 checker = "test_general.py::test_001"
+
+[COC]
+title="Adhere to the Qiskit CoC"
+applies_to = "all"
+category = "SUBMISSION"
+description = "Project submitters should adhere to the Qiskit code of conduct. If the submitter is the project maintainer, they can enforce your their code of conduct in addition to the one coming from Qiskit."
+importance = "CRITICAL"
+
+[Q20]
+title = "Be compatible with the Qiskit SDK v2 or newer"
+applies_to = "all"
+category = "GENERAL"
+related_to = ["PQ2"]
+description = "If the software depends on Qiskit SDK in some way, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
+importance = "CRITICAL"
+checker = "test_general.py::test_Q20"
 
 
 [007]
@@ -86,29 +102,13 @@ checker = "test_description.py::test_description_len_135"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
-[COC]
-title="Adhere to the Qiskit CoC"
-applies_to = "all"
-category = "SUBMISSION"
-description = "Project submitters should adhere to the Qiskit code of conduct. If the submitter is the project maintainer, they can enforce your their code of conduct in addition to the one coming from Qiskit."
-importance = "CRITICAL"
-
-[Q20]
-title = "Be compatible with the Qiskit SDK v2 or newer"
-applies_to = "all"
-category = "GENERAL"
-related_to = ["PQ2"]
-description = "If the software depends on Qiskit SDK in some way, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
-importance = "CRITICAL"
-checker = "test_general.py::test_Q20"
-
 [G05]
 title = "GitHub repository is archived"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
 description = "Projects with `support != as-is` and are available on an archived GitHub repository should have `archived` support."
-importance = "IMPORTANT"
+importance = "CRITICAL"
 checker = "test_github.py::test_G05"
 
 [G06]

@@ -35,7 +35,12 @@ importance = "IMPORTANT"
 [checks.G05]
 since = 2026-04-23T22:50:51.723784
 details = "GitHub repository archived and member.maturity is not `as-is`"
-importance = "IMPORTANT"
+importance = "CRITICAL"
+
+[checks.001]
+since = 2026-04-30T12:59:28.712726
+details = "The project is probably abandoned: G05"
+importance = "CRITICAL"
 
 [pypi.qiskit-quantinuum-provider]
 package_name = "qiskit-quantinuum-provider"

@@ -321,7 +321,8 @@ class CliMembers:
                         f"so {cure_period_str}-day cure period starts now"
                     )
                     self.logger.info(
-                        "❌ %s (%s) failed checkup %s (%s)",
+                        "%s %s (%s) failed checkup %s (%s)",
+                        "💣" if checkup.importance == "CRITICAL" else "❌",
                         project.name,
                         project.name_id,
                         checkup_id,
