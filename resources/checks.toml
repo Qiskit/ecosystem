@@ -132,7 +132,7 @@ importance = "STRONG-RECOMMENDATION"
 title = "Be installable with qiskit>=1.0"
 applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v1']
-checker = "test_pypi.py::test_compatible_with_qiskit_v1"
+checker = "test_pypi.py::test_PQ1"
 category = "OUT-OF-DATE"
 description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v1.0 or newer."
 importance = "CRITICAL"

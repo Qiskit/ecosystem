@@ -9,13 +9,14 @@
 
 """
 
-# pylint: disable=missing-function-docstring, redefined-outer-name
+# pylint: disable=invalid-name
 
 import pytest
 from ecosystem.check import CheckData
 
 
 def must_pass_all_requierements(requierements, failed_checkups, msg):
+    """check for all the requierements to see if they are still in the cure period"""
     fail = []
     skip = []
     for failure, report in failed_checkups.items():
