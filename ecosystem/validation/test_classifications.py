@@ -36,7 +36,7 @@ def labels(toml_file_data):
 
 @pytest.fixture
 def support(toml_file_data):
-    return [c["name"] for c in toml_file_data["support"]]
+    return [c["name"] for c in toml_file_data["maturity"]]
 
 
 def test_valid_interfaces(member, interfaces):

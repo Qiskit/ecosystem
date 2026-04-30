@@ -10,6 +10,7 @@ category = "Application"
 reference_paper = "https://arxiv.org/abs/2404.10820"
 documentation = "https://mqt.readthedocs.io/projects/qubomaker"
 uuid = "026213b3-a2cd-4281-b49d-8516c6cd73ae"
+maturity = "archived"
 
 [github]
 url = "https://github.com/cda-tum/mqt-qubomaker"
@@ -30,16 +31,16 @@ last_activity = 2026-03-27T10:17:42Z
 url = "https://qisk.it/e-026213b3"
 style = "flat"
 
-[checks.G05]
-since = 2026-04-23T22:50:43.520276
-details = "GitHub repository archived, so member.status must be `archived`"
-importance = "CRITICAL"
-
 [checks.007]
 since = 2026-04-08T16:22:39.263054
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
+
+[checks.G05]
+since = 2026-04-23T22:50:43.520276
+details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "IMPORTANT"
 
 [pypi."mqt.qubomaker"]
 package_name = "mqt-qubomaker"

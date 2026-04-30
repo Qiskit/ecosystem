@@ -8,6 +8,7 @@ labels = [ "quantum information",]
 category = "Application"
 reference_paper = "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.86.032331"
 uuid = "0533cf1a-7462-484b-9c47-241cc6b3dcb5"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/NagyTamas0122/QuantumNetworkCoding"
@@ -27,4 +28,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:23:02.032022
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

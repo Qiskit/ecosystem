@@ -6,6 +6,7 @@ interface = [ "C",]
 ibm_maintained = true
 category = "Compute provider"
 uuid = "964baff2-3155-4944-94c4-738961df7d6b"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-ibm-runtime-c"

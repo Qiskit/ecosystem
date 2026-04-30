@@ -7,6 +7,7 @@ labels = []
 website = "https://dakk.github.io/qlasskit/"
 category = "Converter"
 uuid = "42b0f0f5-bdbd-4008-8749-955b496dab08"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/dakk/qlasskit"
@@ -30,7 +31,7 @@ style = "flat"
 since = 2026-04-08T16:22:44.126727
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qlasskit]
 package_name = "qlasskit"

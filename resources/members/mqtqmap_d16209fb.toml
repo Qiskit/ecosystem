@@ -10,6 +10,7 @@ category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qmap"
 uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/qmap"
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:22:44.628277
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi."mqt.qmap"]
 package_name = "mqt-qmap"

@@ -63,15 +63,15 @@ class Test01submission(TestCase):
                     self.classifications_toml.interface_names,
                 )
 
-    def test_support(self):
-        """support in the template should exist in resources/classifications.toml"""
+    def test_maturity(self):
+        """maturity classification in the template should exist in resources/classifications.toml"""
         for section in self.issue_template["body"]:
-            if "id" in section and section["id"] == "support":
+            if "id" in section and section["id"] == "maturity":
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
                     list(section["attributes"]["options"]),
-                    ["Select one..."] + self.classifications_toml.support_names,
+                    self.classifications_toml.maturity_names,
                 )
 
     # TODO Qiskit patterns entry  # pylint: disable=fixme

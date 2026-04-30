@@ -128,16 +128,19 @@ body:
     - Graphical User Interface (GUI)
     - Web inteface
     - Other interface
-- id: support
+- id: maturity
   type: dropdown
   attributes:
-    label: Support expecations
+    label: Stability and support expecations
     description: >
-      What's the maintaince expectation for this project? [More info for each support classification](https://qisk.it/ecosystem-support)
+      How mature is this project in terms of maintaince expectation and stability?
+      Are breaking change expected (`experimental`)?
+      The plan is just to do minimum bugfixing (`bugfixing only`) or not even that `as-is`?
+      
+      [More info for each maturity classification](https://qisk.it/ecosystem-maturity)
     multiple: false
     options:
-    - Select one...
-    - stable
+    - production-ready
     - experimental
     - bugfixing only
     - as-is

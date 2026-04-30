@@ -7,6 +7,7 @@ created_at = 1661869851.523229
 updated_at = 1661869851.523229
 category = "Converter"
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Quantinuum/pytket-qiskit"
@@ -29,6 +30,11 @@ style = "flat"
 since = 2026-04-08T16:22:40.930060
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.pytket-qiskit]

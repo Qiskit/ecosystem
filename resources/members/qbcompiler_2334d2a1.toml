@@ -10,6 +10,7 @@ category = "Transpiler plugin"
 documentation = "https://mwpwalshe.github.io/qb-compiler/"
 packages = []
 uuid = "2334d2a1-93bc-4652-8e15-ac395b2d3dd9"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/mwpwalshe/qb-compiler"
@@ -27,6 +28,11 @@ last_activity = 2026-04-23T18:54:05Z
 [badge]
 url = "https://qisk.it/e-2334d2a1"
 style = "flat"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package qb-compiler is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.qb-compiler]
 package_name = "qb-compiler"

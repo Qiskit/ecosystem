@@ -6,6 +6,7 @@ labels = []
 category = "Other"
 reference_paper = "https://arxiv.org/abs/2508.09110"
 uuid = "dc917437-3b51-4ea8-9bdb-e2eaa2114cd5"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/alexg-jpg/conditional-measurements"
@@ -26,4 +27,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:44.380977
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

@@ -9,6 +9,7 @@ category = "Application"
 reference_paper = "https://doi.org/10.13140/RG.2.2.11844.90243"
 documentation = "https://github.com/R-D-BioTech-Alaska/Qelm/tree/main/Documentation"
 uuid = "8b3685bb-451f-4d3d-abac-61a5ce48708f"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/R-D-BioTech-Alaska/Qelm"
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:22:40.018949
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qelm]
 package_name = "qelm"

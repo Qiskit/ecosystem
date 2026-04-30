@@ -7,6 +7,7 @@ created_at = 1678827878.401835
 updated_at = 1678827878.401836
 category = "SDK"
 uuid = "fb1cd889-961a-4029-bb8f-229e4c4e12a4"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/QuTech-Delft/quantuminspire"
@@ -29,7 +30,12 @@ style = "flat"
 since = 2026-04-08T16:22:48.759886
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package quantuminspire is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.quantuminspire]
 package_name = "quantuminspire"

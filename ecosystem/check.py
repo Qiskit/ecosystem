@@ -1,6 +1,6 @@
 """Checks/Validations section."""
 
-import datetime
+from datetime import datetime
 from pathlib import Path
 
 import tomllib
@@ -39,7 +39,7 @@ class ChecksToml:
                 continue
             if checkup.get("checker") == node_id:
                 return id_
-        raise AttributeError(f"nodeid {node_id} not found")
+        raise AttributeError(f"nodeid {node_id} not found as a checker")
 
 
 class CheckData(JsonSerializable):
@@ -48,6 +48,7 @@ class CheckData(JsonSerializable):
     """
 
     checks_toml = ChecksToml()
+    today = datetime.today()
 
     def __init__(
         self, id_: str, xfailed=None, since=None, details=None, discussion=None, **_
@@ -63,6 +64,11 @@ class CheckData(JsonSerializable):
         del ret["id"]
         ret["importance"] = self.importance
         return ret
+
+    @property
+    def days_since_failure(self):
+        """Returns integer with today-self.since"""
+        return (CheckData.today - self.since).days
 
     @property
     def importance(self):
@@ -91,7 +97,7 @@ class CheckData(JsonSerializable):
         since = (
             pytest_report.previously_failed.kwargs["since"]
             if hasattr(pytest_report, "previously_failed")
-            else datetime.datetime.today()
+            else CheckData.today
         )
         return CheckData(test_id, details=assertion_msg, since=since)
 

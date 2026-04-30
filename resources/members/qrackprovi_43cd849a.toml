@@ -10,6 +10,7 @@ category = "Compute provider"
 reference_paper = "https://arxiv.org/abs/2304.14969"
 documentation = "https://qrack.readthedocs.io/en/latest/"
 uuid = "43cd849a-f5a7-4107-bca9-c19c6cbefc5f"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/vm6502q/qiskit-qrack-provider"
@@ -30,6 +31,11 @@ style = "flat"
 since = 2026-04-08T16:22:49.011096
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.qiskit-qrack-provider]

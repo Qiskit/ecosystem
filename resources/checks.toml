@@ -5,6 +5,16 @@ applies_to = "all"
 category = "SUBMISSION"
 importance = "CRITICAL"
 
+[001]
+title = "Have a clear support expectation and, if actively maintained, show signs of that activity."
+applies_to = "all"
+category = "GENERAL"
+related_to = []
+description = "Actively maintained projects should show signs of that. This includes recent activity in the code repository (such as commits, issue responses, or pull requests) as well as reasonably up-to-date package releases. Projects with no observable activity over an extended period may be considered abandoned."
+importance = "CRITICAL"
+checker = "test_general.py::test_001"
+
+
 [007]
 title = "Interface have to exist"
 description = "All `member.interface` should exist in https://qisk.it/ecosystem-interfaces"
@@ -12,7 +22,7 @@ applies_to = "all"
 affects = ["member.interface.*"]
 category = "SUBMISSION"
 checker = "test_classifications.py::test_valid_interfaces"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 cure_period_in_days = false  # Remove once https://github.com/Qiskit/ecosystem/issues/1083 is fixed
 
 [008]
@@ -22,7 +32,7 @@ applies_to = "all"
 affects = ["member.category"]
 category = "SUBMISSION"
 checker = "test_classifications.py::test_valid_category"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [009]
 title = "Labels have to exist"
@@ -31,7 +41,7 @@ applies_to = "all"
 affects = ["member.labels.*"]
 category = "SUBMISSION"
 checker = "test_classifications.py::test_valid_label"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [010]
 title = "member.name should not include the substring 'test'"
@@ -74,7 +84,7 @@ applies_to = "all"
 affects = ["memeber.description"]
 checker = "test_description.py::test_description_len_135"
 category = "SUBMISSION"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [COC]
 title="Adhere to the Qiskit CoC"
@@ -90,28 +100,39 @@ category = "GENERAL"
 related_to = ["PQ2"]
 description = "If the software depends on Qiskit SDK in some way, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
 importance = "CRITICAL"
+checker = "test_general.py::test_Q20"
 
 [G05]
 title = "GitHub repository is archived"
 applies_to = "GitHub projects"
-affects = ['github.archived', "status != archived"]
+affects = ['github.archived']
 category = "ACTIVITY"
-description = "Projects that are not paper-assets and are available on an archived GitHub repository should have `archived` status."
-importance = "CRITICAL"
-checker = "test_github.py::test_archived"
+description = "Projects with `support != as-is` and are available on an archived GitHub repository should have `archived` support."
+importance = "IMPORTANT"
+checker = "test_github.py::test_G05"
 
 [G06]
 title = "Have maintainer activity within the last 6 months"
 applies_to = "GitHub projects"
 affects = ['member.github.last_activity']
 category = "ACTIVITY"
-description = "Projects that are not paper-assets and are available on GitHub should have some activity within the last 6 months, such as a commit."
-importance = "CRITICAL"
+description = "Projects available on GitHub should have some activity within the last 6 months, such as somebody staring the repository. This check does not apply to project that declared their support as as-is."
+importance = "RECOMMENDATION"
+
+[G07]
+title = "Have a commit within the last 18 months"
+applies_to = "GitHub projects"
+affects = ['member.github.last_commit']
+category = "ACTIVITY"
+description = "Projects available on GitHub should have a commit activity activity within the last 18 months. This check does not apply to project that declared their support as as-is."
+importance = "STRONG-RECOMMENDATION"
+
 
 [PQ1]
 title = "Be installable with qiskit>=1.0"
 applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v1']
+checker = "test_pypi.py::test_compatible_with_qiskit_v1"
 category = "OUT-OF-DATE"
 description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v1.0 or newer."
 importance = "CRITICAL"
@@ -120,9 +141,10 @@ importance = "CRITICAL"
 title = "Be installable with qiskit>=2.0"
 applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v2']
+checker = "test_pypi.py::test_PQ2"
 category = "OUT-OF-DATE"
 description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer."
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [P00]
 title = "Python package license-related metadata should refer to a OSI-approved license"

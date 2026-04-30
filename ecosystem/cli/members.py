@@ -118,7 +118,7 @@ class CliMembers:
         """Updates the files in docs/assets/ to build the docs"""
         self.update_badge_list()
         self.update_assets_status()
-        self.update_assets_support()
+        self.update_assets_maturity()
         self.update_assets_categories()
         self.update_assets_labels()
         self.update_assets_interfaces()
@@ -127,9 +127,9 @@ class CliMembers:
         """Updates status.json and status.md docs/assets/"""
         self.update_assets_classification("status", "status  classification")
 
-    def update_assets_support(self):
-        """Updates support.json and support.md docs/assets/"""
-        self.update_assets_classification("support", "support classification")
+    def update_assets_maturity(self):
+        """Updates maturity.json and maturity.md docs/assets/"""
+        self.update_assets_classification("maturity", "maturity level")
 
     def update_assets_categories(self):
         """Updates categories.json and categories.md docs/assets/"""
@@ -285,7 +285,6 @@ class CliMembers:
         for project in self.dao.get_all(name):
             project.update_checkups()
             if project.checks:
-                today = datetime.today()
                 for checkup_id, checkup in project.checks.items():
                     if checkup.xfailed:
                         self.logger.info(
@@ -295,13 +294,31 @@ class CliMembers:
                             checkup.xfailed,
                         )
                         continue
-                    days_since = (today - checkup.since).days
+
+                    cure_period_str = (
+                        str(checkup.cure_period_in_days)
+                        if checkup.cure_period_in_days is not False
+                        else "∞"
+                    )
+                    if checkup.cure_period_in_days is False:
+                        left_period_str = "∞"
+                    else:
+                        left_period_int = (
+                            checkup.cure_period_in_days - checkup.days_since_failure
+                        )
+                        if left_period_int < 0:
+                            left_period_str = "no"
+                        else:
+                            left_period_str = str(
+                                checkup.cure_period_in_days - checkup.days_since_failure
+                            )
+
                     for_x_days = (
-                        f"for {days_since} days, so "
-                        f"{checkup.cure_period_in_days - days_since} days left in the cure period"
-                        if days_since
+                        f"for {checkup.days_since_failure} days, so "
+                        f"{left_period_str} days left in the cure period"
+                        if checkup.days_since_failure != 0
                         else "since today, "
-                        f"so {checkup.cure_period_in_days}-day cure period starts now"
+                        f"so {cure_period_str}-day cure period starts now"
                     )
                     self.logger.info(
                         "❌ %s (%s) failed checkup %s (%s)",
@@ -346,20 +363,11 @@ class CliMembers:
                     project.status = "Under review"
             self.dao.update(project.name_id, status=project.status)
 
-    def update_support(self, name=None):
-        """Check if a project should move to (in that order of precedence):
-        - archived
-        - outdated
-        - abandoned
-        """
+    def update_maturity(self, name=None):
+        """Check if a project maturity should move to archived"""
         for project in self.dao.get_all(name):
-            previous_support = project.support
-            if previous_support in ["archived", "outdated", "abandoned"]:
-                # reset automatic  status. It will be set back if it is still true.
-                project.support = None
-
-            project.update_support()
-            self.dao.update(project.name_id, support=project.support)
+            project.update_maturity()
+            self.dao.update(project.name_id, maturity=project.maturity)
 
     @staticmethod
     def filter_data(

@@ -8,6 +8,7 @@ labels = [ "QML",]
 category = "Application"
 reference_paper = "https://hdl.handle.net/1828/16627"
 uuid = "da29aca4-ba28-4d62-942b-f4c5371e7b6e"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/SaashaJoshi/piQture"
@@ -31,6 +32,11 @@ style = "flat"
 since = 2026-04-08T16:23:02.284539
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.piqture]

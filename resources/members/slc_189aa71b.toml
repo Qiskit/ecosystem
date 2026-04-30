@@ -8,6 +8,7 @@ ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-slc/"
 uuid = "189aa71b-6ad7-4c23-8ae5-81c369e415b3"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-slc"
@@ -31,6 +32,11 @@ style = "flat"
 since = 2026-04-08T16:22:55.349896
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.qiskit-addon-slc]

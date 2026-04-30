@@ -6,6 +6,7 @@ labels = [ "provider", "cloud service",]
 created_at = 1715085233.375706
 category = "Compute provider"
 uuid = "648ef199-ace1-4c6b-ae9c-2c0578cde0d5"
+maturity = "archived"
 
 [github]
 url = "https://github.com/iqm-finland/qiskit-on-iqm"
@@ -26,16 +27,21 @@ last_activity = 2026-04-16T14:38:53Z
 url = "https://qisk.it/e-648ef199"
 style = "flat"
 
-[checks.G05]
-since = 2026-04-23T22:50:49.067317
-details = "GitHub repository archived, so member.status must be `archived`"
-importance = "CRITICAL"
-
 [checks.007]
 since = 2026-04-08T16:22:37.968592
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
+
+[checks.G05]
+since = 2026-04-23T22:50:49.067317
+details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "IMPORTANT"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package qiskit-iqm is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.qiskit-iqm]
 package_name = "qiskit-iqm"
