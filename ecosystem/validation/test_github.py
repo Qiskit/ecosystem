@@ -16,8 +16,8 @@ def test_archived(member):
     """G05"""
     if hasattr(member.github, "archived") and member.github.archived:
         assert hasattr(
-            member, "status"
-        ), "GitHub repository archived, so member.status must exist and be `archived`"
+            member, "support"
+        ), "GitHub repository archived, so member.support must exist and be `archived`"
         assert (
-            member.status == "archived"
-        ), "GitHub repository archived, so member.status must be `archived`"
+            member.support == "archived"
+        ), "GitHub repository archived, so member.support must be `archived`"

@@ -1,27 +1,48 @@
 site_name: Qiskit Ecosystem documentation
 site_url: https://qiskit.github.io/ecosystem/
+repo_url: https://github.com/Qiskit/ecosystem
+repo_name: GitHub Repository
 
 theme:
   name: material
   palette:
     primary: deep purple
   logo: img/logo.png
+  icon:
+    annotation: material/eye-circle
   features:
+    - content.tooltips
     - content.code.copy
     - navigation.tabs
     - navigation.tabs.sticky
     - toc.integrate
 
+
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - abbr
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
   - search
   - table-reader
+  - gen-files:
+      scripts:
+        - ecosystem/generate_project_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
 
 nav:
+  - Overview: overview.md
+  - Projects: p/
   - Classifications:
     - Status: status.md
     - Categories: categories.md
