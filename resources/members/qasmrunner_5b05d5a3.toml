@@ -5,6 +5,7 @@ contact_info = "stiofancondon@outlook.com"
 labels = [ "openqasm",]
 category = "Converter"
 uuid = "5b05d5a3-26c6-4487-91cc-3ca3aeaf0d6b"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/TownsendBrown/QASM-Runner-for-IBM-platforms"
@@ -25,4 +26,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:53.827705
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

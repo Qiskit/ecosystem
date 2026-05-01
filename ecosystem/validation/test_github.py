@@ -1,23 +1,24 @@
 """Validations involving section member.github"""
 
-# pylint: disable=missing-function-docstring, redefined-outer-name
+# pylint: disable=invalid-name
 
 import pytest
 
 
 @pytest.fixture
 def skip_github(member):
+    """Skip if no github section"""
     if member.github is None:
         pytest.skip("No github section")
     yield member
 
 
-def test_archived(member):
-    """G05"""
+def test_G05(member):
+    """GitHub repository is archived?"""
     if hasattr(member.github, "archived") and member.github.archived:
         assert hasattr(
-            member, "status"
-        ), "GitHub repository archived, so member.status must exist and be `archived`"
+            member, "maturity"
+        ), "GitHub repository archived, so member.maturity must exist and be `as-is`"
         assert (
-            member.status == "archived"
-        ), "GitHub repository archived, so member.status must be `archived`"
+            member.maturity == "as-is"
+        ), "GitHub repository archived and member.maturity is not `as-is`"

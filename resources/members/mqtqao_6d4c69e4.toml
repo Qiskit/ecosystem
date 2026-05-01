@@ -9,6 +9,7 @@ category = "Application"
 reference_paper = "https://arxiv.org/abs/2406.12840"
 documentation = "https://mqt.readthedocs.io/projects/qao/en/latest/"
 uuid = "6d4c69e4-1e47-486c-b00f-8a60ae5e01d4"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/cda-tum/mqt-qao"
@@ -31,7 +32,7 @@ style = "flat"
 since = 2026-04-08T16:23:00.695279
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi."mqt.qao"]
 package_name = "mqt-qao"

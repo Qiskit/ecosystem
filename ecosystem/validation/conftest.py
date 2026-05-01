@@ -7,6 +7,7 @@ import pytest
 
 def pytest_configure(config):
     """Add a test mark called previously_failed(since)"""
+    config.failed_checkups = {}
     config.addinivalue_line(
         "markers", "previously_failed(since): mark test as previously failed"
     )
@@ -55,6 +56,7 @@ class ValidationReport:
                 for mark in item.iter_markers():
                     setattr(report, mark.name, mark)
                 self.failed.append(report)
+                item.config.failed_checkups[item.nodeid] = report
             elif hasattr(report, "wasxfail") and report.wasxfail:
                 self.xfailed.append(report)
             else:

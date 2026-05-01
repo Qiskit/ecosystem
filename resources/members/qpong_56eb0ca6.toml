@@ -8,6 +8,7 @@ created_at = 1678827877.979398
 updated_at = 1678827877.979398
 category = "Game"
 uuid = "56eb0ca6-4dd5-4954-a059-96256fd0ab26"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/QPong/QPong"
@@ -29,4 +30,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:55.085105
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

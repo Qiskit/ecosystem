@@ -7,6 +7,7 @@ affiliations = "Institute of Computing Technology, Chinese Academy of Sciences."
 labels = []
 category = "Circuit simulator"
 uuid = "c39a1176-0a10-41c5-9961-f6f4f5da0c6c"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Zhaoyilunnn/qdao"
@@ -28,4 +29,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:41.667793
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

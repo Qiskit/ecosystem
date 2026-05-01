@@ -22,7 +22,7 @@ def get_community_repo() -> Member:
         licence="Apache 2.0",
         labels=["mock", "tests"],
         badge="https://qisk.it/e",
-        support="well-maintained and stable",
+        maturity="production-ready",
     )
 
 

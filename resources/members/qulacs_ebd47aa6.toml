@@ -7,6 +7,7 @@ labels = [ "provider",]
 category = "Compute provider"
 documentation = "https://qiskit-qulacs.netlify.app/"
 uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
@@ -30,7 +31,7 @@ style = "flat"
 since = 2026-04-08T16:22:35.907114
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-qulacs]
 package_name = "qiskit-qulacs"

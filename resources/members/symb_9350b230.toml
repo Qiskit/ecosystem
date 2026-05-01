@@ -8,6 +8,7 @@ created_at = 1680254616.930627
 updated_at = 1680254616.930632
 category = "Circuit simulator"
 uuid = "9350b230-d7ca-4d52-b082-9d71303478b7"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/SimoneGasperini/qiskit-symb"
@@ -31,7 +32,12 @@ style = "flat"
 since = 2026-04-08T16:22:57.381383
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package qiskit-symb is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.qiskit-symb]
 package_name = "qiskit-symb"

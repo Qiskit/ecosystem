@@ -8,6 +8,7 @@ labels = [ "openqasm",]
 website = "https://quantag-it.com/quantum/#/debugger"
 category = "Tooling"
 uuid = "3728ab3d-5b7b-416d-ad73-8e55a41091ca"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/quantag/qdb-qscore"
@@ -29,4 +30,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:23:03.764936
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

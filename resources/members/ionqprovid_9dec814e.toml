@@ -8,6 +8,7 @@ created_at = 1670427446.011674
 updated_at = 1670427446.011675
 category = "Compute provider"
 uuid = "9dec814e-feb8-49c2-818a-f6a2503d38c5"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-ionq"
@@ -31,6 +32,11 @@ style = "flat"
 since = 2026-04-08T16:10:21.099978
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.qiskit-ionq]

@@ -9,6 +9,7 @@ updated_at = 1628883441.121111
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-dynamics/"
 uuid = "4bf110b1-5e54-4540-8338-d7d0fb7801d0"
+maturity = "archived"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-dynamics"
@@ -28,16 +29,26 @@ last_activity = 2026-04-10T09:08:42Z
 url = "https://qisk.it/e-4bf110b1"
 style = "flat"
 
-[checks.G05]
-since = 2026-04-23T22:50:56.068828
-details = "GitHub repository archived, so member.status must be `archived`"
-importance = "CRITICAL"
-
 [checks.007]
 since = 2026-04-08T16:23:03.275862
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.G05]
+since = 2026-04-23T22:50:56.068828
+details = "GitHub repository archived and member.maturity is not `as-is`"
 importance = "CRITICAL"
+
+[checks.001]
+since = 2026-04-30T12:59:28.712726
+details = "The project is probably abandoned: G05"
+importance = "CRITICAL"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package qiskit-dynamics is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.qiskit-dynamics]
 package_name = "qiskit-dynamics"

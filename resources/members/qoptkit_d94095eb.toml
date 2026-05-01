@@ -8,6 +8,7 @@ labels = []
 category = "Converter"
 documentation = "https://soqcsadmin.github.io/QoptKIT/"
 uuid = "d94095eb-85cf-42ea-a70e-fa1735225b68"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/SOQCSAdmin/QoptKIT"
@@ -28,4 +29,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:23:01.199922
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

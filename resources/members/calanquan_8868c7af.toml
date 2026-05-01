@@ -8,6 +8,7 @@ labels = [ "circuit optimization", "research",]
 category = "Application"
 reference_paper = "https://doi.org/10.48550/arXiv.2408.01025"
 uuid = "8868c7af-adce-48ee-9ca9-d066fb569cf4"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/albayaty/cala_quantum_library"
@@ -28,4 +29,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:52.748941
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

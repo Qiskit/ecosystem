@@ -9,6 +9,7 @@ updated_at = 1636403010.377697
 category = "Circuit simulator"
 documentation = "https://qiskit.github.io/qiskit-aer/"
 uuid = "474599a7-228b-446f-ae57-636fdbe8c1c6"
+maturity = "bugfixing only"
 status = "Qiskit Project"
 
 [github]
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:23:04.017735
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"

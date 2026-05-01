@@ -7,6 +7,7 @@ created_at = 1678827878.56605
 updated_at = 1678827878.566051
 category = "Transpiler plugin"
 uuid = "beaaab32-58d4-496f-8428-e6d88fa1e989"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/dsm-swap"
@@ -28,4 +29,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:36.154171
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

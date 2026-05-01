@@ -9,6 +9,7 @@ created_at = 1758737407.8760931
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-obp/"
 uuid = "e3e67d5e-66f8-4698-9e20-b97cfa8c5c48"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-obp"
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:22:51.012043
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-addon-obp]
 package_name = "qiskit-addon-obp"

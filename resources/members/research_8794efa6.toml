@@ -7,6 +7,7 @@ created_at = 1662992208.202283
 updated_at = 1662992208.20229
 category = "Other"
 uuid = "8794efa6-808d-45a6-bee1-39f8eeb45fdf"
+maturity = "archived"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-research"
@@ -27,16 +28,26 @@ last_activity = 2025-12-08T21:59:10Z
 url = "https://qisk.it/e-8794efa6"
 style = "flat"
 
-[checks.G05]
-since = 2026-04-23T22:50:49.597223
-details = "GitHub repository archived, so member.status must be `archived`"
-importance = "CRITICAL"
-
 [checks.007]
 since = 2026-04-08T16:22:50.502193
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.G05]
+since = 2026-04-23T22:50:49.597223
+details = "GitHub repository archived and member.maturity is not `as-is`"
 importance = "CRITICAL"
+
+[checks.001]
+since = 2026-04-30T12:59:28.712726
+details = "The project is probably abandoned: G05"
+importance = "CRITICAL"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package qiskit-research is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.qiskit-research]
 package_name = "qiskit-research"

@@ -8,6 +8,7 @@ labels = [ "optimization",]
 category = "SDK"
 documentation = "https://jij-inc.github.io/Qamomile/"
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Jij-Inc/Qamomile"
@@ -29,6 +30,11 @@ style = "flat"
 since = 2026-04-08T16:23:03.521067
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.qamomile]

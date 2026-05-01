@@ -5,6 +5,7 @@ labels = [ "quantum information", "circuit optimization",]
 ibm_maintained = true
 category = "SDK"
 uuid = "254bd1b0-409a-42fc-a104-2d8eb8a0b22d"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-cpp"
@@ -26,4 +27,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:45.951092
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"
