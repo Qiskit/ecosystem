@@ -8,5 +8,12 @@ interface = [ "Python", "Command-line interface (CLI)",]
 website = "https://quprep.org"
 category = "Tooling"
 documentation = "https://docs.quprep.org"
-packages = [ "https://pypi.org/project/quprep",]
+packages = []
 uuid = "e993c3c7-09e9-4916-a3eb-fb4e9266bedf"
+
+[github]
+owner = "quprep"
+repo = "quprep"
+
+[pypi.quprep]
+package_name = "quprep"
