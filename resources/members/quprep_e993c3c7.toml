@@ -12,8 +12,28 @@ packages = []
 uuid = "e993c3c7-09e9-4916-a3eb-fb4e9266bedf"
 
 [github]
+url = "https://github.com/quprep/quprep"
 owner = "quprep"
 repo = "quprep"
+stars = 1
+homepage = "https://quprep.org"
+license = "Apache License 2.0"
+description = "QuPrep is an open-source Python library for converting classical datasets into quantum-computing-ready formats. It provides a frame..."
+estimated_contributors = 3
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-05-04T01:23:07Z
+last_activity = 2026-05-04T01:23:08Z
 
 [pypi.quprep]
 package_name = "quprep"
+version = "0.9.0"
+last_release_date = 2026-05-01T16:22:12
+url = "https://pypi.org/project/quprep/"
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 389
+last_180_days_downloads = 1014
