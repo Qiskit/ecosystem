@@ -11,7 +11,7 @@ class TestChecksTOML(TestCase):
 
     meta_categories = ["categories", "importance"]
     mandatory_keys = ["title", "description", "applies_to", "category", "importance"]
-    optional_keys = ["checker", "affects", "related_to"]
+    optional_keys = ["checker", "affects", "related_to", "cure_period_in_days"]
 
     def setUp(self) -> None:
 

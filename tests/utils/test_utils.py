@@ -5,7 +5,6 @@ from unittest import TestCase
 
 from ecosystem.member import Member
 from ecosystem.submission_parser import parse_submission_issue
-from ecosystem.dao import DAO
 
 
 class TestUtils(TestCase):
@@ -63,13 +62,3 @@ class TestUtils(TestCase):
     #             repo_fields,
     #             msg="\nA field exists in the issue template but not in the Submission class.",
     #         )
-
-    def test_description_lengths(self):
-        """Make sure IDs in the issue template match attributes of the Submission model."""
-        dao = DAO("resources")
-        for repo in dao.get_all():
-            if repo.description and len(repo.description) > 135:
-                raise AssertionError(
-                    f'Description for "{repo.name}" is too long!\n'
-                    f"Rephrase to under 135 characters (currently {len(repo.description)})"
-                )

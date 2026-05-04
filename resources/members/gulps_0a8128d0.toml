@@ -9,19 +9,29 @@ category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2505.00543"
 packages = []
 uuid = "0a8128d0-2398-411b-a08e-737e2b198387"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/evmckinney9/gulps"
 owner = "evmckinney9"
 repo = "gulps"
-stars = 4
+stars = 5
 license = "Apache License 2.0"
 description = "optimally compile arbitary two-qubit unitaries"
 estimated_contributors = 3
 total_dependent_repositories = 2
 total_dependent_packages = 0
-last_commit = 2026-04-13T21:29:20Z
-last_activity = 2026-04-13T21:33:38Z
+last_commit = 2026-04-15T21:57:04Z
+last_activity = 2026-04-15T22:42:10Z
+
+[badge]
+url = "https://qisk.it/e-0a8128d0"
+style = "flat"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
+importance = "CRITICAL"
 
 [pypi.gulps]
 package_name = "gulps"
@@ -31,7 +41,7 @@ url = "https://pypi.org/project/gulps/"
 requires_qiskit = "<3,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 638
-last_180_days_downloads = 638
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 476
+last_180_days_downloads = 757

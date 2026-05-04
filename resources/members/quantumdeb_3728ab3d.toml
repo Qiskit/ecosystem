@@ -8,7 +8,7 @@ labels = [ "openqasm",]
 website = "https://quantag-it.com/quantum/#/debugger"
 category = "Tooling"
 uuid = "3728ab3d-5b7b-416d-ad73-8e55a41091ca"
-badge = "https://qisk.it/e-3728ab3d"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/quantag/qdb-qscore"
@@ -23,7 +23,11 @@ total_dependent_packages = 0
 last_commit = 2026-01-19T17:38:13Z
 last_activity = 2026-01-19T17:38:13Z
 
+[badge]
+url = "https://qisk.it/e-3728ab3d"
+style = "flat"
+
 [checks.007]
 since = 2026-04-08T16:23:03.764936
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

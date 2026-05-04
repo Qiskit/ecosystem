@@ -8,10 +8,24 @@ theme:
   logo: img/logo.png
   features:
     - content.code.copy
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.integrate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
 
 plugins:
   - search
   - table-reader
 
 nav:
-  - Badges: badges.md
+  - Classifications:
+    - Status: status.md
+    - Categories: categories.md
+    - Labels: labels.md
+    - Interfaces: interfaces.md
+    - Maturity: maturity.md
+    - Badges: badges.md

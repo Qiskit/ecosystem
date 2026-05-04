@@ -9,7 +9,7 @@ category = "Circuit simulator"
 reference_paper = "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043210"
 documentation = "https://quantum-gates.readthedocs.io/en/latest/index.html"
 uuid = "dd5d5bad-1523-4f3e-aff2-7d474b53d27a"
-badge = "https://qisk.it/e-dd5d5bad"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/CERN-QTI/quantum-gates"
@@ -23,11 +23,21 @@ estimated_contributors = 8
 total_dependent_repositories = 3
 total_dependent_packages = 0
 last_commit = 2026-04-08T09:11:16Z
-last_activity = 2026-04-08T09:11:17Z
+last_activity = 2026-04-15T07:18:24Z
+
+[badge]
+url = "https://qisk.it/e-dd5d5bad"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:02.775449
 details = "the entry `member.interface` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.quantum-gates]
@@ -38,7 +48,7 @@ url = "https://pypi.org/project/quantum-gates/"
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 40
-last_180_days_downloads = 4791
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 45
+last_180_days_downloads = 4797

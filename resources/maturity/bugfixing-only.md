@@ -1,0 +1,1 @@
+Minimally maintained projects means that the lights are kept on to ensure continued functionality: bug fixes and dependency updates are applied as needed. However, no new features or significant improvements are planned or prioritized.

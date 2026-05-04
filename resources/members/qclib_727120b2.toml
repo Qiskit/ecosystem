@@ -2,10 +2,10 @@ name = "Qclib"
 url = "https://github.com/qclib/qclib"
 description = "A quantum computing library implemented using Qiskit. The focus of Qclib is on preparing quantum states, but it is not limited to that."
 licence = "Apache License 2.0"
-labels = [ "circuit manipulation", "research",]
+labels = [ "circuit optimization", "research",]
 category = "SDK"
 uuid = "727120b2-7559-453e-beb3-0ab33fb60a4a"
-badge = "https://qisk.it/e-727120b2"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qclib/qclib"
@@ -19,10 +19,15 @@ total_dependent_packages = 1
 last_commit = 2026-04-07T20:14:09Z
 last_activity = 2026-04-07T20:14:31Z
 
+[badge]
+url = "https://qisk.it/e-727120b2"
+style = "flat"
+
 [checks.007]
 since = 2026-04-08T16:22:59.186666
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
 
 [pypi.qclib]
 package_name = "qclib"
@@ -32,7 +37,7 @@ url = "https://pypi.org/project/qclib/"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 314
-last_180_days_downloads = 2274
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 363
+last_180_days_downloads = 2233

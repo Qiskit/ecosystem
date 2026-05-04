@@ -1,6 +1,6 @@
 """CliMembers class for controlling all CLI functions."""
 
-import datetime
+from datetime import datetime, timedelta
 import json
 import tomllib
 import os
@@ -8,9 +8,10 @@ import re
 from typing import Optional, Tuple
 from pathlib import Path
 from jsonpath import findall, query
-
+from slugify import slugify
 
 from ecosystem.dao import DAO
+from ecosystem.classifications import ClassificationsToml
 from ecosystem.member import Member
 from ecosystem.error_handling import logger
 
@@ -29,6 +30,9 @@ class CliMembers:
         """CliMembers class."""
         self.current_dir = root_path or os.path.abspath(os.getcwd())
         self.resources_dir = f"{self.current_dir}/resources"
+        self.classifications_toml = ClassificationsToml(
+            resources_dir=self.resources_dir
+        )
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -70,28 +74,125 @@ class CliMembers:
         )
         self.dao.write(new_repo)
 
-    def update_badges(self, name=None, output_directory: str = None):
-        """Updates badges for projects."""
+    def create_badge_endpoints(self, name=None, output_directory: str = None):
+        """TODO."""
         if not output_directory:
             output_directory = os.path.join(self.current_dir, "badges")
         Path(output_directory).mkdir(parents=True, exist_ok=True)
         for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
+            if project.badge is None:
+                continue
+
+            status = None
+            if project.status in ["Alumni", "Under revision"]:
+                # if status is "Alumni" or "Under revision", put in in the message
+                status = project.status
+
+            status_color = None
+            if project.status == "Under revision":
+                # if status is "Under revision", set status color to orange as a warning.
+                # Color from triadic palette:  https://www.color-hex.com/color/6929c4
+                status_color = "c46929"
+
             data = {
-                "schemaVersion": 1,
-                "label": "Qiskit Ecosystem",
+                "schemaVersion": project.badge.schemaVersion or 1,
+                "label": project.badge.label or "Qiskit Ecosystem",
                 "namedLogo": "Qiskit",
-                "message": project.name,
-                "color": "6929C4",
-                "isError": "true",
+                "message": project.badge.message or status or project.name,
+                "color": project.badge.color or status_color or "6929C4",
+                "isError": project.badge.isError or "true",
+                "style": project.badge.style or "flat",
             }
             with open(
                 os.path.join(output_directory, str(project.short_uuid)), "w"
             ) as outfile:
                 json.dump(data, outfile, indent=4)
-                self.logger.info("Badge for %s has been updated.", project.name)
-            project.update_badge()
-            self.dao.update(project.name_id, badge=project.badge)
+                self.logger.info(
+                    "Badge %s endpoint: %s",
+                    project.name,
+                    os.path.join(output_directory, str(project.short_uuid)),
+                )
+
+    def update_docs_assets(self):
+        """Updates the files in docs/assets/ to build the docs"""
+        self.update_badge_list()
+        self.update_assets_status()
+        self.update_assets_maturity()
+        self.update_assets_categories()
+        self.update_assets_labels()
+        self.update_assets_interfaces()
+
+    def update_assets_status(self):
+        """Updates status.json and status.md docs/assets/"""
+        self.update_assets_classification("status", "status  classification")
+
+    def update_assets_maturity(self):
+        """Updates maturity.json and maturity.md docs/assets/"""
+        self.update_assets_classification("maturity", "maturity level")
+
+    def update_assets_categories(self):
+        """Updates categories.json and categories.md docs/assets/"""
+        self.update_assets_classification("categories", "category")
+
+    def update_assets_labels(self):
+        """Updates labels.json and labels.md docs/assets/"""
+        self.update_assets_classification("labels", "label")
+
+    def update_assets_interfaces(self):
+        """Updates interfaces.json and interfaces.md docs/assets/"""
+        self.update_assets_classification("interfaces", "interface")
+
+    def update_assets_classification(self, classification, classification_singular):
+        """Updates docs/assets/<classification>.json and docs/assets/<classification>.md"""
+        assets_dir = os.path.join(self.current_dir, "docs", "assets")
+
+        classification_json = os.path.join(assets_dir, f"{classification}.json")
+        os.makedirs(os.path.dirname(classification_json), exist_ok=True)
+        Path(classification_json).touch(exist_ok=True)
+
+        classification_md = os.path.join(assets_dir, f"{classification}.md")
+        os.makedirs(os.path.dirname(classification_md), exist_ok=True)
+        Path(classification_md).touch(exist_ok=True)
+
+        short_description = []
+        lines = []
+
+        classification_names = sorted(
+            getattr(self.classifications_toml, f"{classification}_names")
+        )
+        for other in ["Other", "Other interface", "Other language"]:
+            if other in classification_names:
+                classification_names.append(
+                    classification_names.pop(classification_names.index(other))
+                )
+
+        for name in classification_names:
+            description = getattr(
+                self.classifications_toml, f"{classification}_descriptions"
+            )[name]
+            section_name = getattr(
+                self.classifications_toml, f"{classification}_sections"
+            )[name] or slugify(name)
+            section_text_md = os.path.join(
+                self.resources_dir, classification, f"{section_name}.md"
+            )
+            short_description.append(
+                {
+                    classification_singular.capitalize(): f"[{name}](#{section_name})",
+                    "Short description": description or "",
+                }
+            )
+            if os.path.isfile(section_text_md):
+                with open(section_text_md, "r") as file:
+                    description = file.read()
+            lines += [f"## {name}", "\n\n", description, "\n\n"]
+
+        with open(classification_json, "w") as f:
+            json.dump(short_description, f)
+
+        with open(classification_md, "w") as outfile:
+            outfile.writelines(lines)
 
     def update_badge_list(self):
         """Updates badge list in qisk.it/ecosystem-badges."""
@@ -128,6 +229,17 @@ class CliMembers:
 
         with open(output_file, "w") as outfile:
             outfile.writelines(lines)
+
+    def update_badge(self, name=None):
+        """
+        Updates Badge data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are updated.
+        """
+        for project in self.dao.get_all(name):
+            project.update_badge()
+            self.dao.update(project.name_id, badge=project.badge)
 
     def update_github(self, name=None):
         """
@@ -173,7 +285,6 @@ class CliMembers:
         for project in self.dao.get_all(name):
             project.update_checkups()
             if project.checks:
-                today = datetime.datetime.today()
                 for checkup_id, checkup in project.checks.items():
                     if checkup.xfailed:
                         self.logger.info(
@@ -183,13 +294,37 @@ class CliMembers:
                             checkup.xfailed,
                         )
                         continue
-                    days_since = (today - checkup.since).days
+
+                    cure_period_str = (
+                        str(checkup.cure_period_in_days)
+                        if checkup.cure_period_in_days is not False
+                        else "∞"
+                    )
+                    if checkup.cure_period_in_days is False:
+                        left_period_str = "∞"
+                    else:
+                        left_period_int = (
+                            checkup.cure_period_in_days - checkup.days_since_failure
+                        )
+                        if left_period_int < 0:
+                            left_period_str = "no"
+                        else:
+                            left_period_str = str(
+                                checkup.cure_period_in_days - checkup.days_since_failure
+                            )
+
                     for_x_days = (
-                        f"for {days_since} days" if days_since else "since today"
+                        f"for {checkup.days_since_failure} days, so "
+                        f"{left_period_str} days left in the cure period"
+                        if checkup.days_since_failure != 0
+                        else "since today, "
+                        f"so {cure_period_str}-day cure period starts now"
                     )
                     self.logger.info(
-                        "❌ %s failed checkup %s (%s)",
+                        "%s %s (%s) failed checkup %s (%s)",
+                        "💣" if checkup.importance == "CRITICAL" else "❌",
                         project.name,
+                        project.name_id,
                         checkup_id,
                         for_x_days,
                     )
@@ -200,6 +335,40 @@ class CliMembers:
                     project.name_id,
                 )
             self.dao.update(project.name_id, checks=project.checks)
+
+    def update_status(self, name=None):
+        """Check if a project should be moved to "Under review" or "Alumni" """
+        for project in self.dao.get_all(name):
+            if project.status == "Qiskit Project":
+                # Qiskit Project status is governed differently,
+                # not via checkups in Qiskit Ecosystem.
+                continue
+
+            if project.status == "Under review":
+                # reset "Under review" status. It will be set back if it is still true.
+                project.status = None
+
+            for check in project.checks.values():
+                if check.xfailed:
+                    # Xfails do not affect the status
+                    continue
+                if not check.cure_period_in_days:
+                    # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
+                    continue
+                deadline = check.since + timedelta(days=check.cure_period_in_days)
+                if datetime.today() > deadline:
+                    # deadline passed
+                    project.status = "Alumni"
+                else:
+                    # still in cure period
+                    project.status = "Under review"
+            self.dao.update(project.name_id, status=project.status)
+
+    def update_maturity(self, name=None):
+        """Check if a project maturity should move to archived"""
+        for project in self.dao.get_all(name):
+            project.update_maturity()
+            self.dao.update(project.name_id, maturity=project.maturity)
 
     @staticmethod
     def filter_data(
@@ -330,11 +499,15 @@ class CliMembers:
                 },
             },
             "members": [
-                CliMembers.filter_data(member.to_dict(), member_data_to_export)
+                CliMembers.filter_data(
+                    member.to_dict(),
+                    member_data_to_export,
+                )
                 for member in self.dao.get_all()
+                if member.status != "Alumni"
             ],
-            "labels": CliMembers.load_labels_toml(
-                Path(self.resources_dir, "labels.toml"), labels_data_to_export
+            "labels": CliMembers.load_classifications_toml(
+                Path(self.resources_dir, "classifications.toml"), labels_data_to_export
             ),
         }
         Path(output_file).write_text(
@@ -342,8 +515,8 @@ class CliMembers:
         )
 
     @staticmethod
-    def load_labels_toml(filename, label_data_to_export):
-        """loads labels.toml and returns a json with the mapping in label_data_to_export"""
+    def load_classifications_toml(filename, label_data_to_export):
+        """loads classifications.toml and returns a json with the mapping in label_data_to_export"""
         with open(filename, "rb") as f:
             data = tomllib.load(f)
         return CliMembers.filter_data(data, label_data_to_export)

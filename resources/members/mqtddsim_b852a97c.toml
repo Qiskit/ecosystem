@@ -10,7 +10,7 @@ category = "Circuit simulator"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/ddsim"
 uuid = "b852a97c-eef8-46aa-a635-9c56a66e6ee0"
-badge = "https://qisk.it/e-b852a97c"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/ddsim"
@@ -22,13 +22,18 @@ license = "MIT License"
 description = "MQT DDSIM - A quantum circuit simulator based on decision diagrams written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-13T01:41:28Z
-last_activity = 2026-04-13T01:41:19Z
+last_commit = 2026-04-25T05:44:13Z
+last_activity = 2026-04-25T05:44:09Z
+
+[badge]
+url = "https://qisk.it/e-b852a97c"
+style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:52.263378
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
 
 [pypi."mqt.ddsim"]
 package_name = "mqt-ddsim"
@@ -39,7 +44,7 @@ url = "https://pypi.org/project/mqt.ddsim/"
 requires_qiskit = ">=1.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 3737
-last_180_days_downloads = 19682
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 2683
+last_180_days_downloads = 17924

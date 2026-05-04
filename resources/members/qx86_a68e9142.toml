@@ -10,7 +10,7 @@ category = "Application"
 reference_paper = "https://ieeexplore.ieee.org/document/9878250"
 documentation = "https://github.com/mistasparkaru/Qx86"
 uuid = "a68e9142-dc31-4b9f-a851-413dd91222d7"
-badge = "https://qisk.it/e-a68e9142"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/mistasparkaru/Qx86"
@@ -24,7 +24,11 @@ total_dependent_packages = 0
 last_commit = 2024-08-20T17:31:09Z
 last_activity = 2026-02-03T00:00:08Z
 
+[badge]
+url = "https://qisk.it/e-a68e9142"
+style = "flat"
+
 [checks.007]
 since = 2026-04-08T16:23:04.517965
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

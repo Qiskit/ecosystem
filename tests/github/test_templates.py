@@ -4,7 +4,7 @@ import os
 from unittest import TestCase
 from ruamel.yaml import YAML
 
-from ecosystem.labels import LabelsToml
+from ecosystem.classifications import ClassificationsToml
 
 
 class Test01submission(TestCase):
@@ -12,7 +12,18 @@ class Test01submission(TestCase):
 
     def setUp(self) -> None:
         root_dir = f"{os.path.dirname(os.path.abspath(__file__))}/../../"
-        self.labels_toml = LabelsToml(resources_dir=f"{root_dir}/resources")
+        self.classifications_toml = ClassificationsToml(
+            resources_dir=f"{root_dir}/resources"
+        )
+
+        def show_in_submission_template(x):
+            return (
+                x["show_in_submission_template"]
+                if "show_in_submission_template" in x
+                else True
+            )
+
+        self.classifications_toml.set_filter(show_in_submission_template)
         yaml = YAML()
         with open(
             f"{root_dir}/.github/ISSUE_TEMPLATE/01_submission.yml", "r"
@@ -20,34 +31,47 @@ class Test01submission(TestCase):
             self.issue_template = yaml.load(issue_template_file)
 
     def test_categories(self):
-        """categories in the template should exist in labels.toml"""
+        """categories_names in the template should exist in resources/classifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "category":
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
-                    section["attributes"]["options"],
-                    ["Select one..."] + self.labels_toml.category_names,
+                    list(section["attributes"]["options"]),
+                    ["Select one..."] + self.classifications_toml.categories_names,
                 )
 
     def test_labels(self):
-        """labels in the template should exist in labels.toml"""
+        """labels in the issue template should exist in classsifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "labels":
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
-                    section["attributes"]["options"], self.labels_toml.label_names
+                    list(section["attributes"]["options"]),
+                    self.classifications_toml.labels_names,
                 )
 
     def test_interfaces(self):
-        """interfaces in the template should exist in labels.toml"""
+        """interfaces in the template should exist in resources/classifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "interfaces":
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
-                    section["attributes"]["options"], self.labels_toml.interface_names
+                    section["attributes"]["options"],
+                    self.classifications_toml.interface_names,
+                )
+
+    def test_maturity(self):
+        """maturity classification in the template should exist in resources/classifications.toml"""
+        for section in self.issue_template["body"]:
+            if "id" in section and section["id"] == "maturity":
+                self.assertIn("attributes", section)
+                self.assertIn("options", section["attributes"])
+                self.assertEqual(
+                    list(section["attributes"]["options"]),
+                    self.classifications_toml.maturity_names,
                 )
 
     # TODO Qiskit patterns entry  # pylint: disable=fixme
