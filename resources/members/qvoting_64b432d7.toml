@@ -7,6 +7,7 @@ labels = [ "error mitigation", "error correction", "optimization", "research",]
 interface = [ "Python",]
 category = "Application"
 packages = []
+pattern_steps = [ "Post-process",]
 uuid = "64b432d7-f5f5-487f-8789-caadba593ce9"
 maturity = "production-ready"
 

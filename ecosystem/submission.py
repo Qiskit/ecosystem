@@ -25,7 +25,7 @@ class Submission:
     labels: list[str]
     interface: list[str]
     terms: bool
-    pattern_steps: str
+    pattern_steps: list[str]
     source_url: URL
     home_url: URL
     docs_url: URL

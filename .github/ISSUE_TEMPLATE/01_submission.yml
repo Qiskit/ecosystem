@@ -155,11 +155,13 @@ body:
     description: >
       Can this software help a user to work in one or more steps of  the [Qiskit Pattern](https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns)?
     multiple: true
+    validations:
+      required: false
     options:
-    - Map the problem
-    - Optimize for hardware
-    - Execute on hardware
-    - Post-process results
+    - Map
+    - Optimize
+    - Execute
+    - Post-process
 - type: markdown
   attributes:
     value: '---'

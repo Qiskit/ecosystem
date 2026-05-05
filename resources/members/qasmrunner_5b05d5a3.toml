@@ -4,6 +4,7 @@ description = "A command-line tool for executing OpenQASM 2.0 files on IBM Quant
 contact_info = "stiofancondon@outlook.com"
 labels = [ "openqasm",]
 category = "Converter"
+pattern_steps = [ "Execute",]
 uuid = "5b05d5a3-26c6-4487-91cc-3ca3aeaf0d6b"
 maturity = "production-ready"
 
