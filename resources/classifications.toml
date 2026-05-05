@@ -23,6 +23,10 @@ name = "Transpiler plugin"
 description = "Implements Qiskit's transpiler plugin interface"
 
 [[categories]]
+name = "Language binding"
+description = "Languange binding of Qiskit SDK"
+
+[[categories]]
 name = "Converter"
 description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs or tools"
 
