@@ -37,6 +37,9 @@ jobs:
     - name: Update Julia data
       run: python manager.py members update_julia
 
+    - name: Update maturity project
+      run: python manager.py members update_maturity
+
     - name: Update checkups data
       run: python manager.py members update_checkups
 

@@ -10,6 +10,7 @@ category = "Tooling"
 reference_paper = "https://www.worldscientific.com/doi/10.1142/S0218194024410018"
 documentation = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler/blob/main/README.md"
 uuid = "cec38ad8-9737-49e7-a177-3a6850784b6e"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:22:39.561385
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.autoscheduler]
 package_name = "autoscheduler"

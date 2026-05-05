@@ -7,6 +7,7 @@ labels = [ "chemistry",]
 website = "https://qiskit-community.github.io/ffsim/"
 category = "Circuit simulator"
 uuid = "8bbab14b-6cbb-4e09-8040-d5afd359deec"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/ffsim"
@@ -30,7 +31,7 @@ style = "flat"
 since = 2026-04-08T16:22:49.504226
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.ffsim]
 package_name = "ffsim"

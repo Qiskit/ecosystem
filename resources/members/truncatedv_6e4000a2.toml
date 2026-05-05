@@ -8,6 +8,7 @@ labels = [ "chemistry", "research", "physics",]
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2505.19772"
 uuid = "6e4000a2-3a09-43ff-b738-d4b17a0df011"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/cpossel/tvha"
@@ -27,4 +28,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:40.391581
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

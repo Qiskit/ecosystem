@@ -8,6 +8,7 @@ updated_at = 1636403009.538763
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-optimization/"
 uuid = "3b2ff33f-b4a3-49cd-ab32-563d282cc3bf"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-optimization"
@@ -30,7 +31,7 @@ style = "flat"
 since = 2026-04-08T16:22:55.879857
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-optimization]
 package_name = "qiskit-optimization"

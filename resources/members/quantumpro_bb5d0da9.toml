@@ -5,6 +5,7 @@ licence = "Apache License 2.0"
 labels = []
 category = "Tooling"
 uuid = "bb5d0da9-1523-4756-bda2-43d970b1fc51"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/quantum-prototype-template"
@@ -27,7 +28,7 @@ style = "flat"
 since = 2026-04-08T16:23:03.026952
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.vqls-prototype]
 package_name = "vqls-prototype"

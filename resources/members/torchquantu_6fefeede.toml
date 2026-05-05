@@ -7,6 +7,7 @@ created_at = 1678827878.611621
 updated_at = 1678827878.611622
 category = "Application"
 uuid = "6fefeede-f98e-44df-aea0-149827358701"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/mit-han-lab/torchquantum"
@@ -30,7 +31,17 @@ style = "flat"
 since = 2026-04-08T16:22:47.505314
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package torchquantum is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.torchquantum]
 package_name = "torchquantum"

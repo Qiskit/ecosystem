@@ -8,6 +8,7 @@ labels = [ "research",]
 category = "Application"
 reference_paper = "https://arxiv.org/pdf/2210.14928"
 uuid = "4262945e-f1af-441a-ad38-c803a5c6df0b"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/problemsolver"
@@ -30,7 +31,17 @@ style = "flat"
 since = 2026-04-08T16:22:55.612389
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package mqt-problemsolver is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi."mqt.problemsolver"]
 package_name = "mqt-problemsolver"

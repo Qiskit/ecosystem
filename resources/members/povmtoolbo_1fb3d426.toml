@@ -7,6 +7,7 @@ labels = [ "circuit building",]
 category = "Other"
 documentation = "https://qiskit-community.github.io/povm-toolbox/"
 uuid = "1fb3d426-e458-4c7a-be9e-e31a758bb872"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/povm-toolbox"
@@ -30,7 +31,7 @@ style = "flat"
 since = 2026-04-08T16:22:52.017483
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.povm-toolbox]
 package_name = "povm-toolbox"

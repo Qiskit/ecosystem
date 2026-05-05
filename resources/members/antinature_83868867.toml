@@ -9,6 +9,7 @@ website = "https://antinature.vercel.app/"
 category = "Application"
 documentation = "https://antinature.vercel.app/docs/"
 uuid = "83868867-87d7-40c1-a0cb-7e68be6b22ad"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/mk0dz/antinature"
@@ -32,7 +33,12 @@ style = "flat"
 since = 2026-04-08T16:22:43.641353
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package antinature is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.antinature]
 package_name = "antinature"

@@ -43,7 +43,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
         julia: JuliaData | None = None,
-        support: str | None = None,
+        maturity: str | None = None,
         status: str | None = None,
     ):
         self.name = name
@@ -69,7 +69,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.pypi = pypi or {}
         self.julia = julia
         self.badge = badge
-        self.support = support
+        self.maturity = maturity
         self.status = status
 
         self.__dict__.setdefault("created_at", parse_datetime("now"))
@@ -328,3 +328,17 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 checkup_data.discussion = self.checks[checkup_data.id].discussion
             checkups[checkup_data.id] = checkup_data
         self.checks = checkups
+
+    def update_maturity(self):
+        """Check if self.maturity should move to archived. Either because:
+         - github.archived == true
+         - TODO: if all the pypi package are archived
+        only udpates if maturity was not "as-is"
+        """
+        skip_if = [
+            "as-is",
+        ]
+        if self.maturity in skip_if:
+            return
+        if hasattr(self.github, "archived") and self.github.archived:
+            self.maturity = "archived"

@@ -8,6 +8,7 @@ updated_at = 1636403009.368609
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-finance/"
 uuid = "8ebeec26-5043-4423-9cdc-bfa92bd4ad63"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-finance"
@@ -30,7 +31,7 @@ style = "flat"
 since = 2026-04-08T16:23:04.764612
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-finance]
 package_name = "qiskit-finance"

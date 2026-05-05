@@ -15,6 +15,15 @@ class Test01submission(TestCase):
         self.classifications_toml = ClassificationsToml(
             resources_dir=f"{root_dir}/resources"
         )
+
+        def show_in_submission_template(x):
+            return (
+                x["show_in_submission_template"]
+                if "show_in_submission_template" in x
+                else True
+            )
+
+        self.classifications_toml.set_filter(show_in_submission_template)
         yaml = YAML()
         with open(
             f"{root_dir}/.github/ISSUE_TEMPLATE/01_submission.yml", "r"
@@ -22,7 +31,7 @@ class Test01submission(TestCase):
             self.issue_template = yaml.load(issue_template_file)
 
     def test_categories(self):
-        """categories_names in the template should exist in labels.toml"""
+        """categories_names in the template should exist in resources/classifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "category":
                 self.assertIn("attributes", section)
@@ -44,7 +53,7 @@ class Test01submission(TestCase):
                 )
 
     def test_interfaces(self):
-        """interfaces in the template should exist in labels.toml"""
+        """interfaces in the template should exist in resources/classifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "interfaces":
                 self.assertIn("attributes", section)
@@ -52,6 +61,17 @@ class Test01submission(TestCase):
                 self.assertEqual(
                     section["attributes"]["options"],
                     self.classifications_toml.interface_names,
+                )
+
+    def test_maturity(self):
+        """maturity classification in the template should exist in resources/classifications.toml"""
+        for section in self.issue_template["body"]:
+            if "id" in section and section["id"] == "maturity":
+                self.assertIn("attributes", section)
+                self.assertIn("options", section["attributes"])
+                self.assertEqual(
+                    list(section["attributes"]["options"]),
+                    self.classifications_toml.maturity_names,
                 )
 
     # TODO Qiskit patterns entry  # pylint: disable=fixme

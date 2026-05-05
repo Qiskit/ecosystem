@@ -5,6 +5,7 @@ licence = "Apache License 2.0"
 labels = []
 category = "Circuit simulator"
 uuid = "a304538c-feb7-47b2-a41f-f9fbe41de87b"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-quimb"
@@ -28,7 +29,7 @@ style = "flat"
 since = 2026-04-08T16:22:46.212014
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-quimb]
 package_name = "qiskit-quimb"

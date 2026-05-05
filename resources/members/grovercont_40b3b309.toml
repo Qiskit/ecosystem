@@ -8,6 +8,7 @@ labels = [ "circuit optimization", "research",]
 category = "Application"
 reference_paper = "https://doi.org/10.21203/rs.3.rs-2997276/v1"
 uuid = "40b3b309-0dfa-482a-89a6-cbaffd18b7ba"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/albayaty/grover_controlled_diffuser"
@@ -27,4 +28,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:46.990807
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

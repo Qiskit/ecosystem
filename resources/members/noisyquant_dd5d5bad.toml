@@ -9,6 +9,7 @@ category = "Circuit simulator"
 reference_paper = "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043210"
 documentation = "https://quantum-gates.readthedocs.io/en/latest/index.html"
 uuid = "dd5d5bad-1523-4f3e-aff2-7d474b53d27a"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/CERN-QTI/quantum-gates"
@@ -32,6 +33,11 @@ style = "flat"
 since = 2026-04-08T16:23:02.775449
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.quantum-gates]

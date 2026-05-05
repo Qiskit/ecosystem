@@ -6,6 +6,7 @@ labels = [ "provider", "cloud service",]
 created_at = 1715084759.598566
 category = "Compute provider"
 uuid = "8abf631e-bbf0-4624-b9c7-60073981f5b0"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/microsoft/azure-quantum-python"
@@ -29,7 +30,7 @@ style = "flat"
 since = 2026-04-08T16:22:45.453639
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.azure-quantum]
 package_name = "azure-quantum"

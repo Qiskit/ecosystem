@@ -10,6 +10,7 @@ category = "Application"
 reference_paper = "https://quantum-journal.org/papers/q-2023-07-20-1062/"
 documentation = "https://mqt.readthedocs.io/projects/bench/en/latest/"
 uuid = "06f1e81e-e82a-4fc2-88b5-60b532248af1"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/bench"
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:22:53.582154
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi."mqt.bench"]
 package_name = "mqt-bench"

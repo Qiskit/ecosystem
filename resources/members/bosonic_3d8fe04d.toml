@@ -6,6 +6,7 @@ created_at = 1678827878.841977
 updated_at = 1678827878.841978
 category = "Application"
 uuid = "3d8fe04d-8ac0-4282-9eb6-cb458550945a"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/C2QA/bosonic-qiskit"
@@ -28,6 +29,11 @@ style = "flat"
 since = 2026-04-08T16:22:54.078424
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.bosonic-qiskit]

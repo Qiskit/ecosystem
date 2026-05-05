@@ -1,0 +1,2 @@
+A project is considered `outdated` when it is not longer compatible with currently supported versions of Qiskit Projects.
+It may still work against older versions, but no there is no planned effort to update it for the current ecosystem.

@@ -8,6 +8,7 @@ updated_at = 1678827878.723734
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-nature-pyscf/"
 uuid = "1bfdd558-ebef-446b-aad5-1be7ecce68cd"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-nature-pyscf"
@@ -30,7 +31,7 @@ style = "flat"
 since = 2026-04-08T16:22:37.706188
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-nature-pyscf]
 package_name = "qiskit-nature-pyscf"

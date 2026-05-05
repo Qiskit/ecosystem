@@ -9,6 +9,7 @@ website = "https://mqt.readthedocs.io"
 category = "Other"
 documentation = "https://mqt.readthedocs.io/projects/qecc/en/latest/"
 uuid = "791d4814-0ced-4f5a-94c5-908ceb4b5a90"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/qecc"
@@ -31,7 +32,7 @@ style = "flat"
 since = 2026-04-08T16:22:45.694636
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi."mqt.qcec"]
 package_name = "mqt-qcec"

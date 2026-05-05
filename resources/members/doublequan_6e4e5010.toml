@@ -8,6 +8,7 @@ interface = [ "Python",]
 category = "Application"
 packages = []
 uuid = "6e4e5010-7f25-4f03-9724-c9088b4ce0e0"
+maturity = "production-ready"
 status = "Alumni"
 
 [github]
@@ -29,6 +30,11 @@ style = "flat"
 [checks.014]
 since = 2026-04-14T08:12:50.128851
 details = "Description is 143-character long"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.double-quant]

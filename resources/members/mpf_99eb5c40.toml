@@ -9,6 +9,7 @@ created_at = 1758737407.8760931
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-mpf/"
 uuid = "99eb5c40-00ee-439c-971e-e3e2a523c83a"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-mpf"
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:22:42.662976
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-addon-mpf]
 package_name = "qiskit-addon-mpf"

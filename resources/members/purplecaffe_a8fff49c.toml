@@ -9,6 +9,7 @@ updated_at = 1688661859.080264
 category = "Other"
 documentation = "https://icekhan13.github.io/purplecaffeine/index.html"
 uuid = "a8fff49c-d8ee-4386-87b1-b28d31005823"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/IceKhan13/purplecaffeine"
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:22:43.394083
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.purplecaffeine]
 package_name = "purplecaffeine"

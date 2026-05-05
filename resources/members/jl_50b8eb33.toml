@@ -4,9 +4,10 @@ contact_info = "garrison@ibm.com"
 labels = []
 interface = [ "Julia",]
 ibm_maintained = true
-category = "SDK"
+category = "Language binding"
 documentation = "https://qiskit.github.io/Qiskit.jl/"
 uuid = "50b8eb33-872d-44a4-b8f8-5fafa7712393"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/Qiskit.jl"

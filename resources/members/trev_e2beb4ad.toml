@@ -8,6 +8,7 @@ interface = [ "Python",]
 category = "Circuit simulator"
 packages = []
 uuid = "e2beb4ad-418d-4dca-b789-02567d385528"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/keunjunpark/qiskit-trev"

@@ -10,6 +10,7 @@ category = "Application"
 reference_paper = "https://arxiv.org/abs/2301.00560"
 documentation = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
 uuid = "b4d78374-40eb-4118-bb22-45e97b2dc0c5"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qognitive/fast-pauli"
@@ -33,7 +34,7 @@ style = "flat"
 since = 2026-04-08T16:22:56.127265
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.fast-pauli]
 package_name = "fast-pauli"

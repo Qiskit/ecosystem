@@ -1,4 +1,4 @@
-"""Validations involving resources/labels.toml"""
+"""Validations involving resources/classification.toml"""
 
 # pylint: disable=missing-function-docstring, redefined-outer-name
 
@@ -32,6 +32,11 @@ def categories(toml_file_data):
 @pytest.fixture
 def labels(toml_file_data):
     return [c["name"] for c in toml_file_data["labels"]]
+
+
+@pytest.fixture
+def support(toml_file_data):
+    return [c["name"] for c in toml_file_data["maturity"]]
 
 
 def test_valid_interfaces(member, interfaces):

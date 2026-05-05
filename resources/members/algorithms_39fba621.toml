@@ -8,6 +8,7 @@ labels = []
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
 uuid = "39fba621-edbb-485b-a723-8a0760ab4b85"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-algorithms"
@@ -30,7 +31,7 @@ style = "flat"
 since = 2026-04-08T16:22:50.253545
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-algorithms]
 package_name = "qiskit-algorithms"

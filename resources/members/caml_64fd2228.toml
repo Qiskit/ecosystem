@@ -9,6 +9,7 @@ category = "Converter"
 documentation = "https://dakk.github.io/caml_qiskit/"
 packages = [ "https://opam.ocaml.org/packages/qiskit/",]
 uuid = "64fd2228-855b-4f30-9a1d-b64904ea80b4"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/dakk/caml_qiskit"

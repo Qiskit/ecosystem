@@ -8,6 +8,7 @@ created_at = 1678827878.760089
 updated_at = 1678827878.76009
 category = "Compute provider"
 uuid = "76ae525f-0734-405b-b4b8-421f74125fa2"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Infleqtion/client-superstaq"
@@ -31,7 +32,7 @@ style = "flat"
 since = 2026-04-08T16:22:42.175868
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-superstaq]
 package_name = "qiskit-superstaq"

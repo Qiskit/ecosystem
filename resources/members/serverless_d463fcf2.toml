@@ -9,6 +9,7 @@ created_at = 1670427445.627174
 updated_at = 1670427445.627175
 category = "SDK"
 uuid = "d463fcf2-9e98-4d16-af3b-25ec29b650f7"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-serverless"
@@ -32,7 +33,7 @@ style = "flat"
 since = 2026-04-08T16:23:02.526634
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qiskit-serverless]
 package_name = "qiskit-serverless"

@@ -8,6 +8,7 @@ created_at = 1674598082.072493
 updated_at = 1674598082.072494
 category = "Game"
 uuid = "dfa4cfd2-0ef5-4536-b7ec-47cc982ed0d9"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/JanLahmann/RasQberry"
@@ -29,4 +30,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:37.109421
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

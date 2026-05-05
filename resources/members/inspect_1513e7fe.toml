@@ -6,6 +6,7 @@ contact_info = "soumyadip@soumyadipsarkar.com"
 labels = []
 category = "Other"
 uuid = "1513e7fe-9390-4014-9c2a-f6c600ddf6ca"
+maturity = "production-ready"
 status = "Under review"
 
 [github]
@@ -29,7 +30,7 @@ style = "flat"
 since = 2026-04-08T16:22:57.634801
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [checks.013]
 since = 2026-04-01T16:42:52.453058

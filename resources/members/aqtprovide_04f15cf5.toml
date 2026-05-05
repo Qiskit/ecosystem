@@ -9,6 +9,7 @@ website = "https://www.aqt.eu/qc-systems/"
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
 uuid = "04f15cf5-ee50-4c77-b254-8907ed3ba407"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-aqt-provider"
@@ -32,7 +33,12 @@ style = "flat"
 since = 2026-04-08T16:22:38.478875
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package qiskit-aqt-provider is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.qiskit-aqt-provider]
 package_name = "qiskit-aqt-provider"

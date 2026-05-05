@@ -8,6 +8,7 @@ website = "https://www.scaleway.com"
 category = "Compute provider"
 documentation = "https://pypi.org/project/qiskit-scaleway/"
 uuid = "a942dc5d-c715-4b23-a9d6-4f2c3ee1d70b"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/scaleway/qiskit-scaleway"
@@ -30,6 +31,11 @@ style = "flat"
 since = 2026-04-08T16:22:58.384238
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.qiskit-scaleway]

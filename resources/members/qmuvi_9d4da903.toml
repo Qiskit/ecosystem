@@ -8,6 +8,7 @@ labels = [ "demo",]
 category = "Converter"
 documentation = "https://garymooney.github.io/qmuvi/"
 uuid = "9d4da903-9823-4ae3-a80c-22821b62931e"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/garymooney/qmuvi"
@@ -31,6 +32,11 @@ style = "flat"
 since = 2026-04-08T16:22:36.418736
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.qmuvi]
