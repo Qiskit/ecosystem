@@ -26,7 +26,7 @@ Python
 
 ### Qiskit Pattern steps
 
-Map the problem, Optimize for hardware, Execute on hardware
+Map, Optimize, Execute
 
 
 ### GitHub repository

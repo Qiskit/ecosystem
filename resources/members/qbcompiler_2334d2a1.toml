@@ -7,6 +7,7 @@ labels = [ "circuit optimization", "error mitigation",]
 interface = [ "Python",]
 website = "https://qubitboost.io/compiler"
 category = "Transpiler plugin"
+pattern_steps = [ "Optimize",]
 documentation = "https://mwpwalshe.github.io/qb-compiler/"
 packages = []
 uuid = "2334d2a1-93bc-4652-8e15-ac395b2d3dd9"

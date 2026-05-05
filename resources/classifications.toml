@@ -212,3 +212,19 @@ description = "The project has no active maintenance expectations."
 name = "deprecated"
 description = "The project still functional but no longer recommended for use."
 show_in_submission_template = false
+
+[[pattern_steps]]
+name = "Map"
+description = "Translate domain-specific problems into quantum circuits and operators."
+
+[[pattern_steps]]
+name = "Optimize"
+description = "Optimize quantum circuits into ISA circuits (mapping to physical qubits, converting to hardware basis gates, and reducing operations) to maximize success on the target device."
+
+[[pattern_steps]]
+name = "Execute"
+description = "Run the quantum circuits using primitives (such as Estimator or Sampler) to get results."
+
+[[pattern_steps]]
+name = "Post-process"
+description = "Analyze the output of the quantum computation to improve the signal or/and convert it to domain-specific data."

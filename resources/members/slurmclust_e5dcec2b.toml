@@ -6,6 +6,7 @@ contact_info = "dikran.s.meliksetian@gmail.com"
 labels = [ "HPC", "cloud service",]
 interface = [ "Other interface",]
 category = "Tooling"
+pattern_steps = [ "Execute", "Post-process",]
 documentation = "https://github.com/dmeliksetian/slurm-qiskit-cluster/blob/main/InstallationGuide.md"
 packages = []
 uuid = "e5dcec2b-bfd8-44f5-ba31-65a2aa50c036"

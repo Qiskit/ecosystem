@@ -30,6 +30,14 @@ description = "If the software depends on Qiskit SDK in some way, there should e
 importance = "CRITICAL"
 checker = "test_general.py::test_Q20"
 
+[005]
+title = "Qiskit Pattern steps have to exist"
+description = "All `member.pattern_steps` should exist in https://qisk.it/ecosystem-pattern_steps"
+applies_to = "all"
+affects = ["member.pattern_steps.*"]
+category = "SUBMISSION"
+checker = "test_classifications.py::test_005"
+importance = "IMPORTANT"
 
 [007]
 title = "Interface have to exist"
