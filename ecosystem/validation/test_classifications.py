@@ -35,6 +35,11 @@ def labels(toml_file_data):
 
 
 @pytest.fixture
+def pattern_steps(toml_file_data):
+    return [c["name"] for c in toml_file_data["pattern_steps"]]
+
+
+@pytest.fixture
 def support(toml_file_data):
     return [c["name"] for c in toml_file_data["maturity"]]
 
@@ -48,15 +53,29 @@ def test_valid_interfaces(member, interfaces):
     for interface in member.interface:
         assert (
             interface in interfaces
-        ), f"the interface '{interface}' does not exist in labels.toml"
+        ), f"the interface '{interface}' does not exist in classifications.toml"
 
 
 def test_valid_category(member, categories):
     """008"""
-    assert member.category in categories, "member.group should exist in labels.toml"
+    assert (
+        member.category in categories
+    ), "member.group should exist in classifications.toml"
 
 
 def test_valid_label(member, labels):
     """009"""
     for label in member.labels:
-        assert label in labels, f"the label '{label}' does not exist in labels.toml"
+        assert (
+            label in labels
+        ), f"the label '{label}' does not exist in classifications.toml"
+
+
+def test_005(member, pattern_steps):
+    """All `member.pattern_steps` should exist in https://qisk.it/ecosystem-pattern_steps"""
+    if not member.pattern_steps:
+        pytest.skip("No Qiskit Pattern step declared")
+    for pattern_step in member.pattern_steps:
+        assert (
+            pattern_step in pattern_steps
+        ), f"the Qiskit Pattern step '{pattern_step}' does not exist in classifications.toml"

@@ -34,7 +34,7 @@ importance = "IMPORTANT"
 
 [checks.008]
 since = 2026-04-23T18:17:37.676459
-details = "member.group should exist in labels.toml"
+details = "member.group should exist in classifications.toml"
 importance = "IMPORTANT"
 
 [pypi.qiskit-sat-synthesis]

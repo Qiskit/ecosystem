@@ -221,7 +221,6 @@ description = "Translate domain-specific problems into quantum circuits and oper
 name = "Optimize"
 description = "Optimize quantum circuits into ISA circuits (mapping to physical qubits, converting to hardware basis gates, and reducing operations) to maximize success on the target device."
 
-
 [[pattern_steps]]
 name = "Execute"
 description = "Run the quantum circuits using primitives (such as Estimator or Sampler) to get results."
