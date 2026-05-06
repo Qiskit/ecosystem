@@ -89,18 +89,26 @@ class CliMembers:
                 as an example. If not given, it does not create the example endpoints.
             output_directory: directory in which it saves the json files. By default, ./badges
         """
+        default_schemaversion = 1
+        default_label = "Qiskit Ecosystem"
+        alumni_label = f"{default_label} Alumni"
+        default_namedlogo = "Qiskit"
+        default_color = "6929C4"
+        warning_color = "c46929"
+        default_iserror = "true"
+        default_style = "flat"
         if not output_directory:
             output_directory = os.path.join(self.current_dir, "badges")
         Path(output_directory).mkdir(parents=True, exist_ok=True)
         if example:
             for style in ["flat", "flat-square", "plastic", "for-the-badge", "social"]:
                 data = {
-                    "schemaVersion": 1,
-                    "label": "Qiskit Ecosystem",
-                    "namedLogo": "Qiskit",
+                    "schemaVersion": default_schemaversion,
+                    "label": default_label,
+                    "namedLogo": default_namedlogo,
                     "message": example,
-                    "color": "6929C4",
-                    "isError": "true",
+                    "color": default_color,
+                    "isError": default_iserror,
                     "style": style,
                 }
                 filename = f"example_{style}"
@@ -111,46 +119,60 @@ class CliMembers:
                         style,
                         os.path.join(output_directory, filename),
                     )
-            for message in "Alumni", "Under revision":
-                data = {
-                    "schemaVersion": 1,
-                    "label": "Qiskit Ecosystem",
-                    "namedLogo": "Qiskit",
-                    "message": message,
-                    "color": "c46929" if message == "Under revision" else "6929C4",
-                    "isError": "true",
-                    "style": "flat",
-                }
-                filename = f"example_{slugify(message)}"
-                with open(os.path.join(output_directory, filename), "w") as outfile:
-                    json.dump(data, outfile, indent=4)
-                    self.logger.info(
-                        "Example Badge endpoint (status=%s): %s",
-                        message,
-                        os.path.join(output_directory, filename),
-                    )
+            data_alumni = {
+                "schemaVersion": default_color,
+                "label": alumni_label,  # <-
+                "namedLogo": default_namedlogo,
+                "message": example,
+                "color": default_color,
+                "isError": default_iserror,
+                "style": default_style,
+            }
+            filename = "example_alumni"
+            with open(os.path.join(output_directory, filename), "w") as outfile:
+                json.dump(data_alumni, outfile, indent=4)
+                self.logger.info(
+                    "Example Badge endpoint (status=Alumni): %s",
+                    os.path.join(output_directory, filename),
+                )
+
+            data_under_revision = {
+                "schemaVersion": default_schemaversion,
+                "label": default_label,
+                "namedLogo": default_namedlogo,
+                "message": "Under revision",  # <-
+                "color": warning_color,
+                "isError": default_iserror,
+                "style": default_style,
+            }
+            filename = f"example_under-revision"
+            with open(os.path.join(output_directory, filename), "w") as outfile:
+                json.dump(data_under_revision, outfile, indent=4)
+                self.logger.info(
+                    "Example Badge endpoint (status=Under revision): %s",
+                    os.path.join(output_directory, filename),
+                )
         for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
             if project.badge is None:
                 continue
 
-            status = None
-            if project.status in ["Alumni", "Under revision"]:
-                # if status is "Alumni" or "Under revision", put in in the message
-                status = project.status
+            is_alumni = None
+            if project.status == "Alumni":
+                is_alumni = alumni_label
 
             status_color = None
             if project.status == "Under revision":
                 # if status is "Under revision", set status color to orange as a warning.
                 # Color from triadic palette:  https://www.color-hex.com/color/6929c4
-                status_color = "c46929"
+                status_color = warning_color
 
             data = {
-                "schemaVersion": project.badge.schemaVersion or 1,
-                "label": project.badge.label or "Qiskit Ecosystem",
-                "namedLogo": "Qiskit",
-                "message": project.badge.message or status or project.name,
-                "color": project.badge.color or status_color or "6929C4",
+                "schemaVersion": project.badge.schemaVersion or default_schemaversion,
+                "label": project.badge.label or is_alumni or default_label,
+                "namedLogo": default_namedlogo,
+                "message": project.badge.message or project.name,
+                "color": project.badge.color or status_color or default_color,
                 "isError": project.badge.isError or "true",
                 "style": project.badge.style or "flat",
             }
