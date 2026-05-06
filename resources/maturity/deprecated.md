@@ -1,0 +1,1 @@
+Deprecated projects are still functional but no longer recommended for use, typically because they have been superseded by a newer project or alternative. Usually, a grace period is provided to allow migration to the recommended replacement. During that period, minimal maintenance (such critical bug fixing) is expected, but no long-term support is planned.

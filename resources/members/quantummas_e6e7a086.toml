@@ -6,6 +6,7 @@ contact_info = "shravanpatel4@gmail.com"
 labels = []
 category = "Game"
 uuid = "e6e7a086-9b91-47b9-be78-f9c7bc680863"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/shravanpatel30/Quantum-MasterChef"
@@ -25,4 +26,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:47.238028
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

@@ -9,6 +9,7 @@ website = "https://www.aqt.eu/qc-systems/"
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
 uuid = "04f15cf5-ee50-4c77-b254-8907ed3ba407"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-aqt-provider"
@@ -20,9 +21,9 @@ license = "Apache License 2.0"
 description = "Qiskit provider for AQT backends."
 estimated_contributors = 20
 total_dependent_repositories = 17
-total_dependent_packages = 3
-last_commit = 2026-04-16T12:59:50Z
-last_activity = 2026-04-16T12:59:51Z
+total_dependent_packages = 4
+last_commit = 2026-04-26T01:26:05Z
+last_activity = 2026-04-26T01:26:06Z
 
 [badge]
 url = "https://qisk.it/e-04f15cf5"
@@ -32,11 +33,16 @@ style = "flat"
 since = 2026-04-08T16:22:38.478875
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package qiskit-aqt-provider is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.qiskit-aqt-provider]
 package_name = "qiskit-aqt-provider"
-version = "1.14.0"
+version = "1.15.0"
 last_release_date = 2025-11-05T15:14:20
 url = "https://pypi.org/project/qiskit-aqt-provider/"
 requires_qiskit = "<2,>=1"
@@ -44,5 +50,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 1285
-last_180_days_downloads = 7081
+last_month_downloads = 1202
+last_180_days_downloads = 7258

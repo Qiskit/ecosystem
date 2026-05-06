@@ -7,6 +7,7 @@ ibm_maintained = true
 category = "Application"
 reference_paper = "https://dl.acm.org/doi/10.1145/3731251"
 uuid = "569f773e-34d9-4573-bbaf-1ca0268e7004"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-function-templates"
@@ -28,4 +29,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:38.974501
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

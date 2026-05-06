@@ -8,6 +8,7 @@ labels = []
 category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2305.11847"
 uuid = "f305aa07-74a6-4af4-bb80-e0a75672f16f"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/atlytle/dense-ev"
@@ -30,7 +31,17 @@ style = "flat"
 since = 2026-04-08T16:22:58.630759
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
+
+[checks.PQ2]
+since = 2026-04-30T11:32:49.789583
+details = "Python package dense-ev is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
 
 [pypi.dense-ev]
 package_name = "dense-ev"
@@ -42,5 +53,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2023-03-21T21:05:35Z
 highest_supported_qiskit_version = "0.42.1"
-last_month_downloads = 21
-last_180_days_downloads = 159
+last_month_downloads = 25
+last_180_days_downloads = 154

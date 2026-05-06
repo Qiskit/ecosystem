@@ -9,6 +9,7 @@ category = "Application"
 reference_paper = "https://arxiv.org/abs/2405.12807"
 documentation = "https://arxiv.org/abs/2405.12807"
 uuid = "e4d840cb-e4f1-4e58-84f6-d5a77a5d2d1e"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/dolf3131/qiskit_algorithms_V2"
@@ -27,4 +28,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:57.882816
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

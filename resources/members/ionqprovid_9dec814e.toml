@@ -8,12 +8,13 @@ created_at = 1670427446.011674
 updated_at = 1670427446.011675
 category = "Compute provider"
 uuid = "9dec814e-feb8-49c2-818a-f6a2503d38c5"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-ionq"
 owner = "qiskit-community"
 repo = "qiskit-ionq"
-stars = 56
+stars = 58
 homepage = "https://qiskit-community.github.io/qiskit-ionq/"
 license = "Apache License 2.0"
 description = "Qiskit provider for IonQ backends"
@@ -21,7 +22,7 @@ estimated_contributors = 16
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-19T16:13:02Z
-last_activity = 2026-04-11T15:26:14Z
+last_activity = 2026-04-21T16:31:35Z
 
 [badge]
 url = "https://qisk.it/e-9dec814e"
@@ -31,6 +32,11 @@ style = "flat"
 since = 2026-04-08T16:10:21.099978
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.qiskit-ionq]
@@ -41,7 +47,7 @@ url = "https://pypi.org/project/qiskit-ionq/"
 requires_qiskit = ">=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 65863
-last_180_days_downloads = 321258
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 105990
+last_180_days_downloads = 365208

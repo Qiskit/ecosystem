@@ -6,8 +6,10 @@ contact_info = "nicolascogu@hotmail.com"
 labels = [ "error mitigation", "error correction", "optimization", "research",]
 interface = [ "Python",]
 category = "Application"
+pattern_steps = [ "Post-process",]
 packages = []
 uuid = "64b432d7-f5f5-487f-8789-caadba593ce9"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/cogu92/qvoting"
@@ -34,7 +36,7 @@ url = "https://pypi.org/project/qvoting/"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 41
-last_180_days_downloads = 687
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 23
+last_180_days_downloads = 697

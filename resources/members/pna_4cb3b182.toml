@@ -8,6 +8,7 @@ ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-pna/"
 uuid = "4cb3b182-7484-445f-897b-ded8e295d755"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-pna"
@@ -31,6 +32,11 @@ style = "flat"
 since = 2026-04-08T16:22:41.915958
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.PQ1]
+since = 2026-04-30T11:32:49.789583
+details = "assert False"
 importance = "CRITICAL"
 
 [pypi.qiskit-addon-pna]
@@ -41,7 +47,7 @@ url = "https://pypi.org/project/qiskit-addon-pna/"
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 76
-last_180_days_downloads = 688
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 109
+last_180_days_downloads = 742

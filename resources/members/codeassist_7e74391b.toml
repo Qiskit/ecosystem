@@ -6,12 +6,13 @@ ibm_maintained = true
 category = "Tooling"
 packages = [ "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode", "https://open-vsx.org/extension/qiskit/qiskit-vscode",]
 uuid = "7e74391b-0b86-46d6-bcd5-d2305c9e5338"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-code-assistant-vscode"
 owner = "Qiskit"
 repo = "qiskit-code-assistant-vscode"
-stars = 96
+stars = 95
 homepage = "https://marketplace.visualstudio.com/items?itemName=Qiskit.qiskit-vscode"
 license = "Apache License 2.0"
 description = "A VSCode extension to use the Qiskit Code Assistant (Beta)"
@@ -28,4 +29,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:23:01.784336
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

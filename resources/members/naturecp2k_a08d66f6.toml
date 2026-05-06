@@ -6,6 +6,7 @@ labels = [ "chemistry",]
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2404.18737"
 uuid = "a08d66f6-0ee7-446c-a121-c9c692bc0ae9"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/mrossinek/qiskit-nature-cp2k"
@@ -26,4 +27,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:48.007256
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

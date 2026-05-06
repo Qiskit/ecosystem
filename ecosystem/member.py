@@ -34,6 +34,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         updated_at: int | None = None,
         website: str | None = None,
         category: str | None = None,
+        pattern_steps: list[str] | None = None,
         reference_paper: URL | None = None,
         documentation: URL | None = None,
         packages: list[URL] | None = None,
@@ -43,7 +44,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
         julia: JuliaData | None = None,
-        support: str | None = None,
+        maturity: str | None = None,
         status: str | None = None,
     ):
         self.name = name
@@ -60,6 +61,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.updated_at = updated_at
         self.website = website
         self.category = category
+        self.pattern_steps = pattern_steps
         self.reference_paper = reference_paper
         self.documentation = documentation
         self.packages = packages
@@ -69,7 +71,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.pypi = pypi or {}
         self.julia = julia
         self.badge = badge
-        self.support = support
+        self.maturity = maturity
         self.status = status
 
         self.__dict__.setdefault("created_at", parse_datetime("now"))
@@ -290,6 +292,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             ibm_maintained=submission.is_ibm_maintained,
             website=submission.home_url,
             category=submission.category,
+            pattern_steps=submission.pattern_steps,
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
             packages=submission.package_urls,
@@ -328,3 +331,17 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 checkup_data.discussion = self.checks[checkup_data.id].discussion
             checkups[checkup_data.id] = checkup_data
         self.checks = checkups
+
+    def update_maturity(self):
+        """Check if self.maturity should move to archived. Either because:
+         - github.archived == true
+         - TODO: if all the pypi package are archived
+        only udpates if maturity was not "as-is"
+        """
+        skip_if = [
+            "as-is",
+        ]
+        if self.maturity in skip_if:
+            return
+        if hasattr(self.github, "archived") and self.github.archived:
+            self.maturity = "archived"

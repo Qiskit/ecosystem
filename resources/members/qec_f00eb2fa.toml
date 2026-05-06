@@ -7,6 +7,7 @@ created_at = 1662992390.122591
 updated_at = 1662992390.122597
 category = "Other"
 uuid = "f00eb2fa-f4f1-4e97-8e59-3013e424e0f5"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-qec"
@@ -29,4 +30,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:50.752215
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

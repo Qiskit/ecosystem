@@ -8,6 +8,7 @@ created_at = 1645480343.964777
 updated_at = 1645480343.964777
 category = "Application"
 uuid = "6daa87ef-87ea-4dc9-aeed-3b9e8d202fd9"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/qiskit-community/prototype-quantum-kernel-training"
@@ -30,4 +31,4 @@ style = "flat"
 [checks.007]
 since = 2026-04-08T16:22:41.174672
 details = "the entry `member.interface` does not exist and it is mandatory"
-importance = "CRITICAL"
+importance = "IMPORTANT"

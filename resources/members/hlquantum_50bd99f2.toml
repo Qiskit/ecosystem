@@ -3,7 +3,9 @@ url = "https://github.com/AlinDanielFerenczi/HLQuantum"
 description = "A human oriented high-level Python package designed to simplify working with quantum algorithms and developing complex systems."
 labels = [ "circuit optimization", "circuit building", "research",]
 category = "SDK"
+pattern_steps = [ "Map", "Execute",]
 uuid = "50bd99f2-dbd5-4759-b19d-6f5ecdf9e0da"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/AlinDanielFerenczi/HLQuantum"
@@ -25,7 +27,7 @@ style = "flat"
 since = 2026-04-08T16:22:51.271815
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.hlquantum]
 package_name = "hlquantum"
@@ -35,7 +37,7 @@ url = "https://pypi.org/project/hlquantum/"
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-03-13T02:30:30Z
-highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 50
-last_180_days_downloads = 496
+highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 47
+last_180_days_downloads = 505

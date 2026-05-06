@@ -7,6 +7,7 @@ labels = []
 website = "https://dakk.github.io/qlasskit/"
 category = "Converter"
 uuid = "42b0f0f5-bdbd-4008-8749-955b496dab08"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/dakk/qlasskit"
@@ -30,12 +31,12 @@ style = "flat"
 since = 2026-04-08T16:22:44.126727
 details = "the entry `member.interface` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "CRITICAL"
+importance = "IMPORTANT"
 
 [pypi.qlasskit]
 package_name = "qlasskit"
 version = "0.1.39"
 last_release_date = 2026-01-03T11:54:54
 url = "https://pypi.org/project/qlasskit/"
-last_month_downloads = 133
-last_180_days_downloads = 1190
+last_month_downloads = 108
+last_180_days_downloads = 1183
