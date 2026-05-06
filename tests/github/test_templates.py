@@ -64,7 +64,7 @@ class Test01submission(TestCase):
                 )
 
     def test_maturity(self):
-        """maturity classification in the template should exist in resources/classifications.toml"""
+        """maturity classification in the template should exist in classifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "maturity":
                 self.assertIn("attributes", section)

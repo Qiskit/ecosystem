@@ -163,7 +163,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     def badge_md(self):
         """Markdown with the badge for README"""
         return (
-            f"[![Qiskit Ecosystem]({self.badge})](https://qisk.it/e)"
+            f"[![Qiskit Ecosystem]({self.badge.url})](https://qisk.it/e)"
             if self.badge
             else None
         )

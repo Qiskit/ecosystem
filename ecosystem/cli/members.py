@@ -23,7 +23,7 @@ class CliMembers:
     Each public method of this class is CLI command
     and arguments for method are options/flags for this command.
 
-    Ex: `python manager.py members update_badges`
+    Ex: `python manager.py members update_badge`
     """
 
     def __init__(self, root_path: Optional[str] = None):
@@ -74,11 +74,61 @@ class CliMembers:
         )
         self.dao.write(new_repo)
 
-    def create_badge_endpoints(self, name=None, output_directory: str = None):
-        """TODO."""
+    def create_badge_endpoints(
+        self, name: str = None, example: str = None, output_directory: str = None
+    ):
+        """Creates the JSON files in to be deployed in qiskit.github.io/ecosystem/b/<jsonfile> so they
+        can be consumed by
+        https://img.shields.io/endpoint?url=https://qiskit.github.io/ecosystem/b/<jsonfile>
+
+        Args:
+            name: If <name> is not given, runs on all the members. Otherwise, all the members
+                with name_id that contains <name> as substring are updated.
+            example: If given, creates example badges for a ficticious project with that name. For
+                example -e "Qiskit Banana Compiler" is currectly used in qisk.it/ecosystem-badges
+                as an example. If not given, it does not create the example endpoints.
+            output_directory: directory in which it saves the json files. By default, ./badges
+        """
         if not output_directory:
             output_directory = os.path.join(self.current_dir, "badges")
         Path(output_directory).mkdir(parents=True, exist_ok=True)
+        if example:
+            for style in ["flat", "flat-square", "plastic", "for-the-badge", "social"]:
+                data = {
+                    "schemaVersion": 1,
+                    "label": "Qiskit Ecosystem",
+                    "namedLogo": "Qiskit",
+                    "message": example,
+                    "color": "6929C4",
+                    "isError": "true",
+                    "style": style,
+                }
+                filename = f"example_{style}"
+                with open(os.path.join(output_directory, filename), "w") as outfile:
+                    json.dump(data, outfile, indent=4)
+                    self.logger.info(
+                        "Example Badge endpoint (style=%s): %s",
+                        style,
+                        os.path.join(output_directory, filename),
+                    )
+            for message in "Alumni", "Under revision":
+                data = {
+                    "schemaVersion": 1,
+                    "label": "Qiskit Ecosystem",
+                    "namedLogo": "Qiskit",
+                    "message": message,
+                    "color":  "c46929" if message == "Under revision" else "6929C4",
+                    "isError": "true",
+                    "style": "flat",
+                }
+                filename = f"example_{slugify(message)}"
+                with open(os.path.join(output_directory, filename), "w") as outfile:
+                    json.dump(data, outfile, indent=4)
+                    self.logger.info(
+                        "Example Badge endpoint (status=%s): %s",
+                        message,
+                        os.path.join(output_directory, filename),
+                    )
         for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
             if project.badge is None:
@@ -205,9 +255,14 @@ class CliMembers:
         projects = []
         for project in self.dao.get_all():
             if project.badge is None:
+                self.logger.warning(
+                    "badge not found for %s (%s)",
+                    project.name_id,
+                    project.name,
+                )
                 continue
             projects.append(
-                (project.name, project.badge, project.badge_md, project.name_id)
+                (project.name, project.badge.url, project.badge_md, project.name_id)
             )
 
         projects.sort(key=lambda x: re.sub("[^A-Za-z0-9]+", "", x[0]).lower())
@@ -215,14 +270,15 @@ class CliMembers:
         lines = [
             "",
             "<table>",
-            "<tr><th>Member</th><th>Badge (click for full size)</th><th>Markdown code</th></tr>",
+            "<tr><th>Member</th><th>Badge (click for full size)<br/>Markdown code</th></tr>",
+            "",
         ]
         for name, badge, badge_md, name_id in projects:
             lines.append(
-                '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main/ecosystem"'
+                '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main'
                 f'/resources/members/{name_id}.toml">{name}</a></td>'
-                f'<td><a href="{badge}"><img src="{badge}" /></a></td>'
-                f"<td>\n\n```markdown\n{badge_md}\n```\n\n</td>"
+                f'<td><a href="{badge}"><img src="{badge}" /></a><br/>'
+                f"\n\n```markdown\n{badge_md}   \n```\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")
