@@ -77,8 +77,8 @@ class CliMembers:
     def create_badge_endpoints(
         self, name: str = None, example: str = None, output_directory: str = None
     ):
-        """Creates the JSON files in to be deployed in qiskit.github.io/ecosystem/b/<jsonfile> so they
-        can be consumed by
+        """Creates the JSON files in to be deployed in qiskit.github.io/ecosystem/b/<jsonfile>
+         so they can be consumed by
         https://img.shields.io/endpoint?url=https://qiskit.github.io/ecosystem/b/<jsonfile>
 
         Args:
@@ -117,7 +117,7 @@ class CliMembers:
                     "label": "Qiskit Ecosystem",
                     "namedLogo": "Qiskit",
                     "message": message,
-                    "color":  "c46929" if message == "Under revision" else "6929C4",
+                    "color": "c46929" if message == "Under revision" else "6929C4",
                     "isError": "true",
                     "style": "flat",
                 }
@@ -270,7 +270,7 @@ class CliMembers:
         lines = [
             "",
             "<table>",
-            "<tr><th>Member</th><th>Badge (click for full size)<br/>Markdown code</th></tr>",
+            "<tr><th>Member</th><th>Badge (click for full size) and MarkDown code</th></tr>",
             "",
         ]
         for name, badge, badge_md, name_id in projects:
