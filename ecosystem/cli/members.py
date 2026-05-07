@@ -120,7 +120,7 @@ class CliMembers:
                         os.path.join(output_directory, filename),
                     )
             data_alumni = {
-                "schemaVersion": default_color,
+                "schemaVersion": default_schemaversion,
                 "label": alumni_label,  # <-
                 "namedLogo": default_namedlogo,
                 "message": example,
