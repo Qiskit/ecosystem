@@ -175,7 +175,7 @@ class CliMembers:
 
     def update_assets_status(self):
         """Updates status.json and status.md docs/assets/"""
-        self.update_assets_classification("status", "status  classification")
+        self.update_assets_classification("status", "status classification")
 
     def update_assets_maturity(self):
         """Updates maturity.json and maturity.md docs/assets/"""
@@ -183,7 +183,7 @@ class CliMembers:
 
     def update_assets_categories(self):
         """Updates categories.json and categories.md docs/assets/"""
-        self.update_assets_classification("categories", "category")
+        self.update_assets_classification("category", "category")
 
     def update_assets_labels(self):
         """Updates labels.json and labels.md docs/assets/"""
