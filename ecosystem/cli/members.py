@@ -182,7 +182,7 @@ class CliMembers:
         self.update_assets_classification("maturity", "maturity level")
 
     def update_assets_categories(self):
-        """Updates categories.json and categories.md docs/assets/"""
+        """Updates category.json and categories.md docs/assets/"""
         self.update_assets_classification("category", "category")
 
     def update_assets_labels(self):
