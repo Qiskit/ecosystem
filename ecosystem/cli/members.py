@@ -23,7 +23,7 @@ class CliMembers:
     Each public method of this class is CLI command
     and arguments for method are options/flags for this command.
 
-    Ex: `python manager.py members update_badges`
+    Ex: `python manager.py members update_badge`
     """
 
     def __init__(self, root_path: Optional[str] = None):
@@ -74,33 +74,105 @@ class CliMembers:
         )
         self.dao.write(new_repo)
 
-    def create_badge_endpoints(self, name=None, output_directory: str = None):
-        """TODO."""
+    def create_badge_endpoints(
+        self, name: str = None, example: str = None, output_directory: str = None
+    ):  # pylint: disable=too-many-locals
+        """Creates the JSON files in to be deployed in qiskit.github.io/ecosystem/b/<jsonfile>
+         so they can be consumed by
+        https://img.shields.io/endpoint?url=https://qiskit.github.io/ecosystem/b/<jsonfile>
+
+        Args:
+            name: If <name> is not given, runs on all the members. Otherwise, all the members
+                with name_id that contains <name> as substring are updated.
+            example: If given, creates example badges for a ficticious project with that name. For
+                example -e "Qiskit Banana Compiler" is currectly used in qisk.it/ecosystem-badges
+                as an example. If not given, it does not create the example endpoints.
+            output_directory: directory in which it saves the json files. By default, ./badges
+        """
+        default_schemaversion = 1
+        default_label = "Qiskit Ecosystem"
+        alumni_label = f"{default_label} Alumni"
+        default_namedlogo = "Qiskit"
+        default_color = "6929C4"
+        warning_color = "c46929"
+        default_iserror = "true"
+        default_style = "flat"
         if not output_directory:
             output_directory = os.path.join(self.current_dir, "badges")
         Path(output_directory).mkdir(parents=True, exist_ok=True)
+        if example:
+            for style in ["flat", "flat-square", "plastic", "for-the-badge", "social"]:
+                data = {
+                    "schemaVersion": default_schemaversion,
+                    "label": default_label,
+                    "namedLogo": default_namedlogo,
+                    "message": example,
+                    "color": default_color,
+                    "isError": default_iserror,
+                    "style": style,
+                }
+                filename = f"example_{style}"
+                with open(os.path.join(output_directory, filename), "w") as outfile:
+                    json.dump(data, outfile, indent=4)
+                    self.logger.info(
+                        "Example Badge endpoint (style=%s): %s",
+                        style,
+                        os.path.join(output_directory, filename),
+                    )
+            data_alumni = {
+                "schemaVersion": default_schemaversion,
+                "label": alumni_label,  # <-
+                "namedLogo": default_namedlogo,
+                "message": example,
+                "color": default_color,
+                "isError": default_iserror,
+                "style": default_style,
+            }
+            filename = "example_alumni"
+            with open(os.path.join(output_directory, filename), "w") as outfile:
+                json.dump(data_alumni, outfile, indent=4)
+                self.logger.info(
+                    "Example Badge endpoint (status=Alumni): %s",
+                    os.path.join(output_directory, filename),
+                )
+
+            data_under_revision = {
+                "schemaVersion": default_schemaversion,
+                "label": default_label,
+                "namedLogo": default_namedlogo,
+                "message": "Under revision",  # <-
+                "color": warning_color,
+                "isError": default_iserror,
+                "style": default_style,
+            }
+            filename = "example_under-revision"
+            with open(os.path.join(output_directory, filename), "w") as outfile:
+                json.dump(data_under_revision, outfile, indent=4)
+                self.logger.info(
+                    "Example Badge endpoint (status=Under review): %s",
+                    os.path.join(output_directory, filename),
+                )
         for project in self.dao.get_all(name):
             # Create a json to be consumed by https://shields.io/badges/endpoint-badge
             if project.badge is None:
                 continue
 
-            status = None
-            if project.status in ["Alumni", "Under revision"]:
-                # if status is "Alumni" or "Under revision", put in in the message
-                status = project.status
+            is_alumni = None
+            if project.status == "Alumni":
+                is_alumni = alumni_label
 
             status_color = None
             if project.status == "Under revision":
                 # if status is "Under revision", set status color to orange as a warning.
                 # Color from triadic palette:  https://www.color-hex.com/color/6929c4
-                status_color = "c46929"
+                status_color = warning_color
 
             data = {
-                "schemaVersion": project.badge.schemaVersion or 1,
-                "label": project.badge.label or "Qiskit Ecosystem",
-                "namedLogo": "Qiskit",
-                "message": project.badge.message or status or project.name,
-                "color": project.badge.color or status_color or "6929C4",
+                "schemaVersion": project.badge.schemaVersion or default_schemaversion,
+                "label": project.badge.label or is_alumni or default_label,
+                "namedLogo": default_namedlogo,
+                "message": project.badge.message or project.name,
+                "color": project.badge.color or status_color or default_color,
                 "isError": project.badge.isError or "true",
                 "style": project.badge.style or "flat",
             }
@@ -109,41 +181,87 @@ class CliMembers:
             ) as outfile:
                 json.dump(data, outfile, indent=4)
                 self.logger.info(
-                    "Badge %s endpoint: %s",
-                    project.name,
+                    "Badge endpoint %s for %s",
                     os.path.join(output_directory, str(project.short_uuid)),
+                    project.name,
                 )
 
     def update_docs_assets(self):
         """Updates the files in docs/assets/ to build the docs"""
+        projects_per_classification = self._all_projects_classifications(
+            "status", "maturity", "category", "labels", "interfaces"
+        )
         self.update_badge_list()
-        self.update_assets_status()
-        self.update_assets_maturity()
-        self.update_assets_categories()
-        self.update_assets_labels()
-        self.update_assets_interfaces()
+        self.update_assets_status(projects_per_classification["status"])
+        self.update_assets_maturity(projects_per_classification["maturity"])
+        self.update_assets_categories(projects_per_classification["category"])
+        self.update_assets_labels(projects_per_classification["labels"])
+        self.update_assets_interfaces(projects_per_classification["interfaces"])
 
-    def update_assets_status(self):
+    def _all_projects_classifications(self, *classifications):
+        """
+        <classifications> is a list of attributes in each project to extract.
+        Returns a dict with each of the classification as a key and, as value, a dict
+        with {classification_name: Project}
+        """
+
+        classification_summary = {}
+        for classification in classifications:
+            classification_summary[classification] = {
+                i: []
+                for i in getattr(self.classifications_toml, f"{classification}_names")
+            }
+            classification_summary[classification][None] = []
+        for project in self.dao.get_all():
+            for classification in classifications:
+                value = getattr(project, classification)
+                if isinstance(value, list):
+                    if len(value) == 0:
+                        classification_summary[classification][None].append(project)
+                    for each_value in value:
+                        if each_value in classification_summary[classification]:
+                            classification_summary[classification][each_value].append(
+                                project
+                            )
+                        else:
+                            classification_summary[classification][None].append(project)
+                else:
+                    if value in classification_summary[classification]:
+                        classification_summary[classification][value].append(project)
+                    else:
+                        classification_summary[classification][None].append(project)
+        return classification_summary
+
+    def update_assets_status(self, projects):
         """Updates status.json and status.md docs/assets/"""
-        self.update_assets_classification("status", "status  classification")
+        projects["Member"] += projects[None]
+        del projects[None]
+        projects["total_in_website"] = (
+            len(projects["Member"])
+            + len(projects["Qiskit Project"])
+            + len(projects["Under revision"])
+        )
+        self.update_assets_classification("status", "status classification", projects)
 
-    def update_assets_maturity(self):
+    def update_assets_maturity(self, projects):
         """Updates maturity.json and maturity.md docs/assets/"""
-        self.update_assets_classification("maturity", "maturity level")
+        self.update_assets_classification("maturity", "maturity level", projects)
 
-    def update_assets_categories(self):
-        """Updates categories.json and categories.md docs/assets/"""
-        self.update_assets_classification("categories", "category")
+    def update_assets_categories(self, projects):
+        """Updates category.json and categories.md docs/assets/"""
+        self.update_assets_classification("category", "category", projects)
 
-    def update_assets_labels(self):
+    def update_assets_labels(self, projects):
         """Updates labels.json and labels.md docs/assets/"""
-        self.update_assets_classification("labels", "label")
+        self.update_assets_classification("labels", "label", projects)
 
-    def update_assets_interfaces(self):
+    def update_assets_interfaces(self, projects):
         """Updates interfaces.json and interfaces.md docs/assets/"""
-        self.update_assets_classification("interfaces", "interface")
+        self.update_assets_classification("interfaces", "interface", projects)
 
-    def update_assets_classification(self, classification, classification_singular):
+    def update_assets_classification(
+        self, classification, classification_singular, projects
+    ):
         """Updates docs/assets/<classification>.json and docs/assets/<classification>.md"""
         assets_dir = os.path.join(self.current_dir, "docs", "assets")
 
@@ -186,7 +304,18 @@ class CliMembers:
             if os.path.isfile(section_text_md):
                 with open(section_text_md, "r") as file:
                     description = file.read()
-            lines += [f"## {name}", "\n\n", description, "\n\n"]
+            lines += [
+                f"## {name}",
+                "\n\n",
+            ]
+            if len(projects[name]):
+                lines.append(
+                    f'??? note "There are {len(projects[name])} projects with this classification"'
+                )
+                lines += [f"\n     - {p.name}" for p in projects[name]]
+            else:
+                lines.append("**No project with this classification**")
+            lines += ["\n\n", description, "\n\n"]
 
         with open(classification_json, "w") as f:
             json.dump(short_description, f)
@@ -205,9 +334,14 @@ class CliMembers:
         projects = []
         for project in self.dao.get_all():
             if project.badge is None:
+                self.logger.warning(
+                    "badge not found for %s (%s)",
+                    project.name_id,
+                    project.name,
+                )
                 continue
             projects.append(
-                (project.name, project.badge, project.badge_md, project.name_id)
+                (project.name, project.badge.url, project.badge_md, project.name_id)
             )
 
         projects.sort(key=lambda x: re.sub("[^A-Za-z0-9]+", "", x[0]).lower())
@@ -215,14 +349,15 @@ class CliMembers:
         lines = [
             "",
             "<table>",
-            "<tr><th>Member</th><th>Badge (click for full size)</th><th>Markdown code</th></tr>",
+            "<tr><th>Member</th><th>Badge (click for full size) and MarkDown code</th></tr>",
+            "",
         ]
         for name, badge, badge_md, name_id in projects:
             lines.append(
-                '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main/ecosystem"'
+                '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main'
                 f'/resources/members/{name_id}.toml">{name}</a></td>'
-                f'<td><a href="{badge}"><img src="{badge}" /></a></td>'
-                f"<td>\n\n```markdown\n{badge_md}\n```\n\n</td>"
+                f'<td><a href="{badge}"><img src="{badge}" /></a><br/>'
+                f"\n\n```markdown\n{badge_md}   \n```\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")
@@ -337,15 +472,15 @@ class CliMembers:
             self.dao.update(project.name_id, checks=project.checks)
 
     def update_status(self, name=None):
-        """Check if a project should be moved to "Under review" or "Alumni" """
+        """Check if a project should be moved to "Under revision" or "Alumni" """
         for project in self.dao.get_all(name):
             if project.status == "Qiskit Project":
                 # Qiskit Project status is governed differently,
                 # not via checkups in Qiskit Ecosystem.
                 continue
 
-            if project.status == "Under review":
-                # reset "Under review" status. It will be set back if it is still true.
+            if project.status == "Under revision":
+                # reset "Under revision" status. It will be set back if it is still true.
                 project.status = None
 
             for check in project.checks.values():
@@ -361,7 +496,7 @@ class CliMembers:
                     project.status = "Alumni"
                 else:
                     # still in cure period
-                    project.status = "Under review"
+                    project.status = "Under revision"
             self.dao.update(project.name_id, status=project.status)
 
     def update_maturity(self, name=None):

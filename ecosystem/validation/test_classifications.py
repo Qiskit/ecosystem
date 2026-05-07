@@ -26,7 +26,7 @@ def interfaces(toml_file_data):
 
 @pytest.fixture
 def categories(toml_file_data):
-    return [c["name"] for c in toml_file_data["categories"]]
+    return [c["name"] for c in toml_file_data["category"]]
 
 
 @pytest.fixture
@@ -47,10 +47,10 @@ def support(toml_file_data):
 def test_valid_interfaces(member, interfaces):
     """007"""
     assert (
-        hasattr(member, "interface") and member.interface
-    ), "the entry `member.interface` does not exist and it is mandatory"
+        hasattr(member, "interface") and member.interfaces
+    ), "the entry `member.interfaces` does not exist and it is mandatory"
 
-    for interface in member.interface:
+    for interface in member.interfaces:
         assert (
             interface in interfaces
         ), f"the interface '{interface}' does not exist in classifications.toml"
@@ -60,7 +60,7 @@ def test_valid_category(member, categories):
     """008"""
     assert (
         member.category in categories
-    ), "member.group should exist in classifications.toml"
+    ), "member.category should exist in classifications.toml"
 
 
 def test_valid_label(member, labels):

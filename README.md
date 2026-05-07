@@ -2,7 +2,6 @@
 
 # Qiskit ecosystem
 
-![ecosystem](https://img.shields.io/badge/Qiskit-Ecosystem-blueviolet)
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![Sourcecode tests](https://github.com/Qiskit/ecosystem/actions/workflows/tests.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/tests.yml)
 [![Deploy Website](https://github.com/Qiskit/ecosystem/actions/workflows/deploy-website.yml/badge.svg?event=push)](https://github.com/Qiskit/ecosystem/actions/workflows/deploy-website.yml)

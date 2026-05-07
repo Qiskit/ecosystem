@@ -24,6 +24,10 @@ _No response_
 
 Other
 
+### Stability and support expecations
+
+production-ready
+
 ### Qiskit Pattern steps
 
 _No response_

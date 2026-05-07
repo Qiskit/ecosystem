@@ -8,6 +8,7 @@ theme:
   palette:
     primary: deep purple
   logo: img/logo.png
+  favicon: img/favicon.ico
   icon:
     annotation: material/eye-circle
   features:
@@ -49,5 +50,5 @@ nav:
     - Labels: labels.md
     - Qiskit Pattern steps: pattern_steps.md
     - Interfaces: interfaces.md
-    - Maturity: maturity.md
-    - Badges: badges.md
+    - Maturity levels: maturity.md
+  - Badges: badges.md

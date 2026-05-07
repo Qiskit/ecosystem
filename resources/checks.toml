@@ -41,9 +41,9 @@ importance = "IMPORTANT"
 
 [007]
 title = "Interface have to exist"
-description = "All `member.interface` should exist in https://qisk.it/ecosystem-interfaces"
+description = "All `member.interfaces` should exist in https://qisk.it/ecosystem-interfaces"
 applies_to = "all"
-affects = ["member.interface.*"]
+affects = ["member.interfaces.*"]
 category = "SUBMISSION"
 checker = "test_classifications.py::test_valid_interfaces"
 importance = "IMPORTANT"

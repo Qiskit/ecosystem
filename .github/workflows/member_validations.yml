@@ -31,10 +31,12 @@ jobs:
           python-version: '3.13'
       - uses: actions/checkout@v6
       - name: Checkout PR
+        with:
+          token: ${{ secrets.REPO_SCOPED_TOKEN }}
         run: |
           gh pr checkout ${{ github.event.pull_request.number }}
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email "qiskit-bot@users.noreply.github.com"
+          git config --local user.name "qiskit-bot"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -43,19 +45,30 @@ jobs:
         id: get-id
         run: |
           id=$(echo ${{ github.event.pull_request.head.ref }} | cut -d- -f2 )
-          echo "::set-output name=id::$id"
+          echo "id=$id" >> $GITHUB_OUTPUT
       - name: Initial validatation
         run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
       - name: Create sections
         run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }}
+      - name: Find Comment bot comment
+        uses: peter-evans/find-comment@v3
+        if: always()
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'qiskit-bot'
+          body-includes: Check out the logs
+
       - name: Section validatation
         run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
+
       - name: Make comment on failed submission
         if: failure()
         uses: peter-evans/create-or-update-comment@v5
         with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REPO_SCOPED_TOKEN }}
           body: |
             The submission failed :x:
 
@@ -66,6 +79,19 @@ jobs:
             > `Add a suggestion` option:
             > <img width="383" height="155" src="https://github.com/user-attachments/assets/ce2fe037-58e7-4dae-a737-0c065a447c8b" />
             > The validation will re-run automatically after that.
+
+      - name: If bot commentted and now valid, update the comment
+        if: steps.fc.outputs.comment-id && success() && steps.cpr.outputs.pull-request-number
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.issue.number }}
+          token: ${{ secrets.REPO_SCOPED_TOKEN }}
+          edit-mode: replace
+          body: |
+            The submission is validated :white_check_mark:
+            
+            <sub>Curious about the submission validation? [Check out the logs here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).</sub>
 
       - name: Commit sections
         if: success()

@@ -24,10 +24,13 @@ _No response_
 
 Python
 
+### Stability and support expecations
+
+production-ready
+
 ### Qiskit Pattern steps
 
 _No response_
-
 
 ### GitHub repository
 

@@ -10,7 +10,7 @@ Compile bananas into Qiskit quantum circuits. Supports all modern devices, inclu
 
 ### Contact email
 
-author@banana-compiler.org
+_No response_
 
 ### Category
 
@@ -18,7 +18,7 @@ circuit manipulation
 
 ### Labels
 
-error mitigation, quantum information, optimization
+_No response_
 
 ### Interface/API
 
@@ -30,8 +30,7 @@ production-ready
 
 ### Qiskit Pattern steps
 
-Map, Optimize, Execute
-
+_No response_
 
 ### GitHub repository
 
@@ -39,25 +38,25 @@ https://github.com/somebody/banana-compiler
 
 ### Home page
 
-https://banana-compiler.org
+_No response_
 
 ### Documentation
 
-https://banana-compiler.org/documentation
+_No response_
 
 ### Packages
 
 ```text
-https://pypi.org/project/banana-compiler
-https://pypi.org/project/banana-compiler-hpc
-https://crates.io/crates/rusty-banana-compiler
-https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
 ```
 
 ### Reference paper
 
-https://arxiv.org/abs/5555.22222
+_No response_
 
 ### Code of Conduct
 
-- [x] I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)
+- [ ] I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)
+
+### Additional submission notes
+
+Other notes that can be ignored

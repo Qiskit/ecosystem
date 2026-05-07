@@ -42,6 +42,7 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
         draft: always-true
         commit-message: |
           Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
@@ -64,7 +65,7 @@ jobs:
       id: fc
       with:
         issue-number: ${{ github.event.issue.number }}
-        comment-author: 'github-actions[bot]'
+        comment-author: 'qiskit-bot'
         body-includes: Check out the logs
 
     - name: Make comment on validated submission
@@ -73,7 +74,7 @@ jobs:
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.issue.number }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
         edit-mode: replace
         body: |
           The submission is validated :white_check_mark:
@@ -97,7 +98,7 @@ jobs:
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.issue.number }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
         edit-mode: replace
         body: |
           The submission failed :x:
