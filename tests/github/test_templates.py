@@ -38,7 +38,7 @@ class Test01submission(TestCase):
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
                     list(section["attributes"]["options"]),
-                    ["Select one..."] + self.classifications_toml.categories_names,
+                    ["Select one..."] + self.classifications_toml.category_names,
                 )
 
     def test_labels(self):

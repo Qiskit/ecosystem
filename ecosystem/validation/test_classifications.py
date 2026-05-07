@@ -26,7 +26,7 @@ def interfaces(toml_file_data):
 
 @pytest.fixture
 def categories(toml_file_data):
-    return [c["name"] for c in toml_file_data["categories"]]
+    return [c["name"] for c in toml_file_data["category"]]
 
 
 @pytest.fixture
@@ -60,7 +60,7 @@ def test_valid_category(member, categories):
     """008"""
     assert (
         member.category in categories
-    ), "member.group should exist in classifications.toml"
+    ), "member.category should exist in classifications.toml"
 
 
 def test_valid_label(member, labels):

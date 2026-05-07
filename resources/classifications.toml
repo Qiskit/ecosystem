@@ -1,48 +1,48 @@
-[[categories]]
+[[category]]
 name = "SDK"
 description = "A software development kit. Provides an interface to build software on top of it. "
 
-[[categories]]
+[[category]]
 name = "Application"
 description = "Helps run or work with higher-than-circuit or domain-specifc level of abstraction."
 
-[[categories]]
+[[category]]
 name = "Tooling"
 description = "Helps to develop quantum programs, such as IDEs, debuggers, or other development tooling."
 
-[[categories]]
+[[category]]
 name = "Compute provider"
 description = "Provides access to remote quantum computers (or remote simulators) via Qiskit primitives"
 
-[[categories]]
+[[category]]
 name = "Circuit simulator"
 description = "Simulates a quantum computer on your local classical computer"
 
-[[categories]]
+[[category]]
 name = "Transpiler plugin"
 description = "Implements Qiskit's transpiler plugin interface"
 
-[[categories]]
+[[category]]
 name = "Language binding"
 description = "Languange binding of Qiskit SDK"
 
-[[categories]]
+[[category]]
 name = "Converter"
 description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs or tools"
 
-[[categories]]
+[[category]]
 name = "Qiskit addon"
 description = "Enables algorithm discovery at the utility scale"
 
-[[categories]]
+[[category]]
 name = "Game/Fun"
 description = "Games or playful educational resources"
 
-[[categories]]
+[[category]]
 name = "Paper artifact"
 description = "Code or dataset needed to reproduce a specific paper. Probably, without long-term support."
 
-[[categories]]
+[[category]]
 name = "Other"
 description = "Projects that extend, interface with, or use Qiskit in interesting ways"
 
