@@ -6,7 +6,7 @@ from typing import Optional
 from pathlib import Path
 import yaml
 
-from .error_handling import EcosystemError
+from .error_handling import EcosystemError, logger
 from .request import URL
 
 
@@ -38,7 +38,7 @@ class Submission:
         """Takes a formated issue and creates a Submission object"""
         md_sections = issue_formatted.split("### ")[1:]
         label_to_id = cls._labels_ids()
-        kwargs = dict(cls._parse_section(s, label_to_id) for s in md_sections)
+        kwargs = dict(cls._parse_sections(md_sections, label_to_id))
         return Submission(**kwargs)
 
     @classmethod
@@ -67,59 +67,70 @@ class Submission:
         return label_to_id
 
     @staticmethod
-    def _parse_section(section: str, label_to_id: dict[str, str]):
+    def _parse_sections(sections: list[str], label_to_id: dict[str, str]):
         # pylint: disable=too-many-branches
-        """For a section, return its field ID and the content.
+        """For each section in sections, yields its field ID and the content.
         The content has no newlines and has spaces stripped.
-
-        Returns None if section not found in <label_to_id>
         """
-        lines = [line.strip() for line in section.split("\n") if line.strip()]
-        label = lines[0]
-        if "skip checks" in label.lower():
-            return "skip", [l.split(": ") for l in lines if ":" in l]
+        for section in sections:
+            lines = [line.strip() for line in section.split("\n") if line.strip()]
+            label = lines[0]
+            if "skip checks" in label.lower():
+                yield "skip", [l.split(": ") for l in lines if ":" in l]
 
-        field_id = label_to_id[label]["id"]
-        field_type = label_to_id[label]["type"]
+            if label not in label_to_id:
+                logger.warning("Label %s not found. Ignoring...", label)
+                continue
 
-        if "textarea" == field_type and lines[1].startswith("```"):
-            raw_content = lines[2:-1]
-        else:
-            raw_content = lines[1:]
+            if "id" not in label_to_id[label]:
+                logger.warning("Label %s has no 'id'. Ignoring...", label)
+                continue
 
-        if "category" == field_id:
-            if "Select" in raw_content:
-                content = "other"
+            if "type" not in label_to_id[label]:
+                logger.warning("Label %s has no 'type'. Ignoring...", label)
+                continue
+
+            field_id = label_to_id[label]["id"]
+            field_type = label_to_id[label]["type"]
+
+            if "textarea" == field_type and lines[1].startswith("```"):
+                raw_content = lines[2:-1]
+            else:
+                raw_content = lines[1:]
+
+            if "category" == field_id:
+                if "Select" in raw_content:
+                    content = "other"
+                else:
+                    content = " ".join(raw_content)
+            elif "dropdown" == field_type:
+                # removes items starting with "_", like "_No response_"
+                content = [
+                    i.strip()
+                    for i in raw_content[0].split(",")
+                    if not i.strip().startswith("_")
+                ]
+            elif "checkboxes" == field_type:
+                content = raw_content[0].startswith("- [x]")
+            elif field_id.endswith("_url"):
+                try:
+                    content = URL(raw_content[0]) if raw_content else None
+                except EcosystemError:
+                    content = None
+            elif field_id.endswith("_urls"):
+                content = []
+                for url in raw_content:
+                    try:
+                        content.append(URL(url))
+                    except EcosystemError:
+                        pass
             else:
                 content = " ".join(raw_content)
-        elif "dropdown" == field_type:
-            # removes items starting with "_", like "_No response_"
-            content = [
-                i.strip()
-                for i in raw_content[0].split(",")
-                if not i.strip().startswith("_")
-            ]
-        elif "checkboxes" == field_type:
-            content = raw_content[0].startswith("- [x]")
-        elif field_id.endswith("_url"):
-            try:
-                content = URL(raw_content[0]) if raw_content else None
-            except EcosystemError:
+
+            if content == "_No response_":
                 content = None
-        elif field_id.endswith("_urls"):
-            content = []
-            for url in raw_content:
-                try:
-                    content.append(URL(url))
-                except EcosystemError:
-                    pass
-        else:
-            content = " ".join(raw_content)
 
-        if content == "_No response_":
-            content = None
-
-        return field_id, content
+            yield field_id, content
 
     @property
     def is_ibm_maintained(self):

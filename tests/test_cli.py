@@ -58,6 +58,10 @@ class TestCli(TestCase):
             f"{self.current_dir}/resources/issue_skip.md", "r"
         ) as issue_body_file:
             self.issue_body_skip = issue_body_file.read()
+        with open(
+            f"{self.current_dir}/resources/issue_extra.md", "r"
+        ) as issue_body_file:
+            self.issue_body_extra = issue_body_file.read()
 
     def tearDown(self) -> None:
         shutil.rmtree(self.path)
@@ -171,6 +175,37 @@ class TestCli(TestCase):
                     "xfailed": "This project does not need to agree the CoC",
                 },
             },
+        }
+        self.assertEqual(len(retrieved_repos), 1)
+        retrieved = list(retrieved_repos)[0].to_dict()
+        self.assertIsInstance(retrieved.pop("uuid"), str)
+        self.assertDictEqual(expected, retrieved)
+
+    def test_add_member_from_issue_extra(self):
+        """Tests /resources/issue_extra.md parsing function.
+        An issue with extra sections that can be ignored
+        (like in https://github.com/Qiskit/ecosystem/issues/1123)
+        """
+
+        # /resources/issue_extra.md
+        captured_output = io.StringIO()
+        with redirect_stdout(captured_output):
+            CliCI.add_member_from_issue(self.issue_body_extra, resources_dir=self.path)
+
+        output_value = captured_output.getvalue().split("\n")
+        self.assertEqual("SUBMISSION_NAME=Qiskit Banana Compiler", output_value[0])
+
+        retrieved_repos = DAO(self.path).get_all()
+        expected = {
+            "name": "Qiskit Banana Compiler",
+            "url": "https://github.com/somebody/banana-compiler",
+            "description": "Compile bananas into Qiskit quantum circuits. "
+            "Supports all modern devices, including Musa × paradisiaca.",
+            "labels": [],
+            "interface": ["Python"],
+            "category": "circuit manipulation",
+            "packages": [],
+            "pattern_steps": [],
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()
