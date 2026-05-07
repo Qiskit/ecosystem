@@ -88,7 +88,7 @@ class TestCli(TestCase):
             "Supports all modern devices, including Musa × paradisiaca.",
             "contact_info": "author@banana-compiler.org",
             "labels": ["error mitigation", "quantum information", "optimization"],
-            "interface": ["Python"],
+            "interfaces": ["Python"],
             "website": "https://banana-compiler.org",
             "documentation": "https://banana-compiler.org/documentation",
             "reference_paper": "https://arxiv.org/abs/5555.22222",
@@ -131,7 +131,7 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
-            "interface": ["Other"],
+            "interfaces": ["Other"],
             "category": "circuit manipulation",
             "packages": [],
             "pattern_steps": [],
@@ -161,7 +161,7 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
-            "interface": ["Python"],
+            "interfaces": ["Python"],
             "category": "circuit manipulation",
             "packages": [],
             "pattern_steps": [],
@@ -202,7 +202,7 @@ class TestCli(TestCase):
             "description": "Compile bananas into Qiskit quantum circuits. "
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
-            "interface": ["Python"],
+            "interfaces": ["Python"],
             "category": "circuit manipulation",
             "packages": [],
             "pattern_steps": [],

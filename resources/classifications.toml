@@ -125,6 +125,10 @@ name = "Python"
 description = "API callable from Python programming language"
 
 [[interfaces]]
+name = "Rust"
+description = "API callable from Rust programming language"
+
+[[interfaces]]
 name = "C"
 description = "API callable from C programming language"
 
@@ -135,10 +139,6 @@ description = "API callable from C++ programming language"
 [[interfaces]]
 name = "Julia"
 description = "API callable from Julia programming language"
-
-[[interfaces]]
-name = "Rust"
-description = "API callable from Rust programming language"
 
 [[interfaces]]
 name = "OCaml"
@@ -159,10 +159,6 @@ description = "Software can be used from the command-line as a standalone progra
 [[interfaces]]
 name = "Graphical User Interface (GUI)"
 description = "Software can be used from a graphical inteface, as standalone program"
-
-[[interfaces]]
-name = "Web interface"
-description = "Software has a web inteface"
 
 [[interfaces]]
 name = "Web interface"

@@ -60,7 +60,7 @@ class Test01submission(TestCase):
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
                     section["attributes"]["options"],
-                    self.classifications_toml.interface_names,
+                    self.classifications_toml.interfaces_names,
                 )
 
     def test_maturity(self):

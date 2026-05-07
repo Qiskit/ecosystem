@@ -23,7 +23,7 @@ class Submission:
     contact_info: str
     category: str
     labels: list[str]
-    interface: list[str]
+    interfaces: list[str]
     terms: bool
     maturity: str
     pattern_steps: list[str]

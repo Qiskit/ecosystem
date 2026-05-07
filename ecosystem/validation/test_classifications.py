@@ -47,10 +47,10 @@ def support(toml_file_data):
 def test_valid_interfaces(member, interfaces):
     """007"""
     assert (
-        hasattr(member, "interface") and member.interface
-    ), "the entry `member.interface` does not exist and it is mandatory"
+        hasattr(member, "interface") and member.interfaces
+    ), "the entry `member.interfaces` does not exist and it is mandatory"
 
-    for interface in member.interface:
+    for interface in member.interfaces:
         assert (
             interface in interfaces
         ), f"the interface '{interface}' does not exist in classifications.toml"

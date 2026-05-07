@@ -106,7 +106,7 @@ body:
     - unitary synthesis
     - high-level synthesis
     - openqasm
-- id: interface
+- id: interfaces
   type: dropdown
   validations:
     required: true
@@ -127,7 +127,7 @@ body:
     - Other language
     - Command-line interface (CLI)
     - Graphical User Interface (GUI)
-    - Web inteface
+    - Web interface
     - Other interface
 - id: maturity
   type: dropdown
