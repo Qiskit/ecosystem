@@ -76,7 +76,7 @@ class CliMembers:
 
     def create_badge_endpoints(
         self, name: str = None, example: str = None, output_directory: str = None
-    ):
+    ):  # pylint: disable=too-many-locals
         """Creates the JSON files in to be deployed in qiskit.github.io/ecosystem/b/<jsonfile>
          so they can be consumed by
         https://img.shields.io/endpoint?url=https://qiskit.github.io/ecosystem/b/<jsonfile>
@@ -145,7 +145,7 @@ class CliMembers:
                 "isError": default_iserror,
                 "style": default_style,
             }
-            filename = f"example_under-revision"
+            filename = "example_under-revision"
             with open(os.path.join(output_directory, filename), "w") as outfile:
                 json.dump(data_under_revision, outfile, indent=4)
                 self.logger.info(
