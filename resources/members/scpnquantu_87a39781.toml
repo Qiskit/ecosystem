@@ -1,0 +1,14 @@
+name = "scpn-quantum-control"
+submission_number = 1123
+url = "https://github.com/anulum/scpn-quantum-control"
+description = "Qiskit workflow for Kuramoto-XY NISQ experiments with Rust kernels, hardware packaging, and artefact-first analysis."
+contact_info = "protoscience@anulum.li"
+labels = [ "physics", "error mitigation", "research", "circuit building", "quantum information",]
+interfaces = [ "Python", "Rust", "Command-line interface (CLI)",]
+website = "https://github.com/anulum/scpn-quantum-control"
+category = "Tooling"
+pattern_steps = [ "Map", "Optimize", "Execute", "Post-process",]
+reference_paper = "https://doi.org/10.5281/zenodo.18821930"
+documentation = "https://anulum.github.io/scpn-quantum-control"
+packages = [ "https://pypi.org/project/scpn-quantum-control/",]
+uuid = "87a39781-e842-478d-bacf-640b5ce44103"
