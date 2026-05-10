@@ -107,6 +107,19 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         with self.assertRaises(AttributeError):
             getattr(pypi_data, "$.missing")
 
+    def test_getattr_applies_json_type_and_reduce_hooks(self):
+        """Custom JSONPath hooks can convert and combine multiple JSON values."""
+        pypi_data = PyPIData("pkg")
+        setattr(pypi_data, "_pypi_json", {"values": ["1", "2", "3"]})
+        PyPIData.json_types["$.values.*"] = int
+        PyPIData.reduce["$.values.*"] = lambda left, right: left + right
+
+        try:
+            self.assertEqual(6, getattr(pypi_data, "$.values.*"))
+        finally:
+            del PyPIData.json_types["$.values.*"]
+            del PyPIData.reduce["$.values.*"]
+
     def test_getattr_reads_kwargs_without_pypi_json(self):
         """Keyword arguments are the fallback data source."""
         pypi_data = PyPIData("pkg", version="1.2.3")
@@ -205,6 +218,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         self.assertIsNone(pypi_data.compatible_with_qiskit(1))
         self.assertIsNone(pypi_data.highest_supported_qiskit_version)
         self.assertIsNone(pypi_data.highest_supported_qiskit_release_date)
+        self.assertIsNone(pypi_data.highest_supported_qiskit_version_and_release_date)
 
     def test_highest_supported_version_returns_none_without_matching_version(self):
         """No supported release yields no highest supported version/date tuple."""
@@ -354,7 +368,3 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
 
         self.assertEqual(3, pypi_data.last_month_downloads)
         self.assertEqual(4, pypi_data.last_180_days_downloads)
-
-
-if __name__ == "__main__":
-    unittest.main()
