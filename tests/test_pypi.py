@@ -1,0 +1,360 @@
+"""Tests for ecosystem/pypi.py."""
+
+from datetime import datetime
+import json
+import tempfile
+import unittest
+from unittest.mock import patch
+
+from ecosystem.error_handling import EcosystemError
+from ecosystem.pypi import PyPIData
+from ecosystem.request import URL
+
+
+class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-methods
+    """Tests for PyPIData."""
+
+    def test_package_names_are_canonicalized_and_serialized(self):
+        """Package names are normalized and dicts omit missing values."""
+        pypi_data = PyPIData(
+            "My_Package.Name",
+            version="1.0.0",
+            requires_qiskit=">=1,<2",
+            last_month_downloads=123,
+        )
+        pypi_data._all_qiskit_versions = {  # pylint: disable=protected-access
+            "1.0.0": {"upload_at": datetime(2024, 1, 1)},
+            "2.0.0": {"upload_at": datetime(2025, 1, 1)},
+        }
+
+        self.assertEqual("my-package-name", pypi_data.package_name)
+        self.assertEqual(
+            {
+                "package_name": "my-package-name",
+                "version": "1.0.0",
+                "requires_qiskit": ">=1,<2",
+                "compatible_with_qiskit_v1": True,
+                "compatible_with_qiskit_v2": False,
+                "highest_supported_qiskit_release_date": datetime(2024, 1, 1),
+                "highest_supported_qiskit_version": "1.0.0",
+                "last_month_downloads": 123,
+            },
+            pypi_data.to_dict(),
+        )
+        self.assertEqual(str(pypi_data.to_dict()), repr(pypi_data))
+
+    def test_package_name_validation(self):
+        """Invalid package names are rejected by canonicalization."""
+        with self.assertRaises(ValueError):
+            PyPIData("invalid package name")
+
+    def test_from_url_accepts_pypi_project_urls(self):
+        """PyPI project URLs are converted to data objects."""
+        pypi_data = PyPIData.from_url(URL("https://pypi.org/project/My_Package/"))
+
+        self.assertEqual("my-package", pypi_data.package_name)
+
+    def test_from_url_ignores_non_pypi_urls(self):
+        """Non-PyPI URLs are ignored."""
+        self.assertIsNone(PyPIData.from_url(URL("https://example.com/project/pkg/")))
+
+    def test_from_url_rejects_invalid_pypi_urls(self):
+        """Malformed PyPI project URLs raise an ecosystem error."""
+        with self.assertRaises(EcosystemError):
+            PyPIData.from_url(URL("https://pypi.org/simple/pkg/"))
+
+    def test_update_json_fetches_pypi_and_pypistats_data(self):
+        """update_json stores PyPI and stats payloads."""
+        pypi_payload = {"info": {"version": "1.2.3"}}
+        stats_payload = {"recent_downloads": {"last_month": 10}}
+        pypi_data = PyPIData("pkg")
+
+        with patch("ecosystem.pypi.request_json", return_value=pypi_payload) as request:
+            with patch.object(
+                PyPIData, "request_pypistats", return_value=stats_payload
+            ) as request_stats:
+                pypi_data.update_json()
+
+        request.assert_called_once_with("pypi.org/pypi/pkg/json")
+        request_stats.assert_called_once_with()
+        self.assertEqual(pypi_payload, pypi_data.pypi_json)
+        self.assertEqual(10, pypi_data.last_month_downloads)
+
+    def test_update_json_ignores_pypi_fetch_errors(self):
+        """update_json tolerates unavailable PyPI package JSON."""
+        pypi_data = PyPIData("pkg")
+
+        with patch("ecosystem.pypi.request_json", side_effect=EcosystemError("boom")):
+            with patch.object(PyPIData, "request_pypistats", return_value={}):
+                pypi_data.update_json()
+
+        self.assertEqual({}, pypi_data.pypi_json)
+
+    def test_getattr_reads_aliases_from_pypi_json(self):
+        """Aliased attributes are read from fetched PyPI JSON."""
+        pypi_data = PyPIData("pkg")
+        pypi_data._pypi_json = {  # pylint: disable=protected-access
+            "info": {
+                "version": "1.2.3",
+                "package_url": "https://pypi.org/project/pkg/",
+                "license_expression": "Apache-2.0",
+            }
+        }
+
+        self.assertEqual("1.2.3", pypi_data.version)
+        self.assertEqual("https://pypi.org/project/pkg/", pypi_data.url)
+        self.assertEqual("Apache-2.0", pypi_data.license)
+        with self.assertRaises(AttributeError):
+            getattr(pypi_data, "$.missing")
+
+    def test_getattr_reads_kwargs_without_pypi_json(self):
+        """Keyword arguments are the fallback data source."""
+        pypi_data = PyPIData("pkg", version="1.2.3")
+
+        self.assertEqual("1.2.3", pypi_data.version)
+        with self.assertRaises(AttributeError):
+            getattr(pypi_data, "$.missing")
+
+    def test_last_release_date_prefers_explicit_value(self):
+        """Explicit release dates are returned without inspecting JSON."""
+        release_date = datetime(2024, 1, 1)
+        pypi_data = PyPIData("pkg", last_release_date=release_date)
+
+        self.assertEqual(release_date, pypi_data.last_release_date)
+
+    def test_last_release_date_uses_latest_file_upload(self):
+        """The most recent upload for the current version is used."""
+        pypi_data = PyPIData("pkg")
+        pypi_data._pypi_json = {  # pylint: disable=protected-access
+            "info": {"version": "1.2.3"},
+            "releases": {
+                "1.2.3": [
+                    {"upload_time": "2024-01-01T01:00:00"},
+                    {"upload_time": "2024-02-03T04:05:06"},
+                ]
+            },
+        }
+
+        self.assertEqual(datetime(2024, 2, 3, 4, 5, 6), pypi_data.last_release_date)
+
+    def test_last_release_date_returns_none_without_release_files(self):
+        """Missing current release file metadata yields no release date."""
+        pypi_data = PyPIData("pkg")
+        pypi_data._pypi_json = {  # pylint: disable=protected-access
+            "info": {"version": "1.2.3"},
+            "releases": {},
+        }
+
+        self.assertIsNone(pypi_data.last_release_date)
+
+    def test_requires_qiskit_reads_dependency_specifier(self):
+        """requires_dist is parsed to find the qiskit specifier."""
+        pypi_data = PyPIData("pkg")
+        pypi_data._pypi_json = {  # pylint: disable=protected-access
+            "info": {"requires_dist": ["numpy>=2", "qiskit>=1,<3; python_version>'3'"]}
+        }
+
+        self.assertEqual("<3,>=1", pypi_data.requires_qiskit)
+        pypi_data._pypi_json = None  # pylint: disable=protected-access
+        self.assertEqual("<3,>=1", pypi_data.requires_qiskit)
+
+    def test_requires_qiskit_forces_empty_specifier(self):
+        """A bare qiskit dependency is treated as qiskit>=0."""
+        pypi_data = PyPIData("pkg")
+        pypi_data._pypi_json = {  # pylint: disable=protected-access
+            "info": {"requires_dist": ["qiskit"]}
+        }
+
+        with self.assertLogs("ecosystem", level="WARNING"):
+            self.assertEqual(">=0", pypi_data.requires_qiskit)
+
+    def test_requires_qiskit_returns_none_when_absent(self):
+        """Packages without a qiskit dependency return None."""
+        pypi_data = PyPIData("pkg")
+        pypi_data._pypi_json = {  # pylint: disable=protected-access
+            "info": {"requires_dist": ["numpy>=2"]}
+        }
+
+        self.assertIsNone(pypi_data.requires_qiskit)
+
+    def test_qiskit_compatibility_and_highest_supported_version(self):
+        """Compatibility helpers inspect available Qiskit releases."""
+        pypi_data = PyPIData("pkg", requires_qiskit=">=1,<2")
+        pypi_data._all_qiskit_versions = {  # pylint: disable=protected-access
+            "0.45.0": {"upload_at": datetime(2023, 1, 1)},
+            "1.0.0": {"upload_at": datetime(2024, 1, 1)},
+            "1.2.0": {"upload_at": datetime(2024, 5, 1)},
+            "2.0.0": {"upload_at": datetime(2025, 1, 1)},
+        }
+
+        self.assertTrue(pypi_data.compatible_with_qiskit_v1)
+        self.assertFalse(pypi_data.compatible_with_qiskit_v2)
+        self.assertEqual("1.2.0", pypi_data.highest_supported_qiskit_version)
+        self.assertEqual(
+            datetime(2024, 5, 1), pypi_data.highest_supported_qiskit_release_date
+        )
+        self.assertEqual(
+            ("1.2.0", datetime(2024, 5, 1)),
+            pypi_data.highest_supported_qiskit_version_and_release_date,
+        )
+
+    def test_qiskit_compatibility_returns_none_without_requirement(self):
+        """Compatibility is unknown when no qiskit requirement exists."""
+        pypi_data = PyPIData("pkg")
+
+        self.assertIsNone(pypi_data.compatible_with_qiskit(1))
+        self.assertIsNone(pypi_data.highest_supported_qiskit_version)
+        self.assertIsNone(pypi_data.highest_supported_qiskit_release_date)
+
+    def test_highest_supported_version_returns_none_without_matching_version(self):
+        """No supported release yields no highest supported version/date tuple."""
+        pypi_data = PyPIData("pkg", requires_qiskit=">=3")
+        pypi_data._all_qiskit_versions = {  # pylint: disable=protected-access
+            "1.0.0": {"upload_at": datetime(2024, 1, 1)},
+            "2.0.0": {"upload_at": datetime(2025, 1, 1)},
+        }
+
+        self.assertIsNone(pypi_data.highest_supported_qiskit_version_and_release_date)
+
+    def test_all_qiskit_versions_loads_cached_file(self):
+        """Qiskit release metadata is read from the package cache file."""
+        pypi_data = PyPIData("pkg")
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with open(
+                f"{tmpdir}/all_qiskit_versions.json", "w", encoding="utf8"
+            ) as file:
+                json.dump({"1.0.0": {"upload_at": "2024-01-01T00:00:00"}}, file)
+            with patch("ecosystem.pypi.path.dirname", return_value=tmpdir):
+                versions = pypi_data.all_qiskit_versions()
+
+        self.assertEqual({"1.0.0": {"upload_at": datetime(2024, 1, 1)}}, versions)
+
+    def test_all_qiskit_versions_fetches_and_writes_when_forced(self):
+        """Forced updates fetch Qiskit releases from PyPI and cache them."""
+        pypi_data = PyPIData("pkg")
+        qiskit_payload = {
+            "releases": {
+                "1.0.0": [
+                    {"upload_time_iso_8601": "2024-01-01T00:00:00"},
+                    {"upload_time_iso_8601": "2024-01-02T00:00:00"},
+                ],
+                "2.0.0": [{"upload_time_iso_8601": "2025-01-01T00:00:00"}],
+            }
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with patch("ecosystem.pypi.path.dirname", return_value=tmpdir):
+                with patch("ecosystem.pypi.request_json", return_value=qiskit_payload):
+                    versions = pypi_data.all_qiskit_versions(force_update=True)
+                with open(
+                    f"{tmpdir}/all_qiskit_versions.json", encoding="utf8"
+                ) as file:
+                    cached_versions = json.load(file)
+
+        self.assertEqual(datetime(2024, 1, 2), versions["1.0.0"]["upload_at"])
+        self.assertEqual("2024-01-02 00:00:00", cached_versions["1.0.0"]["upload_at"])
+
+    def test_all_qiskit_versions_fetches_when_cache_missing(self):
+        """A missing cache file triggers a PyPI refresh."""
+        pypi_data = PyPIData("pkg")
+        qiskit_payload = {
+            "releases": {"1.0.0": [{"upload_time_iso_8601": "2024-01-01T00:00:00"}]}
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with patch("ecosystem.pypi.path.dirname", return_value=tmpdir):
+                with patch("ecosystem.pypi.request_json", return_value=qiskit_payload):
+                    with self.assertLogs("ecosystem", level="WARNING"):
+                        versions = pypi_data.all_qiskit_versions()
+
+        self.assertEqual(datetime(2024, 1, 1), versions["1.0.0"]["upload_at"])
+
+    def test_all_qiskit_versions_rejects_releases_without_dates(self):
+        """Qiskit releases without upload dates are treated as invalid."""
+        pypi_data = PyPIData("pkg")
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with patch("ecosystem.pypi.path.dirname", return_value=tmpdir):
+                with patch(
+                    "ecosystem.pypi.request_json",
+                    return_value={"releases": {"1.0.0": []}},
+                ):
+                    with self.assertRaises(EcosystemError):
+                        pypi_data.all_qiskit_versions(force_update=True)
+
+    def test_request_pypistats_combines_recent_and_overall_data(self):
+        """PyPIStats recent and overall responses are normalized."""
+        pypi_data = PyPIData("pkg")
+        recent = {"type": "recent_downloads", "data": {"last_month": 42}}
+        overall = {
+            "type": "overall_downloads",
+            "data": [
+                {"category": "with_mirrors", "downloads": 10},
+                {"category": "with_mirrors", "downloads": 11},
+                {"category": "without_mirrors", "downloads": 7},
+                {"category": "without_mirrors", "downloads": 8},
+            ],
+        }
+
+        with patch(
+            "ecosystem.pypi.request_json", side_effect=[recent, overall]
+        ) as request:
+            stats = pypi_data.request_pypistats()
+
+        self.assertEqual(
+            {
+                "recent_downloads": {"last_month": 42},
+                "overall_downloads": {"with_mirrors": 21, "without_mirrors": 15},
+            },
+            stats,
+        )
+        request.assert_any_call(
+            "https://pypistats.org/api/packages/pkg/recent", delay=3
+        )
+        request.assert_any_call(
+            "https://pypistats.org/api/packages/pkg/overall", delay=3
+        )
+
+    def test_request_pypistats_returns_partial_data_for_missing_package(self):
+        """A PyPIStats 404 stops fetching and returns data collected so far."""
+        pypi_data = PyPIData("pkg")
+        recent = {"type": "recent_downloads", "data": {"last_month": 42}}
+
+        with patch(
+            "ecosystem.pypi.request_json",
+            side_effect=[recent, EcosystemError("Bad response: Not Found (404)")],
+        ):
+            self.assertEqual(
+                {"recent_downloads": {"last_month": 42}}, pypi_data.request_pypistats()
+            )
+
+    def test_request_pypistats_reraises_non_404_errors(self):
+        """Unexpected PyPIStats errors are re-raised."""
+        pypi_data = PyPIData("pkg")
+
+        with patch(
+            "ecosystem.pypi.request_json", side_effect=EcosystemError("rate limited")
+        ):
+            with self.assertRaises(EcosystemError):
+                pypi_data.request_pypistats()
+
+    def test_download_properties_fall_back_to_kwargs(self):
+        """Download properties use kwargs until stats JSON has been fetched."""
+        pypi_data = PyPIData("pkg", last_month_downloads=1, last_180_days_downloads=2)
+
+        self.assertEqual(1, pypi_data.last_month_downloads)
+        self.assertEqual(2, pypi_data.last_180_days_downloads)
+
+    def test_download_properties_read_pypistats_json(self):
+        """Download properties read normalized PyPIStats JSON."""
+        pypi_data = PyPIData("pkg")
+        pypi_data._pypistats_json = {  # pylint: disable=protected-access
+            "recent_downloads": {"last_month": 3},
+            "overall_downloads": {"without_mirrors": 4},
+        }
+
+        self.assertEqual(3, pypi_data.last_month_downloads)
+        self.assertEqual(4, pypi_data.last_180_days_downloads)
+
+
+if __name__ == "__main__":
+    unittest.main()
