@@ -8,13 +8,17 @@ from ecosystem.cli.members import CliMembers
 nav = mkdocs_gen_files.Nav()
 
 
-class ProjectPage:
+class ProjectPage:  # pylint: disable=redefined-outer-name
+    """represents a markdown file in docs/p/"""
+
     def __init__(self, project, filename):
+        """each of the files in docs/p/*.md"""
         self.project = project
         self.filename = filename
         self.classifications = ClassificationsToml()
 
     def generate_all_lines(self):
+        """Returns all the docs/p/<project>.md lines"""
         lines = []
         lines += self.front_matter()
         lines += self.title() + [""]
@@ -26,6 +30,7 @@ class ProjectPage:
         return lines
 
     def write_page(self):
+        """takes the lines and writes them down"""
         with mkdocs_gen_files.open(self.filename, "w") as f:
             print("\n".join(self.generate_all_lines()), file=f)
         mkdocs_gen_files.set_edit_path(
@@ -63,7 +68,7 @@ class ProjectPage:
             # + ["</div>"]
         )
 
-    def classification_card(self):
+    def classification_card(self):  # pylint: disable=too-many-branches
         """
         -   **Qiskit Project** (1)
             { .annotate }
@@ -113,7 +118,8 @@ class ProjectPage:
                 " } (1)",
                 "    { .annotate }",
                 "",
-                f"    1.  {self.classifications.status_descriptions['Under revision']} <br/>[All the projects under revision](../status.md#under-revision)",
+                f"    1.  {self.classifications.status_descriptions['Under revision']} <br/>"
+                "[All the projects under revision](../status.md#under-revision)",
                 "",
                 "    ---",
                 "",
@@ -176,6 +182,7 @@ class ProjectPage:
         return ret
 
     def checkups(self):
+        """Checkups card"""
         lines = ["\n", "- ### :material-list-status: Checkups", "\n", "    ---", "\n"]
         if self.project.checks is None:
             lines.append("    All good")
@@ -189,6 +196,7 @@ class ProjectPage:
         return lines
 
     def badge(self):
+        """Badge card"""
         if self.project.badge_md is None:
             return []
         lines = [
@@ -196,7 +204,10 @@ class ProjectPage:
             "- ### :simple-shieldsdotio: Badge",
             "\n",
             "    ---",
-            f'![{self.project.name} badge]({self.project.badge.url}) <button class="md-code__button" title="Copy to clipboard" data-clipboard-target="#__code_0 &gt; code" data-md-type="copy"></button>',
+            f"![{self.project.name} badge]({self.project.badge.url}) <button "
+            'class="md-code__button" title="Copy to clipboard" '
+            'data-clipboard-target="#__code_0 &gt; code" '
+            'data-md-type="copy"></button>',
             " **style** `flat` ",
             '    ```markdown title="paste this in README.md"',
             "",
