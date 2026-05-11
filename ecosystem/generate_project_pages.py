@@ -21,6 +21,8 @@ class ProjectPage:
         lines += self.description() + [""]
         lines += self.general_summary() + [""]
         lines += self.badge() + [""]
+        lines += self.checkups()
+        lines.append("</div>")
         return lines
 
     def write_page(self):
@@ -58,7 +60,7 @@ class ProjectPage:
             ['<div class="grid cards" markdown>', ""]
             + self.classification_card()
             + self.urls_card()
-            + ["</div>"]
+            # + ["</div>"]
         )
 
     def classification_card(self):
@@ -173,10 +175,35 @@ class ProjectPage:
             ]
         return ret
 
+    def checkups(self):
+        lines = ["\n", "- ### :material-list-status: Checkups", "\n", "    ---", "\n"]
+        if self.project.checks is None:
+            lines.append("    All good")
+        else:
+            for checkup in self.project.checks.values():
+                lines += [
+                    f"    :{checkup.importance_icon}:"
+                    f'{{ title="{checkup.importance} - {checkup.importance_description}" }} '
+                    f'`[{checkup.id}]`{{title="{checkup.title}"}} - {checkup.details}  '
+                ]
+        return lines
+
     def badge(self):
-        lines = [":simple-shieldsdotio: Badge"]
-        lines += [""]
-        lines += ["```markdown", self.project.badge_md, "```"]
+        if self.project.badge_md is None:
+            return []
+        lines = [
+            "\n",
+            "- ### :simple-shieldsdotio: Badge",
+            "\n",
+            "    ---",
+            f'![{self.project.name} badge]({self.project.badge.url}) <button class="md-code__button" title="Copy to clipboard" data-clipboard-target="#__code_0 &gt; code" data-md-type="copy"></button>',
+            " **style** `flat` ",
+            '    ```markdown title="paste this in README.md"',
+            "",
+            "    " + self.project.badge_md,
+            "    ```",
+            "",
+        ]
         return lines
 
     def urls_card(self):
@@ -192,7 +219,7 @@ class ProjectPage:
         """
         ret = []
         p = self.project
-        ret += ["- :material-web: **URLs**", "", "    ---", ""]
+        ret += ["- ### :material-web: **URLs**", "", "    ---", ""]
         if self.project.website:
             ret.append(f"    :material-web-box: [Website]({p.website})  ")
         if self.project.url:

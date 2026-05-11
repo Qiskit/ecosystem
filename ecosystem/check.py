@@ -77,6 +77,20 @@ class CheckData(JsonSerializable):
             return self.checks_toml.checkup(self.id)["importance"]
         return None
 
+    @property
+    def importance_icon(self):
+        """Returns the icon for the checkup importance level or None if none defined"""
+        if "icon" in self.checks_toml.importance(self.importance):
+            return self.checks_toml.importance(self.importance)["icon"]
+        return None
+
+    @property
+    def importance_description(self):
+        """Returns the description for the checkup importance level or None if none defined"""
+        if "description" in self.checks_toml.importance(self.importance):
+            return self.checks_toml.importance(self.importance)["description"]
+        return None
+
     def __repr__(self):
         return str(self.to_dict())
 

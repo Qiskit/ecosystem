@@ -173,21 +173,25 @@ importance = "CRITICAL"
 name = "CRITICAL"
 description = "This is a must-pass and there is no room for negotiation. Failing this test results in immediate removal."
 cure_period_in_days = 0
+icon = "close-outline"
 
 [[importance]]
 name = "IMPORTANT"
 description = "If this check is on a candidate, the merge wont happen until the check passes. If affects an existing member, there will be a cure period for fixing it."
 cure_period_in_days = 90
+icon = "material-alert-octagram-outline"
 
 [[importance]]
 name = "STRONG-RECOMMENDATION"
 description = "This is a strong-recommendation that can be waved if there is a really really good reason for it."
 cure_period_in_days = 90
+icon = "alert-rhombus-outline"
 
 [[importance]]
 name = "RECOMMENDATION"
 description = "This is a recomendation. You might have to argue way this check does not apply to a specific project."
 cure_period_in_days = 180
+icon = "alert-circle-outline"
 
 [[categories]]
 name = "SUBMISSION"

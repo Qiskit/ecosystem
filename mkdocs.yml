@@ -18,6 +18,10 @@ theme:
     - navigation.tabs.sticky
     - toc.integrate
 
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/vega@5
+  - https://cdn.jsdelivr.net/npm/vega-lite@5
+  - https://cdn.jsdelivr.net/npm/vega-embed@6
 
 markdown_extensions:
   - admonition
@@ -27,7 +31,11 @@ markdown_extensions:
   - md_in_html
   - abbr
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: vegalite
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -40,10 +48,15 @@ plugins:
         - ecosystem/generate_project_pages.py
   - literate-nav:
       nav_file: SUMMARY.md
+  - charts
 
 nav:
   - Overview: overview.md
-  - Projects: p/
+  - Projects:
+    - Summary: summary.md
+    - All: p/
+#    - in GitHub: p/
+#    - in PyPI: p/
   - Classifications:
     - Status: status.md
     - Categories: categories.md
