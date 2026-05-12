@@ -170,7 +170,7 @@ class PyPIData(JsonSerializable):
                     f'$.releases["{str_version}"].*.upload_time_iso_8601', qiskit_json
                 )
                 if not str_dates:
-                    raise EcosystemError("Qiskit {str_version} has no release?")
+                    raise EcosystemError(f"Qiskit {str_version} has no release?")
                 last_date = max(parse_datetime(d) for d in str_dates)
                 self._all_qiskit_versions[str_version] = {"upload_at": last_date}
             with open(all_qiskit_versions_json, "w") as json_file:

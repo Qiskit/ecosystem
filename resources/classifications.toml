@@ -1,44 +1,49 @@
-[[categories]]
+[[category]]
 name = "SDK"
 description = "A software development kit. Provides an interface to build software on top of it. "
 
-[[categories]]
+[[category]]
 name = "Application"
 description = "Helps run or work with higher-than-circuit or domain-specifc level of abstraction."
 
-[[categories]]
+[[category]]
 name = "Tooling"
 description = "Helps to develop quantum programs, such as IDEs, debuggers, or other development tooling."
 
-[[categories]]
+[[category]]
 name = "Compute provider"
 description = "Provides access to remote quantum computers (or remote simulators) via Qiskit primitives"
 
-[[categories]]
+[[category]]
 name = "Circuit simulator"
 description = "Simulates a quantum computer on your local classical computer"
 
-[[categories]]
+[[category]]
 name = "Transpiler plugin"
 description = "Implements Qiskit's transpiler plugin interface"
 
-[[categories]]
+[[category]]
+name = "Language binding"
+description = "Languange binding of Qiskit SDK"
+
+[[category]]
 name = "Converter"
 description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs or tools"
 
-[[categories]]
+[[category]]
 name = "Qiskit addon"
 description = "Enables algorithm discovery at the utility scale"
 
-[[categories]]
-name = "Game"
+[[category]]
+name = "Game/Fun"
 description = "Games or playful educational resources"
+section = "gamefun"
 
-[[categories]]
+[[category]]
 name = "Paper artifact"
 description = "Code or dataset needed to reproduce a specific paper. Probably, without long-term support."
 
-[[categories]]
+[[category]]
 name = "Other"
 description = "Projects that extend, interface with, or use Qiskit in interesting ways"
 
@@ -120,6 +125,10 @@ name = "Python"
 description = "API callable from Python programming language"
 
 [[interfaces]]
+name = "Rust"
+description = "API callable from Rust programming language"
+
+[[interfaces]]
 name = "C"
 description = "API callable from C programming language"
 
@@ -130,10 +139,6 @@ description = "API callable from C++ programming language"
 [[interfaces]]
 name = "Julia"
 description = "API callable from Julia programming language"
-
-[[interfaces]]
-name = "Rust"
-description = "API callable from Rust programming language"
 
 [[interfaces]]
 name = "OCaml"
@@ -160,10 +165,6 @@ name = "Web interface"
 description = "Software has a web inteface"
 
 [[interfaces]]
-name = "Web interface"
-description = "Software has a web inteface"
-
-[[interfaces]]
 name = "Other interface"
 description = "The way to interact with this software is not listed yet"
 
@@ -176,7 +177,7 @@ name = "Member"
 description = "The project is an approved member of the Qiskit Ecosystem"
 
 [[status]]
-name = "Under review"
+name = "Under revision"
 description = "The project needs to review some of the check up issues to stay in the Qiskit Ecosystem"
 
 [[status]]
@@ -208,3 +209,19 @@ description = "The project has no active maintenance expectations."
 name = "deprecated"
 description = "The project still functional but no longer recommended for use."
 show_in_submission_template = false
+
+[[pattern_steps]]
+name = "Map"
+description = "Translate domain-specific problems into quantum circuits and operators."
+
+[[pattern_steps]]
+name = "Optimize"
+description = "Optimize quantum circuits into ISA circuits (mapping to physical qubits, converting to hardware basis gates, and reducing operations) to maximize success on the target device."
+
+[[pattern_steps]]
+name = "Execute"
+description = "Run the quantum circuits using primitives (such as Estimator or Sampler) to get results."
+
+[[pattern_steps]]
+name = "Post-process"
+description = "Analyze the output of the quantum computation to improve the signal or/and convert it to domain-specific data."

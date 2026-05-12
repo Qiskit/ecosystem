@@ -4,7 +4,7 @@ url = "https://github.com/11D-Beyonder/double-quant"
 description = "A high-performance quantum computing framework for quantitative finance."
 contact_info = "ztz20001117@gmail.com"
 labels = [ "finance",]
-interface = [ "Python",]
+interfaces = [ "Python",]
 category = "Application"
 packages = []
 uuid = "6e4e5010-7f25-4f03-9724-c9088b4ce0e0"
@@ -26,11 +26,6 @@ last_activity = 2026-04-21T11:22:17Z
 [badge]
 url = "https://qisk.it/e-6e4e5010"
 style = "flat"
-
-[checks.014]
-since = 2026-04-14T08:12:50.128851
-details = "Description is 143-character long"
-importance = "IMPORTANT"
 
 [checks.PQ1]
 since = 2026-04-30T11:32:49.789583

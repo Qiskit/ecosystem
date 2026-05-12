@@ -4,7 +4,7 @@ description = "Combine the excitement of culinary arts with the challenges of qu
 licence = "Apache License 2.0"
 contact_info = "shravanpatel4@gmail.com"
 labels = []
-category = "Game"
+category = "Game/Fun"
 uuid = "e6e7a086-9b91-47b9-be78-f9c7bc680863"
 maturity = "production-ready"
 
@@ -25,5 +25,5 @@ style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:47.238028
-details = "the entry `member.interface` does not exist and it is mandatory"
+details = "the entry `member.interfaces` does not exist and it is mandatory"
 importance = "IMPORTANT"

@@ -26,12 +26,17 @@ def interfaces(toml_file_data):
 
 @pytest.fixture
 def categories(toml_file_data):
-    return [c["name"] for c in toml_file_data["categories"]]
+    return [c["name"] for c in toml_file_data["category"]]
 
 
 @pytest.fixture
 def labels(toml_file_data):
     return [c["name"] for c in toml_file_data["labels"]]
+
+
+@pytest.fixture
+def pattern_steps(toml_file_data):
+    return [c["name"] for c in toml_file_data["pattern_steps"]]
 
 
 @pytest.fixture
@@ -42,21 +47,35 @@ def support(toml_file_data):
 def test_valid_interfaces(member, interfaces):
     """007"""
     assert (
-        hasattr(member, "interface") and member.interface
-    ), "the entry `member.interface` does not exist and it is mandatory"
+        hasattr(member, "interfaces") and member.interfaces
+    ), "the entry `member.interfaces` does not exist and it is mandatory"
 
-    for interface in member.interface:
+    for interface in member.interfaces:
         assert (
             interface in interfaces
-        ), f"the interface '{interface}' does not exist in labels.toml"
+        ), f"the interface '{interface}' does not exist in classifications.toml"
 
 
 def test_valid_category(member, categories):
     """008"""
-    assert member.category in categories, "member.group should exist in labels.toml"
+    assert (
+        member.category in categories
+    ), "member.category should exist in classifications.toml"
 
 
 def test_valid_label(member, labels):
     """009"""
     for label in member.labels:
-        assert label in labels, f"the label '{label}' does not exist in labels.toml"
+        assert (
+            label in labels
+        ), f"the label '{label}' does not exist in classifications.toml"
+
+
+def test_005(member, pattern_steps):
+    """All `member.pattern_steps` should exist in https://qisk.it/ecosystem-pattern_steps"""
+    if not member.pattern_steps:
+        pytest.skip("No Qiskit Pattern step declared")
+    for pattern_step in member.pattern_steps:
+        assert (
+            pattern_step in pattern_steps
+        ), f"the Qiskit Pattern step '{pattern_step}' does not exist in classifications.toml"

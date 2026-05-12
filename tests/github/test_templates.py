@@ -31,14 +31,14 @@ class Test01submission(TestCase):
             self.issue_template = yaml.load(issue_template_file)
 
     def test_categories(self):
-        """categories_names in the template should exist in resources/classifications.toml"""
+        """categories_names in the template should exist in classifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "category":
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
                     list(section["attributes"]["options"]),
-                    ["Select one..."] + self.classifications_toml.categories_names,
+                    ["Select one..."] + self.classifications_toml.category_names,
                 )
 
     def test_labels(self):
@@ -53,18 +53,18 @@ class Test01submission(TestCase):
                 )
 
     def test_interfaces(self):
-        """interfaces in the template should exist in resources/classifications.toml"""
+        """interfaces in the template should exist in classifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "interfaces":
                 self.assertIn("attributes", section)
                 self.assertIn("options", section["attributes"])
                 self.assertEqual(
                     section["attributes"]["options"],
-                    self.classifications_toml.interface_names,
+                    self.classifications_toml.interfaces_names,
                 )
 
     def test_maturity(self):
-        """maturity classification in the template should exist in resources/classifications.toml"""
+        """maturity classification in the template should exist in classifications.toml"""
         for section in self.issue_template["body"]:
             if "id" in section and section["id"] == "maturity":
                 self.assertIn("attributes", section)
@@ -74,4 +74,13 @@ class Test01submission(TestCase):
                     self.classifications_toml.maturity_names,
                 )
 
-    # TODO Qiskit patterns entry  # pylint: disable=fixme
+    def test_pattern_step(self):
+        """Qiskit pattern step in the template should exist in classifications.toml"""
+        for section in self.issue_template["body"]:
+            if "id" in section and section["id"] == "pattern_step":
+                self.assertIn("attributes", section)
+                self.assertIn("options", section["attributes"])
+                self.assertEqual(
+                    section["attributes"]["options"],
+                    self.classifications_toml.interface_names,
+                )

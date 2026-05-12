@@ -22,7 +22,7 @@ The project is an approved member of the Qiskit Ecosystem
 
 The project used to be part of the Qiskit Ecosystem
 
-## Under review
+## Under revision
 
 The project needs to review some of the check up issues to stay in the Qiskit Ecosystem
 

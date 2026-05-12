@@ -28,13 +28,13 @@ style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:00.945226
-details = "the entry `member.interface` does not exist and it is mandatory"
+details = "the entry `member.interfaces` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "IMPORTANT"
 
 [checks.008]
 since = 2026-04-23T18:17:37.676459
-details = "member.group should exist in labels.toml"
+details = "member.category should exist in classifications.toml"
 importance = "IMPORTANT"
 
 [pypi.qiskit-sat-synthesis]

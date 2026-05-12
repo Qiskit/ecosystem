@@ -6,6 +6,7 @@ theme:
   palette:
     primary: deep purple
   logo: img/logo.png
+  favicon: img/favicon.ico
   features:
     - content.code.copy
     - navigation.tabs
@@ -26,6 +27,7 @@ nav:
     - Status: status.md
     - Categories: categories.md
     - Labels: labels.md
+    - Qiskit Pattern steps: pattern_steps.md
     - Interfaces: interfaces.md
-    - Maturity: maturity.md
-    - Badges: badges.md
+    - Maturity levels: maturity.md
+  - Badges: badges.md

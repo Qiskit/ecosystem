@@ -14,10 +14,10 @@ jobs:
       run: |
         project_name=$(echo "${{github.event.pull_request.body}}" | grep "Nomination for" | cut -d: -f2- | awk '{$1=$1};1')
         nominator=$(echo "${{github.event.pull_request.body}}" | grep ", via" | cut -d@ -f2- | cut -d, -f1 | awk '{$1=$1};1')
-        echo "::set-output name=project_name::$project_name"
-        echo "::set-output name=nominator::@$nominator"
+        echo "project_name=$project_name" >> $GITHUB_OUTPUT
+        echo "nominator=@$nominator" >> $GITHUB_OUTPUT
     - name: Create comment on success
-      uses: peter-evans/create-or-update-comment@v3
+      uses: peter-evans/create-or-update-comment@v5
       with:
         issue-number: ${{ github.event.pull_request.number }}
         body: |

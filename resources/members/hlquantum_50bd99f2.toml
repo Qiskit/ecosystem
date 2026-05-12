@@ -3,6 +3,7 @@ url = "https://github.com/AlinDanielFerenczi/HLQuantum"
 description = "A human oriented high-level Python package designed to simplify working with quantum algorithms and developing complex systems."
 labels = [ "circuit optimization", "circuit building", "research",]
 category = "SDK"
+pattern_steps = [ "Map", "Execute",]
 uuid = "50bd99f2-dbd5-4759-b19d-6f5ecdf9e0da"
 maturity = "production-ready"
 
@@ -24,7 +25,7 @@ style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:22:51.271815
-details = "the entry `member.interface` does not exist and it is mandatory"
+details = "the entry `member.interfaces` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "IMPORTANT"
 

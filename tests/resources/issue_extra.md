@@ -4,9 +4,7 @@ Qiskit Banana Compiler
 
 ### Description
 
-```text
 Compile bananas into Qiskit quantum circuits. Supports all modern devices, including Musa × paradisiaca.
-```
 
 ### Contact email
 
@@ -14,7 +12,7 @@ _No response_
 
 ### Category
 
-SDK
+Tooling
 
 ### Labels
 
@@ -57,7 +55,6 @@ _No response_
 
 - [ ] I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)
 
-### skip checks
+### Additional submission notes
 
-COC: This project does not need to agree the CoC
-010: This project is allow to have "test" in its name
+Other notes that can be ignored

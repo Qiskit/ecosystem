@@ -24,9 +24,13 @@ error mitigation, quantum information, optimization
 
 Python
 
+### Stability and support expecations
+
+production-ready
+
 ### Qiskit Pattern steps
 
-Map the problem, Optimize for hardware, Execute on hardware
+Map, Optimize, Execute
 
 
 ### GitHub repository

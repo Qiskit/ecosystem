@@ -7,6 +7,7 @@ ibm_maintained = true
 created_at = 1636403010.377695
 updated_at = 1636403010.377697
 category = "Circuit simulator"
+pattern_steps = [ "Execute",]
 documentation = "https://qiskit.github.io/qiskit-aer/"
 uuid = "474599a7-228b-446f-ae57-636fdbe8c1c6"
 maturity = "bugfixing only"
@@ -31,7 +32,7 @@ style = "flat"
 
 [checks.007]
 since = 2026-04-08T16:23:04.017735
-details = "the entry `member.interface` does not exist and it is mandatory"
+details = "the entry `member.interfaces` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "IMPORTANT"
 

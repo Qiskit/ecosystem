@@ -28,12 +28,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         contact_info: str | None = None,
         affiliations: str | None = None,
         labels: list[str] | None = None,
-        interface: list[str] | None = None,
+        interfaces: list[str] | None = None,
         ibm_maintained: bool = False,
         created_at: int | None = None,
         updated_at: int | None = None,
         website: str | None = None,
         category: str | None = None,
+        pattern_steps: list[str] | None = None,
         reference_paper: URL | None = None,
         documentation: URL | None = None,
         packages: list[URL] | None = None,
@@ -54,12 +55,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.contact_info = contact_info
         self.affiliations = affiliations
         self.labels = labels
-        self.interface = interface
+        self.interfaces = interfaces
         self.ibm_maintained = ibm_maintained
         self.created_at = created_at
         self.updated_at = updated_at
         self.website = website
         self.category = category
+        self.pattern_steps = pattern_steps
         self.reference_paper = reference_paper
         self.documentation = documentation
         self.packages = packages
@@ -161,7 +163,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     def badge_md(self):
         """Markdown with the badge for README"""
         return (
-            f"[![Qiskit Ecosystem]({self.badge})](https://qisk.it/e)"
+            f"[![Qiskit Ecosystem]({self.badge.url})](https://qisk.it/e)"
             if self.badge
             else None
         )
@@ -286,10 +288,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             description=submission.description,
             contact_info=submission.contact_info,
             labels=submission.labels,
-            interface=submission.interface,
+            interfaces=submission.interfaces,
             ibm_maintained=submission.is_ibm_maintained,
             website=submission.home_url,
             category=submission.category,
+            pattern_steps=submission.pattern_steps,
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
             packages=submission.package_urls,

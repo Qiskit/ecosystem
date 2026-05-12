@@ -19,16 +19,18 @@ body:
       If you have any questions, please reach out through the `#qiskit-ecosystem` channel on [Slack](https://qisk.it/join-slack).
 - id: name
   type: input
+  validations:
+    required: true
   attributes:
     label: Project name
     description: >
       Title of your project as it will appear on
       [qisk.it/ecosystem](https://qisk.it/ecosystem).
     placeholder: Qiskit Banana Compiler
-  validations:
-    required: true
 - id: description
   type: textarea
+  validations:
+    required: true
   attributes:
     label: Description
     description: >
@@ -39,18 +41,18 @@ body:
       Compile bananas into Qiskit quantum circuits.
       Supports all modern devices, including Musa × paradisiaca.
     render: text
-  validations:
-    required: true
 - id: contact_info
   type: input
+  validations:
+    required: false
   attributes:
     label: Contact email
     description: Author's contact email address.
     placeholder: author@banana-compiler.org
-  validations:
-    required: false
 - id: category
   type: dropdown
+  validations:
+    required: true
   attributes:
     label: Category
     description: >
@@ -66,14 +68,13 @@ body:
     - Compute provider
     - Circuit simulator
     - Transpiler plugin
+    - Language binding
     - Converter
     - Qiskit addon
-    - Game
+    - Game/Fun
     - Paper artifact
     - Other
     default: 0
-  validations:
-    required: true
 - id: labels
   type: dropdown
   attributes:
@@ -105,7 +106,7 @@ body:
     - unitary synthesis
     - high-level synthesis
     - openqasm
-- id: interface
+- id: interfaces
   type: dropdown
   validations:
     required: true
@@ -126,10 +127,12 @@ body:
     - Other language
     - Command-line interface (CLI)
     - Graphical User Interface (GUI)
-    - Web inteface
+    - Web interface
     - Other interface
 - id: maturity
   type: dropdown
+  validations:
+    required: true
   attributes:
     label: Stability and support expecations
     description: >
@@ -145,20 +148,20 @@ body:
     - bugfixing only
     - as-is
     default: 0
-  validations:
-    required: true
 - id: pattern_steps
   type: dropdown
+  validations:
+    required: false
   attributes:
     label: Qiskit Pattern steps
     description: >
       Can this software help a user to work in one or more steps of  the [Qiskit Pattern](https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns)?
     multiple: true
     options:
-    - Map the problem
-    - Optimize for hardware
-    - Execute on hardware
-    - Post-process results
+    - Map
+    - Optimize
+    - Execute
+    - Post-process
 - type: markdown
   attributes:
     value: '---'
@@ -205,12 +208,12 @@ body:
     render: text
 - id: paper_url
   type: input
+  validations:
+    required: false
   attributes:
     label: Reference paper
     description: If the project is based on a paper, you can link it here.
     placeholder: https://arxiv.org/abs/5555.22222
-  validations:
-    required: false
 - type: markdown
   attributes:
     value: '---'
