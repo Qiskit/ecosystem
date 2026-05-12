@@ -182,7 +182,7 @@ class PyPIData(JsonSerializable):
                     versions_dates_dict = json.load(data_file)
             except FileNotFoundError:
                 logger.warning(
-                    "%s not found. Getting it back fom PyPI", all_qiskit_versions_json
+                    "%s not found. Getting it back fom PyPI.", all_qiskit_versions_json
                 )
                 return self.all_qiskit_versions(force_update=True)
             self._all_qiskit_versions = {
@@ -191,12 +191,19 @@ class PyPIData(JsonSerializable):
             }
         return self._all_qiskit_versions
 
-    def compatible_with_qiskit(self, major):
+    def compatible_with_qiskit(self, major, force_update=False):
         """Boolean if the package is compatible with any Qiskit of the v<major> series"""
         if self.requires_qiskit is None:
             return None
         qiskit_specifier = SpecifierSet(self.requires_qiskit)
-        qiskit_versions = self.all_qiskit_versions()
+        if (
+            not force_update
+            and self._all_qiskit_versions is None
+            and f"compatible_with_qiskit_v{major}" in self._kwargs
+        ):
+            return self._kwargs[f"compatible_with_qiskit_v{major}"]
+        else:
+            qiskit_versions = self.all_qiskit_versions(force_update=force_update)
         for qiskit_version in qiskit_versions.keys():
             if Version(qiskit_version).major != major:
                 continue
@@ -235,6 +242,16 @@ class PyPIData(JsonSerializable):
         """Returns the highest supported Qiskit version and when it was released"""
         if self.requires_qiskit is None:
             return None
+        if (
+            self._all_qiskit_versions is None
+            and "highest_supported_qiskit_release_date" in self._kwargs
+            and "highest_supported_qiskit_version" in self._kwargs
+        ):
+            return (
+                self._kwargs[f"highest_supported_qiskit_version"],
+                self._kwargs[f"highest_supported_qiskit_release_date"],
+            )
+
         qiskit_specifier = SpecifierSet(self.requires_qiskit)
         all_qiskit_versions = sorted(
             self.all_qiskit_versions().items(),
