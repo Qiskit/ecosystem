@@ -202,8 +202,8 @@ class PyPIData(JsonSerializable):
             and f"compatible_with_qiskit_v{major}" in self._kwargs
         ):
             return self._kwargs[f"compatible_with_qiskit_v{major}"]
-        else:
-            qiskit_versions = self.all_qiskit_versions(force_update=force_update)
+
+        qiskit_versions = self.all_qiskit_versions(force_update=force_update)
         for qiskit_version in qiskit_versions.keys():
             if Version(qiskit_version).major != major:
                 continue
@@ -248,8 +248,8 @@ class PyPIData(JsonSerializable):
             and "highest_supported_qiskit_version" in self._kwargs
         ):
             return (
-                self._kwargs[f"highest_supported_qiskit_version"],
-                self._kwargs[f"highest_supported_qiskit_release_date"],
+                self._kwargs["highest_supported_qiskit_version"],
+                self._kwargs["highest_supported_qiskit_release_date"],
             )
 
         qiskit_specifier = SpecifierSet(self.requires_qiskit)
