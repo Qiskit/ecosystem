@@ -237,6 +237,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         Updates all the PyPI information in the project.
         """
         for package_name in sorted(self.pypi.keys()):
+            self.pypi[package_name].all_qiskit_versions(force_update=True)
             self.pypi[package_name].update_json()
 
     def update_julia(self):

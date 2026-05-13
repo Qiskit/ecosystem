@@ -29,11 +29,6 @@ last_activity = 2026-04-15T22:42:10Z
 url = "https://qisk.it/e-0a8128d0"
 style = "flat"
 
-[checks.PQ1]
-since = 2026-04-30T11:32:49.789583
-details = "assert False"
-importance = "CRITICAL"
-
 [pypi.gulps]
 package_name = "gulps"
 version = "0.3.5"

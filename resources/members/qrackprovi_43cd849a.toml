@@ -33,11 +33,6 @@ details = "the entry `member.interfaces` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "IMPORTANT"
 
-[checks.PQ1]
-since = 2026-04-30T11:32:49.789583
-details = "assert False"
-importance = "CRITICAL"
-
 [pypi.qiskit-qrack-provider]
 package_name = "qiskit-qrack-provider"
 version = "0.17.1"

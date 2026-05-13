@@ -143,7 +143,8 @@ affects = ['member.pypi.*.compatible_with_qiskit_v1']
 checker = "test_pypi.py::test_PQ1"
 category = "OUT-OF-DATE"
 description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v1.0 or newer."
-importance = "CRITICAL"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1144"
+importance = "LEGACY"
 
 [PQ2]
 title = "Be installable with qiskit>=2.0"
@@ -192,6 +193,11 @@ name = "RECOMMENDATION"
 description = "This is a recomendation. You might have to argue way this check does not apply to a specific project."
 cure_period_in_days = 180
 icon = "alert-circle-outline"
+
+[[importance]]
+name = "LEGACY"
+description = "This validation does not loger apply."
+cure_period_in_days = false
 
 [[categories]]
 name = "SUBMISSION"

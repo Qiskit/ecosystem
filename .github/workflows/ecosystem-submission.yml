@@ -6,11 +6,8 @@ on:
 
 jobs:
   submission_workflow:
-    if: contains(github.event.issue.labels.*.name, 'submission')
+    if: contains(github.event.issue.labels.*.name, 'submission') && github.event.issue.closed == false
     runs-on: ubuntu-latest
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
     env:
       python-version: "3.13"
     steps:
@@ -24,7 +21,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-
     - name: Parse submission
       id: parse-issue
       env:
@@ -42,7 +38,6 @@ jobs:
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
-        token: ${{ secrets.REPO_SCOPED_TOKEN }}
         draft: always-true
         commit-message: |
           Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
@@ -65,7 +60,7 @@ jobs:
       id: fc
       with:
         issue-number: ${{ github.event.issue.number }}
-        comment-author: 'qiskit-bot'
+        comment-author: 'github-actions[bot]'
         body-includes: Check out the logs
 
     - name: Make comment on validated submission
@@ -74,7 +69,7 @@ jobs:
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.issue.number }}
-        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         edit-mode: replace
         body: |
           The submission is validated :white_check_mark:
@@ -98,7 +93,7 @@ jobs:
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.issue.number }}
-        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         edit-mode: replace
         body: |
           The submission failed :x:
