@@ -193,6 +193,7 @@ cure_period_in_days = 180
 [[importance]]
 name = "LEGACY"
 description = "This validation does not loger apply."
+cure_period_in_days = false
 
 [[categories]]
 name = "SUBMISSION"
