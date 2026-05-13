@@ -31,8 +31,6 @@ jobs:
           python-version: '3.13'
       - uses: actions/checkout@v6
       - name: Checkout PR
-        with:
-          token: ${{ secrets.REPO_SCOPED_TOKEN }}
         run: |
           gh pr checkout ${{ github.event.pull_request.number }}
           git config --local user.email "qiskit-bot@users.noreply.github.com"
