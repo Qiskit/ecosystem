@@ -6,7 +6,7 @@ on:
 
 jobs:
   submission_workflow:
-    if: contains(github.event.issue.labels.*.name, 'submission')
+    if: contains(github.event.issue.labels.*.name, 'submission') && github.event.issue.closed == false
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
@@ -21,7 +21,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
-
     - name: Parse submission
       id: parse-issue
       env:
