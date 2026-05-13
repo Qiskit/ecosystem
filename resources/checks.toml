@@ -31,7 +31,7 @@ importance = "CRITICAL"
 checker = "test_general.py::test_Q20"
 
 [005]
-title = "Qiskit Pattern steps have to exist"
+title = "Qiskit Pattern steps, if there, should be valid"
 description = "All `member.pattern_steps` should exist in https://qisk.it/ecosystem-pattern_steps"
 applies_to = "all"
 affects = ["member.pattern_steps.*"]
