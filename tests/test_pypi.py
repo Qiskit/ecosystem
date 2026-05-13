@@ -59,9 +59,10 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
 
     def test_from_url_accepts_pypi_project_urls(self):
         """PyPI project URLs are converted to data objects."""
-        pypi_data = PyPIData.from_url(URL("https://pypi.org/project/My_Package/"))
+        pypi_data = PyPIData.from_url(URL("https://pypi.org/project/banana-compiler/"))
 
-        self.assertEqual("my-package", pypi_data.package_name)
+        self.assertEqual("banana-compiler", pypi_data.package_name)
+
 
     def test_from_url_ignores_non_pypi_urls(self):
         """Non-PyPI URLs are ignored."""
