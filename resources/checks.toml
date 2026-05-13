@@ -186,18 +186,19 @@ icon = "material-alert-octagram-outline"
 name = "STRONG-RECOMMENDATION"
 description = "This is a strong-recommendation that can be waved if there is a really really good reason for it."
 cure_period_in_days = 90
-icon = "alert-rhombus-outline"
+icon = "material-alert-rhombus-outline"
 
 [[importance]]
 name = "RECOMMENDATION"
 description = "This is a recomendation. You might have to argue way this check does not apply to a specific project."
 cure_period_in_days = 180
-icon = "alert-circle-outline"
+icon = "material-alert-circle-outline"
 
 [[importance]]
 name = "LEGACY"
 description = "This validation does not loger apply."
 cure_period_in_days = false
+icon = "material-archive-alert-outline"
 
 [[categories]]
 name = "SUBMISSION"
