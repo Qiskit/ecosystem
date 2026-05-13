@@ -16,7 +16,7 @@ def pytest_configure(config):
 class ValidationReport:
     # pylint: disable=missing-function-docstring, missing-class-docstring
 
-    def __init__(self, member):
+    def __init__(self, member, checktoml):
         self._member = member
         self.collected = 0
         self.exitcode = 0
@@ -25,6 +25,7 @@ class ValidationReport:
         self.xfailed = []
         self.skipped = []
         self.internalerror = []
+        self.checktoml = checktoml
 
     @property
     def xfails(self):
@@ -68,6 +69,13 @@ class ValidationReport:
     def pytest_collection_modifyitems(self, items):
         self.collected = len(items)
         for item in items:
+            if (
+                self.checktoml.checkup(self.checktoml.id_by_pytest_node(item.nodeid))[
+                    "importance"
+                ]
+                == "LEGACY"
+            ):
+                item.add_marker(pytest.mark.skip(reason="legacy check"))
             if item.nodeid in self.xfails:
                 item.add_marker(pytest.mark.xfail(reason=self.xfails[item.nodeid]))
             if item.nodeid in self.previous_failures:

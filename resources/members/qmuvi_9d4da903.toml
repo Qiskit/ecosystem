@@ -34,11 +34,6 @@ details = "the entry `member.interfaces` does not exist and it is mandatory"
 discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
 importance = "IMPORTANT"
 
-[checks.PQ1]
-since = 2026-04-30T11:32:49.789583
-details = "assert False"
-importance = "CRITICAL"
-
 [pypi.qmuvi]
 package_name = "qmuvi"
 version = "0.3.0"

@@ -31,8 +31,3 @@ style = "flat"
 since = 2026-04-08T16:22:37.109421
 details = "the entry `member.interfaces` does not exist and it is mandatory"
 importance = "IMPORTANT"
-
-[checks.008]
-since = 2026-05-07T12:50:43.803559
-details = "member.category should exist in classifications.toml"
-importance = "IMPORTANT"
