@@ -203,7 +203,7 @@ class TestCli(TestCase):
             "Supports all modern devices, including Musa × paradisiaca.",
             "labels": [],
             "interfaces": ["Python"],
-            "category": "Tooling",
+            "category": "SDK",
             "packages": [],
             "pattern_steps": [],
         }
