@@ -13,6 +13,18 @@ from ecosystem.request import URL
 class TestJuliaData(TestCase):
     """Tests for Julia project metadata."""
 
+    @staticmethod
+    def _mock_request_json(payloads):
+        def request_json(url, **_kwargs):
+            if url not in payloads:
+                raise AssertionError(f"unexpected network request: {url}")
+            payload = payloads[url]
+            if isinstance(payload, Exception):
+                raise payload
+            return payload
+
+        return request_json
+
     def test_from_url_accepts_juliahub_ui_url(self):
         """JuliaHub URLs include the registry and package name in the path."""
         data = JuliaData.from_url(
@@ -75,45 +87,55 @@ class TestJuliaData(TestCase):
     def test_get_juliahub_url_sets_url_when_probe_succeeds(self):
         """A successful JuliaHub probe stores the canonical UI URL."""
         data = JuliaData(package_name="Flux")
+        url = "https://juliahub.com/ui/Packages/General/Flux"
 
-        with patch("ecosystem.julia.request_json", return_value={}) as request_json:
+        with patch(
+            "ecosystem.julia.request_json",
+            side_effect=self._mock_request_json({url: {}}),
+        ) as request_json:
             data.get_juliahub_url()
 
-        request_json.assert_called_once()
-        self.assertEqual(
-            data.juliahub_url, URL("https://juliahub.com/ui/Packages/General/Flux")
-        )
+        self.assertEqual([call.args[0] for call in request_json.call_args_list], [url])
+        self.assertEqual(data.juliahub_url, URL(url))
 
     def test_get_juliahub_url_clears_url_when_probe_fails(self):
         """A failed JuliaHub probe leaves no stale URL."""
         data = JuliaData(package_name="Flux")
-        data.juliahub_url = URL("https://juliahub.com/ui/Packages/General/Flux")
+        url = "https://juliahub.com/ui/Packages/General/Flux"
+        data.juliahub_url = URL(url)
 
         with patch(
             "ecosystem.julia.request_json",
-            side_effect=EcosystemError("JuliaHub unavailable"),
-        ):
+            side_effect=self._mock_request_json(
+                {url: EcosystemError("JuliaHub unavailable")}
+            ),
+        ) as request_json:
             data.get_juliahub_url()
 
+        self.assertEqual([call.args[0] for call in request_json.call_args_list], [url])
         self.assertIsNone(data.juliahub_url)
 
     def test_get_general_registry_url_sets_url_for_matching_package(self):
         """General registry matches are converted to GitHub tree URLs."""
         data = JuliaData(package_name="Flux")
         registry = {"packages": {"flux-uuid": {"name": "Flux", "path": "F/Flux"}}}
+        registry_url = (
+            "https://raw.githubusercontent.com/JuliaRegistries/"
+            "General/refs/heads/master/Registry.toml"
+        )
+        tree_url = "https://github.com/JuliaRegistries/General/tree/master/F/Flux"
 
-        def fake_request_json(url, **_kwargs):
-            if "Registry.toml" in url:
-                return registry
-            return {}
-
-        with patch("ecosystem.julia.request_json", side_effect=fake_request_json):
+        with patch(
+            "ecosystem.julia.request_json",
+            side_effect=self._mock_request_json({registry_url: registry, tree_url: {}}),
+        ) as request_json:
             data.get_general_registry_url()
 
         self.assertEqual(
-            data.general_registry_url,
-            URL("https://github.com/JuliaRegistries/General/tree/master/F/Flux"),
+            [call.args[0] for call in request_json.call_args_list],
+            [registry_url, tree_url],
         )
+        self.assertEqual(data.general_registry_url, URL(tree_url))
 
     def test_get_general_registry_url_skips_non_general_registry(self):
         """Only the General Julia registry is currently resolved."""
@@ -129,10 +151,21 @@ class TestJuliaData(TestCase):
         """Missing packages do not produce registry URLs."""
         data = JuliaData(package_name="Flux")
         registry = {"packages": {"other-uuid": {"name": "Other", "path": "O/Other"}}}
+        registry_url = (
+            "https://raw.githubusercontent.com/JuliaRegistries/"
+            "General/refs/heads/master/Registry.toml"
+        )
 
-        with patch("ecosystem.julia.request_json", return_value=registry):
+        with patch(
+            "ecosystem.julia.request_json",
+            side_effect=self._mock_request_json({registry_url: registry}),
+        ) as request_json:
             self.assertIsNone(data.get_general_registry_url())
 
+        self.assertEqual(
+            [call.args[0] for call in request_json.call_args_list],
+            [registry_url],
+        )
         self.assertIsNone(data.general_registry_url)
 
     def test_estimated_unique_users_uses_download_stats_when_available(self):
@@ -149,28 +182,47 @@ class TestJuliaData(TestCase):
         """update_json combines JuliaPackages, JuliaHub, downloads, and registry data."""
         data = JuliaData(juliapackages_url="https://juliapackages.com/p/flux")
         registry = {"packages": {"flux-uuid": {"name": "Flux", "path": "F/Flux"}}}
+        package_url = "https://juliapackages.com/p/flux"
+        package_json_url = "juliahub.com/docs/General/Flux/stable/pkg.json"
+        juliahub_url = "https://juliahub.com/ui/Packages/General/Flux"
+        stats_url = (
+            "https://julialang-logs.s3.amazonaws.com/public_outputs/"
+            "current/package_requests.csv.gz"
+        )
+        registry_url = (
+            "https://raw.githubusercontent.com/JuliaRegistries/"
+            "General/refs/heads/master/Registry.toml"
+        )
+        tree_url = "https://github.com/JuliaRegistries/General/tree/master/F/Flux"
 
-        def fake_request_json(url, **_kwargs):
-            if url == "https://juliapackages.com/p/flux":
-                return {"package_name": "Flux"}
-            if url == "juliahub.com/docs/General/Flux/stable/pkg.json":
-                return {"uuid": "flux-uuid", "version": "1.2.3"}
-            if "package_requests.csv.gz" in url:
-                return {"request_addrs": "7"}
-            if "Registry.toml" in url:
-                return registry
-            return {}
-
-        with patch("ecosystem.julia.request_json", side_effect=fake_request_json):
+        with patch(
+            "ecosystem.julia.request_json",
+            side_effect=self._mock_request_json(
+                {
+                    package_url: {"package_name": "Flux"},
+                    package_json_url: {"uuid": "flux-uuid", "version": "1.2.3"},
+                    juliahub_url: {},
+                    stats_url: {"request_addrs": "7"},
+                    registry_url: registry,
+                    tree_url: {},
+                }
+            ),
+        ) as request_json:
             data.update_json()
 
+        self.assertEqual(
+            [call.args[0] for call in request_json.call_args_list],
+            [
+                package_url,
+                package_json_url,
+                juliahub_url,
+                stats_url,
+                registry_url,
+                tree_url,
+            ],
+        )
         self.assertEqual(data.package_name, "Flux")
         self.assertEqual(data.version, "1.2.3")
         self.assertEqual(data.estimated_unique_users, 7)
-        self.assertEqual(
-            data.juliahub_url, URL("https://juliahub.com/ui/Packages/General/Flux")
-        )
-        self.assertEqual(
-            data.general_registry_url,
-            URL("https://github.com/JuliaRegistries/General/tree/master/F/Flux"),
-        )
+        self.assertEqual(data.juliahub_url, URL(juliahub_url))
+        self.assertEqual(data.general_registry_url, URL(tree_url))
