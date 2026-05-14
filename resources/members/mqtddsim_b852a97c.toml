@@ -16,14 +16,14 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/ddsim"
 owner = "munich-quantum-toolkit"
 repo = "ddsim"
-stars = 158
+stars = 160
 homepage = "https://mqt.readthedocs.io/projects/ddsim"
 license = "MIT License"
 description = "MQT DDSIM - A quantum circuit simulator based on decision diagrams written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-25T05:44:13Z
-last_activity = 2026-04-25T05:44:09Z
+last_commit = 2026-05-13T19:16:07Z
+last_activity = 2026-05-13T17:58:10Z
 
 [badge]
 url = "https://qisk.it/e-b852a97c"
@@ -37,7 +37,7 @@ importance = "IMPORTANT"
 
 [pypi."mqt.ddsim"]
 package_name = "mqt-ddsim"
-version = "2.2.0"
+version = "2.3.0"
 last_release_date = 2026-02-19T17:43:43
 license = "MIT"
 url = "https://pypi.org/project/mqt.ddsim/"
@@ -46,5 +46,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 2683
-last_180_days_downloads = 17924
+last_month_downloads = 1623
+last_180_days_downloads = 16419

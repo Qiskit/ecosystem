@@ -17,14 +17,14 @@ maturity = "production-ready"
 url = "https://github.com/mwpwalshe/qb-compiler"
 owner = "mwpwalshe"
 repo = "qb-compiler"
-stars = 0
+stars = 1
 homepage = "https://qubitboost.io/compiler"
 license = "Apache License 2.0"
 description = "Quantum execution intelligence toolkit for circuit preflight checks, backend analysis, calibration-aware compilation, and hardware-..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-23T18:53:24Z
-last_activity = 2026-04-23T18:54:05Z
+last_commit = 2026-04-30T19:18:40Z
+last_activity = 2026-05-01T22:54:09Z
 
 [badge]
 url = "https://qisk.it/e-2334d2a1"
@@ -37,7 +37,7 @@ importance = "IMPORTANT"
 
 [pypi.qb-compiler]
 package_name = "qb-compiler"
-version = "0.3.0"
+version = "0.5.2"
 last_release_date = 2026-03-14T16:16:04
 license = "Apache-2.0"
 url = "https://pypi.org/project/qb-compiler/"
@@ -46,5 +46,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 231
-last_180_days_downloads = 918
+last_month_downloads = 478
+last_180_days_downloads = 1201

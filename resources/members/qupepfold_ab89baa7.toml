@@ -20,8 +20,8 @@ description = "QupepFold is a small, research-oriented toolkit that turns short 
 estimated_contributors = 2
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-02-09T06:24:23Z
-last_activity = 2026-03-17T12:09:03Z
+last_commit = 2026-04-27T07:45:39Z
+last_activity = 2026-04-27T07:45:40Z
 
 [badge]
 url = "https://qisk.it/e-ab89baa7"
@@ -35,7 +35,7 @@ importance = "IMPORTANT"
 
 [pypi.qupepfold]
 package_name = "qupepfold"
-version = "0.8.0"
+version = "0.9.0"
 last_release_date = 2026-02-04T09:21:25
 url = "https://pypi.org/project/qupepfold/"
 requires_qiskit = ">=0.39"
@@ -43,5 +43,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 433
-last_180_days_downloads = 947
+last_month_downloads = 324
+last_180_days_downloads = 1182

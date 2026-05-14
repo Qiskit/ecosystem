@@ -39,11 +39,6 @@ since = 2026-04-23T22:50:49.597223
 details = "GitHub repository archived and member.maturity is not `as-is`"
 importance = "CRITICAL"
 
-[checks.001]
-since = 2026-04-30T12:59:28.712726
-details = "The project is probably abandoned: G05"
-importance = "CRITICAL"
-
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package qiskit-research is not compatible with Qiskit SDK v2"
@@ -59,5 +54,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-06-20T16:55:07Z
 highest_supported_qiskit_version = "1.1.1"
-last_month_downloads = 65
-last_180_days_downloads = 575
+last_month_downloads = 72
+last_180_days_downloads = 572
