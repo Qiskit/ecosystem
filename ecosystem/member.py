@@ -204,7 +204,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     def _qisk_dot_it_link_exists(self):
         qisk_dot_it_link_check = request_json(
             f"https://qisk.it/e-{self.short_uuid}",
-            parser=lambda x: {"exists": "<title>Qiskit Ecosystem:" in x},
+            parser=lambda x: {"exists": "<title>Qiskit Ecosystem:" not in x},
         )
         return (
             f"https://qisk.it/e-{self.short_uuid}"
@@ -219,12 +219,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 self._qisk_dot_it_link_exists()
                 or self._create_qisk_dot_it_link_for_badge()
             )
-            self.badge = BadgeData(url=badge_url)
+            self.badge = BadgeData(url=badge_url) if badge_url else None
 
     def update_data(self):
         """Update all the member data in each existing section"""
         to_update = [
             "github",
+            "badge",
             "pypi",
             "julia",
         ]
