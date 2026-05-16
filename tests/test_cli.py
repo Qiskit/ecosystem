@@ -93,6 +93,7 @@ class TestCli(TestCase):
             "documentation": "https://banana-compiler.org/documentation",
             "reference_paper": "https://arxiv.org/abs/5555.22222",
             "category": "circuit manipulation",
+            "maturity": "production-ready",
             "packages": [
                 "https://pypi.org/project/banana-compiler",
                 "https://pypi.org/project/banana-compiler-hpc",
@@ -133,6 +134,7 @@ class TestCli(TestCase):
             "labels": [],
             "interfaces": ["Other"],
             "category": "circuit manipulation",
+            "maturity": "production-ready",
             "packages": [],
             "pattern_steps": [],
         }
@@ -163,6 +165,7 @@ class TestCli(TestCase):
             "labels": [],
             "interfaces": ["Python"],
             "category": "SDK",
+            "maturity": "production-ready",
             "packages": [],
             "pattern_steps": [],
             "checks": {
@@ -204,6 +207,7 @@ class TestCli(TestCase):
             "labels": [],
             "interfaces": ["Python"],
             "category": "SDK",
+            "maturity": "production-ready",
             "packages": [],
             "pattern_steps": [],
         }

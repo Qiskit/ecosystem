@@ -40,6 +40,11 @@ since = 2026-04-23T22:50:56.068828
 details = "GitHub repository archived and member.maturity is not `as-is`"
 importance = "CRITICAL"
 
+[checks.001]
+since = 2026-05-16T19:21:51.161010
+details = "The project is probably abandoned: G05"
+importance = "CRITICAL"
+
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package qiskit-dynamics is not compatible with Qiskit SDK v2"

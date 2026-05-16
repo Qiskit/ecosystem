@@ -30,6 +30,15 @@ description = "If the software depends on Qiskit SDK in some way, there should e
 importance = "CRITICAL"
 checker = "test_general.py::test_Q20"
 
+[004]
+title = "Maturity property has to exist and be valid"
+description = "`member.maturity` should exist in https://qisk.it/ecosystem-categories"
+applies_to = "all"
+affects = ["member.maturity"]
+category = "SUBMISSION"
+checker = "test_classifications.py::test_004"
+importance = "IMPORTANT"
+
 [005]
 title = "Qiskit Pattern steps, if there, should be valid"
 description = "All `member.pattern_steps` should exist in https://qisk.it/ecosystem-pattern_steps"

@@ -297,6 +297,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             pattern_steps=submission.pattern_steps,
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
+            maturity=submission.maturity,
             packages=submission.package_urls,
             checks=skip_checks or None,
         )

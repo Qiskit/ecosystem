@@ -99,7 +99,7 @@ class Submission:
             else:
                 raw_content = lines[1:]
 
-            if "category" == field_id:
+            if field_id in ["category", "maturity"]:
                 if "Select" in raw_content:
                     content = "other"
                 else:
