@@ -21,6 +21,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
+    - name: Find Comment bot comment
+      uses: peter-evans/find-comment@v3
+      if: always()
+      id: fc
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        comment-author: 'github-actions[bot]'
+        body-includes: Check out the logs
     - name: Parse submission
       id: parse-issue
       env:
@@ -28,16 +36,12 @@ jobs:
         ISSUE_NUMBER: ${{ github.event.issue.number }}
       run:
         python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
-
-    - name: Validate submission
-      id: valid-issue
-      run: |
-        python manager.py ci validate_member "${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}"
-
     - name: Commit changes and create pull request
       id: cpr
+      if: success()
       uses: peter-evans/create-pull-request@v7
       with:
+        token: secrets.REPO_SCOPED_TOKEN
         draft: always-true
         commit-message: |
           Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
@@ -54,15 +58,6 @@ jobs:
         branch: submission-${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}
         labels: submission
 
-    - name: Find Comment bot comment
-      uses: peter-evans/find-comment@v3
-      if: always()
-      id: fc
-      with:
-        issue-number: ${{ github.event.issue.number }}
-        comment-author: 'github-actions[bot]'
-        body-includes: Check out the logs
-
     - name: Make comment on validated submission
       if: success() && steps.cpr.outputs.pull-request-number
       uses: peter-evans/create-or-update-comment@v5
@@ -72,7 +67,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         edit-mode: replace
         body: |
-          The submission is validated :white_check_mark:
+          Thanks for your submission! :white_check_mark:
           
           Let's close this issue in favor of the PR #${{ steps.cpr.outputs.pull-request-number }}. We can move the conversation about this project there.
 
@@ -83,6 +78,7 @@ jobs:
           <sub>Curious about the submission validation? [Check out the logs here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).</sub>
 
     - name: Close issue
+      if: success()
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh issue close ${{ github.event.issue.number }}
@@ -96,7 +92,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         edit-mode: replace
         body: |
-          The submission failed :x:
+          The submission validation failed :x:
 
           [Check out the logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).
 
