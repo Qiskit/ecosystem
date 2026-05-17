@@ -47,19 +47,19 @@ def test_P11(member):
     experimental_packages = []
     stable_packages = []
     for pypi_package in member.pypi.values():
-        if pypi_package.development_status in [
+        if getattr(pypi_package, "development_status", None) in [
             "1 - Planning",
             "2 - Pre-Alpha",
             "3 - Alpha",
             "4 - Beta",
         ]:
-            experimental_packages.append(pypi_package.name)
+            experimental_packages.append(pypi_package.package_name)
         else:
-            stable_packages.append(pypi_package.name)
+            stable_packages.append(pypi_package.package_name)
 
     if len(experimental_packages) + len(stable_packages) == 0:
         pytest.skip("No member.pypi.*.development_status")
 
-    assert len(
-        stable_packages
+    assert (
+        len(stable_packages) != 0
     ), "At least one python package should a stable declare development status classifier"
