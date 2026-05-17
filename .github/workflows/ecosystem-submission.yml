@@ -8,6 +8,9 @@ jobs:
   submission_workflow:
     if: contains(github.event.issue.labels.*.name, 'submission') && github.event.issue.closed == false
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     env:
       python-version: "3.13"
     steps:
@@ -43,7 +46,7 @@ jobs:
       with:
         token: secrets.REPO_SCOPED_TOKEN
         draft: always-true
-        author: qiskit <qiskit-bot@users.noreply.github.com>
+        author: qiskit-bot <qiskit-bot@users.noreply.github.com>
         commit-message: |
           Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
         
