@@ -7,7 +7,7 @@ created_at = 1678827878.401835
 updated_at = 1678827878.401836
 category = "SDK"
 uuid = "fb1cd889-961a-4029-bb8f-229e4c4e12a4"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/QuTech-Delft/quantuminspire"
@@ -42,6 +42,7 @@ package_name = "quantuminspire"
 version = "3.5.3"
 last_release_date = 2026-01-19T12:28:56
 url = "https://pypi.org/project/quantuminspire/"
+development_status = "4 - Beta"
 requires_qiskit = "==1.0.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false

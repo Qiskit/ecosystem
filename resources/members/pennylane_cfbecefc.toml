@@ -7,7 +7,7 @@ created_at = 1678827878.782751
 updated_at = 1678827878.782752
 category = "Converter"
 uuid = "cfbecefc-6cf7-49a6-99c5-049dae76fdcc"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/PennyLaneAI/pennylane-qiskit"
@@ -37,6 +37,7 @@ package_name = "pennylane-qiskit"
 version = "0.45.0"
 last_release_date = 2026-01-22T22:16:30
 url = "https://pypi.org/project/PennyLane-qiskit/"
+development_status = "4 - Beta"
 requires_qiskit = "<2.2,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

@@ -29,6 +29,7 @@ class PyPIData(JsonSerializable):
         "last_release_date",
         "license",
         "url",
+        "development_status",
         "requires_qiskit",
         "compatible_with_qiskit_v1",
         "compatible_with_qiskit_v2",
@@ -41,9 +42,13 @@ class PyPIData(JsonSerializable):
         "version": "info.version",
         "url": "info.package_url",
         "license": "info.license_expression",
+        "development_status": "info.classifiers[?('Development Status' in @)]",
     }
-    json_types = {}
-    reduce = {}
+    # runs on each findall element
+    json_types = {
+        "info.classifiers[?('Development Status' in @)]": lambda x: x.split(" :: ")[-1]
+    }
+    reduce = {}  # if findall returns more than one element
 
     def __init__(self, package_name: str, **kwargs):
         self.package_name = canonicalize_name(package_name, validate=True)

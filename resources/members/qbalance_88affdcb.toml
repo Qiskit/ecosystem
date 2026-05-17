@@ -9,7 +9,7 @@ pattern_steps = []
 reference_paper = "https://arxiv.org/abs/2605.02966"
 packages = []
 uuid = "88affdcb-ea75-47ad-956a-bd24f7af1f20"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/neuralsorcerer/qbalance"
@@ -33,6 +33,7 @@ package_name = "qbalance"
 version = "0.1.0"
 last_release_date = 2026-05-03T09:36:36
 url = "https://pypi.org/project/qbalance/"
+development_status = "3 - Alpha"
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

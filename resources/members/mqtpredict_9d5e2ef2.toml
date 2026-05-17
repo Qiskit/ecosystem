@@ -9,7 +9,7 @@ category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
 documentation = "https://mqt.readthedocs.io/projects/predictor/en/latest/"
 uuid = "9d5e2ef2-cac6-479e-a2f9-8014d54403e4"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/predictor"
@@ -39,6 +39,7 @@ version = "2.3.0"
 last_release_date = 2025-07-29T09:17:24
 license = "MIT"
 url = "https://pypi.org/project/mqt.predictor/"
+development_status = "4 - Beta"
 requires_qiskit = "!=1.3.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

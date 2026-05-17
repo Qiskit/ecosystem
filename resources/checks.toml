@@ -172,6 +172,15 @@ category = "OSS"
 description ="The license-related metadata in PyPA should be an OSI-approved open-source license."
 importance = "CRITICAL"
 
+[P11]
+title = "Production-ready projects should have, at least, one stable Python package"
+applies_to = "Python packages"
+affects = ['member.pypi.*.development_status', 'member.maturity']
+category = "OUT-OF-DATE"
+description ="If the project maturiy level is is production-ready then, at least one of the Python packages should have a Development Status classifier that is `None`, `Production/Stable`, or `Mature`."
+checker = "test_pypi.py::test_P11"
+importance = "STRONG-RECOMMENDATION"
+
 [020]
 title = "Primitive interface should be v2-compatible"
 applies_to = 'label:"Compute provider"'

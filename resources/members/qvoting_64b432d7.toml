@@ -9,7 +9,7 @@ category = "Application"
 pattern_steps = [ "Post-process",]
 packages = []
 uuid = "64b432d7-f5f5-487f-8789-caadba593ce9"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/cogu92/qvoting"
@@ -33,6 +33,7 @@ version = "0.1.5"
 last_release_date = 2026-03-05T20:41:57
 license = "MIT"
 url = "https://pypi.org/project/qvoting/"
+development_status = "3 - Alpha"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

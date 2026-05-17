@@ -8,7 +8,7 @@ interfaces = [ "Python",]
 category = "Application"
 packages = []
 uuid = "6e4e5010-7f25-4f03-9724-c9088b4ce0e0"
-maturity = "production-ready"
+maturity = "experimental"
 status = "Alumni"
 
 [github]
@@ -32,6 +32,7 @@ package_name = "double-quant"
 version = "0.0.1a3"
 last_release_date = 2026-03-30T11:28:26
 url = "https://pypi.org/project/double-quant/"
+development_status = "3 - Alpha"
 requires_qiskit = ">=2.2.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

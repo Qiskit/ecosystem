@@ -10,7 +10,7 @@ category = "Transpiler plugin"
 pattern_steps = [ "Optimize",]
 packages = []
 uuid = "7fcadf8b-f043-4eac-a491-9783a1c00cfe"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/hiq-lab/arvak-lite"
@@ -33,6 +33,7 @@ package_name = "arvak-lite"
 version = "0.1.1"
 last_release_date = 2026-03-08T14:02:53
 url = "https://pypi.org/project/arvak-lite/"
+development_status = "4 - Beta"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

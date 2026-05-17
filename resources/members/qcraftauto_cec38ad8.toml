@@ -10,7 +10,7 @@ category = "Tooling"
 reference_paper = "https://www.worldscientific.com/doi/10.1142/S0218194024410018"
 documentation = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler/blob/main/README.md"
 uuid = "cec38ad8-9737-49e7-a177-3a6850784b6e"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
@@ -41,6 +41,7 @@ version = "1.2.1"
 last_release_date = 2025-06-12T10:28:58
 license = "MIT"
 url = "https://pypi.org/project/autoscheduler/"
+development_status = "4 - Beta"
 requires_qiskit = "<3.0.0,>=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

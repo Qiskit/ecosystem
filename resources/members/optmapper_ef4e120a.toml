@@ -2,13 +2,12 @@ name = "qiskit-addon-opt-mapper"
 url = "https://github.com/Qiskit/qiskit-addon-opt-mapper"
 description = "Mapping combinatorial optimization problems to quantum computers"
 licence = "Apache License 2.0"
-contact_info = "garrison@ibm.com"
 labels = []
 ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-opt-mapper/"
 uuid = "ef4e120a-f308-4462-86b6-10e7c7ba17c7"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-opt-mapper"
@@ -45,5 +44,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1734
-last_180_days_downloads = 3820
+last_month_downloads = 1534
+last_180_days_downloads = 3868
