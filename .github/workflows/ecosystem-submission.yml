@@ -39,10 +39,11 @@ jobs:
     - name: Commit changes and create pull request
       id: cpr
       if: success()
-      uses: peter-evans/create-pull-request@v7
+      uses: peter-evans/create-pull-request@v8
       with:
         token: secrets.REPO_SCOPED_TOKEN
         draft: always-true
+        author: qiskit <qiskit-bot@users.noreply.github.com>
         commit-message: |
           Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
         
