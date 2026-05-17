@@ -15,6 +15,8 @@ jobs:
       python-version: "3.13"
     steps:
     - uses: actions/checkout@v6
+      with:
+        token: ${{secrets.REPO_SCOPED_TOKEN}}
     - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v6
       with:
@@ -44,7 +46,7 @@ jobs:
       if: success()
       uses: peter-evans/create-pull-request@v8
       with:
-        token: secrets.REPO_SCOPED_TOKEN
+        token: ${{secrets.REPO_SCOPED_TOKEN}}
         draft: always-true
         author: qiskit-bot <qiskit-bot@users.noreply.github.com>
         commit-message: |
