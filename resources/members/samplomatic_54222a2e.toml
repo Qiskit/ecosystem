@@ -7,6 +7,13 @@ interfaces = [ "Python",]
 category = "Qiskit addon"
 pattern_steps = []
 documentation = "https://qiskit.github.io/samplomatic/"
-packages = ['https://pypi.org/project/samplomatic/']
+packages = []
 uuid = "54222a2e-3d6b-4fdb-b21d-692eb0452a5e"
 maturity = "experimental"
+
+[github]
+owner = "Qiskit"
+repo = "samplomatic"
+
+[pypi.samplomatic]
+package_name = "samplomatic"
