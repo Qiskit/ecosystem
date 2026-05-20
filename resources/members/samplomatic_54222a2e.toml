@@ -1,12 +1,12 @@
 name = "Samplomatic"
 submission_number = 1158
-url = "https://samplomatic"
-description = "Library for declarative quantum circuit randomization: Pauli twirling, noise injection, and extensible sampling via custom groups. aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+url = "https://github.com/Qiskit/samplomatic"
+description = "Library for declarative quantum circuit randomization: Pauli twirling, noise injection, and extensible sampling via custom groups."
 labels = [ "circuit building", "error mitigation",]
 interfaces = [ "Python",]
 category = "Qiskit addon"
 pattern_steps = []
 documentation = "https://qiskit.github.io/samplomatic/"
-packages = []
+packages = [`https://pypi.org/project/samplomatic/`]
 uuid = "54222a2e-3d6b-4fdb-b21d-692eb0452a5e"
 maturity = "experimental"
