@@ -29,6 +29,7 @@ class TestURLs:
         if documentation_url.hostname.endswith("github.com"):
             suffixes = ["main/README.md"]
             for suffix in suffixes:
-                assert not documentation_url.path.endswith(
-                    suffix
-                ), f"`member.documentation == {documentation_url}` can be empty. It does not have to be a link to the `README.md`."
+                assert not documentation_url.path.endswith(suffix), (
+                    f"`member.documentation == {documentation_url}` can be empty. "
+                    "It does not have to be a link to the `README.md`."
+                )

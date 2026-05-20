@@ -55,7 +55,7 @@ _No response_
 
 ### Code of Conduct
 
-- [ ] I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)
+- [x] I agree to follow [Qiskit's Code of Conduct](https://qisk.it/coc)
 
 ### skip checks
 
