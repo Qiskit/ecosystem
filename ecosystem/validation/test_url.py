@@ -1,5 +1,7 @@
 """URL Validations"""
 
+import pytest
+
 # pylint: disable=missing-function-docstring, missing-class-docstring
 
 
@@ -32,3 +34,16 @@ class TestURLs:
                     assert not url.path.endswith(
                         suffix
                     ), f"{url} has redundant suffix: {suffix}"
+
+    def test_026(self, member):
+        """The /README.md is not documentation"""
+        documentation_url = getattr(member, "documentation")
+        if documentation_url is None:
+            pytest.skip("No member.documentation")
+        if documentation_url.hostname.endswith("github.com"):
+            suffixes = ["main/README.md"]
+            for suffix in suffixes:
+                assert not documentation_url.path.endswith(suffix), (
+                    "The field `member.documentation` can be empty. "
+                    "It does not have to be a link to the `README.md`."
+                )
