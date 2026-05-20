@@ -44,6 +44,6 @@ class TestURLs:
             suffixes = ["main/README.md"]
             for suffix in suffixes:
                 assert not documentation_url.path.endswith(suffix), (
-                    f"`member.documentation` can be empty. "
+                    "The field `member.documentation` can be empty. "
                     "It does not have to be a link to the `README.md`."
                 )
