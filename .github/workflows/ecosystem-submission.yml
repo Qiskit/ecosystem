@@ -78,7 +78,7 @@ jobs:
           Let's close this issue in favor of the PR #${{ steps.cpr.outputs.pull-request-number }}. We can move the conversation about this project there.
 
           > [!IMPORTANT]  
-          > The submitted project is not yet approved. It will be once PR #${{ steps.cpr.outputs.pull-request-number }} is reviewed and merged.
+          > **The submitted project is not yet approved**. It will be once PR #${{ steps.cpr.outputs.pull-request-number }} is reviewed and merged.
           > You can still make changes as code comments in that PR.
            
           <sub>Curious about the submission validation? [Check out the logs here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).</sub>

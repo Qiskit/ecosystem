@@ -34,6 +34,16 @@ class Submission:
     paper_url: URL
     skip: Optional[list[str]] = None
 
+    def __post_init__(self):
+        if len(self.name) > 50:
+            raise EcosystemError("Name too long")
+        if len(self.description) > 135:
+            raise EcosystemError("Description too long")
+        if len(self.labels) > 5:
+            raise EcosystemError("Too many labels")
+        if not self.terms:
+            raise EcosystemError("terms needs to be True")
+
     @classmethod
     def from_formatted_issue(cls, issue_formatted):
         """Takes a formated issue and creates a Submission object"""
