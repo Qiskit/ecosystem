@@ -119,6 +119,15 @@ checker = "test_description.py::test_description_len_135"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
+[026]
+title = "The /README.md file is not documentation"
+description = "It is fine to leave the `member.documentation` field empty. Pointing to the README.md file is not necessary."
+applies_to = "all"
+affects = ["member.documentation"]
+checker = "test_url.py::TestURLs::test_026"
+category = "SUBMISSION"
+importance = "RECOMMENDATION"
+
 [G05]
 title = "GitHub repository is archived"
 applies_to = "GitHub projects"

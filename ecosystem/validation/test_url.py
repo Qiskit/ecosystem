@@ -1,5 +1,7 @@
 """URL Validations"""
 
+import pytest
+
 # pylint: disable=missing-function-docstring, missing-class-docstring
 
 
@@ -18,3 +20,15 @@ class TestURLs:
     def test_http(self, member):
         for url in TestURLs.get_all_urls(member):
             assert not str(url).startswith("http:"), f"{url} is not HTTPS"
+
+    def test_026(self, member):
+        """The /README.md is not not documentation"""
+        documentation_url = getattr(member, "documentation")
+        if documentation_url is None:
+            pytest.skip("No member.documentation")
+        if documentation_url.hostname.endswith("github.com"):
+            suffixes = ["main/README.md"]
+            for suffix in suffixes:
+                assert not documentation_url.path.endswith(
+                    suffix
+                ), f"`member.documentation == {documentation_url}` can be empty. It does not have to be a link to the `README.md`."
