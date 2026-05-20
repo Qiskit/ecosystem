@@ -410,15 +410,16 @@ class CliMembers:
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
 
-    def update_checkups(self, name=None):
+    def update_checkups(self, name=None, checker=None):
         """
         Updates checkups data.
         If <name> is not given, runs on all the members.
         Otherwise, all the members with name_id that contains <name>
         as substring are checked.
+        <checker> can be something like test_classifications.py::test_004 or nothing"
         """
         for project in self.dao.get_all(name):
-            project.update_checkups()
+            project.update_checkups(checker=checker)
             if project.checks:
                 for checkup_id, checkup in project.checks.items():
                     if checkup.xfailed:
