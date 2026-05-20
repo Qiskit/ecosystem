@@ -19,15 +19,23 @@ TODO member:
 """
 
 
-def validate_member(member, verbose_level=None):
+def validate_member(member, tests_to_run=None, verbose_level=None):
     """Runs all the validation for a member
     verbose_level: -v, -vv, -q
     """
     report = ValidationReport(member, ChecksToml())
     if verbose_level is None:
         verbose_level = "-q"
+    if tests_to_run is None:
+        tests_to_run = ""
     pytest.main(
-        ["ecosystem/validation", "--tb=no", "-rN", verbose_level, "--no-header"],
+        [
+            f"ecosystem/validation/{tests_to_run}",
+            "--tb=no",
+            "-rN",
+            verbose_level,
+            "--no-header",
+        ],
         plugins=[report],
     )
     return report

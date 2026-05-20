@@ -119,6 +119,15 @@ checker = "test_description.py::test_description_len_135"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
+[025]
+title = "Documentation link has redundant suffix"
+description = "Links like https://qiskit-banana-compiler.readthedocs.io/en/latest/ do not need the /en/latest suffix."
+applies_to = "all"
+affects = ["member.documentation"]
+checker = "test_url.py::TestURLs::test_025"
+category = "SUBMISSION"
+importance = "RECOMMENDATION"
+
 [026]
 title = "The /README.md file is not documentation"
 description = "It is fine to leave the `member.documentation` field empty. Pointing to the README.md file is not necessary."
