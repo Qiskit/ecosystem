@@ -2,18 +2,17 @@ name: Member validations
 
 on:
   workflow_dispatch:
+  pull_request_review:
+    types: [ submitted ]
   pull_request:
-    types: [ ready_for_review, synchronize]
+    types: [ opened, reopened, ready_for_review, synchronize]
     paths:
       - '**.toml'
 jobs:
   validate_candidate:
     name: Validate member update or new candidate
     if: >
-      ${{ github.event.pull_request.draft == false
-      && ( 
-        contains(github.event.pull_request.labels.*.name, 'member update')
-        || (
+      {{ contains(github.event.pull_request.labels.*.name, 'member update') || (
           contains(github.event.pull_request.head.ref, 'submission')
           &&
           contains(github.event.pull_request.labels.*.name, 'submission')
@@ -44,12 +43,8 @@ jobs:
         run: |
           id=$(echo ${{ github.event.pull_request.head.ref }} | cut -d- -f2 )
           echo "id=$id" >> $GITHUB_OUTPUT
-      - name: Initial validatation
-        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
-      - name: Create sections
-        run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }}
       - name: Find Comment bot comment
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@v4
         if: always()
         id: fc
         with:
@@ -57,8 +52,70 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: Check out the logs
 
+      - name: Initial validatation
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
+
+      - name: Create sections
+        if: github.event.pull_request.draft == false
+        run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }}
       - name: Section validatation
         run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
+      - name: Commit sections
+        if: success()
+        run: |
+          if git diff --exit-code; then
+            echo "No new sections to commit"
+          else
+            git commit -am "Update sections" --allow-empty
+
+      - name: Fetch data
+        if: github.event.pull_request.draft == false
+        run: python manager.py ci fetch_new_member_data ${{ steps.get-id.outputs.id }}
+      - name: Data validatation
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
+      - name: Commit data
+        if: success()
+        run: |
+          if git diff --exit-code; then
+            echo "No new data to commit"
+          else
+            git commit -am "Update data" --allow-empty
+
+      - name: Create badge
+        if: github.event.review.state == 'approved'
+        env:
+          BITLY_TOKEN: ${{ secrets.BITLY_TOKEN }}
+        run: python manager.py members update_badge
+      - name: Commit badge
+        if: success()
+        run: |
+          if git diff --exit-code; then
+            echo "No badge to commit"
+          else
+            git commit -am "Update badge" --allow-empty
+
+      - name: Push sections
+        if: always()
+        run: git push --verbose
+
+      - name: Make comment on validated submission
+        if: success() && steps.cpr.outputs.pull-request-number
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.issue.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          edit-mode: replace
+          body: |
+            Thanks for your submission! :white_check_mark:
+            
+            Let's close this issue in favor of the PR #${{ steps.cpr.outputs.pull-request-number }}. We can move the conversation about this project there.
+            
+            > [!IMPORTANT]
+            > **The submitted project is not yet approved**. It will be once PR #${{ steps.cpr.outputs.pull-request-number }} is reviewed and merged.
+            > You can still make changes as code comments in that PR.
+            
+            <sub>Curious about the submission validation? [Check out the logs here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).</sub>
 
       - name: Make comment on failed submission
         if: failure()
@@ -77,30 +134,3 @@ jobs:
             > `Add a suggestion` option:
             > <img width="383" height="155" src="https://github.com/user-attachments/assets/ce2fe037-58e7-4dae-a737-0c065a447c8b" />
             > The validation will re-run automatically after that.
-
-      - name: If bot commentted and now valid, update the comment
-        if: steps.fc.outputs.comment-id && success() && steps.cpr.outputs.pull-request-number
-        uses: peter-evans/create-or-update-comment@v5
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.issue.number }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          edit-mode: replace
-          body: |
-            The submission is validated :white_check_mark:
-            
-            <sub>Curious about the submission validation? [Check out the logs here](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ job.check_run_id }}).</sub>
-
-      - name: Commit sections
-        if: success()
-        run: git commit -am "Update sections on unmerged submission" --allow-empty
-      - name: Fetch data
-        run: python manager.py ci fetch_new_member_data ${{ steps.get-id.outputs.id }}
-      - name: Data validatation
-        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
-      - name: Commit data
-        if: success()
-        run: git commit -am "Update data on unmerged submission" --allow-empty
-      - name: Push sections
-        if: always()
-        run: git push --verbose

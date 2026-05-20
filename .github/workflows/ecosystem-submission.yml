@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
     - name: Find Comment bot comment
-      uses: peter-evans/find-comment@v3
+      uses: peter-evans/find-comment@v4
       if: always()
       id: fc
       with:
