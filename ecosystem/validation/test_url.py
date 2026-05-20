@@ -18,3 +18,17 @@ class TestURLs:
     def test_http(self, member):
         for url in TestURLs.get_all_urls(member):
             assert not str(url).startswith("http:"), f"{url} is not HTTPS"
+
+    def test_025(self, member):
+        """Documentation link has redundant suffix"""
+        fields = ["url", "documentation", "reference_paper"]
+        for field in fields:
+            url = getattr(member, field)
+            if url is None:
+                continue
+            if url.hostname.endswith("readthedocs.io"):
+                suffixes = ["en/latest/", "en/latest", "en"]
+                for suffix in suffixes:
+                    assert not url.path.endswith(
+                        suffix
+                    ), f"{url} has redundant suffix: {suffix}"

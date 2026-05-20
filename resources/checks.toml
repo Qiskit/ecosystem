@@ -119,6 +119,16 @@ checker = "test_description.py::test_description_len_135"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
+[025]
+title = "Documentation link has redundant suffix"
+description = "Links like https://qiskit-banana-compiler.readthedocs.io/en/latest/ do not need the /en/latest suffix."
+applies_to = "all"
+affects = ["member.documentation"]
+checker = "test_url.py::TestURLs::test_025"
+category = "SUBMISSION"
+importance = "RECOMMENDATION"
+
+
 [G05]
 title = "GitHub repository is archived"
 applies_to = "GitHub projects"

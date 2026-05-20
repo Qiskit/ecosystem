@@ -62,8 +62,14 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.website = website
         self.category = category
         self.pattern_steps = pattern_steps
-        self.reference_paper = reference_paper
-        self.documentation = documentation
+        self.reference_paper = (
+            URL(reference_paper)
+            if isinstance(reference_paper, str)
+            else reference_paper
+        )
+        self.documentation = (
+            URL(documentation) if isinstance(documentation, str) else documentation
+        )
         self.packages = packages
         self.uuid = uuid
         self.github = github
@@ -311,10 +317,14 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             if hasattr(check, "xfailed") and check.xfailed
         ]
 
-    def update_checkups(self):
+    def update_checkups(self, checker=None):
         """Runs validation tests and updates the check-ups sections"""
         checkups = {}
-        report = validate_member(self, verbose_level="-q")
+        if checker is None:
+            report = validate_member(self, verbose_level="-q")
+        else:
+            report = validate_member(self, verbose_level="-v", tests_to_run=checker)
+
         if report.internalerror:
             raise ExceptionGroup(
                 "internal error",
