@@ -13,9 +13,6 @@ jobs:
       cancel-in-progress: true
     env:
       python-version: "3.13"
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
     - uses: actions/checkout@v6
       with:
