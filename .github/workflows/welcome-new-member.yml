@@ -31,9 +31,9 @@ jobs:
               **${{ steps.get-id.outputs.project_name }} is now part of the Qiskit Ecosystem**. Here are some follow up actions you can take to get the most out of the program:
 
               - :speech_balloon: Join other Qiskit ecosystem developers in the Slack [channel `#qiskit-ecosystem`](https://qiskit.slack.com/archives/C04RHE56N93). If you are not in the Qiskit workspace yet, sign up at https://qisk.it/join-slack
-              - :books: Use the [Qiskit theme](https://github.com/Qiskit/qiskit_sphinx_theme) for your documentation
-              - :ballot_box_with_check: Keep an eye on the [criteria compliance](https://qisk.it/ecosystem-checks)
-              - :purple_heart: Add the [Qiskit Ecosystem badge](https://qisk.it/ecosystem-badges) to the project's `README.md`
+              - :books: Use the [Qiskit Sphinx theme](https://github.com/Qiskit/qiskit_sphinx_theme) for your documentation
+              - :purple_heart: Add the [Qiskit Ecosystem badge](https://qiskit.github.io/ecosystem/p/${{ steps.get-id.outputs.uuid }}/#badge) to the project's `README.md`
+              - :ballot_box_with_check: Keep an eye on the [criteria compliance](https://qiskit.github.io/ecosystem/p/${{ steps.get-id.outputs.uuid }}/#checkups) to keep the project membership status.
               - :telephone_receiver: If you have questions or feedback, [join the Qiskit Community Call](http://evt.to/eooiimagw), [hosted by the Unitary Foundation](https://unitary.foundation/community/events/), or just open an issue on this repo.
 
               It is great to have this project in the Qiskit Ecosystem. Thanks for nominating it `:)`.
