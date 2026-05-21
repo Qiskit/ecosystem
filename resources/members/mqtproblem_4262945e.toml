@@ -20,8 +20,8 @@ license = "MIT License"
 description = "MQT ProblemSolver - A MQT Tool for Solving Problems Using Quantum Computing"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-11T18:22:10Z
-last_activity = 2026-05-11T18:22:45Z
+last_commit = 2026-05-18T01:39:35Z
+last_activity = 2026-05-18T01:39:40Z
 
 [badge]
 url = "https://qisk.it/e-4262945e"
@@ -38,15 +38,21 @@ since = 2026-04-30T11:32:49.789583
 details = "Python package mqt-problemsolver is not compatible with Qiskit SDK v2"
 importance = "IMPORTANT"
 
+[checks.P11]
+since = 2026-05-21T10:44:20.436426
+details = "At least one python package should a stable declare development status classifier"
+importance = "STRONG-RECOMMENDATION"
+
 [pypi."mqt.problemsolver"]
 package_name = "mqt-problemsolver"
 version = "0.4"
 last_release_date = 2024-08-28T10:27:56
 url = "https://pypi.org/project/mqt.problemsolver/"
+development_status = "4 - Beta"
 requires_qiskit = "<0.42.0,>=0.36.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2023-02-24T09:50:56Z
 highest_supported_qiskit_version = "0.41.1"
-last_month_downloads = 32
-last_180_days_downloads = 372
+last_month_downloads = 35
+last_180_days_downloads = 377

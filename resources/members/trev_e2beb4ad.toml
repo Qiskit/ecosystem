@@ -25,16 +25,22 @@ last_activity = 2026-05-09T03:13:18Z
 url = "https://qisk.it/e-e2beb4ad"
 style = "flat"
 
+[checks.P11]
+since = 2026-05-21T10:44:20.436426
+details = "At least one python package should a stable declare development status classifier"
+importance = "STRONG-RECOMMENDATION"
+
 [pypi.qiskit-trev]
 package_name = "qiskit-trev"
 version = "0.2.1"
 last_release_date = 2026-04-14T14:01:19
 license = "MIT"
 url = "https://pypi.org/project/qiskit-trev/"
+development_status = "3 - Alpha"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 467
-last_180_days_downloads = 467
+last_month_downloads = 270
+last_180_days_downloads = 490
