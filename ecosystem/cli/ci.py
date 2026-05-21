@@ -107,9 +107,9 @@ class CliCI:
         ]
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
-            print(f"::group:: {member.name}️ ({member.name_id})")
+            print(f"\n::group:: {member.name}️ ({member.name_id})")
             for update_method_str in to_update:
-                print(f"::notice:: Updating {update_method_str}️")
+                print(f"Updating {update_method_str}️")
                 update_method = getattr(member, f"update_{update_method_str}")
                 update_method()
             print("::endgroup::")
