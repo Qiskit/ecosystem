@@ -63,7 +63,5 @@ def parse_datetime(date_str):
     """Normalize the datetime.date format from ISO format.
     If date_str is "now" or "today", then makes a date with now."""
     if date_str in ["now", "today"]:
-        _date = date.today()
-    else:
-        _date = date.fromisoformat(date_str[:10])
-    return _date.replace(microsecond=0)
+        return date.today()
+    return date.fromisoformat(date_str[:10])
