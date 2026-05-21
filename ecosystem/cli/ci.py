@@ -60,26 +60,6 @@ class CliCI:
             dao.write(member)
 
     @staticmethod
-    def fetch_new_member_data(
-        member_id: str, *, resources_dir: str | None = None
-    ) -> None:
-        """TODO
-
-        Args:
-            member_id: loads the file ../resources/*_<member_id>.toml
-
-        Returns:
-            None (side effect is updating database and writing actions output)
-        """
-
-        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
-
-        dao = DAO(path=resources_dir)
-        for member in dao.get_all(member_id):
-            member.update_data()
-            dao.write(member)
-
-    @staticmethod
     def validate_member(member_id: str, *, resources_dir: str | None = None) -> None:
         """TODO
 
@@ -113,3 +93,23 @@ class CliCI:
                     print(f"::group:: {test.longreprtext}")
                     print("::endgroup::")
                 sys.exit(report.exitcode)
+
+    @staticmethod
+    def update_member_data(
+        member_id: str | None = None, resources_dir: str | None = None
+    ) -> None:
+        """Update all the member dynamic data"""
+        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
+        to_update = [
+            "github",
+            "pypi",
+            "julia",
+        ]
+        dao = DAO(path=resources_dir)
+        for member in dao.get_all(member_id):
+            print(f"::group:: {member.name}️ ({member.name_id})")
+            for update_method_str in to_update:
+                print(f"::notice:: Updating {update_method_str}️")
+                update_method = getattr(member, f"update_{update_method_str}")
+                update_method()
+            print("::endgroup::")

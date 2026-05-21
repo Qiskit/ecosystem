@@ -190,17 +190,6 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             url = BadgeData.create_link(name=self.name, short_uuid=self.short_uuid)
             self.badge = BadgeData(url)
 
-    def update_data(self):
-        """Update all the member dynamic data"""
-        to_update = [
-            "github",
-            "pypi",
-            "julia",
-        ]
-        for update_method_str in to_update:
-            update_method = getattr(self, f"update_{update_method_str}")
-            update_method()
-
     def update_pypi(self):
         """
         Updates all the PyPI information in the project.
