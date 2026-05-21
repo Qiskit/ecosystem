@@ -1,7 +1,7 @@
 """Utility classes for models."""
 
 from abc import ABC
-from datetime import datetime
+from datetime import date
 
 from ecosystem.request import URL
 
@@ -60,10 +60,10 @@ class JsonSerializable(ABC):
 
 
 def parse_datetime(date_str):
-    """Normalize the datetime format from ISO format.
-    If date_str is "now", then makes a datetime with now."""
-    if date_str == "now":
-        _datetime = datetime.now()
+    """Normalize the datetime.date format from ISO format.
+    If date_str is "now" or "today", then makes a date with now."""
+    if date_str in ["now", "today"]:
+        _date = date.today()
     else:
-        _datetime = datetime.fromisoformat(date_str)
-    return _datetime.replace(microsecond=0)
+        _date = date.fromisoformat(date_str[:10])
+    return _date.replace(microsecond=0)
