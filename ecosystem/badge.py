@@ -59,6 +59,7 @@ class BadgeData(JsonSerializable):
 
     @staticmethod
     def create_link(name, short_uuid):
+        """Creates short link in bitly.com"""
         long_url = (
             "https://img.shields.io/endpoint?url="
             f"https://qiskit.github.io/ecosystem/b/{short_uuid}"
