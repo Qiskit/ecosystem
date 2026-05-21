@@ -191,10 +191,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             self.badge = BadgeData(url)
 
     def update_data(self):
-        """Update all the member data in each existing section"""
+        """Update all the member dynamic data"""
         to_update = [
             "github",
-            "badge",
             "pypi",
             "julia",
         ]
