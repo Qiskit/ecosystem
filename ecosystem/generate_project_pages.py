@@ -1,11 +1,10 @@
 """Generate project pages for https://qiskit.github.io/ecosystem/p/"""
 
 import mkdocs_gen_files
+from slugify import slugify
 
 from ecosystem.classifications import ClassificationsToml
 from ecosystem.cli.members import CliMembers
-
-nav = mkdocs_gen_files.Nav()
 
 
 class ProjectPage:  # pylint: disable=redefined-outer-name
@@ -246,9 +245,11 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         return [">", self.project.description] if self.project.description else []
 
 
-for project in CliMembers().dao.get_all():
+nav = mkdocs_gen_files.Nav()
+for project in CliMembers().dao.get_all(sort_key=lambda x: slugify(x.name)):
     project_page = ProjectPage(project, f"p/{project.short_uuid}.md")
     project_page.write_page()
+    nav[project.name] = f"{project.short_uuid}.md"
 
-with mkdocs_gen_files.open("references/SUMMARY.md", "w") as nav_file:
+with mkdocs_gen_files.open("p/SUMMARY.md", "w") as nav_file:
     nav_file.writelines(nav.build_literate_nav())

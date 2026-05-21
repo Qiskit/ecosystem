@@ -134,11 +134,14 @@ class DAO:
                 return project
         raise KeyError(f"No project with name : {name_id}")
 
-    def get_all(self, short_id: str | None = None) -> list[Member]:
+    def get_all(self, short_id: str | None = None, sort_key=None) -> list[Member]:
         """
         Returns list of all repositories.
         """
-        return self.storage.read(str(short_id) if short_id else None).values()
+        projects = self.storage.read(str(short_id) if short_id else None).values()
+        if sort_key:
+            return sorted(projects, key=sort_key)
+        return projects
 
     def update(self, name_id: str = None, **kwargs):
         """
