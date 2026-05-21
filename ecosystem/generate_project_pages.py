@@ -18,7 +18,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         self.classifications = ClassificationsToml()
 
     def generate_all_lines(self):
-        """Returns all the docs/p/<project>.md lines"""
+        """Returns all the docs/p/<uuid>.md lines"""
         lines = []
         lines += self.front_matter()
         lines += self.title() + [""]
@@ -35,7 +35,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             print("\n".join(self.generate_all_lines()), file=f)
         mkdocs_gen_files.set_edit_path(
             self.filename,
-            f"resources/members/{project.name_id}.toml",
+            f"resources/members/{project.short_uuid}.toml",
         )
 
     def front_matter(self):
@@ -247,7 +247,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
 
 
 for project in CliMembers().dao.get_all():
-    project_page = ProjectPage(project, f"p/{project.name_id}.md")
+    project_page = ProjectPage(project, f"p/{project.short_uuid}.md")
     project_page.write_page()
 
 with mkdocs_gen_files.open("references/SUMMARY.md", "w") as nav_file:
