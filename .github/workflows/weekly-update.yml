@@ -1,4 +1,4 @@
-name: Weekly | Update member badges
+name: Weekly | Update member status
 
 on:
   workflow_dispatch:
@@ -6,8 +6,8 @@ on:
   - cron:  '0 9 * * 4'
 
 jobs:
-  batch_update_badges:
-    name: "Update members badges"
+  batch_update_status:
+    name: "Update members status"
     if: github.repository_owner == 'Qiskit'
     runs-on: ubuntu-latest
     steps:
@@ -16,7 +16,7 @@ jobs:
       run: |
         echo "dateIseconds=$(date -Iseconds)" >> "$GITHUB_ENV"
         echo "date_bdY=$(date +'%b %d, %Y')" >> "$GITHUB_ENV"
-        echo "pr_branch_name=batch_badges_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_ENV"
+        echo "pr_branch_name=batch_status_$(date +'%Y_%m_%d_%H_%M')" >> "$GITHUB_ENV"
     - uses: actions/checkout@v6
     - uses: actions/setup-python@v6
       with:
@@ -26,27 +26,25 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Update maturity project
+    - name: Update project maturity
       run: python manager.py members update_maturity
 
-    - name: Update checkups data
+    - name: Update checkups
       run: python manager.py members update_checkups
 
-    - name: Update Badge data
-      env:
-        BITLY_TOKEN: ${{ secrets.BITLY_TOKEN }}
-      run: python manager.py members update_badge
+    - name: Update status
+      run: python manager.py members update_status
 
-    - name: Create PR for new badges
+    - name: Create PR for status update
       id: cpr
       uses: peter-evans/create-pull-request@v7
       with:
         author: qiskit-bot <qiskit-bot@users.noreply.github.com>
         token: ${{ secrets.REPO_SCOPED_TOKEN }}
-        commit-message: Member data update for ${{ env.dateIseconds }}
-        title: Member data update for ${{ env.date_bdY }}
+        commit-message: Member status update for ${{ env.dateIseconds }}
+        title: Member status update for ${{ env.date_bdY }}
         body: |
-          Member badge update
+          Member status update
           when: ${{ env.dateIseconds }}
           ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         branch: ${{ env.pr_branch_name }}

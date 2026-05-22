@@ -8,6 +8,7 @@ category = "Compute provider"
 documentation = "https://docs.quantinuum.com/systems/trainings/alternate_pathways/qiskit_h2.html"
 uuid = "d5d174ee-cbe5-48a3-82ac-66d4cf2579c1"
 maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-quantinuum-provider"
@@ -36,6 +37,11 @@ importance = "IMPORTANT"
 [checks.G05]
 since = 2026-04-23T22:50:51.723784
 details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "CRITICAL"
+
+[checks.001]
+since = 2026-05-22T11:10:32.120535
+details = " abandoned: `[G05]`"
 importance = "CRITICAL"
 
 [pypi.qiskit-quantinuum-provider]

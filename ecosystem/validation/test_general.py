@@ -28,7 +28,7 @@ def must_pass_all_requierements(requierements, failed_checkups, msg):
         else:
             skip.append(checkup)
     if fail:
-        pytest.fail(msg + ": " + " ".join([c.id for c in fail]))
+        pytest.fail(msg + ": " + " ".join([f"`[{c.id}]`" for c in fail]))
     if skip:
         pytest.skip("Still in the cure period: " + " ".join([c.id for c in fail]))
 
@@ -44,7 +44,7 @@ def test_Q20(request, pytestconfig):
     )
 
 
-@pytest.mark.order(after=["test_github.py::test_G05"])
+@pytest.mark.order(after=["test_github.py::test_G05", "test_general.py::test_Q20"])
 def test_001(request, pytestconfig):
     """Have a clear support expectation and, if actively maintained,
     show signs of that activity."""
@@ -52,5 +52,5 @@ def test_001(request, pytestconfig):
     must_pass_all_requierements(
         requierements,
         pytestconfig.failed_checkups,
-        "The project is probably abandoned",
+        " abandoned",
     )

@@ -9,6 +9,7 @@ category = "Other"
 pattern_steps = []
 packages = []
 uuid = "b6c9f4fe-8d25-48fa-832b-5bd79725b9da"
+status = "Under revision"
 
 [github]
 url = "https://github.com/JoelHBierman/QSP-SQD"
@@ -25,3 +26,8 @@ last_activity = 2025-05-11T21:35:18Z
 [badge]
 url = "https://qisk.it/e-b6c9f4fe"
 style = "flat"
+
+[checks.004]
+since = 2026-05-22T11:10:32.120535
+details = "member.maturity must exist in classifications.toml"
+importance = "IMPORTANT"

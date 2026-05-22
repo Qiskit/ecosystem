@@ -8,6 +8,7 @@ category = "Compute provider"
 documentation = "https://iqm-finland.github.io/qiskit-on-iqm/"
 uuid = "648ef199-ace1-4c6b-ae9c-2c0578cde0d5"
 maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/iqm-finland/qiskit-on-iqm"
@@ -43,6 +44,11 @@ importance = "CRITICAL"
 since = 2026-04-30T11:32:49.789583
 details = "Python package qiskit-iqm is not compatible with Qiskit SDK v2"
 importance = "IMPORTANT"
+
+[checks.001]
+since = 2026-05-22T11:10:32.120535
+details = " abandoned: `[G05]`"
+importance = "CRITICAL"
 
 [pypi.qiskit-iqm]
 package_name = "qiskit-iqm"
