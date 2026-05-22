@@ -236,12 +236,30 @@ class CliMembers:
         """Updates status.json and status.md docs/assets/"""
         projects["Member"] += projects[None]
         del projects[None]
-        projects["total_in_website"] = (
-            len(projects["Member"])
-            + len(projects["Qiskit Project"])
-            + len(projects["Under revision"])
-        )
+
         self.update_assets_classification("status", "status classification", projects)
+        assets_dir = os.path.join(self.current_dir, "docs", "assets")
+
+        def writelines(classification, lines):
+            classification_md = os.path.join(
+                assets_dir, f"{slugify(classification)}.md"
+            )
+            os.makedirs(os.path.dirname(classification_md), exist_ok=True)
+            Path(classification_md).touch(exist_ok=True)
+
+            with open(classification_md, "w") as outfile:
+                outfile.writelines(lines)
+
+        for classification in ["Member", "Qiskit Project", "Under revision", "Alumni"]:
+            lines = [
+                f'???{"+" if classification in ["Under revision", "Alumni"] else ""} note '
+                f'"There are {len(projects[classification])} projects with this classification"'
+            ]
+            lines += [
+                f"\n     - [{p.name}](p/{p.short_uuid})"
+                for p in projects[classification]
+            ]
+            writelines(classification, lines)
 
     def update_assets_maturity(self, projects):
         """Updates maturity.json and maturity.md docs/assets/"""
@@ -312,7 +330,9 @@ class CliMembers:
                 lines.append(
                     f'??? note "There are {len(projects[name])} projects with this classification"'
                 )
-                lines += [f"\n     - {p.name}" for p in projects[name]]
+                lines += [
+                    f"\n     - [{p.name}](p/{p.short_uuid})" for p in projects[name]
+                ]
             else:
                 lines.append("**No project with this classification**")
             lines += ["\n\n", description, "\n\n"]
