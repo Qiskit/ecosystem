@@ -11,6 +11,7 @@ reference_paper = "https://arxiv.org/abs/2404.10820"
 documentation = "https://mqt.readthedocs.io/projects/qubomaker"
 uuid = "026213b3-a2cd-4281-b49d-8516c6cd73ae"
 maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/cda-tum/mqt-qubomaker"
@@ -40,6 +41,11 @@ importance = "IMPORTANT"
 [checks.G05]
 since = 2026-04-23T22:50:43.520276
 details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "CRITICAL"
+
+[checks.001]
+since = 2026-05-22T11:34:34.344857
+details = " abandoned: `[G05]`"
 importance = "CRITICAL"
 
 [pypi."mqt.qubomaker"]

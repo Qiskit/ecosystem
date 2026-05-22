@@ -472,12 +472,19 @@ class CliMembers:
                 )
             self.dao.update(project.name_id, checks=project.checks)
 
-    def update_status(self, name=None):
-        """Check if a project should be moved to "Under revision" or "Alumni" """
+    def update_status(self, name=None, update_all=False):
+        """
+        Check if a project should be moved to "Under revision" or "Alumni"
+
+        Args:
+            name: project to udpate. None (default) if all of them.
+            update_all: Updates all the projects. If False (default) will not update "Qiskit Project" or "Alumni"
+        """
         for project in self.dao.get_all(name):
-            if project.status == "Qiskit Project":
-                # Qiskit Project status is governed differently,
+            if project.status in ["Qiskit Project", "Alumni"] and not update_all:
+                # "Qiskit Project" status is governed differently,
                 # not via checkups in Qiskit Ecosystem.
+                # "Alumni" projects stay alumni
                 continue
 
             if project.status == "Under revision":
@@ -488,13 +495,14 @@ class CliMembers:
                 if check.xfailed:
                     # Xfails do not affect the status
                     continue
-                if not check.cure_period_in_days:
+                if check.cure_period_in_days is False:
                     # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
                     continue
                 deadline = check.since + timedelta(days=check.cure_period_in_days)
                 if datetime.today() > deadline:
                     # deadline passed
                     project.status = "Alumni"
+                    break
                 else:
                     # still in cure period
                     project.status = "Under revision"

@@ -210,7 +210,7 @@ importance = "CRITICAL"
 name = "CRITICAL"
 description = "This is a must-pass and there is no room for negotiation. Failing this test results in immediate removal."
 cure_period_in_days = 0
-icon = "close-outline"
+icon = "material-close-outline"
 
 [[importance]]
 name = "IMPORTANT"
