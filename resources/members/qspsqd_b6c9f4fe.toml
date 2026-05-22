@@ -25,3 +25,8 @@ last_activity = 2025-05-11T21:35:18Z
 [badge]
 url = "https://qisk.it/e-b6c9f4fe"
 style = "flat"
+
+[checks.004]
+since = 2026-05-22T08:12:59.544947
+details = "member.maturity must exist in classifications.toml"
+importance = "IMPORTANT"
