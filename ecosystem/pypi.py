@@ -13,7 +13,7 @@ from packaging.version import Version
 from jsonpath import findall
 
 
-from .serializable import JsonSerializable, parse_datetime
+from .serializable import JsonSerializable, parse_date
 from .error_handling import EcosystemError, logger
 from .request import request_json
 
@@ -131,7 +131,7 @@ class PyPIData(JsonSerializable):
             return self._kwargs["last_release_date"]
         last_release = self.pypi_json.get("releases", {}).get(self.version, None)
         return (
-            max(parse_datetime(r["upload_time"]) for r in last_release)
+            max(parse_date(r["upload_time"]) for r in last_release)
             if last_release
             else None
         )
@@ -176,7 +176,7 @@ class PyPIData(JsonSerializable):
                 )
                 if not str_dates:
                     raise EcosystemError(f"Qiskit {str_version} has no release?")
-                last_date = max(parse_datetime(d) for d in str_dates)
+                last_date = max(parse_date(d) for d in str_dates)
                 self._all_qiskit_versions[str_version] = {"upload_at": last_date}
             with open(all_qiskit_versions_json, "w") as json_file:
                 json.dump(self._all_qiskit_versions, json_file, indent=4, default=str)
@@ -191,7 +191,7 @@ class PyPIData(JsonSerializable):
                 )
                 return self.all_qiskit_versions(force_update=True)
             self._all_qiskit_versions = {
-                k: {"upload_at": parse_datetime(v["upload_at"])}
+                k: {"upload_at": parse_date(v["upload_at"])}
                 for k, v in versions_dates_dict.items()
             }
         return self._all_qiskit_versions
@@ -240,7 +240,7 @@ class PyPIData(JsonSerializable):
         """Returns when was released the highest supported Qiskit version"""
         if self.requires_qiskit is None:
             return None
-        return self.highest_supported_qiskit_version_and_release_date[1]
+        return parse_date(self.highest_supported_qiskit_version_and_release_date[1])
 
     @cached_property
     def highest_supported_qiskit_version_and_release_date(self):

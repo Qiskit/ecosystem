@@ -6,7 +6,7 @@ from slugify import slugify
 
 from .error_handling import EcosystemError
 from .julia import JuliaData
-from .serializable import JsonSerializable, parse_datetime
+from .serializable import JsonSerializable, parse_date
 from .github import GitHubData
 from .pypi import PyPIData
 from .check import CheckData
@@ -80,8 +80,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.maturity = maturity
         self.status = status
 
-        self.__dict__.setdefault("created_at", parse_datetime("now"))
-        self.__dict__.setdefault("updated_at", parse_datetime("now"))
+        self.__dict__.setdefault("created_at", parse_date("now"))
+        self.__dict__.setdefault("updated_at", parse_date("now"))
         if self.uuid is None:
             self.uuid = str(uuid4())
         if self.labels is None:

@@ -28,13 +28,14 @@ style = "flat"
 [pypi.qiskit-trev]
 package_name = "qiskit-trev"
 version = "0.2.1"
-last_release_date = 2026-04-14T14:01:19
+last_release_date = 2026-04-24
 license = "MIT"
 url = "https://pypi.org/project/qiskit-trev/"
+development_status = "3 - Alpha"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 467
-last_180_days_downloads = 467
+last_month_downloads = 266
+last_180_days_downloads = 490

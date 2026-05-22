@@ -59,9 +59,13 @@ class JsonSerializable(ABC):
         return result
 
 
-def parse_datetime(date_str):
-    """Normalize the datetime.date format from ISO format.
-    If date_str is "now" or "today", then makes a date with now."""
+def parse_date(date_str):
+    """Normalize dates to datetime.date ISO format.
+    If date_str is "now" or "today", then makes a date with today."""
+    if date_str is None:
+        return None
+    if isinstance(date_str, date):
+        return date_str
     if date_str in ["now", "today"]:
         return date.today()
     return date.fromisoformat(date_str[:10])

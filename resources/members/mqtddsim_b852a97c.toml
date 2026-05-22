@@ -38,13 +38,14 @@ importance = "IMPORTANT"
 [pypi."mqt.ddsim"]
 package_name = "mqt-ddsim"
 version = "2.3.0"
-last_release_date = 2026-02-19T17:43:43
+last_release_date = 2026-05-13
 license = "MIT"
 url = "https://pypi.org/project/mqt.ddsim/"
+development_status = "5 - Production/Stable"
 requires_qiskit = ">=1.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1623
-last_180_days_downloads = 16419
+last_month_downloads = 2571
+last_180_days_downloads = 16048
