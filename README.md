@@ -52,5 +52,6 @@ See the [open issues](https://github.com/qiskit-community/ecosystem/issues) for 
 
 ## Automatic updates
 
-Each week, a [GitHub Action](.github/workflows/weekly-badge-and-stats-update.yml) runs to update member stats and badges.
-It automatically [creates a pull request](https://github.com/Qiskit/ecosystem/issues?q=label%3A%22member%20update%22) that needs to be reviewed and merged by a maintaner [![Weekly | Update member data](https://github.com/Qiskit/ecosystem/actions/workflows/weekly-update.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/weekly-update.yml)
+Daily, [a GitHub Action](.github/workflows/daily-update.yml) runs to update member stats and commits directly into main. [![Daily | Update member data](https://github.com/Qiskit/ecosystem/actions/workflows/daily-update.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/daily-update.yml)
+
+Each monday, [another GitHub Action](.github/workflows/weekly-update.yml) automatically [creates a pull request](https://github.com/Qiskit/ecosystem/issues?q=label%3A%22member%20update%22) for possible status changes and checkups. It needs to be reviewed and merged by a maintaner [![Weekly | Update member data](https://github.com/Qiskit/ecosystem/actions/workflows/weekly-update.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/weekly-update.yml)
