@@ -124,6 +124,35 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 "",
             ]
 
+        if p.status != "Alumni":
+            icons = {
+                "production-ready": ":material-check-outline:",
+                "bugfixing only": ":material-bug-check:",
+                "as-is": ":material-image-broken-variant:",
+                "deprecated": ":fontawesome-solid-exclamation-triangle:",
+                "experimental": ":material-flask:",
+            }
+            ret += [
+                f"    {icons[p.maturity]}{{ "
+                f"title='{self.classifications.maturity_descriptions[p.maturity]}' }} "
+            ]
+
+            if p.maturity == "production-ready":
+                # Full support
+                ret.append(f"**Limited support** {p.maturity} (1)")
+            elif p.maturity in ["bugfixing only", "deprecated", "experimental"]:
+                # Limited support
+                ret.append(f"**Limited support** {p.maturity} (1)")
+            elif p.maturity in ["archived", "as-is"]:
+                # No support
+                ret.append(f"**No support** {p.maturity} (1)")
+            ret += [
+                "    { .annotate }",
+                "",
+                f"    1.  [All the projects with {p.maturity} support](#)",
+                "",
+            ]
+
         if p.licence:
             ret += [
                 f"    :material-scale-balance: **License** {p.licence} (1)",
