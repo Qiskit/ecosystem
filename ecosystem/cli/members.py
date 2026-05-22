@@ -478,7 +478,8 @@ class CliMembers:
 
         Args:
             name: project to udpate. None (default) if all of them.
-            update_all: Updates all the projects. If False (default) will not update "Qiskit Project" or "Alumni"
+            update_all: Updates all the projects. If False (default) will not
+              update "Qiskit Project" or "Alumni"
         """
         for project in self.dao.get_all(name):
             if project.status in ["Qiskit Project", "Alumni"] and not update_all:
@@ -503,9 +504,8 @@ class CliMembers:
                     # deadline passed
                     project.status = "Alumni"
                     break
-                else:
-                    # still in cure period
-                    project.status = "Under revision"
+                # still in cure period
+                project.status = "Under revision"
             self.dao.update(project.name_id, status=project.status)
 
     def update_maturity(self, name=None):
