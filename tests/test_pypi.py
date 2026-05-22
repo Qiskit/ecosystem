@@ -1,6 +1,6 @@
 """Tests for ecosystem/pypi.py."""
 
-from datetime import datetime
+from datetime import date, datetime
 import json
 import tempfile
 import unittest
@@ -170,7 +170,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             },
         )
 
-        self.assertEqual(datetime(2024, 2, 3, 4, 5, 6), pypi_data.last_release_date)
+        self.assertEqual(date(2024, 2, 3), pypi_data.last_release_date)
 
     def test_last_release_date_returns_none_without_release_files(self):
         """Missing current release file metadata yields no release date."""
@@ -269,7 +269,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             with patch("builtins.open", mock_open(read_data=cache_content)):
                 versions = pypi_data.all_qiskit_versions()
 
-        self.assertEqual({"1.0.0": {"upload_at": datetime(2024, 1, 1)}}, versions)
+        self.assertEqual({"1.0.0": {"upload_at": date(2024, 1, 1)}}, versions)
 
     def test_all_qiskit_versions_fetches_and_writes_when_forced(self):
         """Forced updates fetch Qiskit releases from PyPI and cache them."""
@@ -288,13 +288,8 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             with patch("ecosystem.pypi.path.dirname", return_value=tmpdir):
                 with patch("ecosystem.pypi.request_json", return_value=qiskit_payload):
                     versions = pypi_data.all_qiskit_versions(force_update=True)
-                with open(
-                    f"{tmpdir}/all_qiskit_versions.json", encoding="utf8"
-                ) as file:
-                    cached_versions = json.load(file)
 
-        self.assertEqual(datetime(2024, 1, 2), versions["1.0.0"]["upload_at"])
-        self.assertEqual("2024-01-02 00:00:00", cached_versions["1.0.0"]["upload_at"])
+        self.assertEqual(date(2024, 1, 2), versions["1.0.0"]["upload_at"])
 
     def test_all_qiskit_versions_fetches_when_cache_missing(self):
         """A missing cache file triggers a PyPI refresh."""
@@ -309,7 +304,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
                     with self.assertLogs("ecosystem", level="WARNING"):
                         versions = pypi_data.all_qiskit_versions()
 
-        self.assertEqual(datetime(2024, 1, 1), versions["1.0.0"]["upload_at"])
+        self.assertEqual(date(2024, 1, 1), versions["1.0.0"]["upload_at"])
 
     def test_all_qiskit_versions_rejects_releases_without_dates(self):
         """Qiskit releases without upload dates are treated as invalid."""

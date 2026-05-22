@@ -22,8 +22,8 @@ description = "piQture: A quantum machine learning library for image processing.
 estimated_contributors = 10
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2025-11-20T16:40:44Z
-last_activity = 2026-05-13T19:26:07Z
+last_commit = 2025-11-20
+last_activity = 2026-05-13
 
 [badge]
 url = "https://qisk.it/e-da29aca4"
@@ -38,12 +38,12 @@ importance = "IMPORTANT"
 [pypi.piqture]
 package_name = "piqture"
 version = "0.2.0"
-last_release_date = 2025-07-25T20:33:38
+last_release_date = 2025-07-25
 url = "https://pypi.org/project/piQture/"
 requires_qiskit = ">=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 29
-last_180_days_downloads = 201
+last_month_downloads = 46
+last_180_days_downloads = 216

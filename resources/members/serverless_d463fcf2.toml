@@ -23,8 +23,8 @@ description = "A programming model for leveraging quantum and classical resource
 estimated_contributors = 31
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-13T17:14:20Z
-last_activity = 2026-05-13T13:07:55Z
+last_commit = 2026-05-21
+last_activity = 2026-05-21
 
 [badge]
 url = "https://qisk.it/e-d463fcf2"
@@ -39,12 +39,13 @@ importance = "IMPORTANT"
 [pypi.qiskit-serverless]
 package_name = "qiskit-serverless"
 version = "0.31.0"
-last_release_date = 2026-03-19T16:48:05
+last_release_date = 2026-04-22
 url = "https://pypi.org/project/qiskit-serverless/"
+development_status = "3 - Alpha"
 requires_qiskit = "<3,>=1.4"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 13870
-last_180_days_downloads = 56837
+last_month_downloads = 13591
+last_180_days_downloads = 59239

@@ -6,7 +6,7 @@ from pathlib import Path
 import tomllib
 
 
-from .serializable import JsonSerializable
+from .serializable import JsonSerializable, parse_date
 from .request import URL
 
 
@@ -55,7 +55,7 @@ class CheckData(JsonSerializable):
     ):
         self.id = id_
         self.xfailed = xfailed
-        self.since = since
+        self.since = parse_date(since)
         self.details = details
         self.discussion: str | URL | None = discussion
 

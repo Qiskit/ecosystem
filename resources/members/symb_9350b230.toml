@@ -22,8 +22,8 @@ description = "Symbolic evaluation of parameterized quantum circuits in Qiskit"
 estimated_contributors = 3
 total_dependent_repositories = 7
 total_dependent_packages = 1
-last_commit = 2026-03-12T15:30:32Z
-last_activity = 2026-05-06T14:50:38Z
+last_commit = 2026-03-12
+last_activity = 2026-05-06
 
 [badge]
 url = "https://qisk.it/e-9350b230"
@@ -43,12 +43,12 @@ importance = "IMPORTANT"
 [pypi.qiskit-symb]
 package_name = "qiskit-symb"
 version = "0.6.0"
-last_release_date = 2026-02-24T16:22:39
+last_release_date = 2026-02-24
 url = "https://pypi.org/project/qiskit-symb/"
 requires_qiskit = "<2.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 403
-last_180_days_downloads = 1450
+last_month_downloads = 472
+last_180_days_downloads = 1466

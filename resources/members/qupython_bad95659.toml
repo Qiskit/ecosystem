@@ -20,7 +20,7 @@ description = "Quantum programs in Python"
 estimated_contributors = 2
 total_dependent_repositories = 5
 total_dependent_packages = 0
-last_commit = 2024-10-09T21:34:04Z
+last_commit = 2024-10-09
 last_activity = 2026-01-31T21:44:44Z
 
 [badge]
@@ -36,12 +36,12 @@ importance = "IMPORTANT"
 [pypi.qupython]
 package_name = "qupython"
 version = "0.2.0"
-last_release_date = 2024-04-07T10:11:42
+last_release_date = 2024-04-07
 url = "https://pypi.org/project/qupython/"
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 19
-last_180_days_downloads = 122
+last_month_downloads = 27
+last_180_days_downloads = 130

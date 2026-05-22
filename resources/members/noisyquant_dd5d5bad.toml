@@ -22,8 +22,8 @@ description = "Noisy Quantum Gates model for simulating the noise of quantum dev
 estimated_contributors = 8
 total_dependent_repositories = 3
 total_dependent_packages = 0
-last_commit = 2026-05-13T07:59:11Z
-last_activity = 2026-05-13T07:59:12Z
+last_commit = 2026-05-18
+last_activity = 2026-05-18
 
 [badge]
 url = "https://qisk.it/e-dd5d5bad"
@@ -38,12 +38,12 @@ importance = "IMPORTANT"
 [pypi.quantum-gates]
 package_name = "quantum-gates"
 version = "2.4.0"
-last_release_date = 2025-09-16T06:14:30
+last_release_date = 2026-05-02
 url = "https://pypi.org/project/quantum-gates/"
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 234
-last_180_days_downloads = 2448
+last_month_downloads = 271
+last_180_days_downloads = 601

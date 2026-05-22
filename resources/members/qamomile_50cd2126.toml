@@ -19,8 +19,8 @@ license = "Apache License 2.0"
 estimated_contributors = 15
 total_dependent_repositories = 2
 total_dependent_packages = 1
-last_commit = 2026-05-13T05:02:02Z
-last_activity = 2026-05-14T10:37:54Z
+last_commit = 2026-05-21
+last_activity = 2026-05-21
 
 [badge]
 url = "https://qisk.it/e-50cd2126"
@@ -34,13 +34,13 @@ importance = "IMPORTANT"
 
 [pypi.qamomile]
 package_name = "qamomile"
-version = "0.12.1"
-last_release_date = 2026-03-27T11:22:34
+version = "0.12.3"
+last_release_date = 2026-05-22
 url = "https://pypi.org/project/qamomile/"
 requires_qiskit = "<3.0.0,>=2.1.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 951
-last_180_days_downloads = 4567
+last_month_downloads = 989
+last_180_days_downloads = 4872

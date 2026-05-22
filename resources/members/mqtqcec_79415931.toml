@@ -22,8 +22,8 @@ license = "MIT License"
 description = "MQT QCEC - A tool for Quantum Circuit Equivalence Checking"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-13T19:11:28Z
-last_activity = 2026-05-13T19:11:28Z
+last_commit = 2026-05-20
+last_activity = 2026-05-20
 
 [badge]
 url = "https://qisk.it/e-79415931"
@@ -37,14 +37,15 @@ importance = "IMPORTANT"
 
 [pypi."mqt.qcec"]
 package_name = "mqt-qcec"
-version = "3.6.0"
-last_release_date = 2026-02-02T17:44:07
+version = "3.6.1"
+last_release_date = 2026-05-20
 license = "MIT"
 url = "https://pypi.org/project/mqt.qcec/"
+development_status = "5 - Production/Stable"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 5604
-last_180_days_downloads = 49257
+last_month_downloads = 6375
+last_180_days_downloads = 51314

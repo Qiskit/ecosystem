@@ -21,8 +21,8 @@ license = "Apache License 2.0"
 description = "An open-source library built on Qiskit for quantum machine learning tasks at scale on quantum hardware and classical simulators"
 total_dependent_repositories = 544
 total_dependent_packages = 24
-last_commit = 2026-05-07T07:23:34Z
-last_activity = 2026-05-13T14:55:23Z
+last_commit = 2026-05-07
+last_activity = 2026-05-20
 
 [badge]
 url = "https://qisk.it/e-18986ebc"
@@ -42,12 +42,12 @@ importance = "IMPORTANT"
 [pypi.qiskit-machine-learning]
 package_name = "qiskit-machine-learning"
 version = "0.9.0"
-last_release_date = 2025-12-24T09:23:10
+last_release_date = 2025-12-24
 url = "https://pypi.org/project/qiskit-machine-learning/"
 requires_qiskit = "<2.0,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13T14:23:38Z
+highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 42328
-last_180_days_downloads = 264182
+last_month_downloads = 41100
+last_180_days_downloads = 256187

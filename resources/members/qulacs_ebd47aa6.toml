@@ -20,7 +20,7 @@ description = "Execute Qiskit programs using Qulacs backend."
 estimated_contributors = 2
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2025-12-15T18:09:13Z
+last_commit = 2025-12-15
 last_activity = 2025-12-15T18:09:14Z
 
 [badge]
@@ -36,12 +36,12 @@ importance = "IMPORTANT"
 [pypi.qiskit-qulacs]
 package_name = "qiskit-qulacs"
 version = "0.1.0"
-last_release_date = 2024-04-02T15:03:52
+last_release_date = 2024-04-02
 url = "https://pypi.org/project/qiskit-qulacs/"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 128
-last_180_days_downloads = 1000
+last_month_downloads = 108
+last_180_days_downloads = 502

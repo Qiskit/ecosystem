@@ -20,8 +20,8 @@ description = "Scaleway provider implementation for Qiskit SDK"
 estimated_contributors = 5
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-12T12:24:57Z
-last_activity = 2026-05-12T12:06:26Z
+last_commit = 2026-05-21
+last_activity = 2026-05-21
 
 [badge]
 url = "https://qisk.it/e-a942dc5d"
@@ -36,12 +36,12 @@ importance = "IMPORTANT"
 [pypi.qiskit-scaleway]
 package_name = "qiskit-scaleway"
 version = "0.3.11"
-last_release_date = 2026-03-10T18:13:42
+last_release_date = 2026-05-12
 url = "https://pypi.org/project/qiskit-scaleway/"
 requires_qiskit = "~=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 271
-last_180_days_downloads = 1888
+last_month_downloads = 353
+last_180_days_downloads = 1879

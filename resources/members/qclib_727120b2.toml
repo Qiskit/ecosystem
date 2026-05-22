@@ -16,8 +16,8 @@ license = "Apache License 2.0"
 description = "Qclib is a quantum computing library implemented using qiskit. The focus of qclib is on preparing quantum states, but it is not lim..."
 total_dependent_repositories = 14
 total_dependent_packages = 1
-last_commit = 2026-04-07T20:14:09Z
-last_activity = 2026-05-02T12:19:48Z
+last_commit = 2026-04-07
+last_activity = 2026-05-02
 
 [badge]
 url = "https://qisk.it/e-727120b2"
@@ -32,12 +32,12 @@ importance = "IMPORTANT"
 [pypi.qclib]
 package_name = "qclib"
 version = "0.1.15"
-last_release_date = 2025-07-28T15:42:11
+last_release_date = 2025-07-28
 url = "https://pypi.org/project/qclib/"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 322
-last_180_days_downloads = 2026
+last_month_downloads = 314
+last_180_days_downloads = 2012
