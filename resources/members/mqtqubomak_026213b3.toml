@@ -45,7 +45,7 @@ importance = "CRITICAL"
 
 [checks.001]
 since = 2026-05-22T11:34:34.344857
-details = " abandoned: `[G05]`"
+details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"
 
 [pypi."mqt.qubomaker"]

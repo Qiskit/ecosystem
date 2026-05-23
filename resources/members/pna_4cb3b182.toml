@@ -1,14 +1,13 @@
 name = "qiskit-addon-pna"
 url = "https://github.com/Qiskit/qiskit-addon-pna"
 description = "Mitigate gate noise in expectation values by propagating the observable through the inverse noise channel."
-licence = "Apache License 2.0"
-contact_info = "garrison@ibm.com"
 labels = []
 ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-pna/"
 uuid = "4cb3b182-7484-445f-897b-ded8e295d755"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-pna"

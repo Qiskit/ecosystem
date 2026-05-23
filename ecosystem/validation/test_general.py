@@ -52,5 +52,5 @@ def test_001(request, pytestconfig):
     must_pass_all_requierements(
         requierements,
         pytestconfig.failed_checkups,
-        " abandoned",
+        "The project is probably abandoned",
     )

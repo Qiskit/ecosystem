@@ -48,7 +48,7 @@ importance = "IMPORTANT"
 
 [checks.001]
 since = 2026-05-22T11:10:32.120535
-details = " abandoned: `[G05]`"
+details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"
 
 [pypi.qiskit-research]

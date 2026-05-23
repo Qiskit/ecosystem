@@ -1,15 +1,15 @@
 name = "qiskit-addon-aqc-tensor"
 url = "https://github.com/Qiskit/qiskit-addon-aqc-tensor"
 description = "Map to lower depth circuits by compressing initial layers via approximate quantum compilation with tensor networks (AQC-Tensor)."
-licence = "Apache License 2.0"
-contact_info = "garrison@ibm.com"
 labels = [ "circuit optimization",]
+interfaces = [ "Python",]
 ibm_maintained = true
 created_at = 1758737407.8760931
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-aqc-tensor/"
 uuid = "5ad8eedc-2e26-4ca9-92de-f1a5d3f3b097"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-aqc-tensor"
@@ -28,12 +28,6 @@ last_activity = 2026-05-21
 [badge]
 url = "https://qisk.it/e-5ad8eedc"
 style = "flat"
-
-[checks.007]
-since = 2026-04-08T16:22:45.190367
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
 
 [pypi.qiskit-addon-aqc-tensor]
 package_name = "qiskit-addon-aqc-tensor"

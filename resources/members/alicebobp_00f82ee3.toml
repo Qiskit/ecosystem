@@ -37,6 +37,7 @@ importance = "IMPORTANT"
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package qiskit-alice-bob-provider is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider/issues/80"
 importance = "IMPORTANT"
 
 [pypi.qiskit-alice-bob-provider]

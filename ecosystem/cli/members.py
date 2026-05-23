@@ -256,7 +256,7 @@ class CliMembers:
                 f'"There are {len(projects[classification])} projects with this classification"'
             ]
             lines += [
-                f"\n     - [{p.name}](p/{p.short_uuid})"
+                f"\n     - [{p.name}](../p/{p.short_uuid})"
                 for p in projects[classification]
             ]
             writelines(classification, lines)
@@ -331,7 +331,7 @@ class CliMembers:
                     f'??? note "There are {len(projects[name])} projects with this classification"'
                 )
                 lines += [
-                    f"\n     - [{p.name}](p/{p.short_uuid})" for p in projects[name]
+                    f"\n     - [{p.name}]({p.short_uuid})" for p in projects[name]
                 ]
             else:
                 lines.append("**No project with this classification**")
@@ -430,15 +430,19 @@ class CliMembers:
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
 
-    def update_checkups(self, name=None, checker=None):
+    def update_checkups(self, name=None, checker=None, update_all=False):
         """
         Updates checkups data.
-        If <name> is not given, runs on all the members.
-        Otherwise, all the members with name_id that contains <name>
-        as substring are checked.
-        <checker> can be something like test_classifications.py::test_004 or nothing"
+        Args:
+            name: If not given, runs on all the members. Otherwise, all the members with `name_id`
+             that contains <name> as substring are checked.
+            checker: It can be something like test_classifications.py::test_004 or nothing
+            update_all: If False (default) runs on all project. Otherwise Alumni are excluded.
         """
         for project in self.dao.get_all(name):
+            if project.status == "Alumni" and not update_all:
+                # "Alumni" projects are not updated in their checkups
+                continue
             project.update_checkups(checker=checker)
             if project.checks:
                 for checkup_id, checkup in project.checks.items():

@@ -139,7 +139,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
 
             if p.maturity == "production-ready":
                 # Full support
-                ret.append(f"**Limited support** {p.maturity} (1)")
+                ret.append(f"**{p.maturity}** (1)")
             elif p.maturity in ["bugfixing only", "deprecated", "experimental"]:
                 # Limited support
                 ret.append(f"**Limited support** {p.maturity} (1)")
@@ -212,8 +212,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
     def checkups(self):
         """Checkups card"""
         lines = ["\n", "- ### :material-list-status: Checkups", "\n", "    ---", "\n"]
-        if self.project.checks is None:
-            lines.append("    All good")
+        if not self.project.checks:
+            lines.append("    :material-check-all: All good")
         else:
             for checkup in self.project.checks.values():
                 lines += [

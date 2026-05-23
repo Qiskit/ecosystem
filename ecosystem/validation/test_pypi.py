@@ -62,4 +62,4 @@ def test_P11(member):
 
     assert (
         len(stable_packages) != 0
-    ), "At least one python package should a stable declare development status classifier"
+    ), "At least one python package should declare a stable development status classifier"

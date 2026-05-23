@@ -1,14 +1,13 @@
 name = "qiskit-addon-slc"
 url = "https://github.com/Qiskit/qiskit-addon-slc"
 description = "Reducing PEC sampling overhead with shaded lightcones."
-licence = "Apache License 2.0"
-contact_info = "garrison@ibm.com"
 labels = []
 ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-slc/"
 uuid = "189aa71b-6ad7-4c23-8ae5-81c369e415b3"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-slc"

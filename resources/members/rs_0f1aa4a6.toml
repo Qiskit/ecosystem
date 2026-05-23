@@ -6,7 +6,8 @@ interfaces = [ "Rust",]
 ibm_maintained = true
 category = "Language binding"
 uuid = "0f1aa4a6-6012-4f23-afe9-17436f718460"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-rs"
