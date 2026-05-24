@@ -1,0 +1,26 @@
+name = "Fulqrum"
+url = "https://github.com/qiskit-community/fulqrum"
+labels = []
+interfaces = [ "Python",]
+category = "Application"
+documentation = "https://qiskit-community.github.io/fulqrum/"
+packages = []
+uuid = "7d6c3172-7bb5-4c5a-b0a3-87aa378ee356"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qiskit-community/fulqrum"
+owner = "qiskit-community"
+repo = "fulqrum"
+stars = 11
+homepage = "https://qiskit-community.github.io/fulqrum/dev/"
+license = "Apache License 2.0"
+description = "A generalized framework for quantum subspace eigenproblems"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-05-21
+last_activity = 2026-05-21
+
+[badge]
+url = "https://qisk.it/e-7d6c3172"
+style = "flat"

@@ -1,0 +1,35 @@
+name = "Qiskit Code Assistant Jupyterlab Extension"
+url = "https://github.com/Qiskit/qiskit-code-assistant-jupyterlab"
+description = "A Jupyterlab extension to use the Qiskit Code Assistant."
+labels = []
+interfaces = [ "Python",]
+ibm_maintained = true
+category = "Tooling"
+packages = []
+uuid = "6b3cd3f6-aea2-4f6f-9040-d97b634d2a61"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-code-assistant-jupyterlab"
+owner = "Qiskit"
+repo = "qiskit-code-assistant-jupyterlab"
+stars = 23
+homepage = "https://pypi.org/project/qiskit-code-assistant-jupyterlab/"
+license = "Apache License 2.0"
+description = "A Jupyterlab extension to use the Qiskit Code Assistant"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-04-14
+
+[badge]
+url = "https://qisk.it/e-6b3cd3f6"
+style = "flat"
+
+[pypi.qiskit-code-assistant-jupyterlab]
+package_name = "qiskit-code-assistant-jupyterlab"
+version = "0.11.0"
+last_release_date = 2026-02-16
+url = "https://pypi.org/project/qiskit-code-assistant-jupyterlab/"
+last_month_downloads = 138
+last_180_days_downloads = 944

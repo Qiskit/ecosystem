@@ -1,0 +1,41 @@
+name = "qiskit-ibm-transpiler"
+url = "https://github.com/Qiskit/qiskit-ibm-transpiler"
+description = "A library to use the Qiskit Transpiler Service and the AI-powered transpiler passes."
+labels = []
+interfaces = [ "Python",]
+ibm_maintained = true
+category = "Transpiler plugin"
+documentation = "https://github.com/Qiskit/qiskit-fortran"
+packages = []
+uuid = "97531755-7aaa-4c8d-813d-3a68c058abb4"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-ibm-transpiler"
+owner = "Qiskit"
+repo = "qiskit-ibm-transpiler"
+stars = 40
+homepage = "https://pypi.org/project/qiskit-ibm-transpiler/"
+license = "Apache License 2.0"
+description = "A library to use the Qiskit Transpiler Service and the AI-powered transpiler passes."
+total_dependent_repositories = 22
+total_dependent_packages = 2
+last_commit = 2026-03-10
+
+[badge]
+url = "https://qisk.it/e-97531755"
+style = "flat"
+
+[pypi.qiskit-ibm-transpiler]
+package_name = "qiskit-ibm-transpiler"
+version = "0.18.0"
+last_release_date = 2026-03-10
+url = "https://pypi.org/project/qiskit-ibm-transpiler/"
+requires_qiskit = "<3.0.0,>=1.4.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-04-24
+highest_supported_qiskit_version = "2.4.1"
+last_month_downloads = 3807
+last_180_days_downloads = 23514

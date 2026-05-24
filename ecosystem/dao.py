@@ -120,12 +120,11 @@ class DAO:
 
     def get_by_url(self, url: str) -> Member:
         """
-        Returns project by URL.
+        Returns project by URL. None if the repo is not found
         """
         for project in self.get_all():
             if project.url == url:
                 return project
-        raise EcosystemError(f"No repo with URL : {url}")
 
     def __getitem__(self, name_id):
         """gets a project by name in the most inefficient way"""
@@ -149,12 +148,16 @@ class DAO:
 
         Args:
             name_id (str): ID of the project. Typically, name of the TOML file.
-            kwargs: Names of attributes and new values
+            kwargs: Names of attributes and new values. If `member` in kargs,
+            the value of the argument is used to update the full project first.
 
         Example usage:
-            update("qiskit-aer", stars=300)
+            update("aer_474599a", stars=300)
         """
         with self.storage as data:
+            if "member" in kwargs:
+                data[name_id] = kwargs["member"]
+                del kwargs["member"]
             for arg, value in kwargs.items():
                 current_value = data[name_id].__dict__.get(arg)
                 DAO.log_update(current_value, value, arg, name_id)
@@ -163,6 +166,15 @@ class DAO:
     def refresh_files(self):
         """Forces dumping the DAO to files"""
         self.storage.refresh_files()
+
+    def upsert_project(self, project: Member):
+        """Giving a Member, updates it if exists or inserts it.
+        The key to check existance is get_by_url(p["url"])"""
+        if existing_member := self.get_by_url(project.url):
+            self.update(existing_member.name_id, member=project)
+        else:
+            logger.info("New project %s (%s) ", project.name_id, project.name)
+            self.write(project)
 
     @classmethod
     def log_update(cls, current_value, new_value, arg, project):
