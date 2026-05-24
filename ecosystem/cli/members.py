@@ -5,14 +5,13 @@ import json
 import tomllib
 import os
 import re
-from typing import Optional, Tuple
+from typing import Optional
 from pathlib import Path
 from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
-from ecosystem.member import Member
 from ecosystem.error_handling import logger
 
 

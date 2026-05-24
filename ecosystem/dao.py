@@ -125,6 +125,7 @@ class DAO:
         for project in self.get_all():
             if project.url == url:
                 return project
+        return None
 
     def __getitem__(self, name_id):
         """gets a project by name in the most inefficient way"""
