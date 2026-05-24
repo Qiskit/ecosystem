@@ -8,7 +8,7 @@ interfaces = [ "Python",]
 category = "Tooling"
 packages = []
 uuid = "5907eb1e-6ecd-4d5b-9f28-f302b23ace0e"
-status = "Under revision"
+maturity = "production-ready"
 
 [github]
 url = "https://github.com/Witching-Hour-Music/witching-hour-qiskit"
@@ -20,8 +20,3 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-04-10T17:49:34Z
 last_activity = 2026-04-29T08:14:48Z
-
-[checks.004]
-since = 2026-05-24T23:42:22.903549
-details = "member.maturity must exist in classifications.toml"
-importance = "IMPORTANT"
