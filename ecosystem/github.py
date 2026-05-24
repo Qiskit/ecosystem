@@ -126,11 +126,14 @@ class GitHubData(JsonSerializable):
         )
         self._json_dependants = {}
         for package, package_id in self._json_package_ids.items():
-            self._json_dependants[package] = request_json(
-                f"github.com/{self.owner}/{self.repo}/network/dependents?"
-                f"dependent_type=REPOSITORY&package_id={package_id}",
-                parser=parse_github_dependants,
-            )
+            try:
+                self._json_dependants[package] = request_json(
+                    f"github.com/{self.owner}/{self.repo}/network/dependents?"
+                    f"dependent_type=REPOSITORY&package_id={package_id}",
+                    parser=parse_github_dependants,
+                )
+            except EcosystemError:
+                logger.warn("json_dependants could not be updated")
 
     def __getattr__(self, item):
         if self._json_repo:
