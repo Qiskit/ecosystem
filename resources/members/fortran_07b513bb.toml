@@ -1,0 +1,28 @@
+name = "qiskit-fortran"
+submission_number = 1172
+url = "https://github.com/Qiskit/qiskit-fortran"
+description = "Fortran ISO_C_BINDING interface to the Qiskit C API"
+labels = []
+interfaces = [ "Fortran",]
+ibm_maintained = true
+category = "Language binding"
+documentation = "https://github.com/Qiskit/qiskit-fortran"
+packages = []
+uuid = "07b513bb-798b-42cf-9f81-7f7df48b99c6"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-fortran"
+owner = "Qiskit"
+repo = "qiskit-fortran"
+stars = 0
+description = "Fortran binding for Qiskit"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-05-20
+last_activity = 2026-05-21
+
+[badge]
+url = "https://qisk.it/e-07b513bb"
+style = "flat"

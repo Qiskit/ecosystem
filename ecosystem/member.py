@@ -160,7 +160,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             self.name,
             max_length=11,
             separator="",
-            stopwords=["qiskit"],
+            stopwords=["qiskit", "ecosystem"],
             replacements=[["qiskit-addon", ""]],
         )
         return f"{flat_name}_{self.short_uuid}"

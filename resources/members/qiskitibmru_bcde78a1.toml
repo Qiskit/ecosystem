@@ -1,0 +1,28 @@
+name = "QiskitIBMRuntimeC.jl"
+submission_number = 1172
+url = "https://github.com/Qiskit/QiskitIBMRuntimeC.jl"
+description = "Execute circuits on an IBM Quantum computer from the Julia programming language"
+labels = []
+interfaces = [ "Julia",]
+ibm_maintained = true
+category = "Compute provider"
+packages = []
+uuid = "bcde78a1-0171-4de1-9542-5e20d0c02693"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/QiskitIBMRuntimeC.jl"
+owner = "Qiskit"
+repo = "QiskitIBMRuntimeC.jl"
+stars = 4
+homepage = "https://qiskit.github.io/QiskitIBMRuntimeC.jl/"
+license = "Apache License 2.0"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-04-24
+last_activity = 2026-05-19
+
+[badge]
+url = "https://qisk.it/e-bcde78a1"
+style = "flat"

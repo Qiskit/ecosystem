@@ -1,0 +1,37 @@
+name = "Qiskit MCP Servers"
+submission_number = 1172
+url = "https://github.com/Qiskit/mcp-servers"
+description = "A collection of MCP servers to allow LLMs to use the many Qiskit Project libraries"
+labels = []
+interfaces = [ "Python",]
+ibm_maintained = true
+category = "Tooling"
+packages = []
+uuid = "4174663a-32e4-4668-85dd-b409e8313e4e"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/mcp-servers"
+owner = "Qiskit"
+repo = "mcp-servers"
+stars = 28
+license = "Apache License 2.0"
+description = "A collection of MCP servers to allow LLMs to use the qiskit,qiskit-ibm-runtime library,  qiskit-ibm-transpiler, qiskit-code-assista..."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-04-22
+last_activity = 2026-05-19
+
+[badge]
+url = "https://qisk.it/e-4174663a"
+style = "flat"
+
+[pypi.qiskit-mcp-servers]
+package_name = "qiskit-mcp-servers"
+version = "0.10.0"
+last_release_date = 2026-04-20
+url = "https://pypi.org/project/qiskit-mcp-servers/"
+development_status = "3 - Alpha"
+last_month_downloads = 231
+last_180_days_downloads = 2038

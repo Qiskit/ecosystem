@@ -5,14 +5,13 @@ import json
 import tomllib
 import os
 import re
-from typing import Optional, Tuple
+from typing import Optional
 from pathlib import Path
 from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
-from ecosystem.member import Member
 from ecosystem.error_handling import logger
 
 
@@ -35,44 +34,6 @@ class CliMembers:
         )
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
-
-    def add_repo_2db(
-        self,
-        repo_name: str,
-        repo_link: str,
-        repo_description: str,
-        repo_licence: str,
-        repo_contact: str,
-        repo_alt: str,
-        repo_affiliations: str,
-        repo_labels: Tuple[str],
-        repo_website: Optional[str] = None,
-    ) -> None:
-        """Adds repo to list of entries.
-
-        Args:
-            repo_name: repo name
-            repo_link: repo url
-            repo_description: repo description
-            repo_contact: repo email
-            repo_licence: repo licence
-            repo_affiliations: repo university, company, ...
-            repo_labels: comma separated labels
-            repo_website: link to project website
-        """
-
-        new_repo = Member(
-            repo_name,
-            repo_link,
-            repo_description,
-            repo_licence,
-            repo_contact,
-            repo_alt,
-            repo_affiliations,
-            list(repo_labels),
-            website=repo_website,
-        )
-        self.dao.write(new_repo)
 
     def create_badge_endpoints(
         self, name: str = None, example: str = None, output_directory: str = None
