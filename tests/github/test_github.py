@@ -11,7 +11,7 @@ from ecosystem.error_handling import EcosystemError
 
 
 class TestGitHubDataInit(TestCase):
-    """Tests for GitHubData.__init__"""
+    """Tests for GitHubData builder"""
 
     def test_init_basic(self):
         """onwer, repo are set and all _json_* fields default to None"""
