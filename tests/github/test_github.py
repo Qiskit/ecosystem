@@ -1,7 +1,5 @@
 """Tests for ecosystem/github.py"""
 
-# pylint: disable=protected-access
-
 from unittest import TestCase
 from unittest.mock import patch
 from datetime import datetime
@@ -112,39 +110,74 @@ class TestGitHubDataGetattr(TestCase):
 
     def test_getattr_alias_stars(self):
         """gh.stars resolves via alias stargazers_count from _json_repo"""
-        self.gh._json_repo = {"stargazers_count": 42}
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {"stargazers_count": 42, "_requested_at_": "2024-01-01"},
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            self.gh.update_json()
         self.assertEqual(self.gh.stars, 42)
 
     def test_getattr_alias_url(self):
         """gh.url resolves via alias html_url from _json_repo"""
-        self.gh._json_repo = {
-            "html_url": "https://github.com/Qiskit/qiskit-banana-compiler"
-        }
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {
+                    "html_url": "https://github.com/Qiskit/qiskit-banana-compiler",
+                    "_requested_at_": "2024-01-01",
+                },
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            self.gh.update_json()
         self.assertEqual(
             self.gh.url, "https://github.com/Qiskit/qiskit-banana-compiler"
         )
 
     def test_getattr_alias_last_commit(self):
         """gh.last_commit resolves via alias pushed_at and returns a datetime"""
-        self.gh._json_repo = {"pushed_at": "2024-01-15T10:30:00"}
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {"pushed_at": "2024-01-01T12:00:00", "_requested_at_": "2024-01-01"},
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            self.gh.update_json()
         self.assertIsInstance(self.gh.last_commit, datetime)
 
     def test_getattr_description_truncated(self):
         """description longer than 135 characters is truncated with ellipsis"""
-        self.gh._json_repo = {"description": "x" * 200}
-        result = self.gh.description
-        self.assertTrue(result.endswith("..."))
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {"description": "x" * 200, "_requested_at_": "2024-01-01"},
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            self.gh.update_json()
+        self.assertTrue(self.gh.description.endswith("..."))
 
     def test_getattr_missing_key_raises_attribute_error(self):
         """accessing a key not in _json_repo raises AttributeError"""
-        self.gh._json_repo = {"some_key": "value"}
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {"some_key": "value", "_requested_at_": "2024-01-01"},
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            self.gh.update_json()
         with self.assertRaises(AttributeError):
             _ = self.gh.nonexistent
 
     def test_getattr_from_kwargs_when_no_json(self):
         """returns value from _kwargs when _json_repo is None"""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler", stars=99)
-        self.assertEqual(gh._kwargs["stars"], 99)
+        self.assertEqual(gh.stars, 99)
 
     def test_getattr_missing_raises_attribute_error_no_json(self):
         """raises AttributeError when key absent from both _json_repo and _kwargs"""
@@ -158,7 +191,18 @@ class TestGitHubDataUpdateOwnerRepo(TestCase):
     def test_update_owner_repo_no_change(self):
         """owner and repo unchanged when JSON matches"""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler")
-        gh._json_repo = {"owner": {"login": "Qiskit"}, "name": "qiskit-banana-compiler"}
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {
+                    "owner": {"login": "Qiskit"},
+                    "name": "qiskit-banana-compiler",
+                    "_requested_at_": "2024-01-01",
+                },
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            gh.update_json()
         gh.update_owner_repo()
         self.assertEqual(gh.owner, "Qiskit")
         self.assertEqual(gh.repo, "qiskit-banana-compiler")
@@ -166,7 +210,18 @@ class TestGitHubDataUpdateOwnerRepo(TestCase):
     def test_update_owner_repo_detects_rename(self):
         """owner and repo updated when JSON has different values"""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler")
-        gh._json_repo = {"owner": {"login": "NewOwner"}, "name": "new-repo"}
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {
+                    "owner": {"login": "NewOwner"},
+                    "name": "new-repo",
+                    "_requested_at_": "2024-01-01",
+                },
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            gh.update_json()
         gh.update_owner_repo()
         self.assertEqual(gh.owner, "NewOwner")
         self.assertEqual(gh.repo, "new-repo")
@@ -176,13 +231,17 @@ class TestGitHubDataUpdateJson(TestCase):
     """Tests for GitHubData.update_json"""
 
     def test_update_json_populates_json_repo(self):
-        """after update_json, _json_repo is set"""
+        """after update_json, data is accessible via public attributes"""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler")
         with patch("ecosystem.github.request_json") as mock_request:
-            mock_request.return_value = {"data": {}, "_requested_at_": "2024-01-01"}
-            gh._json_package_ids = {}
+            mock_request.side_effect = [
+                {"stargazers_count": 42, "_requested_at_": "2024-01-01"},
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
             gh.update_json()
-            self.assertIsNotNone(gh._json_repo)
+        self.assertEqual(gh.stars, 42)
 
     def test_update_json_fetches_dependants_per_package(self):
         """fetches dependants for each package returned"""
@@ -197,7 +256,7 @@ class TestGitHubDataUpdateJson(TestCase):
                 fake_response,  # for dependants of pkg1
             ]
             gh.update_json()
-            self.assertIn("pkg1", gh._json_dependants)
+            self.assertIn("pkg1", gh.dependants())
 
 
 class TestGitHubDataProperties(TestCase):
@@ -213,17 +272,29 @@ class TestGitHubDataProperties(TestCase):
     def test_total_dependent_repositories_sums_correctly(self):
         """sums repositories across all packages in dependants"""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler")
-        gh._json_dependants = {
-            "pkg1": {"repositories": 10},
-            "pkg2": {"repositories": 5},
-        }
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {"_requested_at_": "2024-01-01"},
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {"pkg1": "id1", "pkg2": "id2"},
+                {"repositories": 10, "_requested_at_": "2024-01-01"},
+                {"repositories": 5, "_requested_at_": "2024-01-01"},
+            ]
+            gh.update_json()
         self.assertEqual(gh.total_dependent_repositories, 15)
 
     def test_total_dependent_packages_sums_correctly(self):
         """sums packages across all packages in dependants"""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler")
-        gh._json_dependants = {
-            "pkg1": {"packages": 3},
-            "pkg2": {"packages": 7},
-        }
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {"_requested_at_": "2024-01-01"},
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {"pkg1": "id1", "pkg2": "id2"},
+                {"packages": 3, "_requested_at_": "2024-01-01"},
+                {"packages": 7, "_requested_at_": "2024-01-01"},
+            ]
+            gh.update_json()
         self.assertEqual(gh.total_dependent_packages, 10)
