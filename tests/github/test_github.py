@@ -19,11 +19,6 @@ class TestGitHubDataInit(TestCase):
         self.assertEqual(gh.owner, "Qiskit")
         self.assertEqual(gh.repo, "qiskit-banana-compiler")
         self.assertIsNone(gh.tree)
-        self.assertIsNone(gh._json_repo)
-        self.assertIsNone(gh._json_events)
-        self.assertIsNone(gh._json_package_ids)
-        self.assertIsNone(gh._json_dependants)
-        self.assertIsNone(gh._json_contributors_sidebar)
 
     def test_init_with_tree(self):
         """tree argument is stored correctly."""
@@ -31,9 +26,9 @@ class TestGitHubDataInit(TestCase):
         self.assertEqual(gh.tree, "main")
 
     def test_init_with_kwargs(self):
-        """extra kwargs are stored in _kwargs"""
+        """extra kwargs are accessible as attributes"""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler", stars=100)
-        self.assertEqual(gh._kwargs["stars"], 100)
+        self.assertEqual(gh.stars, 100)
 
 
 class TestGitHubDataFromUrl(TestCase):
