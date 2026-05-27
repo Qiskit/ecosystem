@@ -49,7 +49,7 @@ class TomlStorage:
         for path in self.toml_dir.glob(toml_patter):
             try:
                 repo = Member.from_dict(toml.load(path))
-                repo._filename = path.stem
+                repo._filename = path.stem  # pylint: disable=protected-access
             except TypeError as exc:
                 raise EcosystemError(f"TOML empty? {path}") from exc
             except toml.decoder.TomlDecodeError as err:
