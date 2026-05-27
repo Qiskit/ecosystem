@@ -22,11 +22,69 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         lines += self.front_matter()
         lines += self.title() + [""]
         lines += self.description() + [""]
-        lines += self.general_summary() + [""]
-        lines += self.badge() + [""]
+        lines += self.general_summary()
+        lines += self.badge()
         lines += self.checkups()
-        lines.append("</div>")
+        lines += self.packages()
         return lines
+
+    def general_summary(self):
+        return (
+            ['<div class="grid cards" markdown>', ""]
+            + self.classification_card()
+            + self.urls_card()
+            + ["</div>"]
+        )
+
+    def packages(self):
+        packages = {}
+        if self.project.packages:
+            sites = []
+            for package in self.project.packages:
+                if "visualstudio.com" in package.hostname:
+                    sites.append(
+                        (
+                            "material-microsoft-visual-studio",
+                            f"[Visual Studio Marketplace: {package.query.split('=')[1]}]({package})",
+                        )
+                    )
+                elif "ocaml.org" in package.hostname:
+                    sites.append(
+                        (
+                            "simple-ocaml",
+                            f"[opam (OCaml Package Manager): {package.path.split('/')[2]}]({package})",
+                        )
+                    )
+                elif "github.com" in package.hostname:
+                    sites.append(
+                        (
+                            "simple-github",
+                            f"[GitHub Package: {package.path.split('/')[5]}]({package})",
+                        )
+                    )
+                elif "crates.io" in package.hostname:
+                    sites.append(
+                        (
+                            "simple-rust",
+                            f"[Crate: {package.path.split('/')[-1]}]({package})",
+                        )
+                    )
+                else:
+                    sites.append(
+                        ("octicons-package-16", f"[{package.hostname}]({package})")
+                    )
+            packages[None] = [" * \n"] + [f"    - :{icon}: {p}" for icon, p in sites]
+        if self.project.pypi:
+            packages["pypi"] = self.project.pypi
+        if self.project.pypi:
+            packages["julia"] = self.project.julia
+        if not packages:
+            return []
+        ret = ["\n---\n### :material-package-variant: Packages\n"]
+        ret.append('<div class="grid cards" markdown>')
+        ret += packages.get(None, [])
+        ret.append("</div>")
+        return ret
 
     def write_page(self):
         """takes the lines and writes them down"""
@@ -57,15 +115,6 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             "(https://github.com/Qiskit/ecosystem/edit/main/resources/"
             f"members/{self.project.name_id}.toml)",
         ]
-
-    def general_summary(self):
-        """grid with summary"""
-        return (
-            ['<div class="grid cards" markdown>', ""]
-            + self.classification_card()
-            + self.urls_card()
-            # + ["</div>"]
-        )
 
     def classification_card(self):  # pylint: disable=too-many-branches
         """
@@ -199,6 +248,28 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 "    { .annotate }",
                 "",
             ] + annotation
+        else:
+            ret += [
+                f"    :material-tag-off-outline: **No labels**",
+                "    { .annotate }",
+                "",
+            ]
+        if p.pattern_steps:
+            steps = ""
+            annotation = []
+            for index, step in enumerate(p.pattern_steps, start=1):
+                steps += f" `{step}` ({index})"
+                annotation.append(
+                    f"    {index}.  [All the projects tagged wit the Qiskit pattern step `{step}`](#)"
+                )
+            if annotation:
+                annotation.append("")
+            ret += [
+                f"    :material-tally-mark-4: **Qiskit Pattern step** {steps}",
+                "    { .annotate }",
+                "",
+            ] + annotation
+
         if p.ibm_maintained:
             ret += [
                 "    :material-office-building: IBM maintained (1)",
@@ -211,13 +282,17 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
 
     def checkups(self):
         """Checkups card"""
-        lines = ["\n", "- ### :material-list-status: Checkups", "\n", "    ---", "\n"]
+        lines = [
+            "\n---\n",
+            "### :material-list-status: Checkups",
+            "\n",
+        ]
         if not self.project.checks:
-            lines.append("    :material-check-all: All good")
+            lines.append(":material-check-all: All good")
         else:
             for checkup in self.project.checks.values():
                 lines += [
-                    f"    :{checkup.importance_icon}:"
+                    f":{checkup.importance_icon}:"
                     f'{{ title="{checkup.importance} - {checkup.importance_description}" }} '
                     f'`[{checkup.id}]`{{title="{checkup.title}"}} - {checkup.details}  '
                 ]
@@ -229,33 +304,20 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             return []
         lines = [
             "\n",
-            "- ### :simple-shieldsdotio: Badge",
+            "### :simple-shieldsdotio: Badge",
             "\n",
-            "    ---",
-            f"![{self.project.name} badge]({self.project.badge.url}) <button "
-            'class="md-code__button" title="Copy to clipboard" '
-            'data-clipboard-target="#__code_0 &gt; code" '
-            'data-md-type="copy"></button>',
-            " **style** `flat` ",
-            '    ```markdown title="paste this in README.md"',
-            "",
-            "    " + self.project.badge_md,
-            "    ```",
-            "",
+            '<div style="display: flex;"><button '
+            ' title="Copy to clipboard" '
+            'data-clipboard-target="#__code___code_0 &gt; code" '
+            'data-md-type="copy">',
+            f'<img src="{self.project.badge.url}">',
+            f'</button><pre style="width:600px; margin:0px" id="__code_0"><code tabindex="0">{self.project.badge_md}</code></pre></div>',
+            f"\n**style** `{self.project.badge.style}`  \n Check out [Badges section](../badges) to learn more about how badges are used for status communicaiton or on how to change the badge style.",
         ]
         return lines
 
     def urls_card(self):
-        """
-        - :material-web: **URLs**
-
-            ---
-
-            :material-web-box: [Website](<link>)
-            :octicons-file-code-16: [Source code](<link>)
-            :material-file-document: [Documentation](<link>)
-
-        """
+        """List of URLs in the project metadata"""
         ret = []
         p = self.project
         ret += ["- ### :material-web: **URLs**", "", "    ---", ""]
@@ -267,6 +329,17 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             ret.append(
                 f"    :material-file-document: [Documentation]({p.documentation})  "
             )
+        if self.project.reference_paper:
+            icon = ":material-newspaper:"
+            if "arxiv.org" in self.project.reference_paper.hostname:
+                icon = ":simple-arxiv:"
+            if "doi.org" in project.reference_paper.hostname:
+                icon = ":simple-doi:"
+            if "ieee.org" in project.reference_paper.hostname:
+                icon = ":simple-ieee:"
+            if "acm.org" in project.reference_paper.hostname:
+                icon = ":simple-acm:"
+            ret.append(f"    {icon} [Reference paper]({p.reference_paper})  ")
         return ret
 
     def description(self):
