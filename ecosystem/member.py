@@ -47,6 +47,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         maturity: str | None = None,
         status: str | None = None,
     ):
+        self._filename = None
         self.name = name
         self.submission_number = submission_number
         self.url = URL(url) if isinstance(url, str) else url
@@ -156,6 +157,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
 
         It is used to create the TOML file name
         """
+        if self._filename:
+            return self._filename
         flat_name = slugify(
             self.name,
             max_length=11,
