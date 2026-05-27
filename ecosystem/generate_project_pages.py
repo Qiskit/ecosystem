@@ -84,7 +84,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                     f" - #### :simple-python: PyPI `{pkg.package_name}`\n    ---\n"
                 )
                 packages["pypi"] += [
-                    "    :simple-pypi: **current release** "
+                    "    :fontawesome-regular-paper-plane: **current release** "
                     f'[{pkg.version}]( {pkg.url} "Released: {pkg.last_release_date}")',
                     "",
                 ]
@@ -93,9 +93,6 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                     f"**last month** {pkg.last_month_downloads:,} "
                     f"**last 180 days** {pkg.last_180_days_downloads:,}"
                 ]
-                """
-                'last_month_downloads': 609757, 'last_180_days_downloads': 3120292
-                """
                 if pkg.requires_qiskit:
                     packages["pypi"] += [
                         "",
@@ -122,11 +119,28 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             packages["pypi"] += ["</div>"]
 
         if self.project.julia:
-            packages["julia"] = self.project.julia
+            packages["julia"] = ['<div class="grid cards" markdown>']
+            for pkg in self.project.julia.values():
+                packages["julia"].append(
+                    f" - #### :simple-julia: Julia `{pkg.package_name}`\n    ---\n"
+                )
+                packages["julia"] += [
+                    "    :fontawesome-regular-paper-plane: **current release** "
+                    f"[{pkg.version}](https://juliahub.com/ui/Packages/"
+                    f'{pkg.registry}/{pkg.package_name} "Released: {pkg.release_date}")',
+                    "",
+                ]
+                packages["julia"] += [
+                    "    :fontawesome-solid-users: "
+                    f"**estimated unique users** {pkg.estimated_unique_users:,} "
+                ]
+            packages["julia"] += ["</div>"]
+
         if not packages:
             return []
         ret = ["\n---\n### :material-package-variant: Packages\n"]
         ret += packages.get("pypi", [])
+        ret += packages.get("julia", [])
         ret += packages.get(None, [])
         return ret
 
