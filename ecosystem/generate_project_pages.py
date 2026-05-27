@@ -73,17 +73,61 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                     sites.append(
                         ("octicons-package-16", f"[{package.hostname}]({package})")
                     )
-            packages[None] = [" * \n"] + [f"    - :{icon}: {p}" for icon, p in sites]
+            packages[None] = ['<div class="grid cards" markdown>', " * \n"]
+            packages[None] += [f"    - :{icon}: {p}" for icon, p in sites]
+            packages[None] += ["</div>"]
+
         if self.project.pypi:
-            packages["pypi"] = self.project.pypi
-        if self.project.pypi:
+            packages["pypi"] = ['<div class="grid cards" markdown>']
+            for pkg in self.project.pypi.values():
+                packages["pypi"].append(
+                    f" - #### :simple-python: PyPI `{pkg.package_name}`\n    ---\n"
+                )
+                packages["pypi"] += [
+                    "    :simple-pypi: **current release** "
+                    f'[{pkg.version}]( {pkg.url} "Released: {pkg.last_release_date}")',
+                    "",
+                ]
+                packages["pypi"] += [
+                    "    :material-download: "
+                    f"**last month** {pkg.last_month_downloads:,} "
+                    f"**last 180 days** {pkg.last_180_days_downloads:,}"
+                ]
+                """
+                'last_month_downloads': 609757, 'last_180_days_downloads': 3120292
+                """
+                if pkg.requires_qiskit:
+                    packages["pypi"] += [
+                        "",
+                        "    :simple-qiskit: **Qiskit Compatibility**\n\n",
+                        "    | **Requires** | V1 | V2 | highest supported |",
+                        "    | -- | -- | -- | -- |",
+                        f"    | {pkg.requires_qiskit} | "
+                        + (
+                            ":material-check-circle-outline:"
+                            if pkg.compatible_with_qiskit_v1
+                            else ":close-circle-outline:"
+                        )
+                        + " | "
+                        + (
+                            ":material-check-circle-outline:"
+                            if pkg.compatible_with_qiskit_v2
+                            else ":close-circle-outline:"
+                        )
+                        + f" | [{pkg.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
+                        f"{pkg.highest_supported_qiskit_version}/ "
+                        f'"Released: {pkg.highest_supported_qiskit_release_date}") |',
+                        "",
+                    ]
+            packages["pypi"] += ["</div>"]
+
+        if self.project.julia:
             packages["julia"] = self.project.julia
         if not packages:
             return []
         ret = ["\n---\n### :material-package-variant: Packages\n"]
-        ret.append('<div class="grid cards" markdown>')
+        ret += packages.get("pypi", [])
         ret += packages.get(None, [])
-        ret.append("</div>")
         return ret
 
     def write_page(self):

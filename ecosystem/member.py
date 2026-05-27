@@ -43,7 +43,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         checks: dict[str, CheckData] | None = None,
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
-        julia: JuliaData | None = None,
+        julia: dict[str, JuliaData] | None = None,
         maturity: str | None = None,
         status: str | None = None,
     ):
@@ -76,7 +76,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.github = github
         self.checks = checks or {}
         self.pypi = pypi or {}
-        self.julia = julia
+        self.julia = julia or {}
         self.badge = badge
         self.maturity = maturity
         self.status = status
@@ -104,16 +104,24 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """
         submission_fields = vars(Member)["__static_attributes__"]
         filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
-        if "julia" in filtered_dict:
-            filtered_dict["julia"] = JuliaData.from_dict(filtered_dict["julia"])
+
         if "badge" in filtered_dict:
             filtered_dict["badge"] = (
                 BadgeData(url=filtered_dict["badge"])
                 if isinstance(filtered_dict["badge"], str)
                 else BadgeData.from_dict(filtered_dict["badge"])
             )
+
         if "github" in filtered_dict:
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
+
+        if "julia" in filtered_dict:
+            for project_name, julia_dict in filtered_dict["julia"].items():
+                julia_data = JuliaData.from_dict(
+                    {"package_name": project_name} | julia_dict
+                )
+                filtered_dict["julia"][project_name] = julia_data
+
         if "pypi" in filtered_dict:
             for project_name, pypi_dict in filtered_dict["pypi"].items():
                 pypi_data = PyPIData.from_dict(
@@ -205,14 +213,15 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """
         Updates all the Julia information in the project.
         """
-        if self.julia:
-            self.julia.update_json()
+        for package_name in sorted(self.julia.keys()):
+            self.julia[package_name].update_json()
 
     def upsert_sections(self):
         """Create or update sections in a member.
         It is fully local, no validation or internet fetch.
          * github
          * pypi
+         * julia
         """
 
         # github section
@@ -226,9 +235,10 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         keep_in_packages = []
         while len(self.packages) > 0:
             package = self.packages.pop(0)
-            pypi = PyPIData.from_url(package)
-            if pypi:
+            if pypi := PyPIData.from_url(package):
                 self.pypi[pypi.package_name] = pypi
+            elif julia := JuliaData.from_url(package):
+                self.julia[julia.package_name] = julia
             else:
                 keep_in_packages.append(package)
 
