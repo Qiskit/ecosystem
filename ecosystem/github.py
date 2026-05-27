@@ -133,7 +133,7 @@ class GitHubData(JsonSerializable):
                     parser=parse_github_dependants,
                 )
             except EcosystemError:
-                logger.warn("json_dependants could not be updated")
+                logger.warning("json_dependants could not be updated")
 
     def __getattr__(self, item):
         if self._json_repo:
