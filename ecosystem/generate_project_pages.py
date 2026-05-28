@@ -103,13 +103,13 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                         + (
                             ":material-check-circle-outline:"
                             if pkg.compatible_with_qiskit_v1
-                            else ":close-circle-outline:"
+                            else ":material-close-circle-outline:"
                         )
                         + " | "
                         + (
                             ":material-check-circle-outline:"
                             if pkg.compatible_with_qiskit_v2
-                            else ":close-circle-outline:"
+                            else ":material-close-circle-outline:"
                         )
                         + f" | [{pkg.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
                         f"{pkg.highest_supported_qiskit_version}/ "

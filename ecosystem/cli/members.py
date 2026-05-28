@@ -158,6 +158,34 @@ class CliMembers:
         self.update_assets_categories(projects_per_classification["category"])
         self.update_assets_labels(projects_per_classification["labels"])
         self.update_assets_interfaces(projects_per_classification["interfaces"])
+        self.update_assets_pypi(projects_per_classification["interfaces"])
+
+        packages = self._all_packages()
+        self.update_assets_pypi(packages["pypi"])
+
+    def _all_packages(self):
+        """ """
+        pkg_managers = (
+            {}
+        )  # TODO continue from there. list of packages to create the menus
+        for project in self.dao.get_all():
+            if project.packages:
+                ...
+            if project.pypi:
+                pkg_managers["pypi"] = {}
+                for pkg in project.pypi.values():
+                    pkg_managers["pypi"][pkg.package_name] = {
+                        "project": project,
+                        "package": pkg,
+                    }
+            if project.julia:
+                pkg_managers["julia"] = {}
+                for pkg in project.julia.values():
+                    pkg_managers["julia"][pkg.package_name] = {
+                        "project": project,
+                        "package": pkg,
+                    }
+        return pkg_managers
 
     def _all_projects_classifications(self, *classifications):
         """
