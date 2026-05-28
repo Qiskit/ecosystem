@@ -101,6 +101,10 @@ name = "demo"
 description = "Implements a demo or a proof of concept."
 
 [[labels]]
+name = "utility-scale"
+description = "Implements methods whose scaling and resource requirements suggest practical relevance for achieving quantum utility."
+
+[[labels]]
 name = "circuit building"
 description = "Builds and outputs Qiskit quantum circuits."
 
