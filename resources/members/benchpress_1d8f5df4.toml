@@ -1,0 +1,27 @@
+name = "Benchpress"
+submission_number = 1172
+url = "https://github.com/Qiskit/benchpress"
+labels = []
+interfaces = [ "Python",]
+ibm_maintained = true
+category = "Tooling"
+reference_paper = "https://doi.org/10.1038/s43588-025-00792-y"
+packages = []
+uuid = "1d8f5df4-5541-489c-b353-6291606b4cbe"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/benchpress"
+owner = "Qiskit"
+repo = "benchpress"
+stars = 147
+license = "Apache License 2.0"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-01-09
+last_activity = 2026-05-20
+
+[badge]
+url = "https://qisk.it/e-1d8f5df4"
+style = "flat"

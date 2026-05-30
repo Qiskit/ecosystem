@@ -10,7 +10,7 @@ pattern_steps = [ "Optimize",]
 reference_paper = "https://arxiv.org/abs/2505.00543"
 packages = []
 uuid = "0a8128d0-2398-411b-a08e-737e2b198387"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/evmckinney9/gulps"
@@ -18,12 +18,12 @@ owner = "evmckinney9"
 repo = "gulps"
 stars = 5
 license = "Apache License 2.0"
-description = "optimally compile arbitary two-qubit unitaries"
+description = "optimally compile arbitrary two-qubit unitaries into heterogeneous native gate sets"
 estimated_contributors = 3
 total_dependent_repositories = 2
-total_dependent_packages = 0
-last_commit = 2026-04-15T21:57:04Z
-last_activity = 2026-04-15T22:42:10Z
+total_dependent_packages = 1
+last_commit = 2026-05-21
+last_activity = 2026-05-21
 
 [badge]
 url = "https://qisk.it/e-0a8128d0"
@@ -31,13 +31,14 @@ style = "flat"
 
 [pypi.gulps]
 package_name = "gulps"
-version = "0.3.5"
-last_release_date = 2026-03-27T23:49:53
+version = "0.3.6"
+last_release_date = 2026-05-13
 url = "https://pypi.org/project/gulps/"
+development_status = "4 - Beta"
 requires_qiskit = "<3,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 476
-last_180_days_downloads = 757
+last_month_downloads = 274
+last_180_days_downloads = 1020

@@ -18,10 +18,10 @@ stars = 281
 homepage = "https://qiskit-community.github.io/qiskit-optimization/"
 license = "Apache License 2.0"
 description = "Quantum Optimization"
-total_dependent_repositories = 413
-total_dependent_packages = 42
-last_commit = 2026-04-01T05:54:16Z
-last_activity = 2026-04-17T10:57:01Z
+total_dependent_repositories = 417
+total_dependent_packages = 43
+last_commit = 2026-04-01
+last_activity = 2026-05-17
 
 [badge]
 url = "https://qisk.it/e-3b2ff33f"
@@ -36,12 +36,12 @@ importance = "IMPORTANT"
 [pypi.qiskit-optimization]
 package_name = "qiskit-optimization"
 version = "0.7.0"
-last_release_date = 2025-08-20T14:04:16
+last_release_date = 2025-08-20
 url = "https://pypi.org/project/qiskit-optimization/"
 requires_qiskit = "<3,>=1.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 33485
-last_180_days_downloads = 202725
+last_month_downloads = 37855
+last_180_days_downloads = 188624

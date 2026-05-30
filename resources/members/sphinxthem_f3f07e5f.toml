@@ -1,0 +1,37 @@
+name = "Qiskit Ecosystem Sphinx theme"
+submission_number = 1172
+url = "https://github.com/Qiskit/qiskit_sphinx_theme"
+labels = []
+interfaces = [ "Web interface",]
+ibm_maintained = true
+category = "Tooling"
+packages = []
+uuid = "f3f07e5f-b09e-4180-b8eb-da78dafe76d3"
+maturity = "production-ready"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/qiskit_sphinx_theme"
+owner = "Qiskit"
+repo = "qiskit_sphinx_theme"
+stars = 23
+homepage = "https://qisk.it/docs-guide"
+license = "Apache License 2.0"
+description = "A Sphinx theme and documentation guidelines for Qiskit and Qiskit Ecosystem projects"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-05-19
+last_activity = 2026-05-20
+
+[badge]
+url = "https://qisk.it/e-f3f07e5f"
+style = "flat"
+
+[pypi.qiskit-sphinx-theme]
+package_name = "qiskit-sphinx-theme"
+version = "2.1.0"
+last_release_date = 2026-05-19
+url = "https://pypi.org/project/qiskit-sphinx-theme/"
+development_status = "5 - Production/Stable"
+last_month_downloads = 70507
+last_180_days_downloads = 266273

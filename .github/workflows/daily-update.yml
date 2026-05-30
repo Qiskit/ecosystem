@@ -1,0 +1,32 @@
+name: Daily | Update member data
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron:  '0 0 * * *'
+
+jobs:
+  batch_update_badges:
+    name: "Update members data"
+    if: github.repository_owner == 'Qiskit'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+    - uses: actions/setup-python@v6
+      with:
+          python-version: '3.13'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Update data
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python manager.py ci update_member_data
+    - name: Commit data
+      if: success()
+      run: |
+        git config --local user.email "qiskit-bot@users.noreply.github.com"
+        git config --local user.name "qiskit-bot"
+        git commit -am "Member data update for $(date -Iseconds)" --allow-empty
+        git push

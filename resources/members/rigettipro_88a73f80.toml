@@ -6,21 +6,22 @@ labels = [ "cloud service",]
 created_at = 1678827878.136911
 updated_at = 1678827878.136912
 category = "Compute provider"
+documentation = "https://qiskit-rigetti.readthedocs.io/"
 uuid = "88a73f80-a247-4bb4-a6aa-f5da3ebd50c4"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/rigetti/qiskit-rigetti"
 owner = "rigetti"
 repo = "qiskit-rigetti"
-stars = 19
+stars = 20
 license = "Apache License 2.0"
 description = "Qiskit provider serving Rigetti hardware & simulator backends."
 estimated_contributors = 10
 total_dependent_repositories = 5
 total_dependent_packages = 0
-last_commit = 2025-04-09T21:16:09Z
-last_activity = 2026-04-11T15:26:38Z
+last_commit = 2025-04-09
+last_activity = 2026-05-03
 
 [badge]
 url = "https://qisk.it/e-88a73f80"
@@ -35,12 +36,13 @@ importance = "IMPORTANT"
 [pypi.qiskit-rigetti]
 package_name = "qiskit-rigetti"
 version = "0.4.7"
-last_release_date = 2024-02-07T20:38:52
+last_release_date = 2024-02-07
 url = "https://pypi.org/project/qiskit-rigetti/"
+development_status = "4 - Beta"
 requires_qiskit = ">=0.38.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 84
-last_180_days_downloads = 652
+last_month_downloads = 74
+last_180_days_downloads = 666

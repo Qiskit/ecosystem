@@ -1,0 +1,28 @@
+name = "QSP-SQD"
+submission_number = 1135
+url = "https://github.com/JoelHBierman/QSP-SQD"
+description = "Enhances sample-based diagonalization (SQD) with quantum signal processing (QSP) to improve sampling-efficiency."
+contact_info = "jhbierma@ncsu.edu"
+labels = [ "chemistry", "physics", "quantum information", "circuit building", "research",]
+interfaces = [ "Python",]
+category = "Other"
+pattern_steps = []
+packages = []
+uuid = "b6c9f4fe-8d25-48fa-832b-5bd79725b9da"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/JoelHBierman/QSP-SQD"
+owner = "JoelHBierman"
+repo = "QSP-SQD"
+stars = 0
+license = "MIT License"
+description = "An implementation of Quantum Selective Configuration Interaction which uses adaptive circuits."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-05-09
+last_activity = 2025-05-11
+
+[badge]
+url = "https://qisk.it/e-b6c9f4fe"
+style = "flat"

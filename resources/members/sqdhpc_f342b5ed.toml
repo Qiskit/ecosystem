@@ -1,29 +1,30 @@
-name = "qiskit-addon-sqd-hpc"
+name = "Sample-based Quantum Diagonalization for HPC"
 url = "https://github.com/Qiskit/qiskit-addon-sqd-hpc"
 description = "A modern C++ software library to enable large-scale SQD calculations on high-performance computing (HPC) systems."
-licence = "Apache License 2.0"
-contact_info = "garrison@ibm.com"
-labels = [ "chemistry",]
+labels = [ "chemistry", "HPC",]
 interfaces = [ "C++",]
 ibm_maintained = true
 website = "https://qiskit.github.io/qiskit-addon-sqd-hpc/"
 category = "Qiskit addon"
+pattern_steps = [ "Post-process",]
+documentation = "https://qiskit.github.io/qiskit-addon-sqd-hpc/"
 uuid = "f342b5ed-2136-4f7a-bd00-a0a7d2df3493"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-sqd-hpc"
 owner = "Qiskit"
 repo = "qiskit-addon-sqd-hpc"
-stars = 17
+stars = 18
 homepage = "https://qiskit.github.io/qiskit-addon-sqd-hpc/"
 license = "Apache License 2.0"
 description = "qiskit-addon-sqd-hpc is a modern C++17/20 software library to enable large-scale sample-based quantum diagonalization (SQD) calcula..."
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-25T02:26:38Z
-last_activity = 2026-04-25T02:26:39Z
+last_commit = 2026-05-07
+last_activity = 2026-05-07
 
 [badge]
 url = "https://qisk.it/e-f342b5ed"

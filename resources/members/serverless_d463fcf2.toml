@@ -8,22 +8,24 @@ ibm_maintained = true
 created_at = 1670427445.627174
 updated_at = 1670427445.627175
 category = "SDK"
+documentation = "https://qiskit.github.io/qiskit-serverless/"
 uuid = "d463fcf2-9e98-4d16-af3b-25ec29b650f7"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-serverless"
 owner = "Qiskit"
 repo = "qiskit-serverless"
-stars = 110
+stars = 112
 homepage = "https://qiskit.github.io/qiskit-serverless/"
 license = "Apache License 2.0"
 description = "A programming model for leveraging quantum and classical resources"
 estimated_contributors = 31
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-26T18:45:24Z
-last_activity = 2026-04-24T21:02:21Z
+last_commit = 2026-05-21
+last_activity = 2026-05-21
 
 [badge]
 url = "https://qisk.it/e-d463fcf2"
@@ -38,12 +40,13 @@ importance = "IMPORTANT"
 [pypi.qiskit-serverless]
 package_name = "qiskit-serverless"
 version = "0.31.0"
-last_release_date = 2026-03-19T16:48:05
+last_release_date = 2026-04-22
 url = "https://pypi.org/project/qiskit-serverless/"
+development_status = "3 - Alpha"
 requires_qiskit = "<3,>=1.4"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 13680
-last_180_days_downloads = 53563
+last_month_downloads = 13591
+last_180_days_downloads = 59239

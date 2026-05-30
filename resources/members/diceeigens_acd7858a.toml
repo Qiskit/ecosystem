@@ -1,0 +1,29 @@
+name = "Dice eigensolver"
+submission_number = 1172
+url = "https://github.com/Qiskit/qiskit-addon-dice-solver"
+labels = []
+interfaces = [ "Python",]
+ibm_maintained = true
+category = "Qiskit addon"
+documentation = "https://qiskit.github.io/qiskit-addon-dice-solver/"
+packages = []
+uuid = "acd7858a-0ad7-46d4-abc4-0a0c6717c367"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-addon-dice-solver"
+owner = "Qiskit"
+repo = "qiskit-addon-dice-solver"
+stars = 27
+homepage = "https://qiskit.github.io/qiskit-addon-dice-solver"
+license = "Apache License 2.0"
+description = "An eigensolver used to scale up SQD chemistry workflows past 30 orbitals"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-05-01
+last_activity = 2026-05-01
+
+[badge]
+url = "https://qisk.it/e-acd7858a"
+style = "flat"

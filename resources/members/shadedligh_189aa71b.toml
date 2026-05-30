@@ -1,14 +1,16 @@
-name = "qiskit-addon-slc"
+name = "Shaded Lightcones"
+submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-addon-slc"
-description = "Reducing PEC sampling overhead with shaded lightcones."
-licence = "Apache License 2.0"
-contact_info = "garrison@ibm.com"
 labels = []
+interfaces = [ "Python",]
 ibm_maintained = true
 category = "Qiskit addon"
+reference_paper = "https://arxiv.org/abs/2409.04401"
 documentation = "https://qiskit.github.io/qiskit-addon-slc/"
+packages = []
 uuid = "189aa71b-6ad7-4c23-8ae5-81c369e415b3"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-slc"
@@ -21,29 +23,23 @@ description = "Reducing PEC sampling overhead with shaded lightcones"
 estimated_contributors = 9
 total_dependent_repositories = 1
 total_dependent_packages = 0
-last_commit = 2026-04-24T14:34:59Z
-last_activity = 2026-04-24T14:37:47Z
+last_commit = 2026-05-01
+last_activity = 2026-05-01
 
 [badge]
 url = "https://qisk.it/e-189aa71b"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:55.349896
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qiskit-addon-slc]
 package_name = "qiskit-addon-slc"
 version = "0.1.0"
-last_release_date = 2025-11-06T16:55:35
+last_release_date = 2025-11-06
 license = "Apache-2.0"
 url = "https://pypi.org/project/qiskit-addon-slc/"
 requires_qiskit = "<3,>=2.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 39
-last_180_days_downloads = 446
+last_month_downloads = 30
+last_180_days_downloads = 213

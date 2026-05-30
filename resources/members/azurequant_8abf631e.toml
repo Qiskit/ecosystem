@@ -3,8 +3,10 @@ url = "https://github.com/microsoft/azure-quantum-python"
 description = "Submit quantum jobs written in Q#, Qiskit, or Cirq to the Azure Quantum service."
 licence = "MIT license"
 labels = [ "provider", "cloud service",]
+interfaces = [ "Python",]
 created_at = 1715084759.598566
 category = "Compute provider"
+documentation = "https://learn.microsoft.com/azure/quantum/quickstart-microsoft-qiskit"
 uuid = "8abf631e-bbf0-4624-b9c7-60073981f5b0"
 maturity = "production-ready"
 
@@ -12,30 +14,24 @@ maturity = "production-ready"
 url = "https://github.com/microsoft/azure-quantum-python"
 owner = "microsoft"
 repo = "azure-quantum-python"
-stars = 149
+stars = 151
 homepage = "https://learn.microsoft.com/azure/quantum/"
 license = "MIT License"
 description = "The azure-quantum python package submits jobs to the Azure Quantum service."
 estimated_contributors = 60
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-21T18:38:16Z
-last_activity = 2026-04-21T21:01:07Z
+last_commit = 2026-05-15
+last_activity = 2026-05-18
 
 [badge]
 url = "https://qisk.it/e-8abf631e"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:45.453639
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.azure-quantum]
 package_name = "azure-quantum"
-version = "3.8.2"
-last_release_date = 2026-03-23T22:35:28
+version = "3.9.1"
+last_release_date = 2026-03-23
 url = "https://pypi.org/project/azure-quantum/"
-last_month_downloads = 20378
-last_180_days_downloads = 115117
+last_month_downloads = 25541
+last_180_days_downloads = 114073

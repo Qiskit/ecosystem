@@ -1,4 +1,4 @@
-name = "qiskit-addon-mpf"
+name = "Multiproduct Formulas (MPF)"
 url = "https://github.com/Qiskit/qiskit-addon-mpf"
 description = "Reduce the Trotter error of Hamiltonian dynamics with multi-product formulas (MPF)."
 licence = "Apache License 2.0"
@@ -9,7 +9,8 @@ created_at = 1758737407.8760931
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-mpf/"
 uuid = "99eb5c40-00ee-439c-971e-e3e2a523c83a"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-addon-mpf"
@@ -22,8 +23,8 @@ description = "Reducing the Trotter error of Hamiltonian dynamics with multi-pro
 estimated_contributors = 13
 total_dependent_repositories = 6
 total_dependent_packages = 0
-last_commit = 2026-03-30T02:18:29Z
-last_activity = 2026-04-23T23:44:25Z
+last_commit = 2026-03-30
+last_activity = 2026-05-21
 
 [badge]
 url = "https://qisk.it/e-99eb5c40"
@@ -38,12 +39,12 @@ importance = "IMPORTANT"
 [pypi.qiskit-addon-mpf]
 package_name = "qiskit-addon-mpf"
 version = "0.3.0"
-last_release_date = 2025-03-20T06:28:10
+last_release_date = 2025-03-20
 url = "https://pypi.org/project/qiskit-addon-mpf/"
 requires_qiskit = "<3,>=1.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 830
-last_180_days_downloads = 3970
+last_month_downloads = 3272
+last_180_days_downloads = 6701

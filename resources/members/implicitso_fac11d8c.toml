@@ -7,6 +7,7 @@ labels = [ "chemistry",]
 ibm_maintained = true
 category = "Application"
 reference_paper = "https://pubs.acs.org/doi/10.1021/acs.jpcb.5c01030"
+documentation = "https://quantum.cloud.ibm.com/docs/en/guides/qiskit-function-templates"
 uuid = "fac11d8c-c0f4-426e-8c20-ac009726d417"
 maturity = "production-ready"
 
@@ -20,8 +21,8 @@ license = "Apache License 2.0"
 estimated_contributors = 13
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-15T12:09:57Z
-last_activity = 2026-04-15T12:09:59Z
+last_commit = 2026-04-15
+last_activity = 2026-05-12
 
 [badge]
 url = "https://qisk.it/e-fac11d8c"

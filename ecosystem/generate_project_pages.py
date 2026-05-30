@@ -1,11 +1,10 @@
 """Generate project pages for https://qiskit.github.io/ecosystem/p/"""
 
 import mkdocs_gen_files
+from slugify import slugify
 
 from ecosystem.classifications import ClassificationsToml
 from ecosystem.cli.members import CliMembers
-
-nav = mkdocs_gen_files.Nav()
 
 
 class ProjectPage:  # pylint: disable=redefined-outer-name
@@ -18,7 +17,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         self.classifications = ClassificationsToml()
 
     def generate_all_lines(self):
-        """Returns all the docs/p/<project>.md lines"""
+        """Returns all the docs/p/<uuid>.md lines"""
         lines = []
         lines += self.front_matter()
         lines += self.title() + [""]
@@ -35,7 +34,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             print("\n".join(self.generate_all_lines()), file=f)
         mkdocs_gen_files.set_edit_path(
             self.filename,
-            f"resources/members/{project.name_id}.toml",
+            f"resources/members/{project.short_uuid}.toml",
         )
 
     def front_matter(self):
@@ -125,6 +124,35 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 "",
             ]
 
+        if p.status != "Alumni":
+            icons = {
+                "production-ready": ":material-check-outline:",
+                "bugfixing only": ":material-bug-check:",
+                "as-is": ":material-image-broken-variant:",
+                "deprecated": ":fontawesome-solid-exclamation-triangle:",
+                "experimental": ":material-flask:",
+            }
+            ret += [
+                f"    {icons[p.maturity]}{{ "
+                f"title='{self.classifications.maturity_descriptions[p.maturity]}' }} "
+            ]
+
+            if p.maturity == "production-ready":
+                # Full support
+                ret.append(f"**{p.maturity}** (1)")
+            elif p.maturity in ["bugfixing only", "deprecated", "experimental"]:
+                # Limited support
+                ret.append(f"**Limited support** {p.maturity} (1)")
+            elif p.maturity in ["archived", "as-is"]:
+                # No support
+                ret.append(f"**No support** {p.maturity} (1)")
+            ret += [
+                "    { .annotate }",
+                "",
+                f"    1.  [All the projects with {p.maturity} support](#)",
+                "",
+            ]
+
         if p.licence:
             ret += [
                 f"    :material-scale-balance: **License** {p.licence} (1)",
@@ -184,8 +212,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
     def checkups(self):
         """Checkups card"""
         lines = ["\n", "- ### :material-list-status: Checkups", "\n", "    ---", "\n"]
-        if self.project.checks is None:
-            lines.append("    All good")
+        if not self.project.checks:
+            lines.append("    :material-check-all: All good")
         else:
             for checkup in self.project.checks.values():
                 lines += [
@@ -246,9 +274,11 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         return [">", self.project.description] if self.project.description else []
 
 
-for project in CliMembers().dao.get_all():
-    project_page = ProjectPage(project, f"p/{project.name_id}.md")
+nav = mkdocs_gen_files.Nav()
+for project in CliMembers().dao.get_all(sort_key=lambda x: slugify(x.name)):
+    project_page = ProjectPage(project, f"p/{project.short_uuid}.md")
     project_page.write_page()
+    nav[project.name] = f"{project.short_uuid}.md"
 
-with mkdocs_gen_files.open("references/SUMMARY.md", "w") as nav_file:
+with mkdocs_gen_files.open("p/SUMMARY.md", "w") as nav_file:
     nav_file.writelines(nav.build_literate_nav())

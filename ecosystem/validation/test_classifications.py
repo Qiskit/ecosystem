@@ -40,7 +40,7 @@ def pattern_steps(toml_file_data):
 
 
 @pytest.fixture
-def support(toml_file_data):
+def maturity(toml_file_data):
     return [c["name"] for c in toml_file_data["maturity"]]
 
 
@@ -79,3 +79,11 @@ def test_005(member, pattern_steps):
         assert (
             pattern_step in pattern_steps
         ), f"the Qiskit Pattern step '{pattern_step}' does not exist in classifications.toml"
+
+
+def test_004(member, maturity):
+    """valid maturity"""
+    assert hasattr(member, "maturity"), "the property member.maturity is mandatory"
+    assert (
+        member.maturity in maturity
+    ), "member.maturity must exist in classifications.toml"

@@ -86,11 +86,11 @@ def request_json(
     ret = parser(content)
     if ret is None:
         return ret
-    if isinstance(ret, dict):
-        ret["_requested_at_"] = response.created_at
-    else:
-        ret = {"data": ret, "_requested_at_": response.created_at}
-    return ret
+
+    metadata = {"__requested_at__": response.created_at, "__url__": response.url}
+    if not isinstance(ret, dict):
+        ret = {"data": ret}
+    return ret | metadata
 
 
 class URL:

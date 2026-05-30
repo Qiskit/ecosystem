@@ -6,9 +6,10 @@ contact_info = "keunjunpark0925@gmail.com"
 labels = [ "QML", "optimization", "HPC", "provider",]
 interfaces = [ "Python",]
 category = "Circuit simulator"
+documentation = "https://github.com/keunjunpark/qiskit-trev/tree/main/tutorials"
 packages = []
 uuid = "e2beb4ad-418d-4dca-b789-02567d385528"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/keunjunpark/qiskit-trev"
@@ -18,8 +19,8 @@ stars = 1
 license = "MIT License"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-24T19:44:32Z
-last_activity = 2026-04-24T19:44:33Z
+last_commit = 2026-05-09
+last_activity = 2026-05-09
 
 [badge]
 url = "https://qisk.it/e-e2beb4ad"
@@ -28,13 +29,14 @@ style = "flat"
 [pypi.qiskit-trev]
 package_name = "qiskit-trev"
 version = "0.2.1"
-last_release_date = 2026-04-14T14:01:19
+last_release_date = 2026-04-24
 license = "MIT"
 url = "https://pypi.org/project/qiskit-trev/"
+development_status = "3 - Alpha"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 390
-last_180_days_downloads = 390
+last_month_downloads = 266
+last_180_days_downloads = 490

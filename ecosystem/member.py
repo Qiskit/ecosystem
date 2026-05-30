@@ -4,14 +4,14 @@ import pprint
 from uuid import uuid4
 from slugify import slugify
 
-from .error_handling import EcosystemError, logger
+from .error_handling import EcosystemError
 from .julia import JuliaData
-from .serializable import JsonSerializable, parse_datetime
+from .serializable import JsonSerializable, parse_date
 from .github import GitHubData
 from .pypi import PyPIData
 from .check import CheckData
 from .badge import BadgeData
-from .request import URL, request_json
+from .request import URL
 from .validation import validate_member
 
 
@@ -47,6 +47,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         maturity: str | None = None,
         status: str | None = None,
     ):
+        self._filename = None
         self.name = name
         self.submission_number = submission_number
         self.url = URL(url) if isinstance(url, str) else url
@@ -62,8 +63,14 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.website = website
         self.category = category
         self.pattern_steps = pattern_steps
-        self.reference_paper = reference_paper
-        self.documentation = documentation
+        self.reference_paper = (
+            URL(reference_paper)
+            if isinstance(reference_paper, str)
+            else reference_paper
+        )
+        self.documentation = (
+            URL(documentation) if isinstance(documentation, str) else documentation
+        )
         self.packages = packages
         self.uuid = uuid
         self.github = github
@@ -74,8 +81,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.maturity = maturity
         self.status = status
 
-        self.__dict__.setdefault("created_at", parse_datetime("now"))
-        self.__dict__.setdefault("updated_at", parse_datetime("now"))
+        self.__dict__.setdefault("created_at", parse_date("now"))
+        self.__dict__.setdefault("updated_at", parse_date("now"))
         if self.uuid is None:
             self.uuid = str(uuid4())
         if self.labels is None:
@@ -150,11 +157,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
 
         It is used to create the TOML file name
         """
+        if self._filename:
+            return self._filename
         flat_name = slugify(
             self.name,
             max_length=11,
             separator="",
-            stopwords=["qiskit"],
+            stopwords=["qiskit", "ecosystem"],
             replacements=[["qiskit-addon", ""]],
         )
         return f"{flat_name}_{self.short_uuid}"
@@ -176,61 +185,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             self.github.update_json()
             self.github.update_owner_repo()
 
-    def _create_qisk_dot_it_link_for_badge(self):
-        long_url = (
-            "https://img.shields.io/endpoint?url="
-            f"https://qiskit.github.io/ecosystem/b/{self.short_uuid}"
-        )
-        keyword = f"e-{self.short_uuid}"
-        data = {
-            "long_url": long_url,
-            "domain": "qisk.it",
-            "keyword": keyword,
-            "group_guid": "Bj9rgMHKfxH",
-            "title": f'Qiskit ecosystem "{self.name}" badge',
-            "tags": ["qiskit ecosystem badge", "permanent _do NOT remove_"],
-        }
-        try:
-            response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
-        except EcosystemError as err:
-            if "Bad Request (400)" in err.message:
-                return None  # Sometimes, bitly errors 400 for some server-side reason
-            raise err
-        logger.info(
-            "Bitly short link created: %s -> %s ", f"qisk.it/{keyword}", long_url
-        )
-        return response["link"]
-
-    def _qisk_dot_it_link_exists(self):
-        qisk_dot_it_link_check = request_json(
-            f"https://qisk.it/e-{self.short_uuid}",
-            parser=lambda x: {"exists": "<title>Qiskit Ecosystem:" in x},
-        )
-        return (
-            f"https://qisk.it/e-{self.short_uuid}"
-            if qisk_dot_it_link_check["exists"]
-            else None
-        )
-
     def update_badge(self):
         """If not there yet, creates a new Bitly link for the badge"""
-        if self.badge is None:
-            badge_url = (
-                self._qisk_dot_it_link_exists()
-                or self._create_qisk_dot_it_link_for_badge()
-            )
-            self.badge = BadgeData(url=badge_url)
-
-    def update_data(self):
-        """Update all the member data in each existing section"""
-        to_update = [
-            "github",
-            "pypi",
-            "julia",
-        ]
-        for update_method_str in to_update:
-            update_method = getattr(self, f"update_{update_method_str}")
-            update_method()
+        if self.badge:
+            self.badge.update_url(name=self.name, short_uuid=self.short_uuid)
+        else:
+            url = BadgeData.create_link(name=self.name, short_uuid=self.short_uuid)
+            self.badge = BadgeData(url)
 
     def update_pypi(self):
         """
@@ -296,6 +257,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             pattern_steps=submission.pattern_steps,
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
+            maturity=submission.maturity,
             packages=submission.package_urls,
             checks=skip_checks or None,
         )
@@ -309,10 +271,14 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             if hasattr(check, "xfailed") and check.xfailed
         ]
 
-    def update_checkups(self):
+    def update_checkups(self, checker=None):
         """Runs validation tests and updates the check-ups sections"""
         checkups = {}
-        report = validate_member(self, verbose_level="-q")
+        if checker is None:
+            report = validate_member(self, verbose_level="-q")
+        else:
+            report = validate_member(self, verbose_level="-v", tests_to_run=checker)
+
         if report.internalerror:
             raise ExceptionGroup(
                 "internal error",

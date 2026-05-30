@@ -7,22 +7,22 @@ affiliations = "Technical University of Munich (TUM), Germany Politecnico di Tor
 labels = [ "circuit optimization", "optimization",]
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2406.12840"
-documentation = "https://mqt.readthedocs.io/projects/qao/en/latest/"
+documentation = "https://mqt.readthedocs.io/projects/qao/"
 uuid = "6d4c69e4-1e47-486c-b00f-8a60ae5e01d4"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/cda-tum/mqt-qao"
 owner = "cda-tum"
 repo = "mqt-qao"
-stars = 28
+stars = 29
 license = "MIT License"
 description = "MQT Quantum Auto Optimizer - A MQT Tool for Solving Optimization Problems with Quantum Computers"
 estimated_contributors = 7
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-20T17:23:23Z
-last_activity = 2026-04-20T17:23:24Z
+last_commit = 2026-05-18
+last_activity = 2026-05-18
 
 [badge]
 url = "https://qisk.it/e-6d4c69e4"
@@ -37,12 +37,13 @@ importance = "IMPORTANT"
 [pypi."mqt.qao"]
 package_name = "mqt-qao"
 version = "0.3.0"
-last_release_date = 2024-12-01T10:52:55
+last_release_date = 2024-12-01
 url = "https://pypi.org/project/mqt.qao/"
+development_status = "4 - Beta"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 30
-last_180_days_downloads = 194
+last_month_downloads = 172
+last_180_days_downloads = 338

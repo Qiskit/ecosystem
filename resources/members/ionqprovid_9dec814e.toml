@@ -7,6 +7,7 @@ labels = [ "cloud service",]
 created_at = 1670427446.011674
 updated_at = 1670427446.011675
 category = "Compute provider"
+documentation = "https://qiskit-community.github.io/qiskit-ionq/"
 uuid = "9dec814e-feb8-49c2-818a-f6a2503d38c5"
 maturity = "production-ready"
 
@@ -14,15 +15,15 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-ionq"
 owner = "qiskit-community"
 repo = "qiskit-ionq"
-stars = 58
+stars = 59
 homepage = "https://qiskit-community.github.io/qiskit-ionq/"
 license = "Apache License 2.0"
 description = "Qiskit provider for IonQ backends"
 estimated_contributors = 16
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-03-19T16:13:02Z
-last_activity = 2026-04-21T16:31:35Z
+last_commit = 2026-05-20
+last_activity = 2026-05-20
 
 [badge]
 url = "https://qisk.it/e-9dec814e"
@@ -37,12 +38,12 @@ importance = "IMPORTANT"
 [pypi.qiskit-ionq]
 package_name = "qiskit-ionq"
 version = "1.0.2"
-last_release_date = 2025-08-30T02:08:42
+last_release_date = 2025-08-30
 url = "https://pypi.org/project/qiskit-ionq/"
 requires_qiskit = ">=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 105990
-last_180_days_downloads = 365208
+last_month_downloads = 85956
+last_180_days_downloads = 377030

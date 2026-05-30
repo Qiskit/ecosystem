@@ -6,8 +6,10 @@ labels = []
 created_at = 1678827878.401835
 updated_at = 1678827878.401836
 category = "SDK"
+documentation = "https://quantuminspire.readthedocs.io/"
 uuid = "fb1cd889-961a-4029-bb8f-229e4c4e12a4"
-maturity = "production-ready"
+maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/QuTech-Delft/quantuminspire"
@@ -19,8 +21,8 @@ description = "Quantum Inspire SDK"
 estimated_contributors = 9
 total_dependent_repositories = 26
 total_dependent_packages = 3
-last_commit = 2026-04-24T20:37:55Z
-last_activity = 2026-04-24T20:37:56Z
+last_commit = 2026-05-21
+last_activity = 2026-05-21
 
 [badge]
 url = "https://qisk.it/e-fb1cd889"
@@ -39,13 +41,14 @@ importance = "IMPORTANT"
 
 [pypi.quantuminspire]
 package_name = "quantuminspire"
-version = "3.5.1"
-last_release_date = 2026-01-19T12:28:56
+version = "3.5.3"
+last_release_date = 2026-05-07
 url = "https://pypi.org/project/quantuminspire/"
+development_status = "4 - Beta"
 requires_qiskit = "==1.0.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2024-03-07T23:51:19Z
+highest_supported_qiskit_release_date = 2024-03-07
 highest_supported_qiskit_version = "1.0.2"
-last_month_downloads = 2658
-last_180_days_downloads = 23141
+last_month_downloads = 1841
+last_180_days_downloads = 20687

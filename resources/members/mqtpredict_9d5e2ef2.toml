@@ -7,9 +7,9 @@ affiliations = "Technical University of Munich (TUM), Germany"
 labels = [ "circuit optimization", "research",]
 category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
-documentation = "https://mqt.readthedocs.io/projects/predictor/en/latest/"
+documentation = "https://mqt.readthedocs.io/projects/predictor/"
 uuid = "9d5e2ef2-cac6-479e-a2f9-8014d54403e4"
-maturity = "production-ready"
+maturity = "experimental"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/predictor"
@@ -20,8 +20,8 @@ license = "MIT License"
 description = "MQT Predictor - A Tool for Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-26T11:26:00Z
-last_activity = 2026-04-26T11:26:00Z
+last_commit = 2026-05-18
+last_activity = 2026-05-18
 
 [badge]
 url = "https://qisk.it/e-9d5e2ef2"
@@ -36,13 +36,14 @@ importance = "IMPORTANT"
 [pypi."mqt.predictor"]
 package_name = "mqt-predictor"
 version = "2.3.0"
-last_release_date = 2025-07-29T09:17:24
+last_release_date = 2025-07-29
 license = "MIT"
 url = "https://pypi.org/project/mqt.predictor/"
+development_status = "4 - Beta"
 requires_qiskit = "!=1.3.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 212
-last_180_days_downloads = 5007
+last_month_downloads = 139
+last_180_days_downloads = 4847

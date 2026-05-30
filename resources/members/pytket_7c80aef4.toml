@@ -6,6 +6,7 @@ labels = []
 created_at = 1661869851.523229
 updated_at = 1661869851.523229
 category = "Converter"
+documentation = "https://docs.quantinuum.com/tket/extensions/pytket-qiskit/"
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
 maturity = "production-ready"
 
@@ -19,7 +20,7 @@ description = "pytket-qiskit, extensions for pytket quantum SDK "
 estimated_contributors = 21
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-02-04T09:27:52Z
+last_commit = 2026-02-04
 last_activity = 2026-03-12T13:46:54Z
 
 [badge]
@@ -35,12 +36,12 @@ importance = "IMPORTANT"
 [pypi.pytket-qiskit]
 package_name = "pytket-qiskit"
 version = "0.77.0"
-last_release_date = 2026-02-02T11:04:25
+last_release_date = 2026-02-02
 url = "https://pypi.org/project/pytket-qiskit/"
 requires_qiskit = ">=2.2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24T22:41:40Z
+highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 47785
-last_180_days_downloads = 285658
+last_month_downloads = 48931
+last_180_days_downloads = 249461

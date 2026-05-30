@@ -4,7 +4,7 @@ from re import match
 from functools import reduce
 from jsonpath import findall
 
-from .serializable import JsonSerializable, parse_datetime
+from .serializable import JsonSerializable, parse_date
 from .error_handling import EcosystemError, logger
 from .request import (
     request_json,
@@ -50,7 +50,7 @@ class GitHubData(JsonSerializable):
         "archived": lambda x: x or None,
         "disabled": lambda x: x or None,
         "description": lambda x: x[:131] + "..." if len(str(x)) > 135 else x,
-        "pushed_at": parse_datetime,
+        "pushed_at": parse_date,
     }
     reduce = {}
 
@@ -126,11 +126,14 @@ class GitHubData(JsonSerializable):
         )
         self._json_dependants = {}
         for package, package_id in self._json_package_ids.items():
-            self._json_dependants[package] = request_json(
-                f"github.com/{self.owner}/{self.repo}/network/dependents?"
-                f"dependent_type=REPOSITORY&package_id={package_id}",
-                parser=parse_github_dependants,
-            )
+            try:
+                self._json_dependants[package] = request_json(
+                    f"github.com/{self.owner}/{self.repo}/network/dependents?"
+                    f"dependent_type=REPOSITORY&package_id={package_id}",
+                    parser=parse_github_dependants,
+                )
+            except EcosystemError:
+                logger.warning("json_dependants could not be updated")
 
     def __getattr__(self, item):
         if self._json_repo:
@@ -208,5 +211,5 @@ class GitHubData(JsonSerializable):
     def last_activity(self):
         """The creation of the last event"""
         if self._json_events and self._json_events["data"]:
-            return parse_datetime(self._json_events["data"][0]["created_at"])
+            return parse_date(self._json_events["data"][0]["created_at"])
         return self._kwargs.get("last_activity")

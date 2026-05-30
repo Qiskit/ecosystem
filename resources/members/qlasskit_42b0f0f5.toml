@@ -6,6 +6,7 @@ contact_info = "gessadavide@gmail.com"
 labels = []
 website = "https://dakk.github.io/qlasskit/"
 category = "Converter"
+documentation = "https://dakk.github.io/qlasskit/"
 uuid = "42b0f0f5-bdbd-4008-8749-955b496dab08"
 maturity = "production-ready"
 
@@ -13,15 +14,15 @@ maturity = "production-ready"
 url = "https://github.com/dakk/qlasskit"
 owner = "dakk"
 repo = "qlasskit"
-stars = 72
+stars = 73
 homepage = "https://dakk.github.io/qlasskit/"
 license = "Apache License 2.0"
 description = "A python-to-quantum compiler"
 estimated_contributors = 6
 total_dependent_repositories = 3
 total_dependent_packages = 0
-last_commit = 2026-01-03T11:55:19Z
-last_activity = 2026-03-26T08:48:40Z
+last_commit = 2026-01-03
+last_activity = 2026-05-11
 
 [badge]
 url = "https://qisk.it/e-42b0f0f5"
@@ -36,7 +37,8 @@ importance = "IMPORTANT"
 [pypi.qlasskit]
 package_name = "qlasskit"
 version = "0.1.39"
-last_release_date = 2026-01-03T11:54:54
+last_release_date = 2026-01-03
 url = "https://pypi.org/project/qlasskit/"
-last_month_downloads = 108
-last_180_days_downloads = 1183
+development_status = "5 - Production/Stable"
+last_month_downloads = 137
+last_180_days_downloads = 1116

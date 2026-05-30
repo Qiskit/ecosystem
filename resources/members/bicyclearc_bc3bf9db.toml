@@ -1,0 +1,26 @@
+name = "Bicycle Architecture Compiler"
+submission_number = 1172
+url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
+labels = []
+interfaces = [ "Rust",]
+category = "SDK"
+reference_paper = "https://arxiv.org/abs/2506.03094"
+packages = [ "https://crates.io/crates/bicycle_benchmark", "https://crates.io/crates/bicycle_cliffords", "https://crates.io/crates/bicycle_common", "https://crates.io/crates/bicycle_numerics", "https://crates.io/crates/bicycle_random_numerics",]
+uuid = "bc3bf9db-9ea3-4621-a70a-bd862b85cad4"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
+owner = "qiskit-community"
+repo = "bicycle-architecture-compiler"
+stars = 39
+license = "Apache License 2.0"
+description = "A compiler prototype targeting a bicycle architecture from PBC circuits"
+total_dependent_repositories = 0
+total_dependent_packages = 13
+last_commit = 2026-04-09
+last_activity = 2026-05-21
+
+[badge]
+url = "https://qisk.it/e-bc3bf9db"
+style = "flat"

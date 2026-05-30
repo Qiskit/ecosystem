@@ -5,14 +5,13 @@ import json
 import tomllib
 import os
 import re
-from typing import Optional, Tuple
+from typing import Optional
 from pathlib import Path
 from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
-from ecosystem.member import Member
 from ecosystem.error_handling import logger
 
 
@@ -35,44 +34,6 @@ class CliMembers:
         )
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
-
-    def add_repo_2db(
-        self,
-        repo_name: str,
-        repo_link: str,
-        repo_description: str,
-        repo_licence: str,
-        repo_contact: str,
-        repo_alt: str,
-        repo_affiliations: str,
-        repo_labels: Tuple[str],
-        repo_website: Optional[str] = None,
-    ) -> None:
-        """Adds repo to list of entries.
-
-        Args:
-            repo_name: repo name
-            repo_link: repo url
-            repo_description: repo description
-            repo_contact: repo email
-            repo_licence: repo licence
-            repo_affiliations: repo university, company, ...
-            repo_labels: comma separated labels
-            repo_website: link to project website
-        """
-
-        new_repo = Member(
-            repo_name,
-            repo_link,
-            repo_description,
-            repo_licence,
-            repo_contact,
-            repo_alt,
-            repo_affiliations,
-            list(repo_labels),
-            website=repo_website,
-        )
-        self.dao.write(new_repo)
 
     def create_badge_endpoints(
         self, name: str = None, example: str = None, output_directory: str = None
@@ -236,12 +197,30 @@ class CliMembers:
         """Updates status.json and status.md docs/assets/"""
         projects["Member"] += projects[None]
         del projects[None]
-        projects["total_in_website"] = (
-            len(projects["Member"])
-            + len(projects["Qiskit Project"])
-            + len(projects["Under revision"])
-        )
+
         self.update_assets_classification("status", "status classification", projects)
+        assets_dir = os.path.join(self.current_dir, "docs", "assets")
+
+        def writelines(classification, lines):
+            classification_md = os.path.join(
+                assets_dir, f"{slugify(classification)}.md"
+            )
+            os.makedirs(os.path.dirname(classification_md), exist_ok=True)
+            Path(classification_md).touch(exist_ok=True)
+
+            with open(classification_md, "w") as outfile:
+                outfile.writelines(lines)
+
+        for classification in ["Member", "Qiskit Project", "Under revision", "Alumni"]:
+            lines = [
+                f'???{"+" if classification in ["Under revision", "Alumni"] else ""} note '
+                f'"There are {len(projects[classification])} projects with this classification"'
+            ]
+            lines += [
+                f"\n     - [{p.name}](../p/{p.short_uuid})"
+                for p in projects[classification]
+            ]
+            writelines(classification, lines)
 
     def update_assets_maturity(self, projects):
         """Updates maturity.json and maturity.md docs/assets/"""
@@ -312,7 +291,9 @@ class CliMembers:
                 lines.append(
                     f'??? note "There are {len(projects[name])} projects with this classification"'
                 )
-                lines += [f"\n     - {p.name}" for p in projects[name]]
+                lines += [
+                    f"\n     - [{p.name}](../p/{p.short_uuid})" for p in projects[name]
+                ]
             else:
                 lines.append("**No project with this classification**")
             lines += ["\n\n", description, "\n\n"]
@@ -410,15 +391,20 @@ class CliMembers:
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
 
-    def update_checkups(self, name=None):
+    def update_checkups(self, name=None, checker=None, update_all=False):
         """
         Updates checkups data.
-        If <name> is not given, runs on all the members.
-        Otherwise, all the members with name_id that contains <name>
-        as substring are checked.
+        Args:
+            name: If not given, runs on all the members. Otherwise, all the members with `name_id`
+             that contains <name> as substring are checked.
+            checker: It can be something like test_classifications.py::test_004 or nothing
+            update_all: If False (default) runs on all project. Otherwise Alumni are excluded.
         """
         for project in self.dao.get_all(name):
-            project.update_checkups()
+            if project.status == "Alumni" and not update_all:
+                # "Alumni" projects are not updated in their checkups
+                continue
+            project.update_checkups(checker=checker)
             if project.checks:
                 for checkup_id, checkup in project.checks.items():
                     if checkup.xfailed:
@@ -471,12 +457,20 @@ class CliMembers:
                 )
             self.dao.update(project.name_id, checks=project.checks)
 
-    def update_status(self, name=None):
-        """Check if a project should be moved to "Under revision" or "Alumni" """
+    def update_status(self, name=None, update_all=False):
+        """
+        Check if a project should be moved to "Under revision" or "Alumni"
+
+        Args:
+            name: project to udpate. None (default) if all of them.
+            update_all: Updates all the projects. If False (default) will not
+              update "Qiskit Project" or "Alumni"
+        """
         for project in self.dao.get_all(name):
-            if project.status == "Qiskit Project":
-                # Qiskit Project status is governed differently,
+            if project.status in ["Qiskit Project", "Alumni"] and not update_all:
+                # "Qiskit Project" status is governed differently,
                 # not via checkups in Qiskit Ecosystem.
+                # "Alumni" projects stay alumni
                 continue
 
             if project.status == "Under revision":
@@ -487,16 +481,16 @@ class CliMembers:
                 if check.xfailed:
                     # Xfails do not affect the status
                     continue
-                if not check.cure_period_in_days:
+                if check.cure_period_in_days is False:
                     # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
                     continue
                 deadline = check.since + timedelta(days=check.cure_period_in_days)
                 if datetime.today() > deadline:
                     # deadline passed
                     project.status = "Alumni"
-                else:
-                    # still in cure period
-                    project.status = "Under revision"
+                    break
+                # still in cure period
+                project.status = "Under revision"
             self.dao.update(project.name_id, status=project.status)
 
     def update_maturity(self, name=None):
