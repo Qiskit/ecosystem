@@ -12,12 +12,11 @@ jobs:
   validate_candidate:
     name: Validate member update or new candidate
     if: >
-      {{ contains(github.event.pull_request.labels.*.name, 'member update') || (
-          contains(github.event.pull_request.head.ref, 'submission')
-          &&
-          contains(github.event.pull_request.labels.*.name, 'submission')
-        )
-      }}
+      contains(github.event.pull_request.labels.*.name, 'member update') || (
+      contains(github.event.pull_request.head.ref, 'submission')
+      &&
+      contains(github.event.pull_request.labels.*.name, 'submission')
+      )
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
