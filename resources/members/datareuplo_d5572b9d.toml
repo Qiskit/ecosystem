@@ -7,10 +7,10 @@ labels = [ "QML", "optimization", "quantum information", "research", "circuit bu
 interfaces = [ "Python",]
 website = "https://casiriorg.github.io/projects/qiskit-data-reuploading/"
 category = "Paper artifact"
-pattern_steps = [ "Execute", "Map", "Optimize",]
+pattern_steps = [ "Map"]
 reference_paper = "https://arxiv.org/abs/2605.19233"
 documentation = "https://casiriorg.github.io/projects/qiskit-data-reuploading/api/"
-packages = [ "https://pypi.org/project/qiskit-data-reuploading/0.1.0/",]
+packages = [ "https://pypi.org/project/qiskit-data-reuploading/"]
 uuid = "d5572b9d-91eb-46e1-94ac-7515fb753b1f"
 maturity = "experimental"
 
