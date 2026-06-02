@@ -12,12 +12,11 @@ jobs:
   validate_candidate:
     name: Validate member update or new candidate
     if: >
-      {{ contains(github.event.pull_request.labels.*.name, 'member update') || (
-          contains(github.event.pull_request.head.ref, 'submission')
-          &&
-          contains(github.event.pull_request.labels.*.name, 'submission')
-        )
-      }}
+      contains(github.event.pull_request.labels.*.name, 'member update') || (
+      contains(github.event.pull_request.head.ref, 'submission')
+      &&
+      contains(github.event.pull_request.labels.*.name, 'submission')
+      )
     runs-on: ubuntu-latest
     env:
       python-version: "3.13"
@@ -66,7 +65,7 @@ jobs:
             echo "No new sections to commit"
           else
             git commit -am "Update sections" --allow-empty
-
+          fi
       - name: Fetch data
         if: github.event.pull_request.draft == false
         run: python manager.py ci update_member_data ${{ steps.get-id.outputs.id }}
@@ -79,7 +78,7 @@ jobs:
             echo "No new data to commit"
           else
             git commit -am "Update data" --allow-empty
-
+          fi
       - name: Create badge
         if: github.event.review.state == 'approved'
         env:
@@ -92,7 +91,7 @@ jobs:
             echo "No badge to commit"
           else
             git commit -am "Update badge" --allow-empty
-
+          fi
       - name: Push sections
         if: always()
         run: git push --verbose
