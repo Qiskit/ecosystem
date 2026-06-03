@@ -38,11 +38,12 @@ importance = "IMPORTANT"
 package_name = "ffsim"
 version = "0.0.80"
 last_release_date = 2026-05-06
+description = "Faster simulation of fermionic quantum circuits."
 url = "https://pypi.org/project/ffsim/"
 requires_qiskit = ">=1.3"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 19679
-last_180_days_downloads = 73169
+last_month_downloads = 19369
+last_180_days_downloads = 71988

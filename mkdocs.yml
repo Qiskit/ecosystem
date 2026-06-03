@@ -47,8 +47,7 @@ plugins:
   - gen-files:
       scripts:
         - ecosystem/generate_project_pages.py
-  - literate-nav:
-      nav_file: SUMMARY.md
+  - literate-nav
   - charts
 
 nav:

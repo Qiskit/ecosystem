@@ -33,6 +33,7 @@ style = "flat"
 package_name = "gulps"
 version = "0.3.6"
 last_release_date = 2026-05-13
+description = "optimally compile arbitrary two-qubit unitaries"
 url = "https://pypi.org/project/gulps/"
 development_status = "4 - Beta"
 requires_qiskit = "<3,>=2.0"
@@ -40,5 +41,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 274
-last_180_days_downloads = 1020
+last_month_downloads = 467
+last_180_days_downloads = 1240

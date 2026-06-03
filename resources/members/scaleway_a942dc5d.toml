@@ -37,11 +37,12 @@ importance = "IMPORTANT"
 package_name = "qiskit-scaleway"
 version = "0.3.11"
 last_release_date = 2026-05-12
+description = "A Qiskit package to connect to Scaleway Quantum as a Service"
 url = "https://pypi.org/project/qiskit-scaleway/"
 requires_qiskit = "~=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 353
-last_180_days_downloads = 1879
+last_month_downloads = 362
+last_180_days_downloads = 1764

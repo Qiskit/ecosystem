@@ -44,11 +44,12 @@ importance = "IMPORTANT"
 package_name = "pyriemann-qiskit"
 version = "0.5.0"
 last_release_date = 2026-04-22
+description = "Qiskit wrapper for pyRiemann"
 url = "https://pypi.org/project/pyriemann-qiskit/"
 requires_qiskit = "==1.*"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 149
-last_180_days_downloads = 455
+last_month_downloads = 54
+last_180_days_downloads = 451

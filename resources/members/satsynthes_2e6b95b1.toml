@@ -42,11 +42,12 @@ importance = "IMPORTANT"
 package_name = "qiskit-sat-synthesis"
 version = "0.0.2"
 last_release_date = 2024-12-24
+description = "Sat-based synthesis plugins for Qiskit"
 url = "https://pypi.org/project/qiskit-sat-synthesis/"
 requires_qiskit = ">=1.2.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 35
-last_180_days_downloads = 172
+last_month_downloads = 26
+last_180_days_downloads = 169

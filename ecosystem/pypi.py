@@ -28,6 +28,7 @@ class PyPIData(JsonSerializable):
         "version",
         "last_release_date",
         "license",
+        "description",
         "url",
         "development_status",
         "requires_qiskit",
@@ -42,6 +43,7 @@ class PyPIData(JsonSerializable):
         "version": "info.version",
         "url": "info.package_url",
         "license": "info.license_expression",
+        "description": "info.summary",
         "development_status": "info.classifiers[?('Development Status' in @)]",
     }
     # runs on each findall element
@@ -119,6 +121,9 @@ class PyPIData(JsonSerializable):
 
         if item in self._kwargs:
             return self._kwargs[item]
+
+        if item in self.dict_keys:
+            return None
 
         raise AttributeError(
             f"'{type(self).__name__}' object has no attribute '{item}'"

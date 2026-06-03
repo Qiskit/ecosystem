@@ -39,6 +39,7 @@ package_name = "autoscheduler"
 version = "1.2.1"
 last_release_date = 2025-06-12
 license = "MIT"
+description = "A library for quantum circuit composition"
 url = "https://pypi.org/project/autoscheduler/"
 development_status = "4 - Beta"
 requires_qiskit = "<3.0.0,>=1.1.0"
@@ -46,5 +47,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 67
-last_180_days_downloads = 591
+last_month_downloads = 74
+last_180_days_downloads = 589

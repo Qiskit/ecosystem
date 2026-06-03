@@ -37,11 +37,12 @@ importance = "IMPORTANT"
 package_name = "qiskit-braket-provider"
 version = "0.14.4"
 last_release_date = 2026-03-12
+description = "Qiskit-Braket provider to execute Qiskit programs on devices via Amazon Braket."
 url = "https://pypi.org/project/qiskit-braket-provider/"
 requires_qiskit = ">=0.34.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 9148
-last_180_days_downloads = 36800
+last_month_downloads = 9066
+last_180_days_downloads = 38531

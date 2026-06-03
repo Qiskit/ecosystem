@@ -37,6 +37,7 @@ importance = "IMPORTANT"
 package_name = "pennylane-qiskit"
 version = "0.45.0"
 last_release_date = 2026-05-12
+description = "PennyLane plugin for Qiskit"
 url = "https://pypi.org/project/PennyLane-qiskit/"
 development_status = "4 - Beta"
 requires_qiskit = "<2.2,>=2.0"
@@ -44,5 +45,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-08-19
 highest_supported_qiskit_version = "2.1.2"
-last_month_downloads = 30797
-last_180_days_downloads = 125243
+last_month_downloads = 24653
+last_180_days_downloads = 124263

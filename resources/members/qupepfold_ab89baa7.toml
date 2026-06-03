@@ -37,11 +37,12 @@ importance = "IMPORTANT"
 package_name = "qupepfold"
 version = "0.9.0"
 last_release_date = 2026-04-27
+description = "QuPepFold: Quantum peptide folding simulations with Qiskit"
 url = "https://pypi.org/project/qupepfold/"
 requires_qiskit = ">=0.39"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 348
-last_180_days_downloads = 1216
+last_month_downloads = 163
+last_180_days_downloads = 1241
