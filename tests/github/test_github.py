@@ -2,7 +2,7 @@
 
 from unittest import TestCase
 from unittest.mock import patch
-from datetime import datetime
+from datetime import date
 from ecosystem.github import GitHubData
 from ecosystem.request import URL
 from ecosystem.error_handling import EcosystemError
@@ -138,7 +138,7 @@ class TestGitHubDataGetattr(TestCase):
         )
 
     def test_getattr_alias_last_commit(self):
-        """gh.last_commit resolves via alias pushed_at and returns a datetime"""
+        """gh.last_commit resolves via alias pushed_at and returns a date"""
         with patch("ecosystem.github.request_json") as mock_request:
             mock_request.side_effect = [
                 {"pushed_at": "2024-01-01T12:00:00", "_requested_at_": "2024-01-01"},
@@ -147,7 +147,7 @@ class TestGitHubDataGetattr(TestCase):
                 {},
             ]
             self.gh.update_json()
-        self.assertIsInstance(self.gh.last_commit, datetime)
+        self.assertIsInstance(self.gh.last_commit, date)
 
     def test_getattr_description_truncated(self):
         """description longer than 135 characters is truncated with ellipsis"""
