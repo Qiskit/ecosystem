@@ -36,7 +36,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         submission_number: int | None = None,
         url: str | URL | None = None,
         description: str | None = None,
-        license: str | None = None,
+        license: str | None = None,  # pylint: disable=redefined-builtin
         contact_info: str | None = None,
         affiliations: str | None = None,
         labels: list[str] | None = None,

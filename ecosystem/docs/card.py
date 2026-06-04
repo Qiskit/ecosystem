@@ -32,6 +32,7 @@ class Card:
     body_lines: Optional[list[str]] = None
 
     def title_lines(self):
+        """ Lines with titles"""
         full_title = "-   "
         if not self.title:
             return [full_title, ""]
@@ -60,6 +61,7 @@ class Card:
         )
 
     def generate(self):
+        """Generates the text for the card by combining lines"""
         return self.title_lines() + [f"    {l}" for l in self.body_lines]
 
     def bullet(self, icon, value, annotation=None):
@@ -149,6 +151,7 @@ class ProjectSummaryCard(Card):
 
     @classmethod
     def from_project(cls, project: Member):
+        """Create a card from a Member object"""
         return ProjectSummaryCard(
             licence=project.license,
             status=project.status,
@@ -162,6 +165,7 @@ class ProjectSummaryCard(Card):
 
     @property
     def status_title(self):
+        """Title with memmber.status"""
         match self.status:
             case "Qiskit Project":
                 return (
@@ -186,6 +190,7 @@ class ProjectSummaryCard(Card):
 
     @property
     def status_icon(self):
+        """Icon for title"""
         match self.status:
             case "Qiskit Project":
                 return ":simple-qiskit:"
@@ -198,6 +203,7 @@ class ProjectSummaryCard(Card):
 
     @property
     def status_annotation(self):
+        """Annotation for title"""
         match self.status:
             case "Qiskit Project":
                 return "[All the Qiskit Projects](../status/#qiskit-project)"
@@ -210,6 +216,7 @@ class ProjectSummaryCard(Card):
 
     @property
     def classifications_lines(self):
+        """All the bullets inthe main card"""
         ret = []
         ret += self.maturity_lines()
         ret += self.license_lines()
@@ -221,6 +228,7 @@ class ProjectSummaryCard(Card):
         return ret
 
     def maturity_lines(self):
+        """Bullet with member.maturity"""
         ret = []
         if self.status == "Alumni":
             return ret
