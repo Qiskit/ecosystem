@@ -12,7 +12,6 @@
 
 """CliMembers class for controlling all CLI functions."""
 
-from collections import defaultdict
 from datetime import datetime, timedelta
 import json
 import tomllib
@@ -172,29 +171,6 @@ class CliMembers:
         self.update_assets_labels(projects_per_classification["labels"])
         self.update_assets_interfaces(projects_per_classification["interfaces"])
 
-        packages = self._all_packages()
-        self.update_assets_pypi(packages["pypi"])
-
-    def _all_packages(self):
-        """ """
-        pkg_managers = {"pypi": {}, "julia": {}}
-        for project in self.dao.get_all():
-            if project.packages:
-                ...
-            if project.pypi:
-                for pkg in project.pypi.values():
-                    pkg_managers["pypi"][pkg.package_name] = {
-                        "project": project,
-                        "package": pkg,
-                    }
-            if project.julia:
-                for pkg in project.julia.values():
-                    pkg_managers["julia"][pkg.package_name] = {
-                        "project": project,
-                        "package": pkg,
-                    }
-        return pkg_managers
-
     def _all_projects_classifications(self, *classifications):
         """
         <classifications> is a list of attributes in each project to extract.
@@ -273,71 +249,6 @@ class CliMembers:
     def update_assets_interfaces(self, projects):
         """Updates interfaces.json and interfaces.md docs/assets/"""
         self.update_assets_classification("interfaces", "interface", projects)
-
-    def update_assets_pypi(self, packages):
-        assets_dir = os.path.join(self.current_dir, "docs", "assets")
-
-        pypi_packages_json = os.path.join(assets_dir, f"pypi_packages.json")
-        os.makedirs(os.path.dirname(pypi_packages_json), exist_ok=True)
-        Path(pypi_packages_json).touch(exist_ok=True)
-
-        packages_json = {
-            "packages": [],
-        }
-        for project_package in packages.values():
-            project = project_package["project"]
-            package = project_package["package"]
-            pkg = package.to_dict()
-            pkg["project"] = project.to_dict()
-            packages_json["packages"].append(pkg)
-
-        def groupby(l, key=lambda x: x):
-            d = defaultdict(list)
-            for item in l:
-                d[key(item)].append(item)
-            return d.items()
-
-        packages_json["counters"] = {
-            "requires_qiskit": sum(
-                1 for p in packages_json["packages"] if p.get("requires_qiskit", False)
-            ),
-            "compatible_with_qiskit_v1": sum(
-                1
-                for p in packages_json["packages"]
-                if p.get("compatible_with_qiskit_v1", False)
-            ),
-            "compatible_with_qiskit_v2": sum(
-                1
-                for p in packages_json["packages"]
-                if p.get("compatible_with_qiskit_v2", False)
-            ),
-            "ibm_maintained": sum(
-                1
-                for p in packages_json["packages"]
-                if p["project"].get("ibm_maintained", False)
-            ),
-            "maturity": {
-                k: len(list(v))
-                for k, v in groupby(
-                    packages_json["packages"], lambda x: x["project"].get("maturity")
-                )
-            },
-            "status": {
-                k: len(list(v))
-                for k, v in groupby(
-                    packages_json["packages"], lambda x: x["project"].get("status")
-                )
-            },
-            "category": {
-                k: len(list(v))
-                for k, v in groupby(
-                    packages_json["packages"], lambda x: x["project"].get("category")
-                )
-            },
-        }
-
-        with open(pypi_packages_json, "w") as f:
-            json.dump(packages_json, f, default=lambda x: str(x))
 
     def update_assets_classification(
         self, classification, classification_singular, projects

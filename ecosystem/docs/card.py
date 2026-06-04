@@ -393,11 +393,12 @@ class PypiPackageCard(Card):
             f'[{self.version}]( {self.url} "Released: {self.last_release_date}")',
             "",
         ]
-        ret += [
-            ":material-download: "
-            f"**last month** {self.last_month_downloads:,} "
-            f"**last 180 days** {self.last_180_days_downloads:,}"
-        ]
+        if self.last_month_downloads and self.last_180_days_downloads:
+            ret += [
+                ":material-download: "
+                f"**last month** {self.last_month_downloads:,} "
+                f"**last 180 days** {self.last_180_days_downloads:,}"
+            ]
         if self.requires_qiskit:
             ret += [
                 "",
