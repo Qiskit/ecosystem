@@ -32,6 +32,7 @@ style = "flat"
 package_name = "arvak-lite"
 version = "0.1.1"
 last_release_date = 2026-03-08
+description = "Lightweight quantum circuit compiler. Drop-in replacement for Qiskit transpile, Cirq optimize, and more. Powered by Arvak."
 url = "https://pypi.org/project/arvak-lite/"
 development_status = "4 - Beta"
 requires_qiskit = ">=1.0.0"
@@ -39,5 +40,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 40
-last_180_days_downloads = 292
+last_month_downloads = 57
+last_180_days_downloads = 312

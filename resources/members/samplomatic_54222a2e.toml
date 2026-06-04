@@ -32,6 +32,7 @@ package_name = "samplomatic"
 version = "0.19.0"
 last_release_date = 2026-05-19
 license = "Apache-2.0"
+description = "Serving all of your circuit sampling needs since 2025."
 url = "https://pypi.org/project/samplomatic/"
 development_status = "3 - Alpha"
 requires_qiskit = ">=2.3.0"
@@ -39,5 +40,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 250081
-last_180_days_downloads = 472523
+last_month_downloads = 243810
+last_180_days_downloads = 559253

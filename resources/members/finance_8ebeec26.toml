@@ -1,7 +1,7 @@
 name = "Qiskit Finance"
 url = "https://github.com/qiskit-community/qiskit-finance"
 description = "Includes uncertainty components for stock/securities problems, Ising translators for portfolio optimizations, and data providers."
-licence = "Apache 2.0"
+license = "Apache 2.0"
 labels = [ "finance",]
 created_at = 1636403009.368607
 updated_at = 1636403009.368609
@@ -37,11 +37,12 @@ importance = "IMPORTANT"
 package_name = "qiskit-finance"
 version = "0.4.1"
 last_release_date = 2024-02-29
+description = "Qiskit Finance: A library of quantum computing finance experiments"
 url = "https://pypi.org/project/qiskit-finance/"
 requires_qiskit = ">=0.45"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 11062
-last_180_days_downloads = 59364
+last_month_downloads = 11349
+last_180_days_downloads = 59460

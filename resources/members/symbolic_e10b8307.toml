@@ -1,7 +1,7 @@
 name = "symbolic-qiskit"
 url = "https://github.com/ianchung621/symbolic-qiskit"
 description = "Symbolic simulator for Qiskit circuits using sympy backend, supporting mid-circuit measurement and state inspection."
-licence = "Apache License 2.0"
+license = "Apache License 2.0"
 contact_info = "ianchung621@gmail.com"
 affiliations = "National Taiwan University, Physics"
 labels = [ "quantum information",]
@@ -35,11 +35,12 @@ importance = "IMPORTANT"
 package_name = "symbolic-qiskit"
 version = "0.1.0a1"
 last_release_date = 2025-06-27
+description = "Symbolic simulator for qiskit circuits using sympy backend, supporting mid-circuit measurement and state inspection."
 url = "https://pypi.org/project/symbolic-qiskit/"
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 22
-last_180_days_downloads = 80
+last_month_downloads = 15
+last_180_days_downloads = 79

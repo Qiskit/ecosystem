@@ -55,7 +55,7 @@ class CliCI:
 
     @staticmethod
     def create_sections(member_id: str, *, resources_dir: str | None = None) -> None:
-        """TODO
+        """unfolds all the sections for the projects
 
         Args:
             member_id: loads the file ../resources/*_<member_id>.toml

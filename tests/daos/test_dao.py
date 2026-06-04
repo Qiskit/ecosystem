@@ -28,7 +28,7 @@ def get_main_repo() -> Member:
         name="mock-qiskit-terra-with-success-dev-test",
         url="https://github.com/MockQiskit/mock-qiskit-wsdt.terra",
         description="Mock description for repo. wsdt",
-        licence="Apache 2.0",
+        license="Apache 2.0",
         labels=["mock", "tests", "wsdt"],
         website="https://example.org",
     )

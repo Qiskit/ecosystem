@@ -1,7 +1,7 @@
 name = "Alice & Bob Qiskit provider"
 url = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider"
 description = "Access Alice & Bob QPUs and emulators using Qiskit."
-licence = "Apache 2.0"
+license = "Apache 2.0"
 labels = [ "cloud service",]
 created_at = 1715084994.136498
 category = "Compute provider"
@@ -44,11 +44,12 @@ importance = "IMPORTANT"
 package_name = "qiskit-alice-bob-provider"
 version = "1.2.0"
 last_release_date = 2025-03-27
+description = "Provider for running Qiskit circuits on Alice & Bob QPUs and simulators"
 url = "https://pypi.org/project/qiskit-alice-bob-provider/"
 requires_qiskit = "<2.0,>=1.3.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 159
-last_180_days_downloads = 1389
+last_month_downloads = 207
+last_180_days_downloads = 1455

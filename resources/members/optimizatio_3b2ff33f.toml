@@ -1,7 +1,7 @@
 name = "Qiskit Optimization"
 url = "https://github.com/qiskit-community/qiskit-optimization"
 description = "Model optimization problems, convert them between different representations, and solve them with quantum algorithms."
-licence = "Apache 2.0"
+license = "Apache 2.0"
 labels = [ "optimization",]
 created_at = 1636403009.538761
 updated_at = 1636403009.538763
@@ -37,11 +37,12 @@ importance = "IMPORTANT"
 package_name = "qiskit-optimization"
 version = "0.7.0"
 last_release_date = 2025-08-20
+description = "Qiskit Optimization: A library for optimization applications using quantum computing"
 url = "https://pypi.org/project/qiskit-optimization/"
 requires_qiskit = "<3,>=1.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 37855
-last_180_days_downloads = 188624
+last_month_downloads = 37677
+last_180_days_downloads = 188773

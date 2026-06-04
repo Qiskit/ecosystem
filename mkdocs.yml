@@ -30,6 +30,7 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - abbr
+  - tables
   - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
@@ -46,8 +47,7 @@ plugins:
   - gen-files:
       scripts:
         - ecosystem/generate_project_pages.py
-  - literate-nav:
-      nav_file: SUMMARY.md
+  - literate-nav
   - charts
 
 nav:
@@ -55,8 +55,8 @@ nav:
   - Projects:
     - Summary: summary.md
     - All: p/
+    - in PyPI: pypi/
 #    - in GitHub: p/
-#    - in PyPI: p/
   - Classifications:
     - Status: status.md
     - Categories: categories.md

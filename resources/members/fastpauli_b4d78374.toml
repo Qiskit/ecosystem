@@ -1,7 +1,7 @@
 name = "fast-pauli"
 url = "https://github.com/qognitive/fast-pauli"
 description = "Conduct efficient multiplication of tensor products of Pauli matrices against a batch of vectors and other mathematical operations."
-licence = "BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"
+license = "BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"
 contact_info = "dev@qognitive.io"
 affiliations = "Qognitive Inc"
 labels = []
@@ -40,11 +40,12 @@ importance = "IMPORTANT"
 package_name = "fast-pauli"
 version = "0.0.35"
 last_release_date = 2025-04-09
+description = "fast pauli"
 url = "https://pypi.org/project/fast-pauli/"
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 275
-last_180_days_downloads = 2751
+last_month_downloads = 508
+last_180_days_downloads = 2875

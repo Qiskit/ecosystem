@@ -1,7 +1,7 @@
 name = "Qiskit Serverless"
 url = "https://github.com/Qiskit/qiskit-serverless"
 description = "Execute Qiskit programs as long-running jobs and distribute them across many CPUs, GPUs, and QPUs."
-licence = "Apache License 2.0"
+license = "Apache License 2.0"
 contact_info = "sanket@ibm.com"
 labels = [ "cloud service", "HPC",]
 ibm_maintained = true
@@ -39,8 +39,9 @@ importance = "IMPORTANT"
 
 [pypi.qiskit-serverless]
 package_name = "qiskit-serverless"
-version = "0.31.0"
+version = "0.32.0"
 last_release_date = 2026-04-22
+description = "An open-source SDK for resource management in quantum computing workflows."
 url = "https://pypi.org/project/qiskit-serverless/"
 development_status = "3 - Alpha"
 requires_qiskit = "<3,>=1.4"
@@ -48,5 +49,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 13591
-last_180_days_downloads = 59239
+last_month_downloads = 12265
+last_180_days_downloads = 61014

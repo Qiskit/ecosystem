@@ -148,6 +148,13 @@ class URL:
             self.parse_url()
         return self._parse_result.path
 
+    @property
+    def query(self):
+        """Query part of the URL"""
+        if self._parse_result is None:
+            self.parse_url()
+        return self._parse_result.query
+
     def __eq__(self, other):
         return str(self) == str(other)
 

@@ -1,7 +1,7 @@
 name = "Qiskit Research"
 url = "https://github.com/qiskit-community/qiskit-research"
 description = "Software utilities for running quantum computing research experiments using Qiskit and the IBM Quantum Services."
-licence = "Apache 2.0"
+license = "Apache 2.0"
 labels = []
 created_at = 1662992208.202283
 updated_at = 1662992208.20229
@@ -55,11 +55,12 @@ importance = "CRITICAL"
 package_name = "qiskit-research"
 version = "0.0.4"
 last_release_date = 2024-09-26
+description = "Research using Qiskit, demonstrating best practices for running quantum computing experiments."
 url = "https://pypi.org/project/qiskit-research/"
 requires_qiskit = "==1.1.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-06-20
 highest_supported_qiskit_version = "1.1.1"
-last_month_downloads = 67
-last_180_days_downloads = 577
+last_month_downloads = 64
+last_180_days_downloads = 455

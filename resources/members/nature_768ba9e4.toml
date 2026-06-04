@@ -1,7 +1,7 @@
 name = "Qiskit Nature"
 url = "https://github.com/qiskit-community/qiskit-nature"
 description = "Model and solve problems in physics, chemistry, material science, and biology by using quantum simulations."
-licence = "Apache 2.0"
+license = "Apache 2.0"
 labels = [ "chemistry", "physics",]
 created_at = 1636403009.16708
 updated_at = 1636403009.167082
@@ -35,13 +35,14 @@ importance = "IMPORTANT"
 
 [pypi.qiskit-nature]
 package_name = "qiskit-nature"
-version = "0.7.2"
+version = "0.8.0"
 last_release_date = 2024-02-23
+description = "Qiskit Nature: A library of quantum computing chemistry/physics experiments"
 url = "https://pypi.org/project/qiskit-nature/"
 requires_qiskit = ">=0.44"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 39617
-last_180_days_downloads = 216388
+last_month_downloads = 34911
+last_180_days_downloads = 213589

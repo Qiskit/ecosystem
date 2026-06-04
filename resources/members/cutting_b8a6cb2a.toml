@@ -1,7 +1,7 @@
 name = "Circuit Cutting"
 url = "https://github.com/Qiskit/qiskit-addon-cutting"
 description = "Cut large circuits into smaller, hardware-executable circuits, then use their results to reconstruct the original outcome."
-licence = "Apache License 2.0"
+license = "Apache License 2.0"
 labels = [ "circuit optimization", "utility-scale",]
 interfaces = [ "Python",]
 ibm_maintained = true
@@ -36,6 +36,7 @@ style = "flat"
 package_name = "qiskit-addon-cutting"
 version = "0.10.0"
 last_release_date = 2025-03-28
+description = "Reduce width and depth of quantum circuits by cutting gates and wires."
 url = "https://pypi.org/project/qiskit-addon-cutting/"
 requires_qiskit = "<3,>=1.3.1"
 compatible_with_qiskit_v1 = true

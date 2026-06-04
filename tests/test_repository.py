@@ -29,7 +29,7 @@ class TestMember(unittest.TestCase):
             name="mock-qiskit-terra",
             url="https://github.com/MockQiskit/mock-qiskit.terra",
             description="Mock description for repo.",
-            licence="Apache 2.0",
+            license="Apache 2.0",
             labels=["mock", "tests"],
             website="https://example.org",
         )

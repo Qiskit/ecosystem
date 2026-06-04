@@ -1,7 +1,7 @@
 name = "Azure Quantum"
 url = "https://github.com/microsoft/azure-quantum-python"
 description = "Submit quantum jobs written in Q#, Qiskit, or Cirq to the Azure Quantum service."
-licence = "MIT license"
+license = "MIT license"
 labels = [ "provider", "cloud service",]
 interfaces = [ "Python",]
 created_at = 1715084759.598566
@@ -30,8 +30,9 @@ style = "flat"
 
 [pypi.azure-quantum]
 package_name = "azure-quantum"
-version = "3.9.1"
+version = "3.10.0"
 last_release_date = 2026-03-23
+description = "Python client for Azure Quantum"
 url = "https://pypi.org/project/azure-quantum/"
-last_month_downloads = 25541
-last_180_days_downloads = 114073
+last_month_downloads = 24366
+last_180_days_downloads = 115965

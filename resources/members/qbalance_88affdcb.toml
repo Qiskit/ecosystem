@@ -30,8 +30,9 @@ style = "flat"
 
 [pypi.qbalance]
 package_name = "qbalance"
-version = "0.1.0"
+version = "0.1.1"
 last_release_date = 2026-05-03
+description = "Balancing workflow library for quantum compilation/mitigation benchmarking with Qiskit."
 url = "https://pypi.org/project/qbalance/"
 development_status = "3 - Alpha"
 requires_qiskit = ">=2.0"
@@ -39,5 +40,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 169
-last_180_days_downloads = 169
+last_month_downloads = 185
+last_180_days_downloads = 302
