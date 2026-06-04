@@ -32,7 +32,7 @@ class Card:
     body_lines: Optional[list[str]] = None
 
     def title_lines(self):
-        """ Lines with titles"""
+        """Lines with titles"""
         full_title = "-   "
         if not self.title:
             return [full_title, ""]
