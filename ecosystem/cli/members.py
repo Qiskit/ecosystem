@@ -562,7 +562,7 @@ class CliMembers:
         member_data_to_export = {
             "uuid": "uuid",
             "name": "name",
-            "url": "github.url",
+            "url": ["github.url", "url"],
             "description": ["description", "github.description"],
             "licence": ["licence", "github.license"],
             "contact_info": "contact_info",
