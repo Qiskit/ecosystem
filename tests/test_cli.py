@@ -19,7 +19,7 @@ def get_community_repo() -> Member:
         name="mock-qiskit",
         url="https://github.com/MockQiskit/mock-qiskit",
         description="Mock description for repo",
-        licence="Apache 2.0",
+        license="Apache 2.0",
         labels=["mock", "tests"],
         badge="https://qisk.it/e",
         maturity="production-ready",

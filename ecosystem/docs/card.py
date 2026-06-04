@@ -10,6 +10,11 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+
+"""
+Cards for mkdocs grid https://squidfunk.github.io/mkdocs-material/reference/grids/
+"""
+
 from dataclasses import dataclass
 from typing import Optional
 
@@ -19,6 +24,8 @@ from ecosystem.classifications import ClassificationsToml
 
 @dataclass
 class Card:
+    """Base class for cards"""
+
     title: Optional[str] = None
     title_icon: Optional[str] = None
     title_annotation: Optional[str] = None
@@ -109,6 +116,8 @@ class Card:
 
 
 class ProjectSummaryCard(Card):
+    """Project card, with classifications"""
+
     classifications = ClassificationsToml()
 
     def __init__(
@@ -122,7 +131,7 @@ class ProjectSummaryCard(Card):
         status=None,
         maturity=None,
     ):
-        self.licence = licence
+        self.license = licence
         self.interfaces = interfaces
         self.category = category
         self.labels = labels
@@ -141,7 +150,7 @@ class ProjectSummaryCard(Card):
     @classmethod
     def from_project(cls, project: Member):
         return ProjectSummaryCard(
-            licence=project.licence,
+            licence=project.license,
             status=project.status,
             maturity=project.maturity,
             interfaces=project.interfaces,
@@ -155,13 +164,25 @@ class ProjectSummaryCard(Card):
     def status_title(self):
         match self.status:
             case "Qiskit Project":
-                return f"**Qiskit Project**{{style='font-size: 1.25em;' title='{self.classifications.status_descriptions['Qiskit Project']}'}}"
+                return (
+                    "**Qiskit Project**{{style='font-size: 1.25em;' "
+                    f"title='{self.classifications.status_descriptions['Qiskit Project']}'}}"
+                )
             case "Alumni":
-                return f"**Alumni project**{{style='font-size: 1.25em;' title='{self.classifications.status_descriptions['Alumni']}'}}"
+                return (
+                    "**Alumni project**{{style='font-size: 1.25em;' "
+                    f"title='{self.classifications.status_descriptions['Alumni']}'}}"
+                )
             case "Under revision":
-                return f"**Project under revision**{{style='font-size: 1.25em;' title='{self.classifications.status_descriptions['Under revision']}'}}"
+                return (
+                    "**Project under revision**{{style='font-size: 1.25em;' "
+                    f"title='{self.classifications.status_descriptions['Under revision']}'}}"
+                )
             case _:
-                return f"**Qiskit Ecosystem Member**{{style='font-size: 1.25em;' title='{self.classifications.status_descriptions['Member']}'}}"
+                return (
+                    "**Qiskit Ecosystem Member**{{style='font-size: 1.25em;' "
+                    f"title='{self.classifications.status_descriptions['Member']}'}}"
+                )
 
     @property
     def status_icon(self):
@@ -215,36 +236,40 @@ class ProjectSummaryCard(Card):
             # Full support
             return self.bullet(
                 icons["production-ready"],
-                f"**{self.maturity}**{{title='{self.classifications.maturity_descriptions[self.maturity]}'}}",
+                f"**{self.maturity}**{{title='"
+                f"{self.classifications.maturity_descriptions[self.maturity]}'}}",
                 "[All the production-ready project](#)",
             )
-        elif self.maturity in ["bugfixing only", "deprecated", "experimental"]:
+        if self.maturity in ["bugfixing only", "deprecated", "experimental"]:
             # Limited support
             return self.bullet(
                 icons[self.maturity],
-                f"**Limited support**{{title='{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
+                "**Limited support**{{title='"
+                f"{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
                 "[All the production-ready project](#)",
             )
-            ret.append(f"**Limited support** {p.maturity} (1)")
-        elif self.maturity in ["archived", "as-is"]:
+        if self.maturity in ["archived", "as-is"]:
             # No support
             return self.bullet(
                 icons[self.maturity],
-                f"**No support**{{title='{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
+                "**No support**{{title='"
+                f"{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
                 "[All the projects without support](#)",
             )
         return ret
 
     def license_lines(self):
-        if self.licence:
+        """Bullet for member.license"""
+        if self.license:
             return self.bullet(
                 ":material-scale-balance:",
-                f"**License** {self.licence}",
-                f"[All the projects with {self.licence}](#)",
+                f"**License** {self.license}",
+                f"[All the projects with {self.license}](#)",
             )
         return []
 
     def interfaces_lines(self):
+        """Bullet for member.interfaces"""
         if self.interfaces:
             return self.multi_bullet(
                 ":material-api:",
@@ -255,6 +280,7 @@ class ProjectSummaryCard(Card):
         return []
 
     def category_lines(self):
+        """Bullet for member.category"""
         if self.category:
             return self.bullet(
                 ":material-label:",
@@ -264,6 +290,7 @@ class ProjectSummaryCard(Card):
         return []
 
     def labels_lines(self):
+        """Multi-bullet with member.labels"""
         if self.labels:
             return self.multi_bullet(
                 ":material-tag-multiple-outline:",
@@ -271,10 +298,10 @@ class ProjectSummaryCard(Card):
                 [f"`{l}`" for l in self.labels],
                 [f"[All the projects labeled with `{l}`](#)" for l in self.labels],
             )
-        else:
-            return self.bullet(":material-tag-off-outline:", "**No labels**")
+        return self.bullet(":material-tag-off-outline:", "**No labels**")
 
     def pattern_steps_lines(self):
+        """Bullet for member.pattern_steps"""
         if self.pattern_steps:
             return self.multi_bullet(
                 ":material-tally-mark-4:",
@@ -292,6 +319,7 @@ class ProjectSummaryCard(Card):
         return []
 
     def ibm_maintained_lines(self):
+        """Bullet for member.ibm_maintained"""
         if self.ibm_maintained:
             return self.bullet(
                 ":material-office-building:",
@@ -302,6 +330,7 @@ class ProjectSummaryCard(Card):
 
 
 class URLsCard(Card):
+    """List of URLs"""
 
     def __init__(self, project: Member):
         """ret += ["- ### :material-web: **URLs**", "", "    ---", ""]"""
@@ -313,6 +342,7 @@ class URLsCard(Card):
         )
 
     def list_of_links(self):
+        """List of links for the URL card"""
         ret = []
         if self.project.website:
             ret.append(f":material-web-box: [Website]({self.project.website})  ")
@@ -337,6 +367,8 @@ class URLsCard(Card):
 
 
 class PypiPackageCard(Card):
+    """Python package card"""
+
     def __init__(
         self,
         package_name=None,
@@ -373,6 +405,7 @@ class PypiPackageCard(Card):
 
     @classmethod
     def from_pypi_data(cls, package):
+        """Construct a card from a PyPIData"""
         return PypiPackageCard(
             package_name=package.package_name,
             version=package.version,
@@ -388,6 +421,7 @@ class PypiPackageCard(Card):
         )
 
     def body(self):
+        """Returns a list of lines for the the card body"""
         ret = [
             ":fontawesome-regular-paper-plane: **current release** "
             f'[{self.version}]( {self.url} "Released: {self.last_release_date}")',

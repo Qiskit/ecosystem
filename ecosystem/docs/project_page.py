@@ -10,6 +10,10 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+"""
+Pages inhttps://qiskit.github.io/ecosystem/p/<short uuid>
+"""
+
 import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
@@ -39,6 +43,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         return lines
 
     def general_summary(self):
+        """Summary section"""
         return (
             ['<div class="grid cards" markdown>', ""]
             + self.classification_card()
@@ -47,6 +52,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         )
 
     def packages(self):
+        """Package section"""
         packages = {}
         if self.project.packages:
             sites = []
@@ -55,21 +61,24 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                     sites.append(
                         (
                             "material-microsoft-visual-studio",
-                            f"[Visual Studio Marketplace: {package.query.split('=')[1]}]({package})",
+                            "[Visual Studio Marketplace: "
+                            f"{package.query.split('=')[1]}]({package})",
                         )
                     )
                 elif "ocaml.org" in package.hostname:
                     sites.append(
                         (
                             "simple-ocaml",
-                            f"[opam (OCaml Package Manager): {package.path.split('/')[2]}]({package})",
+                            "[opam (OCaml Package Manager): "
+                            f"{package.path.split('/')[2]}]({package})",
                         )
                     )
                 elif "github.com" in package.hostname:
                     sites.append(
                         (
                             "simple-github",
-                            f"[GitHub Package: {package.path.split('/')[5]}]({package})",
+                            "[GitHub Package: "
+                            f"{package.path.split('/')[5]}]({package})",
                         )
                     )
                 elif "crates.io" in package.hostname:
@@ -150,6 +159,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         ]
 
     def classification_card(self):  # pylint: disable=too-many-branches
+        """Card with all the project classificaitons"""
         return ProjectSummaryCard.from_project(self.project).generate()
 
     def checkups(self):
@@ -183,8 +193,11 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             'data-clipboard-target="#__code___code_0 &gt; code" '
             'data-md-type="copy">',
             f'<img src="{self.project.badge.url}">',
-            f'</button><pre style="width:600px; margin:0px" id="__code_0"><code tabindex="0">{self.project.badge_md}</code></pre></div>',
-            f"\n**style** `{self.project.badge.style}`  \n Check out [Badges section](../badges) to learn more about how badges are used for status communicaiton or on how to change the badge style.",
+            '</button><pre style="width:600px; margin:0px" id="__code_0">'
+            f'<code tabindex="0">{self.project.badge_md}</code></pre></div>',
+            f"\n**style** `{self.project.badge.style}`  \n Check out [Badges section]"
+            "(../badges) to learn more about how badges are used for status communicaiton "
+            "or on how to change the badge style.",
         ]
         return lines
 

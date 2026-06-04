@@ -10,6 +10,9 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+
+"""Pages in https://qiskit.github.io/ecosystem/pypi/<package-name>"""
+
 from ecosystem.docs.card import ProjectSummaryCard, PypiPackageCard
 from .project_page import ProjectPage
 
@@ -28,11 +31,10 @@ class PypiPage(ProjectPage):
         lines += self.front_matter()
         lines += self.title(self.package.package_name) + [""]
         lines += self.description() + [""]
-        lines += self.general_summary
+        lines += self.general_summary()
         # lines += self.checkups()
         return lines
 
-    @property
     def general_summary(self):
         return (
             ['<div class="grid cards" markdown>', ""]
@@ -42,6 +44,7 @@ class PypiPage(ProjectPage):
         )
 
     def description(self):
+        """package summary and pip install command"""
         lines = []
         if self.package.description:
             lines += [f"> {self.package.description}", ""]
@@ -49,14 +52,16 @@ class PypiPage(ProjectPage):
         return lines
 
     def pypi_card(self):
+        """Python pacakge"""
         card = PypiPackageCard.from_pypi_data(self.package)
         card.title = None
         return card.generate()
 
     def project_card(self):
+        """Project summary, with project name in the title"""
         card = ProjectSummaryCard.from_project(self.project)
         card.body_lines = [
-            f":material-code-tags: **Project** [{self.project.name}](/p/{self.project.short_uuid}) ",
+            f":material-code-tags: **Project** [{self.project.name}](/p/{self.project.short_uuid})",
             "",
         ] + card.body_lines
         return card.generate()

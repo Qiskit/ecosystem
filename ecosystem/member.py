@@ -36,7 +36,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         submission_number: int | None = None,
         url: str | URL | None = None,
         description: str | None = None,
-        licence: str | None = None,
+        license: str | None = None,
         contact_info: str | None = None,
         affiliations: str | None = None,
         labels: list[str] | None = None,
@@ -64,7 +64,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.submission_number = submission_number
         self.url = URL(url) if isinstance(url, str) else url
         self.description = description
-        self.licence = licence
+        self.license = license
         self.contact_info = contact_info
         self.affiliations = affiliations
         self.labels = labels
@@ -159,7 +159,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         return (
             self.url == other.url
             and self.description == other.description
-            and self.licence == other.licence
+            and self.license == other.license
         )
 
     def __str__(self):
