@@ -4,6 +4,7 @@ description = "Convert between circuits, matrices, and bra-ket strings."
 license = "Apache License 2.0"
 labels = []
 website = "https://github.com/KMU-quantum-classroom"
+interfaces = [ "Python", ]
 category = "Converter"
 documentation = "https://kmu-quantum-classroom.github.io/qiskit-classroom-converter/"
 uuid = "bc3b8894-7e2b-4fa3-8cd2-550e58e4133b"

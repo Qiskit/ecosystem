@@ -4,6 +4,7 @@ description = "Execute Qiskit programs on AWS quantum computing hardware devices
 license = "Apache 2.0"
 labels = [ "provider", "cloud service",]
 created_at = 1715085130.096724
+interfaces = [ "Python", ]
 category = "Compute provider"
 documentation = "https://qiskit-braket-provider.readthedocs.io/"
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"

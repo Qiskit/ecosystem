@@ -4,6 +4,7 @@ description = "Qiskit adapter for IQM's quantum computers."
 license = "Apache 2.0"
 labels = [ "provider", "cloud service",]
 created_at = 1715085233.375706
+interfaces = [ "Python", ]
 category = "Compute provider"
 documentation = "https://iqm-finland.github.io/qiskit-on-iqm/"
 uuid = "648ef199-ace1-4c6b-ae9c-2c0578cde0d5"

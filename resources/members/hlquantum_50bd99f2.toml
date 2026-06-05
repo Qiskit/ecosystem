@@ -2,6 +2,7 @@ name = "HLQuantum"
 url = "https://github.com/AlinDanielFerenczi/HLQuantum"
 description = "A human oriented high-level Python package designed to simplify working with quantum algorithms and developing complex systems."
 labels = [ "circuit optimization", "circuit building", "research",]
+interfaces = [ "Python", ]
 category = "SDK"
 pattern_steps = [ "Map", "Execute",]
 documentation = "https://alindanielferenczi.github.io/HLQuantum/"
