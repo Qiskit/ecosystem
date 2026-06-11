@@ -24,12 +24,6 @@ last_activity = 2026-05-02
 url = "https://qisk.it/e-727120b2"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:59.186666
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qclib]
 package_name = "qclib"
 version = "0.1.15"

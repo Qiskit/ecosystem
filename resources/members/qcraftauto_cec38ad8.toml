@@ -29,12 +29,6 @@ last_activity = 2025-10-28T08:42:09Z
 url = "https://qisk.it/e-cec38ad8"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:39.561385
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.autoscheduler]
 package_name = "autoscheduler"
 version = "1.2.1"

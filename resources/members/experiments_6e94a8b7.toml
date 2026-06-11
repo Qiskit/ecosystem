@@ -30,12 +30,6 @@ last_activity = 2026-05-19
 url = "https://qisk.it/e-6e94a8b7"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:58.930764
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qiskit-experiments]
 package_name = "qiskit-experiments"
 version = "0.14.1"

@@ -30,12 +30,6 @@ last_activity = 2026-05-13
 url = "https://qisk.it/e-da29aca4"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:23:02.284539
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.piqture]
 package_name = "piqture"
 version = "0.2.0"

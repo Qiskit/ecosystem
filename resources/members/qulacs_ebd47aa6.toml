@@ -4,7 +4,7 @@ description = "Qiskit-Qulacs allows users to execute Qiskit programs using Qulac
 license = "Apache License 2.0"
 contact_info = "dahalegopal27@gmail.com"
 labels = [ "provider",]
-interfaces = [ "Python", ]
+interfaces = [ "Python",]
 category = "Compute provider"
 documentation = "https://qiskit-qulacs.netlify.app/"
 uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
@@ -27,12 +27,6 @@ last_activity = 2025-12-15T18:09:14Z
 [badge]
 url = "https://qisk.it/e-ebd47aa6"
 style = "flat"
-
-[checks.007]
-since = 2026-04-08T16:22:35.907114
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
 
 [pypi.qiskit-qulacs]
 package_name = "qiskit-qulacs"

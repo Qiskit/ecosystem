@@ -28,12 +28,6 @@ last_activity = 2026-01-31T21:44:44Z
 url = "https://qisk.it/e-bad95659"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:53.324798
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qupython]
 package_name = "qupython"
 version = "0.2.0"

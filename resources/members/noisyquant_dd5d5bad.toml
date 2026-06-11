@@ -30,12 +30,6 @@ last_activity = 2026-05-18
 url = "https://qisk.it/e-dd5d5bad"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:23:02.775449
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.quantum-gates]
 package_name = "quantum-gates"
 version = "2.4.0"

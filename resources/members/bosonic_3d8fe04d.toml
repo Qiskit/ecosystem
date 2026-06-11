@@ -27,12 +27,6 @@ last_activity = 2026-05-19
 url = "https://qisk.it/e-3d8fe04d"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:54.078424
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.bosonic-qiskit]
 package_name = "bosonic-qiskit"
 version = "15.1"

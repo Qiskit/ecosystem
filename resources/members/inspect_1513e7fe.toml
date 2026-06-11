@@ -28,12 +28,6 @@ last_activity = 2025-11-11T09:28:40Z
 url = "https://qisk.it/e-1513e7fe"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:57.634801
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [checks.013]
 since = 2026-04-01T16:42:52.453058
 details = "http://pypi.org/project/qiskit-inspect/ is not HTTPS"

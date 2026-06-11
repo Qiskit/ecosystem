@@ -29,12 +29,6 @@ last_activity = 2026-01-01T23:21:05Z
 url = "https://qisk.it/e-f305aa07"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:58.630759
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package dense-ev is not compatible with Qiskit SDK v2"

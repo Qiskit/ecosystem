@@ -31,12 +31,6 @@ last_activity = 2026-05-21
 url = "https://qisk.it/e-474599a7"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:23:04.017735
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
 version = "0.17.2"

@@ -30,12 +30,6 @@ last_activity = 2026-05-20
 url = "https://qisk.it/e-6fefeede"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:47.505314
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package torchquantum is not compatible with Qiskit SDK v2"

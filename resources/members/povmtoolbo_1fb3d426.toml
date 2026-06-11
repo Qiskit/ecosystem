@@ -28,12 +28,6 @@ last_activity = 2026-05-04
 url = "https://qisk.it/e-1fb3d426"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:52.017483
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.povm-toolbox]
 package_name = "povm-toolbox"
 version = "0.2.0"

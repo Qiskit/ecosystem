@@ -28,12 +28,6 @@ last_activity = 2026-05-17
 url = "https://qisk.it/e-3b2ff33f"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:55.879857
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qiskit-optimization]
 package_name = "qiskit-optimization"
 version = "0.7.0"
