@@ -28,12 +28,6 @@ last_activity = 2026-05-21
 url = "https://qisk.it/e-a942dc5d"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:58.384238
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qiskit-scaleway]
 package_name = "qiskit-scaleway"
 version = "0.3.11"

@@ -28,12 +28,6 @@ last_activity = 2026-01-13T05:09:52Z
 url = "https://qisk.it/e-1bfdd558"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:37.706188
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qiskit-nature-pyscf]
 package_name = "qiskit-nature-pyscf"
 version = "0.4.0"

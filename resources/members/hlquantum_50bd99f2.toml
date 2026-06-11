@@ -25,12 +25,6 @@ last_activity = 2026-03-30T12:38:19Z
 url = "https://qisk.it/e-50bd99f2"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:51.271815
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.hlquantum]
 package_name = "hlquantum"
 version = "0.1.3"

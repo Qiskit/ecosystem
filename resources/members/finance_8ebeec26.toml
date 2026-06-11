@@ -28,12 +28,6 @@ last_activity = 2026-05-17
 url = "https://qisk.it/e-8ebeec26"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:23:04.764612
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qiskit-finance]
 package_name = "qiskit-finance"
 version = "0.4.1"

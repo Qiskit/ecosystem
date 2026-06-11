@@ -27,12 +27,6 @@ last_activity = 2026-05-21
 url = "https://qisk.it/e-50cd2126"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:23:03.521067
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qamomile]
 package_name = "qamomile"
 version = "0.12.4"

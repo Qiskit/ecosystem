@@ -30,12 +30,6 @@ last_activity = 2025-12-20T14:52:32Z
 url = "https://qisk.it/e-a8fff49c"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:43.394083
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.purplecaffeine]
 package_name = "purplecaffeine"
 version = "0.2.5"

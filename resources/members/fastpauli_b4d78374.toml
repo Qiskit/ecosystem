@@ -31,12 +31,6 @@ last_activity = 2025-10-31T17:43:20Z
 url = "https://qisk.it/e-b4d78374"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:56.127265
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.fast-pauli]
 package_name = "fast-pauli"
 version = "0.0.35"

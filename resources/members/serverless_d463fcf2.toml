@@ -32,12 +32,6 @@ last_activity = 2026-05-21
 url = "https://qisk.it/e-d463fcf2"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:23:02.526634
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qiskit-serverless]
 package_name = "qiskit-serverless"
 version = "0.32.0"

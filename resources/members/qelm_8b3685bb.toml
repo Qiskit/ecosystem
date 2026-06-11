@@ -30,12 +30,6 @@ last_activity = 2026-05-21
 url = "https://qisk.it/e-8b3685bb"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:40.018949
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qelm]
 package_name = "qelm"
 version = "0.1.4"

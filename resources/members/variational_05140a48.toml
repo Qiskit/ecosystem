@@ -28,12 +28,6 @@ last_activity = 2026-04-11T06:48:04Z
 url = "https://qisk.it/e-05140a48"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:54.329964
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.vqls-prototype]
 package_name = "vqls-prototype"
 version = "0.2.0"

@@ -26,12 +26,6 @@ last_commit = 2025-06-27
 url = "https://qisk.it/e-e10b8307"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:54.577854
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.symbolic-qiskit]
 package_name = "symbolic-qiskit"
 version = "0.1.0a1"

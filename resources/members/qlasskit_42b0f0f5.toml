@@ -29,12 +29,6 @@ last_activity = 2026-05-11
 url = "https://qisk.it/e-42b0f0f5"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:44.126727
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qlasskit]
 package_name = "qlasskit"
 version = "0.1.39"

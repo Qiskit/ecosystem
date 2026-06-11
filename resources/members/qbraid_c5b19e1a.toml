@@ -32,12 +32,6 @@ last_activity = 2026-05-21
 url = "https://qisk.it/e-c5b19e1a"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:22:56.879603
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [pypi.qbraid]
 package_name = "qbraid"
 version = "0.12.1"

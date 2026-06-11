@@ -5,7 +5,7 @@ license = "GNU General Public License (GPL)"
 contact_info = "mistasparkaru@hotmail.co.uk"
 affiliations = "None"
 labels = [ "cloud service",]
-interfaces = [ "Python" ]
+interfaces = [ "Python",]
 website = "https://github.com/mistasparkaru/Qx86"
 category = "Application"
 reference_paper = "https://ieeexplore.ieee.org/document/9878250"
@@ -27,8 +27,3 @@ last_activity = 2026-02-03T00:00:08Z
 [badge]
 url = "https://qisk.it/e-a68e9142"
 style = "flat"
-
-[checks.007]
-since = 2026-04-08T16:23:04.517965
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-importance = "IMPORTANT"
