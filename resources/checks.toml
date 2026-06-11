@@ -56,7 +56,6 @@ affects = ["member.interfaces.*"]
 category = "SUBMISSION"
 checker = "test_classifications.py::test_valid_interfaces"
 importance = "IMPORTANT"
-cure_period_in_days = false  # Remove once https://github.com/Qiskit/ecosystem/issues/1083 is fixed
 
 [008]
 title = "Category have to exist"
