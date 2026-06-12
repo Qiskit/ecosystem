@@ -23,12 +23,11 @@ from ecosystem.docs.card import ProjectSummaryCard, URLsCard, PypiPackageCard
 class ProjectPage:  # pylint: disable=redefined-outer-name
     """represents a markdown file in docs/p/"""
 
-    classifications = ClassificationsToml()
-
     def __init__(self, project, filename):
         """each of the files in docs/p/*.md"""
         self.project = project
         self.filename = filename
+        self.classifications = ClassificationsToml()
 
     def generate_all_lines(self):
         """Returns all the docs/p/<uuid>.md lines"""
