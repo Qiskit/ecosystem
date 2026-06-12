@@ -39,8 +39,10 @@ class CliMembers:
 
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
-        self.current_dir = root_path or os.path.abspath(os.getcwd())
-        self.resources_dir = f"{self.current_dir}/resources"
+        env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
+        self.current_dir = Path(root_path or Path.cwd())
+        self.resources_dir = Path(env_resources_dir or self.current_dir / "resources")
+
         self.classifications_toml = ClassificationsToml(
             resources_dir=self.resources_dir
         )

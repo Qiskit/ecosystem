@@ -12,6 +12,7 @@
 
 """Checks/Validations section."""
 
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -26,7 +27,11 @@ class ChecksToml:
     """handles checks.toml"""
 
     def __init__(self, toml_filename: str = None, resources_dir: str = None):
-        resources_dir = Path(resources_dir or Path.joinpath(Path.cwd(), "resources"))
+        env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
+        resources_dir = Path(
+            resources_dir or env_resources_dir or (Path.cwd() / "resources")
+        )
+
         toml_filename = toml_filename or Path.joinpath(resources_dir, "checks.toml")
 
         with open(toml_filename, "rb") as f:
@@ -59,6 +64,7 @@ class CheckData(JsonSerializable):
     The validation data related to a project
     """
 
+    checks_toml = ChecksToml()
     today = datetime.today()
 
     def __init__(
@@ -69,12 +75,10 @@ class CheckData(JsonSerializable):
         self.since = parse_date(since)
         self.details = details
         self.discussion: str | URL | None = discussion
-        self.checks_toml = ChecksToml()
 
     def to_dict(self) -> dict:
         ret = super().to_dict()
         del ret["id"]
-        del ret["checks_toml"]
         ret["importance"] = self.importance
         return ret
 

@@ -13,6 +13,7 @@
 """CliCI class for controlling all CLI functions."""
 
 import sys
+import os
 from pathlib import Path
 
 from ecosystem.dao import DAO
@@ -45,8 +46,10 @@ class CliCI:
         Returns:
             None (side effect is updating database and writing actions output)
         """
-
-        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
+        env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
+        resources_dir = Path(
+            resources_dir or env_resources_dir or (Path.cwd() / "resources")
+        )
 
         parsed_result = parse_submission_issue(body, number)
         DAO(path=resources_dir).write(parsed_result)
@@ -63,8 +66,10 @@ class CliCI:
         Returns:
             None (side effect is updating database and writing actions output)
         """
-
-        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
+        env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
+        resources_dir = Path(
+            resources_dir or env_resources_dir or (Path.cwd() / "resources")
+        )
 
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
@@ -81,8 +86,10 @@ class CliCI:
         Returns:
             None (it has no side-effect)
         """
-
-        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
+        env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
+        resources_dir = Path(
+            resources_dir or env_resources_dir or (Path.cwd() / "resources")
+        )
 
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
@@ -111,7 +118,10 @@ class CliCI:
         member_id: str | None = None, resources_dir: str | None = None
     ) -> None:
         """Update all the member dynamic data"""
-        resources_dir = Path(resources_dir or (Path.cwd() / "resources"))
+        env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
+        resources_dir = Path(
+            resources_dir or env_resources_dir or (Path.cwd() / "resources")
+        )
         to_update = [
             "github",
             "pypi",
@@ -126,7 +136,9 @@ class CliCI:
                 try:
                     update_method()
                 except Exception as e:
-                    print(f"\n::group:: ERROR Updating {member.name_id} when {update_method_str}️")
+                    print(
+                        f"\n::group:: ERROR Updating {member.name_id} when {update_method_str}️"
+                    )
                     print(e)
                     print("\n::endgroup::\n")
             print("::endgroup::")

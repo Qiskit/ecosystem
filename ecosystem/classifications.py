@@ -12,6 +12,7 @@
 
 """Handles the /resources/classifications.toml file"""
 
+import os
 from pathlib import Path
 
 import tomllib
@@ -21,8 +22,10 @@ class ClassificationsToml:
     """handles /resources/classifications.toml"""
 
     def __init__(self, toml_filename: str = None, resources_dir: str = None):
-
-        resources_dir = Path(resources_dir or Path.joinpath(Path.cwd(), "resources"))
+        env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
+        resources_dir = Path(
+            resources_dir or env_resources_dir or Path.joinpath(Path.cwd(), "resources")
+        )
 
         toml_filename = toml_filename or Path.joinpath(
             resources_dir, "classifications.toml"

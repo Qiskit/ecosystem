@@ -120,6 +120,8 @@ class Card:
 class ProjectSummaryCard(Card):
     """Project card, with classifications"""
 
+    classifications = ClassificationsToml()
+
     def __init__(
         self,
         licence=None,
@@ -139,7 +141,6 @@ class ProjectSummaryCard(Card):
         self.ibm_maintained = ibm_maintained
         self.status = status
         self.maturity = maturity
-        self.classifications = ClassificationsToml()
 
         super().__init__(
             self.status_title,
