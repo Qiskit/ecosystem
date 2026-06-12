@@ -123,5 +123,10 @@ class CliCI:
             for update_method_str in to_update:
                 print(f"Updating {update_method_str}️")
                 update_method = getattr(member, f"update_{update_method_str}")
-                update_method()
+                try:
+                    update_method()
+                except Exception as e:
+                    print(f"\n::group:: ERROR Updating {member.name_id} when {update_method_str}️")
+                    print(e)
+                    print("\n::endgroup::\n")
             print("::endgroup::")
