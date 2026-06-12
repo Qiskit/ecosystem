@@ -59,7 +59,6 @@ class CheckData(JsonSerializable):
     The validation data related to a project
     """
 
-    checks_toml = ChecksToml()
     today = datetime.today()
 
     def __init__(
@@ -70,10 +69,12 @@ class CheckData(JsonSerializable):
         self.since = parse_date(since)
         self.details = details
         self.discussion: str | URL | None = discussion
+        self.checks_toml = ChecksToml()
 
     def to_dict(self) -> dict:
         ret = super().to_dict()
         del ret["id"]
+        del ret["checks_toml"]
         ret["importance"] = self.importance
         return ret
 
