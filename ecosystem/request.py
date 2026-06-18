@@ -79,7 +79,7 @@ def request_json(
     if post is not None:
         response = requests.post(str(url), headers=headers, timeout=240, json=post)
     elif put is not None:
-        response = requests.put(str(url), headers=headers, timeout=240, json=post)
+        response = requests.put(str(url), headers=headers, timeout=240, json=put)
     else:
         response = requests.get(str(url), headers=headers, timeout=240)
 
