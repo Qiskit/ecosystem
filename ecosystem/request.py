@@ -36,6 +36,7 @@ def request_json(
     url: str,
     headers: dict[str, str] = None,
     post=None,
+    put=None,
     parser=None,
     content_handler=None,
     delay=None,
@@ -75,10 +76,12 @@ def request_json(
             logger.info("Wait %s before fetching %s", delay, url)
         time.sleep(delay)
 
-    if post is None:
-        response = requests.get(str(url), headers=headers, timeout=240)
-    else:
+    if post is not None:
         response = requests.post(str(url), headers=headers, timeout=240, json=post)
+    elif put is not None:
+        response = requests.put(str(url), headers=headers, timeout=240, json=post)
+    else:
+        response = requests.get(str(url), headers=headers, timeout=240)
 
     if not response.ok:
         if "rate" in response.reason or response.status_code == 429:
