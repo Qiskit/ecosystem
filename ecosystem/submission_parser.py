@@ -12,8 +12,6 @@
 
 """Parser for issue submission."""
 
-import mdformat
-
 from .submission import Submission
 from .member import Member
 
@@ -51,8 +49,5 @@ def parse_submission_issue(
 
     Return: Member
     """
-
-    issue_formatted = mdformat.text(body_of_issue)
-
-    submission = Submission.from_formatted_issue(issue_formatted)
+    submission = Submission.from_issue_text(body_of_issue)
     return Member.from_submission(submission, issue_number)

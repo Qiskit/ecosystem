@@ -14,9 +14,13 @@
 
 import os
 from unittest import TestCase
+from pathlib import Path
+import yaml
+
 
 from ecosystem.member import Member
 from ecosystem.submission_parser import parse_submission_issue
+from ecosystem.issue_body import EcosystemIssueBody as IssueBody
 
 
 class TestUtils(TestCase):
@@ -24,8 +28,23 @@ class TestUtils(TestCase):
 
     def setUp(self) -> None:
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        with open(f"{current_dir}/../resources/issue.md", "r") as issue_body_file:
-            self.issue_body = issue_body_file.read()
+        self.issue_body = Path(f"{current_dir}/../resources/issue.md").read_text()
+
+    def test_issue_body_to_dict(self):
+        """Test ecosystem.submission_parser.issue_body_to_dict
+        Takes text like:
+           ### header 1
+
+           body 1
+        and converts it into a dict {'header 1': 'body 1'}
+        """
+        issue_template = yaml.load(
+            Path(".github/ISSUE_TEMPLATE/01_submission.yml").read_text(),
+            Loader=yaml.SafeLoader,
+        )
+
+        issue_body = IssueBody(self.issue_body, issue_template)
+        self.assertEqual(issue_body.sections['Project name'], 'Qiskit Banana Compiler')
 
     def test_issue_parsing(self):
         """Tests issue parsing function:
