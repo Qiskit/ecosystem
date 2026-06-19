@@ -20,7 +20,7 @@ from .error_handling import EcosystemError, logger
 
 
 class IssueBody:
-    """ Helper and formatter for the issue body based on an issue template """
+    """Helper and formatter for the issue body based on an issue template"""
 
     def __init__(self, issue_body: str, template_yaml):
         """
@@ -111,7 +111,7 @@ class IssueBody:
 
     @staticmethod
     def process_type_url(content) -> URL:
-        """Creates a URL based on the content. If content == "_No response_" then returns None """
+        """Creates a URL based on the content. If content == "_No response_" then returns None"""
         try:
             if content and content != "_No response_":
                 return URL(content)
@@ -126,25 +126,27 @@ class IssueBody:
 
     @staticmethod
     def process_type_dropdown_single(content) -> str:
-        """ A selected option for a dropdown without multiple selection """
+        """A selected option for a dropdown without multiple selection"""
         return content.strip()
 
     @staticmethod
     def process_type_checkboxes(content):
-        """ Checkboxes that are checked, start with '- [x]' """
+        """Checkboxes that are checked, start with '- [x]'"""
         return content.strip().startswith("- [x]")
 
+
 class EcosystemIssueBody(IssueBody):
-    """ Specific implementation of IssueBody for ecosystem issues """
+    """Specific implementation of IssueBody for ecosystem issues"""
+
     @staticmethod
     def process_package_urls(content) -> list[URL]:
-        """ The package_urls section is a markdown codeblock with a list of URLs"""
+        """The package_urls section is a markdown codeblock with a list of URLs"""
         lines = [i.strip() for i in content.split("\n")][1:-1]
         return [IssueBody.process_type_url(pkg) for pkg in lines]
 
     @staticmethod
     def process_description(content) -> str:
-        """ A description might (or not) be a markdown codeblock """
+        """A description might (or not) be a markdown codeblock"""
         lines = [i.strip() for i in content.split("\n")]
         if lines and lines[0].startswith("```"):
             return "\n".join(lines[1:-1])

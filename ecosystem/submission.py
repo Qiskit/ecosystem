@@ -59,7 +59,7 @@ class Submission:
 
     @classmethod
     def from_issue_text(cls, issue_text):
-        """ Takes the body of an issue and creates a Submission object """
+        """Takes the body of an issue and creates a Submission object"""
         issue_template = yaml.load(
             Path(".github/ISSUE_TEMPLATE/01_submission.yml").read_text(),
             Loader=yaml.SafeLoader,
