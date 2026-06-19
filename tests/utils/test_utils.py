@@ -44,7 +44,7 @@ class TestUtils(TestCase):
         )
 
         issue_body = IssueBody(self.issue_body, issue_template)
-        self.assertEqual(issue_body.sections['Project name'], 'Qiskit Banana Compiler')
+        self.assertEqual(issue_body.sections["Project name"], "Qiskit Banana Compiler")
 
     def test_issue_parsing(self):
         """Tests issue parsing function:
