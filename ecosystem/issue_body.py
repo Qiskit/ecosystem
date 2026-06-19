@@ -103,7 +103,12 @@ class IssueBody:
                 template_id = template["id"]
 
             if hasattr(self, f"process_{template_id}"):
-                yield (template_id, getattr(self, f"process_{template_id}")(content))
+                yield (
+                    template_id,
+                    getattr(self, f"process_{slugify(template_id, separator='_')}")(
+                        content
+                    ),
+                )
             elif "handler" in template:
                 yield (template_id, template["handler"](content))
             else:
