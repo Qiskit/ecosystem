@@ -111,58 +111,72 @@ def request_json(
 class URL:
     """Wraps URLs"""
 
-    def __init__(self, original_url: str):
-        self.original_url = original_url
-        self._parse_result = None
-        self.logger = True
+    def __init__(self, original_url: str, logger_level=None):
+        """
 
-    def parse_url(self):
-        """Normalizes and parses a URL"""
-        logger_level = None if self.logger else lambda x: x
+        Args:
+            original_url:
+            logger_level (collable):  Something like logger.error . Default is quite.
+        """
+        self.original_url = original_url
+        if logger_level is None:
+            self.logger_level = lambda x: x
+        else:
+            self.logger_level = logger
+        self._normalized_url = self.normalize()
+
+    def normalize(self):
+        """Normalize URLs"""
         if "_No response_" in self.original_url:
             raise EcosystemError(
                 f"{self.original_url} does not look like a URL",
-                logger_level=logger_level,
+                logger_level=self.logger_level,
             )
 
         url = urlparse(self.original_url)
+        if " " in self.original_url:
+            for word in self.original_url.split(" "):
+                if any(x in word for x in (".com", "http")):
+                    url = urlparse(word)
+                    if url.netloc:
+                        break
+            else:
+                raise EcosystemError(
+                    f"Multiple words in '{self.original_url}' and none of them look like a URL",
+                    logger_level=self.logger_level,
+                )
+
         scheme = "https"
         if url.netloc:
             netloc, path = url.hostname, url.path
         else:
-            url_path_parts = url.path.split("/")
+            url_path_parts = [p for p in url.path.split("/") if p]
             netloc = url_path_parts[0]
             path = "/".join(url_path_parts[1:])
-        self._parse_result = urlparse(
+        return urlparse(
             urlunparse((scheme, netloc.lower(), path, url.params, url.query, ""))
         )
 
     @property
     def hostname(self):
         """Hostname part of the URL"""
-        if self._parse_result is None:
-            self.parse_url()
-        return self._parse_result.hostname
+        return self._normalized_url.hostname
 
     @property
     def path(self):
         """Path part of the URL"""
-        if self._parse_result is None:
-            self.parse_url()
-        return self._parse_result.path
+        return self._normalized_url.path
 
     @property
     def query(self):
         """Query part of the URL"""
-        if self._parse_result is None:
-            self.parse_url()
-        return self._parse_result.query
+        return self._normalized_url.query
 
     def __eq__(self, other):
         return str(self) == str(other)
 
     def __str__(self):
-        return self._parse_result.geturl() if self._parse_result else self.original_url
+        return self._normalized_url.geturl()
 
     def __repr__(self):
         return f"URL('{self}')"
