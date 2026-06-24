@@ -3,12 +3,11 @@ submission_number = 1193
 url = "https://github.com/markusvankempen/quantum-openqasm-assistant"
 description = "VS Code + MCP: run Qiskit-exported OpenQASM 2.0 on IBM Quantum Sampler V2 hardware and simulators from AI IDEs."
 contact_info = "markus.van.kempen@gmail.com"
-labels = [ "openqasm", "cloud service", "demo", "circuit building",]
-interfaces = [ "Command-line interface (CLI)", "Graphical User Interface (GUI)", "Web interface", "Other language",]
-website = "https://marketplace.visualstudio.com/items?itemName=markusvankempen.quantum-openqasm-assistant"
-category = "Application"
+labels = [ "openqasm"]
+interfaces = [ "Other interface", ]
+category = "Tooling"
 pattern_steps = [ "Execute", "Post-process",]
-documentation = "https://github.com/markusvankempen/quantum-openqasm-assistant/blob/main/docs/QISKIT-INTEGRATION.md"
+documentation = "https://github.com/markusvankempen/quantum-openqasm-assistant/blob/master/docs/QISKIT-INTEGRATION.md"
 packages = [ "https://www.npmjs.com/package/@markusvankempen/quantum-openqasm-mcp", "https://marketplace.visualstudio.com/items?itemName=markusvankempen.quantum-openqasm-assistant", "https://registry.modelcontextprotocol.io/servers/io.github.markusvankempen/quantum-openqasm-mcp",]
 uuid = "bd91d04b-4fa1-4791-abeb-f7c809475e63"
 maturity = "production-ready"
