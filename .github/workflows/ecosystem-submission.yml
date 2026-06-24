@@ -6,7 +6,7 @@ on:
 
 jobs:
   submission_workflow:
-    if: contains(github.event.issue.labels.*.name, 'submission') && github.event.issue.closed == false
+    if: contains(github.event.issue.labels.*.name, 'submission') && github.event.issue.state == 'open'
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
