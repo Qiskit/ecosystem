@@ -1,0 +1,20 @@
+name = "Quantum OpenQASM Assistant"
+submission_number = 1193
+url = "https://github.com/markusvankempen/quantum-openqasm-assistant"
+description = "VS Code + MCP: run Qiskit-exported OpenQASM 2.0 on IBM Quantum Sampler V2 hardware and simulators from AI IDEs."
+contact_info = "markus.van.kempen@gmail.com"
+labels = [ "openqasm",]
+interfaces = [ "Other interface",]
+category = "Tooling"
+documentation = "https://github.com/markusvankempen/quantum-openqasm-assistant/blob/master/docs/QISKIT-INTEGRATION.md"
+packages = [ "https://www.npmjs.com/package/@markusvankempen/quantum-openqasm-mcp", "https://marketplace.visualstudio.com/items?itemName=markusvankempen.quantum-openqasm-assistant", "https://registry.modelcontextprotocol.io/servers/io.github.markusvankempen/quantum-openqasm-mcp",]
+uuid = "bd91d04b-4fa1-4791-abeb-f7c809475e63"
+maturity = "production-ready"
+
+[github]
+owner = "markusvankempen"
+repo = "quantum-openqasm-assistant"
+
+[badge]
+url = "https://qisk.it/e-bd91d04b"
+style = "flat"
