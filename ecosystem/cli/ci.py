@@ -135,6 +135,7 @@ class CliCI:
                 update_method = getattr(member, f"update_{update_method_str}")
                 try:
                     update_method()
+                    dao.update(member.name_id, member=member)
                 except Exception as e:
                     print(
                         f"\n::group:: ERROR Updating {member.name_id} when {update_method_str}️"
