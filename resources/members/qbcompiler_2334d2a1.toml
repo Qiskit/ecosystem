@@ -24,8 +24,8 @@ license = "Apache License 2.0"
 description = "Quantum execution intelligence toolkit for circuit preflight checks, backend analysis, calibration-aware compilation, and hardware-..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-30
-last_activity = 2026-05-01
+last_commit = 2026-06-12
+last_activity = 2026-06-12
 
 [badge]
 url = "https://qisk.it/e-2334d2a1"
@@ -38,7 +38,7 @@ importance = "IMPORTANT"
 
 [pypi.qb-compiler]
 package_name = "qb-compiler"
-version = "0.5.2"
+version = "0.7.0"
 last_release_date = 2026-04-30
 license = "Apache-2.0"
 description = "Quantum execution intelligence. Circuit viability, backend recommendation, cost estimation, and automatic optimizations for quantum computing."
@@ -49,5 +49,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 226
-last_180_days_downloads = 1343
+last_month_downloads = 316
+last_180_days_downloads = 1614
