@@ -15,14 +15,14 @@ maturity = "experimental"
 url = "https://github.com/neuralsorcerer/qbalance"
 owner = "neuralsorcerer"
 repo = "qbalance"
-stars = 2
+stars = 3
 homepage = "https://pypi.org/project/qbalance/"
 license = "MIT License"
 description = "A workflow toolkit for balancing quantum compilation, suppression, and mitigation choices over a dataset of quantum circuits."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-20
-last_activity = 2026-05-20
+last_commit = 2026-06-25
+last_activity = 2026-06-25
 
 [badge]
 url = "https://qisk.it/e-88affdcb"
@@ -30,7 +30,7 @@ style = "flat"
 
 [pypi.qbalance]
 package_name = "qbalance"
-version = "0.1.1"
+version = "0.1.2"
 last_release_date = 2026-05-03
 description = "Balancing workflow library for quantum compilation/mitigation benchmarking with Qiskit."
 url = "https://pypi.org/project/qbalance/"

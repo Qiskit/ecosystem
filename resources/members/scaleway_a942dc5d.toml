@@ -15,14 +15,14 @@ maturity = "production-ready"
 url = "https://github.com/scaleway/qiskit-scaleway"
 owner = "scaleway"
 repo = "qiskit-scaleway"
-stars = 9
+stars = 10
 license = "Apache License 2.0"
 description = "Scaleway provider implementation for Qiskit SDK"
 estimated_contributors = 5
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-21
-last_activity = 2026-05-21
+last_commit = 2026-06-10
+last_activity = 2026-06-16
 
 [badge]
 url = "https://qisk.it/e-a942dc5d"
@@ -30,7 +30,7 @@ style = "flat"
 
 [pypi.qiskit-scaleway]
 package_name = "qiskit-scaleway"
-version = "0.3.11"
+version = "0.3.13"
 last_release_date = 2026-05-12
 description = "A Qiskit package to connect to Scaleway Quantum as a Service"
 url = "https://pypi.org/project/qiskit-scaleway/"
