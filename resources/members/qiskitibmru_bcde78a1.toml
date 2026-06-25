@@ -6,6 +6,7 @@ labels = []
 interfaces = [ "Julia",]
 ibm_maintained = true
 category = "Compute provider"
+documentation = "https://qiskit.github.io/QiskitIBMRuntime.jl"
 packages = []
 uuid = "bcde78a1-0171-4de1-9542-5e20d0c02693"
 maturity = "experimental"
@@ -27,3 +28,7 @@ last_activity = 2026-06-23
 [badge]
 url = "https://qisk.it/e-bcde78a1"
 style = "flat"
+
+[julia.Qiskit]
+package_name = "Qiskit"
+registry = "General"

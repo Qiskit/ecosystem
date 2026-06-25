@@ -110,14 +110,15 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 )
                 packages["julia"] += [
                     "    :fontawesome-regular-paper-plane: **current release** "
-                    f"[{pkg.version}](https://juliahub.com/ui/Packages/"
-                    f'{pkg.registry}/{pkg.package_name} "Released: {pkg.release_date}")',
+                    f"[{pkg.version or "N/A"}](https://juliahub.com/ui/Packages/"
+                    f'{pkg.registry}/{pkg.package_name} "Released: {pkg.release_date or "N/A"}")',
                     "",
                 ]
-                packages["julia"] += [
-                    "    :fontawesome-solid-users: "
-                    f"**estimated unique users** {pkg.estimated_unique_users:,} "
-                ]
+                if pkg.estimated_unique_users:
+                    packages["julia"] += [
+                        "    :fontawesome-solid-users: "
+                        f"**estimated unique users** {pkg.estimated_unique_users:,} "
+                    ]
             packages["julia"] += ["</div>"]
 
         if not packages:

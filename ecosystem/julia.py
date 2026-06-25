@@ -175,6 +175,9 @@ class JuliaData(JsonSerializable):
         if item in self._kwargs:
             return self._kwargs[item]
 
+        if item in self.dict_keys:
+            return None
+
         raise AttributeError(
             f"'{type(self).__name__}' object has no attribute '{item}'"
         )
