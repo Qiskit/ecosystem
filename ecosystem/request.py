@@ -89,7 +89,13 @@ def request_json(
             if "X-RateLimit-Reset" in response.headers:
                 wait_for = int(response.headers["X-RateLimit-Reset"]) - int(time.time())
             return request_json(
-                url.original_url, headers, post, parser, content_handler, wait_for
+                url=url.original_url,
+                headers=headers,
+                post=post,
+                put=put,
+                parser=parser,
+                content_handler=content_handler,
+                delay=wait_for,
             )
         raise EcosystemError(
             f"Bad response {str(url)}: {response.reason} ({response.status_code})"

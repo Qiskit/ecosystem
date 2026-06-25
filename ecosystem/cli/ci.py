@@ -12,6 +12,7 @@
 
 """CliCI class for controlling all CLI functions."""
 
+import traceback
 import sys
 import os
 from pathlib import Path
@@ -128,6 +129,7 @@ class CliCI:
             "julia",
         ]
         dao = DAO(path=resources_dir)
+        any_error = False
         for member in dao.get_all(member_id):
             print(f"\n::group:: {member.name}️ ({member.name_id})")
             for update_method_str in to_update:
@@ -137,9 +139,11 @@ class CliCI:
                     update_method()
                     dao.update(member.name_id, member=member)
                 except Exception as e:
+                    any_error = True
                     print(
-                        f"\n::group:: ERROR Updating {member.name_id} when {update_method_str}️"
+                        f"\nERROR Updating {member.name_id} when {update_method_str}️: {e}"
                     )
-                    print(e)
-                    print("\n::endgroup::\n")
+                    print(traceback.format_exc())
             print("::endgroup::")
+        if any_error:
+            sys.exit("It seems like some of the updates fail")
