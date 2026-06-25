@@ -108,10 +108,12 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 packages["julia"].append(
                     f" - #### :simple-julia: Julia `{pkg.package_name}`\n    ---\n"
                 )
+                version = pkg.version or "N/A"
+                release_date = pkg or "N/A"
                 packages["julia"] += [
                     "    :fontawesome-regular-paper-plane: **current release** "
-                    f"[{pkg.version or "N/A"}](https://juliahub.com/ui/Packages/"
-                    f'{pkg.registry}/{pkg.package_name} "Released: {pkg.release_date or "N/A"}")',
+                    f"[{version}](https://juliahub.com/ui/Packages/"
+                    f'{pkg.registry}/{pkg.package_name} "Released: {release_date}")',
                     "",
                 ]
                 if pkg.estimated_unique_users:
