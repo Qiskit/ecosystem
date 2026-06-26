@@ -8,6 +8,13 @@ interfaces = [ "Python",]
 category = "Transpiler plugin"
 pattern_steps = [ "Map",]
 reference_paper = "https://arxiv.org/abs/2601.18756"
-packages = [ "https://pypi.org/project/qiskit-omelyan/",]
+packages = []
 uuid = "9d474247-5c15-481c-afb2-cc58ae884459"
 maturity = "bugfixing only"
+
+[github]
+owner = "MarkoMalezic"
+repo = "qiskit-omelyan"
+
+[pypi.qiskit-omelyan]
+package_name = "qiskit-omelyan"
