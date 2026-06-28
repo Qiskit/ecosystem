@@ -51,7 +51,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             + ["</div>"]
         )
 
-    def packages(self):
+    def packages(self):  # pylint: disable = too-many-branches
         """Package section"""
         packages = {}
         if self.project.packages:
