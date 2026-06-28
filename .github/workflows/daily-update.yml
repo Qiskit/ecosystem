@@ -22,7 +22,9 @@ jobs:
     - name: Update data
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python manager.py ci update_member_data
+      run: |
+        python manager.py ci create_sections
+        python manager.py ci update_member_data
     - name: Commit data
       if: success()
       run: |

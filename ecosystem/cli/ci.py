@@ -58,12 +58,12 @@ class CliCI:
         set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
 
     @staticmethod
-    def create_sections(member_id: str, *, resources_dir: str | None = None) -> None:
+    def create_sections(member_id: str | None = None, resources_dir: str | None = None) -> None:
         """unfolds all the sections for the projects
 
         Args:
             member_id: loads the file ../resources/*_<member_id>.toml
-
+            resources_dir: optional. Path to resource directory.
         Returns:
             None (side effect is updating database and writing actions output)
         """
