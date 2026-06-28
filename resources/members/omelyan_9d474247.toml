@@ -1,0 +1,13 @@
+name = "Qiskit Omelyan"
+submission_number = 1202
+url = "https://github.com/MarkoMalezic/qiskit-omelyan"
+description = "Omelyan-type symmetric product formulas for PauliEvolutionGate synthesis in Qiskit"
+contact_info = "malezic15@gmail.com"
+labels = [ "high-level synthesis",]
+interfaces = [ "Python",]
+category = "Transpiler plugin"
+pattern_steps = [ "Map",]
+reference_paper = "https://arxiv.org/abs/2601.18756"
+packages = [ "https://pypi.org/project/qiskit-omelyan/",]
+uuid = "9d474247-5c15-481c-afb2-cc58ae884459"
+maturity = "bugfixing only"

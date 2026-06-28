@@ -1,9 +1,9 @@
 name = "Quantum OpenQASM Assistant"
 submission_number = 1193
 url = "https://github.com/markusvankempen/quantum-openqasm-assistant"
-description = "VS Code + MCP: run Qiskit-exported OpenQASM 2.0 on IBM Quantum Sampler V2 hardware and simulators from AI IDEs."
+description = "VS Code + MCP: Qiskit Lab, AI transpilation, and OpenQASM 2.0 execution on IBM Quantum hardware from AI IDEs."
 contact_info = "markus.van.kempen@gmail.com"
-labels = [ "openqasm",]
+labels = [ "openqasm", "transpilation",]
 interfaces = [ "Other interface",]
 category = "Tooling"
 documentation = "https://github.com/markusvankempen/quantum-openqasm-assistant/blob/master/docs/QISKIT-INTEGRATION.md"
@@ -17,11 +17,11 @@ owner = "markusvankempen"
 repo = "quantum-openqasm-assistant"
 stars = 0
 license = "Apache License 2.0"
-description = "VS Code extension & MCP server for IBM Quantum — run OpenQASM 2.0 circuits on real hardware from Cursor, VS Code, Bob & Antigravity..."
+description = "VS Code extension & MCP npm server for IBM Quantum OpenQASM 2.0 — Quantum Lab, Qiskit Developer Pack, job histograms. Cursor, VS Co..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-25
-last_activity = 2026-06-25
+last_commit = 2026-06-26
+last_activity = 2026-06-26
 
 [badge]
 url = "https://qisk.it/e-bd91d04b"
