@@ -70,7 +70,7 @@ def request_json(
             headers["Authorization"] = "Bearer " + token
 
     if delay:
-        if delay >= 300:
+        if delay >= 900:
             raise EcosystemError(f"delay for fetching {url} too long: {delay} sec")
         if delay >= 5:
             logger.info("Wait %s before fetching %s", delay, url)
