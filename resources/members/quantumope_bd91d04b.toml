@@ -1,9 +1,9 @@
 name = "Quantum OpenQASM Assistant"
 submission_number = 1193
 url = "https://github.com/markusvankempen/quantum-openqasm-assistant"
-description = "VS Code + MCP: run Qiskit-exported OpenQASM 2.0 on IBM Quantum Sampler V2 hardware and simulators from AI IDEs."
+description = "VS Code + MCP: Qiskit Lab, AI transpilation, and OpenQASM 2.0 execution on IBM Quantum hardware from AI IDEs."
 contact_info = "markus.van.kempen@gmail.com"
-labels = [ "openqasm",]
+labels = [ "openqasm", "transpilation",]
 interfaces = [ "Other interface",]
 category = "Tooling"
 documentation = "https://github.com/markusvankempen/quantum-openqasm-assistant/blob/master/docs/QISKIT-INTEGRATION.md"
