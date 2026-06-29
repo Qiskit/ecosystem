@@ -8,6 +8,7 @@ labels = [ "demo",]
 interfaces = [ "Python",]
 category = "Converter"
 documentation = "https://garymooney.github.io/qmuvi/"
+packages = []
 uuid = "9d4da903-9823-4ae3-a80c-22821b62931e"
 maturity = "experimental"
 
@@ -42,4 +43,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 54
-last_180_days_downloads = 359
+last_180_days_downloads = 360

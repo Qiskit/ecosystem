@@ -8,6 +8,7 @@ labels = []
 interfaces = [ "Python",]
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
+packages = []
 uuid = "39fba621-edbb-485b-a723-8a0760ab4b85"
 maturity = "production-ready"
 
@@ -39,5 +40,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 95737
-last_180_days_downloads = 524157
+last_month_downloads = 94945
+last_180_days_downloads = 524959

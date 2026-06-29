@@ -5,6 +5,7 @@ license = "Apache License 2.0"
 labels = [ "circuit optimization", "research",]
 interfaces = [ "Python",]
 category = "SDK"
+packages = []
 uuid = "727120b2-7559-453e-beb3-0ab33fb60a4a"
 maturity = "production-ready"
 
@@ -36,4 +37,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 557
-last_180_days_downloads = 2146
+last_180_days_downloads = 2177

@@ -10,6 +10,7 @@ website = "https://mqt.readthedocs.io"
 category = "Other"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qcec"
+packages = []
 uuid = "79415931-2d24-4959-ab15-29dfaeb139b4"
 maturity = "production-ready"
 
@@ -43,5 +44,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 6954
-last_180_days_downloads = 49164
+last_month_downloads = 7406
+last_180_days_downloads = 49808

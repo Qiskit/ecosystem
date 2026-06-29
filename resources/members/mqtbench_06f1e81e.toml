@@ -10,6 +10,7 @@ website = "https://www.cda.cit.tum.de/mqtbench/"
 category = "Application"
 reference_paper = "https://quantum-journal.org/papers/q-2023-07-20-1062/"
 documentation = "https://mqt.readthedocs.io/projects/bench/"
+packages = []
 uuid = "06f1e81e-e82a-4fc2-88b5-60b532248af1"
 maturity = "experimental"
 
@@ -43,5 +44,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 3560
-last_180_days_downloads = 18912
+last_month_downloads = 3711
+last_180_days_downloads = 19088

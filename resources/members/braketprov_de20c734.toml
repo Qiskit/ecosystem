@@ -7,6 +7,7 @@ interfaces = [ "Python",]
 created_at = 1715085130.096724
 category = "Compute provider"
 documentation = "https://qiskit-braket-provider.readthedocs.io/"
+packages = []
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
 maturity = "production-ready"
 
@@ -39,5 +40,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 14977
-last_180_days_downloads = 48357
+last_month_downloads = 14879
+last_180_days_downloads = 48436

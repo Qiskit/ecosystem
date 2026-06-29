@@ -6,6 +6,7 @@ interfaces = [ "C++",]
 ibm_maintained = true
 category = "Language binding"
 documentation = "https://quantum.cloud.ibm.com/docs/en/api/qiskit-c"
+packages = []
 uuid = "254bd1b0-409a-42fc-a104-2d8eb8a0b22d"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -21,7 +22,7 @@ estimated_contributors = 8
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-06-16
-last_activity = 2026-06-25
+last_activity = 2026-06-29
 
 [badge]
 url = "https://qisk.it/e-254bd1b0"

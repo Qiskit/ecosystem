@@ -6,6 +6,7 @@ labels = [ "openqasm",]
 interfaces = [ "Python", "Command-line interface (CLI)",]
 category = "Converter"
 pattern_steps = [ "Execute",]
+packages = []
 uuid = "5b05d5a3-26c6-4487-91cc-3ca3aeaf0d6b"
 maturity = "production-ready"
 

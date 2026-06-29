@@ -8,6 +8,7 @@ interfaces = [ "Python",]
 website = "https://qiskit-community.github.io/ffsim/"
 category = "Circuit simulator"
 documentation = "https://qiskit-community.github.io/ffsim/"
+packages = []
 uuid = "8bbab14b-6cbb-4e09-8040-d5afd359deec"
 maturity = "production-ready"
 
@@ -40,5 +41,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 25674
-last_180_days_downloads = 83069
+last_month_downloads = 25831
+last_180_days_downloads = 83550

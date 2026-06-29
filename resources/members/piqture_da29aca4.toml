@@ -9,6 +9,7 @@ interfaces = [ "Python",]
 category = "Application"
 reference_paper = "https://hdl.handle.net/1828/16627"
 documentation = "https://saashajoshi.github.io/piQture/"
+packages = []
 uuid = "da29aca4-ba28-4d62-942b-f4c5371e7b6e"
 maturity = "production-ready"
 
@@ -41,5 +42,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 60
-last_180_days_downloads = 238
+last_month_downloads = 62
+last_180_days_downloads = 240

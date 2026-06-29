@@ -10,6 +10,7 @@ updated_at = 1636403010.377697
 category = "Circuit simulator"
 pattern_steps = [ "Execute",]
 documentation = "https://qiskit.github.io/qiskit-aer/"
+packages = []
 uuid = "474599a7-228b-446f-ae57-636fdbe8c1c6"
 maturity = "bugfixing only"
 status = "Qiskit Project"
@@ -42,8 +43,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 585679
-last_180_days_downloads = 3155155
+last_month_downloads = 579037
+last_180_days_downloads = 3161843
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
@@ -56,8 +57,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 3753
-last_180_days_downloads = 25632
+last_month_downloads = 3703
+last_180_days_downloads = 25593
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
@@ -70,5 +71,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1381
-last_180_days_downloads = 12806
+last_month_downloads = 1349
+last_180_days_downloads = 12691

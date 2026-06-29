@@ -10,6 +10,7 @@ website = "https://github.com/unitaryfund/qrack"
 category = "Compute provider"
 reference_paper = "https://arxiv.org/abs/2304.14969"
 documentation = "https://qrack.readthedocs.io/"
+packages = []
 uuid = "43cd849a-f5a7-4107-bca9-c19c6cbefc5f"
 maturity = "production-ready"
 
@@ -40,5 +41,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 413
-last_180_days_downloads = 2363
+last_month_downloads = 481
+last_180_days_downloads = 2428
