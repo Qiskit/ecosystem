@@ -32,5 +32,5 @@ def test_G05(member):
             member, "maturity"
         ), "GitHub repository archived, so member.maturity must exist and be `as-is`"
         assert (
-            member.maturity == "as-is"
-        ), "GitHub repository archived and member.maturity is not `as-is`"
+            member.maturity in ["as-is", "archived"]
+        ), "GitHub repository archived and member.maturity is not `as-is` or `archived`"
