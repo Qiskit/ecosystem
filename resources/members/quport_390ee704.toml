@@ -26,6 +26,11 @@ last_activity = 2026-06-29
 url = "https://qisk.it/e-390ee704"
 style = "flat"
 
+[checks.013]
+since = 2026-07-01T15:09:55.460547
+details = "http://quport.soumyadipsarkar.com/ is not HTTPS"
+importance = "IMPORTANT"
+
 [pypi.quport]
 package_name = "quport"
 version = "0.1.1"

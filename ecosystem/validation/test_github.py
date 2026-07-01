@@ -17,7 +17,7 @@
 import pytest
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def skip_github(member):
     """Skip if no github section"""
     if member.github is None:
@@ -31,6 +31,7 @@ def test_G05(member):
         assert hasattr(
             member, "maturity"
         ), "GitHub repository archived, so member.maturity must exist and be `as-is`"
-        assert (
-            member.maturity in ["as-is", "archived"]
-        ), "GitHub repository archived and member.maturity is not `as-is` or `archived`"
+        assert member.maturity in [
+            "as-is",
+            "archived",
+        ], "GitHub repository archived and member.maturity is not `as-is` or `archived`"
