@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Classification.toml",
   "type": "object",
-  "required": ["category", "labels", "interfaces"],
+  "required": ["category", "labels", "interfaces", "maturity"],
   "properties": {
     "category": {
       "type": "array",
@@ -13,12 +13,6 @@
             "type": "string"
           },
           "description": {
-            "type": "string"
-          },
-          "cure_period_in_days": {
-            "type": "integer"
-          },
-          "icon": {
             "type": "string"
           }
         },
@@ -36,10 +30,7 @@
           "description": {
             "type": "string"
           },
-          "cure_period_in_days": {
-            "type": "integer"
-          },
-          "icon": {
+          "links": {
             "type": "string"
           }
         },
@@ -47,6 +38,51 @@
       }
     },
     "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "description"]
+      }
+    },
+    "status": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "description"]
+      }
+    },
+    "maturity": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "description"]
+      }
+    },
+    "pattern_steps": {
       "type": "array",
       "items": {
         "type": "object",
