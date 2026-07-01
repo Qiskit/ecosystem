@@ -45,6 +45,14 @@ jobs:
     - name: Run black
       if: steps.changes.outputs.changed == 'true'
       run: tox -eblack
+    - name: Install taplo
+      uses: uncenter/setup-taplo@v2
+      with:
+        version: "0.10.0"
+    - name: Run taplo check on TOML files
+      run: taplo check resources/*.toml
+    - name: Run taplo check on member files
+      run: taplo check --schema file://$GITHUB_WORKSPACE/resources/members-schema.json resources/members/*.toml
   tests:
     runs-on: ubuntu-latest
     strategy:
