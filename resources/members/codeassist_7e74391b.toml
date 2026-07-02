@@ -32,3 +32,8 @@ last_activity = 2026-05-29
 [badge]
 url = "https://qisk.it/e-7e74391b"
 style = "flat"
+
+[checks.G05]
+since = 2026-07-02T10:02:02.670047
+details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "CRITICAL"

@@ -10,6 +10,7 @@ reference_paper = "https://arxiv.org/abs/2605.12583"
 packages = []
 uuid = "390ee704-e44f-4134-9a03-0486d77a2ade"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/neuralsorcerer/quport"
@@ -27,7 +28,7 @@ url = "https://qisk.it/e-390ee704"
 style = "flat"
 
 [checks.013]
-since = 2026-07-01T15:09:55.460547
+since = 2026-07-02T10:02:02.670047
 details = "http://quport.soumyadipsarkar.com/ is not HTTPS"
 importance = "IMPORTANT"
 
