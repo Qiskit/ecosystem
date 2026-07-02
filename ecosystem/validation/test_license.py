@@ -12,20 +12,15 @@
 
 """License validations"""
 
-import pytest
-
 # pylint: disable=missing-function-docstring
 
 
 def test_O01(member):
-    if (
-        not member.license and not member.github
-    ):  # probably too early, it is a new submission
-        pytest.skip("too early, new submission")
     if member.license:
         assert len(str(member.license)) > 1
     elif member.github and hasattr(member.github, "license") and member.github.license:
         assert len(str(member.github.license)) > 1
+        assert member.github.license.lower() != 'other', "The declared license in GitHub is ambiguous"
     else:
         assert (
             False
