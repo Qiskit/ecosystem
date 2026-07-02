@@ -11,7 +11,8 @@ packages = [
   "https://open-vsx.org/extension/qiskit/qiskit-vscode",
 ]
 uuid = "7e74391b-0b86-46d6-bcd5-d2305c9e5338"
-maturity = "production-ready"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-code-assistant-vscode"
@@ -31,3 +32,8 @@ last_activity = 2026-05-29
 [badge]
 url = "https://qisk.it/e-7e74391b"
 style = "flat"
+
+[checks.G05]
+since = 2026-07-02T10:02:02.670047
+details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "CRITICAL"

@@ -155,7 +155,7 @@ category = "SUBMISSION"
 importance = "RECOMMENDATION"
 
 [G05]
-title = "GitHub repository is archived"
+title = "Archived GitHub repository should have `archived` support"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
@@ -187,6 +187,24 @@ category = "OSS"
 description = "Projects must have a license declared."
 checker = "test_license.py::test_O01"
 importance = "CRITICAL"
+
+[I00]
+title = "IBM-maintained project not in an IBM-controlled GitHub organization"
+applies_to = "IBM-maintained projects"
+affects = ['member.github.owner', 'member.ibm_maintained']
+category = "OSS"
+description = "Projects that are maintained by IBM should live in a GitHub organization that is controlled by IBM. This allows to, for example, archive projects once they are not longer maintained."
+importance = "CRITICAL"
+checker = "test_ibm_maintained.py::test_I00"
+
+[I01]
+title = "Unsupported IBM-maintained project should archive its repository"
+applies_to = "IBM-maintained projects"
+affects = ['member.github.archived', 'member.ibm_maintained']
+category = "ACTIVITY"
+description = "Projects that are maintained by IBM are not longer supported, they live in a GitHub organization that is controlled by IBM. This allows to, for example, archive projects once they are not longer maintained."
+importance = "CRITICAL"
+checker = "test_ibm_maintained.py::test_I01"
 
 [PQ1]
 title = "Be installable with qiskit>=1.0"
