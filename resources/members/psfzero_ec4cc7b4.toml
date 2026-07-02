@@ -25,3 +25,8 @@ last_activity = 2026-06-10
 [badge]
 url = "https://qisk.it/e-ec4cc7b4"
 style = "flat"
+
+[checks.O01]
+since = 2026-07-02T11:46:20.861697
+details = "No license could be found. Populate 'member.license' as soon as possible."
+importance = "CRITICAL"

@@ -179,6 +179,15 @@ category = "ACTIVITY"
 description = "Projects available on GitHub should have a commit activity activity within the last 18 months. This check does not apply to project that declared their support as as-is."
 importance = "STRONG-RECOMMENDATION"
 
+[O01]
+title = "Have a license"
+applies_to = "all"
+affects = ['member.license', 'member.github.license']
+category = "OSS"
+description = "Projects must have a license declared."
+checker = "test_license.py::test_O01"
+importance = "CRITICAL"
+
 [I00]
 title = "IBM-maintained project not in an IBM-controlled GitHub organization"
 applies_to = "IBM-maintained projects"
