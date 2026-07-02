@@ -1,14 +1,18 @@
 name = "Qiskit Code Assistant for VSCode"
 url = "https://github.com/Qiskit/qiskit-code-assistant-vscode"
 description = "VSCode extension to use the Qiskit Code Assistant"
-labels = [ "cloud service",]
-interfaces = [ "Other interface",]
+labels = ["cloud service"]
+interfaces = ["Other interface"]
 ibm_maintained = true
 category = "Tooling"
 documentation = "https://quantum.cloud.ibm.com/docs/guides/qiskit-code-assistant"
-packages = [ "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode", "https://open-vsx.org/extension/qiskit/qiskit-vscode",]
+packages = [
+  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://open-vsx.org/extension/qiskit/qiskit-vscode",
+]
 uuid = "7e74391b-0b86-46d6-bcd5-d2305c9e5338"
-maturity = "production-ready"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-code-assistant-vscode"
@@ -21,9 +25,15 @@ description = "A VSCode extension to use the Qiskit Code Assistant (Beta)"
 estimated_contributors = 12
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-14
-last_activity = 2026-04-14T14:12:02Z
+archived = true
+last_commit = 2026-05-29
+last_activity = 2026-05-29
 
 [badge]
 url = "https://qisk.it/e-7e74391b"
 style = "flat"
+
+[checks.G05]
+since = 2026-07-02T10:02:02.670047
+details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "CRITICAL"

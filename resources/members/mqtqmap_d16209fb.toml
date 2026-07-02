@@ -4,12 +4,13 @@ description = "A tool for quantum circuit compilation for various qubit technolo
 license = "MIT license"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
-labels = [ "research", "circuit optimization",]
-interfaces = [ "Python",]
+labels = ["research", "circuit optimization"]
+interfaces = ["Python"]
 website = "https://mqt.readthedocs.io"
 category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qmap"
+packages = []
 uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"
 maturity = "production-ready"
 
@@ -17,14 +18,14 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/qmap"
 owner = "munich-quantum-toolkit"
 repo = "qmap"
-stars = 138
+stars = 140
 homepage = "https://mqt.readthedocs.io/projects/qmap"
 license = "MIT License"
 description = "MQT QMAP - A tool for Quantum Circuit Mapping written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-18
-last_activity = 2026-05-18
+last_commit = 2026-07-01
+last_activity = 2026-07-01
 
 [badge]
 url = "https://qisk.it/e-d16209fb"
@@ -32,7 +33,7 @@ style = "flat"
 
 [pypi."mqt.qmap"]
 package_name = "mqt-qmap"
-version = "3.6.0"
+version = "3.7.0"
 last_release_date = 2026-02-24
 license = "MIT"
 description = "A tool for Quantum Circuit Mapping"
@@ -43,5 +44,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1772
-last_180_days_downloads = 22949
+last_month_downloads = 2724
+last_180_days_downloads = 22562

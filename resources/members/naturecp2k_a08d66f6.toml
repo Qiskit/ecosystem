@@ -2,10 +2,11 @@ name = "Qiskit Nature + CP2K Embedding"
 url = "https://github.com/mrossinek/qiskit-nature-cp2k"
 description = "This project contains the utilities that are required for the communication between Qiskit Nature and CP2K."
 license = "Apache License 2.0"
-labels = [ "chemistry",]
-interfaces = [ "Python",]
+labels = ["chemistry"]
+interfaces = ["Python"]
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2404.18737"
+packages = []
 uuid = "a08d66f6-0ee7-446c-a121-c9c692bc0ae9"
 maturity = "production-ready"
 

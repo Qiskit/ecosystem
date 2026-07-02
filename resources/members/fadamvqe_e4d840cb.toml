@@ -3,11 +3,12 @@ url = "https://github.com/dolf3131/qiskit_algorithms_V2"
 description = "Custom VQE with FAdam optimizer, compatible with Qiskit 1.0+ EstimatorV2 for quantum chemistry & optimization."
 license = "Apache License 2.0"
 contact_info = "milk_lime@naver.com"
-labels = [ "research",]
-interfaces = [ "Python",]
+labels = ["research"]
+interfaces = ["Python"]
 website = "https://arxiv.org/abs/2405.12807"
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2405.12807"
+packages = []
 uuid = "e4d840cb-e4f1-4e58-84f6-d5a77a5d2d1e"
 maturity = "production-ready"
 

@@ -3,8 +3,9 @@ url = "https://github.com/qiskit-community/quantum-prototype-template"
 description = "A template repository for generating new quantum prototypes based on Qiskit."
 license = "Apache License 2.0"
 labels = []
-interfaces = [ "Python",]
+interfaces = ["Python"]
 category = "Tooling"
+packages = []
 uuid = "bb5d0da9-1523-4756-bda2-43d970b1fc51"
 maturity = "production-ready"
 
@@ -19,7 +20,7 @@ estimated_contributors = 7
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-09-11
-last_activity = 2026-04-20T17:27:14Z
+last_activity = 2026-06-15
 
 [badge]
 url = "https://qisk.it/e-bb5d0da9"
@@ -36,5 +37,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 21
-last_180_days_downloads = 184
+last_month_downloads = 70
+last_180_days_downloads = 230

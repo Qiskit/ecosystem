@@ -4,11 +4,11 @@ description = "QiskitOpt.jl is a Julia package that exports a JuMP wrapper for q
 license = "MIT license"
 contact_info = "pedrox@cos.ufrj.br, pedroripper@psr-inc.com, tiago@psr-inc.com, joaquim@psr-inc.com, dbernalneira@usra.edu"
 affiliations = "@psrenergy and USRA"
-labels = [ "optimization",]
-interfaces = [ "Julia",]
-created_at = 1673642669.650459
-updated_at = 1673642669.650464
+labels = ["optimization"]
+interfaces = ["Julia"]
+created_at = 2023-01-13
 category = "Application"
+packages = []
 uuid = "fd796b7d-2775-4ece-89f0-778066552014"
 maturity = "production-ready"
 
@@ -22,8 +22,8 @@ description = "JuMP wrapper for IBMQ Optimization Algorithms (ft QUBODrivers.jl)
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-30
-last_activity = 2026-05-21
+last_commit = 2026-07-01
+last_activity = 2026-07-01
 
 [badge]
 url = "https://qisk.it/e-fd796b7d"
@@ -32,9 +32,9 @@ style = "flat"
 [julia.QiskitOpt]
 package_name = "QiskitOpt"
 registry = "General"
-version = "0.3.0"
+version = "0.7.1"
 license = "MIT"
-owner = "psrenergy"
-release_date = 2024-05-01
+owner = "JuliaQUBO"
+release_date = 2026-06-01
 uuid = "81b20daf-e62b-4502-a0d1-aa084de80e33"
 estimated_unique_users = 20

@@ -136,6 +136,11 @@ class GitHubData(JsonSerializable):
             f"github.com/{self.owner}/{self.repo}/network/dependents?dependent_type=REPOSITORY",
             parser=parse_github_package_ids,
         )
+        self._json_package_ids = {
+            v: k
+            for v, k in self._json_package_ids.items()
+            if isinstance(v, str) and not v.startswith("__")
+        }
         self._json_dependants = {}
         for package, package_id in self._json_package_ids.items():
             try:

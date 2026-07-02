@@ -4,10 +4,11 @@ description = "Model constrained optimization problems using an algebraic modele
 license = "Apache License 2.0"
 contact_info = "h.matsuyama@j-ij.com"
 affiliations = "Jij Inc."
-labels = [ "optimization",]
-interfaces = [ "Python",]
+labels = ["optimization"]
+interfaces = ["Python"]
 category = "SDK"
 documentation = "https://jij-inc.github.io/Qamomile/"
+packages = []
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
 maturity = "production-ready"
 
@@ -15,13 +16,13 @@ maturity = "production-ready"
 url = "https://github.com/Jij-Inc/Qamomile"
 owner = "Jij-Inc"
 repo = "Qamomile"
-stars = 16
+stars = 19
 license = "Apache License 2.0"
 estimated_contributors = 15
-total_dependent_repositories = 2
+total_dependent_repositories = 3
 total_dependent_packages = 1
-last_commit = 2026-05-21
-last_activity = 2026-05-21
+last_commit = 2026-06-30
+last_activity = 2026-06-30
 
 [badge]
 url = "https://qisk.it/e-50cd2126"
@@ -29,7 +30,7 @@ style = "flat"
 
 [pypi.qamomile]
 package_name = "qamomile"
-version = "0.12.4"
+version = "0.12.6"
 last_release_date = 2026-05-22
 url = "https://pypi.org/project/qamomile/"
 requires_qiskit = "<3.0.0,>=2.1.0"
@@ -37,5 +38,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1136
-last_180_days_downloads = 5092
+last_month_downloads = 999
+last_180_days_downloads = 5464

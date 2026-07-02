@@ -4,10 +4,11 @@ description = "Research-oriented toolkit for turning amino-acid sequences into q
 license = "MIT license"
 contact_info = "akshayuttarkar@gmail.com"
 affiliations = "R V College of Engineering MIT Vishwaprayag University"
-labels = [ "chemistry",]
-interfaces = [ "Python",]
+labels = ["chemistry"]
+interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0342012"
+packages = []
 uuid = "ab89baa7-39e9-482a-8157-a9bb834c5108"
 maturity = "production-ready"
 
@@ -21,8 +22,8 @@ description = "QupepFold is a small, research-oriented toolkit that turns short 
 estimated_contributors = 2
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-27
-last_activity = 2026-04-27
+last_commit = 2026-05-27
+last_activity = 2026-05-27
 
 [badge]
 url = "https://qisk.it/e-ab89baa7"
@@ -39,5 +40,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 163
-last_180_days_downloads = 1241
+last_month_downloads = 185
+last_180_days_downloads = 1340

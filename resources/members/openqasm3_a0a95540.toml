@@ -1,10 +1,16 @@
 name = "OpenQASM 3 Parser"
 submission_number = 1172
 url = "https://github.com/Qiskit/openqasm3_parser"
-labels = [ "openqasm",]
-interfaces = [ "Python", "Rust",]
+labels = ["openqasm"]
+interfaces = ["Python", "Rust"]
 category = "Converter"
-packages = [ "https://crates.io/crates/oq3_parser", "https://crates.io/crates/oq3_lexer", "https://crates.io/crates/oq3_semantics", "https://crates.io/crates/oq3_source_file", "https://crates.io/crates/oq3_syntax",]
+packages = [
+  "https://crates.io/crates/oq3_parser",
+  "https://crates.io/crates/oq3_lexer",
+  "https://crates.io/crates/oq3_semantics",
+  "https://crates.io/crates/oq3_source_file",
+  "https://crates.io/crates/oq3_syntax",
+]
 uuid = "a0a95540-84dd-43c8-b28b-9133028f2924"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -16,10 +22,10 @@ repo = "openqasm3_parser"
 stars = 27
 license = "Apache License 2.0"
 description = "Parser and semantic analyzer for the OpenQASM3 language "
-total_dependent_repositories = 248
+total_dependent_repositories = 258
 total_dependent_packages = 13
 last_commit = 2025-12-02
-last_activity = 2026-05-11
+last_activity = 2026-06-16
 
 [badge]
 url = "https://qisk.it/e-a0a95540"

@@ -167,7 +167,8 @@ class DAO:
             the value of the argument is used to update the full project first.
 
         Example usage:
-            update("aer_474599a", stars=300)
+            update("aer_474599a", github=github_data_instance)  # updates github section
+            update("aer_474599a", member=member_instance)       # updates the full member
         """
         with self.storage as data:
             if "member" in kwargs:

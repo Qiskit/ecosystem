@@ -228,7 +228,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         for package_name in sorted(self.julia.keys()):
             self.julia[package_name].update_json()
 
-    def upsert_sections(self):
+    def upsert_sections(self, github_url=None):
         """Create or update sections in a member.
         It is fully local, no validation or internet fetch.
          * github
@@ -236,9 +236,12 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
          * julia
         """
 
+        if github_url is None:
+            github_url = self.url
+
         # github section
         if not self.github:
-            self.github = GitHubData.from_url(self.url)
+            self.github = GitHubData.from_url(github_url)
 
         # package sections
         if not self.packages:

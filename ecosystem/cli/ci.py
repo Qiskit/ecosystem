@@ -12,6 +12,7 @@
 
 """CliCI class for controlling all CLI functions."""
 
+import traceback
 import sys
 import os
 from pathlib import Path
@@ -57,12 +58,14 @@ class CliCI:
         set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
 
     @staticmethod
-    def create_sections(member_id: str, *, resources_dir: str | None = None) -> None:
+    def create_sections(
+        member_id: str | None = None, resources_dir: str | None = None
+    ) -> None:
         """unfolds all the sections for the projects
 
         Args:
             member_id: loads the file ../resources/*_<member_id>.toml
-
+            resources_dir: optional. Path to resource directory.
         Returns:
             None (side effect is updating database and writing actions output)
         """
@@ -135,10 +138,11 @@ class CliCI:
                 update_method = getattr(member, f"update_{update_method_str}")
                 try:
                     update_method()
+                    dao.update(member.name_id, member=member)
                 except Exception as e:
                     print(
-                        f"\n::group:: ERROR Updating {member.name_id} when {update_method_str}️"
+                        f"\n::warning file={resources_dir}/members/{member.name_id}.toml::Error "
+                        f"updating {member.name_id} when {update_method_str}️ - {e}"
                     )
-                    print(e)
-                    print("\n::endgroup::\n")
+                    print(traceback.format_exc())
             print("::endgroup::")

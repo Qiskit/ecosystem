@@ -1,11 +1,12 @@
 name = "Qiskit C++"
 url = "https://github.com/Qiskit/qiskit-cpp"
 contact_info = "qiskit@us.ibm.com"
-labels = [ "quantum information", "circuit optimization",]
-interfaces = [ "C++",]
+labels = ["quantum information", "circuit optimization"]
+interfaces = ["C++"]
 ibm_maintained = true
 category = "Language binding"
 documentation = "https://quantum.cloud.ibm.com/docs/en/api/qiskit-c"
+packages = []
 uuid = "254bd1b0-409a-42fc-a104-2d8eb8a0b22d"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -14,14 +15,14 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-cpp"
 owner = "Qiskit"
 repo = "qiskit-cpp"
-stars = 36
+stars = 38
 license = "Apache License 2.0"
 description = "Qiskit C++ is an opensource interface to quantum centric supercomputing, compatible interface to Qiskit in C++"
 estimated_contributors = 8
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-04-21
-last_activity = 2026-04-29
+last_commit = 2026-06-16
+last_activity = 2026-06-29
 
 [badge]
 url = "https://qisk.it/e-254bd1b0"

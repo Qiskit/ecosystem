@@ -2,8 +2,8 @@ name = "qBalance"
 submission_number = 1132
 url = "https://github.com/neuralsorcerer/qbalance"
 description = "A workflow toolkit for balancing quantum compilation, suppression, and mitigation choices over a dataset of quantum circuits."
-labels = [ "error mitigation", "circuit optimization",]
-interfaces = [ "Python",]
+labels = ["error mitigation", "circuit optimization"]
+interfaces = ["Python"]
 category = "Tooling"
 pattern_steps = []
 reference_paper = "https://arxiv.org/abs/2605.02966"
@@ -15,14 +15,14 @@ maturity = "experimental"
 url = "https://github.com/neuralsorcerer/qbalance"
 owner = "neuralsorcerer"
 repo = "qbalance"
-stars = 2
-homepage = "https://pypi.org/project/qbalance/"
+stars = 3
+homepage = "https://qbalance.soumyadipsarkar.com/"
 license = "MIT License"
 description = "A workflow toolkit for balancing quantum compilation, suppression, and mitigation choices over a dataset of quantum circuits."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-20
-last_activity = 2026-05-20
+last_commit = 2026-07-01
+last_activity = 2026-07-01
 
 [badge]
 url = "https://qisk.it/e-88affdcb"
@@ -30,7 +30,7 @@ style = "flat"
 
 [pypi.qbalance]
 package_name = "qbalance"
-version = "0.1.1"
+version = "0.1.2"
 last_release_date = 2026-05-03
 description = "Balancing workflow library for quantum compilation/mitigation benchmarking with Qiskit."
 url = "https://pypi.org/project/qbalance/"
@@ -40,5 +40,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 185
-last_180_days_downloads = 302
+last_month_downloads = 198
+last_180_days_downloads = 488

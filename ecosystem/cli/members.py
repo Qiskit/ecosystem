@@ -432,10 +432,10 @@ class CliMembers:
 
                     cure_period_str = (
                         str(checkup.cure_period_in_days)
-                        if checkup.cure_period_in_days is not False
+                        if checkup.cure_period_in_days >= 0
                         else "∞"
                     )
-                    if checkup.cure_period_in_days is False:
+                    if checkup.cure_period_in_days < 0:
                         left_period_str = "∞"
                     else:
                         left_period_int = (
