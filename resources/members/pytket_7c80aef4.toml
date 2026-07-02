@@ -3,7 +3,7 @@ url = "https://github.com/CQCL/pytket-qiskit"
 description = "Convert between Pytket (a Python interface for CQC tket) and Qiskit, and run Pytket circuits on IBM backends and simulators"
 license = "Apache 2.0"
 labels = []
-interfaces = ["Python"]
+interfaces = [ "Python",]
 created_at = 2022-08-30
 category = "Converter"
 documentation = "https://docs.quantinuum.com/tket/extensions/pytket-qiskit/"
@@ -34,10 +34,10 @@ version = "0.77.0"
 last_release_date = 2026-02-02
 description = "Extension for pytket, providing translation to and from the Qiskit."
 url = "https://pypi.org/project/pytket-qiskit/"
-requires_qiskit = ">=2.2.0"
+requires_qiskit = ">=2.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 43278
-last_180_days_downloads = 254266
+last_month_downloads = 43627
+last_180_days_downloads = 255824

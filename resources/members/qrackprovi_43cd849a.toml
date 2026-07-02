@@ -5,7 +5,7 @@ license = "Apache License 2.0"
 contact_info = "dan@unitary.fund"
 affiliations = "Unitary Foundation, github.com/vm6502q"
 labels = []
-interfaces = ["Python"]
+interfaces = [ "Python",]
 website = "https://github.com/unitaryfund/qrack"
 category = "Compute provider"
 reference_paper = "https://arxiv.org/abs/2304.14969"
@@ -36,10 +36,10 @@ version = "1.2.1"
 last_release_date = 2026-05-21
 description = "Qiskit Qrack Provider - Qrack High-Performance GPU simulation for Qiskit"
 url = "https://pypi.org/project/qiskit-qrack-provider/"
-requires_qiskit = ">=2.0.0"
+requires_qiskit = "==2.*"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 514
-last_180_days_downloads = 2397
+last_month_downloads = 515
+last_180_days_downloads = 2393
