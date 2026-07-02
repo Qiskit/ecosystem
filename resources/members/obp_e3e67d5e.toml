@@ -1,10 +1,10 @@
 name = "Operator Backpropagation (OBP)"
 url = "https://github.com/Qiskit/qiskit-addon-obp"
 description = "Reduce depth of circuits with operator backpropagation (OBP)."
-labels = [ "circuit optimization", "utility-scale",]
-interfaces = [ "Python",]
+labels = ["circuit optimization", "utility-scale"]
+interfaces = ["Python"]
 ibm_maintained = true
-created_at = 1758737407.8760931
+created_at = 2025-09-24
 category = "Qiskit addon"
 reference_paper = "https://arxiv.org/abs/2502.01897"
 documentation = "https://qiskit.github.io/qiskit-addon-obp/"
@@ -24,8 +24,8 @@ description = "Reducing depth of circuits with operator backpropagation"
 estimated_contributors = 13
 total_dependent_repositories = 13
 total_dependent_packages = 1
-last_commit = 2026-06-29
-last_activity = 2026-06-29
+last_commit = 2026-07-01
+last_activity = 2026-07-01
 
 [badge]
 url = "https://qisk.it/e-e3e67d5e"
@@ -43,5 +43,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 8583
-last_180_days_downloads = 34758
+last_month_downloads = 8967
+last_180_days_downloads = 35177

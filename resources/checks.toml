@@ -1,3 +1,4 @@
+#:schema ./checks-schema.json
 [000]
 title = "Build on, interface with, or extend the Qiskit in a meaningful way"
 description = "Software in the Qiskit Ecosystem should related to Qiskit projects in some meaningful way. Software that manipulate Qiskit data structure (such as transpiler plugins) are good examples of that. If the connection with Qiskit is not that obvious, consider having a tutorial or how-to guide explaining a use-case for Qiskit users."
@@ -15,7 +16,7 @@ importance = "CRITICAL"
 checker = "test_general.py::test_001"
 
 [COC]
-title="Adhere to the Qiskit CoC"
+title = "Adhere to the Qiskit CoC"
 applies_to = "all"
 category = "SUBMISSION"
 description = "Project submitters should adhere to the Qiskit code of conduct. If the submitter is the project maintainer, they can enforce your their code of conduct in addition to the one coming from Qiskit."
@@ -88,7 +89,12 @@ importance = "RECOMMENDATION"
 title = "Do not repeat URLs in the submission"
 description = "Having the same URL for, for example member.website and member.documentation is unnecessary. Keep better fit and remove the other one."
 applies_to = "all"
-affects = ["member.website", "member.url", "member.documentation", "member.packages.*"]
+affects = [
+  "member.website",
+  "member.url",
+  "member.documentation",
+  "member.packages.*",
+]
 category = "SUBMISSION"
 importance = "STRONG-RECOMMENDATION"
 
@@ -96,7 +102,13 @@ importance = "STRONG-RECOMMENDATION"
 title = "URLs must exists"
 description = "None of the URLs must not return 404s or other forms of permanent errors. Rediractions are accepted."
 applies_to = "all"
-affects = ["member.website", "member.url", "member.documentation", "member.packages.*", "member.pypi.*.url"]
+affects = [
+  "member.website",
+  "member.url",
+  "member.documentation",
+  "member.packages.*",
+  "member.pypi.*.url",
+]
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
@@ -104,7 +116,13 @@ importance = "IMPORTANT"
 title = "URLs use a secure schema"
 description = "All the URLs must use HTTTPS (HyperText Transfer Protocol Secure) schema."
 applies_to = "all"
-affects = ["member.website", "member.url", "member.documentation", "member.packages.*", "member.pypi.*.url"]
+affects = [
+  "member.website",
+  "member.url",
+  "member.documentation",
+  "member.packages.*",
+  "member.pypi.*.url",
+]
 checker = "test_url.py::TestURLs::test_http"
 category = "SUBMISSION"
 importance = "IMPORTANT"
@@ -203,7 +221,7 @@ title = "Python package license-related metadata should refer to a OSI-approved 
 applies_to = "Python packages"
 affects = ['member.pypi.*.license']
 category = "OSS"
-description ="The license-related metadata in PyPA should be an OSI-approved open-source license."
+description = "The license-related metadata in PyPA should be an OSI-approved open-source license."
 importance = "CRITICAL"
 
 [P11]
@@ -211,7 +229,7 @@ title = "Production-ready projects should have, at least, one stable Python pack
 applies_to = "Python packages"
 affects = ['member.pypi.*.development_status', 'member.maturity']
 category = "OUT-OF-DATE"
-description ="If the project maturiy level is is production-ready then, at least one of the Python packages should have a Development Status classifier that is `None`, `Production/Stable`, or `Mature`."
+description = "If the project maturiy level is is production-ready then, at least one of the Python packages should have a Development Status classifier that is `None`, `Production/Stable`, or `Mature`."
 checker = "test_pypi.py::test_P11"
 importance = "STRONG-RECOMMENDATION"
 
@@ -249,7 +267,7 @@ icon = "material-alert-circle-outline"
 [[importance]]
 name = "LEGACY"
 description = "This validation does not loger apply."
-cure_period_in_days = false
+cure_period_in_days = -1
 icon = "material-archive-alert-outline"
 
 [[categories]]

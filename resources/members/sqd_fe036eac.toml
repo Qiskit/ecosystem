@@ -1,12 +1,12 @@
 name = "Sample-based Quantum Diagonalization"
 url = "https://github.com/Qiskit/qiskit-addon-sqd"
 description = "Sample-based quantum diagonalization. Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
-labels = [ "chemistry", "utility-scale",]
-interfaces = [ "Python",]
+labels = ["chemistry", "utility-scale"]
+interfaces = ["Python"]
 ibm_maintained = true
-created_at = 1758737407.8760931
+created_at = 2025-09-24
 category = "Qiskit addon"
-pattern_steps = [ "Post-process",]
+pattern_steps = ["Post-process"]
 documentation = "https://qiskit.github.io/qiskit-addon-sqd/"
 packages = []
 uuid = "fe036eac-635d-46db-931e-2965a8a138a5"
@@ -24,8 +24,8 @@ description = "Sample-based Quantum Diagonalization: Classically postprocess noi
 estimated_contributors = 17
 total_dependent_repositories = 13
 total_dependent_packages = 2
-last_commit = 2026-06-29
-last_activity = 2026-06-29
+last_commit = 2026-07-01
+last_activity = 2026-07-01
 
 [badge]
 url = "https://qisk.it/e-fe036eac"
@@ -42,5 +42,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 20104
-last_180_days_downloads = 48800
+last_month_downloads = 25189
+last_180_days_downloads = 53967

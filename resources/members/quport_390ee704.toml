@@ -2,8 +2,8 @@ name = "QuPort"
 submission_number = 1147
 url = "https://github.com/neuralsorcerer/quport"
 description = "Production-ready Python/Qiskit toolkit for modular multi-QPU circuit mapping, routing, scheduling, and benchmarking."
-labels = [ "HPC",]
-interfaces = [ "Python",]
+labels = ["HPC"]
+interfaces = ["Python"]
 category = "Tooling"
 pattern_steps = []
 reference_paper = "https://arxiv.org/abs/2605.12583"
@@ -19,8 +19,8 @@ stars = 2
 homepage = "http://quport.soumyadipsarkar.com/"
 license = "Apache License 2.0"
 description = "QuPort is a production-ready Python and Qiskit toolkit for modeling, mapping, routing, splitting, scheduling, and benchmarking quan..."
-last_commit = 2026-06-29
-last_activity = 2026-06-29
+last_commit = 2026-06-30
+last_activity = 2026-06-30
 
 [badge]
 url = "https://qisk.it/e-390ee704"
@@ -33,7 +33,7 @@ importance = "IMPORTANT"
 
 [pypi.quport]
 package_name = "quport"
-version = "0.1.1"
+version = "0.1.2"
 last_release_date = 2026-06-02
 description = "Research-grade multi-QPU mapping, routing, and benchmarking toolkit for NISQ circuit partitioning in Qiskit."
 url = "https://pypi.org/project/quport/"
@@ -42,5 +42,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 173
-last_180_days_downloads = 309
+last_month_downloads = 266
+last_180_days_downloads = 402
