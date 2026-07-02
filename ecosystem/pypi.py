@@ -161,14 +161,13 @@ class PyPIData(JsonSerializable):
     @property
     def requires_qiskit(self):
         """String with the specifier for "qiskit" dependency"""
-        if "requires_qiskit" in self._kwargs:
-            return self._kwargs["requires_qiskit"]
         requires_dist = self.pypi_json.get("info", {}).get("requires_dist") or []
         for requirement_str in requires_dist:
             requirement = Requirement(requirement_str)
             if requirement.name == "qiskit":
-                self._kwargs["requires_qiskit"] = str(requirement.specifier)
-                if self._kwargs["requires_qiskit"] == "":
+                if len(requirement.specifier):
+                    self._kwargs["requires_qiskit"] = str(requirement.specifier)
+                else:
                     logger.warning(
                         "%s depends on qiskit but with empty specifier. "
                         'Forcing one, ">=0"',
@@ -176,6 +175,8 @@ class PyPIData(JsonSerializable):
                     )
                     self._kwargs["requires_qiskit"] = ">=0"
                 return self._kwargs["requires_qiskit"]
+        if "requires_qiskit" in self._kwargs:
+            return self._kwargs["requires_qiskit"]
         return None
 
     def all_qiskit_versions(self, force_update=False):
