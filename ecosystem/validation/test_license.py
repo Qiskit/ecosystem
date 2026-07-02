@@ -12,15 +12,16 @@
 
 """License validations"""
 
-# pylint: disable=missing-function-docstring
-
+# pylint: disable=missing-function-docstring,invalid-name
 
 def test_O01(member):
     if member.license:
         assert len(str(member.license)) > 1
     elif member.github and hasattr(member.github, "license") and member.github.license:
         assert len(str(member.github.license)) > 1
-        assert member.github.license.lower() != 'other', "The declared license in GitHub is ambiguous"
+        assert (
+            member.github.license.lower() != "other"
+        ), "The declared license in GitHub is ambiguous"
     else:
         assert (
             False
