@@ -3,12 +3,12 @@ submission_number = 1155
 url = "https://github.com/QuBins/qiskit-images"
 description = "Qiskit images for Binder & Docker. One-click in-browser or docker pull; multi-arch, no local install. Prebuilt, signed, daily-rebuilt."
 contact_info = "jan@lahmann-online.de"
-labels = [ "cloud service", "circuit building",]
-interfaces = [ "Web interface", "Command-line interface (CLI)",]
+labels = ["cloud service", "circuit building"]
+interfaces = ["Web interface", "Command-line interface (CLI)"]
 website = "https://qubins.org"
 category = "Tooling"
 pattern_steps = []
-packages = [ "https://github.com/QuBins/qiskit-images/pkgs/container/images",]
+packages = ["https://github.com/QuBins/qiskit-images/pkgs/container/images"]
 uuid = "6c640264-6c64-4163-921a-fbaeaa553f53"
 maturity = "production-ready"
 
