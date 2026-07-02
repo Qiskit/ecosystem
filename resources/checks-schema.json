@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Check ups",
+  "type": "object",
+  "patternProperties": {
+    "^[A-Z0-9]{3}$": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "applies_to": {
+          "type": "string"
+        },
+        "importance": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description"
+      ]
+    },
+    "^importance$": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "cure_period_in_days": {
+            "type": "integer"
+          },
+          "icon": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "description"]
+      }
+    },
+    "^categories$": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "description"]
+      }
+    }
+  }
+}
+

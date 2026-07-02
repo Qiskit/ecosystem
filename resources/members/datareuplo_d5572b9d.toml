@@ -3,11 +3,17 @@ submission_number = 1179
 url = "https://github.com/Carlosandp/qiskit-data-reuploading"
 description = "Pip-installable, sklearn-compatible data re-uploading quantum classifier built on Qiskit 2.x V2 primitives."
 contact_info = "caduranpd@gmail.com"
-labels = [ "QML", "optimization", "quantum information", "research", "circuit building",]
-interfaces = [ "Python",]
+labels = [
+  "QML",
+  "optimization",
+  "quantum information",
+  "research",
+  "circuit building",
+]
+interfaces = ["Python"]
 website = "https://casiriorg.github.io/projects/qiskit-data-reuploading/"
 category = "Paper artifact"
-pattern_steps = [ "Map",]
+pattern_steps = ["Map"]
 reference_paper = "https://arxiv.org/abs/2605.19233"
 documentation = "https://casiriorg.github.io/projects/qiskit-data-reuploading/api/"
 packages = []
@@ -40,5 +46,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 227
-last_180_days_downloads = 227
+last_month_downloads = 103
+last_180_days_downloads = 232

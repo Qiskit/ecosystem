@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Member toml file",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "labels": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "interfaces": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "ibm_maintained": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "number"
+    },
+    "category": {
+      "type": "string"
+    },
+    "pattern_steps": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "documentation": {
+      "type": "string"
+    },
+    "packages": {
+      "type": "array",
+      "items": {}
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "maturity": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "github": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "repo": {
+          "type": "string"
+        },
+        "stars": {
+          "type": "integer"
+        },
+        "homepage": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "total_dependent_repositories": {
+          "type": "integer"
+        },
+        "total_dependent_packages": {
+          "type": "integer"
+        },
+        "last_commit": {
+          "type": "string",
+          "format": "date"
+        },
+        "last_activity": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "owner",
+        "repo",
+        "stars"
+      ]
+    },
+    "badge": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "style"
+      ]
+    },
+    "pypi": {
+      "type": "object",
+      "properties": {
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "package_name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "last_release_date": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "requires_qiskit": {
+              "type": "string"
+            },
+            "compatible_with_qiskit_v1": {
+              "type": "boolean"
+            },
+            "compatible_with_qiskit_v2": {
+              "type": "boolean"
+            },
+            "highest_supported_qiskit_release_date": {
+              "type": "string"
+            },
+            "highest_supported_qiskit_version": {
+              "type": "string"
+            },
+            "last_month_downloads": {
+              "type": "integer"
+            },
+            "last_180_days_downloads": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "package_name",
+            "version",
+            "last_release_date",
+            "description",
+            "url",
+            "requires_qiskit",
+            "compatible_with_qiskit_v1",
+            "compatible_with_qiskit_v2",
+            "highest_supported_qiskit_release_date",
+            "highest_supported_qiskit_version",
+            "last_month_downloads",
+            "last_180_days_downloads"
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "url",
+    "labels",
+    "interfaces",
+    "category",
+    "packages",
+    "uuid",
+    "maturity"
+  ]
+}
+
+

@@ -3,7 +3,7 @@ submission_number = 1172
 url = "https://github.com/Qiskit/mcp-servers"
 description = "A collection of MCP servers to allow LLMs to use the many Qiskit Project libraries"
 labels = []
-interfaces = [ "Python",]
+interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
 packages = []
@@ -20,8 +20,8 @@ license = "Apache License 2.0"
 description = "A collection of MCP servers to allow LLMs to use the qiskit,qiskit-ibm-runtime library,  qiskit-ibm-transpiler, qiskit-code-assista..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-03
-last_activity = 2026-06-03
+last_commit = 2026-07-01
+last_activity = 2026-07-01
 
 [badge]
 url = "https://qisk.it/e-4174663a"
@@ -34,5 +34,5 @@ last_release_date = 2026-04-20
 description = "Model Context Protocol servers for IBM Quantum services and Qiskit"
 url = "https://pypi.org/project/qiskit-mcp-servers/"
 development_status = "3 - Alpha"
-last_month_downloads = 417
-last_180_days_downloads = 2224
+last_month_downloads = 405
+last_180_days_downloads = 2252

@@ -3,13 +3,13 @@ submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-code-assistant-jupyterlab"
 description = "A Jupyterlab extension to use the Qiskit Code Assistant."
 labels = []
-interfaces = [ "Python",]
+interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
 packages = []
 uuid = "6b3cd3f6-aea2-4f6f-9040-d97b634d2a61"
-maturity = "experimental"
-status = "Qiskit Project"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-code-assistant-jupyterlab"
@@ -29,11 +29,16 @@ last_activity = 2026-05-29
 url = "https://qisk.it/e-6b3cd3f6"
 style = "flat"
 
+[checks.G05]
+since = 2026-07-02T10:02:02.670047
+details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "CRITICAL"
+
 [pypi.qiskit-code-assistant-jupyterlab]
 package_name = "qiskit-code-assistant-jupyterlab"
 version = "0.11.0"
 last_release_date = 2026-02-16
 description = "AI Autocomplete JupyterLab extension for Qiskit Code Assistant (Beta)"
 url = "https://pypi.org/project/qiskit-code-assistant-jupyterlab/"
-last_month_downloads = 142
-last_180_days_downloads = 875
+last_month_downloads = 171
+last_180_days_downloads = 896
