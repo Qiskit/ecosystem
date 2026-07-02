@@ -4,8 +4,8 @@ description = "Supervised machine learning based on quantum computing and Rieman
 license = "BSD 3-Clause \"New\" or \"Revised\" license"
 contact_info = "gcattan@hotmail.fr"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
-labels = [ "QML",]
-interfaces = [ "Python",]
+labels = ["QML"]
+interfaces = ["Python"]
 category = "Application"
 documentation = "https://pyriemann-qiskit.readthedocs.io/"
 packages = []
@@ -34,6 +34,7 @@ style = "flat"
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package pyriemann-qiskit is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/pyriemann/pyriemann-qiskit/issues/444"
 importance = "IMPORTANT"
 
 [pypi.pyriemann-qiskit]
@@ -45,7 +46,7 @@ url = "https://pypi.org/project/pyriemann-qiskit/"
 requires_qiskit = "==1.*"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13
-highest_supported_qiskit_version = "1.4.5"
+highest_supported_qiskit_release_date = 2026-06-12
+highest_supported_qiskit_version = "1.4.6"
 last_month_downloads = 99
 last_180_days_downloads = 484

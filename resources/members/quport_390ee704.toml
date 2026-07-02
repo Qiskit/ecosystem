@@ -2,8 +2,8 @@ name = "QuPort"
 submission_number = 1147
 url = "https://github.com/neuralsorcerer/quport"
 description = "Production-ready Python/Qiskit toolkit for modular multi-QPU circuit mapping, routing, scheduling, and benchmarking."
-labels = [ "HPC",]
-interfaces = [ "Python",]
+labels = ["HPC"]
+interfaces = ["Python"]
 category = "Tooling"
 pattern_steps = []
 reference_paper = "https://arxiv.org/abs/2605.12583"
@@ -30,6 +30,7 @@ style = "flat"
 [checks.013]
 since = 2026-07-02T10:02:02.670047
 details = "http://quport.soumyadipsarkar.com/ is not HTTPS"
+discussion = "https://github.com/neuralsorcerer/quport/issues/1"
 importance = "IMPORTANT"
 
 [pypi.quport]

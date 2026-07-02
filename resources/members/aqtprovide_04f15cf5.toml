@@ -4,8 +4,8 @@ description = "Qiskit provider for ion-trap quantum computers from Alpine Quantu
 license = "Apache License 2.0"
 contact_info = "info@aqt.eu"
 affiliations = "Alpine Quantum Technologies GmbH"
-labels = [ "cloud service",]
-interfaces = [ "Python",]
+labels = ["cloud service"]
+interfaces = ["Python"]
 website = "https://www.aqt.eu/qc-systems/"
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
@@ -35,6 +35,7 @@ style = "flat"
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package qiskit-aqt-provider is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/qiskit-community/qiskit-aqt-provider/issues/286"
 importance = "IMPORTANT"
 
 [pypi.qiskit-aqt-provider]
