@@ -1,8 +1,8 @@
 name = "M3"
 url = "https://github.com/Qiskit/qiskit-addon-mthree"
 description = "Matrix-free Measurement Mitigation (M3). Reduce the effects of readout errors from noisy quantum hardware."
-labels = [ "error mitigation", "utility-scale",]
-interfaces = [ "Python",]
+labels = ["error mitigation", "utility-scale"]
+interfaces = ["Python"]
 ibm_maintained = true
 created_at = 2023-03-14
 category = "Qiskit addon"
