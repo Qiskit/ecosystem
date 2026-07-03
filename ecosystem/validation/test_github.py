@@ -33,5 +33,12 @@ def test_G05(member):
         ), "GitHub repository archived, so member.maturity must exist and be `as-is`"
         assert member.maturity in [
             "as-is",
-            "archived",
-        ], "GitHub repository archived and member.maturity is not `as-is` or `archived`"
+            "unmaintaned",
+        ], "GitHub repository archived and member.maturity is not `as-is` or `unmaintaned`"
+
+def test_G08(member):
+    """Unmaintaned projects should archive their GitHub repository"""
+    if member.maturity in ["deprecated", "unmaintaned"]:
+        assert (
+            member.github.archived
+        ), "unsupported project should have an archived GitHub org"

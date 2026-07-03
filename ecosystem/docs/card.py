@@ -238,7 +238,7 @@ class ProjectSummaryCard(Card):
             "as-is": ":material-image-broken-variant:",
             "deprecated": ":fontawesome-solid-exclamation-triangle:",
             "experimental": ":material-flask:",
-            "archived": ":material-archive:",
+            "unmaintaned": ":material-archive:",
         }
         if self.maturity == "production-ready":
             # Full support
@@ -256,7 +256,7 @@ class ProjectSummaryCard(Card):
                 f"{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
                 "[All the production-ready project](#)",
             )
-        if self.maturity in ["archived", "as-is"]:
+        if self.maturity in ["unmaintaned", "as-is"]:
             # No support
             return self.bullet(
                 icons[self.maturity],
