@@ -68,9 +68,8 @@ class TestURLs:
         normalized_website = str(website_url).rstrip("/")
         # Reject GitHub repository URLs as website
         repository_url = getattr(member, "url")
-        if (
-            repository_url is not None
-            and repository_url.hostname.endswith("github.com")
+        if repository_url is not None and repository_url.hostname.endswith(
+            "github.com"
         ):
             assert normalized_website != str(repository_url).rstrip("/"), (
                 "The field `member.website` should not duplicate "
