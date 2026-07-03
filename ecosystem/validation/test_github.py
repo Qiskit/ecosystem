@@ -36,6 +36,7 @@ def test_G05(member):
             "unmaintaned",
         ], "GitHub repository archived and member.maturity is not `as-is` or `unmaintaned`"
 
+
 def test_G08(member):
     """Unmaintaned projects should archive their GitHub repository"""
     if member.maturity in ["deprecated", "unmaintaned"]:
