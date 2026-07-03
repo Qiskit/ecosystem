@@ -16,7 +16,6 @@ import pytest
 
 # pylint: disable=missing-function-docstring, missing-class-docstring
 
-
 class TestURLs:
     @classmethod
     def get_all_urls(cls, member):
@@ -58,4 +57,32 @@ class TestURLs:
                 assert not documentation_url.path.endswith(suffix), (
                     "The field `member.documentation` can be empty. "
                     "It does not have to be a link to the `README.md`."
+                )
+
+    def test_027(self, member):
+        """Website should not duplicate GitHub or PyPI URLs"""
+        website_url = getattr(member, "website")
+        if website_url is None:
+            pytest.skip("No member.website")
+        normalized_website = str(website_url).rstrip("/")
+        # Reject GitHub repository URLs as website
+        repository_url = getattr(member, "url")
+        if (
+            repository_url is not None
+            and repository_url.hostname.endswith("github.com")
+        ):
+            assert normalized_website != str(repository_url).rstrip("/"), (
+                "The field `member.website` should not duplicate "
+                "the GitHub repository URL."
+            )
+        # Reject PyPI URLs as website
+        pypi_packages = getattr(member, "pypi", {})
+        for _, package in pypi_packages.items():
+            package_url = getattr(package, "url", None)
+            if package_url is None:
+                continue
+            if package_url.hostname.endswith("pypi.org"):
+                assert normalized_website != str(package_url).rstrip("/"), (
+                    "The field `member.website` should not duplicate "
+                    "a PyPI project URL."
                 )
