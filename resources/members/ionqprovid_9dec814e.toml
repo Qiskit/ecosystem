@@ -3,8 +3,8 @@ url = "https://github.com/qiskit-community/qiskit-ionq"
 description = "This project contains a provider that allows access to IonQ ion trap quantum systems."
 license = "Apache 2.0"
 contact_info = ""
-labels = ["cloud service"]
-interfaces = ["Python"]
+labels = [ "cloud service",]
+interfaces = [ "Python",]
 created_at = 2022-12-07
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-ionq/"
@@ -23,8 +23,8 @@ description = "Qiskit provider for IonQ backends"
 estimated_contributors = 16
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-01
-last_activity = 2026-07-01
+last_commit = 2026-07-02
+last_activity = 2026-07-02
 
 [badge]
 url = "https://qisk.it/e-9dec814e"

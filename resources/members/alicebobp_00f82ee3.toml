@@ -2,8 +2,8 @@ name = "Alice & Bob Qiskit provider"
 url = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider"
 description = "Access Alice & Bob QPUs and emulators using Qiskit."
 license = "Apache 2.0"
-labels = ["cloud service"]
-interfaces = ["Python"]
+labels = [ "cloud service",]
+interfaces = [ "Python",]
 created_at = 2024-05-07
 category = "Compute provider"
 documentation = "https://felis.alice-bob.com/docs/"
@@ -24,7 +24,7 @@ estimated_contributors = 8
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-06-08
-last_activity = 2026-06-08
+last_activity = 2026-07-02
 
 [badge]
 url = "https://qisk.it/e-00f82ee3"
