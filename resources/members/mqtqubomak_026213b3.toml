@@ -1,0 +1,20 @@
+name = "MQT QUBOMaker"
+url = "https://github.com/cda-tum/mqt-qubomaker"
+license = "MIT license"
+uuid = "026213b3-a2cd-4281-b49d-8516c6cd73ae"
+maturity = "unmaintained"
+status = "Alumni"
+
+[github]
+url = "https://github.com/cda-tum/mqt-qubomaker"
+owner = "cda-tum"
+repo = "mqt-qubomaker"
+archived = true
+
+[badge]
+url = "https://qisk.it/e-026213b3"
+style = "flat"
+
+[pypi."mqt.qubomaker"]
+package_name = "mqt-qubomaker"
+url = "https://pypi.org/project/mqt.qubomaker/"
