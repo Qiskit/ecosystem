@@ -16,6 +16,7 @@ import pytest
 
 # pylint: disable=missing-function-docstring, missing-class-docstring
 
+
 class TestURLs:
     @classmethod
     def get_all_urls(cls, member):
