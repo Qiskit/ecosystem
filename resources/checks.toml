@@ -155,11 +155,11 @@ category = "SUBMISSION"
 importance = "RECOMMENDATION"
 
 [G05]
-title = "Archived GitHub repository should have `archived` support"
+title = "Archived GitHub repository should have `unmaintaned` support"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
-description = "Projects with `support != as-is` and are available on an archived GitHub repository should have `archived` support."
+description = "Projects on an archived GitHub repository should have `unmaintaned` support (or `as-is`)."
 importance = "CRITICAL"
 checker = "test_github.py::test_G05"
 
@@ -179,6 +179,15 @@ category = "ACTIVITY"
 description = "Projects available on GitHub should have a commit activity activity within the last 18 months. This check does not apply to project that declared their support as as-is."
 importance = "STRONG-RECOMMENDATION"
 
+[G08]
+title = "Unmaintained projects should be archived in GitHub repository"
+applies_to = "GitHub projects"
+affects = ['github.archived']
+category = "ACTIVITY"
+description = "Projects that are not maintained (ie. `member.support == unmaintaned`) should archived their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
+importance = "RECOMMENDATION"
+checker = "test_github.py::test_G08"
+
 [O01]
 title = "Have a license"
 applies_to = "all"
@@ -196,15 +205,6 @@ category = "OSS"
 description = "Projects that are maintained by IBM should live in a GitHub organization that is controlled by IBM. This allows to, for example, archive projects once they are not longer maintained."
 importance = "CRITICAL"
 checker = "test_ibm_maintained.py::test_I00"
-
-[I01]
-title = "Unsupported IBM-maintained project should archive its repository"
-applies_to = "IBM-maintained projects"
-affects = ['member.github.archived', 'member.ibm_maintained']
-category = "ACTIVITY"
-description = "Projects that are maintained by IBM are not longer supported, they live in a GitHub organization that is controlled by IBM. This allows to, for example, archive projects once they are not longer maintained."
-importance = "CRITICAL"
-checker = "test_ibm_maintained.py::test_I01"
 
 [PQ1]
 title = "Be installable with qiskit>=1.0"

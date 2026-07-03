@@ -336,4 +336,4 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         if self.maturity in skip_if:
             return
         if hasattr(self.github, "archived") and self.github.archived:
-            self.maturity = "archived"
+            self.maturity = "unmaintaned"
