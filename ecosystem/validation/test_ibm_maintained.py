@@ -32,4 +32,3 @@ def test_I00(member):
     assert (
         member.github.owner.lower() in ibm_controlled_gh_org
     ), "ibm-maintained project not in ibm-controlled GitHub org"
-

@@ -14,7 +14,7 @@
 
 import pytest
 
-# pylint: disable=missing-function-docstring
+# pylint: disable=missing-function-docstring, invalid-name
 
 
 def test_O01(member):
