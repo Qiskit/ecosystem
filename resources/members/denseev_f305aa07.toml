@@ -5,13 +5,13 @@ license = "Apache License 2.0"
 contact_info = "atlytle@gmail.com"
 affiliations = "University of Illinois at Urbana-Champaign"
 labels = []
-interfaces = [ "Python",]
+interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2305.11847"
 packages = []
 uuid = "f305aa07-74a6-4af4-bb80-e0a75672f16f"
 maturity = "production-ready"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/atlytle/dense-ev"
@@ -33,6 +33,7 @@ style = "flat"
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package dense-ev is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/atlytle/dense-ev/issues/2"
 importance = "IMPORTANT"
 
 [pypi.dense-ev]
