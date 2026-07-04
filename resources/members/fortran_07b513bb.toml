@@ -4,7 +4,7 @@ url = "https://github.com/Qiskit/qiskit-fortran"
 description = "Fortran ISO_C_BINDING interface to the Qiskit C API"
 license = "Apache 2.0"
 labels = []
-interfaces = ["Fortran"]
+interfaces = [ "Fortran",]
 ibm_maintained = true
 category = "Language binding"
 packages = []
@@ -17,11 +17,13 @@ url = "https://github.com/Qiskit/qiskit-fortran"
 owner = "Qiskit"
 repo = "qiskit-fortran"
 stars = 3
+license = "Apache License 2.0"
 description = "Fortran binding for Qiskit"
+estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-19
-last_activity = 2026-07-02
+last_commit = 2026-07-03
+last_activity = 2026-07-03
 
 [badge]
 url = "https://qisk.it/e-07b513bb"

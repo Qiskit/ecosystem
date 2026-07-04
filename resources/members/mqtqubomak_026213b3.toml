@@ -1,6 +1,8 @@
 name = "MQT QUBOMaker"
 url = "https://github.com/cda-tum/mqt-qubomaker"
 license = "MIT license"
+labels = []
+packages = []
 uuid = "026213b3-a2cd-4281-b49d-8516c6cd73ae"
 maturity = "unmaintained"
 status = "Alumni"
@@ -9,7 +11,15 @@ status = "Alumni"
 url = "https://github.com/cda-tum/mqt-qubomaker"
 owner = "cda-tum"
 repo = "mqt-qubomaker"
+stars = 29
+homepage = "https://cda-tum.github.io/mqt-qubomaker/"
+license = "MIT License"
+description = "A framework for the automatic generation of QUBO formulations for optimization problems."
+total_dependent_repositories = 0
+total_dependent_packages = 0
 archived = true
+last_commit = 2026-07-03
+last_activity = 2026-07-03
 
 [badge]
 url = "https://qisk.it/e-026213b3"
@@ -17,4 +27,15 @@ style = "flat"
 
 [pypi."mqt.qubomaker"]
 package_name = "mqt-qubomaker"
+version = "1.0.2"
+last_release_date = 2026-07-03
+description = "A tool for the automatic generation and combination of QUBO formulations for specific problem classes."
 url = "https://pypi.org/project/mqt.qubomaker/"
+development_status = "4 - Beta"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 228
+last_180_days_downloads = 674

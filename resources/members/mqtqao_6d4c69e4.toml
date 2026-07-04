@@ -1,6 +1,8 @@
 name = "MQT QAO"
 url = "https://github.com/cda-tum/mqt-qao"
 license = "MIT license"
+labels = []
+packages = []
 uuid = "6d4c69e4-1e47-486c-b00f-8a60ae5e01d4"
 maturity = "unmaintained"
 status = "Alumni"
@@ -9,6 +11,14 @@ status = "Alumni"
 url = "https://github.com/cda-tum/mqt-qao"
 owner = "cda-tum"
 repo = "mqt-qao"
+stars = 29
+license = "MIT License"
+description = "MQT Quantum Auto Optimizer - A MQT Tool for Solving Optimization Problems with Quantum Computers"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+archived = true
+last_commit = 2026-07-03
+last_activity = 2026-07-03
 
 [badge]
 url = "https://qisk.it/e-6d4c69e4"
@@ -16,4 +26,15 @@ style = "flat"
 
 [pypi."mqt.qao"]
 package_name = "mqt-qao"
+version = "0.3.1"
+last_release_date = 2026-07-03
+description = "MQT Quantum Auto Optimizer: Automatic Framework for Solving Optimization Problems with Quantum Computers"
 url = "https://pypi.org/project/mqt.qao/"
+development_status = "4 - Beta"
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 270
+last_180_days_downloads = 584
