@@ -35,6 +35,8 @@ license = "MIT"
 description = "Quantum voting circuits with integrated error mitigation for NISQ hardware"
 url = "https://pypi.org/project/qvoting/"
 development_status = "3 - Alpha"
+status = "active"
+maintainers = [ "https://pypi.org/user/cogu92/",]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

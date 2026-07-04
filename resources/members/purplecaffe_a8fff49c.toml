@@ -34,8 +34,11 @@ style = "flat"
 package_name = "purplecaffeine"
 version = "0.2.5"
 last_release_date = 2023-09-19
+license = "Apache Software License"
 description = "PurpleCaffeine: tracking of quantum programs and experiments"
 url = "https://pypi.org/project/purplecaffeine/"
+status = "active"
+maintainers = [ "https://pypi.org/user/icekhan/",]
 requires_qiskit = ">=0.43.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

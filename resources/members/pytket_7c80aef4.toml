@@ -34,6 +34,8 @@ version = "0.77.0"
 last_release_date = 2026-02-02
 description = "Extension for pytket, providing translation to and from the Qiskit."
 url = "https://pypi.org/project/pytket-qiskit/"
+status = "active"
+maintainers = [ "https://pypi.org/user/cqc-alec/", "https://pypi.org/user/ss2165/",]
 requires_qiskit = ">=2.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

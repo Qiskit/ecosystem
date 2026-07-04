@@ -37,6 +37,8 @@ license = "MIT"
 description = "MQT Predictor - A MQT Tool for Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing"
 url = "https://pypi.org/project/mqt.predictor/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = [ "https://pypi.org/org/munich-quantum-toolkit/",]
 requires_qiskit = "!=1.3.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

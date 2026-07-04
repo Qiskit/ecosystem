@@ -34,6 +34,8 @@ license = "MIT"
 description = "GPU-accelerated tensor ring VQA simulation plugin for Qiskit, powered by PyTorch"
 url = "https://pypi.org/project/qiskit-trev/"
 development_status = "3 - Alpha"
+status = "active"
+maintainers = [ "https://pypi.org/user/keunjunpark/",]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

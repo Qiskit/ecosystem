@@ -33,8 +33,11 @@ style = "flat"
 package_name = "qiskit-algorithms"
 version = "0.4.0"
 last_release_date = 2025-08-29
+license = "Apache-2.0"
 description = "Qiskit Algorithms: A library of quantum computing algorithms"
 url = "https://pypi.org/project/qiskit-algorithms/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

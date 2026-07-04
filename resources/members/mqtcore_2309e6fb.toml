@@ -39,6 +39,8 @@ license = "MIT"
 description = "The Backbone of the Munich Quantum Toolkit"
 url = "https://pypi.org/project/mqt-core/"
 development_status = "5 - Production/Stable"
+status = "active"
+maintainers = [ "https://pypi.org/org/munich-quantum-toolkit/",]
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

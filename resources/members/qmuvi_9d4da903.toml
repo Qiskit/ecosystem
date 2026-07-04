@@ -34,9 +34,12 @@ style = "flat"
 package_name = "qmuvi"
 version = "0.3.0"
 last_release_date = 2025-09-04
+license = "LGPL-2.1-or-later"
 description = "qMuVi is a Python library that converts quantum circuits into music videos, enabling visualisation of quantum state evolution through sound and animation. It supports noise models to simulate physical quantum devices and displays animating probability and phase distributions of basis states."
 url = "https://pypi.org/project/qmuvi/"
 development_status = "2 - Pre-Alpha"
+status = "active"
+maintainers = [ "https://pypi.org/user/garymooney/",]
 requires_qiskit = "<3.0.0,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

@@ -30,8 +30,11 @@ style = "flat"
 package_name = "hlquantum"
 version = "0.1.3"
 last_release_date = 2026-03-07
+license = "Apache-2.0"
 description = "HLQuantum (High Level Quantum) — A high-level Python package for working with quantum hardware using CUDA-Q and other backends."
 url = "https://pypi.org/project/hlquantum/"
+status = "active"
+maintainers = [ "https://pypi.org/user/AlinDFerenczi/",]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

@@ -33,8 +33,11 @@ style = "flat"
 package_name = "qiskit-qulacs"
 version = "0.1.0"
 last_release_date = 2024-04-02
+license = "Apache Software License"
 description = "Qiskit Qulacs to execute Qiskit programs using Qulacs as backend."
 url = "https://pypi.org/project/qiskit-qulacs/"
+status = "active"
+maintainers = [ "https://pypi.org/user/gopald/",]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

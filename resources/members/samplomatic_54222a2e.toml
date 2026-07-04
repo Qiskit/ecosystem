@@ -37,6 +37,8 @@ license = "Apache-2.0"
 description = "Serving all of your circuit sampling needs since 2025."
 url = "https://pypi.org/project/samplomatic/"
 development_status = "3 - Alpha"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = ">=2.3.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

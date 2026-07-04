@@ -42,9 +42,12 @@ importance = "IMPORTANT"
 package_name = "antinature"
 version = "0.1.2"
 last_release_date = 2025-08-11
+license = "MIT"
 description = "Quantum chemistry package for antimatter simulations"
 url = "https://pypi.org/project/antinature/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = [ "https://pypi.org/user/mk0dz/",]
 requires_qiskit = "==1.4.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false

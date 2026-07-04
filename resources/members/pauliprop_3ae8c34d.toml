@@ -32,8 +32,11 @@ style = "flat"
 package_name = "pauli-prop"
 version = "0.2.0"
 last_release_date = 2026-03-16
+license = "Apache Software License"
 description = "Library for performing Pauli propagation."
 url = "https://pypi.org/project/pauli-prop/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

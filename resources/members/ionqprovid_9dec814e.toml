@@ -34,8 +34,11 @@ style = "flat"
 package_name = "qiskit-ionq"
 version = "1.1.1"
 last_release_date = 2025-08-30
+license = "Apache 2.0"
 description = "Qiskit provider for IonQ backends"
 url = "https://pypi.org/project/qiskit-ionq/"
+status = "active"
+maintainers = [ "https://pypi.org/user/ionq/",]
 requires_qiskit = ">=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

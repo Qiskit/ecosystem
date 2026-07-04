@@ -37,12 +37,15 @@ importance = "IMPORTANT"
 package_name = "quport"
 version = "0.1.2"
 last_release_date = 2026-06-02
+license = "Apache-2.0"
 description = "Research-grade multi-QPU mapping, routing, and benchmarking toolkit for NISQ circuit partitioning in Qiskit."
 url = "https://pypi.org/project/quport/"
+status = "active"
+maintainers = [ "https://pypi.org/user/neuralsorcerer/",]
 requires_qiskit = ">=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 167
-last_180_days_downloads = 406
+last_month_downloads = 171
+last_180_days_downloads = 414

@@ -38,6 +38,8 @@ license = "Apache-2.0"
 description = "Quantum execution intelligence. Circuit viability, backend recommendation, cost estimation, and automatic optimizations for quantum computing."
 url = "https://pypi.org/project/qb-compiler/"
 development_status = "3 - Alpha"
+status = "active"
+maintainers = [ "https://pypi.org/user/mwpwalshe/",]
 requires_qiskit = "<3.0,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

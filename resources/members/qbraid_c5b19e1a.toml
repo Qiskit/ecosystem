@@ -40,6 +40,8 @@ license = "Apache-2.0"
 description = "Platform-agnostic quantum runtime framework."
 url = "https://pypi.org/project/qbraid/"
 development_status = "5 - Production/Stable"
+status = "active"
+maintainers = [ "https://pypi.org/user/qBraid/",]
 requires_qiskit = "<3.0,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

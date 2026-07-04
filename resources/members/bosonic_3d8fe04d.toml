@@ -33,6 +33,8 @@ version = "15.1"
 last_release_date = 2025-12-09
 description = "National Quantum Initiative Co-design Center for Quantum Advantage bosonic Qiskit simulator"
 url = "https://pypi.org/project/bosonic-qiskit/"
+status = "active"
+maintainers = [ "https://pypi.org/user/dtropf-pnnl/", "https://pypi.org/user/jfurches/", "https://pypi.org/user/tjstavenger-pnnl/",]
 requires_qiskit = "==2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

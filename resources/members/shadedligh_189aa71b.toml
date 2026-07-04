@@ -37,6 +37,8 @@ last_release_date = 2025-11-06
 license = "Apache-2.0"
 description = "Reducing PEC sampling overhead with shaded lightcones"
 url = "https://pypi.org/project/qiskit-addon-slc/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = "<3,>=2.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

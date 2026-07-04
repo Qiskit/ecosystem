@@ -32,9 +32,12 @@ style = "flat"
 package_name = "pennylane-qiskit"
 version = "0.45.0"
 last_release_date = 2026-05-12
+license = "Apache License 2.0"
 description = "PennyLane plugin for Qiskit"
 url = "https://pypi.org/project/PennyLane-qiskit/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = [ "https://pypi.org/user/PennyLaneAI/", "https://pypi.org/user/XanaduAI/", "https://pypi.org/user/josh146/",]
 requires_qiskit = "<=2.3.0,>=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

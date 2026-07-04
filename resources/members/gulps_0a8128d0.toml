@@ -33,9 +33,12 @@ style = "flat"
 package_name = "gulps"
 version = "0.3.6"
 last_release_date = 2026-05-13
+license = "Apache-2.0"
 description = "optimally compile arbitrary two-qubit unitaries"
 url = "https://pypi.org/project/gulps/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = [ "https://pypi.org/user/evmckinney9/",]
 requires_qiskit = "<3,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

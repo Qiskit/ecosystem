@@ -33,8 +33,11 @@ style = "flat"
 package_name = "qiskit-machine-learning"
 version = "0.9.0"
 last_release_date = 2025-12-24
+license = "Apache-2.0"
 description = "Qiskit Machine Learning: A library of quantum machine learning experiments"
 url = "https://pypi.org/project/qiskit-machine-learning/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

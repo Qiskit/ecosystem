@@ -24,8 +24,8 @@ description = "Qelm - Quantum Enhanced Language Model"
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-03
-last_activity = 2026-07-03
+last_commit = 2026-07-04
+last_activity = 2026-07-04
 
 [badge]
 url = "https://qisk.it/e-8b3685bb"
@@ -38,6 +38,8 @@ last_release_date = 2025-07-28
 license = "MIT"
 description = "Quantum-Enhanced Language Model"
 url = "https://pypi.org/project/qelm/"
+status = "active"
+maintainers = [ "https://pypi.org/user/Inserian/",]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

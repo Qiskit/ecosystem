@@ -32,9 +32,12 @@ style = "flat"
 package_name = "qiskit-rigetti"
 version = "0.4.7"
 last_release_date = 2024-02-07
+license = "Apache-2.0"
 description = "Provider for running Qiskit circuits on Rigetti QPUs and simulators."
 url = "https://pypi.org/project/qiskit-rigetti/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = [ "https://pypi.org/user/rigetti/",]
 requires_qiskit = ">=0.38.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

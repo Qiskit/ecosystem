@@ -31,8 +31,11 @@ style = "flat"
 package_name = "symbolic-qiskit"
 version = "0.1.0a1"
 last_release_date = 2025-06-27
+license = "Apache-2.0"
 description = "Symbolic simulator for qiskit circuits using sympy backend, supporting mid-circuit measurement and state inspection."
 url = "https://pypi.org/project/symbolic-qiskit/"
+status = "active"
+maintainers = [ "https://pypi.org/user/ianchung621/",]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

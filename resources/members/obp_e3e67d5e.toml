@@ -38,6 +38,8 @@ last_release_date = 2025-05-22
 license = "Apache-2.0"
 description = "Reducing depth of circuits with operator backpropagation"
 url = "https://pypi.org/project/qiskit-addon-obp/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/calebj15/", "https://pypi.org/user/mrossinek/",]
 requires_qiskit = "<3,>=1.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

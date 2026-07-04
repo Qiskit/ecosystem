@@ -32,8 +32,11 @@ style = "flat"
 package_name = "qiskit-ibm-transpiler"
 version = "0.18.0"
 last_release_date = 2026-03-10
+license = "Apache-2.0"
 description = "A library to use Qiskit IBM Transpiler (https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-transpiler) and the AI transpiler passes (https://quantum.cloud.ibm.com/docs/guides/ai-transpiler-passes)"
 url = "https://pypi.org/project/qiskit-ibm-transpiler/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/ibm.q.widgets/",]
 requires_qiskit = "<3.0.0,>=1.4.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

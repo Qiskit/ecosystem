@@ -34,8 +34,11 @@ style = "flat"
 package_name = "qiskit-addon-pna"
 version = "0.2.0"
 last_release_date = 2025-11-13
+license = "Apache Software License"
 description = "Mitigate a global noise channel by propagating an observable through the anti-noise."
 url = "https://pypi.org/project/qiskit-addon-pna/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

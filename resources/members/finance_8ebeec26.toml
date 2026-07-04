@@ -32,8 +32,11 @@ style = "flat"
 package_name = "qiskit-finance"
 version = "0.4.1"
 last_release_date = 2024-02-29
+license = "Apache-2.0"
 description = "Qiskit Finance: A library of quantum computing finance experiments"
 url = "https://pypi.org/project/qiskit-finance/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = ">=0.45"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

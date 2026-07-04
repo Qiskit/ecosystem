@@ -42,8 +42,11 @@ importance = "IMPORTANT"
 package_name = "qiskit-aqt-provider"
 version = "1.15.0"
 last_release_date = 2025-11-05
+license = "Apache-2.0"
 description = "Qiskit provider for AQT backends"
 url = "https://pypi.org/project/qiskit-aqt-provider/"
+status = "active"
+maintainers = [ "https://pypi.org/user/aqt-admin/", "https://pypi.org/user/qiskit/",]
 requires_qiskit = "<2,>=1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false

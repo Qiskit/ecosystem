@@ -35,8 +35,11 @@ style = "flat"
 package_name = "quantum-gates"
 version = "2.4.0"
 last_release_date = 2026-05-02
+license = "MIT"
 description = "Quantum Noisy Gates Simulation with Python"
 url = "https://pypi.org/project/quantum-gates/"
+status = "active"
+maintainers = [ "https://pypi.org/user/roman.wixinger/",]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

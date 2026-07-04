@@ -34,6 +34,8 @@ version = "0.2.0"
 last_release_date = 2023-11-03
 description = "Repository for a quantum prototype"
 url = "https://pypi.org/project/vqls-prototype/"
+status = "active"
+maintainers = [ "https://pypi.org/user/nico_reno/",]
 requires_qiskit = ">=0.14.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

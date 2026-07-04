@@ -36,8 +36,11 @@ style = "flat"
 package_name = "qiskit-addon-cutting"
 version = "0.10.0"
 last_release_date = 2025-03-28
+license = "Apache Software License"
 description = "Reduce width and depth of quantum circuits by cutting gates and wires."
 url = "https://pypi.org/project/qiskit-addon-cutting/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/calebj15/", "https://pypi.org/user/mrossinek/",]
 requires_qiskit = "<3,>=1.3.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

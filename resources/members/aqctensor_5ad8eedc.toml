@@ -36,8 +36,11 @@ style = "flat"
 package_name = "qiskit-addon-aqc-tensor"
 version = "0.3.0"
 last_release_date = 2025-03-28
+license = "Apache Software License"
 description = "Approximate quantum compilation with tensor networks"
 url = "https://pypi.org/project/qiskit-addon-aqc-tensor/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = "<3,>=1.3.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

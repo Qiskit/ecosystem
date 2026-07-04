@@ -32,9 +32,12 @@ style = "flat"
 package_name = "qiskit-data-reuploading"
 version = "0.1.0"
 last_release_date = 2026-05-29
+license = "Apache-2.0"
 description = "Data re-uploading quantum classifier compatible with Qiskit 2.x — pip-installable, sklearn-compatible"
 url = "https://pypi.org/project/qiskit-data-reuploading/"
 development_status = "3 - Alpha"
+status = "active"
+maintainers = [ "https://pypi.org/user/caduranpd/",]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

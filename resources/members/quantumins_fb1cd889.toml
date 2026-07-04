@@ -32,9 +32,12 @@ style = "flat"
 package_name = "quantuminspire"
 version = "3.5.3"
 last_release_date = 2026-05-07
+license = "Apache-2.0"
 description = "SDK for the Quantum Inspire platform."
 url = "https://pypi.org/project/quantuminspire/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = [ "https://pypi.org/user/qinspire/", "https://pypi.org/user/qutech.sdst/",]
 requires_qiskit = "<2.2.0,>=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

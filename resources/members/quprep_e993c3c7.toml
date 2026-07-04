@@ -35,9 +35,12 @@ style = "flat"
 package_name = "quprep"
 version = "0.10.0"
 last_release_date = 2026-05-01
+license = "Apache Software License"
 description = "Quantum data preparation — the missing preprocessing layer between classical datasets and quantum computing frameworks"
 url = "https://pypi.org/project/quprep/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = [ "https://pypi.org/org/quprep/",]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

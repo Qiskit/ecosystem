@@ -35,8 +35,11 @@ style = "flat"
 package_name = "qiskit-addon-sqd"
 version = "0.12.1"
 last_release_date = 2026-01-16
+license = "Apache Software License"
 description = "Classically postprocess noisy quantum samples to yield more accurate energy estimations"
 url = "https://pypi.org/project/qiskit-addon-sqd/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/calebj15/", "https://pypi.org/user/mrossinek/",]
 requires_qiskit = "<3,>=1.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

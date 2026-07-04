@@ -34,8 +34,11 @@ style = "flat"
 package_name = "qiskit-paulice"
 version = "0.2.1"
 last_release_date = 2026-05-26
+license = "Apache Software License"
 description = "A library for implementing spacetime coherent Pauli checks"
 url = "https://pypi.org/project/qiskit-paulice/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

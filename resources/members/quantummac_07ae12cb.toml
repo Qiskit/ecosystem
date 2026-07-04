@@ -33,8 +33,11 @@ style = "flat"
 package_name = "qiskit-qm-provider"
 version = "0.3.1"
 last_release_date = 2026-03-08
+license = "Apache License 2.0"
 description = "Provider for running Qiskit circuits and pulses on Quantum Machines' Quantum Orchestration Platform"
 url = "https://pypi.org/project/qiskit-qm-provider/"
+status = "active"
+maintainers = [ "https://pypi.org/user/arthurostrauss/",]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

@@ -33,6 +33,8 @@ package_name = "qamomile"
 version = "0.12.6"
 last_release_date = 2026-05-22
 url = "https://pypi.org/project/qamomile/"
+status = "active"
+maintainers = [ "https://pypi.org/user/jijpypi/",]
 requires_qiskit = ">=2.3.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

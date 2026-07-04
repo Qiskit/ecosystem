@@ -31,8 +31,11 @@ style = "flat"
 package_name = "qiskit-qubit-reuse"
 version = "0.0.2"
 last_release_date = 2024-02-05
+license = "Apache 2.0"
 description = "A Qiskit's compiler plugin to reuse qubits using midcircuit measurement"
 url = "https://pypi.org/project/qiskit-qubit-reuse/"
+status = "active"
+maintainers = [ "https://pypi.org/user/danielleodigie/",]
 requires_qiskit = ">=0.43.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

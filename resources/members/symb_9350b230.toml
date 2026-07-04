@@ -33,8 +33,11 @@ style = "flat"
 package_name = "qiskit-symb"
 version = "0.6.0"
 last_release_date = 2026-02-24
+license = "Apache-2.0"
 description = "Symbolic evaluation of parameterized quantum circuits in Qiskit"
 url = "https://pypi.org/project/qiskit-symb/"
+status = "active"
+maintainers = [ "https://pypi.org/user/SimoneG/",]
 requires_qiskit = ">=2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

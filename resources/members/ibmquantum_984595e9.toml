@@ -32,8 +32,11 @@ style = "flat"
 package_name = "qiskit-ibm-runtime"
 version = "0.47.0"
 last_release_date = 2026-05-12
+license = "Apache 2.0"
 description = "IBM Quantum client for Qiskit Runtime."
 url = "https://pypi.org/project/qiskit-ibm-runtime/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = ">=2.2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

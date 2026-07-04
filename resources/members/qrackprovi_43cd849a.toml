@@ -34,8 +34,11 @@ style = "flat"
 package_name = "qiskit-qrack-provider"
 version = "1.2.1"
 last_release_date = 2026-05-21
+license = "Apache 2.0"
 description = "Qiskit Qrack Provider - Qrack High-Performance GPU simulation for Qiskit"
 url = "https://pypi.org/project/qiskit-qrack-provider/"
+status = "active"
+maintainers = [ "https://pypi.org/user/WrathfulSpatula/",]
 requires_qiskit = "==2.*"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

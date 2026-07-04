@@ -35,8 +35,11 @@ style = "flat"
 package_name = "qiskit-aer"
 version = "0.17.2"
 last_release_date = 2026-02-04
+license = "Apache 2.0"
 description = "Aer - High performance simulators for Qiskit"
 url = "https://pypi.org/project/qiskit-aer/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
@@ -49,8 +52,11 @@ last_180_days_downloads = 3247802
 package_name = "qiskit-aer-gpu"
 version = "0.15.1"
 last_release_date = 2024-09-13
+license = "Apache 2.0"
 description = "Aer - High performance simulators for Qiskit"
 url = "https://pypi.org/project/qiskit-aer-gpu/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
@@ -63,8 +69,11 @@ last_180_days_downloads = 27416
 package_name = "qiskit-aer-gpu-cu11"
 version = "0.17.2"
 last_release_date = 2025-09-17
+license = "Apache 2.0"
 description = "Aer - High performance simulators for Qiskit"
 url = "https://pypi.org/project/qiskit-aer-gpu-cu11/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

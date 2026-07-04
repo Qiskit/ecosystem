@@ -34,8 +34,11 @@ style = "flat"
 package_name = "ffsim"
 version = "0.0.80"
 last_release_date = 2026-05-06
+license = "Apache Software License"
 description = "Faster simulation of fermionic quantum circuits."
 url = "https://pypi.org/project/ffsim/"
+status = "active"
+maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/kevinsung/",]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

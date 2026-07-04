@@ -17,7 +17,7 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/qecc"
 owner = "munich-quantum-toolkit"
 repo = "qecc"
-stars = 219
+stars = 220
 homepage = "https://mqt.readthedocs.io/projects/qecc"
 license = "MIT License"
 description = "MQT QECC - Tools for Quantum Error Correcting Codes"
@@ -38,6 +38,8 @@ license = "MIT"
 description = "A tool for Quantum Circuit Equivalence Checking"
 url = "https://pypi.org/project/mqt.qcec/"
 development_status = "5 - Production/Stable"
+status = "active"
+maintainers = [ "https://pypi.org/org/munich-quantum-toolkit/",]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

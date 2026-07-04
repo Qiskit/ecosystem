@@ -35,8 +35,11 @@ style = "flat"
 package_name = "mthree"
 version = "3.0.0"
 last_release_date = 2025-03-27
+license = "Apache 2.0"
 description = "M3: Matrix-free measurement mitigation"
 url = "https://pypi.org/project/mthree/"
+status = "active"
+maintainers = [ "https://pypi.org/user/nonhermitian/",]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

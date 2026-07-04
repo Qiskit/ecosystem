@@ -33,8 +33,11 @@ style = "flat"
 package_name = "qiskit-scaleway"
 version = "0.3.13"
 last_release_date = 2026-05-12
+license = "Apache 2"
 description = "A Qiskit package to connect to Scaleway Quantum as a Service"
 url = "https://pypi.org/project/qiskit-scaleway/"
+status = "active"
+maintainers = [ "https://pypi.org/user/lilascw/", "https://pypi.org/user/vmscw/",]
 requires_qiskit = "~=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

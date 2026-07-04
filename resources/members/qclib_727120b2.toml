@@ -31,6 +31,8 @@ version = "0.1.15"
 last_release_date = 2025-07-28
 description = "A quantum computing library using qiskit"
 url = "https://pypi.org/project/qclib/"
+status = "active"
+maintainers = [ "https://pypi.org/user/adjs/",]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

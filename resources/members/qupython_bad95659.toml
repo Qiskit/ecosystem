@@ -33,8 +33,11 @@ style = "flat"
 package_name = "qupython"
 version = "0.2.0"
 last_release_date = 2024-04-07
+license = "MIT License"
 description = "Write quantum programs directly in Python"
 url = "https://pypi.org/project/qupython/"
+status = "active"
+maintainers = [ "https://pypi.org/user/frankharkins/",]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

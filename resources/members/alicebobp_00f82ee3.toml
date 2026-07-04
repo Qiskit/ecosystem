@@ -40,8 +40,11 @@ importance = "IMPORTANT"
 package_name = "qiskit-alice-bob-provider"
 version = "1.2.0"
 last_release_date = 2025-03-27
+license = "Apache 2.0"
 description = "Provider for running Qiskit circuits on Alice & Bob QPUs and simulators"
 url = "https://pypi.org/project/qiskit-alice-bob-provider/"
+status = "active"
+maintainers = [ "https://pypi.org/user/abjmachin/", "https://pypi.org/user/athomas_ab/", "https://pypi.org/user/brieuc_ab/", "https://pypi.org/user/gschurck_ab/", "https://pypi.org/user/lprost_ab/",]
 requires_qiskit = "<2.0,>=1.3.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
