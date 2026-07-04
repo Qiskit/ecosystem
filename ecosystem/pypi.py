@@ -110,19 +110,25 @@ class PyPIData(JsonSerializable):
           - https://pypi.org/simple/{self.package_name}/
           - https://pypistats.org/api/packages/{self.package_name}/
         """
+        self._pypi_json = self.request_pypi()
+        self._pypi_simple_json = self.request_pypi_simple()
+        if self._pypistats_json is None:
+            self._pypistats_json = self.request_pypistats()
+
+    def request_pypi(self):
         try:
-            self._pypi_json = request_json(f"pypi.org/pypi/{self.package_name}/json")
+            return request_json(f"pypi.org/pypi/{self.package_name}/json")
         except EcosystemError:
-            pass
+            return None
+
+    def request_pypi_simple(self):
         try:
-            self._pypi_simple_json = request_json(
+            return request_json(
                 f"https://pypi.org/simple/{self.package_name}/",
                 headers={"Accept": "application/vnd.pypi.simple.v1+json"},
             )
         except EcosystemError:
-            pass
-        if self._pypistats_json is None:
-            self._pypistats_json = self.request_pypistats()
+            return None
 
     def __getattr__(self, item):
         if self._pypi_json:
@@ -179,7 +185,10 @@ class PyPIData(JsonSerializable):
             if requirement.name == "qiskit":
                 if len(requirement.specifier):
                     self._kwargs["requires_qiskit"] = str(requirement.specifier)
-                elif self._kwargs["requires_qiskit"] != ">=0":
+                elif (
+                    "requires_qiskit" not in self._kwargs
+                    or self._kwargs["requires_qiskit"] != ">=0"
+                ):
                     logger.warning(
                         "%s depends on qiskit but with empty specifier. "
                         'Forcing one, ">=0"',
