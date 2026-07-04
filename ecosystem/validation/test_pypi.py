@@ -12,7 +12,7 @@
 
 """Validations involving section member.pypi"""
 
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name,missing-function-docstring
 
 import pytest
 
@@ -79,6 +79,7 @@ def test_P11(member):
 
 def test_P12(member):
     for pypi_package in member.pypi.values():
-        assert pypi_package.compatible_with_qiskit(
-            3
-        ), f"Python package {pypi_package.package_name} declared itself compatible to a not-yet-released major version of Qiskit"
+        assert pypi_package.compatible_with_qiskit(3), (
+            f"Python package {pypi_package.package_name} declared "
+            "itself compatible with a not-yet-released major version of Qiskit"
+        )
