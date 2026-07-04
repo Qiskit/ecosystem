@@ -242,6 +242,15 @@ description = "If the project maturiy level is is production-ready then, at leas
 checker = "test_pypi.py::test_P11"
 importance = "STRONG-RECOMMENDATION"
 
+[P12]
+title = "Have a cap on the major version for the qiskit dependency"
+applies_to = "Python packages"
+affects = ['member.pypi.*.requires_qiskit']
+category = "BEST-PRACTICE"
+description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected."
+checker = "test_pypi.py::test_P12"
+importance = "RECOMMENDATION"
+
 [020]
 title = "Primitive interface should be v2-compatible"
 applies_to = 'label:"Compute provider"'
@@ -302,3 +311,7 @@ description = "There is an issue with some of the open-source aspect of the proj
 [[categories]]
 name = "OUT-OF-DATE"
 description = "The project might not follow the last best-practices or connects to Qiskit in a way that is considered old-fashioned, currently unsupported, or deprecated."
+
+[[categories]]
+name = "BEST-PRACTICE"
+description = "The project might not follow software general best-practices."

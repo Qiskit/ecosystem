@@ -75,3 +75,10 @@ def test_P11(member):
     assert (
         len(stable_packages) != 0
     ), "At least one python package should declare a stable development status classifier"
+
+
+def test_P12(member):
+    for pypi_package in member.pypi.values():
+        assert pypi_package.compatible_with_qiskit(
+            3
+        ), f"Python package {pypi_package.package_name} declared itself compatible to a not-yet-released major version of Qiskit"
