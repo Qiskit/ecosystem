@@ -30,7 +30,7 @@ from .error_handling import EcosystemError, logger
 from .request import request_json
 
 
-class PyPIData(JsonSerializable):
+class PyPIData(JsonSerializable): # pylint: disable=too-many-public-methods
     """
     The PyPI data related to a project
     """
@@ -116,12 +116,14 @@ class PyPIData(JsonSerializable):
             self._pypistats_json = self.request_pypistats()
 
     def request_pypi(self):
+        """Fetches https://pypi.org/pypi/{self.package_name}/json"""
         try:
             return request_json(f"pypi.org/pypi/{self.package_name}/json")
         except EcosystemError:
             return None
 
     def request_pypi_simple(self):
+        """Fetches https://pypi.org/simple/{self.package_name}/"""
         try:
             return request_json(
                 f"https://pypi.org/simple/{self.package_name}/",
