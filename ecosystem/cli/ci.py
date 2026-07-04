@@ -133,6 +133,10 @@ class CliCI:
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             print(f"\n::group:: {member.name}️ ({member.name_id})")
+            if member.status == "Alumni":
+                print('member.status == "Alumni", so skip')
+                print("::endgroup::")
+                continue
             for update_method_str in to_update:
                 print(f"Updating {update_method_str}️")
                 update_method = getattr(member, f"update_{update_method_str}")

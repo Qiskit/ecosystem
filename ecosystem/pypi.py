@@ -30,7 +30,7 @@ from .error_handling import EcosystemError, logger
 from .request import request_json
 
 
-class PyPIData(JsonSerializable):
+class PyPIData(JsonSerializable):  # pylint: disable=too-many-public-methods
     """
     The PyPI data related to a project
     """
@@ -43,6 +43,8 @@ class PyPIData(JsonSerializable):
         "description",
         "url",
         "development_status",
+        "status",
+        "maintainers",
         "requires_qiskit",
         "compatible_with_qiskit_v1",
         "compatible_with_qiskit_v2",
@@ -54,7 +56,6 @@ class PyPIData(JsonSerializable):
     aliases = {
         "version": "info.version",
         "url": "info.package_url",
-        "license": "info.license_expression",
         "description": "info.summary",
         "development_status": "info.classifiers[?('Development Status' in @)]",
     }
@@ -68,6 +69,7 @@ class PyPIData(JsonSerializable):
         self.package_name = canonicalize_name(package_name, validate=True)
         self._kwargs = kwargs or {}
         self._pypi_json = None
+        self._pypi_simple_json = None
         self._pypistats_json = None
         self._all_qiskit_versions = None
 
@@ -103,14 +105,32 @@ class PyPIData(JsonSerializable):
 
     def update_json(self):
         """
-        Fetches remote json data from https://pypi.org/pypi/{self.package_name}/json
+        Fetches remote jsons data from:
+          - https://pypi.org/pypi/{self.package_name}/json
+          - https://pypi.org/simple/{self.package_name}/
+          - https://pypistats.org/api/packages/{self.package_name}/
         """
-        try:
-            self._pypi_json = request_json(f"pypi.org/pypi/{self.package_name}/json")
-        except EcosystemError:
-            pass
+        self._pypi_json = self.request_pypi()
+        self._pypi_simple_json = self.request_pypi_simple()
         if self._pypistats_json is None:
             self._pypistats_json = self.request_pypistats()
+
+    def request_pypi(self):
+        """Fetches https://pypi.org/pypi/{self.package_name}/json"""
+        try:
+            return request_json(f"pypi.org/pypi/{self.package_name}/json")
+        except EcosystemError:
+            return None
+
+    def request_pypi_simple(self):
+        """Fetches https://pypi.org/simple/{self.package_name}/"""
+        try:
+            return request_json(
+                f"https://pypi.org/simple/{self.package_name}/",
+                headers={"Accept": "application/vnd.pypi.simple.v1+json"},
+            )
+        except EcosystemError:
+            return None
 
     def __getattr__(self, item):
         if self._pypi_json:
@@ -167,7 +187,10 @@ class PyPIData(JsonSerializable):
             if requirement.name == "qiskit":
                 if len(requirement.specifier):
                     self._kwargs["requires_qiskit"] = str(requirement.specifier)
-                else:
+                elif (
+                    "requires_qiskit" not in self._kwargs
+                    or self._kwargs["requires_qiskit"] != ">=0"
+                ):
                     logger.warning(
                         "%s depends on qiskit but with empty specifier. "
                         'Forcing one, ">=0"',
@@ -333,3 +356,47 @@ class PyPIData(JsonSerializable):
                 "without_mirrors"
             )
         return self._kwargs.get("last_180_days_downloads")
+
+    @property
+    def license(self):
+        """Package license"""
+        if self._pypi_json:
+            info_license = self._pypi_json.get("info", {}).get("license")
+            if info_license and len(info_license) < 50:
+                return info_license
+            info_license_expression = self._pypi_json.get("info", {}).get(
+                "license_expression"
+            )
+            if info_license_expression:
+                return info_license_expression
+            for classifier in self._pypi_json.get("info", {}).get("classifiers"):
+                if classifier.startswith("License :: "):
+                    parts = [part.strip() for part in classifier.split("::")]
+                    if len(parts) == 3:
+                        return parts[2]
+                    continue
+        return self._kwargs.get("license")
+
+    @property
+    def maintainers(self):
+        """Package maintainers (or owners)"""
+        maintainers = []
+        if self._pypi_json:
+            ownership = self._pypi_json.get("ownership")
+            organization = ownership.get("organization")
+            if organization:
+                maintainers.append(f"https://pypi.org/org/{organization}/")
+            maintainers += [
+                f"https://pypi.org/user/{u['user']}/"
+                for u in ownership["roles"]
+                if u["role"] == "Owner"
+            ]
+        return maintainers or self._kwargs.get("maintainers")
+
+    @property
+    def status(self):
+        """Project status"""
+        project_status = None
+        if self._pypi_simple_json:
+            return self._pypi_simple_json.get("project-status", {}).get("status")
+        return project_status or self._kwargs.get("status")
