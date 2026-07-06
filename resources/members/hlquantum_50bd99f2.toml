@@ -1,10 +1,10 @@
 name = "HLQuantum"
 url = "https://github.com/AlinDanielFerenczi/HLQuantum"
 description = "A human oriented high-level Python package designed to simplify working with quantum algorithms and developing complex systems."
-labels = ["circuit optimization", "circuit building", "research"]
-interfaces = ["Python"]
+labels = [ "circuit optimization", "circuit building", "research",]
+interfaces = [ "Python",]
 category = "SDK"
-pattern_steps = ["Map", "Execute"]
+pattern_steps = [ "Map", "Execute",]
 documentation = "https://alindanielferenczi.github.io/HLQuantum/"
 packages = []
 uuid = "50bd99f2-dbd5-4759-b19d-6f5ecdf9e0da"
@@ -34,7 +34,7 @@ license = "Apache-2.0"
 description = "HLQuantum (High Level Quantum) — A high-level Python package for working with quantum hardware using CUDA-Q and other backends."
 url = "https://pypi.org/project/hlquantum/"
 status = "active"
-maintainers = ["https://pypi.org/user/AlinDFerenczi/"]
+maintainers = [ "https://pypi.org/user/AlinDFerenczi/",]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

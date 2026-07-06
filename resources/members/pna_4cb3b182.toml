@@ -1,11 +1,11 @@
 name = "Propagated Noise Absorption (PNA)"
 url = "https://github.com/Qiskit/qiskit-addon-pna"
 description = "Mitigate gate noise in expectation values by propagating the observable through the inverse noise channel."
-labels = ["utility-scale"]
-interfaces = ["Python"]
+labels = [ "utility-scale",]
+interfaces = [ "Python",]
 ibm_maintained = true
 category = "Qiskit addon"
-pattern_steps = ["Post-process"]
+pattern_steps = [ "Post-process",]
 documentation = "https://qiskit.github.io/qiskit-addon-pna/"
 packages = []
 uuid = "4cb3b182-7484-445f-897b-ded8e295d755"
@@ -38,7 +38,7 @@ license = "Apache-1.1"
 description = "Mitigate a global noise channel by propagating an observable through the anti-noise."
 url = "https://pypi.org/project/qiskit-addon-pna/"
 status = "active"
-maintainers = ["https://pypi.org/org/qiskit/"]
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

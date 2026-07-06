@@ -2,8 +2,8 @@ name = "Mitiq"
 url = "https://github.com/unitaryfund/mitiq"
 description = "Mitiq is a Python toolkit for implementing error mitigation techniques on quantum computers."
 license = "Apache-2.0"
-labels = ["error mitigation"]
-interfaces = ["Python"]
+labels = [ "error mitigation",]
+interfaces = [ "Python",]
 created_at = 2023-03-14
 category = "SDK"
 documentation = "https://mitiq.readthedocs.io/"
@@ -42,12 +42,7 @@ description = "Mitiq is an open source toolkit for implementing error mitigation
 url = "https://pypi.org/project/mitiq/"
 development_status = "4 - Beta"
 status = "active"
-maintainers = [
-  "https://pypi.org/org/uf/",
-  "https://pypi.org/user/UnitaryFundBot/",
-  "https://pypi.org/user/misty.a.wahl/",
-  "https://pypi.org/user/nathanshammah/",
-]
+maintainers = [ "https://pypi.org/org/uf/", "https://pypi.org/user/UnitaryFundBot/", "https://pypi.org/user/misty.a.wahl/", "https://pypi.org/user/nathanshammah/",]
 requires_qiskit = "<3.0.0,>=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

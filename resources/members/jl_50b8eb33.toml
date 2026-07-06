@@ -1,7 +1,7 @@
 name = "Qiskit.jl"
 url = "https://github.com/Qiskit/Qiskit.jl/"
 labels = []
-interfaces = ["Julia"]
+interfaces = [ "Julia",]
 ibm_maintained = true
 category = "Language binding"
 documentation = "https://qiskit.github.io/Qiskit.jl/"
