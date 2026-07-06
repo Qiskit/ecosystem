@@ -18,6 +18,7 @@ from slugify import slugify
 
 from .error_handling import EcosystemError
 from .julia import JuliaData
+from .license import License
 from .serializable import JsonSerializable, parse_date
 from .github import GitHubData
 from .pypi import PyPIData
@@ -36,7 +37,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         submission_number: int | None = None,
         url: str | URL | None = None,
         description: str | None = None,
-        license: str | None = None,  # pylint: disable=redefined-builtin
+        license: License | None = None,  # pylint: disable=redefined-builtin
         contact_info: str | None = None,
         affiliations: str | None = None,
         labels: list[str] | None = None,
@@ -64,7 +65,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.submission_number = submission_number
         self.url = URL(url) if isinstance(url, str) else url
         self.description = description
-        self.license = license
+        self.license = (
+            License(license, where="user") if isinstance(license, str) else license
+        )
         self.contact_info = contact_info
         self.affiliations = affiliations
         self.labels = labels
@@ -147,10 +150,12 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 id_: CheckData(id_, **kwargs)
                 for id_, kwargs in filtered_dict["checks"].items()
             }
+        if "license" in filtered_dict and filtered_dict["license"] is not None:
+            filtered_dict["license"] = License(filtered_dict["license"], where="user")
         return Member(**filtered_dict)
 
-    def to_dict(self) -> dict:
-        base_dict = super().to_dict()
+    def to_dict(self, keys=None) -> dict:
+        base_dict = super().to_dict(keys=keys)
         if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
             del base_dict["ibm_maintained"]
         return base_dict
@@ -336,4 +341,4 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         if self.maturity in skip_if:
             return
         if hasattr(self.github, "archived") and self.github.archived:
-            self.maturity = "unmaintaned"
+            self.maturity = "unmaintained"

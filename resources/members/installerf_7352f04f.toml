@@ -5,7 +5,7 @@ license = "GNU General Public License (GPL)"
 contact_info = "axelpetit@yonsei.ac.kr"
 affiliations = ""
 labels = []
-interfaces = [ "Python", "Graphical User Interface (GUI)",]
+interfaces = ["Python", "Graphical User Interface (GUI)"]
 website = "https://ket-q.github.io/qiskit_windows_installer/"
 category = "Other"
 packages = []
@@ -28,3 +28,13 @@ last_activity = 2026-07-04
 [badge]
 url = "https://qisk.it/e-7352f04f"
 style = "flat"
+
+[checks.G09]
+since = 2026-07-06T12:46:29.207233
+details = "member.github.license not detected"
+importance = "RECOMMENDATION"
+
+[checks.O02]
+since = 2026-07-06T12:46:29.207233
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"

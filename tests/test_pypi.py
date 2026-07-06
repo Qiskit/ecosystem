@@ -142,7 +142,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
 
         self.assertEqual("1.2.3", pypi_data.version)
         self.assertEqual("https://pypi.org/project/banana-compiler/", pypi_data.url)
-        self.assertEqual("Apache-2.0", pypi_data.license)
+        self.assertEqual("Apache-2.0", pypi_data.license.spdx_id)
         with self.assertRaises(AttributeError):
             getattr(pypi_data, "$.missing")
 

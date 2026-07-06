@@ -1,11 +1,11 @@
 name = "Qamomile"
 url = "https://github.com/Jij-Inc/Qamomile"
 description = "Model constrained optimization problems using an algebraic modeler and convert them for quantum optimization algorithms."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 contact_info = "h.matsuyama@j-ij.com"
 affiliations = "Jij Inc."
-labels = [ "optimization",]
-interfaces = [ "Python",]
+labels = ["optimization"]
+interfaces = ["Python"]
 category = "SDK"
 documentation = "https://jij-inc.github.io/Qamomile/"
 packages = []
@@ -17,7 +17,7 @@ url = "https://github.com/Jij-Inc/Qamomile"
 owner = "Jij-Inc"
 repo = "Qamomile"
 stars = 19
-license = "Apache License 2.0"
+license = "Apache-2.0"
 estimated_contributors = 15
 total_dependent_repositories = 3
 total_dependent_packages = 1
@@ -28,13 +28,18 @@ last_activity = 2026-07-06
 url = "https://qisk.it/e-50cd2126"
 style = "flat"
 
+[checks.P12]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.qamomile does not have a declared license"
+importance = "RECOMMENDATION"
+
 [pypi.qamomile]
 package_name = "qamomile"
 version = "0.12.6"
 last_release_date = 2026-05-22
 url = "https://pypi.org/project/qamomile/"
 status = "active"
-maintainers = [ "https://pypi.org/user/jijpypi/",]
+maintainers = ["https://pypi.org/user/jijpypi/"]
 requires_qiskit = ">=2.3.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

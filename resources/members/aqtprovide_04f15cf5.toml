@@ -1,11 +1,11 @@
 name = "Qiskit AQT Provider"
 url = "https://github.com/qiskit-community/qiskit-aqt-provider"
 description = "Qiskit provider for ion-trap quantum computers from Alpine Quantum Technologies (AQT)."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 contact_info = "info@aqt.eu"
 affiliations = "Alpine Quantum Technologies GmbH"
-labels = [ "cloud service",]
-interfaces = [ "Python",]
+labels = ["cloud service"]
+interfaces = ["Python"]
 website = "https://www.aqt.eu/qc-systems/"
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
@@ -20,7 +20,7 @@ owner = "qiskit-community"
 repo = "qiskit-aqt-provider"
 stars = 33
 homepage = "https://qiskit-community.github.io/qiskit-aqt-provider/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Qiskit provider for AQT backends."
 estimated_contributors = 20
 total_dependent_repositories = 17
@@ -46,7 +46,10 @@ license = "Apache-2.0"
 description = "Qiskit provider for AQT backends"
 url = "https://pypi.org/project/qiskit-aqt-provider/"
 status = "active"
-maintainers = [ "https://pypi.org/user/aqt-admin/", "https://pypi.org/user/qiskit/",]
+maintainers = [
+  "https://pypi.org/user/aqt-admin/",
+  "https://pypi.org/user/qiskit/",
+]
 requires_qiskit = "<2,>=1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false

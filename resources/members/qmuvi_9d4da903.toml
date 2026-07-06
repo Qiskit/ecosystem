@@ -4,8 +4,8 @@ description = "Convert circuits into audiovisual experiences, bridging the gap b
 license = "GNU Library or \"Lesser\" General Public License (LGPL)"
 contact_info = "gary.mooney4444@gmail.com"
 affiliations = "The University of Melbourne"
-labels = [ "demo",]
-interfaces = [ "Python",]
+labels = ["demo"]
+interfaces = ["Python"]
 category = "Converter"
 documentation = "https://garymooney.github.io/qmuvi/"
 packages = []
@@ -18,7 +18,7 @@ owner = "garymooney"
 repo = "qmuvi"
 stars = 17
 homepage = "https://garymooney.github.io/qmuvi/"
-license = "GNU Lesser General Public License v2.1"
+license = "LGPL-2.1"
 description = "qMuVi - A python package that converts quantum circuits into audiovisual experiences, bridging the gap between complex quantum comp..."
 estimated_contributors = 4
 total_dependent_repositories = 4
@@ -30,6 +30,16 @@ last_activity = 2026-06-09
 url = "https://qisk.it/e-9d4da903"
 style = "flat"
 
+[checks.O02]
+since = 2026-07-06T12:46:29.207233
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"
+
+[checks.P13]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.qmuvi.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [pypi.qmuvi]
 package_name = "qmuvi"
 version = "0.3.0"
@@ -39,7 +49,7 @@ description = "qMuVi is a Python library that converts quantum circuits into mus
 url = "https://pypi.org/project/qmuvi/"
 development_status = "2 - Pre-Alpha"
 status = "active"
-maintainers = [ "https://pypi.org/user/garymooney/",]
+maintainers = ["https://pypi.org/user/garymooney/"]
 requires_qiskit = "<3.0.0,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

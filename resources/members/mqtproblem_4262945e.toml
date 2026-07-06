@@ -1,11 +1,11 @@
 name = "MQT ProblemSolver"
 url = "https://github.com/cda-tum/MQTProblemSolver"
 description = "A framework for users with little to no quantum computing knowledge to solve common problems. Part of the Munich Quantum Toolkit (MQT)."
-license = "MIT license"
+license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
-labels = [ "research",]
-interfaces = [ "Python", "C++",]
+labels = ["research"]
+interfaces = ["Python", "C++"]
 category = "Application"
 reference_paper = "https://arxiv.org/pdf/2210.14928"
 documentation = "https://mqt.readthedocs.io/projects/problemsolver/"
@@ -20,7 +20,7 @@ owner = "munich-quantum-toolkit"
 repo = "problemsolver"
 stars = 54
 homepage = "https://munich-quantum-toolkit.github.io/problemsolver/"
-license = "MIT License"
+license = "MIT"
 description = "MQT ProblemSolver - A MQT Tool for Solving Problems Using Quantum Computing"
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -31,12 +31,6 @@ last_activity = 2026-07-05
 url = "https://qisk.it/e-4262945e"
 style = "flat"
 
-[checks.PQ2]
-since = 2026-04-30T11:32:49.789583
-details = "Python package mqt-problemsolver is not compatible with Qiskit SDK v2"
-discussion = "https://github.com/munich-quantum-toolkit/problemsolver/issues/467"
-importance = "IMPORTANT"
-
 [pypi."mqt.problemsolver"]
 package_name = "mqt-problemsolver"
 version = "0.5.0"
@@ -46,7 +40,7 @@ description = "MQT ProblemSolver - A MQT tool for Solving Problems Using Quantum
 url = "https://pypi.org/project/mqt.problemsolver/"
 development_status = "4 - Beta"
 status = "active"
-maintainers = [ "https://pypi.org/org/munich-quantum-toolkit/",]
+maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=2.0.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
