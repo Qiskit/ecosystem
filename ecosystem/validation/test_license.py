@@ -30,3 +30,7 @@ def test_O01(member):
         assert (
             False
         ), "No license could be found. Populate 'member.license' as soon as possible."
+
+def test_O02(member):
+    if member.license:
+        assert member.license.is_osi_approved(), "member.license is not OSI-approved"

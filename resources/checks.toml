@@ -7,13 +7,22 @@ category = "SUBMISSION"
 importance = "CRITICAL"
 
 [001]
+title = "Have an OSI-approved license"
+applies_to = "all"
+affects = ['member.license', 'member.github.license', 'member.pypi.*.license']
+category = "OSS"
+description = "Projects in the Qiskit Ecosystem (and their packages) must have an OSI-approved license."
+checker = "test_general.py::test_001"
+importance = "CRITICAL"
+
+[G00]
 title = "Have a clear support expectation and, if actively maintained, show signs of that activity."
 applies_to = "all"
 category = "GENERAL"
 related_to = ["G05"]
 description = "Actively maintained projects should show signs of that. This includes recent activity in the code repository (such as commits, issue responses, or pull requests) as well as reasonably up-to-date package releases. Projects with no observable activity over an extended period may be considered abandoned."
 importance = "CRITICAL"
-checker = "test_general.py::test_001"
+checker = "test_general.py::test_G00"
 
 [COC]
 title = "Adhere to the Qiskit CoC"
@@ -131,7 +140,7 @@ importance = "IMPORTANT"
 title = "Description too long"
 description = "Member description cannot be longer than 135 characters because front-end design limitations."
 applies_to = "all"
-affects = ["memeber.description"]
+affects = ["member.description"]
 checker = "test_description.py::test_description_len_135"
 category = "SUBMISSION"
 importance = "IMPORTANT"
@@ -188,12 +197,30 @@ description = "Projects that are not maintained (ie. `member.support == unmainta
 importance = "RECOMMENDATION"
 checker = "test_github.py::test_G08"
 
+[G09]
+title = "GitHub is not detecting the repository license"
+applies_to = "GitHub projects"
+affects = ['github.license']
+category = "OSS"
+description = "GitHub cannot detect the repository license"
+importance = "RECOMMENDATION"
+checker = "test_github.py::test_G09"
+
+[G10]
+title = "The reposity license is not (probably) OSI-approved"
+applies_to = "GitHub projects"
+affects = ['github.license']
+category = "OSS"
+description = "..."
+importance = "IMPORTANT"
+checker = "test_github.py::test_G10"
+
 [O01]
 title = "Have a license"
 applies_to = "all"
-affects = ['member.license', 'member.github.license']
+affects = ['member.license']
 category = "OSS"
-description = "Projects must have a license declared."
+description = "Projects must have a license, somewhere."
 checker = "test_license.py::test_O01"
 importance = "CRITICAL"
 
@@ -241,6 +268,33 @@ category = "OUT-OF-DATE"
 description = "If the project maturiy level is is production-ready then, at least one of the Python packages should have a Development Status classifier that is `None`, `Production/Stable`, or `Mature`."
 checker = "test_pypi.py::test_P11"
 importance = "STRONG-RECOMMENDATION"
+
+[P12]
+title = "PyPI package without license"
+applies_to = "Python packages"
+affects = ['member.pypi.*.license']
+category = "OSS"
+description = "..."
+importance = "RECOMMENDATION"
+checker = "test_pypi.py::test_P12"
+
+[P13]
+title = "The license declared in PyPI is (probably) not OSI-approved "
+applies_to = "Python packages"
+affects = ['member.pypi.*.license']
+category = "OSS"
+description = "..."
+checker = "test_pypi.py::test_P13"
+importance = "IMPORTANT"
+
+[O02]
+title = "member.license is not OSI-approved license"
+applies_to = "all"
+affects = ['member.license']
+category = "SUBMISSION"
+description = "member.license could not be found amount the OSI-approved licenses."
+checker = "test_license.py::test_O02"
+importance = "IMPORTANT"
 
 [020]
 title = "Primitive interface should be v2-compatible"

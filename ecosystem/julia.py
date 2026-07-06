@@ -75,13 +75,8 @@ class JuliaData(JsonSerializable):
     def __repr__(self):
         return str(self.to_dict())
 
-    def to_dict(self) -> dict:
-        dictionary = {}
-        for key in JuliaData.dict_keys:
-            value = getattr(self, key, None)
-            if value is not None:
-                dictionary[key] = value
-        return dictionary
+    def to_dict(self, keys=None) -> dict:
+        return super().to_dict(keys=keys or JuliaData.dict_keys)
 
     @classmethod
     def from_url(cls, julia_project_url: ParseResult):

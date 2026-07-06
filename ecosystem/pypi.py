@@ -24,7 +24,7 @@ from packaging.version import Version
 
 from jsonpath import findall
 
-
+from .license import License
 from .serializable import JsonSerializable, parse_date
 from .error_handling import EcosystemError, logger
 from .request import request_json
@@ -76,13 +76,14 @@ class PyPIData(JsonSerializable):  # pylint: disable=too-many-public-methods
     def __repr__(self):
         return str(self.to_dict())
 
-    def to_dict(self) -> dict:
-        dictionary = {}
-        for key in PyPIData.dict_keys:
-            value = getattr(self, key, None)
-            if value is not None:
-                dictionary[key] = value
-        return dictionary
+    def to_dict(self, keys=None) -> dict:
+        return super().to_dict(keys=keys or PyPIData.dict_keys)
+
+    @classmethod
+    def from_dict(cls, dictionary: dict):
+        if "license" in dictionary and dictionary["license"] is not None:
+            dictionary["license"] = License(dictionary["license"], where='pypi')
+        return super().from_dict(dictionary)
 
     @classmethod
     def from_url(cls, pypi_project_url):
@@ -363,19 +364,23 @@ class PyPIData(JsonSerializable):  # pylint: disable=too-many-public-methods
         if self._pypi_json:
             info_license = self._pypi_json.get("info", {}).get("license")
             if info_license and len(info_license) < 50:
-                return info_license
+                return License(info_license, "pypi")
             info_license_expression = self._pypi_json.get("info", {}).get(
                 "license_expression"
             )
             if info_license_expression:
-                return info_license_expression
+                return License(info_license_expression, "pypi")
             for classifier in self._pypi_json.get("info", {}).get("classifiers"):
                 if classifier.startswith("License :: "):
                     parts = [part.strip() for part in classifier.split("::")]
                     if len(parts) == 3:
-                        return parts[2]
+                        return License(parts[2], "pypi")
                     continue
-        return self._kwargs.get("license")
+        if "license" in self._kwargs:
+            if isinstance(self._kwargs["license"], License):
+                return self._kwargs["license"]
+            else:
+                return License(self._kwargs["license"], "pypi")
 
     @property
     def maintainers(self):

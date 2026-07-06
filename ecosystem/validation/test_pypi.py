@@ -75,3 +75,14 @@ def test_P11(member):
     assert (
         len(stable_packages) != 0
     ), "At least one python package should declare a stable development status classifier"
+
+
+def test_P12(member):
+    for pypi_package in member.pypi.values():
+        if pypi_package.license is None:
+            assert pypi_package.license is not None, f"member.pypi.{pypi_package.package_name} does not have a declared license"
+
+def test_P13(member):
+    for pypi_package in member.pypi.values():
+        if pypi_package.license is not None:
+            assert pypi_package.license.is_osi_approved(), f"member.pypi.{pypi_package.package_name}.license is not OSI-approved"
