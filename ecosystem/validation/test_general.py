@@ -68,6 +68,7 @@ def test_G00(request, pytestconfig):
         "The project is probably abandoned",
     )
 
+
 @pytest.mark.order(after=["test_github.py::test_G10", "test_general.py::test_Q20"])
 def test_001(request, pytestconfig):
     """Have a clear support expectation and, if actively maintained,

@@ -151,7 +151,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 for id_, kwargs in filtered_dict["checks"].items()
             }
         if "license" in filtered_dict and filtered_dict["license"] is not None:
-            filtered_dict["license"] = License(filtered_dict["license"], where='user')
+            filtered_dict["license"] = License(filtered_dict["license"], where="user")
         return Member(**filtered_dict)
 
     def to_dict(self, keys=None) -> dict:

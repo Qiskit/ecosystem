@@ -12,7 +12,7 @@
 
 """Validations involving section member.github"""
 
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name,missing-function-docstring
 
 import pytest
 
@@ -44,15 +44,21 @@ def test_G08(member):
             member.github.archived
         ), "unsupported project should have an archived GitHub org"
 
+
 def test_G09(member):
-    if str(member.github.license) in ['None', 'Other']:
-        assert member.github.license.license_name is not None, "member.github.license not detected"
-        assert member.github.license.license_name is not 'Other', "member.github.license not detected"
+    if str(member.github.license) in ["None", "Other"]:
+        assert (
+            member.github.license.license_name is not None
+        ), "member.github.license not detected"
+        assert (
+            member.github.license.license_name != "Other"
+        ), "member.github.license not detected"
+
 
 def test_G10(member):
     if member.github.license:
-        if str(member.github.license) in ['None', 'Other']:
-            pytest.skip('No member.github.license, already covered by [G09]')
+        if str(member.github.license) in ["None", "Other"]:
+            pytest.skip("No member.github.license, already covered by [G09]")
         assert (
             member.github.license.is_osi_approved()
         ), "member.github.license is not OSI-approved"

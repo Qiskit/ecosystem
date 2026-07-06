@@ -82,7 +82,7 @@ class PyPIData(JsonSerializable):  # pylint: disable=too-many-public-methods
     @classmethod
     def from_dict(cls, dictionary: dict):
         if "license" in dictionary and dictionary["license"] is not None:
-            dictionary["license"] = License(dictionary["license"], where='pypi')
+            dictionary["license"] = License(dictionary["license"], where="pypi")
         return super().from_dict(dictionary)
 
     @classmethod
@@ -379,8 +379,8 @@ class PyPIData(JsonSerializable):  # pylint: disable=too-many-public-methods
         if "license" in self._kwargs:
             if isinstance(self._kwargs["license"], License):
                 return self._kwargs["license"]
-            else:
-                return License(self._kwargs["license"], "pypi")
+            return License(self._kwargs["license"], "pypi")
+        return None
 
     @property
     def maintainers(self):
