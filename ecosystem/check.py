@@ -76,8 +76,8 @@ class CheckData(JsonSerializable):
         self.details = details
         self.discussion: str | URL | None = discussion
 
-    def to_dict(self) -> dict:
-        ret = super().to_dict()
+    def to_dict(self, keys=None) -> dict:
+        ret = super().to_dict(keys=keys)
         del ret["id"]
         ret["importance"] = self.importance
         return ret

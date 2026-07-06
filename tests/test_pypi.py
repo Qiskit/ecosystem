@@ -90,18 +90,26 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
     def test_update_json_fetches_pypi_and_pypistats_data(self):
         """update_json stores PyPI and stats payloads."""
         pypi_payload = {"info": {"version": "1.2.3"}}
+        pypi_simple_payload = {"project-status": {"status": "active"}}
         stats_payload = {"recent_downloads": {"last_month": 10}}
         pypi_data = PyPIData("banana-compiler")
 
-        with patch("ecosystem.pypi.request_json", return_value=pypi_payload) as request:
+        with patch.object(
+            PyPIData, "request_pypi", return_value=pypi_payload
+        ) as request_pypi:
             with patch.object(
-                PyPIData, "request_pypistats", return_value=stats_payload
-            ) as request_stats:
-                pypi_data.update_json()
+                PyPIData, "request_pypi_simple", return_value=pypi_simple_payload
+            ) as request_simple:
+                with patch.object(
+                    PyPIData, "request_pypistats", return_value=stats_payload
+                ) as request_stats:
+                    pypi_data.update_json()
 
-        request.assert_called_once_with("pypi.org/pypi/banana-compiler/json")
+        request_pypi.assert_called_once_with()
+        request_simple.assert_called_once_with()
         request_stats.assert_called_once_with()
         self.assertEqual(pypi_payload, pypi_data.pypi_json)
+        self.assertEqual("active", pypi_data.status)
         self.assertEqual(10, pypi_data.last_month_downloads)
 
     def test_update_json_ignores_pypi_fetch_errors(self):
@@ -134,7 +142,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
 
         self.assertEqual("1.2.3", pypi_data.version)
         self.assertEqual("https://pypi.org/project/banana-compiler/", pypi_data.url)
-        self.assertEqual("Apache-2.0", pypi_data.license)
+        self.assertEqual("Apache-2.0", pypi_data.license.spdx_id)
         with self.assertRaises(AttributeError):
             getattr(pypi_data, "$.missing")
 

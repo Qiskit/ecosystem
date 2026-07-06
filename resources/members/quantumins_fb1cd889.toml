@@ -1,7 +1,7 @@
 name = "Quantum Inspire SDK"
 url = "https://github.com/QuTech-Delft/quantuminspire"
 description = "This platform allows you to execute quantum algorithms using the cQASM language."
-license = "Apache 2.0"
+license = "Apache-2.0"
 labels = []
 interfaces = ["Python", "Command-line interface (CLI)"]
 created_at = 2023-03-14
@@ -16,13 +16,13 @@ url = "https://github.com/QuTech-Delft/quantuminspire"
 owner = "QuTech-Delft"
 repo = "quantuminspire"
 stars = 77
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Quantum Inspire SDK"
 estimated_contributors = 9
 total_dependent_repositories = 26
 total_dependent_packages = 4
-last_commit = 2026-06-30
-last_activity = 2026-07-02
+last_commit = 2026-07-03
+last_activity = 2026-07-03
 
 [badge]
 url = "https://qisk.it/e-fb1cd889"
@@ -32,13 +32,19 @@ style = "flat"
 package_name = "quantuminspire"
 version = "3.5.3"
 last_release_date = 2026-05-07
+license = "Apache-2.0"
 description = "SDK for the Quantum Inspire platform."
 url = "https://pypi.org/project/quantuminspire/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = [
+  "https://pypi.org/user/qinspire/",
+  "https://pypi.org/user/qutech.sdst/",
+]
 requires_qiskit = "<2.2.0,>=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2024-03-07
 highest_supported_qiskit_version = "1.0.2"
-last_month_downloads = 3372
-last_180_days_downloads = 21313
+last_month_downloads = 3100
+last_180_days_downloads = 21051

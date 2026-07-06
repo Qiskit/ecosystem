@@ -1,7 +1,7 @@
 name = "MQT Core"
 url = "https://github.com/cda-tum/mqt-core"
 description = "MQT Core forms the backbone of the software tools developed as part of the Munich Quantum Toolkit (MQT) and connects it to Qiskit."
-license = "MIT license"
+license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = ["circuit optimization"]
@@ -20,12 +20,12 @@ owner = "munich-quantum-toolkit"
 repo = "core"
 stars = 124
 homepage = "https://mqt.readthedocs.io/projects/core"
-license = "MIT License"
+license = "MIT"
 description = "MQT Core - The Backbone of the Munich Quantum Toolkit"
 total_dependent_repositories = 51
 total_dependent_packages = 2
-last_commit = 2026-07-02
-last_activity = 2026-07-02
+last_commit = 2026-07-05
+last_activity = 2026-07-05
 
 [badge]
 url = "https://qisk.it/e-2309e6fb"
@@ -39,10 +39,12 @@ license = "MIT"
 description = "The Backbone of the Munich Quantum Toolkit"
 url = "https://pypi.org/project/mqt-core/"
 development_status = "5 - Production/Stable"
+status = "active"
+maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 26696
-last_180_days_downloads = 150139
+last_month_downloads = 30449
+last_180_days_downloads = 150186

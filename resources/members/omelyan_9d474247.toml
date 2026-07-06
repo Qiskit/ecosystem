@@ -17,9 +17,14 @@ url = "https://github.com/MarkoMalezic/qiskit-omelyan"
 owner = "MarkoMalezic"
 repo = "qiskit-omelyan"
 stars = 1
-license = "Apache License 2.0"
+license = "Apache-2.0"
 last_commit = 2026-06-29
 last_activity = 2026-06-29
+
+[checks.P12]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.qiskit-omelyan does not have a declared license"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-omelyan]
 package_name = "qiskit-omelyan"
@@ -27,10 +32,12 @@ version = "0.2.1"
 last_release_date = 2026-06-26
 description = "Omelyan-based product formulas for time evolution in Qiskit"
 url = "https://pypi.org/project/qiskit-omelyan/"
+status = "active"
+maintainers = ["https://pypi.org/user/MarkoMalezic/"]
 requires_qiskit = ">=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 253
-last_180_days_downloads = 401
+last_month_downloads = 268
+last_180_days_downloads = 418

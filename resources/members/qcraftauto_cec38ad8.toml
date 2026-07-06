@@ -1,7 +1,7 @@
 name = "QCRAFT AutoScheduler"
 url = "https://github.com/Qcraft-UEx/QCRAFT-AutoSchedulQ"
 description = "Optimize quantum circuit execution on IBM Quantum by reducing costs and wait times via task composition and qubit maximization."
-license = "MIT license"
+license = "MIT"
 contact_info = "jgaralo@unex.es"
 affiliations = "University of Extremadura, Spain"
 labels = ["research", "circuit optimization"]
@@ -30,6 +30,11 @@ last_activity = 2025-10-28T08:42:09Z
 url = "https://qisk.it/e-cec38ad8"
 style = "flat"
 
+[checks.G09]
+since = 2026-07-06T12:46:29.207233
+details = "member.github.license not detected"
+importance = "RECOMMENDATION"
+
 [pypi.autoscheduler]
 package_name = "autoscheduler"
 version = "1.2.1"
@@ -38,10 +43,12 @@ license = "MIT"
 description = "A library for quantum circuit composition"
 url = "https://pypi.org/project/autoscheduler/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = ["https://pypi.org/user/jorgecs/"]
 requires_qiskit = "<3.0.0,>=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 122
-last_180_days_downloads = 593
+last_month_downloads = 121
+last_180_days_downloads = 611

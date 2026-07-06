@@ -17,7 +17,7 @@ url = "https://github.com/hiq-lab/arvak-lite"
 owner = "hiq-lab"
 repo = "arvak-lite"
 stars = 1
-license = "GNU Lesser General Public License v3.0"
+license = "LGPL-3.0"
 description = "Lightweight quantum circuit compiler — drop-in transpiler for Qiskit, Cirq, Pulser, PennyLane. Powered by Arvak."
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -28,17 +28,25 @@ last_activity = 2026-06-29
 url = "https://qisk.it/e-7fcadf8b"
 style = "flat"
 
+[checks.P13]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.arvak-lite.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [pypi.arvak-lite]
 package_name = "arvak-lite"
 version = "0.1.1"
 last_release_date = 2026-03-08
+license = "LGPL-3.0-or-later"
 description = "Lightweight quantum circuit compiler. Drop-in replacement for Qiskit transpile, Cirq optimize, and more. Powered by Arvak."
 url = "https://pypi.org/project/arvak-lite/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = ["https://pypi.org/user/stabimoblism/"]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 80
-last_180_days_downloads = 390
+last_month_downloads = 81
+last_180_days_downloads = 395
