@@ -1,7 +1,7 @@
 name = "Qiskit.jl"
 url = "https://github.com/Qiskit/Qiskit.jl/"
 labels = []
-interfaces = [ "Julia",]
+interfaces = ["Julia"]
 ibm_maintained = true
 category = "Language binding"
 documentation = "https://qiskit.github.io/Qiskit.jl/"
@@ -16,7 +16,7 @@ owner = "Qiskit"
 repo = "Qiskit.jl"
 stars = 19
 homepage = "https://qiskit.github.io/Qiskit.jl"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Julia binding for Qiskit"
 estimated_contributors = 4
 total_dependent_repositories = 0

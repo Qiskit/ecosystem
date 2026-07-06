@@ -1,11 +1,11 @@
 name = "QuPepFold"
 url = "https://github.com/akshayuttarkarc/QuPepFold"
 description = "Research-oriented toolkit for turning amino-acid sequences into quantum bitstring encodings. Peer-reviewed and published in PLOS ONE."
-license = "MIT license"
+license = "MIT"
 contact_info = "akshayuttarkar@gmail.com"
 affiliations = "R V College of Engineering MIT Vishwaprayag University"
-labels = [ "chemistry",]
-interfaces = [ "Python",]
+labels = ["chemistry"]
+interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0342012"
 packages = []
@@ -17,7 +17,7 @@ url = "https://github.com/akshayuttarkarc/QuPepFold"
 owner = "akshayuttarkarc"
 repo = "QuPepFold"
 stars = 1
-license = "MIT License"
+license = "MIT"
 description = "QupepFold is a small, research-oriented toolkit that turns short amino-acid sequences into quantum bitstring encodings, optimizes t..."
 estimated_contributors = 2
 total_dependent_repositories = 0
@@ -37,7 +37,7 @@ license = "MIT"
 description = "QuPepFold: Quantum peptide folding simulations with Qiskit"
 url = "https://pypi.org/project/qupepfold/"
 status = "active"
-maintainers = [ "https://pypi.org/user/Akshayuttarkar/",]
+maintainers = ["https://pypi.org/user/Akshayuttarkar/"]
 requires_qiskit = ">=0.39"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

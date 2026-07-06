@@ -4,8 +4,8 @@ description = "Supervised machine learning based on quantum computing and Rieman
 license = "BSD 3-Clause \"New\" or \"Revised\" license"
 contact_info = "gcattan@hotmail.fr"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
-labels = [ "QML",]
-interfaces = [ "Python",]
+labels = ["QML"]
+interfaces = ["Python"]
 category = "Application"
 documentation = "https://pyriemann-qiskit.readthedocs.io/"
 packages = []
@@ -19,7 +19,7 @@ owner = "pyRiemann"
 repo = "pyRiemann-qiskit"
 stars = 30
 homepage = "https://pyriemann-qiskit.readthedocs.io/"
-license = "BSD 3-Clause \"New\" or \"Revised\" License"
+license = "BSD-3-Clause"
 description = "A library for machine learning and quantum programming based on pyRiemann and Qiskit projects"
 estimated_contributors = 12
 total_dependent_repositories = 3
@@ -31,21 +31,20 @@ last_activity = 2026-07-04
 url = "https://qisk.it/e-fb1907a7"
 style = "flat"
 
-[checks.PQ2]
-since = 2026-04-30T11:32:49.789583
-details = "Python package pyriemann-qiskit is not compatible with Qiskit SDK v2"
-discussion = "https://github.com/pyriemann/pyriemann-qiskit/issues/444"
+[checks.O02]
+since = 2026-07-06T12:46:29.207233
+details = "member.license is not OSI-approved"
 importance = "IMPORTANT"
 
 [pypi.pyriemann-qiskit]
 package_name = "pyriemann-qiskit"
 version = "0.6.0"
 last_release_date = 2026-04-22
-license = "BSD (3-clause)"
+license = "BSD-3-Clause"
 description = "Qiskit wrapper for pyRiemann"
 url = "https://pypi.org/project/pyriemann-qiskit/"
 status = "active"
-maintainers = [ "https://pypi.org/user/gcattan/",]
+maintainers = ["https://pypi.org/user/gcattan/"]
 requires_qiskit = "==2.4.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
