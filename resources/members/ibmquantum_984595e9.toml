@@ -3,7 +3,7 @@ submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-ibm-runtime"
 description = "Python client for IBM Quantum QPUs"
 labels = []
-interfaces = [ "Python",]
+interfaces = ["Python"]
 ibm_maintained = true
 category = "Compute provider"
 packages = []
@@ -36,7 +36,7 @@ license = "Apache-2.0"
 description = "IBM Quantum client for Qiskit Runtime."
 url = "https://pypi.org/project/qiskit-ibm-runtime/"
 status = "active"
-maintainers = [ "https://pypi.org/org/qiskit/",]
+maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=2.2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

@@ -4,8 +4,8 @@ description = "Qiskit provider for ion-trap quantum computers from Alpine Quantu
 license = "Apache-2.0"
 contact_info = "info@aqt.eu"
 affiliations = "Alpine Quantum Technologies GmbH"
-labels = [ "cloud service",]
-interfaces = [ "Python",]
+labels = ["cloud service"]
+interfaces = ["Python"]
 website = "https://www.aqt.eu/qc-systems/"
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
@@ -46,7 +46,10 @@ license = "Apache-2.0"
 description = "Qiskit provider for AQT backends"
 url = "https://pypi.org/project/qiskit-aqt-provider/"
 status = "active"
-maintainers = [ "https://pypi.org/user/aqt-admin/", "https://pypi.org/user/qiskit/",]
+maintainers = [
+  "https://pypi.org/user/aqt-admin/",
+  "https://pypi.org/user/qiskit/",
+]
 requires_qiskit = "<2,>=1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
