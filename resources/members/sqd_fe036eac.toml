@@ -1,12 +1,12 @@
 name = "Sample-based Quantum Diagonalization"
 url = "https://github.com/Qiskit/qiskit-addon-sqd"
 description = "Sample-based quantum diagonalization. Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
-labels = ["chemistry", "utility-scale"]
-interfaces = ["Python"]
+labels = [ "chemistry", "utility-scale",]
+interfaces = [ "Python",]
 ibm_maintained = true
 created_at = 2025-09-24
 category = "Qiskit addon"
-pattern_steps = ["Post-process"]
+pattern_steps = [ "Post-process",]
 documentation = "https://qiskit.github.io/qiskit-addon-sqd/"
 packages = []
 uuid = "fe036eac-635d-46db-931e-2965a8a138a5"
@@ -23,9 +23,9 @@ license = "Apache-2.0"
 description = "Sample-based Quantum Diagonalization: Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 estimated_contributors = 17
 total_dependent_repositories = 13
-total_dependent_packages = 2
-last_commit = 2026-07-02
-last_activity = 2026-07-03
+total_dependent_packages = 3
+last_commit = 2026-07-06
+last_activity = 2026-07-06
 
 [badge]
 url = "https://qisk.it/e-fe036eac"
@@ -39,15 +39,11 @@ license = "Apache-1.1"
 description = "Classically postprocess noisy quantum samples to yield more accurate energy estimations"
 url = "https://pypi.org/project/qiskit-addon-sqd/"
 status = "active"
-maintainers = [
-  "https://pypi.org/org/qiskit/",
-  "https://pypi.org/user/calebj15/",
-  "https://pypi.org/user/mrossinek/",
-]
+maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/calebj15/", "https://pypi.org/user/mrossinek/",]
 requires_qiskit = "<3,>=1.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 38410
-last_180_days_downloads = 69054
+last_month_downloads = 47902
+last_180_days_downloads = 79437

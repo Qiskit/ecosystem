@@ -4,8 +4,8 @@ description = "Supervised machine learning based on quantum computing and Rieman
 license = "BSD 3-Clause \"New\" or \"Revised\" license"
 contact_info = "gcattan@hotmail.fr"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
-labels = ["QML"]
-interfaces = ["Python"]
+labels = [ "QML",]
+interfaces = [ "Python",]
 category = "Application"
 documentation = "https://pyriemann-qiskit.readthedocs.io/"
 packages = []
@@ -24,8 +24,8 @@ description = "A library for machine learning and quantum programming based on p
 estimated_contributors = 12
 total_dependent_repositories = 3
 total_dependent_packages = 0
-last_commit = 2026-07-04
-last_activity = 2026-07-04
+last_commit = 2026-07-06
+last_activity = 2026-07-06
 
 [badge]
 url = "https://qisk.it/e-fb1907a7"
@@ -44,11 +44,11 @@ license = "BSD-3-Clause"
 description = "Qiskit wrapper for pyRiemann"
 url = "https://pypi.org/project/pyriemann-qiskit/"
 status = "active"
-maintainers = ["https://pypi.org/user/gcattan/"]
+maintainers = [ "https://pypi.org/user/gcattan/",]
 requires_qiskit = "==2.4.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-12
 highest_supported_qiskit_version = "1.4.6"
-last_month_downloads = 211
-last_180_days_downloads = 598
+last_month_downloads = 205
+last_180_days_downloads = 606

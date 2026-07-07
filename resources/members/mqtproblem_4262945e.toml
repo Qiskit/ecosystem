@@ -4,8 +4,8 @@ description = "A framework for users with little to no quantum computing knowled
 license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
-labels = ["research"]
-interfaces = ["Python", "C++"]
+labels = [ "research",]
+interfaces = [ "Python", "C++",]
 category = "Application"
 reference_paper = "https://arxiv.org/pdf/2210.14928"
 documentation = "https://mqt.readthedocs.io/projects/problemsolver/"
@@ -24,8 +24,8 @@ license = "MIT"
 description = "MQT ProblemSolver - A MQT Tool for Solving Problems Using Quantum Computing"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-05
-last_activity = 2026-07-05
+last_commit = 2026-07-06
+last_activity = 2026-07-06
 
 [badge]
 url = "https://qisk.it/e-4262945e"
@@ -40,11 +40,11 @@ description = "MQT ProblemSolver - A MQT tool for Solving Problems Using Quantum
 url = "https://pypi.org/project/mqt.problemsolver/"
 development_status = "4 - Beta"
 status = "active"
-maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
+maintainers = [ "https://pypi.org/org/munich-quantum-toolkit/",]
 requires_qiskit = ">=2.0.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2023-02-24
 highest_supported_qiskit_version = "0.41.1"
-last_month_downloads = 181
-last_180_days_downloads = 533
+last_month_downloads = 179
+last_180_days_downloads = 542
