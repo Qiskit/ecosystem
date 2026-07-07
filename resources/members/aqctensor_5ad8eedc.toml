@@ -1,7 +1,7 @@
 name = "AQC-Tensor"
 url = "https://github.com/Qiskit/qiskit-addon-aqc-tensor"
 description = "Map to lower depth circuits by compressing initial layers via approximate quantum compilation with tensor networks"
-labels = [ "circuit optimization", "utility-scale",]
+labels = [ "circuit optimization", "utility-scale", "tensor networks", "Hamiltonian simulation",]
 interfaces = [ "Python",]
 ibm_maintained = true
 created_at = 2025-09-24

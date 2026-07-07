@@ -36,8 +36,8 @@ name = "Qiskit addon"
 description = "Enables algorithm discovery at the utility scale"
 
 [[category]]
-name = "Game/Fun"
-description = "Games or playful educational resources"
+name = "Game/Educational"
+description = "Games, playful, or educational resources"
 section = "gamefun"
 
 [[category]]
@@ -124,6 +124,26 @@ description = "Synthesizes quantum circuits or operations from more abstract ope
 [[labels]]
 name = "openqasm"
 description = "Interfaces with OpenQASM."
+
+[[labels]]
+name = "Hamiltonian simulation"
+description = "Simulates the time evolution or dynamics of quantum systems."
+
+[[labels]]
+name = "tensor networks"
+description = "Uses tensor-network methods to represent or simulate quantum systems."
+
+[[labels]]
+name = "benchmarking"
+description = "Benchmarks the performance of quantum software or hardware."
+
+[[labels]]
+name = "GPU"
+description = "Supports GPU acceleration."
+
+[[labels]]
+name = "AI/LLM"
+description = "Uses or integrates AI/LLM capabilities (e.g. LLM-powered tooling, AI-driven transpilation, or other AI-assisted functionality)."
 
 [[interfaces]]
 name = "Python"
