@@ -265,8 +265,8 @@ title = "Have a cap on the major version for the qiskit dependency"
 applies_to = "Python packages"
 affects = ['member.pypi.*.requires_qiskit']
 category = "BEST-PRACTICE"
-description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected."
-checker = "test_pypi.py::test_P12"
+description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected after a major release."
+checker = "test_pypi.py::test_P10"
 importance = "RECOMMENDATION"
 
 [P11]
