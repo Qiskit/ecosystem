@@ -50,11 +50,13 @@ def test_PQ2(member, subtests):
                 pypi_package.compatible_with_qiskit_v2
             ), f"Python package {pypi_package.package_name} is not compatible with Qiskit SDK v2"
 
+
 def test_P10(member):
     for pypi_package in member.pypi.values():
-        assert pypi_package.compatible_with_qiskit(
-            3
-        ), f"Python package {pypi_package.package_name} declared itself compatible to a not-yet-released major version of Qiskit"
+        assert pypi_package.compatible_with_qiskit(3), (
+            f"Python package {pypi_package.package_name} declared itself "
+            "compatible to a not-yet-released major version of Qiskit"
+        )
 
 
 def test_P11(member):
