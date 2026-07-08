@@ -17,6 +17,8 @@ import sys
 import os
 from pathlib import Path
 
+from slugify import slugify
+
 from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
@@ -80,11 +82,15 @@ class CliCI:
             dao.write(member)
 
     @staticmethod
-    def validate_member(member_id: str, *, resources_dir: str | None = None) -> None:
+    def validate_member(
+        member_id: str, exclude: str = None, *, resources_dir: str | None = None
+    ) -> None:
         """TODO
 
         Args:
             member_id: loads the file ../resources/*_<member_id>.toml
+            exclude: like `-e "recommendation, legacy, best_practice"`. They can be category or
+             importance. Excluding here means, "do not exit with error if a failure in this category".
 
         Returns:
             None (it has no side-effect)
@@ -93,7 +99,7 @@ class CliCI:
         resources_dir = Path(
             resources_dir or env_resources_dir or (Path.cwd() / "resources")
         )
-
+        exclude_set = {slugify(e) for e in exclude} if exclude else set()
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             report = validate_member(member, verbose_level="-v")
@@ -107,6 +113,19 @@ class CliCI:
             else:
                 for test in report.failed:
                     if test.passed:
+                        continue
+                    if (
+                        slugify(report.checktoml.category_by_pytest_node(test.nodeid))
+                        in exclude_set
+                        or slugify(
+                            report.checktoml.importance_by_pytest_node(test.nodeid)
+                        )
+                        in exclude_set
+                    ):
+                        print(
+                            f"::error:: {member.name} ({member.name_id}) - "
+                            f"{test.nodeid} failed ❎️ (but not hard block) \n"
+                        )
                         continue
                     print(
                         f"::error:: {member.name} ({member.name_id}) - "
