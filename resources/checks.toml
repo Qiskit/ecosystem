@@ -260,6 +260,15 @@ category = "OSS"
 description = "The license-related metadata in PyPA should be an OSI-approved open-source license."
 importance = "CRITICAL"
 
+[P10]
+title = "Have a cap on the major version for the qiskit dependency"
+applies_to = "Python packages"
+affects = ['member.pypi.*.requires_qiskit']
+category = "BEST-PRACTICE"
+description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected after a major release."
+checker = "test_pypi.py::test_P10"
+importance = "RECOMMENDATION"
+
 [P11]
 title = "Production-ready projects should have, at least, one stable Python package"
 applies_to = "Python packages"
@@ -356,3 +365,7 @@ description = "There is an issue with some of the open-source aspect of the proj
 [[categories]]
 name = "OUT-OF-DATE"
 description = "The project might not follow the last best-practices or connects to Qiskit in a way that is considered old-fashioned, currently unsupported, or deprecated."
+
+[[categories]]
+name = "BEST-PRACTICE"
+description = "The project might not follow software general best-practices."
