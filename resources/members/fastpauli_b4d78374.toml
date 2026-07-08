@@ -4,8 +4,8 @@ description = "Conduct efficient multiplication of tensor products of Pauli matr
 license = "BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"
 contact_info = "dev@qognitive.io"
 affiliations = "Qognitive Inc"
-labels = [ "HPC", "quantum information",]
-interfaces = [ "Python", "C++",]
+labels = ["HPC", "quantum information"]
+interfaces = ["Python", "C++"]
 website = "https://qognitive.io"
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2301.00560"
@@ -49,7 +49,10 @@ last_release_date = 2025-04-09
 description = "fast pauli"
 url = "https://pypi.org/project/fast-pauli/"
 status = "active"
-maintainers = [ "https://pypi.org/user/rsamson78/", "https://pypi.org/user/vertefra-qcog/",]
+maintainers = [
+  "https://pypi.org/user/rsamson78/",
+  "https://pypi.org/user/vertefra-qcog/",
+]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
