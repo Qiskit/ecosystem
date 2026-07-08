@@ -127,6 +127,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          edit-mode: replace
           body: |
             The submission failed :x:
 
