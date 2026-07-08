@@ -2,8 +2,8 @@ name = "Pennylane-Qiskit"
 url = "https://github.com/PennyLaneAI/pennylane-qiskit"
 description = "The PennyLane-Qiskit plugin integrates the Qiskit quantum computing framework with PennyLane's quantum machine learning capabilities."
 license = "Apache-2.0"
-labels = []
-interfaces = ["Python"]
+labels = [ "QML",]
+interfaces = [ "Python",]
 created_at = 2023-03-14
 category = "Converter"
 documentation = "https://docs.pennylane.ai/projects/qiskit"
@@ -37,15 +37,11 @@ description = "PennyLane plugin for Qiskit"
 url = "https://pypi.org/project/PennyLane-qiskit/"
 development_status = "4 - Beta"
 status = "active"
-maintainers = [
-  "https://pypi.org/user/PennyLaneAI/",
-  "https://pypi.org/user/XanaduAI/",
-  "https://pypi.org/user/josh146/",
-]
+maintainers = [ "https://pypi.org/user/PennyLaneAI/", "https://pypi.org/user/XanaduAI/", "https://pypi.org/user/josh146/",]
 requires_qiskit = "<=2.3.0,>=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-08-19
 highest_supported_qiskit_version = "2.1.2"
-last_month_downloads = 21739
-last_180_days_downloads = 128572
+last_month_downloads = 21371
+last_180_days_downloads = 128956

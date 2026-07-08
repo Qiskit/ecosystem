@@ -4,9 +4,9 @@ url = "https://github.com/JanLahmann/doQumentation"
 description = "doQumentation — Open-source website for IBM Quantum's tutorials with interactive code execution via Binder, Colab, and Code Engine."
 contact_info = "jan@lahmann-online.de"
 labels = []
-interfaces = ["Python", "Web interface"]
+interfaces = [ "Python", "Web interface",]
 website = "https://doqumentation.org/"
-category = "Other"
+category = "Game/Educational"
 documentation = "https://doqumentation.org/features"
 packages = []
 uuid = "dd84980a-80a7-4aca-8d8f-8ca0a4177144"
@@ -23,8 +23,8 @@ description = "Open-source frontend for IBM Quantum's tutorials and learning pla
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-05
-last_activity = 2026-07-05
+last_commit = 2026-07-07
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-dd84980a"

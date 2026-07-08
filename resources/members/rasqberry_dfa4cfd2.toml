@@ -3,10 +3,10 @@ url = "https://github.com/JanLahmann/RasQberry"
 description = "RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi"
 license = "Apache-2.0"
 contact_info = "Jan.lahmann@de.ibm.com"
-labels = ["demo"]
-interfaces = ["Graphical User Interface (GUI)"]
+labels = [ "demo",]
+interfaces = [ "Graphical User Interface (GUI)",]
 created_at = 2023-01-24
-category = "Game/Fun"
+category = "Game/Educational"
 documentation = "https://janlahmann.github.io/RasQberry/"
 packages = []
 uuid = "dfa4cfd2-0ef5-4536-b7ec-47cc982ed0d9"
@@ -23,8 +23,8 @@ description = "The RasQberry project: Exploring Quantum Computing and Qiskit wit
 estimated_contributors = 10
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2025-10-28
-last_activity = 2026-06-23
+last_commit = 2026-07-07
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-dfa4cfd2"

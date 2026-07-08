@@ -1,8 +1,8 @@
 name = "Dice eigensolver"
 submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-addon-dice-solver"
-labels = ["utility-scale"]
-interfaces = ["Python"]
+labels = [ "utility-scale", "chemistry",]
+interfaces = [ "Python",]
 ibm_maintained = true
 category = "Qiskit addon"
 documentation = "https://qiskit.github.io/qiskit-addon-dice-solver/"

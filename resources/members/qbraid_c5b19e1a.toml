@@ -4,8 +4,8 @@ description = "The qBraid-SDK is a Python toolkit for cross-framework abstractio
 license = "GNU General Public License (GPL)"
 contact_info = "ryanhill@qbraid.com"
 affiliations = "qBraid Co."
-labels = ["circuit optimization", "openqasm"]
-interfaces = ["Python"]
+labels = [ "circuit optimization", "openqasm", "cloud service",]
+interfaces = [ "Python",]
 created_at = 2023-07-25
 website = "https://qbraid.com"
 category = "SDK"
@@ -25,8 +25,8 @@ description = "A platform-agnostic quantum runtime framework"
 estimated_contributors = 35
 total_dependent_repositories = 40
 total_dependent_packages = 20
-last_commit = 2026-06-27
-last_activity = 2026-07-04
+last_commit = 2026-07-08
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-c5b19e1a"
@@ -46,11 +46,11 @@ description = "Platform-agnostic quantum runtime framework."
 url = "https://pypi.org/project/qbraid/"
 development_status = "5 - Production/Stable"
 status = "active"
-maintainers = ["https://pypi.org/user/qBraid/"]
+maintainers = [ "https://pypi.org/user/qBraid/",]
 requires_qiskit = "<3.0,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 14571
-last_180_days_downloads = 99796
+last_month_downloads = 13765
+last_180_days_downloads = 100038

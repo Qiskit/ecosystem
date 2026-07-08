@@ -4,8 +4,8 @@ description = "Supports near-Clifford, Schmidt-decomposition, quantum binary dec
 license = "Apache-2.0"
 contact_info = "dan@unitary.fund"
 affiliations = "Unitary Foundation, github.com/vm6502q"
-labels = []
-interfaces = ["Python"]
+labels = [ "provider", "GPU",]
+interfaces = [ "Python",]
 website = "https://github.com/unitaryfund/qrack"
 category = "Compute provider"
 reference_paper = "https://arxiv.org/abs/2304.14969"
@@ -23,8 +23,8 @@ license = "Apache-2.0"
 description = "Qrack provider for Qiskit"
 total_dependent_repositories = 6
 total_dependent_packages = 1
-last_commit = 2026-06-27
-last_activity = 2026-06-27
+last_commit = 2026-07-07
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-43cd849a"
@@ -32,17 +32,17 @@ style = "flat"
 
 [pypi.qiskit-qrack-provider]
 package_name = "qiskit-qrack-provider"
-version = "1.2.1"
+version = "1.3.2"
 last_release_date = 2026-05-21
 license = "Apache-2.0"
 description = "Qiskit Qrack Provider - Qrack High-Performance GPU simulation for Qiskit"
 url = "https://pypi.org/project/qiskit-qrack-provider/"
 status = "active"
-maintainers = ["https://pypi.org/user/WrathfulSpatula/"]
+maintainers = [ "https://pypi.org/user/WrathfulSpatula/",]
 requires_qiskit = "==2.*"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 482
-last_180_days_downloads = 2369
+last_month_downloads = 691
+last_180_days_downloads = 2535

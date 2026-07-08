@@ -3,8 +3,8 @@ url = "https://github.com/Qiskit/qiskit-serverless"
 description = "Execute Qiskit programs as long-running jobs and distribute them across many CPUs, GPUs, and QPUs."
 license = "Apache-2.0"
 contact_info = "sanket@ibm.com"
-labels = ["cloud service", "HPC"]
-interfaces = ["Python"]
+labels = [ "cloud service", "HPC", "GPU",]
+interfaces = [ "Python",]
 ibm_maintained = true
 created_at = 2022-12-07
 category = "SDK"
@@ -25,8 +25,8 @@ description = "A programming model for leveraging quantum and classical resource
 estimated_contributors = 31
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-03
-last_activity = 2026-07-03
+last_commit = 2026-07-08
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-d463fcf2"
@@ -41,11 +41,11 @@ description = "An open-source SDK for resource management in quantum computing w
 url = "https://pypi.org/project/qiskit-serverless/"
 development_status = "3 - Alpha"
 status = "active"
-maintainers = ["https://pypi.org/org/qiskit/", "https://pypi.org/user/Tansito/"]
+maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/Tansito/",]
 requires_qiskit = "<3,>=1.4"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 12464
-last_180_days_downloads = 69433
+last_month_downloads = 13325
+last_180_days_downloads = 71270

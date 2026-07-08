@@ -1,8 +1,8 @@
 name = "Benchpress"
 submission_number = 1172
 url = "https://github.com/Qiskit/benchpress"
-labels = []
-interfaces = ["Python"]
+labels = [ "benchmarking",]
+interfaces = [ "Python",]
 ibm_maintained = true
 category = "Tooling"
 reference_paper = "https://doi.org/10.1038/s43588-025-00792-y"
@@ -20,8 +20,8 @@ license = "Apache-2.0"
 description = "A tool for benchmarking quantum software"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-22
-last_activity = 2026-07-01
+last_commit = 2026-07-06
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-1d8f5df4"
