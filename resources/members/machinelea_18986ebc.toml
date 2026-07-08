@@ -1,50 +1,47 @@
 name = "Qiskit Machine Learning"
 url = "https://github.com/qiskit-community/qiskit-machine-learning"
 description = "Use flexible building blocks, such as quantum kernels and neural networks, to create quantum machine learning algorithms."
-license = "Apache 2.0"
+license = "Apache-2.0"
 labels = ["QML"]
 interfaces = ["Python"]
-created_at = 1636403010.012954
-updated_at = 1636403010.012956
+created_at = 2021-11-08
 category = "Application"
+reference_paper = "https://arxiv.org/abs/2505.17756"
 documentation = "https://qiskit-community.github.io/qiskit-machine-learning/"
 packages = []
 uuid = "18986ebc-e138-4998-8c52-16359961af0a"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-machine-learning"
 owner = "qiskit-community"
 repo = "qiskit-machine-learning"
-stars = 1076
+stars = 1080
 homepage = "https://qiskit-community.github.io/qiskit-machine-learning/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "An open-source library built on Qiskit for quantum machine learning tasks at scale on quantum hardware and classical simulators"
 total_dependent_repositories = 550
-total_dependent_packages = 25
+total_dependent_packages = 26
 last_commit = 2026-06-26
-last_activity = 2026-06-30
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-18986ebc"
 style = "flat"
 
-[checks.PQ2]
-since = 2026-04-30T11:32:49.789583
-details = "Python package qiskit-machine-learning is not compatible with Qiskit SDK v2"
-importance = "IMPORTANT"
-
 [pypi.qiskit-machine-learning]
 package_name = "qiskit-machine-learning"
 version = "0.9.0"
 last_release_date = 2025-12-24
+license = "Apache-2.0"
 description = "Qiskit Machine Learning: A library of quantum machine learning experiments"
 url = "https://pypi.org/project/qiskit-machine-learning/"
-requires_qiskit = "<2.0,>=1.0"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 38389
-last_180_days_downloads = 231073
+last_month_downloads = 38224
+last_180_days_downloads = 233928

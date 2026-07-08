@@ -1,10 +1,9 @@
 name = "Bosonic Qiskit"
 url = "https://github.com/C2QA/bosonic-qiskit"
 description = "NQI C2QA project to simulate hybrid boson-qubit systems within Qiskit."
-labels = ["physics"]
+labels = ["physics", "research", "Hamiltonian simulation"]
 interfaces = ["Python"]
-created_at = 1678827878.841977
-updated_at = 1678827878.841978
+created_at = 2023-03-14
 category = "Application"
 documentation = "https://c2qa.github.io/bosonic-qiskit/"
 packages = []
@@ -16,7 +15,7 @@ url = "https://github.com/C2QA/bosonic-qiskit"
 owner = "C2QA"
 repo = "bosonic-qiskit"
 stars = 74
-license = "BSD 2-Clause \"Simplified\" License"
+license = "BSD-2-Clause"
 description = "Extension of Qiskit to support hybrid boson-qubit simulations for the NQI C2QA effort."
 estimated_contributors = 10
 total_dependent_repositories = 0
@@ -28,16 +27,27 @@ last_activity = 2026-06-26
 url = "https://qisk.it/e-3d8fe04d"
 style = "flat"
 
+[checks.P12]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.bosonic-qiskit does not have a declared license"
+importance = "RECOMMENDATION"
+
 [pypi.bosonic-qiskit]
 package_name = "bosonic-qiskit"
 version = "15.1"
 last_release_date = 2025-12-09
 description = "National Quantum Initiative Co-design Center for Quantum Advantage bosonic Qiskit simulator"
 url = "https://pypi.org/project/bosonic-qiskit/"
+status = "active"
+maintainers = [
+  "https://pypi.org/user/dtropf-pnnl/",
+  "https://pypi.org/user/jfurches/",
+  "https://pypi.org/user/tjstavenger-pnnl/",
+]
 requires_qiskit = "==2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-04-01
 highest_supported_qiskit_version = "2.0.0"
-last_month_downloads = 316
-last_180_days_downloads = 1887
+last_month_downloads = 432
+last_180_days_downloads = 2066

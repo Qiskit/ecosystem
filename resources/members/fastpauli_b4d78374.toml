@@ -4,7 +4,7 @@ description = "Conduct efficient multiplication of tensor products of Pauli matr
 license = "BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"
 contact_info = "dev@qognitive.io"
 affiliations = "Qognitive Inc"
-labels = []
+labels = ["HPC", "quantum information"]
 interfaces = ["Python", "C++"]
 website = "https://qognitive.io"
 category = "Application"
@@ -20,7 +20,7 @@ owner = "qognitive"
 repo = "fast-pauli"
 stars = 15
 homepage = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
-license = "BSD 2-Clause \"Simplified\" License"
+license = "BSD-2-Clause"
 description = "Python/C++ library for optimized operations on Pauli matrices and Pauli strings"
 estimated_contributors = 4
 total_dependent_repositories = 0
@@ -32,16 +32,31 @@ last_activity = 2025-10-31T17:43:20Z
 url = "https://qisk.it/e-b4d78374"
 style = "flat"
 
+[checks.O02]
+since = 2026-07-06T12:46:29.207233
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"
+
+[checks.P12]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.fast-pauli does not have a declared license"
+importance = "RECOMMENDATION"
+
 [pypi.fast-pauli]
 package_name = "fast-pauli"
 version = "0.0.35"
 last_release_date = 2025-04-09
 description = "fast pauli"
 url = "https://pypi.org/project/fast-pauli/"
+status = "active"
+maintainers = [
+  "https://pypi.org/user/rsamson78/",
+  "https://pypi.org/user/vertefra-qcog/",
+]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 243
-last_180_days_downloads = 2675
+last_month_downloads = 221
+last_180_days_downloads = 2641

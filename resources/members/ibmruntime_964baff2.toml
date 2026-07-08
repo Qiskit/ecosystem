@@ -1,7 +1,7 @@
 name = "qiskit-ibm-runtime C"
 url = "https://github.com/Qiskit/qiskit-ibm-runtime-c/"
 contact_info = ""
-labels = ["provider"]
+labels = ["provider", "cloud service"]
 interfaces = ["C"]
 ibm_maintained = true
 category = "Compute provider"
@@ -15,7 +15,7 @@ url = "https://github.com/Qiskit/qiskit-ibm-runtime-c"
 owner = "Qiskit"
 repo = "qiskit-ibm-runtime-c"
 stars = 12
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "IBM Quantum Platform API Client for Qiskit's C API"
 estimated_contributors = 4
 total_dependent_repositories = 0

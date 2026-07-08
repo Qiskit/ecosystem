@@ -9,6 +9,7 @@ labels = [
   "quantum information",
   "circuit building",
   "research",
+  "utility-scale",
 ]
 interfaces = ["Python"]
 category = "Other"
@@ -22,7 +23,7 @@ url = "https://github.com/JoelHBierman/QSP-SQD"
 owner = "JoelHBierman"
 repo = "QSP-SQD"
 stars = 0
-license = "MIT License"
+license = "MIT"
 description = "An implementation of Quantum Selective Configuration Interaction which uses adaptive circuits."
 total_dependent_repositories = 0
 total_dependent_packages = 0

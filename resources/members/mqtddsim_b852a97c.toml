@@ -1,7 +1,7 @@
 name = "MQT DDSIM"
 url = "https://github.com/cda-tum/mqt-ddsim"
 description = "A classical quantum circuit simulator based on decision diagrams developed as part of the Munich Quantum Toolkit (MQT)."
-license = "MIT license"
+license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = ["research"]
@@ -20,12 +20,12 @@ owner = "munich-quantum-toolkit"
 repo = "ddsim"
 stars = 161
 homepage = "https://mqt.readthedocs.io/projects/ddsim"
-license = "MIT License"
+license = "MIT"
 description = "MQT DDSIM - A quantum circuit simulator based on decision diagrams written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-29
-last_activity = 2026-06-29
+last_commit = 2026-07-07
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-b852a97c"
@@ -39,10 +39,12 @@ license = "MIT"
 description = "A quantum simulator based on decision diagrams written in C++"
 url = "https://pypi.org/project/mqt.ddsim/"
 development_status = "5 - Production/Stable"
+status = "active"
+maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=1.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1508
-last_180_days_downloads = 14690
+last_month_downloads = 1611
+last_180_days_downloads = 14941

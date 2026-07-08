@@ -1,7 +1,7 @@
 name = "Propagated Noise Absorption (PNA)"
 url = "https://github.com/Qiskit/qiskit-addon-pna"
 description = "Mitigate gate noise in expectation values by propagating the observable through the inverse noise channel."
-labels = ["utility-scale"]
+labels = ["utility-scale", "error mitigation"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Qiskit addon"
@@ -18,13 +18,13 @@ owner = "Qiskit"
 repo = "qiskit-addon-pna"
 stars = 8
 homepage = "https://qiskit.github.io/qiskit-addon-pna/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Mitigate gate noise in expectation values by propagating the observable through the inverse noise channel."
 estimated_contributors = 9
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-30
-last_activity = 2026-06-30
+last_commit = 2026-07-07
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-4cb3b182"
@@ -34,12 +34,15 @@ style = "flat"
 package_name = "qiskit-addon-pna"
 version = "0.2.0"
 last_release_date = 2025-11-13
+license = "Apache-1.1"
 description = "Mitigate a global noise channel by propagating an observable through the anti-noise."
 url = "https://pypi.org/project/qiskit-addon-pna/"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 619
-last_180_days_downloads = 980
+last_month_downloads = 587
+last_180_days_downloads = 990

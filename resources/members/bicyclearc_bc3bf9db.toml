@@ -1,7 +1,7 @@
 name = "Bicycle Architecture Compiler"
 submission_number = 1172
 url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
-labels = []
+labels = ["error correction", "research", "circuit optimization"]
 interfaces = ["Rust"]
 category = "SDK"
 reference_paper = "https://arxiv.org/abs/2506.03094"
@@ -19,13 +19,13 @@ maturity = "experimental"
 url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
 owner = "qiskit-community"
 repo = "bicycle-architecture-compiler"
-stars = 41
-license = "Apache License 2.0"
+stars = 42
+license = "Apache-2.0"
 description = "A compiler prototype targeting a bicycle architecture from PBC circuits"
 total_dependent_repositories = 0
 total_dependent_packages = 13
 last_commit = 2026-04-09
-last_activity = 2026-06-19
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-bc3bf9db"

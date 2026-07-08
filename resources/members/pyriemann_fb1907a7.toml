@@ -19,33 +19,36 @@ owner = "pyRiemann"
 repo = "pyRiemann-qiskit"
 stars = 30
 homepage = "https://pyriemann-qiskit.readthedocs.io/"
-license = "BSD 3-Clause \"New\" or \"Revised\" License"
+license = "BSD-3-Clause"
 description = "A library for machine learning and quantum programming based on pyRiemann and Qiskit projects"
 estimated_contributors = 12
 total_dependent_repositories = 3
 total_dependent_packages = 0
-last_commit = 2026-06-02
-last_activity = 2026-06-02
+last_commit = 2026-07-08
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-fb1907a7"
 style = "flat"
 
-[checks.PQ2]
-since = 2026-04-30T11:32:49.789583
-details = "Python package pyriemann-qiskit is not compatible with Qiskit SDK v2"
+[checks.O02]
+since = 2026-07-06T12:46:29.207233
+details = "member.license is not OSI-approved"
 importance = "IMPORTANT"
 
 [pypi.pyriemann-qiskit]
 package_name = "pyriemann-qiskit"
-version = "0.5.0"
+version = "0.6.0"
 last_release_date = 2026-04-22
+license = "BSD-3-Clause"
 description = "Qiskit wrapper for pyRiemann"
 url = "https://pypi.org/project/pyriemann-qiskit/"
-requires_qiskit = "==1.*"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13
-highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 95
-last_180_days_downloads = 492
+status = "active"
+maintainers = ["https://pypi.org/user/gcattan/"]
+requires_qiskit = "==2.4.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-06-12
+highest_supported_qiskit_version = "1.4.6"
+last_month_downloads = 188
+last_180_days_downloads = 591

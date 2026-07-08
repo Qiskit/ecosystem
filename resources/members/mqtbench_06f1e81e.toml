@@ -1,10 +1,10 @@
 name = "MQT Bench"
 url = "https://github.com/cda-tum/mqt-bench"
 description = "A circuit benchmark suite offering the same algorithms across abstraction levels to evaluate quantum software tools and hardware."
-license = "MIT license"
+license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
-labels = ["circuit optimization", "research"]
+labels = ["circuit optimization", "research", "benchmarking"]
 interfaces = ["Python"]
 website = "https://www.cda.cit.tum.de/mqtbench/"
 category = "Application"
@@ -20,12 +20,12 @@ owner = "munich-quantum-toolkit"
 repo = "bench"
 stars = 121
 homepage = "https://mqt-bench.app/"
-license = "MIT License"
+license = "MIT"
 description = "MQT Bench - An MQT Tool for Benchmarking Quantum Software Tools"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-30
-last_activity = 2026-06-30
+last_commit = 2026-07-07
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-06f1e81e"
@@ -33,16 +33,18 @@ style = "flat"
 
 [pypi."mqt.bench"]
 package_name = "mqt-bench"
-version = "2.2.2"
+version = "2.2.3"
 last_release_date = 2026-04-20
 license = "MIT"
 description = "MQT Bench - A MQT tool for Benchmarking Quantum Software Tools"
 url = "https://pypi.org/project/mqt.bench/"
 development_status = "4 - Beta"
-requires_qiskit = ">=1.3.2"
-compatible_with_qiskit_v1 = true
+status = "active"
+maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
+requires_qiskit = ">=2.0.0"
+compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 3793
-last_180_days_downloads = 19186
+last_month_downloads = 4780
+last_180_days_downloads = 20409

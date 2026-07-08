@@ -1,11 +1,10 @@
 name = "pytket-qiskit"
 url = "https://github.com/CQCL/pytket-qiskit"
 description = "Convert between Pytket (a Python interface for CQC tket) and Qiskit, and run Pytket circuits on IBM backends and simulators"
-license = "Apache 2.0"
+license = "Apache-2.0"
 labels = []
 interfaces = ["Python"]
-created_at = 1661869851.523229
-updated_at = 1661869851.523229
+created_at = 2022-08-30
 category = "Converter"
 documentation = "https://docs.quantinuum.com/tket/extensions/pytket-qiskit/"
 packages = []
@@ -17,7 +16,7 @@ url = "https://github.com/Quantinuum/pytket-qiskit"
 owner = "Quantinuum"
 repo = "pytket-qiskit"
 stars = 22
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "pytket-qiskit, extensions for pytket quantum SDK "
 estimated_contributors = 21
 total_dependent_repositories = 0
@@ -29,16 +28,26 @@ last_activity = 2026-03-12T13:46:54Z
 url = "https://qisk.it/e-7c80aef4"
 style = "flat"
 
+[checks.P12]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.pytket-qiskit does not have a declared license"
+importance = "RECOMMENDATION"
+
 [pypi.pytket-qiskit]
 package_name = "pytket-qiskit"
 version = "0.77.0"
 last_release_date = 2026-02-02
 description = "Extension for pytket, providing translation to and from the Qiskit."
 url = "https://pypi.org/project/pytket-qiskit/"
-requires_qiskit = ">=2.2.0"
+status = "active"
+maintainers = [
+  "https://pypi.org/user/cqc-alec/",
+  "https://pypi.org/user/ss2165/",
+]
+requires_qiskit = ">=2.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 43587
-last_180_days_downloads = 254074
+last_month_downloads = 45561
+last_180_days_downloads = 259972

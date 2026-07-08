@@ -18,7 +18,7 @@ owner = "garymooney"
 repo = "qmuvi"
 stars = 17
 homepage = "https://garymooney.github.io/qmuvi/"
-license = "GNU Lesser General Public License v2.1"
+license = "LGPL-2.1"
 description = "qMuVi - A python package that converts quantum circuits into audiovisual experiences, bridging the gap between complex quantum comp..."
 estimated_contributors = 4
 total_dependent_repositories = 4
@@ -30,17 +30,30 @@ last_activity = 2026-06-09
 url = "https://qisk.it/e-9d4da903"
 style = "flat"
 
+[checks.O02]
+since = 2026-07-06T12:46:29.207233
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"
+
+[checks.P13]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.qmuvi.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [pypi.qmuvi]
 package_name = "qmuvi"
 version = "0.3.0"
 last_release_date = 2025-09-04
+license = "LGPL-2.1-or-later"
 description = "qMuVi is a Python library that converts quantum circuits into music videos, enabling visualisation of quantum state evolution through sound and animation. It supports noise models to simulate physical quantum devices and displays animating probability and phase distributions of basis states."
 url = "https://pypi.org/project/qmuvi/"
 development_status = "2 - Pre-Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/garymooney/"]
 requires_qiskit = "<3.0.0,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 56
-last_180_days_downloads = 361
+last_month_downloads = 31
+last_180_days_downloads = 366

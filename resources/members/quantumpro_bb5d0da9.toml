@@ -1,7 +1,7 @@
 name = "Quantum Prototype Template"
 url = "https://github.com/qiskit-community/quantum-prototype-template"
 description = "A template repository for generating new quantum prototypes based on Qiskit."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 labels = []
 interfaces = ["Python"]
 category = "Tooling"
@@ -14,7 +14,7 @@ url = "https://github.com/qiskit-community/quantum-prototype-template"
 owner = "qiskit-community"
 repo = "quantum-prototype-template"
 stars = 46
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "A template repository for generating new quantum prototypes based on Qiskit"
 estimated_contributors = 7
 total_dependent_repositories = 0
@@ -26,16 +26,23 @@ last_activity = 2026-06-15
 url = "https://qisk.it/e-bb5d0da9"
 style = "flat"
 
+[checks.P12]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.vqls-prototype does not have a declared license"
+importance = "RECOMMENDATION"
+
 [pypi.vqls-prototype]
 package_name = "vqls-prototype"
 version = "0.2.0"
 last_release_date = 2023-11-03
 description = "Repository for a quantum prototype"
 url = "https://pypi.org/project/vqls-prototype/"
+status = "active"
+maintainers = ["https://pypi.org/user/nico_reno/"]
 requires_qiskit = ">=0.14.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 67
-last_180_days_downloads = 227
+last_month_downloads = 45
+last_180_days_downloads = 230
