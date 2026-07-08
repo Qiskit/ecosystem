@@ -54,7 +54,7 @@ jobs:
           body-includes: Check out the logs
 
       - name: Initial validatation
-        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }} -e "oss"  # There is no license yet
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }} -e "oss, recommendation"  # There is no license yet
 
       - name: Create sections
         if: github.event.pull_request.draft == false

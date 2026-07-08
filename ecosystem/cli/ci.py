@@ -100,7 +100,9 @@ class CliCI:
         resources_dir = Path(
             resources_dir or env_resources_dir or (Path.cwd() / "resources")
         )
-        exclude_set = {slugify(e) for e in exclude} if exclude else set()
+        exclude_set = {slugify(e) for e in exclude} if isinstance(exclude, tuple) else set()
+        if isinstance(exclude, str):
+            exclude_set.add(exclude)
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             report = validate_member(member, verbose_level="-v")
