@@ -14,6 +14,13 @@ category = "SDK"
 pattern_steps = ["Map"]
 reference_paper = "https://arxiv.org/abs/2606.15027"
 documentation = "https://github.com/qdsvquantum-afk/qdsv-bridge/blob/main/docs/integrations/ibm_quantum.md"
-packages = ["https://pypi.org/project/qdsv-bridge/"]
+packages = []
 uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
 maturity = "experimental"
+
+[github]
+owner = "qdsvquantum-afk"
+repo = "qdsv-bridge"
+
+[pypi.qdsv-bridge]
+package_name = "qdsv-bridge"
