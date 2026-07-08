@@ -91,6 +91,10 @@ jobs:
         env:
           BITLY_TOKEN: ${{ secrets.BITLY_TOKEN }}
         run: python manager.py members update_badge
+
+      - name: Run taplo formater on TOML files
+        run: taplo fmt resources/members/*.toml
+
       - name: Commit badge
         if: success()
         run: |
