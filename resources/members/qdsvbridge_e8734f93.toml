@@ -19,8 +19,24 @@ uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
 owner = "qdsvquantum-afk"
 repo = "qdsv-bridge"
+stars = 1
+license = "MIT"
+description = "QDSV Bridge SDK: controlled semantic-to-IR, oracle and circuit-blueprint compilation for supported quantum problem families."
+last_commit = 2026-07-01
+last_activity = 2026-07-01
 
 [pypi.qdsv-bridge]
 package_name = "qdsv-bridge"
+version = "0.1.5"
+last_release_date = 2026-06-20
+license = "MIT"
+description = "Lightweight Python client for QDSV Bridge, a controlled semantic-to-circuit compiler with family-based export modes."
+url = "https://pypi.org/project/qdsv-bridge/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/jalexanderjlozano/"]
+last_month_downloads = 382
+last_180_days_downloads = 866
