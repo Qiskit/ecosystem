@@ -54,13 +54,15 @@ jobs:
           body-includes: Check out the logs
 
       - name: Initial validatation
-        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }} -e "recommendation, legacy, best_practice"
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }} -e "oss"  # There is no license yet
 
       - name: Create sections
         if: github.event.pull_request.draft == false
-        run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }}
+        run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }} -e "recommendation, legacy, best_practice"
+
       - name: Run taplo formater on TOML files
         run: taplo fmt resources/members/*.toml
+
       - name: Commit sections
         if: success()
         run: |
