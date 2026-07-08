@@ -90,7 +90,8 @@ class CliCI:
         Args:
             member_id: loads the file ../resources/*_<member_id>.toml
             exclude: like `-e "recommendation, legacy, best_practice"`. They can be category or
-             importance. Excluding here means, "do not exit with error if a failure in this category".
+             importance. Excluding here means, "do not exit with error if a failure in this
+             category".
 
         Returns:
             None (it has no side-effect)
