@@ -108,6 +108,7 @@ class CliCI:
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             report = validate_member(member, verbose_level="-v")
+            exit_failed = False
             if report.exitcode == 0:
                 print(f"::notice::  {member.name} ({member.name_id}) ✅")
                 if report.xfailed:
@@ -128,7 +129,7 @@ class CliCI:
                         in exclude_set
                     ):
                         print(
-                            f"::error:: {member.name} ({member.name_id}) - "
+                            f"::warning:: {member.name} ({member.name_id}) - "
                             f"{test.nodeid} failed ❎️ (but not hard block) \n"
                         )
                         continue
@@ -136,8 +137,10 @@ class CliCI:
                         f"::error:: {member.name} ({member.name_id}) - "
                         f"{test.nodeid} failed ❌\n"
                     )
+                    exit_failed = True
                     print(f"::group:: {test.longreprtext}")
                     print("::endgroup::")
+            if exit_failed:
                 sys.exit(report.exitcode)
 
     @staticmethod
