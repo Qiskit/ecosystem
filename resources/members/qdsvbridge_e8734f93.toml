@@ -3,7 +3,12 @@ submission_number = 1211
 url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
 description = "A semantic-to-circuit blueprint SDK for supported quantum problem families, with OpenQASM/Qiskit artifact export"
 contact_info = "jaimeajl@qruba.site"
-labels = ["circuit building", "openqasm", "cloud service", "high-level synthesis"]
+labels = [
+  "circuit building",
+  "openqasm",
+  "cloud service",
+  "high-level synthesis",
+]
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "SDK"
 pattern_steps = ["Map"]
