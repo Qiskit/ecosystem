@@ -3,10 +3,10 @@ submission_number = 1202
 url = "https://github.com/MarkoMalezic/qiskit-omelyan"
 description = "Omelyan-type symmetric product formulas for PauliEvolutionGate synthesis in Qiskit"
 contact_info = "malezic15@gmail.com"
-labels = ["high-level synthesis", "Hamiltonian simulation"]
-interfaces = ["Python"]
+labels = [ "high-level synthesis", "Hamiltonian simulation",]
+interfaces = [ "Python",]
 category = "Transpiler plugin"
-pattern_steps = ["Map"]
+pattern_steps = [ "Map",]
 reference_paper = "https://arxiv.org/abs/2601.18756"
 packages = []
 uuid = "9d474247-5c15-481c-afb2-cc58ae884459"
@@ -21,6 +21,9 @@ license = "Apache-2.0"
 last_commit = 2026-06-29
 last_activity = 2026-06-29
 
+[badge]
+style = "flat"
+
 [checks.P12]
 since = 2026-07-06T12:46:29.207233
 details = "member.pypi.qiskit-omelyan does not have a declared license"
@@ -33,7 +36,7 @@ last_release_date = 2026-06-26
 description = "Omelyan-based product formulas for time evolution in Qiskit"
 url = "https://pypi.org/project/qiskit-omelyan/"
 status = "active"
-maintainers = ["https://pypi.org/user/MarkoMalezic/"]
+maintainers = [ "https://pypi.org/user/MarkoMalezic/",]
 requires_qiskit = ">=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
