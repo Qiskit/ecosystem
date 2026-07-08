@@ -4,8 +4,8 @@ description = "Research-oriented toolkit for turning amino-acid sequences into q
 license = "MIT"
 contact_info = "akshayuttarkar@gmail.com"
 affiliations = "R V College of Engineering MIT Vishwaprayag University"
-labels = ["chemistry", "research"]
-interfaces = ["Python"]
+labels = [ "chemistry", "research",]
+interfaces = [ "Python",]
 category = "Paper artifact"
 reference_paper = "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0342012"
 packages = []
@@ -37,7 +37,7 @@ license = "MIT"
 description = "QuPepFold: Quantum peptide folding simulations with Qiskit"
 url = "https://pypi.org/project/qupepfold/"
 status = "active"
-maintainers = ["https://pypi.org/user/Akshayuttarkar/"]
+maintainers = [ "https://pypi.org/user/Akshayuttarkar/",]
 requires_qiskit = ">=0.39"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

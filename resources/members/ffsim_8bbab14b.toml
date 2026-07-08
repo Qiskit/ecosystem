@@ -3,8 +3,8 @@ url = "https://github.com/qiskit-community/ffsim"
 description = "ffsim is a software library for simulating fermionic quantum circuits that conserve particle number and the Z component of spin."
 license = "Apache-2.0"
 affiliations = "IBM"
-labels = ["chemistry", "physics"]
-interfaces = ["Python"]
+labels = [ "chemistry", "physics",]
+interfaces = [ "Python",]
 website = "https://qiskit-community.github.io/ffsim/"
 category = "Circuit simulator"
 documentation = "https://qiskit-community.github.io/ffsim/"
@@ -38,10 +38,7 @@ license = "Apache-1.1"
 description = "Faster simulation of fermionic quantum circuits."
 url = "https://pypi.org/project/ffsim/"
 status = "active"
-maintainers = [
-  "https://pypi.org/org/qiskit/",
-  "https://pypi.org/user/kevinsung/",
-]
+maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/kevinsung/",]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
