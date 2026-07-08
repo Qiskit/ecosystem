@@ -1,13 +1,12 @@
 name = "QDSV Bridge"
 submission_number = 1211
 url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
-description = "Problem-first semantic specs to OpenQASM/Qiskit artifacts with reproducibility reports."
+description = "A semantic-to-circuit blueprint SDK for supported quantum problem families, with OpenQASM/Qiskit artifact export"
 contact_info = "jaimeajl@qruba.site"
-labels = ["circuit building", "openqasm", "research", "high-level synthesis"]
+labels = ["circuit building", "openqasm", "cloud service", "high-level synthesis"]
 interfaces = ["Python", "Command-line interface (CLI)"]
-website = "https://qdsv.cloud/"
 category = "SDK"
-pattern_steps = ["Map", "Optimize", "Execute", "Post-process"]
+pattern_steps = ["Map"]
 reference_paper = "https://arxiv.org/abs/2606.15027"
 documentation = "https://github.com/qdsvquantum-afk/qdsv-bridge/blob/main/docs/integrations/ibm_quantum.md"
 packages = ["https://pypi.org/project/qdsv-bridge/"]
