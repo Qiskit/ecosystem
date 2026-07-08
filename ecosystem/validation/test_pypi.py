@@ -12,12 +12,12 @@
 
 """Validations involving section member.pypi"""
 
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name,missing-function-docstring
 
 import pytest
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def skip_pypi(member):
     """Skip if no pypi seciton"""
     if member.pypi is None:
@@ -51,6 +51,14 @@ def test_PQ2(member, subtests):
             ), f"Python package {pypi_package.package_name} is not compatible with Qiskit SDK v2"
 
 
+def test_P10(member):
+    for pypi_package in member.pypi.values():
+        assert pypi_package.compatible_with_qiskit(3), (
+            f"Python package {pypi_package.package_name} declared itself "
+            "compatible to a not-yet-released major version of Qiskit"
+        )
+
+
 def test_P11(member):
     """Production-ready projects should have, at least, one stable Python package"""
     if member.maturity not in ["production-ready", "bugfixing only"]:
@@ -75,3 +83,19 @@ def test_P11(member):
     assert (
         len(stable_packages) != 0
     ), "At least one python package should declare a stable development status classifier"
+
+
+def test_P12(member):
+    for pypi_package in member.pypi.values():
+        if pypi_package.license is None:
+            assert (
+                pypi_package.license is not None
+            ), f"member.pypi.{pypi_package.package_name} does not have a declared license"
+
+
+def test_P13(member):
+    for pypi_package in member.pypi.values():
+        if pypi_package.license is not None:
+            assert (
+                pypi_package.license.is_osi_approved()
+            ), f"member.pypi.{pypi_package.package_name}.license is not OSI-approved"

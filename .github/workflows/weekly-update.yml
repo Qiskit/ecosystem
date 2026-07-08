@@ -25,6 +25,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Install taplo
+      uses: uncenter/setup-taplo@v2
+      with:
+        version: "0.10.0"
 
     - name: Update project maturity
       run: python manager.py members update_maturity
@@ -34,6 +38,9 @@ jobs:
 
     - name: Update status
       run: python manager.py members update_status
+
+    - name: Run taplo formatter on TOML files
+      run: taplo fmt resources/*.toml resources/members/*.toml
 
     - name: Create PR for status update
       id: cpr

@@ -58,7 +58,9 @@ class CliCI:
         set_actions_output([("SUBMISSION_SHORT_UUID", parsed_result.short_uuid)])
 
     @staticmethod
-    def create_sections(member_id: str | None = None, resources_dir: str | None = None) -> None:
+    def create_sections(
+        member_id: str | None = None, resources_dir: str | None = None
+    ) -> None:
         """unfolds all the sections for the projects
 
         Args:
@@ -131,6 +133,10 @@ class CliCI:
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             print(f"\n::group:: {member.name}️ ({member.name_id})")
+            if member.status == "Alumni":
+                print('member.status == "Alumni", so skip')
+                print("::endgroup::")
+                continue
             for update_method_str in to_update:
                 print(f"Updating {update_method_str}️")
                 update_method = getattr(member, f"update_{update_method_str}")
@@ -140,6 +146,7 @@ class CliCI:
                 except Exception as e:
                     print(
                         f"\n::warning file={resources_dir}/members/{member.name_id}.toml::Error "
-                        f"updating {member.name_id} when {update_method_str}️ - {e}")
+                        f"updating {member.name_id} when {update_method_str}️ - {e}"
+                    )
                     print(traceback.format_exc())
             print("::endgroup::")
