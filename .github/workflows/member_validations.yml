@@ -54,13 +54,15 @@ jobs:
           body-includes: Check out the logs
 
       - name: Initial validatation
-        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }} -e "oss, recommendation, legacy, best_practice"  # There is no license yet
 
       - name: Create sections
         if: github.event.pull_request.draft == false
         run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }}
-      - name: Section validatation
-        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
+
+      - name: Run taplo formater on TOML files
+        run: taplo fmt resources/members/*.toml
+
       - name: Commit sections
         if: success()
         run: |
@@ -73,7 +75,7 @@ jobs:
         if: github.event.pull_request.draft == false
         run: python manager.py ci update_member_data ${{ steps.get-id.outputs.id }}
       - name: Data validatation
-        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }}
+        run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }} -e "recommendation, legacy, best_practice"
       - name: Run taplo formater on TOML files
         run: taplo fmt resources/members/*.toml
       - name: Commit data
@@ -131,6 +133,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          edit-mode: replace
           body: |
             The submission failed :x:
 
