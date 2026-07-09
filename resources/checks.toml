@@ -296,6 +296,24 @@ description = "..."
 checker = "test_pypi.py::test_P13"
 importance = "IMPORTANT"
 
+[J00]
+title = "Julia package without license"
+applies_to = "Julia packages"
+affects = ['member.julia.*.license']
+category = "OSS"
+description = "..."
+importance = "RECOMMENDATION"
+checker = "test_julia.py::test_J00"
+
+[J01]
+title = "The license declared in Julia is (probably) not OSI-approved "
+applies_to = "Julia packages"
+affects = ['member.julia.*.license']
+category = "OSS"
+description = "..."
+checker = "test_julia.py::test_J01"
+importance = "IMPORTANT"
+
 [O02]
 title = "member.license is not OSI-approved license"
 applies_to = "all"
