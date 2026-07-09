@@ -27,6 +27,11 @@ last_activity = 2026-03-10T00:09:45Z
 url = "https://qisk.it/e-64b432d7"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qvoting declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qvoting]
 package_name = "qvoting"
 version = "0.1.5"

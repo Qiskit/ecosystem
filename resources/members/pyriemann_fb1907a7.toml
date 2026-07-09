@@ -11,7 +11,6 @@ documentation = "https://pyriemann-qiskit.readthedocs.io/"
 packages = []
 uuid = "fb1907a7-9af8-4c23-be0c-48841a36f2df"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/pyRiemann/pyRiemann-qiskit"
@@ -30,6 +29,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-fb1907a7"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package pyriemann-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.pyriemann-qiskit]
 package_name = "pyriemann-qiskit"

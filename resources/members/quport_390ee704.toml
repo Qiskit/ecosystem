@@ -10,7 +10,6 @@ reference_paper = "https://arxiv.org/abs/2605.12583"
 packages = []
 uuid = "390ee704-e44f-4134-9a03-0486d77a2ade"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/neuralsorcerer/quport"
@@ -27,11 +26,10 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-390ee704"
 style = "flat"
 
-[checks.013]
-since = 2026-07-02T10:02:02.670047
-details = "http://quport.soumyadipsarkar.com/ is not HTTPS"
-discussion = "https://github.com/neuralsorcerer/quport/issues/1"
-importance = "IMPORTANT"
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package quport declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.quport]
 package_name = "quport"

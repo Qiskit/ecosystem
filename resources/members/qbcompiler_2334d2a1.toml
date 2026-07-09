@@ -30,6 +30,11 @@ last_activity = 2026-07-07
 url = "https://qisk.it/e-2334d2a1"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qb-compiler declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qb-compiler]
 package_name = "qb-compiler"
 version = "0.7.0"

@@ -11,6 +11,7 @@ documentation = "https://garymooney.github.io/qmuvi/"
 packages = []
 uuid = "9d4da903-9823-4ae3-a80c-22821b62931e"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/garymooney/qmuvi"
@@ -34,6 +35,11 @@ style = "flat"
 since = 2026-07-06T12:46:29.207233
 details = "member.license is not OSI-approved"
 importance = "IMPORTANT"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qmuvi declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [checks.P13]
 since = 2026-07-06T12:46:29.207233

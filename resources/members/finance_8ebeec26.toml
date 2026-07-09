@@ -28,6 +28,11 @@ last_activity = 2026-07-02
 url = "https://qisk.it/e-8ebeec26"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-finance declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-finance]
 package_name = "qiskit-finance"
 version = "0.4.1"

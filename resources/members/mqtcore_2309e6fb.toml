@@ -31,6 +31,11 @@ last_activity = 2026-07-09
 url = "https://qisk.it/e-2309e6fb"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mqt-core declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi."mqt.core"]
 package_name = "mqt-core"
 version = "3.7.0"

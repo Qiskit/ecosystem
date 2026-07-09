@@ -27,6 +27,11 @@ last_commit = 2025-06-27
 url = "https://qisk.it/e-e10b8307"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package symbolic-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.symbolic-qiskit]
 package_name = "symbolic-qiskit"
 version = "0.1.0a1"

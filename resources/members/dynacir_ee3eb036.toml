@@ -26,6 +26,11 @@ last_activity = 2025-11-19T17:28:13Z
 url = "https://qisk.it/e-ee3eb036"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package dynacir declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.dynacir]
 package_name = "dynacir"
 version = "0.1.4"

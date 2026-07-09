@@ -9,6 +9,7 @@ documentation = "https://c2qa.github.io/bosonic-qiskit/"
 packages = []
 uuid = "3d8fe04d-8ac0-4282-9eb6-cb458550945a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/C2QA/bosonic-qiskit"
@@ -26,6 +27,11 @@ last_activity = 2026-06-26
 [badge]
 url = "https://qisk.it/e-3d8fe04d"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package bosonic-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [checks.P12]
 since = 2026-07-06T12:46:29.207233

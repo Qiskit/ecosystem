@@ -11,6 +11,7 @@ category = "Application"
 packages = []
 uuid = "05140a48-184b-491e-ac3c-d613ca05b3c8"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/QuantumApplicationLab/vqls-prototype"
@@ -27,6 +28,11 @@ last_activity = 2026-06-15
 [badge]
 url = "https://qisk.it/e-05140a48"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package vqls-prototype declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [checks.P12]
 since = 2026-07-06T12:46:29.207233

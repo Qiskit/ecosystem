@@ -29,6 +29,11 @@ last_activity = 2025-12-15T18:09:14Z
 url = "https://qisk.it/e-ebd47aa6"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-qulacs declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-qulacs]
 package_name = "qiskit-qulacs"
 version = "0.1.0"

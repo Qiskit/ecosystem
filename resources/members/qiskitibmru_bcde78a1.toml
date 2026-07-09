@@ -29,6 +29,11 @@ last_activity = 2026-07-05
 url = "https://qisk.it/e-bcde78a1"
 style = "flat"
 
+[checks.J00]
+since = 2026-07-09T11:29:53.067305
+details = "member.julia.QiskitIBMRuntime does not have a declared license"
+importance = "RECOMMENDATION"
+
 [julia.QiskitIBMRuntime]
 package_name = "QiskitIBMRuntime"
 registry = "General"

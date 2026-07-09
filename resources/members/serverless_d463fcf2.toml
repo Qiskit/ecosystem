@@ -32,6 +32,11 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-d463fcf2"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-serverless declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-serverless]
 package_name = "qiskit-serverless"
 version = "0.32.0"

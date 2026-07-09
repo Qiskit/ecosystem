@@ -31,6 +31,11 @@ last_activity = 2026-06-12
 url = "https://qisk.it/e-dd5d5bad"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package quantum-gates declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.quantum-gates]
 package_name = "quantum-gates"
 version = "2.4.0"

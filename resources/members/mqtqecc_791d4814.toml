@@ -30,6 +30,11 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-791d4814"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mqt-qcec declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi."mqt.qcec"]
 package_name = "mqt-qcec"
 version = "3.6.1"

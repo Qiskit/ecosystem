@@ -26,6 +26,11 @@ last_activity = 2026-03-30T12:38:19Z
 url = "https://qisk.it/e-50bd99f2"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package hlquantum declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.hlquantum]
 package_name = "hlquantum"
 version = "0.1.3"

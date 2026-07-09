@@ -27,6 +27,11 @@ last_activity = 2026-03-29T08:45:17Z
 url = "https://qisk.it/e-c9369922"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-qubit-reuse declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-qubit-reuse]
 package_name = "qiskit-qubit-reuse"
 version = "0.0.2"
