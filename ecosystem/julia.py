@@ -250,7 +250,7 @@ class JuliaData(JsonSerializable):
 
     @property
     def monthly_downloads(self):
-        """ User monthly downloads as reported by https://juliapkgstats.com/api"""
+        """User monthly downloads as reported by https://juliapkgstats.com/api"""
         if self._juliapkgstats_json is None:
             ret = self._kwargs.get("monthly_downloads")
         else:
@@ -259,7 +259,7 @@ class JuliaData(JsonSerializable):
 
     @property
     def total_downloads(self):
-        """ User total downloads as reported by https://juliapkgstats.com/api"""
+        """User total downloads as reported by https://juliapkgstats.com/api"""
         if self._juliapkgstats_json is None:
             ret = self._kwargs.get("total_downloads")
         else:
@@ -273,4 +273,5 @@ class JuliaData(JsonSerializable):
 
     @property
     def license(self):
+        """Package license"""
         return License(self._kwargs["license"]) if "license" in self._kwargs else None

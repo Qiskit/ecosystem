@@ -24,6 +24,7 @@ def skip_pypi(member):
         pytest.skip("No julia section")
     yield member
 
+
 def test_J00(member):
     for julia_package in member.julia.values():
         if julia_package.license is None:
