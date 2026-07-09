@@ -267,6 +267,7 @@ affects = ['member.pypi.*.requires_qiskit']
 category = "BEST-PRACTICE"
 description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected after a major release."
 checker = "test_pypi.py::test_P10"
+cure_period_in_days = false  # affects too many packages
 importance = "RECOMMENDATION"
 
 [P11]
