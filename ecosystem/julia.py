@@ -270,3 +270,8 @@ class JuliaData(JsonSerializable):
     def juliahub_url(self):
         """Package URL in https://juliahub.com/ui/Packages/"""
         return self._juliahub_url or self._kwargs.get("juliahub_url")
+
+    @property
+    def license(self):
+        """Package license"""
+        return License(self._kwargs["license"]) if "license" in self._kwargs else None
