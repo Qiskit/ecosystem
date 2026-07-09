@@ -20,6 +20,7 @@ class License:
 
     spdx_ids = {
         "Apache 2.0": "Apache-2.0",
+        "Apache 2": "Apache-2.0",
         "Apache License 2.0": "Apache-2.0",
         "Apache-2.0": "Apache-2.0",
         "Apache Software License@pypi": "Apache-1.1",
@@ -30,9 +31,15 @@ class License:
         "BSD (3-clause)": "BSD-3-Clause",
         'BSD 2-Clause "Simplified" license': "BSD-2-Clause",
         'BSD 2-Clause "Simplified" License': "BSD-2-Clause",
+        'BSD 2-Clause "Simplified" or "FreeBSD" license': "BSD-2-Clause",
         "GNU General Public License v3.0": "GPL-3.0",
+        "GNU General Public License (GPL)": "GPL-3.0",
         "GNU Lesser General Public License v2.1": "LGPL-2.1",
         "GNU Lesser General Public License v3.0": "LGPL-3.0",
+        "LGPL-2.1-or-later": "LGPL-3.0",
+        "LGPL-3.0-or-later": "LGPL-3.0",
+        "GNU Library or \"Lesser\" General Public License (LGPL)": "LGPL-2.1",
+        "GPL v3.0": "GPL-3.0",
     }
 
     def __init__(self, license_name: str, where: str = None):
