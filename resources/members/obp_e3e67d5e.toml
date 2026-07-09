@@ -19,17 +19,22 @@ owner = "Qiskit"
 repo = "qiskit-addon-obp"
 stars = 44
 homepage = "https://qiskit.github.io/qiskit-addon-obp/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Reducing depth of circuits with operator backpropagation"
 estimated_contributors = 13
 total_dependent_repositories = 13
 total_dependent_packages = 1
-last_commit = 2026-07-01
-last_activity = 2026-07-01
+last_commit = 2026-07-06
+last_activity = 2026-07-06
 
 [badge]
 url = "https://qisk.it/e-e3e67d5e"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-addon-obp declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-addon-obp]
 package_name = "qiskit-addon-obp"
@@ -38,10 +43,16 @@ last_release_date = 2025-05-22
 license = "Apache-2.0"
 description = "Reducing depth of circuits with operator backpropagation"
 url = "https://pypi.org/project/qiskit-addon-obp/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/calebj15/",
+  "https://pypi.org/user/mrossinek/",
+]
 requires_qiskit = "<3,>=1.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 8967
-last_180_days_downloads = 35177
+last_month_downloads = 9473
+last_180_days_downloads = 37811

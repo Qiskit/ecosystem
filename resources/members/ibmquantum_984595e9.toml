@@ -2,7 +2,7 @@ name = "Qiskit IBM Quantum runtime client"
 submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-ibm-runtime"
 description = "Python client for IBM Quantum QPUs"
-labels = []
+labels = ["provider", "cloud service"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Compute provider"
@@ -15,29 +15,37 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-ibm-runtime"
 owner = "Qiskit"
 repo = "qiskit-ibm-runtime"
-stars = 229
+stars = 230
 homepage = "https://docs.quantum.ibm.com/api/qiskit-ibm-runtime"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "IBM Client for Qiskit Runtime"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-01
-last_activity = 2026-07-01
+last_commit = 2026-07-08
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-984595e9"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-ibm-runtime declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-ibm-runtime]
 package_name = "qiskit-ibm-runtime"
 version = "0.47.0"
 last_release_date = 2026-05-12
+license = "Apache-2.0"
 description = "IBM Quantum client for Qiskit Runtime."
 url = "https://pypi.org/project/qiskit-ibm-runtime/"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=2.2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 556010
-last_180_days_downloads = 2681544
+last_month_downloads = 560577
+last_180_days_downloads = 2770967

@@ -17,30 +17,38 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-addon-mthree"
 owner = "Qiskit"
 repo = "qiskit-addon-mthree"
-stars = 52
+stars = 53
 homepage = "https://qiskit.github.io/qiskit-addon-mthree/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Matrix-free Measurement Mitigation"
 estimated_contributors = 16
 total_dependent_repositories = 122
 total_dependent_packages = 12
-last_commit = 2025-08-06
-last_activity = 2026-06-27
+last_commit = 2026-07-03
+last_activity = 2026-07-07
 
 [badge]
 url = "https://qisk.it/e-875968b2"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mthree declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.mthree]
 package_name = "mthree"
 version = "3.0.0"
 last_release_date = 2025-03-27
+license = "Apache-2.0"
 description = "M3: Matrix-free measurement mitigation"
 url = "https://pypi.org/project/mthree/"
+status = "active"
+maintainers = ["https://pypi.org/user/nonhermitian/"]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 34297
-last_180_days_downloads = 153890
+last_month_downloads = 33400
+last_180_days_downloads = 160955

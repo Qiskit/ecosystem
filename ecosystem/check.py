@@ -58,6 +58,14 @@ class ChecksToml:
                 return id_
         raise AttributeError(f"nodeid {node_id} not found as a checker")
 
+    def category_by_pytest_node(self, node_id):
+        """Given a PyTest node ID, find the category"""
+        return self.checkup(self.id_by_pytest_node(node_id))["category"]
+
+    def importance_by_pytest_node(self, node_id):
+        """Given a PyTest node ID, find the importance"""
+        return self.checkup(self.id_by_pytest_node(node_id))["importance"]
+
 
 class CheckData(JsonSerializable):
     """
@@ -76,8 +84,8 @@ class CheckData(JsonSerializable):
         self.details = details
         self.discussion: str | URL | None = discussion
 
-    def to_dict(self) -> dict:
-        ret = super().to_dict()
+    def to_dict(self, keys=None) -> dict:
+        ret = super().to_dict(keys=keys)
         del ret["id"]
         ret["importance"] = self.importance
         return ret

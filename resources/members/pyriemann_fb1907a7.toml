@@ -1,7 +1,7 @@
 name = "pyRiemann-qiskit"
 url = "https://github.com/pyRiemann/pyRiemann-qiskit"
 description = "Supervised machine learning based on quantum computing and Riemannian geometry. Focuses on classification of time series data."
-license = "BSD 3-Clause \"New\" or \"Revised\" license"
+license = "BSD-3-Clause"
 contact_info = "gcattan@hotmail.fr"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
 labels = ["QML"]
@@ -11,7 +11,6 @@ documentation = "https://pyriemann-qiskit.readthedocs.io/"
 packages = []
 uuid = "fb1907a7-9af8-4c23-be0c-48841a36f2df"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/pyRiemann/pyRiemann-qiskit"
@@ -19,33 +18,36 @@ owner = "pyRiemann"
 repo = "pyRiemann-qiskit"
 stars = 30
 homepage = "https://pyriemann-qiskit.readthedocs.io/"
-license = "BSD 3-Clause \"New\" or \"Revised\" License"
+license = "BSD-3-Clause"
 description = "A library for machine learning and quantum programming based on pyRiemann and Qiskit projects"
 estimated_contributors = 12
 total_dependent_repositories = 3
 total_dependent_packages = 0
-last_commit = 2026-07-01
-last_activity = 2026-07-01
+last_commit = 2026-07-08
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-fb1907a7"
 style = "flat"
 
-[checks.PQ2]
-since = 2026-04-30T11:32:49.789583
-details = "Python package pyriemann-qiskit is not compatible with Qiskit SDK v2"
-importance = "IMPORTANT"
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package pyriemann-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.pyriemann-qiskit]
 package_name = "pyriemann-qiskit"
-version = "0.5.0"
-last_release_date = 2026-04-22
+version = "0.6.0"
+last_release_date = 2026-07-04
+license = "BSD-3-Clause"
 description = "Qiskit wrapper for pyRiemann"
 url = "https://pypi.org/project/pyriemann-qiskit/"
-requires_qiskit = "==1.*"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-10-13
-highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 99
-last_180_days_downloads = 494
+status = "active"
+maintainers = ["https://pypi.org/user/gcattan/"]
+requires_qiskit = "==2.4.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-06-12
+highest_supported_qiskit_version = "1.4.6"
+last_month_downloads = 188
+last_180_days_downloads = 591

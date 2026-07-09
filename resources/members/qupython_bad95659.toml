@@ -1,7 +1,7 @@
 name = "quPython"
 url = "https://github.com/frankharkins/quPython"
 description = "Write Pythonic quantum programs. Replace circuits and registers with functions and classes for better abstractions and readability."
-license = "MIT license"
+license = "MIT"
 contact_info = "frankharkins@hotmail.co.uk"
 labels = ["circuit building"]
 interfaces = ["Python"]
@@ -17,7 +17,7 @@ owner = "frankharkins"
 repo = "quPython"
 stars = 11
 homepage = "https://frankharkins.github.io/quPython/"
-license = "MIT License"
+license = "MIT"
 description = "Quantum programs in Python"
 estimated_contributors = 2
 total_dependent_repositories = 5
@@ -29,16 +29,24 @@ last_activity = 2026-01-31T21:44:44Z
 url = "https://qisk.it/e-bad95659"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qupython declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qupython]
 package_name = "qupython"
 version = "0.2.0"
 last_release_date = 2024-04-07
+license = "MIT"
 description = "Write quantum programs directly in Python"
 url = "https://pypi.org/project/qupython/"
+status = "active"
+maintainers = ["https://pypi.org/user/frankharkins/"]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 57
-last_180_days_downloads = 165
+last_month_downloads = 20
+last_180_days_downloads = 163

@@ -1,7 +1,7 @@
 name = "Shaded Lightcones"
 submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-addon-slc"
-labels = ["utility-scale"]
+labels = ["utility-scale", "error mitigation"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Qiskit addon"
@@ -18,17 +18,22 @@ owner = "Qiskit"
 repo = "qiskit-addon-slc"
 stars = 5
 homepage = "https://qiskit.github.io/qiskit-addon-slc/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Reducing PEC sampling overhead with shaded lightcones"
 estimated_contributors = 9
 total_dependent_repositories = 1
 total_dependent_packages = 0
-last_commit = 2026-07-01
-last_activity = 2026-07-01
+last_commit = 2026-07-08
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-189aa71b"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-addon-slc declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-addon-slc]
 package_name = "qiskit-addon-slc"
@@ -37,10 +42,12 @@ last_release_date = 2025-11-06
 license = "Apache-2.0"
 description = "Reducing PEC sampling overhead with shaded lightcones"
 url = "https://pypi.org/project/qiskit-addon-slc/"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = "<3,>=2.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 595
-last_180_days_downloads = 748
+last_month_downloads = 593
+last_180_days_downloads = 777

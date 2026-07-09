@@ -4,7 +4,7 @@ description = "Qx86 is an Intel 8080/Z80 emulator which executes all salient poi
 license = "GNU General Public License (GPL)"
 contact_info = "mistasparkaru@hotmail.co.uk"
 affiliations = "None"
-labels = ["cloud service"]
+labels = ["cloud service", "demo"]
 interfaces = ["Python"]
 website = "https://github.com/mistasparkaru/Qx86"
 category = "Application"
@@ -12,13 +12,14 @@ reference_paper = "https://ieeexplore.ieee.org/document/9878250"
 packages = []
 uuid = "a68e9142-dc31-4b9f-a851-413dd91222d7"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/mistasparkaru/Qx86"
 owner = "mistasparkaru"
 repo = "Qx86"
 stars = 2
-license = "GNU General Public License v3.0"
+license = "GPL-3.0"
 description = "Qx86 is an intel 8080/Z80 emulator written for IBMs Quantum Computers"
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -28,3 +29,8 @@ last_activity = 2026-02-03T00:00:08Z
 [badge]
 url = "https://qisk.it/e-a68e9142"
 style = "flat"
+
+[checks.O02]
+since = 2026-07-06T12:46:29.207233
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"

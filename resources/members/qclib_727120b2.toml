@@ -1,20 +1,21 @@
 name = "Qclib"
 url = "https://github.com/qclib/qclib"
 description = "A quantum computing library implemented using Qiskit. The focus of Qclib is on preparing quantum states, but it is not limited to that."
-license = "Apache License 2.0"
-labels = ["circuit optimization", "research"]
+license = "Apache-2.0"
+labels = ["circuit optimization", "research", "circuit building"]
 interfaces = ["Python"]
 category = "SDK"
 packages = []
 uuid = "727120b2-7559-453e-beb3-0ab33fb60a4a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qclib/qclib"
 owner = "qclib"
 repo = "qclib"
 stars = 46
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Qclib is a quantum computing library implemented using qiskit. The focus of qclib is on preparing quantum states, but it is not lim..."
 total_dependent_repositories = 14
 total_dependent_packages = 1
@@ -25,16 +26,28 @@ last_activity = 2026-06-20
 url = "https://qisk.it/e-727120b2"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qclib declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
+[checks.P12]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.qclib does not have a declared license"
+importance = "RECOMMENDATION"
+
 [pypi.qclib]
 package_name = "qclib"
 version = "0.1.15"
 last_release_date = 2025-07-28
 description = "A quantum computing library using qiskit"
 url = "https://pypi.org/project/qclib/"
+status = "active"
+maintainers = ["https://pypi.org/user/adjs/"]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 565
-last_180_days_downloads = 2216
+last_month_downloads = 619
+last_180_days_downloads = 2331

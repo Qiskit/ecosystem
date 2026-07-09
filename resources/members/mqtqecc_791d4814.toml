@@ -1,10 +1,10 @@
 name = "MQT QECC"
 url = "https://github.com/cda-tum/mqt-qecc"
 description = "A collection of tools for decoding and synthesizing fault-tolerant quantum circuits."
-license = "MIT license"
+license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
-labels = ["error correction"]
+labels = ["error correction", "research"]
 interfaces = ["Python"]
 website = "https://mqt.readthedocs.io"
 category = "Other"
@@ -17,18 +17,23 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/qecc"
 owner = "munich-quantum-toolkit"
 repo = "qecc"
-stars = 219
+stars = 223
 homepage = "https://mqt.readthedocs.io/projects/qecc"
-license = "MIT License"
+license = "MIT"
 description = "MQT QECC - Tools for Quantum Error Correcting Codes"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-29
-last_activity = 2026-06-30
+last_commit = 2026-07-07
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-791d4814"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mqt-qcec declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi."mqt.qcec"]
 package_name = "mqt-qcec"
@@ -38,10 +43,12 @@ license = "MIT"
 description = "A tool for Quantum Circuit Equivalence Checking"
 url = "https://pypi.org/project/mqt.qcec/"
 development_status = "5 - Production/Stable"
+status = "active"
+maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 8427
-last_180_days_downloads = 50964
+last_month_downloads = 10140
+last_180_days_downloads = 51408

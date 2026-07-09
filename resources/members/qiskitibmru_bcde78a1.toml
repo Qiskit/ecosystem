@@ -2,7 +2,7 @@ name = "QiskitIBMRuntime.jl"
 submission_number = 1172
 url = "https://github.com/Qiskit/QiskitIBMRuntime.jl"
 description = "Execute circuits on an IBM Quantum computer from the Julia programming language"
-labels = []
+labels = ["provider", "cloud service"]
 interfaces = ["Julia"]
 ibm_maintained = true
 category = "Compute provider"
@@ -18,24 +18,33 @@ owner = "Qiskit"
 repo = "QiskitIBMRuntime.jl"
 stars = 4
 homepage = "https://qiskit.github.io/QiskitIBMRuntime.jl/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Execute circuits on an IBM quantum computer from Julia, using the Qiskit IBM Runtime service"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-27
-last_activity = 2026-06-27
+last_commit = 2026-07-03
+last_activity = 2026-07-05
 
 [badge]
 url = "https://qisk.it/e-bcde78a1"
 style = "flat"
 
-[julia.Qiskit]
-package_name = "Qiskit"
+[checks.J00]
+since = 2026-07-09T11:29:53.067305
+details = "member.julia.QiskitIBMRuntime does not have a declared license"
+importance = "RECOMMENDATION"
+
+[julia.QiskitIBMRuntime]
+package_name = "QiskitIBMRuntime"
 registry = "General"
-version = "0.5.0"
-license = "Apache-2.0"
+version = "0.2.1"
 owner = "Qiskit"
-homepage = "https://qiskit.github.io/Qiskit.jl"
+homepage = "https://qiskit.github.io/QiskitIBMRuntime.jl/"
 release_date = 2026-06-01
-uuid = "91d9a17d-f964-4b6c-a3c4-2f4cfdea2c95"
-estimated_unique_users = 5
+requires_julia = ["1.10.0 - 1"]
+requires_qiskit = ["0.4 - 0.5"]
+juliahub_url = "https://juliahub.com/ui/Packages/General/QiskitIBMRuntime"
+uuid = "1f74880b-c9c8-4af4-a333-b5b4aaaec6f5"
+estimated_unique_users = 2
+monthly_downloads = 2
+total_downloads = 2

@@ -18,29 +18,36 @@ owner = "Qiskit"
 repo = "samplomatic"
 stars = 20
 homepage = "https://qiskit.github.io/samplomatic/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Sample randomizations of Qiskit quantum circuits (e.g. Pauli twirling and noise injection) using declarative, composable annotations."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-27
-last_activity = 2026-06-27
+last_commit = 2026-07-08
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-54222a2e"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package samplomatic declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.samplomatic]
 package_name = "samplomatic"
 version = "0.20.0"
-last_release_date = 2026-05-19
+last_release_date = 2026-06-23
 license = "Apache-2.0"
 description = "Serving all of your circuit sampling needs since 2025."
 url = "https://pypi.org/project/samplomatic/"
 development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=2.3.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 260706
-last_180_days_downloads = 796545
+last_month_downloads = 260616
+last_180_days_downloads = 858121

@@ -1,7 +1,7 @@
 name = "Qiskit Research"
 url = "https://github.com/qiskit-community/qiskit-research"
 description = "Software utilities for running quantum computing research experiments using Qiskit and the IBM Quantum Services."
-license = "Apache 2.0"
+license = "Apache-2.0"
 labels = []
 interfaces = ["Python"]
 created_at = 2022-09-12
@@ -9,7 +9,7 @@ category = "Other"
 documentation = "https://qiskit-community.github.io/qiskit-research/"
 packages = []
 uuid = "8794efa6-808d-45a6-bee1-39f8eeb45fdf"
-maturity = "archived"
+maturity = "unmaintained"
 status = "Alumni"
 
 [github]
@@ -18,7 +18,7 @@ owner = "qiskit-community"
 repo = "qiskit-research"
 stars = 72
 homepage = "https://qiskit-community.github.io/qiskit-research/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Research using Qiskit."
 estimated_contributors = 9
 total_dependent_repositories = 0
@@ -63,5 +63,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-06-20
 highest_supported_qiskit_version = "1.1.1"
-last_month_downloads = 146
-last_180_days_downloads = 422
+last_month_downloads = 159
+last_180_days_downloads = 438

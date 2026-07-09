@@ -1,8 +1,8 @@
 name = "TorchQuantum"
 url = "https://github.com/mit-han-lab/torchquantum"
 description = "A PyTorch-centric hybrid classical-quantum dynamic neural networks framework."
-license = "Apache 2.0"
-labels = ["QML"]
+license = "Apache-2.0"
+labels = ["QML", "GPU"]
 interfaces = ["Python"]
 created_at = 2023-03-14
 category = "Application"
@@ -16,15 +16,15 @@ status = "Under revision"
 url = "https://github.com/mit-han-lab/torchquantum"
 owner = "mit-han-lab"
 repo = "torchquantum"
-stars = 1635
+stars = 1636
 homepage = "https://torchquantum.org"
-license = "MIT License"
+license = "MIT"
 description = "A PyTorch-based framework for Quantum Classical Simulation, Quantum Machine Learning, Quantum Neural Networks, Parameterized Quantu..."
 estimated_contributors = 30
 total_dependent_repositories = 63
 total_dependent_packages = 1
-last_commit = 2025-10-28
-last_activity = 2026-06-30
+last_commit = 2026-07-06
+last_activity = 2026-07-06
 
 [badge]
 url = "https://qisk.it/e-6fefeede"
@@ -33,18 +33,27 @@ style = "flat"
 [checks.PQ2]
 since = 2026-04-30T11:32:49.789583
 details = "Python package torchquantum is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/mit-han-lab/torchquantum/issues/332"
 importance = "IMPORTANT"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package torchquantum declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.torchquantum]
 package_name = "torchquantum"
 version = "0.1.8"
 last_release_date = 2024-02-21
+license = "MIT"
 description = "Quantum Computing in PyTorch"
 url = "https://pypi.org/project/torchquantum/"
+status = "active"
+maintainers = ["https://pypi.org/user/hanruiwang/"]
 requires_qiskit = "<1.0.0,>=0.39.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-09-27
 highest_supported_qiskit_version = "0.46.3"
-last_month_downloads = 1821
-last_180_days_downloads = 7644
+last_month_downloads = 1700
+last_180_days_downloads = 7630
