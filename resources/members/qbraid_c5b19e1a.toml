@@ -1,10 +1,9 @@
 name = "qBraid"
 url = "https://github.com/qBraid/qBraid"
 description = "The qBraid-SDK is a Python toolkit for cross-framework abstraction, transpilation, and execution of quantum programs."
-license = "GNU General Public License (GPL)"
 contact_info = "ryanhill@qbraid.com"
 affiliations = "qBraid Co."
-labels = ["circuit optimization", "openqasm"]
+labels = ["circuit optimization", "openqasm", "cloud service"]
 interfaces = ["Python"]
 created_at = 2023-07-25
 website = "https://qbraid.com"
@@ -18,19 +17,24 @@ maturity = "production-ready"
 url = "https://github.com/qBraid/qBraid"
 owner = "qBraid"
 repo = "qBraid"
-stars = 109
+stars = 110
 homepage = "https://docs.qbraid.com/v2/sdk"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "A platform-agnostic quantum runtime framework"
 estimated_contributors = 35
 total_dependent_repositories = 40
 total_dependent_packages = 20
-last_commit = 2026-06-27
-last_activity = 2026-06-29
+last_commit = 2026-07-08
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-c5b19e1a"
 style = "flat"
+
+[checks.O02]
+since = 2026-07-06T12:46:29.207233
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [pypi.qbraid]
 package_name = "qbraid"
@@ -40,10 +44,12 @@ license = "Apache-2.0"
 description = "Platform-agnostic quantum runtime framework."
 url = "https://pypi.org/project/qbraid/"
 development_status = "5 - Production/Stable"
+status = "active"
+maintainers = ["https://pypi.org/user/qBraid/"]
 requires_qiskit = "<3.0,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 16332
-last_180_days_downloads = 99454
+last_month_downloads = 13388
+last_180_days_downloads = 99895

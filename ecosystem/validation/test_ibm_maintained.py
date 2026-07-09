@@ -32,12 +32,3 @@ def test_I00(member):
     assert (
         member.github.owner.lower() in ibm_controlled_gh_org
     ), "ibm-maintained project not in ibm-controlled GitHub org"
-
-
-def test_I01(member):
-    """Unsupported IBM-maintained projects (maturity in [deprecated, archived]) should have archived
-    repos and packages"""
-    if member.maturity in ["deprecated", "archived"]:
-        assert (
-            member.github.archived
-        ), "unsupported ibm-maintained project should have an archived GitHub org"

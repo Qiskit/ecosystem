@@ -2,7 +2,7 @@ name = "qiskit-ibm-transpiler"
 submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-ibm-transpiler"
 description = "A library to use the Qiskit Transpiler Service and the AI-powered transpiler passes."
-labels = ["circuit optimization", "cloud service"]
+labels = ["circuit optimization", "cloud service", "AI/LLM"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Transpiler plugin"
@@ -18,7 +18,7 @@ owner = "Qiskit"
 repo = "qiskit-ibm-transpiler"
 stars = 39
 homepage = "https://pypi.org/project/qiskit-ibm-transpiler/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "A library to use the Qiskit Transpiler Service and the AI-powered transpiler passes."
 total_dependent_repositories = 22
 total_dependent_packages = 2
@@ -32,12 +32,18 @@ style = "flat"
 package_name = "qiskit-ibm-transpiler"
 version = "0.18.0"
 last_release_date = 2026-03-10
+license = "Apache-2.0"
 description = "A library to use Qiskit IBM Transpiler (https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-transpiler) and the AI transpiler passes (https://quantum.cloud.ibm.com/docs/guides/ai-transpiler-passes)"
 url = "https://pypi.org/project/qiskit-ibm-transpiler/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/ibm.q.widgets/",
+]
 requires_qiskit = "<3.0.0,>=1.4.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 2710
-last_180_days_downloads = 24808
+last_month_downloads = 2463
+last_180_days_downloads = 24825

@@ -1,0 +1,46 @@
+name = "QDSV Bridge"
+submission_number = 1211
+url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
+description = "A semantic-to-circuit blueprint SDK for supported quantum problem families, with OpenQASM/Qiskit artifact export"
+contact_info = "jaimeajl@qruba.site"
+labels = [
+  "circuit building",
+  "openqasm",
+  "cloud service",
+  "high-level synthesis",
+]
+interfaces = ["Python", "Command-line interface (CLI)"]
+category = "SDK"
+pattern_steps = ["Map"]
+reference_paper = "https://arxiv.org/abs/2606.15027"
+documentation = "https://github.com/qdsvquantum-afk/qdsv-bridge/blob/main/docs/integrations/ibm_quantum.md"
+packages = []
+uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
+owner = "qdsvquantum-afk"
+repo = "qdsv-bridge"
+stars = 1
+license = "MIT"
+description = "QDSV Bridge SDK: controlled semantic-to-IR, oracle and circuit-blueprint compilation for supported quantum problem families."
+last_commit = 2026-07-08
+last_activity = 2026-07-08
+
+[badge]
+url = "https://qisk.it/e-e8734f93"
+style = "flat"
+
+[pypi.qdsv-bridge]
+package_name = "qdsv-bridge"
+version = "0.1.5"
+last_release_date = 2026-06-20
+license = "MIT"
+description = "Lightweight Python client for QDSV Bridge, a controlled semantic-to-circuit compiler with family-based export modes."
+url = "https://pypi.org/project/qdsv-bridge/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/jalexanderjlozano/"]
+last_month_downloads = 382
+last_180_days_downloads = 866

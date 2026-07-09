@@ -15,6 +15,7 @@
 from abc import ABC
 from datetime import date
 
+from ecosystem.license import License
 from ecosystem.request import URL
 
 
@@ -38,10 +39,15 @@ class JsonSerializable(ABC):
         """
         return cls(**dictionary)
 
-    def to_dict(self) -> dict:  # pylint: disable=too-many-branches
-        """Converts Object to dict."""
+    def to_dict(self, keys=None) -> dict:  # pylint: disable=too-many-branches
+        """Converts Object to dict.
+        if keys = None, then takes `self.__dict__.keys()`. Otherwise, this is a list of keys.
+        """
+        if keys is None:
+            keys = self.__dict__.keys()
         result = {}
-        for key, val in self.__dict__.items():
+        for key in keys:
+            val = getattr(self, key, None)
             if key.startswith("_") or val is None:
                 continue
             if isinstance(val, list):
@@ -63,7 +69,7 @@ class JsonSerializable(ABC):
                     continue
             elif isinstance(val, JsonSerializable):
                 element = val.to_dict()
-            elif isinstance(val, URL):
+            elif isinstance(val, (URL, License)):
                 element = str(val)
             else:
                 element = val

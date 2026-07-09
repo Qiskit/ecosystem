@@ -7,13 +7,22 @@ category = "SUBMISSION"
 importance = "CRITICAL"
 
 [001]
+title = "Have an OSI-approved license"
+applies_to = "all"
+affects = ['member.license', 'member.github.license', 'member.pypi.*.license']
+category = "OSS"
+description = "Projects in the Qiskit Ecosystem (and their packages) must have an OSI-approved license."
+checker = "test_general.py::test_001"
+importance = "CRITICAL"
+
+[G00]
 title = "Have a clear support expectation and, if actively maintained, show signs of that activity."
 applies_to = "all"
 category = "GENERAL"
 related_to = ["G05"]
 description = "Actively maintained projects should show signs of that. This includes recent activity in the code repository (such as commits, issue responses, or pull requests) as well as reasonably up-to-date package releases. Projects with no observable activity over an extended period may be considered abandoned."
 importance = "CRITICAL"
-checker = "test_general.py::test_001"
+checker = "test_general.py::test_G00"
 
 [COC]
 title = "Adhere to the Qiskit CoC"
@@ -131,7 +140,7 @@ importance = "IMPORTANT"
 title = "Description too long"
 description = "Member description cannot be longer than 135 characters because front-end design limitations."
 applies_to = "all"
-affects = ["memeber.description"]
+affects = ["member.description"]
 checker = "test_description.py::test_description_len_135"
 category = "SUBMISSION"
 importance = "IMPORTANT"
@@ -155,11 +164,11 @@ category = "SUBMISSION"
 importance = "RECOMMENDATION"
 
 [G05]
-title = "Archived GitHub repository should have `archived` support"
+title = "Archived GitHub repository should have `unmaintaned` support"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
-description = "Projects with `support != as-is` and are available on an archived GitHub repository should have `archived` support."
+description = "Projects on an archived GitHub repository should have `unmaintaned` support (or `as-is`)."
 importance = "CRITICAL"
 checker = "test_github.py::test_G05"
 
@@ -179,12 +188,39 @@ category = "ACTIVITY"
 description = "Projects available on GitHub should have a commit activity activity within the last 18 months. This check does not apply to project that declared their support as as-is."
 importance = "STRONG-RECOMMENDATION"
 
+[G08]
+title = "Unmaintained projects should be archived in GitHub repository"
+applies_to = "GitHub projects"
+affects = ['github.archived']
+category = "ACTIVITY"
+description = "Projects that are not maintained (ie. `member.support == unmaintaned`) should archived their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
+importance = "RECOMMENDATION"
+checker = "test_github.py::test_G08"
+
+[G09]
+title = "GitHub is not detecting the repository license"
+applies_to = "GitHub projects"
+affects = ['github.license']
+category = "OSS"
+description = "GitHub cannot detect the repository license"
+importance = "RECOMMENDATION"
+checker = "test_github.py::test_G09"
+
+[G10]
+title = "The reposity license is not (probably) OSI-approved"
+applies_to = "GitHub projects"
+affects = ['github.license']
+category = "OSS"
+description = "..."
+importance = "IMPORTANT"
+checker = "test_github.py::test_G10"
+
 [O01]
 title = "Have a license"
 applies_to = "all"
-affects = ['member.license', 'member.github.license']
+affects = ['member.license']
 category = "OSS"
-description = "Projects must have a license declared."
+description = "Projects must have a license, somewhere."
 checker = "test_license.py::test_O01"
 importance = "CRITICAL"
 
@@ -196,15 +232,6 @@ category = "OSS"
 description = "Projects that are maintained by IBM should live in a GitHub organization that is controlled by IBM. This allows to, for example, archive projects once they are not longer maintained."
 importance = "CRITICAL"
 checker = "test_ibm_maintained.py::test_I00"
-
-[I01]
-title = "Unsupported IBM-maintained project should archive its repository"
-applies_to = "IBM-maintained projects"
-affects = ['member.github.archived', 'member.ibm_maintained']
-category = "ACTIVITY"
-description = "Projects that are maintained by IBM are not longer supported, they live in a GitHub organization that is controlled by IBM. This allows to, for example, archive projects once they are not longer maintained."
-importance = "CRITICAL"
-checker = "test_ibm_maintained.py::test_I01"
 
 [PQ1]
 title = "Be installable with qiskit>=1.0"
@@ -233,6 +260,16 @@ category = "OSS"
 description = "The license-related metadata in PyPA should be an OSI-approved open-source license."
 importance = "CRITICAL"
 
+[P10]
+title = "Have a cap on the major version for the qiskit dependency"
+applies_to = "Python packages"
+affects = ['member.pypi.*.requires_qiskit']
+category = "BEST-PRACTICE"
+description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected after a major release."
+checker = "test_pypi.py::test_P10"
+cure_period_in_days = false                                                                                                                                                                                  # affects too many packages
+importance = "RECOMMENDATION"
+
 [P11]
 title = "Production-ready projects should have, at least, one stable Python package"
 applies_to = "Python packages"
@@ -241,6 +278,51 @@ category = "OUT-OF-DATE"
 description = "If the project maturiy level is is production-ready then, at least one of the Python packages should have a Development Status classifier that is `None`, `Production/Stable`, or `Mature`."
 checker = "test_pypi.py::test_P11"
 importance = "STRONG-RECOMMENDATION"
+
+[P12]
+title = "PyPI package without license"
+applies_to = "Python packages"
+affects = ['member.pypi.*.license']
+category = "OSS"
+description = "..."
+importance = "RECOMMENDATION"
+checker = "test_pypi.py::test_P12"
+
+[P13]
+title = "The license declared in PyPI is (probably) not OSI-approved "
+applies_to = "Python packages"
+affects = ['member.pypi.*.license']
+category = "OSS"
+description = "..."
+checker = "test_pypi.py::test_P13"
+importance = "IMPORTANT"
+
+[J00]
+title = "Julia package without license"
+applies_to = "Julia packages"
+affects = ['member.julia.*.license']
+category = "OSS"
+description = "..."
+importance = "RECOMMENDATION"
+checker = "test_julia.py::test_J00"
+
+[J01]
+title = "The license declared in Julia is (probably) not OSI-approved "
+applies_to = "Julia packages"
+affects = ['member.julia.*.license']
+category = "OSS"
+description = "..."
+checker = "test_julia.py::test_J01"
+importance = "IMPORTANT"
+
+[O02]
+title = "member.license is not OSI-approved license"
+applies_to = "all"
+affects = ['member.license']
+category = "SUBMISSION"
+description = "member.license could not be found amount the OSI-approved licenses."
+checker = "test_license.py::test_O02"
+importance = "IMPORTANT"
 
 [020]
 title = "Primitive interface should be v2-compatible"
@@ -302,3 +384,7 @@ description = "There is an issue with some of the open-source aspect of the proj
 [[categories]]
 name = "OUT-OF-DATE"
 description = "The project might not follow the last best-practices or connects to Qiskit in a way that is considered old-fashioned, currently unsupported, or deprecated."
+
+[[categories]]
+name = "BEST-PRACTICE"
+description = "The project might not follow software general best-practices."

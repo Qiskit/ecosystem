@@ -1,9 +1,9 @@
 name = "Qiskit Scaleway"
 url = "https://github.com/scaleway/qiskit-scaleway"
 description = "A Python package to run quantum circuits on Scaleway infrastructure, providing access to simulators on powerful hardware (CPU and GPU)."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 contact_info = "lmerbouche@scaleway.com"
-labels = ["provider", "cloud service"]
+labels = ["provider", "cloud service", "GPU", "HPC"]
 interfaces = ["Python"]
 website = "https://www.scaleway.com"
 category = "Compute provider"
@@ -17,7 +17,7 @@ url = "https://github.com/scaleway/qiskit-scaleway"
 owner = "scaleway"
 repo = "qiskit-scaleway"
 stars = 10
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Scaleway provider implementation for Qiskit SDK"
 estimated_contributors = 5
 total_dependent_repositories = 0
@@ -29,16 +29,24 @@ last_activity = 2026-06-16
 url = "https://qisk.it/e-a942dc5d"
 style = "flat"
 
+[checks.P13]
+since = 2026-07-06T12:46:29.207233
+details = "member.pypi.qiskit-scaleway.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [pypi.qiskit-scaleway]
 package_name = "qiskit-scaleway"
 version = "0.3.13"
-last_release_date = 2026-05-12
+last_release_date = 2026-06-10
+license = "Apache 2"
 description = "A Qiskit package to connect to Scaleway Quantum as a Service"
 url = "https://pypi.org/project/qiskit-scaleway/"
+status = "active"
+maintainers = ["https://pypi.org/user/lilascw/", "https://pypi.org/user/vmscw/"]
 requires_qiskit = "~=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 264
-last_180_days_downloads = 1745
+last_month_downloads = 235
+last_180_days_downloads = 1775

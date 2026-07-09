@@ -1,7 +1,7 @@
 name = "MQT QCEC"
 url = "https://github.com/cda-tum/mqt-qcec"
 description = "A tool for quantum circuit equivalence checking developed as part of the Munich Quantum Toolkit (MQT)."
-license = "MIT license"
+license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
 labels = ["research", "quantum information"]
@@ -20,12 +20,12 @@ owner = "munich-quantum-toolkit"
 repo = "qcec"
 stars = 114
 homepage = "https://mqt.readthedocs.io/projects/qcec"
-license = "MIT License"
+license = "MIT"
 description = "MQT QCEC - A tool for Quantum Circuit Equivalence Checking"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-27
-last_activity = 2026-07-01
+last_commit = 2026-07-09
+last_activity = 2026-07-09
 
 [badge]
 url = "https://qisk.it/e-79415931"
@@ -39,10 +39,12 @@ license = "MIT"
 description = "A tool for Quantum Circuit Equivalence Checking"
 url = "https://pypi.org/project/mqt.qcec/"
 development_status = "5 - Production/Stable"
+status = "active"
+maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 8427
-last_180_days_downloads = 50964
+last_month_downloads = 10140
+last_180_days_downloads = 51408

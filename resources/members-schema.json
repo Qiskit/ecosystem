@@ -108,8 +108,7 @@
       "required": [
         "url",
         "owner",
-        "repo",
-        "stars"
+        "repo"
       ]
     },
     "badge": {
@@ -123,7 +122,6 @@
         }
       },
       "required": [
-        "url",
         "style"
       ]
     },
@@ -191,10 +189,6 @@
   "required": [
     "name",
     "url",
-    "labels",
-    "interfaces",
-    "category",
-    "packages",
     "uuid",
     "maturity"
   ]

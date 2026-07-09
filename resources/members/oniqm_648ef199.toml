@@ -1,7 +1,7 @@
 name = "Qiskit on IQM"
 url = "https://github.com/iqm-finland/qiskit-on-iqm"
 description = "Qiskit adapter for IQM's quantum computers."
-license = "Apache 2.0"
+license = "Apache-2.0"
 labels = ["provider", "cloud service"]
 interfaces = ["Python"]
 created_at = 2024-05-07
@@ -9,7 +9,7 @@ category = "Compute provider"
 documentation = "https://iqm-finland.github.io/qiskit-on-iqm/"
 packages = []
 uuid = "648ef199-ace1-4c6b-ae9c-2c0578cde0d5"
-maturity = "archived"
+maturity = "unmaintained"
 status = "Alumni"
 
 [github]
@@ -18,7 +18,7 @@ owner = "iqm-finland"
 repo = "qiskit-on-iqm"
 stars = 30
 homepage = "https://iqm-finland.github.io/qiskit-on-iqm/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Qiskit adapter for IQM's quantum computers"
 estimated_contributors = 20
 total_dependent_repositories = 0
@@ -64,5 +64,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-10-03
 highest_supported_qiskit_version = "1.2.4"
-last_month_downloads = 4217
-last_180_days_downloads = 22638
+last_month_downloads = 3728
+last_180_days_downloads = 22703
