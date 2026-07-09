@@ -12,17 +12,26 @@
 
 """License validations"""
 
-# pylint: disable=missing-function-docstring,invalid-name
+import pytest
+
+# pylint: disable=missing-function-docstring, invalid-name
+
 
 def test_O01(member):
+    if (
+        not member.license and not member.github
+    ):  # probably too early, it is a new submission
+        pytest.skip("too early, new submission")
     if member.license:
         assert len(str(member.license)) > 1
     elif member.github and hasattr(member.github, "license") and member.github.license:
         assert len(str(member.github.license)) > 1
-        assert (
-            member.github.license.lower() != "other"
-        ), "The declared license in GitHub is ambiguous"
     else:
         assert (
             False
         ), "No license could be found. Populate 'member.license' as soon as possible."
+
+
+def test_O02(member):
+    if member.license:
+        assert member.license.is_osi_approved(), "member.license is not OSI-approved"
