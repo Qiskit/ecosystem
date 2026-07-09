@@ -10,6 +10,7 @@ documentation = "https://qiskit-community.github.io/qiskit-nature/"
 packages = []
 uuid = "768ba9e4-0aea-4046-a902-5c81051f001f"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-nature"
@@ -27,6 +28,11 @@ last_activity = 2026-07-03
 [badge]
 url = "https://qisk.it/e-768ba9e4"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-nature declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-nature]
 package_name = "qiskit-nature"

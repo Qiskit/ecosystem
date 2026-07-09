@@ -12,6 +12,7 @@ documentation = "https://github.com/R-D-BioTech-Alaska/Qelm/tree/main/Documentat
 packages = []
 uuid = "8b3685bb-451f-4d3d-abac-61a5ce48708f"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/R-D-BioTech-Alaska/Qelm"
@@ -30,6 +31,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-8b3685bb"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qelm declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qelm]
 package_name = "qelm"

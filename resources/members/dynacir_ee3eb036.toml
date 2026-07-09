@@ -9,6 +9,7 @@ category = "Transpiler plugin"
 packages = []
 uuid = "ee3eb036-bc4d-4342-a36d-af262eed95e4"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/derek-wang-ibm/dynacir"
@@ -25,6 +26,11 @@ last_activity = 2025-11-19T17:28:13Z
 [badge]
 url = "https://qisk.it/e-ee3eb036"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package dynacir declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.dynacir]
 package_name = "dynacir"

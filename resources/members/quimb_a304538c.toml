@@ -9,6 +9,7 @@ documentation = "https://qiskit-community.github.io/qiskit-quimb/"
 packages = []
 uuid = "a304538c-feb7-47b2-a41f-f9fbe41de87b"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-quimb"
@@ -27,6 +28,11 @@ last_activity = 2026-07-03
 [badge]
 url = "https://qisk.it/e-a304538c"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-quimb declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-quimb]
 package_name = "qiskit-quimb"

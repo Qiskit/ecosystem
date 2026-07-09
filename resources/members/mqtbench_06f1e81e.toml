@@ -13,6 +13,7 @@ documentation = "https://mqt.readthedocs.io/projects/bench/"
 packages = []
 uuid = "06f1e81e-e82a-4fc2-88b5-60b532248af1"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/bench"
@@ -30,6 +31,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-06f1e81e"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package mqt-bench declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi."mqt.bench"]
 package_name = "mqt-bench"

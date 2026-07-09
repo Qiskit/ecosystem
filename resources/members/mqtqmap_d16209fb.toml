@@ -13,6 +13,7 @@ documentation = "https://mqt.readthedocs.io/projects/qmap"
 packages = []
 uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/qmap"
@@ -30,6 +31,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-d16209fb"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package mqt-qmap declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi."mqt.qmap"]
 package_name = "mqt-qmap"

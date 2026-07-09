@@ -27,6 +27,11 @@ last_activity = 2026-07-03
 url = "https://qisk.it/e-4174663a"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-mcp-servers declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-mcp-servers]
 package_name = "qiskit-mcp-servers"
 version = "0.11.0"

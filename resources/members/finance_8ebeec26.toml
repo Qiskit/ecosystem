@@ -10,6 +10,7 @@ documentation = "https://qiskit-community.github.io/qiskit-finance/"
 packages = []
 uuid = "8ebeec26-5043-4423-9cdc-bfa92bd4ad63"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-finance"
@@ -27,6 +28,11 @@ last_activity = 2026-07-02
 [badge]
 url = "https://qisk.it/e-8ebeec26"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-finance declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-finance]
 package_name = "qiskit-finance"

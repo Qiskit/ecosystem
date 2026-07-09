@@ -12,6 +12,7 @@ documentation = "https://saashajoshi.github.io/piQture/"
 packages = []
 uuid = "da29aca4-ba28-4d62-942b-f4c5371e7b6e"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/SaashaJoshi/piQture"
@@ -30,6 +31,11 @@ last_activity = 2026-06-14
 [badge]
 url = "https://qisk.it/e-da29aca4"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package piqture declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.piqture]
 package_name = "piqture"

@@ -10,6 +10,7 @@ documentation = "https://qiskit-community.github.io/qiskit-optimization/"
 packages = []
 uuid = "3b2ff33f-b4a3-49cd-ab32-563d282cc3bf"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-optimization"
@@ -27,6 +28,11 @@ last_activity = 2026-07-05
 [badge]
 url = "https://qisk.it/e-3b2ff33f"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-optimization declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-optimization]
 package_name = "qiskit-optimization"

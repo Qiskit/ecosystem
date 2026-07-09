@@ -10,6 +10,7 @@ documentation = "https://qiskit-community.github.io/povm-toolbox/"
 packages = []
 uuid = "1fb3d426-e458-4c7a-be9e-e31a758bb872"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/povm-toolbox"
@@ -28,6 +29,11 @@ last_activity = 2026-06-22
 [badge]
 url = "https://qisk.it/e-1fb3d426"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package povm-toolbox declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.povm-toolbox]
 package_name = "povm-toolbox"

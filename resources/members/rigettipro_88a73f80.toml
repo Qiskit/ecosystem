@@ -10,6 +10,7 @@ documentation = "https://qiskit-rigetti.readthedocs.io/"
 packages = []
 uuid = "88a73f80-a247-4bb4-a6aa-f5da3ebd50c4"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/rigetti/qiskit-rigetti"
@@ -27,6 +28,11 @@ last_activity = 2026-05-03
 [badge]
 url = "https://qisk.it/e-88a73f80"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-rigetti declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-rigetti]
 package_name = "qiskit-rigetti"

@@ -8,6 +8,7 @@ category = "SDK"
 packages = []
 uuid = "727120b2-7559-453e-beb3-0ab33fb60a4a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qclib/qclib"
@@ -24,6 +25,11 @@ last_activity = 2026-06-20
 [badge]
 url = "https://qisk.it/e-727120b2"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qclib declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [checks.P12]
 since = 2026-07-06T12:46:29.207233

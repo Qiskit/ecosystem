@@ -10,6 +10,7 @@ pattern_steps = ["Post-process"]
 packages = []
 uuid = "64b432d7-f5f5-487f-8789-caadba593ce9"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/cogu92/qvoting"
@@ -26,6 +27,11 @@ last_activity = 2026-03-10T00:09:45Z
 [badge]
 url = "https://qisk.it/e-64b432d7"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qvoting declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qvoting]
 package_name = "qvoting"

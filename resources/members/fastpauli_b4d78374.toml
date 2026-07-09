@@ -13,6 +13,7 @@ documentation = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
 packages = []
 uuid = "b4d78374-40eb-4118-bb22-45e97b2dc0c5"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qognitive/fast-pauli"
@@ -36,6 +37,11 @@ style = "flat"
 since = 2026-07-06T12:46:29.207233
 details = "member.license is not OSI-approved"
 importance = "IMPORTANT"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package fast-pauli declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [checks.P12]
 since = 2026-07-06T12:46:29.207233

@@ -11,6 +11,7 @@ documentation = "https://qiskit-community.github.io/qiskit-ionq/"
 packages = []
 uuid = "9dec814e-feb8-49c2-818a-f6a2503d38c5"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-ionq"
@@ -29,6 +30,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-9dec814e"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-ionq declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-ionq]
 package_name = "qiskit-ionq"

@@ -12,6 +12,7 @@ reference_paper = "https://www.worldscientific.com/doi/10.1142/S0218194024410018
 packages = []
 uuid = "cec38ad8-9737-49e7-a177-3a6850784b6e"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
@@ -33,6 +34,11 @@ style = "flat"
 [checks.G09]
 since = 2026-07-06T12:46:29.207233
 details = "member.github.license not detected"
+importance = "RECOMMENDATION"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package autoscheduler declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
 
 [pypi.autoscheduler]

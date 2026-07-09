@@ -10,6 +10,7 @@ documentation = "https://qiskit-braket-provider.readthedocs.io/"
 packages = []
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/amazon-braket/qiskit-braket-provider"
@@ -32,6 +33,11 @@ style = "flat"
 [checks.G09]
 since = 2026-07-06T12:46:29.207233
 details = "member.github.license not detected"
+importance = "RECOMMENDATION"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-braket-provider declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
 
 [pypi.qiskit-braket-provider]

@@ -11,6 +11,7 @@ documentation = "https://qiskit-community.github.io/ffsim/"
 packages = []
 uuid = "8bbab14b-6cbb-4e09-8040-d5afd359deec"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/ffsim"
@@ -29,6 +30,11 @@ last_activity = 2026-07-01
 [badge]
 url = "https://qisk.it/e-8bbab14b"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package ffsim declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.ffsim]
 package_name = "ffsim"

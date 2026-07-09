@@ -12,6 +12,7 @@ documentation = "https://qiskit-community.github.io/qiskit-experiments/"
 packages = []
 uuid = "6e94a8b7-65a7-4fee-b71e-25191203fa49"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-experiments"
@@ -29,6 +30,11 @@ last_activity = 2026-07-05
 [badge]
 url = "https://qisk.it/e-6e94a8b7"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-experiments declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-experiments]
 package_name = "qiskit-experiments"

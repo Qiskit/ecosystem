@@ -11,6 +11,7 @@ documentation = "https://superstaq.readthedocs.io/"
 packages = []
 uuid = "76ae525f-0734-405b-b4b8-421f74125fa2"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Infleqtion/client-superstaq"
@@ -29,6 +30,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-76ae525f"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-superstaq declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-superstaq]
 package_name = "qiskit-superstaq"

@@ -11,6 +11,7 @@ documentation = "https://qiskit-community.github.io/qiskit-machine-learning/"
 packages = []
 uuid = "18986ebc-e138-4998-8c52-16359961af0a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-machine-learning"
@@ -28,6 +29,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-18986ebc"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-machine-learning declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-machine-learning]
 package_name = "qiskit-machine-learning"

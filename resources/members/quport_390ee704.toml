@@ -27,11 +27,10 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-390ee704"
 style = "flat"
 
-[checks.013]
-since = 2026-07-02T10:02:02.670047
-details = "http://quport.soumyadipsarkar.com/ is not HTTPS"
-discussion = "https://github.com/neuralsorcerer/quport/issues/1"
-importance = "IMPORTANT"
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package quport declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.quport]
 package_name = "quport"

@@ -11,6 +11,7 @@ documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
 packages = []
 uuid = "39fba621-edbb-485b-a723-8a0760ab4b85"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-algorithms"
@@ -28,6 +29,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-39fba621"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-algorithms declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-algorithms]
 package_name = "qiskit-algorithms"

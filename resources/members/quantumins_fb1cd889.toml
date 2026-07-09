@@ -10,6 +10,7 @@ documentation = "https://quantuminspire.readthedocs.io/"
 packages = []
 uuid = "fb1cd889-961a-4029-bb8f-229e4c4e12a4"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/QuTech-Delft/quantuminspire"
@@ -27,6 +28,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-fb1cd889"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package quantuminspire declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.quantuminspire]
 package_name = "quantuminspire"

@@ -31,6 +31,11 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-474599a7"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-aer declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
 version = "0.17.2"

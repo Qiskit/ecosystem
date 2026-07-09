@@ -38,6 +38,11 @@ details = "Python package antinature is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/mk0dz/antinature/issues/1"
 importance = "IMPORTANT"
 
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package antinature declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.antinature]
 package_name = "antinature"
 version = "0.1.2"

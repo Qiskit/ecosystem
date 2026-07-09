@@ -10,6 +10,7 @@ documentation = "https://qiskit-community.github.io/qiskit-nature-pyscf/"
 packages = []
 uuid = "1bfdd558-ebef-446b-aad5-1be7ecce68cd"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-nature-pyscf"
@@ -27,6 +28,11 @@ last_activity = 2026-01-13T05:09:52Z
 [badge]
 url = "https://qisk.it/e-1bfdd558"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package qiskit-nature-pyscf declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-nature-pyscf]
 package_name = "qiskit-nature-pyscf"

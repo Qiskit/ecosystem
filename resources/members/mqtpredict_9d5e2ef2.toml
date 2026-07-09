@@ -12,6 +12,7 @@ documentation = "https://mqt.readthedocs.io/projects/predictor/"
 packages = []
 uuid = "9d5e2ef2-cac6-479e-a2f9-8014d54403e4"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/predictor"
@@ -28,6 +29,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-9d5e2ef2"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package mqt-predictor declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi."mqt.predictor"]
 package_name = "mqt-predictor"

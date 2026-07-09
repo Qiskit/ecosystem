@@ -12,6 +12,7 @@ documentation = "https://quantum-gates.readthedocs.io/en/latest/index.html"
 packages = []
 uuid = "dd5d5bad-1523-4f3e-aff2-7d474b53d27a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/CERN-QTI/quantum-gates"
@@ -30,6 +31,11 @@ last_activity = 2026-06-12
 [badge]
 url = "https://qisk.it/e-dd5d5bad"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T10:11:03.671012
+details = "Python package quantum-gates declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.quantum-gates]
 package_name = "quantum-gates"
