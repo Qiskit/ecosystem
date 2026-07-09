@@ -31,6 +31,11 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-06f1e81e"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mqt-bench declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi."mqt.bench"]
 package_name = "mqt-bench"
 version = "2.2.3"

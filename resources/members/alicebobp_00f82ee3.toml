@@ -36,6 +36,11 @@ details = "Python package qiskit-alice-bob-provider is not compatible with Qiski
 discussion = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider/issues/80"
 importance = "IMPORTANT"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-alice-bob-provider declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-alice-bob-provider]
 package_name = "qiskit-alice-bob-provider"
 version = "1.2.0"

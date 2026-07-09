@@ -30,6 +30,11 @@ last_activity = 2026-07-05
 url = "https://qisk.it/e-6e94a8b7"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-experiments declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-experiments]
 package_name = "qiskit-experiments"
 version = "0.14.1"

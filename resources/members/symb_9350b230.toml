@@ -29,6 +29,11 @@ last_activity = 2026-05-06
 url = "https://qisk.it/e-9350b230"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-symb declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-symb]
 package_name = "qiskit-symb"
 version = "0.6.0"

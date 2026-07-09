@@ -28,6 +28,11 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-fb1cd889"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package quantuminspire declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.quantuminspire]
 package_name = "quantuminspire"
 version = "3.5.3"

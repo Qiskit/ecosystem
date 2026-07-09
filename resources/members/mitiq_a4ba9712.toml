@@ -10,6 +10,7 @@ documentation = "https://mitiq.readthedocs.io/"
 packages = []
 uuid = "a4ba9712-0aae-4660-b2df-4e6e81abb6c4"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/unitaryfoundation/mitiq"
@@ -27,6 +28,11 @@ last_activity = 2026-07-08
 [badge]
 url = "https://qisk.it/e-a4ba9712"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mitiq declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [checks.P13]
 since = 2026-07-06T12:46:29.207233

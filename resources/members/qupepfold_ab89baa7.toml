@@ -29,6 +29,11 @@ last_activity = 2026-05-27
 url = "https://qisk.it/e-ab89baa7"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qupepfold declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qupepfold]
 package_name = "qupepfold"
 version = "0.9.0"

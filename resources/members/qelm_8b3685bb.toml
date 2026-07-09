@@ -31,6 +31,11 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-8b3685bb"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qelm declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qelm]
 package_name = "qelm"
 version = "0.1.4"

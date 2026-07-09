@@ -12,7 +12,6 @@ documentation = "https://mqt.readthedocs.io/projects/problemsolver/"
 packages = []
 uuid = "4262945e-f1af-441a-ad38-c803a5c6df0b"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/problemsolver"
@@ -30,6 +29,11 @@ last_activity = 2026-07-06
 [badge]
 url = "https://qisk.it/e-4262945e"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mqt-problemsolver declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi."mqt.problemsolver"]
 package_name = "mqt-problemsolver"

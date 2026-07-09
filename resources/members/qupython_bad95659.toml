@@ -29,6 +29,11 @@ last_activity = 2026-01-31T21:44:44Z
 url = "https://qisk.it/e-bad95659"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qupython declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qupython]
 package_name = "qupython"
 version = "0.2.0"
