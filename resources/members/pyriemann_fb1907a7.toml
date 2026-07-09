@@ -1,7 +1,7 @@
 name = "pyRiemann-qiskit"
 url = "https://github.com/pyRiemann/pyRiemann-qiskit"
 description = "Supervised machine learning based on quantum computing and Riemannian geometry. Focuses on classification of time series data."
-license = "BSD 3-Clause \"New\" or \"Revised\" license"
+license = "BSD-3-Clause"
 contact_info = "gcattan@hotmail.fr"
 affiliations = "pyRiemann (https://github.com/pyRiemann)"
 labels = ["QML"]
@@ -31,15 +31,10 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-fb1907a7"
 style = "flat"
 
-[checks.O02]
-since = 2026-07-06T12:46:29.207233
-details = "member.license is not OSI-approved"
-importance = "IMPORTANT"
-
 [pypi.pyriemann-qiskit]
 package_name = "pyriemann-qiskit"
 version = "0.6.0"
-last_release_date = 2026-04-22
+last_release_date = 2026-07-04
 license = "BSD-3-Clause"
 description = "Qiskit wrapper for pyRiemann"
 url = "https://pypi.org/project/pyriemann-qiskit/"

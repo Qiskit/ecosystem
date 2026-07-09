@@ -16,7 +16,7 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-paulice"
 owner = "Qiskit"
 repo = "qiskit-paulice"
-stars = 10
+stars = 11
 homepage = "https://quantum.cloud.ibm.com/docs/en/addons/qiskit-addon-paulice"
 license = "Apache-2.0"
 description = "Embedding spacetime Pauli checks into Clifford circuits"
@@ -24,7 +24,7 @@ estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 1
 last_commit = 2026-07-06
-last_activity = 2026-07-06
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-3309662b"
@@ -33,7 +33,7 @@ style = "flat"
 [pypi.qiskit-paulice]
 package_name = "qiskit-paulice"
 version = "0.2.1"
-last_release_date = 2026-05-26
+last_release_date = 2026-06-25
 license = "Apache-1.1"
 description = "A library for implementing spacetime coherent Pauli checks"
 url = "https://pypi.org/project/qiskit-paulice/"

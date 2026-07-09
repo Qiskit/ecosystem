@@ -17,10 +17,10 @@ url = "https://github.com/neuralsorcerer/quport"
 owner = "neuralsorcerer"
 repo = "quport"
 stars = 3
-homepage = "http://quport.soumyadipsarkar.com/"
+homepage = "https://quport.soumyadipsarkar.com/"
 license = "Apache-2.0"
 description = "QuPort is a production-ready Python and Qiskit toolkit for modeling, mapping, routing, splitting, scheduling, and benchmarking quan..."
-last_commit = 2026-07-02
+last_commit = 2026-07-08
 last_activity = 2026-07-08
 
 [badge]
@@ -36,7 +36,7 @@ importance = "IMPORTANT"
 [pypi.quport]
 package_name = "quport"
 version = "0.1.2"
-last_release_date = 2026-06-02
+last_release_date = 2026-06-30
 license = "Apache-2.0"
 description = "Research-grade multi-QPU mapping, routing, and benchmarking toolkit for NISQ circuit partitioning in Qiskit."
 url = "https://pypi.org/project/quport/"

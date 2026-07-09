@@ -165,13 +165,11 @@ class PyPIData(JsonSerializable):  # pylint: disable=too-many-public-methods
     @property
     def last_release_date(self):
         """Date of the last release in PyPI"""
-        if "last_release_date" in self._kwargs:
-            return self._kwargs["last_release_date"]
         last_release = self.pypi_json.get("releases", {}).get(self.version, None)
         return (
             max(parse_date(r["upload_time"]) for r in last_release)
             if last_release
-            else None
+            else self._kwargs.get("last_release_date")
         )
 
     @property

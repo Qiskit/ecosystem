@@ -34,7 +34,7 @@ style = "flat"
 [pypi."mqt.problemsolver"]
 package_name = "mqt-problemsolver"
 version = "0.5.0"
-last_release_date = 2024-08-28
+last_release_date = 2026-07-02
 license = "MIT"
 description = "MQT ProblemSolver - A MQT tool for Solving Problems Using Quantum Computing"
 url = "https://pypi.org/project/mqt.problemsolver/"
@@ -44,7 +44,7 @@ maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=2.0.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2023-02-24
-highest_supported_qiskit_version = "0.41.1"
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 161
 last_180_days_downloads = 548
