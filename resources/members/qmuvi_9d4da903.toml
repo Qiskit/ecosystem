@@ -1,7 +1,7 @@
 name = "qMuVi"
 url = "https://github.com/garymooney/qmuvi"
 description = "Convert circuits into audiovisual experiences, bridging the gap between complex quantum computations and human perception."
-license = "GNU Library or \"Lesser\" General Public License (LGPL)"
+license = "LGPL-2.1"
 contact_info = "gary.mooney4444@gmail.com"
 affiliations = "The University of Melbourne"
 labels = ["demo"]
@@ -44,7 +44,7 @@ importance = "IMPORTANT"
 package_name = "qmuvi"
 version = "0.3.0"
 last_release_date = 2025-09-04
-license = "LGPL-2.1-or-later"
+license = "LGPL-3.0"
 description = "qMuVi is a Python library that converts quantum circuits into music videos, enabling visualisation of quantum state evolution through sound and animation. It supports noise models to simulate physical quantum devices and displays animating probability and phase distributions of basis states."
 url = "https://pypi.org/project/qmuvi/"
 development_status = "2 - Pre-Alpha"
