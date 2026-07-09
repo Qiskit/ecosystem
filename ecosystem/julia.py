@@ -41,6 +41,8 @@ class JuliaData(JsonSerializable):
         "owner",
         "homepage",
         "release_date",
+        "requires_julia",
+        "requires_qiskit",
         "juliahub_url",
         "general_registry_url",
         "uuid",
@@ -275,3 +277,31 @@ class JuliaData(JsonSerializable):
     def license(self):
         """Package license"""
         return License(self._kwargs["license"]) if "license" in self._kwargs else None
+
+    @property
+    def requires_qiskit(self):
+        """If the package depends on https://platform.juliahub.com/ui/Packages/General/Qiskit
+        returns dependency version"""
+        ret = self.requires_package("Qiskit")
+        return ret or self._kwargs.get("requires_qiskit")
+
+    @property
+    def requires_julia(self):
+        """If the package depends on https://platform.juliahub.com/ui/Packages/General/julia
+        returns dependency version"""
+        ret = self.requires_package("julia")
+        return ret or self._kwargs.get("requires_julia")
+
+    def requires_package(self, package_name):
+        """If the package depends on
+        https://platform.juliahub.com/ui/Packages/General/<package_name> returns dependency version
+        """
+        pkg_versions = set()
+        if self._juliahub_json:
+            pkg_deps = [
+                d
+                for d in self._juliahub_json["deps"]
+                if d["name"].lower() == package_name
+            ]
+            pkg_versions = [set(p["versions"]) for p in pkg_deps]
+        return list(set.intersection(*pkg_versions)) if pkg_versions else None
