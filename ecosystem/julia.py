@@ -22,7 +22,7 @@ import tomllib
 
 from jsonpath import findall
 
-
+from .license import License
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError
 from .request import request_json, URL, parse_juliapackages, find_first_in_csv_gz
@@ -45,11 +45,14 @@ class JuliaData(JsonSerializable):
         "general_registry_url",
         "uuid",
         "estimated_unique_users",
+        "monthly_downloads",
+        "total_downloads",
     ]
     aliases = {}
     json_types = {
         "homepage": lambda x: x or None,
         "release_date": lambda x: datetime.strptime(x, "%b %Y").date(),
+        "license": lambda x: License(x) if x else None,
     }
     reduce = {}
 
@@ -63,14 +66,15 @@ class JuliaData(JsonSerializable):
         self.package_name = package_name
         self.registry = registry or "General"
         self._kwargs = kwargs or {}
+        self._juliahub_url = None
 
         self.juliapackages_url = juliapackages_url
-        self.juliahub_url = None
         self.general_registry_url = None
 
         self._juliahub_json = None
         self._juliapackages_json = None
         self._package_requests_json = None
+        self._juliapkgstats_json = None
 
     def __repr__(self):
         return str(self.to_dict())
@@ -114,7 +118,9 @@ class JuliaData(JsonSerializable):
         """
         Fetches remote json data from:
          - juliahub.com/docs/<registry>/<package_name>/stable/pkg.json
-         - juliapackages.com/p/<package_name>
+         - juliapackages.com/p/<package_name> (_juliapackages_json)
+         - juliapkgstats.com/api/v2/monthly_downloads/<package_name> (_juliapkgstats_json)
+         - juliapkgstats.com/api/v2/total_downloads/<package_name> (_juliapkgstats_json)
         """
         if self.package_name is None and self.juliapackages_url is not None:
             self._juliapackages_json = request_json(
@@ -126,9 +132,13 @@ class JuliaData(JsonSerializable):
             self._juliahub_json = request_json(
                 f"juliahub.com/docs/{self.registry}/{self.package_name}/stable/pkg.json"
             )
-            self.get_juliahub_url()
+            self._juliahub_url = URL(
+                f"https://juliahub.com/ui/Packages/{self.registry}/{self.package_name}"
+            )
         except EcosystemError:
-            pass
+            self._juliahub_url = None
+            if "juliahub_url" in self._kwargs:
+                del self._kwargs["juliahub_url"]
         if self.uuid:
             # see https://discourse.julialang.org/t/announcing-package-download-stats/69073
             url = (
@@ -147,6 +157,31 @@ class JuliaData(JsonSerializable):
                 content_handler=BytesIO,
             )
         self.get_general_registry_url()
+        try:
+            total_downloads = request_json(
+                f"https://juliapkgstats.com/api/v2/total_downloads/{self.package_name}/"
+            )
+            monthly_downloads = request_json(
+                f"https://juliapkgstats.com/api/v2/monthly_downloads/{self.package_name}/"
+            )
+            self._juliapkgstats_json = {}
+            # Non-existing packages return 0-download values, so filtering them
+            if (
+                "total_requests" in total_downloads
+                and total_downloads["total_requests"] > 0
+            ):
+                self._juliapkgstats_json["total_downloads"] = total_downloads[
+                    "total_requests"
+                ]
+            if (
+                "total_requests" in monthly_downloads
+                and monthly_downloads["total_requests"] > 0
+            ):
+                self._juliapkgstats_json["monthly_downloads"] = monthly_downloads[
+                    "total_requests"
+                ]
+        except EcosystemError:
+            self._juliapkgstats_json = {}
 
     def __getattr__(self, item):
         if self._juliahub_json:
@@ -182,16 +217,6 @@ class JuliaData(JsonSerializable):
         """if the JSON was not fetch from juliahub.com, return empty dict"""
         return self._juliahub_json or {}
 
-    def get_juliahub_url(self):
-        """updates juliahub_url if exists and returns 2xx. Otherwise, nothing"""
-        url = f"https://juliahub.com/ui/Packages/{self.registry}/{self.package_name}"
-        try:
-            empty = request_json(url, parser=lambda x: {})
-            if empty == {}:
-                self.juliahub_url = URL(url)
-        except EcosystemError:
-            self.juliahub_url = None
-
     def get_general_registry_url(self):
         """updates general_registry_url if exists and returns 2xx. Otherwise, nothing"""
         if self.registry == "General":
@@ -222,3 +247,26 @@ class JuliaData(JsonSerializable):
         if self._package_requests_json is None:
             return self._kwargs.get("estimated_unique_users")
         return int(self._package_requests_json.get("request_addrs"))
+
+    @property
+    def monthly_downloads(self):
+        """ User monthly downloads as reported by https://juliapkgstats.com/api"""
+        if self._juliapkgstats_json is None:
+            ret = self._kwargs.get("monthly_downloads")
+        else:
+            ret = self._juliapkgstats_json.get("monthly_downloads")
+        return int(ret) if ret else None
+
+    @property
+    def total_downloads(self):
+        """ User total downloads as reported by https://juliapkgstats.com/api"""
+        if self._juliapkgstats_json is None:
+            ret = self._kwargs.get("total_downloads")
+        else:
+            ret = self._juliapkgstats_json.get("total_downloads")
+        return int(ret) if ret else None
+
+    @property
+    def juliahub_url(self):
+        """Package URL in https://juliahub.com/ui/Packages/"""
+        return self._juliahub_url or self._kwargs.get("juliahub_url")
