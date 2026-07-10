@@ -112,7 +112,7 @@ class TestURLs:
                 assert not documentation_url.path.endswith(suffix), (
                     "The field `member.documentation` can be "
                     "empty. It does not have to be a link to "
-                    "the `README.md` or repository root."
+                    "the repository's `README.md` or root."
                 )
 
     def test_027(self, member):
