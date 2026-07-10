@@ -123,6 +123,8 @@ class TestURLs:
         if website_url is None:
             pytest.skip("No member.website")
 
+        hostname = website_url.hostname or ""
+
         # Reject GitHub repository URLs as website
         repository_url = getattr(member, "url")
 
@@ -137,22 +139,6 @@ class TestURLs:
                 "duplicate the GitHub repository URL."
             )
 
-        # Reject PyPI URLs as website
-        pypi_packages = getattr(member, "pypi", {})
-
-        for _, package in pypi_packages.items():
-            package_url = getattr(package, "url", None)
-
-            if package_url is None:
-                continue
-
-            hostname = (package_url.hostname or "").lower()
-
-            if hostname.endswith("pypi.org") or hostname.endswith("pypi.python.org"):
-                assert not TestURLs.is_same_or_subpath(
-                    website_url,
-                    package_url,
-                ), (
-                    "The field `member.website` should not "
-                    "duplicate a PyPI project URL."
-                )
+        assert not (
+            hostname.endswith("pypi.org") or hostname.endswith("pypi.python.org")
+        ), ("The field `member.website` should not " "point to a PyPI project URL.")
