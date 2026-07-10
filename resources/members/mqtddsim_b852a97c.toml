@@ -38,8 +38,8 @@ importance = "RECOMMENDATION"
 
 [pypi."mqt.ddsim"]
 package_name = "mqt-ddsim"
-version = "2.3.0"
-last_release_date = 2026-05-13
+version = "2.4.0"
+last_release_date = 2026-07-09
 license = "MIT"
 description = "A quantum simulator based on decision diagrams written in C++"
 url = "https://pypi.org/project/mqt.ddsim/"
@@ -51,5 +51,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1611
-last_180_days_downloads = 14941
+last_month_downloads = 3203
+last_180_days_downloads = 15761

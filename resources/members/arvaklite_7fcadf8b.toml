@@ -22,8 +22,8 @@ license = "LGPL-3.0"
 description = "Lightweight quantum circuit compiler — drop-in transpiler for Qiskit, Cirq, Pulser, PennyLane. Powered by Arvak."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-03-30
-last_activity = 2026-06-29
+last_commit = 2026-07-09
+last_activity = 2026-07-09
 
 [badge]
 url = "https://qisk.it/e-7fcadf8b"
@@ -41,8 +41,8 @@ importance = "IMPORTANT"
 
 [pypi.arvak-lite]
 package_name = "arvak-lite"
-version = "0.1.1"
-last_release_date = 2026-03-08
+version = "0.1.2"
+last_release_date = 2026-07-09
 license = "LGPL-3.0"
 description = "Lightweight quantum circuit compiler. Drop-in replacement for Qiskit transpile, Cirq optimize, and more. Powered by Arvak."
 url = "https://pypi.org/project/arvak-lite/"
