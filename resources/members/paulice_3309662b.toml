@@ -1,11 +1,11 @@
 name = "Paulice"
 submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-paulice"
-labels = ["utility-scale", "error mitigation"]
-interfaces = ["Python"]
+labels = [ "utility-scale", "error mitigation",]
+interfaces = [ "Python",]
 ibm_maintained = true
 category = "Qiskit addon"
-pattern_steps = ["Optimize"]
+pattern_steps = [ "Optimize",]
 documentation = "https://qiskit.github.io/qiskit-paulice/"
 packages = []
 uuid = "3309662b-d49a-4636-a6e8-254c4b5f7873"
@@ -43,7 +43,7 @@ license = "Apache-1.1"
 description = "A library for implementing spacetime coherent Pauli checks"
 url = "https://pypi.org/project/qiskit-paulice/"
 status = "active"
-maintainers = ["https://pypi.org/org/qiskit/"]
+maintainers = [ "https://pypi.org/org/qiskit/",]
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
