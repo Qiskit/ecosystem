@@ -3,8 +3,8 @@ url = "https://github.com/qiskit-community/povm-toolbox"
 description = "A toolbox for the implementation of positive operator-valued measures (POVMs)."
 license = "Apache-2.0"
 contact_info = "oss@zurich.ibm.com"
-labels = [ "circuit building", "quantum information",]
-interfaces = [ "Python",]
+labels = ["circuit building", "quantum information"]
+interfaces = ["Python"]
 category = "Other"
 documentation = "https://qiskit-community.github.io/povm-toolbox/"
 packages = []
@@ -42,7 +42,11 @@ license = "Apache-2.0"
 description = "A toolbox for the implementation of positive operator-valued measures (POVMs)."
 url = "https://pypi.org/project/povm-toolbox/"
 status = "active"
-maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/mrossinek/", "https://pypi.org/user/timmintam/",]
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/mrossinek/",
+  "https://pypi.org/user/timmintam/",
+]
 requires_qiskit = "<3,>=1.4"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

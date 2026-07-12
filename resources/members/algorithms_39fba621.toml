@@ -5,7 +5,7 @@ license = "Apache-2.0"
 contact_info = "ept@zurich.ibm.com"
 affiliations = "IBM Quantum"
 labels = []
-interfaces = [ "Python",]
+interfaces = ["Python"]
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
 packages = []
@@ -42,7 +42,7 @@ license = "Apache-2.0"
 description = "Qiskit Algorithms: A library of quantum computing algorithms"
 url = "https://pypi.org/project/qiskit-algorithms/"
 status = "active"
-maintainers = [ "https://pypi.org/org/qiskit/",]
+maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

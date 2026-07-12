@@ -2,7 +2,7 @@ name = "Qiskit Ecosystem Sphinx theme"
 submission_number = 1172
 url = "https://github.com/Qiskit/qiskit_sphinx_theme"
 labels = []
-interfaces = [ "Web interface",]
+interfaces = ["Web interface"]
 ibm_maintained = true
 category = "Tooling"
 packages = []
@@ -41,6 +41,9 @@ description = "A Sphinx theme for Qiskit and Qiskit Ecosystem projects"
 url = "https://pypi.org/project/qiskit-sphinx-theme/"
 development_status = "5 - Production/Stable"
 status = "active"
-maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/nonhermitian/",]
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/nonhermitian/",
+]
 last_month_downloads = 48624
 last_180_days_downloads = 296213
