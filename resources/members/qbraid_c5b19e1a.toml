@@ -24,9 +24,9 @@ license = "Apache-2.0"
 description = "A platform-agnostic quantum runtime framework"
 estimated_contributors = 35
 total_dependent_repositories = 40
-total_dependent_packages = 20
-last_commit = 2026-07-10
-last_activity = 2026-07-10
+total_dependent_packages = 21
+last_commit = 2026-07-11
+last_activity = 2026-07-11
 
 [badge]
 url = "https://qisk.it/e-c5b19e1a"
@@ -44,8 +44,8 @@ importance = "RECOMMENDATION"
 
 [pypi.qbraid]
 package_name = "qbraid"
-version = "0.12.1"
-last_release_date = 2026-05-17
+version = "0.12.2"
+last_release_date = 2026-07-11
 license = "Apache-2.0"
 description = "Platform-agnostic quantum runtime framework."
 url = "https://pypi.org/project/qbraid/"
@@ -57,5 +57,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 12997
-last_180_days_downloads = 100164
+last_month_downloads = 13328
+last_180_days_downloads = 99876
