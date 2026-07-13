@@ -3,7 +3,7 @@ url = "https://github.com/dakk/qlasskit"
 description = "Write classical algorithms in pure Python and translate them into quantum circuits."
 license = "Apache-2.0"
 contact_info = "gessadavide@gmail.com"
-labels = []
+labels = ["circuit building"]
 interfaces = ["Python"]
 website = "https://dakk.github.io/qlasskit/"
 category = "Converter"
@@ -16,7 +16,7 @@ maturity = "production-ready"
 url = "https://github.com/dakk/qlasskit"
 owner = "dakk"
 repo = "qlasskit"
-stars = 73
+stars = 74
 homepage = "https://dakk.github.io/qlasskit/"
 license = "Apache-2.0"
 description = "A python-to-quantum compiler"
@@ -24,11 +24,16 @@ estimated_contributors = 6
 total_dependent_repositories = 3
 total_dependent_packages = 0
 last_commit = 2026-01-03
-last_activity = 2026-05-11
+last_activity = 2026-07-06
 
 [badge]
 url = "https://qisk.it/e-42b0f0f5"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qlasskit declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qlasskit]
 package_name = "qlasskit"
@@ -40,5 +45,5 @@ url = "https://pypi.org/project/qlasskit/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/dakk/"]
-last_month_downloads = 149
-last_180_days_downloads = 819
+last_month_downloads = 162
+last_180_days_downloads = 800

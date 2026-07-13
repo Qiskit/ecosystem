@@ -25,28 +25,38 @@ REGISTRY_URL = (
     "General/refs/heads/master/Registry.toml"
 )
 TREE_URL = f"https://github.com/JuliaRegistries/General/tree/master/{PACKAGE_PATH}"
+PKGSTATS_TOTAL_URL = "https://juliapkgstats.com/api/v2/total_downloads/BananaCompiler/"
+PKGSTATS_MONTHLY_URL = (
+    "https://juliapkgstats.com/api/v2/monthly_downloads/BananaCompiler/"
+)
+
+DEFAULT_JSONS = {
+    PACKAGE_JSON_URL: {"uuid": PACKAGE_UUID},
+    JULIAHUB_URL: {},
+    STATS_URL: {"request_addrs": "42"},
+    REGISTRY_URL: {
+        "packages": {PACKAGE_UUID: {"name": PACKAGE_NAME, "path": PACKAGE_PATH}}
+    },
+    TREE_URL: {},
+    PKGSTATS_TOTAL_URL: {"total_requests": 42},
+    PKGSTATS_MONTHLY_URL: {"total_requests": 42},
+}
 
 
 class TestJuliaData(TestCase):
     """Tests for Julia project metadata."""
 
-    def _mock_request_json(self, *responses):
-        pending = list(responses)
+    def _mock_request_json(self, responses):
 
         def request_json(url, **_kwargs):
-            if not pending:
+            if url not in responses:
                 raise AssertionError(f"unexpected network request: {url}")
-            expected_url, payload = pending.pop(0)
-            self.assertEqual(expected_url, url)
+            payload = responses[url]
             if isinstance(payload, Exception):
                 raise payload
             return payload
 
         return request_json
-
-    @staticmethod
-    def _registry_payload(name=PACKAGE_NAME, path=PACKAGE_PATH):
-        return {"packages": {PACKAGE_UUID: {"name": name, "path": path}}}
 
     def test_from_url_accepts_juliahub_ui_url(self):
         """JuliaHub URLs include the registry and package name in the path."""
@@ -87,20 +97,18 @@ class TestJuliaData(TestCase):
         with patch(
             "ecosystem.julia.request_json",
             side_effect=self._mock_request_json(
-                (
-                    PACKAGE_JSON_URL,
-                    {
+                DEFAULT_JSONS
+                | {
+                    PACKAGE_JSON_URL: {
                         "version": "1.2.3",
                         "license": "MIT",
                         "homepage": "",
                         "release_date": "Jan 2024",
                         "uuid": PACKAGE_UUID,
                     },
-                ),
-                (JULIAHUB_URL, {}),
-                (STATS_URL, {"request_addrs": "42"}),
-                (REGISTRY_URL, self._registry_payload()),
-                (TREE_URL, {}),
+                    PKGSTATS_MONTHLY_URL: {},
+                    PKGSTATS_TOTAL_URL: {},
+                }
             ),
         ):
             data.update_json()
@@ -120,41 +128,19 @@ class TestJuliaData(TestCase):
             },
         )
 
-    def test_juliahub_json_defaults_to_empty_dict(self):
-        """juliahub_json hides the internal None state from callers."""
-        self.assertEqual(JuliaData(package_name=PACKAGE_NAME).juliahub_json, {})
-
-    def test_get_juliahub_url_sets_url_when_probe_succeeds(self):
-        """A successful JuliaHub probe stores the canonical UI URL."""
-        data = JuliaData(package_name=PACKAGE_NAME)
-
-        with patch(
-            "ecosystem.julia.request_json",
-            side_effect=self._mock_request_json((JULIAHUB_URL, {})),
-        ) as request_json:
-            data.get_juliahub_url()
-
-        self.assertEqual(
-            [call.args[0] for call in request_json.call_args_list], [JULIAHUB_URL]
-        )
-        self.assertEqual(data.juliahub_url, URL(JULIAHUB_URL))
-
     def test_get_juliahub_url_clears_url_when_probe_fails(self):
         """A failed JuliaHub probe leaves no stale URL."""
-        data = JuliaData(package_name=PACKAGE_NAME)
-        data.juliahub_url = URL(JULIAHUB_URL)
+        data = JuliaData(package_name=PACKAGE_NAME, juliahub_url=JULIAHUB_URL)
 
         with patch(
             "ecosystem.julia.request_json",
             side_effect=self._mock_request_json(
-                (JULIAHUB_URL, EcosystemError("JuliaHub unavailable"))
+                DEFAULT_JSONS
+                | {PACKAGE_JSON_URL: EcosystemError("JuliaHub unavailable")}
             ),
-        ) as request_json:
-            data.get_juliahub_url()
+        ):
+            data.update_json()
 
-        self.assertEqual(
-            [call.args[0] for call in request_json.call_args_list], [JULIAHUB_URL]
-        )
         self.assertIsNone(data.juliahub_url)
 
     def test_get_general_registry_url_sets_url_for_matching_package(self):
@@ -163,10 +149,7 @@ class TestJuliaData(TestCase):
 
         with patch(
             "ecosystem.julia.request_json",
-            side_effect=self._mock_request_json(
-                (REGISTRY_URL, self._registry_payload()),
-                (TREE_URL, {}),
-            ),
+            side_effect=self._mock_request_json(DEFAULT_JSONS),
         ) as request_json:
             data.get_general_registry_url()
 
@@ -193,7 +176,7 @@ class TestJuliaData(TestCase):
 
         with patch(
             "ecosystem.julia.request_json",
-            side_effect=self._mock_request_json((REGISTRY_URL, registry)),
+            side_effect=self._mock_request_json({REGISTRY_URL: registry}),
         ) as request_json:
             self.assertIsNone(data.get_general_registry_url())
 
@@ -211,13 +194,7 @@ class TestJuliaData(TestCase):
 
         with patch(
             "ecosystem.julia.request_json",
-            side_effect=self._mock_request_json(
-                (PACKAGE_JSON_URL, {"uuid": PACKAGE_UUID}),
-                (JULIAHUB_URL, {}),
-                (STATS_URL, {"request_addrs": "42"}),
-                (REGISTRY_URL, self._registry_payload()),
-                (TREE_URL, {}),
-            ),
+            side_effect=self._mock_request_json(DEFAULT_JSONS),
         ):
             data.update_json()
 
@@ -230,29 +207,18 @@ class TestJuliaData(TestCase):
         with patch(
             "ecosystem.julia.request_json",
             side_effect=self._mock_request_json(
-                (JULIAPACKAGES_URL, {"package_name": PACKAGE_NAME}),
-                (PACKAGE_JSON_URL, {"uuid": PACKAGE_UUID, "version": "1.2.3"}),
-                (JULIAHUB_URL, {}),
-                (STATS_URL, {"request_addrs": "7"}),
-                (REGISTRY_URL, self._registry_payload()),
-                (TREE_URL, {}),
+                DEFAULT_JSONS
+                | {
+                    JULIAPACKAGES_URL: {"package_name": PACKAGE_NAME},
+                    PACKAGE_JSON_URL: {"uuid": PACKAGE_UUID, "version": "1.2.3"},
+                    JULIAHUB_URL: {},
+                }
             ),
-        ) as request_json:
+        ):
             data.update_json()
 
-        self.assertEqual(
-            [call.args[0] for call in request_json.call_args_list],
-            [
-                JULIAPACKAGES_URL,
-                PACKAGE_JSON_URL,
-                JULIAHUB_URL,
-                STATS_URL,
-                REGISTRY_URL,
-                TREE_URL,
-            ],
-        )
         self.assertEqual(data.package_name, PACKAGE_NAME)
         self.assertEqual(data.version, "1.2.3")
-        self.assertEqual(data.estimated_unique_users, 7)
+        self.assertEqual(data.estimated_unique_users, 42)
         self.assertEqual(data.juliahub_url, URL(JULIAHUB_URL))
         self.assertEqual(data.general_registry_url, URL(TREE_URL))

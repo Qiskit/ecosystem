@@ -21,12 +21,18 @@ license = "Apache-2.0"
 description = "Quantum Optimization"
 total_dependent_repositories = 419
 total_dependent_packages = 44
-last_commit = 2026-06-19
-last_activity = 2026-07-05
+archived = true
+last_commit = 2026-07-12
+last_activity = 2026-07-12
 
 [badge]
 url = "https://qisk.it/e-3b2ff33f"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-optimization declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-optimization]
 package_name = "qiskit-optimization"
@@ -42,5 +48,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 35531
-last_180_days_downloads = 194301
+last_month_downloads = 37579
+last_180_days_downloads = 199113

@@ -1,7 +1,7 @@
 name = "qiskit-ibm-runtime C"
 url = "https://github.com/Qiskit/qiskit-ibm-runtime-c/"
 contact_info = ""
-labels = ["provider"]
+labels = ["provider", "cloud service"]
 interfaces = ["C"]
 ibm_maintained = true
 category = "Compute provider"
@@ -20,8 +20,8 @@ description = "IBM Quantum Platform API Client for Qiskit's C API"
 estimated_contributors = 4
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-05-25
-last_activity = 2026-05-16
+last_commit = 2026-07-10
+last_activity = 2026-07-11
 
 [badge]
 url = "https://qisk.it/e-964baff2"

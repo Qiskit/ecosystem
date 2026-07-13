@@ -1,7 +1,12 @@
 name = "AQC-Tensor"
 url = "https://github.com/Qiskit/qiskit-addon-aqc-tensor"
 description = "Map to lower depth circuits by compressing initial layers via approximate quantum compilation with tensor networks"
-labels = ["circuit optimization", "utility-scale"]
+labels = [
+  "circuit optimization",
+  "utility-scale",
+  "tensor networks",
+  "Hamiltonian simulation",
+]
 interfaces = ["Python"]
 ibm_maintained = true
 created_at = 2025-09-24
@@ -18,24 +23,29 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-addon-aqc-tensor"
 owner = "Qiskit"
 repo = "qiskit-addon-aqc-tensor"
-stars = 28
+stars = 30
 homepage = "https://qiskit.github.io/qiskit-addon-aqc-tensor/"
 license = "Apache-2.0"
 description = "Reduce circuit depth by compressing initial layers via approximate quantum compilation with tensor networks (AQC-Tensor)"
 estimated_contributors = 9
-total_dependent_repositories = 8
+total_dependent_repositories = 9
 total_dependent_packages = 0
-last_commit = 2026-07-02
-last_activity = 2026-07-05
+last_commit = 2026-07-10
+last_activity = 2026-07-10
 
 [badge]
 url = "https://qisk.it/e-5ad8eedc"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-addon-aqc-tensor declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-addon-aqc-tensor]
 package_name = "qiskit-addon-aqc-tensor"
 version = "0.3.0"
-last_release_date = 2025-03-28
+last_release_date = 2026-05-14
 license = "Apache-1.1"
 description = "Approximate quantum compilation with tensor networks"
 url = "https://pypi.org/project/qiskit-addon-aqc-tensor/"
@@ -46,5 +56,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 5395
-last_180_days_downloads = 20628
+last_month_downloads = 5104
+last_180_days_downloads = 21428

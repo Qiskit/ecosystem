@@ -3,7 +3,7 @@ url = "https://github.com/qiskit-community/qiskit-ionq"
 description = "This project contains a provider that allows access to IonQ ion trap quantum systems."
 license = "Apache-2.0"
 contact_info = ""
-labels = ["cloud service"]
+labels = ["cloud service", "provider"]
 interfaces = ["Python"]
 created_at = 2022-12-07
 category = "Compute provider"
@@ -23,17 +23,22 @@ description = "Qiskit provider for IonQ backends"
 estimated_contributors = 16
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-02
-last_activity = 2026-07-02
+last_commit = 2026-07-10
+last_activity = 2026-07-10
 
 [badge]
 url = "https://qisk.it/e-9dec814e"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-ionq declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-ionq]
 package_name = "qiskit-ionq"
 version = "1.1.1"
-last_release_date = 2025-08-30
+last_release_date = 2026-06-05
 license = "Apache-2.0"
 description = "Qiskit provider for IonQ backends"
 url = "https://pypi.org/project/qiskit-ionq/"
@@ -44,5 +49,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 70597
-last_180_days_downloads = 422498
+last_month_downloads = 69312
+last_180_days_downloads = 432308

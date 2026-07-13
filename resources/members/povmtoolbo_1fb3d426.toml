@@ -3,7 +3,7 @@ url = "https://github.com/qiskit-community/povm-toolbox"
 description = "A toolbox for the implementation of positive operator-valued measures (POVMs)."
 license = "Apache-2.0"
 contact_info = "oss@zurich.ibm.com"
-labels = ["circuit building"]
+labels = ["circuit building", "quantum information"]
 interfaces = ["Python"]
 category = "Other"
 documentation = "https://qiskit-community.github.io/povm-toolbox/"
@@ -29,6 +29,11 @@ last_activity = 2026-06-22
 url = "https://qisk.it/e-1fb3d426"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package povm-toolbox declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.povm-toolbox]
 package_name = "povm-toolbox"
 version = "0.2.0"
@@ -47,5 +52,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 280
-last_180_days_downloads = 2813
+last_month_downloads = 277
+last_180_days_downloads = 2830

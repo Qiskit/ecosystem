@@ -2,7 +2,7 @@ name = "Qiskit Experiments"
 url = "https://github.com/qiskit-community/qiskit-experiments"
 description = "Run characterizing, calibrating, and benchmarking quantum experiments."
 license = "Apache-2.0"
-labels = []
+labels = ["benchmarking"]
 interfaces = ["Python"]
 ibm_maintained = true
 created_at = 2022-08-29
@@ -24,16 +24,21 @@ description = "Qiskit Experiments"
 total_dependent_repositories = 184
 total_dependent_packages = 15
 last_commit = 2026-06-24
-last_activity = 2026-07-05
+last_activity = 2026-07-10
 
 [badge]
 url = "https://qisk.it/e-6e94a8b7"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-experiments declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-experiments]
 package_name = "qiskit-experiments"
 version = "0.14.1"
-last_release_date = 2026-05-05
+last_release_date = 2026-06-02
 license = "Apache-2.0"
 description = "Software for developing quantum computing programs"
 url = "https://pypi.org/project/qiskit-experiments/"
@@ -44,5 +49,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 105321
-last_180_days_downloads = 547585
+last_month_downloads = 109830
+last_180_days_downloads = 566857

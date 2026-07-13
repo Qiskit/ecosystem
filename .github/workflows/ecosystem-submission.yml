@@ -26,6 +26,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
+
+    - name: Install taplo
+      uses: uncenter/setup-taplo@v2
+      with:
+        version: "0.10.0"
+
     - name: Find Comment bot comment
       uses: peter-evans/find-comment@v4
       if: always()
@@ -41,6 +47,10 @@ jobs:
         ISSUE_NUMBER: ${{ github.event.issue.number }}
       run:
         python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
+
+    - name: Run taplo formatter on TOML files
+      run: taplo fmt resources/members/*.toml
+
     - name: Commit changes and create pull request
       id: cpr
       if: success()

@@ -15,7 +15,7 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-finance"
 owner = "qiskit-community"
 repo = "qiskit-finance"
-stars = 326
+stars = 325
 homepage = "https://qiskit-community.github.io/qiskit-finance/"
 license = "Apache-2.0"
 description = "Quantum Finance"
@@ -27,6 +27,11 @@ last_activity = 2026-07-02
 [badge]
 url = "https://qisk.it/e-8ebeec26"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-finance declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-finance]
 package_name = "qiskit-finance"
@@ -42,5 +47,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 9314
-last_180_days_downloads = 59899
+last_month_downloads = 9780
+last_180_days_downloads = 61394

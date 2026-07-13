@@ -4,7 +4,7 @@ description = "Provider with a novel approach for simulating quantum circuits wi
 license = "MIT"
 contact_info = "roman.wixinger@gmail.com PAOLO.DAROLD@studenti.units.it michele.grossi@cern.ch vischimichele@gmail.com dibartolomeo.giov@gmail.com"
 affiliations = "- CERN Quantum Technology Initiative (https://quantum.cern/our-governance) - University of Trieste, Quantum Mechanics group (https://www.qmts.it)"
-labels = ["provider"]
+labels = ["provider", "research"]
 interfaces = ["Python"]
 category = "Circuit simulator"
 reference_paper = "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043210"
@@ -31,6 +31,11 @@ last_activity = 2026-06-12
 url = "https://qisk.it/e-dd5d5bad"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package quantum-gates declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.quantum-gates]
 package_name = "quantum-gates"
 version = "2.4.0"
@@ -45,5 +50,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 297
-last_180_days_downloads = 841
+last_month_downloads = 270
+last_180_days_downloads = 847

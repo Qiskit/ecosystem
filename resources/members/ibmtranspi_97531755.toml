@@ -2,7 +2,7 @@ name = "qiskit-ibm-transpiler"
 submission_number = 1172
 url = "https://github.com/Qiskit/qiskit-ibm-transpiler"
 description = "A library to use the Qiskit Transpiler Service and the AI-powered transpiler passes."
-labels = ["circuit optimization", "cloud service"]
+labels = ["circuit optimization", "cloud service", "AI/LLM"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Transpiler plugin"
@@ -28,6 +28,11 @@ last_commit = 2026-03-10
 url = "https://qisk.it/e-97531755"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-ibm-transpiler declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-ibm-transpiler]
 package_name = "qiskit-ibm-transpiler"
 version = "0.18.0"
@@ -45,5 +50,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 2442
-last_180_days_downloads = 25043
+last_month_downloads = 2636
+last_180_days_downloads = 24504

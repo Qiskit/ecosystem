@@ -2,7 +2,7 @@ name = "Optimization mapper"
 url = "https://github.com/Qiskit/qiskit-addon-opt-mapper"
 description = "Mapping combinatorial optimization problems to quantum computers"
 license = "Apache-2.0"
-labels = ["utility-scale"]
+labels = ["utility-scale", "optimization"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Qiskit addon"
@@ -23,13 +23,18 @@ license = "Apache-2.0"
 description = "Mapping combinatorial optimization problems to quantum computers"
 estimated_contributors = 23
 total_dependent_repositories = 1
-total_dependent_packages = 1
+total_dependent_packages = 2
 last_commit = 2026-07-01
 last_activity = 2026-07-01
 
 [badge]
 url = "https://qisk.it/e-ef4e120a"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-addon-opt-mapper declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-addon-opt-mapper]
 package_name = "qiskit-addon-opt-mapper"
@@ -45,5 +50,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 2035
-last_180_days_downloads = 6015
+last_month_downloads = 2129
+last_180_days_downloads = 6398

@@ -1,0 +1,26 @@
+name = "Qiskit Migration Assistant"
+submission_number = 1199
+url = "https://github.com/Ziadt160/qiskit-migration-assistant"
+description = "Migrates legacy Qiskit (0.x/1.x) code to 2.x — grounded in a sandbox-verified deprecation table, validated by execution."
+contact_info = "ziadt160@gmail.com"
+labels = ["AI/LLM"]
+interfaces = ["Python", "Command-line interface (CLI)", "Web interface"]
+website = "https://huggingface.co/spaces/quZiad/qiskit-migration-assistant"
+category = "Tooling"
+pattern_steps = []
+packages = []
+uuid = "76d7a9f5-7e98-42bb-94c8-280652d45287"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/Ziadt160/qiskit-migration-assistant"
+owner = "Ziadt160"
+repo = "qiskit-migration-assistant"
+stars = 0
+license = "MIT"
+last_commit = 2026-07-09
+last_activity = 2026-07-09
+
+[badge]
+url = "https://qisk.it/e-76d7a9f5"
+style = "flat"

@@ -34,6 +34,11 @@ last_activity = 2026-06-14
 url = "https://qisk.it/e-d5572b9d"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-data-reuploading declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-data-reuploading]
 package_name = "qiskit-data-reuploading"
 version = "0.1.0"
@@ -49,5 +54,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 96
-last_180_days_downloads = 236
+last_month_downloads = 63
+last_180_days_downloads = 243

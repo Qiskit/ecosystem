@@ -2,7 +2,7 @@ name = "Aer"
 url = "https://github.com/Qiskit/qiskit-aer"
 description = "High-performance quantum computing simulators with realistic noise models."
 license = "Apache-2.0"
-labels = ["provider"]
+labels = ["provider", "HPC", "GPU"]
 interfaces = ["Python", "C++"]
 ibm_maintained = true
 created_at = 2021-11-08
@@ -18,18 +18,23 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-aer"
 owner = "Qiskit"
 repo = "qiskit-aer"
-stars = 675
+stars = 677
 homepage = "https://qiskit.github.io/qiskit-aer/"
 license = "Apache-2.0"
 description = "Aer is a high performance simulator for quantum circuits that includes noise models"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-05-25
-last_activity = 2026-07-05
+last_activity = 2026-07-08
 
 [badge]
 url = "https://qisk.it/e-474599a7"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-aer declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
@@ -45,8 +50,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 582830
-last_180_days_downloads = 3252735
+last_month_downloads = 644019
+last_180_days_downloads = 3360781
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
@@ -62,8 +67,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 5449
-last_180_days_downloads = 27588
+last_month_downloads = 4973
+last_180_days_downloads = 26943
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
@@ -79,5 +84,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1509
-last_180_days_downloads = 12653
+last_month_downloads = 1536
+last_180_days_downloads = 12314

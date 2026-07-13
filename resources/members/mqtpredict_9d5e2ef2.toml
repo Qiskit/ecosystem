@@ -4,7 +4,7 @@ description = "Automatically select a suitable quantum device for a circuit and 
 license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
 affiliations = "Technical University of Munich (TUM), Germany"
-labels = ["circuit optimization", "research"]
+labels = ["circuit optimization", "research", "AI/LLM"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
@@ -22,12 +22,17 @@ license = "MIT"
 description = "MQT Predictor - A Tool for Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-05
-last_activity = 2026-07-05
+last_commit = 2026-07-11
+last_activity = 2026-07-11
 
 [badge]
 url = "https://qisk.it/e-9d5e2ef2"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mqt-predictor declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi."mqt.predictor"]
 package_name = "mqt-predictor"
@@ -44,5 +49,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 223
-last_180_days_downloads = 3417
+last_month_downloads = 171
+last_180_days_downloads = 3209

@@ -2,7 +2,12 @@ name = "Hamiltonian simulation template"
 url = "https://github.com/qiskit-community/qiskit-function-templates/tree/main/physics/hamiltonian_simulation"
 description = "A Qiskit Function template for Hamiltonian simulation with AQC-Tensor Qiskit addon"
 license = "Apache-2.0"
-labels = ["physics"]
+labels = [
+  "physics",
+  "Hamiltonian simulation",
+  "tensor networks",
+  "utility-scale",
+]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Application"
@@ -22,8 +27,8 @@ license = "Apache-2.0"
 estimated_contributors = 13
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-09
-last_activity = 2026-06-22
+last_commit = 2026-07-09
+last_activity = 2026-07-10
 
 [badge]
 url = "https://qisk.it/e-569f773e"

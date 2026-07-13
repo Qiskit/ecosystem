@@ -4,7 +4,7 @@ description = "A Python framework for studying antimatter systems through comput
 license = "MIT"
 contact_info = "mukulpal108@hotmail.com"
 affiliations = "Since I have worked independently so no organization is affiliated to the project, Even I am not an official student of any institute, So I dont have any choice but I am desirate to associate it with IBM or Cern, because work is associated to them."
-labels = ["chemistry"]
+labels = ["chemistry", "physics", "research"]
 interfaces = ["Python"]
 website = "https://antinature.vercel.app/"
 category = "Application"
@@ -38,6 +38,11 @@ details = "Python package antinature is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/mk0dz/antinature/issues/1"
 importance = "IMPORTANT"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package antinature declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.antinature]
 package_name = "antinature"
 version = "0.1.2"
@@ -53,5 +58,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-03-14
 highest_supported_qiskit_version = "1.4.2"
-last_month_downloads = 180
-last_180_days_downloads = 407
+last_month_downloads = 109
+last_180_days_downloads = 402
