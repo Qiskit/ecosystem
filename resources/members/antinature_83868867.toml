@@ -32,17 +32,6 @@ last_activity = 2026-07-02
 url = "https://qisk.it/e-83868867"
 style = "flat"
 
-[checks.PQ2]
-since = 2026-04-30T11:32:49.789583
-details = "Python package antinature is not compatible with Qiskit SDK v2"
-discussion = "https://github.com/mk0dz/antinature/issues/1"
-importance = "IMPORTANT"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package antinature declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.antinature]
 package_name = "antinature"
 version = "0.1.2"
@@ -60,3 +49,9 @@ highest_supported_qiskit_release_date = 2025-03-14
 highest_supported_qiskit_version = "1.4.2"
 last_month_downloads = 214
 last_180_days_downloads = 414
+
+[checks.PQ2]
+since = 2026-04-30
+details = "Python package antinature is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/mk0dz/antinature/issues/1"
+importance = "IMPORTANT"

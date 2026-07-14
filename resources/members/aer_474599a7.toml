@@ -31,11 +31,6 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-474599a7"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-aer declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
 version = "0.17.2"
@@ -86,3 +81,8 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 3319
 last_180_days_downloads = 12397
+
+[checks.P10]
+since = 2026-07-14
+details = "Python package qiskit-aer declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

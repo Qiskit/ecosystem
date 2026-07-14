@@ -29,16 +29,6 @@ last_activity = 2026-06-15
 url = "https://qisk.it/e-05140a48"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package vqls-prototype declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06T12:46:29.207233
-details = "member.pypi.vqls-prototype does not have a declared license"
-importance = "RECOMMENDATION"
-
 [pypi.vqls-prototype]
 package_name = "vqls-prototype"
 version = "0.2.0"
@@ -54,3 +44,18 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 95
 last_180_days_downloads = 216
+
+[checks.G07]
+since = 2026-07-14
+details = "Last commit was 19 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "STRONG-RECOMMENDATION"
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package vqls-prototype declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
+[checks.P12]
+since = 2026-07-06
+details = "member.pypi.vqls-prototype does not have a declared license"
+importance = "RECOMMENDATION"

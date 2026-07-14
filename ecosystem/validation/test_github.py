@@ -14,7 +14,12 @@
 
 # pylint: disable=invalid-name,missing-function-docstring
 
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
 import pytest
+
+from ecosystem.serializable import parse_date
 
 
 @pytest.fixture(autouse=True)
@@ -35,6 +40,44 @@ def test_G05(member):
             "as-is",
             "unmaintaned",
         ], "GitHub repository archived and member.maturity is not `as-is` or `unmaintaned`"
+
+
+def test_G06(member):
+    """Have maintainer activity within the last 6 months"""
+    if member.maturity == "as-is":
+        pytest.skip("`as-is` projects are exempt from activity checks")
+
+    last_activity = member.github.last_activity
+    if last_activity is None:
+        pytest.skip("No member.github.last_activity date")
+
+    relative = relativedelta(date.today(), last_activity)
+    months_difference = (relative.years * 12) + relative.months
+
+    assert months_difference <= 6, (
+        f"Last activity was {months_difference} months ago, which is more "
+        "than 6 months ago. Please update the GitHub repository or set "
+        "member.maturity to `as-is`."
+    )
+
+
+def test_G07(member):
+    """Have last commit within the last 18 months"""
+    if member.maturity == "as-is":
+        pytest.skip("`as-is` projects are exempt from activity checks")
+
+    last_commit = member.github.last_commit
+    if last_commit is None:
+        pytest.skip("No member.github.last_commit date")
+
+    relative = relativedelta(date.today(), last_commit)
+    months_difference = (relative.years * 12) + relative.months
+
+    assert months_difference <= 18, (
+        f"Last commit was {months_difference} months ago, which is more "
+        "than 18 months ago. Please update the GitHub repository or set "
+        "member.maturity to `as-is`."
+    )
 
 
 def test_G08(member):

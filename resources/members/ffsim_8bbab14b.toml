@@ -30,11 +30,6 @@ last_activity = 2026-07-13
 url = "https://qisk.it/e-8bbab14b"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package ffsim declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.ffsim]
 package_name = "ffsim"
 version = "0.0.80"
@@ -54,3 +49,8 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 55673
 last_180_days_downloads = 101411
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package ffsim declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

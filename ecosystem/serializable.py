@@ -13,7 +13,7 @@
 """Utility classes for models."""
 
 from abc import ABC
-from datetime import date
+from datetime import date, datetime
 
 from ecosystem.license import License
 from ecosystem.request import URL
@@ -82,6 +82,8 @@ def parse_date(date_str):
     If date_str is "now" or "today", then makes a date with today."""
     if date_str is None:
         return None
+    if isinstance(date_str, datetime):
+        return date_str.date()
     if isinstance(date_str, date):
         return date_str
     if date_str in ["now", "today"]:

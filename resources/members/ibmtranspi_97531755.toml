@@ -28,11 +28,6 @@ last_commit = 2026-03-10
 url = "https://qisk.it/e-97531755"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-ibm-transpiler declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-ibm-transpiler]
 package_name = "qiskit-ibm-transpiler"
 version = "0.18.0"

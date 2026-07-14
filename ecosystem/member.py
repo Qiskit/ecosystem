@@ -158,6 +158,10 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         base_dict = super().to_dict(keys=keys)
         if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
             del base_dict["ibm_maintained"]
+        # move checks to the end of the dict
+        if "checks" in base_dict:
+            checks = base_dict.pop("checks")
+            base_dict["checks"] = checks
         return base_dict
 
     def __eq__(self, other: "Member"):

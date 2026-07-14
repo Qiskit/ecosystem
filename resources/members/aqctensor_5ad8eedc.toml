@@ -37,11 +37,6 @@ last_activity = 2026-07-10
 url = "https://qisk.it/e-5ad8eedc"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-addon-aqc-tensor declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-addon-aqc-tensor]
 package_name = "qiskit-addon-aqc-tensor"
 version = "0.3.0"

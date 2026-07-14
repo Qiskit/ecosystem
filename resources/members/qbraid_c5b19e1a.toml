@@ -32,16 +32,6 @@ last_activity = 2026-07-13
 url = "https://qisk.it/e-c5b19e1a"
 style = "flat"
 
-[checks.O02]
-since = 2026-07-06T12:46:29.207233
-details = "member.license is not OSI-approved"
-importance = "IMPORTANT"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qbraid declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qbraid]
 package_name = "qbraid"
 version = "0.12.2"

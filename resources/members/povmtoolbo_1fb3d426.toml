@@ -29,11 +29,6 @@ last_activity = 2026-06-22
 url = "https://qisk.it/e-1fb3d426"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package povm-toolbox declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.povm-toolbox]
 package_name = "povm-toolbox"
 version = "0.2.0"

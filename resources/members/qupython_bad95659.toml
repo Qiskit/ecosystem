@@ -23,16 +23,11 @@ estimated_contributors = 2
 total_dependent_repositories = 5
 total_dependent_packages = 0
 last_commit = 2024-10-09
-last_activity = 2026-01-31T21:44:44Z
+last_activity = 2026-01-31
 
 [badge]
 url = "https://qisk.it/e-bad95659"
 style = "flat"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qupython declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 
 [pypi.qupython]
 package_name = "qupython"
@@ -50,3 +45,13 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 73
 last_180_days_downloads = 158
+
+[checks.G07]
+since = 2026-05-14
+details = "Last commit was 21 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "STRONG-RECOMMENDATION"
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package qupython declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

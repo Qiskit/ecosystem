@@ -32,11 +32,6 @@ last_activity = 2026-07-01
 url = "https://qisk.it/e-b8a6cb2a"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-addon-cutting declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-addon-cutting]
 package_name = "qiskit-addon-cutting"
 version = "0.10.0"

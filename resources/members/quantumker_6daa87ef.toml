@@ -2,7 +2,6 @@ name = "Quantum Kernel Training"
 url = "https://github.com/qiskit-community/prototype-quantum-kernel-training"
 description = "Train and use quantum kernels for machine learning. For researchers and practitioners looking to explore and apply these algorithms."
 license = "Apache-2.0"
-contact_info = ""
 labels = ["QML"]
 interfaces = ["Python"]
 created_at = 2022-02-21
@@ -11,6 +10,7 @@ documentation = "https://github.com/qiskit-community/prototype-quantum-kernel-tr
 packages = []
 uuid = "6daa87ef-87ea-4dc9-aeed-3b9e8d202fd9"
 maturity = "production-ready"
+status = "Under-revision"
 
 [github]
 url = "https://github.com/qiskit-community/prototype-quantum-kernel-training"
@@ -29,3 +29,8 @@ last_activity = 2026-05-31
 [badge]
 url = "https://qisk.it/e-6daa87ef"
 style = "flat"
+
+[checks.G07]
+since = 2026-05-14
+details = "Last commit was 27 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "STRONG-RECOMMENDATION"

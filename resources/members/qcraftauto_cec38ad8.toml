@@ -25,21 +25,11 @@ estimated_contributors = 2
 total_dependent_repositories = 3
 total_dependent_packages = 0
 last_commit = 2025-10-28
-last_activity = 2025-10-28T08:42:09Z
+last_activity = 2025-10-28
 
 [badge]
 url = "https://qisk.it/e-cec38ad8"
 style = "flat"
-
-[checks.G09]
-since = 2026-07-06T12:46:29.207233
-details = "member.github.license not detected"
-importance = "RECOMMENDATION"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package autoscheduler declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 
 [pypi.autoscheduler]
 package_name = "autoscheduler"
@@ -58,3 +48,14 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 191
 last_180_days_downloads = 593
+
+[checks.G06]
+since = 2026-06-14
+details = "Last activity was 8 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "RECOMMENDATION"
+
+[checks.G09]
+since = 2026-07-06
+details = "member.github.license not detected"
+discussion = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler/issues/3"
+importance = "RECOMMENDATION"

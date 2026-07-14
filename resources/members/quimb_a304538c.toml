@@ -28,11 +28,6 @@ last_activity = 2026-07-10
 url = "https://qisk.it/e-a304538c"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-quimb declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-quimb]
 package_name = "qiskit-quimb"
 version = "0.0.10"
@@ -52,3 +47,8 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 34418
 last_180_days_downloads = 57708
+
+[checks.P10]
+since = 2026-07-14
+details = "Python package qiskit-quimb declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
