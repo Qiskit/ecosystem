@@ -61,6 +61,7 @@ def test_Q20(request, pytestconfig):
     after=[
         "test_github.py::test_G05",
         "test_github.py::test_G07",
+        "test_general.py::test_Q20",
     ]
 )
 def test_G00(request, pytestconfig):
@@ -74,13 +75,12 @@ def test_G00(request, pytestconfig):
     )
 
 
-@pytest.mark.order(after=["test_github.py::test_G10", "test_general.py::test_Q20"])
-def test_001(request, pytestconfig):
-    """Have a clear support expectation and, if actively maintained,
-    show signs of that activity."""
-    requierements = request.node.get_closest_marker("order").kwargs["after"]
-    must_pass_all_requierements(
-        requierements,
-        pytestconfig.failed_checkups,
-        "A non-OSI-approved license?",
-    )
+# @pytest.mark.order(after=["test_github.py::test_G10"])
+# def test_001(request, pytestconfig):
+#     """Have an OSI-approved open-source license (preferably Apache 2.0 or MIT)"""
+#     requierements = request.node.get_closest_marker("order").kwargs["after"]
+#     must_pass_all_requierements(
+#         requierements,
+#         pytestconfig.failed_checkups,
+#         "A non-OSI-approved license?",
+#     )

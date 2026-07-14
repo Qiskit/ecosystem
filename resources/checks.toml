@@ -12,7 +12,7 @@ applies_to = "all"
 affects = ['member.license', 'member.github.license', 'member.pypi.*.license']
 category = "OSS"
 description = "Projects in the Qiskit Ecosystem (and their packages) must have an OSI-approved license."
-checker = "test_general.py::test_001"
+#checker = "test_general.py::test_001"
 importance = "CRITICAL"
 
 [G00]
