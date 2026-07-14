@@ -20,16 +20,11 @@ description = "Qiskti transpiler plugin for dynamic circuits."
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-03-21
-last_activity = 2025-11-19T17:28:13Z
+last_activity = 2025-11-19
 
 [badge]
 url = "https://qisk.it/e-ee3eb036"
 style = "flat"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package dynacir declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 
 [pypi.dynacir]
 package_name = "dynacir"
@@ -42,3 +37,13 @@ status = "active"
 maintainers = ["https://pypi.org/user/drekwang/"]
 last_month_downloads = 101
 last_180_days_downloads = 264
+
+[checks.G06]
+since = 2026-07-14
+details = "Last activity was 7 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "RECOMMENDATION"
+
+[checks.G07]
+since = 2026-05-14
+details = "Last commit was 27 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "STRONG-RECOMMENDATION"

@@ -30,16 +30,6 @@ last_activity = 2026-06-16
 url = "https://qisk.it/e-a942dc5d"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-scaleway declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P13]
-since = 2026-07-06T12:46:29.207233
-details = "member.pypi.qiskit-scaleway.license is not OSI-approved"
-importance = "IMPORTANT"
-
 [pypi.qiskit-scaleway]
 package_name = "qiskit-scaleway"
 version = "0.3.13"

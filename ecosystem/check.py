@@ -13,7 +13,7 @@
 """Checks/Validations section."""
 
 import os
-from datetime import datetime
+from datetime import date
 from pathlib import Path
 
 import tomllib
@@ -73,7 +73,7 @@ class CheckData(JsonSerializable):
     """
 
     checks_toml = ChecksToml()
-    today = datetime.today()
+    today = date.today()
 
     def __init__(
         self, id_: str, xfailed=None, since=None, details=None, discussion=None, **_

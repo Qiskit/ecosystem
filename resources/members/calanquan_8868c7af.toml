@@ -22,8 +22,13 @@ description = "CALA-n Quantum Library"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-10-20
-last_activity = 2026-01-20T09:38:57Z
+last_activity = 2026-01-20
 
 [badge]
 url = "https://qisk.it/e-8868c7af"
 style = "flat"
+
+[checks.G07]
+since = 2026-05-14
+details = "Last commit was 20 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "STRONG-RECOMMENDATION"

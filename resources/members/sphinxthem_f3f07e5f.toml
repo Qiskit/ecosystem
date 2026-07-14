@@ -27,11 +27,6 @@ last_activity = 2026-05-20
 url = "https://qisk.it/e-f3f07e5f"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-sphinx-theme declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-sphinx-theme]
 package_name = "qiskit-sphinx-theme"
 version = "2.1.0"

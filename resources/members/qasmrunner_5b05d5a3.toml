@@ -20,8 +20,13 @@ description = "A command-line tool for executing OpenQASM 2.0 files on IBM Quant
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-11-13
-last_activity = 2025-11-13T21:48:09Z
+last_activity = 2025-11-13
 
 [badge]
 url = "https://qisk.it/e-5b05d5a3"
 style = "flat"
+
+[checks.G06]
+since = 2026-06-14
+details = "Last activity was 8 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "RECOMMENDATION"

@@ -29,11 +29,6 @@ last_activity = 2026-07-13
 url = "https://qisk.it/e-a4ba9712"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T15:09:13.103122
-details = "Python package mitiq declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.mitiq]
 package_name = "mitiq"
 version = "1.0.0"

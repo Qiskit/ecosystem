@@ -27,26 +27,11 @@ estimated_contributors = 4
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-04-09
-last_activity = 2025-10-31T17:43:20Z
+last_activity = 2025-10-31
 
 [badge]
 url = "https://qisk.it/e-b4d78374"
 style = "flat"
-
-[checks.O02]
-since = 2026-07-06T12:46:29.207233
-details = "member.license is not OSI-approved"
-importance = "IMPORTANT"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package fast-pauli declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06T12:46:29.207233
-details = "member.pypi.fast-pauli does not have a declared license"
-importance = "RECOMMENDATION"
 
 [pypi.fast-pauli]
 package_name = "fast-pauli"
@@ -66,3 +51,19 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 852
 last_180_days_downloads = 2600
+
+[checks.G06]
+since = 2026-07-14
+details = "Last activity was 8 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "RECOMMENDATION"
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package fast-pauli declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
+[checks.P12]
+since = 2026-07-06
+details = "member.pypi.fast-pauli does not have a declared license"
+discussion = "https://github.com/qognitive/fast-pauli/issues/97"
+importance = "RECOMMENDATION"

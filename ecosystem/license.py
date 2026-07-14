@@ -38,7 +38,7 @@ class License:
         "GNU Lesser General Public License v3.0": "LGPL-3.0",
         "LGPL-2.1-or-later": "LGPL-3.0",
         "LGPL-3.0-or-later": "LGPL-3.0",
-        "GNU Library or \"Lesser\" General Public License (LGPL)": "LGPL-2.1",
+        'GNU Library or "Lesser" General Public License (LGPL)': "LGPL-2.1",
         "GPL v3.0": "GPL-3.0",
     }
 

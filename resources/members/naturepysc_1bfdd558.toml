@@ -22,16 +22,11 @@ estimated_contributors = 7
 total_dependent_repositories = 9
 total_dependent_packages = 0
 last_commit = 2025-08-12
-last_activity = 2026-01-13T05:09:52Z
+last_activity = 2026-01-13
 
 [badge]
 url = "https://qisk.it/e-1bfdd558"
 style = "flat"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-nature-pyscf declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 
 [pypi.qiskit-nature-pyscf]
 package_name = "qiskit-nature-pyscf"

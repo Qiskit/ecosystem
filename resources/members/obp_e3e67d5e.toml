@@ -31,11 +31,6 @@ last_activity = 2026-07-06
 url = "https://qisk.it/e-e3e67d5e"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-addon-obp declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-addon-obp]
 package_name = "qiskit-addon-obp"
 version = "0.3.0"

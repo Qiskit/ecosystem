@@ -24,3 +24,8 @@ last_commit = 2024-09-21
 [badge]
 url = "https://qisk.it/e-b1285a61"
 style = "flat"
+
+[checks.G07]
+since = 2026-06-14
+details = "Last commit was 21 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "STRONG-RECOMMENDATION"

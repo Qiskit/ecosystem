@@ -28,16 +28,6 @@ last_activity = 2026-07-13
 url = "https://qisk.it/e-3d8fe04d"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package bosonic-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06T12:46:29.207233
-details = "member.pypi.bosonic-qiskit does not have a declared license"
-importance = "RECOMMENDATION"
-
 [pypi.bosonic-qiskit]
 package_name = "bosonic-qiskit"
 version = "15.1"
@@ -57,3 +47,8 @@ highest_supported_qiskit_release_date = 2025-04-01
 highest_supported_qiskit_version = "2.0.0"
 last_month_downloads = 832
 last_180_days_downloads = 2076
+
+[checks.P12]
+since = 2026-07-06
+details = "member.pypi.bosonic-qiskit does not have a declared license"
+importance = "RECOMMENDATION"

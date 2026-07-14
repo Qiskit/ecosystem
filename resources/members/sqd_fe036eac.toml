@@ -31,11 +31,6 @@ last_activity = 2026-07-13
 url = "https://qisk.it/e-fe036eac"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-addon-sqd declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-addon-sqd]
 package_name = "qiskit-addon-sqd"
 version = "0.12.1"

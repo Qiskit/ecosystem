@@ -29,17 +29,6 @@ last_activity = 2026-06-23
 url = "https://qisk.it/e-2e6b95b1"
 style = "flat"
 
-[checks.007]
-since = 2026-04-08T16:23:00.945226
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
-[checks.008]
-since = 2026-04-23T18:17:37.676459
-details = "member.category should exist in classifications.toml"
-importance = "IMPORTANT"
-
 [pypi.qiskit-sat-synthesis]
 package_name = "qiskit-sat-synthesis"
 version = "0.0.2"
@@ -53,3 +42,14 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 71
 last_180_days_downloads = 215
+
+[checks.007]
+since = 2026-04-08
+details = "the entry `member.interfaces` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.008]
+since = 2026-04-23
+details = "member.category should exist in classifications.toml"
+importance = "IMPORTANT"

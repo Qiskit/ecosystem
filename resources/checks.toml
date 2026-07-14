@@ -179,6 +179,7 @@ affects = ['member.github.last_activity']
 category = "ACTIVITY"
 description = "Projects available on GitHub should have some activity within the last 6 months, such as somebody staring the repository. This check does not apply to project that declared their support as as-is."
 importance = "RECOMMENDATION"
+checker = "test_github.py::test_G06"
 
 [G07]
 title = "Have a commit within the last 18 months"
@@ -187,6 +188,7 @@ affects = ['member.github.last_commit']
 category = "ACTIVITY"
 description = "Projects available on GitHub should have a commit activity activity within the last 18 months. This check does not apply to project that declared their support as as-is."
 importance = "STRONG-RECOMMENDATION"
+checker = "test_github.py::test_G07"
 
 [G08]
 title = "Unmaintained projects should be archived in GitHub repository"
