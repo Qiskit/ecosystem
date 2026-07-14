@@ -21,12 +21,17 @@ description = "Quantum Inspire SDK"
 estimated_contributors = 9
 total_dependent_repositories = 26
 total_dependent_packages = 4
-last_commit = 2026-07-08
-last_activity = 2026-07-08
+last_commit = 2026-07-13
+last_activity = 2026-07-13
 
 [badge]
 url = "https://qisk.it/e-fb1cd889"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package quantuminspire declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.quantuminspire]
 package_name = "quantuminspire"
@@ -46,5 +51,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-08-19
 highest_supported_qiskit_version = "2.1.2"
-last_month_downloads = 2918
-last_180_days_downloads = 20859
+last_month_downloads = 4296
+last_180_days_downloads = 20294

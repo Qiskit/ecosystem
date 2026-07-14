@@ -12,6 +12,7 @@ documentation = "https://docs.qbraid.com/sdk/"
 packages = []
 uuid = "c5b19e1a-cdde-4f31-b9d2-62c7709da809"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qBraid/qBraid"
@@ -23,9 +24,9 @@ license = "Apache-2.0"
 description = "A platform-agnostic quantum runtime framework"
 estimated_contributors = 35
 total_dependent_repositories = 40
-total_dependent_packages = 20
-last_commit = 2026-07-08
-last_activity = 2026-07-08
+total_dependent_packages = 21
+last_commit = 2026-07-13
+last_activity = 2026-07-13
 
 [badge]
 url = "https://qisk.it/e-c5b19e1a"
@@ -36,10 +37,15 @@ since = 2026-07-06T12:46:29.207233
 details = "member.license is not OSI-approved"
 importance = "IMPORTANT"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qbraid declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qbraid]
 package_name = "qbraid"
-version = "0.12.1"
-last_release_date = 2026-05-17
+version = "0.12.2"
+last_release_date = 2026-07-11
 license = "Apache-2.0"
 description = "Platform-agnostic quantum runtime framework."
 url = "https://pypi.org/project/qbraid/"
@@ -51,5 +57,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 13388
-last_180_days_downloads = 99895
+last_month_downloads = 35638
+last_180_days_downloads = 101571

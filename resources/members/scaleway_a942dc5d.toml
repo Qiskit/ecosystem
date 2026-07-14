@@ -11,6 +11,7 @@ documentation = "https://www.scaleway.com/docs/quantum-computing/"
 packages = []
 uuid = "a942dc5d-c715-4b23-a9d6-4f2c3ee1d70b"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/scaleway/qiskit-scaleway"
@@ -28,6 +29,11 @@ last_activity = 2026-06-16
 [badge]
 url = "https://qisk.it/e-a942dc5d"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-scaleway declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [checks.P13]
 since = 2026-07-06T12:46:29.207233
@@ -48,5 +54,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 235
-last_180_days_downloads = 1775
+last_month_downloads = 613
+last_180_days_downloads = 1821

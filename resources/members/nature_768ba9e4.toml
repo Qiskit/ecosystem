@@ -15,18 +15,23 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-nature"
 owner = "qiskit-community"
 repo = "qiskit-nature"
-stars = 394
+stars = 396
 homepage = "https://qiskit-community.github.io/qiskit-nature/"
 license = "Apache-2.0"
 description = "Qiskit Nature is an open-source, quantum computing, framework for solving quantum mechanical natural science problems."
-total_dependent_repositories = 324
+total_dependent_repositories = 325
 total_dependent_packages = 36
 last_commit = 2026-07-03
-last_activity = 2026-07-03
+last_activity = 2026-07-12
 
 [badge]
 url = "https://qisk.it/e-768ba9e4"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-nature declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-nature]
 package_name = "qiskit-nature"
@@ -42,5 +47,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 55667
-last_180_days_downloads = 239680
+last_month_downloads = 96164
+last_180_days_downloads = 244560

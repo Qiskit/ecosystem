@@ -30,6 +30,11 @@ last_activity = 2026-07-07
 url = "https://qisk.it/e-2334d2a1"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qb-compiler declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qb-compiler]
 package_name = "qb-compiler"
 version = "0.7.0"
@@ -45,5 +50,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 237
-last_180_days_downloads = 1642
+last_month_downloads = 454
+last_180_days_downloads = 1651

@@ -23,11 +23,16 @@ estimated_contributors = 60
 total_dependent_repositories = 137
 total_dependent_packages = 24
 last_commit = 2026-06-19
-last_activity = 2026-07-07
+last_activity = 2026-07-13
 
 [badge]
 url = "https://qisk.it/e-8abf631e"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package azure-quantum declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.azure-quantum]
 package_name = "azure-quantum"
@@ -38,5 +43,5 @@ description = "Python client for Azure Quantum"
 url = "https://pypi.org/project/azure-quantum/"
 status = "active"
 maintainers = ["https://pypi.org/user/microsoft/"]
-last_month_downloads = 24330
-last_180_days_downloads = 128622
+last_month_downloads = 46698
+last_180_days_downloads = 130290

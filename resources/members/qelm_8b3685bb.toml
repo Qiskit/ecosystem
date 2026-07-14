@@ -24,12 +24,17 @@ description = "Qelm - Quantum Enhanced Language Model"
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-08
-last_activity = 2026-07-08
+last_commit = 2026-07-13
+last_activity = 2026-07-13
 
 [badge]
 url = "https://qisk.it/e-8b3685bb"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qelm declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qelm]
 package_name = "qelm"
@@ -45,5 +50,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 42
-last_180_days_downloads = 289
+last_month_downloads = 168
+last_180_days_downloads = 275

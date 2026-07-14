@@ -25,8 +25,8 @@ description = "Qiskit provider for AQT backends."
 estimated_contributors = 20
 total_dependent_repositories = 17
 total_dependent_packages = 5
-last_commit = 2026-07-08
-last_activity = 2026-07-08
+last_commit = 2026-07-13
+last_activity = 2026-07-13
 
 [badge]
 url = "https://qisk.it/e-04f15cf5"
@@ -37,6 +37,11 @@ since = 2026-04-30T11:32:49.789583
 details = "Python package qiskit-aqt-provider is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/qiskit-community/qiskit-aqt-provider/issues/286"
 importance = "IMPORTANT"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-aqt-provider declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-aqt-provider]
 package_name = "qiskit-aqt-provider"
@@ -55,5 +60,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 1168
-last_180_days_downloads = 6455
+last_month_downloads = 2507
+last_180_days_downloads = 6476

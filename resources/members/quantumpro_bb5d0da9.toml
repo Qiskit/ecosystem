@@ -8,6 +8,7 @@ category = "Tooling"
 packages = []
 uuid = "bb5d0da9-1523-4756-bda2-43d970b1fc51"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/quantum-prototype-template"
@@ -25,6 +26,11 @@ last_activity = 2026-06-15
 [badge]
 url = "https://qisk.it/e-bb5d0da9"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package vqls-prototype declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [checks.P12]
 since = 2026-07-06T12:46:29.207233
@@ -44,5 +50,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 45
-last_180_days_downloads = 230
+last_month_downloads = 95
+last_180_days_downloads = 216

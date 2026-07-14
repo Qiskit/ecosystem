@@ -24,12 +24,17 @@ license = "MIT"
 description = "MQT Bench - An MQT Tool for Benchmarking Quantum Software Tools"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-07
-last_activity = 2026-07-08
+last_commit = 2026-07-11
+last_activity = 2026-07-11
 
 [badge]
 url = "https://qisk.it/e-06f1e81e"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package mqt-bench declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi."mqt.bench"]
 package_name = "mqt-bench"
@@ -46,5 +51,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 4780
-last_180_days_downloads = 20409
+last_month_downloads = 8692
+last_180_days_downloads = 20696

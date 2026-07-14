@@ -15,18 +15,23 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/pauli-prop"
 owner = "Qiskit"
 repo = "pauli-prop"
-stars = 11
+stars = 12
 homepage = "https://qiskit.github.io/pauli-prop/"
 license = "Apache-2.0"
 description = "A Rust-accelerated Python package for doing Pauli propagation"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-07-03
-last_activity = 2026-07-03
+last_activity = 2026-07-10
 
 [badge]
 url = "https://qisk.it/e-3ae8c34d"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package pauli-prop declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.pauli-prop]
 package_name = "pauli-prop"
@@ -42,5 +47,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1999
-last_180_days_downloads = 9772
+last_month_downloads = 3291
+last_180_days_downloads = 10263

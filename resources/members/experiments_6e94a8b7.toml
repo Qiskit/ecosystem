@@ -24,11 +24,16 @@ description = "Qiskit Experiments"
 total_dependent_repositories = 184
 total_dependent_packages = 15
 last_commit = 2026-06-24
-last_activity = 2026-07-05
+last_activity = 2026-07-13
 
 [badge]
 url = "https://qisk.it/e-6e94a8b7"
 style = "flat"
+
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-experiments declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
 
 [pypi.qiskit-experiments]
 package_name = "qiskit-experiments"
@@ -44,5 +49,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 108007
-last_180_days_downloads = 554296
+last_month_downloads = 229842
+last_180_days_downloads = 577198

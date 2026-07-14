@@ -27,6 +27,11 @@ last_activity = 2026-03-29T08:45:17Z
 url = "https://qisk.it/e-c9369922"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-qubit-reuse declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-qubit-reuse]
 package_name = "qiskit-qubit-reuse"
 version = "0.0.2"
@@ -41,5 +46,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 36
-last_180_days_downloads = 184
+last_month_downloads = 96
+last_180_days_downloads = 183

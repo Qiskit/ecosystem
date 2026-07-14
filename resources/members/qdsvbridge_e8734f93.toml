@@ -25,22 +25,32 @@ repo = "qdsv-bridge"
 stars = 1
 license = "MIT"
 description = "QDSV Bridge SDK: controlled semantic-to-IR, oracle and circuit-blueprint compilation for supported quantum problem families."
-last_commit = 2026-07-08
-last_activity = 2026-07-08
+last_commit = 2026-07-14
+last_activity = 2026-07-14
 
 [badge]
 url = "https://qisk.it/e-e8734f93"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qdsv-bridge declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qdsv-bridge]
 package_name = "qdsv-bridge"
-version = "0.1.5"
-last_release_date = 2026-06-20
+version = "0.4.3"
+last_release_date = 2026-07-13
 license = "MIT"
-description = "Lightweight Python client for QDSV Bridge, a controlled semantic-to-circuit compiler with family-based export modes."
+description = "Lightweight Python client for capability-driven QDSV semantic-to-circuit compilation."
 url = "https://pypi.org/project/qdsv-bridge/"
 development_status = "3 - Alpha"
 status = "active"
 maintainers = ["https://pypi.org/user/jalexanderjlozano/"]
-last_month_downloads = 382
-last_180_days_downloads = 866
+requires_qiskit = "<3,>=2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 1186
+last_180_days_downloads = 1189

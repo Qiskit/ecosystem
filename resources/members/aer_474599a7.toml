@@ -31,6 +31,11 @@ last_activity = 2026-07-08
 url = "https://qisk.it/e-474599a7"
 style = "flat"
 
+[checks.P10]
+since = 2026-07-09T11:29:53.067305
+details = "Python package qiskit-aer declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
 version = "0.17.2"
@@ -45,8 +50,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 602970
-last_180_days_downloads = 3286223
+last_month_downloads = 1236459
+last_180_days_downloads = 3383309
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
@@ -62,8 +67,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 5283
-last_180_days_downloads = 27588
+last_month_downloads = 9020
+last_180_days_downloads = 27329
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
@@ -79,5 +84,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1566
-last_180_days_downloads = 12556
+last_month_downloads = 3319
+last_180_days_downloads = 12397
