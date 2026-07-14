@@ -45,10 +45,7 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
     pytest.main(
         [
             f"{cwd}/{tests_to_run}",
-            "--tb=no",
-            "-rN",
             "-vvv",
-            "--indulgent-ordering",
             # "--no-header",
         ],
         plugins=[report],
