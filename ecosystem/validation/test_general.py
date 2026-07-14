@@ -56,17 +56,16 @@ def test_Q20(request, pytestconfig):
         "Not compatible with the Qiskit SDK v2 or newer",
     )
 
-@pytest.mark.order(index=999,
-    after=[
+@pytest.mark.order(999)
+def test_G00(request, pytestconfig):
+    """Have a clear support expectation and, if actively maintained,
+    show signs of that activity."""
+    # requierements = request.node.get_closest_marker("order").kwargs["after"]
+    requierements = [
         "test_github.py::test_G05",
         "test_github.py::test_G07",
         "test_general.py::test_Q20",
     ]
-)
-def test_G00(request, pytestconfig):
-    """Have a clear support expectation and, if actively maintained,
-    show signs of that activity."""
-    requierements = request.node.get_closest_marker("order").kwargs["after"]
     must_pass_all_requierements(
         requierements,
         pytestconfig.failed_checkups,
