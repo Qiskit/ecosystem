@@ -47,6 +47,7 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
             "-rN",
             verbose_level,
             "--no-header",
+            "--order-group-scope=module"
         ],
         plugins=[report],
     )
