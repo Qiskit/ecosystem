@@ -37,7 +37,7 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
     """
     report = ValidationReport(member, ChecksToml())
     if verbose_level is None:
-        verbose_level = "-q"
+        verbose_level = "-vv"
     if tests_to_run is None:
         tests_to_run = ""
     pytest.main(
