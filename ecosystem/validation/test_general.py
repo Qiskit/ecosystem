@@ -75,12 +75,12 @@ def test_G00(request, pytestconfig):
     )
 
 
-# @pytest.mark.order(after=["test_github.py::test_G10"])
-# def test_001(request, pytestconfig):
-#     """Have an OSI-approved open-source license (preferably Apache 2.0 or MIT)"""
-#     requierements = request.node.get_closest_marker("order").kwargs["after"]
-#     must_pass_all_requierements(
-#         requierements,
-#         pytestconfig.failed_checkups,
-#         "A non-OSI-approved license?",
-#     )
+@pytest.mark.order(after=["test_github.py::test_G10"])
+def test_001(request, pytestconfig):
+    """Have an OSI-approved open-source license (preferably Apache 2.0 or MIT)"""
+    requierements = request.node.get_closest_marker("order").kwargs["after"]
+    must_pass_all_requierements(
+        requierements,
+        pytestconfig.failed_checkups,
+        "A non-OSI-approved license?",
+    )
