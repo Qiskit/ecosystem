@@ -12,6 +12,7 @@
 
 """Validation module"""
 
+from os import path
 import pytest
 
 from ecosystem.check import ChecksToml
@@ -40,12 +41,13 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
         verbose_level = "-vv"
     if tests_to_run is None:
         tests_to_run = ""
+    cwd = path.dirname(path.realpath(__file__))
     pytest.main(
         [
-            f"ecosystem/validation/{tests_to_run}",
+            f"{cwd}/{tests_to_run}",
             "--tb=no",
             "-rN",
-            "-vv",
+            "-vvv",
             "--indulgent-ordering",
             # "--no-header",
             "--order-scope=module"
