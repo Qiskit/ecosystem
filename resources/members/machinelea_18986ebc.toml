@@ -45,8 +45,3 @@ highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
 last_month_downloads = 82161
 last_180_days_downloads = 237156
-
-[checks.P10]
-since = 2026-07-09
-details = "Python package qiskit-machine-learning declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
