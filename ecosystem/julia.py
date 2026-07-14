@@ -300,7 +300,7 @@ class JuliaData(JsonSerializable):
         if self._juliahub_json:
             pkg_deps = [
                 d
-                for d in self._juliahub_json.get("deps",[])
+                for d in self._juliahub_json.get("deps", [])
                 if d["name"].lower() == package_name
             ]
             pkg_versions = [set(p["versions"]) for p in pkg_deps]
