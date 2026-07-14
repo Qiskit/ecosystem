@@ -36,23 +36,23 @@ jobs:
     - name: Update checkups
       run: python manager.py members update_checkups
 
-    - name: Update status
-      run: python manager.py members update_status
-
-    - name: Run taplo formatter on TOML files
-      run: taplo fmt resources/*.toml resources/members/*.toml
-
-    - name: Create PR for status update
-      id: cpr
-      uses: peter-evans/create-pull-request@v7
-      with:
-        author: qiskit-bot <qiskit-bot@users.noreply.github.com>
-        token: ${{ secrets.REPO_SCOPED_TOKEN }}
-        commit-message: Member status update for ${{ env.dateIseconds }}
-        title: Member status update for ${{ env.date_bdY }}
-        body: |
-          Member status update
-          when: ${{ env.dateIseconds }}
-          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        branch: ${{ env.pr_branch_name }}
-        labels: member update
+#    - name: Update status
+#      run: python manager.py members update_status
+#
+#    - name: Run taplo formatter on TOML files
+#      run: taplo fmt resources/*.toml resources/members/*.toml
+#
+#    - name: Create PR for status update
+#      id: cpr
+#      uses: peter-evans/create-pull-request@v7
+#      with:
+#        author: qiskit-bot <qiskit-bot@users.noreply.github.com>
+#        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+#        commit-message: Member status update for ${{ env.dateIseconds }}
+#        title: Member status update for ${{ env.date_bdY }}
+#        body: |
+#          Member status update
+#          when: ${{ env.dateIseconds }}
+#          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+#        branch: ${{ env.pr_branch_name }}
+#        labels: member update
