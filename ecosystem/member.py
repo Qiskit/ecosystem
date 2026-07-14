@@ -337,10 +337,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """Check if self.maturity should move to archived. Either because:
          - github.archived == true
          - TODO: if all the pypi package are archived
-        only udpates if maturity was not "as-is"
+        only udpates if maturity was not:
+          - "as-is"
+          - "unmaintained"
         """
         skip_if = [
             "as-is",
+            "unmaintained",
         ]
         if self.maturity in skip_if:
             return
