@@ -12,7 +12,7 @@
 
 """CliMembers class for controlling all CLI functions."""
 
-from datetime import datetime, timedelta
+from datetime import date, timedelta
 import json
 import tomllib
 import os
@@ -499,7 +499,7 @@ class CliMembers:
                     # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
                     continue
                 deadline = check.since + timedelta(days=check.cure_period_in_days)
-                if datetime.today() > deadline:
+                if date.today() > deadline:
                     # deadline passed
                     project.status = "Alumni"
                     break
