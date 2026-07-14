@@ -11,7 +11,6 @@ documentation = "https://jij-inc.github.io/Qamomile/"
 packages = []
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/Jij-Inc/Qamomile"
@@ -43,13 +42,3 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 2047
 last_180_days_downloads = 5251
-
-[checks.P10]
-since = 2026-07-09
-details = "Python package qamomile declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06
-details = "member.pypi.qamomile does not have a declared license"
-importance = "RECOMMENDATION"
