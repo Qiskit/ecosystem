@@ -61,7 +61,6 @@ def test_Q20(request, pytestconfig):
     after=[
         "test_github.py::test_G05",
         "test_github.py::test_G07",
-        "test_general.py::test_Q20",
     ]
 )
 def test_G00(request, pytestconfig):
