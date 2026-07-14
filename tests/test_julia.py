@@ -112,7 +112,7 @@ class TestJuliaData(TestCase):
             ),
         ):
             data.update_json()
-        self.maxDiff = None
+
         self.assertEqual(
             data.to_dict(),
             {
