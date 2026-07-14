@@ -57,13 +57,7 @@ def test_Q20(request, pytestconfig):
     )
 
 
-@pytest.mark.order(
-    after=[
-        "test_github.py::test_G05",
-        "test_github.py::test_G07",
-        "test_general.py::test_Q20",
-    ]
-)
+@pytest.mark.order(after=["test_github.py::test_G05", "test_github.py::test_G07"])
 def test_G00(request, pytestconfig):
     """Have a clear support expectation and, if actively maintained,
     show signs of that activity."""
