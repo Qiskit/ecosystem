@@ -45,8 +45,9 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
             f"ecosystem/validation/{tests_to_run}",
             "--tb=no",
             "-rN",
-            verbose_level,
-            "--no-header",
+            "-vv",
+            "--indulgent-ordering",
+            # "--no-header",
             "--order-scope=module"
         ],
         plugins=[report],
