@@ -19,8 +19,6 @@ from dateutil.relativedelta import relativedelta
 
 import pytest
 
-from ecosystem.serializable import parse_date
-
 
 @pytest.fixture(autouse=True)
 def skip_github(member):

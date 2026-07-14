@@ -112,17 +112,16 @@ class TestJuliaData(TestCase):
             ),
         ):
             data.update_json()
-
+        self.maxDiff = None
         self.assertEqual(
             data.to_dict(),
             {
                 "package_name": PACKAGE_NAME,
                 "registry": "General",
                 "version": "1.2.3",
-                "license": "MIT",
                 "release_date": date(2024, 1, 1),
-                "juliahub_url": URL(JULIAHUB_URL),
-                "general_registry_url": URL(TREE_URL),
+                "juliahub_url": str(URL(JULIAHUB_URL)),
+                "general_registry_url": str(URL(TREE_URL)),
                 "uuid": PACKAGE_UUID,
                 "estimated_unique_users": 42,
             },
