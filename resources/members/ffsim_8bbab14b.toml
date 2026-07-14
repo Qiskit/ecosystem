@@ -49,8 +49,3 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 55673
 last_180_days_downloads = 101411
-
-[checks.P10]
-since = 2026-07-09
-details = "Python package ffsim declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"

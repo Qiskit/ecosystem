@@ -8,7 +8,6 @@ category = "SDK"
 packages = []
 uuid = "727120b2-7559-453e-beb3-0ab33fb60a4a"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/qclib/qclib"
@@ -41,13 +40,3 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 1090
 last_180_days_downloads = 2312
-
-[checks.P10]
-since = 2026-07-09
-details = "Python package qclib declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06
-details = "member.pypi.qclib does not have a declared license"
-importance = "RECOMMENDATION"

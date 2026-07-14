@@ -8,7 +8,6 @@ category = "Tooling"
 packages = []
 uuid = "bb5d0da9-1523-4756-bda2-43d970b1fc51"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/quantum-prototype-template"
@@ -42,18 +41,3 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 95
 last_180_days_downloads = 216
-
-[checks.G07]
-since = 2026-05-14
-details = "Last commit was 22 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-importance = "STRONG-RECOMMENDATION"
-
-[checks.P10]
-since = 2026-07-09
-details = "Python package vqls-prototype declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06
-details = "member.pypi.vqls-prototype does not have a declared license"
-importance = "RECOMMENDATION"
