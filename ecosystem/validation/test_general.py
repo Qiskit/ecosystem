@@ -56,8 +56,7 @@ def test_Q20(request, pytestconfig):
         "Not compatible with the Qiskit SDK v2 or newer",
     )
 
-
-@pytest.mark.order(
+@pytest.mark.order(index=999,
     after=[
         "test_github.py::test_G05",
         "test_github.py::test_G07",

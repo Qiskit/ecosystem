@@ -50,7 +50,6 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
             "-vvv",
             "--indulgent-ordering",
             # "--no-header",
-            "--order-scope=module"
         ],
         plugins=[report],
     )
