@@ -18,14 +18,14 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/qcec"
 owner = "munich-quantum-toolkit"
 repo = "qcec"
-stars = 114
+stars = 115
 homepage = "https://mqt.readthedocs.io/projects/qcec"
 license = "MIT"
 description = "MQT QCEC - A tool for Quantum Circuit Equivalence Checking"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-07-13
-last_activity = 2026-07-13
+last_activity = 2026-07-14
 
 [badge]
 url = "https://qisk.it/e-79415931"
@@ -46,8 +46,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 22598
-last_180_days_downloads = 54060
+last_month_downloads = 13165
+last_180_days_downloads = 52338
 
 [checks.P10]
 since = 2026-07-09

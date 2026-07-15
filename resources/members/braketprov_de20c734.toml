@@ -18,7 +18,7 @@ owner = "amazon-braket"
 repo = "qiskit-braket-provider"
 stars = 83
 homepage = "https://qiskit-braket-provider.readthedocs.io/"
-license = "Other"
+license = "Apache-2.0"
 description = "Qiskit-Braket provider to execute Qiskit programs on devices via Amazon Braket."
 estimated_contributors = 41
 total_dependent_repositories = 0
@@ -44,8 +44,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 26019
-last_180_days_downloads = 53122
+last_month_downloads = 15575
+last_180_days_downloads = 54420
 
 [checks.G09]
 since = 2026-07-06

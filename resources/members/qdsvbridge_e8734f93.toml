@@ -34,8 +34,8 @@ style = "flat"
 
 [pypi.qdsv-bridge]
 package_name = "qdsv-bridge"
-version = "0.4.3"
-last_release_date = 2026-07-13
+version = "0.4.4"
+last_release_date = 2026-07-14
 license = "MIT"
 description = "Lightweight Python client for capability-driven QDSV semantic-to-circuit compilation."
 url = "https://pypi.org/project/qdsv-bridge/"
@@ -47,5 +47,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 1186
-last_180_days_downloads = 1189
+last_month_downloads = 1089
+last_180_days_downloads = 1740

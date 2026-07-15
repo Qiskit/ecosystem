@@ -21,7 +21,7 @@ license = "Apache-2.0"
 description = "IBM Client for Qiskit Runtime"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-13
+last_commit = 2026-07-14
 last_activity = 2026-07-14
 
 [badge]
@@ -30,20 +30,20 @@ style = "flat"
 
 [pypi.qiskit-ibm-runtime]
 package_name = "qiskit-ibm-runtime"
-version = "0.47.0"
-last_release_date = 2026-05-12
+version = "0.48.0"
+last_release_date = 2026-07-14
 license = "Apache-2.0"
 description = "IBM Quantum client for Qiskit Runtime."
 url = "https://pypi.org/project/qiskit-ibm-runtime/"
 status = "active"
 maintainers = ["https://pypi.org/org/qiskit/"]
-requires_qiskit = ">=2.2.0"
+requires_qiskit = ">=2.3.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1134313
-last_180_days_downloads = 2847270
+last_month_downloads = 580670
+last_180_days_downloads = 2875541
 
 [checks.P10]
 since = 2026-07-09
