@@ -51,8 +51,8 @@ def test_G06(member):
     months_difference = (relative.years * 12) + relative.months
 
     assert months_difference <= 6, (
-        f"Last activity was {months_difference} months ago, which probably means that the project is"
-        "not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+        f"Last activity was {months_difference} months ago, which probably means that the project "
+        "is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
     )
 
 
