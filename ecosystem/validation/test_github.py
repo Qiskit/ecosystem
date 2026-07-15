@@ -30,14 +30,12 @@ def skip_github(member):
 
 def test_G05(member):
     """GitHub repository is archived?"""
-    if hasattr(member.github, "archived") and member.github.archived:
-        assert hasattr(
-            member, "maturity"
-        ), "GitHub repository archived, so member.maturity must exist and be `as-is`"
-        assert member.maturity in [
-            "as-is",
-            "unmaintaned",
-        ], "GitHub repository archived and member.maturity is not `as-is` or `unmaintaned`"
+    if hasattr(member, "maturity") and member.maturity == "as-is":
+        pytest.skip("`as-is` projects are exempt from activity checks")
+    else:
+        assert not (
+            hasattr(member.github, "archived") and member.github.archived
+        ), "GitHub repository archived"
 
 
 def test_G06(member):
@@ -53,9 +51,8 @@ def test_G06(member):
     months_difference = (relative.years * 12) + relative.months
 
     assert months_difference <= 6, (
-        f"Last activity was {months_difference} months ago, which is more "
-        "than 6 months ago. Please update the GitHub repository or set "
-        "member.maturity to `as-is`."
+        f"Last activity was {months_difference} months ago, which probably means that the project is"
+        "not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
     )
 
 
