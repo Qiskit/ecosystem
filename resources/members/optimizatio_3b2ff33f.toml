@@ -9,7 +9,8 @@ category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-optimization/"
 packages = []
 uuid = "3b2ff33f-b4a3-49cd-ab32-563d282cc3bf"
-maturity = "production-ready"
+maturity = "unmaintained"
+status = "Alumni"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-optimization"
@@ -49,4 +50,9 @@ last_180_days_downloads = 202706
 [checks.G05]
 since = 2026-07-14
 details = "GitHub repository archived and member.maturity is not `as-is` or `unmaintaned`"
+importance = "CRITICAL"
+
+[checks.G00]
+since = 2026-07-16
+details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"

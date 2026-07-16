@@ -10,6 +10,7 @@ documentation = "https://qiskit-qulacs.netlify.app/"
 packages = []
 uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
@@ -45,6 +46,11 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 184
 last_180_days_downloads = 627
+
+[checks.G06]
+since = 2026-07-16
+details = "Last activity was 7 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "RECOMMENDATION"
 
 [checks.P10]
 since = 2026-07-09

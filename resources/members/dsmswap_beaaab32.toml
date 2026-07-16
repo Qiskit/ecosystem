@@ -10,6 +10,7 @@ documentation = "https://github.com/qiskit-community/dsm-swap/tree/main/docs"
 packages = []
 uuid = "beaaab32-58d4-496f-8428-e6d88fa1e989"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/dsm-swap"
@@ -30,7 +31,7 @@ style = "flat"
 
 [checks.G06]
 since = 2026-07-14
-details = "Last activity was 7 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+details = "Last activity was 8 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
 importance = "RECOMMENDATION"
 
 [checks.G07]
