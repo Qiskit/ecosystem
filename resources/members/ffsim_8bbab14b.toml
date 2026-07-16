@@ -24,7 +24,7 @@ estimated_contributors = 12
 total_dependent_repositories = 17
 total_dependent_packages = 5
 last_commit = 2026-07-15
-last_activity = 2026-07-15
+last_activity = 2026-07-16
 
 [badge]
 url = "https://qisk.it/e-8bbab14b"
@@ -32,8 +32,8 @@ style = "flat"
 
 [pypi.ffsim]
 package_name = "ffsim"
-version = "0.0.80"
-last_release_date = 2026-05-06
+version = "0.0.81"
+last_release_date = 2026-07-15
 license = "Apache-1.1"
 description = "Faster simulation of fermionic quantum circuits."
 url = "https://pypi.org/project/ffsim/"
@@ -47,8 +47,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 34420
-last_180_days_downloads = 102247
+last_month_downloads = 35719
+last_180_days_downloads = 103617
 
 [checks.P10]
 since = 2026-07-09
