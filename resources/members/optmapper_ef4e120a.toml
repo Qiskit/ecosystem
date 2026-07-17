@@ -17,7 +17,7 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-addon-opt-mapper"
 owner = "Qiskit"
 repo = "qiskit-addon-opt-mapper"
-stars = 15
+stars = 16
 homepage = "https://qiskit.github.io/qiskit-addon-opt-mapper/"
 license = "Apache-2.0"
 description = "Mapping combinatorial optimization problems to quantum computers"
@@ -25,7 +25,7 @@ estimated_contributors = 23
 total_dependent_repositories = 1
 total_dependent_packages = 2
 last_commit = 2026-07-01
-last_activity = 2026-07-01
+last_activity = 2026-07-16
 
 [badge]
 url = "https://qisk.it/e-ef4e120a"
@@ -45,5 +45,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 2200
-last_180_days_downloads = 6728
+last_month_downloads = 2229
+last_180_days_downloads = 6811
