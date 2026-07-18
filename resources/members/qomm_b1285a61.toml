@@ -29,4 +29,5 @@ style = "flat"
 [checks.G07]
 since = 2026-06-14
 details = "Last commit was 21 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/52"
 importance = "STRONG-RECOMMENDATION"
