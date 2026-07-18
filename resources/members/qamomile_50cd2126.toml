@@ -31,8 +31,8 @@ style = "flat"
 
 [pypi.qamomile]
 package_name = "qamomile"
-version = "0.12.7"
-last_release_date = 2026-07-08
+version = "0.13.0"
+last_release_date = 2026-07-17
 url = "https://pypi.org/project/qamomile/"
 status = "active"
 maintainers = ["https://pypi.org/user/jijpypi/"]
@@ -41,8 +41,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 645
-last_180_days_downloads = 5236
+last_month_downloads = 638
+last_180_days_downloads = 5241
 
 [checks.P10]
 since = 2026-07-09
