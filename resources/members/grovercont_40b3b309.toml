@@ -11,6 +11,7 @@ reference_paper = "https://doi.org/10.21203/rs.3.rs-2997276/v1"
 packages = []
 uuid = "40b3b309-0dfa-482a-89a6-cbaffd18b7ba"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/albayaty/grover_controlled_diffuser"
@@ -30,4 +31,5 @@ style = "flat"
 [checks.G07]
 since = 2026-05-14
 details = "Last commit was 20 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/46#discussioncomment-17650276"
 importance = "STRONG-RECOMMENDATION"

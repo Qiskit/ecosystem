@@ -9,6 +9,7 @@ reference_paper = "https://arxiv.org/abs/2404.18737"
 packages = []
 uuid = "a08d66f6-0ee7-446c-a121-c9c692bc0ae9"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/mrossinek/qiskit-nature-cp2k"
@@ -29,4 +30,5 @@ style = "flat"
 [checks.G07]
 since = 2026-05-14
 details = "Last commit was 23 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/50"
 importance = "STRONG-RECOMMENDATION"

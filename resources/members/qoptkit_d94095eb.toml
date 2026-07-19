@@ -11,6 +11,7 @@ documentation = "https://soqcsadmin.github.io/QoptKIT/"
 packages = []
 uuid = "d94095eb-85cf-42ea-a70e-fa1735225b68"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/SOQCSAdmin/QoptKIT"
@@ -31,4 +32,5 @@ style = "flat"
 [checks.G07]
 since = 2026-05-14
 details = "Last commit was 28 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/53"
 importance = "STRONG-RECOMMENDATION"
