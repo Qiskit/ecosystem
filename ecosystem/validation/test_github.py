@@ -19,6 +19,8 @@ from dateutil.relativedelta import relativedelta
 
 import pytest
 
+from . import ibm_controlled_gh_org
+
 
 @pytest.fixture(autouse=True)
 def skip_github(member):
@@ -100,3 +102,21 @@ def test_G10(member):
         assert (
             member.github.license.is_osi_approved()
         ), "member.github.license is not OSI-approved"
+
+
+def test_G11(member):
+    """
+    Unmaintaned projects should be archived when the repo is on an IBM-controlled organization"
+    """
+    if not hasattr(member, "github"):
+        pytest.skip("member.github does not exist")
+    if member.github.owner.lower() not in ibm_controlled_gh_org:
+        pytest.skip("repository is on an IBM-controlled organization")
+    archived = member.github.archived if hasattr(member.github, "archived") else False
+    if archived:
+        pytest.skip("project repository is already archived")
+    if member.maturity in ["deprecated", "unmaintaned", "as-is"]:
+        assert archived, (
+            f"Unsupported project (`member.maturity == {member.maturity}`"
+            "should have an archived GitHub repository"
+        )

@@ -217,6 +217,15 @@ description = "..."
 importance = "IMPORTANT"
 checker = "test_github.py::test_G10"
 
+[G11]
+title = "Unmaintaned projects should be archived when the repository is on an IBM-controlled organization"
+applies_to = "GitHub projects"
+affects = ['github.archived']
+category = "ACTIVITY"
+description = "..."
+importance = "STRONG-RECOMMENDATION"
+checker = "test_github.py::test_G11"
+
 [O01]
 title = "Have a license"
 applies_to = "all"
