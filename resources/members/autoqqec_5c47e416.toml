@@ -7,10 +7,17 @@ labels = ["error correction", "quantum information", "benchmarking"]
 interfaces = ["Python"]
 category = "SDK"
 reference_paper = "https://doi.org/10.5281/zenodo.21433371"
-packages = ["https://pypi.org/project/autoq-qec/"]
+packages = []
 uuid = "5c47e416-06b3-4c22-a457-99385e91e9bb"
 maturity = "production-ready"
+
+[github]
+owner = "Ronaldoengenhariadacomputacao"
+repo = "autoq-qec"
 
 [badge]
 url = "https://qisk.it/e-5c47e416"
 style = "flat"
+
+[pypi.autoq-qec]
+package_name = "autoq-qec"
