@@ -10,6 +10,7 @@ documentation = "https://frankharkins.github.io/quPython/"
 packages = []
 uuid = "bad95659-420a-4529-97d0-80e52532fc90"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/frankharkins/quPython"
@@ -44,11 +45,12 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 20
-last_180_days_downloads = 150
+last_180_days_downloads = 152
 
 [checks.G07]
 since = 2026-05-14
 details = "Last commit was 21 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/56"
 importance = "STRONG-RECOMMENDATION"
 
 [checks.P10]

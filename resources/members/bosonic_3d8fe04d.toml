@@ -9,7 +9,6 @@ documentation = "https://c2qa.github.io/bosonic-qiskit/"
 packages = []
 uuid = "3d8fe04d-8ac0-4282-9eb6-cb458550945a"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/C2QA/bosonic-qiskit"
@@ -45,8 +44,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-04-01
 highest_supported_qiskit_version = "2.0.0"
-last_month_downloads = 483
-last_180_days_downloads = 2043
+last_month_downloads = 451
+last_180_days_downloads = 2047
 
 [checks.P12]
 since = 2026-07-06

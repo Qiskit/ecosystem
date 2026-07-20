@@ -24,8 +24,8 @@ license = "MIT"
 description = "MQT QMAP - A tool for Quantum Circuit Mapping written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-16
-last_activity = 2026-07-17
+last_commit = 2026-07-19
+last_activity = 2026-07-18
 
 [badge]
 url = "https://qisk.it/e-d16209fb"
@@ -44,10 +44,10 @@ maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 4399
-last_180_days_downloads = 23577
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 3672
+last_180_days_downloads = 22521
 
 [checks.P10]
 since = 2026-07-09

@@ -10,7 +10,6 @@ documentation = "https://mitiq.readthedocs.io/"
 packages = []
 uuid = "a4ba9712-0aae-4660-b2df-4e6e81abb6c4"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/unitaryfoundation/mitiq"
@@ -49,5 +48,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 11814
-last_180_days_downloads = 83490
+last_month_downloads = 10840
+last_180_days_downloads = 83301

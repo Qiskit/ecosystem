@@ -19,7 +19,7 @@ homepage = "https://qiskit-community.github.io/qiskit-quimb/"
 license = "Apache-2.0"
 description = "Simulate Qiskit circuits using quimb."
 estimated_contributors = 3
-total_dependent_repositories = 6
+total_dependent_repositories = 7
 total_dependent_packages = 2
 last_commit = 2026-07-10
 last_activity = 2026-07-10
@@ -45,8 +45,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 22204
-last_180_days_downloads = 58481
+last_month_downloads = 20467
+last_180_days_downloads = 58862
 
 [checks.P10]
 since = 2026-07-14

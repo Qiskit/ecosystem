@@ -4,11 +4,11 @@ description = "This project contains the utilities that are required for the com
 license = "Apache-2.0"
 labels = ["chemistry"]
 interfaces = ["Python"]
-category = "Application"
+category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2404.18737"
 packages = []
 uuid = "a08d66f6-0ee7-446c-a121-c9c692bc0ae9"
-maturity = "production-ready"
+maturity = "as-is"
 
 [github]
 url = "https://github.com/mrossinek/qiskit-nature-cp2k"
@@ -25,8 +25,3 @@ last_activity = 2026-02-13
 [badge]
 url = "https://qisk.it/e-a08d66f6"
 style = "flat"
-
-[checks.G07]
-since = 2026-05-14
-details = "Last commit was 23 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-importance = "STRONG-RECOMMENDATION"

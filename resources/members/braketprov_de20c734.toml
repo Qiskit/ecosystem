@@ -10,7 +10,6 @@ documentation = "https://qiskit-braket-provider.readthedocs.io/"
 packages = []
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/amazon-braket/qiskit-braket-provider"
@@ -24,7 +23,7 @@ estimated_contributors = 41
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-07-17
-last_activity = 2026-07-17
+last_activity = 2026-07-18
 
 [badge]
 url = "https://qisk.it/e-de20c734"
@@ -42,13 +41,7 @@ maintainers = ["https://pypi.org/user/amazonbraket/"]
 requires_qiskit = "<3.0.0,>=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 15184
-last_180_days_downloads = 54924
-
-[checks.G09]
-since = 2026-07-06
-details = "member.github.license not detected"
-discussion = "https://github.com/amazon-braket/qiskit-braket-provider/issues/367"
-importance = "RECOMMENDATION"
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 13932
+last_180_days_downloads = 55237

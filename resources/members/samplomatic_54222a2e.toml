@@ -42,10 +42,10 @@ maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=2.3.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 280319
-last_180_days_downloads = 958868
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 271535
+last_180_days_downloads = 973551
 
 [checks.P10]
 since = 2026-07-09

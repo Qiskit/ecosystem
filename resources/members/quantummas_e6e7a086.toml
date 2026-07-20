@@ -9,6 +9,7 @@ category = "Game/Educational"
 packages = []
 uuid = "e6e7a086-9b91-47b9-be78-f9c7bc680863"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/shravanpatel30/Quantum-MasterChef"
@@ -28,4 +29,5 @@ style = "flat"
 [checks.G07]
 since = 2026-05-14
 details = "Last commit was 26 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/55"
 importance = "STRONG-RECOMMENDATION"

@@ -10,7 +10,6 @@ documentation = "https://docs.quantinuum.com/tket/extensions/pytket-qiskit/"
 packages = []
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/Quantinuum/pytket-qiskit"
@@ -43,10 +42,10 @@ maintainers = [
 requires_qiskit = ">=2.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 41803
-last_180_days_downloads = 263835
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 41122
+last_180_days_downloads = 264324
 
 [checks.P10]
 since = 2026-07-09
