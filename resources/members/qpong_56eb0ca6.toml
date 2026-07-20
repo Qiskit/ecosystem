@@ -9,8 +9,8 @@ created_at = 2023-03-14
 category = "Game/Educational"
 packages = []
 uuid = "56eb0ca6-4dd5-4954-a059-96256fd0ab26"
-maturity = "production-ready"
-status = "Under revision"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/QPong/QPong"
@@ -28,8 +28,3 @@ last_activity = 2026-04-04
 [badge]
 url = "https://qisk.it/e-56eb0ca6"
 style = "flat"
-
-[checks.G07]
-since = 2026-05-14
-details = "Last commit was 24 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-importance = "STRONG-RECOMMENDATION"
