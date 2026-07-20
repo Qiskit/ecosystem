@@ -141,4 +141,4 @@ class TestURLs:
 
         assert not (
             hostname.endswith("pypi.org") or hostname.endswith("pypi.python.org")
-        ), ("The field `member.website` should not " "point to a PyPI project URL.")
+        ), ("The field `member.website` should not point to a PyPI project URL.")
