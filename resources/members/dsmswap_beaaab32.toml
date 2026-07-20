@@ -9,8 +9,8 @@ category = "Transpiler plugin"
 documentation = "https://github.com/qiskit-community/dsm-swap/tree/main/docs"
 packages = []
 uuid = "beaaab32-58d4-496f-8428-e6d88fa1e989"
-maturity = "production-ready"
-status = "Under revision"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/qiskit-community/dsm-swap"
@@ -22,19 +22,10 @@ description = "A doubly stochastic matrices-based approach to optimal qubit rout
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
+archived = true
 last_commit = 2024-05-29
-last_activity = 2025-11-15
+last_activity = 2026-07-20
 
 [badge]
 url = "https://qisk.it/e-beaaab32"
 style = "flat"
-
-[checks.G06]
-since = 2026-07-14
-details = "Last activity was 7 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-importance = "RECOMMENDATION"
-
-[checks.G07]
-since = 2026-05-14
-details = "Last commit was 25 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-importance = "STRONG-RECOMMENDATION"
