@@ -37,7 +37,7 @@ jobs:
       run: python manager.py members update_checkups
 
     - name: Update status
-      run: python manager.py members update_status
+      run: python manager.py members update_status -e recommendation
 
     - name: Run taplo formatter on TOML files
       run: taplo fmt resources/*.toml resources/members/*.toml
