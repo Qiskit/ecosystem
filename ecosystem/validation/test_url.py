@@ -136,7 +136,7 @@ class TestURLs:
                 repository_url,
             ), (
                 "The field `member.website` should not "
-                "duplicate the GitHub repository URL."
+                "be the GitHub repository."
             )
 
         assert not (
