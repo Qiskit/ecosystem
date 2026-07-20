@@ -156,7 +156,7 @@ importance = "RECOMMENDATION"
 
 [027]
 title = "Website should not be GitHub repository or PyPI URL"
-description = "The `member.website` field should point to the project's website instead of duplicating the GitHub repository or a PyPI project page."
+description = "The `member.website` field should point to the project's website instead of the GitHub repository or a PyPI project page."
 applies_to = "all"
 affects = ["member.website"]
 checker = "test_url.py::TestURLs::test_027"
