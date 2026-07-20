@@ -1,21 +1,13 @@
 name = "autoq-qec"
 submission_number = 1235
 url = "https://github.com/Ronaldoengenhariadacomputacao/autoq-qec"
-description = "Multi-code fault-tolerant QEC estimator for Qiskit circuits: Surface Code, Bacon-Shor, Steane."
+description = "Multi-code fault-tolerant QEC estimator for Qiskit circuits: Surface Code, Floquet Code, Bacon-Shor, Steane."
 contact_info = "Ronaldoengenhariadacomputacao@hotmail.com"
-labels = [
-  "circuit optimization",
-  "error correction",
-  "quantum information",
-  "benchmarking",
-]
+labels = ["error correction", "quantum information", "benchmarking"]
 interfaces = ["Python"]
-website = "https://github.com/Ronaldoengenhariadacomputacao/autoq-qec"
-category = "Tooling"
-pattern_steps = ["Optimize"]
-reference_paper = "https://doi.org/10.5281/zenodo.21325238"
-documentation = "https://github.com/Ronaldoengenhariadacomputacao/autoq-qec"
-packages = []
+category = "SDK"
+reference_paper = "https://doi.org/10.5281/zenodo.21433371"
+packages = ["https://pypi.org/project/autoq-qec/"]
 uuid = "5c47e416-06b3-4c22-a457-99385e91e9bb"
 maturity = "production-ready"
 
