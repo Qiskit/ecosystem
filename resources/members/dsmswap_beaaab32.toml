@@ -38,4 +38,5 @@ importance = "RECOMMENDATION"
 [checks.G07]
 since = 2026-07-20
 details = "Last commit was 25 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/48"
 importance = "STRONG-RECOMMENDATION"
