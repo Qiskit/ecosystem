@@ -44,8 +44,7 @@ last_month_downloads = 42
 last_180_days_downloads = 225
 
 [checks.G07]
-since = 2026-05-14
-details = "Last commit was 22 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+xfailed = "Probably fine to have low activity in a template repository, but it is worth checking if the repository is still maintained."
 importance = "STRONG-RECOMMENDATION"
 
 [checks.P10]
