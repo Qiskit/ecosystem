@@ -106,9 +106,10 @@ def test_G10(member):
             member.github.license.is_osi_approved()
         ), "member.github.license is not OSI-approved"
 
+
 def test_G11(member):
     """
-    Unmaintaned projects should be archived when the repository is on an IBM-controlled organization"
+    Unmaintaned projects should be archived when the repo is on an IBM-controlled organization"
     """
     if not hasattr(member, "github"):
         pytest.skip("member.github does not exist")
@@ -118,5 +119,7 @@ def test_G11(member):
     if archived:
         pytest.skip("project repository is already archived")
     if member.maturity in ["deprecated", "unmaintaned", "as-is"]:
-        assert archived, (f"Unsupported project (`member.maturity == {member.maturity}`"
-                          "should have an archived GitHub repository")
+        assert archived, (
+            f"Unsupported project (`member.maturity == {member.maturity}`"
+            "should have an archived GitHub repository"
+        )
