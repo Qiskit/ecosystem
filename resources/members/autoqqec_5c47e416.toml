@@ -1,0 +1,45 @@
+name = "autoq-qec"
+submission_number = 1235
+url = "https://github.com/Ronaldoengenhariadacomputacao/autoq-qec"
+description = "Multi-code fault-tolerant QEC estimator for Qiskit circuits: Surface Code, Floquet Code, Bacon-Shor, Steane."
+contact_info = "Ronaldoengenhariadacomputacao@hotmail.com"
+labels = ["error correction", "quantum information", "benchmarking"]
+interfaces = ["Python"]
+category = "SDK"
+reference_paper = "https://doi.org/10.5281/zenodo.21433371"
+packages = []
+uuid = "5c47e416-06b3-4c22-a457-99385e91e9bb"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/Ronaldoengenhariadacomputacao/autoq-qec"
+owner = "Ronaldoengenhariadacomputacao"
+repo = "autoq-qec"
+stars = 0
+homepage = "https://pypi.org/project/autoq-qec/"
+license = "MIT"
+description = "Multi-code QEC resource estimator for Qiskit circuits"
+last_commit = 2026-07-18
+last_activity = 2026-07-18
+
+[badge]
+url = "https://qisk.it/e-5c47e416"
+style = "flat"
+
+[pypi.autoq-qec]
+package_name = "autoq-qec"
+version = "3.4.1"
+last_release_date = 2026-07-18
+license = "MIT"
+description = "Multi-code QEC resource estimator for arbitrary Qiskit circuits"
+url = "https://pypi.org/project/autoq-qec/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/Ronaldoengenharia/"]
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 1116
+last_180_days_downloads = 1116
