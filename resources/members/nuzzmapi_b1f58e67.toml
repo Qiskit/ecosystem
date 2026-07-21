@@ -1,0 +1,22 @@
+name = "nu_zz_map_iqm"
+submission_number = 1257
+url = "https://github.com/okudat9/nu-zz-map-iqm"
+description = "Residual ZZ coupling mapping for IQM processors. One job, every edge, with a built-in negative control."
+contact_info = "o93dice@gmail.com"
+labels = ["error mitigation", "physics", "research", "provider"]
+interfaces = ["Command-line interface (CLI)"]
+category = "Tooling"
+reference_paper = "https://doi.org/10.5281/zenodo.19367565"
+packages = []
+uuid = "b1f58e67-ab64-4d3c-96dd-0fc6fbba854b"
+maturity = "bugfixing only"
+
+[github]
+url = "https://github.com/okudat9/nu-zz-map-iqm"
+owner = "okudat9"
+repo = "nu-zz-map-iqm"
+stars = 0
+license = "Other"
+description = "Residual ZZ mapping for IQM quantum processors, with a built-in negative control"
+last_commit = 2026-07-21
+last_activity = 2026-07-21
