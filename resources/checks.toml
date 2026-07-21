@@ -163,6 +163,15 @@ checker = "test_url.py::TestURLs::test_026"
 category = "SUBMISSION"
 importance = "RECOMMENDATION"
 
+[027]
+title = "Website should not be GitHub repository or PyPI URL"
+description = "The `member.website` field should point to the project's website instead of the GitHub repository or a PyPI project page."
+applies_to = "all"
+affects = ["member.website"]
+checker = "test_url.py::TestURLs::test_027"
+category = "SUBMISSION"
+importance = "STRONG-RECOMMENDATION"
+
 [G05]
 title = "Archived GitHub repository should have `unmaintaned` support"
 applies_to = "GitHub projects"
