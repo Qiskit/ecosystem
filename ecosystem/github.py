@@ -16,6 +16,7 @@ from re import match
 from functools import reduce
 from jsonpath import findall
 
+from .license import License
 from .serializable import JsonSerializable, parse_date
 from .error_handling import EcosystemError, logger
 from .request import (
@@ -54,7 +55,6 @@ class GitHubData(JsonSerializable):
         "stars": "stargazers_count",
         "last_commit": "pushed_at",
         "url": "html_url",
-        "license": "license.name",
     }
     json_types = {
         "homepage": lambda x: x or None,
@@ -77,13 +77,14 @@ class GitHubData(JsonSerializable):
         self._json_dependants = None
         self._json_contributors_sidebar = None
 
-    def to_dict(self) -> dict:
-        dictionary = {}
-        for key in GitHubData.dict_keys:
-            value = getattr(self, key, None)
-            if value is not None:
-                dictionary[key] = value
-        return dictionary
+    def to_dict(self, keys=None) -> dict:
+        return super().to_dict(keys=keys or GitHubData.dict_keys)
+
+    @classmethod
+    def from_dict(cls, dictionary: dict):
+        if "license" in dictionary and dictionary["license"] is not None:
+            dictionary["license"] = License(dictionary["license"], where="github")
+        return super().from_dict(dictionary)
 
     @classmethod
     def from_url(cls, github_project_url: URL):
@@ -229,4 +230,16 @@ class GitHubData(JsonSerializable):
         """The creation of the last event"""
         if self._json_events and self._json_events["data"]:
             return parse_date(self._json_events["data"][0]["created_at"])
-        return self._kwargs.get("last_activity")
+        return parse_date(self._kwargs.get("last_activity"))
+
+    @property
+    def license(self):
+        """The creation of the last event"""
+        json_license_name = self._json_repo.get("license", {}).get("name")
+        if json_license_name:
+            return License(json_license_name, "github")
+        if "license" in self._kwargs:
+            if isinstance(self._kwargs["license"], License):
+                return self._kwargs["license"]
+            return License(self._kwargs["license"], "github")
+        return None

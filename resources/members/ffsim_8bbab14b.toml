@@ -1,9 +1,9 @@
 name = "ffsim"
 url = "https://github.com/qiskit-community/ffsim"
 description = "ffsim is a software library for simulating fermionic quantum circuits that conserve particle number and the Z component of spin."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 affiliations = "IBM"
-labels = ["chemistry"]
+labels = ["chemistry", "physics"]
 interfaces = ["Python"]
 website = "https://qiskit-community.github.io/ffsim/"
 category = "Circuit simulator"
@@ -16,15 +16,15 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/ffsim"
 owner = "qiskit-community"
 repo = "ffsim"
-stars = 102
+stars = 103
 homepage = "https://qiskit-community.github.io/ffsim/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Faster simulation of fermionic quantum circuits."
 estimated_contributors = 12
 total_dependent_repositories = 17
-total_dependent_packages = 4
-last_commit = 2026-06-13
-last_activity = 2026-07-01
+total_dependent_packages = 5
+last_commit = 2026-07-18
+last_activity = 2026-07-20
 
 [badge]
 url = "https://qisk.it/e-8bbab14b"
@@ -32,14 +32,25 @@ style = "flat"
 
 [pypi.ffsim]
 package_name = "ffsim"
-version = "0.0.80"
-last_release_date = 2026-05-06
+version = "0.0.83"
+last_release_date = 2026-07-18
+license = "Apache-1.1"
 description = "Faster simulation of fermionic quantum circuits."
 url = "https://pypi.org/project/ffsim/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/kevinsung/",
+]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 30958
-last_180_days_downloads = 89404
+last_month_downloads = 32178
+last_180_days_downloads = 106159
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package ffsim declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

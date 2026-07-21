@@ -71,9 +71,9 @@ def request_json(
 
     if delay:
         if delay >= 900:
-            raise EcosystemError(f"delay for fetching {url} too long: {delay} sec")
+            raise EcosystemError(f"delay for fetching {url} too long: {delay:.0f} sec")
         if delay >= 5:
-            logger.info("Wait %s before fetching %s", delay, url)
+            logger.info("Wait %.0f secs before fetching %s", delay, url)
         time.sleep(delay)
 
     if post is not None:
@@ -85,7 +85,7 @@ def request_json(
 
     if not response.ok:
         if "rate" in response.reason or response.status_code == 429:
-            wait_for = delay * 1.5 if delay else 60
+            wait_for = delay * 2 if delay else 60
             if "X-RateLimit-Reset" in response.headers:
                 wait_for = int(response.headers["X-RateLimit-Reset"]) - int(time.time())
             return request_json(

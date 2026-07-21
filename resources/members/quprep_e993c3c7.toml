@@ -19,13 +19,13 @@ owner = "quprep"
 repo = "quprep"
 stars = 2
 homepage = "https://quprep.org"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "QuPrep is an open-source Python library for converting classical datasets into quantum-computing-ready formats. It provides a frame..."
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-28
-last_activity = 2026-06-28
+last_commit = 2026-07-06
+last_activity = 2026-07-06
 
 [badge]
 url = "https://qisk.it/e-e993c3c7"
@@ -34,14 +34,22 @@ style = "flat"
 [pypi.quprep]
 package_name = "quprep"
 version = "0.10.0"
-last_release_date = 2026-05-01
+last_release_date = 2026-05-30
+license = "Apache-1.1"
 description = "Quantum data preparation — the missing preprocessing layer between classical datasets and quantum computing frameworks"
 url = "https://pypi.org/project/quprep/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = ["https://pypi.org/org/quprep/"]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 152
-last_180_days_downloads = 1443
+last_month_downloads = 71
+last_180_days_downloads = 1476
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package quprep declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

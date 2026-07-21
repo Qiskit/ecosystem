@@ -2,7 +2,7 @@ name = "Conditional Measurement Toolbox"
 url = "https://github.com/alexg-jpg/conditional-measurements"
 description = "A software library (in progress) for implementing conditional projective measurement operations in Qiskit."
 contact_info = "alexander.greenwood@mail.utoronto.ca"
-labels = []
+labels = ["research"]
 interfaces = ["Python"]
 category = "Other"
 pattern_steps = ["Execute"]
@@ -16,13 +16,18 @@ url = "https://github.com/alexg-jpg/conditional-measurements"
 owner = "alexg-jpg"
 repo = "conditional-measurements"
 stars = 4
-license = "MIT License"
+license = "MIT"
 description = "A software library for implementing conditional projective measurement operations in Qiskit."
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-11-13
-last_activity = 2025-12-01T23:51:35Z
+last_activity = 2025-12-01
 
 [badge]
 url = "https://qisk.it/e-dc917437"
 style = "flat"
+
+[checks.G06]
+since = 2026-07-14
+details = "Last activity was 7 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "RECOMMENDATION"

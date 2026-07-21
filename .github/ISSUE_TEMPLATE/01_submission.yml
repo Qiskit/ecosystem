@@ -71,7 +71,7 @@ body:
     - Language binding
     - Converter
     - Qiskit addon
-    - Game/Fun
+    - Game/Educational
     - Paper artifact
     - Other
     default: 0
@@ -107,6 +107,11 @@ body:
     - unitary synthesis
     - high-level synthesis
     - openqasm
+    - Hamiltonian simulation
+    - tensor networks
+    - benchmarking
+    - GPU
+    - AI/LLM
 - id: interfaces
   type: dropdown
   validations:

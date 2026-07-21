@@ -1,0 +1,25 @@
+name = "quantum-chemistry-vqe"
+submission_number = 1224
+url = "https://github.com/Venkatallu11/quantum-chemistry-vqe"
+description = "Pure-Python VQE quantum chemistry: exact molecular energies verified vs PySCF, run on real IBM hardware."
+contact_info = "alluvenkat11@gmail.com"
+labels = ["chemistry", "demo", "AI/LLM"]
+interfaces = ["Python"]
+category = "Application"
+pattern_steps = ["Map"]
+packages = []
+uuid = "e52f2069-2e5c-40d2-9438-ddfcd5a92019"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/Venkatallu11/quantum-chemistry-vqe"
+owner = "Venkatallu11"
+repo = "quantum-chemistry-vqe"
+stars = 1
+license = "MIT"
+last_commit = 2026-07-12
+last_activity = 2026-07-12
+
+[badge]
+url = "https://qisk.it/e-e52f2069"
+style = "flat"

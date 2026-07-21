@@ -17,15 +17,15 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-addon-sqd"
 owner = "Qiskit"
 repo = "qiskit-addon-sqd"
-stars = 95
-homepage = "https://qiskit.github.io/qiskit-addon-sqd/"
-license = "Apache License 2.0"
+stars = 97
+homepage = "https://quantum.cloud.ibm.com/docs/en/addons/qiskit-addon-sqd"
+license = "Apache-2.0"
 description = "Sample-based Quantum Diagonalization: Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 estimated_contributors = 17
 total_dependent_repositories = 13
-total_dependent_packages = 2
-last_commit = 2026-07-02
-last_activity = 2026-07-02
+total_dependent_packages = 3
+last_commit = 2026-07-20
+last_activity = 2026-07-20
 
 [badge]
 url = "https://qisk.it/e-fe036eac"
@@ -35,12 +35,19 @@ style = "flat"
 package_name = "qiskit-addon-sqd"
 version = "0.12.1"
 last_release_date = 2026-01-16
+license = "Apache-1.1"
 description = "Classically postprocess noisy quantum samples to yield more accurate energy estimations"
 url = "https://pypi.org/project/qiskit-addon-sqd/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/calebj15/",
+  "https://pypi.org/user/mrossinek/",
+]
 requires_qiskit = "<3,>=1.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 25709
-last_180_days_downloads = 54781
+last_month_downloads = 48996
+last_180_days_downloads = 87478

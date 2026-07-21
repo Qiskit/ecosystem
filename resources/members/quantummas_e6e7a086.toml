@@ -1,21 +1,22 @@
 name = "Quantum MasterChef"
 url = "https://github.com/shravanpatel30/Quantum-MasterChef"
 description = "Combine the excitement of culinary arts with the challenges of quantum mechanics to learn about Qiskit and quantum computing."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 contact_info = "shravanpatel4@gmail.com"
 labels = []
 interfaces = ["Python", "Graphical User Interface (GUI)"]
-category = "Game/Fun"
+category = "Game/Educational"
 packages = []
 uuid = "e6e7a086-9b91-47b9-be78-f9c7bc680863"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/shravanpatel30/Quantum-MasterChef"
 owner = "shravanpatel30"
 repo = "Quantum-MasterChef"
 stars = 2
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Welcome to Quantum MasterChef, a unique and immersive quantum computing game that combines the excitement of culinary arts with the..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -24,3 +25,9 @@ last_commit = 2024-05-10
 [badge]
 url = "https://qisk.it/e-e6e7a086"
 style = "flat"
+
+[checks.G07]
+since = 2026-05-14
+details = "Last commit was 26 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/55"
+importance = "STRONG-RECOMMENDATION"

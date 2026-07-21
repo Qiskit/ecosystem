@@ -1,29 +1,36 @@
 name = "qdao"
 url = "https://github.com/Zhaoyilunnn/qdao"
 description = "A lightweight framework to enable configurable memory consumption when simulating large quantum circuits."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 contact_info = "zyilun8@gmail.com"
 affiliations = "Institute of Computing Technology, Chinese Academy of Sciences."
-labels = []
+labels = ["HPC"]
 interfaces = ["Python"]
 category = "Circuit simulator"
 packages = []
 uuid = "c39a1176-0a10-41c5-9961-f6f4f5da0c6c"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Zhaoyilunnn/qdao"
 owner = "Zhaoyilunnn"
 repo = "qdao"
 stars = 16
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Full State Quantum Circuit Simulation Beyond Memory Limit"
 estimated_contributors = 6
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-08-05
-last_activity = 2026-03-25T03:17:23Z
+last_activity = 2026-03-25
 
 [badge]
 url = "https://qisk.it/e-c39a1176"
 style = "flat"
+
+[checks.G07]
+since = 2026-05-14
+details = "Last commit was 23 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/51"
+importance = "STRONG-RECOMMENDATION"

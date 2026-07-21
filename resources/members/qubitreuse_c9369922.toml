@@ -1,9 +1,9 @@
 name = "qiskit-qubit-reuse"
 url = "https://github.com/qiskit-community/qiskit-qubit-reuse"
 description = "A Qiskit transpiler stage plugin that reuses qubits through mid-circuit measurement and reset."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 affiliations = "IBM"
-labels = ["research"]
+labels = ["research", "circuit optimization"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
 packages = []
@@ -14,14 +14,14 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-qubit-reuse"
 owner = "qiskit-community"
 repo = "qiskit-qubit-reuse"
-stars = 29
-license = "Apache License 2.0"
+stars = 30
+license = "Apache-2.0"
 description = "A Qiskit transpiler stage plugin to enable qubit reuse via mid-circuit measurement and reset."
 estimated_contributors = 3
 total_dependent_repositories = 2
 total_dependent_packages = 0
 last_commit = 2025-07-03
-last_activity = 2026-03-29T08:45:17Z
+last_activity = 2026-03-29
 
 [badge]
 url = "https://qisk.it/e-c9369922"
@@ -31,12 +31,20 @@ style = "flat"
 package_name = "qiskit-qubit-reuse"
 version = "0.0.2"
 last_release_date = 2024-02-05
+license = "Apache-2.0"
 description = "A Qiskit's compiler plugin to reuse qubits using midcircuit measurement"
 url = "https://pypi.org/project/qiskit-qubit-reuse/"
+status = "active"
+maintainers = ["https://pypi.org/user/danielleodigie/"]
 requires_qiskit = ">=0.43.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 64
-last_180_days_downloads = 179
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 47
+last_180_days_downloads = 184
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package qiskit-qubit-reuse declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

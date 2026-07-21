@@ -1,10 +1,10 @@
 name = "Qx86"
 url = "https://github.com/mistasparkaru/Qx86"
 description = "Qx86 is an Intel 8080/Z80 emulator which executes all salient points of Intel 8080/Z80 execution on IBM's quantum computers."
-license = "GNU General Public License (GPL)"
+license = "GPL-3.0"
 contact_info = "mistasparkaru@hotmail.co.uk"
 affiliations = "None"
-labels = ["cloud service"]
+labels = ["cloud service", "demo"]
 interfaces = ["Python"]
 website = "https://github.com/mistasparkaru/Qx86"
 category = "Application"
@@ -12,19 +12,26 @@ reference_paper = "https://ieeexplore.ieee.org/document/9878250"
 packages = []
 uuid = "a68e9142-dc31-4b9f-a851-413dd91222d7"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/mistasparkaru/Qx86"
 owner = "mistasparkaru"
 repo = "Qx86"
 stars = 2
-license = "GNU General Public License v3.0"
+license = "GPL-3.0"
 description = "Qx86 is an intel 8080/Z80 emulator written for IBMs Quantum Computers"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-08-20
-last_activity = 2026-02-03T00:00:08Z
+last_activity = 2026-02-03
 
 [badge]
 url = "https://qisk.it/e-a68e9142"
 style = "flat"
+
+[checks.G07]
+since = 2026-05-14
+details = "Last commit was 22 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/57"
+importance = "STRONG-RECOMMENDATION"

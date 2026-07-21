@@ -12,7 +12,7 @@
 
 """Tests for ecosystem/pypi.py."""
 
-from datetime import date, datetime
+from datetime import date
 import json
 import tempfile
 import unittest
@@ -41,8 +41,8 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             last_month_downloads=123,
         )
         qiskit_versions = {
-            "1.0.0": {"upload_at": datetime(2024, 1, 1)},
-            "2.0.0": {"upload_at": datetime(2025, 1, 1)},
+            "1.0.0": {"upload_at": date(2024, 1, 1)},
+            "2.0.0": {"upload_at": date(2025, 1, 1)},
         }
 
         self.assertEqual("banana-compiler", pypi_data.package_name)
@@ -56,7 +56,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
                     "requires_qiskit": ">=1,<2",
                     "compatible_with_qiskit_v1": True,
                     "compatible_with_qiskit_v2": False,
-                    "highest_supported_qiskit_release_date": datetime(2024, 1, 1),
+                    "highest_supported_qiskit_release_date": date(2024, 1, 1),
                     "highest_supported_qiskit_version": "1.0.0",
                     "last_month_downloads": 123,
                 },
@@ -90,18 +90,26 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
     def test_update_json_fetches_pypi_and_pypistats_data(self):
         """update_json stores PyPI and stats payloads."""
         pypi_payload = {"info": {"version": "1.2.3"}}
+        pypi_simple_payload = {"project-status": {"status": "active"}}
         stats_payload = {"recent_downloads": {"last_month": 10}}
         pypi_data = PyPIData("banana-compiler")
 
-        with patch("ecosystem.pypi.request_json", return_value=pypi_payload) as request:
+        with patch.object(
+            PyPIData, "request_pypi", return_value=pypi_payload
+        ) as request_pypi:
             with patch.object(
-                PyPIData, "request_pypistats", return_value=stats_payload
-            ) as request_stats:
-                pypi_data.update_json()
+                PyPIData, "request_pypi_simple", return_value=pypi_simple_payload
+            ) as request_simple:
+                with patch.object(
+                    PyPIData, "request_pypistats", return_value=stats_payload
+                ) as request_stats:
+                    pypi_data.update_json()
 
-        request.assert_called_once_with("pypi.org/pypi/banana-compiler/json")
+        request_pypi.assert_called_once_with()
+        request_simple.assert_called_once_with()
         request_stats.assert_called_once_with()
         self.assertEqual(pypi_payload, pypi_data.pypi_json)
+        self.assertEqual("active", pypi_data.status)
         self.assertEqual(10, pypi_data.last_month_downloads)
 
     def test_update_json_ignores_pypi_fetch_errors(self):
@@ -134,7 +142,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
 
         self.assertEqual("1.2.3", pypi_data.version)
         self.assertEqual("https://pypi.org/project/banana-compiler/", pypi_data.url)
-        self.assertEqual("Apache-2.0", pypi_data.license)
+        self.assertEqual("Apache-2.0", pypi_data.license.spdx_id)
         with self.assertRaises(AttributeError):
             getattr(pypi_data, "$.missing")
 
@@ -161,7 +169,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
 
     def test_last_release_date_prefers_explicit_value(self):
         """Explicit release dates are returned without inspecting JSON."""
-        release_date = datetime(2024, 1, 1)
+        release_date = date(2024, 1, 1)
         pypi_data = PyPIData("banana-compiler", last_release_date=release_date)
 
         self.assertEqual(release_date, pypi_data.last_release_date)
@@ -175,8 +183,8 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
                 "info": {"version": "1.2.3"},
                 "releases": {
                     "1.2.3": [
-                        {"upload_time": "2024-01-01T01:00:00"},
-                        {"upload_time": "2024-02-03T04:05:06"},
+                        {"upload_time": "2024-01-01"},
+                        {"upload_time": "2024-02-03"},
                     ]
                 },
             },
@@ -228,10 +236,10 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         """Compatibility helpers inspect available Qiskit releases."""
         pypi_data = PyPIData("banana-compiler", requires_qiskit=">=1,<2")
         qiskit_versions = {
-            "0.45.0": {"upload_at": datetime(2023, 1, 1)},
-            "1.0.0": {"upload_at": datetime(2024, 1, 1)},
-            "1.2.0": {"upload_at": datetime(2024, 5, 1)},
-            "2.0.0": {"upload_at": datetime(2025, 1, 1)},
+            "0.45.0": {"upload_at": date(2023, 1, 1)},
+            "1.0.0": {"upload_at": date(2024, 1, 1)},
+            "1.2.0": {"upload_at": date(2024, 5, 1)},
+            "2.0.0": {"upload_at": date(2025, 1, 1)},
         }
 
         with patch.object(
@@ -241,10 +249,10 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             self.assertFalse(pypi_data.compatible_with_qiskit_v2)
             self.assertEqual("1.2.0", pypi_data.highest_supported_qiskit_version)
             self.assertEqual(
-                datetime(2024, 5, 1), pypi_data.highest_supported_qiskit_release_date
+                date(2024, 5, 1), pypi_data.highest_supported_qiskit_release_date
             )
             self.assertEqual(
-                ("1.2.0", datetime(2024, 5, 1)),
+                ("1.2.0", date(2024, 5, 1)),
                 pypi_data.highest_supported_qiskit_version_and_release_date,
             )
 
@@ -261,8 +269,8 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         """No supported release yields no highest supported version/date tuple."""
         pypi_data = PyPIData("banana-compiler", requires_qiskit=">=3")
         qiskit_versions = {
-            "1.0.0": {"upload_at": datetime(2024, 1, 1)},
-            "2.0.0": {"upload_at": datetime(2025, 1, 1)},
+            "1.0.0": {"upload_at": date(2024, 1, 1)},
+            "2.0.0": {"upload_at": date(2025, 1, 1)},
         }
 
         with patch.object(
@@ -275,7 +283,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
     def test_all_qiskit_versions_loads_cached_file(self):
         """Qiskit release metadata is read from the package cache file."""
         pypi_data = PyPIData("banana-compiler")
-        cache_content = json.dumps({"1.0.0": {"upload_at": "2024-01-01T00:00:00"}})
+        cache_content = json.dumps({"1.0.0": {"upload_at": "2024-01-01"}})
 
         with patch("ecosystem.pypi.path.dirname", return_value="/cache"):
             with patch("builtins.open", mock_open(read_data=cache_content)):
@@ -289,10 +297,10 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         qiskit_payload = {
             "releases": {
                 "1.0.0": [
-                    {"upload_time_iso_8601": "2024-01-01T00:00:00"},
-                    {"upload_time_iso_8601": "2024-01-02T00:00:00"},
+                    {"upload_time_iso_8601": "2024-01-01"},
+                    {"upload_time_iso_8601": "2024-01-02"},
                 ],
-                "2.0.0": [{"upload_time_iso_8601": "2025-01-01T00:00:00"}],
+                "2.0.0": [{"upload_time_iso_8601": "2025-01-01"}],
             }
         }
 
@@ -307,7 +315,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         """A missing cache file triggers a PyPI refresh."""
         pypi_data = PyPIData("banana-compiler")
         qiskit_payload = {
-            "releases": {"1.0.0": [{"upload_time_iso_8601": "2024-01-01T00:00:00"}]}
+            "releases": {"1.0.0": [{"upload_time_iso_8601": "2024-01-01"}]}
         }
 
         with tempfile.TemporaryDirectory() as tmpdir:

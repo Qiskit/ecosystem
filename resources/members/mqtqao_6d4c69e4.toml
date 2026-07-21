@@ -1,30 +1,25 @@
 name = "MQT QAO"
 url = "https://github.com/cda-tum/mqt-qao"
-description = "Translate optimization problems into quantum-compliant formats and solve them with major quantum solvers."
-license = "MIT license"
-contact_info = "quantum.cda@xcit.tum.de"
-affiliations = "Technical University of Munich (TUM), Germany Politecnico di Torino, Italy"
-labels = ["circuit optimization", "optimization"]
-interfaces = ["Python"]
+license = "MIT"
+labels = ["optimization"]
 category = "Application"
-reference_paper = "https://arxiv.org/abs/2406.12840"
-documentation = "https://mqt.readthedocs.io/projects/qao/"
 packages = []
 uuid = "6d4c69e4-1e47-486c-b00f-8a60ae5e01d4"
-maturity = "experimental"
+maturity = "unmaintained"
+status = "Alumni"
 
 [github]
 url = "https://github.com/cda-tum/mqt-qao"
 owner = "cda-tum"
 repo = "mqt-qao"
 stars = 29
-license = "MIT License"
+license = "MIT"
 description = "MQT Quantum Auto Optimizer - A MQT Tool for Solving Optimization Problems with Quantum Computers"
-estimated_contributors = 7
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-29
-last_activity = 2026-06-29
+archived = true
+last_commit = 2026-07-03
+last_activity = 2026-07-03
 
 [badge]
 url = "https://qisk.it/e-6d4c69e4"
@@ -32,15 +27,15 @@ style = "flat"
 
 [pypi."mqt.qao"]
 package_name = "mqt-qao"
-version = "0.3.0"
-last_release_date = 2024-12-01
+version = "0.3.1"
+last_release_date = 2026-07-03
 description = "MQT Quantum Auto Optimizer: Automatic Framework for Solving Optimization Problems with Quantum Computers"
 url = "https://pypi.org/project/mqt.qao/"
 development_status = "4 - Beta"
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 139
-last_180_days_downloads = 458
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 270
+last_180_days_downloads = 584

@@ -1,7 +1,7 @@
 name = "Pauli Propagation"
 submission_number = 1172
 url = "https://github.com/Qiskit/pauli-prop"
-labels = ["utility-scale"]
+labels = ["utility-scale", "quantum information"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Qiskit addon"
@@ -15,14 +15,14 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/pauli-prop"
 owner = "Qiskit"
 repo = "pauli-prop"
-stars = 11
+stars = 12
 homepage = "https://qiskit.github.io/pauli-prop/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "A Rust-accelerated Python package for doing Pauli propagation"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-07-03
-last_activity = 2026-07-03
+last_activity = 2026-07-14
 
 [badge]
 url = "https://qisk.it/e-3ae8c34d"
@@ -32,12 +32,15 @@ style = "flat"
 package_name = "pauli-prop"
 version = "0.2.0"
 last_release_date = 2026-03-16
+license = "Apache-1.1"
 description = "Library for performing Pauli propagation."
 url = "https://pypi.org/project/pauli-prop/"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = "<3,>=2.1.2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 2005
-last_180_days_downloads = 9688
+last_month_downloads = 1794
+last_180_days_downloads = 10503

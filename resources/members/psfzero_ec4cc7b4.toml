@@ -3,7 +3,7 @@ submission_number = 1058
 url = "https://github.com/love-os-architect/psf-zero"
 description = "Geometric quantum-control extension for Qiskit. Achieves zero-friction phase sync via projective regularization to eliminate noise."
 contact_info = "love.os.architect@proton.me"
-labels = ["error mitigation", "optimization"]
+labels = ["error mitigation"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
 pattern_steps = ["Map", "Optimize"]
@@ -28,6 +28,6 @@ url = "https://qisk.it/e-ec4cc7b4"
 style = "flat"
 
 [checks.O01]
-since = 2026-07-02T11:46:20.861697
+since = 2026-07-02
 details = "No license could be found. Populate 'member.license' as soon as possible."
 importance = "CRITICAL"

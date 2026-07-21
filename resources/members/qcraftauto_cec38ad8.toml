@@ -1,10 +1,10 @@
 name = "QCRAFT AutoScheduler"
 url = "https://github.com/Qcraft-UEx/QCRAFT-AutoSchedulQ"
 description = "Optimize quantum circuit execution on IBM Quantum by reducing costs and wait times via task composition and qubit maximization."
-license = "MIT license"
+license = "MIT"
 contact_info = "jgaralo@unex.es"
 affiliations = "University of Extremadura, Spain"
-labels = ["research", "circuit optimization"]
+labels = ["research", "circuit optimization", "cloud service"]
 interfaces = ["Python"]
 website = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
 category = "Tooling"
@@ -24,7 +24,7 @@ estimated_contributors = 2
 total_dependent_repositories = 3
 total_dependent_packages = 0
 last_commit = 2025-10-28
-last_activity = 2025-10-28T08:42:09Z
+last_activity = 2026-07-14
 
 [badge]
 url = "https://qisk.it/e-cec38ad8"
@@ -38,10 +38,23 @@ license = "MIT"
 description = "A library for quantum circuit composition"
 url = "https://pypi.org/project/autoscheduler/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = ["https://pypi.org/user/jorgecs/"]
 requires_qiskit = "<3.0.0,>=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 122
-last_180_days_downloads = 593
+last_month_downloads = 75
+last_180_days_downloads = 570
+
+[checks.G06]
+since = 2026-06-14
+details = "Last activity was 8 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "RECOMMENDATION"
+
+[checks.G09]
+since = 2026-07-06
+details = "member.github.license not detected"
+discussion = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler/issues/3"
+importance = "RECOMMENDATION"

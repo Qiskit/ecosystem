@@ -1,10 +1,10 @@
 name = "QELM"
 url = "https://github.com/R-D-BioTech-Alaska/Qelm"
 description = "A quantum-powered NLP project. Creates ultra-compact, efficient LLMs that run instantly on small devices without data centers."
-license = "MIT license"
+license = "MIT"
 contact_info = "contact@rdbiotechalaska.com"
 affiliations = "R&D BioTech Alaska"
-labels = ["QML", "circuit building", "research"]
+labels = ["QML", "circuit building", "research", "AI/LLM"]
 interfaces = ["Python"]
 category = "Application"
 reference_paper = "https://doi.org/10.13140/RG.2.2.11844.90243"
@@ -19,13 +19,13 @@ owner = "R-D-BioTech-Alaska"
 repo = "Qelm"
 stars = 27
 homepage = "https://www.Qelm.org"
-license = "Other"
+license = "MIT"
 description = "Qelm - Quantum Enhanced Language Model"
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-02
-last_activity = 2026-07-02
+last_commit = 2026-07-20
+last_activity = 2026-07-20
 
 [badge]
 url = "https://qisk.it/e-8b3685bb"
@@ -38,10 +38,17 @@ last_release_date = 2025-07-28
 license = "MIT"
 description = "Quantum-Enhanced Language Model"
 url = "https://pypi.org/project/qelm/"
+status = "active"
+maintainers = ["https://pypi.org/user/Inserian/"]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 114
-last_180_days_downloads = 290
+last_month_downloads = 41
+last_180_days_downloads = 265
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package qelm declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

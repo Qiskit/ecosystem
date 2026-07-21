@@ -17,6 +17,8 @@ import sys
 import os
 from pathlib import Path
 
+from slugify import slugify
+
 from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
@@ -80,11 +82,16 @@ class CliCI:
             dao.write(member)
 
     @staticmethod
-    def validate_member(member_id: str, *, resources_dir: str | None = None) -> None:
+    def validate_member(
+        member_id: str, exclude: str = None, *, resources_dir: str | None = None
+    ) -> None:
         """TODO
 
         Args:
             member_id: loads the file ../resources/*_<member_id>.toml
+            exclude: like `-e "recommendation, legacy, best_practice"`. They can be category or
+             importance. Excluding here means, "do not exit with error if a failure in this
+             category".
 
         Returns:
             None (it has no side-effect)
@@ -93,10 +100,15 @@ class CliCI:
         resources_dir = Path(
             resources_dir or env_resources_dir or (Path.cwd() / "resources")
         )
-
+        exclude_set = (
+            {slugify(e) for e in exclude} if isinstance(exclude, tuple) else set()
+        )
+        if isinstance(exclude, str):
+            exclude_set.add(exclude)
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             report = validate_member(member, verbose_level="-v")
+            exit_failed = False
             if report.exitcode == 0:
                 print(f"::notice::  {member.name} ({member.name_id}) ✅")
                 if report.xfailed:
@@ -108,12 +120,27 @@ class CliCI:
                 for test in report.failed:
                     if test.passed:
                         continue
+                    if (
+                        slugify(report.checktoml.category_by_pytest_node(test.nodeid))
+                        in exclude_set
+                        or slugify(
+                            report.checktoml.importance_by_pytest_node(test.nodeid)
+                        )
+                        in exclude_set
+                    ):
+                        print(
+                            f"::warning:: {member.name} ({member.name_id}) - "
+                            f"{test.nodeid} failed ❎️ (but not hard block) \n"
+                        )
+                        continue
                     print(
                         f"::error:: {member.name} ({member.name_id}) - "
                         f"{test.nodeid} failed ❌\n"
                     )
+                    exit_failed = True
                     print(f"::group:: {test.longreprtext}")
                     print("::endgroup::")
+            if exit_failed:
                 sys.exit(report.exitcode)
 
     @staticmethod
@@ -133,6 +160,10 @@ class CliCI:
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             print(f"\n::group:: {member.name}️ ({member.name_id})")
+            if member.status == "Alumni":
+                print('member.status == "Alumni", so skip')
+                print("::endgroup::")
+                continue
             for update_method_str in to_update:
                 print(f"Updating {update_method_str}️")
                 update_method = getattr(member, f"update_{update_method_str}")

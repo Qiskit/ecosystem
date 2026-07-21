@@ -1,8 +1,8 @@
 name = "qiskit-quimb"
 url = "https://github.com/qiskit-community/qiskit-quimb"
 description = "Simulate Qiskit circuits using quimb."
-license = "Apache License 2.0"
-labels = []
+license = "Apache-2.0"
+labels = ["tensor networks"]
 interfaces = ["Python"]
 category = "Circuit simulator"
 documentation = "https://qiskit-community.github.io/qiskit-quimb/"
@@ -14,15 +14,15 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-quimb"
 owner = "qiskit-community"
 repo = "qiskit-quimb"
-stars = 18
+stars = 17
 homepage = "https://qiskit-community.github.io/qiskit-quimb/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Simulate Qiskit circuits using quimb."
 estimated_contributors = 3
-total_dependent_repositories = 6
+total_dependent_repositories = 7
 total_dependent_packages = 2
-last_commit = 2026-01-31
-last_activity = 2026-06-01
+last_commit = 2026-07-10
+last_activity = 2026-07-10
 
 [badge]
 url = "https://qisk.it/e-a304538c"
@@ -32,12 +32,23 @@ style = "flat"
 package_name = "qiskit-quimb"
 version = "0.0.10"
 last_release_date = 2026-01-31
+license = "Apache-1.1"
 description = "Simulate Qiskit circuits using quimb"
 url = "https://pypi.org/project/qiskit-quimb/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/kevinsung/",
+]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 19329
-last_180_days_downloads = 50402
+last_month_downloads = 20481
+last_180_days_downloads = 59084
+
+[checks.P10]
+since = 2026-07-14
+details = "Python package qiskit-quimb declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

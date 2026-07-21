@@ -1,7 +1,7 @@
 name = "dsm-swap"
 url = "https://github.com/qiskit-community/dsm-swap"
 description = "A doubly stochastic matrices-based approach to optimal qubit routing."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 labels = ["circuit optimization", "research"]
 interfaces = ["Python"]
 created_at = 2023-03-14
@@ -9,20 +9,22 @@ category = "Transpiler plugin"
 documentation = "https://github.com/qiskit-community/dsm-swap/tree/main/docs"
 packages = []
 uuid = "beaaab32-58d4-496f-8428-e6d88fa1e989"
-maturity = "production-ready"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/qiskit-community/dsm-swap"
 owner = "qiskit-community"
 repo = "dsm-swap"
 stars = 8
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "A doubly stochastic matrices-based approach to optimal qubit routing"
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
+archived = true
 last_commit = 2024-05-29
-last_activity = 2025-11-15T05:58:18Z
+last_activity = 2026-07-20
 
 [badge]
 url = "https://qisk.it/e-beaaab32"

@@ -1,28 +1,29 @@
 name = "QPong"
 url = "https://github.com/QPong/QPong"
 description = "A quantum version of the classic game Pong built with Qiskit and PyGame."
-license = "Apache 2.0"
+license = "Apache-2.0"
 contact_info = "ukskosana@gmail.com"
 labels = []
 interfaces = ["Graphical User Interface (GUI)"]
 created_at = 2023-03-14
-category = "Game/Fun"
+category = "Game/Educational"
 packages = []
 uuid = "56eb0ca6-4dd5-4954-a059-96256fd0ab26"
-maturity = "production-ready"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/QPong/QPong"
 owner = "QPong"
 repo = "QPong"
 stars = 123
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "A quantum version of the classic Pong"
 estimated_contributors = 9
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2024-06-15
-last_activity = 2026-04-04T16:43:38Z
+last_activity = 2026-04-04
 
 [badge]
 url = "https://qisk.it/e-56eb0ca6"

@@ -1,10 +1,10 @@
 name = "fast-pauli"
 url = "https://github.com/qognitive/fast-pauli"
 description = "Conduct efficient multiplication of tensor products of Pauli matrices against a batch of vectors and other mathematical operations."
-license = "BSD 2-Clause \"Simplified\" or \"FreeBSD\" license"
+license = "BSD-2-Clause"
 contact_info = "dev@qognitive.io"
 affiliations = "Qognitive Inc"
-labels = []
+labels = ["HPC", "quantum information"]
 interfaces = ["Python", "C++"]
 website = "https://qognitive.io"
 category = "Application"
@@ -20,13 +20,13 @@ owner = "qognitive"
 repo = "fast-pauli"
 stars = 15
 homepage = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
-license = "BSD 2-Clause \"Simplified\" License"
+license = "BSD-2-Clause"
 description = "Python/C++ library for optimized operations on Pauli matrices and Pauli strings"
 estimated_contributors = 4
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-04-09
-last_activity = 2025-10-31T17:43:20Z
+last_activity = 2026-07-14
 
 [badge]
 url = "https://qisk.it/e-b4d78374"
@@ -38,10 +38,31 @@ version = "0.0.35"
 last_release_date = 2025-04-09
 description = "fast pauli"
 url = "https://pypi.org/project/fast-pauli/"
+status = "active"
+maintainers = [
+  "https://pypi.org/user/rsamson78/",
+  "https://pypi.org/user/vertefra-qcog/",
+]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 263
-last_180_days_downloads = 2672
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 311
+last_180_days_downloads = 2489
+
+[checks.G06]
+since = 2026-07-14
+details = "Last activity was 8 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+importance = "RECOMMENDATION"
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package fast-pauli declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
+[checks.P12]
+since = 2026-07-06
+details = "member.pypi.fast-pauli does not have a declared license"
+discussion = "https://github.com/qognitive/fast-pauli/issues/97"
+importance = "RECOMMENDATION"

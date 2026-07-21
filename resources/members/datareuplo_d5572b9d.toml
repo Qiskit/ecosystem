@@ -25,7 +25,7 @@ url = "https://github.com/Carlosandp/qiskit-data-reuploading"
 owner = "Carlosandp"
 repo = "qiskit-data-reuploading"
 stars = 4
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Data re-uploading quantum classifier for Qiskit 2.x — pip-installable, sklearn-compatible"
 last_commit = 2026-06-07
 last_activity = 2026-06-14
@@ -38,13 +38,21 @@ style = "flat"
 package_name = "qiskit-data-reuploading"
 version = "0.1.0"
 last_release_date = 2026-05-29
+license = "Apache-2.0"
 description = "Data re-uploading quantum classifier compatible with Qiskit 2.x — pip-installable, sklearn-compatible"
 url = "https://pypi.org/project/qiskit-data-reuploading/"
 development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/caduranpd/"]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-06-14
-highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 99
-last_180_days_downloads = 232
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 58
+last_180_days_downloads = 256
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package qiskit-data-reuploading declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

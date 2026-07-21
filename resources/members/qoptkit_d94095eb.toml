@@ -1,16 +1,17 @@
 name = "QoptKIT"
 url = "https://github.com/SOQCSAdmin/QoptKIT"
 description = "Translate Qiskit circuits to quantum-optical circuits, simulate them, then translate the results back to qubit encodings."
-license = "Apache License 2.0"
+license = "Apache-2.0"
 contact_info = "soqcslib@gmail.com"
 affiliations = "National University of Ireland Maynooth"
-labels = []
+labels = ["physics"]
 interfaces = ["Python"]
 category = "Converter"
 documentation = "https://soqcsadmin.github.io/QoptKIT/"
 packages = []
 uuid = "d94095eb-85cf-42ea-a70e-fa1735225b68"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/SOQCSAdmin/QoptKIT"
@@ -18,7 +19,7 @@ owner = "SOQCSAdmin"
 repo = "QoptKIT"
 stars = 1
 homepage = "https://soqcsadmin.github.io/QoptKIT/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Optical circuits in Qiskit. Translate Qiskit circuits to quantum-optical circuits made of phase shifters and beamsplitters, simulat..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -27,3 +28,9 @@ last_commit = 2024-03-10
 [badge]
 url = "https://qisk.it/e-d94095eb"
 style = "flat"
+
+[checks.G07]
+since = 2026-05-14
+details = "Last commit was 28 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+discussion = "https://github.com/orgs/Qiskit/discussions/53"
+importance = "STRONG-RECOMMENDATION"

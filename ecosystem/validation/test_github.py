@@ -12,9 +12,14 @@
 
 """Validations involving section member.github"""
 
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name,missing-function-docstring
+
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 import pytest
+
+from . import ibm_controlled_gh_org
 
 
 @pytest.fixture(autouse=True)
@@ -27,11 +32,91 @@ def skip_github(member):
 
 def test_G05(member):
     """GitHub repository is archived?"""
-    if hasattr(member.github, "archived") and member.github.archived:
-        assert hasattr(
-            member, "maturity"
-        ), "GitHub repository archived, so member.maturity must exist and be `as-is`"
-        assert member.maturity in [
-            "as-is",
-            "archived",
-        ], "GitHub repository archived and member.maturity is not `as-is` or `archived`"
+    if hasattr(member, "maturity") and member.maturity == "as-is":
+        pytest.skip("`as-is` projects are exempt from activity checks")
+    else:
+        assert not (
+            hasattr(member.github, "archived") and member.github.archived
+        ), "GitHub repository archived"
+
+
+def test_G06(member):
+    """Have maintainer activity within the last 6 months"""
+    if member.maturity == "as-is":
+        pytest.skip("`as-is` projects are exempt from activity checks")
+
+    last_activity = member.github.last_activity
+    if last_activity is None:
+        pytest.skip("No member.github.last_activity date")
+
+    relative = relativedelta(date.today(), last_activity)
+    months_difference = (relative.years * 12) + relative.months
+
+    assert months_difference <= 6, (
+        f"Last activity was {months_difference} months ago, which probably means that the project "
+        "is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+    )
+
+
+def test_G07(member):
+    """Have last commit within the last 18 months"""
+    if member.maturity == "as-is":
+        pytest.skip("`as-is` projects are exempt from activity checks")
+
+    last_commit = member.github.last_commit
+    if last_commit is None:
+        pytest.skip("No member.github.last_commit date")
+
+    relative = relativedelta(date.today(), last_commit)
+    months_difference = (relative.years * 12) + relative.months
+
+    assert months_difference <= 18, (
+        f"Last commit was {months_difference} months ago, which is more "
+        "than 18 months ago. Please update the GitHub repository or set "
+        "member.maturity to `as-is`."
+    )
+
+
+def test_G08(member):
+    """Unmaintaned projects should archive their GitHub repository"""
+    if member.maturity in ["deprecated", "unmaintaned"]:
+        assert (
+            member.github.archived
+        ), "unsupported project should have an archived GitHub org"
+
+
+def test_G09(member):
+    if str(member.github.license) in ["None", "Other"]:
+        assert (
+            member.github.license.license_name is not None
+        ), "member.github.license not detected"
+        assert (
+            member.github.license.license_name != "Other"
+        ), "member.github.license not detected"
+
+
+def test_G10(member):
+    if member.github.license:
+        if str(member.github.license) in ["None", "Other"]:
+            pytest.skip("No member.github.license, already covered by [G09]")
+        assert (
+            member.github.license.is_osi_approved()
+        ), "member.github.license is not OSI-approved"
+
+
+def test_G11(member):
+    """
+    Unmaintaned projects should be archived when the repo is on an IBM-controlled organization"
+    """
+    if not hasattr(member, "github"):
+        pytest.skip("member.github does not exist")
+    if member.github.owner.lower() not in ibm_controlled_gh_org:
+        pytest.skip("repository is on an IBM-controlled organization")
+    archived = member.github.archived if hasattr(member.github, "archived") else False
+    if archived:
+        pytest.skip("project repository is already archived")
+    if member.maturity in ["deprecated", "unmaintaned", "as-is"]:
+        assert archived, (
+            f"Unsupported project (`member.maturity == {member.maturity}`"
+            "should have an archived GitHub repository"
+        )
