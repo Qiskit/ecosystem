@@ -7,8 +7,8 @@ interfaces = ["Python"]
 category = "Tooling"
 packages = []
 uuid = "bb5d0da9-1523-4756-bda2-43d970b1fc51"
-maturity = "production-ready"
-status = "Under revision"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/qiskit-community/quantum-prototype-template"
@@ -20,6 +20,7 @@ description = "A template repository for generating new quantum prototypes based
 estimated_contributors = 7
 total_dependent_repositories = 0
 total_dependent_packages = 0
+archived = true
 last_commit = 2024-09-11
 last_activity = 2026-07-17
 
@@ -27,32 +28,7 @@ last_activity = 2026-07-17
 url = "https://qisk.it/e-bb5d0da9"
 style = "flat"
 
-[pypi.vqls-prototype]
-package_name = "vqls-prototype"
-version = "0.2.0"
-last_release_date = 2023-11-03
-description = "Repository for a quantum prototype"
-url = "https://pypi.org/project/vqls-prototype/"
-status = "active"
-maintainers = ["https://pypi.org/user/nico_reno/"]
-requires_qiskit = ">=0.14.1"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-07-02
-highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 41
-last_180_days_downloads = 225
-
 [checks.G07]
-xfailed = "Probably fine to have low activity in a template repository, but it is worth checking if the repository is still maintained."
+since = 2026-05-14
+details = "Last commit was 22 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
 importance = "STRONG-RECOMMENDATION"
-
-[checks.P10]
-since = 2026-07-09
-details = "Python package vqls-prototype declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06
-details = "member.pypi.vqls-prototype does not have a declared license"
-importance = "RECOMMENDATION"
