@@ -12,8 +12,6 @@
 
 """URL Validations"""
 
-from urllib.parse import urlparse
-
 import pytest
 
 # pylint: disable=missing-function-docstring, missing-class-docstring
@@ -30,41 +28,6 @@ class TestURLs:
                 yield from TestURLs.get_all_urls(getattr(member, key))
             else:
                 continue
-
-    @staticmethod
-    def normalize_url(url):
-        """Normalize URL for comparison."""
-
-        if url is None:
-            return None, None
-
-        parsed = urlparse(str(url))
-
-        hostname = (parsed.hostname or "").lower()
-
-        if hostname.startswith("www."):
-            hostname = hostname[4:]
-
-        path = parsed.path.rstrip("/")
-
-        return hostname, path
-
-    @staticmethod
-    def is_same_or_subpath(candidate, reference):
-        """
-        Check whether candidate duplicates or points inside reference.
-        """
-
-        candidate_host, candidate_path = TestURLs.normalize_url(candidate)
-
-        reference_host, reference_path = TestURLs.normalize_url(reference)
-
-        if candidate_host != reference_host:
-            return False
-
-        return candidate_path == reference_path or candidate_path.startswith(
-            reference_path + "/"
-        )
 
     def test_http(self, member):
         for url in TestURLs.get_all_urls(member):
@@ -116,7 +79,7 @@ class TestURLs:
                 )
 
     def test_027(self, member):
-        """Website should not duplicate GitHub or PyPI URLs"""
+        """Website should not be a GitHub or PyPI URL."""
 
         website_url = getattr(member, "website")
 
@@ -125,20 +88,10 @@ class TestURLs:
 
         hostname = website_url.hostname or ""
 
-        # Reject GitHub repository URLs as website
-        repository_url = getattr(member, "url")
-
-        if repository_url is not None and repository_url.hostname.lower().endswith(
+        assert not hostname.endswith(
             "github.com"
-        ):
-            assert not TestURLs.is_same_or_subpath(
-                website_url,
-                repository_url,
-            ), (
-                "The field `member.website` should not "
-                "be the GitHub repository."
-            )
+        ), "The field `member.website` should not be the GitHub repository."
 
         assert not (
             hostname.endswith("pypi.org") or hostname.endswith("pypi.python.org")
-        ), ("The field `member.website` should not point to a PyPI project URL.")
+        ), "The field `member.website` should not point to a PyPI project URL."
