@@ -16,7 +16,7 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/ffsim"
 owner = "qiskit-community"
 repo = "ffsim"
-stars = 102
+stars = 103
 homepage = "https://qiskit-community.github.io/ffsim/"
 license = "Apache-2.0"
 description = "Faster simulation of fermionic quantum circuits."
@@ -24,7 +24,7 @@ estimated_contributors = 12
 total_dependent_repositories = 17
 total_dependent_packages = 5
 last_commit = 2026-07-18
-last_activity = 2026-07-19
+last_activity = 2026-07-20
 
 [badge]
 url = "https://qisk.it/e-8bbab14b"
@@ -47,8 +47,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 33281
-last_180_days_downloads = 106028
+last_month_downloads = 32178
+last_180_days_downloads = 106159
 
 [checks.P10]
 since = 2026-07-09
