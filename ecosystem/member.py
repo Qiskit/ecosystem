@@ -75,7 +75,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.ibm_maintained = ibm_maintained
         self.created_at = created_at
         self.updated_at = updated_at
-        self.website = website
+        self.website = URL(website) if isinstance(website, str) else website
         self.category = category
         self.pattern_steps = pattern_steps
         self.reference_paper = (
@@ -340,12 +340,14 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         only udpates if maturity was not:
           - "as-is"
           - "unmaintained"
+          - "archived"
         """
         skip_if = [
             "as-is",
             "unmaintained",
+            "archived",
         ]
         if self.maturity in skip_if:
             return
         if hasattr(self.github, "archived") and self.github.archived:
-            self.maturity = "unmaintained"
+            self.maturity = "archived"

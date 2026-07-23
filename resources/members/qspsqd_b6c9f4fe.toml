@@ -17,7 +17,6 @@ pattern_steps = []
 packages = []
 uuid = "b6c9f4fe-8d25-48fa-832b-5bd79725b9da"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/JoelHBierman/QSP-SQD"
@@ -37,5 +36,5 @@ style = "flat"
 
 [checks.G06]
 since = 2026-07-14
-details = "Last activity was 14 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+details = "Last activity was 14 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"

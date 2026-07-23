@@ -40,6 +40,7 @@ def request_json(
     parser=None,
     content_handler=None,
     delay=None,
+    token=None,
 ):
     # pylint: disable=too-many-branches
     """Requests the JSON in <url> with <headers>
@@ -59,7 +60,7 @@ def request_json(
     }
 
     if url.hostname.endswith("api.github.com"):
-        token = os.getenv("GH_TOKEN")
+        token = os.getenv("GH_TOKEN") if token is None else token
         if token:
             headers["Authorization"] = "token " + token
         headers["User-Agent"] = "github.com/Qiskit/ecosystem/"

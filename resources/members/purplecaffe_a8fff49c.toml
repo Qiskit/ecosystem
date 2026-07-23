@@ -47,6 +47,11 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 24
 last_180_days_downloads = 267
 
+[checks.G06]
+since = 2026-07-23
+details = "Last activity was 7 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+importance = "RECOMMENDATION"
+
 [checks.P10]
 since = 2026-07-14
 details = "Python package purplecaffeine declared itself compatible to a not-yet-released major version of Qiskit"

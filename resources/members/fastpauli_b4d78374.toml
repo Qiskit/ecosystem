@@ -51,11 +51,6 @@ highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 310
 last_180_days_downloads = 2456
 
-[checks.G06]
-since = 2026-07-14
-details = "Last activity was 8 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-importance = "RECOMMENDATION"
-
 [checks.P10]
 since = 2026-07-09
 details = "Python package fast-pauli declared itself compatible to a not-yet-released major version of Qiskit"
