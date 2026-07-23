@@ -34,18 +34,18 @@ style = "flat"
 
 [pypi.qiskit-serverless]
 package_name = "qiskit-serverless"
-version = "0.33.0"
-last_release_date = 2026-07-09
+version = "0.34.0"
+last_release_date = 2026-07-22
 license = "Apache-2.0"
 description = "An open-source SDK for resource management in quantum computing workflows."
 url = "https://pypi.org/project/qiskit-serverless/"
 development_status = "3 - Alpha"
 status = "active"
 maintainers = ["https://pypi.org/org/qiskit/", "https://pypi.org/user/Tansito/"]
-requires_qiskit = "<3,>=1.4"
-compatible_with_qiskit_v1 = true
+requires_qiskit = "<3,>=2.2"
+compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 17926
-last_180_days_downloads = 76366
+last_month_downloads = 18210
+last_180_days_downloads = 76775
