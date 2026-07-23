@@ -62,8 +62,3 @@ since = 2026-07-06
 details = "member.pypi.fast-pauli does not have a declared license"
 discussion = "https://github.com/qognitive/fast-pauli/issues/97"
 importance = "RECOMMENDATION"
-
-[checks.027]
-since = 2026-07-23
-details = "'str' object has no attribute 'hostname'"
-importance = "STRONG-RECOMMENDATION"

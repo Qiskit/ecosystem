@@ -75,7 +75,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.ibm_maintained = ibm_maintained
         self.created_at = created_at
         self.updated_at = updated_at
-        self.website = website
+        self.website = (
+            URL(website) if isinstance(website, str) else website
+        )
         self.category = category
         self.pattern_steps = pattern_steps
         self.reference_paper = (

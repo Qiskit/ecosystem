@@ -54,8 +54,3 @@ last_180_days_downloads = 53640
 since = 2026-07-09
 details = "Python package mqt-qcec declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
-
-[checks.027]
-since = 2026-07-23
-details = "'str' object has no attribute 'hostname'"
-importance = "STRONG-RECOMMENDATION"

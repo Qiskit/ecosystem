@@ -57,5 +57,5 @@ importance = "RECOMMENDATION"
 
 [checks.027]
 since = 2026-07-23
-details = "'str' object has no attribute 'hostname'"
+details = "The field `member.website` should not be the GitHub repository."
 importance = "STRONG-RECOMMENDATION"
