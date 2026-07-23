@@ -13,6 +13,7 @@ documentation = "https://mqt.readthedocs.io/projects/core"
 packages = []
 uuid = "2309e6fb-3077-4c8e-af3f-bddf4d6cb458"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/core"
@@ -53,3 +54,8 @@ last_180_days_downloads = 145207
 since = 2026-07-14
 details = "Python package mqt-core declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[checks.027]
+since = 2026-07-23
+details = "'str' object has no attribute 'hostname'"
+importance = "STRONG-RECOMMENDATION"

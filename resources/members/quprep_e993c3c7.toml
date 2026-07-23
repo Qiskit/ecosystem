@@ -12,6 +12,7 @@ documentation = "https://docs.quprep.org"
 packages = []
 uuid = "e993c3c7-09e9-4916-a3eb-fb4e9266bedf"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/quprep/quprep"
@@ -53,3 +54,8 @@ last_180_days_downloads = 1500
 since = 2026-07-09
 details = "Python package quprep declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[checks.027]
+since = 2026-07-23
+details = "'str' object has no attribute 'hostname'"
+importance = "STRONG-RECOMMENDATION"

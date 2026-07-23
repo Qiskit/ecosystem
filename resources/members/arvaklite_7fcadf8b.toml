@@ -11,6 +11,7 @@ pattern_steps = ["Optimize"]
 packages = []
 uuid = "7fcadf8b-f043-4eac-a491-9783a1c00cfe"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/hiq-lab/arvak-lite"
@@ -50,3 +51,8 @@ last_180_days_downloads = 580
 since = 2026-07-09
 details = "Python package arvak-lite declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[checks.027]
+since = 2026-07-23
+details = "'str' object has no attribute 'hostname'"
+importance = "STRONG-RECOMMENDATION"

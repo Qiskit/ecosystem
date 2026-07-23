@@ -9,7 +9,7 @@ category = "Application"
 documentation = "https://github.com/qiskit-community/prototype-quantum-kernel-training/tree/main/docs"
 packages = []
 uuid = "6daa87ef-87ea-4dc9-aeed-3b9e8d202fd9"
-maturity = "production-ready"
+maturity = "unmaintained"
 status = "Under revision"
 
 [github]
@@ -30,6 +30,11 @@ last_activity = 2026-05-31
 [badge]
 url = "https://qisk.it/e-6daa87ef"
 style = "flat"
+
+[checks.G05]
+since = 2026-07-23
+details = "GitHub repository archived"
+importance = "CRITICAL"
 
 [checks.G07]
 since = 2026-05-14

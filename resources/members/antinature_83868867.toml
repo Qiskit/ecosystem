@@ -55,3 +55,8 @@ since = 2026-04-30
 details = "Python package antinature is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/mk0dz/antinature/issues/1"
 importance = "IMPORTANT"
+
+[checks.027]
+since = 2026-07-23
+details = "'str' object has no attribute 'hostname'"
+importance = "STRONG-RECOMMENDATION"

@@ -11,7 +11,6 @@ reference_paper = "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.86.032
 packages = []
 uuid = "0533cf1a-7462-484b-9c47-241cc6b3dcb5"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/NagyTamas0122/QuantumNetworkCoding"
@@ -30,5 +29,5 @@ style = "flat"
 
 [checks.G06]
 since = 2026-07-14
-details = "Last activity was 7 months ago, which is more than 6 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+details = "Last activity was 7 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"

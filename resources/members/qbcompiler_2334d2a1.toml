@@ -12,6 +12,7 @@ documentation = "https://mwpwalshe.github.io/qb-compiler/"
 packages = []
 uuid = "2334d2a1-93bc-4652-8e15-ac395b2d3dd9"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/mwpwalshe/qb-compiler"
@@ -47,3 +48,8 @@ highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
 last_month_downloads = 82
 last_180_days_downloads = 1694
+
+[checks.027]
+since = 2026-07-23
+details = "'str' object has no attribute 'hostname'"
+importance = "STRONG-RECOMMENDATION"

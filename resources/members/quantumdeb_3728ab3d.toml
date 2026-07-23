@@ -11,6 +11,7 @@ category = "Tooling"
 packages = []
 uuid = "3728ab3d-5b7b-416d-ad73-8e55a41091ca"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/quantag/qdb-qscore"
@@ -28,3 +29,8 @@ last_activity = 2026-01-19
 [badge]
 url = "https://qisk.it/e-3728ab3d"
 style = "flat"
+
+[checks.027]
+since = 2026-07-23
+details = "'str' object has no attribute 'hostname'"
+importance = "STRONG-RECOMMENDATION"
