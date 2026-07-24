@@ -20,8 +20,8 @@ stars = 5
 license = "Apache-2.0"
 description = "optimally compile arbitrary two-qubit unitaries into heterogeneous native gate sets"
 estimated_contributors = 3
-total_dependent_repositories = 2
-total_dependent_packages = 1
+total_dependent_repositories = 0
+total_dependent_packages = 0
 last_commit = 2026-05-21
 last_activity = 2026-07-20
 
@@ -44,5 +44,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 196
+last_month_downloads = 194
 last_180_days_downloads = 1511
