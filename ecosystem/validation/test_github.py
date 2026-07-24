@@ -86,7 +86,9 @@ def test_G08(member):
 
 
 def test_G09(member):
-    if str(member.github.license) in ["None", "Other"]:
+    assert hasattr(member.github, "license"), "member.github.license does not exist"
+
+    if member.github.license and str(member.github.license) in ["None", "Other"]:
         assert (
             member.github.license.license_name is not None
         ), "member.github.license not detected"
@@ -96,7 +98,7 @@ def test_G09(member):
 
 
 def test_G10(member):
-    if member.github.license:
+    if hasattr(member.github, "license"):
         if str(member.github.license) in ["None", "Other"]:
             pytest.skip("No member.github.license, already covered by [G09]")
         assert (
