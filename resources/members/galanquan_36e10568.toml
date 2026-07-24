@@ -6,12 +6,11 @@ contact_info = "albayaty@pdx.edu"
 affiliations = "Department of Electrical and Computer Engineering at Portland State University"
 labels = ["circuit building", "research"]
 interfaces = ["Python"]
-category = "Application"
+category = "Paper artifact"
 reference_paper = "https://doi.org/10.48550/arXiv.2311.06760"
 packages = []
 uuid = "36e10568-9c53-4b9b-b658-8907e5e2edb9"
-maturity = "production-ready"
-status = "Under revision"
+maturity = "as-is"
 
 [github]
 url = "https://github.com/albayaty/gala_quantum_library"
@@ -27,9 +26,3 @@ last_commit = 2024-10-20
 [badge]
 url = "https://qisk.it/e-36e10568"
 style = "flat"
-
-[checks.G07]
-since = 2026-05-14
-details = "Last commit was 21 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-discussion = "https://github.com/orgs/Qiskit/discussions/46#discussioncomment-17650276"
-importance = "STRONG-RECOMMENDATION"

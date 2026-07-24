@@ -6,12 +6,11 @@ contact_info = "albayaty@pdx.edu"
 affiliations = "Department of Electrical and Computer Engineering at Portland State University"
 labels = ["circuit optimization", "research", "circuit building"]
 interfaces = ["Python"]
-category = "Application"
+category = "Paper artifact"
 reference_paper = "https://doi.org/10.48550/arXiv.2408.01025"
 packages = []
 uuid = "8868c7af-adce-48ee-9ca9-d066fb569cf4"
-maturity = "production-ready"
-status = "Under revision"
+maturity = "as-is"
 
 [github]
 url = "https://github.com/albayaty/cala_quantum_library"
@@ -28,9 +27,3 @@ last_activity = 2026-01-20
 [badge]
 url = "https://qisk.it/e-8868c7af"
 style = "flat"
-
-[checks.G07]
-since = 2026-05-14
-details = "Last commit was 21 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-discussion = "https://github.com/orgs/Qiskit/discussions/46"
-importance = "STRONG-RECOMMENDATION"
