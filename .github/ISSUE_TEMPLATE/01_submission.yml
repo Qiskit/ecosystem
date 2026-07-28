@@ -155,20 +155,6 @@ body:
     - bugfixing only
     - as-is
     default: 0
-- id: pattern_steps
-  type: dropdown
-  validations:
-    required: false
-  attributes:
-    label: Qiskit Pattern steps
-    description: >
-      Can this software help a user to work in one or more steps of  the [Qiskit Pattern](https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns)?
-    multiple: true
-    options:
-    - Map
-    - Optimize
-    - Execute
-    - Post-process
 - type: markdown
   attributes:
     value: '---'
