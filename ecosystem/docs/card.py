@@ -128,7 +128,6 @@ class ProjectSummaryCard(Card):
         interfaces=None,
         category=None,
         labels=None,
-        pattern_steps=None,
         ibm_maintained=None,
         status=None,
         maturity=None,
@@ -137,7 +136,6 @@ class ProjectSummaryCard(Card):
         self.interfaces = interfaces
         self.category = category
         self.labels = labels
-        self.pattern_steps = pattern_steps
         self.ibm_maintained = ibm_maintained
         self.status = status
         self.maturity = maturity
@@ -159,7 +157,6 @@ class ProjectSummaryCard(Card):
             interfaces=project.interfaces,
             category=project.category,
             labels=project.labels,
-            pattern_steps=project.pattern_steps,
             ibm_maintained=project.ibm_maintained,
         )
 
@@ -223,7 +220,6 @@ class ProjectSummaryCard(Card):
         ret += self.interfaces_lines()
         ret += self.category_lines()
         ret += self.labels_lines()
-        ret += self.pattern_steps_lines()
         ret += self.ibm_maintained_lines()
         return ret
 
@@ -307,24 +303,6 @@ class ProjectSummaryCard(Card):
                 [f"[All the projects labeled with `{l}`](#)" for l in self.labels],
             )
         return self.bullet(":material-tag-off-outline:", "**No labels**")
-
-    def pattern_steps_lines(self):
-        """Bullet for member.pattern_steps"""
-        if self.pattern_steps:
-            return self.multi_bullet(
-                ":material-tally-mark-4:",
-                (
-                    " **Qiskit Pattern steps**"
-                    if len(self.pattern_steps) == 1
-                    else " **Qiskit Pattern step**"
-                ),
-                [f"`{l}`" for l in self.pattern_steps],
-                [
-                    f"All the projects tagged wit the Qiskit Pattern step `{l}`](#)"
-                    for l in self.pattern_steps
-                ],
-            )
-        return []
 
     def ibm_maintained_lines(self):
         """Bullet for member.ibm_maintained"""

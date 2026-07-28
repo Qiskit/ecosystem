@@ -28,10 +28,6 @@ Python
 
 production-ready
 
-### Qiskit Pattern steps
-
-_No response_
-
 ### GitHub repository
 
 https://github.com/somebody/banana-compiler

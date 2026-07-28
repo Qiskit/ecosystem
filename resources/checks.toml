@@ -49,15 +49,6 @@ category = "SUBMISSION"
 checker = "test_classifications.py::test_004"
 importance = "IMPORTANT"
 
-[005]
-title = "Qiskit Pattern steps, if there, should be valid"
-description = "All `member.pattern_steps` should exist in https://qisk.it/ecosystem-pattern_steps"
-applies_to = "all"
-affects = ["member.pattern_steps.*"]
-category = "SUBMISSION"
-checker = "test_classifications.py::test_005"
-importance = "IMPORTANT"
-
 [007]
 title = "Interface have to exist"
 description = "All `member.interfaces` should exist in https://qisk.it/ecosystem-interfaces"
