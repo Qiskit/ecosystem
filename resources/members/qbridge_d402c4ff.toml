@@ -1,0 +1,13 @@
+name = "qbridge"
+submission_number = 1265
+url = "https://github.com/RexRowan/Qbridge"
+description = "Backend-agnostic quantum circuit IR: write once, run on Qiskit Aer, Cirq, or PennyLane with normalized counts."
+contact_info = "titaniumdavinci@gmail.com"
+labels = ["demo", "circuit building"]
+interfaces = ["Python"]
+category = "Converter"
+pattern_steps = ["Map", "Execute"]
+documentation = "https://github.com/RexRowan/Qbridge/blob/main/README.md"
+packages = []
+uuid = "d402c4ff-3214-46fd-a10f-9b9c030a3e52"
+maturity = "experimental"
