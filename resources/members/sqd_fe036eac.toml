@@ -6,7 +6,6 @@ interfaces = ["Python"]
 ibm_maintained = true
 created_at = 2025-09-24
 category = "Qiskit addon"
-pattern_steps = ["Post-process"]
 documentation = "https://qiskit.github.io/qiskit-addon-sqd/"
 packages = []
 uuid = "fe036eac-635d-46db-931e-2965a8a138a5"
@@ -25,7 +24,7 @@ estimated_contributors = 17
 total_dependent_repositories = 14
 total_dependent_packages = 3
 last_commit = 2026-07-27
-last_activity = 2026-07-27
+last_activity = 2026-07-29
 
 [badge]
 url = "https://qisk.it/e-fe036eac"
@@ -49,5 +48,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 49912
-last_180_days_downloads = 90740
+last_month_downloads = 49926
+last_180_days_downloads = 92010
