@@ -17,7 +17,7 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/qecc"
 owner = "munich-quantum-toolkit"
 repo = "qecc"
-stars = 227
+stars = 225
 homepage = "https://mqt.readthedocs.io/projects/qecc"
 license = "MIT"
 description = "MQT QECC - Tools for Quantum Error Correcting Codes"
@@ -45,8 +45,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 12649
-last_180_days_downloads = 53913
+last_month_downloads = 12244
+last_180_days_downloads = 54004
 
 [checks.P10]
 since = 2026-07-09
