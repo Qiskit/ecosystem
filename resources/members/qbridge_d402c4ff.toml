@@ -11,8 +11,14 @@ uuid = "d402c4ff-3214-46fd-a10f-9b9c030a3e52"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/RexRowan/Qbridge"
 owner = "RexRowan"
 repo = "Qbridge"
+stars = 0
+license = "MIT"
+description = "A backend-agnostic quantum circuit API for Qiskit, Cirq, and PennyLane"
+last_commit = 2026-07-28
+last_activity = 2026-07-28
 
 [badge]
 url = "https://qisk.it/e-d402c4ff"
