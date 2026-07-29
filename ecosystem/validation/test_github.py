@@ -63,7 +63,7 @@ def test_G07(member):
     if member.maturity == "as-is":
         pytest.skip("`as-is` projects are exempt from activity checks")
 
-    last_commit = member.github.last_commit
+    last_commit = getattr(member.github, "last_commit", None)
     if last_commit is None:
         pytest.skip("No member.github.last_commit date")
 
