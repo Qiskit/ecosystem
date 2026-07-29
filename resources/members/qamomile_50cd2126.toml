@@ -19,10 +19,10 @@ repo = "Qamomile"
 stars = 19
 license = "Apache-2.0"
 estimated_contributors = 15
-total_dependent_repositories = 3
+total_dependent_repositories = 4
 total_dependent_packages = 1
-last_commit = 2026-07-24
-last_activity = 2026-07-24
+last_commit = 2026-07-27
+last_activity = 2026-07-28
 
 [badge]
 url = "https://qisk.it/e-50cd2126"
@@ -30,8 +30,8 @@ style = "flat"
 
 [pypi.qamomile]
 package_name = "qamomile"
-version = "0.13.0"
-last_release_date = 2026-07-17
+version = "0.14.0"
+last_release_date = 2026-07-27
 url = "https://pypi.org/project/qamomile/"
 status = "active"
 maintainers = ["https://pypi.org/user/jijpypi/"]
@@ -40,8 +40,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 704
-last_180_days_downloads = 5220
+last_month_downloads = 833
+last_180_days_downloads = 5321
 
 [checks.P10]
 since = 2026-07-09
