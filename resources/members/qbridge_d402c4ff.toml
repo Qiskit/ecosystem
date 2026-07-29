@@ -6,10 +6,17 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["circuit building"]
 interfaces = ["Python"]
 category = "Converter"
-packages = ['https://pypi.org/project/qbridge/']
+packages = []
 uuid = "d402c4ff-3214-46fd-a10f-9b9c030a3e52"
 maturity = "experimental"
+
+[github]
+owner = "RexRowan"
+repo = "Qbridge"
 
 [badge]
 url = "https://qisk.it/e-d402c4ff"
 style = "flat"
+
+[pypi.qbridge]
+package_name = "qbridge"
