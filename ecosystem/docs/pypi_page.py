@@ -61,7 +61,7 @@ class PypiPage(ProjectPage):
         """Project summary, with project name in the title"""
         card = ProjectSummaryCard.from_project(self.project)
         card.body_lines = [
-            f":material-code-tags: **Project** [{self.project.name}](/p/{self.project.short_uuid})",
+            f":material-code-tags: **Project** [{self.project.name}](../p/{self.project.short_uuid}.md)",
             "",
         ] + card.body_lines
         return card.generate()
