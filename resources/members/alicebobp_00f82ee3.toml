@@ -10,7 +10,7 @@ documentation = "https://felis.alice-bob.com/docs/"
 packages = []
 uuid = "00f82ee3-ab46-44fc-afbb-32cb34a72339"
 maturity = "production-ready"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider"
@@ -58,3 +58,8 @@ since = 2026-04-30
 details = "Python package qiskit-alice-bob-provider is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider/issues/80"
 importance = "IMPORTANT"
+
+[checks.Q20]
+since = 2026-07-30
+details = "Not compatible with the Qiskit SDK v2 or newer: `[PQ2]`"
+importance = "CRITICAL"

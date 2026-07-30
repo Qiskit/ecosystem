@@ -12,7 +12,7 @@ documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
 packages = []
 uuid = "04f15cf5-ee50-4c77-b254-8907ed3ba407"
 maturity = "production-ready"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-aqt-provider"
@@ -57,3 +57,8 @@ since = 2026-04-30
 details = "Python package qiskit-aqt-provider is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/qiskit-community/qiskit-aqt-provider/issues/286"
 importance = "IMPORTANT"
+
+[checks.Q20]
+since = 2026-07-30
+details = "Not compatible with the Qiskit SDK v2 or newer: `[PQ2]`"
+importance = "CRITICAL"
