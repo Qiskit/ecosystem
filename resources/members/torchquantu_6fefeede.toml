@@ -10,7 +10,7 @@ documentation = "https://torchquantum.readthedocs.io/"
 packages = []
 uuid = "6fefeede-f98e-44df-aea0-149827358701"
 maturity = "production-ready"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/mit-han-lab/torchquantum"
@@ -52,3 +52,8 @@ since = 2026-04-30
 details = "Python package torchquantum is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/mit-han-lab/torchquantum/issues/332"
 importance = "IMPORTANT"
+
+[checks.Q20]
+since = 2026-07-30
+details = "Not compatible with the Qiskit SDK v2 or newer: `[PQ2]`"
+importance = "CRITICAL"
