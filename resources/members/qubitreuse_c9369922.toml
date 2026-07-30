@@ -14,7 +14,7 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-qubit-reuse"
 owner = "qiskit-community"
 repo = "qiskit-qubit-reuse"
-stars = 30
+stars = 29
 license = "Apache-2.0"
 description = "A Qiskit transpiler stage plugin to enable qubit reuse via mid-circuit measurement and reset."
 estimated_contributors = 3
@@ -41,8 +41,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 33
-last_180_days_downloads = 184
+last_month_downloads = 34
+last_180_days_downloads = 185
 
 [checks.P10]
 since = 2026-07-09
