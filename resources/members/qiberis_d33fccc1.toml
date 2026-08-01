@@ -21,6 +21,9 @@ description = "A backend-agnostic quantum circuit API: write once, run on Qiskit
 last_commit = 2026-07-29
 last_activity = 2026-07-29
 
+[badge]
+style = "flat"
+
 [checks.026]
 since = 2026-07-30
 details = "The field `member.documentation` can be empty. It does not have to be a link to the repository's `README.md` or root."
