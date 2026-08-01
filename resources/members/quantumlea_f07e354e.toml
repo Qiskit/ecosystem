@@ -12,8 +12,31 @@ uuid = "f07e354e-282f-41aa-99b3-0e36090de86a"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/KUQCI/quantum-learn"
 owner = "KUQCI"
 repo = "quantum-learn"
+stars = 0
+homepage = "https://pypi.org/project/quantum-learn/"
+license = "MIT"
+description = "quantum-learn: quantum machine learning in Python"
+total_dependent_repositories = 1
+total_dependent_packages = 0
+last_commit = 2026-06-26
 
 [pypi.quantum-learn]
 package_name = "quantum-learn"
+version = "2.1.0"
+last_release_date = 2026-06-26
+license = "MIT"
+description = "quantum-learn: quantum machine learning in Python"
+url = "https://pypi.org/project/quantum-learn/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/osamamit/"]
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-07-23
+highest_supported_qiskit_version = "2.5.1"
+last_month_downloads = 65
+last_180_days_downloads = 856
