@@ -7,6 +7,13 @@ labels = ["QML"]
 interfaces = ["Python"]
 category = "SDK"
 documentation = "https://quantum-learn.readthedocs.io/"
-packages = ["https://pypi.org/project/quantum-learn/"]
+packages = []
 uuid = "f07e354e-282f-41aa-99b3-0e36090de86a"
 maturity = "experimental"
+
+[github]
+owner = "KUQCI"
+repo = "quantum-learn"
+
+[pypi.quantum-learn]
+package_name = "quantum-learn"
