@@ -52,7 +52,7 @@ class License:
     @property
     def spdx_id(self):
         """if available, returns the SPDX id, otherwise, the given name at creation time"""
-        if self.license_name in self.spdx_ids:
+        if self.where is None and self.license_name in self.spdx_ids:
             return self.spdx_ids[self.license_name]
         if f"{self.license_name}@{self.where}" in self.spdx_ids:
             return self.spdx_ids[f"{self.license_name}@{self.where}"]
@@ -64,7 +64,7 @@ class License:
         """Check if the license is OSI approved"""
         if self.license_name.lower() == "other":
             return None
-        if self.license_name in self.spdx_ids.values():
+        if self.spdx_id in self.spdx_ids.values():
             return True
         return False
 
@@ -76,7 +76,9 @@ class License:
     def __repr__(self):
         if self.spdx_id:
             return self.spdx_id
-        return f"{self.license_name}@{self.where}"
+        if self.where:
+            return f"{self.license_name}@{self.where}"
+        return f"{self.license_name}"
 
     def __eq__(self, other):
         return repr(self) == repr(other)
