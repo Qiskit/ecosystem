@@ -301,18 +301,6 @@ def parse_juliapackages(html_text):
     return ret
 
 
-# def request_julia_stats(pkg_uuid):
-#     url = "https://julialang-logs.s3.amazonaws.com/public_outputs/current/package_requests.csv.gz"
-#     r = requests.get(url)
-#
-#     i = BytesIO(r.content)
-#     with gzip.open(i, "rt") as gz_file:
-#         csv_reader = csv.DictReader(gz_file)
-#         for row in csv_reader:
-#             if row["package_uuid"] == pkg_uuid:
-#                 return row
-
-
 def find_first_in_csv_gz(subdict_to_find):
     """Returns a parser for csv after filtering based on subdict_to_find"""
 
