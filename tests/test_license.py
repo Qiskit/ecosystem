@@ -12,6 +12,8 @@
 
 """Tests for ecosystem.request.License."""
 
+# pylint: disable=redefined-builtin
+
 from unittest import TestCase
 
 from ecosystem.license import License
