@@ -27,7 +27,6 @@ class ClassificationsTestCase(TestCase):
             name="banana",
             url="https://github.com/BananaOrg/banana-repo",
             description="Banana description.",
-            license="Apache 2.0",
             category="invalid category",
         )
         with redirect_stdout(StringIO()) as buffer:
@@ -41,7 +40,6 @@ class ClassificationsTestCase(TestCase):
             name="banana",
             url="https://github.com/BananaOrg/banana-repo",
             description="Banana description.",
-            license="Apache 2.0",
             interfaces=["invalid interface"],
         )
         with redirect_stdout(StringIO()) as buffer:
@@ -55,7 +53,6 @@ class ClassificationsTestCase(TestCase):
             name="banana",
             url="https://github.com/BananaOrg/banana-repo",
             description="Banana description.",
-            license="Apache 2.0",
             labels=["invalid label"],
         )
         with redirect_stdout(StringIO()) as buffer:
@@ -69,7 +66,6 @@ class ClassificationsTestCase(TestCase):
             name="banana",
             url="https://github.com/BananaOrg/banana-repo",
             description="Banana description.",
-            license="Apache 2.0",
             maturity="invalid maturity",
         )
         with redirect_stdout(StringIO()) as buffer:
