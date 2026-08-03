@@ -24,7 +24,7 @@ from types import SimpleNamespace
 from unittest import TestCase
 from unittest.mock import patch
 
-from ecosystem.error_handling import EcosystemError, logger
+from ecosystem.error_handling import EcosystemError
 from ecosystem.request import (
     URL,
     find_first_in_csv_gz,
@@ -158,14 +158,12 @@ class TestURL(TestCase):
             _ = URL("there is no url in here")
 
     def test_logger_level_is_called(self):
-        """Tests that the logger_level argument is the callable used to report.
-        """
+        """Tests that the logger_level argument is the callable used to report."""
         with self.assertRaises(EcosystemError):
             _ = URL("_No response_", logger_level="string")
 
     def test_empty_url(self):
-        """Tests that an empty string is reported as a bad url.
-        """
+        """Tests that an empty string is reported as a bad url."""
         with self.assertRaises(EcosystemError):
             _ = URL("")
 
@@ -413,8 +411,7 @@ class TestRequestJsonDelay(TestCase):
         self.assertIn("too long", str(context.exception))
 
     def test_rate_limit_reset_in_the_past(self):
-        """Tests a rate limited response whose reset time has already passed.
-        """
+        """Tests a rate limited response whose reset time has already passed."""
         limited = self.rate_limited({"X-RateLimit-Reset": str(NOW - 300)})
         slept = []
         with patch("ecosystem.request.time.time", return_value=NOW):
@@ -460,6 +457,7 @@ class TestParseGithubContributorsSidebar(TestCase):
         """Tests that a counter with no digits returns an empty dict"""
         html = '<span title="3">many</span>'
         self.assertEqual(parse_github_contributors_sidebar(html), {})
+
 
 class TestParseGithubPackageIds(TestCase):
     """Test class for ecosystem.request.parse_github_package_ids."""
@@ -550,6 +548,7 @@ class TestParseGithubDependants(TestCase):
         html = self.counters(["1 Repository", "2 Repositories"], ["56 Packages"])
         with self.assertRaises(EcosystemError):
             parse_github_dependants(html)
+
 
 class TestParseJuliapackages(TestCase):
     """Test class for ecosystem.request.parse_juliapackages."""
