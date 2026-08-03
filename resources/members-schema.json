@@ -43,14 +43,6 @@
     "category": {
       "type": "string"
     },
-    "pattern_steps": {
-      "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
-    },
     "documentation": {
       "type": "string"
     },
@@ -102,11 +94,11 @@
           "format": "date"
         },
         "last_activity": {
-          "type": "string"
+          "type": "string",
+          "format": "date"
         }
       },
       "required": [
-        "url",
         "owner",
         "repo"
       ]
