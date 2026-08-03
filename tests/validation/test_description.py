@@ -28,10 +28,10 @@ class ClassificationsTestCase(TestCase):
             name="banana",
             url="https://github.com/BananaOrg/banana-repo",
             description="Banana very long long long long long long"
-                        " long long long long long long long long long long"
-                        " long long long long long long long long long long"
-                        " long long long long long long long long long long"
-                        " long long long long long long long long long long description."
+            " long long long long long long long long long long"
+            " long long long long long long long long long long"
+            " long long long long long long long long long long"
+            " long long long long long long long long long long description.",
         )
         with redirect_stdout(StringIO()) as buffer:
             member.update_checkups("test_description.py::test_description_len_135")
