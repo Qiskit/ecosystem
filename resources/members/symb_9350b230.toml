@@ -17,7 +17,7 @@ owner = "SimoneGasperini"
 repo = "qiskit-symb"
 stars = 39
 homepage = "https://pypi.org/project/qiskit-symb/"
-license = "Apache-2.0"
+license = "Apache License 2.0"
 description = "Symbolic evaluation of parameterized quantum circuits in Qiskit"
 estimated_contributors = 3
 total_dependent_repositories = 7
@@ -43,8 +43,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 262
-last_180_days_downloads = 1696
+last_month_downloads = 270
+last_180_days_downloads = 1718
 
 [checks.P10]
 since = 2026-07-09

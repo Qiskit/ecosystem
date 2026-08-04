@@ -17,13 +17,13 @@ owner = "Qiskit"
 repo = "qiskit-paulice"
 stars = 12
 homepage = "https://quantum.cloud.ibm.com/docs/en/addons/qiskit-addon-paulice"
-license = "Apache-2.0"
+license = "Apache License 2.0"
 description = "Embedding spacetime Pauli checks into Clifford circuits"
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 1
 last_commit = 2026-08-01
-last_activity = 2026-08-01
+last_activity = 2026-08-03
 
 [badge]
 url = "https://qisk.it/e-3309662b"
@@ -43,5 +43,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 204
-last_180_days_downloads = 1436
+last_month_downloads = 144
+last_180_days_downloads = 1437
