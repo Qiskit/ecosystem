@@ -3,20 +3,12 @@ submission_number = 1135
 url = "https://github.com/JoelHBierman/QSP-SQD"
 description = "Enhances sample-based diagonalization (SQD) with quantum signal processing (QSP) to improve sampling-efficiency."
 contact_info = "jhbierma@ncsu.edu"
-labels = [
-  "chemistry",
-  "physics",
-  "quantum information",
-  "circuit building",
-  "research",
-  "utility-scale",
-]
-interfaces = ["Python"]
+labels = [ "chemistry", "physics", "quantum information", "circuit building", "research", "utility-scale",]
+interfaces = [ "Python",]
 category = "Other"
 packages = []
 uuid = "b6c9f4fe-8d25-48fa-832b-5bd79725b9da"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/JoelHBierman/QSP-SQD"

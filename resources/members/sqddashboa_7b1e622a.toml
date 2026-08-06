@@ -3,13 +3,12 @@ submission_number = 1273
 url = "https://github.com/RexRowan/Qiskit-SQD-Dashboard"
 description = "Live convergence diagnostics for qiskit-addon-sqd's configuration recovery loop, as an in-notebook Plotly widget."
 contact_info = "titaniumdavinci@gmail.com"
-labels = ["chemistry", "research", "utility-scale"]
-interfaces = ["Python"]
+labels = [ "chemistry", "research", "utility-scale",]
+interfaces = [ "Python",]
 category = "Tooling"
 packages = []
 uuid = "7b1e622a-9b88-4e9f-9ff9-db4d342f3ac3"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-SQD-Dashboard"

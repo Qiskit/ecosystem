@@ -3,14 +3,13 @@ submission_number = 1275
 url = "https://github.com/KUQCI/quantum-learn"
 description = "Making quantum machine learning easier through higher-level estimators and quantum circuit wrappers for common workflows."
 contact_info = "quantuminitiative.ku@gmail.com"
-labels = ["QML"]
-interfaces = ["Python"]
+labels = [ "QML",]
+interfaces = [ "Python",]
 category = "SDK"
 documentation = "https://quantum-learn.readthedocs.io/"
 packages = []
 uuid = "f07e354e-282f-41aa-99b3-0e36090de86a"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/KUQCI/quantum-learn"
@@ -38,7 +37,7 @@ description = "quantum-learn: quantum machine learning in Python"
 url = "https://pypi.org/project/quantum-learn/"
 development_status = "3 - Alpha"
 status = "active"
-maintainers = ["https://pypi.org/user/osamamit/"]
+maintainers = [ "https://pypi.org/user/osamamit/",]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

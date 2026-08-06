@@ -3,13 +3,12 @@ submission_number = 1040
 url = "https://github.com/cogu92/qvoting"
 description = "Quantum voting circuits with readout mitigation, ZNE, and Q(t)-guided backend routing for NISQ hardware. Validated on IBM hardware."
 contact_info = "nicolascogu@hotmail.com"
-labels = ["error mitigation", "error correction", "optimization", "research"]
-interfaces = ["Python"]
+labels = [ "error mitigation", "error correction", "optimization", "research",]
+interfaces = [ "Python",]
 category = "Application"
 packages = []
 uuid = "64b432d7-f5f5-487f-8789-caadba593ce9"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/cogu92/qvoting"
@@ -36,7 +35,7 @@ description = "Quantum voting circuits with integrated error mitigation for NISQ
 url = "https://pypi.org/project/qvoting/"
 development_status = "3 - Alpha"
 status = "active"
-maintainers = ["https://pypi.org/user/cogu92/"]
+maintainers = [ "https://pypi.org/user/cogu92/",]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

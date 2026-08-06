@@ -3,8 +3,8 @@ url = "https://github.com/qiskit-community/qiskit-function-templates/tree/main/c
 description = "A Qiskit Function template for the implicit solvent model with SQD Qiskit addon, from IBM Quantum partnership with Cleveland Clinic"
 license = "Apache-2.0"
 affiliations = "Cleveland Clinic"
-labels = ["chemistry", "utility-scale"]
-interfaces = ["Python"]
+labels = [ "chemistry", "utility-scale",]
+interfaces = [ "Python",]
 ibm_maintained = true
 category = "Application"
 reference_paper = "https://pubs.acs.org/doi/10.1021/acs.jpcb.5c01030"
@@ -12,7 +12,6 @@ documentation = "https://quantum.cloud.ibm.com/docs/en/guides/qiskit-function-te
 packages = []
 uuid = "fac11d8c-c0f4-426e-8c20-ac009726d417"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-function-templates"

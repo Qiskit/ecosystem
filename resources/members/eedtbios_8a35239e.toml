@@ -3,14 +3,13 @@ submission_number = 1263
 url = "https://github.com/okudat9/eedt-bios"
 description = "Boots a Bell Decay Clock on a qubit pair: finds a backend, calibrates a pair, and reports the fidelity gained by correcting for decay."
 contact_info = "o93dice@gmail.com"
-labels = ["benchmarking", "error mitigation", "research"]
-interfaces = ["Python", "Command-line interface (CLI)"]
+labels = [ "benchmarking", "error mitigation", "research",]
+interfaces = [ "Python", "Command-line interface (CLI)",]
 category = "Tooling"
 reference_paper = "https://doi.org/10.5281/zenodo.19367565"
 packages = []
 uuid = "8a35239e-c4e0-4de0-96e3-d4e4e8083697"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/okudat9/eedt-bios"

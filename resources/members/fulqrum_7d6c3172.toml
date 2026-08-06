@@ -1,14 +1,13 @@
 name = "Fulqrum"
 submission_number = 1172
 url = "https://github.com/qiskit-community/fulqrum"
-labels = ["research", "physics"]
-interfaces = ["Python"]
+labels = [ "research", "physics",]
+interfaces = [ "Python",]
 category = "Application"
 documentation = "https://qiskit-community.github.io/fulqrum/"
 packages = []
 uuid = "7d6c3172-7bb5-4c5a-b0a3-87aa378ee356"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/fulqrum"

@@ -3,14 +3,13 @@ url = "https://github.com/frankharkins/quPython"
 description = "Write Pythonic quantum programs. Replace circuits and registers with functions and classes for better abstractions and readability."
 license = "MIT"
 contact_info = "frankharkins@hotmail.co.uk"
-labels = ["circuit building"]
-interfaces = ["Python"]
+labels = [ "circuit building",]
+interfaces = [ "Python",]
 category = "SDK"
 documentation = "https://frankharkins.github.io/quPython/"
 packages = []
 uuid = "bad95659-420a-4529-97d0-80e52532fc90"
 maturity = "bugfixing only"
-status = "Under revision"
 
 [github]
 url = "https://github.com/frankharkins/quPython"
@@ -38,7 +37,7 @@ license = "MIT"
 description = "Write quantum programs directly in Python"
 url = "https://pypi.org/project/qupython/"
 status = "active"
-maintainers = ["https://pypi.org/user/frankharkins/"]
+maintainers = [ "https://pypi.org/user/frankharkins/",]
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
