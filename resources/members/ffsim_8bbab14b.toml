@@ -11,6 +11,7 @@ documentation = "https://qiskit-community.github.io/ffsim/"
 packages = []
 uuid = "8bbab14b-6cbb-4e09-8040-d5afd359deec"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/ffsim"
@@ -49,6 +50,11 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 32323
 last_180_days_downloads = 123692
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

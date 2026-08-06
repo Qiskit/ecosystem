@@ -18,6 +18,7 @@ documentation = "https://casiriorg.github.io/projects/qiskit-data-reuploading/ap
 packages = []
 uuid = "d5572b9d-91eb-46e1-94ac-7515fb753b1f"
 maturity = "as-is"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Carlosandp/qiskit-data-reuploading"
@@ -50,6 +51,11 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 27
 last_180_days_downloads = 269
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

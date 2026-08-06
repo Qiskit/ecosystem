@@ -9,6 +9,7 @@ documentation = "https://qiskit-community.github.io/qiskit-quimb/"
 packages = []
 uuid = "a304538c-feb7-47b2-a41f-f9fbe41de87b"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-quimb"
@@ -47,6 +48,11 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 10855
 last_180_days_downloads = 60655
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-14

@@ -27,3 +27,8 @@ last_activity = 2026-07-24
 [badge]
 url = "https://qisk.it/e-254bd1b0"
 style = "flat"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

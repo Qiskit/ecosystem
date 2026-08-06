@@ -50,6 +50,11 @@ since = 2026-07-14
 details = "Last commit was 20 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
 importance = "STRONG-RECOMMENDATION"
 
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [checks.P10]
 since = 2026-07-09
 details = "Python package vqls-prototype declared itself compatible to a not-yet-released major version of Qiskit"

@@ -11,6 +11,7 @@ category = "Application"
 packages = []
 uuid = "fd796b7d-2775-4ece-89f0-778066552014"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/JuliaQUBO/QiskitOpt.jl"
@@ -42,3 +43,8 @@ uuid = "81b20daf-e62b-4502-a0d1-aa084de80e33"
 estimated_unique_users = 20
 monthly_downloads = 31
 total_downloads = 73
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

@@ -9,6 +9,7 @@ category = "Tooling"
 packages = []
 uuid = "5907eb1e-6ecd-4d5b-9f28-f302b23ace0e"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Witching-Hour-Music/witching-hour-qiskit"
@@ -24,3 +25,8 @@ last_activity = 2026-06-09
 [badge]
 url = "https://qisk.it/e-5907eb1e"
 style = "flat"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

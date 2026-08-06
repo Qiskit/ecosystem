@@ -11,6 +11,7 @@ documentation = "https://jij-inc.github.io/Qamomile/"
 packages = []
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Jij-Inc/Qamomile"
@@ -42,6 +43,11 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 883
 last_180_days_downloads = 5351
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

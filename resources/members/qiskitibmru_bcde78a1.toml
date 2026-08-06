@@ -44,6 +44,11 @@ estimated_unique_users = 2
 monthly_downloads = 2
 total_downloads = 2
 
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [checks.J00]
 since = 2026-07-09
 details = "member.julia.QiskitIBMRuntime does not have a declared license"

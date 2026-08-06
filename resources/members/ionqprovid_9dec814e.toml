@@ -11,6 +11,7 @@ documentation = "https://qiskit-community.github.io/qiskit-ionq/"
 packages = []
 uuid = "9dec814e-feb8-49c2-818a-f6a2503d38c5"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-ionq"
@@ -47,7 +48,17 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 71724
 last_180_days_downloads = 443874
 
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [checks.P10]
 since = 2026-07-09
 details = "Python package qiskit-ionq declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[checks.P13]
+since = 2026-08-06
+details = "member.pypi.qiskit-ionq.license is not OSI-approved"
+importance = "IMPORTANT"

@@ -36,6 +36,11 @@ details = "Last commit was 23 months ago, which is more than 18 months ago. Plea
 discussion = "https://github.com/orgs/Qiskit/discussions/57"
 importance = "STRONG-RECOMMENDATION"
 
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [checks.027]
 since = 2026-07-23
 details = "The field `member.website` should not be the GitHub repository."

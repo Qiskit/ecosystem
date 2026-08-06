@@ -11,6 +11,7 @@ reference_paper = "https://arxiv.org/abs/2505.19772"
 packages = []
 uuid = "6e4000a2-3a09-43ff-b738-d4b17a0df011"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/cpossel/tvha"
@@ -27,3 +28,8 @@ last_activity = 2026-07-20
 [badge]
 url = "https://qisk.it/e-6e4000a2"
 style = "flat"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

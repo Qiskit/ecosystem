@@ -10,6 +10,7 @@ documentation = "https://docs.pennylane.ai/projects/qiskit"
 packages = []
 uuid = "cfbecefc-6cf7-49a6-99c5-049dae76fdcc"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/PennyLaneAI/pennylane-qiskit"
@@ -49,3 +50,13 @@ highest_supported_qiskit_release_date = 2026-01-08
 highest_supported_qiskit_version = "2.3.0"
 last_month_downloads = 30667
 last_180_days_downloads = 146470
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
+
+[checks.P13]
+since = 2026-08-06
+details = "member.pypi.pennylane-qiskit.license is not OSI-approved"
+importance = "IMPORTANT"

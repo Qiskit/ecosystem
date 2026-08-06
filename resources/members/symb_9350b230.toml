@@ -10,6 +10,7 @@ category = "Circuit simulator"
 packages = []
 uuid = "9350b230-d7ca-4d52-b082-9d71303478b7"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/SimoneGasperini/qiskit-symb"
@@ -45,6 +46,11 @@ highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
 last_month_downloads = 245
 last_180_days_downloads = 1718
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

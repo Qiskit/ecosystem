@@ -10,6 +10,7 @@ documentation = "https://qiskit-community.github.io/qiskit-finance/"
 packages = []
 uuid = "8ebeec26-5043-4423-9cdc-bfa92bd4ad63"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-finance"
@@ -44,6 +45,11 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 12697
 last_180_days_downloads = 66428
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

@@ -9,6 +9,7 @@ reference_paper = "https://arxiv.org/abs/2508.09110"
 packages = []
 uuid = "dc917437-3b51-4ea8-9bdb-e2eaa2114cd5"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/alexg-jpg/conditional-measurements"
@@ -28,5 +29,10 @@ style = "flat"
 
 [checks.G06]
 since = 2026-07-14
-details = "Last activity was 7 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+details = "Last activity was 8 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

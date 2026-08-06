@@ -10,6 +10,7 @@ documentation = "https://qiskit-community.github.io/qiskit-nature/"
 packages = []
 uuid = "768ba9e4-0aea-4046-a902-5c81051f001f"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-nature"
@@ -44,3 +45,8 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 44866
 last_180_days_downloads = 248229
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

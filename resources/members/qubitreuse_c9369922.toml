@@ -9,6 +9,7 @@ category = "Transpiler plugin"
 packages = []
 uuid = "c9369922-7e0d-4b77-b00a-329472b57a34"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-qubit-reuse"
@@ -44,7 +45,17 @@ highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 33
 last_180_days_downloads = 186
 
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [checks.P10]
 since = 2026-07-09
 details = "Python package qiskit-qubit-reuse declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[checks.P13]
+since = 2026-08-06
+details = "member.pypi.qiskit-qubit-reuse.license is not OSI-approved"
+importance = "IMPORTANT"

@@ -11,6 +11,7 @@ documentation = "https://github.com/ianchung621/symbolic-qiskit/tree/main/docs"
 packages = []
 uuid = "e10b8307-99fd-4d10-a046-3934bf9396a1"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/ianchung621/symbolic-qiskit"
@@ -43,6 +44,11 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 12
 last_180_days_downloads = 101
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

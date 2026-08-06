@@ -10,6 +10,7 @@ category = "Tooling"
 packages = []
 uuid = "76d7a9f5-7e98-42bb-94c8-280652d45287"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Ziadt160/qiskit-migration-assistant"
@@ -24,3 +25,8 @@ last_activity = 2026-07-09
 [badge]
 url = "https://qisk.it/e-76d7a9f5"
 style = "flat"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

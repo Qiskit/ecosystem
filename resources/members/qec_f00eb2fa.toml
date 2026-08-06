@@ -10,6 +10,7 @@ documentation = "https://qiskit-community.github.io/qiskit-qec/"
 packages = []
 uuid = "f00eb2fa-f4f1-4e97-8e59-3013e424e0f5"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-qec"
@@ -28,3 +29,8 @@ last_activity = 2026-07-29
 [badge]
 url = "https://qisk.it/e-f00eb2fa"
 style = "flat"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

@@ -10,6 +10,7 @@ documentation = "https://qiskit-braket-provider.readthedocs.io/"
 packages = []
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/amazon-braket/qiskit-braket-provider"
@@ -45,3 +46,8 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 14956
 last_180_days_downloads = 60753
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

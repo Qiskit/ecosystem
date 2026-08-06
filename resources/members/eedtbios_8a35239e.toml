@@ -10,6 +10,7 @@ reference_paper = "https://doi.org/10.5281/zenodo.19367565"
 packages = []
 uuid = "8a35239e-c4e0-4de0-96e3-d4e4e8083697"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/okudat9/eedt-bios"
@@ -25,3 +26,8 @@ last_activity = 2026-08-03
 [badge]
 url = "https://qisk.it/e-8a35239e"
 style = "flat"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

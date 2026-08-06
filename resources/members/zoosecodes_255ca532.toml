@@ -11,6 +11,7 @@ category = "Game/Educational"
 packages = []
 uuid = "255ca532-6ea0-404d-a7dc-7181cca2e5bd"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/ianreppel/zoose-codespace"
@@ -28,3 +29,8 @@ last_commit = 2025-02-21
 [badge]
 url = "https://qisk.it/e-255ca532"
 style = "flat"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

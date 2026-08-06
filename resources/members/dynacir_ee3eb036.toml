@@ -49,3 +49,8 @@ since = 2026-05-14
 details = "Last commit was 28 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
 discussion = "https://github.com/orgs/Qiskit/discussions/49"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

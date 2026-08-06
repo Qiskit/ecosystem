@@ -10,6 +10,7 @@ documentation = "https://arthurostrauss.github.io/qiskit-qm-provider/"
 packages = []
 uuid = "07ae12cb-5d1e-4d62-bc32-1d8ddfba748e"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/arthurostrauss/qiskit-qm-provider"
@@ -46,7 +47,17 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 188
 last_180_days_downloads = 776
 
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [checks.P10]
 since = 2026-07-09
 details = "Python package qiskit-qm-provider declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[checks.P13]
+since = 2026-08-06
+details = "member.pypi.qiskit-qm-provider.license is not OSI-approved"
+importance = "IMPORTANT"

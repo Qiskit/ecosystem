@@ -10,6 +10,7 @@ category = "Tooling"
 packages = ["https://github.com/QuBins/qiskit-images/pkgs/container/images"]
 uuid = "6c640264-6c64-4163-921a-fbaeaa553f53"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/QuBins/qiskit-images"
@@ -28,3 +29,8 @@ last_activity = 2026-08-05
 [badge]
 url = "https://qisk.it/e-6c640264"
 style = "flat"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"

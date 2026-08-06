@@ -11,6 +11,7 @@ documentation = "https://qiskit-community.github.io/qiskit-machine-learning/"
 packages = []
 uuid = "18986ebc-e138-4998-8c52-16359961af0a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-machine-learning"
@@ -45,6 +46,11 @@ highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
 last_month_downloads = 46879
 last_180_days_downloads = 248032
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

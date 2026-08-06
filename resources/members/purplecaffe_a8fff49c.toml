@@ -11,6 +11,7 @@ documentation = "https://icekhan13.github.io/purplecaffeine/index.html"
 packages = []
 uuid = "a8fff49c-d8ee-4386-87b1-b28d31005823"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/IceKhan13/purplecaffeine"
@@ -51,6 +52,11 @@ last_180_days_downloads = 285
 since = 2026-07-23
 details = "Last activity was 7 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-14

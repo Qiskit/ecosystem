@@ -10,6 +10,7 @@ documentation = "https://github.com/keunjunpark/qiskit-trev/tree/main/tutorials"
 packages = []
 uuid = "e2beb4ad-418d-4dca-b789-02567d385528"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/keunjunpark/qiskit-trev"
@@ -43,6 +44,11 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 38
 last_180_days_downloads = 627
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

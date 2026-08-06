@@ -12,6 +12,7 @@ documentation = "https://mqt.readthedocs.io/projects/predictor/"
 packages = []
 uuid = "9d5e2ef2-cac6-479e-a2f9-8014d54403e4"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/munich-quantum-toolkit/predictor"
@@ -46,6 +47,11 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 254
 last_180_days_downloads = 2645
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-14

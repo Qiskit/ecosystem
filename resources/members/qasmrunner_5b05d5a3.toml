@@ -8,6 +8,7 @@ category = "Converter"
 packages = []
 uuid = "5b05d5a3-26c6-4487-91cc-3ca3aeaf0d6b"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/TownsendBrown/QASM-Runner-for-IBM-platforms"
@@ -29,3 +30,8 @@ style = "flat"
 since = 2026-06-14
 details = "Last activity was 8 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
+
+[checks.G10]
+since = 2026-08-06
+details = "member.github.license is not OSI-approved"
+importance = "IMPORTANT"
