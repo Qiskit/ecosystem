@@ -1,8 +1,8 @@
 name = "Qiskit C++"
 url = "https://github.com/Qiskit/qiskit-cpp"
 contact_info = "qiskit@us.ibm.com"
-labels = [ "quantum information", "circuit optimization",]
-interfaces = [ "C++",]
+labels = ["quantum information", "circuit optimization"]
+interfaces = ["C++"]
 ibm_maintained = true
 category = "Language binding"
 documentation = "https://quantum.cloud.ibm.com/docs/en/api/qiskit-c"

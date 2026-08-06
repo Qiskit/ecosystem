@@ -3,8 +3,13 @@ url = "https://github.com/Qiskit/qiskit-addon-mpf"
 description = "Reduce the Trotter error of Hamiltonian dynamics with multi-product formulas (MPF)."
 license = "Apache-2.0"
 contact_info = "oss@zurich.ibm.com"
-labels = [ "circuit building", "physics", "utility-scale", "Hamiltonian simulation",]
-interfaces = [ "Python",]
+labels = [
+  "circuit building",
+  "physics",
+  "utility-scale",
+  "Hamiltonian simulation",
+]
+interfaces = ["Python"]
 ibm_maintained = true
 created_at = 2025-09-24
 category = "Qiskit addon"
@@ -40,7 +45,11 @@ license = "Apache-1.1"
 description = "Reducing the Trotter error of Hamiltonian dynamics with multi-product formulas"
 url = "https://pypi.org/project/qiskit-addon-mpf/"
 status = "active"
-maintainers = [ "https://pypi.org/org/qiskit/", "https://pypi.org/user/calebj15/", "https://pypi.org/user/mrossinek/",]
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/calebj15/",
+  "https://pypi.org/user/mrossinek/",
+]
 requires_qiskit = "<3,>=1.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
