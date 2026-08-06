@@ -16,14 +16,14 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-machine-learning"
 owner = "qiskit-community"
 repo = "qiskit-machine-learning"
-stars = 1087
+stars = 1088
 homepage = "https://qiskit-community.github.io/qiskit-machine-learning/"
 license = "Apache License 2.0"
 description = "An open-source library built on Qiskit for quantum machine learning tasks at scale on quantum hardware and classical simulators"
 total_dependent_repositories = 551
 total_dependent_packages = 27
 last_commit = 2026-08-04
-last_activity = 2026-08-04
+last_activity = 2026-08-05
 
 [badge]
 url = "https://qisk.it/e-18986ebc"
@@ -43,8 +43,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 46845
-last_180_days_downloads = 247769
+last_month_downloads = 46879
+last_180_days_downloads = 248032
 
 [checks.P10]
 since = 2026-07-09
