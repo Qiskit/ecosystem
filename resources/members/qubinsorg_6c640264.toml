@@ -18,7 +18,7 @@ owner = "QuBins"
 repo = "qiskit-images"
 stars = 0
 homepage = "https://QuBins.org/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Prebuilt, signed Qiskit Docker images — launch in Binder or pull with Docker. The place for your QuBits: pick a prebuilt quantum co..."
 estimated_contributors = 3
 total_dependent_repositories = 0
@@ -29,8 +29,3 @@ last_activity = 2026-08-05
 [badge]
 url = "https://qisk.it/e-6c640264"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

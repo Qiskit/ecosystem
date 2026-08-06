@@ -19,7 +19,7 @@ owner = "Qiskit"
 repo = "qiskit-addon-cutting"
 stars = 100
 homepage = "https://qiskit.github.io/qiskit-addon-cutting/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Reduce width and depth of quantum circuits by cutting gates and wires."
 estimated_contributors = 26
 total_dependent_repositories = 14
@@ -51,8 +51,3 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 8159
 last_180_days_downloads = 23148
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

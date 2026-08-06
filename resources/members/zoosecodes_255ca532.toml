@@ -19,7 +19,7 @@ owner = "ianreppel"
 repo = "zoose-codespace"
 stars = 0
 homepage = "https://ianreppel.org/zoose-codespace/"
-license = "MIT License"
+license = "MIT"
 description = "Zoose Quantum Codespace"
 estimated_contributors = 2
 total_dependent_repositories = 0
@@ -29,8 +29,3 @@ last_commit = 2025-02-21
 [badge]
 url = "https://qisk.it/e-255ca532"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

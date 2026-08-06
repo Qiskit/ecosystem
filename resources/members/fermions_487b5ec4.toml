@@ -18,7 +18,7 @@ owner = "Qiskit"
 repo = "qiskit-fermions"
 stars = 11
 homepage = "https://qiskit.github.io/qiskit-fermions/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "This package extends Qiskit with tools for working on fermionic systems."
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -28,8 +28,3 @@ last_activity = 2026-08-05
 [badge]
 url = "https://qisk.it/e-487b5ec4"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

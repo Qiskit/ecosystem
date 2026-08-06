@@ -17,7 +17,7 @@ url = "https://github.com/RexRowan/Qiberis"
 owner = "RexRowan"
 repo = "Qiberis"
 stars = 0
-license = "MIT License"
+license = "MIT"
 description = "A backend-agnostic quantum circuit API: write once, run on Qiskit, Cirq, and PennyLane simulators."
 last_commit = 2026-07-29
 last_activity = 2026-07-29
@@ -25,11 +25,6 @@ last_activity = 2026-07-29
 [badge]
 url = "https://qisk.it/e-d33fccc1"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.026]
 since = 2026-07-30

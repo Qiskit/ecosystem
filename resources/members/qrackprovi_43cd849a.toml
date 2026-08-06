@@ -20,7 +20,7 @@ url = "https://github.com/vm6502q/qiskit-qrack-provider"
 owner = "vm6502q"
 repo = "qiskit-qrack-provider"
 stars = 2
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Qrack provider for Qiskit"
 total_dependent_repositories = 6
 total_dependent_packages = 1
@@ -35,7 +35,7 @@ style = "flat"
 package_name = "qiskit-qrack-provider"
 version = "1.7.0"
 last_release_date = 2026-08-01
-license = "Apache 2.0"
+license = "Apache-2.0"
 description = "Qiskit Qrack Provider - Qrack High-Performance GPU simulation for Qiskit"
 url = "https://pypi.org/project/qiskit-qrack-provider/"
 status = "active"
@@ -47,16 +47,6 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 1664
 last_180_days_downloads = 3656
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
-
-[checks.P13]
-since = 2026-08-06
-details = "member.pypi.qiskit-qrack-provider.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.027]
 since = 2026-07-23

@@ -25,7 +25,7 @@ url = "https://github.com/Carlosandp/qiskit-data-reuploading"
 owner = "Carlosandp"
 repo = "qiskit-data-reuploading"
 stars = 5
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Data re-uploading quantum classifier for Qiskit 2.x — pip-installable, sklearn-compatible"
 last_commit = 2026-06-07
 last_activity = 2026-07-31
@@ -51,11 +51,6 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 27
 last_180_days_downloads = 269
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

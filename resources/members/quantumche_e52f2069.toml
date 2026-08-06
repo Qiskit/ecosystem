@@ -16,15 +16,10 @@ url = "https://github.com/Venkatallu11/quantum-chemistry-vqe"
 owner = "Venkatallu11"
 repo = "quantum-chemistry-vqe"
 stars = 2
-license = "MIT License"
+license = "MIT"
 last_commit = 2026-08-04
 last_activity = 2026-08-04
 
 [badge]
 url = "https://qisk.it/e-e52f2069"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

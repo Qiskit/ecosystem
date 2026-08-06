@@ -21,7 +21,7 @@ owner = "munich-quantum-toolkit"
 repo = "core"
 stars = 129
 homepage = "https://mqt.readthedocs.io/projects/core"
-license = "MIT License"
+license = "MIT"
 description = "MQT Core - The Backbone of the Munich Quantum Toolkit"
 total_dependent_repositories = 52
 total_dependent_packages = 2
@@ -49,11 +49,6 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 28666
 last_180_days_downloads = 149698
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-14

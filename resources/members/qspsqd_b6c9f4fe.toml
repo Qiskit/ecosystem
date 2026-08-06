@@ -23,7 +23,7 @@ url = "https://github.com/JoelHBierman/QSP-SQD"
 owner = "JoelHBierman"
 repo = "QSP-SQD"
 stars = 0
-license = "MIT License"
+license = "MIT"
 description = "An implementation of Quantum Selective Configuration Interaction which uses adaptive circuits."
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -38,8 +38,3 @@ style = "flat"
 since = 2026-07-14
 details = "Last activity was 14 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

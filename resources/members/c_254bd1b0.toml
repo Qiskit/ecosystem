@@ -16,7 +16,7 @@ url = "https://github.com/Qiskit/qiskit-cpp"
 owner = "Qiskit"
 repo = "qiskit-cpp"
 stars = 41
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Qiskit C++ is an opensource interface to quantum centric supercomputing, compatible interface to Qiskit in C++"
 estimated_contributors = 8
 total_dependent_repositories = 0
@@ -27,8 +27,3 @@ last_activity = 2026-07-24
 [badge]
 url = "https://qisk.it/e-254bd1b0"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

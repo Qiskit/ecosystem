@@ -19,7 +19,7 @@ owner = "qiskit-community"
 repo = "ffsim"
 stars = 105
 homepage = "https://qiskit-community.github.io/ffsim/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Faster simulation of fermionic quantum circuits."
 estimated_contributors = 12
 total_dependent_repositories = 19
@@ -50,11 +50,6 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 32323
 last_180_days_downloads = 123692
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

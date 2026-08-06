@@ -17,7 +17,7 @@ url = "https://github.com/Ziadt160/qiskit-migration-assistant"
 owner = "Ziadt160"
 repo = "qiskit-migration-assistant"
 stars = 0
-license = "MIT License"
+license = "MIT"
 description = "RAG system that ports old Qiskit code to the latest 2.x release - grounded in the real deprecation record and verified by executing..."
 last_commit = 2026-07-09
 last_activity = 2026-07-09
@@ -25,8 +25,3 @@ last_activity = 2026-07-09
 [badge]
 url = "https://qisk.it/e-76d7a9f5"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

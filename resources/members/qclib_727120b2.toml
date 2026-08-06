@@ -15,7 +15,7 @@ url = "https://github.com/qclib/qclib"
 owner = "qclib"
 repo = "qclib"
 stars = 47
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Qclib is a quantum computing library implemented using qiskit. The focus of qclib is on preparing quantum states, but it is not lim..."
 total_dependent_repositories = 14
 total_dependent_packages = 1
@@ -41,11 +41,6 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 340
 last_180_days_downloads = 2253
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

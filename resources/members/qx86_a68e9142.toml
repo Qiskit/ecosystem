@@ -19,7 +19,7 @@ url = "https://github.com/mistasparkaru/Qx86"
 owner = "mistasparkaru"
 repo = "Qx86"
 stars = 2
-license = "GNU General Public License v3.0"
+license = "GPL-3.0"
 description = "Qx86 is an intel 8080/Z80 emulator written for IBMs Quantum Computers"
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -35,11 +35,6 @@ since = 2026-05-14
 details = "Last commit was 23 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
 discussion = "https://github.com/orgs/Qiskit/discussions/57"
 importance = "STRONG-RECOMMENDATION"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.027]
 since = 2026-07-23

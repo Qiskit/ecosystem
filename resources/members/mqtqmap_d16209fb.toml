@@ -21,7 +21,7 @@ owner = "munich-quantum-toolkit"
 repo = "qmap"
 stars = 141
 homepage = "https://mqt.readthedocs.io/projects/qmap"
-license = "MIT License"
+license = "MIT"
 description = "MQT QMAP - A tool for Quantum Circuit Mapping written in C++"
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -49,11 +49,6 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 3121
 last_180_days_downloads = 22964
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

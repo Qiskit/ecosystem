@@ -17,7 +17,7 @@ owner = "neuralsorcerer"
 repo = "quport"
 stars = 3
 homepage = "https://quport.soumyadipsarkar.com/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "QuPort is a production-ready Python and Qiskit toolkit for modeling, mapping, routing, splitting, scheduling, and benchmarking quan..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -44,11 +44,6 @@ highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
 last_month_downloads = 31
 last_180_days_downloads = 461
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-14

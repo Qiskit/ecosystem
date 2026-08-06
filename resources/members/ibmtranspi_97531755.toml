@@ -18,7 +18,7 @@ owner = "Qiskit"
 repo = "qiskit-ibm-transpiler"
 stars = 39
 homepage = "https://pypi.org/project/qiskit-ibm-transpiler/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "A library to use the Qiskit Transpiler Service and the AI-powered transpiler passes."
 total_dependent_repositories = 22
 total_dependent_packages = 2
@@ -48,8 +48,3 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 3987
 last_180_days_downloads = 25104
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

@@ -23,7 +23,7 @@ url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
 owner = "qdsvquantum-afk"
 repo = "qdsv-bridge"
 stars = 1
-license = "MIT License"
+license = "MIT"
 description = "QDSV Bridge SDK: controlled semantic-to-IR, oracle and circuit-blueprint compilation for supported quantum problem families."
 last_commit = 2026-08-06
 last_activity = 2026-08-06
@@ -49,8 +49,3 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 1618
 last_180_days_downloads = 2487
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

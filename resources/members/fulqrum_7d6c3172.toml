@@ -16,7 +16,7 @@ owner = "qiskit-community"
 repo = "fulqrum"
 stars = 14
 homepage = "https://qiskit-community.github.io/fulqrum/dev/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "A generalized framework for quantum subspace eigenproblems"
 estimated_contributors = 3
 total_dependent_repositories = 0
@@ -27,8 +27,3 @@ last_activity = 2026-08-04
 [badge]
 url = "https://qisk.it/e-7d6c3172"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

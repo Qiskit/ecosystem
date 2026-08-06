@@ -19,7 +19,7 @@ owner = "JanLahmann"
 repo = "doQumentation"
 stars = 3
 homepage = "https://doQumentation.org"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Open-source frontend for IBM Quantum's tutorials and learning platform. Browse, execute code, and run offline."
 estimated_contributors = 3
 total_dependent_repositories = 0
@@ -30,8 +30,3 @@ last_activity = 2026-08-05
 [badge]
 url = "https://qisk.it/e-dd84980a"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

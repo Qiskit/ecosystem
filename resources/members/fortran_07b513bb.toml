@@ -17,7 +17,7 @@ url = "https://github.com/Qiskit/qiskit-fortran"
 owner = "Qiskit"
 repo = "qiskit-fortran"
 stars = 3
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Fortran binding for Qiskit"
 estimated_contributors = 3
 total_dependent_repositories = 0
@@ -28,8 +28,3 @@ last_activity = 2026-07-27
 [badge]
 url = "https://qisk.it/e-07b513bb"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

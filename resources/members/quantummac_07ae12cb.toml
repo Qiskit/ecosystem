@@ -18,7 +18,7 @@ owner = "arthurostrauss"
 repo = "qiskit-qm-provider"
 stars = 6
 homepage = "https://arthurostrauss.github.io/qiskit-qm-provider/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "An interface enabling the compilation and execution of Qiskit workflows on Quantum Machine's Quantum Orchestration Platform"
 estimated_contributors = 3
 total_dependent_repositories = 0
@@ -34,7 +34,7 @@ style = "flat"
 package_name = "qiskit-qm-provider"
 version = "0.3.2"
 last_release_date = 2026-07-22
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Provider for running Qiskit circuits and pulses on Quantum Machines' Quantum Orchestration Platform"
 url = "https://pypi.org/project/qiskit-qm-provider/"
 status = "active"
@@ -47,17 +47,7 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 188
 last_180_days_downloads = 776
 
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
-
 [checks.P10]
 since = 2026-07-09
 details = "Python package qiskit-qm-provider declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
-
-[checks.P13]
-since = 2026-08-06
-details = "member.pypi.qiskit-qm-provider.license is not OSI-approved"
-importance = "IMPORTANT"

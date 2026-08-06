@@ -17,7 +17,7 @@ owner = "Qiskit"
 repo = "qiskit-ibm-runtime"
 stars = 235
 homepage = "https://docs.quantum.ibm.com/api/qiskit-ibm-runtime"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "IBM Client for Qiskit Runtime"
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -32,7 +32,7 @@ style = "flat"
 package_name = "qiskit-ibm-runtime"
 version = "0.48.0"
 last_release_date = 2026-07-14
-license = "Apache 2.0"
+license = "Apache-2.0"
 description = "IBM Quantum client for Qiskit Runtime."
 url = "https://pypi.org/project/qiskit-ibm-runtime/"
 status = "active"
@@ -45,17 +45,7 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 652252
 last_180_days_downloads = 3149092
 
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
-
 [checks.P10]
 since = 2026-07-09
 details = "Python package qiskit-ibm-runtime declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
-
-[checks.P13]
-since = 2026-08-06
-details = "member.pypi.qiskit-ibm-runtime.license is not OSI-approved"
-importance = "IMPORTANT"

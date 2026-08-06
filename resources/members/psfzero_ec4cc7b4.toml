@@ -18,7 +18,7 @@ url = "https://github.com/TN-Holdings-LLC/psf-zero"
 owner = "TN-Holdings-LLC"
 repo = "psf-zero"
 stars = 2
-license = "GNU Affero General Public License v3.0"
+license = "AGPL-3.0"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-07-29
@@ -27,8 +27,3 @@ last_activity = 2026-07-29
 [badge]
 url = "https://qisk.it/e-ec4cc7b4"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

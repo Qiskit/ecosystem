@@ -18,7 +18,7 @@ owner = "Gopal-Dahale"
 repo = "qiskit-qulacs"
 stars = 10
 homepage = "https://qiskit-qulacs.netlify.app/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Execute Qiskit programs using Qulacs backend."
 estimated_contributors = 2
 total_dependent_repositories = 0
@@ -51,11 +51,6 @@ last_180_days_downloads = 731
 since = 2026-07-23
 details = "Last activity was 7 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

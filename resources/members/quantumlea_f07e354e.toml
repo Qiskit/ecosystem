@@ -18,7 +18,7 @@ owner = "KUQCI"
 repo = "quantum-learn"
 stars = 0
 homepage = "https://pypi.org/project/quantum-learn/"
-license = "MIT License"
+license = "MIT"
 description = "quantum-learn: quantum machine learning in Python"
 total_dependent_repositories = 1
 total_dependent_packages = 0
@@ -46,11 +46,6 @@ highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
 last_month_downloads = 54
 last_180_days_downloads = 852
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-08-06

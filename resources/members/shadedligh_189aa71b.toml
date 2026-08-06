@@ -18,7 +18,7 @@ owner = "Qiskit"
 repo = "qiskit-addon-slc"
 stars = 6
 homepage = "https://qiskit.github.io/qiskit-addon-slc/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Reducing PEC sampling overhead with shaded lightcones"
 estimated_contributors = 9
 total_dependent_repositories = 1
@@ -46,8 +46,3 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 5122
 last_180_days_downloads = 5960
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"

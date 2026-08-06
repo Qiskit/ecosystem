@@ -17,7 +17,7 @@ url = "https://github.com/okudat9/nu-zz-map-iqm"
 owner = "okudat9"
 repo = "nu-zz-map-iqm"
 stars = 0
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Residual ZZ mapping for IQM quantum processors, with a built-in negative control"
 last_commit = 2026-07-25
 last_activity = 2026-07-25
@@ -25,8 +25,3 @@ last_activity = 2026-07-25
 [badge]
 url = "https://qisk.it/e-b1f58e67"
 style = "flat"
-
-[checks.G10]
-since = 2026-08-06
-details = "member.github.license is not OSI-approved"
-importance = "IMPORTANT"
