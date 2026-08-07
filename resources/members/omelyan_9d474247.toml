@@ -6,12 +6,10 @@ contact_info = "malezic15@gmail.com"
 labels = ["high-level synthesis", "Hamiltonian simulation"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
-pattern_steps = ["Map"]
 reference_paper = "https://arxiv.org/abs/2601.18756"
 packages = []
 uuid = "9d474247-5c15-481c-afb2-cc58ae884459"
 maturity = "bugfixing only"
-status = "Under revision"
 
 [github]
 url = "https://github.com/MarkoMalezic/qiskit-omelyan"
@@ -26,16 +24,6 @@ last_activity = 2026-06-29
 url = "https://qisk.it/e-9d474247"
 style = "flat"
 
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-omelyan declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06T12:46:29.207233
-details = "member.pypi.qiskit-omelyan does not have a declared license"
-importance = "RECOMMENDATION"
-
 [pypi.qiskit-omelyan]
 package_name = "qiskit-omelyan"
 version = "0.2.1"
@@ -49,5 +37,15 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 301
-last_180_days_downloads = 435
+last_month_downloads = 43
+last_180_days_downloads = 464
+
+[checks.P10]
+since = 2026-07-14
+details = "Python package qiskit-omelyan declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
+[checks.P12]
+since = 2026-07-14
+details = "member.pypi.qiskit-omelyan does not have a declared license"
+importance = "RECOMMENDATION"

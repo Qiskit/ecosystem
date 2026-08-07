@@ -7,7 +7,6 @@ interfaces = ["Python", "C++"]
 ibm_maintained = true
 created_at = 2021-11-08
 category = "Circuit simulator"
-pattern_steps = ["Execute"]
 documentation = "https://qiskit.github.io/qiskit-aer/"
 packages = []
 uuid = "474599a7-228b-446f-ae57-636fdbe8c1c6"
@@ -18,23 +17,18 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-aer"
 owner = "Qiskit"
 repo = "qiskit-aer"
-stars = 677
+stars = 684
 homepage = "https://qiskit.github.io/qiskit-aer/"
 license = "Apache-2.0"
 description = "Aer is a high performance simulator for quantum circuits that includes noise models"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-05-25
-last_activity = 2026-07-08
+last_activity = 2026-08-06
 
 [badge]
 url = "https://qisk.it/e-474599a7"
 style = "flat"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-aer declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 
 [pypi.qiskit-aer]
 package_name = "qiskit-aer"
@@ -48,10 +42,10 @@ maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1236459
-last_180_days_downloads = 3383309
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 858470
+last_180_days_downloads = 3673581
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
@@ -65,10 +59,10 @@ maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 9020
-last_180_days_downloads = 27329
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 3256
+last_180_days_downloads = 26185
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
@@ -82,7 +76,12 @@ maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 3319
-last_180_days_downloads = 12397
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 1553
+last_180_days_downloads = 12072
+
+[checks.P10]
+since = 2026-07-14
+details = "Python package qiskit-aer declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

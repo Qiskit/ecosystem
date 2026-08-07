@@ -14,23 +14,18 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit_sphinx_theme"
 owner = "Qiskit"
 repo = "qiskit_sphinx_theme"
-stars = 23
+stars = 24
 homepage = "https://qisk.it/docs-guide"
 license = "Apache-2.0"
 description = "A Sphinx theme and documentation guidelines for Qiskit and Qiskit Ecosystem projects"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-05-19
-last_activity = 2026-05-20
+last_activity = 2026-07-31
 
 [badge]
 url = "https://qisk.it/e-f3f07e5f"
 style = "flat"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-sphinx-theme declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 
 [pypi.qiskit-sphinx-theme]
 package_name = "qiskit-sphinx-theme"
@@ -45,5 +40,5 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/nonhermitian/",
 ]
-last_month_downloads = 97309
-last_180_days_downloads = 299049
+last_month_downloads = 38359
+last_180_days_downloads = 312754

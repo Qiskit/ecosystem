@@ -7,7 +7,6 @@ labels = ["AI/LLM"]
 interfaces = ["Python", "Command-line interface (CLI)", "Web interface"]
 website = "https://huggingface.co/spaces/quZiad/qiskit-migration-assistant"
 category = "Tooling"
-pattern_steps = []
 packages = []
 uuid = "76d7a9f5-7e98-42bb-94c8-280652d45287"
 maturity = "experimental"
@@ -18,6 +17,7 @@ owner = "Ziadt160"
 repo = "qiskit-migration-assistant"
 stars = 0
 license = "MIT"
+description = "RAG system that ports old Qiskit code to the latest 2.x release - grounded in the real deprecation record and verified by executing..."
 last_commit = 2026-07-09
 last_activity = 2026-07-09
 

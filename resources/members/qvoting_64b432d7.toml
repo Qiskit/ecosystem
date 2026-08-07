@@ -6,7 +6,6 @@ contact_info = "nicolascogu@hotmail.com"
 labels = ["error mitigation", "error correction", "optimization", "research"]
 interfaces = ["Python"]
 category = "Application"
-pattern_steps = ["Post-process"]
 packages = []
 uuid = "64b432d7-f5f5-487f-8789-caadba593ce9"
 maturity = "experimental"
@@ -21,16 +20,11 @@ description = "Quantum voting circuits with integrated error mitigation for NISQ
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-03-10
-last_activity = 2026-03-10T00:09:45Z
+last_activity = 2026-03-10
 
 [badge]
 url = "https://qisk.it/e-64b432d7"
 style = "flat"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qvoting declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 
 [pypi.qvoting]
 package_name = "qvoting"
@@ -47,5 +41,10 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 109
-last_180_days_downloads = 838
+last_month_downloads = 45
+last_180_days_downloads = 881
+
+[checks.P10]
+since = 2026-07-14
+details = "Python package qvoting declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

@@ -16,22 +16,18 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-ibm-transpiler"
 owner = "Qiskit"
 repo = "qiskit-ibm-transpiler"
-stars = 39
+stars = 40
 homepage = "https://pypi.org/project/qiskit-ibm-transpiler/"
 license = "Apache-2.0"
 description = "A library to use the Qiskit Transpiler Service and the AI-powered transpiler passes."
 total_dependent_repositories = 22
 total_dependent_packages = 2
 last_commit = 2026-03-10
+last_activity = 2026-08-06
 
 [badge]
 url = "https://qisk.it/e-97531755"
 style = "flat"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package qiskit-ibm-transpiler declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 
 [pypi.qiskit-ibm-transpiler]
 package_name = "qiskit-ibm-transpiler"
@@ -48,7 +44,7 @@ maintainers = [
 requires_qiskit = "<3.0.0,>=1.4.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 6801
-last_180_days_downloads = 24756
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 3970
+last_180_days_downloads = 25131

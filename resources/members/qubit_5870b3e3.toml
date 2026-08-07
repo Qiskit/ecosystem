@@ -16,13 +16,18 @@ url = "https://github.com/R-D-BioTech-Alaska/Qubit"
 owner = "R-D-BioTech-Alaska"
 repo = "Qubit"
 stars = 4
-license = "MIT"
+license = "Other"
 description = "Hybrid Qubit for real world applications"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-12
-last_activity = 2026-07-12
+last_commit = 2026-07-30
+last_activity = 2026-07-30
 
 [badge]
 url = "https://qisk.it/e-5870b3e3"
 style = "flat"
+
+[checks.G09]
+since = 2026-08-06
+details = "member.github.license not detected"
+importance = "RECOMMENDATION"

@@ -25,32 +25,11 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 archived = true
 last_commit = 2025-09-16
-last_activity = 2026-04-16T14:38:53Z
+last_activity = 2026-04-16
 
 [badge]
 url = "https://qisk.it/e-648ef199"
 style = "flat"
-
-[checks.007]
-since = 2026-04-08T16:22:37.968592
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
-[checks.G05]
-since = 2026-04-23T22:50:49.067317
-details = "GitHub repository archived and member.maturity is not `as-is`"
-importance = "CRITICAL"
-
-[checks.PQ2]
-since = 2026-04-30T11:32:49.789583
-details = "Python package qiskit-iqm is not compatible with Qiskit SDK v2"
-importance = "IMPORTANT"
-
-[checks.001]
-since = 2026-05-22T11:10:32.120535
-details = "The project is probably abandoned: `[G05]`"
-importance = "CRITICAL"
 
 [pypi.qiskit-iqm]
 package_name = "qiskit-iqm"
@@ -66,3 +45,24 @@ highest_supported_qiskit_release_date = 2024-10-03
 highest_supported_qiskit_version = "1.2.4"
 last_month_downloads = 3728
 last_180_days_downloads = 22703
+
+[checks.007]
+since = 2026-04-08
+details = "the entry `member.interfaces` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.G05]
+since = 2026-04-23
+details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "CRITICAL"
+
+[checks.PQ2]
+since = 2026-04-30
+details = "Python package qiskit-iqm is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
+
+[checks.001]
+since = 2026-05-22
+details = "The project is probably abandoned: `[G05]`"
+importance = "CRITICAL"

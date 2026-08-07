@@ -24,27 +24,11 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 archived = true
 last_commit = 2025-03-13
-last_activity = 2026-04-11T15:26:36Z
+last_activity = 2026-04-11
 
 [badge]
 url = "https://qisk.it/e-d5d174ee"
 style = "flat"
-
-[checks.007]
-since = 2026-04-08T16:22:48.509137
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
-[checks.G05]
-since = 2026-04-23T22:50:51.723784
-details = "GitHub repository archived and member.maturity is not `as-is`"
-importance = "CRITICAL"
-
-[checks.001]
-since = 2026-05-22T11:10:32.120535
-details = "The project is probably abandoned: `[G05]`"
-importance = "CRITICAL"
 
 [pypi.qiskit-quantinuum-provider]
 package_name = "qiskit-quantinuum-provider"
@@ -54,3 +38,19 @@ description = "Qiskit provider for accessing the quantum devices at Quantinuum"
 url = "https://pypi.org/project/qiskit-quantinuum-provider/"
 last_month_downloads = 79
 last_180_days_downloads = 246
+
+[checks.007]
+since = 2026-04-08
+details = "the entry `member.interfaces` does not exist and it is mandatory"
+discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
+importance = "IMPORTANT"
+
+[checks.G05]
+since = 2026-04-23
+details = "GitHub repository archived and member.maturity is not `as-is`"
+importance = "CRITICAL"
+
+[checks.001]
+since = 2026-05-22
+details = "The project is probably abandoned: `[G05]`"
+importance = "CRITICAL"

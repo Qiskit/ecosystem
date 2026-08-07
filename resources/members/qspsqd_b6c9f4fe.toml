@@ -13,7 +13,6 @@ labels = [
 ]
 interfaces = ["Python"]
 category = "Other"
-pattern_steps = []
 packages = []
 uuid = "b6c9f4fe-8d25-48fa-832b-5bd79725b9da"
 maturity = "experimental"
@@ -33,3 +32,8 @@ last_activity = 2025-05-11
 [badge]
 url = "https://qisk.it/e-b6c9f4fe"
 style = "flat"
+
+[checks.G06]
+since = 2026-07-14
+details = "Last activity was 14 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+importance = "RECOMMENDATION"

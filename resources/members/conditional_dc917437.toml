@@ -5,7 +5,6 @@ contact_info = "alexander.greenwood@mail.utoronto.ca"
 labels = ["research"]
 interfaces = ["Python"]
 category = "Other"
-pattern_steps = ["Execute"]
 reference_paper = "https://arxiv.org/abs/2508.09110"
 packages = []
 uuid = "dc917437-3b51-4ea8-9bdb-e2eaa2114cd5"
@@ -21,8 +20,13 @@ description = "A software library for implementing conditional projective measur
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2025-11-13
-last_activity = 2025-12-01T23:51:35Z
+last_activity = 2025-12-01
 
 [badge]
 url = "https://qisk.it/e-dc917437"
 style = "flat"
+
+[checks.G06]
+since = 2026-07-14
+details = "Last activity was 8 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+importance = "RECOMMENDATION"

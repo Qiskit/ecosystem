@@ -47,7 +47,6 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         updated_at: int | None = None,
         website: str | None = None,
         category: str | None = None,
-        pattern_steps: list[str] | None = None,
         reference_paper: URL | None = None,
         documentation: URL | None = None,
         packages: list[URL] | None = None,
@@ -75,9 +74,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.ibm_maintained = ibm_maintained
         self.created_at = created_at
         self.updated_at = updated_at
-        self.website = website
+        self.website = URL(website) if isinstance(website, str) else website
         self.category = category
-        self.pattern_steps = pattern_steps
         self.reference_paper = (
             URL(reference_paper)
             if isinstance(reference_paper, str)
@@ -158,6 +156,10 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         base_dict = super().to_dict(keys=keys)
         if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
             del base_dict["ibm_maintained"]
+        # move checks to the end of the dict
+        if "checks" in base_dict:
+            checks = base_dict.pop("checks")
+            base_dict["checks"] = checks
         return base_dict
 
     def __eq__(self, other: "Member"):
@@ -284,7 +286,6 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             ibm_maintained=submission.is_ibm_maintained,
             website=submission.home_url,
             category=submission.category,
-            pattern_steps=submission.pattern_steps,
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
             maturity=submission.maturity,
@@ -333,12 +334,17 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """Check if self.maturity should move to archived. Either because:
          - github.archived == true
          - TODO: if all the pypi package are archived
-        only udpates if maturity was not "as-is"
+        only udpates if maturity was not:
+          - "as-is"
+          - "unmaintained"
+          - "archived"
         """
         skip_if = [
             "as-is",
+            "unmaintained",
+            "archived",
         ]
         if self.maturity in skip_if:
             return
         if hasattr(self.github, "archived") and self.github.archived:
-            self.maturity = "unmaintained"
+            self.maturity = "archived"

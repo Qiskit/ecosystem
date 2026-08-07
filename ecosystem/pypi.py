@@ -236,27 +236,12 @@ class PyPIData(JsonSerializable):  # pylint: disable=too-many-public-methods
             }
         return self._all_qiskit_versions
 
-    def compatible_with_qiskit(self, major, force_update=False):
+    def compatible_with_qiskit(self, major: int):
         """Boolean if the package is compatible with any Qiskit of the v<major> series"""
         if self.requires_qiskit is None:
-            return None
+            return self._kwargs.get(f"compatible_with_qiskit_v{major}")
         qiskit_specifier = SpecifierSet(self.requires_qiskit)
-        if (
-            not force_update
-            and self._all_qiskit_versions is None
-            and f"compatible_with_qiskit_v{major}" in self._kwargs
-        ):
-            return self._kwargs[f"compatible_with_qiskit_v{major}"]
-
-        qiskit_versions = self.all_qiskit_versions(force_update=force_update)
-        for qiskit_version in qiskit_versions.keys():
-            if Version(qiskit_version).major != major:
-                continue
-            if qiskit_specifier.contains(qiskit_version):
-                break
-        else:
-            return False
-        return True
+        return not (SpecifierSet(f"=={major}.*") & qiskit_specifier).is_unsatisfiable()
 
     @property
     def compatible_with_qiskit_v1(self):

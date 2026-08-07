@@ -53,7 +53,7 @@ def test_PQ2(member, subtests):
 
 def test_P10(member):
     for pypi_package in member.pypi.values():
-        assert pypi_package.compatible_with_qiskit(3), (
+        assert not pypi_package.compatible_with_qiskit(3), (
             f"Python package {pypi_package.package_name} declared itself "
             "compatible to a not-yet-released major version of Qiskit"
         )

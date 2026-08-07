@@ -230,7 +230,7 @@ class GitHubData(JsonSerializable):
         """The creation of the last event"""
         if self._json_events and self._json_events["data"]:
             return parse_date(self._json_events["data"][0]["created_at"])
-        return self._kwargs.get("last_activity")
+        return parse_date(self._kwargs.get("last_activity"))
 
     @property
     def license(self):

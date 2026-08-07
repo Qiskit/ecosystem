@@ -49,15 +49,6 @@ category = "SUBMISSION"
 checker = "test_classifications.py::test_004"
 importance = "IMPORTANT"
 
-[005]
-title = "Qiskit Pattern steps, if there, should be valid"
-description = "All `member.pattern_steps` should exist in https://qisk.it/ecosystem-pattern_steps"
-applies_to = "all"
-affects = ["member.pattern_steps.*"]
-category = "SUBMISSION"
-checker = "test_classifications.py::test_005"
-importance = "IMPORTANT"
-
 [007]
 title = "Interface have to exist"
 description = "All `member.interfaces` should exist in https://qisk.it/ecosystem-interfaces"
@@ -163,6 +154,15 @@ checker = "test_url.py::TestURLs::test_026"
 category = "SUBMISSION"
 importance = "RECOMMENDATION"
 
+[027]
+title = "Website should not be GitHub repository or PyPI URL"
+description = "The `member.website` field should point to the project's website instead of the GitHub repository or a PyPI project page."
+applies_to = "all"
+affects = ["member.website"]
+checker = "test_url.py::TestURLs::test_027"
+category = "SUBMISSION"
+importance = "STRONG-RECOMMENDATION"
+
 [G05]
 title = "Archived GitHub repository should have `unmaintaned` support"
 applies_to = "GitHub projects"
@@ -179,6 +179,7 @@ affects = ['member.github.last_activity']
 category = "ACTIVITY"
 description = "Projects available on GitHub should have some activity within the last 6 months, such as somebody staring the repository. This check does not apply to project that declared their support as as-is."
 importance = "RECOMMENDATION"
+checker = "test_github.py::test_G06"
 
 [G07]
 title = "Have a commit within the last 18 months"
@@ -187,6 +188,7 @@ affects = ['member.github.last_commit']
 category = "ACTIVITY"
 description = "Projects available on GitHub should have a commit activity activity within the last 18 months. This check does not apply to project that declared their support as as-is."
 importance = "STRONG-RECOMMENDATION"
+checker = "test_github.py::test_G07"
 
 [G08]
 title = "Unmaintained projects should be archived in GitHub repository"
@@ -214,6 +216,15 @@ category = "OSS"
 description = "..."
 importance = "IMPORTANT"
 checker = "test_github.py::test_G10"
+
+[G11]
+title = "Unmaintaned projects should be archived when the repository is on an IBM-controlled organization"
+applies_to = "GitHub projects"
+affects = ['github.archived']
+category = "ACTIVITY"
+description = "..."
+importance = "STRONG-RECOMMENDATION"
+checker = "test_github.py::test_G11"
 
 [O01]
 title = "Have a license"

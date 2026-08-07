@@ -20,7 +20,7 @@ import pytest
 class TestURLs:
     @classmethod
     def get_all_urls(cls, member):
-        """recursevly search for URLs in the member data"""
+        """recursively search for URLs in the member data"""
         for key, value in member.to_dict().items():
             if isinstance(value, str) and value.startswith("http"):
                 yield getattr(member, key)
@@ -35,13 +35,22 @@ class TestURLs:
 
     def test_025(self, member):
         """Documentation link has redundant suffix"""
+
         fields = ["url", "documentation", "reference_paper"]
+
         for field in fields:
             url = getattr(member, field)
+
             if url is None:
                 continue
-            if url.hostname.endswith("readthedocs.io"):
-                suffixes = ["en/latest/", "en/latest", "en"]
+
+            if url.hostname.lower().endswith("readthedocs.io"):
+                suffixes = [
+                    "en/latest/",
+                    "en/latest",
+                    "en",
+                ]
+
                 for suffix in suffixes:
                     assert not url.path.endswith(
                         suffix
@@ -49,13 +58,40 @@ class TestURLs:
 
     def test_026(self, member):
         """The /README.md is not documentation"""
+
         documentation_url = getattr(member, "documentation")
+
         if documentation_url is None:
             pytest.skip("No member.documentation")
-        if documentation_url.hostname.endswith("github.com"):
-            suffixes = ["main/README.md"]
+
+        if documentation_url.hostname.lower().endswith("github.com"):
+            suffixes = [
+                "main/README.md",
+                "blob/main/README.md",
+                "tree/main",
+            ]
+
             for suffix in suffixes:
                 assert not documentation_url.path.endswith(suffix), (
-                    "The field `member.documentation` can be empty. "
-                    "It does not have to be a link to the `README.md`."
+                    "The field `member.documentation` can be "
+                    "empty. It does not have to be a link to "
+                    "the repository's `README.md` or root."
                 )
+
+    def test_027(self, member):
+        """Website should not be a GitHub or PyPI URL."""
+
+        website_url = getattr(member, "website")
+
+        if website_url is None:
+            pytest.skip("No member.website")
+
+        hostname = website_url.hostname or ""
+
+        assert not hostname.endswith(
+            "github.com"
+        ), "The field `member.website` should not be the GitHub repository."
+
+        assert not (
+            hostname.endswith("pypi.org") or hostname.endswith("pypi.python.org")
+        ), "The field `member.website` should not point to a PyPI project URL."

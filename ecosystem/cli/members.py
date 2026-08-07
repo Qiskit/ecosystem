@@ -12,7 +12,7 @@
 
 """CliMembers class for controlling all CLI functions."""
 
-from datetime import datetime, timedelta
+from datetime import date, timedelta
 import json
 import tomllib
 import os
@@ -471,7 +471,7 @@ class CliMembers:
                 )
             self.dao.update(project.name_id, checks=project.checks)
 
-    def update_status(self, name=None, update_all=False):
+    def update_status(self, name=None, update_all=False, exclude: str = None):
         """
         Check if a project should be moved to "Under revision" or "Alumni"
 
@@ -479,7 +479,15 @@ class CliMembers:
             name: project to udpate. None (default) if all of them.
             update_all: Updates all the projects. If False (default) will not
               update "Qiskit Project" or "Alumni"
+            exclude: comma-separated list of importances to exclude.
+              Eg: `-e "recommendation, legacy, best_practice"`. Excluding here means, "do not update
+              the status because the existance of a check up with this importance".
         """
+        exclude_set = (
+            {slugify(e) for e in exclude} if isinstance(exclude, tuple) else set()
+        )
+        if isinstance(exclude, str):
+            exclude_set.add(exclude)
         for project in self.dao.get_all(name):
             if project.status in ["Qiskit Project", "Alumni"] and not update_all:
                 # "Qiskit Project" status is governed differently,
@@ -495,11 +503,14 @@ class CliMembers:
                 if check.xfailed:
                     # Xfails do not affect the status
                     continue
+                if check.importance.lower() in exclude_set:
+                    # If the importance is in the exclude set, ignore it.
+                    continue
                 if check.cure_period_in_days is False:
                     # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
                     continue
                 deadline = check.since + timedelta(days=check.cure_period_in_days)
-                if datetime.today() > deadline:
+                if date.today() > deadline:
                     # deadline passed
                     project.status = "Alumni"
                     break

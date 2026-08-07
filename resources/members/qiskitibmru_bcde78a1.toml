@@ -29,11 +29,6 @@ last_activity = 2026-07-05
 url = "https://qisk.it/e-bcde78a1"
 style = "flat"
 
-[checks.J00]
-since = 2026-07-09T11:29:53.067305
-details = "member.julia.QiskitIBMRuntime does not have a declared license"
-importance = "RECOMMENDATION"
-
 [julia.QiskitIBMRuntime]
 package_name = "QiskitIBMRuntime"
 registry = "General"
@@ -48,3 +43,8 @@ uuid = "1f74880b-c9c8-4af4-a333-b5b4aaaec6f5"
 estimated_unique_users = 2
 monthly_downloads = 2
 total_downloads = 2
+
+[checks.J00]
+since = 2026-07-09
+details = "member.julia.QiskitIBMRuntime does not have a declared license"
+importance = "RECOMMENDATION"

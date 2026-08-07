@@ -47,11 +47,6 @@ def labels(toml_file_data):
 
 
 @pytest.fixture
-def pattern_steps(toml_file_data):
-    return [c["name"] for c in toml_file_data["pattern_steps"]]
-
-
-@pytest.fixture
 def maturity(toml_file_data):
     return [c["name"] for c in toml_file_data["maturity"]]
 
@@ -81,16 +76,6 @@ def test_valid_label(member, labels):
         assert (
             label in labels
         ), f"the label '{label}' does not exist in classifications.toml"
-
-
-def test_005(member, pattern_steps):
-    """All `member.pattern_steps` should exist in https://qisk.it/ecosystem-pattern_steps"""
-    if not member.pattern_steps:
-        pytest.skip("No Qiskit Pattern step declared")
-    for pattern_step in member.pattern_steps:
-        assert (
-            pattern_step in pattern_steps
-        ), f"the Qiskit Pattern step '{pattern_step}' does not exist in classifications.toml"
 
 
 def test_004(member, maturity):

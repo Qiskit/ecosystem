@@ -6,7 +6,6 @@ interfaces = ["C++"]
 ibm_maintained = true
 website = "https://qiskit.github.io/qiskit-addon-sqd-hpc/"
 category = "Qiskit addon"
-pattern_steps = ["Post-process"]
 documentation = "https://qiskit.github.io/qiskit-addon-sqd-hpc/"
 packages = []
 uuid = "f342b5ed-2136-4f7a-bd00-a0a7d2df3493"
@@ -24,8 +23,8 @@ description = "qiskit-addon-sqd-hpc is a modern C++17/20 software library to ena
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-06-25
-last_activity = 2026-06-25
+last_commit = 2026-07-21
+last_activity = 2026-07-22
 
 [badge]
 url = "https://qisk.it/e-f342b5ed"

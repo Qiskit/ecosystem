@@ -10,7 +10,6 @@ documentation = "https://docs.quantinuum.com/tket/extensions/pytket-qiskit/"
 packages = []
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/Quantinuum/pytket-qiskit"
@@ -22,22 +21,12 @@ description = "pytket-qiskit, extensions for pytket quantum SDK "
 estimated_contributors = 21
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-02-04
-last_activity = 2026-07-13
+last_commit = 2026-08-06
+last_activity = 2026-08-06
 
 [badge]
 url = "https://qisk.it/e-7c80aef4"
 style = "flat"
-
-[checks.P10]
-since = 2026-07-09T11:29:53.067305
-details = "Python package pytket-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.P12]
-since = 2026-07-06T12:46:29.207233
-details = "member.pypi.pytket-qiskit does not have a declared license"
-importance = "RECOMMENDATION"
 
 [pypi.pytket-qiskit]
 package_name = "pytket-qiskit"
@@ -53,7 +42,17 @@ maintainers = [
 requires_qiskit = ">=2.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 90903
-last_180_days_downloads = 263527
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 46276
+last_180_days_downloads = 269202
+
+[checks.P10]
+since = 2026-07-09
+details = "Python package pytket-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
+[checks.P12]
+since = 2026-07-06
+details = "member.pypi.pytket-qiskit does not have a declared license"
+importance = "RECOMMENDATION"

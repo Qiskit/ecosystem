@@ -16,7 +16,7 @@
 
 import pytest
 
-ibm_controlled_gh_org = ["qiskit", "qiskit-community", "openqasm"]
+from . import ibm_controlled_gh_org
 
 
 @pytest.fixture(autouse=True)
