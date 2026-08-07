@@ -17,7 +17,7 @@ owner = "frankharkins"
 repo = "quPython"
 stars = 11
 homepage = "https://frankharkins.github.io/quPython/"
-license = "MIT License"
+license = "MIT"
 description = "Quantum programs in Python"
 estimated_contributors = 2
 total_dependent_repositories = 5
@@ -33,7 +33,7 @@ style = "flat"
 package_name = "qupython"
 version = "0.2.0"
 last_release_date = 2024-04-07
-license = "MIT License"
+license = "MIT"
 description = "Write quantum programs directly in Python"
 url = "https://pypi.org/project/qupython/"
 status = "active"
@@ -44,7 +44,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 12
-last_180_days_downloads = 150
+last_180_days_downloads = 148
 
 [checks.P10]
 since = 2026-07-23

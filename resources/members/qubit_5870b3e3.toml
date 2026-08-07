@@ -26,3 +26,8 @@ last_activity = 2026-07-30
 [badge]
 url = "https://qisk.it/e-5870b3e3"
 style = "flat"
+
+[checks.G09]
+since = 2026-08-06
+details = "member.github.license not detected"
+importance = "RECOMMENDATION"

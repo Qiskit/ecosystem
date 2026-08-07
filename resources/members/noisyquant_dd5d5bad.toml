@@ -19,7 +19,7 @@ owner = "CERN-QTI"
 repo = "quantum-gates"
 stars = 21
 homepage = "https://quantum-gates.readthedocs.io/en/latest/"
-license = "MIT License"
+license = "MIT"
 description = "Noisy Quantum Gates model for simulating the noise of quantum devices."
 estimated_contributors = 8
 total_dependent_repositories = 3
@@ -45,8 +45,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 49
-last_180_days_downloads = 827
+last_month_downloads = 61
+last_180_days_downloads = 840
 
 [checks.P10]
 since = 2026-07-09
