@@ -15,7 +15,7 @@ url = "https://github.com/alexg-jpg/conditional-measurements"
 owner = "alexg-jpg"
 repo = "conditional-measurements"
 stars = 4
-license = "MIT License"
+license = "MIT"
 description = "A software library for implementing conditional projective measurement operations in Qiskit."
 total_dependent_repositories = 0
 total_dependent_packages = 0
@@ -28,5 +28,5 @@ style = "flat"
 
 [checks.G06]
 since = 2026-07-14
-details = "Last activity was 7 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+details = "Last activity was 8 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"

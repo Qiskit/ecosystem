@@ -19,12 +19,12 @@ owner = "Qiskit"
 repo = "qiskit-aer"
 stars = 684
 homepage = "https://qiskit.github.io/qiskit-aer/"
-license = "Apache License 2.0"
+license = "Apache-2.0"
 description = "Aer is a high performance simulator for quantum circuits that includes noise models"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-05-25
-last_activity = 2026-08-04
+last_activity = 2026-08-06
 
 [badge]
 url = "https://qisk.it/e-474599a7"
@@ -34,7 +34,7 @@ style = "flat"
 package_name = "qiskit-aer"
 version = "0.17.2"
 last_release_date = 2026-02-04
-license = "Apache 2.0"
+license = "Apache-2.0"
 description = "Aer - High performance simulators for Qiskit"
 url = "https://pypi.org/project/qiskit-aer/"
 status = "active"
@@ -44,14 +44,14 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 854117
-last_180_days_downloads = 3659407
+last_month_downloads = 858470
+last_180_days_downloads = 3673581
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
 version = "0.15.1"
 last_release_date = 2024-09-13
-license = "Apache 2.0"
+license = "Apache-2.0"
 description = "Aer - High performance simulators for Qiskit"
 url = "https://pypi.org/project/qiskit-aer-gpu/"
 status = "active"
@@ -61,14 +61,14 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 3270
-last_180_days_downloads = 26481
+last_month_downloads = 3256
+last_180_days_downloads = 26185
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
 version = "0.17.2"
 last_release_date = 2025-09-17
-license = "Apache 2.0"
+license = "Apache-2.0"
 description = "Aer - High performance simulators for Qiskit"
 url = "https://pypi.org/project/qiskit-aer-gpu-cu11/"
 status = "active"
@@ -78,8 +78,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 1593
-last_180_days_downloads = 12159
+last_month_downloads = 1553
+last_180_days_downloads = 12072
 
 [checks.P10]
 since = 2026-07-14

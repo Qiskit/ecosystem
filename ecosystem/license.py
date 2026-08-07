@@ -56,6 +56,8 @@ class License:
             return self.spdx_ids[self.license_name]
         if f"{self.license_name}@{self.where}" in self.spdx_ids:
             return self.spdx_ids[f"{self.license_name}@{self.where}"]
+        if self.license_name in self.spdx_ids:
+            return self.spdx_ids[self.license_name]
         if self.license_name in self.spdx_ids.values():
             return self.license_name
         return None
