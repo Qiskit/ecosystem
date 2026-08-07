@@ -92,6 +92,6 @@ class TestLicense(TestCase):
 
     def test_neq(self):
         """Different sources should prevent licenses from comparing equal."""
-        license1 = License("BSD (3-clause)", where="bananaland")
+        license1 = License("Apache Software License", where="pypi")
         license2 = License('BSD 3-Clause "New" or "Revised" License')
         self.assertNotEqual(license1, license2)
