@@ -5,7 +5,6 @@ description = "Production-ready Python/Qiskit toolkit for modular multi-QPU circ
 labels = ["HPC", "benchmarking", "circuit optimization"]
 interfaces = ["Python"]
 category = "Tooling"
-pattern_steps = []
 reference_paper = "https://arxiv.org/abs/2605.12583"
 packages = []
 uuid = "390ee704-e44f-4134-9a03-0486d77a2ade"
@@ -22,7 +21,7 @@ description = "QuPort is a production-ready Python and Qiskit toolkit for modeli
 total_dependent_repositories = 0
 total_dependent_packages = 0
 last_commit = 2026-07-12
-last_activity = 2026-07-12
+last_activity = 2026-08-07
 
 [badge]
 url = "https://qisk.it/e-390ee704"
@@ -42,8 +41,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 140
-last_180_days_downloads = 457
+last_month_downloads = 31
+last_180_days_downloads = 463
 
 [checks.P10]
 since = 2026-07-14

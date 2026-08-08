@@ -19,13 +19,13 @@ owner = "R-D-BioTech-Alaska"
 repo = "Qelm"
 stars = 27
 homepage = "https://www.Qelm.org"
-license = "MIT"
+license = "Other"
 description = "Qelm - Quantum Enhanced Language Model"
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-27
-last_activity = 2026-07-27
+last_commit = 2026-08-07
+last_activity = 2026-08-07
 
 [badge]
 url = "https://qisk.it/e-8b3685bb"
@@ -45,8 +45,13 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 37
-last_180_days_downloads = 274
+last_month_downloads = 28
+last_180_days_downloads = 280
+
+[checks.G09]
+since = 2026-08-06
+details = "member.github.license not detected"
+importance = "RECOMMENDATION"
 
 [checks.P10]
 since = 2026-07-09

@@ -63,6 +63,9 @@ def test_G07(member):
     if member.maturity == "as-is":
         pytest.skip("`as-is` projects are exempt from activity checks")
 
+    if not hasattr(member.github, "last_commit"):
+        pytest.skip("No member.github.last_commit date")
+
     last_commit = member.github.last_commit
     if last_commit is None:
         pytest.skip("No member.github.last_commit date")
@@ -86,7 +89,9 @@ def test_G08(member):
 
 
 def test_G09(member):
-    if str(member.github.license) in ["None", "Other"]:
+    assert hasattr(member.github, "license"), "member.github.license does not exist"
+
+    if member.github.license and str(member.github.license) in ["None", "Other"]:
         assert (
             member.github.license.license_name is not None
         ), "member.github.license not detected"
@@ -96,7 +101,7 @@ def test_G09(member):
 
 
 def test_G10(member):
-    if member.github.license:
+    if hasattr(member.github, "license"):
         if str(member.github.license) in ["None", "Other"]:
             pytest.skip("No member.github.license, already covered by [G09]")
         assert (

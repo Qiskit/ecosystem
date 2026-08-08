@@ -43,9 +43,34 @@ def request_json(
     token=None,
 ):
     # pylint: disable=too-many-branches
-    """Requests the JSON in <url> with <headers>
+    """Request content from a URL and parse it into a JSON-like Python object.
 
-    if post is set with a dictionary, then that dict is sent as POST's JSON
+    This helper applies default headers, optional GitHub/Bitly auth, and optional
+    delay before making the request. It supports `GET` by default, or `POST`/`PUT`
+    when `post` or `put` payloads are provided.
+
+    Args:
+        url: Target URL to fetch.
+        headers: Optional request headers. If omitted, a broad set of accept
+            headers is used.
+        post: Optional JSON-serializable body for a `POST` request.
+        put: Optional JSON-serializable body for a `PUT` request.
+        parser: Callable used to parse the response payload. Defaults to
+            `json.loads`.
+        content_handler: Optional callable that receives raw `response.content`
+            bytes and returns the text/blob expected by `parser`.
+        delay: Optional delay (seconds) before sending the request.
+        token: Optional GitHub token override. When `None`, `GH_TOKEN` from the
+            environment is used for GitHub API requests.
+
+    Returns:
+        Parsed response data. Non-dict results are wrapped as `{"data": ...}`.
+        Metadata keys `__requested_at__` and `__url__` are added when parsing
+        returns a non-`None` value.
+
+    Raises:
+        EcosystemError: If the delay is too large, URL normalization fails,
+            or the response status is not successful after retry handling.
     """
     if parser is None:
         parser = json.loads
@@ -71,6 +96,9 @@ def request_json(
             headers["Authorization"] = "Bearer " + token
 
     if delay:
+        if delay < 0:
+            logger.warning("Negative delay (%.0f sec) truncated to 0", delay)
+            delay = 0
         if delay >= 900:
             raise EcosystemError(f"delay for fetching {url} too long: {delay:.0f} sec")
         if delay >= 5:
@@ -122,14 +150,19 @@ class URL:
         """
 
         Args:
-            original_url:
-            logger_level (collable):  Something like logger.error . Default is quite.
+            original_url (str): Raw URL or URL-like text to normalize.
+            logger_level (callable):  Something like logger.error . Default is quiet.
         """
+        if not original_url:
+            raise EcosystemError("original_url must be provided")
         self.original_url = original_url
         if logger_level is None:
             self.logger_level = lambda x: x
         else:
-            self.logger_level = logger
+            if callable(logger_level):
+                self.logger_level = logger_level
+            else:
+                raise EcosystemError("logger_level must be callable")
         self._normalized_url = self.normalize()
 
     def normalize(self):
@@ -299,18 +332,6 @@ def parse_juliapackages(html_text):
         ret["repo_url"] = found["href"].strip()
 
     return ret
-
-
-# def request_julia_stats(pkg_uuid):
-#     url = "https://julialang-logs.s3.amazonaws.com/public_outputs/current/package_requests.csv.gz"
-#     r = requests.get(url)
-#
-#     i = BytesIO(r.content)
-#     with gzip.open(i, "rt") as gz_file:
-#         csv_reader = csv.DictReader(gz_file)
-#         for row in csv_reader:
-#             if row["package_uuid"] == pkg_uuid:
-#                 return row
 
 
 def find_first_in_csv_gz(subdict_to_find):

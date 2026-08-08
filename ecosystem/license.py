@@ -19,27 +19,28 @@ class License:
     """
 
     spdx_ids = {
-        "Apache 2.0": "Apache-2.0",
+        "GNU Affero General Public License v3.0": "AGPL-3.0",
+        "Apache Software License@pypi": "Apache-1.1",
         "Apache 2": "Apache-2.0",
+        "Apache 2.0": "Apache-2.0",
         "Apache License 2.0": "Apache-2.0",
         "Apache-2.0": "Apache-2.0",
-        "Apache Software License@pypi": "Apache-1.1",
-        "MIT license": "MIT",
-        "MIT License": "MIT",
-        "MIT": "MIT",
-        'BSD 3-Clause "New" or "Revised" License': "BSD-3-Clause",
-        "BSD (3-clause)": "BSD-3-Clause",
-        'BSD 2-Clause "Simplified" license': "BSD-2-Clause",
         'BSD 2-Clause "Simplified" License': "BSD-2-Clause",
+        'BSD 2-Clause "Simplified" license': "BSD-2-Clause",
         'BSD 2-Clause "Simplified" or "FreeBSD" license': "BSD-2-Clause",
-        "GNU General Public License v3.0": "GPL-3.0",
+        "BSD (3-clause)": "BSD-3-Clause",
+        'BSD 3-Clause "New" or "Revised" License': "BSD-3-Clause",
         "GNU General Public License (GPL)": "GPL-3.0",
+        "GNU General Public License v3.0": "GPL-3.0",
+        "GPL v3.0": "GPL-3.0",
         "GNU Lesser General Public License v2.1": "LGPL-2.1",
+        'GNU Library or "Lesser" General Public License (LGPL)': "LGPL-2.1",
         "GNU Lesser General Public License v3.0": "LGPL-3.0",
         "LGPL-2.1-or-later": "LGPL-3.0",
         "LGPL-3.0-or-later": "LGPL-3.0",
-        'GNU Library or "Lesser" General Public License (LGPL)': "LGPL-2.1",
-        "GPL v3.0": "GPL-3.0",
+        "MIT": "MIT",
+        "MIT License": "MIT",
+        "MIT license": "MIT",
     }
 
     def __init__(self, license_name: str, where: str = None):
@@ -51,10 +52,12 @@ class License:
     @property
     def spdx_id(self):
         """if available, returns the SPDX id, otherwise, the given name at creation time"""
-        if self.license_name in self.spdx_ids:
+        if self.where is None and self.license_name in self.spdx_ids:
             return self.spdx_ids[self.license_name]
         if f"{self.license_name}@{self.where}" in self.spdx_ids:
             return self.spdx_ids[f"{self.license_name}@{self.where}"]
+        if self.license_name in self.spdx_ids:
+            return self.spdx_ids[self.license_name]
         if self.license_name in self.spdx_ids.values():
             return self.license_name
         return None
@@ -63,7 +66,7 @@ class License:
         """Check if the license is OSI approved"""
         if self.license_name.lower() == "other":
             return None
-        if self.license_name in self.spdx_ids.values():
+        if self.spdx_id in self.spdx_ids.values():
             return True
         return False
 
@@ -75,7 +78,9 @@ class License:
     def __repr__(self):
         if self.spdx_id:
             return self.spdx_id
-        return f"{self.license_name}@{self.where}"
+        if self.where:
+            return f"{self.license_name}@{self.where}"
+        return f"{self.license_name}"
 
     def __eq__(self, other):
         return repr(self) == repr(other)

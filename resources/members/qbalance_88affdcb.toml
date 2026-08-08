@@ -5,7 +5,6 @@ description = "A workflow toolkit for balancing quantum compilation, suppression
 labels = ["error mitigation", "circuit optimization", "benchmarking"]
 interfaces = ["Python"]
 category = "Tooling"
-pattern_steps = []
 reference_paper = "https://arxiv.org/abs/2605.02966"
 packages = []
 uuid = "88affdcb-ea75-47ad-956a-bd24f7af1f20"
@@ -43,8 +42,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 198
-last_180_days_downloads = 679
+last_month_downloads = 171
+last_180_days_downloads = 688
 
 [checks.P10]
 since = 2026-07-14
