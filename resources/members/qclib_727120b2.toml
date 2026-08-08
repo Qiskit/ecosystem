@@ -13,13 +13,13 @@ maturity = "production-ready"
 url = "https://github.com/qclib/qclib"
 owner = "qclib"
 repo = "qclib"
-stars = 46
+stars = 47
 license = "Apache-2.0"
 description = "Qclib is a quantum computing library implemented using qiskit. The focus of qclib is on preparing quantum states, but it is not lim..."
 total_dependent_repositories = 14
 total_dependent_packages = 1
 last_commit = 2026-04-07
-last_activity = 2026-06-20
+last_activity = 2026-07-28
 
 [badge]
 url = "https://qisk.it/e-727120b2"
@@ -38,8 +38,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 466
-last_180_days_downloads = 2284
+last_month_downloads = 275
+last_180_days_downloads = 2259
 
 [checks.P10]
 since = 2026-07-09

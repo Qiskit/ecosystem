@@ -112,11 +112,6 @@ class TestCli(TestCase):
                 "https://crates.io/crates/rusty-banana-compiler",
                 "https://marketplace.visualstudio.com/items?itemName=banana-code-assistance",
             ],
-            "pattern_steps": [
-                "Map",
-                "Optimize",
-                "Execute",
-            ],
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()
@@ -148,7 +143,6 @@ class TestCli(TestCase):
             "category": "circuit manipulation",
             "maturity": "production-ready",
             "packages": [],
-            "pattern_steps": [],
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()
@@ -179,7 +173,6 @@ class TestCli(TestCase):
             "category": "SDK",
             "maturity": "production-ready",
             "packages": [],
-            "pattern_steps": [],
             "checks": {
                 "010": {
                     "importance": "RECOMMENDATION",
@@ -221,7 +214,6 @@ class TestCli(TestCase):
             "category": "SDK",
             "maturity": "production-ready",
             "packages": [],
-            "pattern_steps": [],
         }
         self.assertEqual(len(retrieved_repos), 1)
         retrieved = list(retrieved_repos)[0].to_dict()

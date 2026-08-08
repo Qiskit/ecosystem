@@ -47,7 +47,6 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         updated_at: int | None = None,
         website: str | None = None,
         category: str | None = None,
-        pattern_steps: list[str] | None = None,
         reference_paper: URL | None = None,
         documentation: URL | None = None,
         packages: list[URL] | None = None,
@@ -77,7 +76,6 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.updated_at = updated_at
         self.website = URL(website) if isinstance(website, str) else website
         self.category = category
-        self.pattern_steps = pattern_steps
         self.reference_paper = (
             URL(reference_paper)
             if isinstance(reference_paper, str)
@@ -288,7 +286,6 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             ibm_maintained=submission.is_ibm_maintained,
             website=submission.home_url,
             category=submission.category,
-            pattern_steps=submission.pattern_steps,
             reference_paper=submission.paper_url,
             documentation=submission.docs_url,
             maturity=submission.maturity,

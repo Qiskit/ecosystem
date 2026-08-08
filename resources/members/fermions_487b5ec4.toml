@@ -6,7 +6,6 @@ labels = ["physics", "high-level synthesis", "quantum information", "chemistry"]
 interfaces = ["C", "Python"]
 ibm_maintained = true
 category = "Application"
-pattern_steps = []
 documentation = "https://qiskit.github.io/qiskit-fermions/"
 packages = []
 uuid = "487b5ec4-3ea3-453f-89a4-870341181e73"
@@ -17,14 +16,14 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-fermions"
 owner = "Qiskit"
 repo = "qiskit-fermions"
-stars = 10
+stars = 11
 homepage = "https://qiskit.github.io/qiskit-fermions/"
 license = "Apache-2.0"
 description = "This package extends Qiskit with tools for working on fermionic systems."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-27
-last_activity = 2026-07-27
+last_commit = 2026-08-07
+last_activity = 2026-08-07
 
 [badge]
 url = "https://qisk.it/e-487b5ec4"
