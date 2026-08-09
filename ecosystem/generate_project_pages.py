@@ -48,7 +48,8 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
             if project.status != "Alumni":
                 active_pypi.append(
                     {
-                        "name": f"<a href='../pypi/{package.package_name}'>{package.package_name}</a>",
+                        "name": f"<a href='../pypi/{package.package_name}'>"
+                                f"{package.package_name}</a>",
                         "status": project.status or "Active project",
                         "maturity": project.maturity,
                     }
