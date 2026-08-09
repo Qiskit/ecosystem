@@ -12,8 +12,29 @@ uuid = "b286e633-de44-4416-b62d-00a7aed36ac8"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/RexRowan/Qiskit-QKD-Lab"
 owner = "RexRowan"
 repo = "Qiskit-QKD-Lab"
+stars = 0
+license = "MIT"
+description = "A QKD protocol simulator built directly on Qiskit primitives."
+last_commit = 2026-08-08
+last_activity = 2026-08-08
 
 [pypi.qiskit-qkd-lab]
 package_name = "qiskit-qkd-lab"
+version = "0.2.0"
+last_release_date = 2026-08-08
+license = "MIT"
+description = "A QKD protocol simulator built on Qiskit primitives, with circuit-level eavesdropping models."
+url = "https://pypi.org/project/qiskit-qkd-lab/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-07-23
+highest_supported_qiskit_version = "2.5.1"
+last_month_downloads = 116
+last_180_days_downloads = 116
