@@ -203,13 +203,13 @@ class ProjectSummaryCard(Card):
         """Annotation for title"""
         match self.status:
             case "Qiskit Project":
-                return "[All the Qiskit Projects](../status/#qiskit-project)"
+                return "[All the Qiskit Projects](../status.md#qiskit-project)"
             case "Alumni":
-                return "[All the Alumni projects](../status/#alumni)"
+                return "[All the Alumni projects](../status.md#alumni)"
             case "Under revision":
-                return "[All the projects under revision](../status/#under-revision)"
+                return "[All the projects under revision](../status.md#under-revision)"
             case _:
-                return "[All the regular Members](../status/#regular-members)"
+                return "[All the regular Members](../status.md#regular-members)"
 
     @property
     def classifications_lines(self):

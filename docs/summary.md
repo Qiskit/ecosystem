@@ -1,3 +1,10 @@
+# Active projects
+
+{{ read_csv('docs/assets/active_projects.csv') }}
+
+# Active PyPI packages
+
+{{ read_csv('docs/assets/active_pypi.csv') }}
 
 ```vegalite 
 {

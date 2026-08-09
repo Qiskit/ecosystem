@@ -1,0 +1,25 @@
+name = "Qiskit StateViz"
+submission_number = 1287
+url = "https://github.com/RexRowan/Qiskit-StateViz"
+description = "Interactive, rotatable Plotly visualizations (Q-sphere, Bloch multivector) for Qiskit statevectors."
+contact_info = "titaniumdavinci@gmail.com"
+labels = ["quantum information"]
+interfaces = ["Python"]
+category = "Tooling"
+packages = []
+uuid = "e9f6e045-b7f3-452f-95a4-faf9ee901087"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/RexRowan/Qiskit-StateViz"
+owner = "RexRowan"
+repo = "Qiskit-StateViz"
+stars = 0
+license = "MIT"
+description = "Interactive, Plotly-based statevector visualizations for Qiskit"
+last_commit = 2026-08-08
+last_activity = 2026-08-08
+
+[badge]
+url = "https://qisk.it/e-e9f6e045"
+style = "flat"
