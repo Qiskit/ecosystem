@@ -1,13 +1,12 @@
 name = "Qiskit QKD Lab"
 submission_number = 1289
-url = "https://github.com/RexRowan"
+url = "https://github.com/RexRowan/Qiskit-QKD-Lab"
 description = "A QKD protocol simulator built directly on Qiskit primitives."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["quantum information", "circuit building"]
 interfaces = ["Python"]
-website = "https://github.com/RexRowan"
 category = "Application"
-documentation = "https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/README.md"
+documentation = "https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/docs/api.md"
 packages = ["https://pypi.org/project/qiskit-qkd-lab/"]
 uuid = "b286e633-de44-4416-b62d-00a7aed36ac8"
 maturity = "experimental"
