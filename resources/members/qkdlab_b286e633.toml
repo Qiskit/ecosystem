@@ -7,6 +7,13 @@ labels = ["quantum information", "circuit building"]
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/docs/api.md"
-packages = ["https://pypi.org/project/qiskit-qkd-lab/"]
+packages = []
 uuid = "b286e633-de44-4416-b62d-00a7aed36ac8"
 maturity = "experimental"
+
+[github]
+owner = "RexRowan"
+repo = "Qiskit-QKD-Lab"
+
+[pypi.qiskit-qkd-lab]
+package_name = "qiskit-qkd-lab"
