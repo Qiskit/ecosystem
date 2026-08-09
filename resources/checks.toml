@@ -164,11 +164,11 @@ category = "SUBMISSION"
 importance = "STRONG-RECOMMENDATION"
 
 [G05]
-title = "Archived GitHub repository should have `unmaintaned` support"
+title = "Archived GitHub repository should have `unmaintained` support"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
-description = "Projects on an archived GitHub repository should have `unmaintaned` support (or `as-is`)."
+description = "Projects on an archived GitHub repository should have `unmaintained` support (or `as-is`)."
 importance = "CRITICAL"
 checker = "test_github.py::test_G05"
 
@@ -195,7 +195,7 @@ title = "Unmaintained projects should be archived in GitHub repository"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
-description = "Projects that are not maintained (ie. `member.support == unmaintaned`) should archived their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
+description = "Projects that are not maintained (ie. `member.support == unmaintained`) should archived their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
 importance = "RECOMMENDATION"
 checker = "test_github.py::test_G08"
 
@@ -218,7 +218,7 @@ importance = "IMPORTANT"
 checker = "test_github.py::test_G10"
 
 [G11]
-title = "Unmaintaned projects should be archived when the repository is on an IBM-controlled organization"
+title = "unmaintained projects should be archived when the repository is on an IBM-controlled organization"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"

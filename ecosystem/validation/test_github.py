@@ -81,8 +81,8 @@ def test_G07(member):
 
 
 def test_G08(member):
-    """Unmaintaned projects should archive their GitHub repository"""
-    if member.maturity in ["deprecated", "unmaintaned"]:
+    """unmaintained projects should archive their GitHub repository"""
+    if member.maturity in ["deprecated", "unmaintained"]:
         assert (
             member.github.archived
         ), "unsupported project should have an archived GitHub org"
@@ -111,7 +111,7 @@ def test_G10(member):
 
 def test_G11(member):
     """
-    Unmaintaned projects should be archived when the repo is on an IBM-controlled organization"
+    unmaintained projects should be archived when the repo is on an IBM-controlled organization"
     """
     if not hasattr(member, "github"):
         pytest.skip("member.github does not exist")
@@ -120,7 +120,7 @@ def test_G11(member):
     archived = member.github.archived if hasattr(member.github, "archived") else False
     if archived:
         pytest.skip("project repository is already archived")
-    if member.maturity in ["deprecated", "unmaintaned", "as-is"]:
+    if member.maturity in ["deprecated", "unmaintained", "as-is"]:
         assert archived, (
             f"Unsupported project (`member.maturity == {member.maturity}`"
             "should have an archived GitHub repository"

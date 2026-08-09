@@ -234,7 +234,7 @@ class ProjectSummaryCard(Card):
             "as-is": ":material-image-broken-variant:",
             "deprecated": ":fontawesome-solid-exclamation-triangle:",
             "experimental": ":material-flask:",
-            "unmaintaned": ":material-archive:",
+            "unmaintained": ":material-archive:",
         }
         if self.maturity == "production-ready":
             # Full support
@@ -252,7 +252,7 @@ class ProjectSummaryCard(Card):
                 f"{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
                 "[All the production-ready project](#)",
             )
-        if self.maturity in ["unmaintaned", "as-is"]:
+        if self.maturity in ["unmaintained", "as-is"]:
             # No support
             return self.bullet(
                 icons[self.maturity],
@@ -302,7 +302,7 @@ class ProjectSummaryCard(Card):
                 [f"`{l}`" for l in self.labels],
                 [f"[All the projects labeled with `{l}`](#)" for l in self.labels],
             )
-        return self.bullet(":material-tag-off-outline:", "**No labels**")
+        return self.bullet(":material-tag-off-outline:", "**No labels**") + [""]
 
     def ibm_maintained_lines(self):
         """Bullet for member.ibm_maintained"""
