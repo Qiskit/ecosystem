@@ -13,10 +13,17 @@ labels = [
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://github.com/RexRowan/Qiskit-Graph-Walks/blob/main/docs/algorithms.md"
-packages = ["https://pypi.org/project/qiskit-graph-walks"]
+packages = []
 uuid = "20f2d93f-6480-4771-b844-ebb9ce3f4375"
 maturity = "experimental"
+
+[github]
+owner = "RexRowan"
+repo = "Qiskit-Graph-Walks"
 
 [badge]
 url = "https://qisk.it/e-20f2d93f"
 style = "flat"
+
+[pypi.qiskit-graph-walks]
+package_name = "qiskit-graph-walks"
