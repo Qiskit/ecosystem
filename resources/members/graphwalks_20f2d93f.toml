@@ -1,0 +1,18 @@
+name = "Qiskit Graph Walks"
+submission_number = 1295
+url = "https://github.com/RexRowan/Qiskit-Graph-Walks"
+description = "Quantum walk algorithms for graph problems, built on Qiskit."
+contact_info = "titaniumdavinci@gmail.com"
+labels = [
+  "quantum information",
+  "research",
+  "circuit building",
+  "physics",
+  "Hamiltonian simulation",
+]
+interfaces = ["Python"]
+category = "Application"
+documentation = "https://github.com/RexRowan/Qiskit-Graph-Walks/blob/main/README.md"
+packages = ["https://pypi.org/project/qiskit-graph-walks"]
+uuid = "20f2d93f-6480-4771-b844-ebb9ce3f4375"
+maturity = "experimental"
