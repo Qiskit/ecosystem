@@ -9,7 +9,7 @@ category = "Transpiler plugin"
 packages = []
 uuid = "ee3eb036-bc4d-4342-a36d-af262eed95e4"
 maturity = "production-ready"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/derek-wang-ibm/dynacir"
@@ -37,7 +37,7 @@ url = "https://pypi.org/project/dynacir/"
 status = "active"
 maintainers = ["https://pypi.org/user/drekwang/"]
 last_month_downloads = 20
-last_180_days_downloads = 237
+last_180_days_downloads = 226
 
 [checks.G06]
 since = 2026-07-14
@@ -49,3 +49,8 @@ since = 2026-05-14
 details = "Last commit was 28 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
 discussion = "https://github.com/orgs/Qiskit/discussions/49"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G00]
+since = 2026-08-13
+details = "The project is probably abandoned: `[G07]`"
+importance = "CRITICAL"
