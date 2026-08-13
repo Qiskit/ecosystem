@@ -1,0 +1,13 @@
+name = "Veri-Q QSeqSim"
+submission_number = 1300
+url = "https://github.com/veriq-toolkit/QSeqSim"
+description = "BDD/WMC simulator for dynamic and sequential Qiskit circuits with BackendV2 and native SamplerV2."
+labels = ["research", "quantum information", "openqasm", "benchmarking"]
+interfaces = ["Python"]
+website = "https://www.veri-q.com/"
+category = "Circuit simulator"
+reference_paper = "https://arxiv.org/abs/2605.14881"
+documentation = "https://github.com/veriq-toolkit/QSeqSim/blob/main/docs/USER_GUIDE.md"
+packages = ["https://pypi.org/project/qseqsim/"]
+uuid = "b7361201-ab9b-4488-ab7d-1a11941064c9"
+maturity = "experimental"
