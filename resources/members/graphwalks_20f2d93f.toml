@@ -1,0 +1,50 @@
+name = "Qiskit Graph Walks"
+submission_number = 1295
+url = "https://github.com/RexRowan/Qiskit-Graph-Walks"
+description = "Quantum walk algorithms for graph problems, built on Qiskit."
+contact_info = "titaniumdavinci@gmail.com"
+labels = [
+  "quantum information",
+  "research",
+  "circuit building",
+  "physics",
+  "Hamiltonian simulation",
+]
+interfaces = ["Python"]
+category = "Application"
+documentation = "https://github.com/RexRowan/Qiskit-Graph-Walks/blob/main/docs/algorithms.md"
+packages = []
+uuid = "20f2d93f-6480-4771-b844-ebb9ce3f4375"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/RexRowan/Qiskit-Graph-Walks"
+owner = "RexRowan"
+repo = "Qiskit-Graph-Walks"
+stars = 0
+license = "Apache-2.0"
+description = "Quantum walk algorithms for graph problems, built on Qiskit."
+last_commit = 2026-08-12
+last_activity = 2026-08-12
+
+[badge]
+url = "https://qisk.it/e-20f2d93f"
+style = "flat"
+
+[pypi.qiskit-graph-walks]
+package_name = "qiskit-graph-walks"
+version = "0.1.0"
+last_release_date = 2026-08-12
+license = "Apache-2.0"
+description = "Quantum walk algorithms for graph problems (spatial search, isomorphism testing) built on Qiskit."
+url = "https://pypi.org/project/qiskit-graph-walks/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-07-23
+highest_supported_qiskit_version = "2.5.1"
+last_month_downloads = 92
+last_180_days_downloads = 92
