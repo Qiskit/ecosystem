@@ -10,7 +10,7 @@ category = "Circuit simulator"
 packages = []
 uuid = "c39a1176-0a10-41c5-9961-f6f4f5da0c6c"
 maturity = "production-ready"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/Zhaoyilunnn/qdao"
@@ -34,3 +34,8 @@ since = 2026-05-14
 details = "Last commit was 24 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
 discussion = "https://github.com/orgs/Qiskit/discussions/51"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G00]
+since = 2026-08-13
+details = "The project is probably abandoned: `[G07]`"
+importance = "CRITICAL"

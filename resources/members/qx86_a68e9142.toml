@@ -12,7 +12,7 @@ reference_paper = "https://ieeexplore.ieee.org/document/9878250"
 packages = []
 uuid = "a68e9142-dc31-4b9f-a851-413dd91222d7"
 maturity = "production-ready"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/mistasparkaru/Qx86"
@@ -35,6 +35,11 @@ since = 2026-05-14
 details = "Last commit was 23 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
 discussion = "https://github.com/orgs/Qiskit/discussions/57"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G00]
+since = 2026-08-13
+details = "The project is probably abandoned: `[G07]`"
+importance = "CRITICAL"
 
 [checks.027]
 since = 2026-07-23
