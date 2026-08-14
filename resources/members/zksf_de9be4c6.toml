@@ -1,0 +1,20 @@
+name = "qiskit-zksf"
+submission_number = 1302
+url = "https://github.com/official-dvl/qiskit-zksf"
+description = "Run Qiskit circuits on cloud CPU, GPU and QPU engines, with a measured accuracy statement attached to every approximate result."
+contact_info = "info@zksf.org"
+labels = [
+  "provider",
+  "cloud service",
+  "tensor networks",
+  "error mitigation",
+  "GPU",
+]
+interfaces = ["Python"]
+website = "https://zksf.org"
+category = "Compute provider"
+reference_paper = "https://doi.org/10.5281/zenodo.21851381"
+documentation = "https://zksf.org/docs"
+packages = ["https://pypi.org/project/qiskit-zksf/"]
+uuid = "de9be4c6-7aba-4771-980b-306d8ae08ecd"
+maturity = "production-ready"
