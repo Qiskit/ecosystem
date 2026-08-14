@@ -13,8 +13,28 @@ uuid = "b7361201-ab9b-4488-ab7d-1a11941064c9"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/veriq-toolkit/QSeqSim"
 owner = "veriq-toolkit"
 repo = "QSeqSim"
+stars = 4
+license = "Apache-2.0"
+last_commit = 2026-08-13
+last_activity = 2026-08-13
 
 [pypi.qseqsim]
 package_name = "qseqsim"
+version = "0.1.0"
+last_release_date = 2026-08-13
+license = "Apache-2.0"
+description = "Structure-aware symbolic simulation of dynamic and sequential Qiskit circuits"
+url = "https://pypi.org/project/qseqsim/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/13974811840/"]
+requires_qiskit = "<2.5,>=2.4"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-06-14
+highest_supported_qiskit_version = "2.4.2"
+last_month_downloads = 95
+last_180_days_downloads = 95
