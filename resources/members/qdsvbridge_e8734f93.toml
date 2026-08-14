@@ -1,18 +1,19 @@
 name = "QDSV Bridge"
 submission_number = 1211
 url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
-description = "A semantic-to-circuit blueprint SDK for supported quantum problem families, with OpenQASM/Qiskit artifact export"
+description = "A problem-first semantic-to-circuit SDK with canonical and exact optimized logical artifacts for Qiskit/OpenQASM workflows"
 contact_info = "jaimeajl@qruba.site"
 labels = [
   "circuit building",
+  "circuit optimization",
   "openqasm",
   "cloud service",
   "high-level synthesis",
 ]
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "SDK"
-reference_paper = "https://arxiv.org/abs/2606.15027"
-documentation = "https://github.com/qdsvquantum-afk/qdsv-bridge/blob/main/docs/integrations/ibm_quantum.md"
+reference_paper = "https://arxiv.org/abs/2606.19312"
+documentation = "https://qdsvquantum-afk.github.io/qdsv-bridge/how_to/logical_artifacts.html"
 packages = []
 uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
 maturity = "experimental"
