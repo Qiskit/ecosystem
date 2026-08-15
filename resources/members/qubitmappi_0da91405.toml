@@ -1,0 +1,11 @@
+name = "Qiskit Qubit Mapping Toolkit"
+submission_number = 1305
+url = "https://github.com/RexRowan/Qiskit-Qubit-Mapping-Toolkit"
+description = "Graph-theoretic initial layout and routing heuristics for mapping logical Qiskit circuits onto hardware coupling maps."
+contact_info = "titaniumdavinci@gmail.com"
+labels = ["circuit optimization", "research", "benchmarking"]
+interfaces = ["Python"]
+category = "Transpiler plugin"
+packages = ["https://pypi.org/project/qiskit-qubit-mapping-toolkit"]
+uuid = "0da91405-9ede-43e8-9ad9-1bfaa1fa1644"
+maturity = "experimental"
