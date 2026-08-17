@@ -23,7 +23,7 @@ description = "An open-source library built on Qiskit for quantum machine learni
 total_dependent_repositories = 551
 total_dependent_packages = 27
 last_commit = 2026-08-10
-last_activity = 2026-08-13
+last_activity = 2026-08-16
 
 [badge]
 url = "https://qisk.it/e-18986ebc"
@@ -41,10 +41,10 @@ maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-10-13
-highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 47403
-last_180_days_downloads = 251434
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 45118
+last_180_days_downloads = 252149
 
 [checks.P10]
 since = 2026-07-09
