@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2024-05-07
 category = "Compute provider"
 documentation = "https://learn.microsoft.com/azure/quantum/quickstart-microsoft-qiskit"
-packages = []
+packages = ["https://anaconda.org/conda-forge/azure-quantum"]
 uuid = "8abf631e-bbf0-4624-b9c7-60073981f5b0"
 maturity = "production-ready"
 

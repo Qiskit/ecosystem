@@ -35,9 +35,12 @@ style = "flat"
 package_name = "qiskit-iqm"
 version = "18.2"
 last_release_date = 2025-09-16
+license = "Apache-1.1"
 description = "Qiskit adapter for IQM's quantum architectures"
 url = "https://pypi.org/project/qiskit-iqm/"
 development_status = "4 - Beta"
+status = "active"
+maintainers = ["https://pypi.org/user/IQM/"]
 requires_qiskit = "<1.3,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false

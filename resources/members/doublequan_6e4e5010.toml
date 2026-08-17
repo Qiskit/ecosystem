@@ -32,9 +32,12 @@ style = "flat"
 package_name = "double-quant"
 version = "0.0.1a3"
 last_release_date = 2026-04-15
+license = "GPL-3.0"
 description = "Quantum-inspired quantitative finance workflows and algorithms"
 url = "https://pypi.org/project/double-quant/"
 development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/11D_Beyonder/"]
 requires_qiskit = ">=2.2.3"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

@@ -26,6 +26,23 @@ last_activity = 2026-08-08
 url = "https://qisk.it/e-d33fccc1"
 style = "flat"
 
+[pypi.qiberis]
+package_name = "qiberis"
+version = "0.1.0"
+last_release_date = 2026-08-08
+license = "MIT"
+description = "A backend-agnostic quantum circuit API: write once, run on Qiskit, Cirq, and PennyLane simulators."
+url = "https://pypi.org/project/Qiberis/"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 124
+last_180_days_downloads = 124
+
 [checks.026]
 since = 2026-07-30
 details = "The field `member.documentation` can be empty. It does not have to be a link to the repository's `README.md` or root."
