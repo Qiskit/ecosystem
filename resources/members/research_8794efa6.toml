@@ -35,8 +35,11 @@ style = "flat"
 package_name = "qiskit-research"
 version = "0.0.4"
 last_release_date = 2024-09-26
+license = "Apache-1.1"
 description = "Research using Qiskit, demonstrating best practices for running quantum computing experiments."
 url = "https://pypi.org/project/qiskit-research/"
+status = "archived"
+maintainers = ["https://pypi.org/org/qiskit/", "https://pypi.org/user/nbronn/"]
 requires_qiskit = "==1.1.1"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false

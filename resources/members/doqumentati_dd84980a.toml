@@ -8,7 +8,10 @@ interfaces = ["Python", "Web interface"]
 website = "https://doqumentation.org/"
 category = "Game/Educational"
 documentation = "https://doqumentation.org/features"
-packages = []
+packages = [
+  "https://ghcr.io/janlahmann/doqumentation",
+  "https://ghcr.io/janlahmann/doqumentation-codeengine",
+]
 uuid = "dd84980a-80a7-4aca-8d8f-8ca0a4177144"
 maturity = "production-ready"
 

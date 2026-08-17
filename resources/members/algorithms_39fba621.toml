@@ -8,7 +8,7 @@ labels = []
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
-packages = []
+packages = ["https://anaconda.org/conda-forge/qiskit-algorithms"]
 uuid = "39fba621-edbb-485b-a723-8a0760ab4b85"
 maturity = "production-ready"
 

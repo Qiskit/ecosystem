@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2021-11-08
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-finance/"
-packages = []
+packages = ["https://anaconda.org/conda-forge/qiskit-finance"]
 uuid = "8ebeec26-5043-4423-9cdc-bfa92bd4ad63"
 maturity = "production-ready"
 

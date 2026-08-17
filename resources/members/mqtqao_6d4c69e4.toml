@@ -29,9 +29,12 @@ style = "flat"
 package_name = "mqt-qao"
 version = "0.3.1"
 last_release_date = 2026-07-03
+license = "MIT"
 description = "MQT Quantum Auto Optimizer: Automatic Framework for Solving Optimization Problems with Quantum Computers"
 url = "https://pypi.org/project/mqt.qao/"
 development_status = "4 - Beta"
+status = "archived"
+maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

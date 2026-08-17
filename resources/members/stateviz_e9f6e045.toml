@@ -24,3 +24,21 @@ last_activity = 2026-08-14
 [badge]
 url = "https://qisk.it/e-e9f6e045"
 style = "flat"
+
+[pypi.qiskit-stateviz]
+package_name = "qiskit-stateviz"
+version = "0.1.0"
+last_release_date = 2026-08-08
+license = "MIT"
+description = "Interactive Plotly-based statevector visualizations (Q-sphere, Bloch multivector) for Qiskit"
+url = "https://pypi.org/project/qiskit-stateviz/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 148
+last_180_days_downloads = 148
