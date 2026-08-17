@@ -32,6 +32,7 @@ class License:
         'BSD 3-Clause "New" or "Revised" License': "BSD-3-Clause",
         "GNU General Public License (GPL)": "GPL-3.0",
         "GNU General Public License v3.0": "GPL-3.0",
+        "GNU General Public License v3 (GPLv3)": "GPL-3.0",
         "GPL v3.0": "GPL-3.0",
         "GNU Lesser General Public License v2.1": "LGPL-2.1",
         'GNU Library or "Lesser" General Public License (LGPL)': "LGPL-2.1",
