@@ -1,0 +1,35 @@
+name = "Prefect Qiskit Plugin"
+url = "https://github.com/qiskit-community/prefect-qiskit"
+description = "Prefect plugin to orchestrate Qiskit workloads on quantum backends as managed, reusable workflow tasks."
+labels = ["cloud service"]
+interfaces = ["Python"]
+ibm_maintained = true
+category = "Tooling"
+packages = []
+uuid = "5bf681f5-d366-4d32-982c-d10153df211c"
+maturity = "experimental"
+
+[github]
+owner = "qiskit-community"
+repo = "prefect-qiskit"
+
+[badge]
+url = "https://qisk.it/e-5bf681f5"
+style = "flat"
+
+[pypi.prefect-qiskit]
+package_name = "prefect-qiskit"
+version = "0.2.1"
+last_release_date = 2026-08-12
+license = "Apache-2.0"
+description = "Prefect workflow integration for Qiskit Primitives."
+url = "https://pypi.org/project/prefect-qiskit/"
+status = "active"
+maintainers = ["https://pypi.org/user/hitomitak/"]
+requires_qiskit = ">=2.1"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 113
+last_180_days_downloads = 365

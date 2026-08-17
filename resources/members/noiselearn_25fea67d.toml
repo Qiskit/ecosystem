@@ -1,0 +1,19 @@
+name = "qiskit-noise-learning"
+url = "https://github.com/Qiskit/qiskit-noise-learning"
+description = "Toolkit for randomization-based characterization of quantum noise, such as layer noise learning."
+labels = ["error mitigation", "benchmarking"]
+interfaces = ["Python"]
+ibm_maintained = true
+category = "Tooling"
+packages = []
+uuid = "25fea67d-3f93-4252-bc51-33c3b20c2331"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+owner = "Qiskit"
+repo = "qiskit-noise-learning"
+
+[badge]
+url = "https://qisk.it/e-25fea67d"
+style = "flat"
