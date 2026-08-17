@@ -6,6 +6,13 @@ labels = ["provider"]
 interfaces = ["Python"]
 category = "Compute provider"
 documentation = "https://qutech-delft.github.io/qiskit-quantuminspire/"
-packages = ["https://pypi.org/project/qiskit-quantuminspire"]
+packages = []
 uuid = "03d9dda4-38bd-41dd-b1cc-cb96f29f55dc"
 maturity = "experimental"
+
+[github]
+owner = "qutech-delft"
+repo = "qiskit-quantuminspire"
+
+[pypi.qiskit-quantuminspire]
+package_name = "qiskit-quantuminspire"
