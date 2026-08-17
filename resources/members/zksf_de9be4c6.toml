@@ -1,0 +1,48 @@
+name = "qiskit-zksf"
+submission_number = 1302
+url = "https://github.com/official-dvl/qiskit-zksf"
+description = "Run Qiskit circuits on cloud CPU, GPU and QPU engines, with a measured accuracy statement attached to every approximate result."
+contact_info = "info@zksf.org"
+labels = [
+  "provider",
+  "cloud service",
+  "tensor networks",
+  "error mitigation",
+  "GPU",
+]
+interfaces = ["Python"]
+website = "https://zksf.org"
+category = "Compute provider"
+reference_paper = "https://doi.org/10.5281/zenodo.21851381"
+documentation = "https://zksf.org/docs/"
+packages = []
+uuid = "de9be4c6-7aba-4771-980b-306d8ae08ecd"
+maturity = "production-ready"
+
+[github]
+url = "https://github.com/official-dvl/qiskit-zksf"
+owner = "official-dvl"
+repo = "qiskit-zksf"
+stars = 6
+license = "MIT"
+description = "Zero Kelvin | qiskit-zksf"
+last_commit = 2026-08-16
+last_activity = 2026-08-16
+
+[pypi.qiskit-zksf]
+package_name = "qiskit-zksf"
+version = "0.2.2"
+last_release_date = 2026-08-16
+license = "MIT"
+description = "Qiskit provider for ZKSF: run circuits on CPU, GPU or real quantum hardware with a documented accuracy statement on every result"
+url = "https://pypi.org/project/qiskit-zksf/"
+development_status = "5 - Production/Stable"
+status = "active"
+maintainers = ["https://pypi.org/user/digitalventurelabs/"]
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 372
+last_180_days_downloads = 372
