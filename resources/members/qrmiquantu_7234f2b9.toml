@@ -10,8 +10,17 @@ uuid = "7234f2b9-a787-4186-bad7-50ed2be3b92b"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/qiskit-community/qrmi"
 owner = "qiskit-community"
 repo = "qrmi"
+stars = 56
+homepage = "https://qiskit-community.github.io/qrmi/"
+license = "Apache-2.0"
+description = "Thin and vendor agnostic layer to access, control and monitor underlying on-prem or cloud quantum computers"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-08-17
+last_activity = 2026-08-17
 
 [badge]
 url = "https://qisk.it/e-7234f2b9"

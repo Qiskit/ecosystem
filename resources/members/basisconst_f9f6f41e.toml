@@ -11,8 +11,15 @@ maturity = "experimental"
 status = "Qiskit Project"
 
 [github]
+url = "https://github.com/Qiskit/qiskit-basis-constructor"
 owner = "Qiskit"
 repo = "qiskit-basis-constructor"
+stars = 3
+license = "Apache-2.0"
+description = "Beta version of a new translation plugin for the Qiskit compiler"
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2025-03-27
 
 [badge]
 url = "https://qisk.it/e-f9f6f41e"

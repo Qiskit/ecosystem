@@ -10,8 +10,16 @@ uuid = "913e330d-200c-4a42-990b-a4e615ac5a96"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/qiskit-community/rsgridsynth"
 owner = "qiskit-community"
 repo = "rsgridsynth"
+stars = 15
+license = "MIT"
+description = "high-precision Rust-based synthesizer that decomposes single-qubit Z-axis rotations into Clifford+T gate sequences, using number-th..."
+total_dependent_repositories = 20
+total_dependent_packages = 3
+last_commit = 2026-08-01
+last_activity = 2026-08-15
 
 [badge]
 url = "https://qisk.it/e-913e330d"

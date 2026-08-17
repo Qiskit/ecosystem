@@ -11,8 +11,15 @@ maturity = "experimental"
 status = "Qiskit Project"
 
 [github]
+url = "https://github.com/Qiskit/qiskit-qasm3-import"
 owner = "Qiskit"
 repo = "qiskit-qasm3-import"
+stars = 27
+homepage = "https://qiskit.github.io/qiskit-qasm3-import"
+license = "Apache-2.0"
+description = "Importer from OpenQASM 3 to Qiskit's QuantumCircuit"
+last_commit = 2026-07-21
+last_activity = 2026-07-21
 
 [badge]
 url = "https://qisk.it/e-15f4feda"

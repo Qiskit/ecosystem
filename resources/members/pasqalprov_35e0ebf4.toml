@@ -9,8 +9,15 @@ uuid = "35e0ebf4-48c9-4611-9286-84d6ad5571e3"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/qiskit-community/qiskit-pasqal-provider"
 owner = "qiskit-community"
 repo = "qiskit-pasqal-provider"
+stars = 10
+homepage = "https://qiskit-community.github.io/qiskit-pasqal-provider/"
+license = "Apache-2.0"
+description = "Necessary abstractions to program Pasqal's analog neutral atom QPUs from Qiskit."
+last_commit = 2026-07-20
+last_activity = 2026-07-20
 
 [badge]
 url = "https://qisk.it/e-35e0ebf4"
