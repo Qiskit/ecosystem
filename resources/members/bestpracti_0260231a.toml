@@ -1,0 +1,23 @@
+name = "Best practices in quantum optimization with Qiskit"
+url = "https://github.com/qiskit-community/qopt-best-practices"
+description = "Guidelines and reference workflows for running QAOA quantum optimization on superconducting hardware with Qiskit."
+labels = ["optimization"]
+interfaces = ["Python"]
+category = "Application"
+packages = []
+uuid = "0260231a-feb6-4de6-ae70-2de507f90710"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qiskit-community/qopt-best-practices"
+owner = "qiskit-community"
+repo = "qopt-best-practices"
+stars = 47
+license = "Apache-2.0"
+description = "A collection of guidelines to run quantum optimization algorithms on superconducting qubits with Qiskit, using as reference the Qua..."
+last_commit = 2026-06-30
+last_activity = 2026-08-14
+
+[badge]
+url = "https://qisk.it/e-0260231a"
+style = "flat"

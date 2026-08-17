@@ -1,0 +1,30 @@
+name = "QRMI (Quantum resource management interface)"
+url = "https://github.com/qiskit-community/qrmi"
+description = "Vendor-agnostic library for HPC systems to access, control and monitor quantum resources, with Rust, C and Python APIs."
+labels = ["HPC", "provider", "cloud service"]
+interfaces = ["Rust", "C", "Python", "Other language"]
+ibm_maintained = true
+category = "Tooling"
+packages = []
+uuid = "7234f2b9-a787-4186-bad7-50ed2be3b92b"
+maturity = "experimental"
+
+[github]
+owner = "qiskit-community"
+repo = "qrmi"
+
+[badge]
+url = "https://qisk.it/e-7234f2b9"
+style = "flat"
+
+[pypi.qrmi]
+package_name = "qrmi"
+version = "0.21.1"
+last_release_date = 2026-08-05
+license = "Apache-1.1"
+description = "Quantum Resource Management Interface(QRMI)"
+url = "https://pypi.org/project/qrmi/"
+status = "active"
+maintainers = ["https://pypi.org/user/ohtanim/"]
+last_month_downloads = 901
+last_180_days_downloads = 4518

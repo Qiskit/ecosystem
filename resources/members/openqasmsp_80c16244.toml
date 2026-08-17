@@ -1,0 +1,22 @@
+name = "OpenQASM sphinx plugin"
+url = "https://github.com/openqasm/openqasm-sphinx"
+description = "Sphinx extension to document OpenQASM code as a supported language."
+labels = ["openqasm"]
+interfaces = ["Python"]
+ibm_maintained = true
+category = "Tooling"
+packages = []
+uuid = "80c16244-6475-4c5c-9ae6-cfd9fbb93482"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+owner = "openqasm"
+repo = "openqasm-sphinx"
+
+[badge]
+url = "https://qisk.it/e-80c16244"
+style = "flat"
+
+[pypi.openqasm-sphinx]
+package_name = "openqasm-sphinx"

@@ -1,0 +1,17 @@
+name = "qiskit-capi-demo"
+url = "https://github.com/qiskit-community/qiskit-capi-demo"
+description = "C++17 and MPI demo of the Qiskit C API for scalable hybrid quantum-classical workflows in HPC environments."
+labels = ["HPC", "demo"]
+interfaces = ["C++", "Command-line interface (CLI)"]
+category = "Application"
+packages = []
+uuid = "e724ef45-c87d-4496-a8da-4b53cf9e3195"
+maturity = "experimental"
+
+[github]
+owner = "qiskit-community"
+repo = "qiskit-capi-demo"
+
+[badge]
+url = "https://qisk.it/e-e724ef45"
+style = "flat"

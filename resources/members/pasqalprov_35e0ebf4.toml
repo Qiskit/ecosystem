@@ -1,0 +1,33 @@
+name = "qiskit-pasqal-provider"
+url = "https://github.com/qiskit-community/qiskit-pasqal-provider"
+description = "Qiskit provider to build and run analog programs on Pasqal's neutral atom QPUs."
+labels = ["provider", "cloud service"]
+interfaces = ["Python"]
+category = "Compute provider"
+packages = []
+uuid = "35e0ebf4-48c9-4611-9286-84d6ad5571e3"
+maturity = "experimental"
+
+[github]
+owner = "qiskit-community"
+repo = "qiskit-pasqal-provider"
+
+[badge]
+url = "https://qisk.it/e-35e0ebf4"
+style = "flat"
+
+[pypi.qiskit-pasqal-provider]
+package_name = "qiskit-pasqal-provider"
+version = "0.2.1"
+last_release_date = 2026-04-08
+description = "Qiskit provider for Pasqal's analog neutral atom QPUs"
+url = "https://pypi.org/project/qiskit-pasqal-provider/"
+status = "active"
+maintainers = ["https://pypi.org/user/awennersteen/"]
+requires_qiskit = "<3,>=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 526
+last_180_days_downloads = 3065
