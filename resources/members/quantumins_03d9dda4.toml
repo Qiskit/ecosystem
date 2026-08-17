@@ -1,0 +1,11 @@
+name = "Qiskit Quantum Inspire"
+submission_number = 1307
+url = "https://github.com/qutech-delft/qiskit-quantuminspire"
+description = "Qiskit provider for Quantum Inspire backends"
+labels = ["provider"]
+interfaces = ["Python"]
+category = "Compute provider"
+documentation = "https://qutech-delft.github.io/qiskit-quantuminspire/"
+packages = ["https://pypi.org/project/qiskit-quantuminspire"]
+uuid = "03d9dda4-38bd-41dd-b1cc-cb96f29f55dc"
+maturity = "experimental"
