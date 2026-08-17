@@ -1,0 +1,48 @@
+name = "Qiskit Quantum Inspire"
+submission_number = 1307
+url = "https://github.com/qutech-delft/qiskit-quantuminspire"
+description = "Qiskit provider for Quantum Inspire backends"
+labels = ["provider"]
+interfaces = ["Python"]
+category = "Compute provider"
+documentation = "https://qutech-delft.github.io/qiskit-quantuminspire/"
+packages = []
+uuid = "03d9dda4-38bd-41dd-b1cc-cb96f29f55dc"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/QuTech-Delft/qiskit-quantuminspire"
+owner = "QuTech-Delft"
+repo = "qiskit-quantuminspire"
+stars = 3
+homepage = "https://qutech-delft.github.io/qiskit-quantuminspire/"
+license = "Apache-2.0"
+description = "Qiskit provider for Quantum Inspire backends "
+total_dependent_repositories = 2
+total_dependent_packages = 3
+last_commit = 2026-08-17
+last_activity = 2026-08-17
+
+[badge]
+style = "flat"
+
+[pypi.qiskit-quantuminspire]
+package_name = "qiskit-quantuminspire"
+version = "0.18.2"
+last_release_date = 2026-07-31
+license = "Apache-1.1"
+description = "Qiskit provider for Quantum Inspire backends "
+url = "https://pypi.org/project/qiskit-quantuminspire/"
+development_status = "4 - Beta"
+status = "active"
+maintainers = [
+  "https://pypi.org/user/qinspire/",
+  "https://pypi.org/user/qutech.sdst/",
+]
+requires_qiskit = "<2.4.0,>=2.0.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-03-13
+highest_supported_qiskit_version = "2.3.1"
+last_month_downloads = 12046
+last_180_days_downloads = 40542
