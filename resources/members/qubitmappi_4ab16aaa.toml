@@ -11,6 +11,13 @@ labels = [
 ]
 interfaces = ["Python"]
 category = "Transpiler plugin"
-packages = ["https://pypi.org/project/qiskit-qubit-mapping-toolkit"]
+packages = []
 uuid = "4ab16aaa-f5d5-47ba-a97f-4519a31b57e9"
 maturity = "experimental"
+
+[github]
+owner = "RexRowan"
+repo = "Qiskit-Qubit-Mapping-Toolkit"
+
+[pypi.qiskit-qubit-mapping-toolkit]
+package_name = "qiskit-qubit-mapping-toolkit"
