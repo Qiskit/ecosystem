@@ -38,3 +38,8 @@ highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 526
 last_180_days_downloads = 3065
+
+[checks.P12]
+since = 2026-08-18
+details = "member.pypi.qiskit-pasqal-provider does not have a declared license"
+importance = "RECOMMENDATION"

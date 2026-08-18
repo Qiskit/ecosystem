@@ -41,3 +41,8 @@ maintainers = [
 ]
 last_month_downloads = 43
 last_180_days_downloads = 1068
+
+[checks.P12]
+since = 2026-08-18
+details = "member.pypi.qiskit-addon-dice-solver does not have a declared license"
+importance = "RECOMMENDATION"

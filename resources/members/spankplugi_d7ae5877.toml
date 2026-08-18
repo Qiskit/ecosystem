@@ -7,6 +7,7 @@ category = "Tooling"
 packages = []
 uuid = "d7ae5877-de0b-48f3-9f56-460c4f629647"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/spank-plugins"
@@ -21,3 +22,8 @@ last_activity = 2026-08-14
 [badge]
 url = "https://qisk.it/e-d7ae5877"
 style = "flat"
+
+[checks.007]
+since = 2026-08-18
+details = "the interface 'Other' does not exist in classifications.toml"
+importance = "IMPORTANT"
