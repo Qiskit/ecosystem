@@ -25,6 +25,16 @@ extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
 
+# Files in docs/assets/ are fragments injected into other pages by table-reader
+# (read_raw/read_json/read_csv). They are read from disk at build time, so they
+# should not be built as standalone pages themselves.
+exclude_docs: |
+  assets/*.md
+
+# Pages that are intentionally reachable only by direct link.
+not_in_nav: |
+  git-guidance.md
+
 markdown_extensions:
   - admonition
   - pymdownx.details
