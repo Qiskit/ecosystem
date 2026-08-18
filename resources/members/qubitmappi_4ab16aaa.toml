@@ -16,8 +16,29 @@ uuid = "4ab16aaa-f5d5-47ba-a97f-4519a31b57e9"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/RexRowan/Qiskit-Qubit-Mapping-Toolkit"
 owner = "RexRowan"
 repo = "Qiskit-Qubit-Mapping-Toolkit"
+stars = 0
+license = "Apache-2.0"
+description = "Graph-theoretic initial layout and routing heuristics for mapping logical Qiskit circuits onto hardware coupling maps."
+last_commit = 2026-08-18
+last_activity = 2026-08-18
 
 [pypi.qiskit-qubit-mapping-toolkit]
 package_name = "qiskit-qubit-mapping-toolkit"
+version = "0.1.1"
+last_release_date = 2026-08-17
+license = "Apache-2.0"
+description = "Graph-theoretic initial layout and routing heuristics for mapping Qiskit circuits onto hardware coupling maps."
+url = "https://pypi.org/project/qiskit-qubit-mapping-toolkit/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = "<3,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 184
+last_180_days_downloads = 184
