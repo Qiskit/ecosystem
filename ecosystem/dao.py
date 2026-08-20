@@ -31,6 +31,14 @@ from ecosystem.member import Member
 
 
 class TomlEncoder(TomlEncoderUpstream):
+    """TOML encoder that keeps short lists on a single line.
+
+    Upstream's encoder always dumps lists multiline, which makes the diffs of
+    the member TOML files noisy. This subclass renders lists inline when they
+    are short enough to stay readable, and falls back to one element per line
+    otherwise.
+    """
+
     def dump_list(self, v):
         """Override to dump empty lists without trailing comma"""
         oneline = f"[{', '.join( str(self.dump_value(u)) for u in v )}]"
@@ -48,9 +56,7 @@ class TomlEncoder(TomlEncoderUpstream):
 
 
 class TomlStorage:
-    """
-    Read / write TOML files from a dict where keys are repo URLs, and values
-    are Submission objects.
+    """Read / write TOML files from a dict where keys are repo URLs, and values are Member objects.
 
     Can use as a context manager like so:
 
