@@ -231,7 +231,7 @@ class CliMembers:
                 f'"There are {len(projects[classification])} projects with this classification"'
             ]
             lines += [
-                f"\n     - [{p.name}](../p/{p.short_uuid}.md)"
+                f"\n     - [{p.name}](p/{p.short_uuid}.md)"
                 for p in projects[classification]
             ]
             writelines(classification, lines)
@@ -290,7 +290,7 @@ class CliMembers:
             )
             short_description.append(
                 {
-                    classification_singular.capitalize(): f"[{name}](#{section_name})",
+                    classification_singular.capitalize(): f"[{name}](#{slugify(name, '-')})",
                     "Short description": description or "",
                 }
             )
@@ -306,8 +306,7 @@ class CliMembers:
                     f'??? note "There are {len(projects[name])} projects with this classification"'
                 )
                 lines += [
-                    f"\n     - [{p.name}](../p/{p.short_uuid}.md)"
-                    for p in projects[name]
+                    f"\n     - [{p.name}](p/{p.short_uuid}.md)" for p in projects[name]
                 ]
             else:
                 lines.append("**No project with this classification**")

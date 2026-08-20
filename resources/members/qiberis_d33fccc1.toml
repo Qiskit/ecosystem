@@ -43,6 +43,11 @@ highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 124
 last_180_days_downloads = 124
 
+[checks.P10]
+since = 2026-08-18
+details = "Python package qiberis declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+
 [checks.026]
 since = 2026-07-30
 details = "The field `member.documentation` can be empty. It does not have to be a link to the repository's `README.md` or root."

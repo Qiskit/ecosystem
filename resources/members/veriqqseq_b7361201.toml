@@ -1,7 +1,7 @@
-name = "Veri-Q QSeqSim"
+name = "VeriQ QSeqSim"
 submission_number = 1300
 url = "https://github.com/veriq-toolkit/QSeqSim"
-description = "BDD/WMC simulator for dynamic and sequential Qiskit circuits with BackendV2 and native SamplerV2."
+description = "A symbolic Qiskit simulator for dynamic circuits and measurement-driven loops using BDDs and weighted model counting."
 labels = ["research", "quantum information", "openqasm", "benchmarking"]
 interfaces = ["Python"]
 website = "https://www.veri-q.com/"
