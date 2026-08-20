@@ -24,6 +24,7 @@ class License:
         "Apache 2": "Apache-2.0",
         "Apache 2.0": "Apache-2.0",
         "Apache License 2.0": "Apache-2.0",
+        "Apache 2.0 License": "Apache-2.0",
         "Apache-2.0": "Apache-2.0",
         'BSD 2-Clause "Simplified" License': "BSD-2-Clause",
         'BSD 2-Clause "Simplified" license': "BSD-2-Clause",

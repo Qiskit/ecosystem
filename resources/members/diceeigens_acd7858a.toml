@@ -45,4 +45,5 @@ last_180_days_downloads = 1068
 [checks.P12]
 since = 2026-08-18
 details = "member.pypi.qiskit-addon-dice-solver does not have a declared license"
+discussion = "https://github.com/Qiskit/qiskit-addon-dice-solver/pull/123"
 importance = "RECOMMENDATION"
