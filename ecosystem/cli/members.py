@@ -20,7 +20,6 @@ import re
 from typing import Optional
 from pathlib import Path
 from jsonpath import findall, query
-from markdown.extensions.toc import slugify as heading_anchor
 from slugify import slugify
 
 from ecosystem.dao import DAO
@@ -291,7 +290,7 @@ class CliMembers:
             )
             short_description.append(
                 {
-                    classification_singular.capitalize(): f"[{name}](#{heading_anchor(name, '-')})",
+                    classification_singular.capitalize(): f"[{name}](#{slugify(name, '-')})",
                     "Short description": description or "",
                 }
             )
