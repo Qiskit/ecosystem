@@ -1,18 +1,19 @@
 name = "QDSV Bridge"
 submission_number = 1211
 url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
-description = "A semantic-to-circuit blueprint SDK for supported quantum problem families, with OpenQASM/Qiskit artifact export"
+description = "A problem-first semantic-to-circuit SDK with canonical and exact optimized logical artifacts for Qiskit/OpenQASM workflows"
 contact_info = "jaimeajl@qruba.site"
 labels = [
   "circuit building",
+  "circuit optimization",
   "openqasm",
   "cloud service",
   "high-level synthesis",
 ]
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "SDK"
-reference_paper = "https://arxiv.org/abs/2606.15027"
-documentation = "https://github.com/qdsvquantum-afk/qdsv-bridge/blob/main/docs/integrations/ibm_quantum.md"
+reference_paper = "https://arxiv.org/abs/2606.19312"
+documentation = "https://qdsvquantum-afk.github.io/qdsv-bridge/how_to/logical_artifacts.html"
 packages = []
 uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
 maturity = "experimental"
@@ -24,8 +25,8 @@ repo = "qdsv-bridge"
 stars = 1
 license = "MIT"
 description = "QDSV Bridge SDK: controlled semantic-to-IR, oracle and circuit-blueprint compilation for supported quantum problem families."
-last_commit = 2026-08-06
-last_activity = 2026-08-06
+last_commit = 2026-08-17
+last_activity = 2026-08-17
 
 [badge]
 url = "https://qisk.it/e-e8734f93"
@@ -33,12 +34,12 @@ style = "flat"
 
 [pypi.qdsv-bridge]
 package_name = "qdsv-bridge"
-version = "0.6.1"
-last_release_date = 2026-08-06
+version = "0.6.2"
+last_release_date = 2026-08-17
 license = "MIT"
-description = "Lightweight Python client for capability-driven QDSV semantic-to-circuit compilation."
+description = "Problem-first Python SDK for semantically validated QDSV logical quantum artifacts."
 url = "https://pypi.org/project/qdsv-bridge/"
-development_status = "3 - Alpha"
+development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/jalexanderjlozano/"]
 requires_qiskit = "<3,>=2"
@@ -46,5 +47,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 1619
-last_180_days_downloads = 2488
+last_month_downloads = 887
+last_180_days_downloads = 3070

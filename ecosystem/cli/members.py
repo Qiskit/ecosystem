@@ -20,6 +20,7 @@ import re
 from typing import Optional
 from pathlib import Path
 from jsonpath import findall, query
+from markdown.extensions.toc import slugify as heading_anchor
 from slugify import slugify
 
 from ecosystem.dao import DAO
@@ -231,7 +232,7 @@ class CliMembers:
                 f'"There are {len(projects[classification])} projects with this classification"'
             ]
             lines += [
-                f"\n     - [{p.name}](../p/{p.short_uuid})"
+                f"\n     - [{p.name}](p/{p.short_uuid}.md)"
                 for p in projects[classification]
             ]
             writelines(classification, lines)
@@ -290,7 +291,7 @@ class CliMembers:
             )
             short_description.append(
                 {
-                    classification_singular.capitalize(): f"[{name}](#{section_name})",
+                    classification_singular.capitalize(): f"[{name}](#{heading_anchor(name, '-')})",
                     "Short description": description or "",
                 }
             )
@@ -306,7 +307,7 @@ class CliMembers:
                     f'??? note "There are {len(projects[name])} projects with this classification"'
                 )
                 lines += [
-                    f"\n     - [{p.name}](../p/{p.short_uuid})" for p in projects[name]
+                    f"\n     - [{p.name}](p/{p.short_uuid}.md)" for p in projects[name]
                 ]
             else:
                 lines.append("**No project with this classification**")

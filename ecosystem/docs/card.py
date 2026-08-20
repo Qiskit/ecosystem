@@ -203,13 +203,13 @@ class ProjectSummaryCard(Card):
         """Annotation for title"""
         match self.status:
             case "Qiskit Project":
-                return "[All the Qiskit Projects](../status/#qiskit-project)"
+                return "[All the Qiskit Projects](../status.md#qiskit-project)"
             case "Alumni":
-                return "[All the Alumni projects](../status/#alumni)"
+                return "[All the Alumni projects](../status.md#alumni)"
             case "Under revision":
-                return "[All the projects under revision](../status/#under-revision)"
+                return "[All the projects under revision](../status.md#under-revision)"
             case _:
-                return "[All the regular Members](../status/#regular-members)"
+                return "[All the regular Members](../status.md#regular-members)"
 
     @property
     def classifications_lines(self):
@@ -234,7 +234,7 @@ class ProjectSummaryCard(Card):
             "as-is": ":material-image-broken-variant:",
             "deprecated": ":fontawesome-solid-exclamation-triangle:",
             "experimental": ":material-flask:",
-            "unmaintaned": ":material-archive:",
+            "unmaintained": ":material-archive:",
         }
         if self.maturity == "production-ready":
             # Full support
@@ -252,7 +252,7 @@ class ProjectSummaryCard(Card):
                 f"{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
                 "[All the production-ready project](#)",
             )
-        if self.maturity in ["unmaintaned", "as-is"]:
+        if self.maturity in ["unmaintained", "as-is"]:
             # No support
             return self.bullet(
                 icons[self.maturity],
@@ -302,7 +302,7 @@ class ProjectSummaryCard(Card):
                 [f"`{l}`" for l in self.labels],
                 [f"[All the projects labeled with `{l}`](#)" for l in self.labels],
             )
-        return self.bullet(":material-tag-off-outline:", "**No labels**")
+        return self.bullet(":material-tag-off-outline:", "**No labels**") + [""]
 
     def ibm_maintained_lines(self):
         """Bullet for member.ibm_maintained"""

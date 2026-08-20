@@ -1,0 +1,46 @@
+name = "Importer from OpenQASM 3 to Qiskit"
+url = "https://github.com/Qiskit/qiskit-qasm3-import"
+description = "Importer that converts OpenQASM 3 programs into Qiskit QuantumCircuit objects."
+labels = ["openqasm"]
+interfaces = ["Python"]
+ibm_maintained = true
+category = "Converter"
+packages = []
+uuid = "15f4feda-c852-4fb9-b08e-56cde18e0d03"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-qasm3-import"
+owner = "Qiskit"
+repo = "qiskit-qasm3-import"
+stars = 27
+homepage = "https://qiskit.github.io/qiskit-qasm3-import"
+license = "Apache-2.0"
+description = "Importer from OpenQASM 3 to Qiskit's QuantumCircuit"
+last_commit = 2026-07-21
+last_activity = 2026-07-21
+
+[badge]
+url = "https://qisk.it/e-15f4feda"
+style = "flat"
+
+[pypi.qiskit-qasm3-import]
+package_name = "qiskit-qasm3-import"
+version = "0.6.0"
+last_release_date = 2025-06-10
+license = "Apache 2.0 License"
+description = "Importer for parsing OpenQASM 3 strings into Qiskit circuits"
+url = "https://pypi.org/project/qiskit-qasm3-import/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/jakelishman/",
+]
+requires_qiskit = ">=0.37.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 338840
+last_180_days_downloads = 1034509

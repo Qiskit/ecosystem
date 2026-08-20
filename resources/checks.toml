@@ -1,7 +1,7 @@
 #:schema ./checks-schema.json
 [000]
-title = "Build on, interface with, or extend the Qiskit in a meaningful way"
-description = "Software in the Qiskit Ecosystem should related to Qiskit projects in some meaningful way. Software that manipulate Qiskit data structure (such as transpiler plugins) are good examples of that. If the connection with Qiskit is not that obvious, consider having a tutorial or how-to guide explaining a use-case for Qiskit users."
+title = "Build on, interface with, or extend Qiskit in a meaningful way"
+description = "Software in the Qiskit Ecosystem should be related to Qiskit projects in some meaningful way. Software that manipulates Qiskit data structures (such as transpiler plugins) are good examples of that. If the connection with Qiskit is not that obvious, consider having a tutorial or how-to guide explaining a use-case for Qiskit users."
 applies_to = "all"
 category = "SUBMISSION"
 importance = "CRITICAL"
@@ -28,7 +28,7 @@ checker = "test_general.py::test_G00"
 title = "Adhere to the Qiskit CoC"
 applies_to = "all"
 category = "SUBMISSION"
-description = "Project submitters should adhere to the Qiskit code of conduct. If the submitter is the project maintainer, they can enforce your their code of conduct in addition to the one coming from Qiskit."
+description = "Project submitters should adhere to the Qiskit code of conduct. If the submitter is the project maintainer, they can enforce their own code of conduct in addition to the one coming from Qiskit."
 importance = "CRITICAL"
 
 [Q20]
@@ -36,7 +36,7 @@ title = "Be compatible with the Qiskit SDK v2 or newer"
 applies_to = "all"
 category = "GENERAL"
 related_to = ["PQ2"]
-description = "If the software depends on Qiskit SDK in some way, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
+description = "If the software depends on Qiskit SDK in some way, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
 importance = "CRITICAL"
 checker = "test_general.py::test_Q20"
 
@@ -50,7 +50,7 @@ checker = "test_classifications.py::test_004"
 importance = "IMPORTANT"
 
 [007]
-title = "Interface have to exist"
+title = "Interfaces have to exist"
 description = "All `member.interfaces` should exist in https://qisk.it/ecosystem-interfaces"
 applies_to = "all"
 affects = ["member.interfaces.*"]
@@ -59,7 +59,7 @@ checker = "test_classifications.py::test_valid_interfaces"
 importance = "IMPORTANT"
 
 [008]
-title = "Category have to exist"
+title = "Category has to exist"
 description = "`member.category` should exist in https://qisk.it/ecosystem-categories"
 applies_to = "all"
 affects = ["member.category"]
@@ -78,7 +78,7 @@ importance = "IMPORTANT"
 
 [010]
 title = "member.name should not include the substring 'test'"
-description = "Projects in the Qiskit Ecosystem should related"
+description = "Projects in the Qiskit Ecosystem should be related"
 applies_to = "all"
 affects = ["member.name"]
 category = "SUBMISSION"
@@ -87,7 +87,7 @@ importance = "RECOMMENDATION"
 
 [011]
 title = "Do not repeat URLs in the submission"
-description = "Having the same URL for, for example member.website and member.documentation is unnecessary. Keep better fit and remove the other one."
+description = "Having the same URL for, for example member.website and member.documentation is unnecessary. Keep the better fit and remove the other one."
 applies_to = "all"
 affects = [
   "member.website",
@@ -99,8 +99,8 @@ category = "SUBMISSION"
 importance = "STRONG-RECOMMENDATION"
 
 [012]
-title = "URLs must exists"
-description = "None of the URLs must not return 404s or other forms of permanent errors. Rediractions are accepted."
+title = "URLs must exist"
+description = "URLs must not return 404s or other forms of permanent errors. Redirects are accepted."
 applies_to = "all"
 affects = [
   "member.website",
@@ -113,8 +113,8 @@ category = "SUBMISSION"
 importance = "IMPORTANT"
 
 [013]
-title = "URLs use a secure schema"
-description = "All the URLs must use HTTTPS (HyperText Transfer Protocol Secure) schema."
+title = "URLs use a secure scheme"
+description = "All the URLs must use HTTPS (HyperText Transfer Protocol Secure) scheme."
 applies_to = "all"
 affects = [
   "member.website",
@@ -129,7 +129,7 @@ importance = "IMPORTANT"
 
 [014]
 title = "Description too long"
-description = "Member description cannot be longer than 135 characters because front-end design limitations."
+description = "Member description cannot be longer than 135 characters because of front-end design limitations."
 applies_to = "all"
 affects = ["member.description"]
 checker = "test_description.py::test_description_len_135"
@@ -164,11 +164,11 @@ category = "SUBMISSION"
 importance = "STRONG-RECOMMENDATION"
 
 [G05]
-title = "Archived GitHub repository should have `unmaintaned` support"
+title = "Archived GitHub repository should have `unmaintained` support"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
-description = "Projects on an archived GitHub repository should have `unmaintaned` support (or `as-is`)."
+description = "Projects on an archived GitHub repository should have `unmaintained` support (or `as-is`)."
 importance = "CRITICAL"
 checker = "test_github.py::test_G05"
 
@@ -177,7 +177,7 @@ title = "Have maintainer activity within the last 6 months"
 applies_to = "GitHub projects"
 affects = ['member.github.last_activity']
 category = "ACTIVITY"
-description = "Projects available on GitHub should have some activity within the last 6 months, such as somebody staring the repository. This check does not apply to project that declared their support as as-is."
+description = "Projects available on GitHub should have some activity within the last 6 months, such as somebody starring the repository. This check does not apply to projects that have declared their support as as-is."
 importance = "RECOMMENDATION"
 checker = "test_github.py::test_G06"
 
@@ -186,7 +186,7 @@ title = "Have a commit within the last 18 months"
 applies_to = "GitHub projects"
 affects = ['member.github.last_commit']
 category = "ACTIVITY"
-description = "Projects available on GitHub should have a commit activity activity within the last 18 months. This check does not apply to project that declared their support as as-is."
+description = "Projects available on GitHub should have commit activity within the last 18 months. This check does not apply to projects that have declared their support as as-is."
 importance = "STRONG-RECOMMENDATION"
 checker = "test_github.py::test_G07"
 
@@ -195,7 +195,7 @@ title = "Unmaintained projects should be archived in GitHub repository"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
-description = "Projects that are not maintained (ie. `member.support == unmaintaned`) should archived their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
+description = "Projects that are not maintained (ie. `member.support == unmaintained`) should archive their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
 importance = "RECOMMENDATION"
 checker = "test_github.py::test_G08"
 
@@ -209,7 +209,7 @@ importance = "RECOMMENDATION"
 checker = "test_github.py::test_G09"
 
 [G10]
-title = "The reposity license is not (probably) OSI-approved"
+title = "The repository license is not (probably) OSI-approved"
 applies_to = "GitHub projects"
 affects = ['github.license']
 category = "OSS"
@@ -218,7 +218,7 @@ importance = "IMPORTANT"
 checker = "test_github.py::test_G10"
 
 [G11]
-title = "Unmaintaned projects should be archived when the repository is on an IBM-controlled organization"
+title = "unmaintained projects should be archived when the repository is on an IBM-controlled organization"
 applies_to = "GitHub projects"
 affects = ['github.archived']
 category = "ACTIVITY"
@@ -240,7 +240,7 @@ title = "IBM-maintained project not in an IBM-controlled GitHub organization"
 applies_to = "IBM-maintained projects"
 affects = ['member.github.owner', 'member.ibm_maintained']
 category = "OSS"
-description = "Projects that are maintained by IBM should live in a GitHub organization that is controlled by IBM. This allows to, for example, archive projects once they are not longer maintained."
+description = "Projects that are maintained by IBM should live in a GitHub organization that is controlled by IBM. This allows, for example, projects to be archived once they are no longer maintained."
 importance = "CRITICAL"
 checker = "test_ibm_maintained.py::test_I00"
 
@@ -250,7 +250,7 @@ applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v1']
 checker = "test_pypi.py::test_PQ1"
 category = "OUT-OF-DATE"
-description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v1.0 or newer."
+description = "Python packages that depend on Qiskit SDK, there should exist a supported release that is compatible with the Qiskit SDK v1.0 or newer."
 discussion = "https://github.com/Qiskit/ecosystem/issues/1144"
 importance = "LEGACY"
 
@@ -260,11 +260,11 @@ applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v2']
 checker = "test_pypi.py::test_PQ2"
 category = "OUT-OF-DATE"
-description = "Python packages that depend on Qiskit SDK, there should exist a supported released that is compatible with the Qiskit SDK v2.0 or newer."
+description = "Python packages that depend on Qiskit SDK, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer."
 importance = "IMPORTANT"
 
 [P00]
-title = "Python package license-related metadata should refer to a OSI-approved license"
+title = "Python package license-related metadata should refer to an OSI-approved license"
 applies_to = "Python packages"
 affects = ['member.pypi.*.license']
 category = "OSS"
@@ -286,7 +286,7 @@ title = "Production-ready projects should have, at least, one stable Python pack
 applies_to = "Python packages"
 affects = ['member.pypi.*.development_status', 'member.maturity']
 category = "OUT-OF-DATE"
-description = "If the project maturiy level is is production-ready then, at least one of the Python packages should have a Development Status classifier that is `None`, `Production/Stable`, or `Mature`."
+description = "If the project maturity level is production-ready then, at least one of the Python packages should have a Development Status classifier that is `None`, `Production/Stable`, or `Mature`."
 checker = "test_pypi.py::test_P11"
 importance = "STRONG-RECOMMENDATION"
 
@@ -300,7 +300,7 @@ importance = "RECOMMENDATION"
 checker = "test_pypi.py::test_P12"
 
 [P13]
-title = "The license declared in PyPI is (probably) not OSI-approved "
+title = "The license declared in PyPI is (probably) not OSI-approved"
 applies_to = "Python packages"
 affects = ['member.pypi.*.license']
 category = "OSS"
@@ -318,7 +318,7 @@ importance = "RECOMMENDATION"
 checker = "test_julia.py::test_J00"
 
 [J01]
-title = "The license declared in Julia is (probably) not OSI-approved "
+title = "The license declared in Julia is (probably) not OSI-approved"
 applies_to = "Julia packages"
 affects = ['member.julia.*.license']
 category = "OSS"
@@ -331,7 +331,7 @@ title = "member.license is not OSI-approved license"
 applies_to = "all"
 affects = ['member.license']
 category = "SUBMISSION"
-description = "member.license could not be found amount the OSI-approved licenses."
+description = "member.license could not be found among the OSI-approved licenses."
 checker = "test_license.py::test_O02"
 importance = "IMPORTANT"
 
@@ -350,31 +350,31 @@ icon = "material-close-outline"
 
 [[importance]]
 name = "IMPORTANT"
-description = "If this check is on a candidate, the merge wont happen until the check passes. If affects an existing member, there will be a cure period for fixing it."
+description = "If this check is on a candidate, the merge won't happen until the check passes. If it affects an existing member, there will be a cure period for fixing it."
 cure_period_in_days = 90
 icon = "material-alert-octagram-outline"
 
 [[importance]]
 name = "STRONG-RECOMMENDATION"
-description = "This is a strong-recommendation that can be waved if there is a really really good reason for it."
+description = "This is a strong recommendation that can be waived if there is a really really good reason for it."
 cure_period_in_days = 90
 icon = "material-alert-rhombus-outline"
 
 [[importance]]
 name = "RECOMMENDATION"
-description = "This is a recomendation. You might have to argue way this check does not apply to a specific project."
+description = "This is a recommendation. You might have to argue why this check does not apply to a specific project."
 cure_period_in_days = 180
 icon = "material-alert-circle-outline"
 
 [[importance]]
 name = "LEGACY"
-description = "This validation does not loger apply."
+description = "This validation no longer applies."
 cure_period_in_days = -1
 icon = "material-archive-alert-outline"
 
 [[categories]]
 name = "SUBMISSION"
-description = "Validations done one time when a project is submitted."
+description = "Validations done once when a project is submitted."
 
 [[categories]]
 name = "METADATA"

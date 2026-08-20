@@ -16,15 +16,36 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-fermions"
 owner = "Qiskit"
 repo = "qiskit-fermions"
-stars = 11
+stars = 12
 homepage = "https://qiskit.github.io/qiskit-fermions/"
 license = "Apache-2.0"
 description = "This package extends Qiskit with tools for working on fermionic systems."
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-08-05
-last_activity = 2026-08-05
+last_commit = 2026-08-14
+last_activity = 2026-08-15
 
 [badge]
 url = "https://qisk.it/e-487b5ec4"
 style = "flat"
+
+[pypi.qiskit-fermions]
+package_name = "qiskit-fermions"
+version = "0.1.0"
+last_release_date = 2026-08-14
+license = "Apache-2.0"
+description = "Qiskit for Fermions"
+url = "https://pypi.org/project/qiskit-fermions/"
+development_status = "4 - Beta"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/mrossinek/",
+]
+requires_qiskit = "~=2.5.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 234
+last_180_days_downloads = 234

@@ -1,0 +1,25 @@
+name = "Qiskit ZX Verified"
+submission_number = 1297
+url = "https://github.com/RexRowan/Qiskit-ZX-Verified"
+description = "Clifford phase-gate fusion for Qiskit with the core ZX spider-fusion rule formally verified in Lean 4."
+contact_info = "titaniumdavinci@gmail.com"
+labels = ["quantum information", "research"]
+interfaces = ["Python"]
+category = "Tooling"
+packages = []
+uuid = "91f8bc77-c601-4538-b5ec-5149828f7b9c"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/RexRowan/Qiskit-ZX-Verified"
+owner = "RexRowan"
+repo = "Qiskit-ZX-Verified"
+stars = 0
+license = "Apache-2.0"
+description = "Clifford phase-gate fusion for Qiskit with the core ZX spider-fusion rule formally verified in Lean 4."
+last_commit = 2026-08-14
+last_activity = 2026-08-14
+
+[badge]
+url = "https://qisk.it/e-91f8bc77"
+style = "flat"

@@ -30,9 +30,12 @@ style = "flat"
 package_name = "mqt-qubomaker"
 version = "1.0.2"
 last_release_date = 2026-07-03
+license = "MIT"
 description = "A tool for the automatic generation and combination of QUBO formulations for specific problem classes."
 url = "https://pypi.org/project/mqt.qubomaker/"
 development_status = "4 - Beta"
+status = "archived"
+maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true

@@ -16,14 +16,32 @@ url = "https://github.com/RexRowan/Qiberis"
 owner = "RexRowan"
 repo = "Qiberis"
 stars = 0
+homepage = "https://qiskit.github.io/ecosystem/p/d33fccc1/"
 license = "MIT"
 description = "A backend-agnostic quantum circuit API: write once, run on Qiskit, Cirq, and PennyLane simulators."
-last_commit = 2026-07-29
-last_activity = 2026-07-29
+last_commit = 2026-08-08
+last_activity = 2026-08-08
 
 [badge]
 url = "https://qisk.it/e-d33fccc1"
 style = "flat"
+
+[pypi.qiberis]
+package_name = "qiberis"
+version = "0.1.0"
+last_release_date = 2026-08-08
+license = "MIT"
+description = "A backend-agnostic quantum circuit API: write once, run on Qiskit, Cirq, and PennyLane simulators."
+url = "https://pypi.org/project/Qiberis/"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 124
+last_180_days_downloads = 124
 
 [checks.026]
 since = 2026-07-30

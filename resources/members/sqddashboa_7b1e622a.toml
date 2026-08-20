@@ -15,11 +15,25 @@ url = "https://github.com/RexRowan/Qiskit-SQD-Dashboard"
 owner = "RexRowan"
 repo = "Qiskit-SQD-Dashboard"
 stars = 0
+homepage = "https://qiskit.github.io/ecosystem/p/7b1e622a/"
 license = "MIT"
 description = "Live convergence diagnostics for qiskit-addon-sqd's self-consistent configuration recovery loop, rendered as an in-notebook Plotly ..."
-last_commit = 2026-08-01
-last_activity = 2026-08-01
+last_commit = 2026-08-08
+last_activity = 2026-08-08
 
 [badge]
 url = "https://qisk.it/e-7b1e622a"
 style = "flat"
+
+[pypi.qiskit-sqd-dashboard]
+package_name = "qiskit-sqd-dashboard"
+version = "0.1.0"
+last_release_date = 2026-08-08
+license = "MIT"
+description = "Live convergence diagnostics for qiskit-addon-sqd's self-consistent configuration recovery loop, rendered as an in-notebook Plotly widget."
+url = "https://pypi.org/project/qiskit-sqd-dashboard/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+last_month_downloads = 129
+last_180_days_downloads = 129
