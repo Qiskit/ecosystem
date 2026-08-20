@@ -24,9 +24,27 @@ File structure:
 from pathlib import Path
 import shutil
 import toml
+from toml import TomlEncoder as TomlEncoderUpstream
 
 from ecosystem.error_handling import logger, EcosystemError
 from ecosystem.member import Member
+
+
+class TomlEncoder(TomlEncoderUpstream):
+    def dump_list(self, v):
+        """Override to dump empty lists without trailing comma"""
+        oneline = f"[{', '.join( str(self.dump_value(u)) for u in v )}]"
+        multiline = (
+            f"[\n{'\n'.join( '  ' + str(self.dump_value(u)) + ',' for u in v )}\n]"
+        )
+        if len(oneline) < 60:
+            return oneline
+        if len(oneline) > 65:
+            max_element = max(len(str(self.dump_value(u))) for u in v if u is not None)
+            if max_element <= 10:
+                return oneline
+            return multiline
+        return oneline
 
 
 class TomlStorage:
@@ -90,7 +108,7 @@ class TomlStorage:
         for submission in data.values():
             submission_dict = submission.to_dict()
             with open(self._name_id_to_path(submission.name_id), "w") as file:
-                toml.dump(submission_dict, file)
+                toml.dump(submission_dict, file, encoder=TomlEncoder(preserve=True))
 
     def __enter__(self) -> dict:
         if self._data is None:
