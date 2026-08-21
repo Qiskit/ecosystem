@@ -17,7 +17,7 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-addon-cutting"
 owner = "Qiskit"
 repo = "qiskit-addon-cutting"
-stars = 100
+stars = 101
 homepage = "https://qiskit.github.io/qiskit-addon-cutting/"
 license = "Apache-2.0"
 description = "Reduce width and depth of quantum circuits by cutting gates and wires."
@@ -25,7 +25,7 @@ estimated_contributors = 26
 total_dependent_repositories = 14
 total_dependent_packages = 4
 last_commit = 2026-08-01
-last_activity = 2026-08-04
+last_activity = 2026-08-20
 
 [badge]
 url = "https://qisk.it/e-b8a6cb2a"
@@ -49,5 +49,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 5829
-last_180_days_downloads = 23962
+last_month_downloads = 4801
+last_180_days_downloads = 23937

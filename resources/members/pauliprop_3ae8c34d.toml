@@ -20,8 +20,8 @@ homepage = "https://qiskit.github.io/pauli-prop/"
 license = "Apache-2.0"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-08-14
-last_activity = 2026-08-14
+last_commit = 2026-08-20
+last_activity = 2026-08-20
 
 [badge]
 url = "https://qisk.it/e-3ae8c34d"
@@ -29,8 +29,8 @@ style = "flat"
 
 [pypi.pauli-prop]
 package_name = "pauli-prop"
-version = "0.2.0"
-last_release_date = 2026-03-16
+version = "0.2.1"
+last_release_date = 2026-08-20
 license = "Apache-1.1"
 description = "Library for performing Pauli propagation."
 url = "https://pypi.org/project/pauli-prop/"
@@ -41,5 +41,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 9176
-last_180_days_downloads = 18449
+last_month_downloads = 8741
+last_180_days_downloads = 18495
