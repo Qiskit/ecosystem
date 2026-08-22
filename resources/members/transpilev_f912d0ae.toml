@@ -6,7 +6,7 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["quantum information", "research"]
 interfaces = ["Python"]
 category = "Tooling"
-packages = ["https://pypi.org/project/qiskit-transpile-verify/"]
+packages = []
 uuid = "f912d0ae-3944-4279-9ee5-60a4808794b5"
 maturity = "experimental"
 
@@ -23,3 +23,21 @@ last_activity = 2026-08-20
 [badge]
 url = "https://qisk.it/e-f912d0ae"
 style = "flat"
+
+[pypi.qiskit-transpile-verify]
+package_name = "qiskit-transpile-verify"
+version = "0.1.0"
+last_release_date = 2026-08-20
+license = "Apache-2.0"
+description = "Formal and statistical equivalence checking for Qiskit transpiler output on the Clifford fragment, with optional Lean 4 certificate generation."
+url = "https://pypi.org/project/qiskit-transpile-verify/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = "<3,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 100
+last_180_days_downloads = 100
