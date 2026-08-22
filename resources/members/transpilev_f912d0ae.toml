@@ -6,7 +6,7 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["quantum information", "research"]
 interfaces = ["Python"]
 category = "Tooling"
-packages = []
+packages = ["https://pypi.org/project/qiskit-transpile-verify/"]
 uuid = "f912d0ae-3944-4279-9ee5-60a4808794b5"
 maturity = "experimental"
 
