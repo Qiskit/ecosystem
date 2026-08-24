@@ -10,7 +10,7 @@ created_at = 2023-05-12
 category = "Application"
 packages = []
 uuid = "05140a48-184b-491e-ac3c-d613ca05b3c8"
-maturity = "production-ready"
+maturity = "archived"
 status = "Under revision"
 
 [github]
@@ -45,6 +45,16 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 12
 last_180_days_downloads = 202
+
+[checks.004]
+since = 2026-08-24
+details = "member.maturity must exist in classifications.toml"
+importance = "IMPORTANT"
+
+[checks.G05]
+since = 2026-08-24
+details = "GitHub repository archived"
+importance = "CRITICAL"
 
 [checks.G07]
 since = 2026-07-14
