@@ -25,8 +25,8 @@ repo = "qdsv-bridge"
 stars = 1
 license = "MIT"
 description = "QDSV Bridge SDK: controlled semantic-to-IR, oracle and circuit-blueprint compilation for supported quantum problem families."
-last_commit = 2026-08-21
-last_activity = 2026-08-21
+last_commit = 2026-08-22
+last_activity = 2026-08-22
 
 [badge]
 url = "https://qisk.it/e-e8734f93"
@@ -34,10 +34,10 @@ style = "flat"
 
 [pypi.qdsv-bridge]
 package_name = "qdsv-bridge"
-version = "0.6.4"
-last_release_date = 2026-08-21
+version = "0.6.6"
+last_release_date = 2026-08-22
 license = "MIT"
-description = "Domain-agnostic problem-first SDK for semantically validated QDSV logical quantum artifacts."
+description = "Public Preview conformance-tested semantic-to-quantum SDK for QDSV logical artifacts."
 url = "https://pypi.org/project/qdsv-bridge/"
 development_status = "4 - Beta"
 status = "active"
@@ -47,5 +47,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 989
-last_180_days_downloads = 3259
+last_month_downloads = 1261
+last_180_days_downloads = 3596
