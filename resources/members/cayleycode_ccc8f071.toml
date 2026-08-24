@@ -12,8 +12,29 @@ uuid = "ccc8f071-ad3d-47f9-af61-319e739a2c8f"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/RexRowan/Qiskit-Cayley-Codes"
 owner = "RexRowan"
 repo = "Qiskit-Cayley-Codes"
+stars = 1
+license = "Apache-2.0"
+description = "Cayley-graph construction and exploration of quantum LDPC codes in Qiskit"
+last_commit = 2026-08-22
+last_activity = 2026-08-22
 
 [pypi.qiskit-cayley-codes]
 package_name = "qiskit-cayley-codes"
+version = "0.1.1"
+last_release_date = 2026-08-22
+license = "Apache-2.0"
+description = "CSS quantum code construction from Cayley graphs over zero-sumfree sets"
+url = "https://pypi.org/project/qiskit-cayley-codes/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = "<3,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 195
+last_180_days_downloads = 195
