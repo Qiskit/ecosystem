@@ -12,8 +12,28 @@ uuid = "b51efcba-5d5b-45a4-8b78-01fee5d9aa8e"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/veriq-toolkit/Ancilla-Safety"
 owner = "veriq-toolkit"
 repo = "Ancilla-Safety"
+stars = 0
+license = "MIT"
+last_commit = 2026-08-21
+last_activity = 2026-08-21
 
 [pypi.veriq-ancillaguard]
 package_name = "veriq-ancillaguard"
+version = "0.1.0"
+last_release_date = 2026-08-21
+license = "MIT"
+description = "VeriQ AncillaGuard verifies and repairs dirty-ancilla safety in Qiskit circuits."
+url = "https://pypi.org/project/veriq-ancillaguard/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/Matrix247/"]
+requires_qiskit = "<3,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 111
+last_180_days_downloads = 111
