@@ -7,6 +7,13 @@ labels = ["quantum information", "research", "openqasm"]
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "Tooling"
 reference_paper = "https://arxiv.org/abs/2608.13099"
-packages = ["https://pypi.org/project/veriq-ancillaguard/"]
+packages = []
 uuid = "b51efcba-5d5b-45a4-8b78-01fee5d9aa8e"
 maturity = "experimental"
+
+[github]
+owner = "veriq-toolkit"
+repo = "Ancilla-Safety"
+
+[pypi.veriq-ancillaguard]
+package_name = "veriq-ancillaguard"
