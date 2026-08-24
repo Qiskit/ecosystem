@@ -7,6 +7,13 @@ labels = ["quantum information", "research"]
 interfaces = ["Python"]
 category = "Tooling"
 reference_paper = "https://ieeexplore.ieee.org/document/6560408"
-packages = ["https://pypi.org/project/qiskit-cayley-codes"]
+packages = []
 uuid = "ccc8f071-ad3d-47f9-af61-319e739a2c8f"
 maturity = "experimental"
+
+[github]
+owner = "RexRowan"
+repo = "Qiskit-Cayley-Codes"
+
+[pypi.qiskit-cayley-codes]
+package_name = "qiskit-cayley-codes"
