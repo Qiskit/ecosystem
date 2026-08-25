@@ -33,8 +33,8 @@ style = "flat"
 
 [pypi."mqt.core"]
 package_name = "mqt-core"
-version = "3.9.0"
-last_release_date = 2026-08-19
+version = "3.9.1"
+last_release_date = 2026-08-24
 license = "MIT"
 description = "The Backbone of the Munich Quantum Toolkit"
 url = "https://pypi.org/project/mqt-core/"
@@ -46,8 +46,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 33385
-last_180_days_downloads = 157451
+last_month_downloads = 32832
+last_180_days_downloads = 156340
 
 [checks.P10]
 since = 2026-07-14
