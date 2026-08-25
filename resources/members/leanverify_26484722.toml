@@ -11,8 +11,26 @@ uuid = "26484722-ff86-4278-9eb6-02e61082dc48"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/RexRowan/Qiskit-LEAN-Verify-Game"
 owner = "RexRowan"
 repo = "Qiskit-LEAN-Verify-Game"
+stars = 0
+license = "Apache-2.0"
+description = "Circuit puzzles built on the Qiskit SDK, checked by LEAN"
+last_commit = 2026-08-25
+last_activity = 2026-08-25
 
 [pypi.qiskit-lean-verify-game]
 package_name = "qiskit-lean-verify-game"
+version = "0.1.1"
+last_release_date = 2026-08-25
+license = "Apache-2.0"
+description = "A decidable-checker circuit puzzle package built on Qiskit, with level content shared with the CliffordGame lean4game submission."
+url = "https://pypi.org/project/qiskit-lean-verify-game/"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = "<3,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
