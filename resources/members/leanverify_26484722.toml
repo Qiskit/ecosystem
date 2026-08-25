@@ -6,6 +6,13 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["demo", "circuit building", "quantum information"]
 interfaces = ["Python"]
 category = "Game/Educational"
-packages = ["https://pypi.org/project/qiskit-lean-verify-game/"]
+packages = []
 uuid = "26484722-ff86-4278-9eb6-02e61082dc48"
 maturity = "experimental"
+
+[github]
+owner = "RexRowan"
+repo = "Qiskit-LEAN-Verify-Game"
+
+[pypi.qiskit-lean-verify-game]
+package_name = "qiskit-lean-verify-game"
