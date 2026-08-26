@@ -53,7 +53,7 @@ def test_G06(member):
     months_difference = (relative.years * 12) + relative.months
 
     assert months_difference <= 6, (
-        f"Last activity was {months_difference} months ago, which probably means that the project "
+        "Last activity was more then 6 months ago, which probably means that the project "
         "is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
     )
 
@@ -74,9 +74,9 @@ def test_G07(member):
     months_difference = (relative.years * 12) + relative.months
 
     assert months_difference <= 18, (
-        f"Last commit was {months_difference} months ago, which is more "
-        "than 18 months ago. Please update the GitHub repository or set "
-        "member.maturity to `as-is`."
+        "Last commit was more than 18 months ago. "
+        "This might be a sign of a project that is not actively maintained. "
+        "Consider set member.maturity to `as-is`."
     )
 
 

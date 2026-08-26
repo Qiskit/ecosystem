@@ -48,7 +48,7 @@ last_180_days_downloads = 781
 
 [checks.G06]
 since = 2026-07-23
-details = "Last activity was 8 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
 
 [checks.P10]
