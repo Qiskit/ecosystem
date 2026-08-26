@@ -17,8 +17,8 @@ repo = "Qiskit-LEAN-Verify-Game"
 stars = 0
 license = "Apache-2.0"
 description = "Circuit puzzles built on the Qiskit SDK, checked by LEAN"
-last_commit = 2026-08-25
-last_activity = 2026-08-25
+last_commit = 2026-08-26
+last_activity = 2026-08-26
 
 [pypi.qiskit-lean-verify-game]
 package_name = "qiskit-lean-verify-game"
@@ -34,3 +34,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 85
+last_180_days_downloads = 85
