@@ -43,12 +43,12 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 162
-last_180_days_downloads = 776
+last_month_downloads = 151
+last_180_days_downloads = 781
 
 [checks.G06]
 since = 2026-07-23
-details = "Last activity was 8 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
 
 [checks.P10]
