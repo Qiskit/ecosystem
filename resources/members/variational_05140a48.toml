@@ -11,7 +11,7 @@ category = "Application"
 packages = []
 uuid = "05140a48-184b-491e-ac3c-d613ca05b3c8"
 maturity = "archived"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/QuantumApplicationLab/vqls-prototype"
@@ -46,11 +46,6 @@ highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 12
 last_180_days_downloads = 202
 
-[checks.004]
-since = 2026-08-24
-details = "member.maturity must exist in classifications.toml"
-importance = "IMPORTANT"
-
 [checks.G05]
 since = 2026-08-24
 details = "GitHub repository archived"
@@ -58,8 +53,13 @@ importance = "CRITICAL"
 
 [checks.G07]
 since = 2026-07-14
-details = "Last commit was 20 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+details = "Last commit was more than 18 months ago. This might be a sign of a project that is not actively maintained. Consider set member.maturity to `as-is`."
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G00]
+since = 2026-08-26
+details = "The project is probably abandoned: `[G05]`"
+importance = "CRITICAL"
 
 [checks.P10]
 since = 2026-07-09

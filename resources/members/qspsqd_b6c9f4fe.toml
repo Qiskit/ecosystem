@@ -35,5 +35,5 @@ style = "flat"
 
 [checks.G06]
 since = 2026-07-14
-details = "Last activity was 15 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
