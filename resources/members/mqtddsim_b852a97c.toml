@@ -18,14 +18,14 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/ddsim"
 owner = "munich-quantum-toolkit"
 repo = "ddsim"
-stars = 161
+stars = 162
 homepage = "https://mqt.readthedocs.io/projects/ddsim"
 license = "MIT"
-description = "MQT DDSIM - A quantum circuit simulator based on decision diagrams written in C++"
+description = "MQT DDSIM - A Quantum Circuit Simulator Based on Decision Diagrams"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-08-17
-last_activity = 2026-08-17
+last_commit = 2026-08-26
+last_activity = 2026-08-26
 
 [badge]
 url = "https://qisk.it/e-b852a97c"
@@ -33,8 +33,8 @@ style = "flat"
 
 [pypi."mqt.ddsim"]
 package_name = "mqt-ddsim"
-version = "2.4.0"
-last_release_date = 2026-07-09
+version = "2.5.0"
+last_release_date = 2026-08-20
 license = "MIT"
 description = "A quantum simulator based on decision diagrams written in C++"
 url = "https://pypi.org/project/mqt.ddsim/"
@@ -46,13 +46,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 2652
-last_180_days_downloads = 15927
-
-[checks.G06]
-since = 2026-08-13
-details = "Last activity was 24 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
-importance = "RECOMMENDATION"
+last_month_downloads = 5007
+last_180_days_downloads = 18055
 
 [checks.P10]
 since = 2026-07-09

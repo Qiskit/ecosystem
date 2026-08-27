@@ -10,7 +10,7 @@ reference_paper = "https://arxiv.org/abs/2201.07963"
 packages = []
 uuid = "b1285a61-8b2d-4f0a-8afd-678d6e57e0a9"
 maturity = "production-ready"
-status = "Under revision"
+status = "Alumni"
 
 [github]
 url = "https://github.com/renlililoli/OMM"
@@ -28,6 +28,6 @@ style = "flat"
 
 [checks.G07]
 since = 2026-06-14
-details = "Last commit was 22 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+details = "Last commit was more than 18 months ago. This might be a sign of a project that is not actively maintained. Consider set member.maturity to `as-is`."
 discussion = "https://github.com/orgs/Qiskit/discussions/52"
 importance = "STRONG-RECOMMENDATION"

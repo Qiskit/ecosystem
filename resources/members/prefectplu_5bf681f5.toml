@@ -41,5 +41,10 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 113
-last_180_days_downloads = 365
+last_month_downloads = 129
+last_180_days_downloads = 382
+
+[checks.P10]
+since = 2026-08-18
+details = "Python package prefect-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
