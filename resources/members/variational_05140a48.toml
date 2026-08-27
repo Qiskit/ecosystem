@@ -10,8 +10,8 @@ created_at = 2023-05-12
 category = "Application"
 packages = []
 uuid = "05140a48-184b-491e-ac3c-d613ca05b3c8"
-maturity = "production-ready"
-status = "Under revision"
+maturity = "archived"
+status = "Alumni"
 
 [github]
 url = "https://github.com/QuantumApplicationLab/vqls-prototype"
@@ -22,6 +22,7 @@ license = "Apache-2.0"
 description = "A Variational Quantum Linear Solver Prototype for Qiskit"
 total_dependent_repositories = 0
 total_dependent_packages = 0
+archived = true
 last_commit = 2024-11-27
 last_activity = 2026-08-10
 
@@ -42,13 +43,23 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 14
-last_180_days_downloads = 202
+last_month_downloads = 12
+last_180_days_downloads = 205
+
+[checks.G05]
+since = 2026-08-24
+details = "GitHub repository archived"
+importance = "CRITICAL"
 
 [checks.G07]
 since = 2026-07-14
-details = "Last commit was 20 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+details = "Last commit was more than 18 months ago. This might be a sign of a project that is not actively maintained. Consider set member.maturity to `as-is`."
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G00]
+since = 2026-08-26
+details = "The project is probably abandoned: `[G05]`"
+importance = "CRITICAL"
 
 [checks.P10]
 since = 2026-07-09

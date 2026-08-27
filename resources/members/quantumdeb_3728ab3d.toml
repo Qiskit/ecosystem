@@ -30,3 +30,8 @@ last_activity = 2026-01-19
 [badge]
 url = "https://qisk.it/e-3728ab3d"
 style = "flat"
+
+[checks.G06]
+since = 2026-08-24
+details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+importance = "RECOMMENDATION"

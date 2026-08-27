@@ -17,14 +17,14 @@ url = "https://github.com/Qiskit/qiskit-addon-slc"
 owner = "Qiskit"
 repo = "qiskit-addon-slc"
 stars = 6
-homepage = "https://qiskit.github.io/qiskit-addon-slc/"
+homepage = "https://quantum.cloud.ibm.com/docs/en/addons/qiskit-addon-slc"
 license = "Apache-2.0"
 description = "Reducing PEC sampling overhead with shaded lightcones"
 estimated_contributors = 9
 total_dependent_repositories = 1
 total_dependent_packages = 0
 last_commit = 2026-08-03
-last_activity = 2026-08-10
+last_activity = 2026-08-18
 
 [badge]
 url = "https://qisk.it/e-189aa71b"
@@ -44,5 +44,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 5168
-last_180_days_downloads = 6144
+last_month_downloads = 2182
+last_180_days_downloads = 6277
