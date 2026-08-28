@@ -32,8 +32,8 @@ name = "Converter"
 description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs or tools"
 
 [[category]]
-name = "Qiskit addon"
-description = "Enables algorithm discovery at the utility scale"
+name = "Error mitigation"
+description = "Reduces the effect of hardware noise on results, by transforming circuits before execution or post-processing their outcomes"
 
 [[category]]
 name = "Game/Educational"
