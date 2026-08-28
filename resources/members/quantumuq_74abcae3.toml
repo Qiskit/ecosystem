@@ -1,0 +1,13 @@
+name = "QuantumUQ"
+submission_number = 1330
+url = "https://github.com/ocatak/QuantumUQ"
+description = "Uncertainty quantification for quantum machine learning on PennyLane and Qiskit: shot noise, calibration, and ensembles."
+contact_info = "f.ozgur.catak@uis.no"
+labels = ["QML"]
+interfaces = ["Python"]
+category = "Qiskit addon"
+reference_paper = "https://doi.org/10.36227/techrxiv.177205048.88644983/v1"
+documentation = "https://quantumuq.readthedocs.io/en/latest/"
+packages = ["https://pypi.org/project/quantumuq/"]
+uuid = "74abcae3-4fd4-4eac-b7d2-44b93c7a1db2"
+maturity = "production-ready"
