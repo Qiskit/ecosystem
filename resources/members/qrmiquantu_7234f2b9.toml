@@ -19,7 +19,7 @@ license = "Apache-2.0"
 description = "Thin and vendor agnostic layer to access, control and monitor underlying on-prem or cloud quantum computers"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-08-27
+last_commit = 2026-08-28
 last_activity = 2026-08-28
 
 [badge]
@@ -28,9 +28,9 @@ style = "flat"
 
 [pypi.qrmi]
 package_name = "qrmi"
-version = "0.24.0"
-last_release_date = 2026-08-26
-license = "Apache-1.1"
+version = "0.24.1"
+last_release_date = 2026-08-28
+license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 url = "https://pypi.org/project/qrmi/"
 status = "active"
