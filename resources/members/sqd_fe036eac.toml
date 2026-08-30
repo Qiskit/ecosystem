@@ -21,10 +21,10 @@ homepage = "https://quantum.cloud.ibm.com/docs/en/addons/qiskit-addon-sqd"
 license = "Apache-2.0"
 description = "Sample-based Quantum Diagonalization: Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 estimated_contributors = 17
-total_dependent_repositories = 14
+total_dependent_repositories = 15
 total_dependent_packages = 4
 last_commit = 2026-08-28
-last_activity = 2026-08-28
+last_activity = 2026-08-29
 
 [badge]
 url = "https://qisk.it/e-fe036eac"
@@ -48,5 +48,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 21860
-last_180_days_downloads = 112101
+last_month_downloads = 22106
+last_180_days_downloads = 113302
