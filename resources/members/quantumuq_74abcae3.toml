@@ -8,6 +8,13 @@ interfaces = ["Python", "Command-line interface (CLI)"]
 category = "Application"
 reference_paper = "https://doi.org/10.36227/techrxiv.177205048.88644983/v1"
 documentation = "https://quantumuq.readthedocs.io/"
-packages = ["https://pypi.org/project/quantumuq/"]
+packages = []
 uuid = "74abcae3-4fd4-4eac-b7d2-44b93c7a1db2"
 maturity = "experimental"
+
+[github]
+owner = "ocatak"
+repo = "QuantumUQ"
+
+[pypi.quantumuq]
+package_name = "quantumuq"
