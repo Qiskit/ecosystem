@@ -1,0 +1,44 @@
+name = "QuantumUQ"
+submission_number = 1330
+url = "https://github.com/ocatak/QuantumUQ"
+description = "Uncertainty quantification for quantum machine learning on PennyLane and Qiskit: shot noise, calibration, and ensembles."
+contact_info = "f.ozgur.catak@uis.no"
+labels = ["QML"]
+interfaces = ["Python", "Command-line interface (CLI)"]
+category = "Application"
+reference_paper = "https://doi.org/10.36227/techrxiv.177205048.88644983/v1"
+documentation = "https://quantumuq.readthedocs.io/"
+packages = []
+uuid = "74abcae3-4fd4-4eac-b7d2-44b93c7a1db2"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/ocatak/QuantumUQ"
+owner = "ocatak"
+repo = "QuantumUQ"
+stars = 3
+homepage = "https://quantumuq.readthedocs.io/en/latest/"
+license = "MIT"
+description = "Uncertainty quantification, calibration, and reliability benchmarking for quantum machine learning with Qiskit and PennyLane."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+last_commit = 2026-08-28
+last_activity = 2026-08-28
+
+[pypi.quantumuq]
+package_name = "quantumuq"
+version = "0.4.1"
+last_release_date = 2026-08-28
+license = "MIT"
+description = "Uncertainty Quantification for Quantum Machine Learning (PennyLane & Qiskit)."
+url = "https://pypi.org/project/quantumuq/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/ocatak/"]
+requires_qiskit = "<3,>=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 500
+last_180_days_downloads = 792
