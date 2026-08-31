@@ -24,8 +24,8 @@ license = "MIT"
 description = "MQT Core - The Backbone of the Munich Quantum Toolkit"
 total_dependent_repositories = 55
 total_dependent_packages = 3
-last_commit = 2026-08-25
-last_activity = 2026-08-25
+last_commit = 2026-08-30
+last_activity = 2026-08-30
 
 [badge]
 url = "https://qisk.it/e-2309e6fb"
@@ -33,8 +33,8 @@ style = "flat"
 
 [pypi."mqt.core"]
 package_name = "mqt-core"
-version = "3.9.1"
-last_release_date = 2026-08-24
+version = "3.9.2"
+last_release_date = 2026-08-26
 license = "MIT"
 description = "The Backbone of the Munich Quantum Toolkit"
 url = "https://pypi.org/project/mqt-core/"
@@ -46,8 +46,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 33428
-last_180_days_downloads = 159531
+last_month_downloads = 34664
+last_180_days_downloads = 159441
 
 [checks.P10]
 since = 2026-07-14

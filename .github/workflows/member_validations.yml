@@ -103,7 +103,9 @@ jobs:
           fi
       - name: Push sections
         if: always()
-        run: git push --verbose
+        run: |
+          git pull
+          git push --verbose
 
       - name: Make comment on validated submission
         if: success() && steps.cpr.outputs.pull-request-number
