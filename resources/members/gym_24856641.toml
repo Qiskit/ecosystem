@@ -5,7 +5,7 @@ description = "A collection of quantum information science problems formulated a
 labels = ["AI/LLM", "high-level synthesis", "circuit optimization", "research"]
 interfaces = ["Python"]
 category = "Application"
-packages = ["https://pypi.org/project/qiskit-gym"]
+packages = []
 uuid = "24856641-7888-4c14-99f2-a448d2acf7f3"
 maturity = "experimental"
 
@@ -19,3 +19,6 @@ description = "A collection of quantum information science problems formulated a
 estimated_contributors = 3
 last_commit = 2026-08-31
 last_activity = 2026-08-28
+
+[pypi.qiskit-gym]
+package_name = "qiskit-gym"
