@@ -6,6 +6,13 @@ labels = ["cloud service"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
-packages = ["https://pypi.org/project/qiskit-ibm-catalog/"]
+packages = []
 uuid = "81dcc42e-55ed-4a74-9bc0-5aaac2505b86"
 maturity = "production-ready"
+
+[github]
+owner = "Qiskit"
+repo = "qiskit-ibm-catalog"
+
+[pypi.qiskit-ibm-catalog]
+package_name = "qiskit-ibm-catalog"
