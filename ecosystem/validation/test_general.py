@@ -84,3 +84,12 @@ def test_001(request, pytestconfig):
         pytestconfig.failed_checkups,
         "A non-OSI-approved license?",
     )
+
+def test_015(member):
+    """ URL should not be a GitHub organization url """
+    if not hasattr(member, "url"):
+        pytest.skip("member.url does not exist")
+    if not member.url.hostname.lower().endswith("github.com"):
+        pytest.skip(f"{member.url} is not a GitHub URL")
+    owner_repo = [i for i in member.url.path.split("/") if i]
+    assert len(owner_repo) >= 2, f"{member.url} is a GitHub organization URL"
