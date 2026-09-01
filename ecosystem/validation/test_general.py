@@ -85,8 +85,9 @@ def test_001(request, pytestconfig):
         "A non-OSI-approved license?",
     )
 
+
 def test_015(member):
-    """ URL should not be a GitHub organization url """
+    """URL should not be a GitHub organization url"""
     if not hasattr(member, "url"):
         pytest.skip("member.url does not exist")
     if not member.url.hostname.lower().endswith("github.com"):
