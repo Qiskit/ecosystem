@@ -136,6 +136,16 @@ checker = "test_description.py::test_description_len_135"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
+[015]
+title = "URL should not point to a GitHub organization"
+applies_to = "all"
+affects = ['member.url']
+category = "SUBMISSION"
+description = "The `member.url` field should not point to a GitHub organization page. It should link to the source code page, not the parent organization."
+importance = "IMPORTANT"
+checker = "test_general.py::test_015"
+
+
 [025]
 title = "Documentation link has redundant suffix"
 description = "Links like https://qiskit-banana-compiler.readthedocs.io/en/latest/ do not need the /en/latest suffix."
