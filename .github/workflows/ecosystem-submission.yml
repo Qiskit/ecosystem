@@ -49,7 +49,7 @@ jobs:
         python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
     - name: Run taplo formatter on TOML files
-      run: taplo fmt --quiet resources/members/*.toml
+      run: RUST_LOG=error taplo fmt resources/members/*.toml
 
     - name: Commit changes and create pull request
       id: cpr
