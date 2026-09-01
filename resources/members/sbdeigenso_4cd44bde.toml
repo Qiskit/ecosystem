@@ -11,8 +11,24 @@ uuid = "4cd44bde-06f4-4900-b3c9-ab52b1ea35d6"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/Qiskit/sbd-eigensolver-python"
 owner = "Qiskit"
 repo = "sbd-eigensolver-python"
+stars = 2
+license = "Apache-2.0"
+description = "Python wrapper to SBD eigensolver"
+last_commit = 2026-09-01
+last_activity = 2026-09-01
 
 [pypi.sbd-eigensolver]
 package_name = "sbd-eigensolver"
+version = "1.6.1"
+last_release_date = 2026-08-20
+license = "Apache-2.0"
+description = "Python bindings for Selected Basis Diagonalization (SBD) library"
+url = "https://pypi.org/project/sbd-eigensolver/"
+development_status = "4 - Beta"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
+last_month_downloads = 936
+last_180_days_downloads = 936
