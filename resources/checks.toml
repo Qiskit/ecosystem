@@ -145,7 +145,6 @@ description = "The `member.url` field should not point to a GitHub organization 
 importance = "IMPORTANT"
 checker = "test_general.py::test_015"
 
-
 [025]
 title = "Documentation link has redundant suffix"
 description = "Links like https://qiskit-banana-compiler.readthedocs.io/en/latest/ do not need the /en/latest suffix."
