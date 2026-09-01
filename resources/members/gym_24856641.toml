@@ -8,3 +8,14 @@ category = "Application"
 packages = ["https://pypi.org/project/qiskit-gym"]
 uuid = "24856641-7888-4c14-99f2-a448d2acf7f3"
 maturity = "experimental"
+
+[github]
+url = "https://github.com/AI4quantum/qiskit-gym"
+owner = "AI4quantum"
+repo = "qiskit-gym"
+stars = 21
+license = "Apache-2.0"
+description = "A collection of quantum information science problems formulated as reinforcement learning environments"
+estimated_contributors = 3
+last_commit = 2026-08-31
+last_activity = 2026-08-28
