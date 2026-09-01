@@ -1,0 +1,11 @@
+name = "SBD eigensolver"
+submission_number = 1344
+url = "https://github.com/Qiskit/sbd-eigensolver-python"
+description = "Python bindings for RIKEN's Selected Basis Diagonalization library, a high-performance eigensolver for chemistry Hamiltonians."
+labels = ["chemistry", "HPC", "GPU"]
+interfaces = ["Python", "C++"]
+ibm_maintained = true
+category = "Qiskit addon"
+packages = []
+uuid = "4cd44bde-06f4-4900-b3c9-ab52b1ea35d6"
+maturity = "experimental"
