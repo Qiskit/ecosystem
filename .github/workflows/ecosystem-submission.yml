@@ -49,7 +49,7 @@ jobs:
         python manager.py ci add_member_from_issue --body="$ISSUE_BODY" --number=$ISSUE_NUMBER
 
     - name: Run taplo formatter on TOML files
-      run: taplo fmt resources/members/*.toml
+      run: RUST_LOG=error taplo fmt resources/members/*.toml
 
     - name: Commit changes and create pull request
       id: cpr
@@ -58,6 +58,7 @@ jobs:
       with:
         token: ${{secrets.REPO_SCOPED_TOKEN}}
         draft: always-true
+        add-paths: resources/members/*_${{ steps.parse-issue.outputs.SUBMISSION_SHORT_UUID }}.toml
         author: qiskit-bot <qiskit-bot@users.noreply.github.com>
         commit-message: |
           Submission - Add ${{ steps.parse-issue.outputs.SUBMISSION_NAME }} as a member
