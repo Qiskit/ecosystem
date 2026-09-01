@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
+      cancel-in-progress: false
+      queue: max
     env:
       python-version: "3.13"
     steps:
