@@ -1,0 +1,17 @@
+name = "QEM Auditor"
+submission_number = 1355
+url = "https://github.com/Venkatallu11/qem-auditor"
+description = "Audits quantum error-mitigation claims: runs the methods, attacks each one, and reports what the evidence actually supports."
+contact_info = "alluvenkat11@gmail.com"
+labels = [
+  "error mitigation",
+  "AI/LLM",
+  "benchmarking",
+  "quantum information",
+  "research",
+]
+interfaces = ["Command-line interface (CLI)", "Python"]
+category = "Tooling"
+packages = []
+uuid = "9d62c663-0c2e-40c4-9022-4d3c1ecc0a02"
+maturity = "experimental"
