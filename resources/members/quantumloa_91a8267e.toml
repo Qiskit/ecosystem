@@ -1,0 +1,11 @@
+name = "Qiskit Quantum Load Balancer"
+submission_number = 1362
+url = "https://github.com/RexRowan/Qiskit-Quantum-LoadBalancer"
+description = "Queue- and noise-aware backend selection and routing for IBM Quantum backends."
+contact_info = "titaniumdavinci@gmail.com"
+labels = ["provider", "cloud service", "utility-scale", "benchmarking"]
+interfaces = ["Python"]
+category = "Tooling"
+packages = ["https://pypi.org/project/qiskit-quantum-loadbalancer"]
+uuid = "91a8267e-0df9-406c-af66-a2df20d7d98e"
+maturity = "experimental"
