@@ -69,7 +69,7 @@ class TomlStorage:
         self.toml_dir = Path(root_path, "members")
         self._data = None  # for use with context manager
 
-    def __call__(self, name_id):
+    def __call__(self, name_id: str = None):
         self.name_id = name_id
         return self
 
@@ -115,20 +115,27 @@ class TomlStorage:
             self.toml_dir.mkdir()
 
         # Write to human-readable TOML
-        for submission in data.values():
+        if self.name_id:
+            submission = data[self.name_id]
             submission_dict = submission.to_dict()
             with open(self._name_id_to_path(submission.name_id), "w") as file:
                 toml.dump(submission_dict, file, encoder=TomlEncoder(preserve=True))
+        else:
+            for submission in data.values():
+                submission_dict = submission.to_dict()
+                with open(self._name_id_to_path(submission.name_id), "w") as file:
+                    toml.dump(submission_dict, file, encoder=TomlEncoder(preserve=True))
 
     def __enter__(self) -> dict:
         if self._data is None:
-            self._data = self.read(self.name_id)
+            self._data = self.read()
         return self._data
 
     def __exit__(self, _type, _value, exception):
         if _type is not None:
             return False
         self.write(self._data)
+        self.name_id = None
         return True
 
 
@@ -157,7 +164,7 @@ class DAO:
         Args:
             name_id: ID of the project. Typically, the name of the TOML file
         """
-        with self.storage as data:
+        with self.storage() as data:
             del data[name_id]
 
     def get_by_url(self, url: str) -> Member:
@@ -180,7 +187,7 @@ class DAO:
         """
         Returns list of all repositories.
         """
-        projects = self.storage.read(str(short_id) if short_id else None).values()
+        projects = self.storage().read(str(short_id) if short_id else None).values()
         if sort_key:
             return sorted(projects, key=sort_key)
         return projects
@@ -209,7 +216,7 @@ class DAO:
 
     def refresh_files(self):
         """Forces dumping the DAO to files"""
-        self.storage.refresh_files()
+        self.storage().refresh_files()
 
     def upsert_project(self, project: Member):
         """Giving a Member, updates it if exists or inserts it.
