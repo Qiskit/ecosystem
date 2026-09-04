@@ -2,7 +2,7 @@ name: Ecosystem | Submission
 
 on:
   issues:
-    types: [opened, edited, reopened, transferred, labeled]
+    types: [edited, reopened, transferred, labeled]
 
 jobs:
   submission_workflow:
