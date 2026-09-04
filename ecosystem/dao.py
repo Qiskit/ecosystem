@@ -69,6 +69,10 @@ class TomlStorage:
         self.toml_dir = Path(root_path, "members")
         self._data = None  # for use with context manager
 
+    def __call__(self, name_id: str = None):
+        self.name_id = name_id
+        return self
+
     def _name_id_to_path(self, name_id):
         return self.toml_dir / f"{name_id}.toml"
 
@@ -111,10 +115,16 @@ class TomlStorage:
             self.toml_dir.mkdir()
 
         # Write to human-readable TOML
-        for submission in data.values():
+        if self.name_id:
+            submission = data[self.name_id]
             submission_dict = submission.to_dict()
             with open(self._name_id_to_path(submission.name_id), "w") as file:
                 toml.dump(submission_dict, file, encoder=TomlEncoder(preserve=True))
+        else:
+            for submission in data.values():
+                submission_dict = submission.to_dict()
+                with open(self._name_id_to_path(submission.name_id), "w") as file:
+                    toml.dump(submission_dict, file, encoder=TomlEncoder(preserve=True))
 
     def __enter__(self) -> dict:
         if self._data is None:
@@ -125,6 +135,7 @@ class TomlStorage:
         if _type is not None:
             return False
         self.write(self._data)
+        self.name_id = None
         return True
 
 
@@ -144,7 +155,7 @@ class DAO:
         """
         Update or insert repo (identified by ID).
         """
-        with self.storage as data:
+        with self.storage(repo.name_id) as data:
             data[repo.name_id] = repo
 
     def delete(self, name_id: str = None):
@@ -153,7 +164,7 @@ class DAO:
         Args:
             name_id: ID of the project. Typically, the name of the TOML file
         """
-        with self.storage as data:
+        with self.storage() as data:
             del data[name_id]
 
     def get_by_url(self, url: str) -> Member:
@@ -176,7 +187,7 @@ class DAO:
         """
         Returns list of all repositories.
         """
-        projects = self.storage.read(str(short_id) if short_id else None).values()
+        projects = self.storage().read(str(short_id) if short_id else None).values()
         if sort_key:
             return sorted(projects, key=sort_key)
         return projects
@@ -194,7 +205,7 @@ class DAO:
             update("aer_474599a", github=github_data_instance)  # updates github section
             update("aer_474599a", member=member_instance)       # updates the full member
         """
-        with self.storage as data:
+        with self.storage(name_id) as data:
             if "member" in kwargs:
                 data[name_id] = kwargs["member"]
                 del kwargs["member"]
@@ -205,7 +216,7 @@ class DAO:
 
     def refresh_files(self):
         """Forces dumping the DAO to files"""
-        self.storage.refresh_files()
+        self.storage().refresh_files()
 
     def upsert_project(self, project: Member):
         """Giving a Member, updates it if exists or inserts it.
