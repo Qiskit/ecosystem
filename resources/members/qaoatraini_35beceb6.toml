@@ -1,0 +1,20 @@
+name = "QAOA Training Pipeline"
+submission_number = 1345
+url = "https://github.com/qiskit-community/qaoa_training_pipeline"
+description = "A pipeline and methods to generate good parameters for QAOA ansatz circuits, training variational parameters on classical hardware."
+labels = ["optimization", "tensor networks", "research"]
+interfaces = ["Python", "Command-line interface (CLI)"]
+category = "Application"
+packages = []
+uuid = "35beceb6-7380-4d21-bae1-24bcb523262a"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qiskit-community/qaoa_training_pipeline"
+owner = "qiskit-community"
+repo = "qaoa_training_pipeline"
+stars = 18
+license = "Apache-2.0"
+description = " A pipeline and methods to generate good parameters for QAOA Ansatz circuits. "
+last_commit = 2026-08-20
+last_activity = 2026-08-25
