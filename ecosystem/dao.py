@@ -69,6 +69,10 @@ class TomlStorage:
         self.toml_dir = Path(root_path, "members")
         self._data = None  # for use with context manager
 
+    def __call__(self, name_id):
+        self.name_id = name_id
+        return self
+
     def _name_id_to_path(self, name_id):
         return self.toml_dir / f"{name_id}.toml"
 
@@ -118,7 +122,7 @@ class TomlStorage:
 
     def __enter__(self) -> dict:
         if self._data is None:
-            self._data = self.read()
+            self._data = self.read(self.name_id)
         return self._data
 
     def __exit__(self, _type, _value, exception):
@@ -144,7 +148,7 @@ class DAO:
         """
         Update or insert repo (identified by ID).
         """
-        with self.storage as data:
+        with self.storage(repo.name_id) as data:
             data[repo.name_id] = repo
 
     def delete(self, name_id: str = None):
@@ -194,7 +198,7 @@ class DAO:
             update("aer_474599a", github=github_data_instance)  # updates github section
             update("aer_474599a", member=member_instance)       # updates the full member
         """
-        with self.storage as data:
+        with self.storage(name_id) as data:
             if "member" in kwargs:
                 data[name_id] = kwargs["member"]
                 del kwargs["member"]
