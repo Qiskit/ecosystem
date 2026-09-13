@@ -48,6 +48,7 @@ class GitHubData(JsonSerializable):
         "private",
         "archived",
         "disabled",
+        "created_at",
         "last_commit",
         "last_activity",
     ]
@@ -63,6 +64,7 @@ class GitHubData(JsonSerializable):
         "disabled": lambda x: x or None,
         "description": lambda x: x[:131] + "..." if len(str(x)) > 135 else x,
         "pushed_at": parse_date,
+        "created_at": parse_date,
     }
     reduce = {}
 

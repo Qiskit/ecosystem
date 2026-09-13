@@ -21,6 +21,7 @@ license = "Apache-2.0"
 description = "Symbolic simulator for Qiskit circuits using sympy backend, supporting mid-circuit measurement and state inspection."
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2025-06-20
 last_commit = 2025-06-27
 
 [badge]
@@ -41,8 +42,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 11
-last_180_days_downloads = 102
+last_month_downloads = 9
+last_180_days_downloads = 96
 
 [checks.P10]
 since = 2026-07-09
