@@ -29,6 +29,8 @@ def skip_ibm_maintained(member):
 
 def test_I00(member):
     """IBM maintained projects should live in IBM-controlled GitHub organizations"""
+    if not hasattr(member.github, "owner") or member.github.owner is None:
+        pytest.skip("No member.github.owner")
     assert (
         member.github.owner.lower() in ibm_controlled_gh_org
     ), "ibm-maintained project not in ibm-controlled GitHub org"

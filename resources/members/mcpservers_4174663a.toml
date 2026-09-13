@@ -20,6 +20,7 @@ license = "Apache-2.0"
 description = "A collection of MCP servers to allow LLMs to use the qiskit,qiskit-ibm-runtime library,  qiskit-ibm-transpiler, qiskit-code-assista..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2025-09-05
 last_commit = 2026-07-13
 last_activity = 2026-08-22
 
@@ -40,8 +41,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 702
-last_180_days_downloads = 3766
+last_month_downloads = 852
+last_180_days_downloads = 4011
 
 [pypi.qiskit-mcp-server]
 package_name = "qiskit-mcp-server"
@@ -60,8 +61,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 3120
-last_180_days_downloads = 10172
+last_month_downloads = 2418
+last_180_days_downloads = 10588
 
 [pypi.qiskit-docs-mcp-server]
 package_name = "qiskit-docs-mcp-server"
@@ -76,8 +77,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 798
-last_180_days_downloads = 2897
+last_month_downloads = 637
+last_180_days_downloads = 2796
 
 [pypi.qiskit-gym-mcp-server]
 package_name = "qiskit-gym-mcp-server"
@@ -96,8 +97,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 810
-last_180_days_downloads = 3386
+last_month_downloads = 572
+last_180_days_downloads = 3280
 
 [pypi.qiskit-ibm-runtime-mcp-server]
 package_name = "qiskit-ibm-runtime-mcp-server"
@@ -111,8 +112,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 1130
-last_180_days_downloads = 5499
+last_month_downloads = 1227
+last_180_days_downloads = 5910
 
 [pypi.qiskit-ibm-transpiler-mcp-server]
 package_name = "qiskit-ibm-transpiler-mcp-server"
@@ -126,8 +127,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 776
-last_180_days_downloads = 3692
+last_month_downloads = 560
+last_180_days_downloads = 3612
 
 [checks.P10]
 since = 2026-08-18

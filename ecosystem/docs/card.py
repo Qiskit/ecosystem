@@ -179,6 +179,16 @@ class ProjectSummaryCard(Card):
                     "**Project under revision**{{style='font-size: 1.25em;' "
                     f"title='{self.classifications.status_descriptions['Under revision']}'}}"
                 )
+            case "Early Project":
+                return (
+                    "**Early Project**{{style='font-size: 1.25em;' "
+                    f"title='{self.classifications.status_descriptions['Early Project']}'}}"
+                )
+            case "Very Early Project":
+                return (
+                    "**Very Early Project**{{style='font-size: 1.25em;' "
+                    f"title='{self.classifications.status_descriptions['Very Early Project']}'}}"
+                )
             case _:
                 return (
                     "**Qiskit Ecosystem Member**{{style='font-size: 1.25em;' "
@@ -195,6 +205,10 @@ class ProjectSummaryCard(Card):
                 return ":material-account-remove:"
             case "Under revision":
                 return ":material-account-alert:"
+            case "Early Project":
+                return ":material-sprout:"
+            case "Very Early Project":
+                return ":material-seed:"
             case _:
                 return ""
 
@@ -208,6 +222,10 @@ class ProjectSummaryCard(Card):
                 return "[All the Alumni projects](../status.md#alumni)"
             case "Under revision":
                 return "[All the projects under revision](../status.md#under-revision)"
+            case "Early Project":
+                return "[All the early projects](../status.md#early-project)"
+            case "Very Early Project":
+                return "[All the very early projects](../status.md#very-early-project)"
             case _:
                 return "[All the regular Members](../status.md#regular-members)"
 

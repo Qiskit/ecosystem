@@ -24,8 +24,9 @@ license = "MIT"
 description = "MQT DDSIM - A Quantum Circuit Simulator Based on Decision Diagrams"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-08-31
-last_activity = 2026-08-31
+created_at = 2020-02-11
+last_commit = 2026-09-12
+last_activity = 2026-09-11
 
 [badge]
 url = "https://qisk.it/e-b852a97c"
@@ -33,21 +34,21 @@ style = "flat"
 
 [pypi."mqt.ddsim"]
 package_name = "mqt-ddsim"
-version = "2.5.0"
-last_release_date = 2026-08-20
+version = "2.6.0"
+last_release_date = 2026-09-12
 license = "MIT"
 description = "A quantum simulator based on decision diagrams written in C++"
-url = "https://pypi.org/project/mqt.ddsim/"
+url = "https://pypi.org/project/mqt-ddsim/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
-requires_qiskit = ">=1.1"
-compatible_with_qiskit_v1 = true
+requires_qiskit = ">=2.1"
+compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 5826
-last_180_days_downloads = 19114
+last_month_downloads = 10761
+last_180_days_downloads = 24551
 
 [checks.P10]
 since = 2026-07-09
