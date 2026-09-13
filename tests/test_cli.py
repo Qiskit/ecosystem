@@ -16,7 +16,7 @@ import io
 import os
 import shutil
 import tempfile
-from datetime import date
+from datetime import date, timedelta
 from unittest import TestCase, mock
 from contextlib import redirect_stdout
 from pathlib import Path
@@ -275,7 +275,9 @@ class TestUpdateStatus(TestCase):
     def tearDown(self) -> None:
         shutil.rmtree(self.path)
 
-    def add_member(self, months_old=None, **kwargs) -> Member:
+    def add_member(
+        self, months_old=None, maturity="production-ready", **kwargs
+    ) -> Member:
         """Writes a member in the temporary DAO. If months_old is given,
         the GitHub repository was created that many months ago."""
         member = Member(
@@ -283,7 +285,7 @@ class TestUpdateStatus(TestCase):
             url="https://github.com/MockQiskit/mock-qiskit",
             description="Mock description for repo",
             license="Apache 2.0",
-            maturity="production-ready",
+            maturity=maturity,
             **kwargs,
         )
         if months_old is not None:
@@ -327,6 +329,26 @@ class TestUpdateStatus(TestCase):
             self.status_after_update(months_old=30, status="Very Early Project")
         )
 
+    def test_unmaintained(self):
+        """An `as-is` project is "Unmaintained" """
+        self.assertEqual(self.status_after_update(maturity="as-is"), "Unmaintained")
+
+    def test_deprecated_is_unmaintained(self):
+        """A `deprecated` project is "Unmaintained" too"""
+        self.assertEqual(
+            self.status_after_update(maturity="deprecated"), "Unmaintained"
+        )
+
+    def test_unmaintained_takes_precedence_over_age(self):
+        """`as-is` is a stronger signal than the age of the repository"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, maturity="as-is"), "Unmaintained"
+        )
+
+    def test_unmaintained_is_recomputed(self):
+        """An outdated "Unmaintained" status is removed"""
+        self.assertIsNone(self.status_after_update(status="Unmaintained"))
+
     def test_qiskit_project_is_not_updated(self):
         """ "Qiskit Project" is governed differently, so it is not age-derived"""
         self.assertEqual(
@@ -339,6 +361,29 @@ class TestUpdateStatus(TestCase):
         self.assertEqual(
             self.status_after_update(months_old=2, status="Alumni"), "Alumni"
         )
+
+    def test_no_alumni_postpones_the_retirement(self):
+        """With no_alumni, an expired cure period keeps the project "Under revision" """
+        member = self.add_member()
+        member.checks = {
+            "001": CheckData("001", since=date.today() - timedelta(days=1))
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status(no_alumni=True)
+        self.assertEqual(
+            self.cli_members.dao[member.name_id].status,
+            "Under revision",
+        )
+
+    def test_expired_cure_period_is_alumni(self):
+        """Without no_alumni, an expired cure period moves the project to "Alumni" """
+        member = self.add_member()
+        member.checks = {
+            "001": CheckData("001", since=date.today() - timedelta(days=1))
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status()
+        self.assertEqual(self.cli_members.dao[member.name_id].status, "Alumni")
 
     def test_under_revision_takes_precedence(self):
         """A pending check up is more important than the age of the repository"""

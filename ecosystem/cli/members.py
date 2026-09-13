@@ -42,6 +42,9 @@ class CliMembers:
     VERY_EARLY_PROJECT_MONTHS = 6
     EARLY_PROJECT_MONTHS = 18
 
+    # member.maturity values that make a project "Unmaintained". See docs/status.md
+    UNMAINTAINED_MATURITY = ["as-is", "deprecated"]
+
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
@@ -230,7 +233,13 @@ class CliMembers:
             with open(classification_md, "w") as outfile:
                 outfile.writelines(lines)
 
-        for classification in ["Member", "Qiskit Project", "Under revision", "Alumni"]:
+        for classification in [
+            "Member",
+            "Qiskit Project",
+            "Unmaintained",
+            "Under revision",
+            "Alumni",
+        ]:
             lines = [
                 f'???{"+" if classification in ["Under revision", "Alumni"] else ""} note '
                 f'"There are {len(projects[classification])} projects with this classification"'
@@ -497,14 +506,21 @@ class CliMembers:
                 )
             self.dao.update(project.name_id, checks=project.checks)
 
-    def update_status(self, name=None, update_all=False, exclude: str = None):
+    def update_status(  # pylint: disable=too-many-branches
+        self, name=None, update_all=False, exclude: str = None, no_alumni=False
+    ):
         """
-        Check if a project should be moved to "Under revision" or "Alumni". If there is no
-        pending check up, the status is derived from the age of the repository
-        ("Very Early Project" or "Early Project"). See docs/status.md
+        Check if a project should be moved to (in order of precedence):
+          -  "Alumni": If the cure period of a check up has expired
+          - "Under revision": if there is a pending check up (cure period not expired)
+          - "(Very) Early Project": if the project is young and has no pending check up
+          - "Unmaintained": if the project declares no maintenance expectations (maturity in
+            `as-is` or `deprecated`) and has no pending check up
+        See docs/status.md
 
-        Only regular projects (the default status) are updated: "Qiskit Project" and
-        "Alumni" are governed differently.
+        Only regular projects (the default status) are updated:
+          - "Qiskit Project" are governed differently.
+          - "Alumni" projects stay alumni.
 
         Args:
             name: project to udpate. None (default) if all of them.
@@ -513,6 +529,10 @@ class CliMembers:
             exclude: comma-separated list of importances to exclude.
               Eg: `-e "recommendation, legacy, best_practice"`. Excluding here means, "do not update
               the status because the existance of a check up with this importance".
+            no_alumni: If True, an expired cure period does not move the project to "Alumni",
+              it stays "Under revision". Used when this command runs *before* `update_checkups`,
+              since the check up data is still the one from the previous run and the project
+              might have cured the check up already.
         """
         exclude_set = (
             {slugify(e) for e in exclude} if isinstance(exclude, tuple) else set()
@@ -528,6 +548,7 @@ class CliMembers:
 
             if project.status in [
                 "Under revision",
+                "Unmaintained",
                 "Early Project",
                 "Very Early Project",
             ]:
@@ -545,12 +566,19 @@ class CliMembers:
                     # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
                     continue
                 deadline = check.since + timedelta(days=check.cure_period_in_days)
-                if date.today() > deadline:
+                if date.today() > deadline and not no_alumni:
                     # deadline passed
                     project.status = "Alumni"
                     break
-                # still in cure period
+                # still in cure period (or the retirement is postponed by no_alumni)
                 project.status = "Under revision"
+
+            if (
+                project.status is None
+                and project.maturity in self.UNMAINTAINED_MATURITY
+            ):
+                # the project declares no maintenance expectations
+                project.status = "Unmaintained"
 
             if project.status is None and project.age_in_months is not None:
                 # no pending check up, so the status only depends on how old the repository is
@@ -560,12 +588,6 @@ class CliMembers:
                     project.status = "Early Project"
 
             self.dao.update(project.name_id, status=project.status)
-
-    def update_maturity(self, name=None):
-        """Check if a project maturity should move to archived"""
-        for project in self.dao.get_all(name):
-            project.update_maturity()
-            self.dao.update(project.name_id, maturity=project.maturity)
 
     @staticmethod
     def filter_data(

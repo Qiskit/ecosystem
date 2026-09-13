@@ -32,8 +32,8 @@ def skip_github(member):
 
 def test_G05(member):
     """GitHub repository is archived?"""
-    if hasattr(member, "maturity") and member.maturity == "as-is":
-        pytest.skip("`as-is` projects are exempt from activity checks")
+    if hasattr(member, "status") and member.status == "Unmaintained":
+        pytest.skip("`Unmaintained` projects are exempt from activity checks")
     else:
         assert not (
             hasattr(member.github, "archived") and member.github.archived
@@ -42,8 +42,8 @@ def test_G05(member):
 
 def test_G06(member):
     """Have maintainer activity within the last 6 months"""
-    if member.maturity == "as-is":
-        pytest.skip("`as-is` projects are exempt from activity checks")
+    if hasattr(member, "status") and member.status == "Unmaintained":
+        pytest.skip("`Unmaintained` projects are exempt from activity checks")
 
     last_activity = member.github.last_activity
     if last_activity is None:
@@ -60,8 +60,8 @@ def test_G06(member):
 
 def test_G07(member):
     """Have last commit within the last 18 months"""
-    if member.maturity == "as-is":
-        pytest.skip("`as-is` projects are exempt from activity checks")
+    if hasattr(member, "status") and member.status == "Unmaintained":
+        pytest.skip("`Unmaintained` projects are exempt from activity checks")
 
     if member.age_in_months is None:
         pytest.skip("member.age_in_months is None")
@@ -72,7 +72,7 @@ def test_G07(member):
     assert months_difference <= 18, (
         "Last commit was more than 18 months ago. "
         "This might be a sign of a project that is not actively maintained. "
-        "Consider set member.maturity to `as-is`."
+        "Maybe `member.maturity` should be set as `as-is`"
     )
 
 

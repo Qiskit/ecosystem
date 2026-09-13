@@ -341,22 +341,3 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             return None
         relative = relativedelta(date.today(), created_at)
         return (relative.years * 12) + relative.months
-
-    def update_maturity(self):
-        """Check if self.maturity should move to archived. Either because:
-         - github.archived == true
-         - TODO: if all the pypi package are archived
-        only udpates if maturity was not:
-          - "as-is"
-          - "unmaintained"
-          - "archived"
-        """
-        skip_if = [
-            "as-is",
-            "unmaintained",
-            "archived",
-        ]
-        if self.maturity in skip_if:
-            return
-        if hasattr(self.github, "archived") and self.github.archived:
-            self.maturity = "archived"

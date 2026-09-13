@@ -9,7 +9,7 @@ Unlike [maturity](maturity.md), the status is not chosen by the submitter: it is
     {{ read_json('docs/assets/status.json') }}
 
 ## Members
-There are 5 kind of members: _Regular Members_, _Qiskit Projects_, _Early Projects_, _Very Early Projects_, and projects _Under revision_
+There are 6 kind of members: _Regular Members_ (the default), _Qiskit Projects_, _Early Projects_, _Very Early Projects_, _Unmaintained_ projects, and projects _Under revision_
 
 <a id="member"></a>
 
@@ -40,6 +40,23 @@ While a project is young, the activity [check ups](#under-revision) use a tighte
     Meanwhile, they are genuinely Qiskit Ecosystem members, so they can use their badge and have all the regular benefits.
 
 {{ read_raw('docs/assets/early-projects.md') }}
+
+<a id="unmaintained"></a>
+
+### Unmaintained
+
+A regular member whose self-declared [maturity](maturity.md) is `as-is` or `deprecated`, that is, a project with no active maintenance expectations.
+
+Since these projects are not expected to be maintained, they are exempt from the activity [check ups](#under-revision).
+
+The status disappears as soon as the project declares a maturity level with maintenance expectations.
+Projects with a pending [check up](#under-revision) are _Under revision_ instead, since that status takes precedence.
+
+!!! tip
+    _Unmaintained Projects_ stay in the Qiskit Ecosystem website like any other member: the lack of maintenance is intentional and declared upfront, so it is shown as part of the project information and not treated as a compliance issue.
+    A project that quietly stops being maintained is a different story: sooner or later the activity [check ups](#under-revision) notice it, and it ends up as [Alumni](#alumni).
+
+{{ read_raw('docs/assets/unmaintained.md') }}
 
 ### Under revision
 
