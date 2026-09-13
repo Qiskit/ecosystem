@@ -506,9 +506,9 @@ class CliMembers:
                 )
             self.dao.update(project.name_id, checks=project.checks)
 
-    def update_status(
-        self, name=None, update_all=False, exclude: str = None
-    ):  # pylint: disable=too-many-branches
+    def update_status(  # pylint: disable=too-many-branches
+        self, name=None, update_all=False, exclude: str = None, no_alumni=False
+    ):
         """
         Check if a project should be moved to (in order of precedence):
           -  "Alumni": If the cure period of a check up has expired
@@ -529,6 +529,10 @@ class CliMembers:
             exclude: comma-separated list of importances to exclude.
               Eg: `-e "recommendation, legacy, best_practice"`. Excluding here means, "do not update
               the status because the existance of a check up with this importance".
+            no_alumni: If True, an expired cure period does not move the project to "Alumni",
+              it stays "Under revision". Used when this command runs *before* `update_checkups`,
+              since the check up data is still the one from the previous run and the project
+              might have cured the check up already.
         """
         exclude_set = (
             {slugify(e) for e in exclude} if isinstance(exclude, tuple) else set()
@@ -562,11 +566,11 @@ class CliMembers:
                     # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
                     continue
                 deadline = check.since + timedelta(days=check.cure_period_in_days)
-                if date.today() > deadline:
+                if date.today() > deadline and not no_alumni:
                     # deadline passed
                     project.status = "Alumni"
                     break
-                # still in cure period
+                # still in cure period (or the retirement is postponed by no_alumni)
                 project.status = "Under revision"
 
             if (

@@ -16,7 +16,7 @@ import io
 import os
 import shutil
 import tempfile
-from datetime import date
+from datetime import date, timedelta
 from unittest import TestCase, mock
 from contextlib import redirect_stdout
 from pathlib import Path
@@ -361,6 +361,29 @@ class TestUpdateStatus(TestCase):
         self.assertEqual(
             self.status_after_update(months_old=2, status="Alumni"), "Alumni"
         )
+
+    def test_no_alumni_postpones_the_retirement(self):
+        """With no_alumni, an expired cure period keeps the project "Under revision" """
+        member = self.add_member()
+        member.checks = {
+            "001": CheckData("001", since=date.today() - timedelta(days=1))
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status(no_alumni=True)
+        self.assertEqual(
+            self.cli_members.dao[member.name_id].status,
+            "Under revision",
+        )
+
+    def test_expired_cure_period_is_alumni(self):
+        """Without no_alumni, an expired cure period moves the project to "Alumni" """
+        member = self.add_member()
+        member.checks = {
+            "001": CheckData("001", since=date.today() - timedelta(days=1))
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status()
+        self.assertEqual(self.cli_members.dao[member.name_id].status, "Alumni")
 
     def test_under_revision_takes_precedence(self):
         """A pending check up is more important than the age of the repository"""
