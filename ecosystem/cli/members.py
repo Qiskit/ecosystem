@@ -701,7 +701,7 @@ class CliMembers:
                     member_data_to_export,
                 )
                 for member in self.dao.get_all()
-                if member.status != "Alumni"
+                if member.status not in ["Alumni", "Very Early Project"]
             ],
             "labels": CliMembers.load_classifications_toml(
                 Path(self.resources_dir, "classifications.toml"), labels_data_to_export
