@@ -18,6 +18,7 @@ stars = 27
 homepage = "https://qiskit.github.io/qiskit-qasm3-import"
 license = "Apache-2.0"
 description = "Importer from OpenQASM 3 to Qiskit's QuantumCircuit"
+created_at = 2022-11-09
 last_commit = 2026-07-21
 last_activity = 2026-07-21
 
@@ -42,8 +43,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 324218
-last_180_days_downloads = 1201588
+last_month_downloads = 315564
+last_180_days_downloads = 1206693
 
 [checks.P10]
 since = 2026-08-18
