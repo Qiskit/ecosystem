@@ -106,6 +106,15 @@ class TestGitHubDataToDict(TestCase):
         self.assertNotIn("tree", d)
         self.assertNotIn("homepage", d)
 
+    def test_to_dict_includes_created_at_when_set(self):
+        """created_at appears in dict when provided"""
+        gh = GitHubData(
+            owner="Qiskit", repo="qiskit-banana-compiler", created_at=date(2024, 1, 1)
+        )
+        d = gh.to_dict()
+        self.assertIn("created_at", d)
+        self.assertEqual(d["created_at"], date(2024, 1, 1))
+
     def test_to_dict_includes_tree_when_set(self):
         """tree appears in dict when provided"""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler", tree="main")
@@ -160,6 +169,25 @@ class TestGitHubDataGetattr(TestCase):
             ]
             self.gh.update_json()
         self.assertIsInstance(self.gh.last_commit, date)
+
+    def test_getattr_created_at(self):
+        """gh.created_at is read from _json_repo and returns a date"""
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                {"created_at": "2018-06-11T20:16:32", "_requested_at_": "2024-01-01"},
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            self.gh.update_json()
+        self.assertEqual(self.gh.created_at, date(2018, 6, 11))
+
+    def test_getattr_created_at_from_kwargs(self):
+        """gh.created_at falls back to the kwargs value when there is no JSON"""
+        gh = GitHubData(
+            owner="Qiskit", repo="qiskit-banana-compiler", created_at=date(2018, 6, 11)
+        )
+        self.assertEqual(gh.created_at, date(2018, 6, 11))
 
     def test_getattr_description_truncated(self):
         """description longer than 135 characters is truncated with ellipsis"""
