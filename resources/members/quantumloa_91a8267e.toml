@@ -6,6 +6,13 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["provider", "cloud service", "utility-scale", "benchmarking"]
 interfaces = ["Python"]
 category = "Tooling"
-packages = ["https://pypi.org/project/qiskit-quantum-loadbalancer"]
+packages = []
 uuid = "91a8267e-0df9-406c-af66-a2df20d7d98e"
 maturity = "experimental"
+
+[github]
+owner = "RexRowan"
+repo = "Qiskit-Quantum-LoadBalancer"
+
+[pypi.qiskit-quantum-loadbalancer]
+package_name = "qiskit-quantum-loadbalancer"
