@@ -161,7 +161,7 @@ class ProjectSummaryCard(Card):
         )
 
     @property
-    def status_title(self):
+    def status_title(self):  # pylint: disable=too-many-return-statements
         """Title with memmber.status"""
         match self.status:
             case "Qiskit Project":
@@ -178,6 +178,11 @@ class ProjectSummaryCard(Card):
                 return (
                     "**Project under revision**{{style='font-size: 1.25em;' "
                     f"title='{self.classifications.status_descriptions['Under revision']}'}}"
+                )
+            case "Unmaintained":
+                return (
+                    "**Unmaintained project**{{style='font-size: 1.25em;' "
+                    f"title='{self.classifications.status_descriptions['Unmaintained']}'}}"
                 )
             case "Early Project":
                 return (
@@ -196,7 +201,7 @@ class ProjectSummaryCard(Card):
                 )
 
     @property
-    def status_icon(self):
+    def status_icon(self):  # pylint: disable=too-many-return-statements
         """Icon for title"""
         match self.status:
             case "Qiskit Project":
@@ -205,6 +210,8 @@ class ProjectSummaryCard(Card):
                 return ":material-account-remove:"
             case "Under revision":
                 return ":material-account-alert:"
+            case "Unmaintained":
+                return ":material-heart-broken:"
             case "Early Project":
                 return ":material-sprout:"
             case "Very Early Project":
@@ -213,7 +220,7 @@ class ProjectSummaryCard(Card):
                 return ""
 
     @property
-    def status_annotation(self):
+    def status_annotation(self):  # pylint: disable=too-many-return-statements
         """Annotation for title"""
         match self.status:
             case "Qiskit Project":
@@ -222,6 +229,8 @@ class ProjectSummaryCard(Card):
                 return "[All the Alumni projects](../status.md#alumni)"
             case "Under revision":
                 return "[All the projects under revision](../status.md#under-revision)"
+            case "Unmaintained":
+                return "[All the unmaintained projects](../status.md#unmaintained)"
             case "Early Project":
                 return "[All the early projects](../status.md#early-project)"
             case "Very Early Project":

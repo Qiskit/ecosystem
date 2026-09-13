@@ -54,10 +54,26 @@
       "type": "string"
     },
     "maturity": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "production-ready",
+        "experimental",
+        "bugfixing only",
+        "as-is",
+        "deprecated"
+      ]
     },
     "status": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "Qiskit Project",
+        "Member",
+        "Early Project",
+        "Very Early Project",
+        "Unmaintained",
+        "Under revision",
+        "Alumni"
+      ]
     },
     "github": {
       "type": "object",

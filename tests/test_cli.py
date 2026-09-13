@@ -275,7 +275,9 @@ class TestUpdateStatus(TestCase):
     def tearDown(self) -> None:
         shutil.rmtree(self.path)
 
-    def add_member(self, months_old=None, **kwargs) -> Member:
+    def add_member(
+        self, months_old=None, maturity="production-ready", **kwargs
+    ) -> Member:
         """Writes a member in the temporary DAO. If months_old is given,
         the GitHub repository was created that many months ago."""
         member = Member(
@@ -283,7 +285,7 @@ class TestUpdateStatus(TestCase):
             url="https://github.com/MockQiskit/mock-qiskit",
             description="Mock description for repo",
             license="Apache 2.0",
-            maturity="production-ready",
+            maturity=maturity,
             **kwargs,
         )
         if months_old is not None:
@@ -326,6 +328,26 @@ class TestUpdateStatus(TestCase):
         self.assertIsNone(
             self.status_after_update(months_old=30, status="Very Early Project")
         )
+
+    def test_unmaintained(self):
+        """An `as-is` project is "Unmaintained" """
+        self.assertEqual(self.status_after_update(maturity="as-is"), "Unmaintained")
+
+    def test_deprecated_is_unmaintained(self):
+        """A `deprecated` project is "Unmaintained" too"""
+        self.assertEqual(
+            self.status_after_update(maturity="deprecated"), "Unmaintained"
+        )
+
+    def test_unmaintained_takes_precedence_over_age(self):
+        """`as-is` is a stronger signal than the age of the repository"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, maturity="as-is"), "Unmaintained"
+        )
+
+    def test_unmaintained_is_recomputed(self):
+        """An outdated "Unmaintained" status is removed"""
+        self.assertIsNone(self.status_after_update(status="Unmaintained"))
 
     def test_qiskit_project_is_not_updated(self):
         """ "Qiskit Project" is governed differently, so it is not age-derived"""

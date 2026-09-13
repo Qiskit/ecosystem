@@ -30,9 +30,6 @@ jobs:
       with:
         version: "0.10.0"
 
-    - name: Update project maturity
-      run: python manager.py members update_maturity
-
     - name: Update checkups
       run: python manager.py members update_checkups
 
