@@ -3,11 +3,13 @@
 All the members have a specific status in the Qiskit Ecosystem.
 Most of them are regular **members**, which is the default status.
 
+Unlike [maturity](maturity.md), the status is not chosen by the submitter: it is derived automatically from the project data.
+
 ??? note "Short descriptions"
     {{ read_json('docs/assets/status.json') }}
 
 ## Members
-There are 3 kind of members: Regular Members, Qiskit Projects, and projects Under revision 
+There are 5 kind of members: _Regular Members_, _Qiskit Projects_, _Early Projects_, _Very Early Projects_, and projects _Under revision_
 
 <a id="member"></a>
 
@@ -18,6 +20,20 @@ There are 3 kind of members: Regular Members, Qiskit Projects, and projects Unde
 ### Qiskit Project
 
 {{ read_raw('docs/assets/qiskit-project.md') }}
+
+<a id="early-project"></a>
+
+### (Very) Early Project
+
+A regular member whose source code repository is **less than 18 months old** (as reported by `member.github.created_at`). If the repository is less than 6 months old, the project is a _Very Early Project_ instead.
+
+This status is derived automatically and it is not a rejection: it is a hint for potential users that the project is still young, and that its momentum and long-term support are less demonstrated than in an established project.
+It is also a counterweight to the self-reported [maturity](maturity.md): a submitter can declare a project as `production-ready`, but a repository created a few months ago carries this status next to that claim.
+
+The status disappears on its own: as soon as the repository turns 18 months old, the next status update moves the project to a [regular member](#regular-members).
+Projects with a pending [check up](#under-revision) are _Under revision_ instead, since that status takes precedence.
+
+{{ read_raw('docs/assets/early-projects.md') }}
 
 ### Under revision
 

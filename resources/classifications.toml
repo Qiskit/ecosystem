@@ -206,6 +206,14 @@ name = "Member"
 description = "The project is an approved member of the Qiskit Ecosystem"
 
 [[status]]
+name = "Early Project"
+description = "A regular member whose repository is between 6 and 18 months old."
+
+[[status]]
+name = "Very Early Project"
+description = "A regular member whose repository is less than 6 months old."
+
+[[status]]
 name = "Under revision"
 description = "The project needs to review some of the check up issues to stay in the Qiskit Ecosystem"
 

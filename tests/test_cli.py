@@ -16,12 +16,17 @@ import io
 import os
 import shutil
 import tempfile
+from datetime import date
 from unittest import TestCase, mock
 from contextlib import redirect_stdout
 from pathlib import Path
 
+from dateutil.relativedelta import relativedelta
+
+from ecosystem.check import CheckData
 from ecosystem.cli import CliCI, CliMembers
 from ecosystem.dao import DAO
+from ecosystem.github import GitHubData
 from ecosystem.member import Member
 
 
@@ -253,3 +258,118 @@ class TestCli(TestCase):
         self.assertTrue('"color": "6929C4"' in json_success)
 
         os.remove(f"{badges_folder_path}/{commu_success.short_uuid}")
+
+
+class TestUpdateStatus(TestCase):
+    """Tests for CliMembers.update_status"""
+
+    def setUp(self) -> None:
+        self.path = Path(tempfile.mkdtemp())
+        (self.path / "members").mkdir(parents=True, exist_ok=True)
+        self.current_dir = os.path.dirname(os.path.abspath(__file__))
+        self.cli_members = CliMembers(root_path=os.path.join(self.current_dir, ".."))
+        self.cli_members.resources_dir = self.path
+        self.cli_members.current_dir = self.path
+        self.cli_members.dao = DAO(self.path)
+
+    def tearDown(self) -> None:
+        shutil.rmtree(self.path)
+
+    def add_member(self, months_old=None, **kwargs) -> Member:
+        """Writes a member in the temporary DAO. If months_old is given,
+        the GitHub repository was created that many months ago."""
+        member = Member(
+            name="mock-qiskit",
+            url="https://github.com/MockQiskit/mock-qiskit",
+            description="Mock description for repo",
+            license="Apache 2.0",
+            maturity="production-ready",
+            **kwargs,
+        )
+        if months_old is not None:
+            member.github = GitHubData(
+                owner="MockQiskit",
+                repo="mock-qiskit",
+                created_at=date.today() - relativedelta(months=months_old),
+            )
+        self.cli_members.dao.write(member)
+        return member
+
+    def status_after_update(self, **kwargs):
+        """Adds a member, runs update_status, and returns the resulting status"""
+        member = self.add_member(**kwargs)
+        self.cli_members.update_status()
+        return self.cli_members.dao[member.name_id].status
+
+    def test_very_early_project(self):
+        """A repository younger than 6 months is a "Very Early Project" """
+        self.assertEqual(self.status_after_update(months_old=2), "Very Early Project")
+
+    def test_early_project(self):
+        """A repository between 6 and 18 months old is an "Early Project" """
+        self.assertEqual(self.status_after_update(months_old=10), "Early Project")
+
+    def test_six_months_old_is_early_project(self):
+        """The "Very Early Project" status ends at 6 months"""
+        self.assertEqual(self.status_after_update(months_old=6), "Early Project")
+
+    def test_old_project_has_no_age_status(self):
+        """A repository older than 18 months is a regular member (status None)"""
+        self.assertIsNone(self.status_after_update(months_old=18))
+
+    def test_no_created_at(self):
+        """Without member.github.created_at there is no age-derived status"""
+        self.assertIsNone(self.status_after_update())
+
+    def test_age_status_is_recomputed(self):
+        """An outdated age-derived status is removed"""
+        self.assertIsNone(
+            self.status_after_update(months_old=30, status="Very Early Project")
+        )
+
+    def test_qiskit_project_is_not_updated(self):
+        """ "Qiskit Project" is governed differently, so it is not age-derived"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, status="Qiskit Project"),
+            "Qiskit Project",
+        )
+
+    def test_alumni_is_not_updated(self):
+        """Alumni projects stay alumni, no matter how young they are"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, status="Alumni"), "Alumni"
+        )
+
+    def test_under_revision_takes_precedence(self):
+        """A pending check up is more important than the age of the repository"""
+        member = self.add_member(months_old=2)
+        member.checks = {"001": CheckData("001", since=date.today())}
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status()
+        self.assertEqual(
+            self.cli_members.dao[member.name_id].status,
+            "Under revision",
+        )
+
+    def test_early_projects_share_one_table(self):
+        """Both early statuses are listed in a single docs/assets/early-projects.md table"""
+        self.add_member(months_old=2)
+        self.add_member(months_old=10)
+        self.add_member(months_old=30)
+        self.cli_members.update_status()
+
+        # pylint: disable=protected-access
+        projects = self.cli_members._all_projects_classifications("status")["status"]
+        self.cli_members.update_assets_status(projects)
+
+        table = (self.path / "docs" / "assets" / "early-projects.md").read_text()
+        self.assertIn("There are 2 projects with these statuses", table)
+        self.assertIn("| Project | Status | Repository created | Age (months) |", table)
+        # youngest project first
+        statuses = [
+            line.split("|")[2].strip()
+            for line in table.splitlines()
+            if line.strip().startswith("| [")
+        ]
+        self.assertEqual(statuses, ["Very Early Project", "Early Project"])
+        self.assertFalse((self.path / "docs" / "assets" / "early-project.md").exists())

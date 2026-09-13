@@ -37,6 +37,11 @@ class CliMembers:
     Ex: `python manager.py members update_badge`
     """
 
+    # Age (in months, based on member.github.created_at) under which a regular
+    # project gets an age-derived status. See docs/status.md
+    VERY_EARLY_PROJECT_MONTHS = 6
+    EARLY_PROJECT_MONTHS = 18
+
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
@@ -235,6 +240,27 @@ class CliMembers:
                 for p in projects[classification]
             ]
             writelines(classification, lines)
+
+        # "Early Project" and "Very Early Project" only differ on the age of the
+        # repository, so they share a single table (youngest project first).
+        early_projects = sorted(
+            projects["Early Project"] + projects["Very Early Project"],
+            key=lambda p: (p.age_in_months is None, p.age_in_months or 0),
+        )
+        lines = [
+            f'??? note "There are {len(early_projects)} projects with these statuses"'
+        ]
+        if early_projects:
+            lines += [
+                "\n     | Project | Status | Repository created | Age (months) |",
+                "\n     | --- | --- | --- | --- |",
+            ]
+            lines += [
+                f"\n     | [{p.name}](p/{p.short_uuid}.md) | {p.status} "
+                f"| {getattr(p.github, 'created_at', '')} | {p.age_in_months} |"
+                for p in early_projects
+            ]
+        writelines("early-projects", lines)
 
     def update_assets_maturity(self, projects):
         """Updates maturity.json and maturity.md docs/assets/"""
@@ -473,7 +499,12 @@ class CliMembers:
 
     def update_status(self, name=None, update_all=False, exclude: str = None):
         """
-        Check if a project should be moved to "Under revision" or "Alumni"
+        Check if a project should be moved to "Under revision" or "Alumni". If there is no
+        pending check up, the status is derived from the age of the repository
+        ("Very Early Project" or "Early Project"). See docs/status.md
+
+        Only regular projects (the default status) are updated: "Qiskit Project" and
+        "Alumni" are governed differently.
 
         Args:
             name: project to udpate. None (default) if all of them.
@@ -495,8 +526,12 @@ class CliMembers:
                 # "Alumni" projects stay alumni
                 continue
 
-            if project.status == "Under revision":
-                # reset "Under revision" status. It will be set back if it is still true.
+            if project.status in [
+                "Under revision",
+                "Early Project",
+                "Very Early Project",
+            ]:
+                # reset the derived statuses. They will be set back if they are still true.
                 project.status = None
 
             for check in project.checks.values():
@@ -516,6 +551,14 @@ class CliMembers:
                     break
                 # still in cure period
                 project.status = "Under revision"
+
+            if project.status is None and project.age_in_months is not None:
+                # no pending check up, so the status only depends on how old the repository is
+                if project.age_in_months < self.VERY_EARLY_PROJECT_MONTHS:
+                    project.status = "Very Early Project"
+                elif project.age_in_months < self.EARLY_PROJECT_MONTHS:
+                    project.status = "Early Project"
+
             self.dao.update(project.name_id, status=project.status)
 
     def update_maturity(self, name=None):
