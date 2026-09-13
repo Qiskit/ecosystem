@@ -7,6 +7,13 @@ labels = ["physics", "research", "quantum information", "error correction"]
 interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2304.05943"
-packages = ["https://pypi.org/project/qiskit-spacetime-bridge/"]
+packages = []
 uuid = "a0f2307f-3dcf-47e6-ba73-34790ba78901"
 maturity = "experimental"
+
+[github]
+owner = "RexRowan"
+repo = "Spacetime-Bridge"
+
+[pypi.qiskit-spacetime-bridge]
+package_name = "qiskit-spacetime-bridge"
