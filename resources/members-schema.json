@@ -89,6 +89,10 @@
         "total_dependent_packages": {
           "type": "integer"
         },
+        "created_at": {
+          "type": "string",
+          "format": "date"
+        },
         "last_commit": {
           "type": "string",
           "format": "date"

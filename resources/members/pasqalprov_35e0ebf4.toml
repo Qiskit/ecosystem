@@ -16,6 +16,7 @@ stars = 10
 homepage = "https://qiskit-community.github.io/qiskit-pasqal-provider/"
 license = "Apache-2.0"
 description = "Necessary abstractions to program Pasqal's analog neutral atom QPUs from Qiskit."
+created_at = 2024-11-26
 last_commit = 2026-08-28
 last_activity = 2026-08-28
 
@@ -36,8 +37,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 627
-last_180_days_downloads = 3256
+last_month_downloads = 611
+last_180_days_downloads = 3345
 
 [checks.P12]
 since = 2026-08-18

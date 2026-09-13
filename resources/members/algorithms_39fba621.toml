@@ -16,14 +16,15 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-algorithms"
 owner = "qiskit-community"
 repo = "qiskit-algorithms"
-stars = 190
+stars = 192
 homepage = "https://qiskit-community.github.io/qiskit-algorithms/"
 license = "Apache-2.0"
 description = "A library of quantum algorithms for Qiskit."
-total_dependent_repositories = 583
-total_dependent_packages = 62
+total_dependent_repositories = 585
+total_dependent_packages = 63
+created_at = 2023-07-17
 last_commit = 2026-07-21
-last_activity = 2026-08-27
+last_activity = 2026-09-12
 
 [badge]
 url = "https://qisk.it/e-39fba621"
@@ -43,8 +44,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 95862
-last_180_days_downloads = 588885
+last_month_downloads = 93071
+last_180_days_downloads = 589958
 
 [checks.P10]
 since = 2026-07-09

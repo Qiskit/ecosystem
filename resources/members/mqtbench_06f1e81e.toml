@@ -24,8 +24,9 @@ license = "MIT"
 description = "MQT Bench - A Tool for Benchmarking Quantum Software Tools"
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-08-31
-last_activity = 2026-09-02
+created_at = 2021-11-05
+last_commit = 2026-09-12
+last_activity = 2026-09-13
 
 [badge]
 url = "https://qisk.it/e-06f1e81e"
@@ -33,21 +34,21 @@ style = "flat"
 
 [pypi."mqt.bench"]
 package_name = "mqt-bench"
-version = "2.2.3"
-last_release_date = 2026-07-07
+version = "2.3.0"
+last_release_date = 2026-09-12
 license = "MIT"
 description = "MQT Bench - A MQT tool for Benchmarking Quantum Software Tools"
-url = "https://pypi.org/project/mqt.bench/"
-development_status = "4 - Beta"
+url = "https://pypi.org/project/mqt-bench/"
+development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
-requires_qiskit = ">=2.0.0"
+requires_qiskit = ">=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 5893
-last_180_days_downloads = 27543
+last_month_downloads = 5556
+last_180_days_downloads = 27880
 
 [checks.P10]
 since = 2026-07-09

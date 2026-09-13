@@ -15,14 +15,15 @@ maturity = "experimental"
 url = "https://github.com/KUQCI/quantum-learn"
 owner = "KUQCI"
 repo = "quantum-learn"
-stars = 0
+stars = 1
 homepage = "https://pypi.org/project/quantum-learn/"
 license = "MIT"
 description = "quantum-learn: quantum machine learning in Python"
 total_dependent_repositories = 1
 total_dependent_packages = 0
+created_at = 2025-02-17
 last_commit = 2026-08-01
-last_activity = 2026-08-01
+last_activity = 2026-09-06
 
 [badge]
 url = "https://qisk.it/e-f07e354e"
@@ -43,8 +44,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
-last_month_downloads = 27
-last_180_days_downloads = 794
+last_month_downloads = 29
+last_180_days_downloads = 790
 
 [checks.P10]
 since = 2026-08-06

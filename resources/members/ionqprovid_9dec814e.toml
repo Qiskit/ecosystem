@@ -16,15 +16,16 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-ionq"
 owner = "qiskit-community"
 repo = "qiskit-ionq"
-stars = 62
+stars = 64
 homepage = "https://qiskit-community.github.io/qiskit-ionq/"
 license = "Apache-2.0"
 description = "Qiskit provider for IonQ backends"
 estimated_contributors = 16
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2020-10-08
 last_commit = 2026-09-02
-last_activity = 2026-09-02
+last_activity = 2026-09-11
 
 [badge]
 url = "https://qisk.it/e-9dec814e"
@@ -44,8 +45,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 51707
-last_180_days_downloads = 428241
+last_month_downloads = 44907
+last_180_days_downloads = 421319
 
 [checks.P10]
 since = 2026-07-09

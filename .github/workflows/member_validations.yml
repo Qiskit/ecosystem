@@ -66,6 +66,8 @@ jobs:
         run: python manager.py ci update_member_data ${{ steps.get-id.outputs.id }}
       - name: Data validatation
         run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }} -e "recommendation, legacy, best_practice"
+      - name: Update status
+        run: python manager.py members update_status ${{ steps.get-id.outputs.id }}
       - name: Run taplo formater on TOML files
         run: taplo fmt resources/members/*.toml
       - name: Commit data
