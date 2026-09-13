@@ -13,7 +13,9 @@
 """Submission model."""
 
 import pprint
+from datetime import date
 from uuid import uuid4
+from dateutil.relativedelta import relativedelta
 from slugify import slugify
 
 from .error_handling import EcosystemError
@@ -329,6 +331,16 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 checkup_data.discussion = self.checks[checkup_data.id].discussion
             checkups[checkup_data.id] = checkup_data
         self.checks = checkups
+
+    @property
+    def age_in_months(self):
+        """Months since the GitHub repository was created.
+        None if there is no member.github.created_at"""
+        created_at = parse_date(getattr(self.github, "created_at", None))
+        if created_at is None:
+            return None
+        relative = relativedelta(date.today(), created_at)
+        return (relative.years * 12) + relative.months
 
     def update_maturity(self):
         """Check if self.maturity should move to archived. Either because:
