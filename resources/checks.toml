@@ -235,6 +235,16 @@ description = "..."
 importance = "STRONG-RECOMMENDATION"
 checker = "test_github.py::test_G11"
 
+[G12]
+title = "Have a commit within the last (age * 2/3) months"
+applies_to = "GitHub projects"
+affects = ['member.github.last_commit']
+category = "ACTIVITY"
+description = "Early Projects available on GitHub should have commit activity within the last (age * 2/3) months."
+importance = "IMPORTANT"
+checker = "test_github.py::test_G12"
+
+
 [O01]
 title = "Have a license"
 applies_to = "all"
