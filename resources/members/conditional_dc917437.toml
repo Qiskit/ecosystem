@@ -9,7 +9,7 @@ reference_paper = "https://arxiv.org/abs/2508.09110"
 packages = []
 uuid = "dc917437-3b51-4ea8-9bdb-e2eaa2114cd5"
 maturity = "production-ready"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/alexg-jpg/conditional-measurements"
@@ -32,3 +32,8 @@ style = "flat"
 since = 2026-07-14
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
+
+[checks.G12]
+since = 2026-09-14
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
