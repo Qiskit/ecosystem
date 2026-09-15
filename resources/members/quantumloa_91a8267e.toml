@@ -6,6 +6,9 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["cloud service", "utility-scale", "benchmarking"]
 interfaces = ["Python"]
 category = "Tooling"
-packages = ["https://pypi.org/project/qiskit-quantum-backend-selector/"]
+packages = []
 uuid = "91a8267e-0df9-406c-af66-a2df20d7d98e"
 maturity = "experimental"
+
+[pypi.qiskit-quantum-backend-selector]
+package_name = "qiskit-quantum-backend-selector"
