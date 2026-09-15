@@ -51,3 +51,15 @@ last_180_days_downloads = 409
 since = 2026-07-09
 details = "Python package qiskit-rigetti declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[checks.Q20]
+since = 2026-09-15
+source = "https://github.com/rigetti/qiskit-rigetti/issues/53"
+details = "Rigetti provider is not compatible with a maintained version of Qiskit"
+importance = "CRITICAL"
+
+[checks.020]
+since = 2026-09-15
+source = "https://github.com/rigetti/qiskit-rigetti/issues/44"
+details = "Rigetti provider is not implementing the Primitive interface"
+importance = "CRITICAL"
