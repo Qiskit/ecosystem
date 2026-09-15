@@ -39,8 +39,8 @@ class CliMembers:
 
     # Age (in months, based on member.github.created_at) under which a regular
     # project gets an age-derived status. See docs/status.md
-    VERY_EARLY_PROJECT_MONTHS = 6
-    EARLY_PROJECT_MONTHS = 18
+    VERY_EARLY_PROJECT_MONTHS = 3
+    EARLY_PROJECT_MONTHS = 12
 
     # member.maturity values that make a project "Unmaintained". See docs/status.md
     UNMAINTAINED_MATURITY = ["as-is", "deprecated"]
