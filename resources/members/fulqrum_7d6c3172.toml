@@ -5,7 +5,7 @@ labels = ["research", "physics"]
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://qiskit-community.github.io/fulqrum/"
-packages = []
+packages = ["https://pypi.org/project/fulqrum/"]
 uuid = "7d6c3172-7bb5-4c5a-b0a3-87aa378ee356"
 maturity = "experimental"
 status = "Early Project"
@@ -23,7 +23,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-03-04
 last_commit = 2026-09-12
-last_activity = 2026-09-10
+last_activity = 2026-09-14
 
 [badge]
 url = "https://qisk.it/e-7d6c3172"

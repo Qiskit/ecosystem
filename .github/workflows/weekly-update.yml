@@ -30,8 +30,8 @@ jobs:
       with:
         version: "0.10.0"
 
-    - name: Update project maturity
-      run: python manager.py members update_maturity
+    - name: Update status (so the check ups see a fresh status)
+      run: python manager.py members update_status -e recommendation --no_alumni
 
     - name: Update checkups
       run: python manager.py members update_checkups
