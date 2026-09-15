@@ -33,5 +33,5 @@ style = "flat"
 
 [checks.G07]
 since = 2026-08-27
-details = "Last commit was more than 18 months ago. This might be a sign of a project that is not actively maintained. Consider set member.maturity to `as-is`."
+details = "Last commit was more than 18 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"

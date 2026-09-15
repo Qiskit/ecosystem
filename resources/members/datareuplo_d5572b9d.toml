@@ -17,7 +17,7 @@ reference_paper = "https://arxiv.org/abs/2605.19233"
 documentation = "https://casiriorg.github.io/projects/qiskit-data-reuploading/api/"
 packages = []
 uuid = "d5572b9d-91eb-46e1-94ac-7515fb753b1f"
-maturity = "as-is"
+maturity = "experimental"
 status = "Very Early Project"
 
 [github]
@@ -50,7 +50,7 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 16
+last_month_downloads = 14
 last_180_days_downloads = 288
 
 [checks.P10]
