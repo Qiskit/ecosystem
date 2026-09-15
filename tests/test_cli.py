@@ -304,20 +304,20 @@ class TestUpdateStatus(TestCase):
         return self.cli_members.dao[member.name_id].status
 
     def test_very_early_project(self):
-        """A repository younger than 6 months is a "Very Early Project" """
+        """A repository younger than 3 months is a "Very Early Project" """
         self.assertEqual(self.status_after_update(months_old=2), "Very Early Project")
 
     def test_early_project(self):
-        """A repository between 6 and 18 months old is an "Early Project" """
+        """A repository between 3 and 12 months old is an "Early Project" """
         self.assertEqual(self.status_after_update(months_old=10), "Early Project")
 
-    def test_six_months_old_is_early_project(self):
-        """The "Very Early Project" status ends at 6 months"""
-        self.assertEqual(self.status_after_update(months_old=6), "Early Project")
+    def test_three_months_old_is_early_project(self):
+        """The "Very Early Project" status ends at 3 months"""
+        self.assertEqual(self.status_after_update(months_old=3), "Early Project")
 
     def test_old_project_has_no_age_status(self):
-        """A repository older than 18 months is a regular member (status None)"""
-        self.assertIsNone(self.status_after_update(months_old=18))
+        """A repository older than 12 months is a regular member (status None)"""
+        self.assertIsNone(self.status_after_update(months_old=12))
 
     def test_no_created_at(self):
         """Without member.github.created_at there is no age-derived status"""
