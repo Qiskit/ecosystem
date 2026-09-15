@@ -1,6 +1,6 @@
 name = "Qiskit Quantum Backend Selector"
 submission_number = 1362
-url = "https://pypi.org/project/qiskit-quantum-backend-selector/"
+url = "https://github.com/RexRowan/Qiskit-Quantum-Backend-Selector"
 description = "Queue- and noise-aware backend selection and routing for IBM Quantum backends."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["cloud service", "utility-scale", "benchmarking"]
@@ -9,6 +9,17 @@ category = "Tooling"
 packages = []
 uuid = "91a8267e-0df9-406c-af66-a2df20d7d98e"
 maturity = "experimental"
+
+[github]
+url = "https://github.com/RexRowan/Qiskit-Quantum-Backend-Selector"
+owner = "RexRowan"
+repo = "Qiskit-Quantum-Backend-Selector"
+stars = 0
+license = "Apache-2.0"
+description = "Backend Selector for IBM Quantum backends, built on qiskit-ibm-runtime"
+created_at = 2026-09-03
+last_commit = 2026-09-14
+last_activity = 2026-09-14
 
 [pypi.qiskit-quantum-backend-selector]
 package_name = "qiskit-quantum-backend-selector"
