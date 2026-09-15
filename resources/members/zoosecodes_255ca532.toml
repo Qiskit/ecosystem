@@ -30,3 +30,9 @@ last_activity = 2026-09-14
 [badge]
 url = "https://qisk.it/e-255ca532"
 style = "flat"
+
+[checks.Q20]
+since = 2026-07-09
+source = "https://github.com/ianreppel/zoose-codespace/issues/2"
+details = "The codespace created by zoose-codespace has a version of Qiskit that is not longer maintained."
+importance = "CRITICAL"
