@@ -1,39 +1,11 @@
 name = "Qiskit Quantum Load Balancer"
 submission_number = 1362
-url = "https://github.com/RexRowan/Qiskit-Quantum-LoadBalancer"
+url = "https://pypi.org/project/qiskit-quantum-backend-selector/"
 description = "Queue- and noise-aware backend selection and routing for IBM Quantum backends."
 contact_info = "titaniumdavinci@gmail.com"
-labels = ["provider", "cloud service", "utility-scale", "benchmarking"]
+labels = ["cloud service", "utility-scale", "benchmarking"]
 interfaces = ["Python"]
 category = "Tooling"
-packages = []
+packages = ["https://pypi.org/project/qiskit-quantum-backend-selector/"]
 uuid = "91a8267e-0df9-406c-af66-a2df20d7d98e"
 maturity = "experimental"
-status = "Very Early Project"
-
-[github]
-url = "https://github.com/RexRowan/Qiskit-Quantum-LoadBalancer"
-owner = "RexRowan"
-repo = "Qiskit-Quantum-LoadBalancer"
-stars = 0
-license = "Apache-2.0"
-description = "Load Balancer for IBM Quantum backends, built on qiskit-ibm-runtime"
-created_at = 2026-09-03
-last_commit = 2026-09-03
-last_activity = 2026-09-03
-
-[pypi.qiskit-quantum-loadbalancer]
-package_name = "qiskit-quantum-loadbalancer"
-version = "0.1.0"
-last_release_date = 2026-09-03
-description = "Noise- and queue-aware backend selection and routing for IBM Quantum backends"
-url = "https://pypi.org/project/qiskit-quantum-loadbalancer/"
-status = "active"
-maintainers = ["https://pypi.org/user/MeanMachineRex/"]
-requires_qiskit = "<3,>=2.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 119
-last_180_days_downloads = 119
