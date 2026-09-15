@@ -3,7 +3,7 @@ submission_number = 1172
 url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
 labels = ["error correction", "research", "circuit optimization"]
 interfaces = ["Rust"]
-category = "SDK"
+category = "Noise Management"
 reference_paper = "https://arxiv.org/abs/2506.03094"
 packages = [
   "https://crates.io/crates/bicycle_benchmark",
