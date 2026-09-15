@@ -15,7 +15,11 @@
 import os
 import tomllib
 from unittest import TestCase
+from unittest.mock import patch
 import pytest
+
+from ecosystem.check import CheckData
+from ecosystem.error_handling import EcosystemError
 
 
 class TestChecksTOML(TestCase):
@@ -114,3 +118,95 @@ class TestChecksTOML(TestCase):
         for cat in self.meta_categories:
             with self.subTest(cat):
                 self.assertHasNoDuplicates([c["name"] for c in self.checks_toml[cat]])
+
+
+class TestSourceBasedCheckData(TestCase):
+    """Tests for check ups based on an issue (check.source) instead of on a checker"""
+
+    issue_url = "https://github.com/rigetti/qiskit-rigetti/issues/53"
+    details = "Rigetti provider is not compatible with a maintained version of Qiskit"
+
+    def check_with_issue(self, state, state_reason=None, details=None):
+        """A source-based CheckData, updated against an issue in the given state"""
+        check = CheckData(
+            "Q20",
+            since="2026-07-09",
+            source=self.issue_url,
+            details=self.details if details is None else details,
+        )
+        with patch(
+            "ecosystem.check.request_json",
+            return_value={"state": state, "state_reason": state_reason},
+        ):
+            check.update_from_source()
+        return check
+
+    def test_source_is_kept(self):
+        """check.source survives the round trip to a dict"""
+        check = CheckData("Q20", since="2026-07-09", source=self.issue_url)
+        self.assertEqual(check.source, self.issue_url)
+        self.assertEqual(check.to_dict()["source"], self.issue_url)
+
+    def test_no_source(self):
+        """A check up without a source has source = None and update_from_source does nothing"""
+        check = CheckData("Q20", since="2026-07-09", details=self.details)
+        self.assertIsNone(check.source)
+        check.update_from_source()
+        self.assertEqual(check.details, self.details)
+
+    def test_source_api_url(self):
+        """The issue URL is translated into the GitHub API URL"""
+        check = CheckData("Q20", source=self.issue_url)
+        self.assertEqual(
+            check.source_api_url,
+            "https://api.github.com/repos/rigetti/qiskit-rigetti/issues/53",
+        )
+
+    def test_source_is_not_an_issue(self):
+        """A source that is not a GitHub issue is an error"""
+        check = CheckData("Q20", source="https://github.com/rigetti/qiskit-rigetti")
+        with self.assertRaises(EcosystemError):
+            check.source_api_url  # pylint: disable=pointless-statement
+
+    def test_open_issue(self):
+        """While the issue is open, the details are untouched"""
+        check = self.check_with_issue("open")
+        self.assertEqual(check.details, self.details)
+
+    def test_closed_as_completed(self):
+        """A closed as completed issue is annotated in the details"""
+        check = self.check_with_issue("closed", "completed")
+        self.assertEqual(
+            check.details, f"{self.details} (the source issue is closed as completed)"
+        )
+
+    def test_closed_as_not_planned(self):
+        """A closed as not planned issue is annotated in the details"""
+        check = self.check_with_issue("closed", "not_planned")
+        self.assertEqual(
+            check.details, f"{self.details} (the source issue is closed as not planned)"
+        )
+
+    def test_closed_without_reason(self):
+        """A closed issue without a state_reason is annotated too"""
+        check = self.check_with_issue("closed")
+        self.assertEqual(check.details, f"{self.details} (the source issue is closed)")
+
+    def test_annotation_does_not_pile_up(self):
+        """Running update_from_source twice does not repeat the annotation"""
+        annotated = f"{self.details} (the source issue is closed as completed)"
+        check = self.check_with_issue("closed", "completed", details=annotated)
+        self.assertEqual(check.details, annotated)
+
+    def test_reopened_issue_drops_the_annotation(self):
+        """If the issue is open again, the annotation is removed"""
+        annotated = f"{self.details} (the source issue is closed as not planned)"
+        check = self.check_with_issue("open", "reopened", details=annotated)
+        self.assertEqual(check.details, self.details)
+
+    def test_no_checker(self):
+        """A source-based check up has no checker, and asking for it is an AttributeError"""
+        check = CheckData("020", since="2026-07-09", source=self.issue_url)
+        self.assertIsNone(getattr(check, "checker", None))
+        with self.assertRaises(AttributeError):
+            check.checker  # pylint: disable=pointless-statement

@@ -19,8 +19,9 @@ from pathlib import Path
 import tomllib
 
 
+from .error_handling import EcosystemError
 from .serializable import JsonSerializable, parse_date
-from .request import URL
+from .request import URL, request_json
 
 
 class ChecksToml:
@@ -75,12 +76,20 @@ class CheckData(JsonSerializable):
     checks_toml = ChecksToml()
     today = date.today()
 
-    def __init__(
-        self, id_: str, xfailed=None, since=None, details=None, discussion=None, **_
+    def __init__(  # pylint: disable=too-many-arguments
+        self,
+        id_: str,
+        xfailed=None,
+        since=None,
+        source=None,
+        details=None,
+        discussion=None,
+        **_,
     ):
         self.id = id_
         self.xfailed = xfailed
         self.since = parse_date(since)
+        self.source: str | None = source
         self.details = details
         self.discussion: str | URL | None = discussion
 
@@ -120,7 +129,62 @@ class CheckData(JsonSerializable):
         return str(self.to_dict())
 
     def __getattr__(self, name):
-        return self.checks_toml.checkup(self.id)[name]
+        try:
+            return self.checks_toml.checkup(self.id)[name]
+        except KeyError as key_error:
+            # so getattr(checkdata, name, default) and hasattr work as expected
+            raise AttributeError(f"the check up {self.id} has no {name}") from key_error
+
+    @property
+    def source_api_url(self):
+        """`self.source` (a GitHub issue URL) as the GitHub API URL of that issue"""
+        url = URL(self.source)
+        path = url.path.strip("/").split("/")
+        if (
+            url.hostname != "github.com"
+            or len(path) != 4
+            or path[2] not in ["issues", "pull"]
+        ):
+            raise EcosystemError(
+                f"the source of the check up {self.id} does not look like "
+                f"a GitHub issue: {self.source}"
+            )
+        owner, repo, _, number = path
+        return f"https://api.github.com/repos/{owner}/{repo}/issues/{number}"
+
+    def update_from_source(self):
+        """Updates the check up with the state of the issue in `self.source`.
+
+        A source-based check up is not the result of a test: it exists because there is an
+        issue that is not getting closed as complete. So, instead of running a checker, the
+        state of that issue is checked. If the issue is closed, the reason is added to
+        `self.details`, so a human can decide what to do with the check up.
+
+        The check up itself is never removed here: a closed issue does not necessarily mean
+        that the situation described in `self.details` is solved.
+        """
+        # what is added to self.details when the check up source issue is closed
+        SOURCE_CLOSED_DETAILS = {
+            "completed": "the source issue is closed as completed",
+            "not_planned": "the source issue is closed as not planned",
+            None: "the source issue is closed",
+        }
+        if not self.source:
+            return
+        issue = request_json(self.source_api_url)
+        annotation = None
+        if issue["state"] != "open":
+            annotation = SOURCE_CLOSED_DETAILS.get(
+                issue.get("state_reason"), SOURCE_CLOSED_DETAILS[None]
+            )
+        details = self.details or ""
+        for known_annotation in SOURCE_CLOSED_DETAILS.values():
+            # drop a previous annotation, so they do not pile up on every run
+            # and they do not survive the issue being reopened
+            details = details.replace(f" ({known_annotation})", "")
+        if annotation:
+            details = f"{details} ({annotation})".strip()
+        self.details = details or None
 
     @classmethod
     def from_report(cls, pytest_report):
