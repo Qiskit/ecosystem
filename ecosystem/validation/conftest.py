@@ -51,7 +51,8 @@ class ValidationReport:
         return {
             checkdata.checker: checkdata.since
             for checkdata in self._member.checks.values()
-            if checkdata.since
+            # a source-based check up has no checker: it is not the result of a test
+            if checkdata.since and getattr(checkdata, "checker", None)
         }
 
     def pytest_itemcollected(self, item):
