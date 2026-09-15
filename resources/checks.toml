@@ -191,11 +191,11 @@ importance = "RECOMMENDATION"
 checker = "test_github.py::test_G06"
 
 [G07]
-title = "Have a commit within the last 18 months"
+title = "Have a commit within the last 12 months"
 applies_to = "GitHub projects"
 affects = ['member.github.last_commit']
 category = "ACTIVITY"
-description = "Projects available on GitHub should have commit activity within the last 18 months. This check does not apply to projects that have declared their support as as-is."
+description = "Projects available on GitHub should have commit activity within the last 12 months. This check does not apply to projects that have declared their support as as-is."
 importance = "STRONG-RECOMMENDATION"
 checker = "test_github.py::test_G07"
 

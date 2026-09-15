@@ -59,7 +59,7 @@ def test_G06(member):
 
 
 def test_G07(member):
-    """Have last commit within the last 18 months"""
+    """Have last commit within the last 12 months"""
     if hasattr(member, "status") and member.status == "Unmaintained":
         pytest.skip("`Unmaintained` projects are exempt from activity checks")
 
@@ -69,8 +69,8 @@ def test_G07(member):
     relative = relativedelta(date.today(), member.github.last_commit)
     months_difference = (relative.years * 12) + relative.months
 
-    assert months_difference <= 18, (
-        "Last commit was more than 18 months ago. "
+    assert months_difference <= 12, (
+        "Last commit was more than 12 months ago. "
         "This might be a sign of a project that is not actively maintained. "
         "Maybe `member.maturity` should be set as `as-is`"
     )
