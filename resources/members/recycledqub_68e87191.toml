@@ -1,0 +1,17 @@
+name = "RecycledQubitRegisters"
+submission_number = 1374
+url = "https://github.com/CaMaLabs/RecycledQubitRegisters"
+description = "Research toolkit for dynamic phase-register recycling, QPE/Shor benchmarks, and hardware-aware placement with Qiskit."
+labels = [
+  "benchmarking",
+  "quantum information",
+  "circuit building",
+  "circuit optimization",
+  "research",
+]
+interfaces = ["Command-line interface (CLI)", "Python"]
+category = "Tooling"
+documentation = "https://github.com/CaMaLabs/RecycledQubitRegisters/tree/main/docs"
+packages = []
+uuid = "68e87191-fd1c-46d7-ba88-b8bcc3a67c20"
+maturity = "experimental"

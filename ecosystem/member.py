@@ -330,6 +330,16 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 # Fields to preserve
                 checkup_data.discussion = self.checks[checkup_data.id].discussion
             checkups[checkup_data.id] = checkup_data
+
+        for checkup_id, checkup in self.checks.items():
+            if not checkup.source:
+                continue
+            # A source-based check up does not come from a test, so it is not in the report.
+            # It stands as long as its source issue does, and it takes precedence over the
+            # result of the checker with the same ID.
+            checkup.update_from_source()
+            checkups[checkup_id] = checkup
+
         self.checks = checkups
 
     @property
@@ -341,22 +351,3 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             return None
         relative = relativedelta(date.today(), created_at)
         return (relative.years * 12) + relative.months
-
-    def update_maturity(self):
-        """Check if self.maturity should move to archived. Either because:
-         - github.archived == true
-         - TODO: if all the pypi package are archived
-        only udpates if maturity was not:
-          - "as-is"
-          - "unmaintained"
-          - "archived"
-        """
-        skip_if = [
-            "as-is",
-            "unmaintained",
-            "archived",
-        ]
-        if self.maturity in skip_if:
-            return
-        if hasattr(self.github, "archived") and self.github.archived:
-            self.maturity = "archived"
