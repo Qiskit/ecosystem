@@ -21,7 +21,7 @@ description = "Qiskit provider for Quantum Inspire backends "
 total_dependent_repositories = 2
 total_dependent_packages = 3
 created_at = 2024-08-28
-last_commit = 2026-09-14
+last_commit = 2026-09-15
 last_activity = 2026-09-14
 
 [badge]
@@ -30,8 +30,8 @@ style = "flat"
 
 [pypi.qiskit-quantuminspire]
 package_name = "qiskit-quantuminspire"
-version = "0.18.2"
-last_release_date = 2026-07-31
+version = "0.18.3"
+last_release_date = 2026-09-15
 license = "Apache-1.1"
 description = "Qiskit provider for Quantum Inspire backends "
 url = "https://pypi.org/project/qiskit-quantuminspire/"
@@ -46,5 +46,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 7372
-last_180_days_downloads = 45795
+last_month_downloads = 7180
+last_180_days_downloads = 45711
