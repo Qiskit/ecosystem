@@ -41,3 +41,8 @@ maintainers = [
 ]
 last_month_downloads = 544
 last_180_days_downloads = 544
+
+[checks.P12]
+since = 2026-09-17
+details = "member.pypi.fulqrum does not have a declared license"
+importance = "RECOMMENDATION"

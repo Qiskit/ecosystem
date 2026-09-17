@@ -18,7 +18,7 @@ documentation = "https://casiriorg.github.io/projects/qiskit-data-reuploading/ap
 packages = []
 uuid = "d5572b9d-91eb-46e1-94ac-7515fb753b1f"
 maturity = "experimental"
-status = "Very Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Carlosandp/qiskit-data-reuploading"
@@ -52,6 +52,11 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 11
 last_180_days_downloads = 288
+
+[checks.G12]
+since = 2026-09-17
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09
