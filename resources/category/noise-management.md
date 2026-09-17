@@ -1,6 +1,5 @@
-Quantum hardware is noisy, and that noise corrupts the outcome of a computation.
-Projects in this category deal with that noise, rather than with the algorithm being run.
-They do it in one of three ways, and often in more than one at a time:
+Projects that deal with hardware noise itself, rather than with the algorithm being run. They
+typically do one or more of:
 
  * **detection**: instrumenting a computation so that a faulty run can be recognized, such as
    Pauli checks, flag qubits, syndrome extraction, or post-selection on an ancilla outcome,
@@ -9,11 +8,9 @@ They do it in one of three ways, and often in more than one at a time:
    tooling needed to build or evaluate them,
  * **mitigation**: leaving the errors in place but removing their bias from the final estimate,
    such as readout error mitigation, zero-noise extrapolation, or probabilistic error
-   cancellation, usually paid for in sampling overhead.
-
-Characterizing the noise itself (for example learning the noise model of a layer, so that it can
-later be inverted or extrapolated) also belongs here, since it is only useful as an input to one
-of the three.
+   cancellation,
+ * **characterization**: learning the noise itself (for example the noise model of a layer), as
+   an input to one of the above.
 
 A technique that suppresses errors while a circuit is being compiled belongs in
 [transpiler plugin](#transpiler-plugin) instead: if it can be expressed as a transpiler pass,
