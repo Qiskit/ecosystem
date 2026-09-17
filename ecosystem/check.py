@@ -80,6 +80,7 @@ class CheckData(JsonSerializable):
         self,
         id_: str,
         xfailed=None,
+        xfailed_until=None,
         since=None,
         source=None,
         details=None,
@@ -88,6 +89,7 @@ class CheckData(JsonSerializable):
     ):
         self.id = id_
         self.xfailed = xfailed
+        self.xfailed_until = parse_date(xfailed_until)
         self.since = parse_date(since)
         self.source: str | None = source
         self.details = details
@@ -103,6 +105,31 @@ class CheckData(JsonSerializable):
     def days_since_failure(self):
         """Returns integer with today-self.since"""
         return (CheckData.today - self.since).days
+
+    @property
+    def xfailed_expired(self):
+        """True if `self.xfailed_until` is in the past.
+
+        An `self.xfailed` explanation without `self.xfailed_until` never expires."""
+        if self.xfailed_until is None:
+            return False
+        return CheckData.today > self.xfailed_until
+
+    @property
+    def xfail_applies(self):
+        """True if there is an explanation for the failure and it has not expired yet.
+
+        This is the question to ask before honoring `self.xfailed`: an expired explanation
+        does not excuse the check up anymore."""
+        return bool(self.xfailed) and not self.xfailed_expired
+
+    @property
+    def days_until_xfailed_expires(self):
+        """Days left before `self.xfailed` stops applying.
+        None if the explanation does not expire."""
+        if self.xfailed_until is None:
+            return None
+        return (self.xfailed_until - CheckData.today).days
 
     @property
     def importance(self):
