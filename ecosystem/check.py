@@ -191,7 +191,7 @@ class CheckData(JsonSerializable):
         that the situation described in `self.details` is solved.
         """
         # what is added to self.details when the check up source issue is closed
-        SOURCE_CLOSED_DETAILS = {
+        source_closed_details = {
             "completed": "the source issue is closed as completed",
             "not_planned": "the source issue is closed as not planned",
             None: "the source issue is closed",
@@ -201,11 +201,11 @@ class CheckData(JsonSerializable):
         issue = request_json(self.source_api_url)
         annotation = None
         if issue["state"] != "open":
-            annotation = SOURCE_CLOSED_DETAILS.get(
-                issue.get("state_reason"), SOURCE_CLOSED_DETAILS[None]
+            annotation = source_closed_details.get(
+                issue.get("state_reason"), source_closed_details[None]
             )
         details = self.details or ""
-        for known_annotation in SOURCE_CLOSED_DETAILS.values():
+        for known_annotation in source_closed_details.values():
             # drop a previous annotation, so they do not pile up on every run
             # and they do not survive the issue being reopened
             details = details.replace(f" ({known_annotation})", "")
