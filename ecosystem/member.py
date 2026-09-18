@@ -33,6 +33,10 @@ from .validation import validate_member
 class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
     """main Members class that represent a single entry in the Ecosystem."""
 
+    # How long an explanation for a failing check up (`check.xfailed`) coming from a
+    # submission is valid for. After that, the check up is verified again as a regular one.
+    DEFAULT_XFAILED_PERIOD_IN_MONTHS = 12
+
     def __init__(  # pylint: disable=too-many-arguments, too-many-locals
         self,
         name: str,
@@ -275,8 +279,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """
         skip_checks = {}
         if submission.skip:
+            xfailed_until = date.today() + relativedelta(
+                months=cls.DEFAULT_XFAILED_PERIOD_IN_MONTHS
+            )
             for check_id, reason in submission.skip:
-                skip_checks[check_id] = CheckData(check_id, xfailed=reason)
+                skip_checks[check_id] = CheckData(
+                    check_id, xfailed=reason, xfailed_until=xfailed_until
+                )
         return Member(
             name=submission.name,
             submission_number=issue_number,
@@ -297,12 +306,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
 
     @property
     def xfails(self):
-        """list of xfails for a self member"""
-        return [
-            check
-            for checkid, check in self.checks.items()
-            if hasattr(check, "xfailed") and check.xfailed
-        ]
+        """list of xfails for a self member.
+
+        A check up whose `xfailed_until` has passed is not in the list: the explanation is no
+        longer valid, so the check up is verified again as a regular one."""
+        return [check for check in self.checks.values() if check.xfail_applies]
 
     def update_checkups(self, checker=None):
         """Runs validation tests and updates the check-ups sections"""
@@ -329,6 +337,11 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             if checkup_data.id in self.checks:
                 # Fields to preserve
                 checkup_data.discussion = self.checks[checkup_data.id].discussion
+                if checkup_data.xfailed:
+                    # the report only carries the explanation, not its expiration date
+                    checkup_data.xfailed_until = self.checks[
+                        checkup_data.id
+                    ].xfailed_until
             checkups[checkup_data.id] = checkup_data
 
         for checkup_id, checkup in self.checks.items():
@@ -337,6 +350,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             # A source-based check up does not come from a test, so it is not in the report.
             # It stands as long as its source issue does, and it takes precedence over the
             # result of the checker with the same ID.
+            if checkup.xfailed and checkup.xfailed_expired:
+                # Not being in the report also means that the loop above does not drop an
+                # expired explanation, so it is dropped here. From now on, the check up
+                # counts as a regular failure.
+                checkup.xfailed = None
+                checkup.xfailed_until = None
+                checkup.since = checkup.since or CheckData.today
             checkup.update_from_source()
             checkups[checkup_id] = checkup
 
@@ -351,3 +371,27 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             return None
         relative = relativedelta(date.today(), created_at)
         return (relative.years * 12) + relative.months
+
+    @property
+    def unmaintained(self):
+        """True if the project declares no maintenance expectations.
+
+        This is what the `Unmaintained` status is derived from, but it is not the same thing:
+        `self.status` is masked by `Under revision` as soon as any check up is pending, so a
+        check up asking "is this project maintained?" has to use this instead of the status.
+        """
+        return self.maturity in ["as-is", "deprecated"]
+
+    @property
+    def early(self):
+        """True if the GitHub repository is younger than 12 months."""
+        if self.age_in_months is None:
+            return False
+        return self.age_in_months < 12
+
+    @property
+    def very_early(self):
+        """True if the GitHub repository is younger than 3 months"""
+        if self.age_in_months is None:
+            return False
+        return self.age_in_months < 3

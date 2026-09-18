@@ -1,0 +1,41 @@
+name = "Qiskit Spacetime Bridge"
+submission_number = 1338
+url = "https://github.com/RexRowan/Spacetime-Bridge"
+description = "Outcome-code and spacetime-code construction for Qiskit Clifford circuits"
+contact_info = "titaniumdavinci@gmail.com"
+labels = ["physics", "research", "quantum information", "error correction"]
+interfaces = ["Python"]
+category = "Paper artifact"
+reference_paper = "https://arxiv.org/abs/2304.05943"
+packages = []
+uuid = "a0f2307f-3dcf-47e6-ba73-34790ba78901"
+maturity = "as-is"
+status = "Unmaintained"
+
+[github]
+url = "https://github.com/RexRowan/Spacetime-Bridge"
+owner = "RexRowan"
+repo = "Spacetime-Bridge"
+stars = 0
+license = "Apache-2.0"
+description = "Outcome-code and spacetime-code construction for Qiskit Clifford circuits"
+created_at = 2026-08-29
+last_commit = 2026-09-01
+last_activity = 2026-09-01
+
+[pypi.qiskit-spacetime-bridge]
+package_name = "qiskit-spacetime-bridge"
+version = "0.1.0"
+last_release_date = 2026-09-01
+license = "Apache-2.0"
+description = "Outcome-code and spacetime-code construction for Qiskit Clifford circuits (Delfosse & Paetznick, arXiv:2304.05943)"
+url = "https://pypi.org/project/qiskit-spacetime-bridge/"
+status = "active"
+maintainers = ["https://pypi.org/user/MeanMachineRex/"]
+requires_qiskit = "<3,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 129
+last_180_days_downloads = 129

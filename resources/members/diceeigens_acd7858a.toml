@@ -4,7 +4,7 @@ url = "https://github.com/Qiskit/qiskit-addon-dice-solver"
 labels = ["utility-scale", "chemistry"]
 interfaces = ["Python"]
 ibm_maintained = true
-category = "Qiskit addon"
+category = "Application"
 documentation = "https://qiskit.github.io/qiskit-addon-dice-solver/"
 packages = []
 uuid = "acd7858a-0ad7-46d4-abc4-0a0c6717c367"
@@ -40,8 +40,8 @@ maintainers = [
   "https://pypi.org/user/calebj15/",
   "https://pypi.org/user/mrossinek/",
 ]
-last_month_downloads = 27
-last_180_days_downloads = 1063
+last_month_downloads = 22
+last_180_days_downloads = 1061
 
 [checks.P12]
 since = 2026-08-18

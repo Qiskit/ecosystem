@@ -17,7 +17,7 @@ documentation = "https://qdsvquantum-afk.github.io/qdsv-bridge/how_to/logical_ar
 packages = []
 uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
 maturity = "experimental"
-status = "Very Early Project"
+status = "Early Project"
 
 [github]
 url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
@@ -27,8 +27,8 @@ stars = 0
 license = "MIT"
 description = "QDSV Bridge SDK: controlled semantic-to-IR, oracle and circuit-blueprint compilation for supported quantum problem families."
 created_at = 2026-06-01
-last_commit = 2026-09-04
-last_activity = 2026-09-04
+last_commit = 2026-09-18
+last_activity = 2026-09-18
 
 [badge]
 url = "https://qisk.it/e-e8734f93"
@@ -36,8 +36,8 @@ style = "flat"
 
 [pypi.qdsv-bridge]
 package_name = "qdsv-bridge"
-version = "0.7.0"
-last_release_date = 2026-09-04
+version = "0.7.1"
+last_release_date = 2026-09-18
 license = "MIT"
 description = "Public domain-to-quantum SDK for portable QDSV Bridge artifacts."
 url = "https://pypi.org/project/qdsv-bridge/"
@@ -49,5 +49,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 988
-last_180_days_downloads = 4047
+last_month_downloads = 924
+last_180_days_downloads = 4075
