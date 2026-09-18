@@ -182,10 +182,14 @@ class TestCli(TestCase):
                 "010": {
                     "importance": "RECOMMENDATION",
                     "xfailed": 'This project is allow to have "test" in its name',
+                    "xfailed_until": date.today()
+                    + relativedelta(months=Member.DEFAULT_XFAILED_PERIOD_IN_MONTHS),
                 },
                 "COC": {
                     "importance": "CRITICAL",
                     "xfailed": "This project does not need to agree the CoC",
+                    "xfailed_until": date.today()
+                    + relativedelta(months=Member.DEFAULT_XFAILED_PERIOD_IN_MONTHS),
                 },
             },
         }
@@ -260,8 +264,8 @@ class TestCli(TestCase):
         os.remove(f"{badges_folder_path}/{commu_success.short_uuid}")
 
 
-class TestUpdateStatus(TestCase):
-    """Tests for CliMembers.update_status"""
+class UpdateStatusTestCase(TestCase):
+    """Shared setup for the CliMembers.update_status tests"""
 
     def setUp(self) -> None:
         self.path = Path(tempfile.mkdtemp())
@@ -302,6 +306,10 @@ class TestUpdateStatus(TestCase):
         member = self.add_member(**kwargs)
         self.cli_members.update_status()
         return self.cli_members.dao[member.name_id].status
+
+
+class TestUpdateStatus(UpdateStatusTestCase):
+    """Tests for CliMembers.update_status"""
 
     def test_very_early_project(self):
         """A repository younger than 3 months is a "Very Early Project" """
@@ -362,6 +370,77 @@ class TestUpdateStatus(TestCase):
             self.status_after_update(months_old=2, status="Alumni"), "Alumni"
         )
 
+    def test_early_projects_share_one_table(self):
+        """Both early statuses are listed in a single docs/assets/early-projects.md table"""
+        self.add_member(months_old=2)
+        self.add_member(months_old=10)
+        self.add_member(months_old=30)
+        self.cli_members.update_status()
+
+        # pylint: disable=protected-access
+        projects = self.cli_members._all_projects_classifications("status")["status"]
+        self.cli_members.update_assets_status(projects)
+
+        table = (self.path / "docs" / "assets" / "early-projects.md").read_text()
+        self.assertIn("There are 2 projects with these statuses", table)
+        self.assertIn("| Project | Status | Repository created | Age (months) |", table)
+        # youngest project first
+        statuses = [
+            line.split("|")[2].strip()
+            for line in table.splitlines()
+            if line.strip().startswith("| [")
+        ]
+        self.assertEqual(statuses, ["Very Early Project", "Early Project"])
+        self.assertFalse((self.path / "docs" / "assets" / "early-project.md").exists())
+
+
+class TestUpdateStatusXfails(UpdateStatusTestCase):
+    """An explained check up (check.xfailed) does not affect the status of a project,
+    unless the explanation expired (check.xfailed_until)"""
+
+    def member_with_xfail(self, **xfail_kwargs):
+        """A member failing check up 001 since yesterday, with an explanation for it"""
+        member = self.add_member()
+        member.checks = {
+            "001": CheckData(
+                "001",
+                since=date.today() - timedelta(days=1),
+                xfailed="the license is fine",
+                **xfail_kwargs,
+            )
+        }
+        self.cli_members.dao.write(member)
+        return member
+
+    def test_valid_xfail_does_not_affect_the_status(self):
+        """An explained check up, still within its expiration date, is ignored"""
+        member = self.member_with_xfail(xfailed_until=date.today() + timedelta(days=30))
+        self.cli_members.update_status()
+        self.assertIsNone(self.cli_members.dao[member.name_id].status)
+
+    def test_xfail_expiring_today_does_not_affect_the_status(self):
+        """The explanation is valid during the whole xfailed_until day"""
+        member = self.member_with_xfail(xfailed_until=date.today())
+        self.cli_members.update_status()
+        self.assertIsNone(self.cli_members.dao[member.name_id].status)
+
+    def test_xfail_without_expiration_does_not_affect_the_status(self):
+        """An explanation without an expiration date is ignored forever"""
+        member = self.member_with_xfail()
+        self.cli_members.update_status()
+        self.assertIsNone(self.cli_members.dao[member.name_id].status)
+
+    def test_expired_xfail_affects_the_status(self):
+        """Once the explanation expired, the check up counts for the status again"""
+        member = self.member_with_xfail(xfailed_until=date.today() - timedelta(days=1))
+        self.cli_members.update_status()
+        self.assertEqual(self.cli_members.dao[member.name_id].status, "Alumni")
+
+
+class TestUpdateStatusCheckups(UpdateStatusTestCase):
+    """A failing check up, and how much of its cure period is left,
+    decides between "Under revision" and "Alumni"."""
+
     def test_no_alumni_postpones_the_retirement(self):
         """With no_alumni, an expired cure period keeps the project "Under revision" """
         member = self.add_member()
@@ -395,26 +474,3 @@ class TestUpdateStatus(TestCase):
             self.cli_members.dao[member.name_id].status,
             "Under revision",
         )
-
-    def test_early_projects_share_one_table(self):
-        """Both early statuses are listed in a single docs/assets/early-projects.md table"""
-        self.add_member(months_old=2)
-        self.add_member(months_old=10)
-        self.add_member(months_old=30)
-        self.cli_members.update_status()
-
-        # pylint: disable=protected-access
-        projects = self.cli_members._all_projects_classifications("status")["status"]
-        self.cli_members.update_assets_status(projects)
-
-        table = (self.path / "docs" / "assets" / "early-projects.md").read_text()
-        self.assertIn("There are 2 projects with these statuses", table)
-        self.assertIn("| Project | Status | Repository created | Age (months) |", table)
-        # youngest project first
-        statuses = [
-            line.split("|")[2].strip()
-            for line in table.splitlines()
-            if line.strip().startswith("| [")
-        ]
-        self.assertEqual(statuses, ["Very Early Project", "Early Project"])
-        self.assertFalse((self.path / "docs" / "assets" / "early-project.md").exists())

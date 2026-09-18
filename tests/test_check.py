@@ -14,6 +14,7 @@
 
 import os
 import tomllib
+from datetime import date, timedelta
 from unittest import TestCase
 from unittest.mock import patch
 import pytest
@@ -210,3 +211,55 @@ class TestSourceBasedCheckData(TestCase):
         self.assertIsNone(getattr(check, "checker", None))
         with self.assertRaises(AttributeError):
             check.checker  # pylint: disable=pointless-statement
+
+
+class TestXfailedExpiration(TestCase):
+    """Tests for the expiration date of an xfail explanation (check.xfailed_until)"""
+
+    reason = "This project does not need to agree the CoC"
+
+    def check(self, xfailed_until=None, xfailed=reason):
+        """A CheckData with an explanation that expires on `xfailed_until`"""
+        return CheckData("COC", xfailed=xfailed, xfailed_until=xfailed_until)
+
+    def test_no_expiration(self):
+        """An explanation without xfailed_until never expires"""
+        check = self.check()
+        self.assertIsNone(check.xfailed_until)
+        self.assertFalse(check.xfailed_expired)
+        self.assertTrue(check.xfail_applies)
+        self.assertIsNone(check.days_until_xfailed_expires)
+
+    def test_future_expiration(self):
+        """An explanation that expires in the future still applies"""
+        check = self.check(CheckData.today + timedelta(days=30))
+        self.assertFalse(check.xfailed_expired)
+        self.assertTrue(check.xfail_applies)
+        self.assertEqual(check.days_until_xfailed_expires, 30)
+
+    def test_expires_today(self):
+        """The explanation is valid during the whole xfailed_until day"""
+        check = self.check(CheckData.today)
+        self.assertFalse(check.xfailed_expired)
+        self.assertTrue(check.xfail_applies)
+        self.assertEqual(check.days_until_xfailed_expires, 0)
+
+    def test_past_expiration(self):
+        """Once xfailed_until has passed, the explanation does not apply anymore"""
+        check = self.check(CheckData.today - timedelta(days=1))
+        self.assertTrue(check.xfailed_expired)
+        self.assertFalse(check.xfail_applies)
+        self.assertEqual(check.days_until_xfailed_expires, -1)
+
+    def test_no_xfailed(self):
+        """A check up without an explanation is never excused, expiration or not"""
+        self.assertFalse(self.check(xfailed=None).xfail_applies)
+        self.assertFalse(
+            self.check(CheckData.today + timedelta(days=30), xfailed=None).xfail_applies
+        )
+
+    def test_expiration_is_parsed(self):
+        """xfailed_until is normalized to a date and survives the round trip to a dict"""
+        check = self.check("2027-01-31")
+        self.assertEqual(check.xfailed_until, date(2027, 1, 31))
+        self.assertEqual(check.to_dict()["xfailed_until"], date(2027, 1, 31))
