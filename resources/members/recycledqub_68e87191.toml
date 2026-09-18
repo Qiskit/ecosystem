@@ -15,3 +15,15 @@ documentation = "https://github.com/CaMaLabs/RecycledQubitRegisters/tree/main/do
 packages = []
 uuid = "68e87191-fd1c-46d7-ba88-b8bcc3a67c20"
 maturity = "experimental"
+status = "Very Early Project"
+
+[github]
+url = "https://github.com/CaMaLabs/RecycledQubitRegisters"
+owner = "CaMaLabs"
+repo = "RecycledQubitRegisters"
+stars = 1
+license = "Apache-2.0"
+description = "Dynamic phase-register recycling, QPE/Shor hardware benchmarks, and calibration-aware placement with Qiskit."
+created_at = 2026-09-14
+last_commit = 2026-09-18
+last_activity = 2026-09-18

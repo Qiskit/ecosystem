@@ -80,6 +80,7 @@ class CheckData(JsonSerializable):
         self,
         id_: str,
         xfailed=None,
+        xfailed_until=None,
         since=None,
         source=None,
         details=None,
@@ -88,6 +89,7 @@ class CheckData(JsonSerializable):
     ):
         self.id = id_
         self.xfailed = xfailed
+        self.xfailed_until = parse_date(xfailed_until)
         self.since = parse_date(since)
         self.source: str | None = source
         self.details = details
@@ -103,6 +105,31 @@ class CheckData(JsonSerializable):
     def days_since_failure(self):
         """Returns integer with today-self.since"""
         return (CheckData.today - self.since).days
+
+    @property
+    def xfailed_expired(self):
+        """True if `self.xfailed_until` is in the past.
+
+        An `self.xfailed` explanation without `self.xfailed_until` never expires."""
+        if self.xfailed_until is None:
+            return False
+        return CheckData.today > self.xfailed_until
+
+    @property
+    def xfail_applies(self):
+        """True if there is an explanation for the failure and it has not expired yet.
+
+        This is the question to ask before honoring `self.xfailed`: an expired explanation
+        does not excuse the check up anymore."""
+        return bool(self.xfailed) and not self.xfailed_expired
+
+    @property
+    def days_until_xfailed_expires(self):
+        """Days left before `self.xfailed` stops applying.
+        None if the explanation does not expire."""
+        if self.xfailed_until is None:
+            return None
+        return (self.xfailed_until - CheckData.today).days
 
     @property
     def importance(self):
@@ -164,7 +191,7 @@ class CheckData(JsonSerializable):
         that the situation described in `self.details` is solved.
         """
         # what is added to self.details when the check up source issue is closed
-        SOURCE_CLOSED_DETAILS = {
+        source_closed_details = {
             "completed": "the source issue is closed as completed",
             "not_planned": "the source issue is closed as not planned",
             None: "the source issue is closed",
@@ -174,11 +201,11 @@ class CheckData(JsonSerializable):
         issue = request_json(self.source_api_url)
         annotation = None
         if issue["state"] != "open":
-            annotation = SOURCE_CLOSED_DETAILS.get(
-                issue.get("state_reason"), SOURCE_CLOSED_DETAILS[None]
+            annotation = source_closed_details.get(
+                issue.get("state_reason"), source_closed_details[None]
             )
         details = self.details or ""
-        for known_annotation in SOURCE_CLOSED_DETAILS.values():
+        for known_annotation in source_closed_details.values():
             # drop a previous annotation, so they do not pile up on every run
             # and they do not survive the issue being reopened
             details = details.replace(f" ({known_annotation})", "")
