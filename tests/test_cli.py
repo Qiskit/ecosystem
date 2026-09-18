@@ -301,11 +301,15 @@ class UpdateStatusTestCase(TestCase):
         self.cli_members.dao.write(member)
         return member
 
-    def status_after_update(self, **kwargs):
+    def status_after_update(self, exclude=None, **kwargs):
         """Adds a member, runs update_status, and returns the resulting status"""
         member = self.add_member(**kwargs)
-        self.cli_members.update_status()
+        self.cli_members.update_status(exclude=exclude)
         return self.cli_members.dao[member.name_id].status
+
+    # the two statuses that are not derived here, so every caller that updates every
+    # member excludes them. See `CliMembers.update_status`
+    GOVERNED_ELSEWHERE = ("qiskit-project", "alumni")
 
 
 class TestUpdateStatus(UpdateStatusTestCase):
@@ -360,14 +364,19 @@ class TestUpdateStatus(UpdateStatusTestCase):
     def test_qiskit_project_is_not_updated(self):
         """ "Qiskit Project" is governed differently, so it is not age-derived"""
         self.assertEqual(
-            self.status_after_update(months_old=2, status="Qiskit Project"),
+            self.status_after_update(
+                months_old=2, status="Qiskit Project", exclude=self.GOVERNED_ELSEWHERE
+            ),
             "Qiskit Project",
         )
 
     def test_alumni_is_not_updated(self):
         """Alumni projects stay alumni, no matter how young they are"""
         self.assertEqual(
-            self.status_after_update(months_old=2, status="Alumni"), "Alumni"
+            self.status_after_update(
+                months_old=2, status="Alumni", exclude=self.GOVERNED_ELSEWHERE
+            ),
+            "Alumni",
         )
 
     def test_early_projects_share_one_table(self):
@@ -441,21 +450,8 @@ class TestUpdateStatusCheckups(UpdateStatusTestCase):
     """A failing check up, and how much of its cure period is left,
     decides between "Under revision" and "Alumni"."""
 
-    def test_no_alumni_postpones_the_retirement(self):
-        """With no_alumni, an expired cure period keeps the project "Under revision" """
-        member = self.add_member()
-        member.checks = {
-            "001": CheckData("001", since=date.today() - timedelta(days=1))
-        }
-        self.cli_members.dao.write(member)
-        self.cli_members.update_status(no_alumni=True)
-        self.assertEqual(
-            self.cli_members.dao[member.name_id].status,
-            "Under revision",
-        )
-
     def test_expired_cure_period_is_alumni(self):
-        """Without no_alumni, an expired cure period moves the project to "Alumni" """
+        """An expired cure period moves the project to "Alumni" """
         member = self.add_member()
         member.checks = {
             "001": CheckData("001", since=date.today() - timedelta(days=1))
@@ -474,3 +470,154 @@ class TestUpdateStatusCheckups(UpdateStatusTestCase):
             self.cli_members.dao[member.name_id].status,
             "Under revision",
         )
+
+
+class TestUpdateStatusInfiniteCurePeriod(UpdateStatusTestCase):
+    """A check up with a negative cure_period_in_days ([P10] overrides its importance
+    level with -1) keeps the project "Under revision" forever, but never retires it."""
+
+    def status_with_p10_failing_since(self, days_ago):
+        """Adds a member failing [P10] since `days_ago` days ago and updates its status"""
+        member = self.add_member()
+        member.checks = {
+            "P10": CheckData("P10", since=date.today() - timedelta(days=days_ago))
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status()
+        return self.cli_members.dao[member.name_id].status
+
+    def test_fresh_failure_is_under_revision(self):
+        """The check up is pending, like any other"""
+        self.assertEqual(self.status_with_p10_failing_since(1), "Under revision")
+
+    def test_old_failure_is_still_not_alumni(self):
+        """No matter how long it has been failing, the cure period never expires"""
+        self.assertEqual(self.status_with_p10_failing_since(10_000), "Under revision")
+
+    def test_the_importance_can_still_be_excluded(self):
+        """An infinite cure period does not override the exclusion by importance"""
+        member = self.add_member()
+        member.checks = {
+            "P10": CheckData("P10", since=date.today() - timedelta(days=10_000))
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status(exclude="recommendation")
+        self.assertIsNone(self.cli_members.dao[member.name_id].status)
+
+
+class TestUpdateStatusExclusions(UpdateStatusTestCase):
+    """`exclude` names check up importances, check up categories and membership statuses.
+    See `CliMembers.update_status`"""
+
+    # [G07] is a STRONG-RECOMMENDATION in the ACTIVITY category
+    # [P10] is a RECOMMENDATION in the BEST-PRACTICE category
+    def member_failing(self, checkup_id):
+        """A member failing `checkup_id` since yesterday"""
+        member = self.add_member()
+        member.checks = {
+            checkup_id: CheckData(checkup_id, since=date.today() - timedelta(days=1))
+        }
+        self.cli_members.dao.write(member)
+        return member
+
+    def status_with(self, checkup_id, exclude):
+        """The status of a member failing `checkup_id`, after excluding `exclude`"""
+        member = self.member_failing(checkup_id)
+        self.cli_members.update_status(exclude=exclude)
+        return self.cli_members.dao[member.name_id].status
+
+    def test_a_pending_checkup_is_under_revision(self):
+        """The baseline: nothing excluded"""
+        self.assertEqual(self.status_with("G07", exclude=None), "Under revision")
+
+    def test_exclude_by_importance(self):
+        """The importance of the check up"""
+        self.assertIsNone(self.status_with("G07", "strong-recommendation"))
+        self.assertEqual(self.status_with("G07", "recommendation"), "Under revision")
+
+    def test_exclude_by_category(self):
+        """The category of the check up"""
+        self.assertIsNone(self.status_with("G07", "activity"))
+        self.assertEqual(self.status_with("G07", "oss"), "Under revision")
+
+    def status_of_excluded(self, status, exclude):
+        """The status of a project already in `status` and failing [G07], after `exclude`"""
+        member = self.member_failing("G07")
+        self.cli_members.dao.update(member.name_id, status=status)
+        self.cli_members.update_status(exclude=exclude)
+        return self.cli_members.dao[member.name_id].status
+
+    def test_exclude_by_status(self):
+        """A membership status leaves the projects that are already in it alone"""
+        self.assertEqual(
+            self.status_of_excluded("Qiskit Project", "qiskit-project"),
+            "Qiskit Project",
+        )
+        self.assertEqual(self.status_of_excluded("Alumni", "alumni"), "Alumni")
+
+    def test_a_status_that_is_not_excluded_is_not_protected(self):
+        """This is why every caller that updates every member excludes these two: without
+        it, a pending check up drags them into "Under revision" like any other project
+        """
+        self.assertEqual(
+            self.status_of_excluded("Qiskit Project", None), "Under revision"
+        )
+        self.assertEqual(self.status_of_excluded("Alumni", None), "Under revision")
+
+    def test_several_values_at_once(self):
+        """What Fire hands over for `-e "a, b, c"`"""
+        self.assertIsNone(
+            self.status_with("P10", ("activity", "best-practice", "alumni"))
+        )
+
+    def test_the_values_are_slugified(self):
+        """`-e "Best Practice"`, `-e best_practice` and `-e BEST-PRACTICE` are the same"""
+        for spelling in ["Best Practice", "best_practice", "BEST-PRACTICE"]:
+            with self.subTest(exclude=spelling):
+                self.assertIsNone(self.status_with("P10", spelling))
+
+    def test_an_unknown_value_excludes_nothing(self):
+        """A value that names no importance, category or status is simply not a match"""
+        self.assertEqual(self.status_with("G07", "not-a-thing"), "Under revision")
+
+
+class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
+    """`exclude` leaves the projects already in one of those statuses alone.
+    See `CliMembers.update_checkups`"""
+
+    def checks_after_update(self, status, exclude):
+        """The check ups of a project in `status` after running [014] on it.
+
+        The member description is too long, so [014] is recorded unless the project is
+        left out of the run."""
+        member = self.add_member()
+        member.description = "banana " * 30
+        member.status = status
+        self.cli_members.dao.write(member)
+        with redirect_stdout(io.StringIO()):
+            self.cli_members.update_checkups(
+                checker="test_description.py::test_description_len_135", exclude=exclude
+            )
+        return set(self.cli_members.dao[member.name_id].checks)
+
+    def test_the_checkups_run_by_default(self):
+        """The baseline: nothing excluded"""
+        self.assertEqual(self.checks_after_update("Alumni", exclude=None), {"014"})
+
+    def test_an_excluded_status_is_left_alone(self):
+        """The usual call: alumni keep the check up data they were retired with"""
+        self.assertEqual(self.checks_after_update("Alumni", exclude="alumni"), set())
+
+    def test_another_status_is_not_affected(self):
+        """Only the excluded statuses are skipped"""
+        self.assertEqual(
+            self.checks_after_update("Under revision", exclude="alumni"), {"014"}
+        )
+
+    def test_the_values_are_slugified(self):
+        """`-e "Qiskit Project"` and `-e qiskit-project` are the same"""
+        for spelling in ["Qiskit Project", "qiskit-project", "QISKIT_PROJECT"]:
+            with self.subTest(exclude=spelling):
+                self.assertEqual(
+                    self.checks_after_update("Qiskit Project", spelling), set()
+                )

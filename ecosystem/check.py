@@ -13,15 +13,29 @@
 """Checks/Validations section."""
 
 import os
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import tomllib
+from slugify import slugify
 
 
 from .error_handling import EcosystemError
 from .serializable import JsonSerializable, parse_date
 from .request import URL, request_json
+
+
+def parse_exclusions(exclude) -> set[str]:
+    """The `exclude` argument of the CLI commands, as a set of slugs.
+
+    Fire hands over a tuple for `-e "a, b"` and a plain string for a single `-e a`, and the
+    values are slugified, so `-e BEST-PRACTICE`, `-e best_practice` and `-e "Best Practice"`
+    all name the same thing."""
+    if exclude is None:
+        return set()
+    if isinstance(exclude, str):
+        exclude = [exclude]
+    return {slugify(str(value)) for value in exclude}
 
 
 class ChecksToml:
@@ -39,6 +53,26 @@ class ChecksToml:
             data = tomllib.load(f)
         self._data = data
 
+    @property
+    def checkups(self):
+        """Every check up in checks.toml, as a dict id -> details"""
+        # the `importance` and `categories` entries are lists of definitions, not check ups
+        return {
+            id_: checkup
+            for id_, checkup in self._data.items()
+            if isinstance(checkup, dict)
+        }
+
+    @property
+    def importances(self):
+        """The importance levels, from the most to the least severe"""
+        return self._data["importance"]
+
+    @property
+    def categories(self):
+        """The check up categories"""
+        return self._data["categories"]
+
     def checkup(self, checkup_id):
         """Given an ID for a check, the details"""
         return self._data[checkup_id]
@@ -52,9 +86,7 @@ class ChecksToml:
 
     def id_by_pytest_node(self, node_id):
         """Given a PyTest node ID, find the test ID"""
-        for id_, checkup in self._data.items():
-            if not isinstance(checkup, dict):
-                continue
+        for id_, checkup in self.checkups.items():
             if checkup.get("checker") == node_id:
                 return id_
         raise AttributeError(f"nodeid {node_id} not found as a checker")
@@ -233,11 +265,11 @@ class CheckData(JsonSerializable):
 
     def importances(self):
         """Returns dict name->description with the possible importance values"""
-        return {i["name"]: i["description"] for i in self.checks_toml["importance"]}
+        return {i["name"]: i["description"] for i in self.checks_toml.importances}
 
     def categories(self):
         """Returns dict name->description with the categories"""
-        return {i["name"]: i["description"] for i in self.checks_toml["categories"]}
+        return {i["name"]: i["description"] for i in self.checks_toml.categories}
 
     @property
     def cure_period_in_days(self):
@@ -250,3 +282,31 @@ class CheckData(JsonSerializable):
         if "cure_period_in_days" in check_level:
             cure_period_in_days = check_level["cure_period_in_days"]
         return cure_period_in_days
+
+    @property
+    def cure_period_is_infinite(self):
+        """True if the cure period never runs out.
+
+        A negative `cure_period_in_days` (by convention, `-1`) means an infinite cure period:
+        the check up keeps being pending, but it never becomes a reason to retire the project.
+        To keep a check up from counting towards the membership status at all, exclude its
+        importance or its category instead (see `CliMembers.update_status`).
+        """
+        if self.cure_period_in_days is None:
+            return False
+        return self.cure_period_in_days < 0
+
+    @property
+    def cure_period_deadline(self):
+        """The last day the check up can be failing before the project has to be retired.
+        None if the cure period never runs out (see `self.cure_period_is_infinite`)."""
+        if self.cure_period_is_infinite or self.since is None:
+            return None
+        return self.since + timedelta(days=self.cure_period_in_days)
+
+    @property
+    def cure_period_expired(self):
+        """True if there is no time left to fix the check up."""
+        if self.cure_period_deadline is None:
+            return False
+        return CheckData.today > self.cure_period_deadline

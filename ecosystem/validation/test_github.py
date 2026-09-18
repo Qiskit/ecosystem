@@ -32,8 +32,8 @@ def skip_github(member):
 
 def test_G05(member):
     """GitHub repository is archived?"""
-    if hasattr(member, "status") and member.status == "Unmaintained":
-        pytest.skip("`Unmaintained` projects are exempt from activity checks")
+    if member.unmaintained:
+        pytest.skip("projects with no maintenance expectations are exempt")
     else:
         assert not (
             hasattr(member.github, "archived") and member.github.archived
@@ -42,8 +42,8 @@ def test_G05(member):
 
 def test_G06(member):
     """Have maintainer activity within the last 6 months"""
-    if hasattr(member, "status") and member.status == "Unmaintained":
-        pytest.skip("`Unmaintained` projects are exempt from activity checks")
+    if member.unmaintained:
+        pytest.skip("projects with no maintenance expectations are exempt")
 
     last_activity = member.github.last_activity
     if last_activity is None:
@@ -60,8 +60,8 @@ def test_G06(member):
 
 def test_G07(member):
     """Have last commit within the last 12 months"""
-    if hasattr(member, "status") and member.status == "Unmaintained":
-        pytest.skip("`Unmaintained` projects are exempt from activity checks")
+    if member.unmaintained:
+        pytest.skip("projects with no maintenance expectations are exempt")
 
     if member.age_in_months is None:
         pytest.skip("member.age_in_months is None")
@@ -79,11 +79,13 @@ def test_G07(member):
 def test_G12(member):
     """Have last commit within the last (age * 2/3) months.
     See https://github.com/orgs/Qiskit/discussions/58"""
-    if member.status not in ["Early Project", "Very Early Project"]:
-        pytest.skip("member.status is not (Very) Early Project")
-
     if member.age_in_months is None:
         pytest.skip("member.age_in_months is None")
+
+    if not member.early:
+        pytest.skip(
+            f"the repository is {member.age_in_months} months old, not young anymore"
+        )
 
     relative = relativedelta(date.today(), member.github.last_commit)
     months_difference = (relative.years * 12) + relative.months
@@ -97,7 +99,7 @@ def test_G12(member):
 
 def test_G08(member):
     """unmaintained projects should archive their GitHub repository"""
-    if member.maturity in ["deprecated", "unmaintained"]:
+    if member.unmaintained:
         assert (
             member.github.archived
         ), "unsupported project should have an archived GitHub org"
@@ -135,8 +137,5 @@ def test_G11(member):
     archived = member.github.archived if hasattr(member.github, "archived") else False
     if archived:
         pytest.skip("project repository is already archived")
-    if member.maturity in ["deprecated", "unmaintained", "as-is"]:
-        assert archived, (
-            f"Unsupported project (`member.maturity == {member.maturity}`"
-            "should have an archived GitHub repository"
-        )
+    if member.unmaintained:
+        assert archived, "Unmaintained project should live in an archived repository"

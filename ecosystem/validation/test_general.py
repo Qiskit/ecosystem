@@ -36,7 +36,7 @@ def must_pass_all_requierements(requierements, failed_checkups, msg):
         if failure not in requierements:
             continue
         checkup = CheckData.from_report(report)
-        if checkup.cure_period_in_days < checkup.days_since_failure:
+        if checkup.cure_period_expired:
             fail.append(checkup)
         else:
             skip.append(checkup)

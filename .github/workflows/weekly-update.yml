@@ -30,14 +30,11 @@ jobs:
       with:
         version: "0.10.0"
 
-    - name: Update status (so the check ups see a fresh status)
-      run: python manager.py members update_status -e recommendation --no_alumni
-
     - name: Update checkups
-      run: python manager.py members update_checkups
+      run: python manager.py members update_checkups -e alumni
 
     - name: Update status
-      run: python manager.py members update_status -e recommendation
+      run: python manager.py members update_status -e "recommendation, alumni, qiskit-project"
 
     - name: Run taplo formatter on TOML files
       run: taplo fmt resources/*.toml resources/members/*.toml

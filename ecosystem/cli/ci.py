@@ -19,6 +19,7 @@ from pathlib import Path
 
 from slugify import slugify
 
+from ecosystem.check import parse_exclusions
 from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
@@ -89,9 +90,9 @@ class CliCI:
 
         Args:
             member_id: loads the file ../resources/*_<member_id>.toml
-            exclude: like `-e "recommendation, legacy, best_practice"`. They can be category or
-             importance. Excluding here means, "do not exit with error if a failure in this
-             category".
+            exclude: like `-e "recommendation, legacy, best_practice"`. They can be a check up
+             category or importance. Excluding here means, "do not exit with error if a failure
+             in this category". The values are slugified, like in `CliMembers.update_status`.
 
         Returns:
             None (it has no side-effect)
@@ -100,11 +101,7 @@ class CliCI:
         resources_dir = Path(
             resources_dir or env_resources_dir or (Path.cwd() / "resources")
         )
-        exclude_set = (
-            {slugify(e) for e in exclude} if isinstance(exclude, tuple) else set()
-        )
-        if isinstance(exclude, str):
-            exclude_set.add(exclude)
+        exclude_set = parse_exclusions(exclude)
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             report = validate_member(member, verbose_level="-v")
