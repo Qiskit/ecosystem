@@ -453,51 +453,25 @@ class CliMembers:
             if project.status == "Alumni" and not update_all:
                 # "Alumni" projects are not updated in their checkups
                 continue
+            expired_xfails = {
+                checkup_id: checkup
+                for checkup_id, checkup in project.checks.items()
+                if checkup.xfailed and checkup.xfailed_expired
+            }
             project.update_checkups(checker=checker)
+            for checkup_id, checkup in expired_xfails.items():
+                self.logger.info(
+                    "⌛ %s (%s) checkup %s: the explanation expired on %s, "
+                    "so it is checked as a regular one from now on (%s)",
+                    project.name,
+                    project.name_id,
+                    checkup_id,
+                    checkup.xfailed_until,
+                    checkup.xfailed,
+                )
             if project.checks:
                 for checkup_id, checkup in project.checks.items():
-                    if checkup.xfailed:
-                        self.logger.info(
-                            "☑️ %s expected to fail checkup %s: %s ",
-                            project.name,
-                            checkup_id,
-                            checkup.xfailed,
-                        )
-                        continue
-
-                    cure_period_str = (
-                        str(checkup.cure_period_in_days)
-                        if checkup.cure_period_in_days >= 0
-                        else "∞"
-                    )
-                    if checkup.cure_period_in_days < 0:
-                        left_period_str = "∞"
-                    else:
-                        left_period_int = (
-                            checkup.cure_period_in_days - checkup.days_since_failure
-                        )
-                        if left_period_int < 0:
-                            left_period_str = "no"
-                        else:
-                            left_period_str = str(
-                                checkup.cure_period_in_days - checkup.days_since_failure
-                            )
-
-                    for_x_days = (
-                        f"for {checkup.days_since_failure} days, so "
-                        f"{left_period_str} days left in the cure period"
-                        if checkup.days_since_failure != 0
-                        else "since today, "
-                        f"so {cure_period_str}-day cure period starts now"
-                    )
-                    self.logger.info(
-                        "%s %s (%s) failed checkup %s (%s)",
-                        "💣" if checkup.importance == "CRITICAL" else "❌",
-                        project.name,
-                        project.name_id,
-                        checkup_id,
-                        for_x_days,
-                    )
+                    self._log_checkup(project, checkup_id, checkup)
             else:
                 self.logger.info(
                     "✅ %s (%s) passed all the checkups",
@@ -505,6 +479,56 @@ class CliMembers:
                     project.name_id,
                 )
             self.dao.update(project.name_id, checks=project.checks)
+
+    def _log_checkup(self, project, checkup_id, checkup):
+        """Logs a check up that a project is not passing: either it is expected to fail
+        (and until when the explanation for it is valid) or how much of the cure period is left.
+        """
+        if checkup.xfailed:
+            if checkup.xfailed_until is None:
+                expiration = "the explanation does not expire"
+            else:
+                expiration = (
+                    f"the explanation expires on {checkup.xfailed_until}, "
+                    f"in {checkup.days_until_xfailed_expires} days"
+                )
+            self.logger.info(
+                "☑️ %s expected to fail checkup %s: %s (%s)",
+                project.name,
+                checkup_id,
+                checkup.xfailed,
+                expiration,
+            )
+            return
+
+        cure_period_str = (
+            str(checkup.cure_period_in_days)
+            if checkup.cure_period_in_days >= 0
+            else "∞"
+        )
+        if checkup.cure_period_in_days < 0:
+            left_period_str = "∞"
+        else:
+            left_period_int = checkup.cure_period_in_days - checkup.days_since_failure
+            if left_period_int < 0:
+                left_period_str = "no"
+            else:
+                left_period_str = str(left_period_int)
+
+        for_x_days = (
+            f"for {checkup.days_since_failure} days, so "
+            f"{left_period_str} days left in the cure period"
+            if checkup.days_since_failure != 0
+            else f"since today, so {cure_period_str}-day cure period starts now"
+        )
+        self.logger.info(
+            "%s %s (%s) failed checkup %s (%s)",
+            "💣" if checkup.importance == "CRITICAL" else "❌",
+            project.name,
+            project.name_id,
+            checkup_id,
+            for_x_days,
+        )
 
     def update_status(  # pylint: disable=too-many-branches
         self, name=None, update_all=False, exclude: str = None, no_alumni=False
@@ -556,8 +580,8 @@ class CliMembers:
                 project.status = None
 
             for check in project.checks.values():
-                if check.xfailed:
-                    # Xfails do not affect the status
+                if check.xfail_applies:
+                    # Xfails do not affect the status, unless their explanation expired
                     continue
                 if check.importance.lower() in exclude_set:
                     # If the importance is in the exclude set, ignore it.
