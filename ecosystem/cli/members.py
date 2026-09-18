@@ -12,7 +12,6 @@
 
 """CliMembers class for controlling all CLI functions."""
 
-from datetime import date, timedelta
 import json
 import tomllib
 import os
@@ -22,6 +21,7 @@ from pathlib import Path
 from jsonpath import findall, query
 from slugify import slugify
 
+from ecosystem.check import ChecksToml, parse_exclusions
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
 from ecosystem.error_handling import logger
@@ -37,14 +37,6 @@ class CliMembers:
     Ex: `python manager.py members update_badge`
     """
 
-    # Age (in months, based on member.github.created_at) under which a regular
-    # project gets an age-derived status. See docs/status.md
-    VERY_EARLY_PROJECT_MONTHS = 3
-    EARLY_PROJECT_MONTHS = 12
-
-    # member.maturity values that make a project "Unmaintained". See docs/status.md
-    UNMAINTAINED_MATURITY = ["as-is", "deprecated"]
-
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
@@ -54,6 +46,7 @@ class CliMembers:
         self.classifications_toml = ClassificationsToml(
             resources_dir=self.resources_dir
         )
+        self.checks_toml = ChecksToml(resources_dir=self.resources_dir)
         self.dao = DAO(path=self.resources_dir)
         self.logger = logger
 
@@ -180,6 +173,96 @@ class CliMembers:
         self.update_assets_categories(projects_per_classification["category"])
         self.update_assets_labels(projects_per_classification["labels"])
         self.update_assets_interfaces(projects_per_classification["interfaces"])
+        self.update_assets_checkups()
+
+    def update_assets_checkups(self):
+        """Updates the check up tables in docs/assets/ from resources/checks.toml.
+
+        Three fragments are generated, so the documentation never drifts from checks.toml:
+        `checkups.md` (one row per check up), `checkup-importance.md` (the importance levels
+        and their default cure period) and `checkup-categories.md` (the categories).
+        """
+        assets_dir = Path(self.current_dir, "docs", "assets")
+        assets_dir.mkdir(parents=True, exist_ok=True)
+
+        def cell(text):
+            """A string that is safe to use inside a Markdown table cell"""
+            return str(text).replace("|", "\\|").replace("\n", " ")
+
+        def tooltip(text):
+            """A string that is safe to use inside a Markdown attr_list title="..." """
+            return cell(text).replace('"', "&quot;")
+
+        # one row per check up
+        checkups = dict(sorted(self.checks_toml.checkups.items()))
+        lines = [
+            "| id | check up | applies to | category | importance | cure period |",
+            "| :---: | --- | --- | :---: | :---: | :---: |",
+        ]
+        for id_, checkup in checkups.items():
+            importance = checkup.get("importance")
+            importance_level = (
+                self.checks_toml.importance(importance) if importance else {}
+            )
+            icon = importance_level.get("icon", "")
+            importance_description = importance_level.get("description", "")
+            lines.append(
+                f'| <span id="{id_}">`[{id_}]`</span>'
+                f' | {cell(checkup["title"])}<br>{cell(checkup["description"])}'
+                f' | {cell(checkup.get("applies_to", "all"))}'
+                f' | [{cell(checkup["category"])}](#{slugify(checkup["category"])})'
+                f' | :{icon}:{{ title="{tooltip(importance_description)}" }}'
+                f" [{cell(importance)}](#{slugify(importance)})"
+                f" | {self._cure_period_cell(id_)} |"
+            )
+        Path(assets_dir, "checkups.md").write_text("\n".join(lines) + "\n")
+
+        # the importance levels
+        lines = [
+            "| importance | description | cure period |",
+            "| :---: | --- | :---: |",
+        ]
+        for importance in self.checks_toml.importances:
+            icon = importance.get("icon", "")
+            lines.append(
+                f'| :{icon}: <span id="{slugify(importance["name"])}">'
+                f'**{cell(importance["name"])}**</span>'
+                f' | {cell(importance["description"])}'
+                f' | {self._cure_period_str(importance.get("cure_period_in_days"))} |'
+            )
+        Path(assets_dir, "checkup-importance.md").write_text("\n".join(lines) + "\n")
+
+        # the categories
+        lines = ["| category | description |", "| :---: | --- |"]
+        for category in self.checks_toml.categories:
+            lines.append(
+                f'| <span id="{slugify(category["name"])}">**{cell(category["name"])}**</span>'
+                f' | {cell(category["description"])} |'
+            )
+        Path(assets_dir, "checkup-categories.md").write_text("\n".join(lines) + "\n")
+
+    @staticmethod
+    def _cure_period_str(days):
+        """A `cure_period_in_days` value as a table cell"""
+        if days is None:
+            return "not defined"
+        if days < 0:
+            return "no deadline"
+        if days == 0:
+            return "none"
+        return f"{days} days"
+
+    def _cure_period_cell(self, checkup_id):
+        """The effective cure period of a check up, noting when it overrides its importance"""
+        checkup = self.checks_toml.checkup(checkup_id)
+        if "cure_period_in_days" not in checkup:
+            importance = checkup.get("importance")
+            if not importance:
+                return "not defined"
+            return self._cure_period_str(
+                self.checks_toml.importance(importance).get("cure_period_in_days")
+            )
+        return f'{self._cure_period_str(checkup["cure_period_in_days"])} \u26a0\ufe0f'
 
     def _all_projects_classifications(self, *classifications):
         """
@@ -440,18 +523,23 @@ class CliMembers:
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
 
-    def update_checkups(self, name=None, checker=None, update_all=False):
+    def update_checkups(self, name=None, checker=None, exclude: str = None):
         """
         Updates checkups data.
         Args:
             name: If not given, runs on all the members. Otherwise, all the members with `name_id`
              that contains <name> as substring are checked.
             checker: It can be something like test_classifications.py::test_004 or nothing
-            update_all: If False (default) runs on all project. Otherwise Alumni are excluded.
+            exclude: comma-separated list of membership statuses to leave out, like `-e alumni`.
+              Projects already in one of them keep the check up data they have. The values are
+              slugified, as in `update_status`, but only statuses have an effect here: this
+              command is what runs the check ups, so an importance or a category has nothing
+              to exclude yet.
         """
+        exclude_set = parse_exclusions(exclude)
         for project in self.dao.get_all(name):
-            if project.status == "Alumni" and not update_all:
-                # "Alumni" projects are not updated in their checkups
+            if project.status and slugify(project.status) in exclude_set:
+                # this membership status is excluded, so the project is left alone
                 continue
             expired_xfails = {
                 checkup_id: checkup
@@ -502,11 +590,9 @@ class CliMembers:
             return
 
         cure_period_str = (
-            str(checkup.cure_period_in_days)
-            if checkup.cure_period_in_days >= 0
-            else "∞"
+            "∞" if checkup.cure_period_is_infinite else str(checkup.cure_period_in_days)
         )
-        if checkup.cure_period_in_days < 0:
+        if checkup.cure_period_is_infinite:
             left_period_str = "∞"
         else:
             left_period_int = checkup.cure_period_in_days - checkup.days_since_failure
@@ -531,7 +617,7 @@ class CliMembers:
         )
 
     def update_status(  # pylint: disable=too-many-branches
-        self, name=None, update_all=False, exclude: str = None, no_alumni=False
+        self, name=None, exclude: str = None
     ):
         """
         Check if a project should be moved to (in order of precedence):
@@ -542,32 +628,24 @@ class CliMembers:
             `as-is` or `deprecated`) and has no pending check up
         See docs/status.md
 
-        Only regular projects (the default status) are updated:
-          - "Qiskit Project" are governed differently.
-          - "Alumni" projects stay alumni.
-
         Args:
             name: project to udpate. None (default) if all of them.
-            update_all: Updates all the projects. If False (default) will not
-              update "Qiskit Project" or "Alumni"
-            exclude: comma-separated list of importances to exclude.
-              Eg: `-e "recommendation, legacy, best_practice"`. Excluding here means, "do not update
-              the status because the existance of a check up with this importance".
-            no_alumni: If True, an expired cure period does not move the project to "Alumni",
-              it stays "Under revision". Used when this command runs *before* `update_checkups`,
-              since the check up data is still the one from the previous run and the project
-              might have cured the check up already.
+            exclude: comma-separated list of things to leave out, like
+              `-e "recommendation, legacy, alumni"`. Each value is either
+
+                - a check up importance or category, meaning "do not update the status because
+                  of a check up of this importance or category", or
+                - a membership status, meaning "leave the projects that are already in this
+                  status alone". `-e "qiskit-project, alumni"` is the usual pair: "Qiskit
+                  Project" is governed differently, and "Alumni" projects stay alumni.
+
+              The values are slugified, so `-e "Best Practice"` and `-e best_practice` are
+              the same thing.
         """
-        exclude_set = (
-            {slugify(e) for e in exclude} if isinstance(exclude, tuple) else set()
-        )
-        if isinstance(exclude, str):
-            exclude_set.add(exclude)
+        exclude_set = parse_exclusions(exclude)
         for project in self.dao.get_all(name):
-            if project.status in ["Qiskit Project", "Alumni"] and not update_all:
-                # "Qiskit Project" status is governed differently,
-                # not via checkups in Qiskit Ecosystem.
-                # "Alumni" projects stay alumni
+            if project.status and slugify(project.status) in exclude_set:
+                # this membership status is excluded, so the project is left alone
                 continue
 
             if project.status in [
@@ -583,32 +661,27 @@ class CliMembers:
                 if check.xfail_applies:
                     # Xfails do not affect the status, unless their explanation expired
                     continue
-                if check.importance.lower() in exclude_set:
-                    # If the importance is in the exclude set, ignore it.
+                if exclude_set & {slugify(check.importance), slugify(check.category)}:
+                    # the importance or the category of the check up is excluded, so it
+                    # does not count towards the status
                     continue
-                if check.cure_period_in_days is False:
-                    # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
-                    continue
-                deadline = check.since + timedelta(days=check.cure_period_in_days)
-                if date.today() > deadline and not no_alumni:
-                    # deadline passed
+                if check.cure_period_expired:
+                    # deadline passed. An infinite cure period (a negative
+                    # cure_period_in_days) never expires, so it never gets here
                     project.status = "Alumni"
                     break
-                # still in cure period (or the retirement is postponed by no_alumni)
+                # still in cure period
                 project.status = "Under revision"
 
-            if (
-                project.status is None
-                and project.maturity in self.UNMAINTAINED_MATURITY
-            ):
+            if project.status is None and project.unmaintained:
                 # the project declares no maintenance expectations
                 project.status = "Unmaintained"
 
-            if project.status is None and project.age_in_months is not None:
+            if project.status is None:
                 # no pending check up, so the status only depends on how old the repository is
-                if project.age_in_months < self.VERY_EARLY_PROJECT_MONTHS:
+                if project.very_early:
                     project.status = "Very Early Project"
-                elif project.age_in_months < self.EARLY_PROJECT_MONTHS:
+                elif project.early:
                     project.status = "Early Project"
 
             self.dao.update(project.name_id, status=project.status)

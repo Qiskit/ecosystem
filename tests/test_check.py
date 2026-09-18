@@ -263,3 +263,51 @@ class TestXfailedExpiration(TestCase):
         check = self.check("2027-01-31")
         self.assertEqual(check.xfailed_until, date(2027, 1, 31))
         self.assertEqual(check.to_dict()["xfailed_until"], date(2027, 1, 31))
+
+
+class TestCurePeriod(TestCase):
+    """Tests for the deadline a failing check up sets (check.cure_period_*)"""
+
+    # [001] is CRITICAL, so its cure period is 0 days
+    critical = "001"
+    # [PQ2] is IMPORTANT, so its cure period is the 90 days of that importance level
+    important = "PQ2"
+    # [P10] overrides the cure period of its importance level with -1
+    infinite = "P10"
+
+    @staticmethod
+    def check(id_, days_ago):
+        """A CheckData for the check up `id_`, failing since `days_ago` days ago"""
+        return CheckData(id_, since=CheckData.today - timedelta(days=days_ago))
+
+    def test_zero_days_expires_the_next_day(self):
+        """A cure period of 0 days lasts for the day the check up started failing"""
+        self.assertFalse(self.check(self.critical, 0).cure_period_expired)
+        self.assertTrue(self.check(self.critical, 1).cure_period_expired)
+
+    def test_deadline_is_since_plus_the_cure_period(self):
+        """The deadline does not move while the check up keeps failing"""
+        check = self.check(self.important, 10)
+        self.assertEqual(check.cure_period_in_days, 90)
+        self.assertEqual(check.cure_period_deadline, check.since + timedelta(days=90))
+        self.assertFalse(check.cure_period_is_infinite)
+        self.assertFalse(check.cure_period_expired)
+
+    def test_the_last_day_of_the_cure_period_is_not_expired(self):
+        """There is still time to fix it on the deadline itself"""
+        self.assertFalse(self.check(self.important, 90).cure_period_expired)
+        self.assertTrue(self.check(self.important, 91).cure_period_expired)
+
+    def test_negative_cure_period_is_infinite(self):
+        """A negative cure_period_in_days means the cure period never runs out"""
+        check = self.check(self.infinite, 10_000)
+        self.assertEqual(check.cure_period_in_days, -1)
+        self.assertTrue(check.cure_period_is_infinite)
+        self.assertIsNone(check.cure_period_deadline)
+        self.assertFalse(check.cure_period_expired)
+
+    def test_no_since_has_no_deadline(self):
+        """Without a `since` date there is nothing to count the cure period from"""
+        check = CheckData(self.important)
+        self.assertIsNone(check.cure_period_deadline)
+        self.assertFalse(check.cure_period_expired)

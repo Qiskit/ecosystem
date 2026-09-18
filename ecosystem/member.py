@@ -371,3 +371,27 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             return None
         relative = relativedelta(date.today(), created_at)
         return (relative.years * 12) + relative.months
+
+    @property
+    def unmaintained(self):
+        """True if the project declares no maintenance expectations.
+
+        This is what the `Unmaintained` status is derived from, but it is not the same thing:
+        `self.status` is masked by `Under revision` as soon as any check up is pending, so a
+        check up asking "is this project maintained?" has to use this instead of the status.
+        """
+        return self.maturity in ["as-is", "deprecated"]
+
+    @property
+    def early(self):
+        """True if the GitHub repository is younger than 12 months."""
+        if self.age_in_months is None:
+            return False
+        return self.age_in_months < 12
+
+    @property
+    def very_early(self):
+        """True if the GitHub repository is younger than 3 months"""
+        if self.age_in_months is None:
+            return False
+        return self.age_in_months < 3
