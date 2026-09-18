@@ -41,8 +41,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 776
-last_180_days_downloads = 4047
+last_month_downloads = 800
+last_180_days_downloads = 4053
 
 [pypi.qiskit-mcp-server]
 package_name = "qiskit-mcp-server"
@@ -61,8 +61,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 2175
-last_180_days_downloads = 10640
+last_month_downloads = 1979
+last_180_days_downloads = 10660
 
 [pypi.qiskit-docs-mcp-server]
 package_name = "qiskit-docs-mcp-server"
@@ -77,8 +77,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 578
-last_180_days_downloads = 2769
+last_month_downloads = 524
+last_180_days_downloads = 2757
 
 [pypi.qiskit-gym-mcp-server]
 package_name = "qiskit-gym-mcp-server"
@@ -97,8 +97,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 492
-last_180_days_downloads = 3256
+last_month_downloads = 461
+last_180_days_downloads = 3251
 
 [pypi.qiskit-ibm-runtime-mcp-server]
 package_name = "qiskit-ibm-runtime-mcp-server"
@@ -112,8 +112,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 1156
-last_180_days_downloads = 5960
+last_month_downloads = 1116
+last_180_days_downloads = 5951
 
 [pypi.qiskit-ibm-transpiler-mcp-server]
 package_name = "qiskit-ibm-transpiler-mcp-server"
@@ -127,8 +127,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 464
-last_180_days_downloads = 3584
+last_month_downloads = 428
+last_180_days_downloads = 3575
 
 [checks.P10]
 since = 2026-08-18
