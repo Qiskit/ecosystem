@@ -3,7 +3,7 @@ submission_number = 1172
 url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
 labels = ["error correction", "research", "circuit optimization"]
 interfaces = ["Rust"]
-category = "SDK"
+category = "Noise Management"
 reference_paper = "https://arxiv.org/abs/2506.03094"
 packages = [
   "https://crates.io/crates/bicycle_benchmark",
@@ -15,7 +15,6 @@ packages = [
 ]
 uuid = "bc3bf9db-9ea3-4621-a70a-bd862b85cad4"
 maturity = "experimental"
-status = "Early Project"
 
 [github]
 url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
@@ -28,7 +27,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
 last_commit = 2026-04-09
-last_activity = 2026-09-10
+last_activity = 2026-09-16
 
 [badge]
 url = "https://qisk.it/e-bc3bf9db"

@@ -173,11 +173,11 @@ category = "SUBMISSION"
 importance = "STRONG-RECOMMENDATION"
 
 [G05]
-title = "Archived GitHub repository should have `unmaintained` support"
+title = "Archived GitHub repository should declare no maintenance expectations"
 applies_to = "GitHub projects"
-affects = ['github.archived']
+affects = ['github.archived', 'member.maturity']
 category = "ACTIVITY"
-description = "Projects on an archived GitHub repository should have `unmaintained` support (or `as-is`)."
+description = "Projects whose GitHub repository is archived should declare a `member.maturity` with no maintenance expectations (`as-is` or `deprecated`), which is what gives them the `Unmaintained` status. Projects that are already `Unmaintained` are exempt from this check up."
 importance = "CRITICAL"
 checker = "test_github.py::test_G05"
 
@@ -202,9 +202,9 @@ checker = "test_github.py::test_G07"
 [G08]
 title = "Unmaintained projects should be archived in GitHub repository"
 applies_to = "GitHub projects"
-affects = ['github.archived']
+affects = ['github.archived', 'member.maturity']
 category = "ACTIVITY"
-description = "Projects that are not maintained (ie. `member.support == unmaintained`) should archive their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
+description = "Projects that are not maintained (that is, `member.maturity` is `as-is` or `deprecated`) should archive their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
 importance = "RECOMMENDATION"
 checker = "test_github.py::test_G08"
 

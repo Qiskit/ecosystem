@@ -43,7 +43,10 @@ class ValidationReport:
     @property
     def xfails(self):
         return {
-            checkdata.checker: checkdata.xfailed for checkdata in self._member.xfails
+            checkdata.checker: checkdata.xfailed
+            for checkdata in self._member.xfails
+            # a source-based check up has no checker: it is not the result of a test
+            if getattr(checkdata, "checker", None)
         }
 
     @property
