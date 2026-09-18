@@ -6,7 +6,6 @@ contact_info = "jgaralo@unex.es"
 affiliations = "University of Extremadura, Spain"
 labels = ["research", "circuit optimization", "cloud service"]
 interfaces = ["Python"]
-website = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler"
 category = "Tooling"
 reference_paper = "https://www.worldscientific.com/doi/10.1142/S0218194024410018"
 packages = []
@@ -55,8 +54,3 @@ since = 2026-07-06
 details = "member.github.license not detected"
 discussion = "https://github.com/Qcraft-UEx/QCRAFT-AutoScheduler/issues/3"
 importance = "RECOMMENDATION"
-
-[checks.027]
-since = 2026-07-23
-details = "The field `member.website` should not be the GitHub repository."
-importance = "STRONG-RECOMMENDATION"
