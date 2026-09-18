@@ -191,11 +191,11 @@ importance = "RECOMMENDATION"
 checker = "test_github.py::test_G06"
 
 [G07]
-title = "Have a commit within the last 18 months"
+title = "Have a commit within the last 12 months"
 applies_to = "GitHub projects"
 affects = ['member.github.last_commit']
 category = "ACTIVITY"
-description = "Projects available on GitHub should have commit activity within the last 18 months. This check does not apply to projects that have declared their support as as-is."
+description = "Projects available on GitHub should have commit activity within the last 12 months. This check does not apply to projects that have declared their support as as-is."
 importance = "STRONG-RECOMMENDATION"
 checker = "test_github.py::test_G07"
 
@@ -299,7 +299,7 @@ affects = ['member.pypi.*.requires_qiskit']
 category = "BEST-PRACTICE"
 description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected after a major release."
 checker = "test_pypi.py::test_P10"
-cure_period_in_days = -1                                                           # affects too many packages
+cure_period_in_days = -1                                                                                                                                                                                     # affects too many packages
 importance = "RECOMMENDATION"
 
 [P11]

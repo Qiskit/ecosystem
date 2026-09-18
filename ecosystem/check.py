@@ -19,8 +19,9 @@ from pathlib import Path
 import tomllib
 
 
+from .error_handling import EcosystemError
 from .serializable import JsonSerializable, parse_date
-from .request import URL
+from .request import URL, request_json
 
 
 class ChecksToml:
@@ -75,12 +76,22 @@ class CheckData(JsonSerializable):
     checks_toml = ChecksToml()
     today = date.today()
 
-    def __init__(
-        self, id_: str, xfailed=None, since=None, details=None, discussion=None, **_
+    def __init__(  # pylint: disable=too-many-arguments
+        self,
+        id_: str,
+        xfailed=None,
+        xfailed_until=None,
+        since=None,
+        source=None,
+        details=None,
+        discussion=None,
+        **_,
     ):
         self.id = id_
         self.xfailed = xfailed
+        self.xfailed_until = parse_date(xfailed_until)
         self.since = parse_date(since)
+        self.source: str | None = source
         self.details = details
         self.discussion: str | URL | None = discussion
 
@@ -94,6 +105,31 @@ class CheckData(JsonSerializable):
     def days_since_failure(self):
         """Returns integer with today-self.since"""
         return (CheckData.today - self.since).days
+
+    @property
+    def xfailed_expired(self):
+        """True if `self.xfailed_until` is in the past.
+
+        An `self.xfailed` explanation without `self.xfailed_until` never expires."""
+        if self.xfailed_until is None:
+            return False
+        return CheckData.today > self.xfailed_until
+
+    @property
+    def xfail_applies(self):
+        """True if there is an explanation for the failure and it has not expired yet.
+
+        This is the question to ask before honoring `self.xfailed`: an expired explanation
+        does not excuse the check up anymore."""
+        return bool(self.xfailed) and not self.xfailed_expired
+
+    @property
+    def days_until_xfailed_expires(self):
+        """Days left before `self.xfailed` stops applying.
+        None if the explanation does not expire."""
+        if self.xfailed_until is None:
+            return None
+        return (self.xfailed_until - CheckData.today).days
 
     @property
     def importance(self):
@@ -120,7 +156,62 @@ class CheckData(JsonSerializable):
         return str(self.to_dict())
 
     def __getattr__(self, name):
-        return self.checks_toml.checkup(self.id)[name]
+        try:
+            return self.checks_toml.checkup(self.id)[name]
+        except KeyError as key_error:
+            # so getattr(checkdata, name, default) and hasattr work as expected
+            raise AttributeError(f"the check up {self.id} has no {name}") from key_error
+
+    @property
+    def source_api_url(self):
+        """`self.source` (a GitHub issue URL) as the GitHub API URL of that issue"""
+        url = URL(self.source)
+        path = url.path.strip("/").split("/")
+        if (
+            url.hostname != "github.com"
+            or len(path) != 4
+            or path[2] not in ["issues", "pull"]
+        ):
+            raise EcosystemError(
+                f"the source of the check up {self.id} does not look like "
+                f"a GitHub issue: {self.source}"
+            )
+        owner, repo, _, number = path
+        return f"https://api.github.com/repos/{owner}/{repo}/issues/{number}"
+
+    def update_from_source(self):
+        """Updates the check up with the state of the issue in `self.source`.
+
+        A source-based check up is not the result of a test: it exists because there is an
+        issue that is not getting closed as complete. So, instead of running a checker, the
+        state of that issue is checked. If the issue is closed, the reason is added to
+        `self.details`, so a human can decide what to do with the check up.
+
+        The check up itself is never removed here: a closed issue does not necessarily mean
+        that the situation described in `self.details` is solved.
+        """
+        # what is added to self.details when the check up source issue is closed
+        source_closed_details = {
+            "completed": "the source issue is closed as completed",
+            "not_planned": "the source issue is closed as not planned",
+            None: "the source issue is closed",
+        }
+        if not self.source:
+            return
+        issue = request_json(self.source_api_url)
+        annotation = None
+        if issue["state"] != "open":
+            annotation = source_closed_details.get(
+                issue.get("state_reason"), source_closed_details[None]
+            )
+        details = self.details or ""
+        for known_annotation in source_closed_details.values():
+            # drop a previous annotation, so they do not pile up on every run
+            # and they do not survive the issue being reopened
+            details = details.replace(f" ({known_annotation})", "")
+        if annotation:
+            details = f"{details} ({annotation})".strip()
+        self.details = details or None
 
     @classmethod
     def from_report(cls, pytest_report):

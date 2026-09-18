@@ -14,7 +14,7 @@ status = "Early Project"
 url = "https://github.com/qiskit-community/fulqrum"
 owner = "qiskit-community"
 repo = "fulqrum"
-stars = 16
+stars = 15
 homepage = "https://qiskit-community.github.io/fulqrum"
 license = "Apache-2.0"
 description = "A generalized framework for quantum subspace eigenproblems"
@@ -22,9 +22,28 @@ estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-03-04
-last_commit = 2026-09-12
-last_activity = 2026-09-10
+last_commit = 2026-09-17
+last_activity = 2026-09-16
 
 [badge]
 url = "https://qisk.it/e-7d6c3172"
 style = "flat"
+
+[pypi.fulqrum]
+package_name = "fulqrum"
+version = "0.4.4"
+last_release_date = 2026-09-09
+url = "https://pypi.org/project/fulqrum/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/nonhermitian/",
+]
+last_month_downloads = 619
+last_180_days_downloads = 619
+
+[checks.P12]
+since = 2026-09-17
+details = "member.pypi.fulqrum does not have a declared license"
+importance = "RECOMMENDATION"
+discussion = "https://github.com/qiskit-community/fulqrum/pull/122"

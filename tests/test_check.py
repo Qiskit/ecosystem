@@ -14,8 +14,13 @@
 
 import os
 import tomllib
+from datetime import date, timedelta
 from unittest import TestCase
+from unittest.mock import patch
 import pytest
+
+from ecosystem.check import CheckData
+from ecosystem.error_handling import EcosystemError
 
 
 class TestChecksTOML(TestCase):
@@ -114,3 +119,147 @@ class TestChecksTOML(TestCase):
         for cat in self.meta_categories:
             with self.subTest(cat):
                 self.assertHasNoDuplicates([c["name"] for c in self.checks_toml[cat]])
+
+
+class TestSourceBasedCheckData(TestCase):
+    """Tests for check ups based on an issue (check.source) instead of on a checker"""
+
+    issue_url = "https://github.com/rigetti/qiskit-rigetti/issues/53"
+    details = "Rigetti provider is not compatible with a maintained version of Qiskit"
+
+    def check_with_issue(self, state, state_reason=None, details=None):
+        """A source-based CheckData, updated against an issue in the given state"""
+        check = CheckData(
+            "Q20",
+            since="2026-07-09",
+            source=self.issue_url,
+            details=self.details if details is None else details,
+        )
+        with patch(
+            "ecosystem.check.request_json",
+            return_value={"state": state, "state_reason": state_reason},
+        ):
+            check.update_from_source()
+        return check
+
+    def test_source_is_kept(self):
+        """check.source survives the round trip to a dict"""
+        check = CheckData("Q20", since="2026-07-09", source=self.issue_url)
+        self.assertEqual(check.source, self.issue_url)
+        self.assertEqual(check.to_dict()["source"], self.issue_url)
+
+    def test_no_source(self):
+        """A check up without a source has source = None and update_from_source does nothing"""
+        check = CheckData("Q20", since="2026-07-09", details=self.details)
+        self.assertIsNone(check.source)
+        check.update_from_source()
+        self.assertEqual(check.details, self.details)
+
+    def test_source_api_url(self):
+        """The issue URL is translated into the GitHub API URL"""
+        check = CheckData("Q20", source=self.issue_url)
+        self.assertEqual(
+            check.source_api_url,
+            "https://api.github.com/repos/rigetti/qiskit-rigetti/issues/53",
+        )
+
+    def test_source_is_not_an_issue(self):
+        """A source that is not a GitHub issue is an error"""
+        check = CheckData("Q20", source="https://github.com/rigetti/qiskit-rigetti")
+        with self.assertRaises(EcosystemError):
+            check.source_api_url  # pylint: disable=pointless-statement
+
+    def test_open_issue(self):
+        """While the issue is open, the details are untouched"""
+        check = self.check_with_issue("open")
+        self.assertEqual(check.details, self.details)
+
+    def test_closed_as_completed(self):
+        """A closed as completed issue is annotated in the details"""
+        check = self.check_with_issue("closed", "completed")
+        self.assertEqual(
+            check.details, f"{self.details} (the source issue is closed as completed)"
+        )
+
+    def test_closed_as_not_planned(self):
+        """A closed as not planned issue is annotated in the details"""
+        check = self.check_with_issue("closed", "not_planned")
+        self.assertEqual(
+            check.details, f"{self.details} (the source issue is closed as not planned)"
+        )
+
+    def test_closed_without_reason(self):
+        """A closed issue without a state_reason is annotated too"""
+        check = self.check_with_issue("closed")
+        self.assertEqual(check.details, f"{self.details} (the source issue is closed)")
+
+    def test_annotation_does_not_pile_up(self):
+        """Running update_from_source twice does not repeat the annotation"""
+        annotated = f"{self.details} (the source issue is closed as completed)"
+        check = self.check_with_issue("closed", "completed", details=annotated)
+        self.assertEqual(check.details, annotated)
+
+    def test_reopened_issue_drops_the_annotation(self):
+        """If the issue is open again, the annotation is removed"""
+        annotated = f"{self.details} (the source issue is closed as not planned)"
+        check = self.check_with_issue("open", "reopened", details=annotated)
+        self.assertEqual(check.details, self.details)
+
+    def test_no_checker(self):
+        """A source-based check up has no checker, and asking for it is an AttributeError"""
+        check = CheckData("020", since="2026-07-09", source=self.issue_url)
+        self.assertIsNone(getattr(check, "checker", None))
+        with self.assertRaises(AttributeError):
+            check.checker  # pylint: disable=pointless-statement
+
+
+class TestXfailedExpiration(TestCase):
+    """Tests for the expiration date of an xfail explanation (check.xfailed_until)"""
+
+    reason = "This project does not need to agree the CoC"
+
+    def check(self, xfailed_until=None, xfailed=reason):
+        """A CheckData with an explanation that expires on `xfailed_until`"""
+        return CheckData("COC", xfailed=xfailed, xfailed_until=xfailed_until)
+
+    def test_no_expiration(self):
+        """An explanation without xfailed_until never expires"""
+        check = self.check()
+        self.assertIsNone(check.xfailed_until)
+        self.assertFalse(check.xfailed_expired)
+        self.assertTrue(check.xfail_applies)
+        self.assertIsNone(check.days_until_xfailed_expires)
+
+    def test_future_expiration(self):
+        """An explanation that expires in the future still applies"""
+        check = self.check(CheckData.today + timedelta(days=30))
+        self.assertFalse(check.xfailed_expired)
+        self.assertTrue(check.xfail_applies)
+        self.assertEqual(check.days_until_xfailed_expires, 30)
+
+    def test_expires_today(self):
+        """The explanation is valid during the whole xfailed_until day"""
+        check = self.check(CheckData.today)
+        self.assertFalse(check.xfailed_expired)
+        self.assertTrue(check.xfail_applies)
+        self.assertEqual(check.days_until_xfailed_expires, 0)
+
+    def test_past_expiration(self):
+        """Once xfailed_until has passed, the explanation does not apply anymore"""
+        check = self.check(CheckData.today - timedelta(days=1))
+        self.assertTrue(check.xfailed_expired)
+        self.assertFalse(check.xfail_applies)
+        self.assertEqual(check.days_until_xfailed_expires, -1)
+
+    def test_no_xfailed(self):
+        """A check up without an explanation is never excused, expiration or not"""
+        self.assertFalse(self.check(xfailed=None).xfail_applies)
+        self.assertFalse(
+            self.check(CheckData.today + timedelta(days=30), xfailed=None).xfail_applies
+        )
+
+    def test_expiration_is_parsed(self):
+        """xfailed_until is normalized to a date and survives the round trip to a dict"""
+        check = self.check("2027-01-31")
+        self.assertEqual(check.xfailed_until, date(2027, 1, 31))
+        self.assertEqual(check.to_dict()["xfailed_until"], date(2027, 1, 31))

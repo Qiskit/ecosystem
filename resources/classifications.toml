@@ -32,8 +32,8 @@ name = "Converter"
 description = "Converts Qiskit objects (such as QuantumCircuit) for use in other programs or tools"
 
 [[category]]
-name = "Qiskit addon"
-description = "Enables algorithm discovery at the utility scale"
+name = "Noise Management"
+description = "Deals with hardware noise, by detecting, correcting, or mitigating its effect on the results"
 
 [[category]]
 name = "Game/Educational"
@@ -207,11 +207,15 @@ description = "The project is an approved member of the Qiskit Ecosystem"
 
 [[status]]
 name = "Early Project"
-description = "A regular member whose repository is between 6 and 18 months old."
+description = "A regular member whose repository is between 3 and 12 months old."
 
 [[status]]
 name = "Very Early Project"
-description = "A regular member whose repository is less than 6 months old. They are excluded from the Qiskit Ecosystem website."
+description = "A regular member whose repository is less than 3 months old. They are excluded from the Qiskit Ecosystem website."
+
+[[status]]
+name = "Unmaintained"
+description = "A member that declares itself as `as-is` or `deprecated`, so it has no active maintenance expectations."
 
 [[status]]
 name = "Under revision"
@@ -224,11 +228,6 @@ description = "The project used to be part of the Qiskit Ecosystem"
 [[maturity]]
 name = "production-ready"
 description = "The project is mature, actively maintained, and stable. Recommended for production."
-
-[[maturity]]
-name = "unmaintained"
-description = "The project is no longer maintained or supported."
-show_in_submission_template = false
 
 [[maturity]]
 name = "experimental"

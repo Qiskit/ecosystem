@@ -9,7 +9,7 @@ reference_paper = "https://arxiv.org/abs/2605.12583"
 packages = []
 uuid = "390ee704-e44f-4134-9a03-0486d77a2ade"
 maturity = "production-ready"
-status = "Very Early Project"
+status = "Early Project"
 
 [github]
 url = "https://github.com/neuralsorcerer/quport"
@@ -43,8 +43,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 159
-last_180_days_downloads = 628
+last_month_downloads = 59
+last_180_days_downloads = 629
 
 [checks.P10]
 since = 2026-07-14

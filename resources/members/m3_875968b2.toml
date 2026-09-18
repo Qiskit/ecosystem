@@ -5,7 +5,7 @@ labels = ["error mitigation", "utility-scale"]
 interfaces = ["Python"]
 ibm_maintained = true
 created_at = 2023-03-14
-category = "Qiskit addon"
+category = "Noise Management"
 reference_paper = "https://link.aps.org/doi/10.1103/PRXQuantum.2.040326"
 documentation = "https://qiskit.github.io/qiskit-addon-mthree"
 packages = []
@@ -49,8 +49,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 21711
-last_180_days_downloads = 198770
+last_month_downloads = 22757
+last_180_days_downloads = 194848
 
 [checks.P10]
 since = 2026-07-09

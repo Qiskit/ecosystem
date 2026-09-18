@@ -8,7 +8,6 @@ documentation = "https://alindanielferenczi.github.io/HLQuantum/"
 packages = []
 uuid = "50bd99f2-dbd5-4759-b19d-6f5ecdf9e0da"
 maturity = "production-ready"
-status = "Early Project"
 
 [github]
 url = "https://github.com/AlinDanielFerenczi/HLQuantum"
@@ -41,8 +40,13 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 14
-last_180_days_downloads = 394
+last_month_downloads = 13
+last_180_days_downloads = 389
+
+[checks.G12]
+since = 2026-09-14
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
 
 [checks.P10]
 since = 2026-07-09

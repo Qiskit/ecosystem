@@ -8,7 +8,6 @@ category = "Application"
 packages = []
 uuid = "24856641-7888-4c14-99f2-a448d2acf7f3"
 maturity = "experimental"
-status = "Early Project"
 
 [github]
 url = "https://github.com/AI4quantum/qiskit-gym"
@@ -21,6 +20,10 @@ estimated_contributors = 3
 created_at = 2025-08-29
 last_commit = 2026-08-31
 last_activity = 2026-08-28
+
+[badge]
+url = "https://qisk.it/e-24856641"
+style = "flat"
 
 [pypi.qiskit-gym]
 package_name = "qiskit-gym"
@@ -38,8 +41,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 1429
-last_180_days_downloads = 11494
+last_month_downloads = 1261
+last_180_days_downloads = 11203
 
 [checks.P10]
 since = 2026-09-10
