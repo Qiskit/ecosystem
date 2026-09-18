@@ -10,6 +10,7 @@ documentation = "https://github.com/RexRowan/Qiberis/blob/main/README.md"
 packages = []
 uuid = "d33fccc1-4553-4314-8d94-95837a260fee"
 maturity = "experimental"
+status = "Very Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiberis"
@@ -19,6 +20,7 @@ stars = 0
 homepage = "https://qiskit.github.io/ecosystem/p/d33fccc1/"
 license = "MIT"
 description = "A backend-agnostic quantum circuit API: write once, run on Qiskit, Cirq, and PennyLane simulators."
+created_at = 2026-07-29
 last_commit = 2026-08-08
 last_activity = 2026-08-08
 
@@ -40,8 +42,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 30
-last_180_days_downloads = 148
+last_month_downloads = 25
+last_180_days_downloads = 153
 
 [checks.P10]
 since = 2026-08-18

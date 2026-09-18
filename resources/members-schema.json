@@ -54,10 +54,26 @@
       "type": "string"
     },
     "maturity": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "production-ready",
+        "experimental",
+        "bugfixing only",
+        "as-is",
+        "deprecated"
+      ]
     },
     "status": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "Qiskit Project",
+        "Member",
+        "Early Project",
+        "Very Early Project",
+        "Unmaintained",
+        "Under revision",
+        "Alumni"
+      ]
     },
     "github": {
       "type": "object",
@@ -89,6 +105,10 @@
         "total_dependent_packages": {
           "type": "integer"
         },
+        "created_at": {
+          "type": "string",
+          "format": "date"
+        },
         "last_commit": {
           "type": "string",
           "format": "date"
@@ -116,6 +136,56 @@
       "required": [
         "style"
       ]
+    },
+    "checks": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Z0-9]{3}$": {
+          "type": "object",
+          "properties": {
+            "xfailed": {
+              "type": "string"
+            },
+            "xfailed_until": {
+              "type": "string",
+              "format": "date"
+            },
+            "since": {
+              "type": "string",
+              "format": "date"
+            },
+            "source": {
+              "type": "string"
+            },
+            "details": {
+              "type": "string"
+            },
+            "discussion": {
+              "type": "string"
+            },
+            "importance": {
+              "type": "string"
+            }
+          },
+          "anyOf": [
+            {
+              "$comment": "xfailed_until is the expiration of the xfailed explanation, so it is meaningless on its own",
+              "required": [
+                "xfailed"
+              ]
+            },
+            {
+              "not": {
+                "required": [
+                  "xfailed_until"
+                ]
+              }
+            }
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
     },
     "pypi": {
       "type": "object",

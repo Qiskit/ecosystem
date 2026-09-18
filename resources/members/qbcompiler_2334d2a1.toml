@@ -11,6 +11,7 @@ documentation = "https://mwpwalshe.github.io/qb-compiler/"
 packages = []
 uuid = "2334d2a1-93bc-4652-8e15-ac395b2d3dd9"
 maturity = "experimental"
+status = "Early Project"
 
 [github]
 url = "https://github.com/mwpwalshe/qb-compiler"
@@ -22,6 +23,7 @@ license = "Apache-2.0"
 description = "Quantum execution intelligence toolkit for circuit preflight checks, backend analysis, calibration-aware compilation, and hardware-..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2026-03-13
 last_commit = 2026-08-21
 last_activity = 2026-08-21
 
@@ -44,5 +46,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 1412
-last_180_days_downloads = 2752
+last_month_downloads = 1398
+last_180_days_downloads = 2690

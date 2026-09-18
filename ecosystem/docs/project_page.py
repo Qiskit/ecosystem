@@ -149,6 +149,12 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             fm.append("icon: material/account-remove")
         elif self.project.status == "Under review":
             fm.append("icon: material/account-alert")
+        elif self.project.status == "Unmaintained":
+            fm.append("icon: material/heart-broken")
+        elif self.project.status == "Early Project":
+            fm.append("icon: material/sprout")
+        elif self.project.status == "Very Early Project":
+            fm.append("icon: material/seed")
         else:
             fm.append("icon: material/account")
         return ["---"] + fm + ["---"] if fm else []

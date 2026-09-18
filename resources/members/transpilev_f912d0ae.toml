@@ -9,6 +9,7 @@ category = "Tooling"
 packages = []
 uuid = "f912d0ae-3944-4279-9ee5-60a4808794b5"
 maturity = "experimental"
+status = "Very Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-Transpile-Verify"
@@ -17,6 +18,7 @@ repo = "Qiskit-Transpile-Verify"
 stars = 0
 license = "Apache-2.0"
 description = "Translation validation for the Qiskit transpiler"
+created_at = 2026-08-20
 last_commit = 2026-08-24
 last_activity = 2026-08-24
 
@@ -39,5 +41,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 128
-last_180_days_downloads = 128
+last_month_downloads = 131
+last_180_days_downloads = 131

@@ -37,6 +37,14 @@ class CliMembers:
     Ex: `python manager.py members update_badge`
     """
 
+    # Age (in months, based on member.github.created_at) under which a regular
+    # project gets an age-derived status. See docs/status.md
+    VERY_EARLY_PROJECT_MONTHS = 3
+    EARLY_PROJECT_MONTHS = 12
+
+    # member.maturity values that make a project "Unmaintained". See docs/status.md
+    UNMAINTAINED_MATURITY = ["as-is", "deprecated"]
+
     def __init__(self, root_path: Optional[str] = None):
         """CliMembers class."""
         env_resources_dir = os.getenv("ECOSYSTEM_RESOURCES_DIR")
@@ -225,7 +233,13 @@ class CliMembers:
             with open(classification_md, "w") as outfile:
                 outfile.writelines(lines)
 
-        for classification in ["Member", "Qiskit Project", "Under revision", "Alumni"]:
+        for classification in [
+            "Member",
+            "Qiskit Project",
+            "Unmaintained",
+            "Under revision",
+            "Alumni",
+        ]:
             lines = [
                 f'???{"+" if classification in ["Under revision", "Alumni"] else ""} note '
                 f'"There are {len(projects[classification])} projects with this classification"'
@@ -235,6 +249,27 @@ class CliMembers:
                 for p in projects[classification]
             ]
             writelines(classification, lines)
+
+        # "Early Project" and "Very Early Project" only differ on the age of the
+        # repository, so they share a single table (youngest project first).
+        early_projects = sorted(
+            projects["Early Project"] + projects["Very Early Project"],
+            key=lambda p: (p.age_in_months is None, p.age_in_months or 0),
+        )
+        lines = [
+            f'??? note "There are {len(early_projects)} projects with these statuses"'
+        ]
+        if early_projects:
+            lines += [
+                "\n     | Project | Status | Repository created | Age (months) |",
+                "\n     | --- | --- | --- | --- |",
+            ]
+            lines += [
+                f"\n     | [{p.name}](p/{p.short_uuid}.md) | {p.status} "
+                f"| {getattr(p.github, 'created_at', '')} | {p.age_in_months} |"
+                for p in early_projects
+            ]
+        writelines("early-projects", lines)
 
     def update_assets_maturity(self, projects):
         """Updates maturity.json and maturity.md docs/assets/"""
@@ -418,51 +453,25 @@ class CliMembers:
             if project.status == "Alumni" and not update_all:
                 # "Alumni" projects are not updated in their checkups
                 continue
+            expired_xfails = {
+                checkup_id: checkup
+                for checkup_id, checkup in project.checks.items()
+                if checkup.xfailed and checkup.xfailed_expired
+            }
             project.update_checkups(checker=checker)
+            for checkup_id, checkup in expired_xfails.items():
+                self.logger.info(
+                    "⌛ %s (%s) checkup %s: the explanation expired on %s, "
+                    "so it is checked as a regular one from now on (%s)",
+                    project.name,
+                    project.name_id,
+                    checkup_id,
+                    checkup.xfailed_until,
+                    checkup.xfailed,
+                )
             if project.checks:
                 for checkup_id, checkup in project.checks.items():
-                    if checkup.xfailed:
-                        self.logger.info(
-                            "☑️ %s expected to fail checkup %s: %s ",
-                            project.name,
-                            checkup_id,
-                            checkup.xfailed,
-                        )
-                        continue
-
-                    cure_period_str = (
-                        str(checkup.cure_period_in_days)
-                        if checkup.cure_period_in_days >= 0
-                        else "∞"
-                    )
-                    if checkup.cure_period_in_days < 0:
-                        left_period_str = "∞"
-                    else:
-                        left_period_int = (
-                            checkup.cure_period_in_days - checkup.days_since_failure
-                        )
-                        if left_period_int < 0:
-                            left_period_str = "no"
-                        else:
-                            left_period_str = str(
-                                checkup.cure_period_in_days - checkup.days_since_failure
-                            )
-
-                    for_x_days = (
-                        f"for {checkup.days_since_failure} days, so "
-                        f"{left_period_str} days left in the cure period"
-                        if checkup.days_since_failure != 0
-                        else "since today, "
-                        f"so {cure_period_str}-day cure period starts now"
-                    )
-                    self.logger.info(
-                        "%s %s (%s) failed checkup %s (%s)",
-                        "💣" if checkup.importance == "CRITICAL" else "❌",
-                        project.name,
-                        project.name_id,
-                        checkup_id,
-                        for_x_days,
-                    )
+                    self._log_checkup(project, checkup_id, checkup)
             else:
                 self.logger.info(
                     "✅ %s (%s) passed all the checkups",
@@ -471,9 +480,71 @@ class CliMembers:
                 )
             self.dao.update(project.name_id, checks=project.checks)
 
-    def update_status(self, name=None, update_all=False, exclude: str = None):
+    def _log_checkup(self, project, checkup_id, checkup):
+        """Logs a check up that a project is not passing: either it is expected to fail
+        (and until when the explanation for it is valid) or how much of the cure period is left.
         """
-        Check if a project should be moved to "Under revision" or "Alumni"
+        if checkup.xfailed:
+            if checkup.xfailed_until is None:
+                expiration = "the explanation does not expire"
+            else:
+                expiration = (
+                    f"the explanation expires on {checkup.xfailed_until}, "
+                    f"in {checkup.days_until_xfailed_expires} days"
+                )
+            self.logger.info(
+                "☑️ %s expected to fail checkup %s: %s (%s)",
+                project.name,
+                checkup_id,
+                checkup.xfailed,
+                expiration,
+            )
+            return
+
+        cure_period_str = (
+            str(checkup.cure_period_in_days)
+            if checkup.cure_period_in_days >= 0
+            else "∞"
+        )
+        if checkup.cure_period_in_days < 0:
+            left_period_str = "∞"
+        else:
+            left_period_int = checkup.cure_period_in_days - checkup.days_since_failure
+            if left_period_int < 0:
+                left_period_str = "no"
+            else:
+                left_period_str = str(left_period_int)
+
+        for_x_days = (
+            f"for {checkup.days_since_failure} days, so "
+            f"{left_period_str} days left in the cure period"
+            if checkup.days_since_failure != 0
+            else f"since today, so {cure_period_str}-day cure period starts now"
+        )
+        self.logger.info(
+            "%s %s (%s) failed checkup %s (%s)",
+            "💣" if checkup.importance == "CRITICAL" else "❌",
+            project.name,
+            project.name_id,
+            checkup_id,
+            for_x_days,
+        )
+
+    def update_status(  # pylint: disable=too-many-branches
+        self, name=None, update_all=False, exclude: str = None, no_alumni=False
+    ):
+        """
+        Check if a project should be moved to (in order of precedence):
+          -  "Alumni": If the cure period of a check up has expired
+          - "Under revision": if there is a pending check up (cure period not expired)
+          - "(Very) Early Project": if the project is young and has no pending check up
+          - "Unmaintained": if the project declares no maintenance expectations (maturity in
+            `as-is` or `deprecated`) and has no pending check up
+        See docs/status.md
+
+        Only regular projects (the default status) are updated:
+          - "Qiskit Project" are governed differently.
+          - "Alumni" projects stay alumni.
 
         Args:
             name: project to udpate. None (default) if all of them.
@@ -482,6 +553,10 @@ class CliMembers:
             exclude: comma-separated list of importances to exclude.
               Eg: `-e "recommendation, legacy, best_practice"`. Excluding here means, "do not update
               the status because the existance of a check up with this importance".
+            no_alumni: If True, an expired cure period does not move the project to "Alumni",
+              it stays "Under revision". Used when this command runs *before* `update_checkups`,
+              since the check up data is still the one from the previous run and the project
+              might have cured the check up already.
         """
         exclude_set = (
             {slugify(e) for e in exclude} if isinstance(exclude, tuple) else set()
@@ -495,13 +570,18 @@ class CliMembers:
                 # "Alumni" projects stay alumni
                 continue
 
-            if project.status == "Under revision":
-                # reset "Under revision" status. It will be set back if it is still true.
+            if project.status in [
+                "Under revision",
+                "Unmaintained",
+                "Early Project",
+                "Very Early Project",
+            ]:
+                # reset the derived statuses. They will be set back if they are still true.
                 project.status = None
 
             for check in project.checks.values():
-                if check.xfailed:
-                    # Xfails do not affect the status
+                if check.xfail_applies:
+                    # Xfails do not affect the status, unless their explanation expired
                     continue
                 if check.importance.lower() in exclude_set:
                     # If the importance is in the exclude set, ignore it.
@@ -510,19 +590,28 @@ class CliMembers:
                     # if cure_period_in_days is disabled (by cure_period_in_days = false), skip.
                     continue
                 deadline = check.since + timedelta(days=check.cure_period_in_days)
-                if date.today() > deadline:
+                if date.today() > deadline and not no_alumni:
                     # deadline passed
                     project.status = "Alumni"
                     break
-                # still in cure period
+                # still in cure period (or the retirement is postponed by no_alumni)
                 project.status = "Under revision"
-            self.dao.update(project.name_id, status=project.status)
 
-    def update_maturity(self, name=None):
-        """Check if a project maturity should move to archived"""
-        for project in self.dao.get_all(name):
-            project.update_maturity()
-            self.dao.update(project.name_id, maturity=project.maturity)
+            if (
+                project.status is None
+                and project.maturity in self.UNMAINTAINED_MATURITY
+            ):
+                # the project declares no maintenance expectations
+                project.status = "Unmaintained"
+
+            if project.status is None and project.age_in_months is not None:
+                # no pending check up, so the status only depends on how old the repository is
+                if project.age_in_months < self.VERY_EARLY_PROJECT_MONTHS:
+                    project.status = "Very Early Project"
+                elif project.age_in_months < self.EARLY_PROJECT_MONTHS:
+                    project.status = "Early Project"
+
+            self.dao.update(project.name_id, status=project.status)
 
     @staticmethod
     def filter_data(
@@ -658,7 +747,7 @@ class CliMembers:
                     member_data_to_export,
                 )
                 for member in self.dao.get_all()
-                if member.status != "Alumni"
+                if member.status not in ["Alumni", "Very Early Project"]
             ],
             "labels": CliMembers.load_classifications_toml(
                 Path(self.resources_dir, "classifications.toml"), labels_data_to_export

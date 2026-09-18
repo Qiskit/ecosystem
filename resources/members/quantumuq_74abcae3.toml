@@ -11,6 +11,7 @@ documentation = "https://quantumuq.readthedocs.io/"
 packages = []
 uuid = "74abcae3-4fd4-4eac-b7d2-44b93c7a1db2"
 maturity = "experimental"
+status = "Early Project"
 
 [github]
 url = "https://github.com/ocatak/QuantumUQ"
@@ -22,8 +23,13 @@ license = "MIT"
 description = "Uncertainty quantification, calibration, and reliability benchmarking for quantum machine learning with Qiskit and PennyLane."
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2026-02-10
 last_commit = 2026-09-03
 last_activity = 2026-09-03
+
+[badge]
+url = "https://qisk.it/e-74abcae3"
+style = "flat"
 
 [pypi.quantumuq]
 package_name = "quantumuq"
@@ -40,5 +46,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 619
-last_180_days_downloads = 900
+last_month_downloads = 632
+last_180_days_downloads = 910

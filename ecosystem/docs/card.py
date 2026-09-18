@@ -22,6 +22,18 @@ from ecosystem.member import Member
 from ecosystem.classifications import ClassificationsToml
 
 
+def tooltip(description: str) -> str:
+    """
+    Make a classification description safe to use as an attr_list tooltip.
+
+    The descriptions are markdown (they are also rendered as body text in
+    docs/assets/), but a tooltip ends up in an HTML title attribute, which is
+    plain text. Inline code spans stop attr_list from recognizing the block at
+    all, and a single quote would close the attribute value early.
+    """
+    return description.replace("`", "").replace("'", "&apos;")
+
+
 @dataclass
 class Card:
     """Base class for cards"""
@@ -161,32 +173,48 @@ class ProjectSummaryCard(Card):
         )
 
     @property
-    def status_title(self):
+    def status_title(self):  # pylint: disable=too-many-return-statements
         """Title with memmber.status"""
+        descriptions = self.classifications.status_descriptions
         match self.status:
             case "Qiskit Project":
                 return (
-                    "**Qiskit Project**{{style='font-size: 1.25em;' "
-                    f"title='{self.classifications.status_descriptions['Qiskit Project']}'}}"
+                    "**Qiskit Project**{style='font-size: 1.25em;' "
+                    f"title='{tooltip(descriptions['Qiskit Project'])}'}}"
                 )
             case "Alumni":
                 return (
-                    "**Alumni project**{{style='font-size: 1.25em;' "
-                    f"title='{self.classifications.status_descriptions['Alumni']}'}}"
+                    "**Alumni project**{style='font-size: 1.25em;' "
+                    f"title='{tooltip(descriptions['Alumni'])}'}}"
                 )
             case "Under revision":
                 return (
-                    "**Project under revision**{{style='font-size: 1.25em;' "
-                    f"title='{self.classifications.status_descriptions['Under revision']}'}}"
+                    "**Project under revision**{style='font-size: 1.25em;' "
+                    f"title='{tooltip(descriptions['Under revision'])}'}}"
+                )
+            case "Unmaintained":
+                return (
+                    "**Unmaintained project**{style='font-size: 1.25em;' "
+                    f"title='{tooltip(descriptions['Unmaintained'])}'}}"
+                )
+            case "Early Project":
+                return (
+                    "**Early Project**{style='font-size: 1.25em;' "
+                    f"title='{tooltip(descriptions['Early Project'])}'}}"
+                )
+            case "Very Early Project":
+                return (
+                    "**Very Early Project**{style='font-size: 1.25em;' "
+                    f"title='{tooltip(descriptions['Very Early Project'])}'}}"
                 )
             case _:
                 return (
-                    "**Qiskit Ecosystem Member**{{style='font-size: 1.25em;' "
-                    f"title='{self.classifications.status_descriptions['Member']}'}}"
+                    "**Qiskit Ecosystem Member**{style='font-size: 1.25em;' "
+                    f"title='{tooltip(descriptions['Member'])}'}}"
                 )
 
     @property
-    def status_icon(self):
+    def status_icon(self):  # pylint: disable=too-many-return-statements
         """Icon for title"""
         match self.status:
             case "Qiskit Project":
@@ -195,11 +223,17 @@ class ProjectSummaryCard(Card):
                 return ":material-account-remove:"
             case "Under revision":
                 return ":material-account-alert:"
+            case "Unmaintained":
+                return ":material-heart-broken:"
+            case "Early Project":
+                return ":material-sprout:"
+            case "Very Early Project":
+                return ":material-seed:"
             case _:
                 return ""
 
     @property
-    def status_annotation(self):
+    def status_annotation(self):  # pylint: disable=too-many-return-statements
         """Annotation for title"""
         match self.status:
             case "Qiskit Project":
@@ -208,6 +242,12 @@ class ProjectSummaryCard(Card):
                 return "[All the Alumni projects](../status.md#alumni)"
             case "Under revision":
                 return "[All the projects under revision](../status.md#under-revision)"
+            case "Unmaintained":
+                return "[All the unmaintained projects](../status.md#unmaintained)"
+            case "Early Project":
+                return "[All the early projects](../status.md#early-project)"
+            case "Very Early Project":
+                return "[All the very early projects](../status.md#very-early-project)"
             case _:
                 return "[All the regular Members](../status.md#regular-members)"
 
@@ -228,6 +268,7 @@ class ProjectSummaryCard(Card):
         ret = []
         if self.status == "Alumni":
             return ret
+        descriptions = self.classifications.maturity_descriptions
         icons = {
             "production-ready": ":material-check-outline:",
             "bugfixing only": ":material-bug-check:",
@@ -241,23 +282,23 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 icons["production-ready"],
                 f"**{self.maturity}**{{title='"
-                f"{self.classifications.maturity_descriptions[self.maturity]}'}}",
+                f"{tooltip(descriptions[self.maturity])}'}}",
                 "[All the production-ready project](#)",
             )
         if self.maturity in ["bugfixing only", "deprecated", "experimental"]:
             # Limited support
             return self.bullet(
                 icons[self.maturity],
-                "**Limited support**{{title='"
-                f"{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
+                "**Limited support**{title='"
+                f"{tooltip(descriptions[self.maturity])}'}} {self.maturity}",
                 "[All the production-ready project](#)",
             )
         if self.maturity in ["unmaintained", "as-is"]:
             # No support
             return self.bullet(
                 icons[self.maturity],
-                "**No support**{{title='"
-                f"{self.classifications.maturity_descriptions[self.maturity]}'}} {self.maturity}",
+                "**No support**{title='"
+                f"{tooltip(descriptions[self.maturity])}'}} {self.maturity}",
                 "[All the projects without support](#)",
             )
         return ret

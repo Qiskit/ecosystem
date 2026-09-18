@@ -10,6 +10,7 @@ reference_paper = "https://arxiv.org/abs/2601.18756"
 packages = []
 uuid = "9d474247-5c15-481c-afb2-cc58ae884459"
 maturity = "bugfixing only"
+status = "Early Project"
 
 [github]
 url = "https://github.com/MarkoMalezic/qiskit-omelyan"
@@ -17,6 +18,7 @@ owner = "MarkoMalezic"
 repo = "qiskit-omelyan"
 stars = 1
 license = "Apache-2.0"
+created_at = 2026-04-22
 last_commit = 2026-06-29
 last_activity = 2026-06-29
 
@@ -37,8 +39,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 23
-last_180_days_downloads = 496
+last_month_downloads = 19
+last_180_days_downloads = 497
 
 [checks.P10]
 since = 2026-07-14

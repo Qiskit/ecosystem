@@ -17,8 +17,13 @@ stars = 21
 license = "Apache-2.0"
 description = "A collection of quantum information science problems formulated as reinforcement learning environments"
 estimated_contributors = 3
+created_at = 2025-08-29
 last_commit = 2026-08-31
 last_activity = 2026-08-28
+
+[badge]
+url = "https://qisk.it/e-24856641"
+style = "flat"
 
 [pypi.qiskit-gym]
 package_name = "qiskit-gym"
@@ -36,8 +41,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 1495
-last_180_days_downloads = 11496
+last_month_downloads = 1261
+last_180_days_downloads = 11203
 
 [checks.P10]
 since = 2026-09-10

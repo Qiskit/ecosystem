@@ -10,6 +10,7 @@ category = "Transpiler plugin"
 packages = []
 uuid = "7fcadf8b-f043-4eac-a491-9783a1c00cfe"
 maturity = "experimental"
+status = "Early Project"
 
 [github]
 url = "https://github.com/hiq-lab/arvak-lite"
@@ -20,6 +21,7 @@ license = "LGPL-3.0"
 description = "Lightweight quantum circuit compiler — drop-in transpiler for Qiskit, Cirq, Pulser, PennyLane. Powered by Arvak."
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2026-03-07
 last_commit = 2026-07-09
 last_activity = 2026-07-09
 
@@ -42,8 +44,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 85
-last_180_days_downloads = 500
+last_month_downloads = 77
+last_180_days_downloads = 493
 
 [checks.P10]
 since = 2026-07-09

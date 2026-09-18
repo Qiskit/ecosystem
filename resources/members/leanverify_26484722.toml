@@ -9,6 +9,7 @@ category = "Game/Educational"
 packages = []
 uuid = "26484722-ff86-4278-9eb6-02e61082dc48"
 maturity = "experimental"
+status = "Very Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-LEAN-Verify-Game"
@@ -17,8 +18,13 @@ repo = "Qiskit-LEAN-Verify-Game"
 stars = 0
 license = "Apache-2.0"
 description = "Circuit puzzles built on the Qiskit SDK, checked by LEAN"
+created_at = 2026-08-24
 last_commit = 2026-08-26
 last_activity = 2026-08-26
+
+[badge]
+url = "https://qisk.it/e-26484722"
+style = "flat"
 
 [pypi.qiskit-lean-verify-game]
 package_name = "qiskit-lean-verify-game"
@@ -34,5 +40,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 114
-last_180_days_downloads = 114
+last_month_downloads = 116
+last_180_days_downloads = 116

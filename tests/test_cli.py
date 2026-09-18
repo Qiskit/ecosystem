@@ -16,12 +16,17 @@ import io
 import os
 import shutil
 import tempfile
+from datetime import date, timedelta
 from unittest import TestCase, mock
 from contextlib import redirect_stdout
 from pathlib import Path
 
+from dateutil.relativedelta import relativedelta
+
+from ecosystem.check import CheckData
 from ecosystem.cli import CliCI, CliMembers
 from ecosystem.dao import DAO
+from ecosystem.github import GitHubData
 from ecosystem.member import Member
 
 
@@ -177,10 +182,14 @@ class TestCli(TestCase):
                 "010": {
                     "importance": "RECOMMENDATION",
                     "xfailed": 'This project is allow to have "test" in its name',
+                    "xfailed_until": date.today()
+                    + relativedelta(months=Member.DEFAULT_XFAILED_PERIOD_IN_MONTHS),
                 },
                 "COC": {
                     "importance": "CRITICAL",
                     "xfailed": "This project does not need to agree the CoC",
+                    "xfailed_until": date.today()
+                    + relativedelta(months=Member.DEFAULT_XFAILED_PERIOD_IN_MONTHS),
                 },
             },
         }
@@ -253,3 +262,215 @@ class TestCli(TestCase):
         self.assertTrue('"color": "6929C4"' in json_success)
 
         os.remove(f"{badges_folder_path}/{commu_success.short_uuid}")
+
+
+class UpdateStatusTestCase(TestCase):
+    """Shared setup for the CliMembers.update_status tests"""
+
+    def setUp(self) -> None:
+        self.path = Path(tempfile.mkdtemp())
+        (self.path / "members").mkdir(parents=True, exist_ok=True)
+        self.current_dir = os.path.dirname(os.path.abspath(__file__))
+        self.cli_members = CliMembers(root_path=os.path.join(self.current_dir, ".."))
+        self.cli_members.resources_dir = self.path
+        self.cli_members.current_dir = self.path
+        self.cli_members.dao = DAO(self.path)
+
+    def tearDown(self) -> None:
+        shutil.rmtree(self.path)
+
+    def add_member(
+        self, months_old=None, maturity="production-ready", **kwargs
+    ) -> Member:
+        """Writes a member in the temporary DAO. If months_old is given,
+        the GitHub repository was created that many months ago."""
+        member = Member(
+            name="mock-qiskit",
+            url="https://github.com/MockQiskit/mock-qiskit",
+            description="Mock description for repo",
+            license="Apache 2.0",
+            maturity=maturity,
+            **kwargs,
+        )
+        if months_old is not None:
+            member.github = GitHubData(
+                owner="MockQiskit",
+                repo="mock-qiskit",
+                created_at=date.today() - relativedelta(months=months_old),
+            )
+        self.cli_members.dao.write(member)
+        return member
+
+    def status_after_update(self, **kwargs):
+        """Adds a member, runs update_status, and returns the resulting status"""
+        member = self.add_member(**kwargs)
+        self.cli_members.update_status()
+        return self.cli_members.dao[member.name_id].status
+
+
+class TestUpdateStatus(UpdateStatusTestCase):
+    """Tests for CliMembers.update_status"""
+
+    def test_very_early_project(self):
+        """A repository younger than 3 months is a "Very Early Project" """
+        self.assertEqual(self.status_after_update(months_old=2), "Very Early Project")
+
+    def test_early_project(self):
+        """A repository between 3 and 12 months old is an "Early Project" """
+        self.assertEqual(self.status_after_update(months_old=10), "Early Project")
+
+    def test_three_months_old_is_early_project(self):
+        """The "Very Early Project" status ends at 3 months"""
+        self.assertEqual(self.status_after_update(months_old=3), "Early Project")
+
+    def test_old_project_has_no_age_status(self):
+        """A repository older than 12 months is a regular member (status None)"""
+        self.assertIsNone(self.status_after_update(months_old=12))
+
+    def test_no_created_at(self):
+        """Without member.github.created_at there is no age-derived status"""
+        self.assertIsNone(self.status_after_update())
+
+    def test_age_status_is_recomputed(self):
+        """An outdated age-derived status is removed"""
+        self.assertIsNone(
+            self.status_after_update(months_old=30, status="Very Early Project")
+        )
+
+    def test_unmaintained(self):
+        """An `as-is` project is "Unmaintained" """
+        self.assertEqual(self.status_after_update(maturity="as-is"), "Unmaintained")
+
+    def test_deprecated_is_unmaintained(self):
+        """A `deprecated` project is "Unmaintained" too"""
+        self.assertEqual(
+            self.status_after_update(maturity="deprecated"), "Unmaintained"
+        )
+
+    def test_unmaintained_takes_precedence_over_age(self):
+        """`as-is` is a stronger signal than the age of the repository"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, maturity="as-is"), "Unmaintained"
+        )
+
+    def test_unmaintained_is_recomputed(self):
+        """An outdated "Unmaintained" status is removed"""
+        self.assertIsNone(self.status_after_update(status="Unmaintained"))
+
+    def test_qiskit_project_is_not_updated(self):
+        """ "Qiskit Project" is governed differently, so it is not age-derived"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, status="Qiskit Project"),
+            "Qiskit Project",
+        )
+
+    def test_alumni_is_not_updated(self):
+        """Alumni projects stay alumni, no matter how young they are"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, status="Alumni"), "Alumni"
+        )
+
+    def test_early_projects_share_one_table(self):
+        """Both early statuses are listed in a single docs/assets/early-projects.md table"""
+        self.add_member(months_old=2)
+        self.add_member(months_old=10)
+        self.add_member(months_old=30)
+        self.cli_members.update_status()
+
+        # pylint: disable=protected-access
+        projects = self.cli_members._all_projects_classifications("status")["status"]
+        self.cli_members.update_assets_status(projects)
+
+        table = (self.path / "docs" / "assets" / "early-projects.md").read_text()
+        self.assertIn("There are 2 projects with these statuses", table)
+        self.assertIn("| Project | Status | Repository created | Age (months) |", table)
+        # youngest project first
+        statuses = [
+            line.split("|")[2].strip()
+            for line in table.splitlines()
+            if line.strip().startswith("| [")
+        ]
+        self.assertEqual(statuses, ["Very Early Project", "Early Project"])
+        self.assertFalse((self.path / "docs" / "assets" / "early-project.md").exists())
+
+
+class TestUpdateStatusXfails(UpdateStatusTestCase):
+    """An explained check up (check.xfailed) does not affect the status of a project,
+    unless the explanation expired (check.xfailed_until)"""
+
+    def member_with_xfail(self, **xfail_kwargs):
+        """A member failing check up 001 since yesterday, with an explanation for it"""
+        member = self.add_member()
+        member.checks = {
+            "001": CheckData(
+                "001",
+                since=date.today() - timedelta(days=1),
+                xfailed="the license is fine",
+                **xfail_kwargs,
+            )
+        }
+        self.cli_members.dao.write(member)
+        return member
+
+    def test_valid_xfail_does_not_affect_the_status(self):
+        """An explained check up, still within its expiration date, is ignored"""
+        member = self.member_with_xfail(xfailed_until=date.today() + timedelta(days=30))
+        self.cli_members.update_status()
+        self.assertIsNone(self.cli_members.dao[member.name_id].status)
+
+    def test_xfail_expiring_today_does_not_affect_the_status(self):
+        """The explanation is valid during the whole xfailed_until day"""
+        member = self.member_with_xfail(xfailed_until=date.today())
+        self.cli_members.update_status()
+        self.assertIsNone(self.cli_members.dao[member.name_id].status)
+
+    def test_xfail_without_expiration_does_not_affect_the_status(self):
+        """An explanation without an expiration date is ignored forever"""
+        member = self.member_with_xfail()
+        self.cli_members.update_status()
+        self.assertIsNone(self.cli_members.dao[member.name_id].status)
+
+    def test_expired_xfail_affects_the_status(self):
+        """Once the explanation expired, the check up counts for the status again"""
+        member = self.member_with_xfail(xfailed_until=date.today() - timedelta(days=1))
+        self.cli_members.update_status()
+        self.assertEqual(self.cli_members.dao[member.name_id].status, "Alumni")
+
+
+class TestUpdateStatusCheckups(UpdateStatusTestCase):
+    """A failing check up, and how much of its cure period is left,
+    decides between "Under revision" and "Alumni"."""
+
+    def test_no_alumni_postpones_the_retirement(self):
+        """With no_alumni, an expired cure period keeps the project "Under revision" """
+        member = self.add_member()
+        member.checks = {
+            "001": CheckData("001", since=date.today() - timedelta(days=1))
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status(no_alumni=True)
+        self.assertEqual(
+            self.cli_members.dao[member.name_id].status,
+            "Under revision",
+        )
+
+    def test_expired_cure_period_is_alumni(self):
+        """Without no_alumni, an expired cure period moves the project to "Alumni" """
+        member = self.add_member()
+        member.checks = {
+            "001": CheckData("001", since=date.today() - timedelta(days=1))
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status()
+        self.assertEqual(self.cli_members.dao[member.name_id].status, "Alumni")
+
+    def test_under_revision_takes_precedence(self):
+        """A pending check up is more important than the age of the repository"""
+        member = self.add_member(months_old=2)
+        member.checks = {"001": CheckData("001", since=date.today())}
+        self.cli_members.dao.write(member)
+        self.cli_members.update_status()
+        self.assertEqual(
+            self.cli_members.dao[member.name_id].status,
+            "Under revision",
+        )

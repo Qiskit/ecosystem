@@ -10,6 +10,7 @@ documentation = "https://qiskit-rigetti.readthedocs.io/"
 packages = []
 uuid = "88a73f80-a247-4bb4-a6aa-f5da3ebd50c4"
 maturity = "experimental"
+status = "Alumni"
 
 [github]
 url = "https://github.com/rigetti/qiskit-rigetti"
@@ -21,6 +22,7 @@ description = "Qiskit provider serving Rigetti hardware & simulator backends."
 estimated_contributors = 10
 total_dependent_repositories = 5
 total_dependent_packages = 0
+created_at = 2021-06-23
 last_commit = 2025-04-09
 last_activity = 2026-07-24
 
@@ -43,10 +45,27 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 88
-last_180_days_downloads = 408
+last_month_downloads = 83
+last_180_days_downloads = 401
+
+[checks.G07]
+since = 2026-09-17
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+importance = "STRONG-RECOMMENDATION"
 
 [checks.P10]
 since = 2026-07-09
 details = "Python package qiskit-rigetti declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[checks.Q20]
+since = 2026-09-15
+source = "https://github.com/rigetti/qiskit-rigetti/issues/53"
+details = "Rigetti provider is not compatible with a maintained version of Qiskit"
+importance = "CRITICAL"
+
+[checks.020]
+since = 2026-09-15
+source = "https://github.com/rigetti/qiskit-rigetti/issues/44"
+details = "Rigetti provider is not implementing the Primitive interface"
+importance = "CRITICAL"

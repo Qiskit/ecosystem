@@ -32,8 +32,8 @@ def skip_github(member):
 
 def test_G05(member):
     """GitHub repository is archived?"""
-    if hasattr(member, "maturity") and member.maturity == "as-is":
-        pytest.skip("`as-is` projects are exempt from activity checks")
+    if hasattr(member, "status") and member.status == "Unmaintained":
+        pytest.skip("`Unmaintained` projects are exempt from activity checks")
     else:
         assert not (
             hasattr(member.github, "archived") and member.github.archived
@@ -42,8 +42,8 @@ def test_G05(member):
 
 def test_G06(member):
     """Have maintainer activity within the last 6 months"""
-    if member.maturity == "as-is":
-        pytest.skip("`as-is` projects are exempt from activity checks")
+    if hasattr(member, "status") and member.status == "Unmaintained":
+        pytest.skip("`Unmaintained` projects are exempt from activity checks")
 
     last_activity = member.github.last_activity
     if last_activity is None:
@@ -59,24 +59,39 @@ def test_G06(member):
 
 
 def test_G07(member):
-    """Have last commit within the last 18 months"""
-    if member.maturity == "as-is":
-        pytest.skip("`as-is` projects are exempt from activity checks")
+    """Have last commit within the last 12 months"""
+    if hasattr(member, "status") and member.status == "Unmaintained":
+        pytest.skip("`Unmaintained` projects are exempt from activity checks")
 
-    if not hasattr(member.github, "last_commit"):
-        pytest.skip("No member.github.last_commit date")
+    if member.age_in_months is None:
+        pytest.skip("member.age_in_months is None")
 
-    last_commit = member.github.last_commit
-    if last_commit is None:
-        pytest.skip("No member.github.last_commit date")
-
-    relative = relativedelta(date.today(), last_commit)
+    relative = relativedelta(date.today(), member.github.last_commit)
     months_difference = (relative.years * 12) + relative.months
 
-    assert months_difference <= 18, (
-        "Last commit was more than 18 months ago. "
+    assert months_difference <= 12, (
+        "Last commit was more than 12 months ago. "
         "This might be a sign of a project that is not actively maintained. "
-        "Consider set member.maturity to `as-is`."
+        "Maybe `member.maturity` should be set as `as-is`"
+    )
+
+
+def test_G12(member):
+    """Have last commit within the last (age * 2/3) months.
+    See https://github.com/orgs/Qiskit/discussions/58"""
+    if member.status not in ["Early Project", "Very Early Project"]:
+        pytest.skip("member.status is not (Very) Early Project")
+
+    if member.age_in_months is None:
+        pytest.skip("member.age_in_months is None")
+
+    relative = relativedelta(date.today(), member.github.last_commit)
+    months_difference = (relative.years * 12) + relative.months
+    window = max(2, member.age_in_months * (2 / 3))
+
+    assert months_difference <= window, (
+        "Last commit was more than (project_age * 2/3) months ago. "
+        "This might be a sign of a project with good initial momentum that is decelerating."
     )
 
 

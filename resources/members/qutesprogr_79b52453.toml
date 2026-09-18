@@ -25,9 +25,15 @@ description = "Qutes - A high level programming language for quantum computing."
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2023-10-23
 last_commit = 2026-02-15
 last_activity = 2026-02-15
 
 [badge]
 url = "https://qisk.it/e-79b52453"
 style = "flat"
+
+[checks.G06]
+since = 2026-09-17
+details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+importance = "RECOMMENDATION"

@@ -68,6 +68,7 @@ class TomlStorage:
     def __init__(self, root_path: str):
         self.toml_dir = Path(root_path, "members")
         self._data = None  # for use with context manager
+        self.name_id = None  # for use with context manager (to write only one file)
 
     def __call__(self, name_id: str = None):
         self.name_id = name_id

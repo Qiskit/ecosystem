@@ -16,6 +16,7 @@ documentation = "https://github.com/RexRowan/Qiskit-Graph-Walks/blob/main/docs/a
 packages = []
 uuid = "20f2d93f-6480-4771-b844-ebb9ce3f4375"
 maturity = "experimental"
+status = "Very Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-Graph-Walks"
@@ -24,6 +25,7 @@ repo = "Qiskit-Graph-Walks"
 stars = 0
 license = "Apache-2.0"
 description = "Quantum walk algorithms for graph problems, built on Qiskit."
+created_at = 2026-08-12
 last_commit = 2026-08-13
 last_activity = 2026-08-13
 
@@ -46,8 +48,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
-last_month_downloads = 49
-last_180_days_downloads = 141
+last_month_downloads = 30
+last_180_days_downloads = 143
 
 [checks.P10]
 since = 2026-08-18

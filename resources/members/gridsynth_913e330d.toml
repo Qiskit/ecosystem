@@ -8,6 +8,7 @@ category = "Tooling"
 packages = ["https://crates.io/crates/rsgridsynth"]
 uuid = "913e330d-200c-4a42-990b-a4e615ac5a96"
 maturity = "experimental"
+status = "Early Project"
 
 [github]
 url = "https://github.com/qiskit-community/rsgridsynth"
@@ -18,8 +19,9 @@ license = "MIT"
 description = "high-precision Rust-based synthesizer that decomposes single-qubit Z-axis rotations into Clifford+T gate sequences, using number-th..."
 total_dependent_repositories = 21
 total_dependent_packages = 3
+created_at = 2025-10-21
 last_commit = 2026-08-01
-last_activity = 2026-08-31
+last_activity = 2026-09-13
 
 [badge]
 url = "https://qisk.it/e-913e330d"

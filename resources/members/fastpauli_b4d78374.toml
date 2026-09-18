@@ -13,6 +13,7 @@ documentation = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
 packages = []
 uuid = "b4d78374-40eb-4118-bb22-45e97b2dc0c5"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qognitive/fast-pauli"
@@ -25,6 +26,7 @@ description = "Python/C++ library for optimized operations on Pauli matrices and
 estimated_contributors = 4
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2024-06-06
 last_commit = 2025-04-09
 last_activity = 2026-07-14
 
@@ -48,8 +50,14 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 129
-last_180_days_downloads = 1848
+last_month_downloads = 116
+last_180_days_downloads = 1612
+
+[checks.G07]
+since = 2026-09-17
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+importance = "STRONG-RECOMMENDATION"
+
 
 [checks.P10]
 since = 2026-07-09

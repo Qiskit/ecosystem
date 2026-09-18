@@ -11,6 +11,7 @@ documentation = "https://github.com/veriq-toolkit/QSeqSim/blob/main/docs/USER_GU
 packages = []
 uuid = "b7361201-ab9b-4488-ab7d-1a11941064c9"
 maturity = "experimental"
+status = "Early Project"
 
 [github]
 url = "https://github.com/veriq-toolkit/QSeqSim"
@@ -20,6 +21,7 @@ stars = 4
 homepage = "https://www.veri-q.com/"
 license = "Apache-2.0"
 description = "Symbolic simulation of dynamic Qiskit circuits and measurement-driven loops using BDDs and weighted model counting."
+created_at = 2026-03-02
 last_commit = 2026-08-19
 last_activity = 2026-08-19
 
@@ -42,5 +44,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 374
-last_180_days_downloads = 374
+last_month_downloads = 173
+last_180_days_downloads = 379
