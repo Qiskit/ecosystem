@@ -10,6 +10,7 @@ documentation = "https://qiskit-rigetti.readthedocs.io/"
 packages = []
 uuid = "88a73f80-a247-4bb4-a6aa-f5da3ebd50c4"
 maturity = "experimental"
+status = "Alumni"
 
 [github]
 url = "https://github.com/rigetti/qiskit-rigetti"
@@ -46,6 +47,11 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 83
 last_180_days_downloads = 401
+
+[checks.G07]
+since = 2026-09-17
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+importance = "STRONG-RECOMMENDATION"
 
 [checks.P10]
 since = 2026-07-09

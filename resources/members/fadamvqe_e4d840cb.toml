@@ -28,7 +28,7 @@ last_commit = 2025-07-06
 url = "https://qisk.it/e-e4d840cb"
 style = "flat"
 
-[checks.G12]
-since = 2026-09-14
-details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
-importance = "IMPORTANT"
+[checks.G07]
+since = 2026-09-17
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+importance = "STRONG-RECOMMENDATION"
