@@ -15,7 +15,7 @@ maturity = "production-ready"
 url = "https://github.com/amazon-braket/qiskit-braket-provider"
 owner = "amazon-braket"
 repo = "qiskit-braket-provider"
-stars = 85
+stars = 86
 homepage = "https://qiskit-braket-provider.readthedocs.io/"
 license = "Apache-2.0"
 description = "Qiskit-Braket provider to execute Qiskit programs on devices via Amazon Braket."
@@ -24,7 +24,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-02-22
 last_commit = 2026-09-13
-last_activity = 2026-09-13
+last_activity = 2026-09-18
 
 [badge]
 url = "https://qisk.it/e-de20c734"
@@ -44,5 +44,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 8453
-last_180_days_downloads = 66072
+last_month_downloads = 7377
+last_180_days_downloads = 65863
