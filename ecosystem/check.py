@@ -63,6 +63,16 @@ class ChecksToml:
             if isinstance(checkup, dict)
         }
 
+    def cure_period(self, checkup_id):
+        """The cure period of a check up, in days.
+
+        The cure period is a property of the check up. When the check up does not state one,
+        the default of its importance level applies."""
+        checkup = self.checkup(checkup_id)
+        if "cure_period_in_days" in checkup:
+            return checkup["cure_period_in_days"]
+        return self.importance(checkup["importance"]).get("cure_period_in_days")
+
     @property
     def importances(self):
         """The importance levels, from the most to the least severe"""
@@ -83,6 +93,16 @@ class ChecksToml:
             if importance["name"] == importance_name:
                 return importance
         raise KeyError("importance name not found")
+
+    def importance_rank(self, importance_name):
+        """Where an importance sits among the levels, 0 being the most severe.
+
+        The order is the order of the `[[importance]]` entries in checks.toml. A name that is
+        not one of them sorts last."""
+        names = [importance["name"] for importance in self.importances]
+        if importance_name in names:
+            return names.index(importance_name)
+        return len(names)
 
     def id_by_pytest_node(self, node_id):
         """Given a PyTest node ID, find the test ID"""
@@ -169,6 +189,12 @@ class CheckData(JsonSerializable):
         if "importance" in self.checks_toml.checkup(self.id):
             return self.checks_toml.checkup(self.id)["importance"]
         return None
+
+    @property
+    def importance_rank(self):
+        """Where the importance of the check up sits among the levels, 0 being the most
+        severe. See `ChecksToml.importance_rank`"""
+        return self.checks_toml.importance_rank(self.importance)
 
     @property
     def importance_icon(self):
@@ -273,15 +299,8 @@ class CheckData(JsonSerializable):
 
     @property
     def cure_period_in_days(self):
-        """The check level cure_period_in_days has precedence over the importance level"""
-        cure_period_in_days = None
-        importance_level = self.checks_toml.importance(self.importance)
-        if "cure_period_in_days" in importance_level:
-            cure_period_in_days = importance_level["cure_period_in_days"]
-        check_level = self.checks_toml.checkup(self.id)
-        if "cure_period_in_days" in check_level:
-            cure_period_in_days = check_level["cure_period_in_days"]
-        return cure_period_in_days
+        """The cure period of the check up, in days. See `ChecksToml.cure_period`"""
+        return self.checks_toml.cure_period(self.id)
 
     @property
     def cure_period_is_infinite(self):
@@ -303,6 +322,17 @@ class CheckData(JsonSerializable):
         if self.cure_period_is_infinite or self.since is None:
             return None
         return self.since + timedelta(days=self.cure_period_in_days)
+
+    @property
+    def days_left_in_cure_period(self):
+        """Days left before there is no time to fix the check up anymore. Negative once the
+        deadline is behind (which only retires the project if its importance is not excluded).
+
+        None when there is no deadline to count towards: an infinite cure period (see
+        `self.cure_period_is_infinite`) or no `self.since` to count from."""
+        if self.cure_period_is_infinite or self.since is None:
+            return None
+        return self.cure_period_in_days - self.days_since_failure
 
     @property
     def cure_period_expired(self):

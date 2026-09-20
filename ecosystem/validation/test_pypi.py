@@ -90,7 +90,7 @@ def test_P12(member):
         if pypi_package.license is None:
             assert (
                 pypi_package.license is not None
-            ), f"member.pypi.{pypi_package.package_name} does not have a declared license"
+            ), f"The PyPI package {pypi_package.package_name} does not have a declared license"
 
 
 def test_P13(member):
@@ -98,4 +98,4 @@ def test_P13(member):
         if pypi_package.license is not None:
             assert (
                 pypi_package.license.is_osi_approved()
-            ), f"member.pypi.{pypi_package.package_name}.license is not OSI-approved"
+            ), f"The PyPI package {pypi_package.package_name}.license is not OSI-approved"

@@ -22,6 +22,8 @@ from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.check import ChecksToml, parse_exclusions
+from ecosystem.docs import write_if_changed
+from ecosystem.docs.checkup_page import CheckupAssets
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
 from ecosystem.error_handling import logger
@@ -175,94 +177,26 @@ class CliMembers:
         self.update_assets_interfaces(projects_per_classification["interfaces"])
         self.update_assets_checkups()
 
+    def _projects_per_checkup(self):
+        """Two dicts checkup_id -> [Member], for the projects that have the check up recorded:
+        the ones it is pending on, and the ones with a valid explanation for it."""
+        pending = {id_: [] for id_ in self.checks_toml.checkups}
+        explained = {id_: [] for id_ in self.checks_toml.checkups}
+        for project in self.dao.get_all():
+            for checkup_id, checkup in project.checks.items():
+                where = explained if checkup.xfail_applies else pending
+                # setdefault: a member file may name a check up that checks.toml no longer has
+                where.setdefault(checkup_id, []).append(project)
+        return pending, explained
+
     def update_assets_checkups(self):
-        """Updates the check up tables in docs/assets/ from resources/checks.toml.
-
-        Three fragments are generated, so the documentation never drifts from checks.toml:
-        `checkups.md` (one row per check up), `checkup-importance.md` (the importance levels
-        and their default cure period) and `checkup-categories.md` (the categories).
-        """
-        assets_dir = Path(self.current_dir, "docs", "assets")
-        assets_dir.mkdir(parents=True, exist_ok=True)
-
-        def cell(text):
-            """A string that is safe to use inside a Markdown table cell"""
-            return str(text).replace("|", "\\|").replace("\n", " ")
-
-        def tooltip(text):
-            """A string that is safe to use inside a Markdown attr_list title="..." """
-            return cell(text).replace('"', "&quot;")
-
-        # one row per check up
-        checkups = dict(sorted(self.checks_toml.checkups.items()))
-        lines = [
-            "| id | check up | applies to | category | importance | cure period |",
-            "| :---: | --- | --- | :---: | :---: | :---: |",
-        ]
-        for id_, checkup in checkups.items():
-            importance = checkup.get("importance")
-            importance_level = (
-                self.checks_toml.importance(importance) if importance else {}
-            )
-            icon = importance_level.get("icon", "")
-            importance_description = importance_level.get("description", "")
-            lines.append(
-                f'| <span id="{id_}">`[{id_}]`</span>'
-                f' | {cell(checkup["title"])}<br>{cell(checkup["description"])}'
-                f' | {cell(checkup.get("applies_to", "all"))}'
-                f' | [{cell(checkup["category"])}](#{slugify(checkup["category"])})'
-                f' | :{icon}:{{ title="{tooltip(importance_description)}" }}'
-                f" [{cell(importance)}](#{slugify(importance)})"
-                f" | {self._cure_period_cell(id_)} |"
-            )
-        Path(assets_dir, "checkups.md").write_text("\n".join(lines) + "\n")
-
-        # the importance levels
-        lines = [
-            "| importance | description | cure period |",
-            "| :---: | --- | :---: |",
-        ]
-        for importance in self.checks_toml.importances:
-            icon = importance.get("icon", "")
-            lines.append(
-                f'| :{icon}: <span id="{slugify(importance["name"])}">'
-                f'**{cell(importance["name"])}**</span>'
-                f' | {cell(importance["description"])}'
-                f' | {self._cure_period_str(importance.get("cure_period_in_days"))} |'
-            )
-        Path(assets_dir, "checkup-importance.md").write_text("\n".join(lines) + "\n")
-
-        # the categories
-        lines = ["| category | description |", "| :---: | --- |"]
-        for category in self.checks_toml.categories:
-            lines.append(
-                f'| <span id="{slugify(category["name"])}">**{cell(category["name"])}**</span>'
-                f' | {cell(category["description"])} |'
-            )
-        Path(assets_dir, "checkup-categories.md").write_text("\n".join(lines) + "\n")
-
-    @staticmethod
-    def _cure_period_str(days):
-        """A `cure_period_in_days` value as a table cell"""
-        if days is None:
-            return "not defined"
-        if days < 0:
-            return "no deadline"
-        if days == 0:
-            return "none"
-        return f"{days} days"
-
-    def _cure_period_cell(self, checkup_id):
-        """The effective cure period of a check up, noting when it overrides its importance"""
-        checkup = self.checks_toml.checkup(checkup_id)
-        if "cure_period_in_days" not in checkup:
-            importance = checkup.get("importance")
-            if not importance:
-                return "not defined"
-            return self._cure_period_str(
-                self.checks_toml.importance(importance).get("cure_period_in_days")
-            )
-        return f'{self._cure_period_str(checkup["cure_period_in_days"])} \u26a0\ufe0f'
+        """Updates the check up fragments in docs/assets/, from resources/checks.toml and the
+        member files. See `ecosystem.docs.checkup_page.CheckupAssets`"""
+        CheckupAssets(
+            self.checks_toml,
+            self.dao.get_all(),
+            Path(self.current_dir, "docs", "assets"),
+        ).write_all()
 
     def _all_projects_classifications(self, *classifications):
         """
@@ -307,14 +241,10 @@ class CliMembers:
         assets_dir = os.path.join(self.current_dir, "docs", "assets")
 
         def writelines(classification, lines):
-            classification_md = os.path.join(
-                assets_dir, f"{slugify(classification)}.md"
+            write_if_changed(
+                os.path.join(assets_dir, f"{slugify(classification)}.md"),
+                "".join(lines),
             )
-            os.makedirs(os.path.dirname(classification_md), exist_ok=True)
-            Path(classification_md).touch(exist_ok=True)
-
-            with open(classification_md, "w") as outfile:
-                outfile.writelines(lines)
 
         for classification in [
             "Member",
@@ -377,12 +307,7 @@ class CliMembers:
         assets_dir = os.path.join(self.current_dir, "docs", "assets")
 
         classification_json = os.path.join(assets_dir, f"{classification}.json")
-        os.makedirs(os.path.dirname(classification_json), exist_ok=True)
-        Path(classification_json).touch(exist_ok=True)
-
         classification_md = os.path.join(assets_dir, f"{classification}.md")
-        os.makedirs(os.path.dirname(classification_md), exist_ok=True)
-        Path(classification_md).touch(exist_ok=True)
 
         short_description = []
         lines = []
@@ -416,7 +341,10 @@ class CliMembers:
                 with open(section_text_md, "r") as file:
                     description = file.read()
             lines += [
-                f"## {name}",
+                # the anchor is set explicitly: the id that the table of contents would
+                # derive drops characters that `slugify` keeps, and then the link in the
+                # summary table above does not resolve (e.g. `Game/Educational`)
+                f"## {name} {{ #{slugify(name, '-')} }}",
                 "\n\n",
             ]
             if len(projects[name]):
@@ -430,20 +358,14 @@ class CliMembers:
                 lines.append("**No project with this classification**")
             lines += ["\n\n", description, "\n\n"]
 
-        with open(classification_json, "w") as f:
-            json.dump(short_description, f)
-
-        with open(classification_md, "w") as outfile:
-            outfile.writelines(lines)
+        write_if_changed(classification_json, json.dumps(short_description))
+        write_if_changed(classification_md, "".join(lines))
 
     def update_badge_list(self):
         """Updates badge list in qisk.it/ecosystem-badges."""
         output_file = os.path.join(
             self.current_dir, "docs", "assets", "badges_table.md"
         )
-        os.makedirs(os.path.dirname(output_file), exist_ok=True)
-        Path(output_file).touch(exist_ok=True)
-
         projects = []
         for project in self.dao.get_all():
             if project.badge is None:
@@ -475,8 +397,7 @@ class CliMembers:
             )
         lines.append("</table>\n")
 
-        with open(output_file, "w") as outfile:
-            outfile.writelines(lines)
+        write_if_changed(output_file, "".join(lines))
 
     def update_badge(self, name=None):
         """
@@ -592,14 +513,13 @@ class CliMembers:
         cure_period_str = (
             "∞" if checkup.cure_period_is_infinite else str(checkup.cure_period_in_days)
         )
-        if checkup.cure_period_is_infinite:
+        days_left = checkup.days_left_in_cure_period
+        if days_left is None:
             left_period_str = "∞"
+        elif days_left < 0:
+            left_period_str = "no"
         else:
-            left_period_int = checkup.cure_period_in_days - checkup.days_since_failure
-            if left_period_int < 0:
-                left_period_str = "no"
-            else:
-                left_period_str = str(left_period_int)
+            left_period_str = str(days_left)
 
         for_x_days = (
             f"for {checkup.days_since_failure} days, so "

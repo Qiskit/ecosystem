@@ -11,17 +11,17 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 ## Contents
 
 - [Background](#background)
+  - [Adding a project to the ecosystem](#adding-a-project-to-the-ecosystem)
 - [Check ups](#check-ups)
   - [Importance and cure period](#importance-and-cure-period)
   - [Categories](#categories)
-  - [When the check ups run](#when-the-check-ups-run)
+  - [When automation runs](#when-automation-runs)
   - [How a failing check up is recorded](#how-a-failing-check-up-is-recorded)
   - [Check ups that are not tests](#check-ups-that-are-not-tests)
   - [Expected failures](#expected-failures)
-  - [The check up catalog](#the-check-up-catalog)
+  - [The whole list](#the-whole-list)
 - [For project maintainers](#for-project-maintainers)
-- [Solution explanation](#solution-explanation)
-  - [Adding project to the ecosystem](#adding-project-to-the-ecosystem)
+- [Architecture](#architecture)
   - [Storage](#storage)
   - [Webpage](#webpage)
 
@@ -30,6 +30,13 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
 As number of projects in Qiskit ecosystem is growing, we found it useful to create 
 a curated list of libraries, open source repos, guides, games, demos, and other resources in order to
 accelerate development of quantum technologies and provide more visibility for community projects.
+
+### Adding a project to the ecosystem
+
+Anyone can add their project for review to be included in the ecosystem by
+[submitting an issue](https://qisk.it/add-to-ecosystem/).
+A submission is reviewed against the same [check ups](#check-ups) that keep running afterwards,
+so a project joins by passing them and stays by keeping them passing.
 
 ## Check ups
 
@@ -45,29 +52,33 @@ Every check up has:
 
 All the check ups are declared in
 [`resources/checks.toml`](https://github.com/Qiskit/ecosystem/blob/main/resources/checks.toml),
-which is the single source of truth: the [catalog below](#the-check-up-catalog) and every project page are generated from it.
+which is the single source of truth: the [check up list](checkups.md) and every project page are generated from it.
 Most check ups also declare a `checker`, which is the [PyTest](https://docs.pytest.org) test that implements them, under
 [`ecosystem/validation/`](https://github.com/Qiskit/ecosystem/tree/main/ecosystem/validation).
 For instance, `[G07]` is implemented by `test_github.py::test_G07`.
 
 ### Importance and cure period
 
-The importance of a check up sets its **cure period**: how many days a member can keep failing it before losing its membership.
-A cure period of _none_ means the check up has to pass at all times, while _no deadline_
-(`cure_period_in_days = -1`) means the opposite: the check up shows up as pending, so the project is
-[_Under revision_](status.md#under-revision), but it never retires the project on its own.
+Every check up has a **cure period**: how many days a member can keep failing it before losing its
+membership. A cure period of _0 days_ means the check up has to pass at all times, while
+_no deadline_ (`cure_period_in_days = -1`) means the opposite: the check up shows up as pending, so
+the project is [_Under revision_](status.md#under-revision), but it never retires the project on
+its own.
+
+The cure period is a property of the check up, and most check ups do not state one: they take the
+default of their importance level.
 
 {{ read_raw('docs/assets/checkup-importance.md') }}
 
-A single check up can override the cure period of its importance level; those are marked with a :warning: in the [catalog](#the-check-up-catalog).
+The cure period each check up ends up with is in the [check up list](checkups.md).
 
 ### Categories
 
 {{ read_raw('docs/assets/checkup-categories.md') }}
 
-### When the check ups run
+### When automation runs
 
-Check ups are run by [GitHub Actions](https://github.com/Qiskit/ecosystem/tree/main/.github/workflows), never by hand:
+All the automation run by [GitHub Actions](https://github.com/Qiskit/ecosystem/tree/main/.github/workflows):
 
 - **Daily**, `Daily | Update member data` refreshes the data that the check ups look at (GitHub repository activity, PyPI and Julia package metadata, ...) and commits it into the project files.
   This is why a fix in a project can take a day to be visible, and a release can take a day to be noticed.
@@ -103,7 +114,7 @@ A passing check up leaves no trace: if the failure is fixed, the whole `[checks.
 
 ### Check ups that are not tests
 
-Some criteria cannot be tested automatically: whether a project [interfaces with Qiskit in a meaningful way](#000), for example, or whether a primitive implementation is [V2-compatible](#020).
+Some criteria cannot be tested automatically: whether a project [interfaces with Qiskit in a meaningful way](checkups.md#000), for example, or whether a primitive implementation is [V2-compatible](checkups.md#020).
 Those check ups have no `checker`.
 Instead, they are created by a human and carry a `source`, the URL of the GitHub issue where the problem is tracked, usually in the project's own repository:
 
@@ -132,9 +143,10 @@ xfailed_until = 2027-01-31
 An explanation without it never expires.
 Once the date passes, the check up is evaluated as a regular one again, which is a way of saying _"this is fine for now, let us look at it again in six months"_.
 
-### The check up catalog
+### The whole list
 
-{{ read_raw('docs/assets/checkups.md') }}
+Every check up, with the projects that are currently failing it, is listed in
+[Check ups](checkups.md).
 
 ## For project maintainers
 
@@ -145,7 +157,7 @@ Here is what that means in practice.
 
 Your project page (`https://qiskit.github.io/ecosystem/p/<short uuid>/`) has a **Checkups** section.
 If everything passes, it says _All good_.
-Otherwise, it lists one line per failing check up: the icon is the [importance](#importance-and-cure-period), the `[ID]` links to the [catalog](#the-check-up-catalog), and the text is the concrete reason.
+Otherwise, it lists one line per failing check up: the icon is the [importance](#importance-and-cure-period), the `[ID]` links to [that check up](checkups.md), and the text is the concrete reason.
 
 The [badge](badges.md) is the other signal: it turns orange when the project is _Under revision_, so adding it to your `README.md` is also a way of noticing that something needs your attention.
 
@@ -169,22 +181,23 @@ Being _Alumni_ is reversible: a project can be reconsidered at any point by open
 - Open an issue in [the Qiskit Ecosystem repository](https://github.com/Qiskit/ecosystem/issues).
 - Ask in the [`#qiskit-ecosystem` Slack channel](https://qiskit.slack.com/archives/C04RHE56N93) ([sign up](https://qisk.it/join-slack) if you are not in the workspace yet).
 
-## Solution Explanation
+## Architecture
 
-As entire repository is designed to be run through GitHub Actions,
-we implemented ecosystem python package as runner of CLI commands
-to be executed from steps in Actions. 
+The rest of this page is about how the repository itself is put together, which is what you
+need when changing the Qiskit Ecosystem rather than taking part in it.
 
-Entrypoint is ``manager.py`` file in the root of repository.
+Everything is designed to run through GitHub Actions, so the `ecosystem` Python package is a
+runner of CLI commands to be executed from steps in those workflows. There is no server and no
+database: the member files in the repository are the data, and the website is a build artifact.
+
+The entrypoint is the ``manager.py`` file in the root of the repository.
 
 ```shell
 python manager.py <CMD> <NAME_OF_FUNCTION_IN_MANAGER_FILE> <POSITIONAL_ARGUMENT> [FLAGS]
 ```
 
-### Adding project to the ecosystem
-
-Anyone can add their project for review to be included in the ecosystem by
-[submitting issue](https://qisk.it/add-to-ecosystem/).
+The commands that run the check ups (`members update_checkups` and `members update_status`) are
+the ones described in [When automation runs](#when-automation-runs).
 
 ### Storage
 

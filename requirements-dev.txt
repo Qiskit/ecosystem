@@ -8,6 +8,9 @@ ruamel.yaml~=0.19
 # For website and docs
 mkdocs~=1.6
 mkdocs-material
+# comes with mkdocs-material, which only asks for >=10.2. Older versions crash in
+# pymdownx.highlight with Pygments 2.20 and silently leave every code block unformatted
+pymdown-extensions>=11.0.2
 mkdocs-table-reader-plugin
 mkdocs-gen-files~=0.6
 mkdocs-literate-nav~=0.6

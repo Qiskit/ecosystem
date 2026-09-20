@@ -21,7 +21,7 @@
         "cure_period_in_days": {
           "type": "integer",
           "minimum": -1,
-          "description": "Overrides the cure period of the importance level of this check up. A negative value (by convention, -1) is an infinite cure period: the check up stays pending, but it never retires the project."
+          "description": "Days a member can keep failing this check up before being retired. When absent, the default of its importance level applies. 0 means the check up has to pass at all times. A negative value (by convention, -1) is an infinite cure period: the check up stays pending, but it never retires the project."
         }
       },
       "required": [
@@ -43,7 +43,7 @@
           "cure_period_in_days": {
             "type": "integer",
             "minimum": -1,
-            "description": "Days a member can keep failing a check up of this importance before being retired. 0 means the check up has to pass at all times. A negative value (by convention, -1) is an infinite cure period: the check up stays pending, but it never retires the project."
+            "description": "Default cure period for the check ups of this importance, in days, used for every check up that does not state its own. 0 means the check up has to pass at all times. A negative value (by convention, -1) is an infinite cure period: the check up stays pending, but it never retires the project."
           },
           "icon": {
             "type": "string"

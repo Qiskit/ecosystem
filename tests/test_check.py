@@ -272,7 +272,7 @@ class TestCurePeriod(TestCase):
     critical = "001"
     # [PQ2] is IMPORTANT, so its cure period is the 90 days of that importance level
     important = "PQ2"
-    # [P10] overrides the cure period of its importance level with -1
+    # [P10] states its own cure period, -1, instead of the default of its importance
     infinite = "P10"
 
     @staticmethod
@@ -311,3 +311,32 @@ class TestCurePeriod(TestCase):
         check = CheckData(self.important)
         self.assertIsNone(check.cure_period_deadline)
         self.assertFalse(check.cure_period_expired)
+
+
+class TestImportanceRank(TestCase):
+    """The order of the importance levels, used to put the most severe check up first"""
+
+    def test_the_order_is_the_one_in_checks_toml(self):
+        """CRITICAL first, LEGACY last"""
+        checks_toml = CheckData.checks_toml
+        names = [importance["name"] for importance in checks_toml.importances]
+        self.assertEqual(names[0], "CRITICAL")
+        self.assertEqual(
+            [checks_toml.importance_rank(name) for name in names],
+            list(range(len(names))),
+        )
+
+    def test_a_checkup_knows_its_rank(self):
+        """[G05] is CRITICAL, [P10] a RECOMMENDATION"""
+        self.assertEqual(CheckData("G05").importance_rank, 0)
+        self.assertLess(
+            CheckData("G05").importance_rank, CheckData("P10").importance_rank
+        )
+
+    def test_an_unknown_importance_sorts_last(self):
+        """So a check up with no importance level never comes first"""
+        checks_toml = CheckData.checks_toml
+        self.assertEqual(
+            checks_toml.importance_rank("NOT-AN-IMPORTANCE"),
+            len(checks_toml.importances),
+        )

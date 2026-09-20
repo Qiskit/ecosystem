@@ -449,6 +449,8 @@ class PypiPackageCard(Card):
 
     def body(self):
         """Returns a list of lines for the the card body"""
+        if not self.version or not self.url or not self.last_release_date:
+            return []
         ret = [
             ":fontawesome-regular-paper-plane: **current release** "
             f'[{self.version}]( {self.url} "Released: {self.last_release_date}")',
