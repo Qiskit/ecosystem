@@ -3,6 +3,7 @@ submission_number = 1172
 url = "https://github.com/Qiskit/openqasm3_parser"
 labels = ["openqasm"]
 interfaces = ["Python", "Rust"]
+ibm_maintained = true
 category = "Converter"
 packages = [
   "https://crates.io/crates/oq3_parser",
