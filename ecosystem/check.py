@@ -94,6 +94,16 @@ class ChecksToml:
                 return importance
         raise KeyError("importance name not found")
 
+    def importance_rank(self, importance_name):
+        """Where an importance sits among the levels, 0 being the most severe.
+
+        The order is the order of the `[[importance]]` entries in checks.toml. A name that is
+        not one of them sorts last."""
+        names = [importance["name"] for importance in self.importances]
+        if importance_name in names:
+            return names.index(importance_name)
+        return len(names)
+
     def id_by_pytest_node(self, node_id):
         """Given a PyTest node ID, find the test ID"""
         for id_, checkup in self.checkups.items():
@@ -179,6 +189,12 @@ class CheckData(JsonSerializable):
         if "importance" in self.checks_toml.checkup(self.id):
             return self.checks_toml.checkup(self.id)["importance"]
         return None
+
+    @property
+    def importance_rank(self):
+        """Where the importance of the check up sits among the levels, 0 being the most
+        severe. See `ChecksToml.importance_rank`"""
+        return self.checks_toml.importance_rank(self.importance)
 
     @property
     def importance_icon(self):

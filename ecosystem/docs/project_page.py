@@ -188,30 +188,36 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             return lines
         columns = [
             ("Check up", "---"),
+            ("Importance", ":---:"),
             ("What is failing", "---"),
             ("Days left in the cure period", "---:"),
             ("Discussion", ":---:"),
         ]
         rows = [
             [
-                f":{checkup.importance_icon}:"
-                f'{{ title="{checkup.importance} - {checkup.importance_description}" }} '
                 f"[`[{checkup.id}]`](../checkups.md#{checkup.id})"
                 f'{{ title="All the projects not passing check up [{checkup.id}]" }}'
                 f" {CheckupAssets.cell(checkup.title)}",
+                f":{checkup.importance_icon}:"
+                f'{{ title="{CheckupAssets.tooltip(checkup.importance_description)}" }} '
+                f"{CheckupAssets.cell(checkup.importance)}",
                 # no details of its own (a source-based check up) means there is nothing to
                 # add to the title in the column before
                 CheckupAssets.cell(checkup.details) if checkup.details else "",
                 CheckupAssets.days_left(self.project, checkup),
                 CheckupAssets.discussion_link(checkup),
             ]
-            for checkup in self.project.checks.values()
+            # the most severe first
+            for checkup in sorted(
+                self.project.checks.values(),
+                key=lambda checkup: checkup.importance_rank,
+            )
         ]
         # a column with nothing to say is left out, as in the check up page tables. For an
         # alumni project every cure period reads the same placeholder, which is one of them
-        if all(row[2] == "&mdash;" for row in rows):
+        if all(row[3] == "&mdash;" for row in rows):
             for row in rows:
-                row[2] = ""
+                row[3] = ""
         keep = [i for i in range(len(columns)) if any(row[i] for row in rows)]
         lines += [
             "| " + " | ".join(columns[i][0] for i in keep) + " |",
