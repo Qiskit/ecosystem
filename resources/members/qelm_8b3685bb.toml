@@ -1,6 +1,7 @@
 name = "QELM"
 url = "https://github.com/R-D-BioTech-Alaska/Qelm"
 description = "A quantum-powered NLP project. Creates ultra-compact, efficient LLMs that run instantly on small devices without data centers."
+license = "PolyForm-Strict-1.0.0"
 contact_info = "contact@rdbiotechalaska.com"
 affiliations = "R&D BioTech Alaska"
 labels = ["QML", "circuit building", "research", "AI/LLM"]
@@ -27,5 +28,6 @@ package_name = "qelm"
 
 [checks.001]
 since = 2026-07-30
+details = "QELM license is not open-source. It is a proprietary license that restricts usage and distribution."
 source = "https://github.com/Qiskit/ecosystem/issues/1381"
 importance = "CRITICAL"
