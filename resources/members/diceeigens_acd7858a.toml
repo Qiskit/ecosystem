@@ -48,3 +48,5 @@ since = 2026-08-18
 details = "member.pypi.qiskit-addon-dice-solver does not have a declared license"
 discussion = "https://github.com/Qiskit/qiskit-addon-dice-solver/pull/123"
 importance = "RECOMMENDATION"
+xfailed = "PR with fix was merged, but not yet released to PyPI"
+xfailed_until = 2026-12-31

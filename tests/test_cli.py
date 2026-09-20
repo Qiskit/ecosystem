@@ -13,6 +13,7 @@
 """Tests for cli."""
 
 import io
+import json
 import os
 import shutil
 import tempfile
@@ -473,8 +474,9 @@ class TestUpdateStatusCheckups(UpdateStatusTestCase):
 
 
 class TestUpdateStatusInfiniteCurePeriod(UpdateStatusTestCase):
-    """A check up with a negative cure_period_in_days ([P10] overrides its importance
-    level with -1) keeps the project "Under revision" forever, but never retires it."""
+    """A check up with a negative cure_period_in_days ([P10] states -1 instead of taking
+    the default of its importance) keeps the project "Under revision" forever, but never
+    retires it."""
 
     def status_with_p10_failing_since(self, days_ago):
         """Adds a member failing [P10] since `days_ago` days ago and updates its status"""
@@ -621,3 +623,238 @@ class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
                 self.assertEqual(
                     self.checks_after_update("Qiskit Project", spelling), set()
                 )
+
+
+class TestCheckupAssets(UpdateStatusTestCase):
+    """The fragments behind qisk.it/ecosystem-checkups, generated from checks.toml
+    and the member files. See `CliMembers.update_assets_checkups`"""
+
+    def setUp(self):
+        super().setUp()
+        (self.path / "docs" / "assets").mkdir(parents=True, exist_ok=True)
+
+    def generate(self):
+        """Runs the generator and returns (summary rows, page body)"""
+        self.cli_members.update_assets_checkups()
+        assets = self.path / "docs" / "assets"
+        return (
+            json.loads((assets / "checkup.json").read_text()),
+            (assets / "checkup.md").read_text(),
+        )
+
+    def failing(self, checkup_id, *, xfailed=None):
+        """A member failing `checkup_id`, optionally with an explanation for it"""
+        member = self.add_member()
+        member.checks = {
+            checkup_id: CheckData(checkup_id, since=date.today(), xfailed=xfailed)
+        }
+        self.cli_members.dao.write(member)
+        return member
+
+    def test_every_checkup_gets_a_section(self):
+        """One section per check up in checks.toml, with the id as the anchor"""
+        summary, body = self.generate()
+        ids = set(self.cli_members.checks_toml.checkups)
+        self.assertEqual(len(summary), len(ids))
+        for id_ in ids:
+            with self.subTest(checkup=id_):
+                self.assertIn(f"{{ #{id_} }}", body)
+
+    def test_a_failing_project_is_listed(self):
+        """The project shows up under its check up, linked to its project page"""
+        member = self.failing("G07")
+        summary, body = self.generate()
+        self.assertIn("There is 1 project failing this check up", body)
+        self.assertIn(f"[{member.name}](p/{member.short_uuid}.md)", body)
+        row = next(r for r in summary if "[G07]" in r["Check up"])
+        self.assertEqual(row["Failing"], 1)
+
+    def test_a_checkup_nobody_fails_says_so(self):
+        """[G07] is the only one failing, so [G05] has nothing to list"""
+        self.failing("G07")
+        _, body = self.generate()
+        section = body.split("{ #G05 }")[1].split("## ")[0]
+        self.assertIn("**No project is failing this check up**", section)
+
+    def test_an_explained_checkup_is_not_counted_as_failing(self):
+        """A valid explanation is listed apart, and out of the failing count"""
+        self.failing("G07", xfailed="the maintainers still answer issues")
+        summary, body = self.generate()
+        self.assertIn("1 project with an explanation for this check up", body)
+        self.assertNotIn('failing this check up"', body.split("{ #G07 }")[1])
+        row = next(r for r in summary if "[G07]" in r["Check up"])
+        self.assertEqual(row["Failing"], 0)
+
+    def test_the_summary_links_to_the_sections(self):
+        """Every row of the summary table points at a section of the same page"""
+        summary, body = self.generate()
+        for row in summary:
+            with self.subTest(row=row["Check up"]):
+                anchor = row["Check up"].rpartition("(#")[2].rstrip(")")
+                self.assertIn(f"{{ #{anchor} }}", body)
+
+
+class TestCheckupProjectTable(UpdateStatusTestCase):
+    """The table inside each collapsible: maturity, status, and what is left of the cure
+    period. See `CliMembers.update_assets_checkups`"""
+
+    def setUp(self):
+        super().setUp()
+        (self.path / "docs" / "assets").mkdir(parents=True, exist_ok=True)
+
+    def body_of(self, checkup_id, days_ago=0, **member_kwargs):
+        """The generated section of `checkup_id`, for a member failing it"""
+        self.row_of(checkup_id, days_ago, **member_kwargs)
+        body = (self.path / "docs" / "assets" / "checkup.md").read_text()
+        return body.split(f"{{ #{checkup_id} }}")[1].split("\n## ")[0]
+
+    def row_of(self, checkup_id, days_ago=0, **member_kwargs):
+        """The table row that `checkup_id` gets for a member failing it `days_ago` days ago"""
+        xfailed = member_kwargs.pop("xfailed", None)
+        xfailed_until = member_kwargs.pop("xfailed_until", None)
+        discussion = member_kwargs.pop("discussion", None)
+        member = self.add_member(**member_kwargs)
+        member.status = member_kwargs.get("status")
+        member.checks = {
+            checkup_id: CheckData(
+                checkup_id,
+                since=date.today() - timedelta(days=days_ago),
+                xfailed=xfailed,
+                xfailed_until=xfailed_until,
+                discussion=discussion,
+            )
+        }
+        self.cli_members.dao.write(member)
+        self.cli_members.update_assets_checkups()
+        body = (self.path / "docs" / "assets" / "checkup.md").read_text()
+        section = body.split(f"{{ #{checkup_id} }}")[1].split("\n## ")[0]
+        return next(
+            line.strip() for line in section.splitlines() if line.startswith("    | [")
+        )
+
+    def test_maturity_and_status_are_shown(self):
+        """[G07] has a 90 day cure period, so a fresh failure has all of it left"""
+        row = self.row_of("G07", maturity="experimental", status="Under revision")
+        self.assertIn("| experimental |", row)
+        self.assertIn("| Under revision |", row)
+        self.assertTrue(row.endswith("| 90 |"), row)
+
+    def test_the_default_status_is_member(self):
+        """A regular member has no `member.status` of its own"""
+        self.assertIn("| Member |", self.row_of("G07"))
+
+    def test_the_days_count_down_from_since(self):
+        """The deadline does not move while the check up keeps failing"""
+        self.assertTrue(self.row_of("G07", days_ago=30).endswith("| 60 |"))
+
+    def test_a_passed_deadline_is_overdue(self):
+        """Past the cure period, but not retired (yet, or because it is excluded)"""
+        self.assertTrue(self.row_of("G07", days_ago=91).endswith("| overdue |"))
+
+    def test_an_infinite_cure_period_has_no_countdown(self):
+        """[P10] states a cure period of -1 of its own"""
+        self.assertTrue(self.row_of("P10", days_ago=10_000).endswith("| &infin; |"))
+
+    def test_alumni_are_not_rows_in_the_table(self):
+        """Their cure period is what retired them, so they are listed apart. See
+        `TestCheckupAlumniList`"""
+        with self.assertRaises(StopIteration):
+            self.row_of("G07", days_ago=30, status="Alumni")
+
+    def test_an_explanation_shows_its_own_expiration(self):
+        """An explained check up has no cure period ticking, so the column is what is left
+        of the explanation instead"""
+        row = self.row_of(
+            "G07",
+            xfailed="the maintainers still answer issues",
+            xfailed_until=date.today() + timedelta(days=45),
+        )
+        self.assertTrue(row.endswith("| 45 days |"), row)
+
+    def test_the_explanation_is_a_column(self):
+        """The `xfailed` text itself, next to when it expires"""
+        row = self.row_of("G07", xfailed="the project is feature complete")
+        self.assertIn("| the project is feature complete |", row)
+        self.assertIn(
+            "| Project | Maturity | Status | Explanation | Explanation expires in |",
+            self.body_of("G07", xfailed="the project is feature complete"),
+        )
+
+    def test_no_explanation_no_column(self):
+        """A pending check up has nothing to explain"""
+        self.assertNotIn("Explanation", self.body_of("G07"))
+
+    def test_a_discussion_is_linked(self):
+        """The column only shows up when one of the projects has a `discussion`"""
+        row = self.row_of(
+            "G07", discussion="https://github.com/Qiskit/ecosystem/issues/1"
+        )
+        self.assertIn(
+            "| [discussion](https://github.com/Qiskit/ecosystem/issues/1) |", row
+        )
+
+    def test_no_discussion_no_column(self):
+        """Nothing extra when none of the projects has one"""
+        body = self.body_of("G07")
+        self.assertNotIn("Discussion", body)
+        self.assertIn(
+            "| Project | Maturity | Status | Days left in the cure period |", body
+        )
+
+    def test_an_explanation_without_expiration_never_expires(self):
+        """`xfailed` without `xfailed_until`"""
+        row = self.row_of("G07", xfailed="this project is feature complete")
+        self.assertTrue(row.endswith("| never |"), row)
+
+
+class TestCheckupAlumniList(UpdateStatusTestCase):
+    """The alumni that were failing a check up are listed apart, out of the headline count.
+    See `CliMembers.update_assets_checkups`"""
+
+    def setUp(self):
+        super().setUp()
+        (self.path / "docs" / "assets").mkdir(parents=True, exist_ok=True)
+
+    def section(self, *members):
+        """Writes the members, generates, and returns the [G07] section of the page"""
+        for status in members:
+            member = self.add_member()
+            member.status = status
+            member.checks = {"G07": CheckData("G07", since=date.today())}
+            self.cli_members.dao.write(member)
+        self.cli_members.update_assets_checkups()
+        body = (self.path / "docs" / "assets" / "checkup.md").read_text()
+        return body.split("{ #G07 }")[1].split("\n## ")[0]
+
+    def failing_count(self):
+        """The `Failing` column of the [G07] row of the summary table"""
+        summary = json.loads(
+            (self.path / "docs" / "assets" / "checkup.json").read_text()
+        )
+        return next(r for r in summary if "[G07]" in r["Check up"])["Failing"]
+
+    def test_only_members_are_counted(self):
+        """Two alumni and one member: the headline is about the member"""
+        section = self.section("Alumni", None, "Alumni")
+        self.assertIn("There is 1 project failing this check up", section)
+        self.assertIn('??? info "2 Alumni projects also failed', section)
+        self.assertEqual(self.failing_count(), 1)
+
+    def test_the_alumni_list_is_nested_in_the_table(self):
+        """Indented inside the collapsible that holds the table"""
+        section = self.section("Alumni", None)
+        self.assertIn('    ??? info "1 Alumni project also failed', section)
+        self.assertRegex(section, r"\n        - \[")
+
+    def test_only_alumni_says_no_current_member(self):
+        """With nothing to put in the table, the list goes to the top level"""
+        section = self.section("Alumni")
+        self.assertIn("**No current member is failing this check up**", section)
+        self.assertIn('\n??? info "1 Alumni project also failed', section)
+        self.assertEqual(self.failing_count(), 0)
+
+    def test_no_alumni_no_list(self):
+        """Nothing extra when no alumni ever failed it"""
+        section = self.section(None)
+        self.assertIn("There is 1 project failing this check up", section)
+        self.assertNotIn("Alumni", section)

@@ -186,7 +186,7 @@ title = "Have maintainer activity within the last 6 months"
 applies_to = "GitHub projects"
 affects = ['member.github.last_activity']
 category = "ACTIVITY"
-description = "Projects available on GitHub should have some activity within the last 6 months, such as somebody starring the repository. This check does not apply to projects that have declared their support as as-is."
+description = "Projects available on GitHub should have some activity within the last 6 months, such as somebody starring the repository. The lack of this kind of activity might signal a dormant project. This check up does not apply to projects that declare no maintenance expectations (`member.maturity` is `as-is` or `deprecated`)."
 importance = "RECOMMENDATION"
 checker = "test_github.py::test_G06"
 
@@ -195,7 +195,7 @@ title = "Have a commit within the last 12 months"
 applies_to = "GitHub projects"
 affects = ['member.github.last_commit']
 category = "ACTIVITY"
-description = "Projects available on GitHub should have commit activity within the last 12 months. This check does not apply to projects that have declared their support as as-is."
+description = "Projects available on GitHub should have commit activity within the last 12 months. The lack of this kind of activity might signal a dormant project. This check up does not apply to projects that declare no maintenance expectations (`member.maturity` is `as-is` or `deprecated`)."
 importance = "STRONG-RECOMMENDATION"
 checker = "test_github.py::test_G07"
 
@@ -222,16 +222,17 @@ title = "The repository license is not (probably) OSI-approved"
 applies_to = "GitHub projects"
 affects = ['github.license']
 category = "OSS"
-description = "..."
+description = "GitHub detects a license for the repository, but its SPDX identifier is not one of the OSI-approved ones. This might be a sign that the project is not open source, or that the license is declared in a way that automatic detection cannot match. The case where GitHub detects no license at all is [G09] instead."
 importance = "IMPORTANT"
 checker = "test_github.py::test_G10"
 
 [G11]
 title = "unmaintained projects should be archived when the repository is on an IBM-controlled organization"
 applies_to = "GitHub projects"
-affects = ['github.archived']
+affects = ['github.archived', 'member.maturity', 'member.github.owner']
 category = "ACTIVITY"
-description = "..."
+related_to = ["G08"]
+description = "Like [G08], projects that are not maintained (that is, `member.maturity` is `as-is` or `deprecated`) should archive their GitHub repositories. When the repository lives in a GitHub organization controlled by IBM, there is nothing standing in the way of doing it, so the recommendation is a stronger one."
 importance = "STRONG-RECOMMENDATION"
 checker = "test_github.py::test_G11"
 
@@ -242,7 +243,7 @@ affects = ['member.github.last_commit']
 category = "ACTIVITY"
 related_to = ['G07']
 cure_period_in_days = 60
-description = "Early Projects available on GitHub should have commit activity within the last (age * 2/3) months."
+description = "Projects whose GitHub repository is less than 12 months old should have commit activity within the last two thirds of the age of that repository, and in any case within the last 2 months. A project that stops committing this early has little track record to fall back on. Older repositories are covered by the flat window of `[G07]` instead."
 importance = "IMPORTANT"
 checker = "test_github.py::test_G12"
 
@@ -316,7 +317,7 @@ title = "PyPI package without license"
 applies_to = "Python packages"
 affects = ['member.pypi.*.license']
 category = "OSS"
-description = "..."
+description = "The Python package does not have a license declared in PyPI."
 importance = "RECOMMENDATION"
 checker = "test_pypi.py::test_P12"
 
@@ -325,7 +326,7 @@ title = "The license declared in PyPI is (probably) not OSI-approved"
 applies_to = "Python packages"
 affects = ['member.pypi.*.license']
 category = "OSS"
-description = "..."
+description = "The license declared in PyPI by every Python package of the project should be an OSI-approved open-source license. The check up matches the declared license against the SPDX identifiers of the OSI-approved ones, so a license spelled in an unusual way can fail it without the project being any less open source. A package declaring no license at all is [P12] instead."
 checker = "test_pypi.py::test_P13"
 importance = "IMPORTANT"
 
@@ -334,7 +335,7 @@ title = "Julia package without license"
 applies_to = "Julia packages"
 affects = ['member.julia.*.license']
 category = "OSS"
-description = "..."
+description = "Every Julia package of the project should declare a license in its metadata. This is about what the package publishes: a repository can have a LICENSE file and still ship packages that declare nothing."
 importance = "RECOMMENDATION"
 checker = "test_julia.py::test_J00"
 
@@ -343,7 +344,7 @@ title = "The license declared in Julia is (probably) not OSI-approved"
 applies_to = "Julia packages"
 affects = ['member.julia.*.license']
 category = "OSS"
-description = "..."
+description = "The license declared by every Julia package of the project should be an OSI-approved open-source license. The check up matches the declared license against the SPDX identifiers of the OSI-approved ones, so a license spelled in an unusual way can fail it without the project being any less open source. A package declaring no license at all is [J00] instead."
 checker = "test_julia.py::test_J01"
 importance = "IMPORTANT"
 

@@ -180,13 +180,25 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         ]
         if not self.project.checks:
             lines.append(":material-check-all: All good")
-        else:
-            for checkup in self.project.checks.values():
-                lines += [
-                    f":{checkup.importance_icon}:"
-                    f'{{ title="{checkup.importance} - {checkup.importance_description}" }} '
-                    f'`[{checkup.id}]`{{title="{checkup.title}"}} - {checkup.details}  '
-                ]
+            return lines
+        # each check up gets an annotation pointing at the others failing the same one,
+        # numbered like `Card.multi_bullet` does
+        annotations = []
+        for index, checkup in enumerate(self.project.checks.values(), start=1):
+            lines += [
+                f":{checkup.importance_icon}:"
+                f'{{ title="{checkup.importance} - {checkup.importance_description}" }} '
+                f'`[{checkup.id}]`{{title="{checkup.title}"}}'
+                # a source-based check up may carry no details of its own, and then what
+                # the check up is about is all there is to say
+                f" - {checkup.details or checkup.title}"
+                f"({index})  "
+            ]
+            annotations.append(
+                f"{index}.  [All the projects not passing check up `[{checkup.id}]`]"
+                f"(../checkups.md#{checkup.id})"
+            )
+        lines += ["{ .annotate }", ""] + annotations
         return lines
 
     def badge(self):

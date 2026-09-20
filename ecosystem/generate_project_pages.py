@@ -16,9 +16,12 @@
 """
 
 import csv
+import io
+
 import mkdocs_gen_files
 
 from ecosystem.cli.members import CliMembers
+from ecosystem.docs import write_if_changed
 from ecosystem.docs.project_page import ProjectPage
 from ecosystem.docs.pypi_page import PypiPage
 
@@ -61,12 +64,19 @@ with mkdocs_gen_files.open("p/SUMMARY.md", "w") as nav_file:
 with mkdocs_gen_files.open("pypi/SUMMARY.md", "w") as nav_file:
     nav_file.writelines(pypi_nav.build_literate_nav())
 
-with open("docs/assets/active_projects.csv", mode="w") as csv_file:
-    writer = csv.DictWriter(csv_file, fieldnames=["name", "status", "maturity"])
-    writer.writeheader()
-    writer.writerows(active_projects)
 
-with open("docs/assets/active_pypi.csv", mode="w") as csv_file:
-    writer = csv.DictWriter(csv_file, fieldnames=["name", "status", "maturity"])
+def as_csv(rows):
+    """The rows as CSV text, with a name/status/maturity header"""
+    buffer = io.StringIO()
+    # \n, not the csv default \r\n, so the content compares equal on the next build
+    writer = csv.DictWriter(
+        buffer, fieldnames=["name", "status", "maturity"], lineterminator="\n"
+    )
     writer.writeheader()
-    writer.writerows(active_pypi)
+    writer.writerows(rows)
+    return buffer.getvalue()
+
+
+# written only when the content changed, so a build does not trigger the next one
+write_if_changed("docs/assets/active_projects.csv", as_csv(active_projects))
+write_if_changed("docs/assets/active_pypi.csv", as_csv(active_pypi))

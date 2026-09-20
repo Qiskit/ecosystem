@@ -30,7 +30,7 @@ def test_J00(member):
         if julia_package.license is None:
             assert (
                 julia_package.license is not None
-            ), f"member.julia.{julia_package.package_name} does not have a declared license"
+            ), f"The Julia package {julia_package.package_name} does not have a declared license"
 
 
 def test_J01(member):
@@ -38,4 +38,4 @@ def test_J01(member):
         if julia_package.license is not None:
             assert (
                 julia_package.license.is_osi_approved()
-            ), f"member.julia.{julia_package.package_name}.license is not OSI-approved"
+            ), f"The Julia package {julia_package.package_name}.license is not OSI-approved"

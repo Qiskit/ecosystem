@@ -23,6 +23,8 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/vega-lite@5
   - https://cdn.jsdelivr.net/npm/vega-embed@6
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  # the bundle above compares cells as strings, so numeric columns need this extension
+  - https://unpkg.com/tablesort@5.3.0/dist/sorts/tablesort.number.min.js
   - javascripts/tablesort.js
 
 # Files in docs/assets/ are fragments injected into other pages by table-reader
@@ -58,6 +60,7 @@ plugins:
   - table-reader
   - gen-files:
       scripts:
+        - ecosystem/generate_docs_assets.py
         - ecosystem/generate_project_pages.py
   - literate-nav
   - charts
@@ -69,6 +72,7 @@ nav:
     - All: p/
     - in PyPI: pypi/
 #    - in GitHub: p/
+  - Check ups: checkups.md
   - Classifications:
     - Status: status.md
     - Categories: categories.md

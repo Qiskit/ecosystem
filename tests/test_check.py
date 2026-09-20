@@ -272,7 +272,7 @@ class TestCurePeriod(TestCase):
     critical = "001"
     # [PQ2] is IMPORTANT, so its cure period is the 90 days of that importance level
     important = "PQ2"
-    # [P10] overrides the cure period of its importance level with -1
+    # [P10] states its own cure period, -1, instead of the default of its importance
     infinite = "P10"
 
     @staticmethod
