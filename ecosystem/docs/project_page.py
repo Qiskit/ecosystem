@@ -18,6 +18,7 @@ import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
 from ecosystem.docs.card import ProjectSummaryCard, URLsCard, PypiPackageCard
+from ecosystem.docs.checkup_page import CheckupAssets
 
 
 class ProjectPage:  # pylint: disable=redefined-outer-name
@@ -172,7 +173,11 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         return ProjectSummaryCard.from_project(self.project).generate()
 
     def checkups(self):
-        """Checkups card"""
+        """Checkups table: one row per check up the project is not passing.
+
+        The columns are what the check up itself knows. The project, its maturity and its
+        status are on this page already, so they are not repeated here the way the tables in
+        qisk.it/ecosystem-checkups list them."""
         lines = [
             "\n---\n",
             "### :material-list-status: Checkups",
@@ -181,24 +186,38 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         if not self.project.checks:
             lines.append(":material-check-all: All good")
             return lines
-        # each check up gets an annotation pointing at the others failing the same one,
-        # numbered like `Card.multi_bullet` does
-        annotations = []
-        for index, checkup in enumerate(self.project.checks.values(), start=1):
-            lines += [
+        columns = [
+            ("Check up", "---"),
+            ("What is failing", "---"),
+            ("Days left in the cure period", "---:"),
+            ("Discussion", ":---:"),
+        ]
+        rows = [
+            [
                 f":{checkup.importance_icon}:"
                 f'{{ title="{checkup.importance} - {checkup.importance_description}" }} '
-                f'`[{checkup.id}]`{{title="{checkup.title}"}}'
-                # a source-based check up may carry no details of its own, and then what
-                # the check up is about is all there is to say
-                f" - {checkup.details or checkup.title}"
-                f"({index})  "
+                f"[`[{checkup.id}]`](../checkups.md#{checkup.id})"
+                f'{{ title="All the projects not passing check up [{checkup.id}]" }}'
+                f" {CheckupAssets.cell(checkup.title)}",
+                # no details of its own (a source-based check up) means there is nothing to
+                # add to the title in the column before
+                CheckupAssets.cell(checkup.details) if checkup.details else "",
+                CheckupAssets.days_left(self.project, checkup),
+                CheckupAssets.discussion_link(checkup),
             ]
-            annotations.append(
-                f"{index}.  [All the projects not passing check up `[{checkup.id}]`]"
-                f"(../checkups.md#{checkup.id})"
-            )
-        lines += ["{ .annotate }", ""] + annotations
+            for checkup in self.project.checks.values()
+        ]
+        # a column with nothing to say is left out, as in the check up page tables. For an
+        # alumni project every cure period reads the same placeholder, which is one of them
+        if all(row[2] == "&mdash;" for row in rows):
+            for row in rows:
+                row[2] = ""
+        keep = [i for i in range(len(columns)) if any(row[i] for row in rows)]
+        lines += [
+            "| " + " | ".join(columns[i][0] for i in keep) + " |",
+            "| " + " | ".join(columns[i][1] for i in keep) + " |",
+        ]
+        lines += ["| " + " | ".join(row[i] for i in keep) + " |" for row in rows]
         return lines
 
     def badge(self):

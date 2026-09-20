@@ -37,7 +37,7 @@ def test_G05(member):
     else:
         assert not (
             hasattr(member.github, "archived") and member.github.archived
-        ), "GitHub repository archived"
+        ), f"GitHub repository {member.github.url} archived"
 
 
 def test_G06(member):
