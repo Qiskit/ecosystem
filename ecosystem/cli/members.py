@@ -368,9 +368,9 @@ class CliMembers:
         )
         projects = []
         for project in self.dao.get_all():
-            if project.badge is None:
+            if project.badge is None or project.badge.url is None:
                 self.logger.warning(
-                    "badge not found for %s (%s)",
+                    "badge link not created yet for %s (%s)",
                     project.name_id,
                     project.name,
                 )
