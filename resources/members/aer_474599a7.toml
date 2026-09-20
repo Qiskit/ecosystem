@@ -25,7 +25,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2018-12-17
 last_commit = 2026-09-16
-last_activity = 2026-09-17
+last_activity = 2026-09-19
 
 [badge]
 url = "https://qisk.it/e-474599a7"
@@ -45,8 +45,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 437223
-last_180_days_downloads = 3616509
+last_month_downloads = 429663
+last_180_days_downloads = 3621827
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
@@ -62,8 +62,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 1243
-last_180_days_downloads = 20141
+last_month_downloads = 1177
+last_180_days_downloads = 20139
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
@@ -79,11 +79,11 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 1813
-last_180_days_downloads = 10624
+last_month_downloads = 1812
+last_180_days_downloads = 10633
 
 [checks.P10]
 since = 2026-07-14
 details = "Python package qiskit-aer declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
 discussion = "https://github.com/Qiskit/qiskit-aer/pull/2461"
+importance = "RECOMMENDATION"
