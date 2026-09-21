@@ -206,7 +206,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """Markdown with the badge for README"""
         return (
             f"[![Qiskit Ecosystem]({self.badge.url})](https://qisk.it/e)"
-            if self.badge
+            if self.badge and self.badge.url
             else None
         )
 
@@ -247,6 +247,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
          * github
          * pypi
          * julia
+         * badge
         """
 
         if github_url is None:
@@ -271,6 +272,12 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 keep_in_packages.append(package)
 
         self.packages = keep_in_packages
+
+        # badge section. Only the style, so it can be reviewed (and changed) in the submission
+        # PR. The url needs Bitly and is created when the submission is accepted, see
+        # .github/workflows/welcome-new-member.yml
+        if not self.badge:
+            self.badge = BadgeData()
 
     @classmethod
     def from_submission(cls, submission, issue_number: str = None):
