@@ -28,6 +28,6 @@ package_name = "qelm"
 
 [checks.001]
 since = 2026-07-30
-details = "QELM license is not open-source. It is a proprietary license that restricts usage and distribution."
 source = "https://github.com/Qiskit/ecosystem/issues/1381"
+details = "QELM license is not open-source. It is a proprietary license that restricts usage and distribution."
 importance = "CRITICAL"

@@ -23,7 +23,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2024-08-16
 last_commit = 2026-08-20
-last_activity = 2026-09-04
+last_activity = 2026-09-20
 
 [badge]
 url = "https://qisk.it/e-acd7858a"
@@ -40,8 +40,8 @@ maintainers = [
   "https://pypi.org/user/calebj15/",
   "https://pypi.org/user/mrossinek/",
 ]
-last_month_downloads = 21
-last_180_days_downloads = 1057
+last_month_downloads = 20
+last_180_days_downloads = 1056
 
 [checks.P12]
 xfailed = "PR with fix was merged, but not yet released to PyPI"

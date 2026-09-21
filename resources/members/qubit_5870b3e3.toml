@@ -23,6 +23,6 @@ style = "flat"
 
 [checks.001]
 since = 2026-07-30
-details = "Qubit license is not open-source. It is a proprietary license that restricts usage and distribution."
 source = "https://github.com/Qiskit/ecosystem/issues/1386"
+details = "Qubit license is not open-source. It is a proprietary license that restricts usage and distribution."
 importance = "CRITICAL"
