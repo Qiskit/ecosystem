@@ -12,6 +12,7 @@
 
 """Badge section."""
 
+import os
 from dataclasses import dataclass
 from typing import Optional
 
@@ -91,7 +92,11 @@ class BadgeData(JsonSerializable):
             "tags": ["qiskit ecosystem badge", "permanent _do NOT remove_"],
         }
         try:
-            response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
+            response = request_json(
+                "https://api-ssl.bitly.com/v4/bitlinks",
+                post=data,
+                token=os.getenv("BITLY_TOKEN"),
+            )
         except EcosystemError as err:
             if "Bad Request (400)" in err.message:
                 logger.info(

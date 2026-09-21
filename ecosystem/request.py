@@ -12,7 +12,6 @@
 
 """Network request function."""
 
-import os
 import re
 from urllib.parse import urlparse, urlunparse
 import json
@@ -45,8 +44,8 @@ def request_json(
     # pylint: disable=too-many-branches
     """Request content from a URL and parse it into a JSON-like Python object.
 
-    This helper applies default headers, optional GitHub/Bitly auth, and optional
-    delay before making the request. It supports `GET` by default, or `POST`/`PUT`
+    This helper applies default headers, the access token given by the caller,
+    and an optional delay before making the request. It supports `GET` by default, or `POST`/`PUT`
     when `post` or `put` payloads are provided.
 
     Args:
@@ -60,8 +59,9 @@ def request_json(
         content_handler: Optional callable that receives raw `response.content`
             bytes and returns the text/blob expected by `parser`.
         delay: Optional delay (seconds) before sending the request.
-        token: Optional GitHub token override. When `None`, `GH_TOKEN` from the
-            environment is used for GitHub API requests.
+        token: Optional access token (like a GitHub PAT). When given, it is sent
+            as `Authorization: Bearer <token>`, no matter the target host. It is
+            the caller's job to provide the right token for the URL.
 
     Returns:
         Parsed response data. Non-dict results are wrapped as `{"data": ...}`.
@@ -84,16 +84,11 @@ def request_json(
         "application/xml"
     }
 
-    if url.hostname.endswith("api.github.com"):
-        token = os.getenv("GH_TOKEN") if token is None else token
-        if token:
-            headers["Authorization"] = "token " + token
-        headers["User-Agent"] = "github.com/Qiskit/ecosystem/"
+    if token:
+        headers["Authorization"] = "Bearer " + token
 
-    if url.hostname.endswith("bitly.com"):
-        token = os.getenv("BITLY_TOKEN")
-        if token:
-            headers["Authorization"] = "Bearer " + token
+    if url.hostname.endswith("api.github.com"):
+        headers["User-Agent"] = "github.com/Qiskit/ecosystem/"
 
     if delay:
         if delay < 0:
@@ -125,6 +120,7 @@ def request_json(
                 parser=parser,
                 content_handler=content_handler,
                 delay=wait_for,
+                token=token,
             )
         raise EcosystemError(
             f"Bad response {str(url)}: {response.reason} ({response.status_code})"

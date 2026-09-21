@@ -256,7 +256,7 @@ class CheckData(JsonSerializable):
         }
         if not self.source:
             return
-        issue = request_json(self.source_api_url)
+        issue = request_json(self.source_api_url, token=os.getenv("GH_TOKEN"))
         annotation = None
         if issue["state"] != "open":
             annotation = source_closed_details.get(
