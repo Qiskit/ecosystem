@@ -22,7 +22,7 @@ stars = 133
 homepage = "https://mqt.readthedocs.io/projects/core"
 license = "MIT"
 description = "MQT Core - Reusable C++20 and Python libraries for quantum computing: the MQT Compiler Collection, built on MLIR and LLVM, together..."
-total_dependent_repositories = 55
+total_dependent_repositories = 56
 total_dependent_packages = 6
 created_at = 2020-01-02
 last_commit = 2026-09-21
@@ -47,8 +47,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 20616
-last_180_days_downloads = 153090
+last_month_downloads = 20133
+last_180_days_downloads = 153454
 
 [checks.P10]
 since = 2026-07-14
