@@ -36,9 +36,10 @@ pip install -r requirements-dev.txt
 1. Build the website: `tox -ewebsite`
 2. Go to the `website/` folder in the root of your project and open up `index.html` in a browser
 
-## Live preview with `mkdocs serve`
-For a faster loop while editing the docs you can run MkDocs directly, but first
-install the package and generate the docs assets:
+## Live preview with `properdocs serve`
+For a faster loop while editing the docs you can run ProperDocs (the drop-in
+continuation of MkDocs 1.x that builds this site) directly, but first install the
+package and generate the docs assets:
 1. Install the `ecosystem` package (needed by the `gen-files` plugin):
 ```
 pip install -e .
@@ -49,13 +50,13 @@ python manager.py members update_docs_assets
 ```
 3. Serve the docs with live reload:
 ```
-mkdocs serve
+properdocs serve
 ```
 
 The fragments in `docs/assets/` (the tables injected into `status.md`,
 `summary.md`, `categories.md`, etc. by the `table-reader` plugin) are generated
 and not tracked in git. Step 2 is what `tox -ewebsite` does for you, so if you
-skip it `mkdocs serve` fails with an error like `[table-reader-plugin]: Cannot
+skip it `properdocs serve` fails with an error like `[table-reader-plugin]: Cannot
 find table file 'docs/assets/unmaintained.md'`. Re-run it whenever you change
 member data under `resources/`.
 
