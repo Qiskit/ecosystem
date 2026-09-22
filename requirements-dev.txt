@@ -7,9 +7,6 @@ responses~=0.14.0
 ruamel.yaml~=0.19
 # For website and docs
 properdocs~=1.6
-# mkdocs is still pulled in as a dependency of the plugins below. Pin it under 2.0, which
-# drops support for the existing plugins and themes; properdocs does the actual building.
-mkdocs<2
 mkdocs-material
 # comes with mkdocs-material, which only asks for >=10.2. Older versions crash in
 # pymdownx.highlight with Pygments 2.20 and silently leave every code block unformatted
