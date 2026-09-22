@@ -18,6 +18,7 @@ Cards for mkdocs grid https://squidfunk.github.io/mkdocs-material/reference/grid
 from dataclasses import dataclass
 from typing import Optional
 
+from ecosystem.docs import anchor
 from ecosystem.member import Member
 from ecosystem.classifications import ClassificationsToml
 
@@ -237,19 +238,23 @@ class ProjectSummaryCard(Card):
         """Annotation for title"""
         match self.status:
             case "Qiskit Project":
-                return "[All the Qiskit Projects](../status.md#qiskit-project)"
+                return "[All the Qiskit Projects](../classifications.md#qiskit-project)"
             case "Alumni":
-                return "[All the Alumni projects](../status.md#alumni)"
+                return "[All the Alumni projects](../classifications.md#alumni)"
             case "Under revision":
-                return "[All the projects under revision](../status.md#under-revision)"
+                return "[All the projects under revision](../classifications.md#under-revision)"
             case "Unmaintained":
-                return "[All the unmaintained projects](../status.md#unmaintained)"
+                return "[All the unmaintained projects](../classifications.md#unmaintained)"
             case "Early Project":
-                return "[All the early projects](../status.md#early-project)"
+                return "[All the early projects](../classifications.md#early-project)"
             case "Very Early Project":
-                return "[All the very early projects](../status.md#very-early-project)"
+                return (
+                    "[All the very early projects](../classifications.md#early-project)"
+                )
             case _:
-                return "[All the regular Members](../status.md#regular-members)"
+                return (
+                    "[All the regular Members](../classifications.md#regular-members)"
+                )
 
     @property
     def classifications_lines(self):
@@ -277,13 +282,17 @@ class ProjectSummaryCard(Card):
             "experimental": ":material-flask:",
             "unmaintained": ":material-archive:",
         }
+        maturity_link = (
+            f"[All the `{self.maturity}` projects]"
+            f"(../classifications.md#{anchor(self.maturity)})"
+        )
         if self.maturity == "production-ready":
             # Full support
             return self.bullet(
                 icons["production-ready"],
                 f"**{self.maturity}**{{title='"
                 f"{tooltip(descriptions[self.maturity])}'}}",
-                "[All the production-ready project](#)",
+                maturity_link,
             )
         if self.maturity in ["bugfixing only", "deprecated", "experimental"]:
             # Limited support
@@ -291,7 +300,7 @@ class ProjectSummaryCard(Card):
                 icons[self.maturity],
                 "**Limited support**{title='"
                 f"{tooltip(descriptions[self.maturity])}'}} {self.maturity}",
-                "[All the production-ready project](#)",
+                maturity_link,
             )
         if self.maturity in ["unmaintained", "as-is"]:
             # No support
@@ -299,7 +308,7 @@ class ProjectSummaryCard(Card):
                 icons[self.maturity],
                 "**No support**{title='"
                 f"{tooltip(descriptions[self.maturity])}'}} {self.maturity}",
-                "[All the projects without support](#)",
+                maturity_link,
             )
         return ret
 
@@ -309,7 +318,6 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-scale-balance:",
                 f"**License** {self.license}",
-                f"[All the projects with {self.license}](#)",
             )
         return []
 
@@ -320,7 +328,11 @@ class ProjectSummaryCard(Card):
                 ":material-api:",
                 (" **Interface**" if len(self.interfaces) == 1 else " **Interfaces**"),
                 [f"`{l}`" for l in self.interfaces],
-                [f"[All the projects with {l} interface](#)" for l in self.interfaces],
+                [
+                    f"[All the projects with {l} interface]"
+                    f"(../classifications.md#{anchor(l)})"
+                    for l in self.interfaces
+                ],
             )
         return []
 
@@ -330,7 +342,8 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-label:",
                 f"**Category** `{self.category}`",
-                f"[All the projects in the {self.category} category](#)",
+                f"[All the projects in the {self.category} category]"
+                f"(../classifications.md#{anchor(self.category)})",
             )
         return []
 
@@ -341,7 +354,11 @@ class ProjectSummaryCard(Card):
                 ":material-tag-multiple-outline:",
                 (" **Labels**" if len(self.labels) == 1 else " **Labels**"),
                 [f"`{l}`" for l in self.labels],
-                [f"[All the projects labeled with `{l}`](#)" for l in self.labels],
+                [
+                    f"[All the projects labeled with `{l}`]"
+                    f"(../classifications.md#{anchor(l)})"
+                    for l in self.labels
+                ],
             )
         return self.bullet(":material-tag-off-outline:", "**No labels**") + [""]
 
@@ -351,7 +368,8 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-office-building:",
                 "IBM maintained",
-                "[All the projects maintained by IBM](#)",
+                "[All the projects maintained by IBM]"
+                "(../classifications.md#ibm-maintained)",
             )
         return []
 

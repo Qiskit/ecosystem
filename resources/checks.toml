@@ -42,7 +42,7 @@ checker = "test_general.py::test_Q20"
 
 [004]
 title = "Maturity property has to exist and be valid"
-description = "`member.maturity` should exist in https://qisk.it/ecosystem-categories"
+description = "`member.maturity` should exist in https://qiskit.github.io/ecosystem/classifications/#maturity"
 applies_to = "all"
 affects = ["member.maturity"]
 category = "SUBMISSION"
@@ -51,7 +51,7 @@ importance = "IMPORTANT"
 
 [007]
 title = "Interfaces have to exist"
-description = "All `member.interfaces` should exist in https://qisk.it/ecosystem-interfaces"
+description = "All `member.interfaces` should exist in https://qiskit.github.io/ecosystem/classifications/#interfaces"
 applies_to = "all"
 affects = ["member.interfaces.*"]
 category = "SUBMISSION"
@@ -60,7 +60,7 @@ importance = "IMPORTANT"
 
 [008]
 title = "Category has to exist"
-description = "`member.category` should exist in https://qisk.it/ecosystem-categories"
+description = "`member.category` should exist in https://qiskit.github.io/ecosystem/classifications/#category"
 applies_to = "all"
 affects = ["member.category"]
 category = "SUBMISSION"
@@ -69,7 +69,7 @@ importance = "IMPORTANT"
 
 [009]
 title = "Labels have to exist"
-description = "All `member.labels` should exist in https://qisk.it/ecosystem-labels"
+description = "All `member.labels` should exist in https://qiskit.github.io/ecosystem/classifications/#labels"
 applies_to = "all"
 affects = ["member.labels.*"]
 category = "SUBMISSION"

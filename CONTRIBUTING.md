@@ -53,8 +53,8 @@ python manager.py members update_docs_assets
 properdocs serve
 ```
 
-The fragments in `docs/assets/` (the tables injected into `status.md`,
-`summary.md`, `categories.md`, etc. by the `table-reader` plugin) are generated
+The fragments in `docs/assets/` (the tables injected into `classifications.md`,
+`summary.md`, `checkups.md`, etc. by the `table-reader` plugin) are generated
 and not tracked in git. Step 2 is what `tox -ewebsite` does for you, so if you
 skip it `properdocs serve` fails with an error like `[table-reader-plugin]: Cannot
 find table file 'docs/assets/unmaintained.md'`. Re-run it whenever you change

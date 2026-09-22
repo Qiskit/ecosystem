@@ -11,7 +11,7 @@ Documentation lives on the website, generated from that file:
   run, how a failure is recorded, expected failures, and the full catalog.
 - **[For project maintainers](https://qiskit.github.io/ecosystem/overview/#for-project-maintainers)**:
   what to do when a check up fails on your project.
-- **[Membership status](https://qiskit.github.io/ecosystem/status/)**: how failing check ups move a
+- **[Membership status](https://qiskit.github.io/ecosystem/classifications/#status)**: how failing check ups move a
   project to _Under revision_ and eventually to _Alumni_.
 
 To add a check up, add its entry to `resources/checks.toml` and, if it can be tested automatically,

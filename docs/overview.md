@@ -62,7 +62,7 @@ For instance, `[G07]` is implemented by `test_github.py::test_G07`.
 Every check up has a **cure period**: how many days a member can keep failing it before losing its
 membership. A cure period of _0 days_ means the check up has to pass at all times, while
 _no deadline_ (`cure_period_in_days = -1`) means the opposite: the check up shows up as pending, so
-the project is [_Under revision_](status.md#under-revision), but it never retires the project on
+the project is [_Under revision_](classifications.md#under-revision), but it never retires the project on
 its own.
 
 The cure period is a property of the check up, and most check ups do not state one: they take the
@@ -82,11 +82,11 @@ All the automation run by [GitHub Actions](https://github.com/Qiskit/ecosystem/t
 
 - **Daily**, `Daily | Update member data` refreshes the data that the check ups look at (GitHub repository activity, PyPI and Julia package metadata, ...) and commits it into the project files.
   This is why a fix in a project can take a day to be visible, and a release can take a day to be noticed.
-- **Weekly** (Thursdays), `Weekly | Update member status` runs `python manager.py members update_checkups` on every non-alumni member, and then recomputes the [membership status](status.md) with `python manager.py members update_status`.
+- **Weekly** (Thursdays), `Weekly | Update member status` runs `python manager.py members update_checkups` on every non-alumni member, and then recomputes the [membership status](classifications.md#status) with `python manager.py members update_status`.
   The result is not pushed directly: it opens a pull request labeled `member update`, so a human reviews any status change before it reaches the website.
 - Both commands take `-e`, a list of things to leave out of the run. A value is a check up
   [importance](#importance-and-cure-period) or [category](#categories) ("a check up of this kind
-  does not change the status"), or a [membership status](status.md) ("projects already in this
+  does not change the status"), or a [membership status](classifications.md#status) ("projects already in this
   status are left alone"). So the weekly run is `update_checkups -e alumni` followed by
   `update_status -e "recommendation, alumni, qiskit-project"`: alumni stay alumni, _Qiskit
   Projects_ are governed differently, and a recommendation alone is not enough to put a project
@@ -164,8 +164,8 @@ The [badge](badges.md) is the other signal: it turns orange when the project is 
 ### What happens if a check up fails
 
 Failing a check up is not an immediate removal, unless its importance is `CRITICAL`.
-The project moves to the [_Under revision_](status.md#under-revision) status and the cure period of the check up starts counting from its `since` date.
-If it is still failing (and unexplained) when the cure period is over, the project becomes [_Alumni_](status.md#alumni) and is removed from [the website](https://qisk.it/ecosystem).
+The project moves to the [_Under revision_](classifications.md#under-revision) status and the cure period of the check up starts counting from its `since` date.
+If it is still failing (and unexplained) when the cure period is over, the project becomes [_Alumni_](classifications.md#alumni) and is removed from [the website](https://qisk.it/ecosystem).
 
 Being _Alumni_ is reversible: a project can be reconsidered at any point by opening a pull request that removes the `member.status` entry from its TOML file.
 
@@ -174,7 +174,7 @@ Being _Alumni_ is reversible: a project can be reconsidered at any point by open
 1. **Fix it upstream.** Most check ups look at your repository or at your published packages, so the fix lives there: a release compatible with the latest Qiskit, a `LICENSE` file GitHub can recognize, a commit. The data is refreshed daily and the check ups run weekly, so give it a few days before worrying.
 2. **Fix the metadata.** Some check ups are about what the Qiskit Ecosystem knows about your project (a broken URL, a too-long description, a wrong category). Those are fixed in your project's TOML file, either with a pull request to [this repository](https://github.com/Qiskit/ecosystem) or by [opening an update issue](https://github.com/Qiskit/ecosystem/issues/new?template=02_update.yml).
 3. **Explain it.** If a check up genuinely does not apply to your project, say so in an issue. If we agree, it is recorded as an [expected failure](#expected-failures) and stops affecting your status.
-4. **Declare your support expectations.** A project that is intentionally not maintained anymore is not a problem, as long as it says so: setting the [maturity](maturity.md) to `as-is` or `deprecated` marks it as [_Unmaintained_](status.md#unmaintained) and exempts it from the activity check ups.
+4. **Declare your support expectations.** A project that is intentionally not maintained anymore is not a problem, as long as it says so: setting the [maturity](classifications.md#maturity) to `as-is` or `deprecated` marks it as [_Unmaintained_](classifications.md#unmaintained) and exempts it from the activity check ups.
 
 ### Where to ask
 
