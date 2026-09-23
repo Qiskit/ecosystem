@@ -1,0 +1,6 @@
+/* The footer bar only ever held the "Made with Material for MkDocs" notice, which
+   `extra.generator` in properdocs.yml turns off, and there is no `copyright` to put in its
+   place. What is left is an empty bar, so it is hidden here. */
+.md-footer-meta {
+  display: none;
+}

@@ -18,6 +18,14 @@ theme:
     - navigation.tabs.sticky
     - toc.integrate
 
+# The footer would otherwise carry a "Made with Material for MkDocs" notice, and there is
+# nothing else in it (no `copyright`), so the whole footer bar goes away with it.
+extra:
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
+
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/vega@5
   - https://cdn.jsdelivr.net/npm/vega-lite@5
