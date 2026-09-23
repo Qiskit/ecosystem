@@ -625,6 +625,75 @@ class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
                 )
 
 
+class TestUpdateCheckupsKeepsSince(UpdateStatusTestCase):
+    """`member.checks.<id>.since` is the day a check up started failing, so a run that finds
+    it still failing has to keep it. See `Member.update_checkups`"""
+
+    CHECKER = "test_description.py::test_description_len_135"
+
+    def failing_member(self):
+        """A member whose description is too long, so [014] is recorded on it"""
+        member = self.add_member()
+        member.description = "banana " * 30
+        self.cli_members.dao.write(member)
+        self.update_checkups()
+        return member.name_id
+
+    def update_checkups(self):
+        """Runs only the check up this test case is about"""
+        with redirect_stdout(io.StringIO()):
+            self.cli_members.update_checkups(checker=self.CHECKER)
+
+    def checkup(self, name_id):
+        """The [014] check up as it is recorded in the member file"""
+        return self.cli_members.dao[name_id].checks["014"]
+
+    def failing_for(self, name_id, days, xfailed_until=None):
+        """Backdates the check up, as one recorded `days` ago, optionally with an explanation
+        valid until `xfailed_until`"""
+        member = self.cli_members.dao[name_id]
+        member.checks["014"].since = date.today() - timedelta(days=days)
+        if xfailed_until:
+            member.checks["014"].xfailed = "explained: shortened upstream"
+            member.checks["014"].xfailed_until = xfailed_until
+        self.cli_members.dao.write(member)
+
+    def test_a_plain_failure_keeps_its_since(self):
+        """The baseline: a check up that keeps failing keeps the date it started failing"""
+        name_id = self.failing_member()
+        self.failing_for(name_id, 100)
+        self.update_checkups()
+        self.assertEqual(
+            self.checkup(name_id).since, date.today() - timedelta(days=100)
+        )
+
+    def test_an_explained_failure_keeps_its_since(self):
+        """A valid explanation does not erase the date: the report carries the explanation
+        and not the date, so the one in the member file is the only one there is"""
+        name_id = self.failing_member()
+        self.failing_for(name_id, 100, xfailed_until=date.today() + timedelta(days=30))
+        self.update_checkups()
+        self.assertEqual(
+            self.checkup(name_id).since, date.today() - timedelta(days=100)
+        )
+
+    def test_the_cure_period_does_not_restart_after_an_explanation(self):
+        """What the date is for: when the explanation expires, the cure period is counted
+        from the original failure and not from the day the explanation ran out"""
+        name_id = self.failing_member()
+        self.failing_for(name_id, 100, xfailed_until=date.today() + timedelta(days=3))
+        self.update_checkups()  # a run while the explanation is still valid
+
+        member = self.cli_members.dao[name_id]
+        member.checks["014"].xfailed_until = date.today() - timedelta(days=1)
+        self.cli_members.dao.write(member)
+        self.update_checkups()  # and one after it expired
+
+        checkup = self.checkup(name_id)
+        self.assertEqual(checkup.since, date.today() - timedelta(days=100))
+        self.assertTrue(checkup.cure_period_expired)
+
+
 class TestCheckupAssets(UpdateStatusTestCase):
     """The fragments behind qisk.it/ecosystem-checkups, generated from checks.toml
     and the member files. See `CliMembers.update_assets_checkups`"""

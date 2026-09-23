@@ -344,6 +344,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             if checkup_data.id in self.checks:
                 # Fields to preserve
                 checkup_data.discussion = self.checks[checkup_data.id].discussion
+                checkup_data.since = (
+                    checkup_data.since or self.checks[checkup_data.id].since
+                )
                 if checkup_data.xfailed:
                     # the report only carries the explanation, not its expiration date
                     checkup_data.xfailed_until = self.checks[
