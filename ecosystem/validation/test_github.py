@@ -100,9 +100,12 @@ def test_G12(member):
 def test_G08(member):
     """unmaintained projects should archive their GitHub repository"""
     if member.unmaintained:
-        assert (
-            member.github.archived
-        ), "unsupported project should have an archived GitHub org"
+        # `member.github.archived` is only there when the repository is archived (a false
+        # value is not stored, see `GitHubData.json_types`), so asking for it directly makes
+        # the check up fail with an AttributeError instead of the message below
+        assert getattr(
+            member.github, "archived", False
+        ), "Unmaintained project should have an archived GitHub repository"
 
 
 def test_G09(member):

@@ -8,7 +8,7 @@ category = "Transpiler plugin"
 packages = []
 uuid = "f9f6f41e-0d19-4446-b465-39c3db971bd0"
 maturity = "experimental"
-status = "Under revision"
+status = "Qiskit Project"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-basis-constructor"
@@ -47,6 +47,8 @@ last_month_downloads = 373
 last_180_days_downloads = 580
 
 [checks.G07]
+xfailed = "The project is maintained, it is just having a slow moment"
+xfailed_until = 2016-12-31
 since = 2026-09-17
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"

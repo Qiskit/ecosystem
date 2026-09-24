@@ -19,7 +19,7 @@ from unittest import TestCase
 from unittest.mock import patch
 import pytest
 
-from ecosystem.check import CheckData
+from ecosystem.check import CheckData, parse_exclusions
 from ecosystem.error_handling import EcosystemError
 
 
@@ -340,3 +340,40 @@ class TestImportanceRank(TestCase):
             checks_toml.importance_rank("NOT-AN-IMPORTANCE"),
             len(checks_toml.importances),
         )
+
+
+class TestParseExclusions(TestCase):
+    """Tests for the `-e` argument of the CLI commands (`parse_exclusions`)"""
+
+    def test_none(self):
+        """No exclusion at all"""
+        self.assertEqual(parse_exclusions(None), set())
+
+    def test_single_value(self):
+        """`-e alumni`"""
+        self.assertEqual(parse_exclusions("alumni"), {"alumni"})
+
+    def test_tuple(self):
+        """Fire hands over a tuple when the list parses as a Python literal"""
+        self.assertEqual(
+            parse_exclusions(("recommendation", "alumni")), {"recommendation", "alumni"}
+        )
+
+    def test_comma_separated_string(self):
+        """A value with a hyphen (or a space) keeps Fire from building a tuple, so the list
+        arrives as a single string and each value has to be recovered from it"""
+        self.assertEqual(
+            parse_exclusions("recommendation, alumni, qiskit-project"),
+            {"recommendation", "alumni", "qiskit-project"},
+        )
+
+    def test_the_values_are_slugified(self):
+        """The same thing can be named in several ways"""
+        self.assertEqual(
+            parse_exclusions("BEST-PRACTICE, best_practice, Best Practice"),
+            {"best-practice"},
+        )
+
+    def test_empty_values_are_dropped(self):
+        """A trailing comma does not add an exclusion that matches nothing"""
+        self.assertEqual(parse_exclusions("alumni, "), {"alumni"})

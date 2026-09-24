@@ -28,14 +28,16 @@ from .request import URL, request_json
 def parse_exclusions(exclude) -> set[str]:
     """The `exclude` argument of the CLI commands, as a set of slugs.
 
-    Fire hands over a tuple for `-e "a, b"` and a plain string for a single `-e a`, and the
-    values are slugified, so `-e BEST-PRACTICE`, `-e best_practice` and `-e "Best Practice"`
-    all name the same thing."""
+    Fire hands over a tuple for `-e "a, b"`, but only when the list parses as a Python
+    literal: `-e "alumni, qiskit-project"` reads as a subtraction, so Fire gives up and hands
+    over the raw string instead. That is why a string is split here on commas rather than
+    taken as a single value. The values are slugified, so `-e BEST-PRACTICE`,
+    `-e best_practice` and `-e "Best Practice"` all name the same thing."""
     if exclude is None:
         return set()
     if isinstance(exclude, str):
-        exclude = [exclude]
-    return {slugify(str(value)) for value in exclude}
+        exclude = exclude.split(",")
+    return {slug for value in exclude if (slug := slugify(str(value)))}
 
 
 class ChecksToml:
