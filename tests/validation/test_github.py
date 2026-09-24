@@ -35,7 +35,10 @@ class GitHubCheckupsTestCase(TestCase):
 
     @staticmethod
     def member(status, months_old=60, months_since_commit=1, archived=False, **kwargs):
-        """A member with a GitHub repository of the given age and activity"""
+        """A member with a GitHub repository of the given age and activity.
+
+        `archived=None` leaves the entry out altogether, which is how a repository that is
+        not archived looks in a member file (see `GitHubData.json_types`)."""
         member = Member(
             name="banana",
             url="https://github.com/qiskit-community/banana-repo",
@@ -47,7 +50,7 @@ class GitHubCheckupsTestCase(TestCase):
         member.github = GitHubData(
             owner="qiskit-community",
             repo="banana-repo",
-            archived=archived,
+            archived=archived or None,
             created_at=date.today() - relativedelta(months=months_old),
             last_commit=date.today() - relativedelta(months=months_since_commit),
             last_activity=date.today() - relativedelta(months=months_since_commit),
@@ -60,6 +63,13 @@ class GitHubCheckupsTestCase(TestCase):
         with redirect_stdout(StringIO()):
             member.update_checkups(checker)
         return set(member.checks)
+
+    def details_of(self, checker, **member_kwargs):
+        """The details each check up that `checker` records on such a member reports"""
+        member = self.member(**member_kwargs)
+        with redirect_stdout(StringIO()):
+            member.update_checkups(checker)
+        return {id_: checkup.details for id_, checkup in member.checks.items()}
 
     def assert_same_for_every_status(self, checker, expected, **member_kwargs):
         """The check up records `expected` whatever `member.status` says"""
@@ -107,6 +117,19 @@ class TestMaturityGatedCheckups(GitHubCheckupsTestCase):
             checker, set(), maturity="as-is", archived=True
         )
         self.assert_same_for_every_status(checker, set(), maturity="production-ready")
+
+    def test_G08_without_an_archived_entry(self):
+        """A repository that is not archived has no `github.archived` entry at all, and the
+        check up has to report what is wrong instead of how it found out"""
+        self.assertEqual(
+            self.details_of(
+                "test_github.py::test_G08",
+                status=None,
+                maturity="as-is",
+                archived=None,
+            ),
+            {"G08": "Unmaintained project should have an archived GitHub repository"},
+        )
 
     def test_G11_asks_for_the_repository_to_be_archived(self):
         """Same as [G08], on an IBM-controlled organization"""

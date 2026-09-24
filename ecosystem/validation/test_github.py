@@ -100,9 +100,9 @@ def test_G12(member):
 def test_G08(member):
     """unmaintained projects should archive their GitHub repository"""
     if member.unmaintained:
-        assert (
-            member.github.archived
-        ), "unsupported project should have an archived GitHub org"
+        assert getattr(
+            member.github, "archived", False
+        ), "Unmaintained project should have an archived GitHub repository"
 
 
 def test_G09(member):

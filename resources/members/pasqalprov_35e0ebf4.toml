@@ -7,6 +7,7 @@ category = "Compute provider"
 packages = []
 uuid = "35e0ebf4-48c9-4611-9286-84d6ad5571e3"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-pasqal-provider"
@@ -42,6 +43,6 @@ last_180_days_downloads = 3517
 
 [checks.P12]
 since = 2026-08-18
-details = "member.pypi.qiskit-pasqal-provider does not have a declared license"
+details = "The PyPI package qiskit-pasqal-provider does not have a declared license"
 discussion = "https://github.com/qiskit-community/qiskit-pasqal-provider/pull/41"
 importance = "RECOMMENDATION"

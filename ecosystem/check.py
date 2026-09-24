@@ -27,11 +27,12 @@ from .request import URL, request_json
 
 def parse_exclusions(exclude) -> set[str]:
     """The `exclude` argument of the CLI commands, as a set of slugs."""
+
     if exclude is None:
         return set()
     if isinstance(exclude, str):
-        exclude = [exclude]
-    return {slugify(str(value)) for value in exclude}
+        exclude = exclude.split(",")
+    return {slug for value in exclude if (slug := slugify(str(value)))}
 
 
 class ChecksToml:
