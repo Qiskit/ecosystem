@@ -10,7 +10,7 @@ documentation = "https://qiskit.github.io/QiskitIBMRuntime.jl"
 packages = []
 uuid = "bcde78a1-0171-4de1-9542-5e20d0c02693"
 maturity = "experimental"
-status = "Qiskit Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Qiskit/QiskitIBMRuntime.jl"
@@ -47,5 +47,5 @@ total_downloads = 3
 
 [checks.J00]
 since = 2026-07-09
-details = "member.julia.QiskitIBMRuntime does not have a declared license"
+details = "The Julia package QiskitIBMRuntime does not have a declared license"
 importance = "RECOMMENDATION"

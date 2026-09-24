@@ -8,6 +8,7 @@ category = "SDK"
 packages = []
 uuid = "727120b2-7559-453e-beb3-0ab33fb60a4a"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qclib/qclib"
@@ -49,5 +50,5 @@ importance = "RECOMMENDATION"
 
 [checks.P12]
 since = 2026-07-06
-details = "member.pypi.qclib does not have a declared license"
+details = "The PyPI package qclib does not have a declared license"
 importance = "RECOMMENDATION"

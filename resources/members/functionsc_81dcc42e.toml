@@ -9,7 +9,7 @@ category = "Tooling"
 packages = []
 uuid = "81dcc42e-55ed-4a74-9bc0-5aaac2505b86"
 maturity = "production-ready"
-status = "Qiskit Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Qiskit/qiskit-ibm-catalog"
@@ -38,5 +38,5 @@ last_180_days_downloads = 39833
 
 [checks.P12]
 since = 2026-09-10
-details = "member.pypi.qiskit-ibm-catalog does not have a declared license"
+details = "The PyPI package qiskit-ibm-catalog does not have a declared license"
 importance = "RECOMMENDATION"

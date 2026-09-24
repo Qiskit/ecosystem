@@ -10,7 +10,7 @@ reference_paper = "https://arxiv.org/abs/2601.18756"
 packages = []
 uuid = "9d474247-5c15-481c-afb2-cc58ae884459"
 maturity = "bugfixing only"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/MarkoMalezic/qiskit-omelyan"
@@ -49,5 +49,5 @@ importance = "RECOMMENDATION"
 
 [checks.P12]
 since = 2026-07-14
-details = "member.pypi.qiskit-omelyan does not have a declared license"
+details = "The PyPI package qiskit-omelyan does not have a declared license"
 importance = "RECOMMENDATION"
