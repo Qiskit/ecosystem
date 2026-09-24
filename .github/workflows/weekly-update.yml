@@ -34,7 +34,7 @@ jobs:
       run: python manager.py members update_checkups -e alumni
 
     - name: Update status
-      run: python manager.py members update_status -e "alumni, qiskit-project"
+      run: python manager.py members update_status -e "alumni, qiskit-project, nice_to_have"
 
     - name: Run taplo formatter on TOML files
       run: taplo fmt resources/*.toml resources/members/*.toml

@@ -205,7 +205,7 @@ applies_to = "GitHub projects"
 affects = ['github.archived', 'member.maturity']
 category = "ACTIVITY"
 description = "Projects that are not maintained (that is, `member.maturity` is `as-is` or `deprecated`) should archive their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
-importance = "RECOMMENDATION"
+importance = "NICE-TO-HAVE"
 cure_period_in_days = 270
 checker = "test_github.py::test_G08"
 
@@ -387,6 +387,12 @@ name = "RECOMMENDATION"
 description = "This is a recommendation. You might have to argue why this check does not apply to a specific project."
 cure_period_in_days = 180
 icon = "material-alert-circle-outline"
+
+[[importance]]
+name = "NICE-TO-HAVE"
+description = "This is a nice-to-have. Probably a good idea to fix it, but not a big deal if it is not fixed."
+cure_period_in_days = 270
+icon = "material-heart-circle"
 
 [[importance]]
 name = "LEGACY"
