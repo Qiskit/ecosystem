@@ -43,8 +43,3 @@ highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 135
 last_180_days_downloads = 135
-
-[checks.G08]
-since = 2026-09-24
-details = "'GitHubData' object has no attribute 'archived'"
-importance = "RECOMMENDATION"
