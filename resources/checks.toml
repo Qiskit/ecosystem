@@ -173,11 +173,11 @@ category = "SUBMISSION"
 importance = "STRONG-RECOMMENDATION"
 
 [G05]
-title = "Archived GitHub repository should declare no maintenance expectations"
+title = "Archived GitHub repository should be declared `as-is`"
 applies_to = "GitHub projects"
 affects = ['github.archived', 'member.maturity']
 category = "ACTIVITY"
-description = "Projects whose GitHub repository is archived should declare a `member.maturity` with no maintenance expectations (`as-is` or `deprecated`), which is what gives them the `Unmaintained` status. Projects that are already `Unmaintained` are exempt from this check up."
+description = "An archived GitHub repository cannot be maintained anymore, so the project should declare `member.maturity` as `as-is`, the only maturity that states no active maintenance expectations. Every other maturity, `deprecated` included, is checked: a project that is still offered for use should not have its repository archived."
 importance = "CRITICAL"
 checker = "test_github.py::test_G05"
 

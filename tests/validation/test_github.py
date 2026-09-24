@@ -86,14 +86,17 @@ class TestMaturityGatedCheckups(GitHubCheckupsTestCase):
     """[G05], [G07], [G08] and [G11] ask whether the project is maintained, which is
     `member.maturity`, not the `Unmaintained` status derived from it."""
 
-    def test_G05_exempts_declared_unmaintained(self):
-        """An archived repository is fine once the project declares it is not maintained"""
+    def test_G05_exempts_as_is_only(self):
+        """An archived repository is fine only once the project declares itself `as-is`.
+
+        `deprecated` is not enough: the project is still offered for use, so an archived
+        repository is a check up even though `Member.unmaintained` is true."""
         checker = "test_github.py::test_G05"
         self.assert_same_for_every_status(
             checker, set(), archived=True, maturity="as-is"
         )
         self.assert_same_for_every_status(
-            checker, set(), archived=True, maturity="deprecated"
+            checker, {"G05"}, archived=True, maturity="deprecated"
         )
         self.assert_same_for_every_status(
             checker, {"G05"}, archived=True, maturity="production-ready"
