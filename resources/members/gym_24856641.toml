@@ -46,7 +46,10 @@ last_180_days_downloads = 11058
 
 [checks.P10]
 since = 2026-09-10
+xfailed = "Issue asking for the cap submitted https://github.com/AI4quantum/qiskit-gym/issues/17, waiting for a release with the fix"
+xfailed_until = "2027-03-31"
 details = "Python package qiskit-gym declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/AI4quantum/qiskit-gym/issues/17"
 importance = "RECOMMENDATION"
 
 [checks.P12]

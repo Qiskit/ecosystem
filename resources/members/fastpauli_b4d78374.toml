@@ -60,7 +60,10 @@ importance = "STRONG-RECOMMENDATION"
 
 [checks.P10]
 since = 2026-07-09
+xfailed = "Issue asking for the cap submitted https://github.com/qognitive/fast-pauli/issues/98, waiting for a release with the fix"
+xfailed_until = "2027-03-31"
 details = "Python package fast-pauli declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qognitive/fast-pauli/issues/98"
 importance = "RECOMMENDATION"
 
 [checks.P12]

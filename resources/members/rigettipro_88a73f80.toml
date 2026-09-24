@@ -55,7 +55,10 @@ importance = "STRONG-RECOMMENDATION"
 
 [checks.P10]
 since = 2026-07-09
+xfailed = "The cap is already in the repository (https://github.com/rigetti/qiskit-rigetti/pull/55, July 2024), but there has been no release since February 2024"
+xfailed_until = "2027-01-31"
 details = "Python package qiskit-rigetti declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/rigetti/qiskit-rigetti/pull/55"
 importance = "RECOMMENDATION"
 
 [checks.Q20]

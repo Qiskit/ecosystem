@@ -55,5 +55,8 @@ importance = "STRONG-RECOMMENDATION"
 
 [checks.P10]
 since = 2026-08-18
+xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-basis-constructor/issues/9, waiting for a release with the fix"
+xfailed_until = "2027-03-31"
 details = "Python package qiskit-basis-constructor declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Qiskit/qiskit-basis-constructor/issues/9"
 importance = "RECOMMENDATION"

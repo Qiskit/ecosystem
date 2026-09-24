@@ -56,5 +56,8 @@ importance = "RECOMMENDATION"
 
 [checks.P10]
 since = 2026-07-14
+xfailed = "Issue asking for the cap submitted https://github.com/IceKhan13/purplecaffeine/issues/174, waiting for a release with the fix"
+xfailed_until = "2027-03-31"
 details = "Python package purplecaffeine declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/IceKhan13/purplecaffeine/issues/174"
 importance = "RECOMMENDATION"

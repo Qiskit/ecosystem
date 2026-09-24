@@ -48,5 +48,8 @@ last_180_days_downloads = 1982
 
 [checks.P10]
 since = 2026-07-23
+xfailed = "Issue asking for the cap submitted https://github.com/Ronaldoengenhariadacomputacao/autoq-qec/issues/1, waiting for a release with the fix"
+xfailed_until = "2027-03-31"
 details = "Python package autoq-qec declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Ronaldoengenhariadacomputacao/autoq-qec/issues/1"
 importance = "RECOMMENDATION"
