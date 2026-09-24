@@ -29,7 +29,3 @@ last_commit = 2024-10-20
 url = "https://qisk.it/e-36e10568"
 style = "flat"
 
-[checks.G08]
-since = 2026-09-24
-details = "'GitHubData' object has no attribute 'archived'"
-importance = "RECOMMENDATION"
