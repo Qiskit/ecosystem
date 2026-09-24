@@ -26,11 +26,7 @@ from .request import URL, request_json
 
 
 def parse_exclusions(exclude) -> set[str]:
-    """The `exclude` argument of the CLI commands, as a set of slugs.
-
-    Fire hands over a tuple for `-e "a, b"` and a plain string for a single `-e a`, and the
-    values are slugified, so `-e BEST-PRACTICE`, `-e best_practice` and `-e "Best Practice"`
-    all name the same thing."""
+    """The `exclude` argument of the CLI commands, as a set of slugs."""
     if exclude is None:
         return set()
     if isinstance(exclude, str):
