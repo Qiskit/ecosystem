@@ -51,9 +51,9 @@ last_month_downloads = 1196
 last_180_days_downloads = 4913
 
 [checks.P10]
-since = 2026-08-18
 xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/qecc/issues/836, waiting for a release with the fix"
-xfailed_until = "2027-03-31"
+xfailed_until = 2027-03-31
+since = 2026-08-18
 details = "Python package mqt-qecc declared itself compatible to a not-yet-released major version of Qiskit"
 discussion = "https://github.com/munich-quantum-toolkit/qecc/issues/836"
 importance = "RECOMMENDATION"

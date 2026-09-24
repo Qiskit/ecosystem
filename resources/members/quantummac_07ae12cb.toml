@@ -49,9 +49,9 @@ last_month_downloads = 84
 last_180_days_downloads = 985
 
 [checks.P10]
-since = 2026-07-09
 xfailed = "Issue asking for the cap submitted https://github.com/arthurostrauss/qiskit-qm-provider/issues/12, waiting for a release with the fix"
-xfailed_until = "2027-03-31"
+xfailed_until = 2027-03-31
+since = 2026-07-09
 details = "Python package qiskit-qm-provider declared itself compatible to a not-yet-released major version of Qiskit"
 discussion = "https://github.com/arthurostrauss/qiskit-qm-provider/issues/12"
 importance = "RECOMMENDATION"

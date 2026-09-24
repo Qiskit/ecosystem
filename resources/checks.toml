@@ -206,6 +206,7 @@ affects = ['github.archived', 'member.maturity']
 category = "ACTIVITY"
 description = "Projects that are not maintained (that is, `member.maturity` is `as-is` or `deprecated`) should archive their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
 importance = "RECOMMENDATION"
+cure_period_in_days = 270
 checker = "test_github.py::test_G08"
 
 [G09]

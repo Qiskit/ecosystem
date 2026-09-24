@@ -23,6 +23,7 @@ description = "Expectation value measurements in Qiskit using optimal dense grou
 estimated_contributors = 2
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2023-05-18
 last_commit = 2024-05-30
 last_activity = 2026-07-02
 
@@ -46,8 +47,23 @@ highest_supported_qiskit_version = "0.42.1"
 last_month_downloads = 69
 last_180_days_downloads = 232
 
+[checks.G07]
+since = 2026-09-24
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+importance = "STRONG-RECOMMENDATION"
+
 [checks.PQ2]
 since = 2026-04-30
 details = "Python package dense-ev is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/atlytle/dense-ev/issues/2"
 importance = "IMPORTANT"
+
+[checks.Q20]
+since = 2026-09-24
+details = "Not compatible with the Qiskit SDK v2 or newer: `[PQ2]`"
+importance = "CRITICAL"
+
+[checks.P12]
+since = 2026-09-24
+details = "The PyPI package dense-ev does not have a declared license"
+importance = "RECOMMENDATION"

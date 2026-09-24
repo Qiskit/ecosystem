@@ -49,15 +49,15 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 12
 last_180_days_downloads = 282
 
+[checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/IceKhan13/purplecaffeine/issues/174, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-07-14
+details = "Python package purplecaffeine declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/IceKhan13/purplecaffeine/issues/174"
+importance = "RECOMMENDATION"
+
 [checks.G06]
 since = 2026-07-23
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
-importance = "RECOMMENDATION"
-
-[checks.P10]
-since = 2026-07-14
-xfailed = "Issue asking for the cap submitted https://github.com/IceKhan13/purplecaffeine/issues/174, waiting for a release with the fix"
-xfailed_until = "2027-03-31"
-details = "Python package purplecaffeine declared itself compatible to a not-yet-released major version of Qiskit"
-discussion = "https://github.com/IceKhan13/purplecaffeine/issues/174"
 importance = "RECOMMENDATION"

@@ -20,6 +20,7 @@ license = "Apache-2.0"
 description = "Qiskti transpiler plugin for dynamic circuits."
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2024-02-02
 last_commit = 2024-03-21
 last_activity = 2025-11-19
 
@@ -41,12 +42,12 @@ last_180_days_downloads = 226
 
 [checks.G06]
 since = 2026-07-14
-details = "Last activity was 8 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
 
 [checks.G07]
 since = 2026-05-14
-details = "Last commit was 28 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 discussion = "https://github.com/orgs/Qiskit/discussions/49"
 importance = "STRONG-RECOMMENDATION"
 

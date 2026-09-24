@@ -29,3 +29,8 @@ last_activity = 2026-01-20
 [badge]
 url = "https://qisk.it/e-8868c7af"
 style = "flat"
+
+[checks.G08]
+since = 2026-09-24
+details = "Unmaintained project should have an archived GitHub repository"
+importance = "RECOMMENDATION"

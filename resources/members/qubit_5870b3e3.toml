@@ -21,8 +21,18 @@ repo = "Qubit"
 url = "https://qisk.it/e-5870b3e3"
 style = "flat"
 
+[checks.G09]
+since = 2026-09-24
+details = "member.github.license does not exist"
+importance = "RECOMMENDATION"
+
+[checks.O02]
+since = 2026-09-24
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"
+
 [checks.001]
 since = 2026-07-30
 source = "https://github.com/Qiskit/ecosystem/issues/1386"
-details = "Qubit license is not open-source. It is a proprietary license that restricts usage and distribution."
+details = "Qubit license is not open-source. It is a proprietary license that restricts usage and distribution. (the source issue is closed as completed)"
 importance = "CRITICAL"

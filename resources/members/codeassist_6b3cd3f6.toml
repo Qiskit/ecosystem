@@ -46,5 +46,10 @@ last_180_days_downloads = 899
 
 [checks.G05]
 since = 2026-07-02
-details = "GitHub repository archived and member.maturity is not `as-is`"
+details = "GitHub repository https://github.com/Qiskit/qiskit-code-assistant-jupyterlab archived and project is not `as-is`"
+importance = "CRITICAL"
+
+[checks.G00]
+since = 2026-09-24
+details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"

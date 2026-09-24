@@ -48,15 +48,15 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 88
 last_180_days_downloads = 772
 
+[checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/Gopal-Dahale/qiskit-qulacs/issues/11, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-07-09
+details = "Python package qiskit-qulacs declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Gopal-Dahale/qiskit-qulacs/issues/11"
+importance = "RECOMMENDATION"
+
 [checks.G06]
 since = 2026-07-23
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
-importance = "RECOMMENDATION"
-
-[checks.P10]
-since = 2026-07-09
-xfailed = "Issue asking for the cap submitted https://github.com/Gopal-Dahale/qiskit-qulacs/issues/11, waiting for a release with the fix"
-xfailed_until = "2027-03-31"
-details = "Python package qiskit-qulacs declared itself compatible to a not-yet-released major version of Qiskit"
-discussion = "https://github.com/Gopal-Dahale/qiskit-qulacs/issues/11"
 importance = "RECOMMENDATION"

@@ -48,9 +48,9 @@ last_month_downloads = 108209
 last_180_days_downloads = 609199
 
 [checks.P10]
-since = 2026-07-09
 xfailed = "PR with a fix submitted, waiting for merge"
-xfailed_until = "2026-12-30"
+xfailed_until = 2026-12-30
+since = 2026-07-09
 details = "Python package qiskit-algorithms declared itself compatible to a not-yet-released major version of Qiskit"
 discussion = "https://github.com/qiskit-community/qiskit-algorithms/pull/279"
 importance = "RECOMMENDATION"

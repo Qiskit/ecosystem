@@ -23,8 +23,9 @@ description = "A Variational Quantum Linear Solver Prototype for Qiskit"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 archived = true
+created_at = 2023-03-07
 last_commit = 2024-11-27
-last_activity = 2026-08-10
+last_activity = 2026-08-26
 
 [badge]
 url = "https://qisk.it/e-05140a48"
@@ -48,12 +49,12 @@ last_180_days_downloads = 205
 
 [checks.G05]
 since = 2026-08-24
-details = "GitHub repository archived"
+details = "GitHub repository https://github.com/QuantumApplicationLab/vqls-prototype archived and project is not `as-is`"
 importance = "CRITICAL"
 
 [checks.G07]
-since = 2026-07-14
-details = "Last commit was more than 18 months ago. This might be a sign of a project that is not actively maintained. Consider set member.maturity to `as-is`."
+since = 2026-09-24
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
 [checks.G00]
@@ -68,5 +69,5 @@ importance = "RECOMMENDATION"
 
 [checks.P12]
 since = 2026-07-06
-details = "member.pypi.vqls-prototype does not have a declared license"
+details = "The PyPI package vqls-prototype does not have a declared license"
 importance = "RECOMMENDATION"
