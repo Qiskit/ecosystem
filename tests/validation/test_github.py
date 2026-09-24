@@ -50,7 +50,7 @@ class GitHubCheckupsTestCase(TestCase):
         member.github = GitHubData(
             owner="qiskit-community",
             repo="banana-repo",
-            **({} if archived is None else {"archived": archived}),
+            archived=archived or None,
             created_at=date.today() - relativedelta(months=months_old),
             last_commit=date.today() - relativedelta(months=months_since_commit),
             last_activity=date.today() - relativedelta(months=months_since_commit),
