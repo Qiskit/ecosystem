@@ -40,8 +40,8 @@ maintainers = [
   "https://pypi.org/user/calebj15/",
   "https://pypi.org/user/mrossinek/",
 ]
-last_month_downloads = 23
-last_180_days_downloads = 1055
+last_month_downloads = 21
+last_180_days_downloads = 1050
 
 [checks.P12]
 xfailed = "PR with fix was merged, but not yet released to PyPI"
