@@ -47,6 +47,9 @@ last_month_downloads = 309262
 last_180_days_downloads = 1275191
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-qasm3-import/issues/68, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-08-18
 details = "Python package qiskit-qasm3-import declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Qiskit/qiskit-qasm3-import/issues/68"
 importance = "RECOMMENDATION"

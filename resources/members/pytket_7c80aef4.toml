@@ -50,8 +50,11 @@ last_month_downloads = 22296
 last_180_days_downloads = 251038
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/Quantinuum/pytket-qiskit/issues/552, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-09
 details = "Python package pytket-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Quantinuum/pytket-qiskit/issues/552"
 importance = "RECOMMENDATION"
 
 [checks.P12]

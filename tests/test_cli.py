@@ -474,15 +474,14 @@ class TestUpdateStatusCheckups(UpdateStatusTestCase):
 
 
 class TestUpdateStatusInfiniteCurePeriod(UpdateStatusTestCase):
-    """A check up with a negative cure_period_in_days ([P10] states -1 instead of taking
-    the default of its importance) keeps the project "Under revision" forever, but never
-    retires it."""
+    """A check up with a negative cure_period_in_days ([PQ1] takes the -1 of its LEGACY
+    importance) keeps the project "Under revision" forever, but never retires it."""
 
-    def status_with_p10_failing_since(self, days_ago):
-        """Adds a member failing [P10] since `days_ago` days ago and updates its status"""
+    def status_with_pq1_failing_since(self, days_ago):
+        """Adds a member failing [PQ1] since `days_ago` days ago and updates its status"""
         member = self.add_member()
         member.checks = {
-            "P10": CheckData("P10", since=date.today() - timedelta(days=days_ago))
+            "PQ1": CheckData("PQ1", since=date.today() - timedelta(days=days_ago))
         }
         self.cli_members.dao.write(member)
         self.cli_members.update_status()
@@ -490,20 +489,20 @@ class TestUpdateStatusInfiniteCurePeriod(UpdateStatusTestCase):
 
     def test_fresh_failure_is_under_revision(self):
         """The check up is pending, like any other"""
-        self.assertEqual(self.status_with_p10_failing_since(1), "Under revision")
+        self.assertEqual(self.status_with_pq1_failing_since(1), "Under revision")
 
     def test_old_failure_is_still_not_alumni(self):
         """No matter how long it has been failing, the cure period never expires"""
-        self.assertEqual(self.status_with_p10_failing_since(10_000), "Under revision")
+        self.assertEqual(self.status_with_pq1_failing_since(10_000), "Under revision")
 
     def test_the_importance_can_still_be_excluded(self):
         """An infinite cure period does not override the exclusion by importance"""
         member = self.add_member()
         member.checks = {
-            "P10": CheckData("P10", since=date.today() - timedelta(days=10_000))
+            "PQ1": CheckData("PQ1", since=date.today() - timedelta(days=10_000))
         }
         self.cli_members.dao.write(member)
-        self.cli_members.update_status(exclude="recommendation")
+        self.cli_members.update_status(exclude="legacy")
         self.assertIsNone(self.cli_members.dao[member.name_id].status)
 
 
@@ -821,8 +820,8 @@ class TestCheckupProjectTable(UpdateStatusTestCase):
         self.assertTrue(self.row_of("G07", days_ago=91).endswith("| overdue |"))
 
     def test_an_infinite_cure_period_has_no_countdown(self):
-        """[P10] states a cure period of -1 of its own"""
-        self.assertTrue(self.row_of("P10", days_ago=10_000).endswith("| &infin; |"))
+        """[PQ1] is LEGACY, an importance whose cure period is -1"""
+        self.assertTrue(self.row_of("PQ1", days_ago=10_000).endswith("| &infin; |"))
 
     def test_alumni_are_not_rows_in_the_table(self):
         """Their cure period is what retired them, so they are listed apart. See

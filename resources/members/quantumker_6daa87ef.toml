@@ -24,6 +24,7 @@ estimated_contributors = 4
 total_dependent_repositories = 0
 total_dependent_packages = 0
 archived = true
+created_at = 2021-12-09
 last_commit = 2024-03-31
 last_activity = 2026-05-31
 
@@ -33,11 +34,15 @@ style = "flat"
 
 [checks.G05]
 since = 2026-07-23
-details = "GitHub repository archived"
+details = "GitHub repository https://github.com/qiskit-community/prototype-quantum-kernel-training archived and project is not `as-is`"
 importance = "CRITICAL"
 
 [checks.G07]
-since = 2026-05-14
-details = "Last commit was 27 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-discussion = "https://github.com/orgs/Qiskit/discussions/54"
+since = 2026-09-24
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G00]
+since = 2026-09-24
+details = "The project is probably abandoned: `[G05]`"
+importance = "CRITICAL"

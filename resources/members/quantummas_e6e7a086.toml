@@ -20,6 +20,7 @@ license = "Apache-2.0"
 description = "Welcome to Quantum MasterChef, a unique and immersive quantum computing game that combines the excitement of culinary arts with the..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2024-04-05
 last_commit = 2024-05-10
 
 [badge]
@@ -28,6 +29,11 @@ style = "flat"
 
 [checks.G07]
 since = 2026-05-14
-details = "Last commit was 26 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 discussion = "https://github.com/orgs/Qiskit/discussions/55"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G00]
+since = 2026-09-24
+details = "The project is probably abandoned: `[G07]`"
+importance = "CRITICAL"

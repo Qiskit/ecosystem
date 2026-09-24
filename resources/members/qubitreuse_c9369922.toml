@@ -47,6 +47,9 @@ last_month_downloads = 10
 last_180_days_downloads = 197
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-qubit-reuse/issues/19, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-09
 details = "Python package qiskit-qubit-reuse declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qiskit-community/qiskit-qubit-reuse/issues/19"
 importance = "RECOMMENDATION"

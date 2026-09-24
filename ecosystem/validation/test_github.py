@@ -32,12 +32,12 @@ def skip_github(member):
 
 def test_G05(member):
     """GitHub repository is archived?"""
-    if member.unmaintained:
-        pytest.skip("projects with no maintenance expectations are exempt")
+    if member.maturity in ["as-is"]:
+        pytest.skip("projects with maturity 'as-is' are exempt")
     else:
         assert not (
             hasattr(member.github, "archived") and member.github.archived
-        ), f"GitHub repository {member.github.url} archived"
+        ), f"GitHub repository {member.github.url} archived and project is not `as-is`"
 
 
 def test_G06(member):

@@ -42,18 +42,7 @@ maintainers = ["https://pypi.org/user/ctheroux/"]
 last_month_downloads = 79
 last_180_days_downloads = 246
 
-[checks.007]
-since = 2026-04-08
-details = "the entry `member.interfaces` does not exist and it is mandatory"
-discussion = "https://github.com/Qiskit/ecosystem/issues/1083"
-importance = "IMPORTANT"
-
 [checks.G05]
-since = 2026-04-23
-details = "GitHub repository archived and member.maturity is not `as-is`"
-importance = "CRITICAL"
-
-[checks.001]
-since = 2026-05-22
-details = "The project is probably abandoned: `[G05]`"
+since = 2026-09-24
+details = "GitHub repository https://github.com/qiskit-community/qiskit-quantinuum-provider archived and project is not `as-is`"
 importance = "CRITICAL"

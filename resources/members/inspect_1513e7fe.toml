@@ -29,6 +29,11 @@ last_activity = 2025-11-11
 url = "https://qisk.it/e-1513e7fe"
 style = "flat"
 
+[checks.G06]
+since = 2026-09-24
+details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+importance = "RECOMMENDATION"
+
 [checks.013]
 since = 2026-04-01
 details = "http://pypi.org/project/qiskit-inspect/ is not HTTPS"
