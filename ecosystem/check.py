@@ -26,7 +26,7 @@ from .request import URL, request_json
 
 
 def parse_exclusions(exclude) -> set[str]:
-    """The `exclude` argument of the CLI commands, as a set of slugs.
+    """The `exclude` argument of the CLI commands, as a set of slugs."""
 
     if exclude is None:
         return set()
