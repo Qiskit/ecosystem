@@ -10,7 +10,6 @@ documentation = "https://qiskit-qulacs.netlify.app/"
 packages = []
 uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
@@ -54,9 +53,4 @@ xfailed_until = 2027-03-31
 since = 2026-07-09
 details = "Python package qiskit-qulacs declared itself compatible to a not-yet-released major version of Qiskit"
 discussion = "https://github.com/Gopal-Dahale/qiskit-qulacs/issues/11"
-importance = "RECOMMENDATION"
-
-[checks.G06]
-since = 2026-07-23
-details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
