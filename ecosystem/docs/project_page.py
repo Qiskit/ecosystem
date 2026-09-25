@@ -190,8 +190,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             ("Check up", "---"),
             ("Importance", ":---:"),
             ("What is failing", "---"),
-            ("Days left in the cure period", "---:"),
-            ("Discussion", ":---:"),
+            ("Days left", "---:"),
+            ("Discussion", "---"),
         ]
         rows = [
             [
@@ -204,8 +204,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 # no details of its own (a source-based check up) means there is nothing to
                 # add to the title in the column before
                 CheckupAssets.cell(checkup.details) if checkup.details else "",
-                CheckupAssets.days_left(self.project, checkup),
-                CheckupAssets.discussion_link(checkup),
+                self.days_left(self.project, checkup),
+                self.discussion_cell(checkup),
             ]
             # the most severe first
             for checkup in sorted(
@@ -225,6 +225,49 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         ]
         lines += ["| " + " | ".join(row[i] for i in keep) + " |" for row in rows]
         return lines
+
+    @staticmethod
+    def days_left(project, checkup):
+        """How long the check up can stay as it is, as a table cell.
+
+        Both clocks are running on an explained check up: the cure period, and the day the
+        explanation stops applying. The one that runs out last is the one that says when the
+        check up needs attention again, so this is the larger of the two. There is nothing to
+        count for an alumni project: its cure period is what retired it in the first place."""
+        if project.status == "Alumni":
+            return "&mdash;"
+        # an explanation with no `xfailed_until` never expires, so there is no day to count to
+        if checkup.cure_period_is_infinite or (
+            checkup.xfailed and checkup.xfailed_until is None
+        ):
+            return "&infin;"
+        days = [
+            value
+            for value in (
+                checkup.days_left_in_cure_period,
+                checkup.days_until_xfailed_expires,
+            )
+            if value is not None
+        ]
+        if not days:
+            return "&mdash;"
+        return str(max(days)) if max(days) >= 0 else "overdue"
+
+    @staticmethod
+    def discussion_cell(checkup):
+        """Why the check up is not being acted on, as a table cell: the explanation that
+        applies to it, when it has one, and the link to where it is being discussed.
+
+        The explanation goes in as the Markdown it was written as, so a `[text](url)` or a
+        `<url>` in a member file renders as a link. `pymdownx.magiclink` takes care of the
+        URLs that were written as plain text (see `markdown_extensions` in properdocs.yml)."""
+        parts = []
+        if checkup.xfail_applies:
+            parts.append(CheckupAssets.cell(checkup.xfailed))
+        link = CheckupAssets.discussion_link(checkup)
+        if link:
+            parts.append(link)
+        return " &middot; ".join(parts)
 
     def badge(self):
         """Badge card"""

@@ -54,6 +54,7 @@ markdown_extensions:
   - abbr
   - tables
   - pymdownx.snippets
+  - pymdownx.magiclink
   - pymdownx.superfences:
       custom_fences:
         - name: vegalite
