@@ -11,7 +11,6 @@ documentation = "https://icekhan13.github.io/purplecaffeine/index.html"
 packages = []
 uuid = "a8fff49c-d8ee-4386-87b1-b28d31005823"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/IceKhan13/purplecaffeine"
@@ -55,9 +54,4 @@ xfailed_until = 2027-03-31
 since = 2026-07-14
 details = "Python package purplecaffeine declared itself compatible to a not-yet-released major version of Qiskit"
 discussion = "https://github.com/IceKhan13/purplecaffeine/issues/174"
-importance = "RECOMMENDATION"
-
-[checks.G06]
-since = 2026-07-23
-details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
