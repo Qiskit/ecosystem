@@ -32,8 +32,8 @@ style = "flat"
 
 [checks.G07]
 since = 2026-05-14
-discussion = "https://github.com/orgs/Qiskit/discussions/51"
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+discussion = "https://github.com/orgs/Qiskit/discussions/51"
 importance = "STRONG-RECOMMENDATION"
 
 [checks.G00]

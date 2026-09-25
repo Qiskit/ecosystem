@@ -22,7 +22,7 @@ license = "MIT"
 description = "Multi-code QEC resource estimator for Qiskit circuits"
 created_at = 2026-07-12
 last_commit = 2026-08-19
-last_activity = 2026-08-19
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-5c47e416"
@@ -43,8 +43,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
-last_month_downloads = 160
-last_180_days_downloads = 1982
+last_month_downloads = 146
+last_180_days_downloads = 1984
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/Ronaldoengenhariadacomputacao/autoq-qec/issues/1, waiting for a release with the fix"

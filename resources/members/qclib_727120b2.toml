@@ -21,7 +21,7 @@ total_dependent_repositories = 14
 total_dependent_packages = 1
 created_at = 2020-03-12
 last_commit = 2026-04-07
-last_activity = 2026-09-01
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-727120b2"
@@ -40,8 +40,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 334
-last_180_days_downloads = 2296
+last_month_downloads = 359
+last_180_days_downloads = 2309
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/qclib/qclib/issues/214, waiting for a release with the fix"

@@ -22,7 +22,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-09-05
 last_commit = 2026-07-13
-last_activity = 2026-09-22
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-4174663a"
@@ -41,8 +41,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 786
-last_180_days_downloads = 4098
+last_month_downloads = 758
+last_180_days_downloads = 4107
 
 [pypi.qiskit-mcp-server]
 package_name = "qiskit-mcp-server"
@@ -61,8 +61,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 1703
-last_180_days_downloads = 10776
+last_month_downloads = 1618
+last_180_days_downloads = 10810
 
 [pypi.qiskit-docs-mcp-server]
 package_name = "qiskit-docs-mcp-server"
@@ -77,8 +77,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 324
-last_180_days_downloads = 2738
+last_month_downloads = 304
+last_180_days_downloads = 2743
 
 [pypi.qiskit-gym-mcp-server]
 package_name = "qiskit-gym-mcp-server"
@@ -97,8 +97,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 405
-last_180_days_downloads = 3256
+last_month_downloads = 385
+last_180_days_downloads = 3268
 
 [pypi.qiskit-ibm-runtime-mcp-server]
 package_name = "qiskit-ibm-runtime-mcp-server"
@@ -112,8 +112,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 1034
-last_180_days_downloads = 5917
+last_month_downloads = 996
+last_180_days_downloads = 5921
 
 [pypi.qiskit-ibm-transpiler-mcp-server]
 package_name = "qiskit-ibm-transpiler-mcp-server"
@@ -127,8 +127,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 397
-last_180_days_downloads = 3585
+last_month_downloads = 373
+last_180_days_downloads = 3596
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/mcp-servers/issues/221, waiting for a release with the fix"

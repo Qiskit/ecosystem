@@ -19,7 +19,7 @@ description = "A collection of quantum information science problems formulated a
 estimated_contributors = 3
 created_at = 2025-08-29
 last_commit = 2026-08-31
-last_activity = 2026-08-28
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-24856641"
@@ -41,8 +41,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 1227
-last_180_days_downloads = 11058
+last_month_downloads = 1199
+last_180_days_downloads = 11063
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/AI4quantum/qiskit-gym/issues/17, waiting for a release with the fix"
