@@ -5,7 +5,7 @@ license = "Apache-2.0"
 contact_info = "soumyadip@soumyadipsarkar.com"
 labels = []
 interfaces = ["Python"]
-category = "Other"
+category = "Tooling"
 documentation = "https://github.com/neuralsorcerer/qiskit-inspect/tree/main/docs"
 packages = []
 uuid = "1513e7fe-9390-4014-9c2a-f6c600ddf6ca"
@@ -31,20 +31,6 @@ style = "flat"
 
 [pypi.qiskit-inspect]
 package_name = "qiskit-inspect"
-version = "0.1.1"
-last_release_date = 2025-09-23
-license = "Apache-2.0"
-description = "Debugger, backend prefix tracing, and assertions for Qiskit"
-url = "https://pypi.org/project/qiskit-inspect/"
-status = "active"
-maintainers = ["https://pypi.org/user/neuralsorcerer/"]
-requires_qiskit = ">=2.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 18
-last_180_days_downloads = 154
 
 [checks.G06]
 since = 2026-09-24
