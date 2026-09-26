@@ -11,7 +11,6 @@ documentation = "https://jij-inc.github.io/Qamomile/"
 packages = []
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/Jij-Inc/Qamomile"
@@ -54,6 +53,9 @@ discussion = "https://github.com/Jij-Inc/Qamomile/issues/653"
 importance = "RECOMMENDATION"
 
 [checks.P12]
+xfailed = "Issue asking for the license declaration submitted https://github.com/Jij-Inc/Qamomile/issues/655, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-06
 details = "The PyPI package qamomile does not have a declared license"
+discussion = "https://github.com/Jij-Inc/Qamomile/issues/655"
 importance = "RECOMMENDATION"

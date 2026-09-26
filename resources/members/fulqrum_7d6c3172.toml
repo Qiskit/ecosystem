@@ -8,7 +8,7 @@ documentation = "https://qiskit-community.github.io/fulqrum/"
 packages = []
 uuid = "7d6c3172-7bb5-4c5a-b0a3-87aa378ee356"
 maturity = "experimental"
-status = "Under revision"
+status = "Early Project"
 
 [github]
 url = "https://github.com/qiskit-community/fulqrum"
@@ -43,6 +43,8 @@ last_month_downloads = 777
 last_180_days_downloads = 777
 
 [checks.P12]
+xfailed = "PR with the fix was merged (https://github.com/qiskit-community/fulqrum/pull/122), but not yet released to PyPI"
+xfailed_until = 2026-11-30
 since = 2026-09-17
 details = "The PyPI package fulqrum does not have a declared license"
 discussion = "https://github.com/qiskit-community/fulqrum/pull/122"

@@ -9,7 +9,6 @@ documentation = "https://c2qa.github.io/bosonic-qiskit/"
 packages = []
 uuid = "3d8fe04d-8ac0-4282-9eb6-cb458550945a"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/C2QA/bosonic-qiskit"
@@ -50,6 +49,9 @@ last_month_downloads = 274
 last_180_days_downloads = 2018
 
 [checks.P12]
+xfailed = "The license declaration is already in the repository (https://github.com/C2QA/bosonic-qiskit/commit/b4fc994189d3b4772edc36405b45ae6970fa87f3), waiting for a release with the fix"
+xfailed_until = 2026-11-30
 since = 2026-07-06
 details = "The PyPI package bosonic-qiskit does not have a declared license"
+discussion = "https://github.com/C2QA/bosonic-qiskit/commit/b4fc994189d3b4772edc36405b45ae6970fa87f3"
 importance = "RECOMMENDATION"

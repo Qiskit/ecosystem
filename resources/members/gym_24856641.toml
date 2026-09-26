@@ -8,7 +8,6 @@ category = "Application"
 packages = []
 uuid = "24856641-7888-4c14-99f2-a448d2acf7f3"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/AI4quantum/qiskit-gym"
@@ -54,6 +53,9 @@ discussion = "https://github.com/AI4quantum/qiskit-gym/issues/17"
 importance = "RECOMMENDATION"
 
 [checks.P12]
+xfailed = "Issue asking for the license declaration submitted https://github.com/AI4quantum/qiskit-gym/issues/18, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-09-10
 details = "The PyPI package qiskit-gym does not have a declared license"
+discussion = "https://github.com/AI4quantum/qiskit-gym/issues/18"
 importance = "RECOMMENDATION"
