@@ -14,7 +14,7 @@ packages = [
 ]
 uuid = "bd91d04b-4fa1-4791-abeb-f7c809475e63"
 maturity = "production-ready"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/markusvankempen/quantum-openqasm-assistant"
@@ -32,3 +32,8 @@ last_activity = 2026-06-26
 [badge]
 url = "https://qisk.it/e-bd91d04b"
 style = "flat"
+
+[checks.G12]
+since = 2026-09-26
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"

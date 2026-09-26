@@ -54,6 +54,11 @@ since = 2026-09-24
 details = "GitHub repository https://github.com/cda-tum/mqt-qubomaker archived and project is not `as-is`"
 importance = "CRITICAL"
 
+[checks.G00]
+since = 2026-09-26
+details = "The project is probably abandoned: `[G05]`"
+importance = "CRITICAL"
+
 [checks.P10]
 since = 2026-09-24
 details = "Python package mqt-qubomaker declared itself compatible to a not-yet-released major version of Qiskit"

@@ -40,3 +40,8 @@ importance = "CRITICAL"
 since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.G00]
+since = 2026-09-26
+details = "The project is probably abandoned: `[G05]`"
+importance = "CRITICAL"
