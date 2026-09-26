@@ -17,7 +17,7 @@ maturity = "production-ready"
 url = "https://github.com/qBraid/qBraid"
 owner = "qBraid"
 repo = "qBraid"
-stars = 114
+stars = 115
 homepage = "https://docs.qbraid.com/v2/sdk"
 license = "Apache-2.0"
 description = "A platform-agnostic quantum runtime framework"
@@ -25,7 +25,7 @@ estimated_contributors = 35
 total_dependent_repositories = 43
 total_dependent_packages = 23
 created_at = 2019-09-11
-last_commit = 2026-09-24
+last_commit = 2026-09-25
 last_activity = 2026-09-25
 
 [badge]
@@ -47,5 +47,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 8354
-last_180_days_downloads = 98292
+last_month_downloads = 8160
+last_180_days_downloads = 97705
