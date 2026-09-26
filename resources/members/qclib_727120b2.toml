@@ -52,6 +52,9 @@ discussion = "https://github.com/qclib/qclib/issues/214"
 importance = "RECOMMENDATION"
 
 [checks.P12]
+xfailed = "Issue asking for the license declaration submitted https://github.com/qclib/qclib/issues/215, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-06
 details = "The PyPI package qclib does not have a declared license"
+discussion = "https://github.com/qclib/qclib/issues/215"
 importance = "RECOMMENDATION"

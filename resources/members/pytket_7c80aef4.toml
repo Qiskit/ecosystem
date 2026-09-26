@@ -58,6 +58,9 @@ discussion = "https://github.com/Quantinuum/pytket-qiskit/issues/552"
 importance = "RECOMMENDATION"
 
 [checks.P12]
+xfailed = "Issue asking for the license declaration submitted https://github.com/Quantinuum/pytket-qiskit/issues/555, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-06
 details = "The PyPI package pytket-qiskit does not have a declared license"
+discussion = "https://github.com/Quantinuum/pytket-qiskit/issues/555"
 importance = "RECOMMENDATION"

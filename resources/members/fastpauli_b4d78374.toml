@@ -67,6 +67,8 @@ details = "Last commit was more than 12 months ago. This might be a sign of a pr
 importance = "STRONG-RECOMMENDATION"
 
 [checks.P12]
+xfailed = "Issue asking for the license declaration submitted https://github.com/qognitive/fast-pauli/issues/97, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-06
 details = "The PyPI package fast-pauli does not have a declared license"
 discussion = "https://github.com/qognitive/fast-pauli/issues/97"
