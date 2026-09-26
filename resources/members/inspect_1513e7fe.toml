@@ -29,6 +29,23 @@ last_activity = 2025-11-11
 url = "https://qisk.it/e-1513e7fe"
 style = "flat"
 
+[pypi.qiskit-inspect]
+package_name = "qiskit-inspect"
+version = "0.1.1"
+last_release_date = 2025-09-23
+license = "Apache-2.0"
+description = "Debugger, backend prefix tracing, and assertions for Qiskit"
+url = "https://pypi.org/project/qiskit-inspect/"
+status = "active"
+maintainers = ["https://pypi.org/user/neuralsorcerer/"]
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 18
+last_180_days_downloads = 154
+
 [checks.G06]
 since = 2026-09-24
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
