@@ -192,12 +192,16 @@ body:
     label: Packages
     description: >
       List the links for all the packages that are built from the project, one per
-      line. Leave it empty you there is no deploy for this project.
+      line. A Python project that is `pip install`-able from its repository but is not
+      published anywhere can link its pyproject.toml, setup.cfg or setup.py instead,
+      which is also how to point at a subdirectory of a monorepo. Leave it empty you
+      there is no deploy for this project.
     placeholder: |
       https://pypi.org/project/banana-compiler
       https://pypi.org/project/banana-compiler-hpc
       https://crates.io/crates/rusty-banana-compiler
       https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
+      https://github.com/banana-org/banana-compiler/blob/main/experiments/pyproject.toml
     render: text
 - id: paper_url
   type: input

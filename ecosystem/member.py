@@ -24,6 +24,7 @@ from .license import License
 from .serializable import JsonSerializable, parse_date
 from .github import GitHubData
 from .pypi import PyPIData
+from .python import PythonData
 from .check import CheckData
 from .badge import BadgeData
 from .request import URL
@@ -62,6 +63,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
         julia: dict[str, JuliaData] | None = None,
+        python: dict[str, PythonData] | None = None,
         maturity: str | None = None,
         status: str | None = None,
     ):
@@ -96,6 +98,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.checks = checks or {}
         self.pypi = pypi or {}
         self.julia = julia or {}
+        self.python = python or {}
         self.badge = badge
         self.maturity = maturity
         self.status = status
@@ -140,6 +143,13 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                     {"package_name": project_name} | julia_dict
                 )
                 filtered_dict["julia"][project_name] = julia_data
+
+        if "python" in filtered_dict:
+            for project_name, python_dict in filtered_dict["python"].items():
+                python_data = PythonData.from_dict(
+                    {"package_name": project_name} | python_dict
+                )
+                filtered_dict["python"][project_name] = python_data
 
         if "pypi" in filtered_dict:
             for project_name, pypi_dict in filtered_dict["pypi"].items():
@@ -241,12 +251,50 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         for package_name in sorted(self.julia.keys()):
             self.julia[package_name].update_json()
 
+    def update_python(self):
+        """
+        Updates the packaging metadata the project declares in its own repository.
+
+        Unlike the other updaters, this one can *create* its section: the
+        distribution name is declared in the repository, so it is discovered here
+        rather than submitted. A section that already exists is refreshed, and
+        re-keyed if the project renamed its distribution.
+
+        A project that publishes is described by its `[pypi.*]`/`[julia.*]`
+        section already, so no section is created for it. An existing
+        `[python.*]` section is still refreshed, so a member can be given one on
+        purpose to cross-check the source against the release.
+        """
+        if not self.github or not self.github.owner or not self.github.repo:
+            return
+
+        if not self.python and (self.pypi or self.julia):
+            return
+
+        to_fetch = list(self.python.values()) or [PythonData.from_github(self.github)]
+        refreshed = {}
+        for python_data in to_fetch:
+            python_data.owner = self.github.owner
+            python_data.repo = self.github.repo
+            python_data.update_json()
+            if not python_data.fetched or python_data.package_name is None:
+                # The repository declares no distribution any more, so the stored
+                # section is stale and dropping it says so. `package_name` alone
+                # cannot decide this: it falls back to the stored value, which is
+                # what makes a section readable without the network. A repository
+                # that could not be read raises instead of getting here, so a
+                # failed fetch never drops a good section.
+                continue
+            refreshed[python_data.package_name] = python_data
+        self.python = refreshed
+
     def upsert_sections(self, github_url=None):
         """Create or update sections in a member.
         It is fully local, no validation or internet fetch.
          * github
          * pypi
          * julia
+         * python
          * badge
         """
 
@@ -268,6 +316,10 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 self.pypi[pypi.package_name] = pypi
             elif julia := JuliaData.from_url(package):
                 self.julia[julia.package_name] = julia
+            elif python := PythonData.from_url(package):
+                # keyed by the repository name for now; `update_python` re-keys the
+                # section once it reads the distribution name out of the manifest
+                self.python[python.key] = python
             else:
                 keep_in_packages.append(package)
 

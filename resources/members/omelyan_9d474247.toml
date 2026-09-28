@@ -10,7 +10,7 @@ reference_paper = "https://arxiv.org/abs/2601.18756"
 packages = []
 uuid = "9d474247-5c15-481c-afb2-cc58ae884459"
 maturity = "bugfixing only"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/MarkoMalezic/qiskit-omelyan"
@@ -20,7 +20,7 @@ stars = 1
 license = "Apache-2.0"
 created_at = 2026-04-22
 last_commit = 2026-06-29
-last_activity = 2026-09-26
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-9d474247"
@@ -51,9 +51,6 @@ discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/1"
 importance = "RECOMMENDATION"
 
 [checks.P12]
-xfailed = "Issue asking for the license declaration submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/2, waiting for a release with the fix"
-xfailed_until = 2027-03-31
 since = 2026-07-14
 details = "The PyPI package qiskit-omelyan does not have a declared license"
-discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/2"
 importance = "RECOMMENDATION"

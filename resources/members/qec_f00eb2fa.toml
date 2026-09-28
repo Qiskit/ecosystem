@@ -32,6 +32,22 @@ last_activity = 2026-08-26
 url = "https://qisk.it/e-f00eb2fa"
 style = "flat"
 
+[python.qiskit-qec]
+package_name = "qiskit-qec"
+license = "Apache-2.0"
+description = "Qiskit quantum error correcting (QEC) package"
+requires_python = ">=3.8"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py"]
+deferred = [
+  "cmdclass",
+  "ext_modules",
+  "install_requires",
+  "long_description",
+  "packages",
+  "version",
+]
+
 [checks.G05]
 since = 2026-09-17
 details = "GitHub repository https://github.com/qiskit-community/qiskit-qec archived and project is not `as-is`"

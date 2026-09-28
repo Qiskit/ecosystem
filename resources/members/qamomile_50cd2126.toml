@@ -11,6 +11,7 @@ documentation = "https://jij-inc.github.io/Qamomile/"
 packages = []
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Jij-Inc/Qamomile"
@@ -23,7 +24,7 @@ total_dependent_repositories = 4
 total_dependent_packages = 1
 created_at = 2023-06-18
 last_commit = 2026-09-19
-last_activity = 2026-09-26
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-50cd2126"
@@ -41,8 +42,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 612
-last_180_days_downloads = 4776
+last_month_downloads = 610
+last_180_days_downloads = 4795
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/Jij-Inc/Qamomile/issues/653, waiting for a release with the fix"
@@ -53,9 +54,6 @@ discussion = "https://github.com/Jij-Inc/Qamomile/issues/653"
 importance = "RECOMMENDATION"
 
 [checks.P12]
-xfailed = "Issue asking for the license declaration submitted https://github.com/Jij-Inc/Qamomile/issues/655, waiting for a release with the fix"
-xfailed_until = 2027-03-31
 since = 2026-07-06
 details = "The PyPI package qamomile does not have a declared license"
-discussion = "https://github.com/Jij-Inc/Qamomile/issues/655"
 importance = "RECOMMENDATION"

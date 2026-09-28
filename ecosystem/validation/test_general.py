@@ -46,7 +46,7 @@ def must_pass_all_requierements(requierements, failed_checkups, msg):
         pytest.skip("Still in the cure period: " + " ".join([c.id for c in fail]))
 
 
-@pytest.mark.order(after=["test_pypi.py::test_PQ2"])
+@pytest.mark.order(after=["test_pypi.py::test_PQ2", "test_python.py::test_S01"])
 def test_Q20(request, pytestconfig):
     """Be compatible with the Qiskit SDK v2 or newer"""
     requierements = request.node.get_closest_marker("order").kwargs["after"]

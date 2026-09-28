@@ -35,8 +35,8 @@ importance = "CRITICAL"
 title = "Be compatible with the Qiskit SDK v2 or newer"
 applies_to = "all"
 category = "GENERAL"
-related_to = ["PQ2"]
-description = "If the software depends on Qiskit SDK in some way, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies."
+related_to = ["PQ2", "S01"]
+description = "If the software depends on Qiskit SDK in some way, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies. A project that publishes no release answers this with the distribution its repository declares, which is [S01]."
 importance = "CRITICAL"
 checker = "test_general.py::test_Q20"
 
@@ -347,6 +347,33 @@ category = "OSS"
 description = "The license declared by every Julia package of the project should be an OSI-approved open-source license. The check up matches the declared license against the SPDX identifiers of the OSI-approved ones, so a license spelled in an unusual way can fail it without the project being any less open source. A package declaring no license at all is [J00] instead."
 checker = "test_julia.py::test_J01"
 importance = "IMPORTANT"
+
+[S00]
+title = "The license declared in the repository is (probably) not OSI-approved"
+applies_to = "pip-installable repositories"
+affects = ['member.python.*.license']
+category = "OSS"
+description = "The license every distribution declares in its packaging manifests should be an OSI-approved open-source license. The check up matches the declared license against the SPDX identifiers of the OSI-approved ones, so a license spelled in an unusual way can fail it without the project being any less open source. A distribution that declares no license is not a check up here: the repository is what gets installed, and [G09] already asks the repository for one."
+checker = "test_python.py::test_S00"
+importance = "IMPORTANT"
+
+[S01]
+title = "Be installable with qiskit>=2.0 from the repository"
+applies_to = "pip-installable repositories"
+affects = ['member.python.*.compatible_with_qiskit_v2']
+checker = "test_python.py::test_S01"
+category = "OUT-OF-DATE"
+description = "The counterpart of [PQ2] for a distribution that the repository declares but does not publish: what the manifests require of Qiskit SDK should allow v2.0 or newer. A project can pass [PQ2] with its latest release and fail this one with its source, which is what anybody installing from the repository gets."
+importance = "IMPORTANT"
+
+[S02]
+title = "Have a cap on the major version for the qiskit dependency in the repository"
+applies_to = "pip-installable repositories"
+affects = ['member.python.*.requires_qiskit']
+category = "BEST-PRACTICE"
+description = "The counterpart of [P10] for a distribution declared in the repository. As Qiskit follows semantic versioning, a dependency with no cap for the eventual next major version gives no guarantee that the distribution will keep working after a major release."
+checker = "test_python.py::test_S02"
+importance = "RECOMMENDATION"
 
 [O02]
 title = "member.license is not OSI-approved license"

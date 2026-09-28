@@ -24,3 +24,21 @@ last_activity = 2026-09-25
 [badge]
 url = "https://qisk.it/e-25fea67d"
 style = "flat"
+
+[python.qiskit-noise-learning]
+package_name = "qiskit-noise-learning"
+description = "A toolkit for randomization-based quantum noise characterization."
+requires_python = ">=3.11"
+requires_qiskit = ">=2.5.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = ["version"]
+
+[checks.S02]
+since = 2026-09-28
+details = "The distribution qiskit-noise-learning declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

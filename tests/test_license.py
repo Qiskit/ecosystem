@@ -59,6 +59,19 @@ class TestLicense(TestCase):
         license = License("Apache Software License@pypi")
         self.assertTrue(license.is_osi_approved())
 
+    def test_the_gpl_family_disambiguators_are_osi_approved(self):
+        """SPDX spells the same license three ways; all of them are the license."""
+        for name in (
+            "AGPL-3.0",
+            "AGPL-3.0-only",
+            "AGPL-3.0-or-later",
+            "GPL-3.0",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later",
+        ):
+            with self.subTest(license=name):
+                self.assertTrue(License(name).is_osi_approved())
+
     def test_is_osi_approved_false(self):
         """An unrecognized license should return False for OSI approval."""
         license = License("BananaLicense")

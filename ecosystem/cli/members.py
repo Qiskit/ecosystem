@@ -39,7 +39,7 @@ from ecosystem.classifications import ClassificationsToml
 from ecosystem.error_handling import logger
 
 
-class CliMembers:
+class CliMembers:  # pylint: disable=too-many-public-methods
     """CliMembers class.
     Entrypoint for all CLI members commands.
 
@@ -489,6 +489,20 @@ class CliMembers:
         for project in self.dao.get_all(name):
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
+
+    def update_python(self, name=None):
+        """
+        Updates the Python metadata declared in the member's own repository.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+
+        It needs the GitHub section, so it runs after update_github.
+        """
+        for project in self.dao.get_all(name):
+            project.update_python()
+            self.dao.update(project.name_id, python=project.python)
 
     def update_checkups(self, name=None, checker=None, exclude: str = None):
         """

@@ -22,3 +22,12 @@ last_activity = 2026-09-12
 [badge]
 url = "https://qisk.it/e-83d79fb0"
 style = "flat"
+
+[python.qiskit-device-benchmarking]
+package_name = "qiskit-device-benchmarking"
+license = "Apache-2.0"
+description = "Software for benchmarking devices through qiskit"
+requires_python = ">=3.8"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py"]
+deferred = ["install_requires", "long_description", "packages", "version"]

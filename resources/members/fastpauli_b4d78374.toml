@@ -28,7 +28,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2024-06-06
 last_commit = 2025-04-09
-last_activity = 2026-09-26
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-b4d78374"
@@ -61,15 +61,13 @@ details = "Python package fast-pauli declared itself compatible to a not-yet-rel
 discussion = "https://github.com/qognitive/fast-pauli/issues/98"
 importance = "RECOMMENDATION"
 
-[checks.P12]
-xfailed = "Issue asking for the license declaration submitted https://github.com/qognitive/fast-pauli/issues/97, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-07-06
-details = "The PyPI package fast-pauli does not have a declared license"
-discussion = "https://github.com/qognitive/fast-pauli/issues/97"
-importance = "RECOMMENDATION"
-
 [checks.G07]
 since = 2026-09-17
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.P12]
+since = 2026-07-06
+details = "The PyPI package fast-pauli does not have a declared license"
+discussion = "https://github.com/qognitive/fast-pauli/issues/97"
+importance = "RECOMMENDATION"

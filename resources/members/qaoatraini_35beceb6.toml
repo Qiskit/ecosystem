@@ -23,3 +23,22 @@ last_activity = 2026-09-22
 [badge]
 url = "https://qisk.it/e-35beceb6"
 style = "flat"
+
+[python.qaoa-training-pipeline]
+package_name = "qaoa-training-pipeline"
+license = "Apache-2.0"
+description = "QAOA training pipeline"
+requires_python = ">=3.11"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py"]
+deferred = ["version"]
+
+[checks.S02]
+since = 2026-09-28
+details = "The distribution qaoa-training-pipeline declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

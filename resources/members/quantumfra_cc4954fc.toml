@@ -26,3 +26,23 @@ last_activity = 2026-09-18
 [badge]
 url = "https://qisk.it/e-cc4954fc"
 style = "flat"
+
+[python.quantum-fragment-methods]
+package_name = "quantum-fragment-methods"
+version = "0.0.1"
+license = "Apache-2.0"
+description = "Fragment-based Wavefunction Embedding framework for quantum simulation of macromolecules"
+requires_python = ">=3.8"
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []
+
+[checks.S02]
+since = 2026-09-28
+details = "The distribution quantum-fragment-methods declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

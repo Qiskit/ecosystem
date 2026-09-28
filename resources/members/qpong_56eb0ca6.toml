@@ -31,6 +31,13 @@ last_activity = 2026-04-04
 url = "https://qisk.it/e-56eb0ca6"
 style = "flat"
 
+[python.qpong]
+package_name = "qpong"
+description = "Qpong"
+requires_python = ">=3.6"
+source = ["setup.cfg", "setup.py"]
+deferred = ["install_requires", "long_description", "packages"]
+
 [checks.G05]
 since = 2026-09-24
 details = "GitHub repository https://github.com/QPong/QPong archived and project is not `as-is`"
@@ -40,8 +47,3 @@ importance = "CRITICAL"
 since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
-
-[checks.G00]
-since = 2026-09-26
-details = "The project is probably abandoned: `[G05]`"
-importance = "CRITICAL"

@@ -153,6 +153,7 @@ class CliCI:
             "github",
             "pypi",
             "julia",
+            "python",
         ]
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
