@@ -40,7 +40,7 @@ maintainers = [
   "https://pypi.org/user/nonhermitian/",
 ]
 last_month_downloads = 789
-last_180_days_downloads = 789
+last_180_days_downloads = 826
 
 [checks.P12]
 xfailed = "PR with the fix was merged (https://github.com/qiskit-community/fulqrum/pull/122), but not yet released to PyPI"
