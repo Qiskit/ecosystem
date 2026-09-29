@@ -19,6 +19,7 @@ from unittest.mock import patch
 
 from ecosystem.docs.card import PipSourcePackageCard
 from ecosystem.docs.pip_source_page import PipSourcePage
+from ecosystem.docs.project_page import ProjectPage
 from ecosystem.github import GitHubData
 from ecosystem.member import Member
 from ecosystem.python import PythonData
@@ -175,3 +176,40 @@ class TestPipSourcePage(PipSourceTestCase):
         self.assertIn("# banana-compiler ", lines)
         self.assertIn("pip install", lines)
         self.assertIn("**Project** [Banana Compiler](../p/", lines)
+
+
+class TestProjectPagePackages(PipSourceTestCase):
+    """The `[python.*]` sections show up on the member's own page too, next to the
+    `[pypi.*]` ones, so a project is not read as having no packages at all."""
+
+    def packages_section(self, **kwargs):
+        """The Packages section of the project page, as one string."""
+        project = self.project(**kwargs)
+        return "\n".join(ProjectPage(project, "p/banana.md").packages())
+
+    def test_the_card_is_in_the_packages_section(self):
+        """The same card the pip-source page uses, on the project page."""
+        section = self.packages_section(python={"banana-compiler": self.package()})
+        self.assertIn("### :material-package-variant: Packages", section)
+        self.assertIn(
+            "#### :simple-github: pip-installable repo `banana-compiler`", section
+        )
+        self.assertIn(
+            f":simple-python: `pip install git+https://github.com/{OWNER}/{REPO}`",
+            section,
+        )
+
+    def test_one_card_per_declared_distribution(self):
+        """A monorepo declares several, each with its own install target."""
+        section = self.packages_section(
+            python={
+                "banana-compiler": self.package(),
+                "banana-vision": self.package(path="packages/vision"),
+            }
+        )
+        self.assertEqual(2, section.count("#### :simple-github: pip-installable repo"))
+        self.assertIn("#subdirectory=packages/vision", section)
+
+    def test_no_packages_section_without_any_package(self):
+        """An empty section would read as a project with nothing to install."""
+        self.assertEqual("", self.packages_section())

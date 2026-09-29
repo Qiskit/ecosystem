@@ -6,6 +6,7 @@ from unittest.mock import patch
 
 from ecosystem.error_handling import EcosystemError
 from ecosystem.github import GitHubData
+from ecosystem.julia import JuliaData
 from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
 from ecosystem.python import PythonData, parse_setup_cfg, parse_setup_py
@@ -440,13 +441,36 @@ class TestMemberUpdatePython(PythonDataTestCase):
         self.assertEqual(["banana-compiler"], list(member.python))
         self.assertEqual("0.3.1", member.python["banana-compiler"].version)
 
-    def test_no_section_for_a_project_that_publishes(self):
-        """A published project is already described by its `[pypi.*]` section."""
+    def test_no_section_for_a_distribution_that_is_published(self):
+        """The release describes it already, so a section would just duplicate it."""
         member = self.member(pypi={"banana-compiler": PyPIData("banana-compiler")})
-        with patch("ecosystem.python.request_json") as request:
+        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
             member.update_python()
         self.assertEqual({}, member.python)
-        request.assert_not_called()
+
+    def test_the_published_name_is_what_decides(self):
+        """A repository can publish one distribution and declare another, unreleased
+        one. Skipping on "publishes something" would lose the second."""
+        member = self.member(pypi={"banana-cli": PyPIData("banana-cli")})
+        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+            member.update_python()
+        self.assertEqual(["banana-compiler"], list(member.python))
+
+    def test_the_comparison_ignores_name_spelling(self):
+        """`Banana_Compiler` in the manifest and `banana-compiler` on PyPI are one
+        distribution, so the section is still not created."""
+        member = self.member(pypi={"Banana_Compiler": PyPIData("Banana_Compiler")})
+        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+            member.update_python()
+        self.assertEqual({}, member.python)
+
+    def test_a_julia_release_of_the_same_name_does_not_count(self):
+        """Only PyPI is consulted: a Julia package is a different artifact in a
+        different registry, and says nothing about whether `pip` can find this one."""
+        member = self.member(julia={"banana-compiler": JuliaData("banana-compiler")})
+        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+            member.update_python()
+        self.assertEqual(["banana-compiler"], list(member.python))
 
     def test_an_existing_section_is_refreshed_even_when_published(self):
         """A section added on purpose keeps being updated, to cross-check the release."""

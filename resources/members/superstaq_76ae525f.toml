@@ -52,6 +52,58 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 4428
 last_180_days_downloads = 39550
 
+[pypi.checks-superstaq]
+package_name = "checks-superstaq"
+version = "0.5.69"
+last_release_date = 2026-09-23
+license = "Apache-2.0"
+description = "Check script tools for Superstaq."
+url = "https://pypi.org/project/checks-superstaq/"
+status = "active"
+maintainers = ["https://pypi.org/user/vtomole/"]
+last_month_downloads = 6478
+last_180_days_downloads = 57520
+
+[pypi.cirq-superstaq]
+package_name = "cirq-superstaq"
+version = "0.5.69"
+last_release_date = 2026-09-23
+license = "Apache-2.0"
+description = "The Cirq module that provides tools and access to Superstaq."
+url = "https://pypi.org/project/cirq-superstaq/"
+status = "active"
+maintainers = [
+  "https://pypi.org/user/pranavgokhale/",
+  "https://pypi.org/user/richrines/",
+  "https://pypi.org/user/vtomole/",
+]
+last_month_downloads = 6495
+last_180_days_downloads = 58319
+
+[pypi.general-superstaq]
+package_name = "general-superstaq"
+version = "0.5.69"
+last_release_date = 2026-09-23
+license = "Apache-2.0"
+description = "The general module that provides tools and access to Superstaq."
+url = "https://pypi.org/project/general-superstaq/"
+status = "active"
+maintainers = ["https://pypi.org/user/vtomole/"]
+last_month_downloads = 6718
+last_180_days_downloads = 60358
+
+[pypi.supermarq]
+package_name = "supermarq"
+version = "0.5.69"
+last_release_date = 2026-09-23
+license = "Apache-2.0"
+description = "Supermarq is a scalable, application-centric quantum benchmarking suite."
+url = "https://pypi.org/project/Supermarq/"
+status = "active"
+maintainers = ["https://pypi.org/user/vtomole/"]
+last_month_downloads = 1184
+last_180_days_downloads = 7409
+
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/Infleqtion/client-superstaq/issues/1448, waiting for a release with the fix"
 xfailed_until = 2027-03-31

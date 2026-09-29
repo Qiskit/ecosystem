@@ -50,3 +50,11 @@ highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 8489
 last_180_days_downloads = 96615
+
+[python.qiskit-serverless-gateway]
+package_name = "qiskit-serverless-gateway"
+version = "0.1.0"
+requires_python = ">=3.12"
+path = "gateway"
+source = ["pyproject.toml", "setup.cfg"]
+deferred = []

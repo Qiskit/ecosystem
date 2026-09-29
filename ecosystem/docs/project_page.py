@@ -17,7 +17,12 @@ Pages inhttps://qiskit.github.io/ecosystem/p/<short uuid>
 import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
-from ecosystem.docs.card import ProjectSummaryCard, URLsCard, PypiPackageCard
+from ecosystem.docs.card import (
+    ProjectSummaryCard,
+    URLsCard,
+    PypiPackageCard,
+    PipSourcePackageCard,
+)
 from ecosystem.docs.checkup_page import CheckupAssets
 
 
@@ -103,6 +108,14 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 packages["pypi"] += PypiPackageCard.from_pypi_data(pkg).generate()
             packages["pypi"] += ["</div>"]
 
+        if self.project.python:
+            packages["python"] = ['<div class="grid cards" markdown>']
+            for pkg in self.project.python.values():
+                packages["python"] += PipSourcePackageCard.from_python_data(
+                    pkg, self.project
+                ).generate()
+            packages["python"] += ["</div>"]
+
         if self.project.julia:
             packages["julia"] = ['<div class="grid cards" markdown>']
             for pkg in self.project.julia.values():
@@ -128,6 +141,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             return []
         ret = ["\n---\n### :material-package-variant: Packages\n"]
         ret += packages.get("pypi", [])
+        ret += packages.get("python", [])
         ret += packages.get("julia", [])
         ret += packages.get(None, [])
         return ret

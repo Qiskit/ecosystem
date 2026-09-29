@@ -556,7 +556,7 @@ class PipSourcePackageCard(Card):
         self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
 
         super().__init__(
-            title=f"Repository `{self.package_name}`",
+            title=f"pip-installable repo `{self.package_name}`",
             title_icon="#### :simple-github:",
             body_lines=self.body(),
         )

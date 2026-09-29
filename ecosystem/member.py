@@ -16,6 +16,7 @@ import pprint
 from datetime import date
 from uuid import uuid4
 from dateutil.relativedelta import relativedelta
+from packaging.utils import canonicalize_name
 from slugify import slugify
 
 from .error_handling import EcosystemError
@@ -260,16 +261,20 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         rather than submitted. A section that already exists is refreshed, and
         re-keyed if the project renamed its distribution.
 
-        A project that publishes is described by its `[pypi.*]`/`[julia.*]`
-        section already, so no section is created for it. An existing
-        `[python.*]` section is still refreshed, so a member can be given one on
-        purpose to cross-check the source against the release.
+        A distribution that is published to PyPI is described by its `[pypi.*]`
+        section already, so no section is created for *that* distribution. The
+        comparison is by name, not by whether the project publishes anything at
+        all: a repository can hold a released distribution and an unreleased one
+        next to it, and the second is exactly what this section is for. An
+        existing `[python.*]` section is refreshed either way, so a member can be
+        given one on purpose to cross-check the source against the release.
         """
         if not self.github or not self.github.owner or not self.github.repo:
             return
 
-        if not self.python and (self.pypi or self.julia):
-            return
+        # only what this call discovers is dropped for being published; a section that
+        # was declared is kept, because declaring it was deliberate
+        discovered = not self.python
 
         to_fetch = list(self.python.values()) or [PythonData.from_github(self.github)]
         refreshed = {}
@@ -277,6 +282,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             python_data.owner = self.github.owner
             python_data.repo = self.github.repo
             python_data.update_json()
+            if discovered and python_data.package_name in self.published_distributions:
+                continue
             if not python_data.fetched or python_data.package_name is None:
                 # The repository declares no distribution any more, so the stored
                 # section is stale and dropping it says so. `package_name` alone
@@ -287,6 +294,17 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 continue
             refreshed[python_data.package_name] = python_data
         self.python = refreshed
+
+    @property
+    def published_distributions(self):
+        """Canonical names of the Python distributions this project publishes.
+
+        PyPI only. A `[python.*]` section describes something `pip` installs from the
+        repository, and a Julia package of the same name is a different artifact in a
+        different registry, so it says nothing about whether this distribution is
+        released.
+        """
+        return {canonicalize_name(name) for name in self.pypi}
 
     def upsert_sections(self, github_url=None):
         """Create or update sections in a member.
