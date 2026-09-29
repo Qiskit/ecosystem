@@ -247,7 +247,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         Both clocks are running on an explained check up: the cure period, and the day the
         explanation stops applying. The one that runs out last is the one that says when the
         check up needs attention again, so this is the larger of the two. There is nothing to
-        count for an alumni project: its cure period is what retired it in the first place."""
+        count for an alumni project: its cure period is what retired it in the first place.
+        """
         if project.status == "Alumni":
             return "&mdash;"
         # an explanation with no `xfailed_until` never expires, so there is no day to count to
@@ -274,7 +275,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
 
         The explanation goes in as the Markdown it was written as, so a `[text](url)` or a
         `<url>` in a member file renders as a link. `pymdownx.magiclink` takes care of the
-        URLs that were written as plain text (see `markdown_extensions` in properdocs.yml)."""
+        URLs that were written as plain text (see `markdown_extensions` in properdocs.yml).
+        """
         parts = []
         if checkup.xfail_applies:
             parts.append(CheckupAssets.cell(checkup.xfailed))
