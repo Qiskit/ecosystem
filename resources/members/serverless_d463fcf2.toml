@@ -58,3 +58,11 @@ requires_python = ">=3.12"
 path = "gateway"
 source = ["pyproject.toml", "setup.cfg"]
 deferred = []
+
+[python.qiskit-serverless-tests]
+package_name = "qiskit-serverless-tests"
+version = "0.1.0"
+requires_python = ">=3.12"
+path = "tests"
+source = ["pyproject.toml"]
+deferred = []
