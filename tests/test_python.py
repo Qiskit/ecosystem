@@ -584,9 +584,30 @@ class TestUpsertSectionsPython(PythonDataTestCase):
             [f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml"]
         )
         member.upsert_sections()
-        self.assertEqual([REPO], list(member.python))
-        self.assertEqual("chemistry", member.python[REPO].path)
+        key = f"{REPO}-chemistry"
+        self.assertEqual([key], list(member.python))
+        self.assertEqual("chemistry", member.python[key].path)
         self.assertEqual([], member.packages)
+
+    def test_several_manifests_in_one_repository_keep_their_own_section(self):
+        """A monorepo declares one distribution per directory. The stand-in key has to
+        tell them apart, or all but the last are lost before anything is fetched."""
+        member = self.member(
+            [
+                f"https://github.com/{OWNER}/{REPO}/blob/main/hardware/pyproject.toml",
+                f"https://github.com/{OWNER}/{REPO}/blob/main/packages/vision/setup.cfg",
+                f"https://github.com/{OWNER}/{REPO}/blob/main/pyproject.toml",
+            ]
+        )
+        member.upsert_sections()
+        self.assertEqual(
+            [f"{REPO}-hardware", f"{REPO}-packages-vision", REPO],
+            list(member.python),
+        )
+        self.assertEqual(
+            ["hardware", "packages/vision", None],
+            [section.path for section in member.python.values()],
+        )
 
     def test_the_section_is_rekeyed_by_the_first_update(self):
         """The repository name only stands in until a manifest states the real one."""

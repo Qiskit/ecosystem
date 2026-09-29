@@ -202,10 +202,17 @@ class PythonData(
         know it yet: it is declared inside the repository, not in the URL. The
         repository name stands in until `update_json` reads a manifest, and
         `Member.update_python` re-keys the section then.
+
+        The stand-in carries `path`, because a monorepo can declare several
+        distributions and they would otherwise share one key and overwrite each
+        other before any of them is fetched.
         """
         if self.package_name:
             return self.package_name
-        return canonicalize_name(self.repo) if self.repo else None
+        if not self.repo:
+            return None
+        stem = f"{self.repo}-{self.path}" if self.path else self.repo
+        return canonicalize_name(stem.replace("/", "-"))
 
     # ---------------------------------------------------------------- fetching
 
