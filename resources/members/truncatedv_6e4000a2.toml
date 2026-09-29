@@ -11,6 +11,7 @@ reference_paper = "https://arxiv.org/abs/2505.19772"
 packages = []
 uuid = "6e4000a2-3a09-43ff-b738-d4b17a0df011"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/cpossel/tvha"
@@ -45,3 +46,4 @@ deferred = ["version"]
 since = 2026-09-28
 details = "The distribution tvha declared in the repository is not compatible with Qiskit SDK v2"
 importance = "IMPORTANT"
+discussion = "https://github.com/cpossel/tvha/issues/1"
