@@ -24,8 +24,8 @@ description = "MQT QECC - Tools for Quantum Error Correcting Codes"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-04-21
-last_commit = 2026-09-27
-last_activity = 2026-09-27
+last_commit = 2026-09-28
+last_activity = 2026-09-28
 
 [badge]
 url = "https://qisk.it/e-791d4814"
@@ -47,7 +47,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 1024
-last_180_days_downloads = 4828
+last_180_days_downloads = 4846
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/qecc/issues/836, waiting for a release with the fix"
