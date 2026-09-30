@@ -22,8 +22,8 @@ estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-03-04
-last_commit = 2026-09-24
-last_activity = 2026-09-24
+last_commit = 2026-09-30
+last_activity = 2026-09-30
 
 [badge]
 url = "https://qisk.it/e-7d6c3172"
@@ -40,7 +40,7 @@ maintainers = [
   "https://pypi.org/user/nonhermitian/",
 ]
 last_month_downloads = 789
-last_180_days_downloads = 886
+last_180_days_downloads = 939
 
 [checks.P12]
 xfailed = "PR with the fix was merged (https://github.com/qiskit-community/fulqrum/pull/122), but not yet released to PyPI"
