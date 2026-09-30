@@ -6,6 +6,12 @@
 
 {{ read_csv('docs/assets/active_pypi.csv') }}
 
+# Active pip-installable repositories
+
+Distributions that are declared in a repository but not published to a package registry.
+
+{{ read_csv('docs/assets/pip_source.csv') }}
+
 ```vegalite 
 {
   "title": "124 Projects",

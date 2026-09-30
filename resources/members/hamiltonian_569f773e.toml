@@ -35,3 +35,9 @@ last_activity = 2026-09-29
 [badge]
 url = "https://qisk.it/e-569f773e"
 style = "flat"
+
+[python.qiskit-function-templates]
+package_name = "qiskit-function-templates"
+version = "1.0.0"
+source = ["pyproject.toml"]
+deferred = []

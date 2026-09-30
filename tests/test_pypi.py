@@ -22,6 +22,10 @@ from ecosystem.error_handling import EcosystemError
 from ecosystem.pypi import PyPIData
 from ecosystem.request import URL
 
+# all_qiskit_versions() lives in the QiskitRequirementMixin
+QISKIT_VERSIONS_DIRNAME = "ecosystem.qiskit_requirement.path.dirname"
+QISKIT_VERSIONS_REQUEST = "ecosystem.qiskit_requirement.request_json"
+
 
 class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-methods
     """Tests for PyPIData."""
@@ -285,7 +289,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         pypi_data = PyPIData("banana-compiler")
         cache_content = json.dumps({"1.0.0": {"upload_at": "2024-01-01"}})
 
-        with patch("ecosystem.pypi.path.dirname", return_value="/cache"):
+        with patch(QISKIT_VERSIONS_DIRNAME, return_value="/cache"):
             with patch("builtins.open", mock_open(read_data=cache_content)):
                 versions = pypi_data.all_qiskit_versions()
 
@@ -305,8 +309,8 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         }
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            with patch("ecosystem.pypi.path.dirname", return_value=tmpdir):
-                with patch("ecosystem.pypi.request_json", return_value=qiskit_payload):
+            with patch(QISKIT_VERSIONS_DIRNAME, return_value=tmpdir):
+                with patch(QISKIT_VERSIONS_REQUEST, return_value=qiskit_payload):
                     versions = pypi_data.all_qiskit_versions(force_update=True)
 
         self.assertEqual(date(2024, 1, 2), versions["1.0.0"]["upload_at"])
@@ -319,8 +323,8 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         }
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            with patch("ecosystem.pypi.path.dirname", return_value=tmpdir):
-                with patch("ecosystem.pypi.request_json", return_value=qiskit_payload):
+            with patch(QISKIT_VERSIONS_DIRNAME, return_value=tmpdir):
+                with patch(QISKIT_VERSIONS_REQUEST, return_value=qiskit_payload):
                     with self.assertLogs("ecosystem", level="WARNING"):
                         versions = pypi_data.all_qiskit_versions()
 
@@ -330,9 +334,9 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         """Qiskit releases without upload dates are treated as invalid."""
         pypi_data = PyPIData("banana-compiler")
         with tempfile.TemporaryDirectory() as tmpdir:
-            with patch("ecosystem.pypi.path.dirname", return_value=tmpdir):
+            with patch(QISKIT_VERSIONS_DIRNAME, return_value=tmpdir):
                 with patch(
-                    "ecosystem.pypi.request_json",
+                    QISKIT_VERSIONS_REQUEST,
                     return_value={"releases": {"1.0.0": []}},
                 ):
                     with self.assertLogs("ecosystem", level="ERROR"):

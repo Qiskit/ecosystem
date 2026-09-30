@@ -26,3 +26,13 @@ last_activity = 2026-09-12
 [badge]
 url = "https://qisk.it/e-76d7a9f5"
 style = "flat"
+
+[python.qiskit-migration-assistant]
+package_name = "qiskit-migration-assistant"
+version = "0.1.0"
+license = "MIT"
+description = "Production-grade RAG assistant that ports Qiskit code from older versions to the latest (2.x)."
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []

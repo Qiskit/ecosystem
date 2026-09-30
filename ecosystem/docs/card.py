@@ -411,6 +411,39 @@ class URLsCard(Card):
         return ret
 
 
+def qiskit_compatibility(package):
+    """The Qiskit compatibility table, for a card about a Python distribution.
+
+    Both `PypiPackageCard` and `PipSourcePackageCard` show it, and both get the values
+    from `QiskitRequirementMixin`, so it is a function of that vocabulary rather than a
+    method on either card.
+    """
+    if not package.requires_qiskit:
+        return []
+
+    def mark(compatible):
+        return (
+            ":material-check-circle-outline:"
+            if compatible
+            else ":material-close-circle-outline:"
+        )
+
+    return [
+        "",
+        ":simple-qiskit: **Qiskit Compatibility**\n\n",
+        "| **Requires** | V1 | V2 | highest supported |",
+        "| -- | -- | -- | -- |",
+        f"| {package.requires_qiskit} | "
+        + mark(package.compatible_with_qiskit_v1)
+        + " | "
+        + mark(package.compatible_with_qiskit_v2)
+        + f" | [{package.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
+        f"{package.highest_supported_qiskit_version}/ "
+        f'"Released: {package.highest_supported_qiskit_release_date}") |',
+        "",
+    ]
+
+
 class PypiPackageCard(Card):
     """Python package card"""
 
@@ -480,28 +513,129 @@ class PypiPackageCard(Card):
                 f"**last month** {self.last_month_downloads:,} "
                 f"**last 180 days** {self.last_180_days_downloads:,}"
             ]
-        if self.requires_qiskit:
-            ret += [
-                "",
-                ":simple-qiskit: **Qiskit Compatibility**\n\n",
-                "| **Requires** | V1 | V2 | highest supported |",
-                "| -- | -- | -- | -- |",
-                f"| {self.requires_qiskit} | "
-                + (
-                    ":material-check-circle-outline:"
-                    if self.compatible_with_qiskit_v1
-                    else ":material-close-circle-outline:"
-                )
-                + " | "
-                + (
-                    ":material-check-circle-outline:"
-                    if self.compatible_with_qiskit_v2
-                    else ":material-close-circle-outline:"
-                )
-                + f" | [{self.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
-                f"{self.highest_supported_qiskit_version}/ "
-                f'"Released: {self.highest_supported_qiskit_release_date}") |',
-                "",
-            ]
+        ret += qiskit_compatibility(self)
 
+        return ret
+
+
+class PipSourcePackageCard(Card):
+    """Card for a distribution declared in a repository but not published to a registry"""
+
+    def __init__(
+        self,
+        package_name=None,
+        owner=None,
+        repo=None,
+        path=None,
+        version=None,
+        requires_python=None,
+        build_backend=None,
+        source=None,
+        deferred=None,
+        requires_qiskit=None,
+        highest_supported_qiskit_release_date=None,
+        highest_supported_qiskit_version=None,
+        compatible_with_qiskit_v1=None,
+        compatible_with_qiskit_v2=None,
+    ):
+        self.package_name = package_name
+        self.owner = owner
+        self.repo = repo
+        self.path = path
+        self.version = version
+        self.requires_python = requires_python
+        self.build_backend = build_backend
+        self.source = source or []
+        self.deferred = deferred or []
+        self.requires_qiskit = requires_qiskit
+        self.highest_supported_qiskit_release_date = (
+            highest_supported_qiskit_release_date
+        )
+        self.highest_supported_qiskit_version = highest_supported_qiskit_version
+        self.compatible_with_qiskit_v1 = compatible_with_qiskit_v1
+        self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
+
+        super().__init__(
+            title=f"pip-installable repo `{self.package_name}`",
+            title_icon="#### :simple-github:",
+            body_lines=self.body(),
+        )
+
+    @classmethod
+    def from_python_data(cls, package, project=None):
+        """Construct a card from a PythonData.
+
+        `owner` and `repo` are not part of the section, because they would duplicate
+        `[github]`, so they are read back from the project when there is one. Without
+        them the card leaves out the install line rather than guessing a URL.
+        """
+        github = getattr(project, "github", None)
+        return PipSourcePackageCard(
+            package_name=package.package_name,
+            owner=getattr(github, "owner", None),
+            repo=getattr(github, "repo", None),
+            path=package.path,
+            version=package.version,
+            requires_python=package.requires_python,
+            build_backend=package.build_backend,
+            source=package.source,
+            deferred=package.deferred,
+            requires_qiskit=package.requires_qiskit,
+            highest_supported_qiskit_release_date=package.highest_supported_qiskit_release_date,
+            highest_supported_qiskit_version=package.highest_supported_qiskit_version,
+            compatible_with_qiskit_v1=package.compatible_with_qiskit_v1,
+            compatible_with_qiskit_v2=package.compatible_with_qiskit_v2,
+        )
+
+    @property
+    def pip_target(self):
+        """What to `pip install`, or None without an owner and repo.
+
+        A subdirectory goes in a URL fragment, and `#` starts a comment in a shell, so
+        the target is quoted when it carries one.
+        """
+        if not self.owner or not self.repo:
+            return None
+        target = f"git+https://github.com/{self.owner}/{self.repo}"
+        if self.path:
+            return f'"{target}#subdirectory={self.path.strip("/")}"'
+        return target
+
+    def body(self):
+        """Returns a list of lines for the card body.
+
+        Every bullet is followed by a blank line. Without it, Markdown reads a run of
+        bullets as one paragraph and the whole card renders as a single wrapped line.
+        """
+        ret = []
+        if self.pip_target:
+            ret += [f":simple-python: `pip install {self.pip_target}`", ""]
+        if self.version:
+            ret += self.bullet(
+                ":fontawesome-regular-paper-plane:",
+                f"**declared version** {self.version}",
+            ) + [""]
+        if self.requires_python:
+            ret += self.bullet(
+                ":material-language-python:",
+                f"**requires Python** {self.requires_python}",
+            ) + [""]
+        if self.source:
+            ret += self.bullet(
+                ":material-file-document-outline:",
+                "**declared in** "
+                + ", ".join(f"`{manifest}`" for manifest in self.source),
+            ) + [""]
+        if self.build_backend:
+            ret += self.bullet(
+                ":material-package-variant-closed:",
+                f"**build backend** `{self.build_backend}`",
+            ) + [""]
+        if self.deferred:
+            ret += self.bullet(
+                ":material-help-circle-outline:",
+                "**computed at build time** "
+                + ", ".join(f"`{field}`" for field in self.deferred),
+            ) + [""]
+        ret += qiskit_compatibility(self)
         return ret

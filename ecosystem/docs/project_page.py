@@ -17,7 +17,12 @@ Pages inhttps://qiskit.github.io/ecosystem/p/<short uuid>
 import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
-from ecosystem.docs.card import ProjectSummaryCard, URLsCard, PypiPackageCard
+from ecosystem.docs.card import (
+    ProjectSummaryCard,
+    URLsCard,
+    PypiPackageCard,
+    PipSourcePackageCard,
+)
 from ecosystem.docs.checkup_page import CheckupAssets
 
 
@@ -103,6 +108,14 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 packages["pypi"] += PypiPackageCard.from_pypi_data(pkg).generate()
             packages["pypi"] += ["</div>"]
 
+        if self.project.python:
+            packages["python"] = ['<div class="grid cards" markdown>']
+            for pkg in self.project.python.values():
+                packages["python"] += PipSourcePackageCard.from_python_data(
+                    pkg, self.project
+                ).generate()
+            packages["python"] += ["</div>"]
+
         if self.project.julia:
             packages["julia"] = ['<div class="grid cards" markdown>']
             for pkg in self.project.julia.values():
@@ -128,6 +141,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             return []
         ret = ["\n---\n### :material-package-variant: Packages\n"]
         ret += packages.get("pypi", [])
+        ret += packages.get("python", [])
         ret += packages.get("julia", [])
         ret += packages.get(None, [])
         return ret
@@ -146,7 +160,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         fm = []
         if self.project.status == "Qiskit Project":
             fm.append("icon: simple/qiskit")
-        elif self.project.status == "Alumni":
+        elif self.project.is_alumni:
             fm.append("icon: material/account-remove")
         elif self.project.status == "Under review":
             fm.append("icon: material/account-alert")
@@ -233,8 +247,9 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         Both clocks are running on an explained check up: the cure period, and the day the
         explanation stops applying. The one that runs out last is the one that says when the
         check up needs attention again, so this is the larger of the two. There is nothing to
-        count for an alumni project: its cure period is what retired it in the first place."""
-        if project.status == "Alumni":
+        count for an alumni project: its cure period is what retired it in the first place.
+        """
+        if project.is_alumni:
             return "&mdash;"
         # an explanation with no `xfailed_until` never expires, so there is no day to count to
         if checkup.cure_period_is_infinite or (
@@ -260,7 +275,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
 
         The explanation goes in as the Markdown it was written as, so a `[text](url)` or a
         `<url>` in a member file renders as a link. `pymdownx.magiclink` takes care of the
-        URLs that were written as plain text (see `markdown_extensions` in properdocs.yml)."""
+        URLs that were written as plain text (see `markdown_extensions` in properdocs.yml).
+        """
         parts = []
         if checkup.xfail_applies:
             parts.append(CheckupAssets.cell(checkup.xfailed))

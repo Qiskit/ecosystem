@@ -13,6 +13,7 @@
 """Generate pages for:
 - all projects - pages for https://qiskit.github.io/ecosystem/p/
 - pypi packages - pages for https://qiskit.github.io/ecosystem/pypi/
+- pip-installable repositories - pages for https://qiskit.github.io/ecosystem/pip-source/
 """
 
 import csv
@@ -22,20 +23,23 @@ import mkdocs_gen_files
 
 from ecosystem.cli.members import CliMembers
 from ecosystem.docs import write_if_changed
+from ecosystem.docs.pip_source_page import PipSourcePage
 from ecosystem.docs.project_page import ProjectPage
 from ecosystem.docs.pypi_page import PypiPage
 
 project_nav = mkdocs_gen_files.Nav()
 pypi_nav = mkdocs_gen_files.Nav()
+pip_source_nav = mkdocs_gen_files.Nav()
 
 active_projects = []
 active_pypi = []
+active_pip_source = []
 
 for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
     project_page = ProjectPage(project, f"p/{project.short_uuid}.md")
     project_page.write_page()
     project_nav[project.name] = f"{project.short_uuid}.md"
-    if project.status != "Alumni":
+    if not project.is_alumni:
         active_projects.append(
             {
                 "name": f"<a href='../p/{project.short_uuid}'>{project.name}</a>",
@@ -48,10 +52,26 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
             pypi_page = PypiPage(package, project, f"pypi/{package.package_name}.md")
             pypi_page.write_page()
             pypi_nav[package.package_name] = f"{package.package_name}.md"
-            if project.status != "Alumni":
+            if not project.is_alumni:
                 active_pypi.append(
                     {
                         "name": f"<a href='../pypi/{package.package_name}'>"
+                        f"{package.package_name}</a>",
+                        "status": project.status or "Active project",
+                        "maturity": project.maturity,
+                    }
+                )
+    if project.python:
+        for package in project.python.values():
+            pip_source_page = PipSourcePage(
+                package, project, f"pip-source/{package.package_name}.md"
+            )
+            pip_source_page.write_page()
+            pip_source_nav[package.package_name] = f"{package.package_name}.md"
+            if not project.is_alumni:
+                active_pip_source.append(
+                    {
+                        "name": f"<a href='../pip-source/{package.package_name}'>"
                         f"{package.package_name}</a>",
                         "status": project.status or "Active project",
                         "maturity": project.maturity,
@@ -63,6 +83,9 @@ with mkdocs_gen_files.open("p/SUMMARY.md", "w") as nav_file:
 
 with mkdocs_gen_files.open("pypi/SUMMARY.md", "w") as nav_file:
     nav_file.writelines(pypi_nav.build_literate_nav())
+
+with mkdocs_gen_files.open("pip-source/SUMMARY.md", "w") as nav_file:
+    nav_file.writelines(pip_source_nav.build_literate_nav())
 
 
 def as_csv(rows):
@@ -80,3 +103,4 @@ def as_csv(rows):
 # written only when the content changed, so a build does not trigger the next one
 write_if_changed("docs/assets/active_projects.csv", as_csv(active_projects))
 write_if_changed("docs/assets/active_pypi.csv", as_csv(active_pypi))
+write_if_changed("docs/assets/pip_source.csv", as_csv(active_pip_source))

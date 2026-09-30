@@ -20,6 +20,8 @@ class License:
 
     spdx_ids = {
         "GNU Affero General Public License v3.0": "AGPL-3.0",
+        "AGPL-3.0-only": "AGPL-3.0",
+        "AGPL-3.0-or-later": "AGPL-3.0",
         "Apache Software License@pypi": "Apache-1.1",
         "Apache 2": "Apache-2.0",
         "Apache 2.0": "Apache-2.0",
@@ -35,6 +37,8 @@ class License:
         "GNU General Public License v3.0": "GPL-3.0",
         "GNU General Public License v3 (GPLv3)": "GPL-3.0",
         "GPL v3.0": "GPL-3.0",
+        "GPL-3.0-only": "GPL-3.0",
+        "GPL-3.0-or-later": "GPL-3.0",
         "GNU Lesser General Public License v2.1": "LGPL-2.1",
         'GNU Library or "Lesser" General Public License (LGPL)': "LGPL-2.1",
         "GNU Lesser General Public License v3.0": "LGPL-3.0",

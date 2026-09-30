@@ -25,3 +25,18 @@ last_activity = 2026-08-14
 [badge]
 url = "https://qisk.it/e-91f8bc77"
 style = "flat"
+
+[python.qiskit-zx-verified]
+package_name = "qiskit-zx-verified"
+version = "0.1.0"
+license = "Apache-2.0"
+description = "A Clifford phase-gate fusion pass for Qiskit, with the core rewrite rule formally verified in Lean 4."
+requires_python = ">=3.9"
+requires_qiskit = "<3,>=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []

@@ -31,6 +31,14 @@ last_activity = 2026-07-20
 url = "https://qisk.it/e-beaaab32"
 style = "flat"
 
+[python.dsm-swap]
+package_name = "dsm-swap"
+license = "Apache-2.0"
+description = "A doubly stochastic matrices-based approach to optimal qubit routing"
+requires_python = ">=3.7"
+source = ["pyproject.toml", "setup.py"]
+deferred = ["install_requires", "long_description", "packages", "version"]
+
 [checks.G05]
 since = 2026-09-24
 details = "GitHub repository https://github.com/qiskit-community/dsm-swap archived and project is not `as-is`"

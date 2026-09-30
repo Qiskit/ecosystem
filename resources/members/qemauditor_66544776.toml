@@ -31,3 +31,13 @@ last_activity = 2026-09-28
 [badge]
 url = "https://qisk.it/e-66544776"
 style = "flat"
+
+[python.qem-auditor]
+package_name = "qem-auditor"
+version = "0.1.0"
+license = "MIT"
+description = "An auditor for quantum error-mitigation claims: gates, verdicts, failure diagnosis, and experiment planning."
+requires_python = ">=3.10"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []

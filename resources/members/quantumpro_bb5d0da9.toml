@@ -29,6 +29,19 @@ last_activity = 2026-07-17
 url = "https://qisk.it/e-bb5d0da9"
 style = "flat"
 
+[python.prototype-template]
+package_name = "prototype-template"
+description = "Repository for a quantum prototype"
+requires_python = ">=3.8"
+requires_qiskit = "<2,>=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2026-06-12
+highest_supported_qiskit_version = "1.4.6"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py"]
+deferred = ["version"]
+
 [checks.G05]
 since = 2026-09-24
 details = "GitHub repository https://github.com/qiskit-community/quantum-prototype-template archived and project is not `as-is`"

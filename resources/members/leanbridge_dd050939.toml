@@ -25,3 +25,23 @@ last_activity = 2026-08-13
 [badge]
 url = "https://qisk.it/e-dd050939"
 style = "flat"
+
+[python.qiskit-lean-bridge]
+package_name = "qiskit-lean-bridge"
+version = "0.1.0"
+license = "MIT"
+description = "Bridges Qiskit's StandardEquivalenceLibrary to formally verified proofs in inQWIRE/LeanQuantum"
+requires_python = ">=3.10"
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []
+
+[checks.S02]
+since = 2026-09-28
+details = "The distribution qiskit-lean-bridge declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
