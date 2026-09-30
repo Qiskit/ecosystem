@@ -39,7 +39,7 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
     project_page = ProjectPage(project, f"p/{project.short_uuid}.md")
     project_page.write_page()
     project_nav[project.name] = f"{project.short_uuid}.md"
-    if project.status != "Alumni":
+    if not project.is_alumni:
         active_projects.append(
             {
                 "name": f"<a href='../p/{project.short_uuid}'>{project.name}</a>",
@@ -52,7 +52,7 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
             pypi_page = PypiPage(package, project, f"pypi/{package.package_name}.md")
             pypi_page.write_page()
             pypi_nav[package.package_name] = f"{package.package_name}.md"
-            if project.status != "Alumni":
+            if not project.is_alumni:
                 active_pypi.append(
                     {
                         "name": f"<a href='../pypi/{package.package_name}'>"
@@ -68,7 +68,7 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
             )
             pip_source_page.write_page()
             pip_source_nav[package.package_name] = f"{package.package_name}.md"
-            if project.status != "Alumni":
+            if not project.is_alumni:
                 active_pip_source.append(
                     {
                         "name": f"<a href='../pip-source/{package.package_name}'>"

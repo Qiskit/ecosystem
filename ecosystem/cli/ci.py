@@ -158,8 +158,8 @@ class CliCI:
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
             print(f"\n::group:: {member.name}️ ({member.name_id})")
-            if member.status == "Alumni":
-                print('member.status == "Alumni", so skip')
+            if member.is_alumni:
+                print("member.is_alumni, so skip")
                 print("::endgroup::")
                 continue
             for update_method_str in to_update:

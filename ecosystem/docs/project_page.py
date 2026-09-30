@@ -160,7 +160,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         fm = []
         if self.project.status == "Qiskit Project":
             fm.append("icon: simple/qiskit")
-        elif self.project.status == "Alumni":
+        elif self.project.is_alumni:
             fm.append("icon: material/account-remove")
         elif self.project.status == "Under review":
             fm.append("icon: material/account-alert")
@@ -249,7 +249,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         check up needs attention again, so this is the larger of the two. There is nothing to
         count for an alumni project: its cure period is what retired it in the first place.
         """
-        if project.status == "Alumni":
+        if project.is_alumni:
             return "&mdash;"
         # an explanation with no `xfailed_until` never expires, so there is no day to count to
         if checkup.cure_period_is_infinite or (

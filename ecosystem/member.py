@@ -453,6 +453,17 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         return (relative.years * 12) + relative.months
 
     @property
+    def is_alumni(self):
+        """True if the project has been retired from the ecosystem.
+
+        Unlike `unmaintained`, this *is* the status: `Alumni` is terminal, so nothing
+        masks it. It answers "is this still a member?", which is why the check ups do
+        not apply to it and why it is kept out of the listings on the summary page,
+        while its own pages stay published so existing links keep resolving.
+        """
+        return self.status == "Alumni"
+
+    @property
     def unmaintained(self):
         """True if the project declares no maintenance expectations.
 

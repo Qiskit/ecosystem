@@ -146,7 +146,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                 continue
 
             is_alumni = None
-            if project.status == "Alumni":
+            if project.is_alumni:
                 is_alumni = alumni_label
 
             status_color = None
