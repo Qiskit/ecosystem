@@ -72,7 +72,6 @@ setup(
 """
 
 
-
 def listing(*names):
     """A contents-API directory listing holding `names` as files."""
     return {"entries": [{"name": name, "type": "file"} for name in names]}
@@ -84,10 +83,12 @@ class PythonDataTestCase(TestCase):
     def setUp(self):
         super().setUp()
         patcher = patch.object(
-            PythonData, "all_qiskit_versions", return_value={
-            "1.0.0": {"upload_at": date(2024, 2, 1)},
-            "2.0.0": {"upload_at": date(2025, 4, 1)},
-        }
+            PythonData,
+            "all_qiskit_versions",
+            return_value={
+                "1.0.0": {"upload_at": date(2024, 2, 1)},
+                "2.0.0": {"upload_at": date(2025, 4, 1)},
+            },
         )
         patcher.start()
         self.addCleanup(patcher.stop)
