@@ -1,3 +1,15 @@
+# This code is part of Qiskit.
+#
+# (C) Copyright IBM 2026.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE.txt file in the root directory
+# of this source tree or at https://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
 """Tests for ecosystem/python.py."""
 
 from datetime import date
@@ -14,7 +26,6 @@ from ecosystem.request import URL
 
 OWNER = "banana-org"
 REPO = "banana-compiler"
-CONTENTS = f"api.github.com/repos/{OWNER}/{REPO}/contents/"
 
 PYPROJECT = """
 [build-system]
@@ -60,11 +71,6 @@ setup(
 )
 """
 
-# Qiskit releases, so that the compat fields do not need the network
-QISKIT_VERSIONS = {
-    "1.0.0": {"upload_at": date(2024, 2, 1)},
-    "2.0.0": {"upload_at": date(2025, 4, 1)},
-}
 
 
 def listing(*names):
@@ -78,7 +84,10 @@ class PythonDataTestCase(TestCase):
     def setUp(self):
         super().setUp()
         patcher = patch.object(
-            PythonData, "all_qiskit_versions", return_value=QISKIT_VERSIONS
+            PythonData, "all_qiskit_versions", return_value={
+            "1.0.0": {"upload_at": date(2024, 2, 1)},
+            "2.0.0": {"upload_at": date(2025, 4, 1)},
+        }
         )
         patcher.start()
         self.addCleanup(patcher.stop)
