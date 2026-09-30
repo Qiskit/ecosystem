@@ -46,7 +46,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 408393
-last_180_days_downloads = 3612029
+last_180_days_downloads = 3627879
 
 [pypi.qiskit-aer-gpu]
 package_name = "qiskit-aer-gpu"
@@ -63,7 +63,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 1043
-last_180_days_downloads = 19578
+last_180_days_downloads = 19609
 
 [pypi.qiskit-aer-gpu-cu11]
 package_name = "qiskit-aer-gpu-cu11"
@@ -80,7 +80,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 1798
-last_180_days_downloads = 10574
+last_180_days_downloads = 10616
 
 [checks.P10]
 xfailed = "PR with a fix submitted https://github.com/Qiskit/qiskit-aer/pull/2461, waiting for merge and release"
