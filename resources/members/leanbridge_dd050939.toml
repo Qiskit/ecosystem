@@ -42,6 +42,9 @@ source = ["pyproject.toml"]
 deferred = []
 
 [checks.S02]
+xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiskit-LEAN-Bridge/issues/1, waiting for the fix"
+xfailed_until = 2027-03-31
 since = 2026-09-28
 details = "The distribution qiskit-lean-bridge declared in the repository allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/RexRowan/Qiskit-LEAN-Bridge/issues/1"
 importance = "RECOMMENDATION"

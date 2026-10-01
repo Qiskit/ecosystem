@@ -31,6 +31,11 @@ package_name = "gauge-simulation"
 version = "1.0.0"
 description = "Quantum simulation in imaginary time for gauge-invariant models."
 requires_python = ">=3.12"
+requires_qiskit = "==2.3.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-01-08
+highest_supported_qiskit_version = "2.3.0"
 build_backend = "setuptools.build_meta"
-source = ["pyproject.toml"]
+source = ["pyproject.toml", "requirements.txt"]
 deferred = []

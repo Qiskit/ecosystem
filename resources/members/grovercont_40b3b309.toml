@@ -35,11 +35,22 @@ version = "1.1"
 license = "Apache-1.1"
 description = "Grover controlled-diffuser (CUs)"
 requires_python = ">=3.9"
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 build_backend = "setuptools.build_meta"
-source = ["pyproject.toml", "setup.py"]
+source = ["pyproject.toml", "setup.py", "requirements.txt"]
 deferred = ["dependencies"]
 
 [checks.G08]
 since = 2026-09-24
 details = "Unmaintained project should have an archived GitHub repository"
 importance = "NICE-TO-HAVE"
+
+[checks.S02]
+since = 2026-10-01
+details = "The distribution grover-controlled-diffuser declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"
+xfailed = "Check-up was introduced after the project was set as unmaintained."
