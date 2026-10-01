@@ -42,8 +42,10 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = ["version"]
 
-[checks.S01]
-since = 2026-09-28
-details = "The distribution tvha declared in the repository is not compatible with Qiskit SDK v2"
-discussion = "https://github.com/cpossel/tvha/issues/1"
-importance = "IMPORTANT"
+[checks.S02]
+xfailed = "Issue asking for the cap submitted https://github.com/clemens-sauer-possel/tvha/issues/3, waiting for the fix"
+xfailed_until = 2027-03-31
+since = 2026-10-01
+details = "The distribution tvha declared in the repository allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/clemens-sauer-possel/tvha/issues/3"
+importance = "RECOMMENDATION"

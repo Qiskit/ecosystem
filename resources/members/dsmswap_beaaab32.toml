@@ -58,3 +58,8 @@ importance = "STRONG-RECOMMENDATION"
 since = 2026-09-26
 details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"
+
+[checks.S02]
+since = 2026-10-01
+details = "The distribution dsm-swap declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

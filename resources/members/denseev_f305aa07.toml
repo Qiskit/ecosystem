@@ -58,6 +58,11 @@ details = "Python package dense-ev is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/atlytle/dense-ev/issues/2"
 importance = "IMPORTANT"
 
+[checks.P12]
+since = 2026-09-24
+details = "The PyPI package dense-ev does not have a declared license"
+importance = "RECOMMENDATION"
+
 [checks.Q20]
 since = 2026-09-24
 details = "Not compatible with the Qiskit SDK v2 or newer: `[PQ2]`"
@@ -67,8 +72,3 @@ importance = "CRITICAL"
 since = 2026-09-26
 details = "The project is probably abandoned: `[Q20]`"
 importance = "CRITICAL"
-
-[checks.P12]
-since = 2026-09-24
-details = "The PyPI package dense-ev does not have a declared license"
-importance = "RECOMMENDATION"
