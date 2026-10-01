@@ -25,7 +25,7 @@ def skip_pypi(member):
     yield member
 
 
-def test_PQ1(member, subtests):
+def checkup_PQ1(member, subtests):
     """Be installable with qiskit>=1.0"""
     for pypi_package in member.pypi.values():
         with subtests.test(pypi_package=pypi_package.package_name):
@@ -38,7 +38,7 @@ def test_PQ1(member, subtests):
             ), f"Python package {pypi_package.package_name} is not compatible with Qiskit SDK v1"
 
 
-def test_PQ2(member, subtests):
+def checkup_PQ2(member, subtests):
     """Be installable with qiskit>=2.0"""
     for pypi_package in member.pypi.values():
         with subtests.test(pypi_package=pypi_package.package_name):
@@ -51,7 +51,7 @@ def test_PQ2(member, subtests):
             ), f"Python package {pypi_package.package_name} is not compatible with Qiskit SDK v2"
 
 
-def test_P10(member):
+def checkup_P10(member):
     for pypi_package in member.pypi.values():
         assert not pypi_package.compatible_with_qiskit(3), (
             f"Python package {pypi_package.package_name} declared itself "
@@ -59,7 +59,7 @@ def test_P10(member):
         )
 
 
-def test_P11(member):
+def checkup_P11(member):
     """Production-ready projects should have, at least, one stable Python package"""
     if member.maturity not in ["production-ready", "bugfixing only"]:
         pytest.skip("member.maturity not in [production ready, bugfixing only]")
@@ -85,7 +85,7 @@ def test_P11(member):
     ), "At least one python package should declare a stable development status classifier"
 
 
-def test_P12(member):
+def checkup_P12(member):
     for pypi_package in member.pypi.values():
         if pypi_package.license is None:
             assert (
@@ -93,7 +93,7 @@ def test_P12(member):
             ), f"The PyPI package {pypi_package.package_name} does not have a declared license"
 
 
-def test_P13(member):
+def checkup_P13(member):
     for pypi_package in member.pypi.values():
         if pypi_package.license is not None:
             assert (

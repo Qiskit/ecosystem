@@ -12,7 +12,7 @@ applies_to = "all"
 affects = ['member.license', 'member.github.license', 'member.pypi.*.license']
 category = "OSS"
 description = "Projects in the Qiskit Ecosystem (and their packages) must have an OSI-approved license."
-checker = "test_general.py::test_001"
+checker = "checkup_general.py::checkup_001"
 importance = "CRITICAL"
 
 [G00]
@@ -22,7 +22,7 @@ category = "GENERAL"
 related_to = ["G05"]
 description = "Actively maintained projects should show signs of that. This includes recent activity in the code repository (such as commits, issue responses, or pull requests) as well as reasonably up-to-date package releases. Projects with no observable activity over an extended period may be considered abandoned."
 importance = "CRITICAL"
-checker = "test_general.py::test_G00"
+checker = "checkup_general.py::checkup_G00"
 
 [COC]
 title = "Adhere to the Qiskit CoC"
@@ -38,7 +38,7 @@ category = "GENERAL"
 related_to = ["PQ2", "S01"]
 description = "If the software depends on Qiskit SDK in some way, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies. A project that publishes no release answers this with the distribution its repository declares, which is [S01]."
 importance = "CRITICAL"
-checker = "test_general.py::test_Q20"
+checker = "checkup_general.py::checkup_Q20"
 
 [004]
 title = "Maturity property has to exist and be valid"
@@ -46,7 +46,7 @@ description = "`member.maturity` should exist in https://qiskit.github.io/ecosys
 applies_to = "all"
 affects = ["member.maturity"]
 category = "SUBMISSION"
-checker = "test_classifications.py::test_004"
+checker = "checkup_classifications.py::checkup_004"
 importance = "IMPORTANT"
 
 [007]
@@ -55,7 +55,7 @@ description = "All `member.interfaces` should exist in https://qiskit.github.io/
 applies_to = "all"
 affects = ["member.interfaces.*"]
 category = "SUBMISSION"
-checker = "test_classifications.py::test_valid_interfaces"
+checker = "checkup_classifications.py::checkup_007"
 importance = "IMPORTANT"
 
 [008]
@@ -64,7 +64,7 @@ description = "`member.category` should exist in https://qiskit.github.io/ecosys
 applies_to = "all"
 affects = ["member.category"]
 category = "SUBMISSION"
-checker = "test_classifications.py::test_valid_category"
+checker = "checkup_classifications.py::checkup_008"
 importance = "IMPORTANT"
 
 [009]
@@ -73,7 +73,7 @@ description = "All `member.labels` should exist in https://qiskit.github.io/ecos
 applies_to = "all"
 affects = ["member.labels.*"]
 category = "SUBMISSION"
-checker = "test_classifications.py::test_valid_label"
+checker = "checkup_classifications.py::checkup_009"
 importance = "IMPORTANT"
 
 [010]
@@ -82,7 +82,7 @@ description = "Projects in the Qiskit Ecosystem should be related"
 applies_to = "all"
 affects = ["member.name"]
 category = "SUBMISSION"
-checker = "test_name.py::test_valid_name_no_test_substring"
+checker = "checkup_name.py::checkup_010"
 importance = "RECOMMENDATION"
 
 [011]
@@ -123,7 +123,7 @@ affects = [
   "member.packages.*",
   "member.pypi.*.url",
 ]
-checker = "test_url.py::TestURLs::test_http"
+checker = "checkup_url.py::CheckupURLs::checkup_013"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
@@ -132,7 +132,7 @@ title = "Description too long"
 description = "Member description cannot be longer than 135 characters because of front-end design limitations."
 applies_to = "all"
 affects = ["member.description"]
-checker = "test_description.py::test_description_len_135"
+checker = "checkup_description.py::checkup_014"
 category = "SUBMISSION"
 importance = "IMPORTANT"
 
@@ -143,14 +143,14 @@ affects = ['member.url']
 category = "SUBMISSION"
 description = "The `member.url` field should not point to a GitHub organization page. It should link to the source code page, not the parent organization."
 importance = "IMPORTANT"
-checker = "test_general.py::test_015"
+checker = "checkup_general.py::checkup_015"
 
 [025]
 title = "Documentation link has redundant suffix"
 description = "Links like https://qiskit-banana-compiler.readthedocs.io/en/latest/ do not need the /en/latest suffix."
 applies_to = "all"
 affects = ["member.documentation"]
-checker = "test_url.py::TestURLs::test_025"
+checker = "checkup_url.py::CheckupURLs::checkup_025"
 category = "SUBMISSION"
 importance = "RECOMMENDATION"
 
@@ -159,7 +159,7 @@ title = "The /README.md file is not documentation"
 description = "It is fine to leave the `member.documentation` field empty. Pointing to the README.md file is not necessary."
 applies_to = "all"
 affects = ["member.documentation"]
-checker = "test_url.py::TestURLs::test_026"
+checker = "checkup_url.py::CheckupURLs::checkup_026"
 category = "SUBMISSION"
 importance = "RECOMMENDATION"
 
@@ -168,7 +168,7 @@ title = "Website should not be GitHub repository or PyPI URL"
 description = "The `member.website` field should point to the project's website instead of the GitHub repository or a PyPI project page."
 applies_to = "all"
 affects = ["member.website"]
-checker = "test_url.py::TestURLs::test_027"
+checker = "checkup_url.py::CheckupURLs::checkup_027"
 category = "SUBMISSION"
 importance = "STRONG-RECOMMENDATION"
 
@@ -179,7 +179,7 @@ affects = ['github.archived', 'member.maturity']
 category = "ACTIVITY"
 description = "An archived GitHub repository cannot be maintained anymore, so the project should declare `member.maturity` as `as-is`, the only maturity that states no active maintenance expectations. Every other maturity, `deprecated` included, is checked: a project that is still offered for use should not have its repository archived."
 importance = "CRITICAL"
-checker = "test_github.py::test_G05"
+checker = "checkup_github.py::checkup_G05"
 
 [G06]
 title = "Have maintainer activity within the last 6 months"
@@ -188,7 +188,7 @@ affects = ['member.github.last_activity']
 category = "ACTIVITY"
 description = "Projects available on GitHub should have some activity within the last 6 months, such as somebody starring the repository. The lack of this kind of activity might signal a dormant project. This check up does not apply to projects that declare no maintenance expectations (`member.maturity` is `as-is` or `deprecated`)."
 importance = "RECOMMENDATION"
-checker = "test_github.py::test_G06"
+checker = "checkup_github.py::checkup_G06"
 
 [G07]
 title = "Have a commit within the last 12 months"
@@ -197,7 +197,7 @@ affects = ['member.github.last_commit']
 category = "ACTIVITY"
 description = "Projects available on GitHub should have commit activity within the last 12 months. The lack of this kind of activity might signal a dormant project. This check up does not apply to projects that declare no maintenance expectations (`member.maturity` is `as-is` or `deprecated`)."
 importance = "STRONG-RECOMMENDATION"
-checker = "test_github.py::test_G07"
+checker = "checkup_github.py::checkup_G07"
 
 [G08]
 title = "Unmaintained projects should be archived in GitHub repository"
@@ -207,7 +207,7 @@ category = "ACTIVITY"
 description = "Projects that are not maintained (that is, `member.maturity` is `as-is` or `deprecated`) should archive their GitHub repositories to signal other users and developers that issues or PRs are not going to be addressed."
 importance = "NICE-TO-HAVE"
 cure_period_in_days = 270
-checker = "test_github.py::test_G08"
+checker = "checkup_github.py::checkup_G08"
 
 [G09]
 title = "GitHub is not detecting the repository license"
@@ -216,7 +216,7 @@ affects = ['github.license']
 category = "OSS"
 description = "GitHub cannot detect the repository license"
 importance = "RECOMMENDATION"
-checker = "test_github.py::test_G09"
+checker = "checkup_github.py::checkup_G09"
 
 [G10]
 title = "The repository license is not (probably) OSI-approved"
@@ -225,7 +225,7 @@ affects = ['github.license']
 category = "OSS"
 description = "GitHub detects a license for the repository, but its SPDX identifier is not one of the OSI-approved ones. This might be a sign that the project is not open source, or that the license is declared in a way that automatic detection cannot match. The case where GitHub detects no license at all is [G09] instead."
 importance = "IMPORTANT"
-checker = "test_github.py::test_G10"
+checker = "checkup_github.py::checkup_G10"
 
 [G11]
 title = "unmaintained projects should be archived when the repository is on an IBM-controlled organization"
@@ -235,7 +235,7 @@ category = "ACTIVITY"
 related_to = ["G08"]
 description = "Like [G08], projects that are not maintained (that is, `member.maturity` is `as-is` or `deprecated`) should archive their GitHub repositories. When the repository lives in a GitHub organization controlled by IBM, there is nothing standing in the way of doing it, so the recommendation is a stronger one."
 importance = "STRONG-RECOMMENDATION"
-checker = "test_github.py::test_G11"
+checker = "checkup_github.py::checkup_G11"
 
 [G12]
 title = "Have a commit within the last (age * 2/3) months"
@@ -246,7 +246,7 @@ related_to = ['G07']
 cure_period_in_days = 60
 description = "Projects whose GitHub repository is less than 12 months old should have commit activity within the last two thirds of the age of that repository, and in any case within the last 2 months. A project that stops committing this early has little track record to fall back on. Older repositories are covered by the flat window of `[G07]` instead."
 importance = "IMPORTANT"
-checker = "test_github.py::test_G12"
+checker = "checkup_github.py::checkup_G12"
 
 
 [O01]
@@ -255,7 +255,7 @@ applies_to = "all"
 affects = ['member.license']
 category = "OSS"
 description = "Projects must have a license, somewhere."
-checker = "test_license.py::test_O01"
+checker = "checkup_license.py::checkup_O01"
 importance = "CRITICAL"
 
 [I00]
@@ -265,13 +265,13 @@ affects = ['member.github.owner', 'member.ibm_maintained']
 category = "OSS"
 description = "Projects that are maintained by IBM should live in a GitHub organization that is controlled by IBM. This allows, for example, projects to be archived once they are no longer maintained."
 importance = "CRITICAL"
-checker = "test_ibm_maintained.py::test_I00"
+checker = "checkup_ibm_maintained.py::checkup_I00"
 
 [PQ1]
 title = "Be installable with qiskit>=1.0"
 applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v1']
-checker = "test_pypi.py::test_PQ1"
+checker = "checkup_pypi.py::checkup_PQ1"
 category = "OUT-OF-DATE"
 description = "Python packages that depend on Qiskit SDK, there should exist a supported release that is compatible with the Qiskit SDK v1.0 or newer."
 discussion = "https://github.com/Qiskit/ecosystem/issues/1144"
@@ -281,7 +281,7 @@ importance = "LEGACY"
 title = "Be installable with qiskit>=2.0"
 applies_to = "Python packages"
 affects = ['member.pypi.*.compatible_with_qiskit_v2']
-checker = "test_pypi.py::test_PQ2"
+checker = "checkup_pypi.py::checkup_PQ2"
 category = "OUT-OF-DATE"
 description = "Python packages that depend on Qiskit SDK, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer."
 importance = "IMPORTANT"
@@ -300,7 +300,7 @@ applies_to = "Python packages"
 affects = ['member.pypi.*.requires_qiskit']
 category = "BEST-PRACTICE"
 description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected after a major release."
-checker = "test_pypi.py::test_P10"
+checker = "checkup_pypi.py::checkup_P10"
 importance = "RECOMMENDATION"
 
 [P11]
@@ -309,7 +309,7 @@ applies_to = "Python packages"
 affects = ['member.pypi.*.development_status', 'member.maturity']
 category = "OUT-OF-DATE"
 description = "If the project maturity level is production-ready then, at least one of the Python packages should have a Development Status classifier that is `None`, `Production/Stable`, or `Mature`."
-checker = "test_pypi.py::test_P11"
+checker = "checkup_pypi.py::checkup_P11"
 importance = "STRONG-RECOMMENDATION"
 
 [P12]
@@ -319,7 +319,7 @@ affects = ['member.pypi.*.license']
 category = "OSS"
 description = "The Python package does not have a license declared in PyPI."
 importance = "RECOMMENDATION"
-checker = "test_pypi.py::test_P12"
+checker = "checkup_pypi.py::checkup_P12"
 
 [P13]
 title = "The license declared in PyPI is (probably) not OSI-approved"
@@ -327,7 +327,7 @@ applies_to = "Python packages"
 affects = ['member.pypi.*.license']
 category = "OSS"
 description = "The license declared in PyPI by every Python package of the project should be an OSI-approved open-source license. The check up matches the declared license against the SPDX identifiers of the OSI-approved ones, so a license spelled in an unusual way can fail it without the project being any less open source. A package declaring no license at all is [P12] instead."
-checker = "test_pypi.py::test_P13"
+checker = "checkup_pypi.py::checkup_P13"
 importance = "IMPORTANT"
 
 [J00]
@@ -337,7 +337,7 @@ affects = ['member.julia.*.license']
 category = "OSS"
 description = "Every Julia package of the project should declare a license in its metadata. This is about what the package publishes: a repository can have a LICENSE file and still ship packages that declare nothing."
 importance = "RECOMMENDATION"
-checker = "test_julia.py::test_J00"
+checker = "checkup_julia.py::checkup_J00"
 
 [J01]
 title = "The license declared in Julia is (probably) not OSI-approved"
@@ -345,7 +345,7 @@ applies_to = "Julia packages"
 affects = ['member.julia.*.license']
 category = "OSS"
 description = "The license declared by every Julia package of the project should be an OSI-approved open-source license. The check up matches the declared license against the SPDX identifiers of the OSI-approved ones, so a license spelled in an unusual way can fail it without the project being any less open source. A package declaring no license at all is [J00] instead."
-checker = "test_julia.py::test_J01"
+checker = "checkup_julia.py::checkup_J01"
 importance = "IMPORTANT"
 
 [S00]
@@ -354,14 +354,14 @@ applies_to = "pip-installable repositories"
 affects = ['member.python.*.license']
 category = "OSS"
 description = "The license every distribution declares in its packaging manifests should be an OSI-approved open-source license. The check up matches the declared license against the SPDX identifiers of the OSI-approved ones, so a license spelled in an unusual way can fail it without the project being any less open source. A distribution that declares no license is not a check up here: the repository is what gets installed, and [G09] already asks the repository for one."
-checker = "test_python.py::test_S00"
+checker = "checkup_python.py::checkup_S00"
 importance = "IMPORTANT"
 
 [S01]
 title = "Be installable with qiskit>=2.0 from the repository"
 applies_to = "pip-installable repositories"
 affects = ['member.python.*.compatible_with_qiskit_v2']
-checker = "test_python.py::test_S01"
+checker = "checkup_python.py::checkup_S01"
 category = "OUT-OF-DATE"
 description = "The counterpart of [PQ2] for a distribution that the repository declares but does not publish: what the manifests require of Qiskit SDK should allow v2.0 or newer. A project can pass [PQ2] with its latest release and fail this one with its source, which is what anybody installing from the repository gets."
 importance = "IMPORTANT"
@@ -372,7 +372,7 @@ applies_to = "pip-installable repositories"
 affects = ['member.python.*.requires_qiskit']
 category = "BEST-PRACTICE"
 description = "The counterpart of [P10] for a distribution declared in the repository. As Qiskit follows semantic versioning, a dependency with no cap for the eventual next major version gives no guarantee that the distribution will keep working after a major release."
-checker = "test_python.py::test_S02"
+checker = "checkup_python.py::checkup_S02"
 importance = "RECOMMENDATION"
 
 [O02]
@@ -381,7 +381,7 @@ applies_to = "all"
 affects = ['member.license']
 category = "SUBMISSION"
 description = "member.license could not be found among the OSI-approved licenses."
-checker = "test_license.py::test_O02"
+checker = "checkup_license.py::checkup_O02"
 importance = "IMPORTANT"
 
 [020]

@@ -510,7 +510,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         Args:
             name: If not given, runs on all the members. Otherwise, all the members with `name_id`
              that contains <name> as substring are checked.
-            checker: It can be something like test_classifications.py::test_004 or nothing
+            checker: It can be something like checkup_classifications.py::checkup_004 or nothing
             exclude: comma-separated list of membership statuses to leave out, like `-e alumni`.
               Projects already in one of them keep the check up data they have. The values are
               slugified, as in `update_status`, but only statuses have an effect here: this

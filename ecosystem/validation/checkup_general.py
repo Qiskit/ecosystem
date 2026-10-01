@@ -46,8 +46,10 @@ def must_pass_all_requierements(requierements, failed_checkups, msg):
         pytest.skip("Still in the cure period: " + " ".join([c.id for c in fail]))
 
 
-@pytest.mark.order(after=["test_pypi.py::test_PQ2", "test_python.py::test_S01"])
-def test_Q20(request, pytestconfig):
+@pytest.mark.order(
+    after=["checkup_pypi.py::checkup_PQ2", "checkup_python.py::checkup_S01"]
+)
+def checkup_Q20(request, pytestconfig):
     """Be compatible with the Qiskit SDK v2 or newer"""
     requierements = request.node.get_closest_marker("order").kwargs["after"]
     must_pass_all_requierements(
@@ -59,12 +61,12 @@ def test_Q20(request, pytestconfig):
 
 @pytest.mark.order(
     after=[
-        "test_github.py::test_G05",
-        "test_github.py::test_G07",
-        "test_general.py::test_Q20",
+        "checkup_github.py::checkup_G05",
+        "checkup_github.py::checkup_G07",
+        "checkup_general.py::checkup_Q20",
     ]
 )
-def test_G00(request, pytestconfig):
+def checkup_G00(request, pytestconfig):
     """Have a clear support expectation and, if actively maintained,
     show signs of that activity."""
     requierements = request.node.get_closest_marker("order").kwargs["after"]
@@ -75,8 +77,8 @@ def test_G00(request, pytestconfig):
     )
 
 
-@pytest.mark.order(after=["test_github.py::test_G10"])
-def test_001(request, pytestconfig):
+@pytest.mark.order(after=["checkup_github.py::checkup_G10"])
+def checkup_001(request, pytestconfig):
     """Have an OSI-approved open-source license (preferably Apache 2.0 or MIT)"""
     requierements = request.node.get_closest_marker("order").kwargs["after"]
     must_pass_all_requierements(
@@ -86,7 +88,7 @@ def test_001(request, pytestconfig):
     )
 
 
-def test_015(member):
+def checkup_015(member):
     """URL should not be a GitHub organization url"""
     if not hasattr(member, "url"):
         pytest.skip("member.url does not exist")

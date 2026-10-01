@@ -21,6 +21,7 @@ import pytest
 
 from ecosystem.check import CheckData, parse_exclusions
 from ecosystem.error_handling import EcosystemError
+from ecosystem.validation import CHECKUP_COLLECTION
 
 
 class TestChecksTOML(TestCase):
@@ -50,7 +51,8 @@ class TestChecksTOML(TestCase):
 
         testcollector = TestCollector()
         pytest.main(
-            ["--collect-only", "-q", "ecosystem/validation"], plugins=[testcollector]
+            ["--collect-only", "-q", "ecosystem/validation", *CHECKUP_COLLECTION],
+            plugins=[testcollector],
         )
         self.collected_checks = testcollector.collected
 
