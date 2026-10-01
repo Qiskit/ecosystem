@@ -21,7 +21,12 @@ from ecosystem.github import GitHubData
 from ecosystem.julia import JuliaData
 from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
-from ecosystem.python import PythonData, parse_setup_cfg, parse_setup_py
+from ecosystem.python import (
+    PythonData,
+    parse_requirements,
+    parse_setup_cfg,
+    parse_setup_py,
+)
 from ecosystem.request import URL
 
 OWNER = "banana-org"
@@ -71,6 +76,28 @@ setup(
 )
 """
 
+REQUIREMENTS_TXT = """
+# the dependencies setup.py reads
+-r requirements-dev.txt
+--index-url https://example.invalid/simple
+qiskit>=1.4,<3
+numpy ; python_version >= "3.10"
+qiskit-aer[gpu]>=0.14
+"""
+
+SETUP_PY_DEFERRED = """
+from setuptools import setup
+
+with open("requirements.txt") as f:
+    REQUIREMENTS = f.read().splitlines()
+
+setup(
+    name="banana-compiler",
+    version="0.3.1",
+    install_requires=REQUIREMENTS,
+)
+"""
+
 
 def listing(*names):
     """A contents-API directory listing holding `names` as files."""
@@ -100,6 +127,9 @@ class PythonDataTestCase(TestCase):
         data._pyproject = manifests.get("pyproject")  # pylint: disable=protected-access
         data._setup_cfg = manifests.get("setup_cfg")  # pylint: disable=protected-access
         data._setup_py = manifests.get("setup_py")  # pylint: disable=protected-access
+        data._requirements = manifests.get(  # pylint: disable=protected-access
+            "requirements"
+        )
         return data
 
 
@@ -326,6 +356,119 @@ class TestPythonDataRequiresQiskit(PythonDataTestCase):
         self.assertFalse(data.compatible_with_qiskit_v1)
         self.assertTrue(data.compatible_with_qiskit_v2)
         self.assertEqual("2.0.0", data.highest_supported_qiskit_version)
+
+
+class TestParseRequirements(TestCase):
+    """requirements.txt is one requirement per line, plus pip's own options."""
+
+    def test_options_and_comments_are_dropped(self):
+        """Only requirement lines survive; `-r` is not followed."""
+        self.assertEqual(
+            [
+                "qiskit>=1.4,<3",
+                'numpy ; python_version >= "3.10"',
+                "qiskit-aer[gpu]>=0.14",
+            ],
+            parse_requirements(REQUIREMENTS_TXT),
+        )
+
+    def test_inline_comments_and_blank_lines(self):
+        """A trailing comment is not part of the requirement."""
+        self.assertEqual(
+            ["qiskit>=2.0"], parse_requirements("\nqiskit>=2.0  # the SDK\n\n")
+        )
+
+    def test_continuation_lines_are_joined(self):
+        """A backslash continues the requirement on the next line."""
+        self.assertEqual(
+            ["qiskit >=1.4, <3"], parse_requirements("qiskit \\\n>=1.4, <3\n")
+        )
+
+    def test_a_direct_url_requirement_is_kept(self):
+        """`Requirement` parses these, so they are not this parser's problem."""
+        self.assertEqual(
+            ["qiskit @ git+https://github.com/Qiskit/qiskit.git@main"],
+            parse_requirements(
+                "qiskit @ git+https://github.com/Qiskit/qiskit.git@main"
+            ),
+        )
+
+
+class TestPythonDataRequirementsFallback(PythonDataTestCase):
+    """requirements.txt fills in dependencies the manifests only point at."""
+
+    def test_a_deferred_install_requires_falls_back_to_the_file(self):
+        """`install_requires=REQUIREMENTS` is read from the file it reads."""
+        data = self.fetched(
+            setup_py=parse_setup_py(SETUP_PY_DEFERRED),
+            requirements=parse_requirements(REQUIREMENTS_TXT),
+        )
+        self.assertEqual(["install_requires"], data.deferred)
+        self.assertEqual("<3,>=1.4", data.requires_qiskit)
+        self.assertTrue(data.compatible_with_qiskit_v2)
+
+    def test_the_file_is_reported_as_the_source(self):
+        """A section has to say the value came from outside the manifests."""
+        data = self.fetched(
+            setup_py=parse_setup_py(SETUP_PY_DEFERRED),
+            requirements=parse_requirements(REQUIREMENTS_TXT),
+        )
+        self.assertEqual(["setup.py", "requirements.txt"], data.source)
+
+    def test_a_declaring_manifest_wins(self):
+        """The file is a fallback, not an override: `[project]` stays authoritative."""
+        import tomllib  # pylint: disable=import-outside-toplevel
+
+        data = self.fetched(
+            pyproject=tomllib.loads(PYPROJECT),
+            requirements=parse_requirements("qiskit==1.0.0\n"),
+        )
+        self.assertEqual("<3,>=1.2", data.requires_qiskit)
+        self.assertEqual(["pyproject.toml"], data.source)
+
+    def test_setup_cfg_dependencies_win_too(self):
+        """Every manifest rung comes before the file."""
+        data = self.fetched(
+            setup_cfg=parse_setup_cfg(SETUP_CFG),
+            requirements=parse_requirements("qiskit==1.0.0\n"),
+        )
+        self.assertEqual(">=0.45", data.requires_qiskit)
+        self.assertEqual(["setup.cfg"], data.source)
+
+    def test_a_requirements_file_alone_declares_no_distribution(self):
+        """It is not a manifest: with no manifest there is nothing to fill in."""
+        requested = []
+
+        def fake_request(url, **kwargs):
+            requested.append(str(url))
+            if str(url).endswith("/contents/"):
+                return listing("requirements.txt", "README.md")
+            return kwargs["parser"](REQUIREMENTS_TXT)
+
+        with patch("ecosystem.python.request_json", side_effect=fake_request):
+            data = PythonData(owner=OWNER, repo=REPO)
+            data.update_json()
+
+        self.assertTrue(requested[1].endswith("/requirements.txt"))
+        self.assertFalse(data.fetched)
+        self.assertIsNone(data.package_name)
+
+    def test_it_is_fetched_with_the_manifests(self):
+        """One listing, then the manifest and the requirements file."""
+
+        def fake_request(url, **kwargs):
+            if str(url).endswith("/contents/"):
+                return listing("setup.py", "requirements.txt")
+            if str(url).endswith("/setup.py"):
+                return kwargs["parser"](SETUP_PY_DEFERRED)
+            return kwargs["parser"](REQUIREMENTS_TXT)
+
+        with patch("ecosystem.python.request_json", side_effect=fake_request):
+            data = PythonData(owner=OWNER, repo=REPO)
+            data.update_json()
+
+        self.assertEqual("<3,>=1.4", data.requires_qiskit)
+        self.assertEqual(["setup.py", "requirements.txt"], data.source)
 
 
 class TestPythonDataRoundTrip(PythonDataTestCase):
