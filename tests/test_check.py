@@ -98,6 +98,23 @@ class TestChecksTOML(TestCase):
             with self.subTest(checker_in_toml):
                 self.assertIn(checker_in_toml, self.collected_checks)
 
+    def test_checkers_are_named_after_their_id(self):
+        """Tests the naming convention: the checker of `[XYZ]` is `checkup_XYZ`.
+
+        `ChecksToml.id_by_pytest_node` matches the node id exactly, but it is only
+        consulted when a check up *fails*, so a checker renamed out of the convention
+        goes unnoticed until the weekly run hits it.
+        """
+        for id_, entry in self.checks_toml.items():
+            if id_ in self.meta_categories or "checker" not in entry:
+                continue
+            with self.subTest(id=id_):
+                self.assertTrue(
+                    entry["checker"].endswith(f"checkup_{id_}"),
+                    msg=f"the checker of [{id_}] is {entry['checker']}, "
+                    f"not a checkup_{id_}",
+                )
+
     def assertHasNoDuplicates(self, iterable, msg=None):  # pylint: disable=invalid-name
         """Check for duplicated elements in iterable"""
         unique = set(iterable)
