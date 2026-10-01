@@ -289,14 +289,15 @@
               "type": "string"
             },
             "source": {
-              "$comment": "Which manifests the values came from",
+              "$comment": "Which files the values came from. requirements.txt is not a manifest: it appears only when it is where the dependencies were read",
               "type": "array",
               "items": {
                 "type": "string",
                 "enum": [
                   "pyproject.toml",
                   "setup.cfg",
-                  "setup.py"
+                  "setup.py",
+                  "requirements.txt"
                 ]
               }
             },

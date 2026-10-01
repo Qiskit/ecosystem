@@ -23,6 +23,12 @@ precedence order setuptools itself documents:
 
     pyproject.toml `[project]`  >  setup.cfg `[metadata]`/`[options]`  >  setup.py
 
+Dependencies have one rung below those: a `requirements.txt` next to the manifests.
+It is read only when no manifest declares any dependency, which is exactly the
+`install_requires=parse("requirements.txt")` pattern — there the file is not a
+second opinion, it is the value the manifest pointed at. It is deliberately not a
+manifest itself (see `REQUIREMENTS`).
+
 `setup.py` is *parsed*, never executed: this code runs over ~200 third-party
 submissions in CI, so `exec` is not on the table. Keyword arguments that are not
 literals cannot be read statically; they are reported in `deferred` rather than
@@ -51,6 +57,33 @@ _UNSET = object()
 
 #: Manifests that can carry packaging metadata, in precedence order.
 MANIFESTS = ("pyproject.toml", "setup.cfg", "setup.py")
+
+#: Fallback dependency list. Deliberately *not* a manifest: it declares no
+#: distribution name, so it can never create a section, only fill in the
+#: dependencies of one that a manifest already named.
+REQUIREMENTS = "requirements.txt"
+
+
+def parse_requirements(text: str) -> list:
+    """Requirement lines of a requirements.txt, options and comments dropped.
+
+    Only the requirement grammar is handled here, because `Requirement` does the
+    rest downstream: markers, extras and direct URLs need no special case. Lines
+    starting with a dash are pip options (`-r`, `-c`, `-e`, `--index-url`) and are
+    skipped — including `-r`, so an included file is not followed. Every member
+    measured declares its qiskit constraint in the file itself.
+    """
+    requirements = []
+    for line in text.replace("\\\n", " ").splitlines():
+        line = line.split("#")[0].strip()
+        if not line:
+            continue
+        if line.startswith("-"):
+            logger.debug("skipping the pip option %r in a requirements file", line)
+            continue
+        # a joined continuation leaves double spaces behind
+        requirements.append(" ".join(line.split()))
+    return requirements
 
 
 def parse_setup_cfg(text: str) -> dict:
@@ -152,6 +185,7 @@ class PythonData(
         self._pyproject = None
         self._setup_cfg = None
         self._setup_py = None
+        self._requirements = None
         self._all_qiskit_versions = None
         self._requires_qiskit = _UNSET
 
@@ -223,6 +257,7 @@ class PythonData(
           - pyproject.toml
           - setup.cfg
           - setup.py
+          - requirements.txt, for the dependencies alone
         """
         if not self.owner or not self.repo:
             raise EcosystemError(
@@ -243,6 +278,16 @@ class PythonData(
         self._pyproject = fetched.get("pyproject.toml")
         self._setup_cfg = fetched.get("setup.cfg")
         self._setup_py = fetched.get("setup.py")
+        # wrapped in a dict like the listing is, because `request_json` adds its
+        # own metadata keys to whatever the parser returns
+        requirements = (
+            self._request_manifest(
+                REQUIREMENTS, lambda text: {"requirements": parse_requirements(text)}
+            )
+            if REQUIREMENTS in present
+            else None
+        )
+        self._requirements = (requirements or {}).get("requirements")
         self._requires_qiskit = _UNSET
 
     @property
@@ -408,7 +453,10 @@ class PythonData(
             "setup.cfg": self._setup_cfg,
             "setup.py": self._setup_py,
         }
-        return [name for name in MANIFESTS if found[name]]
+        names = [name for name in MANIFESTS if found[name]]
+        if self._declared_dependencies()[1] == REQUIREMENTS:
+            names.append(REQUIREMENTS)
+        return names
 
     @property
     def license(self):
@@ -455,25 +503,38 @@ class PythonData(
     @property
     def dependencies(self) -> list:
         """Declared runtime dependencies as PEP 508 strings."""
-        declared = self.project.get("dependencies")
-        if declared:
-            return declared
-        declared = self.setup_kwargs.get("install_requires")
-        if declared:
-            return declared
+        return self._declared_dependencies()[0]
+
+    def _declared_dependencies(self):
+        """The dependencies, and the name of the file they were declared in.
+
+        The file matters to `source`: a requirements.txt read because the manifest
+        deferred its dependencies has to be reported, or the section claims a
+        `setup.py` declared something it only pointed at.
+        """
         # setup.cfg keeps install_requires as an indented multi-line string
-        return [
+        from_cfg = [
             line.strip()
             for line in (self.options.get("install_requires") or "").splitlines()
             if line.strip()
         ]
+        for declared, filename in (
+            (self.project.get("dependencies"), "pyproject.toml"),
+            (self.setup_kwargs.get("install_requires"), "setup.py"),
+            (from_cfg, "setup.cfg"),
+            (self._requirements, REQUIREMENTS),
+        ):
+            if declared:
+                return list(declared), filename
+        return [], None
 
     @property
     def requires_qiskit(self):
         """String with the specifier for the "qiskit" dependency.
 
-        None when the project does not depend on Qiskit, *and* when it defers
-        its dependencies to the build backend — `deferred` tells those apart.
+        None when the project does not depend on Qiskit, and when it defers its
+        dependencies to the build backend without a requirements.txt to fall back
+        on — `deferred` tells those apart.
         """
         if not self.fetched:
             return self._kwargs.get("requires_qiskit")
