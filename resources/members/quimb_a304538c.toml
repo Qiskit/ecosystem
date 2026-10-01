@@ -19,7 +19,7 @@ homepage = "https://qiskit-community.github.io/qiskit-quimb/"
 license = "Apache-2.0"
 description = "Simulate Qiskit circuits using quimb."
 estimated_contributors = 3
-total_dependent_repositories = 7
+total_dependent_repositories = 8
 total_dependent_packages = 2
 created_at = 2024-07-30
 last_commit = 2026-07-10
@@ -47,7 +47,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 5240
-last_180_days_downloads = 63727
+last_180_days_downloads = 63964
 
 [checks.P10]
 xfailed = "The cap is already in the repository (https://github.com/qiskit-community/qiskit-quimb/pull/35), waiting for a release with the fix"

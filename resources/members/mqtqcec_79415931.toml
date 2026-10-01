@@ -18,7 +18,7 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/qcec"
 owner = "munich-quantum-toolkit"
 repo = "qcec"
-stars = 117
+stars = 118
 homepage = "https://mqt.readthedocs.io/projects/qcec"
 license = "MIT"
 description = "MQT QCEC - A Tool for Quantum Circuit Equivalence Checking"
@@ -48,7 +48,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 18854
-last_180_days_downloads = 69526
+last_180_days_downloads = 70005
 
 [checks.P10]
 xfailed = "The cap is already in the repository (https://github.com/munich-quantum-toolkit/qcec/pull/1080, merged), waiting for a release with the fix"

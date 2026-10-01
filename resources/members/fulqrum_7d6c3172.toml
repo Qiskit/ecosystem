@@ -31,8 +31,10 @@ style = "flat"
 
 [pypi.fulqrum]
 package_name = "fulqrum"
-version = "0.4.4"
-last_release_date = 2026-09-09
+version = "0.4.5"
+last_release_date = 2026-09-30
+license = "Apache-2.0"
+description = "Fulqrum : A generalized framework for quantum subspace diagonalization"
 url = "https://pypi.org/project/fulqrum/"
 status = "active"
 maintainers = [
@@ -40,7 +42,7 @@ maintainers = [
   "https://pypi.org/user/nonhermitian/",
 ]
 last_month_downloads = 789
-last_180_days_downloads = 939
+last_180_days_downloads = 975
 
 [checks.P12]
 xfailed = "PR with the fix was merged (https://github.com/qiskit-community/fulqrum/pull/122), but not yet released to PyPI"

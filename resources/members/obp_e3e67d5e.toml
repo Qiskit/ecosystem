@@ -18,7 +18,7 @@ url = "https://github.com/Qiskit/qiskit-addon-obp"
 owner = "Qiskit"
 repo = "qiskit-addon-obp"
 stars = 44
-homepage = "https://qiskit.github.io/qiskit-addon-obp/"
+homepage = "https://quantum.cloud.ibm.com/docs/addons/qiskit-addon-obp"
 license = "Apache-2.0"
 description = "Reducing depth of circuits with operator backpropagation"
 estimated_contributors = 13
@@ -26,7 +26,7 @@ total_dependent_repositories = 14
 total_dependent_packages = 1
 created_at = 2024-08-16
 last_commit = 2026-07-20
-last_activity = 2026-07-20
+last_activity = 2026-09-30
 
 [badge]
 url = "https://qisk.it/e-e3e67d5e"
@@ -51,4 +51,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 6423
-last_180_days_downloads = 49237
+last_180_days_downloads = 49512
