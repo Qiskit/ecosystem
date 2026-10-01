@@ -597,7 +597,8 @@ class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
         self.cli_members.dao.write(member)
         with redirect_stdout(io.StringIO()):
             self.cli_members.update_checkups(
-                checker="test_description.py::test_description_len_135", exclude=exclude
+                checker="checkup_description.py::checkup_014",
+                exclude=exclude,
             )
         return set(self.cli_members.dao[member.name_id].checks)
 
@@ -628,7 +629,7 @@ class TestUpdateCheckupsKeepsSince(UpdateStatusTestCase):
     """`member.checks.<id>.since` is the day a check up started failing, so a run that finds
     it still failing has to keep it. See `Member.update_checkups`"""
 
-    CHECKER = "test_description.py::test_description_len_135"
+    CHECKER = "checkup_description.py::checkup_014"
 
     def failing_member(self):
         """A member whose description is too long, so [014] is recorded on it"""

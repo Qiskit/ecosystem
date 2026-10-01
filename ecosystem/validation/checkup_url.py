@@ -17,7 +17,7 @@ import pytest
 # pylint: disable=missing-function-docstring, missing-class-docstring
 
 
-class TestURLs:
+class CheckupURLs:
     @classmethod
     def get_all_urls(cls, member):
         """recursively search for URLs in the member data"""
@@ -25,15 +25,16 @@ class TestURLs:
             if isinstance(value, str) and value.startswith("http"):
                 yield getattr(member, key)
             elif hasattr(getattr(member, key), "to_dict"):
-                yield from TestURLs.get_all_urls(getattr(member, key))
+                yield from CheckupURLs.get_all_urls(getattr(member, key))
             else:
                 continue
 
-    def test_http(self, member):
-        for url in TestURLs.get_all_urls(member):
+    def checkup_013(self, member):
+        """URLs use a secure scheme"""
+        for url in CheckupURLs.get_all_urls(member):
             assert not str(url).startswith("http:"), f"{url} is not HTTPS"
 
-    def test_025(self, member):
+    def checkup_025(self, member):
         """Documentation link has redundant suffix"""
 
         fields = ["url", "documentation", "reference_paper"]
@@ -56,7 +57,7 @@ class TestURLs:
                         suffix
                     ), f"{url} has redundant suffix: {suffix}"
 
-    def test_026(self, member):
+    def checkup_026(self, member):
         """The /README.md is not documentation"""
 
         documentation_url = getattr(member, "documentation")
@@ -78,7 +79,7 @@ class TestURLs:
                     "the repository's `README.md` or root."
                 )
 
-    def test_027(self, member):
+    def checkup_027(self, member):
         """Website should not be a GitHub or PyPI URL."""
 
         website_url = getattr(member, "website")

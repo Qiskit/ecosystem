@@ -31,7 +31,7 @@ def skip_python(member):
     yield member
 
 
-def test_S00(member, subtests):
+def checkup_S00(member, subtests):
     for package in member.python.values():
         with subtests.test(python_package=package.package_name):
             if package.license is None:
@@ -41,7 +41,7 @@ def test_S00(member, subtests):
             ), f"member.python.{package.package_name}.license is not OSI-approved"
 
 
-def test_S01(member, subtests):
+def checkup_S01(member, subtests):
     """Be installable with qiskit>=2.0"""
     for package in member.python.values():
         with subtests.test(python_package=package.package_name):
@@ -55,7 +55,7 @@ def test_S01(member, subtests):
             )
 
 
-def test_S02(member, subtests):
+def checkup_S02(member, subtests):
     for package in member.python.values():
         with subtests.test(python_package=package.package_name):
             assert not package.compatible_with_qiskit(3), (
