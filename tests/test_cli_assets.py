@@ -227,19 +227,29 @@ class TestCheckupAlumniList(UpdateStatusTestCase):
         body = (self.path / "docs" / "assets" / "checkup.md").read_text()
         return body.split("{ #G07 }")[1].split("\n## ")[0]
 
-    def failing_count(self):
-        """The `Failing` column of the [G07] row of the summary table"""
+    def summary_count(self, column):
+        """A count column of the [G07] row of the summary table"""
         summary = json.loads(
             (self.path / "docs" / "assets" / "checkup.json").read_text()
         )
-        return next(r for r in summary if "[G07]" in r["Check up"])["Failing"]
+        return next(r for r in summary if "[G07]" in r["Check up"])[column]
 
-    def test_only_members_are_counted(self):
+    def test_only_members_are_counted_as_failing(self):
         """Two alumni and one member: the headline is about the member"""
         section = self.section("Alumni", None, "Alumni")
         self.assertIn("There is 1 project failing this check up", section)
         self.assertIn('??? info "2 Alumni projects also failed', section)
-        self.assertEqual(self.failing_count(), 1)
+        self.assertEqual(self.summary_count("Failing"), 1)
+
+    def test_the_alumni_are_counted_in_their_own_column(self):
+        """The count the table hid: visible without opening the section"""
+        self.section("Alumni", None, "Alumni")
+        self.assertEqual(self.summary_count("Alumni"), 2)
+
+    def test_a_checkup_no_alumni_ever_failed_counts_zero(self):
+        """An empty column reads as none, not as missing data"""
+        self.section(None)
+        self.assertEqual(self.summary_count("Alumni"), 0)
 
     def test_the_alumni_list_is_nested_in_the_table(self):
         """Indented inside the collapsible that holds the table"""
@@ -252,7 +262,8 @@ class TestCheckupAlumniList(UpdateStatusTestCase):
         section = self.section("Alumni")
         self.assertIn("**No current member is failing this check up**", section)
         self.assertIn('\n??? info "1 Alumni project also failed', section)
-        self.assertEqual(self.failing_count(), 0)
+        self.assertEqual(self.summary_count("Failing"), 0)
+        self.assertEqual(self.summary_count("Alumni"), 1)
 
     def test_no_alumni_no_list(self):
         """Nothing extra when no alumni ever failed it"""
