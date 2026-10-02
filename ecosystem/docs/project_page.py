@@ -17,7 +17,6 @@ Pages inhttps://qiskit.github.io/ecosystem/p/<short uuid>
 import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
-from ecosystem.requirements import primary_of
 from ecosystem.docs.card import (
     ProjectSummaryCard,
     URLsCard,
@@ -161,11 +160,10 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         sections = self.project.requirements
         if not sections:
             return []
-        judged = primary_of(sections)
         cards = []
         for requirements in sections:
             cards += RequirementsCard.from_requirements_data(
-                requirements, self.project, judged=requirements is judged
+                requirements, self.project
             ).generate()
         return (
             ["\n---\n### :material-file-document-outline: Requirements\n"]

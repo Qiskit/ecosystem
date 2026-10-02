@@ -39,13 +39,12 @@ no reason the file has to carry the conventional name: of the members measured,
 `Qiskit/benchpress` declares its Qiskit only in `requirements-qiskit.txt` (one of eight
 such files, the rest for other SDKs) and `quantumcat` only in `requirements-review.txt`.
 
-Breadth has a cost, and `primary` is what pays it. A file that names qiskit is worth
-recording whatever it is for, but a dev or lint file is not a statement about what the
-project runs against: `Qiskit/qiskit-cpp` asks for `qiskit>=2.1.0` in
-`requirements.txt` and a bare `qiskit` above its black/ruff/pylint pins in
-`requirements-dev.txt`. Reading the bare one as a declaration would mean the project
-allows an unreleased Qiskit 3, and `[R02]` would say so. So every file that names
-qiskit is stored, and exactly one is judged: see `primary_of`.
+Every file that names qiskit gets a section, and `[R01]`/`[R02]` read all of them: a
+qiskit requirement the repository asks for is one somebody ends up installing, whichever
+file it is in. `Qiskit/qiskit-cpp` asks for `qiskit>=2.1.0` in `requirements.txt` and a
+bare `qiskit` above its black/ruff/pylint pins in `requirements-dev.txt`, and both are
+uncapped, so `[R02]` has something to say about either. The check ups name the file they
+read, so a maintainer knows which one to edit.
 """
 
 from fnmatch import fnmatchcase
@@ -54,7 +53,7 @@ from .serializable import JsonSerializable
 from .error_handling import EcosystemError
 from .github_contents import GitHubContentsMixin
 from .qiskit_requirement import QiskitRequirementMixin, find_requires_qiskit, UNSET
-from .python import MANIFESTS, REQUIREMENTS, parse_requirements
+from .python import MANIFESTS, parse_requirements
 
 #: Filenames that count as a requirements file, as a `fnmatch` pattern matched against
 #: the lowercased name. Deliberately not applied to `PythonData`, whose requirements
@@ -62,45 +61,11 @@ from .python import MANIFESTS, REQUIREMENTS, parse_requirements
 REQUIREMENTS_PATTERN = "*requirements*.txt"
 
 
-def primary_of(sections):
-    """The one section the check ups judge, out of a member's list.
-
-    `requirements.txt` wins when the repository has one, because that is the file the
-    convention reserves for what the project itself needs; anything else is there for a
-    purpose the filename alone does not reveal. With no such file there is nothing to
-    prefer, so the first one is taken — the list is sorted by name, so the choice is at
-    least stable. `mark_primary` records the answer in the toml, and this reads it back,
-    falling back to the same rule for a section written by hand.
-
-    Returns None for a member with no sections at all.
-    """
-    if not sections:
-        return None
-    for section in sections:
-        if section.primary:
-            return section
-    by_name = {section.file: section for section in sections}
-    return by_name.get(REQUIREMENTS) or sections[0]
-
-
-def mark_primary(sections):
-    """Records which section `primary_of` chose, when there is a choice to record.
-
-    Left off a lone section: there is nothing for it to be primary *among*, and the
-    check ups read it either way.
-    """
-    for section in sections:
-        section.primary = None
-    if len(sections) > 1:
-        primary_of(sections).primary = True
-
-
 class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializable):
     """The Qiskit requirement one requirements file of a repository declares."""
 
     dict_keys = [
         "file",
-        "primary",
         "requires_qiskit",
         "compatible_with_qiskit_v1",
         "compatible_with_qiskit_v2",
@@ -113,7 +78,6 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
         file: str = None,
         owner: str = None,
         repo: str = None,
-        primary: bool = None,
         **kwargs,
     ):
         """
@@ -123,13 +87,10 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
             owner: GitHub owner, needed to fetch. Not serialized: it lives in the
                 member's `[github]` section.
             repo: GitHub repository name. Not serialized, as above.
-            primary: True on the section the check ups judge, when a member has more
-                than one. Set by `mark_primary`, not by hand.
         """
         self.file = file
         self.owner = owner
         self.repo = repo
-        self.primary = primary
         self._kwargs = kwargs or {}
         self._requirements = None
         self._all_qiskit_versions = None

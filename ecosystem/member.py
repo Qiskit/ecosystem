@@ -26,7 +26,7 @@ from .serializable import JsonSerializable, parse_date
 from .github import GitHubData
 from .pypi import PyPIData
 from .python import PythonData
-from .requirements import RequirementsData, mark_primary
+from .requirements import RequirementsData
 from .check import CheckData
 from .badge import BadgeData
 from .request import URL
@@ -328,7 +328,6 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             requirements.update_json()
             if requirements.fetched and requirements.requires_qiskit:
                 sections.append(requirements)
-        mark_primary(sections)
         self.requirements = sections or None
 
     @property

@@ -100,31 +100,44 @@ class TestRequirementsCheckups(RequirementsCheckupsTestCase):
         self.assertIn("requirements.txt", member.checks["R02"].details)
 
 
-class TestWhichSectionIsJudged(RequirementsCheckupsTestCase):
-    """A member can store several files, and only the primary one is a declaration"""
+class TestEverySectionIsJudged(RequirementsCheckupsTestCase):
+    """A member can store several files, and a qiskit requirement in any of them counts"""
 
     @staticmethod
-    def sections(requires_qiskit="~=2.1.0"):
-        """A lint file asking for a bare `qiskit`, beside the real requirement
+    def sections(dev=">=0", main="~=2.1.0"):
+        """A lint file beside the real requirement, the shape `Qiskit/qiskit-cpp` has
 
-        The shape `Qiskit/qiskit-cpp` has: reading the dev file as a declaration would
-        say the project allows an unreleased Qiskit 3.
+        Its `requirements-dev.txt` asks for a bare `qiskit` above the black/ruff pins,
+        which is what `>=0` is here.
         """
         return [
-            RequirementsData(file="requirements-dev.txt", requires_qiskit=">=0"),
-            RequirementsData(
-                file="requirements.txt", primary=True, requires_qiskit=requires_qiskit
-            ),
+            RequirementsData(file="requirements-dev.txt", requires_qiskit=dev),
+            RequirementsData(file="requirements.txt", requires_qiskit=main),
         ]
 
-    def test_the_other_files_are_stored_but_not_judged(self):
-        """Both check ups read `primary_of`, so the dev file costs the member nothing"""
-        self.assert_records("checkup_requirements.py", set(), *self.sections())
+    def test_an_uncapped_requirement_in_any_file_fails_R02(self):
+        """The capped main file does not rescue the lint file beside it"""
+        self.assert_records(
+            "checkup_requirements.py::checkup_R02", {"R02"}, *self.sections()
+        )
 
-    def test_the_primary_file_is_what_fails(self):
-        """And the message names it, not whichever file came first"""
-        member = self.member(*self.sections(requires_qiskit="==1.4"))
+    def test_a_v1_only_pin_in_any_file_fails_R01(self):
+        """Somebody installing from that file gets a Qiskit the project cannot use"""
+        self.assert_records(
+            "checkup_requirements.py::checkup_R01",
+            {"R01"},
+            *self.sections(dev="==1.4"),
+        )
+
+    def test_the_failure_names_the_file_it_read(self):
+        """With several stored, the message is the only thing pointing at one of them"""
+        member = self.member(*self.sections())
         with redirect_stdout(StringIO()):
-            member.update_checkups("checkup_requirements.py::checkup_R01")
-        self.assertIn("requirements.txt", member.checks["R01"].details)
-        self.assertNotIn("requirements-dev.txt", member.checks["R01"].details)
+            member.update_checkups("checkup_requirements.py::checkup_R02")
+        self.assertIn("requirements-dev.txt", member.checks["R02"].details)
+
+    def test_capped_everywhere_is_a_pass(self):
+        """Which is the point of reading every file rather than one of them"""
+        self.assert_records(
+            "checkup_requirements.py", set(), *self.sections(dev="==2.1.0")
+        )

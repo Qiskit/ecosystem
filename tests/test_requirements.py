@@ -22,7 +22,7 @@ from ecosystem.error_handling import EcosystemError
 from ecosystem.github import GitHubData
 from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
-from ecosystem.requirements import RequirementsData, mark_primary, primary_of
+from ecosystem.requirements import RequirementsData
 
 OWNER = "banana-org"
 REPO = "banana-notebooks"
@@ -223,68 +223,6 @@ class TestRequirementsDataScope(RequirementsTestCase):
         self.assertEqual(REPO, data.repo)
 
 
-class TestThePrimarySection(RequirementsTestCase):
-    """Which of a member's files the check ups read, out of the several stored."""
-
-    @staticmethod
-    def sections(*files, primary=None):
-        """Sections for `files`, with `primary` naming the one already marked."""
-        return [
-            RequirementsData(file=file, primary=True if file == primary else None)
-            for file in files
-        ]
-
-    def test_no_sections_means_nothing_to_judge(self):
-        """Which is what makes the check ups skip the member."""
-        self.assertIsNone(primary_of([]))
-
-    def test_a_lone_section_is_the_one(self):
-        """Whatever it is called: it is the only thing the project says."""
-        sections = self.sections("requirements-dev.txt")
-        self.assertIs(sections[0], primary_of(sections))
-
-    def test_the_conventional_name_wins(self):
-        """It is the file reserved for what the project itself needs."""
-        sections = self.sections("requirements-dev.txt", "requirements.txt")
-        self.assertEqual("requirements.txt", primary_of(sections).file)
-
-    def test_without_it_the_first_by_name_is_taken(self):
-        """There is nothing to prefer, so the choice is at least stable."""
-        sections = self.sections("requirements-dev.txt", "requirements-qiskit.txt")
-        self.assertEqual("requirements-dev.txt", primary_of(sections).file)
-
-    def test_a_stored_flag_is_what_is_read_back(self):
-        """A hand-written `primary` overrides the fallback rule, as it should."""
-        sections = self.sections(
-            "requirements-dev.txt", "requirements.txt", primary="requirements-dev.txt"
-        )
-        self.assertEqual("requirements-dev.txt", primary_of(sections).file)
-
-    def test_a_lone_section_is_not_marked(self):
-        """There is nothing for it to be primary among, and it is read anyway."""
-        sections = self.sections("requirements-dev.txt")
-        mark_primary(sections)
-        self.assertIsNone(sections[0].primary)
-        self.assertNotIn("primary", sections[0].to_dict())
-
-    def test_a_choice_is_recorded_on_the_one_chosen(self):
-        """So the member file says which file the check ups read."""
-        sections = self.sections("requirements-dev.txt", "requirements.txt")
-        mark_primary(sections)
-        self.assertEqual(
-            {"requirements.txt": True, "requirements-dev.txt": None},
-            {section.file: section.primary for section in sections},
-        )
-
-    def test_a_stale_flag_is_cleared(self):
-        """A repository that gained a `requirements.txt` must not keep the old mark."""
-        sections = self.sections(
-            "requirements-dev.txt", "requirements.txt", primary="requirements-dev.txt"
-        )
-        mark_primary(sections)
-        self.assertEqual("requirements.txt", primary_of(sections).file)
-
-
 class TestRequirementsDataRequiresQiskit(RequirementsTestCase):
     """The specifier, which is the only reason the section is kept."""
 
@@ -413,18 +351,8 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
             [section.file for section in sections],
         )
 
-    def test_the_primary_is_marked_once_there_is_a_choice(self):
-        """`[R01]`/`[R02]` read that one, and the page says so on the others."""
-        sections = self.update(
-            self.member(), "requirements.txt", "requirements-dev.txt"
-        )
-        self.assertEqual(
-            {"requirements.txt": True, "requirements-dev.txt": None},
-            {section.file: section.primary for section in sections},
-        )
-
     def test_a_file_that_does_not_name_qiskit_is_left_out(self):
-        """So a lint file without a qiskit pin is not stored, and is not marked."""
+        """The qiskit requirement is the only thing these sections are kept for."""
         sections = self.update(
             self.member(),
             "requirements.txt",
@@ -435,7 +363,6 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
             },
         )
         self.assertEqual(["requirements.txt"], [section.file for section in sections])
-        self.assertIsNone(sections[0].primary)
 
     def test_no_section_when_a_manifest_declares_a_distribution(self):
         """`[python.*]` or `[pypi.*]` describes it, so this would duplicate them."""
@@ -495,8 +422,8 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
 class TestRequirementsCard(RequirementsTestCase):
     """The card, which names the file and says nothing about installing."""
 
-    def card(self, project=True, file="requirements.txt", judged=True):
-        """The card for a fetched section, with or without a project behind it."""
+    def card(self, project=True, file="requirements.txt"):
+        """The card for a stored section, with or without a project behind it."""
         return RequirementsCard.from_requirements_data(
             self.fetched(file=file),
             (
@@ -509,7 +436,6 @@ class TestRequirementsCard(RequirementsTestCase):
                 if project
                 else None
             ),
-            judged=judged,
         )
 
     def test_the_card_is_titled_after_the_file(self):
@@ -518,17 +444,6 @@ class TestRequirementsCard(RequirementsTestCase):
             "#### :material-file-document-outline: `requirements-dev.txt`",
             "\n".join(self.card(file="requirements-dev.txt").generate()),
         )
-
-    def test_a_file_the_check_ups_skip_says_so(self):
-        """Or its compatibility reads as a claim about the project, which it is not."""
-        self.assertIn(
-            "**not read by the check ups**",
-            "\n".join(self.card(judged=False).body()),
-        )
-
-    def test_the_judged_file_carries_no_such_caveat(self):
-        """Including a lone file, which is judged without being marked `primary`."""
-        self.assertNotIn("check ups", "\n".join(self.card().body()))
 
     def test_the_file_links_to_the_default_branch(self):
         """The branch is not stored anywhere, so the link goes through HEAD."""
@@ -559,19 +474,13 @@ class TestRequirementsCard(RequirementsTestCase):
 
     def test_every_bullet_is_its_own_paragraph(self):
         """Consecutive lines would collapse into one wrapped paragraph."""
-        for judged, count in [(True, 2), (False, 3)]:
-            with self.subTest(judged=judged):
-                body = self.card(judged=judged).body()
-                end = next(
-                    i for i, line in enumerate(body) if "Qiskit Compatibility" in line
-                )
-                bullets = [
-                    i for i, line in enumerate(body[:end]) if line.startswith(":")
-                ]
-                self.assertEqual(count, len(bullets))
-                for index in bullets:
-                    with self.subTest(bullet=body[index]):
-                        self.assertEqual("", body[index + 1])
+        body = self.card().body()
+        end = next(i for i, line in enumerate(body) if "Qiskit Compatibility" in line)
+        bullets = [i for i, line in enumerate(body[:end]) if line.startswith(":")]
+        self.assertEqual(2, len(bullets))
+        for index in bullets:
+            with self.subTest(bullet=body[index]):
+                self.assertEqual("", body[index + 1])
 
 
 class TestRequirementsOnTheProjectPage(RequirementsTestCase):
@@ -596,24 +505,18 @@ class TestRequirementsOnTheProjectPage(RequirementsTestCase):
         self.assertIn("#### :material-file-document-outline: `requirements.txt`", page)
         self.assertIn("<3,>=1.4", page)
 
-    def test_one_card_per_file_and_the_caveat_on_the_others(self):
-        """The page shows everything stored; the check ups read one of them."""
-        sections = [
-            self.fetched(file="requirements-dev.txt"),
-            self.fetched(file="requirements.txt"),
-        ]
-        mark_primary(sections)
-        page = self.page(requirements=sections)
+    def test_one_card_per_file(self):
+        """A member can declare several, and the check ups read all of them."""
+        page = self.page(
+            requirements=[
+                self.fetched(file="requirements-dev.txt"),
+                self.fetched(file="requirements.txt"),
+            ]
+        )
         self.assertIn(
             "#### :material-file-document-outline: `requirements-dev.txt`", page
         )
         self.assertIn("#### :material-file-document-outline: `requirements.txt`", page)
-        self.assertEqual(1, page.count("**not read by the check ups**"))
-        dev, main = page.split(
-            "#### :material-file-document-outline: `requirements.txt`"
-        )
-        self.assertIn("**not read by the check ups**", dev)
-        self.assertNotIn("**not read by the check ups**", main)
 
     def test_no_section_without_a_requirements_table(self):
         """Which is every member but a handful."""

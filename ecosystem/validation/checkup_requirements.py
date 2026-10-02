@@ -18,38 +18,43 @@ repository itself: what its requirements file says is the only statement the pro
 makes about which Qiskit it runs against.
 
 A member may store several `[[requirements]]` tables, one per file that names qiskit,
-and only one of them is a statement of that kind — a dev or lint file is not. So these
-read `primary_of` rather than the list: see `ecosystem/requirements.py` for the rule.
+and every one of them is read: a qiskit requirement the repository asks for is one
+somebody ends up installing, whichever file it is in. One subtest per file, as the
+`member.python` check ups do per distribution, so the failure names the file to edit.
 """
 
-# pylint: disable=invalid-name,missing-function-docstring,redefined-outer-name
+# pylint: disable=invalid-name,missing-function-docstring
 
 import pytest
 
-from ecosystem.requirements import primary_of
-
 
 @pytest.fixture(autouse=True)
-def requirements(member):
-    """The one requirements section to judge, skipping a member with none"""
-    primary = primary_of(member.requirements or [])
-    if primary is None:
+def skip_requirements(member):
+    """Skip if there is no requirements section to look at"""
+    if not member.requirements:
         pytest.skip("No requirements section")
-    yield primary
+    yield member
 
 
-def checkup_R01(requirements):
-    """Be installable with qiskit>=2.0 from the requirements file"""
-    if requirements.compatible_with_qiskit_v2 is None:
-        pytest.skip("No member.requirements.compatible_with_qiskit_v2")
-    assert requirements.compatible_with_qiskit_v2, (
-        f"The qiskit requirement in {requirements.file} "
-        "is not compatible with Qiskit SDK v2"
-    )
+def checkup_R01(member, subtests):
+    """Be installable with qiskit>=2.0 from the requirements files"""
+    for requirements in member.requirements:
+        with subtests.test(requirements_file=requirements.file):
+            if requirements.compatible_with_qiskit_v2 is None:
+                pytest.skip(
+                    f"No compatible_with_qiskit_v2 for {requirements.file} "
+                    "in member.requirements"
+                )
+            assert requirements.compatible_with_qiskit_v2, (
+                f"The qiskit requirement in {requirements.file} "
+                "is not compatible with Qiskit SDK v2"
+            )
 
 
-def checkup_R02(requirements):
-    assert not requirements.compatible_with_qiskit(3), (
-        f"The qiskit requirement in {requirements.file} "
-        "allows a not-yet-released major version of Qiskit"
-    )
+def checkup_R02(member, subtests):
+    for requirements in member.requirements:
+        with subtests.test(requirements_file=requirements.file):
+            assert not requirements.compatible_with_qiskit(3), (
+                f"The qiskit requirement in {requirements.file} "
+                "allows a not-yet-released major version of Qiskit"
+            )
