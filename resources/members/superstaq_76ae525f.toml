@@ -17,15 +17,15 @@ url = "https://github.com/Infleqtion/client-superstaq"
 owner = "Infleqtion"
 repo = "client-superstaq"
 tree = "main/qiskit-superstaq"
-stars = 129
+stars = 130
 license = "Apache-2.0"
 description = "https://superstaq.readthedocs.io"
 estimated_contributors = 38
 total_dependent_repositories = 53
 total_dependent_packages = 8
 created_at = 2022-02-22
-last_commit = 2026-09-30
-last_activity = 2026-09-30
+last_commit = 2026-10-01
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-76ae525f"
@@ -50,7 +50,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 4442
-last_180_days_downloads = 39805
+last_180_days_downloads = 40016
 
 [pypi.checks-superstaq]
 package_name = "checks-superstaq"
@@ -62,7 +62,7 @@ url = "https://pypi.org/project/checks-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 6478
-last_180_days_downloads = 57840
+last_180_days_downloads = 58195
 
 [pypi.cirq-superstaq]
 package_name = "cirq-superstaq"
@@ -78,7 +78,7 @@ maintainers = [
   "https://pypi.org/user/vtomole/",
 ]
 last_month_downloads = 6495
-last_180_days_downloads = 58573
+last_180_days_downloads = 58859
 
 [pypi.general-superstaq]
 package_name = "general-superstaq"
@@ -90,7 +90,7 @@ url = "https://pypi.org/project/general-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 6718
-last_180_days_downloads = 60612
+last_180_days_downloads = 60931
 
 [pypi.supermarq]
 package_name = "supermarq"
@@ -102,4 +102,4 @@ url = "https://pypi.org/project/Supermarq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 1184
-last_180_days_downloads = 7422
+last_180_days_downloads = 7509
