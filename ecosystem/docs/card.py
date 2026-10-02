@@ -411,6 +411,33 @@ class URLsCard(Card):
         return ret
 
 
+def compatibility_mark(compatible):
+    """Whether a distribution works with a major version of Qiskit, as an icon.
+
+    The project pages collect the same flags in a table of their own
+    (`ProjectPage.qiskit_requirements`), so the icons are shared rather than redrawn there.
+    """
+    return (
+        ":material-check-circle-outline:"
+        if compatible
+        else ":material-close-circle-outline:"
+    )
+
+
+def pip_install_target(owner, repo, path=None):
+    """What to `pip install` for a distribution in a repository, or None without a repository.
+
+    A subdirectory goes in a URL fragment, and `#` starts a comment in a shell, so the
+    target is quoted when it carries one.
+    """
+    if not owner or not repo:
+        return None
+    target = f"git+https://github.com/{owner}/{repo}"
+    if path:
+        return f'"{target}#subdirectory={path.strip("/")}"'
+    return target
+
+
 def qiskit_compatibility(package):
     """The Qiskit compatibility table, for a card about a Python distribution.
 
@@ -421,22 +448,15 @@ def qiskit_compatibility(package):
     if not package.requires_qiskit:
         return []
 
-    def mark(compatible):
-        return (
-            ":material-check-circle-outline:"
-            if compatible
-            else ":material-close-circle-outline:"
-        )
-
     return [
         "",
         ":simple-qiskit: **Qiskit Compatibility**\n\n",
         "| **Requires** | V1 | V2 | highest supported |",
         "| -- | -- | -- | -- |",
         f"| {package.requires_qiskit} | "
-        + mark(package.compatible_with_qiskit_v1)
+        + compatibility_mark(package.compatible_with_qiskit_v1)
         + " | "
-        + mark(package.compatible_with_qiskit_v2)
+        + compatibility_mark(package.compatible_with_qiskit_v2)
         + f" | [{package.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
         f"{package.highest_supported_qiskit_version}/ "
         f'"Released: {package.highest_supported_qiskit_release_date}") |',
@@ -589,17 +609,8 @@ class PipSourcePackageCard(Card):
 
     @property
     def pip_target(self):
-        """What to `pip install`, or None without an owner and repo.
-
-        A subdirectory goes in a URL fragment, and `#` starts a comment in a shell, so
-        the target is quoted when it carries one.
-        """
-        if not self.owner or not self.repo:
-            return None
-        target = f"git+https://github.com/{self.owner}/{self.repo}"
-        if self.path:
-            return f'"{target}#subdirectory={self.path.strip("/")}"'
-        return target
+        """What to `pip install`, or None without an owner and repo"""
+        return pip_install_target(self.owner, self.repo, self.path)
 
     def body(self):
         """Returns a list of lines for the card body.
@@ -637,96 +648,5 @@ class PipSourcePackageCard(Card):
                 "**computed at build time** "
                 + ", ".join(f"`{field}`" for field in self.deferred),
             ) + [""]
-        ret += qiskit_compatibility(self)
-        return ret
-
-
-class RequirementsCard(Card):
-    """Card for the qiskit requirement a repository declares in a requirements file.
-
-    Not a package card: there is no distribution, no version and nothing to
-    `pip install`. What it has to say is the file and the Qiskit compatibility that
-    follows from it.
-
-    One card per file, titled after it, because a member can declare several and the
-    filename is the only thing telling them apart.
-    """
-
-    def __init__(
-        self,
-        file=None,
-        owner=None,
-        repo=None,
-        requires_qiskit=None,
-        highest_supported_qiskit_release_date=None,
-        highest_supported_qiskit_version=None,
-        compatible_with_qiskit_v1=None,
-        compatible_with_qiskit_v2=None,
-    ):
-        self.file = file
-        self.owner = owner
-        self.repo = repo
-        self.requires_qiskit = requires_qiskit
-        self.highest_supported_qiskit_release_date = (
-            highest_supported_qiskit_release_date
-        )
-        self.highest_supported_qiskit_version = highest_supported_qiskit_version
-        self.compatible_with_qiskit_v1 = compatible_with_qiskit_v1
-        self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
-
-        super().__init__(
-            title=f"`{self.file}`",
-            title_icon="#### :material-file-document-outline:",
-            body_lines=self.body(),
-        )
-
-    @classmethod
-    def from_requirements_data(cls, requirements, project=None):
-        """Construct a card from a RequirementsData.
-
-        `owner` and `repo` are not part of the section, because they would duplicate
-        `[github]`, so they are read back from the project when there is one. Without
-        them the card leaves the file unlinked rather than guessing a URL.
-        """
-        github = getattr(project, "github", None)
-        return RequirementsCard(
-            file=requirements.file,
-            owner=getattr(github, "owner", None),
-            repo=getattr(github, "repo", None),
-            requires_qiskit=requirements.requires_qiskit,
-            highest_supported_qiskit_release_date=(
-                requirements.highest_supported_qiskit_release_date
-            ),
-            highest_supported_qiskit_version=requirements.highest_supported_qiskit_version,
-            compatible_with_qiskit_v1=requirements.compatible_with_qiskit_v1,
-            compatible_with_qiskit_v2=requirements.compatible_with_qiskit_v2,
-        )
-
-    @property
-    def file_url(self):
-        """The requirements file on github.com, or None without an owner and repo.
-
-        The branch is not stored anywhere, so the link goes through HEAD.
-        """
-        if not self.owner or not self.repo or not self.file:
-            return None
-        return f"https://github.com/{self.owner}/{self.repo}/blob/HEAD/{self.file}"
-
-    def body(self):
-        """Returns a list of lines for the card body.
-
-        As in `PipSourcePackageCard.body`, every bullet is followed by a blank line, or
-        Markdown reads the run of them as one wrapped paragraph.
-        """
-        declared_in = (
-            f"[`{self.file}`]({self.file_url})" if self.file_url else f"`{self.file}`"
-        )
-        ret = self.bullet(
-            ":material-file-document-outline:", f"**declared in** {declared_in}"
-        ) + [""]
-        ret += self.bullet(
-            ":material-information-outline:",
-            "**no packaging manifest** in the repository",
-        ) + [""]
         ret += qiskit_compatibility(self)
         return ret

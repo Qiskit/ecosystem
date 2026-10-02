@@ -16,7 +16,6 @@ from datetime import date
 from unittest import TestCase
 from unittest.mock import patch
 
-from ecosystem.docs.card import RequirementsCard
 from ecosystem.docs.project_page import ProjectPage
 from ecosystem.error_handling import EcosystemError
 from ecosystem.github import GitHubData
@@ -419,75 +418,12 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
         )
 
 
-class TestRequirementsCard(RequirementsTestCase):
-    """The card, which names the file and says nothing about installing."""
-
-    def card(self, project=True, file="requirements.txt"):
-        """The card for a stored section, with or without a project behind it."""
-        return RequirementsCard.from_requirements_data(
-            self.fetched(file=file),
-            (
-                Member(
-                    name="Banana Notebooks",
-                    url=f"https://github.com/{OWNER}/{REPO}",
-                    maturity="experimental",
-                    github=GitHubData(owner=OWNER, repo=REPO),
-                )
-                if project
-                else None
-            ),
-        )
-
-    def test_the_card_is_titled_after_the_file(self):
-        """A member can have several, and the filename is what tells them apart."""
-        self.assertIn(
-            "#### :material-file-document-outline: `requirements-dev.txt`",
-            "\n".join(self.card(file="requirements-dev.txt").generate()),
-        )
-
-    def test_the_file_links_to_the_default_branch(self):
-        """The branch is not stored anywhere, so the link goes through HEAD."""
-        self.assertEqual(
-            f"https://github.com/{OWNER}/{REPO}/blob/HEAD/requirements.txt",
-            self.card().file_url,
-        )
-        self.assertIn(
-            "**declared in** [`requirements.txt`]", "\n".join(self.card().body())
-        )
-
-    def test_the_file_is_unlinked_without_a_project(self):
-        """Owner and repo live in `[github]`; without it there is no URL to guess."""
-        card = self.card(project=False)
-        self.assertIsNone(card.file_url)
-        self.assertIn("**declared in** `requirements.txt`", "\n".join(card.body()))
-
-    def test_there_is_nothing_to_pip_install(self):
-        """No manifest means no distribution, which is the point of the section."""
-        self.assertNotIn("pip install", "\n".join(self.card().body()))
-
-    def test_the_body_carries_the_qiskit_compatibility_table(self):
-        """The same table the package cards show, from the same mixin."""
-        body = "\n".join(self.card().body())
-        self.assertIn("Qiskit Compatibility", body)
-        self.assertIn("<3,>=1.4", body)
-        self.assertIn("2.1.0", body)
-
-    def test_every_bullet_is_its_own_paragraph(self):
-        """Consecutive lines would collapse into one wrapped paragraph."""
-        body = self.card().body()
-        end = next(i for i, line in enumerate(body) if "Qiskit Compatibility" in line)
-        bullets = [i for i, line in enumerate(body[:end]) if line.startswith(":")]
-        self.assertEqual(2, len(bullets))
-        for index in bullets:
-            with self.subTest(bullet=body[index]):
-                self.assertEqual("", body[index + 1])
-
-
 class TestRequirementsOnTheProjectPage(RequirementsTestCase):
-    """Its own section: a requirements file is not a package."""
+    """A row of the Qiskit requirements table: a requirements file is not a package, so
+    this is the only place on the page a member with nothing published shows up."""
 
     def page(self, **kwargs):
-        """The project page for a member, as one string."""
+        """The Qiskit requirements section of such a member, as one string."""
         project = Member(
             name="Banana Notebooks",
             url=f"https://github.com/{OWNER}/{REPO}",
@@ -496,16 +432,35 @@ class TestRequirementsOnTheProjectPage(RequirementsTestCase):
             github=GitHubData(owner=OWNER, repo=REPO),
             **kwargs,
         )
-        return "\n".join(ProjectPage(project, "p/banana.md").requirements())
+        return "\n".join(ProjectPage(project, "p/banana.md").qiskit_requirements())
 
-    def test_the_card_is_in_its_own_section(self):
-        """These members have no Packages section at all to put it in."""
+    def test_the_file_is_a_row_of_the_table(self):
+        """With the specifier read from it, and the marks derived from the specifier."""
         page = self.page(requirements=[self.fetched()])
-        self.assertIn("### :material-file-document-outline: Requirements", page)
-        self.assertIn("#### :material-file-document-outline: `requirements.txt`", page)
-        self.assertIn("<3,>=1.4", page)
+        self.assertIn("### :simple-qiskit: Qiskit requirements", page)
+        self.assertIn("`<3,>=1.4`", page)
+        self.assertIn(":material-check-circle-outline:", page)
 
-    def test_one_card_per_file(self):
+    def test_the_file_links_to_the_default_branch(self):
+        """The branch is not stored anywhere, so the link goes through HEAD."""
+        self.assertIn(
+            f"[`requirements.txt`](https://github.com/{OWNER}/{REPO}"
+            "/blob/HEAD/requirements.txt)",
+            self.page(requirements=[self.fetched()]),
+        )
+
+    def test_the_file_is_unlinked_without_a_repository(self):
+        """Owner and repo live in `[github]`; without it there is no URL to guess."""
+        project = Member(
+            name="Banana Notebooks",
+            url=f"https://github.com/{OWNER}/{REPO}",
+            uuid="banana-uuid-0000-0000-000000000000",
+            requirements=[self.fetched()],
+        )
+        page = "\n".join(ProjectPage(project, "p/banana.md").qiskit_requirements())
+        self.assertIn("| `requirements.txt` |", page)
+
+    def test_one_row_per_file(self):
         """A member can declare several, and the check ups read all of them."""
         page = self.page(
             requirements=[
@@ -513,10 +468,12 @@ class TestRequirementsOnTheProjectPage(RequirementsTestCase):
                 self.fetched(file="requirements.txt"),
             ]
         )
-        self.assertIn(
-            "#### :material-file-document-outline: `requirements-dev.txt`", page
-        )
-        self.assertIn("#### :material-file-document-outline: `requirements.txt`", page)
+        self.assertIn("/blob/HEAD/requirements-dev.txt)", page)
+        self.assertIn("/blob/HEAD/requirements.txt)", page)
+
+    def test_there_is_nothing_to_pip_install(self):
+        """No manifest means no distribution, which is the point of the section."""
+        self.assertNotIn("pip install", self.page(requirements=[self.fetched()]))
 
     def test_no_section_without_a_requirements_table(self):
         """Which is every member but a handful."""

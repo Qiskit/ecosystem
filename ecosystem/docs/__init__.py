@@ -62,3 +62,18 @@ def write_if_changed(path, text) -> bool:
         return False
     path.write_text(text)
     return True
+
+
+def markdown_table(columns, rows) -> list:
+    """A table as lines, leaving out every column that no row has something in.
+
+    `columns` are (header, alignment) pairs and `rows` the cells, already rendered: what a
+    cell holds depends on the table, but whether a column is worth a header does not.
+    """
+    if not rows:
+        return []
+    keep = [index for index, _ in enumerate(columns) if any(row[index] for row in rows)]
+    return [
+        "| " + " | ".join(columns[index][0] for index in keep) + " |",
+        "| " + " | ".join(columns[index][1] for index in keep) + " |",
+    ] + ["| " + " | ".join(row[index] for index in keep) + " |" for row in rows]

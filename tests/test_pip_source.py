@@ -187,19 +187,28 @@ class TestProjectPagePackages(PipSourceTestCase):
         project = self.project(**kwargs)
         return "\n".join(ProjectPage(project, "p/banana.md").packages())
 
-    def test_the_card_is_in_the_packages_section(self):
-        """The same card the pip-source page uses, on the project page."""
+    def test_the_distribution_is_a_row_of_the_packages_section(self):
+        """What the manifests declare, with the install command as a tooltip."""
         section = self.packages_section(python={"banana-compiler": self.package()})
         self.assertIn("### :material-package-variant: Packages", section)
         self.assertIn(
-            "#### :simple-github: pip-installable repo `banana-compiler`", section
-        )
-        self.assertIn(
-            f":simple-python: `pip install git+https://github.com/{OWNER}/{REPO}`",
+            "| pip-installable repo | Version | Requires Python | Declared in |",
             section,
         )
+        self.assertIn("[`banana-compiler`](../pip-source/banana-compiler.md ", section)
+        self.assertIn(
+            f'(../pip-source/banana-compiler.md "pip install '
+            f'git+https://github.com/{OWNER}/{REPO}")',
+            section,
+        )
+        self.assertIn("| 0.3.1 | >=3.9 | `pyproject.toml` |", section)
 
-    def test_one_card_per_declared_distribution(self):
+    def test_the_compatibility_is_left_to_the_requirements_table(self):
+        """The same four values for every distribution, so they are collected there."""
+        section = self.packages_section(python={"banana-compiler": self.package()})
+        self.assertNotIn("Qiskit Compatibility", section)
+
+    def test_one_row_per_declared_distribution(self):
         """A monorepo declares several, each with its own install target."""
         section = self.packages_section(
             python={
@@ -207,8 +216,27 @@ class TestProjectPagePackages(PipSourceTestCase):
                 "banana-vision": self.package(path="packages/vision"),
             }
         )
-        self.assertEqual(2, section.count("#### :simple-github: pip-installable repo"))
+        self.assertEqual(2, section.count("(../pip-source/"))
         self.assertIn("#subdirectory=packages/vision", section)
+
+    def test_a_deferred_value_says_why_it_is_missing(self):
+        """A field the backend computes is reported as unknown, not as missing."""
+        # a stored section, which is how a deferred field comes back: named, not valued
+        package = PythonData(
+            package_name="banana-compiler",
+            requires_python=">=3.9",
+            source=["pyproject.toml"],
+            deferred=["version"],
+        )
+        section = self.packages_section(python={"banana-compiler": package})
+        self.assertIn('*&mdash;*{ title="computed at build time" }', section)
+
+    def test_a_value_the_manifests_never_mention_leaves_its_column_out(self):
+        """Missing and computed-at-build-time are not the same thing"""
+        section = self.packages_section(
+            python={"banana-compiler": PythonData(package_name="banana-compiler")}
+        )
+        self.assertNotIn("Requires Python", section)
 
     def test_no_packages_section_without_any_package(self):
         """An empty section would read as a project with nothing to install."""
