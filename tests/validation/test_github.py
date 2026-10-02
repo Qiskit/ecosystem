@@ -9,7 +9,7 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
-"""Tests for ecosystem/validation/test_github.py"""
+"""Tests for ecosystem/validation/checkup_github.py"""
 
 # the test methods are named after the check up they cover, like [G05]
 # pylint: disable=invalid-name
@@ -31,7 +31,7 @@ EVERY_STATUS = [None, "Member", "Unmaintained", "Under revision", "Early Project
 
 
 class GitHubCheckupsTestCase(TestCase):
-    """Shared setup for the ecosystem/validation/test_github.py check ups"""
+    """Shared setup for the ecosystem/validation/checkup_github.py check ups"""
 
     @staticmethod
     def member(status, months_old=60, months_since_commit=1, archived=False, **kwargs):
@@ -91,7 +91,7 @@ class TestMaturityGatedCheckups(GitHubCheckupsTestCase):
 
         `deprecated` is not enough: the project is still offered for use, so an archived
         repository is a check up even though `Member.unmaintained` is true."""
-        checker = "test_github.py::test_G05"
+        checker = "checkup_github.py::checkup_G05"
         self.assert_same_for_every_status(
             checker, set(), archived=True, maturity="as-is"
         )
@@ -104,7 +104,7 @@ class TestMaturityGatedCheckups(GitHubCheckupsTestCase):
 
     def test_G07_exempts_declared_unmaintained(self):
         """A project with no maintenance expectations owes no commits"""
-        checker = "test_github.py::test_G07"
+        checker = "checkup_github.py::checkup_G07"
         self.assert_same_for_every_status(
             checker, set(), months_since_commit=24, maturity="as-is"
         )
@@ -114,7 +114,7 @@ class TestMaturityGatedCheckups(GitHubCheckupsTestCase):
 
     def test_G08_asks_for_the_repository_to_be_archived(self):
         """The other direction: declaring no maintenance asks for an archived repository"""
-        checker = "test_github.py::test_G08"
+        checker = "checkup_github.py::checkup_G08"
         self.assert_same_for_every_status(checker, {"G08"}, maturity="as-is")
         self.assert_same_for_every_status(
             checker, set(), maturity="as-is", archived=True
@@ -126,7 +126,7 @@ class TestMaturityGatedCheckups(GitHubCheckupsTestCase):
         check up has to report what is wrong instead of how it found out"""
         self.assertEqual(
             self.details_of(
-                "test_github.py::test_G08",
+                "checkup_github.py::checkup_G08",
                 status=None,
                 maturity="as-is",
                 archived=None,
@@ -136,7 +136,7 @@ class TestMaturityGatedCheckups(GitHubCheckupsTestCase):
 
     def test_G11_asks_for_the_repository_to_be_archived(self):
         """Same as [G08], on an IBM-controlled organization"""
-        checker = "test_github.py::test_G11"
+        checker = "checkup_github.py::checkup_G11"
         self.assert_same_for_every_status(checker, {"G11"}, maturity="deprecated")
         self.assert_same_for_every_status(checker, set(), maturity="production-ready")
 
@@ -147,7 +147,7 @@ class TestAgeGatedCheckups(GitHubCheckupsTestCase):
 
     def test_G12_uses_the_age_of_the_repository(self):
         """A 6-month-old repository with no commit in 5 months is decelerating"""
-        checker = "test_github.py::test_G12"
+        checker = "checkup_github.py::checkup_G12"
         self.assert_same_for_every_status(
             checker, {"G12"}, months_old=6, months_since_commit=5
         )
@@ -155,5 +155,8 @@ class TestAgeGatedCheckups(GitHubCheckupsTestCase):
     def test_G12_does_not_apply_to_an_old_repository(self):
         """Older repositories are covered by the flat window of [G07] instead"""
         self.assert_same_for_every_status(
-            "test_github.py::test_G12", set(), months_old=60, months_since_commit=24
+            "checkup_github.py::checkup_G12",
+            set(),
+            months_old=60,
+            months_since_commit=24,
         )

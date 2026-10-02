@@ -31,6 +31,19 @@ last_activity = 2026-07-20
 url = "https://qisk.it/e-beaaab32"
 style = "flat"
 
+[python.dsm-swap]
+package_name = "dsm-swap"
+license = "Apache-2.0"
+description = "A doubly stochastic matrices-based approach to optimal qubit routing"
+requires_python = ">=3.7"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+source = ["pyproject.toml", "setup.py", "requirements.txt"]
+deferred = ["install_requires", "long_description", "packages", "version"]
+
 [checks.G05]
 since = 2026-09-24
 details = "GitHub repository https://github.com/qiskit-community/dsm-swap archived and project is not `as-is`"
@@ -45,3 +58,8 @@ importance = "STRONG-RECOMMENDATION"
 since = 2026-09-26
 details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"
+
+[checks.S02]
+since = 2026-10-01
+details = "The distribution dsm-swap declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

@@ -32,6 +32,27 @@ last_activity = 2026-08-26
 url = "https://qisk.it/e-f00eb2fa"
 style = "flat"
 
+[python.qiskit-qec]
+package_name = "qiskit-qec"
+license = "Apache-2.0"
+description = "Qiskit quantum error correcting (QEC) package"
+requires_python = ">=3.8"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py", "requirements.txt"]
+deferred = [
+  "cmdclass",
+  "ext_modules",
+  "install_requires",
+  "long_description",
+  "packages",
+  "version",
+]
+
 [checks.G05]
 since = 2026-09-17
 details = "GitHub repository https://github.com/qiskit-community/qiskit-qec archived and project is not `as-is`"
@@ -46,3 +67,8 @@ importance = "STRONG-RECOMMENDATION"
 since = 2026-09-20
 details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"
+
+[checks.S02]
+since = 2026-10-01
+details = "The distribution qiskit-qec declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

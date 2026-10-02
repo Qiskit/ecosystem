@@ -30,6 +30,20 @@ last_commit = 2024-03-10
 url = "https://qisk.it/e-d94095eb"
 style = "flat"
 
+[python.qoptkit]
+package_name = "qoptkit"
+version = "1.0"
+description = "Quantum Optical KIT (QoptKit) library adds to QISKIT the capability of simulating and compiling quantum optical circuis"
+requires_python = ">=3.8"
+requires_qiskit = ">=1.0.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py"]
+deferred = ["cmdclass", "package_data", "packages"]
+
 [checks.G07]
 since = 2026-05-14
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
@@ -40,3 +54,8 @@ importance = "STRONG-RECOMMENDATION"
 since = 2026-09-24
 details = "The project is probably abandoned: `[G07]`"
 importance = "CRITICAL"
+
+[checks.S02]
+since = 2026-10-01
+details = "The distribution qoptkit declared in the repository allows a not-yet-released major version of Qiskit"
+importance = "RECOMMENDATION"

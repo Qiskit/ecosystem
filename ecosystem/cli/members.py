@@ -39,7 +39,7 @@ from ecosystem.classifications import ClassificationsToml
 from ecosystem.error_handling import logger
 
 
-class CliMembers:
+class CliMembers:  # pylint: disable=too-many-public-methods
     """CliMembers class.
     Entrypoint for all CLI members commands.
 
@@ -146,7 +146,7 @@ class CliMembers:
                 continue
 
             is_alumni = None
-            if project.status == "Alumni":
+            if project.is_alumni:
                 is_alumni = alumni_label
 
             status_color = None
@@ -187,18 +187,6 @@ class CliMembers:
         self.update_assets_interfaces(projects_per_classification["interfaces"])
         self.update_assets_ibm_maintained()
         self.update_assets_checkups()
-
-    def _projects_per_checkup(self):
-        """Two dicts checkup_id -> [Member], for the projects that have the check up recorded:
-        the ones it is pending on, and the ones with a valid explanation for it."""
-        pending = {id_: [] for id_ in self.checks_toml.checkups}
-        explained = {id_: [] for id_ in self.checks_toml.checkups}
-        for project in self.dao.get_all():
-            for checkup_id, checkup in project.checks.items():
-                where = explained if checkup.xfail_applies else pending
-                # setdefault: a member file may name a check up that checks.toml no longer has
-                where.setdefault(checkup_id, []).append(project)
-        return pending, explained
 
     def update_assets_checkups(self):
         """Updates the check up fragments in docs/assets/, from resources/checks.toml and the
@@ -490,13 +478,44 @@ class CliMembers:
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
 
+    def update_python(self, name=None):
+        """
+        Updates the Python metadata declared in the member's own repository.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+
+        It needs the GitHub section, so it runs after update_github.
+        """
+        for project in self.dao.get_all(name):
+            project.update_python()
+            self.dao.update(project.name_id, python=project.python)
+
+    def update_requirements(self, name=None):
+        """
+        Updates what the member's requirements files declare about Qiskit.
+
+        Only repositories without a packaging manifest get the sections, one per file
+        that names qiskit; see `Member.update_requirements`.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+
+        It needs the GitHub section, so it runs after update_github.
+        """
+        for project in self.dao.get_all(name):
+            project.update_requirements()
+            self.dao.update(project.name_id, requirements=project.requirements)
+
     def update_checkups(self, name=None, checker=None, exclude: str = None):
         """
         Updates checkups data.
         Args:
             name: If not given, runs on all the members. Otherwise, all the members with `name_id`
              that contains <name> as substring are checked.
-            checker: It can be something like test_classifications.py::test_004 or nothing
+            checker: It can be something like checkup_classifications.py::checkup_004 or nothing
             exclude: comma-separated list of membership statuses to leave out, like `-e alumni`.
               Projects already in one of them keep the check up data they have. The values are
               slugified, as in `update_status`, but only statuses have an effect here: this
@@ -662,6 +681,9 @@ class CliMembers:
         data_map will be added, even if they are empty"""
         filtered_data = {}
         for key, alias in data_map.items():
+            # reset per key: a priority list that resolves to nothing leaves `data` alone,
+            # and the value of the previous key would be exported under this one
+            data = None
             if isinstance(alias, dict):
                 data = CliMembers.filter_data(member_dict, alias)
                 if data:
@@ -669,7 +691,7 @@ class CliMembers:
             elif isinstance(alias, tuple):
                 if len(alias) != 2:
                     raise ValueError(
-                        "%s malformed. "
+                        f"{alias} malformed. "
                         "It needs to have exactly two elements,one "
                         "with the query, the otherone with the selector"
                     )
@@ -750,7 +772,7 @@ class CliMembers:
         #  "Subjects": [{"name": ..., "description": ...}]}
         labels_data_to_export = {
             "Types": (
-                "categories.*",
+                "category.*",
                 [
                     "name",
                     "description",

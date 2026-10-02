@@ -22,7 +22,7 @@ estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-03-04
-last_commit = 2026-09-30
+last_commit = 2026-10-01
 last_activity = 2026-09-30
 
 [badge]
@@ -31,8 +31,10 @@ style = "flat"
 
 [pypi.fulqrum]
 package_name = "fulqrum"
-version = "0.4.4"
-last_release_date = 2026-09-09
+version = "0.4.5"
+last_release_date = 2026-09-30
+license = "Apache-2.0"
+description = "Fulqrum : A generalized framework for quantum subspace diagonalization"
 url = "https://pypi.org/project/fulqrum/"
 status = "active"
 maintainers = [
@@ -40,12 +42,4 @@ maintainers = [
   "https://pypi.org/user/nonhermitian/",
 ]
 last_month_downloads = 789
-last_180_days_downloads = 939
-
-[checks.P12]
-xfailed = "PR with the fix was merged (https://github.com/qiskit-community/fulqrum/pull/122), but not yet released to PyPI"
-xfailed_until = 2026-11-30
-since = 2026-09-17
-details = "The PyPI package fulqrum does not have a declared license"
-discussion = "https://github.com/qiskit-community/fulqrum/pull/122"
-importance = "RECOMMENDATION"
+last_180_days_downloads = 1123

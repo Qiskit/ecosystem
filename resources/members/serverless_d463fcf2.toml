@@ -26,8 +26,8 @@ estimated_contributors = 31
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-09-15
-last_commit = 2026-09-29
-last_activity = 2026-09-29
+last_commit = 2026-10-01
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-d463fcf2"
@@ -49,4 +49,25 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 8627
-last_180_days_downloads = 97639
+last_180_days_downloads = 98838
+
+[python.qiskit-serverless-gateway]
+package_name = "qiskit-serverless-gateway"
+version = "0.1.0"
+requires_python = ">=3.12"
+requires_qiskit = "<3,>=2.5.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+path = "gateway"
+source = ["pyproject.toml", "setup.cfg", "requirements.txt"]
+deferred = []
+
+[python.qiskit-serverless-tests]
+package_name = "qiskit-serverless-tests"
+version = "0.1.0"
+requires_python = ">=3.12"
+path = "tests"
+source = ["pyproject.toml"]
+deferred = []

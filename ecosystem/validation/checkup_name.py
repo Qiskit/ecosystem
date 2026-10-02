@@ -15,5 +15,6 @@
 # pylint: disable=missing-function-docstring
 
 
-def test_valid_name_no_test_substring(member):
+def checkup_010(member):
+    """member.name should not include the substring 'test'"""
     assert "test" not in member.name.lower()

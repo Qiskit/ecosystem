@@ -28,6 +28,16 @@ last_activity = 2026-02-13
 url = "https://qisk.it/e-a08d66f6"
 style = "flat"
 
+[python.qiskit-nature-cp2k]
+package_name = "qiskit-nature-cp2k"
+version = "0.0.1"
+license = "Apache-1.1"
+description = "An integration plugin for Qiskit Nature and CP2K"
+requires_python = ">=3.8"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []
+
 [checks.G08]
 since = 2026-09-24
 details = "Unmaintained project should have an archived GitHub repository"

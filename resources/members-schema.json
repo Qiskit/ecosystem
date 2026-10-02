@@ -17,19 +17,15 @@
     },
     "labels": {
       "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
+      "items": {
+        "type": "string"
+      }
     },
     "interfaces": {
       "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
+      "items": {
+        "type": "string"
+      }
     },
     "ibm_maintained": {
       "type": "boolean"
@@ -246,6 +242,118 @@
           ]
         }
       }
+    },
+    "python": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z0-9]+(-[a-z0-9]+)*$": {
+          "$comment": "The key is the canonicalized distribution name, as pip records it",
+          "type": "object",
+          "properties": {
+            "package_name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "license": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "requires_python": {
+              "type": "string"
+            },
+            "requires_qiskit": {
+              "type": "string"
+            },
+            "compatible_with_qiskit_v1": {
+              "type": "boolean"
+            },
+            "compatible_with_qiskit_v2": {
+              "type": "boolean"
+            },
+            "highest_supported_qiskit_release_date": {
+              "type": "string",
+              "format": "date"
+            },
+            "highest_supported_qiskit_version": {
+              "type": "string"
+            },
+            "build_backend": {
+              "type": "string"
+            },
+            "path": {
+              "$comment": "Directory holding the manifests, for a monorepo. Cannot be discovered, so it is declared",
+              "type": "string"
+            },
+            "source": {
+              "$comment": "Which files the values came from. requirements.txt is not a manifest: it appears only when it is where the dependencies were read",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "pyproject.toml",
+                  "setup.cfg",
+                  "setup.py",
+                  "requirements.txt"
+                ]
+              }
+            },
+            "deferred": {
+              "$comment": "Fields the build backend computes, so not readable from the manifests",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "package_name",
+            "source",
+            "deferred"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "requirements": {
+      "$comment": "What the repository's requirements files say about Qiskit, for a repository that declares no packaging manifest. Not distributions, so there is no name to key them by: an array with one entry per file that names qiskit, every one of them read by the check ups",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "$comment": "The requirements file these values were read from",
+            "type": "string",
+            "pattern": "^[^/]*[Rr]equirements[^/]*\\.txt$"
+          },
+          "requires_qiskit": {
+            "type": "string"
+          },
+          "compatible_with_qiskit_v1": {
+            "type": "boolean"
+          },
+          "compatible_with_qiskit_v2": {
+            "type": "boolean"
+          },
+          "highest_supported_qiskit_release_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "highest_supported_qiskit_version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "file",
+          "requires_qiskit"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "required": [
@@ -255,5 +363,3 @@
     "maturity"
   ]
 }
-
-

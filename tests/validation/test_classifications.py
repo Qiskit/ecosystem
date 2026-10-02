@@ -9,7 +9,7 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
-"""Tests for ecosystem/validation/test_classifications.py"""
+"""Tests for ecosystem/validation/checkup_classifications.py"""
 
 from unittest import TestCase
 from contextlib import redirect_stdout
@@ -19,7 +19,7 @@ from ecosystem.member import Member
 
 
 class ClassificationsTestCase(TestCase):
-    """Tests for ecosystem/validation/test_classifications.py"""
+    """Tests for ecosystem/validation/checkup_classifications.py"""
 
     def test_invalid_category(self):
         """Invalid categories should fail validation check [008]."""
@@ -30,7 +30,7 @@ class ClassificationsTestCase(TestCase):
             category="invalid category",
         )
         with redirect_stdout(StringIO()) as buffer:
-            member.update_checkups("test_classifications.py::test_valid_category")
+            member.update_checkups("checkup_classifications.py::checkup_008")
         self.assertIn("FAILED", buffer.getvalue())
         self.assertIn("008", member.checks)
 
@@ -43,7 +43,7 @@ class ClassificationsTestCase(TestCase):
             interfaces=["invalid interface"],
         )
         with redirect_stdout(StringIO()) as buffer:
-            member.update_checkups("test_classifications.py::test_valid_interfaces")
+            member.update_checkups("checkup_classifications.py::checkup_007")
         self.assertIn("FAILED", buffer.getvalue())
         self.assertIn("007", member.checks)
 
@@ -56,7 +56,7 @@ class ClassificationsTestCase(TestCase):
             labels=["invalid label"],
         )
         with redirect_stdout(StringIO()) as buffer:
-            member.update_checkups("test_classifications.py::test_valid_label")
+            member.update_checkups("checkup_classifications.py::checkup_009")
         self.assertIn("FAILED", buffer.getvalue())
         self.assertIn("009", member.checks)
 
@@ -69,6 +69,6 @@ class ClassificationsTestCase(TestCase):
             maturity="invalid maturity",
         )
         with redirect_stdout(StringIO()) as buffer:
-            member.update_checkups("test_classifications.py::test_004")
+            member.update_checkups("checkup_classifications.py::checkup_004")
         self.assertIn("FAILED", buffer.getvalue())
         self.assertIn("004", member.checks)

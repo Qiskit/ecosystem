@@ -55,7 +55,7 @@ All the check ups are declared in
 which is the single source of truth: the [check up list](checkups.md) and every project page are generated from it.
 Most check ups also declare a `checker`, which is the [PyTest](https://docs.pytest.org) test that implements them, under
 [`ecosystem/validation/`](https://github.com/Qiskit/ecosystem/tree/main/ecosystem/validation).
-For instance, `[G07]` is implemented by `test_github.py::test_G07`.
+For instance, `[G07]` is implemented by `checkup_github.py::checkup_G07`.
 
 ### Importance and cure period
 
