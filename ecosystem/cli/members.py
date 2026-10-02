@@ -693,6 +693,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         data_map will be added, even if they are empty"""
         filtered_data = {}
         for key, alias in data_map.items():
+            data = None
             if isinstance(alias, dict):
                 data = CliMembers.filter_data(member_dict, alias)
                 if data:
