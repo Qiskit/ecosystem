@@ -35,8 +35,8 @@ importance = "CRITICAL"
 title = "Be compatible with the Qiskit SDK v2 or newer"
 applies_to = "all"
 category = "GENERAL"
-related_to = ["PQ2", "S01"]
-description = "If the software depends on Qiskit SDK in some way, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies. A project that publishes no release answers this with the distribution its repository declares, which is [S01]."
+related_to = ["PQ2", "S01", "R01"]
+description = "If the software depends on Qiskit SDK in some way, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies. A project that publishes no release answers this with the distribution its repository declares, which is [S01], or with its requirements file, which is [R01]."
 importance = "CRITICAL"
 checker = "checkup_general.py::checkup_Q20"
 
@@ -373,6 +373,24 @@ affects = ['member.python.*.requires_qiskit']
 category = "BEST-PRACTICE"
 description = "The counterpart of [P10] for a distribution declared in the repository. As Qiskit follows semantic versioning, a dependency with no cap for the eventual next major version gives no guarantee that the distribution will keep working after a major release."
 checker = "checkup_python.py::checkup_S02"
+importance = "RECOMMENDATION"
+
+[R01]
+title = "Be installable with qiskit>=2.0 from the requirements file"
+applies_to = "repositories with a requirements file"
+affects = ['member.requirements.compatible_with_qiskit_v2']
+checker = "checkup_requirements.py::checkup_R01"
+category = "OUT-OF-DATE"
+description = "The counterpart of [S01] for a repository that declares no packaging manifest at all. There is no distribution to describe, so the requirements file is the only place the project says which Qiskit it runs against, and what it says should allow v2.0 or newer."
+importance = "IMPORTANT"
+
+[R02]
+title = "Have a cap on the major version for the qiskit dependency in the requirements file"
+applies_to = "repositories with a requirements file"
+affects = ['member.requirements.requires_qiskit']
+checker = "checkup_requirements.py::checkup_R02"
+category = "BEST-PRACTICE"
+description = "The counterpart of [S02] for a repository that declares no packaging manifest at all. As Qiskit follows semantic versioning, a dependency with no cap for the eventual next major version gives no guarantee that the code will keep working after a major release."
 importance = "RECOMMENDATION"
 
 [O02]

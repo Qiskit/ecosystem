@@ -504,6 +504,23 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             project.update_python()
             self.dao.update(project.name_id, python=project.python)
 
+    def update_requirements(self, name=None):
+        """
+        Updates what the member's requirements files declare about Qiskit.
+
+        Only repositories without a packaging manifest get the sections, one per file
+        that names qiskit; see `Member.update_requirements`.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+
+        It needs the GitHub section, so it runs after update_github.
+        """
+        for project in self.dao.get_all(name):
+            project.update_requirements()
+            self.dao.update(project.name_id, requirements=project.requirements)
+
     def update_checkups(self, name=None, checker=None, exclude: str = None):
         """
         Updates checkups data.

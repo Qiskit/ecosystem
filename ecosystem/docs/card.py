@@ -318,7 +318,7 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-scale-balance:",
                 f"**License** {self.license}",
-            )
+            ) + [""]
         return []
 
     def interfaces_lines(self):
@@ -637,5 +637,96 @@ class PipSourcePackageCard(Card):
                 "**computed at build time** "
                 + ", ".join(f"`{field}`" for field in self.deferred),
             ) + [""]
+        ret += qiskit_compatibility(self)
+        return ret
+
+
+class RequirementsCard(Card):
+    """Card for the qiskit requirement a repository declares in a requirements file.
+
+    Not a package card: there is no distribution, no version and nothing to
+    `pip install`. What it has to say is the file and the Qiskit compatibility that
+    follows from it.
+
+    One card per file, titled after it, because a member can declare several and the
+    filename is the only thing telling them apart.
+    """
+
+    def __init__(
+        self,
+        file=None,
+        owner=None,
+        repo=None,
+        requires_qiskit=None,
+        highest_supported_qiskit_release_date=None,
+        highest_supported_qiskit_version=None,
+        compatible_with_qiskit_v1=None,
+        compatible_with_qiskit_v2=None,
+    ):
+        self.file = file
+        self.owner = owner
+        self.repo = repo
+        self.requires_qiskit = requires_qiskit
+        self.highest_supported_qiskit_release_date = (
+            highest_supported_qiskit_release_date
+        )
+        self.highest_supported_qiskit_version = highest_supported_qiskit_version
+        self.compatible_with_qiskit_v1 = compatible_with_qiskit_v1
+        self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
+
+        super().__init__(
+            title=f"`{self.file}`",
+            title_icon="#### :material-file-document-outline:",
+            body_lines=self.body(),
+        )
+
+    @classmethod
+    def from_requirements_data(cls, requirements, project=None):
+        """Construct a card from a RequirementsData.
+
+        `owner` and `repo` are not part of the section, because they would duplicate
+        `[github]`, so they are read back from the project when there is one. Without
+        them the card leaves the file unlinked rather than guessing a URL.
+        """
+        github = getattr(project, "github", None)
+        return RequirementsCard(
+            file=requirements.file,
+            owner=getattr(github, "owner", None),
+            repo=getattr(github, "repo", None),
+            requires_qiskit=requirements.requires_qiskit,
+            highest_supported_qiskit_release_date=(
+                requirements.highest_supported_qiskit_release_date
+            ),
+            highest_supported_qiskit_version=requirements.highest_supported_qiskit_version,
+            compatible_with_qiskit_v1=requirements.compatible_with_qiskit_v1,
+            compatible_with_qiskit_v2=requirements.compatible_with_qiskit_v2,
+        )
+
+    @property
+    def file_url(self):
+        """The requirements file on github.com, or None without an owner and repo.
+
+        The branch is not stored anywhere, so the link goes through HEAD.
+        """
+        if not self.owner or not self.repo or not self.file:
+            return None
+        return f"https://github.com/{self.owner}/{self.repo}/blob/HEAD/{self.file}"
+
+    def body(self):
+        """Returns a list of lines for the card body.
+
+        As in `PipSourcePackageCard.body`, every bullet is followed by a blank line, or
+        Markdown reads the run of them as one wrapped paragraph.
+        """
+        declared_in = (
+            f"[`{self.file}`]({self.file_url})" if self.file_url else f"`{self.file}`"
+        )
+        ret = self.bullet(
+            ":material-file-document-outline:", f"**declared in** {declared_in}"
+        ) + [""]
+        ret += self.bullet(
+            ":material-information-outline:",
+            "**no packaging manifest** in the repository",
+        ) + [""]
         ret += qiskit_compatibility(self)
         return ret

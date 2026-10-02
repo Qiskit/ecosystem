@@ -26,13 +26,16 @@ from .serializable import JsonSerializable, parse_date
 from .github import GitHubData
 from .pypi import PyPIData
 from .python import PythonData
+from .requirements import RequirementsData
 from .check import CheckData
 from .badge import BadgeData
 from .request import URL
 from .validation import validate_member
 
 
-class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
+class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-methods
+    JsonSerializable
+):
     """main Members class that represent a single entry in the Ecosystem."""
 
     # How long an explanation for a failing check up (`check.xfailed`) coming from a
@@ -65,6 +68,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         pypi: dict[str, PyPIData] | None = None,
         julia: dict[str, JuliaData] | None = None,
         python: dict[str, PythonData] | None = None,
+        requirements: list[RequirementsData] | None = None,
         maturity: str | None = None,
         status: str | None = None,
     ):
@@ -100,6 +104,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.pypi = pypi or {}
         self.julia = julia or {}
         self.python = python or {}
+        self.requirements = requirements
         self.badge = badge
         self.maturity = maturity
         self.status = status
@@ -137,6 +142,12 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
 
         if "github" in filtered_dict:
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
+
+        if "requirements" in filtered_dict:
+            filtered_dict["requirements"] = [
+                RequirementsData.from_dict(requirements_dict)
+                for requirements_dict in filtered_dict["requirements"]
+            ]
 
         if "julia" in filtered_dict:
             for project_name, julia_dict in filtered_dict["julia"].items():
@@ -294,6 +305,27 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 continue
             refreshed[python_data.package_name] = python_data
         self.python = refreshed
+
+    def update_requirements(self):
+        """
+        Updates what the repository's requirements files say about Qiskit.
+
+        Only for a repository that declares no packaging manifest: one that does is
+        described by its `[python.*]` or `[pypi.*]` sections, and a requirements file
+        next to a manifest is usually a pinned environment rather than a declaration.
+        `RequirementsData.candidates` is what applies that rule.
+
+        A file is dropped unless it names qiskit.
+        """
+        if not self.github or not self.github.owner or not self.github.repo:
+            return
+
+        sections = []
+        for requirements in RequirementsData.from_github(self.github).candidates():
+            requirements.update_json()
+            if requirements.fetched and requirements.requires_qiskit:
+                sections.append(requirements)
+        self.requirements = sections or None
 
     @property
     def published_distributions(self):

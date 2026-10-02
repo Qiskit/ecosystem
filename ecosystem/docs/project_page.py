@@ -22,6 +22,7 @@ from ecosystem.docs.card import (
     URLsCard,
     PypiPackageCard,
     PipSourcePackageCard,
+    RequirementsCard,
 )
 from ecosystem.docs.checkup_page import CheckupAssets
 
@@ -46,6 +47,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         lines += self.badge()
         lines += self.checkups()
         lines += self.packages()
+        lines += self.requirements()
         return lines
 
     def general_summary(self):
@@ -145,6 +147,30 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         ret += packages.get("julia", [])
         ret += packages.get(None, [])
         return ret
+
+    def requirements(self):
+        """Requirements section: what the repository asks for, when it packages nothing.
+
+        Its own section rather than a card under Packages: a requirements file is not a
+        package, and a member only has this section when it declares no packaging
+        manifest, so for most of them the Packages heading above is absent entirely.
+
+        One card per file, in the order they are stored, which is by filename.
+        """
+        sections = self.project.requirements
+        if not sections:
+            return []
+        cards = []
+        for requirements in sections:
+            cards += RequirementsCard.from_requirements_data(
+                requirements, self.project
+            ).generate()
+        return (
+            ["\n---\n### :material-file-document-outline: Requirements\n"]
+            + ['<div class="grid cards" markdown>']
+            + cards
+            + ["</div>"]
+        )
 
     def write_page(self):
         """takes the lines and writes them down"""

@@ -445,7 +445,7 @@ class TestPythonDataRequirementsFallback(PythonDataTestCase):
                 return listing("requirements.txt", "README.md")
             return kwargs["parser"](REQUIREMENTS_TXT)
 
-        with patch("ecosystem.python.request_json", side_effect=fake_request):
+        with patch("ecosystem.github_contents.request_json", side_effect=fake_request):
             data = PythonData(owner=OWNER, repo=REPO)
             data.update_json()
 
@@ -463,7 +463,7 @@ class TestPythonDataRequirementsFallback(PythonDataTestCase):
                 return kwargs["parser"](SETUP_PY_DEFERRED)
             return kwargs["parser"](REQUIREMENTS_TXT)
 
-        with patch("ecosystem.python.request_json", side_effect=fake_request):
+        with patch("ecosystem.github_contents.request_json", side_effect=fake_request):
             data = PythonData(owner=OWNER, repo=REPO)
             data.update_json()
 
@@ -514,7 +514,7 @@ class TestPythonDataFetching(PythonDataTestCase):
                 return listing("pyproject.toml", "README.md")
             return kwargs["parser"](PYPROJECT)
 
-        with patch("ecosystem.python.request_json", side_effect=fake_request):
+        with patch("ecosystem.github_contents.request_json", side_effect=fake_request):
             data = PythonData(owner=OWNER, repo=REPO)
             data.update_json()
 
@@ -526,7 +526,7 @@ class TestPythonDataFetching(PythonDataTestCase):
     def test_directories_are_not_manifests(self):
         """A directory named `setup.py` would not be a manifest."""
         with patch(
-            "ecosystem.python.request_json",
+            "ecosystem.github_contents.request_json",
             return_value={"entries": [{"name": "setup.py", "type": "dir"}]},
         ):
             data = PythonData(owner=OWNER, repo=REPO)
@@ -541,7 +541,7 @@ class TestPythonDataFetching(PythonDataTestCase):
             requested.append(str(url))
             return listing()
 
-        with patch("ecosystem.python.request_json", side_effect=fake_request):
+        with patch("ecosystem.github_contents.request_json", side_effect=fake_request):
             PythonData(owner=OWNER, repo=REPO, path="packages/compiler").update_json()
 
         self.assertTrue(requested[0].endswith("/contents/packages/compiler/"))
@@ -589,7 +589,9 @@ class TestMemberUpdatePython(PythonDataTestCase):
     def test_section_is_created_from_the_repository(self):
         """The distribution name is discovered, so the updater creates the section."""
         member = self.member()
-        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+        with patch(
+            "ecosystem.github_contents.request_json", side_effect=self.fake_request()
+        ):
             member.update_python()
         self.assertEqual(["banana-compiler"], list(member.python))
         self.assertEqual("0.3.1", member.python["banana-compiler"].version)
@@ -597,7 +599,9 @@ class TestMemberUpdatePython(PythonDataTestCase):
     def test_no_section_for_a_distribution_that_is_published(self):
         """The release describes it already, so a section would just duplicate it."""
         member = self.member(pypi={"banana-compiler": PyPIData("banana-compiler")})
-        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+        with patch(
+            "ecosystem.github_contents.request_json", side_effect=self.fake_request()
+        ):
             member.update_python()
         self.assertEqual({}, member.python)
 
@@ -605,7 +609,9 @@ class TestMemberUpdatePython(PythonDataTestCase):
         """A repository can publish one distribution and declare another, unreleased
         one. Skipping on "publishes something" would lose the second."""
         member = self.member(pypi={"banana-cli": PyPIData("banana-cli")})
-        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+        with patch(
+            "ecosystem.github_contents.request_json", side_effect=self.fake_request()
+        ):
             member.update_python()
         self.assertEqual(["banana-compiler"], list(member.python))
 
@@ -613,7 +619,9 @@ class TestMemberUpdatePython(PythonDataTestCase):
         """`Banana_Compiler` in the manifest and `banana-compiler` on PyPI are one
         distribution, so the section is still not created."""
         member = self.member(pypi={"Banana_Compiler": PyPIData("Banana_Compiler")})
-        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+        with patch(
+            "ecosystem.github_contents.request_json", side_effect=self.fake_request()
+        ):
             member.update_python()
         self.assertEqual({}, member.python)
 
@@ -621,7 +629,9 @@ class TestMemberUpdatePython(PythonDataTestCase):
         """Only PyPI is consulted: a Julia package is a different artifact in a
         different registry, and says nothing about whether `pip` can find this one."""
         member = self.member(julia={"banana-compiler": JuliaData("banana-compiler")})
-        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+        with patch(
+            "ecosystem.github_contents.request_json", side_effect=self.fake_request()
+        ):
             member.update_python()
         self.assertEqual(["banana-compiler"], list(member.python))
 
@@ -631,21 +641,27 @@ class TestMemberUpdatePython(PythonDataTestCase):
             pypi={"banana-compiler": PyPIData("banana-compiler")},
             python={"banana-compiler": PythonData(package_name="banana-compiler")},
         )
-        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+        with patch(
+            "ecosystem.github_contents.request_json", side_effect=self.fake_request()
+        ):
             member.update_python()
         self.assertEqual("0.3.1", member.python["banana-compiler"].version)
 
     def test_section_is_rekeyed_when_the_distribution_is_renamed(self):
         """The key follows the name the repository declares now."""
         member = self.member(python={"old-name": PythonData(package_name="old-name")})
-        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+        with patch(
+            "ecosystem.github_contents.request_json", side_effect=self.fake_request()
+        ):
             member.update_python()
         self.assertEqual(["banana-compiler"], list(member.python))
 
     def test_section_is_dropped_when_nothing_declares_a_distribution(self):
         """A repository that stopped being a Python package loses its section."""
         member = self.member(python={"banana-compiler": PythonData(package_name="b")})
-        with patch("ecosystem.python.request_json", return_value=listing("README.md")):
+        with patch(
+            "ecosystem.github_contents.request_json", return_value=listing("README.md")
+        ):
             member.update_python()
         self.assertEqual({}, member.python)
 
@@ -657,7 +673,7 @@ class TestMemberUpdatePython(PythonDataTestCase):
             uuid="banana-uuid-0000-0000-000000000000",
             maturity="experimental",
         )
-        with patch("ecosystem.python.request_json") as request:
+        with patch("ecosystem.github_contents.request_json") as request:
             member.update_python()
         self.assertEqual({}, member.python)
         request.assert_not_called()
@@ -673,7 +689,7 @@ class TestMemberUpdatePython(PythonDataTestCase):
             requested.append(str(url))
             return self.fake_request()(url, **kwargs)
 
-        with patch("ecosystem.python.request_json", side_effect=request):
+        with patch("ecosystem.github_contents.request_json", side_effect=request):
             member.update_python()
         self.assertTrue(requested[0].endswith("/contents/packages/compiler/"))
         self.assertEqual("packages/compiler", member.python["banana-compiler"].path)
@@ -681,7 +697,9 @@ class TestMemberUpdatePython(PythonDataTestCase):
     def test_the_section_round_trips_through_from_dict(self):
         """A member read back from a toml file keeps its python section."""
         member = self.member()
-        with patch("ecosystem.python.request_json", side_effect=self.fake_request()):
+        with patch(
+            "ecosystem.github_contents.request_json", side_effect=self.fake_request()
+        ):
             member.update_python()
         restored = Member.from_dict(member.to_dict())
         self.assertEqual(
@@ -793,7 +811,7 @@ class TestUpsertSectionsPython(PythonDataTestCase):
         )
         member.upsert_sections()
         with patch(
-            "ecosystem.python.request_json",
+            "ecosystem.github_contents.request_json",
             side_effect=TestMemberUpdatePython.fake_request(),
         ):
             member.update_python()

@@ -9,6 +9,14 @@ packages = []
 uuid = "5b05d5a3-26c6-4487-91cc-3ca3aeaf0d6b"
 maturity = "production-ready"
 
+[[requirements]]
+file = "requirements.txt"
+requires_qiskit = ">=2.2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+
 [github]
 url = "https://github.com/TownsendBrown/QASM-Runner-for-IBM-platforms"
 owner = "TownsendBrown"
