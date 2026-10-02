@@ -28,6 +28,14 @@ created_at = 2026-09-14
 last_commit = 2026-09-28
 last_activity = 2026-09-28
 
+[requirements]
+file = "requirements.txt"
+requires_qiskit = "~=2.5.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+
 [badge]
 url = "https://qisk.it/e-68e87191"
 style = "flat"

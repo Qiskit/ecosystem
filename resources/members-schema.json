@@ -318,6 +318,40 @@
         }
       },
       "additionalProperties": false
+    },
+    "requirements": {
+      "$comment": "What the repository's requirements file says about Qiskit, for a repository that declares no packaging manifest. Not a distribution, so it is one table with no key",
+      "type": "object",
+      "properties": {
+        "file": {
+          "$comment": "The requirements file the values were read from",
+          "type": "string",
+          "enum": [
+            "requirements.txt"
+          ]
+        },
+        "requires_qiskit": {
+          "type": "string"
+        },
+        "compatible_with_qiskit_v1": {
+          "type": "boolean"
+        },
+        "compatible_with_qiskit_v2": {
+          "type": "boolean"
+        },
+        "highest_supported_qiskit_release_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "highest_supported_qiskit_version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file",
+        "requires_qiskit"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

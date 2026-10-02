@@ -37,23 +37,19 @@ guessed at.
 
 from ast import parse as ast_parse, walk as ast_walk, Call, Name, Attribute
 from ast import literal_eval
-from os import getenv
 from configparser import ConfigParser, Error as ConfigParserError
 from io import StringIO
-from json import loads as json_loads
 import tomllib
 
-from packaging.requirements import Requirement, InvalidRequirement
 from packaging.utils import canonicalize_name
 
 from .license import License
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
-from .qiskit_requirement import QiskitRequirementMixin
-from .request import request_json
+from .github_contents import GitHubContentsMixin
+from .qiskit_requirement import QiskitRequirementMixin, find_requires_qiskit, UNSET
 
 #: Sentinel for "not computed yet", so that a cached None is not recomputed.
-_UNSET = object()
 
 #: Manifests that can carry packaging metadata, in precedence order.
 MANIFESTS = ("pyproject.toml", "setup.cfg", "setup.py")
@@ -133,7 +129,7 @@ def parse_setup_py(text: str) -> dict:
 
 
 class PythonData(
-    QiskitRequirementMixin, JsonSerializable
+    GitHubContentsMixin, QiskitRequirementMixin, JsonSerializable
 ):  # pylint: disable=too-many-public-methods
     """
     The packaging metadata a Python project declares in its own source tree.
@@ -187,7 +183,7 @@ class PythonData(
         self._setup_py = None
         self._requirements = None
         self._all_qiskit_versions = None
-        self._requires_qiskit = _UNSET
+        self._requires_qiskit = UNSET
 
     def __repr__(self):
         return str(self.to_dict())
@@ -271,7 +267,7 @@ class PythonData(
             "setup.py": parse_setup_py,
         }
         fetched = {
-            filename: self._request_manifest(filename, parsers[filename])
+            filename: self._request_file(filename, parsers[filename])
             for filename in MANIFESTS
             if filename in present
         }
@@ -281,54 +277,14 @@ class PythonData(
         # wrapped in a dict like the listing is, because `request_json` adds its
         # own metadata keys to whatever the parser returns
         requirements = (
-            self._request_manifest(
+            self._request_file(
                 REQUIREMENTS, lambda text: {"requirements": parse_requirements(text)}
             )
             if REQUIREMENTS in present
             else None
         )
         self._requirements = (requirements or {}).get("requirements")
-        self._requires_qiskit = _UNSET
-
-    @property
-    def _contents_url(self):
-        """Contents API endpoint for the directory holding the manifests."""
-        directory = f"{self.path.strip('/')}/" if self.path else ""
-        return f"api.github.com/repos/{self.owner}/{self.repo}/contents/{directory}"
-
-    def _request_listing(self):
-        """Names of the files in the manifest directory.
-
-        Listing first means a project without, say, a setup.cfg costs no request
-        for it. Asking for each manifest blindly would raise (and log an error)
-        three times for a repository that has none, which is a normal thing for
-        a repository to be.
-        """
-        listing = request_json(
-            self._contents_url,
-            parser=lambda text: {"entries": json_loads(text)},
-            token=getenv("GH_TOKEN"),
-        )
-        return {
-            entry["name"]
-            for entry in listing["entries"]
-            if isinstance(entry, dict) and entry.get("type") == "file"
-        }
-
-    def _request_manifest(self, filename, parser):
-        """Fetches one manifest as raw text.
-
-        The `raw` media type makes the contents API return the file itself
-        instead of a JSON envelope with base64, so `parser` can be a plain
-        text parser. `request_json` caches for a day via requests_cache.
-        """
-        return request_json(
-            f"{self._contents_url}{filename}",
-            headers={"Accept": "application/vnd.github.raw"},
-            content_handler=lambda content: content.decode("utf-8"),
-            parser=parser,
-            token=getenv("GH_TOKEN"),
-        )
+        self._requires_qiskit = UNSET
 
     @property
     def fetched(self):
@@ -538,31 +494,10 @@ class PythonData(
         """
         if not self.fetched:
             return self._kwargs.get("requires_qiskit")
-        if self._requires_qiskit is not _UNSET:
+        if self._requires_qiskit is not UNSET:
             # The compat properties read this repeatedly, and a miss logs a warning
             return self._requires_qiskit
-        self._requires_qiskit = self._find_requires_qiskit()
+        self._requires_qiskit = find_requires_qiskit(
+            self.dependencies, self.package_name
+        )
         return self._requires_qiskit
-
-    def _find_requires_qiskit(self):
-        """Looks for a "qiskit" requirement among the declared dependencies."""
-        for requirement_str in self.dependencies:
-            try:
-                requirement = Requirement(requirement_str)
-            except InvalidRequirement:
-                logger.warning(
-                    "%s declares an unparseable requirement: %r",
-                    self.package_name,
-                    requirement_str,
-                )
-                continue
-            if canonicalize_name(requirement.name) != "qiskit":
-                continue
-            if len(requirement.specifier):
-                return str(requirement.specifier)
-            logger.warning(
-                '%s depends on qiskit but with empty specifier. Forcing one, ">=0"',
-                self.package_name,
-            )
-            return ">=0"
-        return None

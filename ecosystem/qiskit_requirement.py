@@ -23,7 +23,9 @@ from functools import cached_property
 from os import path
 import json
 
+from packaging.requirements import Requirement, InvalidRequirement
 from packaging.specifiers import SpecifierSet
+from packaging.utils import canonicalize_name
 from packaging.version import Version
 
 from jsonpath import findall
@@ -31,6 +33,43 @@ from jsonpath import findall
 from .serializable import parse_date
 from .error_handling import EcosystemError, logger
 from .request import request_json
+
+#: "not looked up yet", as distinct from "looked up, there is no qiskit requirement".
+#: `find_requires_qiskit` warns on a miss, so its callers cache both outcomes.
+UNSET = object()
+
+
+def find_requires_qiskit(dependencies, declared_by=None):
+    """The specifier of the "qiskit" requirement among `dependencies`, or None.
+
+    `dependencies` is a list of PEP 508 strings, wherever they were declared: a
+    manifest, a requirements file or a registry. `declared_by` only names what is
+    being read, for the warnings.
+
+    A bare `qiskit` with no specifier is reported as `">=0"`, because "depends on
+    qiskit without saying which" is a different thing from "does not depend on
+    qiskit", and only the specifier form survives into the stored section.
+    """
+    for requirement_str in dependencies:
+        try:
+            requirement = Requirement(requirement_str)
+        except InvalidRequirement:
+            logger.warning(
+                "%s declares an unparseable requirement: %r",
+                declared_by,
+                requirement_str,
+            )
+            continue
+        if canonicalize_name(requirement.name) != "qiskit":
+            continue
+        if len(requirement.specifier):
+            return str(requirement.specifier)
+        logger.warning(
+            '%s depends on qiskit but with empty specifier. Forcing one, ">=0"',
+            declared_by,
+        )
+        return ">=0"
+    return None
 
 
 class QiskitRequirementMixin:

@@ -47,7 +47,11 @@ def must_pass_all_requierements(requierements, failed_checkups, msg):
 
 
 @pytest.mark.order(
-    after=["checkup_pypi.py::checkup_PQ2", "checkup_python.py::checkup_S01"]
+    after=[
+        "checkup_pypi.py::checkup_PQ2",
+        "checkup_python.py::checkup_S01",
+        "checkup_requirements.py::checkup_R01",
+    ]
 )
 def checkup_Q20(request, pytestconfig):
     """Be compatible with the Qiskit SDK v2 or newer"""
