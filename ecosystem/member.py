@@ -315,10 +315,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         next to a manifest is usually a pinned environment rather than a declaration.
         `RequirementsData.candidates` is what applies that rule.
 
-        A file is dropped unless it names qiskit, because the Qiskit requirement is the
-        only thing these sections are kept for — which is why a repository with eight
-        requirements files can still end up with one table. Setting the whole thing to
-        None is what removes stale tables: `to_dict` leaves out what is None.
+        A file is dropped unless it names qiskit.
         """
         if not self.github or not self.github.owner or not self.github.repo:
             return

@@ -38,11 +38,7 @@ class RequirementsCheckupsTestCase(TestCase):
         keywords of the single `requirements.txt` section most of these need.
         """
         member = Member(
-            name="banana",
-            url="https://github.com/qiskit-community/banana-notebooks",
-            description="Banana description.",
-            license="Apache-2.0",
-            maturity="experimental",
+            name="banana", url="https://github.com/qiskit-community/banana-notebooks"
         )
         member.github = GitHubData(owner="qiskit-community", repo="banana-notebooks")
         member.requirements = list(sections) or [
@@ -70,7 +66,6 @@ class TestRequirementsCheckups(RequirementsCheckupsTestCase):
         member = Member(
             name="banana",
             url="https://github.com/qiskit-community/banana-notebooks",
-            maturity="experimental",
         )
         with redirect_stdout(StringIO()):
             member.update_checkups("checkup_requirements.py")

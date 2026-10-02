@@ -40,11 +40,6 @@ numpy
 matplotlib
 """
 
-QISKIT_VERSIONS = {
-    "1.0.0": {"upload_at": date(2024, 2, 15)},
-    "2.1.0": {"upload_at": date(2026, 6, 10)},
-}
-
 
 def listing(*names):
     """A contents-API directory listing holding `names` as files."""
@@ -79,7 +74,12 @@ class RequirementsTestCase(TestCase):
     def setUp(self):
         super().setUp()
         patcher = patch.object(
-            RequirementsData, "all_qiskit_versions", return_value=QISKIT_VERSIONS
+            RequirementsData,
+            "all_qiskit_versions",
+            return_value={
+                "1.0.0": {"upload_at": date(2024, 2, 15)},
+                "2.1.0": {"upload_at": date(2026, 6, 10)},
+            },
         )
         patcher.start()
         self.addCleanup(patcher.stop)
@@ -240,7 +240,7 @@ class TestRequirementsDataRequiresQiskit(RequirementsTestCase):
         """The compat properties read it repeatedly, and a miss logs a warning."""
         data = self.fetched(contents=NO_QISKIT_TXT)
         with patch(
-            "ecosystem.requirements.find_requires_qiskit", return_value=None
+            "ecosystem.qiskit_requirement.find_requires_qiskit", return_value=None
         ) as lookup:
             self.assertIsNone(data.compatible_with_qiskit_v1)
             self.assertIsNone(data.compatible_with_qiskit_v2)
@@ -270,9 +270,9 @@ class TestRequirementsDataRequiresQiskit(RequirementsTestCase):
             self.fetched().to_dict(),
         )
 
-    def test_there_is_no_distribution_to_name(self):
-        """A repository-level section is about the repository, not a package."""
-        self.assertIsNone(self.fetched().package_name)
+    def test_the_warnings_name_the_repository(self):
+        """There is no distribution here, so the repository is what gets named."""
+        self.assertEqual(f"{OWNER}/{REPO}", self.fetched().declared_by)
 
 
 class TestRequirementsDataRoundTrip(RequirementsTestCase):

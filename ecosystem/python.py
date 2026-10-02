@@ -47,9 +47,7 @@ from .license import License
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
 from .github_contents import GitHubContentsMixin
-from .qiskit_requirement import QiskitRequirementMixin, find_requires_qiskit, UNSET
-
-#: Sentinel for "not computed yet", so that a cached None is not recomputed.
+from .qiskit_requirement import QiskitRequirementMixin
 
 #: Manifests that can carry packaging metadata, in precedence order.
 MANIFESTS = ("pyproject.toml", "setup.cfg", "setup.py")
@@ -183,7 +181,6 @@ class PythonData(
         self._setup_py = None
         self._requirements = None
         self._all_qiskit_versions = None
-        self._requires_qiskit = UNSET
 
     def __repr__(self):
         return str(self.to_dict())
@@ -284,7 +281,6 @@ class PythonData(
             else None
         )
         self._requirements = (requirements or {}).get("requirements")
-        self._requires_qiskit = UNSET
 
     @property
     def fetched(self):
@@ -485,19 +481,6 @@ class PythonData(
         return [], None
 
     @property
-    def requires_qiskit(self):
-        """String with the specifier for the "qiskit" dependency.
-
-        None when the project does not depend on Qiskit, and when it defers its
-        dependencies to the build backend without a requirements.txt to fall back
-        on — `deferred` tells those apart.
-        """
-        if not self.fetched:
-            return self._kwargs.get("requires_qiskit")
-        if self._requires_qiskit is not UNSET:
-            # The compat properties read this repeatedly, and a miss logs a warning
-            return self._requires_qiskit
-        self._requires_qiskit = find_requires_qiskit(
-            self.dependencies, self.package_name
-        )
-        return self._requires_qiskit
+    def declared_by(self):
+        """What the mixin names in its warnings: the distribution being read."""
+        return self.package_name

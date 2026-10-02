@@ -52,7 +52,7 @@ from fnmatch import fnmatchcase
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError
 from .github_contents import GitHubContentsMixin
-from .qiskit_requirement import QiskitRequirementMixin, find_requires_qiskit, UNSET
+from .qiskit_requirement import QiskitRequirementMixin
 from .python import MANIFESTS, parse_requirements
 
 #: Filenames that count as a requirements file, as a `fnmatch` pattern matched against
@@ -94,7 +94,6 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
         self._kwargs = kwargs or {}
         self._requirements = None
         self._all_qiskit_versions = None
-        self._requires_qiskit = UNSET
 
     def __repr__(self):
         return str(self.to_dict())
@@ -108,13 +107,14 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
         return cls(owner=github_data.owner, repo=github_data.repo)
 
     @property
-    def package_name(self):
-        """There is no distribution here, so there is no name for one.
+    def dependencies(self):
+        """The requirement lines read from the file, for the mixin to find qiskit in."""
+        return self._requirements or []
 
-        `find_requires_qiskit` and the mixin name what they are reading in their
-        warnings, and this is the honest answer for a repository-level section.
-        """
-        return None
+    @property
+    def declared_by(self):
+        """What the mixin names in its warnings: no distribution here, so the repo."""
+        return f"{self.owner}/{self.repo}"
 
     def candidates(self):
         """The requirements files of the repository, as unfetched sections.
@@ -154,26 +154,8 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
             self.file, lambda text: {"requirements": parse_requirements(text)}
         )
         self._requirements = (fetched or {}).get("requirements")
-        self._requires_qiskit = UNSET
 
     @property
     def fetched(self):
         """True once `update_json` has read the requirements file."""
         return self._requirements is not None
-
-    @property
-    def requires_qiskit(self):
-        """String with the specifier for the "qiskit" dependency.
-
-        None when the requirements file does not mention qiskit, which is what makes
-        the section not worth storing.
-        """
-        if not self.fetched:
-            return self._kwargs.get("requires_qiskit")
-        if self._requires_qiskit is not UNSET:
-            # The compat properties read this repeatedly, and a miss logs a warning
-            return self._requires_qiskit
-        self._requires_qiskit = find_requires_qiskit(
-            self._requirements, f"{self.owner}/{self.repo}"
-        )
-        return self._requires_qiskit
