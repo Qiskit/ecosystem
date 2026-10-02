@@ -318,7 +318,7 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-scale-balance:",
                 f"**License** {self.license}",
-            )
+            ) + [""]
         return []
 
     def interfaces_lines(self):

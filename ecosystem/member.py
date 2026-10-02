@@ -26,7 +26,7 @@ from .serializable import JsonSerializable, parse_date
 from .github import GitHubData
 from .pypi import PyPIData
 from .python import PythonData
-from .requirements import RequirementsData
+from .requirements import RequirementsData, mark_primary
 from .check import CheckData
 from .badge import BadgeData
 from .request import URL
@@ -68,7 +68,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         pypi: dict[str, PyPIData] | None = None,
         julia: dict[str, JuliaData] | None = None,
         python: dict[str, PythonData] | None = None,
-        requirements: RequirementsData | None = None,
+        requirements: list[RequirementsData] | None = None,
         maturity: str | None = None,
         status: str | None = None,
     ):
@@ -144,9 +144,10 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
 
         if "requirements" in filtered_dict:
-            filtered_dict["requirements"] = RequirementsData.from_dict(
-                filtered_dict["requirements"]
-            )
+            filtered_dict["requirements"] = [
+                RequirementsData.from_dict(requirements_dict)
+                for requirements_dict in filtered_dict["requirements"]
+            ]
 
         if "julia" in filtered_dict:
             for project_name, julia_dict in filtered_dict["julia"].items():
@@ -307,27 +308,28 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
     def update_requirements(self):
         """
-        Updates what the repository's requirements file says about Qiskit.
+        Updates what the repository's requirements files say about Qiskit.
 
         Only for a repository that declares no packaging manifest: one that does is
         described by its `[python.*]` or `[pypi.*]` sections, and a requirements file
         next to a manifest is usually a pinned environment rather than a declaration.
-        `RequirementsData.update_json` is what applies that rule.
+        `RequirementsData.candidates` is what applies that rule.
 
-        The section is dropped unless the file names qiskit, because the Qiskit
-        requirement is the only thing it is kept for. Setting it to None is what
-        removes a stale table: `to_dict` leaves out what is None.
+        A file is dropped unless it names qiskit, because the Qiskit requirement is the
+        only thing these sections are kept for — which is why a repository with eight
+        requirements files can still end up with one table. Setting the whole thing to
+        None is what removes stale tables: `to_dict` leaves out what is None.
         """
         if not self.github or not self.github.owner or not self.github.repo:
             return
 
-        requirements = RequirementsData.from_github(self.github)
-        requirements.update_json()
-        self.requirements = (
-            requirements
-            if requirements.fetched and requirements.requires_qiskit
-            else None
-        )
+        sections = []
+        for requirements in RequirementsData.from_github(self.github).candidates():
+            requirements.update_json()
+            if requirements.fetched and requirements.requires_qiskit:
+                sections.append(requirements)
+        mark_primary(sections)
+        self.requirements = sections or None
 
     @property
     def published_distributions(self):
