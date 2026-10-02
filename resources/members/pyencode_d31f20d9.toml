@@ -12,6 +12,17 @@ labels = [
 interfaces = ["Python"]
 category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2603.28259"
-packages = ["https://github.com/UW-ERSL/PyEncode/blob/main/setup.py"]
+packages = []
 uuid = "d31f20d9-ca23-4c27-a3bb-2bd37327e2b9"
 maturity = "production-ready"
+
+[github]
+owner = "UW-ERSL"
+repo = "PyEncode"
+
+[badge]
+style = "flat"
+
+[python.pyencode]
+source = []
+deferred = []
