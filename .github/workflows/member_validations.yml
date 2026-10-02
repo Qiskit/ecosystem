@@ -78,23 +78,6 @@ jobs:
           else
             git commit -am "Update data" --allow-empty
           fi
-      - name: Create badge
-        if: github.event.review.state == 'approved'
-        env:
-          BITLY_TOKEN: ${{ secrets.BITLY_TOKEN }}
-        run: python manager.py members update_badge
-
-      - name: Run taplo formater on TOML files
-        run: taplo fmt resources/members/*.toml
-
-      - name: Commit badge
-        if: success()
-        run: |
-          if git diff --exit-code; then
-            echo "No badge to commit"
-          else
-            git commit -am "Update badge" --allow-empty
-          fi
       - name: Push sections
         if: always()
         run: |

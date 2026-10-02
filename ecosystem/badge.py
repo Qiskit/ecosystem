@@ -12,6 +12,7 @@
 
 """Badge section."""
 
+import os
 from dataclasses import dataclass
 from typing import Optional
 
@@ -58,12 +59,17 @@ class BadgeData(JsonSerializable):
         """If not there yet, creates a new Bitly link for the badge"""
         short_url = f"https://qisk.it/e-{short_uuid}"
 
-        qisk_dot_it_link_check = request_json(
-            short_url,
-            parser=lambda x: {
-                "exists": x.startswith("<svg xmlns") and x.endswith("</svg>")
-            },
-        )
+        try:
+            qisk_dot_it_link_check = request_json(
+                short_url,
+                parser=lambda x: {
+                    "exists": x.startswith("<svg xmlns") and x.endswith("</svg>")
+                },
+            )
+        except EcosystemError:
+            # There is a badge section (created by `ci create_sections`) but no short link
+            # behind it yet, which is the case for a member that was just accepted.
+            qisk_dot_it_link_check = {"exists": False}
         if qisk_dot_it_link_check["exists"]:
             self.url = short_url
         else:
@@ -86,7 +92,11 @@ class BadgeData(JsonSerializable):
             "tags": ["qiskit ecosystem badge", "permanent _do NOT remove_"],
         }
         try:
-            response = request_json("https://api-ssl.bitly.com/v4/bitlinks", post=data)
+            response = request_json(
+                "https://api-ssl.bitly.com/v4/bitlinks",
+                post=data,
+                token=os.getenv("BITLY_TOKEN"),
+            )
         except EcosystemError as err:
             if "Bad Request (400)" in err.message:
                 logger.info(

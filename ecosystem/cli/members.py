@@ -22,14 +22,24 @@ from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.check import ChecksToml, parse_exclusions
-from ecosystem.docs import write_if_changed
+from ecosystem.docs import anchor, plural, write_if_changed
+from ecosystem.docs.project_table import (
+    CATEGORY,
+    CHECKUPS,
+    GITHUB_ORG,
+    LAST_COMMIT,
+    MATURITY,
+    STATUS,
+    classification_columns,
+    classification_table,
+)
 from ecosystem.docs.checkup_page import CheckupAssets
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
 from ecosystem.error_handling import logger
 
 
-class CliMembers:
+class CliMembers:  # pylint: disable=too-many-public-methods
     """CliMembers class.
     Entrypoint for all CLI members commands.
 
@@ -136,7 +146,7 @@ class CliMembers:
                 continue
 
             is_alumni = None
-            if project.status == "Alumni":
+            if project.is_alumni:
                 is_alumni = alumni_label
 
             status_color = None
@@ -175,19 +185,8 @@ class CliMembers:
         self.update_assets_categories(projects_per_classification["category"])
         self.update_assets_labels(projects_per_classification["labels"])
         self.update_assets_interfaces(projects_per_classification["interfaces"])
+        self.update_assets_ibm_maintained()
         self.update_assets_checkups()
-
-    def _projects_per_checkup(self):
-        """Two dicts checkup_id -> [Member], for the projects that have the check up recorded:
-        the ones it is pending on, and the ones with a valid explanation for it."""
-        pending = {id_: [] for id_ in self.checks_toml.checkups}
-        explained = {id_: [] for id_ in self.checks_toml.checkups}
-        for project in self.dao.get_all():
-            for checkup_id, checkup in project.checks.items():
-                where = explained if checkup.xfail_applies else pending
-                # setdefault: a member file may name a check up that checks.toml no longer has
-                where.setdefault(checkup_id, []).append(project)
-        return pending, explained
 
     def update_assets_checkups(self):
         """Updates the check up fragments in docs/assets/, from resources/checks.toml and the
@@ -233,19 +232,23 @@ class CliMembers:
         return classification_summary
 
     def update_assets_status(self, projects):
-        """Updates status.json and status.md docs/assets/"""
+        """Updates status.json and the status fragments in docs/assets/"""
         projects["Member"] += projects[None]
         del projects[None]
 
         self.update_assets_classification("status", "status classification", projects)
         assets_dir = os.path.join(self.current_dir, "docs", "assets")
 
-        def writelines(classification, lines):
+        def writelines(classification, text):
             write_if_changed(
                 os.path.join(assets_dir, f"{slugify(classification)}.md"),
-                "".join(lines),
+                text,
             )
 
+        # a section of this page is about one status, so the status is not a column. What a
+        # reader is after next is the maturity the project declares and how recently it was
+        # touched; for the two statuses that come from a failing check up, which check up it
+        # is takes that place.
         for classification in [
             "Member",
             "Qiskit Project",
@@ -253,15 +256,24 @@ class CliMembers:
             "Under revision",
             "Alumni",
         ]:
-            lines = [
-                f'???{"+" if classification in ["Under revision", "Alumni"] else ""} note '
-                f'"There are {len(projects[classification])} projects with this classification"'
-            ]
-            lines += [
-                f"\n     - [{p.name}](p/{p.short_uuid}.md)"
-                for p in projects[classification]
-            ]
-            writelines(classification, lines)
+            from_checkup = classification in ["Under revision", "Alumni"]
+            columns = [MATURITY, CATEGORY]
+            columns += [CHECKUPS] if from_checkup else [LAST_COMMIT]
+            writelines(
+                classification,
+                "\n".join(
+                    classification_table(
+                        projects[classification],
+                        columns,
+                        summary=f"There are {plural(projects[classification])} "
+                        "with this classification",
+                        # only the projects under revision are open by default: that is
+                        # the list with something pending on it. Every other one, the alumni
+                        # included, stays folded.
+                        open_by_default=classification == "Under revision",
+                    )
+                ),
+            )
 
         # "Early Project" and "Very Early Project" only differ on the age of the
         # repository, so they share a single table (youngest project first).
@@ -282,23 +294,43 @@ class CliMembers:
                 f"| {getattr(p.github, 'created_at', '')} | {p.age_in_months} |"
                 for p in early_projects
             ]
-        writelines("early-projects", lines)
+        writelines("early-projects", "".join(lines))
 
     def update_assets_maturity(self, projects):
-        """Updates maturity.json and maturity.md docs/assets/"""
+        """Updates maturity.json and maturity.md in docs/assets/"""
         self.update_assets_classification("maturity", "maturity level", projects)
 
     def update_assets_categories(self, projects):
-        """Updates category.json and categories.md docs/assets/"""
+        """Updates category.json and category.md in docs/assets/"""
         self.update_assets_classification("category", "category", projects)
 
     def update_assets_labels(self, projects):
-        """Updates labels.json and labels.md docs/assets/"""
+        """Updates labels.json and labels.md in docs/assets/"""
         self.update_assets_classification("labels", "label", projects)
 
     def update_assets_interfaces(self, projects):
-        """Updates interfaces.json and interfaces.md docs/assets/"""
+        """Updates interfaces.json and interfaces.md in docs/assets/"""
         self.update_assets_classification("interfaces", "interface", projects)
+
+    def update_assets_ibm_maintained(self):
+        """Updates ibm-maintained.md in docs/assets/
+
+        `member.ibm_maintained` is a flag and not a value in classifications.toml, so it has
+        no page of its own: the list goes to the section about it in the classification
+        summary page."""
+        projects = [p for p in self.dao.get_all() if p.ibm_maintained]
+        # the GitHub organization is the column to have here: check up [I00] expects an
+        # IBM-maintained project to live in an IBM-controlled one
+        write_if_changed(
+            os.path.join(self.current_dir, "docs", "assets", "ibm-maintained.md"),
+            "\n".join(
+                classification_table(
+                    projects,
+                    [MATURITY, STATUS, GITHUB_ORG, LAST_COMMIT],
+                    summary=f"There are {plural(projects)} with this classification",
+                )
+            ),
+        )
 
     def update_assets_classification(
         self, classification, classification_singular, projects
@@ -333,7 +365,7 @@ class CliMembers:
             )
             short_description.append(
                 {
-                    classification_singular.capitalize(): f"[{name}](#{slugify(name, '-')})",
+                    classification_singular.capitalize(): f"[{name}](#{anchor(name)})",
                     "Short description": description or "",
                 }
             )
@@ -344,16 +376,18 @@ class CliMembers:
                 # the anchor is set explicitly: the id that the table of contents would
                 # derive drops characters that `slugify` keeps, and then the link in the
                 # summary table above does not resolve (e.g. `Game/Educational`)
-                f"## {name} {{ #{slugify(name, '-')} }}",
+                f"### {name} {{ #{anchor(name)} }}",
                 "\n\n",
             ]
             if len(projects[name]):
                 lines.append(
-                    f'??? note "There are {len(projects[name])} projects with this classification"'
+                    "\n".join(
+                        classification_table(
+                            projects[name],
+                            classification_columns(classification, name),
+                        )
+                    )
                 )
-                lines += [
-                    f"\n     - [{p.name}](p/{p.short_uuid}.md)" for p in projects[name]
-                ]
             else:
                 lines.append("**No project with this classification**")
             lines += ["\n\n", description, "\n\n"]
@@ -368,9 +402,9 @@ class CliMembers:
         )
         projects = []
         for project in self.dao.get_all():
-            if project.badge is None:
+            if project.badge is None or project.badge.url is None:
                 self.logger.warning(
-                    "badge not found for %s (%s)",
+                    "badge link not created yet for %s (%s)",
                     project.name_id,
                     project.name,
                 )
@@ -444,13 +478,44 @@ class CliMembers:
             project.update_julia()
             self.dao.update(project.name_id, julia=project.julia)
 
+    def update_python(self, name=None):
+        """
+        Updates the Python metadata declared in the member's own repository.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+
+        It needs the GitHub section, so it runs after update_github.
+        """
+        for project in self.dao.get_all(name):
+            project.update_python()
+            self.dao.update(project.name_id, python=project.python)
+
+    def update_requirements(self, name=None):
+        """
+        Updates what the member's requirements files declare about Qiskit.
+
+        Only repositories without a packaging manifest get the sections, one per file
+        that names qiskit; see `Member.update_requirements`.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+
+        It needs the GitHub section, so it runs after update_github.
+        """
+        for project in self.dao.get_all(name):
+            project.update_requirements()
+            self.dao.update(project.name_id, requirements=project.requirements)
+
     def update_checkups(self, name=None, checker=None, exclude: str = None):
         """
         Updates checkups data.
         Args:
             name: If not given, runs on all the members. Otherwise, all the members with `name_id`
              that contains <name> as substring are checked.
-            checker: It can be something like test_classifications.py::test_004 or nothing
+            checker: It can be something like checkup_classifications.py::checkup_004 or nothing
             exclude: comma-separated list of membership statuses to leave out, like `-e alumni`.
               Projects already in one of them keep the check up data they have. The values are
               slugified, as in `update_status`, but only statuses have an effect here: this
@@ -546,7 +611,7 @@ class CliMembers:
           - "(Very) Early Project": if the project is young and has no pending check up
           - "Unmaintained": if the project declares no maintenance expectations (maturity in
             `as-is` or `deprecated`) and has no pending check up
-        See docs/status.md
+        See the Status section of docs/classifications.md
 
         Args:
             name: project to udpate. None (default) if all of them.
@@ -616,6 +681,9 @@ class CliMembers:
         data_map will be added, even if they are empty"""
         filtered_data = {}
         for key, alias in data_map.items():
+            # reset per key: a priority list that resolves to nothing leaves `data` alone,
+            # and the value of the previous key would be exported under this one
+            data = None
             if isinstance(alias, dict):
                 data = CliMembers.filter_data(member_dict, alias)
                 if data:
@@ -623,7 +691,7 @@ class CliMembers:
             elif isinstance(alias, tuple):
                 if len(alias) != 2:
                     raise ValueError(
-                        "%s malformed. "
+                        f"{alias} malformed. "
                         "It needs to have exactly two elements,one "
                         "with the query, the otherone with the selector"
                     )
@@ -704,7 +772,7 @@ class CliMembers:
         #  "Subjects": [{"name": ..., "description": ...}]}
         labels_data_to_export = {
             "Types": (
-                "categories.*",
+                "category.*",
                 [
                     "name",
                     "description",

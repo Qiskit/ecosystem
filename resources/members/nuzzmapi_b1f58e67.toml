@@ -12,6 +12,14 @@ uuid = "b1f58e67-ab64-4d3c-96dd-0fc6fbba854b"
 maturity = "bugfixing only"
 status = "Very Early Project"
 
+[[requirements]]
+file = "requirements.txt"
+requires_qiskit = "==2.1.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-08-19
+highest_supported_qiskit_version = "2.1.2"
+
 [github]
 url = "https://github.com/okudat9/nu-zz-map-iqm"
 owner = "okudat9"

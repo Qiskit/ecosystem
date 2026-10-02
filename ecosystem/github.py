@@ -12,6 +12,7 @@
 
 """GitHub section."""
 
+from os import getenv
 from re import match
 from functools import reduce
 from jsonpath import findall
@@ -127,9 +128,12 @@ class GitHubData(JsonSerializable):
           - api.github.com/networks/{self.owner}/{self.repo}/events
 
         """
-        self._json_repo = request_json(f"api.github.com/repos/{self.owner}/{self.repo}")
+        gh_token = getenv("GH_TOKEN")
+        self._json_repo = request_json(
+            f"api.github.com/repos/{self.owner}/{self.repo}", token=gh_token
+        )
         self._json_events = request_json(
-            f"api.github.com/networks/{self.owner}/{self.repo}/events"
+            f"api.github.com/networks/{self.owner}/{self.repo}/events", token=gh_token
         )
         self._json_contributors_sidebar = request_json(
             f"github.com/{self.owner}/{self.repo}/contributors_list?deferred=true",

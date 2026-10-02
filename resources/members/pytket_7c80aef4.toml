@@ -23,7 +23,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-10-05
 last_commit = 2026-08-28
-last_activity = 2026-08-28
+last_activity = 2026-09-28
 
 [badge]
 url = "https://qisk.it/e-7c80aef4"
@@ -45,15 +45,21 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 25526
-last_180_days_downloads = 254249
+last_month_downloads = 22445
+last_180_days_downloads = 254513
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/Quantinuum/pytket-qiskit/issues/552, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-09
 details = "Python package pytket-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Quantinuum/pytket-qiskit/issues/552"
 importance = "RECOMMENDATION"
 
 [checks.P12]
+xfailed = "Issue asking for the license declaration submitted https://github.com/Quantinuum/pytket-qiskit/issues/555, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-06
-details = "member.pypi.pytket-qiskit does not have a declared license"
+details = "The PyPI package pytket-qiskit does not have a declared license"
+discussion = "https://github.com/Quantinuum/pytket-qiskit/issues/555"
 importance = "RECOMMENDATION"

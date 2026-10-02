@@ -121,7 +121,7 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
     def days_left(project, checkup):
         """The cure period left on a check up, as a table cell. There is nothing to count for
         an alumni project: its cure period is what retired it in the first place."""
-        if project.status == "Alumni":
+        if project.is_alumni:
             return "&mdash;"
         days = checkup.days_left_in_cure_period
         if days is None:
@@ -146,7 +146,7 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
                 "Importance": f"{self.icon_of(checkup.get('importance'))} "
                 f"{self.cell(checkup.get('importance'))}",
                 "Cure period": self.cure_period_of(id_),
-                "Failing": len([p for p in self.pending[id_] if p.status != "Alumni"]),
+                "Failing": len([p for p in self.pending[id_] if not p.is_alumni]),
             }
             for id_, checkup in self.checkups.items()
         ]
@@ -197,8 +197,8 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
 
     def pending_block(self, id_):
         """The projects a check up is pending on, the alumni among them listed apart"""
-        alumni = [p for p in self.pending[id_] if p.status == "Alumni"]
-        members = [p for p in self.pending[id_] if p.status != "Alumni"]
+        alumni = [p for p in self.pending[id_] if p.is_alumni]
+        members = [p for p in self.pending[id_] if not p.is_alumni]
         if not members:
             if not alumni:
                 return ["**No project is failing this check up**"]

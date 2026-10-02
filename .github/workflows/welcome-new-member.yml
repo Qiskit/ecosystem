@@ -21,6 +21,42 @@ jobs:
         uuid=$(echo "${{github.head_ref}}" | cut -d - -f2 | awk '{$1=$1};1')
         echo "uuid=$uuid" >> $GITHUB_OUTPUT
 
+    # The badge has to exist in main as soon as the submission is accepted. Otherwise, every
+    # website deploy until then logs "badge not found for <member>" and the project page and
+    # qisk.it/ecosystem-badges show no badge.
+    - uses: actions/checkout@v6
+      with:
+        ref: ${{ github.event.pull_request.base.ref }}  # the PR is merged already, so checkout main
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
+    - uses: actions/setup-python@v6
+      with:
+        python-version: '3.13'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Install taplo
+      uses: uncenter/setup-taplo@v2
+      with:
+        version: "0.10.0"
+    - name: Create badge
+      env:
+        BITLY_TOKEN: ${{ secrets.BITLY_TOKEN }}
+      run: python manager.py members update_badge ${{ steps.get-id.outputs.uuid }}
+    - name: Run taplo formater on TOML files
+      run: taplo fmt resources/members/*.toml
+    - name: Commit badge
+      run: |
+        git config --local user.email "qiskit-bot@users.noreply.github.com"
+        git config --local user.name "qiskit-bot"
+        if git diff --exit-code; then
+          echo "No badge to commit"
+        else
+          git commit -am "Badge for ${{ steps.get-id.outputs.project_name }}"
+          git pull --rebase
+          git push --verbose
+        fi
+
     - name: Create comment on success
       uses: peter-evans/create-or-update-comment@v5
       with:

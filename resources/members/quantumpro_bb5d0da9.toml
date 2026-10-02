@@ -21,6 +21,7 @@ estimated_contributors = 7
 total_dependent_repositories = 0
 total_dependent_packages = 0
 archived = true
+created_at = 2021-12-16
 last_commit = 2024-09-11
 last_activity = 2026-07-17
 
@@ -28,7 +29,35 @@ last_activity = 2026-07-17
 url = "https://qisk.it/e-bb5d0da9"
 style = "flat"
 
+[python.prototype-template]
+package_name = "prototype-template"
+description = "Repository for a quantum prototype"
+requires_python = ">=3.8"
+requires_qiskit = "<2,>=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2026-06-12
+highest_supported_qiskit_version = "1.4.6"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py"]
+deferred = ["version"]
+
+[checks.G05]
+since = 2026-09-24
+details = "GitHub repository https://github.com/qiskit-community/quantum-prototype-template archived and project is not `as-is`"
+importance = "CRITICAL"
+
 [checks.G07]
-since = 2026-05-14
-details = "Last commit was 22 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
+since = 2026-09-24
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
+
+[checks.S01]
+since = 2026-10-01
+details = "The distribution prototype-template declared in the repository is not compatible with Qiskit SDK v2"
+importance = "IMPORTANT"
+
+[checks.G00]
+since = 2026-09-26
+details = "The project is probably abandoned: `[G05]`"
+importance = "CRITICAL"

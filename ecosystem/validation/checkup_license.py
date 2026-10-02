@@ -17,7 +17,7 @@ import pytest
 # pylint: disable=missing-function-docstring, invalid-name
 
 
-def test_O01(member):
+def checkup_O01(member):
     if (
         not member.license and not member.github
     ):  # probably too early, it is a new submission
@@ -32,6 +32,6 @@ def test_O01(member):
         ), "No license could be found. Populate 'member.license' as soon as possible."
 
 
-def test_O02(member):
+def checkup_O02(member):
     if member.license:
         assert member.license.is_osi_approved(), "member.license is not OSI-approved"

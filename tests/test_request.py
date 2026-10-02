@@ -247,27 +247,26 @@ class TestRequestJson(TestCase):
             request_json("Example.com/x")
         self.assertEqual(requests_get.call_args.args[0], "https://example.com/x")
 
-    def test_github_token_argument(self):
-        """Tests that the token argument is used for api.github.com"""
+    def test_token_argument(self):
+        """Tests that the token argument is sent as a bearer token"""
         with patch(
             "ecosystem.request.requests.get", return_value=fake_response()
         ) as requests_get:
             request_json("api.github.com/repos/banana/split", token="banana-token")
         headers = requests_get.call_args.kwargs["headers"]
-        self.assertEqual(headers["Authorization"], "token banana-token")
+        self.assertEqual(headers["Authorization"], "Bearer banana-token")
         self.assertEqual(headers["User-Agent"], "github.com/Qiskit/ecosystem/")
 
-    def test_github_token_from_environment(self):
-        """Tests that GH_TOKEN is used for api.github.com when no token is given"""
-        with patch.dict(os.environ, {"GH_TOKEN": "env-token"}):
-            with patch(
-                "ecosystem.request.requests.get", return_value=fake_response()
-            ) as requests_get:
-                request_json("api.github.com/repos/banana/split")
+    def test_token_argument_on_any_host(self):
+        """Tests that the token is sent no matter the host"""
+        with patch(
+            "ecosystem.request.requests.get", return_value=fake_response()
+        ) as requests_get:
+            request_json("example.com/x", token="banana-token")
         headers = requests_get.call_args.kwargs["headers"]
-        self.assertEqual(headers["Authorization"], "token env-token")
+        self.assertEqual(headers["Authorization"], "Bearer banana-token")
 
-    def test_github_without_token(self):
+    def test_without_token(self):
         """Tests that an empty token adds no Authorization header"""
         with patch(
             "ecosystem.request.requests.get", return_value=fake_response()
@@ -277,26 +276,27 @@ class TestRequestJson(TestCase):
         self.assertNotIn("Authorization", headers)
         self.assertEqual(headers["User-Agent"], "github.com/Qiskit/ecosystem/")
 
-    def test_non_github_host_gets_no_token(self):
-        """Tests that a non github host does not get the github headers"""
-        with patch.dict(os.environ, {"GH_TOKEN": "env-token"}):
+    def test_no_token_is_taken_from_the_environment(self):
+        """Tests that tokens in the environment are not picked up by request_json"""
+        with patch.dict(
+            os.environ, {"GH_TOKEN": "env-token", "BITLY_TOKEN": "bitly-token"}
+        ):
             with patch(
                 "ecosystem.request.requests.get", return_value=fake_response()
             ) as requests_get:
-                request_json("example.com/x")
+                request_json("api.github.com/repos/banana/split")
+        headers = requests_get.call_args.kwargs["headers"]
+        self.assertNotIn("Authorization", headers)
+
+    def test_non_github_host_gets_no_github_headers(self):
+        """Tests that a non github host does not get the github headers"""
+        with patch(
+            "ecosystem.request.requests.get", return_value=fake_response()
+        ) as requests_get:
+            request_json("example.com/x")
         headers = requests_get.call_args.kwargs["headers"]
         self.assertNotIn("Authorization", headers)
         self.assertNotIn("User-Agent", headers)
-
-    def test_bitly_token_from_environment(self):
-        """Tests that BITLY_TOKEN is sent as a bearer token to bitly.com"""
-        with patch.dict(os.environ, {"BITLY_TOKEN": "bitly-token"}):
-            with patch(
-                "ecosystem.request.requests.get", return_value=fake_response()
-            ) as requests_get:
-                request_json("api-ssl.bitly.com/v4/bitlinks")
-        headers = requests_get.call_args.kwargs["headers"]
-        self.assertEqual(headers["Authorization"], "Bearer bitly-token")
 
     def test_post(self):
         """Tests that a post payload is sent as json with post"""

@@ -16,6 +16,7 @@ category = "Other"
 packages = []
 uuid = "b6c9f4fe-8d25-48fa-832b-5bd79725b9da"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/JoelHBierman/QSP-SQD"
@@ -28,13 +29,33 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-05-11
 last_commit = 2026-05-09
-last_activity = 2025-05-11
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-b6c9f4fe"
 style = "flat"
 
+[python.adaptive-qsci]
+package_name = "adaptive-qsci"
+version = "0.1.0"
+description = "An implementation of Adaptive QSCI."
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+source = ["setup.py"]
+deferred = ["packages"]
+
 [checks.G06]
 since = 2026-07-14
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+importance = "RECOMMENDATION"
+
+[checks.S02]
+xfailed = "Issue asking for the cap submitted https://github.com/JoelHBierman/QSP-SQD/issues/1, waiting for the fix"
+xfailed_until = 2027-03-31
+since = 2026-09-28
+details = "The distribution adaptive-qsci declared in the repository allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/JoelHBierman/QSP-SQD/issues/1"
 importance = "RECOMMENDATION"

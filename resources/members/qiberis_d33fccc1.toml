@@ -21,7 +21,7 @@ license = "MIT"
 description = "A backend-agnostic quantum circuit API: write once, run on Qiskit, Cirq, and PennyLane simulators."
 created_at = 2026-07-29
 last_commit = 2026-08-08
-last_activity = 2026-08-08
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-d33fccc1"
@@ -41,15 +41,13 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 25
-last_180_days_downloads = 153
+last_month_downloads = 23
+last_180_days_downloads = 156
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiberis/issues/1, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-08-18
 details = "Python package qiberis declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"
-
-[checks.026]
-since = 2026-07-30
-details = "The field `member.documentation` can be empty. It does not have to be a link to the repository's `README.md` or root."
+discussion = "https://github.com/RexRowan/Qiberis/issues/1"
 importance = "RECOMMENDATION"

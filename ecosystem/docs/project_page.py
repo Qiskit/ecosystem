@@ -17,7 +17,13 @@ Pages inhttps://qiskit.github.io/ecosystem/p/<short uuid>
 import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
-from ecosystem.docs.card import ProjectSummaryCard, URLsCard, PypiPackageCard
+from ecosystem.docs.card import (
+    ProjectSummaryCard,
+    URLsCard,
+    PypiPackageCard,
+    PipSourcePackageCard,
+    RequirementsCard,
+)
 from ecosystem.docs.checkup_page import CheckupAssets
 
 
@@ -41,6 +47,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         lines += self.badge()
         lines += self.checkups()
         lines += self.packages()
+        lines += self.requirements()
         return lines
 
     def general_summary(self):
@@ -103,6 +110,14 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 packages["pypi"] += PypiPackageCard.from_pypi_data(pkg).generate()
             packages["pypi"] += ["</div>"]
 
+        if self.project.python:
+            packages["python"] = ['<div class="grid cards" markdown>']
+            for pkg in self.project.python.values():
+                packages["python"] += PipSourcePackageCard.from_python_data(
+                    pkg, self.project
+                ).generate()
+            packages["python"] += ["</div>"]
+
         if self.project.julia:
             packages["julia"] = ['<div class="grid cards" markdown>']
             for pkg in self.project.julia.values():
@@ -110,7 +125,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                     f" - #### :simple-julia: Julia `{pkg.package_name}`\n    ---\n"
                 )
                 version = pkg.version or "N/A"
-                release_date = pkg or "N/A"
+                release_date = pkg.release_date or "N/A"
                 packages["julia"] += [
                     "    :fontawesome-regular-paper-plane: **current release** "
                     f"[{version}](https://juliahub.com/ui/Packages/"
@@ -128,9 +143,34 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             return []
         ret = ["\n---\n### :material-package-variant: Packages\n"]
         ret += packages.get("pypi", [])
+        ret += packages.get("python", [])
         ret += packages.get("julia", [])
         ret += packages.get(None, [])
         return ret
+
+    def requirements(self):
+        """Requirements section: what the repository asks for, when it packages nothing.
+
+        Its own section rather than a card under Packages: a requirements file is not a
+        package, and a member only has this section when it declares no packaging
+        manifest, so for most of them the Packages heading above is absent entirely.
+
+        One card per file, in the order they are stored, which is by filename.
+        """
+        sections = self.project.requirements
+        if not sections:
+            return []
+        cards = []
+        for requirements in sections:
+            cards += RequirementsCard.from_requirements_data(
+                requirements, self.project
+            ).generate()
+        return (
+            ["\n---\n### :material-file-document-outline: Requirements\n"]
+            + ['<div class="grid cards" markdown>']
+            + cards
+            + ["</div>"]
+        )
 
     def write_page(self):
         """takes the lines and writes them down"""
@@ -146,7 +186,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         fm = []
         if self.project.status == "Qiskit Project":
             fm.append("icon: simple/qiskit")
-        elif self.project.status == "Alumni":
+        elif self.project.is_alumni:
             fm.append("icon: material/account-remove")
         elif self.project.status == "Under review":
             fm.append("icon: material/account-alert")
@@ -190,8 +230,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             ("Check up", "---"),
             ("Importance", ":---:"),
             ("What is failing", "---"),
-            ("Days left in the cure period", "---:"),
-            ("Discussion", ":---:"),
+            ("Days left", "---:"),
+            ("Discussion", "---"),
         ]
         rows = [
             [
@@ -204,8 +244,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 # no details of its own (a source-based check up) means there is nothing to
                 # add to the title in the column before
                 CheckupAssets.cell(checkup.details) if checkup.details else "",
-                CheckupAssets.days_left(self.project, checkup),
-                CheckupAssets.discussion_link(checkup),
+                self.days_left(self.project, checkup),
+                self.discussion_cell(checkup),
             ]
             # the most severe first
             for checkup in sorted(
@@ -225,6 +265,51 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         ]
         lines += ["| " + " | ".join(row[i] for i in keep) + " |" for row in rows]
         return lines
+
+    @staticmethod
+    def days_left(project, checkup):
+        """How long the check up can stay as it is, as a table cell.
+
+        Both clocks are running on an explained check up: the cure period, and the day the
+        explanation stops applying. The one that runs out last is the one that says when the
+        check up needs attention again, so this is the larger of the two. There is nothing to
+        count for an alumni project: its cure period is what retired it in the first place.
+        """
+        if project.is_alumni:
+            return "&mdash;"
+        # an explanation with no `xfailed_until` never expires, so there is no day to count to
+        if checkup.cure_period_is_infinite or (
+            checkup.xfailed and checkup.xfailed_until is None
+        ):
+            return "&infin;"
+        days = [
+            value
+            for value in (
+                checkup.days_left_in_cure_period,
+                checkup.days_until_xfailed_expires,
+            )
+            if value is not None
+        ]
+        if not days:
+            return "&mdash;"
+        return str(max(days)) if max(days) >= 0 else "overdue"
+
+    @staticmethod
+    def discussion_cell(checkup):
+        """Why the check up is not being acted on, as a table cell: the explanation that
+        applies to it, when it has one, and the link to where it is being discussed.
+
+        The explanation goes in as the Markdown it was written as, so a `[text](url)` or a
+        `<url>` in a member file renders as a link. `pymdownx.magiclink` takes care of the
+        URLs that were written as plain text (see `markdown_extensions` in properdocs.yml).
+        """
+        parts = []
+        if checkup.xfail_applies:
+            parts.append(CheckupAssets.cell(checkup.xfailed))
+        link = CheckupAssets.discussion_link(checkup)
+        if link:
+            parts.append(link)
+        return " &middot; ".join(parts)
 
     def badge(self):
         """Badge card"""

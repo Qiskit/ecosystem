@@ -10,7 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-"""Tests for ecosystem/validation/test_description.py"""
+"""Tests for ecosystem/validation/checkup_description.py"""
 
 from datetime import date, timedelta
 from unittest import TestCase
@@ -23,7 +23,7 @@ from ecosystem.member import Member
 
 
 class ClassificationsTestCase(TestCase):
-    """Tests for ecosystem/validation/test_description.py"""
+    """Tests for ecosystem/validation/checkup_description.py"""
 
     def test_invalid_category(self):
         """Long description fail validation check [014]."""
@@ -37,7 +37,7 @@ class ClassificationsTestCase(TestCase):
             " long long long long long long long long long long description.",
         )
         with redirect_stdout(StringIO()) as buffer:
-            member.update_checkups("test_description.py::test_description_len_135")
+            member.update_checkups("checkup_description.py::checkup_014")
         self.assertIn("FAILED", buffer.getvalue())
         self.assertIn("014", member.checks)
 
@@ -69,7 +69,7 @@ class SourceBasedCheckupTestCase(TestCase):
             "ecosystem.check.request_json",
             return_value={"state": "open", "state_reason": None},
         ), redirect_stdout(StringIO()):
-            member.update_checkups("test_description.py::test_description_len_135")
+            member.update_checkups("checkup_description.py::checkup_014")
         self.assertIn("014", member.checks)
         self.assertEqual(member.checks["014"].since, date(2026, 7, 9))
         self.assertEqual(
@@ -83,7 +83,7 @@ class SourceBasedCheckupTestCase(TestCase):
             "ecosystem.check.request_json",
             return_value={"state": "closed", "state_reason": "completed"},
         ), redirect_stdout(StringIO()):
-            member.update_checkups("test_description.py::test_description_len_135")
+            member.update_checkups("checkup_description.py::checkup_014")
         self.assertIn("014", member.checks)
         self.assertEqual(
             member.checks["014"].details,
@@ -120,7 +120,7 @@ class XfailedExpirationTestCase(TestCase):
     def update(self, member):
         """Runs the 014 checker on the member"""
         with redirect_stdout(StringIO()) as buffer:
-            member.update_checkups("test_description.py::test_description_len_135")
+            member.update_checkups("checkup_description.py::checkup_014")
         return buffer.getvalue()
 
     def test_valid_explanation_is_kept(self):
@@ -200,7 +200,7 @@ class SourceBasedXfailExpirationTestCase(TestCase):
             "ecosystem.check.request_json",
             return_value={"state": "open", "state_reason": None},
         ), redirect_stdout(StringIO()):
-            member.update_checkups("test_description.py::test_description_len_135")
+            member.update_checkups("checkup_description.py::checkup_014")
 
     def test_valid_explanation_is_kept(self):
         """While the explanation is valid, it stays on the source-based check up"""

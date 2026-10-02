@@ -51,8 +51,8 @@ def maturity(toml_file_data):
     return [c["name"] for c in toml_file_data["maturity"]]
 
 
-def test_valid_interfaces(member, interfaces):
-    """007"""
+def checkup_007(member, interfaces):
+    """Interfaces have to exist"""
     assert (
         hasattr(member, "interfaces") and member.interfaces
     ), "the entry `member.interfaces` does not exist and it is mandatory"
@@ -63,22 +63,22 @@ def test_valid_interfaces(member, interfaces):
         ), f"the interface '{interface}' does not exist in classifications.toml"
 
 
-def test_valid_category(member, categories):
-    """008"""
+def checkup_008(member, categories):
+    """Category has to exist"""
     assert (
         member.category in categories
     ), "member.category should exist in classifications.toml"
 
 
-def test_valid_label(member, labels):
-    """009"""
+def checkup_009(member, labels):
+    """Labels have to exist"""
     for label in member.labels:
         assert (
             label in labels
         ), f"the label '{label}' does not exist in classifications.toml"
 
 
-def test_004(member, maturity):
+def checkup_004(member, maturity):
     """valid maturity"""
     assert hasattr(member, "maturity"), "the property member.maturity is mandatory"
     assert (

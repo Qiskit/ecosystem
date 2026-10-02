@@ -27,3 +27,18 @@ last_activity = 2026-08-03
 [badge]
 url = "https://qisk.it/e-8a35239e"
 style = "flat"
+
+[python.eedt-bios]
+package_name = "eedt-bios"
+version = "0.1.0"
+license = "Apache-2.0"
+description = "Boot a Bell Decay Clock on NISQ superconducting processors"
+requires_python = ">=3.11"
+requires_qiskit = "<3,>=2.1"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []

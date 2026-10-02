@@ -9,7 +9,7 @@ category = "Tooling"
 packages = []
 uuid = "91a8267e-0df9-406c-af66-a2df20d7d98e"
 maturity = "experimental"
-status = "Very Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-Quantum-Backend-Selector"
@@ -20,7 +20,7 @@ license = "Apache-2.0"
 description = "Backend Selector for IBM Quantum backends, built on qiskit-ibm-runtime"
 created_at = 2026-09-03
 last_commit = 2026-09-14
-last_activity = 2026-09-14
+last_activity = 2026-09-26
 
 [badge]
 url = "https://qisk.it/e-91a8267e"
@@ -39,5 +39,11 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 123
-last_180_days_downloads = 123
+last_month_downloads = 128
+last_180_days_downloads = 130
+
+[checks.P12]
+since = 2026-09-24
+details = "The PyPI package qiskit-quantum-backend-selector does not have a declared license"
+discussion = "https://github.com/RexRowan/Qiskit-Quantum-Backend-Selector/issues/1"
+importance = "RECOMMENDATION"

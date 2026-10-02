@@ -11,9 +11,9 @@ They are re-run on every member every week, so this page is the current state of
 ecosystem: each check up, and the projects it is failing right now.
 
 A failing check up is not a removal. It moves the project to
-[_Under revision_](status.md#under-revision) and starts its
+[_Under revision_](classifications.md#under-revision) and starts its
 [cure period](overview.md#importance-and-cure-period); only when that period runs out without
-the check up being fixed or explained does the project become [_Alumni_](status.md#alumni).
+the check up being fixed or explained does the project become [_Alumni_](classifications.md#alumni).
 See [how the check ups work](overview.md#check-ups) for the mechanism, and
 [for project maintainers](overview.md#for-project-maintainers) if one of these is on your
 project.

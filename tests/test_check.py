@@ -19,8 +19,9 @@ from unittest import TestCase
 from unittest.mock import patch
 import pytest
 
-from ecosystem.check import CheckData
+from ecosystem.check import CheckData, parse_exclusions
 from ecosystem.error_handling import EcosystemError
+from ecosystem.validation import CHECKUP_COLLECTION
 
 
 class TestChecksTOML(TestCase):
@@ -50,7 +51,8 @@ class TestChecksTOML(TestCase):
 
         testcollector = TestCollector()
         pytest.main(
-            ["--collect-only", "-q", "ecosystem/validation"], plugins=[testcollector]
+            ["--collect-only", "-q", "ecosystem/validation", *CHECKUP_COLLECTION],
+            plugins=[testcollector],
         )
         self.collected_checks = testcollector.collected
 
@@ -95,6 +97,23 @@ class TestChecksTOML(TestCase):
         for checker_in_toml in checkers_in_toml:
             with self.subTest(checker_in_toml):
                 self.assertIn(checker_in_toml, self.collected_checks)
+
+    def test_checkers_are_named_after_their_id(self):
+        """Tests the naming convention: the checker of `[XYZ]` is `checkup_XYZ`.
+
+        `ChecksToml.id_by_pytest_node` matches the node id exactly, but it is only
+        consulted when a check up *fails*, so a checker renamed out of the convention
+        goes unnoticed until the weekly run hits it.
+        """
+        for id_, entry in self.checks_toml.items():
+            if id_ in self.meta_categories or "checker" not in entry:
+                continue
+            with self.subTest(id=id_):
+                self.assertTrue(
+                    entry["checker"].endswith(f"checkup_{id_}"),
+                    msg=f"the checker of [{id_}] is {entry['checker']}, "
+                    f"not a checkup_{id_}",
+                )
 
     def assertHasNoDuplicates(self, iterable, msg=None):  # pylint: disable=invalid-name
         """Check for duplicated elements in iterable"""
@@ -272,8 +291,8 @@ class TestCurePeriod(TestCase):
     critical = "001"
     # [PQ2] is IMPORTANT, so its cure period is the 90 days of that importance level
     important = "PQ2"
-    # [P10] states its own cure period, -1, instead of the default of its importance
-    infinite = "P10"
+    # [PQ1] is LEGACY, so its cure period is the -1 of that importance level
+    infinite = "PQ1"
 
     @staticmethod
     def check(id_, days_ago):
@@ -340,3 +359,40 @@ class TestImportanceRank(TestCase):
             checks_toml.importance_rank("NOT-AN-IMPORTANCE"),
             len(checks_toml.importances),
         )
+
+
+class TestParseExclusions(TestCase):
+    """Tests for the `-e` argument of the CLI commands (`parse_exclusions`)"""
+
+    def test_none(self):
+        """No exclusion at all"""
+        self.assertEqual(parse_exclusions(None), set())
+
+    def test_single_value(self):
+        """`-e alumni`"""
+        self.assertEqual(parse_exclusions("alumni"), {"alumni"})
+
+    def test_tuple(self):
+        """Fire hands over a tuple when the list parses as a Python literal"""
+        self.assertEqual(
+            parse_exclusions(("recommendation", "alumni")), {"recommendation", "alumni"}
+        )
+
+    def test_comma_separated_string(self):
+        """A value with a hyphen (or a space) keeps Fire from building a tuple, so the list
+        arrives as a single string and each value has to be recovered from it"""
+        self.assertEqual(
+            parse_exclusions("recommendation, alumni, qiskit-project"),
+            {"recommendation", "alumni", "qiskit-project"},
+        )
+
+    def test_the_values_are_slugified(self):
+        """The same thing can be named in several ways"""
+        self.assertEqual(
+            parse_exclusions("BEST-PRACTICE, best_practice, Best Practice"),
+            {"best-practice"},
+        )
+
+    def test_empty_values_are_dropped(self):
+        """A trailing comma does not add an exclusion that matches nothing"""
+        self.assertEqual(parse_exclusions("alumni, "), {"alumni"})

@@ -13,7 +13,6 @@
 """Tests for cli."""
 
 import io
-import json
 import os
 import shutil
 import tempfile
@@ -24,11 +23,16 @@ from pathlib import Path
 
 from dateutil.relativedelta import relativedelta
 
+from ecosystem.badge import BadgeData
 from ecosystem.check import CheckData
 from ecosystem.cli import CliCI, CliMembers
 from ecosystem.dao import DAO
 from ecosystem.github import GitHubData
+from ecosystem.julia import JuliaData
 from ecosystem.member import Member
+from ecosystem.pypi import PyPIData
+from ecosystem.python import PythonData
+from ecosystem.requirements import RequirementsData
 
 
 def get_community_repo() -> Member:
@@ -474,15 +478,14 @@ class TestUpdateStatusCheckups(UpdateStatusTestCase):
 
 
 class TestUpdateStatusInfiniteCurePeriod(UpdateStatusTestCase):
-    """A check up with a negative cure_period_in_days ([P10] states -1 instead of taking
-    the default of its importance) keeps the project "Under revision" forever, but never
-    retires it."""
+    """A check up with a negative cure_period_in_days ([PQ1] takes the -1 of its LEGACY
+    importance) keeps the project "Under revision" forever, but never retires it."""
 
-    def status_with_p10_failing_since(self, days_ago):
-        """Adds a member failing [P10] since `days_ago` days ago and updates its status"""
+    def status_with_pq1_failing_since(self, days_ago):
+        """Adds a member failing [PQ1] since `days_ago` days ago and updates its status"""
         member = self.add_member()
         member.checks = {
-            "P10": CheckData("P10", since=date.today() - timedelta(days=days_ago))
+            "PQ1": CheckData("PQ1", since=date.today() - timedelta(days=days_ago))
         }
         self.cli_members.dao.write(member)
         self.cli_members.update_status()
@@ -490,20 +493,20 @@ class TestUpdateStatusInfiniteCurePeriod(UpdateStatusTestCase):
 
     def test_fresh_failure_is_under_revision(self):
         """The check up is pending, like any other"""
-        self.assertEqual(self.status_with_p10_failing_since(1), "Under revision")
+        self.assertEqual(self.status_with_pq1_failing_since(1), "Under revision")
 
     def test_old_failure_is_still_not_alumni(self):
         """No matter how long it has been failing, the cure period never expires"""
-        self.assertEqual(self.status_with_p10_failing_since(10_000), "Under revision")
+        self.assertEqual(self.status_with_pq1_failing_since(10_000), "Under revision")
 
     def test_the_importance_can_still_be_excluded(self):
         """An infinite cure period does not override the exclusion by importance"""
         member = self.add_member()
         member.checks = {
-            "P10": CheckData("P10", since=date.today() - timedelta(days=10_000))
+            "PQ1": CheckData("PQ1", since=date.today() - timedelta(days=10_000))
         }
         self.cli_members.dao.write(member)
-        self.cli_members.update_status(exclude="recommendation")
+        self.cli_members.update_status(exclude="legacy")
         self.assertIsNone(self.cli_members.dao[member.name_id].status)
 
 
@@ -598,7 +601,8 @@ class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
         self.cli_members.dao.write(member)
         with redirect_stdout(io.StringIO()):
             self.cli_members.update_checkups(
-                checker="test_description.py::test_description_len_135", exclude=exclude
+                checker="checkup_description.py::checkup_014",
+                exclude=exclude,
             )
         return set(self.cli_members.dao[member.name_id].checks)
 
@@ -625,236 +629,204 @@ class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
                 )
 
 
-class TestCheckupAssets(UpdateStatusTestCase):
-    """The fragments behind qisk.it/ecosystem-checkups, generated from checks.toml
-    and the member files. See `CliMembers.update_assets_checkups`"""
+class TestUpdateCheckupsKeepsSince(UpdateStatusTestCase):
+    """`member.checks.<id>.since` is the day a check up started failing, so a run that finds
+    it still failing has to keep it. See `Member.update_checkups`"""
 
-    def setUp(self):
-        super().setUp()
-        (self.path / "docs" / "assets").mkdir(parents=True, exist_ok=True)
+    CHECKER = "checkup_description.py::checkup_014"
 
-    def generate(self):
-        """Runs the generator and returns (summary rows, page body)"""
-        self.cli_members.update_assets_checkups()
-        assets = self.path / "docs" / "assets"
-        return (
-            json.loads((assets / "checkup.json").read_text()),
-            (assets / "checkup.md").read_text(),
+    def failing_member(self):
+        """A member whose description is too long, so [014] is recorded on it"""
+        member = self.add_member()
+        member.description = "banana " * 30
+        self.cli_members.dao.write(member)
+        self.update_checkups()
+        return member.name_id
+
+    def update_checkups(self):
+        """Runs only the check up this test case is about"""
+        with redirect_stdout(io.StringIO()):
+            self.cli_members.update_checkups(checker=self.CHECKER)
+
+    def checkup(self, name_id):
+        """The [014] check up as it is recorded in the member file"""
+        return self.cli_members.dao[name_id].checks["014"]
+
+    def failing_for(self, name_id, days, xfailed_until=None):
+        """Backdates the check up, as one recorded `days` ago, optionally with an explanation
+        valid until `xfailed_until`"""
+        member = self.cli_members.dao[name_id]
+        member.checks["014"].since = date.today() - timedelta(days=days)
+        if xfailed_until:
+            member.checks["014"].xfailed = "explained: shortened upstream"
+            member.checks["014"].xfailed_until = xfailed_until
+        self.cli_members.dao.write(member)
+
+    def test_a_plain_failure_keeps_its_since(self):
+        """The baseline: a check up that keeps failing keeps the date it started failing"""
+        name_id = self.failing_member()
+        self.failing_for(name_id, 100)
+        self.update_checkups()
+        self.assertEqual(
+            self.checkup(name_id).since, date.today() - timedelta(days=100)
         )
 
-    def failing(self, checkup_id, *, xfailed=None):
-        """A member failing `checkup_id`, optionally with an explanation for it"""
-        member = self.add_member()
-        member.checks = {
-            checkup_id: CheckData(checkup_id, since=date.today(), xfailed=xfailed)
-        }
+    def test_an_explained_failure_keeps_its_since(self):
+        """A valid explanation does not erase the date: the report carries the explanation
+        and not the date, so the one in the member file is the only one there is"""
+        name_id = self.failing_member()
+        self.failing_for(name_id, 100, xfailed_until=date.today() + timedelta(days=30))
+        self.update_checkups()
+        self.assertEqual(
+            self.checkup(name_id).since, date.today() - timedelta(days=100)
+        )
+
+    def test_the_cure_period_does_not_restart_after_an_explanation(self):
+        """What the date is for: when the explanation expires, the cure period is counted
+        from the original failure and not from the day the explanation ran out"""
+        name_id = self.failing_member()
+        self.failing_for(name_id, 100, xfailed_until=date.today() + timedelta(days=3))
+        self.update_checkups()  # a run while the explanation is still valid
+
+        member = self.cli_members.dao[name_id]
+        member.checks["014"].xfailed_until = date.today() - timedelta(days=1)
         self.cli_members.dao.write(member)
+        self.update_checkups()  # and one after it expired
+
+        checkup = self.checkup(name_id)
+        self.assertEqual(checkup.since, date.today() - timedelta(days=100))
+        self.assertTrue(checkup.cure_period_expired)
+
+
+class TestUpdateCheckupsLog(UpdateStatusTestCase):
+    """What a run says about each project, which is all the weekly workflow log shows.
+    See `CliMembers.update_checkups` and `CliMembers._log_checkup`"""
+
+    CHECKER = "checkup_description.py::checkup_014"
+
+    def log_of(self, member):
+        """The lines the run logs about such a member"""
+        self.cli_members.dao.write(member)
+        with self.assertLogs("ecosystem", level="INFO") as logged:
+            with redirect_stdout(io.StringIO()):
+                self.cli_members.update_checkups(checker=self.CHECKER)
+        return "\n".join(logged.output)
+
+    def failing_member(self, **checkup_kwargs):
+        """A member whose description is too long, so [014] is recorded on it"""
+        member = self.add_member()
+        member.description = "banana " * 30
+        if checkup_kwargs:
+            member.checks = {"014": CheckData("014", **checkup_kwargs)}
         return member
 
-    def test_every_checkup_gets_a_section(self):
-        """One section per check up in checks.toml, with the id as the anchor"""
-        summary, body = self.generate()
-        ids = set(self.cli_members.checks_toml.checkups)
-        self.assertEqual(len(summary), len(ids))
-        for id_ in ids:
-            with self.subTest(checkup=id_):
-                self.assertIn(f"{{ #{id_} }}", body)
+    def test_a_project_passing_everything_says_so(self):
+        """The line most projects get, and the only one that is good news"""
+        self.assertIn("passed all the checkups", self.log_of(self.add_member()))
 
-    def test_a_failing_project_is_listed(self):
-        """The project shows up under its check up, linked to its project page"""
-        member = self.failing("G07")
-        summary, body = self.generate()
-        self.assertIn("There is 1 project failing this check up", body)
-        self.assertIn(f"[{member.name}](p/{member.short_uuid}.md)", body)
-        row = next(r for r in summary if "[G07]" in r["Check up"])
-        self.assertEqual(row["Failing"], 1)
+    def test_a_new_failure_starts_its_cure_period(self):
+        """Recorded today, so there is nothing to count down yet"""
+        self.assertIn("cure period starts now", self.log_of(self.failing_member()))
 
-    def test_a_checkup_nobody_fails_says_so(self):
-        """[G07] is the only one failing, so [G05] has nothing to list"""
-        self.failing("G07")
-        _, body = self.generate()
-        section = body.split("{ #G05 }")[1].split("## ")[0]
-        self.assertIn("**No project is failing this check up**", section)
+    def test_an_older_failure_counts_down(self):
+        """The days left is what tells a maintainer how urgent the check up is"""
+        member = self.failing_member(since=date.today() - timedelta(days=10))
+        self.assertIn("80 days left in the cure period", self.log_of(member))
 
-    def test_an_explained_checkup_is_not_counted_as_failing(self):
-        """A valid explanation is listed apart, and out of the failing count"""
-        self.failing("G07", xfailed="the maintainers still answer issues")
-        summary, body = self.generate()
-        self.assertIn("1 project with an explanation for this check up", body)
-        self.assertNotIn('failing this check up"', body.split("{ #G07 }")[1])
-        row = next(r for r in summary if "[G07]" in r["Check up"])
-        self.assertEqual(row["Failing"], 0)
-
-    def test_the_summary_links_to_the_sections(self):
-        """Every row of the summary table points at a section of the same page"""
-        summary, body = self.generate()
-        for row in summary:
-            with self.subTest(row=row["Check up"]):
-                anchor = row["Check up"].rpartition("(#")[2].rstrip(")")
-                self.assertIn(f"{{ #{anchor} }}", body)
-
-
-class TestCheckupProjectTable(UpdateStatusTestCase):
-    """The table inside each collapsible: maturity, status, and what is left of the cure
-    period. See `CliMembers.update_assets_checkups`"""
-
-    def setUp(self):
-        super().setUp()
-        (self.path / "docs" / "assets").mkdir(parents=True, exist_ok=True)
-
-    def body_of(self, checkup_id, days_ago=0, **member_kwargs):
-        """The generated section of `checkup_id`, for a member failing it"""
-        self.row_of(checkup_id, days_ago, **member_kwargs)
-        body = (self.path / "docs" / "assets" / "checkup.md").read_text()
-        return body.split(f"{{ #{checkup_id} }}")[1].split("\n## ")[0]
-
-    def row_of(self, checkup_id, days_ago=0, **member_kwargs):
-        """The table row that `checkup_id` gets for a member failing it `days_ago` days ago"""
-        xfailed = member_kwargs.pop("xfailed", None)
-        xfailed_until = member_kwargs.pop("xfailed_until", None)
-        discussion = member_kwargs.pop("discussion", None)
-        member = self.add_member(**member_kwargs)
-        member.status = member_kwargs.get("status")
-        member.checks = {
-            checkup_id: CheckData(
-                checkup_id,
-                since=date.today() - timedelta(days=days_ago),
-                xfailed=xfailed,
-                xfailed_until=xfailed_until,
-                discussion=discussion,
-            )
-        }
-        self.cli_members.dao.write(member)
-        self.cli_members.update_assets_checkups()
-        body = (self.path / "docs" / "assets" / "checkup.md").read_text()
-        section = body.split(f"{{ #{checkup_id} }}")[1].split("\n## ")[0]
-        return next(
-            line.strip() for line in section.splitlines() if line.startswith("    | [")
+    def test_an_explained_failure_says_when_the_explanation_expires(self):
+        """An `xfailed` is not counted against the project, so it logs its own deadline"""
+        member = self.failing_member(
+            xfailed="shortened upstream", xfailed_until=date.today() + timedelta(days=5)
         )
+        self.assertIn("the explanation expires on", self.log_of(member))
 
-    def test_maturity_and_status_are_shown(self):
-        """[G07] has a 90 day cure period, so a fresh failure has all of it left"""
-        row = self.row_of("G07", maturity="experimental", status="Under revision")
-        self.assertIn("| experimental |", row)
-        self.assertIn("| Under revision |", row)
-        self.assertTrue(row.endswith("| 90 |"), row)
+    def test_an_explanation_without_an_expiration_date_says_so(self):
+        """`xfailed` with no `xfailed_until`: there is no date to print instead"""
+        member = self.failing_member(xfailed="shortened upstream")
+        self.assertIn("the explanation does not expire", self.log_of(member))
 
-    def test_the_default_status_is_member(self):
-        """A regular member has no `member.status` of its own"""
-        self.assertIn("| Member |", self.row_of("G07"))
-
-    def test_the_days_count_down_from_since(self):
-        """The deadline does not move while the check up keeps failing"""
-        self.assertTrue(self.row_of("G07", days_ago=30).endswith("| 60 |"))
-
-    def test_a_passed_deadline_is_overdue(self):
-        """Past the cure period, but not retired (yet, or because it is excluded)"""
-        self.assertTrue(self.row_of("G07", days_ago=91).endswith("| overdue |"))
-
-    def test_an_infinite_cure_period_has_no_countdown(self):
-        """[P10] states a cure period of -1 of its own"""
-        self.assertTrue(self.row_of("P10", days_ago=10_000).endswith("| &infin; |"))
-
-    def test_alumni_are_not_rows_in_the_table(self):
-        """Their cure period is what retired them, so they are listed apart. See
-        `TestCheckupAlumniList`"""
-        with self.assertRaises(StopIteration):
-            self.row_of("G07", days_ago=30, status="Alumni")
-
-    def test_an_explanation_shows_its_own_expiration(self):
-        """An explained check up has no cure period ticking, so the column is what is left
-        of the explanation instead"""
-        row = self.row_of(
-            "G07",
-            xfailed="the maintainers still answer issues",
-            xfailed_until=date.today() + timedelta(days=45),
+    def test_an_expired_explanation_is_announced(self):
+        """It is the one line saying the check up changed meaning in this run"""
+        member = self.failing_member(
+            xfailed="shortened upstream", xfailed_until=date.today() - timedelta(days=1)
         )
-        self.assertTrue(row.endswith("| 45 days |"), row)
-
-    def test_the_explanation_is_a_column(self):
-        """The `xfailed` text itself, next to when it expires"""
-        row = self.row_of("G07", xfailed="the project is feature complete")
-        self.assertIn("| the project is feature complete |", row)
-        self.assertIn(
-            "| Project | Maturity | Status | Explanation | Explanation expires in |",
-            self.body_of("G07", xfailed="the project is feature complete"),
-        )
-
-    def test_no_explanation_no_column(self):
-        """A pending check up has nothing to explain"""
-        self.assertNotIn("Explanation", self.body_of("G07"))
-
-    def test_a_discussion_is_linked(self):
-        """The column only shows up when one of the projects has a `discussion`"""
-        row = self.row_of(
-            "G07", discussion="https://github.com/Qiskit/ecosystem/issues/1"
-        )
-        self.assertIn(
-            "| [discussion](https://github.com/Qiskit/ecosystem/issues/1) |", row
-        )
-
-    def test_no_discussion_no_column(self):
-        """Nothing extra when none of the projects has one"""
-        body = self.body_of("G07")
-        self.assertNotIn("Discussion", body)
-        self.assertIn(
-            "| Project | Maturity | Status | Days left in the cure period |", body
-        )
-
-    def test_an_explanation_without_expiration_never_expires(self):
-        """`xfailed` without `xfailed_until`"""
-        row = self.row_of("G07", xfailed="this project is feature complete")
-        self.assertTrue(row.endswith("| never |"), row)
+        self.assertIn("the explanation expired on", self.log_of(member))
 
 
-class TestCheckupAlumniList(UpdateStatusTestCase):
-    """The alumni that were failing a check up are listed apart, out of the headline count.
-    See `CliMembers.update_assets_checkups`"""
+class TestUpdateSections(UpdateStatusTestCase):
+    """The `update_<section>` commands: each fetches one section and stores it.
 
-    def setUp(self):
-        super().setUp()
-        (self.path / "docs" / "assets").mkdir(parents=True, exist_ok=True)
+    What a fetch finds is `Member`'s business; these are about the command writing it
+    back to the member file, which is what the next command reads.
+    """
 
-    def section(self, *members):
-        """Writes the members, generates, and returns the [G07] section of the page"""
-        for status in members:
-            member = self.add_member()
-            member.status = status
-            member.checks = {"G07": CheckData("G07", since=date.today())}
-            self.cli_members.dao.write(member)
-        self.cli_members.update_assets_checkups()
-        body = (self.path / "docs" / "assets" / "checkup.md").read_text()
-        return body.split("{ #G07 }")[1].split("\n## ")[0]
+    #: section -> what the fetch finds, and the table it ends up in
+    FETCHES = {
+        "badge": (
+            lambda member: setattr(
+                member, "badge", BadgeData(url="https://bit.ly/banana")
+            ),
+            "[badge]",
+        ),
+        "github": (
+            lambda member: setattr(
+                member, "github", GitHubData(owner="MockQiskit", repo="mock-qiskit")
+            ),
+            "[github]",
+        ),
+        "pypi": (
+            lambda member: member.pypi.update(
+                {"banana": PyPIData(package_name="banana")}
+            ),
+            "[pypi.banana]",
+        ),
+        "julia": (
+            lambda member: member.julia.update(
+                {"Banana": JuliaData(package_name="Banana")}
+            ),
+            "[julia.Banana]",
+        ),
+        "python": (
+            lambda member: member.python.update(
+                {
+                    "banana": PythonData(
+                        package_name="banana", source=["pyproject.toml"], deferred=[]
+                    )
+                }
+            ),
+            "[python.banana]",
+        ),
+        "requirements": (
+            lambda member: setattr(
+                member, "requirements", [RequirementsData(file="requirements.txt")]
+            ),
+            "[[requirements]]",
+        ),
+    }
 
-    def failing_count(self):
-        """The `Failing` column of the [G07] row of the summary table"""
-        summary = json.loads(
-            (self.path / "docs" / "assets" / "checkup.json").read_text()
-        )
-        return next(r for r in summary if "[G07]" in r["Check up"])["Failing"]
+    def member_file(self, member):
+        """The member file as it is on disk"""
+        return (self.path / "members" / f"{member.name_id}.toml").read_text()
 
-    def test_only_members_are_counted(self):
-        """Two alumni and one member: the headline is about the member"""
-        section = self.section("Alumni", None, "Alumni")
-        self.assertIn("There is 1 project failing this check up", section)
-        self.assertIn('??? info "2 Alumni projects also failed', section)
-        self.assertEqual(self.failing_count(), 1)
+    def test_what_the_fetch_finds_is_stored(self):
+        """Nothing here reaches the network: the fetch itself is stood in for"""
+        for section, (fetch, table) in self.FETCHES.items():
+            with self.subTest(section=section):
+                member = self.add_member()
+                with mock.patch.object(
+                    Member, f"update_{section}", autospec=True, side_effect=fetch
+                ):
+                    getattr(self.cli_members, f"update_{section}")()
+                self.assertIn(table, self.member_file(member))
 
-    def test_the_alumni_list_is_nested_in_the_table(self):
-        """Indented inside the collapsible that holds the table"""
-        section = self.section("Alumni", None)
-        self.assertIn('    ??? info "1 Alumni project also failed', section)
-        self.assertRegex(section, r"\n        - \[")
-
-    def test_only_alumni_says_no_current_member(self):
-        """With nothing to put in the table, the list goes to the top level"""
-        section = self.section("Alumni")
-        self.assertIn("**No current member is failing this check up**", section)
-        self.assertIn('\n??? info "1 Alumni project also failed', section)
-        self.assertEqual(self.failing_count(), 0)
-
-    def test_no_alumni_no_list(self):
-        """Nothing extra when no alumni ever failed it"""
-        section = self.section(None)
-        self.assertIn("There is 1 project failing this check up", section)
-        self.assertNotIn("Alumni", section)
+    def test_only_the_member_named_is_fetched(self):
+        """A full run is 160-odd members, so there is a way to do one of them"""
+        member = self.add_member()
+        other = self.add_member()
+        fetch, _ = self.FETCHES["badge"]
+        with mock.patch.object(
+            Member, "update_badge", autospec=True, side_effect=fetch
+        ) as update_badge:
+            self.cli_members.update_badge(member.short_uuid)
+        update_badge.assert_called_once()
+        self.assertNotIn("[badge]", self.member_file(other))

@@ -63,3 +63,8 @@ importance = "IMPORTANT"
 since = 2026-07-30
 details = "Not compatible with the Qiskit SDK v2 or newer: `[PQ2]`"
 importance = "CRITICAL"
+
+[checks.G00]
+since = 2026-09-24
+details = "The project is probably abandoned: `[Q20]`"
+importance = "CRITICAL"

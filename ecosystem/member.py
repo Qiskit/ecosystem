@@ -16,6 +16,7 @@ import pprint
 from datetime import date
 from uuid import uuid4
 from dateutil.relativedelta import relativedelta
+from packaging.utils import canonicalize_name
 from slugify import slugify
 
 from .error_handling import EcosystemError
@@ -24,13 +25,17 @@ from .license import License
 from .serializable import JsonSerializable, parse_date
 from .github import GitHubData
 from .pypi import PyPIData
+from .python import PythonData
+from .requirements import RequirementsData
 from .check import CheckData
 from .badge import BadgeData
 from .request import URL
 from .validation import validate_member
 
 
-class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
+class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-methods
+    JsonSerializable
+):
     """main Members class that represent a single entry in the Ecosystem."""
 
     # How long an explanation for a failing check up (`check.xfailed`) coming from a
@@ -62,6 +67,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
         julia: dict[str, JuliaData] | None = None,
+        python: dict[str, PythonData] | None = None,
+        requirements: list[RequirementsData] | None = None,
         maturity: str | None = None,
         status: str | None = None,
     ):
@@ -96,6 +103,8 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         self.checks = checks or {}
         self.pypi = pypi or {}
         self.julia = julia or {}
+        self.python = python or {}
+        self.requirements = requirements
         self.badge = badge
         self.maturity = maturity
         self.status = status
@@ -134,12 +143,25 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         if "github" in filtered_dict:
             filtered_dict["github"] = GitHubData.from_dict(filtered_dict["github"])
 
+        if "requirements" in filtered_dict:
+            filtered_dict["requirements"] = [
+                RequirementsData.from_dict(requirements_dict)
+                for requirements_dict in filtered_dict["requirements"]
+            ]
+
         if "julia" in filtered_dict:
             for project_name, julia_dict in filtered_dict["julia"].items():
                 julia_data = JuliaData.from_dict(
                     {"package_name": project_name} | julia_dict
                 )
                 filtered_dict["julia"][project_name] = julia_data
+
+        if "python" in filtered_dict:
+            for project_name, python_dict in filtered_dict["python"].items():
+                python_data = PythonData.from_dict(
+                    {"package_name": project_name} | python_dict
+                )
+                filtered_dict["python"][project_name] = python_data
 
         if "pypi" in filtered_dict:
             for project_name, pypi_dict in filtered_dict["pypi"].items():
@@ -206,7 +228,7 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         """Markdown with the badge for README"""
         return (
             f"[![Qiskit Ecosystem]({self.badge.url})](https://qisk.it/e)"
-            if self.badge
+            if self.badge and self.badge.url
             else None
         )
 
@@ -241,12 +263,89 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
         for package_name in sorted(self.julia.keys()):
             self.julia[package_name].update_json()
 
+    def update_python(self):
+        """
+        Updates the packaging metadata the project declares in its own repository.
+
+        Unlike the other updaters, this one can *create* its section: the
+        distribution name is declared in the repository, so it is discovered here
+        rather than submitted. A section that already exists is refreshed, and
+        re-keyed if the project renamed its distribution.
+
+        A distribution that is published to PyPI is described by its `[pypi.*]`
+        section already, so no section is created for *that* distribution. The
+        comparison is by name, not by whether the project publishes anything at
+        all: a repository can hold a released distribution and an unreleased one
+        next to it, and the second is exactly what this section is for. An
+        existing `[python.*]` section is refreshed either way, so a member can be
+        given one on purpose to cross-check the source against the release.
+        """
+        if not self.github or not self.github.owner or not self.github.repo:
+            return
+
+        # only what this call discovers is dropped for being published; a section that
+        # was declared is kept, because declaring it was deliberate
+        discovered = not self.python
+
+        to_fetch = list(self.python.values()) or [PythonData.from_github(self.github)]
+        refreshed = {}
+        for python_data in to_fetch:
+            python_data.owner = self.github.owner
+            python_data.repo = self.github.repo
+            python_data.update_json()
+            if discovered and python_data.package_name in self.published_distributions:
+                continue
+            if not python_data.fetched or python_data.package_name is None:
+                # The repository declares no distribution any more, so the stored
+                # section is stale and dropping it says so. `package_name` alone
+                # cannot decide this: it falls back to the stored value, which is
+                # what makes a section readable without the network. A repository
+                # that could not be read raises instead of getting here, so a
+                # failed fetch never drops a good section.
+                continue
+            refreshed[python_data.package_name] = python_data
+        self.python = refreshed
+
+    def update_requirements(self):
+        """
+        Updates what the repository's requirements files say about Qiskit.
+
+        Only for a repository that declares no packaging manifest: one that does is
+        described by its `[python.*]` or `[pypi.*]` sections, and a requirements file
+        next to a manifest is usually a pinned environment rather than a declaration.
+        `RequirementsData.candidates` is what applies that rule.
+
+        A file is dropped unless it names qiskit.
+        """
+        if not self.github or not self.github.owner or not self.github.repo:
+            return
+
+        sections = []
+        for requirements in RequirementsData.from_github(self.github).candidates():
+            requirements.update_json()
+            if requirements.fetched and requirements.requires_qiskit:
+                sections.append(requirements)
+        self.requirements = sections or None
+
+    @property
+    def published_distributions(self):
+        """Canonical names of the Python distributions this project publishes.
+
+        PyPI only. A `[python.*]` section describes something `pip` installs from the
+        repository, and a Julia package of the same name is a different artifact in a
+        different registry, so it says nothing about whether this distribution is
+        released.
+        """
+        return {canonicalize_name(name) for name in self.pypi}
+
     def upsert_sections(self, github_url=None):
         """Create or update sections in a member.
         It is fully local, no validation or internet fetch.
          * github
          * pypi
          * julia
+         * python
+         * badge
         """
 
         if github_url is None:
@@ -267,10 +366,20 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
                 self.pypi[pypi.package_name] = pypi
             elif julia := JuliaData.from_url(package):
                 self.julia[julia.package_name] = julia
+            elif python := PythonData.from_url(package):
+                # keyed by the repository name for now; `update_python` re-keys the
+                # section once it reads the distribution name out of the manifest
+                self.python[python.key] = python
             else:
                 keep_in_packages.append(package)
 
         self.packages = keep_in_packages
+
+        # badge section. Only the style, so it can be reviewed (and changed) in the submission
+        # PR. The url needs Bitly and is created when the submission is accepted, see
+        # .github/workflows/welcome-new-member.yml
+        if not self.badge:
+            self.badge = BadgeData()
 
     @classmethod
     def from_submission(cls, submission, issue_number: str = None):
@@ -337,6 +446,9 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             if checkup_data.id in self.checks:
                 # Fields to preserve
                 checkup_data.discussion = self.checks[checkup_data.id].discussion
+                checkup_data.since = (
+                    checkup_data.since or self.checks[checkup_data.id].since
+                )
                 if checkup_data.xfailed:
                     # the report only carries the explanation, not its expiration date
                     checkup_data.xfailed_until = self.checks[
@@ -371,6 +483,17 @@ class Member(JsonSerializable):  # pylint: disable=too-many-instance-attributes
             return None
         relative = relativedelta(date.today(), created_at)
         return (relative.years * 12) + relative.months
+
+    @property
+    def is_alumni(self):
+        """True if the project has been retired from the ecosystem.
+
+        Unlike `unmaintained`, this *is* the status: `Alumni` is terminal, so nothing
+        masks it. It answers "is this still a member?", which is why the check ups do
+        not apply to it and why it is kept out of the listings on the summary page,
+        while its own pages stay published so existing links keep resolving.
+        """
+        return self.status == "Alumni"
 
     @property
     def unmaintained(self):

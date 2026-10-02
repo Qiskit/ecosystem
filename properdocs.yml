@@ -18,6 +18,14 @@ theme:
     - navigation.tabs.sticky
     - toc.integrate
 
+# The footer would otherwise carry a "Made with Material for MkDocs" notice, and there is
+# nothing else in it (no `copyright`), so the whole footer bar goes away with it.
+extra:
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
+
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/vega@5
   - https://cdn.jsdelivr.net/npm/vega-lite@5
@@ -46,6 +54,7 @@ markdown_extensions:
   - abbr
   - tables
   - pymdownx.snippets
+  - pymdownx.magiclink
   - pymdownx.superfences:
       custom_fences:
         - name: vegalite
@@ -71,12 +80,7 @@ nav:
     - Summary: summary.md
     - All: p/
     - in PyPI: pypi/
-#    - in GitHub: p/
+    - pip-installable repo: pip-source/
   - Check ups: checkups.md
-  - Classifications:
-    - Status: status.md
-    - Categories: categories.md
-    - Labels: labels.md
-    - Interfaces: interfaces.md
-    - Maturity levels: maturity.md
+  - Classifications: classifications.md
   - Badges: badges.md

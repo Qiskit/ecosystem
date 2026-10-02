@@ -20,7 +20,7 @@ total_dependent_repositories = 14
 total_dependent_packages = 1
 created_at = 2020-03-12
 last_commit = 2026-04-07
-last_activity = 2026-09-01
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-727120b2"
@@ -39,15 +39,21 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 357
-last_180_days_downloads = 2292
+last_month_downloads = 377
+last_180_days_downloads = 2480
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/qclib/qclib/issues/214, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-09
 details = "Python package qclib declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qclib/qclib/issues/214"
 importance = "RECOMMENDATION"
 
 [checks.P12]
+xfailed = "Issue asking for the license declaration submitted https://github.com/qclib/qclib/issues/215, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-06
-details = "member.pypi.qclib does not have a declared license"
+details = "The PyPI package qclib does not have a declared license"
+discussion = "https://github.com/qclib/qclib/issues/215"
 importance = "RECOMMENDATION"

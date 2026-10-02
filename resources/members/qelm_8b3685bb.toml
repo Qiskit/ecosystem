@@ -26,8 +26,23 @@ style = "flat"
 [pypi.qelm]
 package_name = "qelm"
 
+[checks.G09]
+since = 2026-09-24
+details = "member.github.license does not exist"
+importance = "RECOMMENDATION"
+
+[checks.O02]
+since = 2026-09-24
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"
+
+[checks.P12]
+since = 2026-09-24
+details = "The PyPI package qelm does not have a declared license"
+importance = "RECOMMENDATION"
+
 [checks.001]
 since = 2026-07-30
 source = "https://github.com/Qiskit/ecosystem/issues/1381"
-details = "QELM license is not open-source. It is a proprietary license that restricts usage and distribution."
+details = "QELM license is not open-source. It is a proprietary license that restricts usage and distribution. (the source issue is closed as completed)"
 importance = "CRITICAL"

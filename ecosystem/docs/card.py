@@ -18,6 +18,7 @@ Cards for mkdocs grid https://squidfunk.github.io/mkdocs-material/reference/grid
 from dataclasses import dataclass
 from typing import Optional
 
+from ecosystem.docs import anchor
 from ecosystem.member import Member
 from ecosystem.classifications import ClassificationsToml
 
@@ -237,19 +238,23 @@ class ProjectSummaryCard(Card):
         """Annotation for title"""
         match self.status:
             case "Qiskit Project":
-                return "[All the Qiskit Projects](../status.md#qiskit-project)"
+                return "[All the Qiskit Projects](../classifications.md#qiskit-project)"
             case "Alumni":
-                return "[All the Alumni projects](../status.md#alumni)"
+                return "[All the Alumni projects](../classifications.md#alumni)"
             case "Under revision":
-                return "[All the projects under revision](../status.md#under-revision)"
+                return "[All the projects under revision](../classifications.md#under-revision)"
             case "Unmaintained":
-                return "[All the unmaintained projects](../status.md#unmaintained)"
+                return "[All the unmaintained projects](../classifications.md#unmaintained)"
             case "Early Project":
-                return "[All the early projects](../status.md#early-project)"
+                return "[All the early projects](../classifications.md#early-project)"
             case "Very Early Project":
-                return "[All the very early projects](../status.md#very-early-project)"
+                return (
+                    "[All the very early projects](../classifications.md#early-project)"
+                )
             case _:
-                return "[All the regular Members](../status.md#regular-members)"
+                return (
+                    "[All the regular Members](../classifications.md#regular-members)"
+                )
 
     @property
     def classifications_lines(self):
@@ -277,13 +282,17 @@ class ProjectSummaryCard(Card):
             "experimental": ":material-flask:",
             "unmaintained": ":material-archive:",
         }
+        maturity_link = (
+            f"[All the `{self.maturity}` projects]"
+            f"(../classifications.md#{anchor(self.maturity)})"
+        )
         if self.maturity == "production-ready":
             # Full support
             return self.bullet(
                 icons["production-ready"],
                 f"**{self.maturity}**{{title='"
                 f"{tooltip(descriptions[self.maturity])}'}}",
-                "[All the production-ready project](#)",
+                maturity_link,
             )
         if self.maturity in ["bugfixing only", "deprecated", "experimental"]:
             # Limited support
@@ -291,7 +300,7 @@ class ProjectSummaryCard(Card):
                 icons[self.maturity],
                 "**Limited support**{title='"
                 f"{tooltip(descriptions[self.maturity])}'}} {self.maturity}",
-                "[All the production-ready project](#)",
+                maturity_link,
             )
         if self.maturity in ["unmaintained", "as-is"]:
             # No support
@@ -299,7 +308,7 @@ class ProjectSummaryCard(Card):
                 icons[self.maturity],
                 "**No support**{title='"
                 f"{tooltip(descriptions[self.maturity])}'}} {self.maturity}",
-                "[All the projects without support](#)",
+                maturity_link,
             )
         return ret
 
@@ -309,8 +318,7 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-scale-balance:",
                 f"**License** {self.license}",
-                f"[All the projects with {self.license}](#)",
-            )
+            ) + [""]
         return []
 
     def interfaces_lines(self):
@@ -320,7 +328,11 @@ class ProjectSummaryCard(Card):
                 ":material-api:",
                 (" **Interface**" if len(self.interfaces) == 1 else " **Interfaces**"),
                 [f"`{l}`" for l in self.interfaces],
-                [f"[All the projects with {l} interface](#)" for l in self.interfaces],
+                [
+                    f"[All the projects with {l} interface]"
+                    f"(../classifications.md#{anchor(l)})"
+                    for l in self.interfaces
+                ],
             )
         return []
 
@@ -330,7 +342,8 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-label:",
                 f"**Category** `{self.category}`",
-                f"[All the projects in the {self.category} category](#)",
+                f"[All the projects in the {self.category} category]"
+                f"(../classifications.md#{anchor(self.category)})",
             )
         return []
 
@@ -341,7 +354,11 @@ class ProjectSummaryCard(Card):
                 ":material-tag-multiple-outline:",
                 (" **Labels**" if len(self.labels) == 1 else " **Labels**"),
                 [f"`{l}`" for l in self.labels],
-                [f"[All the projects labeled with `{l}`](#)" for l in self.labels],
+                [
+                    f"[All the projects labeled with `{l}`]"
+                    f"(../classifications.md#{anchor(l)})"
+                    for l in self.labels
+                ],
             )
         return self.bullet(":material-tag-off-outline:", "**No labels**") + [""]
 
@@ -351,7 +368,8 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-office-building:",
                 "IBM maintained",
-                "[All the projects maintained by IBM](#)",
+                "[All the projects maintained by IBM]"
+                "(../classifications.md#ibm-maintained)",
             )
         return []
 
@@ -391,6 +409,39 @@ class URLsCard(Card):
                 icon = ":simple-acm:"
             ret.append(f"{icon} [Reference paper]({self.project.reference_paper})  ")
         return ret
+
+
+def qiskit_compatibility(package):
+    """The Qiskit compatibility table, for a card about a Python distribution.
+
+    Both `PypiPackageCard` and `PipSourcePackageCard` show it, and both get the values
+    from `QiskitRequirementMixin`, so it is a function of that vocabulary rather than a
+    method on either card.
+    """
+    if not package.requires_qiskit:
+        return []
+
+    def mark(compatible):
+        return (
+            ":material-check-circle-outline:"
+            if compatible
+            else ":material-close-circle-outline:"
+        )
+
+    return [
+        "",
+        ":simple-qiskit: **Qiskit Compatibility**\n\n",
+        "| **Requires** | V1 | V2 | highest supported |",
+        "| -- | -- | -- | -- |",
+        f"| {package.requires_qiskit} | "
+        + mark(package.compatible_with_qiskit_v1)
+        + " | "
+        + mark(package.compatible_with_qiskit_v2)
+        + f" | [{package.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
+        f"{package.highest_supported_qiskit_version}/ "
+        f'"Released: {package.highest_supported_qiskit_release_date}") |',
+        "",
+    ]
 
 
 class PypiPackageCard(Card):
@@ -462,28 +513,220 @@ class PypiPackageCard(Card):
                 f"**last month** {self.last_month_downloads:,} "
                 f"**last 180 days** {self.last_180_days_downloads:,}"
             ]
-        if self.requires_qiskit:
-            ret += [
-                "",
-                ":simple-qiskit: **Qiskit Compatibility**\n\n",
-                "| **Requires** | V1 | V2 | highest supported |",
-                "| -- | -- | -- | -- |",
-                f"| {self.requires_qiskit} | "
-                + (
-                    ":material-check-circle-outline:"
-                    if self.compatible_with_qiskit_v1
-                    else ":material-close-circle-outline:"
-                )
-                + " | "
-                + (
-                    ":material-check-circle-outline:"
-                    if self.compatible_with_qiskit_v2
-                    else ":material-close-circle-outline:"
-                )
-                + f" | [{self.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
-                f"{self.highest_supported_qiskit_version}/ "
-                f'"Released: {self.highest_supported_qiskit_release_date}") |',
-                "",
-            ]
+        ret += qiskit_compatibility(self)
 
+        return ret
+
+
+class PipSourcePackageCard(Card):
+    """Card for a distribution declared in a repository but not published to a registry"""
+
+    def __init__(
+        self,
+        package_name=None,
+        owner=None,
+        repo=None,
+        path=None,
+        version=None,
+        requires_python=None,
+        build_backend=None,
+        source=None,
+        deferred=None,
+        requires_qiskit=None,
+        highest_supported_qiskit_release_date=None,
+        highest_supported_qiskit_version=None,
+        compatible_with_qiskit_v1=None,
+        compatible_with_qiskit_v2=None,
+    ):
+        self.package_name = package_name
+        self.owner = owner
+        self.repo = repo
+        self.path = path
+        self.version = version
+        self.requires_python = requires_python
+        self.build_backend = build_backend
+        self.source = source or []
+        self.deferred = deferred or []
+        self.requires_qiskit = requires_qiskit
+        self.highest_supported_qiskit_release_date = (
+            highest_supported_qiskit_release_date
+        )
+        self.highest_supported_qiskit_version = highest_supported_qiskit_version
+        self.compatible_with_qiskit_v1 = compatible_with_qiskit_v1
+        self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
+
+        super().__init__(
+            title=f"pip-installable repo `{self.package_name}`",
+            title_icon="#### :simple-github:",
+            body_lines=self.body(),
+        )
+
+    @classmethod
+    def from_python_data(cls, package, project=None):
+        """Construct a card from a PythonData.
+
+        `owner` and `repo` are not part of the section, because they would duplicate
+        `[github]`, so they are read back from the project when there is one. Without
+        them the card leaves out the install line rather than guessing a URL.
+        """
+        github = getattr(project, "github", None)
+        return PipSourcePackageCard(
+            package_name=package.package_name,
+            owner=getattr(github, "owner", None),
+            repo=getattr(github, "repo", None),
+            path=package.path,
+            version=package.version,
+            requires_python=package.requires_python,
+            build_backend=package.build_backend,
+            source=package.source,
+            deferred=package.deferred,
+            requires_qiskit=package.requires_qiskit,
+            highest_supported_qiskit_release_date=package.highest_supported_qiskit_release_date,
+            highest_supported_qiskit_version=package.highest_supported_qiskit_version,
+            compatible_with_qiskit_v1=package.compatible_with_qiskit_v1,
+            compatible_with_qiskit_v2=package.compatible_with_qiskit_v2,
+        )
+
+    @property
+    def pip_target(self):
+        """What to `pip install`, or None without an owner and repo.
+
+        A subdirectory goes in a URL fragment, and `#` starts a comment in a shell, so
+        the target is quoted when it carries one.
+        """
+        if not self.owner or not self.repo:
+            return None
+        target = f"git+https://github.com/{self.owner}/{self.repo}"
+        if self.path:
+            return f'"{target}#subdirectory={self.path.strip("/")}"'
+        return target
+
+    def body(self):
+        """Returns a list of lines for the card body.
+
+        Every bullet is followed by a blank line. Without it, Markdown reads a run of
+        bullets as one paragraph and the whole card renders as a single wrapped line.
+        """
+        ret = []
+        if self.pip_target:
+            ret += [f":simple-python: `pip install {self.pip_target}`", ""]
+        if self.version:
+            ret += self.bullet(
+                ":fontawesome-regular-paper-plane:",
+                f"**declared version** {self.version}",
+            ) + [""]
+        if self.requires_python:
+            ret += self.bullet(
+                ":material-language-python:",
+                f"**requires Python** {self.requires_python}",
+            ) + [""]
+        if self.source:
+            ret += self.bullet(
+                ":material-file-document-outline:",
+                "**declared in** "
+                + ", ".join(f"`{manifest}`" for manifest in self.source),
+            ) + [""]
+        if self.build_backend:
+            ret += self.bullet(
+                ":material-package-variant-closed:",
+                f"**build backend** `{self.build_backend}`",
+            ) + [""]
+        if self.deferred:
+            ret += self.bullet(
+                ":material-help-circle-outline:",
+                "**computed at build time** "
+                + ", ".join(f"`{field}`" for field in self.deferred),
+            ) + [""]
+        ret += qiskit_compatibility(self)
+        return ret
+
+
+class RequirementsCard(Card):
+    """Card for the qiskit requirement a repository declares in a requirements file.
+
+    Not a package card: there is no distribution, no version and nothing to
+    `pip install`. What it has to say is the file and the Qiskit compatibility that
+    follows from it.
+
+    One card per file, titled after it, because a member can declare several and the
+    filename is the only thing telling them apart.
+    """
+
+    def __init__(
+        self,
+        file=None,
+        owner=None,
+        repo=None,
+        requires_qiskit=None,
+        highest_supported_qiskit_release_date=None,
+        highest_supported_qiskit_version=None,
+        compatible_with_qiskit_v1=None,
+        compatible_with_qiskit_v2=None,
+    ):
+        self.file = file
+        self.owner = owner
+        self.repo = repo
+        self.requires_qiskit = requires_qiskit
+        self.highest_supported_qiskit_release_date = (
+            highest_supported_qiskit_release_date
+        )
+        self.highest_supported_qiskit_version = highest_supported_qiskit_version
+        self.compatible_with_qiskit_v1 = compatible_with_qiskit_v1
+        self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
+
+        super().__init__(
+            title=f"`{self.file}`",
+            title_icon="#### :material-file-document-outline:",
+            body_lines=self.body(),
+        )
+
+    @classmethod
+    def from_requirements_data(cls, requirements, project=None):
+        """Construct a card from a RequirementsData.
+
+        `owner` and `repo` are not part of the section, because they would duplicate
+        `[github]`, so they are read back from the project when there is one. Without
+        them the card leaves the file unlinked rather than guessing a URL.
+        """
+        github = getattr(project, "github", None)
+        return RequirementsCard(
+            file=requirements.file,
+            owner=getattr(github, "owner", None),
+            repo=getattr(github, "repo", None),
+            requires_qiskit=requirements.requires_qiskit,
+            highest_supported_qiskit_release_date=(
+                requirements.highest_supported_qiskit_release_date
+            ),
+            highest_supported_qiskit_version=requirements.highest_supported_qiskit_version,
+            compatible_with_qiskit_v1=requirements.compatible_with_qiskit_v1,
+            compatible_with_qiskit_v2=requirements.compatible_with_qiskit_v2,
+        )
+
+    @property
+    def file_url(self):
+        """The requirements file on github.com, or None without an owner and repo.
+
+        The branch is not stored anywhere, so the link goes through HEAD.
+        """
+        if not self.owner or not self.repo or not self.file:
+            return None
+        return f"https://github.com/{self.owner}/{self.repo}/blob/HEAD/{self.file}"
+
+    def body(self):
+        """Returns a list of lines for the card body.
+
+        As in `PipSourcePackageCard.body`, every bullet is followed by a blank line, or
+        Markdown reads the run of them as one wrapped paragraph.
+        """
+        declared_in = (
+            f"[`{self.file}`]({self.file_url})" if self.file_url else f"`{self.file}`"
+        )
+        ret = self.bullet(
+            ":material-file-document-outline:", f"**declared in** {declared_in}"
+        ) + [""]
+        ret += self.bullet(
+            ":material-information-outline:",
+            "**no packaging manifest** in the repository",
+        ) + [""]
+        ret += qiskit_compatibility(self)
         return ret

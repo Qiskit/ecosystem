@@ -30,17 +30,17 @@ def skip_github(member):
     yield member
 
 
-def test_G05(member):
+def checkup_G05(member):
     """GitHub repository is archived?"""
-    if member.unmaintained:
-        pytest.skip("projects with no maintenance expectations are exempt")
+    if member.maturity in ["as-is"]:
+        pytest.skip("projects with maturity 'as-is' are exempt")
     else:
         assert not (
             hasattr(member.github, "archived") and member.github.archived
-        ), f"GitHub repository {member.github.url} archived"
+        ), f"GitHub repository {member.github.url} archived and project is not `as-is`"
 
 
-def test_G06(member):
+def checkup_G06(member):
     """Have maintainer activity within the last 6 months"""
     if member.unmaintained:
         pytest.skip("projects with no maintenance expectations are exempt")
@@ -58,7 +58,7 @@ def test_G06(member):
     )
 
 
-def test_G07(member):
+def checkup_G07(member):
     """Have last commit within the last 12 months"""
     if member.unmaintained:
         pytest.skip("projects with no maintenance expectations are exempt")
@@ -76,7 +76,7 @@ def test_G07(member):
     )
 
 
-def test_G12(member):
+def checkup_G12(member):
     """Have last commit within the last (age * 2/3) months.
     See https://github.com/orgs/Qiskit/discussions/58"""
     if member.age_in_months is None:
@@ -97,15 +97,15 @@ def test_G12(member):
     )
 
 
-def test_G08(member):
+def checkup_G08(member):
     """unmaintained projects should archive their GitHub repository"""
     if member.unmaintained:
-        assert (
-            member.github.archived
-        ), "unsupported project should have an archived GitHub org"
+        assert getattr(
+            member.github, "archived", False
+        ), "Unmaintained project should have an archived GitHub repository"
 
 
-def test_G09(member):
+def checkup_G09(member):
     assert hasattr(member.github, "license"), "member.github.license does not exist"
 
     if member.github.license and str(member.github.license) in ["None", "Other"]:
@@ -117,7 +117,7 @@ def test_G09(member):
         ), "member.github.license not detected"
 
 
-def test_G10(member):
+def checkup_G10(member):
     if hasattr(member.github, "license"):
         if str(member.github.license) in ["None", "Other"]:
             pytest.skip("No member.github.license, already covered by [G09]")
@@ -126,7 +126,7 @@ def test_G10(member):
         ), "member.github.license is not OSI-approved"
 
 
-def test_G11(member):
+def checkup_G11(member):
     """
     unmaintained projects should be archived when the repo is on an IBM-controlled organization"
     """

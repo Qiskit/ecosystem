@@ -20,7 +20,7 @@ stars = 1
 license = "Apache-2.0"
 created_at = 2026-04-22
 last_commit = 2026-06-29
-last_activity = 2026-06-29
+last_activity = 2026-09-26
 
 [badge]
 url = "https://qisk.it/e-9d474247"
@@ -39,15 +39,21 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 23
-last_180_days_downloads = 502
+last_month_downloads = 21
+last_180_days_downloads = 511
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/1, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-14
 details = "Python package qiskit-omelyan declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/1"
 importance = "RECOMMENDATION"
 
 [checks.P12]
+xfailed = "Issue asking for the license declaration submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/2, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-07-14
-details = "member.pypi.qiskit-omelyan does not have a declared license"
+details = "The PyPI package qiskit-omelyan does not have a declared license"
+discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/2"
 importance = "RECOMMENDATION"

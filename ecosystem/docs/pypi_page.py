@@ -44,12 +44,24 @@ class PypiPage(ProjectPage):
         )
 
     def description(self):
-        """package summary and pip install command"""
+        """package summary, pip install command and the PyPI project page"""
         lines = []
         if self.package.description:
             lines += [f"> {self.package.description}", ""]
         lines.append(f":simple-python: `pip install {self.package.package_name}`")
+        lines += ["", f":simple-pypi: [{self.pypi_url}]({self.pypi_url})"]
         return lines
+
+    @property
+    def pypi_url(self):
+        """The PyPI project page of the package.
+
+        `self.package.url` comes from PyPI itself, but a package that was never fetched (or
+        does not exist anymore) has none, and the URL is a function of the name anyway.
+        """
+        return (
+            self.package.url or f"https://pypi.org/project/{self.package.package_name}/"
+        )
 
     def pypi_card(self):
         """Python pacakge"""

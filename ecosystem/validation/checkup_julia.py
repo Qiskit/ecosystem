@@ -25,7 +25,7 @@ def skip_pypi(member):
     yield member
 
 
-def test_J00(member):
+def checkup_J00(member):
     for julia_package in member.julia.values():
         if julia_package.license is None:
             assert (
@@ -33,7 +33,7 @@ def test_J00(member):
             ), f"The Julia package {julia_package.package_name} does not have a declared license"
 
 
-def test_J01(member):
+def checkup_J01(member):
     for julia_package in member.julia.values():
         if julia_package.license is not None:
             assert (

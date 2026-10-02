@@ -28,8 +28,8 @@ stars = 6
 license = "MIT"
 description = "Zero Kelvin | qiskit-zksf"
 created_at = 2026-08-13
-last_commit = 2026-09-12
-last_activity = 2026-09-12
+last_commit = 2026-10-01
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-de9be4c6"
@@ -37,23 +37,26 @@ style = "flat"
 
 [pypi.qiskit-zksf]
 package_name = "qiskit-zksf"
-version = "0.3.0"
-last_release_date = 2026-09-12
+version = "0.3.1"
+last_release_date = 2026-10-01
 license = "MIT"
 description = "Qiskit provider for ZKSF: run circuits on CPU, GPU or real quantum hardware with a documented accuracy statement on every result"
 url = "https://pypi.org/project/qiskit-zksf/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/digitalventurelabs/"]
-requires_qiskit = ">=1.0"
+requires_qiskit = "<3,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 196
-last_180_days_downloads = 595
+last_month_downloads = 172
+last_180_days_downloads = 617
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/official-dvl/qiskit-zksf/issues/1, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-08-18
 details = "Python package qiskit-zksf declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/official-dvl/qiskit-zksf/issues/1"
 importance = "RECOMMENDATION"

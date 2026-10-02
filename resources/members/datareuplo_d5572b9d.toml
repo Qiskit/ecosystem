@@ -29,7 +29,7 @@ license = "Apache-2.0"
 description = "Data re-uploading quantum classifier for Qiskit 2.x — pip-installable, sklearn-compatible"
 created_at = 2026-05-05
 last_commit = 2026-06-07
-last_activity = 2026-07-31
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-d5572b9d"
@@ -50,15 +50,18 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 12
-last_180_days_downloads = 289
+last_month_downloads = 10
+last_180_days_downloads = 292
+
+[checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/Carlosandp/qiskit-data-reuploading/issues/4, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-07-09
+details = "Python package qiskit-data-reuploading declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Carlosandp/qiskit-data-reuploading/issues/4"
+importance = "RECOMMENDATION"
 
 [checks.G12]
 since = 2026-09-17
 details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
 importance = "IMPORTANT"
-
-[checks.P10]
-since = 2026-07-09
-details = "Python package qiskit-data-reuploading declared itself compatible to a not-yet-released major version of Qiskit"
-importance = "RECOMMENDATION"

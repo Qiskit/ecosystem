@@ -20,7 +20,7 @@ license = "Apache-2.0"
 description = "Importer from OpenQASM 3 to Qiskit's QuantumCircuit"
 created_at = 2022-11-09
 last_commit = 2026-07-21
-last_activity = 2026-07-21
+last_activity = 2026-09-24
 
 [badge]
 url = "https://qisk.it/e-15f4feda"
@@ -43,10 +43,13 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 304564
-last_180_days_downloads = 1259232
+last_month_downloads = 315222
+last_180_days_downloads = 1372324
 
 [checks.P10]
+xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-qasm3-import/issues/68, waiting for a release with the fix"
+xfailed_until = 2027-03-31
 since = 2026-08-18
 details = "Python package qiskit-qasm3-import declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Qiskit/qiskit-qasm3-import/issues/68"
 importance = "RECOMMENDATION"

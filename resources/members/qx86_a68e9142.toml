@@ -23,6 +23,7 @@ license = "GPL-3.0"
 description = "Qx86 is an intel 8080/Z80 emulator written for IBMs Quantum Computers"
 total_dependent_repositories = 0
 total_dependent_packages = 0
+created_at = 2022-09-29
 last_commit = 2024-08-20
 last_activity = 2026-02-03
 
@@ -30,10 +31,14 @@ last_activity = 2026-02-03
 url = "https://qisk.it/e-a68e9142"
 style = "flat"
 
+[checks.G06]
+since = 2026-09-24
+details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
+importance = "RECOMMENDATION"
+
 [checks.G07]
 since = 2026-05-14
-details = "Last commit was 23 months ago, which is more than 18 months ago. Please update the GitHub repository or set member.maturity to `as-is`."
-discussion = "https://github.com/orgs/Qiskit/discussions/57"
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
 [checks.G00]

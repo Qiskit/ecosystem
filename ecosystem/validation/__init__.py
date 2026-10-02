@@ -32,6 +32,19 @@ TODO member:
 
 ibm_controlled_gh_org = ["qiskit", "qiskit-community", "openqasm"]
 
+#: Check ups are not unit tests, so they do not use pytest's `test_` naming. Collecting
+#: them takes saying so, which is also what keeps `tests/` (pytest's defaults, run by CI)
+#: from picking the check ups up as its own. Anything that collects them needs these, so
+#: they live here rather than being spelled out at each call.
+CHECKUP_COLLECTION = [
+    "-o",
+    "python_files=checkup_*.py",
+    "-o",
+    "python_functions=checkup_*",
+    "-o",
+    "python_classes=Checkup*",
+]
+
 
 def validate_member(member, tests_to_run=None, verbose_level=None):
     """Runs all the validation for a member
@@ -45,6 +58,7 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
     pytest.main(
         [
             f"ecosystem/validation/{tests_to_run}",
+            *CHECKUP_COLLECTION,
             "--tb=no",
             "-rN",
             verbose_level,
