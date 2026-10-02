@@ -16,7 +16,7 @@ Everything here is derived from a single PEP 440 specifier (`requires_qiskit`)
 plus the table of Qiskit releases, so it does not care whether that specifier
 came from PyPI, from a source tree or from a Julia registry. Mix it into a
 package data class that provides `_kwargs`, plus either its own `requires_qiskit`
-or the `fetched`, `dependencies` and `declared_by` the default one reads.
+or the `fetched` and `dependencies` the default one reads.
 """
 
 from functools import cached_property
@@ -109,6 +109,11 @@ class QiskitRequirementMixin:
                 for k, v in versions_dates_dict.items()
             }
         return self._all_qiskit_versions
+
+    @property
+    def declared_by(self):
+        """What the warnings name, for a subclass that has a distribution to name."""
+        return self.package_name
 
     @cached_property
     def requires_qiskit(self):

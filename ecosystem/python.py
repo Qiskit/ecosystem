@@ -479,8 +479,3 @@ class PythonData(
             if declared:
                 return list(declared), filename
         return [], None
-
-    @property
-    def declared_by(self):
-        """What the mixin names in its warnings: the distribution being read."""
-        return self.package_name
