@@ -16,24 +16,30 @@ The counterparts of the `member.python` check ups for a repository that declares
 packaging manifest at all. There is no distribution to name, so these are about the
 repository itself: what its requirements file says is the only statement the project
 makes about which Qiskit it runs against.
+
+A member may store several `[[requirements]]` tables, one per file that names qiskit,
+and only one of them is a statement of that kind — a dev or lint file is not. So these
+read `primary_of` rather than the list: see `ecosystem/requirements.py` for the rule.
 """
 
-# pylint: disable=invalid-name,missing-function-docstring
+# pylint: disable=invalid-name,missing-function-docstring,redefined-outer-name
 
 import pytest
 
+from ecosystem.requirements import primary_of
+
 
 @pytest.fixture(autouse=True)
-def skip_requirements(member):
-    """Skip if there is no requirements section to look at"""
-    if not member.requirements:
+def requirements(member):
+    """The one requirements section to judge, skipping a member with none"""
+    primary = primary_of(member.requirements or [])
+    if primary is None:
         pytest.skip("No requirements section")
-    yield member
+    yield primary
 
 
-def checkup_R01(member):
+def checkup_R01(requirements):
     """Be installable with qiskit>=2.0 from the requirements file"""
-    requirements = member.requirements
     if requirements.compatible_with_qiskit_v2 is None:
         pytest.skip("No member.requirements.compatible_with_qiskit_v2")
     assert requirements.compatible_with_qiskit_v2, (
@@ -42,8 +48,7 @@ def checkup_R01(member):
     )
 
 
-def checkup_R02(member):
-    requirements = member.requirements
+def checkup_R02(requirements):
     assert not requirements.compatible_with_qiskit(3), (
         f"The qiskit requirement in {requirements.file} "
         "allows a not-yet-released major version of Qiskit"

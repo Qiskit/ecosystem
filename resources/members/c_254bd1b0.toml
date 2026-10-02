@@ -11,6 +11,23 @@ uuid = "254bd1b0-409a-42fc-a104-2d8eb8a0b22d"
 maturity = "experimental"
 status = "Qiskit Project"
 
+[[requirements]]
+file = "requirements-dev.txt"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+
+[[requirements]]
+file = "requirements.txt"
+primary = true
+requires_qiskit = ">=2.1.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+
 [github]
 url = "https://github.com/Qiskit/qiskit-cpp"
 owner = "Qiskit"
@@ -24,14 +41,6 @@ total_dependent_packages = 0
 created_at = 2025-02-06
 last_commit = 2026-07-07
 last_activity = 2026-09-03
-
-[requirements]
-file = "requirements.txt"
-requires_qiskit = ">=2.1.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
 
 [badge]
 url = "https://qisk.it/e-254bd1b0"

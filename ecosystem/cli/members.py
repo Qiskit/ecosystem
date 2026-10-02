@@ -506,10 +506,10 @@ class CliMembers:  # pylint: disable=too-many-public-methods
 
     def update_requirements(self, name=None):
         """
-        Updates what the member's requirements file declares about Qiskit.
+        Updates what the member's requirements files declare about Qiskit.
 
-        Only repositories without a packaging manifest get the section; see
-        `Member.update_requirements`.
+        Only repositories without a packaging manifest get the sections, one per file
+        that names qiskit; see `Member.update_requirements`.
 
         If <name> is not given, runs on all the members.
         Otherwise, all the members with name_id that contains <name>

@@ -26,13 +26,17 @@ from ecosystem.requirements import RequirementsData
 class RequirementsCheckupsTestCase(TestCase):
     """Shared setup for the ecosystem/validation/checkup_requirements.py check ups.
 
-    The section is built the way a member file is read back: stored values only, no
+    The sections are built the way a member file is read back: stored values only, no
     requirements file, so nothing here reaches the network.
     """
 
     @staticmethod
-    def member(**section):
-        """A member whose repository declares its qiskit dependency in a file"""
+    def member(*sections, **section):
+        """A member whose repository declares its qiskit dependency in a file
+
+        Takes either sections already built, for a member that has several, or the
+        keywords of the single `requirements.txt` section most of these need.
+        """
         member = Member(
             name="banana",
             url="https://github.com/qiskit-community/banana-notebooks",
@@ -41,19 +45,21 @@ class RequirementsCheckupsTestCase(TestCase):
             maturity="experimental",
         )
         member.github = GitHubData(owner="qiskit-community", repo="banana-notebooks")
-        member.requirements = RequirementsData(file="requirements.txt", **section)
+        member.requirements = list(sections) or [
+            RequirementsData(file="requirements.txt", **section)
+        ]
         return member
 
-    def checkups_of(self, checker, **section):
+    def checkups_of(self, checker, *sections, **section):
         """The ids of the check ups that `checker` records on such a member"""
-        member = self.member(**section)
+        member = self.member(*sections, **section)
         with redirect_stdout(StringIO()):
             member.update_checkups(checker)
         return set(member.checks)
 
-    def assert_records(self, checker, expected, **section):
-        """`checker` records exactly `expected` on a member with such a section"""
-        self.assertEqual(expected, self.checkups_of(checker, **section))
+    def assert_records(self, checker, expected, *sections, **section):
+        """`checker` records exactly `expected` on a member with such sections"""
+        self.assertEqual(expected, self.checkups_of(checker, *sections, **section))
 
 
 class TestRequirementsCheckups(RequirementsCheckupsTestCase):
@@ -92,3 +98,33 @@ class TestRequirementsCheckups(RequirementsCheckupsTestCase):
         with redirect_stdout(StringIO()):
             member.update_checkups("checkup_requirements.py::checkup_R02")
         self.assertIn("requirements.txt", member.checks["R02"].details)
+
+
+class TestWhichSectionIsJudged(RequirementsCheckupsTestCase):
+    """A member can store several files, and only the primary one is a declaration"""
+
+    @staticmethod
+    def sections(requires_qiskit="~=2.1.0"):
+        """A lint file asking for a bare `qiskit`, beside the real requirement
+
+        The shape `Qiskit/qiskit-cpp` has: reading the dev file as a declaration would
+        say the project allows an unreleased Qiskit 3.
+        """
+        return [
+            RequirementsData(file="requirements-dev.txt", requires_qiskit=">=0"),
+            RequirementsData(
+                file="requirements.txt", primary=True, requires_qiskit=requires_qiskit
+            ),
+        ]
+
+    def test_the_other_files_are_stored_but_not_judged(self):
+        """Both check ups read `primary_of`, so the dev file costs the member nothing"""
+        self.assert_records("checkup_requirements.py", set(), *self.sections())
+
+    def test_the_primary_file_is_what_fails(self):
+        """And the message names it, not whichever file came first"""
+        member = self.member(*self.sections(requires_qiskit="==1.4"))
+        with redirect_stdout(StringIO()):
+            member.update_checkups("checkup_requirements.py::checkup_R01")
+        self.assertIn("requirements.txt", member.checks["R01"].details)
+        self.assertNotIn("requirements-dev.txt", member.checks["R01"].details)

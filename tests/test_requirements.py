@@ -22,7 +22,7 @@ from ecosystem.error_handling import EcosystemError
 from ecosystem.github import GitHubData
 from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
-from ecosystem.requirements import RequirementsData
+from ecosystem.requirements import RequirementsData, mark_primary, primary_of
 
 OWNER = "banana-org"
 REPO = "banana-notebooks"
@@ -52,14 +52,23 @@ def listing(*names):
 
 
 def fake_request(*names, contents=REQUIREMENTS_TXT, requested=None):
-    """Serves a listing holding `names`, then `contents` for any file asked for."""
+    """Serves a listing holding `names`, then the contents of any file asked for.
+
+    `contents` is either the text every file has, or a `{name: text}` mapping, for a
+    repository whose requirements files do not all say the same thing.
+    """
 
     def request(url, **kwargs):
         if requested is not None:
             requested.append(str(url))
         if str(url).endswith("/contents/"):
             return listing(*names)
-        return kwargs["parser"](contents)
+        text = (
+            contents
+            if isinstance(contents, str)
+            else contents[str(url).rsplit("/", 1)[-1]]
+        )
+        return kwargs["parser"](text)
 
     return request
 
@@ -76,12 +85,22 @@ class RequirementsTestCase(TestCase):
         self.addCleanup(patcher.stop)
 
     @staticmethod
-    def fetched(contents=REQUIREMENTS_TXT):
-        """A RequirementsData as if `update_json` had read `contents`."""
-        data = RequirementsData(owner=OWNER, repo=REPO)
+    def candidates(*names, requested=None):
+        """The sections `candidates` finds in a repository holding `names`."""
+        probe = RequirementsData(owner=OWNER, repo=REPO)
         with patch(
             "ecosystem.github_contents.request_json",
-            side_effect=fake_request("requirements.txt", contents=contents),
+            side_effect=fake_request(*names, requested=requested),
+        ):
+            return probe.candidates()
+
+    @staticmethod
+    def fetched(contents=REQUIREMENTS_TXT, file="requirements.txt", requested=None):
+        """A RequirementsData as if `update_json` had read `contents` from `file`."""
+        data = RequirementsData(file=file, owner=OWNER, repo=REPO)
+        with patch(
+            "ecosystem.github_contents.request_json",
+            side_effect=fake_request(file, contents=contents, requested=requested),
         ):
             data.update_json()
         return data
@@ -93,97 +112,177 @@ class RequirementsTestCase(TestCase):
 
 
 class TestRequirementsDataScope(RequirementsTestCase):
-    """The section exists only for a repository that packages nothing.
+    """Which files get a section, which is what `candidates` answers.
 
-    That rule lives in `update_json` alone, so it is the same rule for the updater,
-    the check ups and the page.
+    The rule lives there alone, so it is the same rule for the updater, the check ups
+    and the page.
     """
 
     def test_a_requirements_file_on_its_own_is_the_declaration(self):
         """With no manifest, the file is all the project says about Qiskit."""
-        data = self.fetched()
-        self.assertTrue(data.fetched)
-        self.assertEqual("requirements.txt", data.file)
-        self.assertEqual("<3,>=1.4", data.requires_qiskit)
+        self.assertEqual(
+            ["requirements.txt"],
+            [section.file for section in self.candidates("requirements.txt")],
+        )
+
+    def test_every_file_that_could_be_one_is_a_candidate(self):
+        """A member can declare several, so none of them is ruled out here."""
+        self.assertEqual(
+            ["requirements-dev.txt", "requirements.txt"],
+            [
+                section.file
+                for section in self.candidates(
+                    "requirements.txt", "README.md", "requirements-dev.txt"
+                )
+            ],
+        )
+
+    def test_the_names_that_count_as_a_requirements_file(self):
+        """Wider than Case A's single name: see REQUIREMENTS_PATTERN for why."""
+        matches = {
+            "requirements.txt": True,
+            "requirements-dev.txt": True,
+            "requirements-qiskit.txt": True,
+            "dev-requirements.txt": True,
+            "REQUIREMENTS.txt": True,
+            "requirements.in": False,
+            "requirements": False,
+            "constraints.txt": False,
+            "requirements.txt.bak": False,
+        }
+        for name, expected in matches.items():
+            with self.subTest(name=name):
+                self.assertEqual(expected, bool(self.candidates(name)))
+
+    def test_a_candidate_has_not_been_read_yet(self):
+        """`candidates` costs one listing; the contents are a request per file."""
+        section = self.candidates("requirements.txt")[0]
+        self.assertFalse(section.fetched)
+        self.assertIsNone(section.requires_qiskit)
 
     def test_a_manifest_means_the_manifest_is_the_declaration(self):
         """`[python.*]` describes it instead, and a pin here is usually a CI env."""
-        data = RequirementsData(owner=OWNER, repo=REPO)
-        with patch(
-            "ecosystem.github_contents.request_json",
-            side_effect=fake_request("pyproject.toml", "requirements.txt"),
-        ):
-            data.update_json()
-        self.assertFalse(data.fetched)
-        self.assertIsNone(data.file)
+        self.assertEqual([], self.candidates("pyproject.toml", "requirements.txt"))
 
     def test_any_manifest_is_enough_to_stay_out(self):
         """setup.cfg and setup.py declare a distribution just as much."""
         for manifest in ["setup.cfg", "setup.py"]:
             with self.subTest(manifest=manifest):
-                data = RequirementsData(owner=OWNER, repo=REPO)
-                with patch(
-                    "ecosystem.github_contents.request_json",
-                    side_effect=fake_request(manifest, "requirements.txt"),
-                ):
-                    data.update_json()
-                self.assertFalse(data.fetched)
+                self.assertEqual([], self.candidates(manifest, "requirements.txt"))
 
     def test_no_requirements_file_is_not_an_error(self):
         """Most repositories have none; that is not a failure to report."""
-        data = RequirementsData(owner=OWNER, repo=REPO)
-        with patch(
-            "ecosystem.github_contents.request_json",
-            side_effect=fake_request("README.md"),
-        ):
-            data.update_json()
-        self.assertFalse(data.fetched)
-        self.assertIsNone(data.requires_qiskit)
+        self.assertEqual([], self.candidates("README.md"))
 
     def test_a_directory_named_requirements_txt_is_not_the_file(self):
         """Only files are read; a `requirements.txt/` directory is not one."""
-        data = RequirementsData(owner=OWNER, repo=REPO)
+        probe = RequirementsData(owner=OWNER, repo=REPO)
         with patch(
             "ecosystem.github_contents.request_json",
             return_value={"entries": [{"name": "requirements.txt", "type": "dir"}]},
         ):
-            data.update_json()
-        self.assertFalse(data.fetched)
+            self.assertEqual([], probe.candidates())
 
-    def test_one_listing_then_one_read(self):
-        """The whole section costs two requests, both of them cached for the day."""
+    def test_one_listing_then_one_read_per_file(self):
+        """Every request here is cached for the day, and the listing is shared.
+
+        `PythonData.update_json` lists the same directory for every member, so over a
+        full run the listing below costs nothing.
+        """
         requested = []
-        data = RequirementsData(owner=OWNER, repo=REPO)
+        sections = self.candidates("requirements.txt", requested=requested)
+        self.assertEqual(1, len(requested))
+        self.assertTrue(requested[0].endswith(f"/{OWNER}/{REPO}/contents/"))
         with patch(
             "ecosystem.github_contents.request_json",
             side_effect=fake_request("requirements.txt", requested=requested),
         ):
-            data.update_json()
+            sections[0].update_json()
         self.assertEqual(2, len(requested))
-        self.assertTrue(requested[0].endswith(f"/{OWNER}/{REPO}/contents/"))
         self.assertTrue(requested[1].endswith("/contents/requirements.txt"))
-
-    def test_a_stale_section_is_cleared_before_fetching(self):
-        """A repository that gained a manifest must not keep its old values."""
-        data = self.stored(requires_qiskit=">=1.0")
-        data.owner, data.repo = OWNER, REPO
-        with patch(
-            "ecosystem.github_contents.request_json",
-            side_effect=fake_request("pyproject.toml"),
-        ):
-            data.update_json()
-        self.assertIsNone(data.file)
 
     def test_fetching_needs_owner_and_repo(self):
         """A section built from stored values alone cannot be refreshed."""
         with self.assertRaises(EcosystemError):
             self.stored(requires_qiskit=">=1.0").update_json()
 
+    def test_fetching_needs_a_file(self):
+        """The probe `from_github` builds is for `candidates`, not for reading."""
+        probe = RequirementsData(owner=OWNER, repo=REPO)
+        with patch(
+            "ecosystem.github_contents.request_json",
+            side_effect=AssertionError("no network"),
+        ):
+            with self.assertRaises(EcosystemError):
+                probe.update_json()
+
     def test_from_github_takes_owner_and_repo_from_the_member(self):
         """The GitHub section is where owner and repo come from."""
         data = RequirementsData.from_github(GitHubData(owner=OWNER, repo=REPO))
         self.assertEqual(OWNER, data.owner)
         self.assertEqual(REPO, data.repo)
+
+
+class TestThePrimarySection(RequirementsTestCase):
+    """Which of a member's files the check ups read, out of the several stored."""
+
+    @staticmethod
+    def sections(*files, primary=None):
+        """Sections for `files`, with `primary` naming the one already marked."""
+        return [
+            RequirementsData(file=file, primary=True if file == primary else None)
+            for file in files
+        ]
+
+    def test_no_sections_means_nothing_to_judge(self):
+        """Which is what makes the check ups skip the member."""
+        self.assertIsNone(primary_of([]))
+
+    def test_a_lone_section_is_the_one(self):
+        """Whatever it is called: it is the only thing the project says."""
+        sections = self.sections("requirements-dev.txt")
+        self.assertIs(sections[0], primary_of(sections))
+
+    def test_the_conventional_name_wins(self):
+        """It is the file reserved for what the project itself needs."""
+        sections = self.sections("requirements-dev.txt", "requirements.txt")
+        self.assertEqual("requirements.txt", primary_of(sections).file)
+
+    def test_without_it_the_first_by_name_is_taken(self):
+        """There is nothing to prefer, so the choice is at least stable."""
+        sections = self.sections("requirements-dev.txt", "requirements-qiskit.txt")
+        self.assertEqual("requirements-dev.txt", primary_of(sections).file)
+
+    def test_a_stored_flag_is_what_is_read_back(self):
+        """A hand-written `primary` overrides the fallback rule, as it should."""
+        sections = self.sections(
+            "requirements-dev.txt", "requirements.txt", primary="requirements-dev.txt"
+        )
+        self.assertEqual("requirements-dev.txt", primary_of(sections).file)
+
+    def test_a_lone_section_is_not_marked(self):
+        """There is nothing for it to be primary among, and it is read anyway."""
+        sections = self.sections("requirements-dev.txt")
+        mark_primary(sections)
+        self.assertIsNone(sections[0].primary)
+        self.assertNotIn("primary", sections[0].to_dict())
+
+    def test_a_choice_is_recorded_on_the_one_chosen(self):
+        """So the member file says which file the check ups read."""
+        sections = self.sections("requirements-dev.txt", "requirements.txt")
+        mark_primary(sections)
+        self.assertEqual(
+            {"requirements.txt": True, "requirements-dev.txt": None},
+            {section.file: section.primary for section in sections},
+        )
+
+    def test_a_stale_flag_is_cleared(self):
+        """A repository that gained a `requirements.txt` must not keep the old mark."""
+        sections = self.sections(
+            "requirements-dev.txt", "requirements.txt", primary="requirements-dev.txt"
+        )
+        mark_primary(sections)
+        self.assertEqual("requirements.txt", primary_of(sections).file)
 
 
 class TestRequirementsDataRequiresQiskit(RequirementsTestCase):
@@ -297,9 +396,46 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
         return member.requirements
 
     def test_section_is_created_from_the_repository(self):
-        """A repository with only a requirements file gets the section."""
-        requirements = self.update(self.member(), "requirements.txt")
-        self.assertEqual("<3,>=1.4", requirements.requires_qiskit)
+        """A repository with only a requirements file gets one section."""
+        sections = self.update(self.member(), "requirements.txt")
+        self.assertEqual(
+            [("requirements.txt", "<3,>=1.4")],
+            [(section.file, section.requires_qiskit) for section in sections],
+        )
+
+    def test_one_section_per_file_that_names_qiskit(self):
+        """Breadth is deliberate: benchpress declares its Qiskit in only one of eight."""
+        sections = self.update(
+            self.member(), "requirements.txt", "requirements-qiskit.txt"
+        )
+        self.assertEqual(
+            ["requirements-qiskit.txt", "requirements.txt"],
+            [section.file for section in sections],
+        )
+
+    def test_the_primary_is_marked_once_there_is_a_choice(self):
+        """`[R01]`/`[R02]` read that one, and the page says so on the others."""
+        sections = self.update(
+            self.member(), "requirements.txt", "requirements-dev.txt"
+        )
+        self.assertEqual(
+            {"requirements.txt": True, "requirements-dev.txt": None},
+            {section.file: section.primary for section in sections},
+        )
+
+    def test_a_file_that_does_not_name_qiskit_is_left_out(self):
+        """So a lint file without a qiskit pin is not stored, and is not marked."""
+        sections = self.update(
+            self.member(),
+            "requirements.txt",
+            "requirements-dev.txt",
+            contents={
+                "requirements.txt": REQUIREMENTS_TXT,
+                "requirements-dev.txt": NO_QISKIT_TXT,
+            },
+        )
+        self.assertEqual(["requirements.txt"], [section.file for section in sections])
+        self.assertIsNone(sections[0].primary)
 
     def test_no_section_when_a_manifest_declares_a_distribution(self):
         """`[python.*]` or `[pypi.*]` describes it, so this would duplicate them."""
@@ -319,8 +455,8 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
         self.assertIsNotNone(self.update(member, "requirements.txt"))
 
     def test_a_stale_section_is_dropped(self):
-        """`to_dict` leaves out None, so that is what removes the table on write."""
-        member = self.member(requirements=self.stored(requires_qiskit=">=1.0"))
+        """`to_dict` leaves out None, so that is what removes the tables on write."""
+        member = self.member(requirements=[self.stored(requires_qiskit=">=1.0")])
         self.assertIsNone(self.update(member, "pyproject.toml", "requirements.txt"))
 
     def test_a_member_without_a_github_section_is_skipped(self):
@@ -337,27 +473,32 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
             member.update_requirements()
         self.assertIsNone(member.requirements)
 
-    def test_the_section_round_trips_through_from_dict(self):
+    def test_the_sections_round_trip_through_from_dict(self):
         """What the updater writes is what reading the member file gives back."""
-        requirements = self.update(self.member(), "requirements.txt")
+        sections = self.update(
+            self.member(), "requirements.txt", "requirements-dev.txt"
+        )
         member = Member.from_dict(
             {
                 "name": "Banana Notebooks",
                 "url": f"https://github.com/{OWNER}/{REPO}",
                 "maturity": "experimental",
-                "requirements": requirements.to_dict(),
+                "requirements": [section.to_dict() for section in sections],
             }
         )
-        self.assertEqual(requirements.to_dict(), member.requirements.to_dict())
+        self.assertEqual(
+            [section.to_dict() for section in sections],
+            [section.to_dict() for section in member.requirements],
+        )
 
 
 class TestRequirementsCard(RequirementsTestCase):
     """The card, which names the file and says nothing about installing."""
 
-    def card(self, project=True):
+    def card(self, project=True, file="requirements.txt", judged=True):
         """The card for a fetched section, with or without a project behind it."""
         return RequirementsCard.from_requirements_data(
-            self.fetched(),
+            self.fetched(file=file),
             (
                 Member(
                     name="Banana Notebooks",
@@ -368,7 +509,26 @@ class TestRequirementsCard(RequirementsTestCase):
                 if project
                 else None
             ),
+            judged=judged,
         )
+
+    def test_the_card_is_titled_after_the_file(self):
+        """A member can have several, and the filename is what tells them apart."""
+        self.assertIn(
+            "#### :material-file-document-outline: `requirements-dev.txt`",
+            "\n".join(self.card(file="requirements-dev.txt").generate()),
+        )
+
+    def test_a_file_the_check_ups_skip_says_so(self):
+        """Or its compatibility reads as a claim about the project, which it is not."""
+        self.assertIn(
+            "**not read by the check ups**",
+            "\n".join(self.card(judged=False).body()),
+        )
+
+    def test_the_judged_file_carries_no_such_caveat(self):
+        """Including a lone file, which is judged without being marked `primary`."""
+        self.assertNotIn("check ups", "\n".join(self.card().body()))
 
     def test_the_file_links_to_the_default_branch(self):
         """The branch is not stored anywhere, so the link goes through HEAD."""
@@ -399,13 +559,19 @@ class TestRequirementsCard(RequirementsTestCase):
 
     def test_every_bullet_is_its_own_paragraph(self):
         """Consecutive lines would collapse into one wrapped paragraph."""
-        body = self.card().body()
-        end = next(i for i, line in enumerate(body) if "Qiskit Compatibility" in line)
-        bullets = [i for i, line in enumerate(body[:end]) if line.startswith(":")]
-        self.assertEqual(2, len(bullets))
-        for index in bullets:
-            with self.subTest(bullet=body[index]):
-                self.assertEqual("", body[index + 1])
+        for judged, count in [(True, 2), (False, 3)]:
+            with self.subTest(judged=judged):
+                body = self.card(judged=judged).body()
+                end = next(
+                    i for i, line in enumerate(body) if "Qiskit Compatibility" in line
+                )
+                bullets = [
+                    i for i, line in enumerate(body[:end]) if line.startswith(":")
+                ]
+                self.assertEqual(count, len(bullets))
+                for index in bullets:
+                    with self.subTest(bullet=body[index]):
+                        self.assertEqual("", body[index + 1])
 
 
 class TestRequirementsOnTheProjectPage(RequirementsTestCase):
@@ -425,12 +591,29 @@ class TestRequirementsOnTheProjectPage(RequirementsTestCase):
 
     def test_the_card_is_in_its_own_section(self):
         """These members have no Packages section at all to put it in."""
-        page = self.page(requirements=self.fetched())
+        page = self.page(requirements=[self.fetched()])
         self.assertIn("### :material-file-document-outline: Requirements", page)
-        self.assertIn(
-            "#### :material-file-document-outline: repository requirements", page
-        )
+        self.assertIn("#### :material-file-document-outline: `requirements.txt`", page)
         self.assertIn("<3,>=1.4", page)
+
+    def test_one_card_per_file_and_the_caveat_on_the_others(self):
+        """The page shows everything stored; the check ups read one of them."""
+        sections = [
+            self.fetched(file="requirements-dev.txt"),
+            self.fetched(file="requirements.txt"),
+        ]
+        mark_primary(sections)
+        page = self.page(requirements=sections)
+        self.assertIn(
+            "#### :material-file-document-outline: `requirements-dev.txt`", page
+        )
+        self.assertIn("#### :material-file-document-outline: `requirements.txt`", page)
+        self.assertEqual(1, page.count("**not read by the check ups**"))
+        dev, main = page.split(
+            "#### :material-file-document-outline: `requirements.txt`"
+        )
+        self.assertIn("**not read by the check ups**", dev)
+        self.assertNotIn("**not read by the check ups**", main)
 
     def test_no_section_without_a_requirements_table(self):
         """Which is every member but a handful."""

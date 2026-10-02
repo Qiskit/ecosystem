@@ -13,6 +13,14 @@ uuid = "8607d782-9e29-4f3c-a111-9d420e71cd88"
 maturity = "production-ready"
 status = "Very Early Project"
 
+[[requirements]]
+file = "requirements-review.txt"
+requires_qiskit = "==2.5.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+
 [github]
 url = "https://github.com/quantumcoinputer/quantum-cats"
 owner = "quantumcoinputer"

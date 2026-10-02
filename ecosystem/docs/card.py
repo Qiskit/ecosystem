@@ -642,11 +642,14 @@ class PipSourcePackageCard(Card):
 
 
 class RequirementsCard(Card):
-    """Card for the qiskit requirement a repository declares in its requirements file.
+    """Card for the qiskit requirement a repository declares in a requirements file.
 
     Not a package card: there is no distribution, no version and nothing to
     `pip install`. What it has to say is the file and the Qiskit compatibility that
     follows from it.
+
+    One card per file, titled after it, because a member can declare several and the
+    filename is the only thing telling them apart.
     """
 
     def __init__(
@@ -654,6 +657,7 @@ class RequirementsCard(Card):
         file=None,
         owner=None,
         repo=None,
+        judged=True,
         requires_qiskit=None,
         highest_supported_qiskit_release_date=None,
         highest_supported_qiskit_version=None,
@@ -663,6 +667,7 @@ class RequirementsCard(Card):
         self.file = file
         self.owner = owner
         self.repo = repo
+        self.judged = judged
         self.requires_qiskit = requires_qiskit
         self.highest_supported_qiskit_release_date = (
             highest_supported_qiskit_release_date
@@ -672,24 +677,29 @@ class RequirementsCard(Card):
         self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
 
         super().__init__(
-            title="repository requirements",
+            title=f"`{self.file}`",
             title_icon="#### :material-file-document-outline:",
             body_lines=self.body(),
         )
 
     @classmethod
-    def from_requirements_data(cls, requirements, project=None):
+    def from_requirements_data(cls, requirements, project=None, judged=True):
         """Construct a card from a RequirementsData.
 
         `owner` and `repo` are not part of the section, because they would duplicate
         `[github]`, so they are read back from the project when there is one. Without
         them the card leaves the file unlinked rather than guessing a URL.
+
+        `judged` says whether this is the file the check ups read, which the section
+        cannot answer on its own: `primary` is unset both on a lone section and on a
+        sibling that lost. The caller has the list, so it decides.
         """
         github = getattr(project, "github", None)
         return RequirementsCard(
             file=requirements.file,
             owner=getattr(github, "owner", None),
             repo=getattr(github, "repo", None),
+            judged=judged,
             requires_qiskit=requirements.requires_qiskit,
             highest_supported_qiskit_release_date=(
                 requirements.highest_supported_qiskit_release_date
@@ -725,5 +735,12 @@ class RequirementsCard(Card):
             ":material-information-outline:",
             "**no packaging manifest** in the repository",
         ) + [""]
+        if not self.judged:
+            # or the compatibility below reads as a claim about the project, which is
+            # the one thing a file the check ups skipped is not making
+            ret += self.bullet(
+                ":material-eye-off-outline:",
+                "**not read by the check ups**, which judge the main requirements file",
+            ) + [""]
         ret += qiskit_compatibility(self)
         return ret

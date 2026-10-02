@@ -17,6 +17,7 @@ Pages inhttps://qiskit.github.io/ecosystem/p/<short uuid>
 import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
+from ecosystem.requirements import primary_of
 from ecosystem.docs.card import (
     ProjectSummaryCard,
     URLsCard,
@@ -154,15 +155,22 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         Its own section rather than a card under Packages: a requirements file is not a
         package, and a member only has this section when it declares no packaging
         manifest, so for most of them the Packages heading above is absent entirely.
+
+        One card per file, in the order they are stored, which is by filename.
         """
-        if not self.project.requirements:
+        sections = self.project.requirements
+        if not sections:
             return []
+        judged = primary_of(sections)
+        cards = []
+        for requirements in sections:
+            cards += RequirementsCard.from_requirements_data(
+                requirements, self.project, judged=requirements is judged
+            ).generate()
         return (
             ["\n---\n### :material-file-document-outline: Requirements\n"]
             + ['<div class="grid cards" markdown>']
-            + RequirementsCard.from_requirements_data(
-                self.project.requirements, self.project
-            ).generate()
+            + cards
             + ["</div>"]
         )
 
