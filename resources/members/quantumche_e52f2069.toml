@@ -16,8 +16,8 @@ file = "requirements.txt"
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
+highest_supported_qiskit_release_date = 2026-10-02
+highest_supported_qiskit_version = "2.6.0rc1"
 
 [github]
 url = "https://github.com/Venkatallu11/quantum-chemistry-vqe"
@@ -26,8 +26,8 @@ repo = "quantum-chemistry-vqe"
 stars = 4
 license = "MIT"
 created_at = 2026-06-30
-last_commit = 2026-10-01
-last_activity = 2026-10-01
+last_commit = 2026-10-02
+last_activity = 2026-10-02
 
 [badge]
 url = "https://qisk.it/e-e52f2069"
