@@ -33,6 +33,7 @@ from ecosystem.docs.project_table import (
     classification_columns,
     classification_table,
 )
+from ecosystem.docs import summary_charts
 from ecosystem.docs.checkup_page import CheckupAssets
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
@@ -187,6 +188,16 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         self.update_assets_interfaces(projects_per_classification["interfaces"])
         self.update_assets_ibm_maintained()
         self.update_assets_checkups()
+        self.update_assets_summary_charts()
+
+    def update_assets_summary_charts(self):
+        """Updates the chart data of the summary page in docs/assets/.
+
+        See `ecosystem.docs.summary_charts`: the charts used to carry hardcoded numbers.
+        """
+        summary_charts.write_all(
+            self.dao.get_all(), str(Path(self.current_dir, "docs", "assets"))
+        )
 
     def update_assets_checkups(self):
         """Updates the check up fragments in docs/assets/, from resources/checks.toml and the

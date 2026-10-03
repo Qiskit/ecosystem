@@ -16,8 +16,21 @@ the classification tables, the badge table and the check up page.
 This runs as a mkdocs `gen-files` script, so a documentation build always has fragments
 that match the member files, with no separate command to remember. The writes are skipped
 when the content has not changed, so a rebuild does not trigger the next one.
+
+The summary page charts and the members badge are published rather than written: they are
+fetched from the site by whoever renders them, and mkdocs only copies the files that were
+in `docs/` when the build started, so a fragment written mid-build has to be registered
+through `mkdocs_gen_files` to end up in the site at all.
 """
 
-from ecosystem.cli.members import CliMembers
+import mkdocs_gen_files
 
-CliMembers().update_docs_assets()
+from ecosystem.cli.members import CliMembers
+from ecosystem.docs.summary_charts import fragments
+
+members = CliMembers()
+members.update_docs_assets()
+
+for name, text in fragments(members.dao.get_all()).items():
+    with mkdocs_gen_files.open(f"assets/{name}", "w") as fragment:
+        fragment.write(text)
