@@ -6,6 +6,8 @@
 [![Sourcecode tests](https://github.com/Qiskit/ecosystem/actions/workflows/tests.yml/badge.svg)](https://github.com/Qiskit/ecosystem/actions/workflows/tests.yml)
 [![Deploy Website](https://github.com/Qiskit/ecosystem/actions/workflows/deploy-website.yml/badge.svg?event=push)](https://github.com/Qiskit/ecosystem/actions/workflows/deploy-website.yml)
 [![Coverage Status](https://coveralls.io/repos/github/Qiskit/ecosystem/badge.svg?branch=main)](https://coveralls.io/github/Qiskit/ecosystem?branch=main)
+[![Amount of members](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fqiskit.github.io%2Fecosystem%2Fassets%2Fsummary_totals.json&query=%24.members&logo=qiskit&label=members&labelColor=6929C4&color=6929C4)](https://qiskit.github.io/ecosystem/summary/)
+
 
 <!--lint enable double-link-->
 
