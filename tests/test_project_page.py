@@ -20,6 +20,7 @@ from mkdocs_gen_files.editor import FilesEditor
 
 from ecosystem.badge import BadgeData
 from ecosystem.check import CheckData
+from ecosystem.crates import CratesData
 from ecosystem.docs.project_page import ProjectPage
 from ecosystem.github import GitHubData
 from ecosystem.julia import JuliaData
@@ -311,7 +312,7 @@ class TestThePackagesSection(ProjectPageTestCase):
     def test_the_compatibility_is_not_repeated_in_the_package_tables(self):
         """It is the Qiskit requirements table below that collects it"""
         section = self.packages(pypi={"banana": banana_on_pypi()})
-        self.assertNotIn("Qiskit Compatibility", section)
+        self.assertNotIn("Qiskit compatibility", section)
         self.assertNotIn("V1", section)
 
     def test_a_release_with_nowhere_to_link_is_still_the_version(self):
@@ -320,6 +321,41 @@ class TestThePackagesSection(ProjectPageTestCase):
             pypi={"banana": PyPIData(package_name="banana", version="1.0.0")}
         )
         self.assertIn("| [`banana`](../pypi/banana.md) | 1.0.0 |", section)
+
+    def test_a_crate_is_a_row_with_its_release_and_its_downloads(self):
+        """The Rust columns the registry gives beside the download counts"""
+        section = self.packages(
+            crates={
+                "banana_parser": CratesData(
+                    package_name="banana_parser",
+                    version="0.7.0",
+                    last_release_date="2024-10-30",
+                    rust_version="1.70",
+                    edition="2021",
+                    total_downloads=939802,
+                    last_90_days_downloads=166899,
+                )
+            }
+        )
+        self.assertIn(
+            "| crates.io crate | Release | Rust | Edition | "
+            "Total downloads | Last 90 days |",
+            section,
+        )
+        self.assertIn("[`banana_parser`](../crates/banana_parser.md)", section)
+        self.assertIn(
+            "[0.7.0](https://crates.io/crates/banana_parser/0.7.0 "
+            '"Released: 2024-10-30")',
+            section,
+        )
+        self.assertIn("| 1.70 | 2021 | 939,802 | 166,899 |", section)
+
+    def test_a_crate_is_not_in_the_qiskit_requirements_table(self):
+        """Qiskit publishes no crate, so there is nothing on crates.io to require"""
+        page = self.page(
+            crates={"banana_parser": CratesData(package_name="banana_parser")}
+        )
+        self.assertEqual([], page.qiskit_requirements())
 
     def test_a_julia_package_names_its_registry_and_its_users(self):
         """JuliaHub is the only place to link to, and it is keyed by registry"""
@@ -359,7 +395,6 @@ class TestThePackagesSection(ProjectPageTestCase):
                 "https://github.com/banana-org/banana-repo/pkgs/container/banana",
                 ":simple-github: GitHub Packages | [banana]",
             ),
-            ("https://crates.io/crates/banana", ":simple-rust: crates.io | [banana]"),
             (
                 "https://www.npmjs.com/package/banana",
                 ":octicons-package-16: [www.npmjs.com]",
@@ -621,4 +656,4 @@ class TestTheBadgeSection(ProjectPageTestCase):
         self.assertIn(
             "[![Qiskit Ecosystem](https://bit.ly/banana)](https://qisk.it/e)", section
         )
-        self.assertIn("**style** `flat`", section)
+        self.assertIn("**Style** `flat`", section)

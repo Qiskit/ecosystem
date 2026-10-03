@@ -68,6 +68,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         """
         tables = (
             self.pypi_table()
+            + self.crates_table()
+            + self.cargo_table()
             + self.pip_source_table()
             + self.julia_table()
             + self.other_registries_table()
@@ -95,6 +97,86 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             ("Release", ":---:"),
             ("Last month", "---:"),
             ("Last 180 days", "---:"),
+        ]
+        return self._table(columns, rows)
+
+    def crates_table(self):
+        """The crates published to crates.io.
+
+        No Qiskit column, and no `Qiskit requirements` row either: Qiskit publishes no crate,
+        so there is nothing on that registry for a crate to depend on.
+        """
+        rows = [
+            [
+                self._link_cell(
+                    f"`{cell(crate.package_name)}`",
+                    f"../crates/{crate.package_name}.md",
+                ),
+                self._release_cell(
+                    crate.version,
+                    f"{crate.url}/{crate.version}" if crate.version else None,
+                    crate.last_release_date,
+                ),
+                cell(crate.rust_version) if crate.rust_version else "",
+                cell(crate.edition) if crate.edition else "",
+                self._count_cell(crate.total_downloads),
+                self._count_cell(crate.last_90_days_downloads),
+            ]
+            for crate in (self.project.crates or {}).values()
+        ]
+        columns = [
+            ("crates.io crate", "---"),
+            ("Release", ":---:"),
+            ("Rust", ":---:"),
+            ("Edition", ":---:"),
+            ("Total downloads", "---:"),
+            ("Last 90 days", "---:"),
+        ]
+        return self._table(columns, rows)
+
+    def cargo_table(self):
+        """The crates a repository declares without publishing them.
+
+        `cargo add` is a tooltip rather than a column, as the `pip install` of the table
+        below is: it is the longest value in the row and the shortest thing to say about
+        the crate.
+        """
+        github = self.project.github
+        owner = getattr(github, "owner", None)
+        repo = getattr(github, "repo", None)
+        rows = []
+        for crate in (self.project.cargo or {}).values():
+            target = (
+                f"cargo add --git https://github.com/{owner}/{repo} "
+                f"{crate.package_name}"
+                if owner and repo
+                else None
+            )
+            manifest = (
+                f"[`{cell(crate.manifest_path)}`](https://github.com/{owner}/{repo}"
+                f"/blob/HEAD/{crate.manifest_path})"
+                if owner and repo
+                else f"`{cell(crate.manifest_path)}`"
+            )
+            rows.append(
+                [
+                    self._link_cell(
+                        f"`{cell(crate.package_name)}`",
+                        f"../cargo-source/{crate.package_name}.md",
+                        target,
+                    ),
+                    cell(crate.version) if crate.version else "",
+                    cell(crate.rust_version) if crate.rust_version else "",
+                    cell(crate.edition) if crate.edition else "",
+                    manifest,
+                ]
+            )
+        columns = [
+            ("cargo-installable repo", "---"),
+            ("Version", ":---:"),
+            ("Rust", ":---:"),
+            ("Edition", ":---:"),
+            ("Declared in", "---"),
         ]
         return self._table(columns, rows)
 
@@ -190,11 +272,6 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             return [
                 ":simple-github: GitHub Packages",
                 f"[{cell(package.path.split('/')[5])}]({package})",
-            ]
-        if "crates.io" in package.hostname:
-            return [
-                ":simple-rust: crates.io",
-                f"[{cell(package.path.split('/')[-1])}]({package})",
             ]
         return [f":octicons-package-16: [{cell(package.hostname)}]({package})", ""]
 
@@ -475,7 +552,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             f'<img src="{self.project.badge.url}">',
             '</button><pre style="width:600px; margin:0px" id="__code_0">'
             f'<code tabindex="0">{self.project.badge_md}</code></pre></div>',
-            f"\n**style** `{self.project.badge.style}`  \n Check out [Badges section]"
+            f"\n**Style** `{self.project.badge.style}`  \n Check out [Badges section]"
             "(../badges.md) to learn more about how badges are used for status communicaiton "
             "or on how to change the badge style.",
         ]

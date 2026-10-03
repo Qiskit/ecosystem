@@ -243,6 +243,101 @@
         }
       }
     },
+    "crates": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*$": {
+          "$comment": "The key is the crate name, as crates.io spells it",
+          "type": "object",
+          "properties": {
+            "package_name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "last_release_date": {
+              "type": "string"
+            },
+            "license": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "maintainers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "rust_version": {
+              "type": "string"
+            },
+            "edition": {
+              "type": "string"
+            },
+            "total_downloads": {
+              "type": "integer"
+            },
+            "last_90_days_downloads": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "package_name"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "cargo": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]*$": {
+          "$comment": "The key is the crate name, as the Cargo.toml declares it",
+          "type": "object",
+          "properties": {
+            "package_name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "license": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "rust_version": {
+              "type": "string"
+            },
+            "edition": {
+              "type": "string"
+            },
+            "crate_type": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "package_name"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "python": {
       "type": "object",
       "patternProperties": {

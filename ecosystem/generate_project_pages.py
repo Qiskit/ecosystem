@@ -14,6 +14,8 @@
 - all projects - pages for https://qiskit.github.io/ecosystem/p/
 - pypi packages - pages for https://qiskit.github.io/ecosystem/pypi/
 - pip-installable repositories - pages for https://qiskit.github.io/ecosystem/pip-source/
+- crates - pages for https://qiskit.github.io/ecosystem/crates/
+- cargo-installable repositories - pages for https://qiskit.github.io/ecosystem/cargo-source/
 """
 
 import csv
@@ -23,6 +25,8 @@ import mkdocs_gen_files
 
 from ecosystem.cli.members import CliMembers
 from ecosystem.docs import write_if_changed
+from ecosystem.docs.cargo_page import CargoPage
+from ecosystem.docs.crates_page import CratesPage
 from ecosystem.docs.pip_source_page import PipSourcePage
 from ecosystem.docs.project_page import ProjectPage
 from ecosystem.docs.pypi_page import PypiPage
@@ -30,10 +34,14 @@ from ecosystem.docs.pypi_page import PypiPage
 project_nav = mkdocs_gen_files.Nav()
 pypi_nav = mkdocs_gen_files.Nav()
 pip_source_nav = mkdocs_gen_files.Nav()
+crates_nav = mkdocs_gen_files.Nav()
+cargo_nav = mkdocs_gen_files.Nav()
 
 active_projects = []
 active_pypi = []
 active_pip_source = []
+active_crates = []
+active_cargo = []
 
 for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
     project_page = ProjectPage(project, f"p/{project.short_uuid}.md")
@@ -61,6 +69,24 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
                         "maturity": project.maturity,
                     }
                 )
+    for section, pages, nav, active, directory in [
+        (project.crates, CratesPage, crates_nav, active_crates, "crates"),
+        (project.cargo, CargoPage, cargo_nav, active_cargo, "cargo-source"),
+    ]:
+        for crate in section.values():
+            page = pages(crate, project, f"{directory}/{crate.package_name}.md")
+            page.write_page()
+            nav[crate.package_name] = f"{crate.package_name}.md"
+            if not project.is_alumni:
+                active.append(
+                    {
+                        "name": f"<a href='../{directory}/{crate.package_name}'>"
+                        f"{crate.package_name}</a>",
+                        "status": project.status or "Active project",
+                        "maturity": project.maturity,
+                    }
+                )
+
     if project.python:
         for package in project.python.values():
             pip_source_page = PipSourcePage(
@@ -87,6 +113,12 @@ with mkdocs_gen_files.open("pypi/SUMMARY.md", "w") as nav_file:
 with mkdocs_gen_files.open("pip-source/SUMMARY.md", "w") as nav_file:
     nav_file.writelines(pip_source_nav.build_literate_nav())
 
+with mkdocs_gen_files.open("crates/SUMMARY.md", "w") as nav_file:
+    nav_file.writelines(crates_nav.build_literate_nav())
+
+with mkdocs_gen_files.open("cargo-source/SUMMARY.md", "w") as nav_file:
+    nav_file.writelines(cargo_nav.build_literate_nav())
+
 
 def as_csv(rows):
     """The rows as CSV text, with a name/status/maturity header"""
@@ -104,3 +136,5 @@ def as_csv(rows):
 write_if_changed("docs/assets/active_projects.csv", as_csv(active_projects))
 write_if_changed("docs/assets/active_pypi.csv", as_csv(active_pypi))
 write_if_changed("docs/assets/pip_source.csv", as_csv(active_pip_source))
+write_if_changed("docs/assets/active_crates.csv", as_csv(active_crates))
+write_if_changed("docs/assets/cargo_source.csv", as_csv(active_cargo))

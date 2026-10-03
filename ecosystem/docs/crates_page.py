@@ -11,62 +11,55 @@
 # that they have been altered from the originals.
 
 
-"""Pages in https://qiskit.github.io/ecosystem/pypi/<package-name>"""
+"""Pages in https://qiskit.github.io/ecosystem/crates/<crate-name>
+
+The counterpart of `pypi_page` for the Rust registry: one page per published crate, so a
+reader who arrived looking for the crate lands on something about the crate rather than on
+the project that happens to publish it.
+"""
 
 from ecosystem.docs import command_block
-from ecosystem.docs.card import ProjectSummaryCard, PypiPackageCard
+from ecosystem.docs.card import ProjectSummaryCard, CratesPackageCard
 from .project_page import ProjectPage
 
 
-class PypiPage(ProjectPage):
-    """represents a markdown file in docs/pypi/"""
+class CratesPage(ProjectPage):
+    """represents a markdown file in docs/crates/"""
 
-    def __init__(self, package, project, filename):
-        """each of the files in docs/pypi/*.md"""
+    def __init__(self, crate, project, filename):
+        """each of the files in docs/crates/*.md"""
         super().__init__(project, filename)
-        self.package = package
+        self.crate = crate
 
     def generate_all_lines(self):
-        """Returns all the docs/p/<uuid>.md lines"""
+        """Returns all the docs/crates/<crate-name>.md lines"""
         lines = []
         lines += self.front_matter()
-        lines += self.title(self.package.package_name) + [""]
+        lines += self.title(self.crate.package_name) + [""]
         lines += self.description() + [""]
         lines += self.general_summary()
-        # lines += self.checkups()
         return lines
 
     def general_summary(self):
         return (
             ['<div class="grid cards" markdown>', ""]
-            + self.pypi_card()
+            + self.crates_card()
             + self.project_card()
             + ["</div>"]
         )
 
     def description(self):
-        """package summary, pip install command and the PyPI project page"""
+        """crate summary, how to depend on it, and the crates.io page"""
         lines = []
-        if self.package.description:
-            lines += [f"> {self.package.description}", ""]
-        lines += command_block(f"pip install {self.package.package_name}")
-        lines += ["", f":simple-pypi: [{self.pypi_url}]({self.pypi_url})"]
+        if self.crate.description:
+            lines += [f"> {self.crate.description}", ""]
+        lines += command_block(f"cargo add {self.crate.package_name}")
+        lines += ["", f":simple-rust: [{self.crate.url}]({self.crate.url})"]
         return lines
 
-    @property
-    def pypi_url(self):
-        """The PyPI project page of the package.
-
-        `self.package.url` comes from PyPI itself, but a package that was never fetched (or
-        does not exist anymore) has none, and the URL is a function of the name anyway.
-        """
-        return (
-            self.package.url or f"https://pypi.org/project/{self.package.package_name}/"
-        )
-
-    def pypi_card(self):
-        """Python pacakge"""
-        card = PypiPackageCard.from_pypi_data(self.package)
+    def crates_card(self):
+        """The crate as crates.io describes it"""
+        card = CratesPackageCard.from_crates_data(self.crate)
         card.title = None
         return card.generate()
 
