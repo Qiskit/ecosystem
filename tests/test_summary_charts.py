@@ -287,13 +287,22 @@ class TestTheSharesAndTheLinks(TestCase):
 class TestTheFragments(TestCase):
     """What the build writes, and what the page reads"""
 
-    def test_every_fragment_the_page_asks_for_is_written(self):
+    def test_every_chart_of_the_page_has_its_fragment(self):
         """A chart whose data file is missing renders as an empty box"""
         with tempfile.TemporaryDirectory() as directory:
             summary_charts.write_all([member(maturity="experimental")], directory)
             written = {path.name for path in Path(directory).glob("*.json")}
         asked_for = set(re.findall(r"assets/(\w+\.json)", SUMMARY_PAGE.read_text()))
-        self.assertEqual(asked_for, written)
+        self.assertTrue(asked_for)
+        self.assertTrue(asked_for <= written, asked_for - written)
+
+    def test_the_badge_fragments_are_written_whether_the_page_uses_them_or_not(self):
+        """They are for whoever renders a badge, which is usually not this page"""
+        with tempfile.TemporaryDirectory() as directory:
+            summary_charts.write_all([member(maturity="experimental")], directory)
+            written = {path.name for path in Path(directory).glob("*.json")}
+        self.assertIn("members_badge.json", written)
+        self.assertIn("summary_totals.json", written)
 
     def test_the_json_carries_the_fields_the_specs_encode(self):
         """The spec names fields; a renamed one would silently empty the chart"""
@@ -303,6 +312,23 @@ class TestTheFragments(TestCase):
         self.assertEqual(
             ["ring", "order", "label", "count", "share", "url"], list(rows[0])
         )
+
+    def test_a_label_layer_sees_the_same_rows_as_its_arcs(self):
+        """A filter in a stacked layer re-stacks what is left, which moves every label.
+
+        Filtering the small sectors out of a label layer put `Another registry` 6% on the
+        edge of the sector after it: the labels have to be hidden, not dropped.
+        """
+        for spec in re.findall(
+            r"```vegalite\n(.*?)\n```", SUMMARY_PAGE.read_text(), re.S
+        ):
+            parsed = json.loads(spec)
+            for layer in parsed.get("layer", []):
+                if layer["mark"]["type"] != "text":
+                    continue
+                with self.subTest(chart=parsed["title"]["text"]):
+                    self.assertNotIn("share", layer["transform"][0]["filter"])
+                    self.assertIn("share", str(layer["encoding"].get("opacity")))
 
     def test_the_specs_are_valid_json_pointing_at_those_files(self):
         """The charts plugin fails the build on invalid JSON, and renders nothing on a typo"""
@@ -347,8 +373,9 @@ class TestTheTotalsAndTheBadge(TestCase):
         self.assertIn("label", badge)
         self.assertIn("color", badge)
 
-    def test_the_page_shows_the_badge_it_generates(self):
-        """A badge nobody can see is a file nobody knows about"""
-        page = SUMMARY_PAGE.read_text()
-        self.assertIn("img.shields.io/endpoint", page)
-        self.assertIn("assets/members_badge.json", page)
+    def test_the_build_publishes_the_badge(self):
+        """mkdocs only ships what it collected or what a plugin registered, and the badge
+        is fetched from the site by shields.io, so it has to be registered"""
+        script = Path("ecosystem/generate_docs_assets.py").read_text()
+        self.assertIn("fragments(", script)
+        self.assertIn('mkdocs_gen_files.open(f"assets/{name}"', script)

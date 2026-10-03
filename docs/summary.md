@@ -67,7 +67,7 @@
     {
       "transform": [
         {
-          "filter": "datum.ring == 1 && datum.share >= 0.06"
+          "filter": "datum.ring == 1"
         }
       ],
       "mark": {
@@ -83,6 +83,13 @@
         },
         "color": {
           "value": "white"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.share >= 0.06",
+            "value": 1
+          },
+          "value": 0
         }
       }
     },
@@ -102,7 +109,7 @@
     {
       "transform": [
         {
-          "filter": "datum.ring == 2 && datum.share >= 0.06"
+          "filter": "datum.ring == 2"
         }
       ],
       "mark": {
@@ -118,6 +125,13 @@
         },
         "color": {
           "value": "white"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.share >= 0.06",
+            "value": 1
+          },
+          "value": 0
         }
       }
     },
@@ -137,7 +151,7 @@
     {
       "transform": [
         {
-          "filter": "datum.ring == 3 && datum.share >= 0.06"
+          "filter": "datum.ring == 3"
         }
       ],
       "mark": {
@@ -153,6 +167,13 @@
         },
         "color": {
           "value": "white"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.share >= 0.06",
+            "value": 1
+          },
+          "value": 0
         }
       }
     }
@@ -229,7 +250,7 @@
     {
       "transform": [
         {
-          "filter": "datum.ring == 1 && datum.share >= 0.06"
+          "filter": "datum.ring == 1"
         }
       ],
       "mark": {
@@ -245,6 +266,13 @@
         },
         "color": {
           "value": "white"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.share >= 0.06",
+            "value": 1
+          },
+          "value": 0
         }
       }
     },
@@ -264,7 +292,7 @@
     {
       "transform": [
         {
-          "filter": "datum.ring == 2 && datum.share >= 0.06"
+          "filter": "datum.ring == 2"
         }
       ],
       "mark": {
@@ -280,6 +308,13 @@
         },
         "color": {
           "value": "white"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.share >= 0.06",
+            "value": 1
+          },
+          "value": 0
         }
       }
     }
@@ -356,7 +391,7 @@
     {
       "transform": [
         {
-          "filter": "datum.ring == 1 && datum.share >= 0.06"
+          "filter": "datum.ring == 1"
         }
       ],
       "mark": {
@@ -372,6 +407,13 @@
         },
         "color": {
           "value": "white"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.share >= 0.06",
+            "value": 1
+          },
+          "value": 0
         }
       }
     },
@@ -391,7 +433,7 @@
     {
       "transform": [
         {
-          "filter": "datum.ring == 2 && datum.share >= 0.06"
+          "filter": "datum.ring == 2"
         }
       ],
       "mark": {
@@ -407,6 +449,13 @@
         },
         "color": {
           "value": "white"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.share >= 0.06",
+            "value": 1
+          },
+          "value": 0
         }
       }
     }
