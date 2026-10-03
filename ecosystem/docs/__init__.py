@@ -77,3 +77,14 @@ def markdown_table(columns, rows) -> list:
         "| " + " | ".join(columns[index][0] for index in keep) + " |",
         "| " + " | ".join(columns[index][1] for index in keep) + " |",
     ] + ["| " + " | ".join(row[index] for index in keep) + " |" for row in rows]
+
+
+def command_block(command, language="bash") -> list:
+    """A command to run, as a fenced block with the copy button the theme adds to one.
+
+    A bullet in a card renders the command as inline code, which a reader has to select by
+    hand. `content.code.copy` (see `theme.features` in properdocs.yml) gives a fenced block
+    the same copy button the badge snippet has, and copying it is the only thing anybody
+    does with an install line.
+    """
+    return [f"```{language}", command, "```"]
