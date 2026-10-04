@@ -44,18 +44,18 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml", "setup.py"]
 deferred = ["cmdclass", "package_data", "packages"]
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-05-14
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 discussion = "https://github.com/orgs/Qiskit/discussions/53"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.G00]
+[[checks.G00]]
 since = 2026-09-24
 details = "The project is probably abandoned: `[G07]`"
 importance = "CRITICAL"
 
-[checks.Q03]
+[[checks.Q03]]
 since = 2026-10-01
 details = "The distribution qoptkit declared in the repository allows a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"

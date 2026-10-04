@@ -25,10 +25,11 @@ def skip_pypi(member):
     yield member
 
 
-def checkup_PQ1(member, subtests):
+def checkup_PQ1(member, subtests, explained):
     """Be installable with qiskit>=1.0"""
     for pypi_package in member.pypi:
-        with subtests.test(pypi_package=pypi_package.package_name):
+        place = f"pypi:{pypi_package.package_name}"
+        with subtests.test(msg=place), explained(place):
             if pypi_package.compatible_with_qiskit_v1 is None:
                 pytest.skip(
                     f"No member.pypi.{pypi_package.package_name}.compatible_with_qiskit_v1"

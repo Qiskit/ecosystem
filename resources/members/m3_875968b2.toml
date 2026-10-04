@@ -52,7 +52,7 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 27058
 last_180_days_downloads = 196455
 
-[checks.Q03]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-addon-mthree/issues/287, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-09

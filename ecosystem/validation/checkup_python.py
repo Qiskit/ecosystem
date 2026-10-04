@@ -31,9 +31,10 @@ def skip_python(member):
     yield member
 
 
-def checkup_S00(member, subtests):
+def checkup_S00(member, subtests, explained):
     for package in member.python:
-        with subtests.test(python_package=package.package_name):
+        place = f"python:{package.package_name}"
+        with subtests.test(msg=place), explained(place):
             if package.license is None:
                 pytest.skip(f"No member.python.{package.package_name}.license")
             assert (

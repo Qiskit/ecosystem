@@ -27,13 +27,13 @@ last_commit = 2024-05-10
 url = "https://qisk.it/e-e6e7a086"
 style = "flat"
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-05-14
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 discussion = "https://github.com/orgs/Qiskit/discussions/55"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.G00]
+[[checks.G00]]
 since = 2026-09-24
 details = "The project is probably abandoned: `[G07]`"
 importance = "CRITICAL"

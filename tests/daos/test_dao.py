@@ -66,14 +66,14 @@ class TestTheFileLayout(TestCase):
             maturity="experimental",
             github=GitHubData(owner="banana-org", repo="banana"),
             badge=BadgeData(url="https://bit.ly/banana"),
-            checks={"G07": CheckData("G07")},
+            checks={"G07": [CheckData("G07")]},
             **kwargs,
         )
 
     def test_the_repository_comes_before_the_packages(self):
         """Which is where a reader of a member file looks for it"""
         self.assertEqual(
-            ["[github]", "[badge]", "[[pypi]]", "[checks.G07]"],
+            ["[github]", "[badge]", "[[pypi]]", "[[checks.G07]]"],
             self.headers(self.member(pypi=[PyPIData(package_name="banana")])),
         )
 
@@ -91,8 +91,22 @@ class TestTheFileLayout(TestCase):
                 "[[pypi]]",
                 "[[python]]",
                 "[[requirements]]",
-                "[checks.G07]",
+                "[[checks.G07]]",
             ],
+            self.headers(member),
+        )
+
+    def test_a_check_up_recorded_on_two_places_is_two_tables(self):
+        """`[[checks.<ID>]]` is a keyed array: one entry per failing place, no parent table"""
+        member = self.member()
+        member.checks = {
+            "Q03": [
+                CheckData("Q03", subtest="requirements:requirements.txt"),
+                CheckData("Q03", subtest="pypi:banana"),
+            ]
+        }
+        self.assertEqual(
+            ["[github]", "[badge]", "[[checks.Q03]]", "[[checks.Q03]]"],
             self.headers(member),
         )
 

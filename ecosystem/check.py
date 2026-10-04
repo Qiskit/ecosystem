@@ -134,6 +134,7 @@ class CheckData(JsonSerializable):
         source=None,
         details=None,
         discussion=None,
+        subtest=None,
         **_,
     ):
         self.id = id_
@@ -143,6 +144,11 @@ class CheckData(JsonSerializable):
         self.source: str | None = source
         self.details = details
         self.discussion: str | URL | None = discussion
+        #: Which place of the member this record is about, for a check up that reads several:
+        #: `requirements:docs/requirements.txt`, `pypi:qiskit-aer-gpu`. It is the subtest the
+        #: checker ran, hence the name, and it is what pairs a new record with the stored one
+        #: it continues. None for a check up that has one answer per member.
+        self.subtest = subtest
 
     def to_dict(self, keys=None) -> dict:
         ret = super().to_dict(keys=keys)
@@ -270,15 +276,33 @@ class CheckData(JsonSerializable):
 
     @classmethod
     def from_report(cls, pytest_report):
-        """creates a CheckData instance based on a PyTest report"""
+        """creates a CheckData instance based on a PyTest report
+
+        `subtest` is the place the report is about, for a check up that reads several (see
+        `ValidationReport.pytest_runtest_logreport`, which is what sets it).
+        """
+        first_line = pytest_report.longreprtext.partition("\n")[0]
+        # the message of an assertion, after the `AssertionError:` that introduces it. A
+        # report with no such prefix is not a check up failure: the function-level report of
+        # a check up that ran subtests reads `contains N failed subtests`
         assertion_msg = (
-            pytest_report.longreprtext.partition("\n")[0].split(":", 1)[1].strip()
+            first_line.split(":", 1)[1].strip() if ":" in first_line else first_line
         )
         test_id = cls.checks_toml.id_by_pytest_node(pytest_report.nodeid)
+        subtest = getattr(pytest_report, "subtest", None)
         if hasattr(pytest_report, "wasxfail") and pytest_report.wasxfail:
             return CheckData(
-                test_id, details=assertion_msg, xfailed=pytest_report.wasxfail
+                test_id,
+                details=assertion_msg,
+                # `pytest.xfail()` prefixes the reason, a marker does not
+                xfailed=pytest_report.wasxfail.removeprefix("reason: "),
+                subtest=subtest,
             )
+        if subtest:
+            # the `previously_failed` marker is attached to the check up function, so its
+            # `since` is the earliest of the places. Which place this one continues is
+            # decided against the stored records, in `Member.update_checkups`
+            return CheckData(test_id, details=assertion_msg, subtest=subtest)
         since = (
             pytest_report.previously_failed.kwargs["since"]
             if hasattr(pytest_report, "previously_failed")

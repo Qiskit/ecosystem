@@ -97,7 +97,7 @@ def dumps(member_dict):
     file the next time an updater writes one.
 
     So the blocks are put back in the order of the keys of `Member.to_dict`: the submission's
-    own values, then `[github]` and `[badge]`, then the package sections, then `[checks.*]`.
+    own values, then `[github]` and `[badge]`, then the package sections, then `[[checks.*]]`.
     """
     text = toml.dumps(member_dict, encoder=TomlEncoder(preserve=True))
     blocks, current = [], []
@@ -107,6 +107,9 @@ def dumps(member_dict):
             current = []
         current.append(line)
     blocks.append(current)
+    # `toml` writes the parent table of a keyed array of tables, so `[checks]` appears above
+    # the first `[[checks.<ID>]]` with nothing in it. The array creates it implicitly
+    blocks = [block for block in blocks if "".join(block).strip() not in ("[checks]",)]
 
     def position(block):
         """Where the section this block belongs to goes in a member file"""

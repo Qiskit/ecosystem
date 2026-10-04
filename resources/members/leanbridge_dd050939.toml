@@ -41,7 +41,7 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
 
-[checks.Q03]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiskit-LEAN-Bridge/issues/1, waiting for the fix"
 xfailed_until = 2026-11-30
 since = 2026-09-28

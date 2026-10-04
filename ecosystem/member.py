@@ -171,9 +171,11 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         if "packages" in filtered_dict:
             filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
         if "checks" in filtered_dict:
+            # keyed arrays of tables: the id is still the identity, and it is looked up by
+            # it, but a check up that reads several places has a record per failing place
             filtered_dict["checks"] = {
-                id_: CheckData(id_, **kwargs)
-                for id_, kwargs in filtered_dict["checks"].items()
+                id_: [CheckData(id_, **table) for table in tables]
+                for id_, tables in filtered_dict["checks"].items()
             }
         if "license" in filtered_dict and filtered_dict["license"] is not None:
             filtered_dict["license"] = License(filtered_dict["license"], where="user")
@@ -194,8 +196,13 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 del base_dict[section]
         # move checks to the end of the dict
         if "checks" in base_dict:
-            checks = base_dict.pop("checks")
-            base_dict["checks"] = checks
+            checks = {
+                id_: records
+                for id_, records in base_dict.pop("checks").items()
+                if records
+            }
+            if checks:
+                base_dict["checks"] = checks
         return base_dict
 
     def __eq__(self, other: "Member"):
@@ -572,9 +579,9 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 months=cls.DEFAULT_XFAILED_PERIOD_IN_MONTHS
             )
             for check_id, reason in submission.skip:
-                skip_checks[check_id] = CheckData(
-                    check_id, xfailed=reason, xfailed_until=xfailed_until
-                )
+                skip_checks[check_id] = [
+                    CheckData(check_id, xfailed=reason, xfailed_until=xfailed_until)
+                ]
         return Member(
             name=submission.name,
             submission_number=issue_number,
@@ -600,7 +607,12 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         The counterpart of `xfails`: between the two, every recorded check up is counted
         once, which is the split the check up page makes (`docs/checkup_page.py`).
         """
-        return [check for check in self.checks.values() if not check.xfail_applies]
+        return [
+            check
+            for records in self.checks.values()
+            for check in records
+            if not check.xfail_applies
+        ]
 
     @property
     def xfails(self):
@@ -608,7 +620,41 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
         A check up whose `xfailed_until` has passed is not in the list: the explanation is no
         longer valid, so the check up is verified again as a regular one."""
-        return [check for check in self.checks.values() if check.xfail_applies]
+        return [
+            check
+            for records in self.checks.values()
+            for check in records
+            if check.xfail_applies
+        ]
+
+    def stored_record(self, checkup_id, subtest=None):
+        """The stored record a new result for one place continues, if there is one.
+
+        By place first, so each place keeps its own `since` and its own explanation. A stored
+        record that names no place is the fallback: that is what a record written before the
+        places were recorded looks like, and what a check up with one answer per member
+        always looks like.
+        """
+        records = self.checks.get(checkup_id, [])
+        for record in records:
+            if record.subtest == subtest:
+                return record
+        for record in records:
+            if record.subtest is None:
+                return record
+        return None
+
+    def explanation_for(self, checkup_id, subtest=None):
+        """The live explanation this member has for one place of a check up, if any.
+
+        A stored record that names no place answers for every place: that is what a record
+        written before the places were recorded looks like, and what a check up with one
+        answer per member always looks like.
+        """
+        for record in self.checks.get(checkup_id, []):
+            if record.subtest in (subtest, None) and record.xfail_applies:
+                return record.xfailed
+        return None
 
     def update_checkups(self, checker=None):
         """Runs validation tests and updates the check-ups sections"""
@@ -632,34 +678,39 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             )
         for test in report.xfailed + report.failed:
             checkup_data = CheckData.from_report(test)
-            if checkup_data.id in self.checks:
-                # Fields to preserve
-                checkup_data.discussion = self.checks[checkup_data.id].discussion
-                checkup_data.since = (
-                    checkup_data.since or self.checks[checkup_data.id].since
-                )
+            stored = self.stored_record(checkup_data.id, checkup_data.subtest)
+            if stored:
+                # Fields to preserve, from the record about the same place
+                checkup_data.discussion = stored.discussion
+                # the clock of this place, which is why it did not restart
+                checkup_data.since = stored.since or checkup_data.since
                 if checkup_data.xfailed:
                     # the report only carries the explanation, not its expiration date
-                    checkup_data.xfailed_until = self.checks[
-                        checkup_data.id
-                    ].xfailed_until
-            checkups[checkup_data.id] = checkup_data
+                    checkup_data.xfailed_until = stored.xfailed_until
+            if not checkup_data.since and not checkup_data.xfailed:
+                # a place failing for the first time starts its cure period today. The
+                # report of a place cannot say so itself: the `previously_failed` marker it
+                # would read is about the check up, not about one of its places
+                checkup_data.since = CheckData.today
+            checkups.setdefault(checkup_data.id, []).append(checkup_data)
 
-        for checkup_id, checkup in self.checks.items():
-            if not checkup.source:
+        for checkup_id, records in self.checks.items():
+            source_based = [record for record in records if record.source]
+            if not source_based:
                 continue
-            # A source-based check up does not come from a test, so it is not in the report.
-            # It stands as long as its source issue does, and it takes precedence over the
-            # result of the checker with the same ID.
-            if checkup.xfailed and checkup.xfailed_expired:
-                # Not being in the report also means that the loop above does not drop an
-                # expired explanation, so it is dropped here. From now on, the check up
-                # counts as a regular failure.
-                checkup.xfailed = None
-                checkup.xfailed_until = None
-                checkup.since = checkup.since or CheckData.today
-            checkup.update_from_source()
-            checkups[checkup_id] = checkup
+            for checkup in source_based:
+                # A source-based check up does not come from a test, so it is not in the
+                # report. It stands as long as its source issue does, and it takes precedence
+                # over the result of the checker with the same ID.
+                if checkup.xfailed and checkup.xfailed_expired:
+                    # Not being in the report also means that the loop above does not drop an
+                    # expired explanation, so it is dropped here. From now on, the check up
+                    # counts as a regular failure.
+                    checkup.xfailed = None
+                    checkup.xfailed_until = None
+                    checkup.since = checkup.since or CheckData.today
+                checkup.update_from_source()
+            checkups[checkup_id] = source_based
 
         self.checks = checkups
 

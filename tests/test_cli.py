@@ -33,6 +33,7 @@ from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
 from ecosystem.python import PythonData
 from ecosystem.requirements import RequirementsData
+from tests.common import record
 
 
 def get_community_repo() -> Member:
@@ -184,18 +185,22 @@ class TestCli(TestCase):
             "maturity": "production-ready",
             "packages": [],
             "checks": {
-                "010": {
-                    "importance": "RECOMMENDATION",
-                    "xfailed": 'This project is allow to have "test" in its name',
-                    "xfailed_until": date.today()
-                    + relativedelta(months=Member.DEFAULT_XFAILED_PERIOD_IN_MONTHS),
-                },
-                "COC": {
-                    "importance": "CRITICAL",
-                    "xfailed": "This project does not need to agree the CoC",
-                    "xfailed_until": date.today()
-                    + relativedelta(months=Member.DEFAULT_XFAILED_PERIOD_IN_MONTHS),
-                },
+                "010": [
+                    {
+                        "importance": "RECOMMENDATION",
+                        "xfailed": 'This project is allow to have "test" in its name',
+                        "xfailed_until": date.today()
+                        + relativedelta(months=Member.DEFAULT_XFAILED_PERIOD_IN_MONTHS),
+                    }
+                ],
+                "COC": [
+                    {
+                        "importance": "CRITICAL",
+                        "xfailed": "This project does not need to agree the CoC",
+                        "xfailed_until": date.today()
+                        + relativedelta(months=Member.DEFAULT_XFAILED_PERIOD_IN_MONTHS),
+                    }
+                ],
             },
         }
         self.assertEqual(len(retrieved_repos), 1)
@@ -416,12 +421,14 @@ class TestUpdateStatusXfails(UpdateStatusTestCase):
         """A member failing check up 001 since yesterday, with an explanation for it"""
         member = self.add_member()
         member.checks = {
-            "001": CheckData(
-                "001",
-                since=date.today() - timedelta(days=1),
-                xfailed="the license is fine",
-                **xfail_kwargs,
-            )
+            "001": [
+                CheckData(
+                    "001",
+                    since=date.today() - timedelta(days=1),
+                    xfailed="the license is fine",
+                    **xfail_kwargs,
+                )
+            ]
         }
         self.cli_members.dao.write(member)
         return member
@@ -459,7 +466,7 @@ class TestUpdateStatusCheckups(UpdateStatusTestCase):
         """An expired cure period moves the project to "Alumni" """
         member = self.add_member()
         member.checks = {
-            "001": CheckData("001", since=date.today() - timedelta(days=1))
+            "001": [CheckData("001", since=date.today() - timedelta(days=1))]
         }
         self.cli_members.dao.write(member)
         self.cli_members.update_status()
@@ -468,7 +475,7 @@ class TestUpdateStatusCheckups(UpdateStatusTestCase):
     def test_under_revision_takes_precedence(self):
         """A pending check up is more important than the age of the repository"""
         member = self.add_member(months_old=2)
-        member.checks = {"001": CheckData("001", since=date.today())}
+        member.checks = {"001": [CheckData("001", since=date.today())]}
         self.cli_members.dao.write(member)
         self.cli_members.update_status()
         self.assertEqual(
@@ -485,7 +492,7 @@ class TestUpdateStatusInfiniteCurePeriod(UpdateStatusTestCase):
         """Adds a member failing [PQ1] since `days_ago` days ago and updates its status"""
         member = self.add_member()
         member.checks = {
-            "PQ1": CheckData("PQ1", since=date.today() - timedelta(days=days_ago))
+            "PQ1": [CheckData("PQ1", since=date.today() - timedelta(days=days_ago))]
         }
         self.cli_members.dao.write(member)
         self.cli_members.update_status()
@@ -503,7 +510,7 @@ class TestUpdateStatusInfiniteCurePeriod(UpdateStatusTestCase):
         """An infinite cure period does not override the exclusion by importance"""
         member = self.add_member()
         member.checks = {
-            "PQ1": CheckData("PQ1", since=date.today() - timedelta(days=10_000))
+            "PQ1": [CheckData("PQ1", since=date.today() - timedelta(days=10_000))]
         }
         self.cli_members.dao.write(member)
         self.cli_members.update_status(exclude="legacy")
@@ -520,7 +527,7 @@ class TestUpdateStatusExclusions(UpdateStatusTestCase):
         """A member failing `checkup_id` since yesterday"""
         member = self.add_member()
         member.checks = {
-            checkup_id: CheckData(checkup_id, since=date.today() - timedelta(days=1))
+            checkup_id: [CheckData(checkup_id, since=date.today() - timedelta(days=1))]
         }
         self.cli_members.dao.write(member)
         return member
@@ -650,16 +657,17 @@ class TestUpdateCheckupsKeepsSince(UpdateStatusTestCase):
 
     def checkup(self, name_id):
         """The [014] check up as it is recorded in the member file"""
-        return self.cli_members.dao[name_id].checks["014"]
+        return record(self.cli_members.dao[name_id], "014")
 
     def failing_for(self, name_id, days, xfailed_until=None):
         """Backdates the check up, as one recorded `days` ago, optionally with an explanation
         valid until `xfailed_until`"""
         member = self.cli_members.dao[name_id]
-        member.checks["014"].since = date.today() - timedelta(days=days)
+        stored = record(member, "014")
+        stored.since = date.today() - timedelta(days=days)
         if xfailed_until:
-            member.checks["014"].xfailed = "explained: shortened upstream"
-            member.checks["014"].xfailed_until = xfailed_until
+            stored.xfailed = "explained: shortened upstream"
+            stored.xfailed_until = xfailed_until
         self.cli_members.dao.write(member)
 
     def test_a_plain_failure_keeps_its_since(self):
@@ -689,7 +697,7 @@ class TestUpdateCheckupsKeepsSince(UpdateStatusTestCase):
         self.update_checkups()  # a run while the explanation is still valid
 
         member = self.cli_members.dao[name_id]
-        member.checks["014"].xfailed_until = date.today() - timedelta(days=1)
+        record(member, "014").xfailed_until = date.today() - timedelta(days=1)
         self.cli_members.dao.write(member)
         self.update_checkups()  # and one after it expired
 
@@ -717,7 +725,7 @@ class TestUpdateCheckupsLog(UpdateStatusTestCase):
         member = self.add_member()
         member.description = "banana " * 30
         if checkup_kwargs:
-            member.checks = {"014": CheckData("014", **checkup_kwargs)}
+            member.checks = {"014": [CheckData("014", **checkup_kwargs)]}
         return member
 
     def test_a_project_passing_everything_says_so(self):

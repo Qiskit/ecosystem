@@ -295,7 +295,7 @@ class TestTheCheckupsOfAMember(TestCase):
             name="Banana",
             url="https://github.com/banana-org/banana",
             checks={
-                id_: CheckData(id_, xfailed=xfailed, xfailed_until=until)
+                id_: [CheckData(id_, xfailed=xfailed, xfailed_until=until)]
                 for id_, (xfailed, until) in checks.items()
             },
         )

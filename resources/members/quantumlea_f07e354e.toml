@@ -47,7 +47,7 @@ highest_supported_qiskit_version = "2.5.1"
 last_month_downloads = 22
 last_180_days_downloads = 786
 
-[checks.Q03]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/KUQCI/quantum-learn/issues/10, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-08-06

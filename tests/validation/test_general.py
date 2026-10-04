@@ -24,12 +24,16 @@ ups reported, so they belong to a run rather than to a member and are not covere
 # that states what the case asserts needs no docstring saying it again
 # pylint: disable=invalid-name,missing-function-docstring
 
+from datetime import date
+
+from ecosystem.check import CheckData
 from ecosystem.github import GitHubData
 from ecosystem.julia import JuliaData
 from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
 from ecosystem.python import PythonData
 from ecosystem.requirements import RequirementsData
+from tests.common import record
 from tests.validation import CheckupTestCase
 
 Q02 = "checkup_general.py::checkup_Q02"
@@ -160,7 +164,7 @@ class TestEveryDeclarationIsRead(QiskitDependencyTestCase):
         )
         self.records(Q04, member)
 
-        details = member.checks["Q04"].details
+        details = record(member, "Q04").details
         self.assertIn("requirements-qiskit.txt", details)
         self.assertIn(">=1.3.0rc1", details)
 
@@ -169,7 +173,7 @@ class TestEveryDeclarationIsRead(QiskitDependencyTestCase):
         member = self.pypi(requires_qiskit=">=2.0")
         self.records(Q03, member)
 
-        self.assertIn("banana-compiler", member.checks["Q03"].details)
+        self.assertIn("banana-compiler", record(member, "Q03").details)
 
 
 class TestAMemberWithNoQiskitDependency(QiskitDependencyTestCase):
@@ -197,3 +201,114 @@ class TestAMemberWithNoQiskitDependency(QiskitDependencyTestCase):
                 )
             ),
         )
+
+
+class TestARecordPerPlace(QiskitDependencyTestCase):
+    """A check up that reads several places keeps one record per place.
+
+    Which is what lets a project be excused in one of them and keep counting in another:
+    `Qiskit/qiskit-cpp` asks for an uncapped qiskit in `requirements-dev.txt`, above its
+    black/ruff pins, and in `requirements.txt`, and only the first one is a lint file.
+    """
+
+    EXPLANATION = "lint pins, qiskit-cpp#167"
+
+    def two_files(self, dev=">=0", main=">=2.1.0"):
+        """A member declaring qiskit in a lint file and in the real one"""
+        member = self.member()
+        member.requirements = [
+            RequirementsData(file="requirements-dev.txt", requires_qiskit=dev),
+            RequirementsData(file="requirements.txt", requires_qiskit=main),
+        ]
+        return member
+
+    def stored(self, member, **kwargs):
+        """Gives the member a stored record, as a member file would have"""
+        member.checks["Q03"] = [CheckData("Q03", **kwargs)]
+        return member
+
+    def test_each_failing_place_gets_its_own_record(self):
+        member = self.two_files()
+        self.records(Q03, member)
+
+        self.assertEqual(
+            ["requirements:requirements-dev.txt", "requirements:requirements.txt"],
+            sorted(stored.subtest for stored in member.checks["Q03"]),
+        )
+
+    def test_the_details_of_each_record_name_its_own_place(self):
+        """The old shape kept the last place only, so one of the two was lost"""
+        member = self.two_files()
+        self.records(Q03, member)
+
+        self.assertEqual(
+            ["requirements-dev.txt", "requirements.txt"],
+            sorted(
+                stored.details.split(" in ")[1].split(" allows")[0]
+                for stored in member.checks["Q03"]
+            ),
+        )
+
+    def test_an_explanation_for_one_place_leaves_the_other_failing(self):
+        """The whole point: an explanation is about the file it was written for"""
+        member = self.stored(
+            self.two_files(),
+            subtest="requirements:requirements-dev.txt",
+            since=date(2026, 1, 5),
+            xfailed=self.EXPLANATION,
+            xfailed_until=date(2027, 3, 31),
+        )
+        self.records(Q03, member)
+
+        explained = record(member, "Q03", "requirements:requirements-dev.txt")
+        failing = record(member, "Q03", "requirements:requirements.txt")
+        self.assertEqual(self.EXPLANATION, explained.xfailed)
+        self.assertTrue(explained.xfail_applies)
+        self.assertIsNone(failing.xfailed)
+        self.assertEqual([failing], member.failing_checkups)
+        self.assertEqual([explained], member.xfails)
+
+    def test_each_place_keeps_its_own_cure_period(self):
+        """A place that started failing later is not inheriting the other's deadline"""
+        member = self.two_files()
+        member.checks["Q03"] = [
+            CheckData(
+                "Q03", subtest="requirements:requirements.txt", since=date(2026, 4, 1)
+            )
+        ]
+        self.records(Q03, member)
+
+        self.assertEqual(
+            date(2026, 4, 1),
+            record(member, "Q03", "requirements:requirements.txt").since,
+        )
+        self.assertEqual(
+            CheckData.today,
+            record(member, "Q03", "requirements:requirements-dev.txt").since,
+        )
+
+    def test_an_explained_place_that_got_fixed_is_dropped(self):
+        """The explanation does not keep a record alive once the file is capped"""
+        member = self.stored(
+            self.two_files(dev="~=2.1.0"),
+            subtest="requirements:requirements-dev.txt",
+            since=date(2026, 1, 5),
+            xfailed=self.EXPLANATION,
+        )
+        self.records(Q03, member)
+
+        self.assertEqual(
+            ["requirements:requirements.txt"],
+            [stored.subtest for stored in member.checks["Q03"]],
+        )
+
+    def test_a_record_that_names_no_place_explains_all_of_them(self):
+        """What a record written before the places were recorded looks like"""
+        member = self.stored(
+            self.two_files(), since=date(2026, 1, 5), xfailed="agreed upstream"
+        )
+        self.records(Q03, member)
+
+        self.assertEqual(2, len(member.checks["Q03"]))
+        self.assertTrue(all(stored.xfail_applies for stored in member.checks["Q03"]))
+        self.assertEqual([], member.failing_checkups)

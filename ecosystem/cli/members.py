@@ -563,13 +563,16 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             if project.status and slugify(project.status) in exclude_set:
                 # this membership status is excluded, so the project is left alone
                 continue
-            expired_xfails = {
-                checkup_id: checkup
-                for checkup_id, checkup in project.checks.items()
+            # per record: a check up read in several places can have an explanation for
+            # one of them expiring while another one stands
+            expired_xfails = [
+                (checkup_id, checkup)
+                for checkup_id, records in project.checks.items()
+                for checkup in records
                 if checkup.xfailed and checkup.xfailed_expired
-            }
+            ]
             project.update_checkups(checker=checker)
-            for checkup_id, checkup in expired_xfails.items():
+            for checkup_id, checkup in expired_xfails:
                 self.logger.info(
                     "⌛ %s (%s) checkup %s: the explanation expired on %s, "
                     "so it is checked as a regular one from now on (%s)",
@@ -580,8 +583,9 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                     checkup.xfailed,
                 )
             if project.checks:
-                for checkup_id, checkup in project.checks.items():
-                    self._log_checkup(project, checkup_id, checkup)
+                for checkup_id, records in project.checks.items():
+                    for checkup in records:
+                        self._log_checkup(project, checkup_id, checkup)
             else:
                 self.logger.info(
                     "✅ %s (%s) passed all the checkups",
@@ -678,7 +682,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                 # reset the derived statuses. They will be set back if they are still true.
                 project.status = None
 
-            for check in project.checks.values():
+            for check in project.failing_checkups + project.xfails:
                 if check.xfail_applies:
                     # Xfails do not affect the status, unless their explanation expired
                     continue

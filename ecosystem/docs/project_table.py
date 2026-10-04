@@ -47,8 +47,10 @@ def checkup_list(project) -> str:
     revision."""
     return " ".join(
         f"[`[{checkup_id}]`](checkups.md#{checkup_id})"
-        for checkup_id, checkup in sorted(project.checks.items())
-        if not checkup.xfail_applies
+        for checkup_id, records in sorted(project.checks.items())
+        # listed once, however many places it is recorded on, and listed as long as any of
+        # them has no valid explanation
+        if any(not checkup.xfail_applies for checkup in records)
     )
 
 

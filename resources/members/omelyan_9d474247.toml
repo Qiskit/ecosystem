@@ -42,7 +42,7 @@ highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 22
 last_180_days_downloads = 513
 
-[checks.Q03]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/1, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-14
@@ -50,7 +50,7 @@ details = "Python package qiskit-omelyan declared itself compatible to a not-yet
 discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/1"
 importance = "RECOMMENDATION"
 
-[checks.P12]
+[[checks.P12]]
 xfailed = "Issue asking for the license declaration submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/2, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-14
