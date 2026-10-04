@@ -81,10 +81,9 @@ def markdown_table(columns, rows) -> list:
 
 def command_block(command, language="bash") -> list:
     """A command to run, as a fenced block with the copy button the theme adds to one.
-
-    A bullet in a card renders the command as inline code, which a reader has to select by
-    hand. `content.code.copy` (see `theme.features` in properdocs.yml) gives a fenced block
-    the same copy button the badge snippet has, and copying it is the only thing anybody
-    does with an install line.
+    
+    Inline code renders a command a reader has to select by hand. `content.code.copy` (see
+    `theme.features` in properdocs.yml) gives a fenced block the same copy button the badge
+    snippet has, and copying it is the only thing anybody does with a command.
     """
     return [f"```{language}", command, "```"]

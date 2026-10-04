@@ -21,6 +21,7 @@ import pytest
 
 from ecosystem.check import CheckData, parse_exclusions
 from ecosystem.error_handling import EcosystemError
+from ecosystem.member import Member
 from ecosystem.validation import CHECKUP_COLLECTION
 
 
@@ -282,6 +283,47 @@ class TestXfailedExpiration(TestCase):
         check = self.check("2027-01-31")
         self.assertEqual(check.xfailed_until, date(2027, 1, 31))
         self.assertEqual(check.to_dict()["xfailed_until"], date(2027, 1, 31))
+
+
+class TestTheCheckupsOfAMember(TestCase):
+    """How a member splits its own check ups, which is what the summary table counts"""
+
+    @staticmethod
+    def member(**checks):
+        """A member with those check ups: each value is the explanation, or None"""
+        return Member(
+            name="Banana",
+            url="https://github.com/banana-org/banana",
+            checks={
+                id_: CheckData(id_, xfailed=xfailed, xfailed_until=until)
+                for id_, (xfailed, until) in checks.items()
+            },
+        )
+
+    def test_a_check_up_is_either_failing_or_explained(self):
+        """The two counts add up to every check up recorded on the member"""
+        member = self.member(
+            G00=(None, None),
+            G07=("waiting for the fix", date.today() + timedelta(days=30)),
+            P10=("no deadline", None),
+        )
+        self.assertEqual(["G00"], [check.id for check in member.failing_checkups])
+        self.assertEqual(["G07", "P10"], sorted(check.id for check in member.xfails))
+        self.assertEqual(
+            len(member.checks), len(member.failing_checkups) + len(member.xfails)
+        )
+
+    def test_an_expired_explanation_is_a_failing_check_up_again(self):
+        """Which is the whole point of `xfailed_until`"""
+        member = self.member(G07=("was waiting", date.today() - timedelta(days=1)))
+        self.assertEqual(["G07"], [check.id for check in member.failing_checkups])
+        self.assertEqual([], member.xfails)
+
+    def test_a_member_passing_everything_counts_nothing(self):
+        """Most members, and the column then reads 0 rather than empty"""
+        member = self.member()
+        self.assertEqual([], member.failing_checkups)
+        self.assertEqual([], member.xfails)
 
 
 class TestCurePeriod(TestCase):
