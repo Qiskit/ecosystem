@@ -9,7 +9,7 @@ interfaces = ["Python"]
 category = "Circuit simulator"
 reference_paper = "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.043210"
 documentation = "https://quantum-gates.readthedocs.io/en/latest/index.html"
-packages = []
+packages = ["https://pypi.org/project/quantum-gates/"]
 uuid = "dd5d5bad-1523-4f3e-aff2-7d474b53d27a"
 maturity = "production-ready"
 
@@ -32,7 +32,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-dd5d5bad"
 style = "flat"
 
-[pypi.quantum-gates]
+[[pypi]]
 package_name = "quantum-gates"
 version = "2.4.0"
 last_release_date = 2026-05-02
@@ -47,7 +47,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 78
-last_180_days_downloads = 884
+last_180_days_downloads = 901
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/CERN-QTI/quantum-gates/issues/62, waiting for a release with the fix"

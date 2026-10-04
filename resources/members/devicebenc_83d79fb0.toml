@@ -17,13 +17,13 @@ stars = 28
 license = "Apache-2.0"
 created_at = 2024-03-20
 last_commit = 2026-08-24
-last_activity = 2026-09-12
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-83d79fb0"
 style = "flat"
 
-[python.qiskit-device-benchmarking]
+[[python]]
 package_name = "qiskit-device-benchmarking"
 license = "Apache-2.0"
 description = "Software for benchmarking devices through qiskit"

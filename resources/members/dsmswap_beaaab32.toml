@@ -31,7 +31,7 @@ last_activity = 2026-07-20
 url = "https://qisk.it/e-beaaab32"
 style = "flat"
 
-[python.dsm-swap]
+[[python]]
 package_name = "dsm-swap"
 license = "Apache-2.0"
 description = "A doubly stochastic matrices-based approach to optimal qubit routing"

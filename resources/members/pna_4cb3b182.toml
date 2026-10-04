@@ -6,7 +6,7 @@ interfaces = ["Python"]
 ibm_maintained = true
 category = "Noise Management"
 documentation = "https://qiskit.github.io/qiskit-addon-pna/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-addon-pna/"]
 uuid = "4cb3b182-7484-445f-897b-ded8e295d755"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -30,7 +30,7 @@ last_activity = 2026-09-29
 url = "https://qisk.it/e-4cb3b182"
 style = "flat"
 
-[pypi.qiskit-addon-pna]
+[[pypi]]
 package_name = "qiskit-addon-pna"
 version = "0.2.0"
 last_release_date = 2025-11-13
@@ -44,5 +44,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 1223
-last_180_days_downloads = 7878
+last_month_downloads = 1405
+last_180_days_downloads = 8149

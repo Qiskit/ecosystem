@@ -7,7 +7,7 @@ labels = ["error correction", "quantum information", "benchmarking"]
 interfaces = ["Python"]
 category = "Noise Management"
 reference_paper = "https://doi.org/10.5281/zenodo.21433371"
-packages = []
+packages = ["https://pypi.org/project/autoq-qec/"]
 uuid = "5c47e416-06b3-4c22-a457-99385e91e9bb"
 maturity = "experimental"
 status = "Very Early Project"
@@ -28,7 +28,7 @@ last_activity = 2026-09-26
 url = "https://qisk.it/e-5c47e416"
 style = "flat"
 
-[pypi.autoq-qec]
+[[pypi]]
 package_name = "autoq-qec"
 version = "3.4.6"
 last_release_date = 2026-09-26
@@ -44,4 +44,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
 last_month_downloads = 139
-last_180_days_downloads = 2089
+last_180_days_downloads = 2097

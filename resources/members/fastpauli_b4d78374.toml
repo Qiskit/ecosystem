@@ -10,7 +10,7 @@ website = "https://qognitive.io"
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2301.00560"
 documentation = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
-packages = []
+packages = ["https://pypi.org/project/fast-pauli/"]
 uuid = "b4d78374-40eb-4118-bb22-45e97b2dc0c5"
 maturity = "production-ready"
 status = "Under revision"
@@ -34,7 +34,7 @@ last_activity = 2026-09-26
 url = "https://qisk.it/e-b4d78374"
 style = "flat"
 
-[pypi.fast-pauli]
+[[pypi]]
 package_name = "fast-pauli"
 version = "0.0.35"
 last_release_date = 2025-04-09
@@ -51,7 +51,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 91
-last_180_days_downloads = 1621
+last_180_days_downloads = 1636
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/qognitive/fast-pauli/issues/98, waiting for a release with the fix"

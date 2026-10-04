@@ -41,14 +41,14 @@ class PythonCheckupsTestCase(TestCase):
             maturity="experimental",
         )
         member.github = GitHubData(owner="qiskit-community", repo="banana-repo")
-        member.python = {
-            "banana-compiler": PythonData(
+        member.python = [
+            PythonData(
                 package_name="banana-compiler",
                 source=["pyproject.toml"],
                 deferred=[],
                 **section,
             )
-        }
+        ]
         return member
 
     def checkups_of(self, checker, **section):
@@ -74,7 +74,7 @@ class TestPythonCheckups(PythonCheckupsTestCase):
             maturity="experimental",
         )
         with redirect_stdout(StringIO()):
-            member.update_checkups("test_python.py")
+            member.update_checkups("checkup_python.py")
         self.assertEqual(set(), set(member.checks))
 
     def test_S00_wants_the_declared_license_to_be_osi_approved(self):

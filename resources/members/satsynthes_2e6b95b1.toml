@@ -8,7 +8,7 @@ labels = ["high-level synthesis"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
 documentation = "https://github.com/qiskit-community/qiskit-sat-synthesis/blob/main/notebooks/using-qiskit-sat-synthesis.ipynb"
-packages = []
+packages = ["https://pypi.org/project/qiskit-sat-synthesis/"]
 uuid = "2e6b95b1-5046-4a83-8842-c0b6ea36ec12"
 maturity = "production-ready"
 status = "Alumni"
@@ -29,7 +29,7 @@ last_activity = 2026-06-23
 url = "https://qisk.it/e-2e6b95b1"
 style = "flat"
 
-[pypi.qiskit-sat-synthesis]
+[[pypi]]
 package_name = "qiskit-sat-synthesis"
 version = "0.0.2"
 last_release_date = 2024-12-24

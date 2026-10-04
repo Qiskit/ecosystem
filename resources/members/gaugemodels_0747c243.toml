@@ -26,7 +26,7 @@ last_activity = 2026-09-22
 url = "https://qisk.it/e-0747c243"
 style = "flat"
 
-[python.gauge-simulation]
+[[python]]
 package_name = "gauge-simulation"
 version = "1.0.0"
 description = "Quantum simulation in imaginary time for gauge-invariant models."

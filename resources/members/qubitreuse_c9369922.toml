@@ -6,7 +6,7 @@ affiliations = "IBM"
 labels = ["research", "circuit optimization"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
-packages = []
+packages = ["https://pypi.org/project/qiskit-qubit-reuse/"]
 uuid = "c9369922-7e0d-4b77-b00a-329472b57a34"
 maturity = "production-ready"
 
@@ -14,7 +14,7 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-qubit-reuse"
 owner = "qiskit-community"
 repo = "qiskit-qubit-reuse"
-stars = 29
+stars = 28
 license = "Apache-2.0"
 description = "A Qiskit transpiler stage plugin to enable qubit reuse via mid-circuit measurement and reset."
 estimated_contributors = 3
@@ -28,7 +28,7 @@ last_activity = 2026-09-30
 url = "https://qisk.it/e-c9369922"
 style = "flat"
 
-[pypi.qiskit-qubit-reuse]
+[[pypi]]
 package_name = "qiskit-qubit-reuse"
 version = "0.0.2"
 last_release_date = 2024-02-05
@@ -42,8 +42,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 10
-last_180_days_downloads = 205
+last_month_downloads = 13
+last_180_days_downloads = 198
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-qubit-reuse/issues/19, waiting for a release with the fix"

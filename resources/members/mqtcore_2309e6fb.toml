@@ -10,7 +10,7 @@ website = "https://mqt.readthedocs.io"
 category = "Converter"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/core"
-packages = []
+packages = ["https://pypi.org/project/mqt-core/"]
 uuid = "2309e6fb-3077-4c8e-af3f-bddf4d6cb458"
 maturity = "production-ready"
 
@@ -25,14 +25,14 @@ description = "MQT Core - Reusable C++20 and Python libraries for quantum comput
 total_dependent_repositories = 56
 total_dependent_packages = 6
 created_at = 2020-01-02
-last_commit = 2026-09-30
-last_activity = 2026-09-29
+last_commit = 2026-10-03
+last_activity = 2026-10-02
 
 [badge]
 url = "https://qisk.it/e-2309e6fb"
 style = "flat"
 
-[pypi."mqt.core"]
+[[pypi]]
 package_name = "mqt-core"
 version = "4.0.0"
 last_release_date = 2026-09-11
@@ -48,7 +48,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 17000
-last_180_days_downloads = 155817
+last_180_days_downloads = 156382
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/core/issues/2622, waiting for a release with the fix"

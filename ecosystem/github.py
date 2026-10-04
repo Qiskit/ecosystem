@@ -119,6 +119,24 @@ class GitHubData(JsonSerializable):
 
         return GitHubData(owner=owner, repo=repo, tree=tree_path)
 
+    @property
+    def subdirectory(self):
+        """The directory of the repository this member is about, or None for all of it.
+
+        `tree` is whatever followed `/tree/` in the submitted URL, so it carries the ref
+        first: `main/chemistry/sqd_pcm`. What the fetchers need is the path after it. A URL
+        that names a branch and nothing else (`/tree/main`) points at the whole repository,
+        which is None here.
+
+        It is what keeps a member that is one directory of a shared repository from
+        claiming what the repository as a whole declares: two templates of
+        `qiskit-function-templates` are two members, and neither of them is the
+        distribution its root `pyproject.toml` publishes.
+        """
+        if not self.tree or "/" not in self.tree:
+            return None
+        return self.tree.split("/", 1)[1].strip("/") or None
+
     def update_json(self):
         """
         Fetches remote data from:

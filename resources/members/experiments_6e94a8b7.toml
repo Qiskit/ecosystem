@@ -9,7 +9,10 @@ created_at = 2022-08-29
 category = "Other"
 reference_paper = "https://doi.org/10.21105/joss.05329"
 documentation = "https://qiskit-community.github.io/qiskit-experiments/"
-packages = ["https://anaconda.org/conda-forge/qiskit-experiments"]
+packages = [
+  "https://anaconda.org/conda-forge/qiskit-experiments",
+  "https://pypi.org/project/qiskit-experiments/",
+]
 uuid = "6e94a8b7-65a7-4fee-b71e-25191203fa49"
 maturity = "production-ready"
 
@@ -25,13 +28,13 @@ total_dependent_repositories = 186
 total_dependent_packages = 16
 created_at = 2021-02-24
 last_commit = 2026-09-10
-last_activity = 2026-09-28
+last_activity = 2026-10-03
 
 [badge]
 url = "https://qisk.it/e-6e94a8b7"
 style = "flat"
 
-[pypi.qiskit-experiments]
+[[pypi]]
 package_name = "qiskit-experiments"
 version = "0.14.2"
 last_release_date = 2026-08-25
@@ -46,7 +49,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 146264
-last_180_days_downloads = 770463
+last_180_days_downloads = 784771
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-experiments/issues/1656, waiting for a release with the fix"

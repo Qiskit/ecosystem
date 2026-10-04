@@ -62,3 +62,28 @@ def write_if_changed(path, text) -> bool:
         return False
     path.write_text(text)
     return True
+
+
+def markdown_table(columns, rows) -> list:
+    """A table as lines, leaving out every column that no row has something in.
+
+    `columns` are (header, alignment) pairs and `rows` the cells, already rendered: what a
+    cell holds depends on the table, but whether a column is worth a header does not.
+    """
+    if not rows:
+        return []
+    keep = [index for index, _ in enumerate(columns) if any(row[index] for row in rows)]
+    return [
+        "| " + " | ".join(columns[index][0] for index in keep) + " |",
+        "| " + " | ".join(columns[index][1] for index in keep) + " |",
+    ] + ["| " + " | ".join(row[index] for index in keep) + " |" for row in rows]
+
+
+def command_block(command, language="bash") -> list:
+    """A command to run, as a fenced block with the copy button the theme adds to one.
+
+    Inline code renders a command a reader has to select by hand. `content.code.copy` (see
+    `theme.features` in properdocs.yml) gives a fenced block the same copy button the badge
+    snippet has, and copying it is the only thing anybody does with a command.
+    """
+    return [f"```{language}", command, "```"]

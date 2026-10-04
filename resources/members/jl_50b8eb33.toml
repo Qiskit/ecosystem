@@ -5,7 +5,7 @@ interfaces = ["Julia"]
 ibm_maintained = true
 category = "Language binding"
 documentation = "https://qiskit.github.io/Qiskit.jl/"
-packages = []
+packages = ["https://juliahub.com/ui/Packages/General/Qiskit"]
 uuid = "50b8eb33-872d-44a4-b8f8-5fafa7712393"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -23,13 +23,13 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-11-03
 last_commit = 2026-09-30
-last_activity = 2026-09-30
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-50b8eb33"
 style = "flat"
 
-[julia.Qiskit]
+[[julia]]
 package_name = "Qiskit"
 registry = "General"
 version = "0.6.0"
@@ -40,5 +40,5 @@ release_date = 2026-09-01
 juliahub_url = "https://juliahub.com/ui/Packages/General/Qiskit"
 uuid = "91d9a17d-f964-4b6c-a3c4-2f4cfdea2c95"
 estimated_unique_users = 5
-monthly_downloads = 5
-total_downloads = 71
+monthly_downloads = 8
+total_downloads = 74

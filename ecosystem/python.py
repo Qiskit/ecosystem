@@ -37,23 +37,18 @@ guessed at.
 
 from ast import parse as ast_parse, walk as ast_walk, Call, Name, Attribute
 from ast import literal_eval
-from os import getenv
 from configparser import ConfigParser, Error as ConfigParserError
 from io import StringIO
-from json import loads as json_loads
 import tomllib
+from pathlib import PurePath
 
-from packaging.requirements import Requirement, InvalidRequirement
 from packaging.utils import canonicalize_name
 
 from .license import License
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
+from .github_contents import GitHubContentsMixin
 from .qiskit_requirement import QiskitRequirementMixin
-from .request import request_json
-
-#: Sentinel for "not computed yet", so that a cached None is not recomputed.
-_UNSET = object()
 
 #: Manifests that can carry packaging metadata, in precedence order.
 MANIFESTS = ("pyproject.toml", "setup.cfg", "setup.py")
@@ -133,7 +128,7 @@ def parse_setup_py(text: str) -> dict:
 
 
 class PythonData(
-    QiskitRequirementMixin, JsonSerializable
+    GitHubContentsMixin, QiskitRequirementMixin, JsonSerializable
 ):  # pylint: disable=too-many-public-methods
     """
     The packaging metadata a Python project declares in its own source tree.
@@ -187,7 +182,6 @@ class PythonData(
         self._setup_py = None
         self._requirements = None
         self._all_qiskit_versions = None
-        self._requires_qiskit = _UNSET
 
     def __repr__(self):
         return str(self.to_dict())
@@ -229,24 +223,36 @@ class PythonData(
         return cls(owner=parts[0], repo=parts[1], path="/".join(parts[4:-1]) or None)
 
     @property
-    def key(self):
-        """The `[python.<key>]` key this section belongs under.
+    def is_pattern(self):
+        """Whether `path` stands for the directories it matches, not for one of them.
 
-        The distribution name, once it is known. A section built from a URL does not
-        know it yet: it is declared inside the repository, not in the URL. The
-        repository name stands in until `update_json` reads a manifest, and
-        `Member.update_python` re-keys the section then.
-
-        The stand-in carries `path`, because a monorepo can declare several
-        distributions and they would otherwise share one key and overwrite each
-        other before any of them is fetched.
+        A monorepo declares a distribution per directory, and `packages/*/pyproject.toml`
+        says so in one line. The manifest name itself is never a pattern: it has to be one
+        of `MANIFESTS` for the URL to be a manifest URL at all.
         """
-        if self.package_name:
-            return self.package_name
-        if not self.repo:
-            return None
-        stem = f"{self.repo}-{self.path}" if self.path else self.repo
-        return canonicalize_name(stem.replace("/", "-"))
+        return any(wildcard in (self.path or "") for wildcard in "*?[")
+
+    def matches(self):
+        """The directories this pattern stands for, as unfetched sections.
+
+        Resolved against the repository on every run, so a directory added later is picked
+        up. `PurePath.full_match` rather than `fnmatch`, which would let `*` cross `/` and
+        claim every manifest in the tree.
+        """
+        directories = []
+        for path in sorted(self._request_tree()):
+            manifest = PurePath(path)
+            if manifest.name not in MANIFESTS:
+                continue
+            if (
+                any(manifest.full_match(f"{self.path}/{name}") for name in MANIFESTS)
+                and str(manifest.parent) not in directories
+            ):
+                directories.append(str(manifest.parent))
+        return [
+            type(self)(owner=self.owner, repo=self.repo, path=directory)
+            for directory in directories
+        ]
 
     # ---------------------------------------------------------------- fetching
 
@@ -271,7 +277,7 @@ class PythonData(
             "setup.py": parse_setup_py,
         }
         fetched = {
-            filename: self._request_manifest(filename, parsers[filename])
+            filename: self._request_file(filename, parsers[filename])
             for filename in MANIFESTS
             if filename in present
         }
@@ -281,54 +287,13 @@ class PythonData(
         # wrapped in a dict like the listing is, because `request_json` adds its
         # own metadata keys to whatever the parser returns
         requirements = (
-            self._request_manifest(
+            self._request_file(
                 REQUIREMENTS, lambda text: {"requirements": parse_requirements(text)}
             )
             if REQUIREMENTS in present
             else None
         )
         self._requirements = (requirements or {}).get("requirements")
-        self._requires_qiskit = _UNSET
-
-    @property
-    def _contents_url(self):
-        """Contents API endpoint for the directory holding the manifests."""
-        directory = f"{self.path.strip('/')}/" if self.path else ""
-        return f"api.github.com/repos/{self.owner}/{self.repo}/contents/{directory}"
-
-    def _request_listing(self):
-        """Names of the files in the manifest directory.
-
-        Listing first means a project without, say, a setup.cfg costs no request
-        for it. Asking for each manifest blindly would raise (and log an error)
-        three times for a repository that has none, which is a normal thing for
-        a repository to be.
-        """
-        listing = request_json(
-            self._contents_url,
-            parser=lambda text: {"entries": json_loads(text)},
-            token=getenv("GH_TOKEN"),
-        )
-        return {
-            entry["name"]
-            for entry in listing["entries"]
-            if isinstance(entry, dict) and entry.get("type") == "file"
-        }
-
-    def _request_manifest(self, filename, parser):
-        """Fetches one manifest as raw text.
-
-        The `raw` media type makes the contents API return the file itself
-        instead of a JSON envelope with base64, so `parser` can be a plain
-        text parser. `request_json` caches for a day via requests_cache.
-        """
-        return request_json(
-            f"{self._contents_url}{filename}",
-            headers={"Accept": "application/vnd.github.raw"},
-            content_handler=lambda content: content.decode("utf-8"),
-            parser=parser,
-            token=getenv("GH_TOKEN"),
-        )
 
     @property
     def fetched(self):
@@ -527,42 +492,3 @@ class PythonData(
             if declared:
                 return list(declared), filename
         return [], None
-
-    @property
-    def requires_qiskit(self):
-        """String with the specifier for the "qiskit" dependency.
-
-        None when the project does not depend on Qiskit, and when it defers its
-        dependencies to the build backend without a requirements.txt to fall back
-        on — `deferred` tells those apart.
-        """
-        if not self.fetched:
-            return self._kwargs.get("requires_qiskit")
-        if self._requires_qiskit is not _UNSET:
-            # The compat properties read this repeatedly, and a miss logs a warning
-            return self._requires_qiskit
-        self._requires_qiskit = self._find_requires_qiskit()
-        return self._requires_qiskit
-
-    def _find_requires_qiskit(self):
-        """Looks for a "qiskit" requirement among the declared dependencies."""
-        for requirement_str in self.dependencies:
-            try:
-                requirement = Requirement(requirement_str)
-            except InvalidRequirement:
-                logger.warning(
-                    "%s declares an unparseable requirement: %r",
-                    self.package_name,
-                    requirement_str,
-                )
-                continue
-            if canonicalize_name(requirement.name) != "qiskit":
-                continue
-            if len(requirement.specifier):
-                return str(requirement.specifier)
-            logger.warning(
-                '%s depends on qiskit but with empty specifier. Forcing one, ">=0"',
-                self.package_name,
-            )
-            return ">=0"
-        return None

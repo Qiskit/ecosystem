@@ -6,7 +6,7 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["circuit building"]
 interfaces = ["Python"]
 category = "Converter"
-packages = []
+packages = ["https://pypi.org/project/Qiberis/"]
 uuid = "d33fccc1-4553-4314-8d94-95837a260fee"
 maturity = "experimental"
 status = "Very Early Project"
@@ -27,7 +27,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-d33fccc1"
 style = "flat"
 
-[pypi.qiberis]
+[[pypi]]
 package_name = "qiberis"
 version = "0.1.0"
 last_release_date = 2026-08-08
@@ -41,8 +41,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 23
-last_180_days_downloads = 156
+last_month_downloads = 16
+last_180_days_downloads = 158
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiberis/issues/1, waiting for a release with the fix"

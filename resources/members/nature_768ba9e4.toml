@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2021-11-08
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-nature/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-nature/"]
 uuid = "768ba9e4-0aea-4046-a902-5c81051f001f"
 maturity = "production-ready"
 
@@ -15,7 +15,7 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-nature"
 owner = "qiskit-community"
 repo = "qiskit-nature"
-stars = 397
+stars = 398
 homepage = "https://qiskit-community.github.io/qiskit-nature/"
 license = "Apache-2.0"
 description = "Qiskit Nature is an open-source, quantum computing, framework for solving quantum mechanical natural science problems."
@@ -29,7 +29,7 @@ last_activity = 2026-09-19
 url = "https://qisk.it/e-768ba9e4"
 style = "flat"
 
-[pypi.qiskit-nature]
+[[pypi]]
 package_name = "qiskit-nature"
 version = "0.8.0"
 last_release_date = 2026-06-01
@@ -44,4 +44,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 78640
-last_180_days_downloads = 300355
+last_180_days_downloads = 304157

@@ -7,7 +7,7 @@ labels = ["quantum information"]
 interfaces = ["Python"]
 created_at = 2023-03-31
 category = "Circuit simulator"
-packages = []
+packages = ["https://pypi.org/project/qiskit-symb/"]
 uuid = "9350b230-d7ca-4d52-b082-9d71303478b7"
 maturity = "production-ready"
 
@@ -30,7 +30,7 @@ last_activity = 2026-09-25
 url = "https://qisk.it/e-9350b230"
 style = "flat"
 
-[pypi.qiskit-symb]
+[[pypi]]
 package_name = "qiskit-symb"
 version = "0.6.0"
 last_release_date = 2026-02-24
@@ -44,8 +44,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 156
-last_180_days_downloads = 1308
+last_month_downloads = 161
+last_180_days_downloads = 1323
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/SimoneGasperini/qiskit-symb/issues/11, waiting for a release with the fix"

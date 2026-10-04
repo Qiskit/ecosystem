@@ -4,7 +4,7 @@ description = "Automatic Framework for Solving Optimization Problems with Quantu
 license = "MIT"
 labels = ["optimization"]
 category = "Application"
-packages = []
+packages = ["https://pypi.org/project/mqt.qao/"]
 uuid = "6d4c69e4-1e47-486c-b00f-8a60ae5e01d4"
 maturity = "experimental"
 status = "Alumni"
@@ -26,7 +26,7 @@ last_activity = 2026-07-03
 url = "https://qisk.it/e-6d4c69e4"
 style = "flat"
 
-[pypi."mqt.qao"]
+[[pypi]]
 package_name = "mqt-qao"
 version = "0.3.1"
 last_release_date = 2026-07-03

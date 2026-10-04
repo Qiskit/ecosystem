@@ -8,7 +8,7 @@ interfaces = ["Python"]
 created_at = 2022-12-07
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-ionq/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-ionq/"]
 uuid = "9dec814e-feb8-49c2-818a-f6a2503d38c5"
 maturity = "production-ready"
 
@@ -24,14 +24,14 @@ estimated_contributors = 16
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2020-10-08
-last_commit = 2026-09-30
-last_activity = 2026-09-30
+last_commit = 2026-10-01
+last_activity = 2026-10-04
 
 [badge]
 url = "https://qisk.it/e-9dec814e"
 style = "flat"
 
-[pypi.qiskit-ionq]
+[[pypi]]
 package_name = "qiskit-ionq"
 version = "1.1.1"
 last_release_date = 2026-06-05
@@ -45,8 +45,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 45911
-last_180_days_downloads = 436852
+last_month_downloads = 58428
+last_180_days_downloads = 439294
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-ionq/issues/274, waiting for a release with the fix"

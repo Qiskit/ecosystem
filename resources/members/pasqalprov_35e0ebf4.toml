@@ -4,7 +4,7 @@ description = "Qiskit provider to build and run analog programs on Pasqal's neut
 labels = ["provider", "cloud service"]
 interfaces = ["Python"]
 category = "Compute provider"
-packages = []
+packages = ["https://pypi.org/project/qiskit-pasqal-provider/"]
 uuid = "35e0ebf4-48c9-4611-9286-84d6ad5571e3"
 maturity = "experimental"
 
@@ -24,7 +24,7 @@ last_activity = 2026-09-30
 url = "https://qisk.it/e-35e0ebf4"
 style = "flat"
 
-[pypi.qiskit-pasqal-provider]
+[[pypi]]
 package_name = "qiskit-pasqal-provider"
 version = "0.5.0"
 last_release_date = 2026-09-30
@@ -39,4 +39,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 587
-last_180_days_downloads = 3692
+last_180_days_downloads = 3952

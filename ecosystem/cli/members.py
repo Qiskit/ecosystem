@@ -22,7 +22,7 @@ from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.check import ChecksToml, parse_exclusions
-from ecosystem.docs import anchor, plural, write_if_changed
+from ecosystem.docs import anchor, command_block, plural, write_if_changed
 from ecosystem.docs.project_table import (
     CATEGORY,
     CHECKUPS,
@@ -33,6 +33,7 @@ from ecosystem.docs.project_table import (
     classification_columns,
     classification_table,
 )
+from ecosystem.docs import summary_charts
 from ecosystem.docs.checkup_page import CheckupAssets
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
@@ -187,18 +188,16 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         self.update_assets_interfaces(projects_per_classification["interfaces"])
         self.update_assets_ibm_maintained()
         self.update_assets_checkups()
+        self.update_assets_summary_charts()
 
-    def _projects_per_checkup(self):
-        """Two dicts checkup_id -> [Member], for the projects that have the check up recorded:
-        the ones it is pending on, and the ones with a valid explanation for it."""
-        pending = {id_: [] for id_ in self.checks_toml.checkups}
-        explained = {id_: [] for id_ in self.checks_toml.checkups}
-        for project in self.dao.get_all():
-            for checkup_id, checkup in project.checks.items():
-                where = explained if checkup.xfail_applies else pending
-                # setdefault: a member file may name a check up that checks.toml no longer has
-                where.setdefault(checkup_id, []).append(project)
-        return pending, explained
+    def update_assets_summary_charts(self):
+        """Updates the chart data of the summary page in docs/assets/.
+
+        See `ecosystem.docs.summary_charts`: the charts used to carry hardcoded numbers.
+        """
+        summary_charts.write_all(
+            self.dao.get_all(), str(Path(self.current_dir, "docs", "assets"))
+        )
 
     def update_assets_checkups(self):
         """Updates the check up fragments in docs/assets/, from resources/checks.toml and the
@@ -438,7 +437,9 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                 '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main'
                 f'/resources/members/{name_id}.toml">{name}</a></td>'
                 f'<td><a href="{badge}"><img src="{badge}" /></a><br/>'
-                f"\n\n```markdown\n{badge_md}   \n```\n\n</td>"
+                + "\n\n"
+                + "\n".join(command_block(badge_md, "markdown"))
+                + "\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")
@@ -478,6 +479,29 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             project.update_pypi()
             self.dao.update(project.name_id, pypi=project.pypi)
 
+    def update_crates(self, name=None):
+        """
+        Updates crates.io data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_crates()
+            self.dao.update(project.name_id, crates=project.crates)
+
+    def update_cargo(self, name=None):
+        """
+        Updates the crates the member's own repository declares.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_cargo()
+            self.dao.update(project.name_id, cargo=project.cargo)
+
     def update_julia(self, name=None):
         """
         Updates Julia data.
@@ -503,6 +527,23 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         for project in self.dao.get_all(name):
             project.update_python()
             self.dao.update(project.name_id, python=project.python)
+
+    def update_requirements(self, name=None):
+        """
+        Updates what the member's requirements files declare about Qiskit.
+
+        Only repositories without a packaging manifest get the sections, one per file
+        that names qiskit; see `Member.update_requirements`.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+
+        It needs the GitHub section, so it runs after update_github.
+        """
+        for project in self.dao.get_all(name):
+            project.update_requirements()
+            self.dao.update(project.name_id, requirements=project.requirements)
 
     def update_checkups(self, name=None, checker=None, exclude: str = None):
         """
@@ -676,6 +717,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         data_map will be added, even if they are empty"""
         filtered_data = {}
         for key, alias in data_map.items():
+            data = None
             if isinstance(alias, dict):
                 data = CliMembers.filter_data(member_dict, alias)
                 if data:
@@ -683,7 +725,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             elif isinstance(alias, tuple):
                 if len(alias) != 2:
                     raise ValueError(
-                        "%s malformed. "
+                        f"{alias} malformed. "
                         "It needs to have exactly two elements,one "
                         "with the query, the otherone with the selector"
                     )
@@ -764,7 +806,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         #  "Subjects": [{"name": ..., "description": ...}]}
         labels_data_to_export = {
             "Types": (
-                "categories.*",
+                "category.*",
                 [
                     "name",
                     "description",

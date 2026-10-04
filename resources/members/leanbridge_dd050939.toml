@@ -20,13 +20,13 @@ license = "MIT"
 description = "Bridges Qiskit's StandardEquivalenceLibrary to formally verified proofs in inQWIRE/LeanQuantum."
 created_at = 2026-08-09
 last_commit = 2026-08-13
-last_activity = 2026-08-13
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-dd050939"
 style = "flat"
 
-[python.qiskit-lean-bridge]
+[[python]]
 package_name = "qiskit-lean-bridge"
 version = "0.1.0"
 license = "MIT"

@@ -318,7 +318,7 @@ class ProjectSummaryCard(Card):
             return self.bullet(
                 ":material-scale-balance:",
                 f"**License** {self.license}",
-            )
+            ) + [""]
         return []
 
     def interfaces_lines(self):
@@ -411,6 +411,33 @@ class URLsCard(Card):
         return ret
 
 
+def compatibility_mark(compatible):
+    """Whether a distribution works with a major version of Qiskit, as an icon.
+
+    The project pages collect the same flags in a table of their own
+    (`ProjectPage.qiskit_requirements`), so the icons are shared rather than redrawn there.
+    """
+    return (
+        ":material-check-circle-outline:"
+        if compatible
+        else ":material-close-circle-outline:"
+    )
+
+
+def pip_install_target(owner, repo, path=None):
+    """What to `pip install` for a distribution in a repository, or None without a repository.
+
+    A subdirectory goes in a URL fragment, and `#` starts a comment in a shell, so the
+    target is quoted when it carries one.
+    """
+    if not owner or not repo:
+        return None
+    target = f"git+https://github.com/{owner}/{repo}"
+    if path:
+        return f'"{target}#subdirectory={path.strip("/")}"'
+    return target
+
+
 def qiskit_compatibility(package):
     """The Qiskit compatibility table, for a card about a Python distribution.
 
@@ -421,22 +448,15 @@ def qiskit_compatibility(package):
     if not package.requires_qiskit:
         return []
 
-    def mark(compatible):
-        return (
-            ":material-check-circle-outline:"
-            if compatible
-            else ":material-close-circle-outline:"
-        )
-
     return [
         "",
-        ":simple-qiskit: **Qiskit Compatibility**\n\n",
-        "| **Requires** | V1 | V2 | highest supported |",
+        ":simple-qiskit: **Qiskit compatibility**\n\n",
+        "| **Requires** | V1 | V2 | Highest supported |",
         "| -- | -- | -- | -- |",
         f"| {package.requires_qiskit} | "
-        + mark(package.compatible_with_qiskit_v1)
+        + compatibility_mark(package.compatible_with_qiskit_v1)
         + " | "
-        + mark(package.compatible_with_qiskit_v2)
+        + compatibility_mark(package.compatible_with_qiskit_v2)
         + f" | [{package.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
         f"{package.highest_supported_qiskit_version}/ "
         f'"Released: {package.highest_supported_qiskit_release_date}") |',
@@ -503,15 +523,15 @@ class PypiPackageCard(Card):
         if not self.version or not self.url or not self.last_release_date:
             return []
         ret = [
-            ":fontawesome-regular-paper-plane: **current release** "
+            ":fontawesome-regular-paper-plane: **Current release** "
             f'[{self.version}]( {self.url} "Released: {self.last_release_date}")',
             "",
         ]
         if self.last_month_downloads and self.last_180_days_downloads:
             ret += [
                 ":material-download: "
-                f"**last month** {self.last_month_downloads:,} "
-                f"**last 180 days** {self.last_180_days_downloads:,}"
+                f"**Last month** {self.last_month_downloads:,} "
+                f"**Last 180 days** {self.last_180_days_downloads:,}"
             ]
         ret += qiskit_compatibility(self)
 
@@ -589,17 +609,27 @@ class PipSourcePackageCard(Card):
 
     @property
     def pip_target(self):
-        """What to `pip install`, or None without an owner and repo.
+        """What to `pip install`, or None without an owner and repo"""
+        return pip_install_target(self.owner, self.repo, self.path)
 
-        A subdirectory goes in a URL fragment, and `#` starts a comment in a shell, so
-        the target is quoted when it carries one.
+    def manifest_url(self, manifest):
+        """A manifest the section was read from, on github.com.
+
+        None without an owner and repo, which live in `[github]`. The branch is not stored
+        anywhere, so the link goes through HEAD.
         """
         if not self.owner or not self.repo:
             return None
-        target = f"git+https://github.com/{self.owner}/{self.repo}"
-        if self.path:
-            return f'"{target}#subdirectory={self.path.strip("/")}"'
-        return target
+        directory = f"{self.path.strip('/')}/" if self.path else ""
+        return (
+            f"https://github.com/{self.owner}/{self.repo}/blob/HEAD/"
+            f"{directory}{manifest}"
+        )
+
+    def manifest_link(self, manifest):
+        """A manifest as inline code, linked when there is a repository to link it in"""
+        url = self.manifest_url(manifest)
+        return f"[`{manifest}`]({url})" if url else f"`{manifest}`"
 
     def body(self):
         """Returns a list of lines for the card body.
@@ -608,34 +638,198 @@ class PipSourcePackageCard(Card):
         bullets as one paragraph and the whole card renders as a single wrapped line.
         """
         ret = []
-        if self.pip_target:
-            ret += [f":simple-python: `pip install {self.pip_target}`", ""]
         if self.version:
             ret += self.bullet(
                 ":fontawesome-regular-paper-plane:",
-                f"**declared version** {self.version}",
+                f"**Declared version** {self.version}",
             ) + [""]
         if self.requires_python:
             ret += self.bullet(
                 ":material-language-python:",
-                f"**requires Python** {self.requires_python}",
+                f"**Requires Python** {self.requires_python}",
             ) + [""]
         if self.source:
             ret += self.bullet(
                 ":material-file-document-outline:",
-                "**declared in** "
-                + ", ".join(f"`{manifest}`" for manifest in self.source),
+                "**Declared in** "
+                + ", ".join(self.manifest_link(manifest) for manifest in self.source),
             ) + [""]
         if self.build_backend:
             ret += self.bullet(
                 ":material-package-variant-closed:",
-                f"**build backend** `{self.build_backend}`",
+                f"**Build backend** `{self.build_backend}`",
             ) + [""]
         if self.deferred:
             ret += self.bullet(
                 ":material-help-circle-outline:",
-                "**computed at build time** "
+                "**Computed at build time** "
                 + ", ".join(f"`{field}`" for field in self.deferred),
             ) + [""]
         ret += qiskit_compatibility(self)
+        return ret
+
+
+class CratesPackageCard(Card):
+    """Card for a crate published to crates.io.
+
+    No Qiskit compatibility: Qiskit publishes no crate, so a crate has nothing on that
+    registry to depend on and nothing to be compatible with.
+    """
+
+    def __init__(self, crate=None):
+        self.crate = crate
+        super().__init__(
+            title=f"crates.io `{crate.package_name}`",
+            title_icon="#### :simple-rust:",
+            body_lines=self.body(),
+        )
+
+    @classmethod
+    def from_crates_data(cls, crate):
+        """Construct a card from a CratesData.
+
+        Unlike the cards built from a distribution, this one keeps the section rather than
+        copying its fields: everything shown is read straight off it.
+        """
+        return CratesPackageCard(crate=crate)
+
+    @property
+    def version_url(self):
+        """The page of the release on crates.io, which is where a reader checks it"""
+        if not self.crate.version:
+            return self.crate.url
+        return f"{self.crate.url}/{self.crate.version}"
+
+    def body(self):
+        """Returns a list of lines for the card body.
+
+        Every bullet is followed by a blank line, as in `PipSourcePackageCard.body`: a run
+        of them without is read as a single wrapped paragraph.
+        """
+        crate = self.crate
+        ret = []
+        if crate.version:
+            ret += self.bullet(
+                ":fontawesome-regular-paper-plane:",
+                f"**Current release** [{crate.version}]({self.version_url} "
+                f'"Released: {crate.last_release_date}")',
+            ) + [""]
+        if crate.total_downloads:
+            downloads = f"**All time** {crate.total_downloads:,}"
+            if crate.last_90_days_downloads:
+                downloads += f" **Last 90 days** {crate.last_90_days_downloads:,}"
+            ret += self.bullet(":material-download:", downloads) + [""]
+        if crate.rust_version:
+            requires_rust = f"**Requires Rust** {crate.rust_version}"
+            if crate.edition:
+                requires_rust += f" **Edition** {crate.edition}"
+            ret += self.bullet(":simple-rust:", requires_rust) + [""]
+        if crate.license:
+            ret += self.bullet(
+                ":material-scale-balance:", f"**License** {crate.license}"
+            ) + [""]
+        if crate.maintainers:
+            ret += self.bullet(
+                ":fontawesome-solid-users:",
+                "**Owners** "
+                + ", ".join(
+                    f"[{owner.split('/')[-1]}]({owner})" for owner in crate.maintainers
+                ),
+            ) + [""]
+        return ret
+
+
+class CargoPackageCard(Card):
+    """Card for a crate a repository declares but does not publish.
+
+    Not a `CratesPackageCard` with fields missing: there is no release, no download count
+    and nothing to `cargo add` by name. What it has is what the manifest declares, and the
+    git dependency that is the only way to reach it.
+    """
+
+    def __init__(self, crate=None, owner=None, repo=None):
+        self.crate = crate
+        self.owner = owner
+        self.repo = repo
+        super().__init__(
+            title=f"cargo-installable repo `{crate.package_name}`",
+            title_icon="#### :simple-rust:",
+            body_lines=self.body(),
+        )
+
+    @classmethod
+    def from_cargo_data(cls, crate, project=None):
+        """Construct a card from a CargoData.
+
+        `owner` and `repo` are not part of the section, because they would duplicate
+        `[github]`, so they are read back from the project when there is one. Without
+        them the card leaves out the dependency line rather than guessing a URL.
+        """
+        github = getattr(project, "github", None)
+        return CargoPackageCard(
+            crate=crate,
+            owner=getattr(github, "owner", None),
+            repo=getattr(github, "repo", None),
+        )
+
+    @property
+    def cargo_target(self):
+        """The `cargo add` line, or None without an owner and repo.
+
+        A git dependency, which is what a crate that is not on any registry has to be
+        depended on as. It is also why such a crate cannot be published itself: crates.io
+        rejects a crate with a git dependency.
+        """
+        if not self.owner or not self.repo:
+            return None
+        target = f"cargo add --git https://github.com/{self.owner}/{self.repo}"
+        return f"{target} {self.crate.package_name}"
+
+    @property
+    def manifest_url(self):
+        """The manifest the section was read from, on github.com.
+
+        The branch is not stored anywhere, so the link goes through HEAD.
+        """
+        if not self.owner or not self.repo:
+            return None
+        return (
+            f"https://github.com/{self.owner}/{self.repo}/blob/HEAD/"
+            f"{self.crate.manifest_path}"
+        )
+
+    def body(self):
+        """Returns a list of lines for the card body, one blank-separated bullet each"""
+        crate = self.crate
+        ret = []
+        if crate.version:
+            ret += self.bullet(
+                ":fontawesome-regular-paper-plane:",
+                f"**Declared version** {crate.version}",
+            ) + [""]
+        if crate.rust_version:
+            ret += self.bullet(
+                ":simple-rust:", f"**Requires Rust** {crate.rust_version}"
+            ) + [""]
+        if crate.edition:
+            ret += self.bullet(
+                ":material-calendar:", f"**Edition** {crate.edition}"
+            ) + [""]
+        if crate.crate_type:
+            ret += self.bullet(
+                ":material-package-variant-closed:",
+                "**Builds** " + ", ".join(f"`{kind}`" for kind in crate.crate_type),
+            ) + [""]
+        declared_in = (
+            f"[`{crate.manifest_path}`]({self.manifest_url})"
+            if self.manifest_url
+            else f"`{crate.manifest_path}`"
+        )
+        ret += self.bullet(
+            ":material-file-document-outline:", f"**Declared in** {declared_in}"
+        ) + [""]
+        if crate.license:
+            ret += self.bullet(
+                ":material-scale-balance:", f"**License** {crate.license}"
+            ) + [""]
         return ret

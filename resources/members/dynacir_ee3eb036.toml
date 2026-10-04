@@ -6,7 +6,7 @@ affiliations = "IBM Quantum"
 labels = ["circuit optimization"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
-packages = []
+packages = ["https://pypi.org/project/dynacir/"]
 uuid = "ee3eb036-bc4d-4342-a36d-af262eed95e4"
 maturity = "production-ready"
 status = "Alumni"
@@ -28,7 +28,7 @@ last_activity = 2025-11-19
 url = "https://qisk.it/e-ee3eb036"
 style = "flat"
 
-[pypi.dynacir]
+[[pypi]]
 package_name = "dynacir"
 version = "0.1.4"
 last_release_date = 2024-03-22
