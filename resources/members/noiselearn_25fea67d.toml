@@ -5,7 +5,9 @@ labels = ["error mitigation", "benchmarking"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Noise Management"
-packages = []
+packages = [
+  "https://github.com/Qiskit/qiskit-noise-learning/blob/HEAD/pyproject.toml",
+]
 uuid = "25fea67d-3f93-4252-bc51-33c3b20c2331"
 maturity = "experimental"
 status = "Qiskit Project"

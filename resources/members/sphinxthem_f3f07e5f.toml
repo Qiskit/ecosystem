@@ -5,10 +5,22 @@ labels = []
 interfaces = ["Web interface"]
 ibm_maintained = true
 category = "Tooling"
-packages = ["https://anaconda.org/conda-forge/qiskit-sphinx-theme"]
+packages = [
+  "https://anaconda.org/conda-forge/qiskit-sphinx-theme",
+  "https://pypi.org/project/qiskit-sphinx-theme/",
+  "https://github.com/Qiskit/qiskit_sphinx_theme/blob/HEAD/docs_guide/requirements-extra.txt",
+]
 uuid = "f3f07e5f-b09e-4180-b8eb-da78dafe76d3"
 maturity = "production-ready"
 status = "Qiskit Project"
+
+[[requirements]]
+file = "docs_guide/requirements-extra.txt"
+requires_qiskit = "~=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 
 [github]
 url = "https://github.com/Qiskit/qiskit_sphinx_theme"

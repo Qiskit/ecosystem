@@ -6,7 +6,9 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["quantum information", "research"]
 interfaces = ["Python"]
 category = "Tooling"
-packages = []
+packages = [
+  "https://github.com/RexRowan/Qiskit-Magic-Metrics/blob/HEAD/pyproject.toml",
+]
 uuid = "4a6945d4-e435-495a-b4cb-fefe6be7c5aa"
 maturity = "experimental"
 status = "Very Early Project"

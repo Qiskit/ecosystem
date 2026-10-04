@@ -10,7 +10,7 @@ website = "https://mqt.readthedocs.io"
 category = "Other"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qcec"
-packages = []
+packages = ["https://pypi.org/project/mqt-qcec/"]
 uuid = "79415931-2d24-4959-ab15-29dfaeb139b4"
 maturity = "production-ready"
 

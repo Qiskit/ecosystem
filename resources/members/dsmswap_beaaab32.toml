@@ -7,7 +7,9 @@ interfaces = ["Python"]
 created_at = 2023-03-14
 category = "Transpiler plugin"
 documentation = "https://github.com/qiskit-community/dsm-swap/tree/main/docs"
-packages = []
+packages = [
+  "https://github.com/qiskit-community/dsm-swap/blob/HEAD/pyproject.toml",
+]
 uuid = "beaaab32-58d4-496f-8428-e6d88fa1e989"
 maturity = "production-ready"
 status = "Alumni"

@@ -7,7 +7,7 @@ labels = ["quantum information"]
 interfaces = ["Python"]
 created_at = 2023-03-31
 category = "Circuit simulator"
-packages = []
+packages = ["https://pypi.org/project/qiskit-symb/"]
 uuid = "9350b230-d7ca-4d52-b082-9d71303478b7"
 maturity = "production-ready"
 

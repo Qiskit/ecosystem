@@ -6,7 +6,9 @@ contact_info = "fletchervaughn@witchinghourmac.com"
 labels = ["cloud service"]
 interfaces = ["Python"]
 category = "Tooling"
-packages = []
+packages = [
+  "https://github.com/Witching-Hour-Music/witching-hour-qiskit/blob/HEAD/pyproject.toml",
+]
 uuid = "5907eb1e-6ecd-4d5b-9f28-f302b23ace0e"
 maturity = "production-ready"
 status = "Early Project"

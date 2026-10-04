@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2024-05-07
 category = "Compute provider"
 documentation = "https://qiskit-braket-provider.readthedocs.io/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-braket-provider/"]
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
 maturity = "production-ready"
 

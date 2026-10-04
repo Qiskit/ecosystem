@@ -7,7 +7,9 @@ labels = ["AI/LLM"]
 interfaces = ["Python", "Command-line interface (CLI)", "Web interface"]
 website = "https://huggingface.co/spaces/quZiad/qiskit-migration-assistant"
 category = "Tooling"
-packages = []
+packages = [
+  "https://github.com/Ziadt160/qiskit-migration-assistant/blob/HEAD/pyproject.toml",
+]
 uuid = "76d7a9f5-7e98-42bb-94c8-280652d45287"
 maturity = "experimental"
 status = "Early Project"

@@ -9,7 +9,11 @@ ibm_maintained = true
 created_at = 2022-12-07
 category = "SDK"
 documentation = "https://qiskit.github.io/qiskit-serverless/"
-packages = []
+packages = [
+  "https://pypi.org/project/qiskit-serverless/",
+  "https://github.com/Qiskit/qiskit-serverless/blob/HEAD/gateway/pyproject.toml",
+  "https://github.com/Qiskit/qiskit-serverless/blob/HEAD/tests/pyproject.toml",
+]
 uuid = "d463fcf2-9e98-4d16-af3b-25ec29b650f7"
 maturity = "experimental"
 status = "Qiskit Project"

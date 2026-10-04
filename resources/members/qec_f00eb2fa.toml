@@ -7,7 +7,9 @@ interfaces = ["Python"]
 created_at = 2022-09-12
 category = "Noise Management"
 documentation = "https://qiskit-community.github.io/qiskit-qec/"
-packages = []
+packages = [
+  "https://github.com/qiskit-community/qiskit-qec/blob/HEAD/pyproject.toml",
+]
 uuid = "f00eb2fa-f4f1-4e97-8e59-3013e424e0f5"
 maturity = "production-ready"
 status = "Alumni"

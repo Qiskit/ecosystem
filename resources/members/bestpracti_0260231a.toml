@@ -4,7 +4,9 @@ description = "Guidelines and reference workflows for running QAOA quantum optim
 labels = ["optimization"]
 interfaces = ["Python"]
 category = "Application"
-packages = []
+packages = [
+  "https://github.com/qiskit-community/qopt-best-practices/blob/HEAD/pyproject.toml",
+]
 uuid = "0260231a-feb6-4de6-ae70-2de507f90710"
 maturity = "experimental"
 

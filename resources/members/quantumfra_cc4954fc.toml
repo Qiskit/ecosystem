@@ -6,7 +6,9 @@ labels = ["chemistry"]
 interfaces = ["Python"]
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2512.17130"
-packages = []
+packages = [
+  "https://github.com/qiskit-community/quantum-fragment-methods/blob/HEAD/pyproject.toml",
+]
 uuid = "cc4954fc-12f8-421c-833b-f8de1328cdc0"
 maturity = "experimental"
 status = "Early Project"

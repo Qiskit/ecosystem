@@ -8,7 +8,9 @@ labels = ["circuit optimization", "research", "circuit building"]
 interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://doi.org/10.21203/rs.3.rs-2997276/v1"
-packages = []
+packages = [
+  "https://github.com/albayaty/grover_controlled_diffuser/blob/HEAD/pyproject.toml",
+]
 uuid = "40b3b309-0dfa-482a-89a6-cbaffd18b7ba"
 maturity = "as-is"
 status = "Unmaintained"

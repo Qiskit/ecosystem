@@ -6,10 +6,20 @@ labels = ["quantum information"]
 interfaces = ["Python"]
 category = "Application"
 reference_paper = "https://ieeexplore.ieee.org/document/8019800"
-packages = []
+packages = [
+  "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding/blob/main/docs/requirements.txt",
+]
 uuid = "67bfc31d-8b98-4c10-8ac2-fba3c59e2732"
 maturity = "production-ready"
 status = "Under revision"
+
+[[requirements]]
+file = "docs/requirements.txt"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 
 [github]
 url = "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding"

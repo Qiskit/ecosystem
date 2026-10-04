@@ -6,7 +6,14 @@ labels = ["AI/LLM"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
-packages = []
+packages = [
+  "https://pypi.org/project/qiskit-mcp-servers/",
+  "https://pypi.org/project/qiskit-mcp-server/",
+  "https://pypi.org/project/qiskit-docs-mcp-server/",
+  "https://pypi.org/project/qiskit-gym-mcp-server/",
+  "https://pypi.org/project/qiskit-ibm-runtime-mcp-server/",
+  "https://pypi.org/project/qiskit-ibm-transpiler-mcp-server/",
+]
 uuid = "4174663a-32e4-4668-85dd-b409e8313e4e"
 maturity = "experimental"
 status = "Qiskit Project"
