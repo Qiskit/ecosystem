@@ -28,10 +28,10 @@ package_name = "qiskit-dj"
 version = "0.1.0"
 description = "Quantum DJ Booth: 2-qubit classroom simulator (Flask + Qiskit)"
 requires_python = ">=3.10"
-requires_qiskit = ">=2"
+requires_qiskit = "<3,>=2"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-02
-highest_supported_qiskit_version = "2.6.0rc1"
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 source = ["pyproject.toml"]
 deferred = []
