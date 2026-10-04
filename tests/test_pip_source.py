@@ -103,22 +103,24 @@ class TestPipSourcePackageCard(PipSourceTestCase):
     def test_no_install_line_without_a_project(self):
         """Owner and repo live in `[github]`, so without it there is no URL to give."""
         self.assertIsNone(self.card(project=False).pip_target)
-        self.assertFalse(
-            any("pip install" in line for line in self.card(project=False).body())
-        )
+        self.assertIsNone(self.card(project=False).manifest_url("pyproject.toml"))
 
     def test_the_body_reports_what_the_manifests_declare(self):
         """The version, the Python requirement, the manifests and the backend."""
         body = "\n".join(self.card().body())
-        self.assertIn("**declared version** 0.3.1", body)
-        self.assertIn("**requires Python** >=3.9", body)
-        self.assertIn("**declared in** `pyproject.toml`", body)
-        self.assertIn("**build backend** `setuptools.build_meta`", body)
+        self.assertIn("**Declared version** 0.3.1", body)
+        self.assertIn("**Requires Python** >=3.9", body)
+        self.assertIn(
+            f"**Declared in** [`pyproject.toml`](https://github.com/{OWNER}/{REPO}"
+            "/blob/HEAD/pyproject.toml)",
+            body,
+        )
+        self.assertIn("**Build backend** `setuptools.build_meta`", body)
 
     def test_dynamic_fields_are_named_as_deferred(self):
         """A field the backend computes is reported as unknown, not as missing."""
         self.assertIn(
-            "**computed at build time** `readme`", "\n".join(self.card().body())
+            "**Computed at build time** `readme`", "\n".join(self.card().body())
         )
 
     def test_the_body_carries_the_qiskit_compatibility_table(self):
@@ -131,10 +133,10 @@ class TestPipSourcePackageCard(PipSourceTestCase):
         """Consecutive lines would collapse into one, so bullets are blank-separated."""
         body = self.card().body()
         # the compatibility table is shared with the PyPI card and spaces itself out
-        end = next(i for i, line in enumerate(body) if "Qiskit Compatibility" in line)
+        end = next(i for i, line in enumerate(body) if "Qiskit compatibility" in line)
         declared = body[:end]
         bullets = [index for index, line in enumerate(declared) if line.startswith(":")]
-        self.assertEqual(6, len(bullets))
+        self.assertEqual(5, len(bullets))
         for index in bullets:
             with self.subTest(bullet=declared[index]):
                 self.assertEqual("", declared[index + 1])
@@ -154,20 +156,27 @@ class TestPipSourcePage(PipSourceTestCase):
         """The branch is not stored, so the link goes through HEAD."""
         self.assertEqual(
             f"https://github.com/{OWNER}/{REPO}/blob/HEAD/pyproject.toml",
-            self.page().manifest_url,
+            self.page().card.manifest_url("pyproject.toml"),
         )
 
     def test_the_manifest_link_includes_the_subdirectory(self):
         """In a monorepo the manifest is not at the repository root."""
         self.assertEqual(
             f"https://github.com/{OWNER}/{REPO}/blob/HEAD/packages/compiler/pyproject.toml",
-            self.page(path="packages/compiler").manifest_url,
+            self.page(path="packages/compiler").card.manifest_url("pyproject.toml"),
         )
 
     def test_the_page_says_it_is_not_published(self):
         """The whole point of the page, so it is stated and not just implied."""
         self.assertIn(
             "Not published to a package registry", "\n".join(self.page().description())
+        )
+
+    def test_the_install_command_is_a_block_with_a_copy_button(self):
+        """A fenced block is the only thing the theme puts a copy button on."""
+        self.assertIn(
+            f"```bash\npip install git+https://github.com/{OWNER}/{REPO}\n```",
+            "\n".join(self.page().description()),
         )
 
     def test_the_page_holds_the_title_and_both_cards(self):
@@ -206,7 +215,7 @@ class TestProjectPagePackages(PipSourceTestCase):
     def test_the_compatibility_is_left_to_the_requirements_table(self):
         """The same four values for every distribution, so they are collected there."""
         section = self.packages_section(python={"banana-compiler": self.package()})
-        self.assertNotIn("Qiskit Compatibility", section)
+        self.assertNotIn("Qiskit compatibility", section)
 
     def test_one_row_per_declared_distribution(self):
         """A monorepo declares several, each with its own install target."""

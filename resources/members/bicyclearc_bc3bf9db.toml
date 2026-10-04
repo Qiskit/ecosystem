@@ -5,14 +5,7 @@ labels = ["error correction", "research", "circuit optimization"]
 interfaces = ["Rust"]
 category = "Noise Management"
 reference_paper = "https://arxiv.org/abs/2506.03094"
-packages = [
-  "https://crates.io/crates/bicycle_benchmark",
-  "https://crates.io/crates/bicycle_cliffords",
-  "https://crates.io/crates/bicycle_common",
-  "https://crates.io/crates/bicycle_numerics",
-  "https://crates.io/crates/bicycle_random_numerics",
-  "https://crates.io/crates/bicycle_compiler",
-]
+packages = []
 uuid = "bc3bf9db-9ea3-4621-a70a-bd862b85cad4"
 maturity = "experimental"
 
@@ -27,8 +20,86 @@ total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
 last_commit = 2026-04-09
-last_activity = 2026-10-01
+last_activity = 2026-10-03
 
 [badge]
 url = "https://qisk.it/e-bc3bf9db"
 style = "flat"
+
+[crates.bicycle_benchmark]
+package_name = "bicycle_benchmark"
+version = "0.2.1"
+last_release_date = 2026-03-30
+license = "Apache-2.0"
+description = "Generates PBC circuits that can be used for benchmarking"
+url = "https://crates.io/crates/bicycle_benchmark"
+maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
+rust_version = "1.86.0"
+edition = "2024"
+total_downloads = 970
+last_90_days_downloads = 93
+
+[crates.bicycle_cliffords]
+package_name = "bicycle_cliffords"
+version = "0.2.1"
+last_release_date = 2026-03-30
+license = "Apache-2.0"
+description = "Synthesis of Clifford gates in a code module on the bicycle architecture"
+url = "https://crates.io/crates/bicycle_cliffords"
+maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
+rust_version = "1.86.0"
+edition = "2024"
+total_downloads = 3850
+last_90_days_downloads = 999
+
+[crates.bicycle_common]
+package_name = "bicycle_common"
+version = "0.2.1"
+last_release_date = 2026-03-30
+license = "Apache-2.0"
+description = "Common definitions for bicycle architecture compiler crates"
+url = "https://crates.io/crates/bicycle_common"
+maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
+rust_version = "1.86.0"
+edition = "2024"
+total_downloads = 4038
+last_90_days_downloads = 1030
+
+[crates.bicycle_numerics]
+package_name = "bicycle_numerics"
+version = "0.2.1"
+last_release_date = 2026-03-30
+license = "Apache-2.0"
+description = "Compute numerics for bicycle circuits"
+url = "https://crates.io/crates/bicycle_numerics"
+maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
+rust_version = "1.86.0"
+edition = "2024"
+total_downloads = 744
+last_90_days_downloads = 55
+
+[crates.bicycle_random_numerics]
+package_name = "bicycle_random_numerics"
+version = "0.2.1"
+last_release_date = 2026-03-30
+license = "Apache-2.0"
+description = "Collect numerics for random Pauli-generated rotations run on the bicycle architecture"
+url = "https://crates.io/crates/bicycle_random_numerics"
+maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
+rust_version = "1.86.0"
+edition = "2024"
+total_downloads = 495
+last_90_days_downloads = 16
+
+[crates.bicycle_compiler]
+package_name = "bicycle_compiler"
+version = "0.2.1"
+last_release_date = 2026-03-30
+license = "Apache-2.0"
+description = "A compiler for Pauli-based compilation (PBC) circuits to bicycle instructions"
+url = "https://crates.io/crates/bicycle_compiler"
+maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
+rust_version = "1.86.0"
+edition = "2024"
+total_downloads = 3647
+last_90_days_downloads = 962

@@ -152,6 +152,8 @@ class CliCI:
         to_update = [
             "github",
             "pypi",
+            "crates",
+            "cargo",
             "julia",
             "python",
             "requirements",
