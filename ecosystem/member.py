@@ -28,6 +28,8 @@ from .pypi import PyPIData
 from .python import PythonData
 from .requirements import RequirementsData
 from .check import CheckData
+from .cargo import CargoData
+from .crates import CratesData
 from .badge import BadgeData
 from .request import URL
 from .validation import validate_member
@@ -66,6 +68,8 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         checks: dict[str, CheckData] | None = None,
         github: GitHubData | None = None,
         pypi: dict[str, PyPIData] | None = None,
+        crates: dict[str, CratesData] | None = None,
+        cargo: dict[str, CargoData] | None = None,
         julia: dict[str, JuliaData] | None = None,
         python: dict[str, PythonData] | None = None,
         requirements: list[RequirementsData] | None = None,
@@ -102,6 +106,8 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         self.github = github
         self.checks = checks or {}
         self.pypi = pypi or {}
+        self.crates = crates or {}
+        self.cargo = cargo or {}
         self.julia = julia or {}
         self.python = python or {}
         self.requirements = requirements
@@ -149,26 +155,22 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 for requirements_dict in filtered_dict["requirements"]
             ]
 
-        if "julia" in filtered_dict:
-            for project_name, julia_dict in filtered_dict["julia"].items():
-                julia_data = JuliaData.from_dict(
-                    {"package_name": project_name} | julia_dict
-                )
-                filtered_dict["julia"][project_name] = julia_data
-
-        if "python" in filtered_dict:
-            for project_name, python_dict in filtered_dict["python"].items():
-                python_data = PythonData.from_dict(
-                    {"package_name": project_name} | python_dict
-                )
-                filtered_dict["python"][project_name] = python_data
-
-        if "pypi" in filtered_dict:
-            for project_name, pypi_dict in filtered_dict["pypi"].items():
-                pypi_data = PyPIData.from_dict(
-                    {"package_name": project_name} | pypi_dict
-                )
-                filtered_dict["pypi"][project_name] = pypi_data
+        # the sections keyed by the name of what they describe, which the key carries and
+        # the table does not
+        for section, data_class in (
+            ("pypi", PyPIData),
+            ("crates", CratesData),
+            ("cargo", CargoData),
+            ("julia", JuliaData),
+            ("python", PythonData),
+        ):
+            if section in filtered_dict:
+                filtered_dict[section] = {
+                    package_name: data_class.from_dict(
+                        {"package_name": package_name} | section_dict
+                    )
+                    for package_name, section_dict in filtered_dict[section].items()
+                }
         if "packages" in filtered_dict:
             filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
         if "checks" in filtered_dict:
@@ -256,6 +258,13 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             self.pypi[package_name].all_qiskit_versions(force_update=True)
             self.pypi[package_name].update_json()
 
+    def update_crates(self):
+        """
+        Updates all the crates.io information in the project.
+        """
+        for package_name in sorted(self.crates.keys()):
+            self.crates[package_name].update_json()
+
     def update_julia(self):
         """
         Updates all the Julia information in the project.
@@ -309,6 +318,34 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 continue
             refreshed[python_data.package_name] = python_data
         self.python = refreshed
+
+    def update_cargo(self):
+        """
+        Updates the crates the repository declares in a `Cargo.toml`.
+
+        Like `update_python`, this one can *create* its sections: a crate name is declared
+        in the repository, so it is discovered here rather than submitted. The manifests
+        are the source of truth, so a crate that is gone from them loses its section.
+
+        Three kinds of manifest get no section, for the reasons `ecosystem/cargo.py`
+        gives: a crate the project publishes (`[crates.*]` describes it already), a pyo3
+        extension module backing the project's Python package, and a workspace root that
+        declares no crate of its own.
+        """
+        if not self.github or not self.github.owner or not self.github.repo:
+            return
+
+        sections = {}
+        for crate in CargoData.from_github(self.github).candidates():
+            crate.update_json()
+            if not crate.fetched or not crate.package_name:
+                continue
+            if crate.package_name in self.published_crates:
+                continue
+            if crate.is_python_extension:
+                continue
+            sections[crate.package_name] = crate
+        self.cargo = sections
 
     def update_requirements(self):
         """
@@ -392,6 +429,15 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         return declared
 
     @property
+    def published_crates(self):
+        """Names of the crates this project publishes to crates.io.
+
+        A `[cargo.*]` section is about a crate nobody can download, so a published one is
+        left to `[crates.*]`, as `published_distributions` does for Python.
+        """
+        return set(self.crates)
+
+    @property
     def published_distributions(self):
         """Canonical names of the Python distributions this project publishes.
 
@@ -407,6 +453,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         It is fully local, no validation or internet fetch.
          * github
          * pypi
+         * crates
          * julia
          * requirements
          * python
@@ -452,6 +499,9 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         if pypi := PyPIData.from_url(package):
             self.pypi[pypi.package_name] = pypi
             return "pypi"
+        if crates := CratesData.from_url(package):
+            self.crates[crates.package_name] = crates
+            return "crates"
         if julia := JuliaData.from_url(package):
             self.julia[julia.package_name] = julia
             return "julia"
@@ -481,6 +531,8 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         other registries. It builds nothing: `upsert_section_for` is what does that.
         """
         if PyPIData.from_url(package) or JuliaData.from_url(package):
+            return True
+        if CratesData.from_url(package):
             return True
         if RequirementsData.from_url(package):
             return True

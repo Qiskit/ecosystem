@@ -18,6 +18,7 @@ not publish: everything here comes from the manifests in the repository, so ther
 release to date, no download count, and often no version at all.
 """
 
+from ecosystem.docs import command_block
 from ecosystem.docs.card import ProjectSummaryCard, PipSourcePackageCard
 from .project_page import ProjectPage
 
@@ -48,7 +49,12 @@ class PipSourcePage(ProjectPage):
         )
 
     def description(self):
-        """package summary, and where in the repository it is declared"""
+        """package summary, and the one command that installs it.
+
+        The install line is a fenced block outside the card rather than a bullet inside it:
+        it is what a reader came for, and a block is the only thing with a copy button. The
+        manifests it was read from are in the card instead, next to the fields they declare.
+        """
         lines = []
         if self.package.description:
             lines += [f"> {self.package.description}", ""]
@@ -57,30 +63,18 @@ class PipSourcePage(ProjectPage):
             "The metadata below is what the repository itself declares.",
             "",
         ]
-        if self.manifest_url:
-            lines += [f":simple-github: [{self.manifest_url}]({self.manifest_url})"]
+        if self.card.pip_target:
+            lines += command_block(f"pip install {self.card.pip_target}")
         return lines
 
     @property
-    def manifest_url(self):
-        """The first manifest the section was read from, on github.com.
-
-        `source` keeps the manifests in the order they are looked at, so the first one is
-        the one that wins where two of them declare the same field. The branch is not
-        stored anywhere, so the link goes through HEAD.
-        """
-        github = self.project.github
-        if not self.package.source or not github or not github.owner or not github.repo:
-            return None
-        directory = f"{self.package.path.strip('/')}/" if self.package.path else ""
-        return (
-            f"https://github.com/{github.owner}/{github.repo}/blob/HEAD/"
-            f"{directory}{self.package.source[0]}"
-        )
+    def card(self):
+        """The distribution as its repository declares it"""
+        return PipSourcePackageCard.from_python_data(self.package, self.project)
 
     def pip_source_card(self):
-        """The distribution as its repository declares it"""
-        card = PipSourcePackageCard.from_python_data(self.package, self.project)
+        """The card, untitled: the page title is already the distribution name"""
+        card = self.card
         card.title = None
         return card.generate()
 

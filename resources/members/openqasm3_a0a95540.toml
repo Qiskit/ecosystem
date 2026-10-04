@@ -32,3 +32,80 @@ last_activity = 2026-09-24
 [badge]
 url = "https://qisk.it/e-a0a95540"
 style = "flat"
+
+[crates.oq3_parser]
+package_name = "oq3_parser"
+version = "0.7.0"
+last_release_date = 2024-10-30
+license = "Apache-2.0"
+description = "Parser for OpenQASM 3 parser/analyzer"
+url = "https://crates.io/crates/oq3_parser"
+maintainers = [
+  "https://github.com/jlapeyre",
+  "https://github.com/1ucian0",
+  "https://github.com/qiskit",
+]
+rust_version = "1.70"
+edition = "2021"
+total_downloads = 944530
+last_90_days_downloads = 167652
+
+[crates.oq3_lexer]
+package_name = "oq3_lexer"
+version = "0.7.0"
+last_release_date = 2024-10-30
+license = "Apache-2.0"
+description = "Lexer for OpenQASM 3 parser/analyzer"
+url = "https://crates.io/crates/oq3_lexer"
+maintainers = [
+  "https://github.com/jlapeyre",
+  "https://github.com/1ucian0",
+  "https://github.com/qiskit",
+]
+rust_version = "1.70"
+edition = "2021"
+total_downloads = 944925
+last_90_days_downloads = 167632
+
+[crates.oq3_semantics]
+package_name = "oq3_semantics"
+version = "0.7.0"
+last_release_date = 2024-10-30
+license = "Apache-2.0"
+description = "AST with semantic information for OpenQASM 3 parser/analyzer"
+url = "https://crates.io/crates/oq3_semantics"
+maintainers = ["https://github.com/jlapeyre", "https://github.com/qiskit"]
+rust_version = "1.70"
+edition = "2021"
+total_downloads = 939802
+last_90_days_downloads = 166899
+
+[crates.oq3_source_file]
+package_name = "oq3_source_file"
+version = "0.7.0"
+last_release_date = 2024-10-30
+license = "Apache-2.0"
+description = "Manage parsing source files, included files, and reporting diagnotics OpenQASM 3 parser/analyzer"
+url = "https://crates.io/crates/oq3_source_file"
+maintainers = ["https://github.com/jlapeyre", "https://github.com/qiskit"]
+rust_version = "1.70"
+edition = "2021"
+total_downloads = 943091
+last_90_days_downloads = 166932
+
+[crates.oq3_syntax]
+package_name = "oq3_syntax"
+version = "0.7.0"
+last_release_date = 2024-10-30
+license = "Apache-2.0"
+description = "Comment and whitespace preserving parser for the OpenQASM 3 parser/analyzer"
+url = "https://crates.io/crates/oq3_syntax"
+maintainers = [
+  "https://github.com/jlapeyre",
+  "https://github.com/1ucian0",
+  "https://github.com/qiskit",
+]
+rust_version = "1.70"
+edition = "2021"
+total_downloads = 943733
+last_90_days_downloads = 167494
