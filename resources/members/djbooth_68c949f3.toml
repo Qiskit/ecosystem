@@ -6,9 +6,9 @@ contact_info = "caliberoviv@gmail.com"
 labels = ["demo"]
 interfaces = ["Web interface"]
 category = "Game/Educational"
-packages = []
+packages = ["https://github.com/vivganes/qiskit-dj/blob/main/pyproject.toml",]
 uuid = "68c949f3-8fd5-4d9a-8918-f69de28c2eaf"
-maturity = "production-ready"
+maturity = "experimental"
 status = "Very Early Project"
 
 [github]
