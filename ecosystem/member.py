@@ -458,11 +458,6 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
          * requirements
          * python
          * badge
-
-        `packages` is left as it is. It is what the project declares about itself, and the
-        sections are what was read from those declarations: deleting a URL once it has been
-        read loses the statement (it has had to be reconstructed by hand more than once) and
-        makes a pattern entry pointless, since it could only ever be expanded once.
         """
 
         if github_url is None:
@@ -506,11 +501,6 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             self.julia[julia.package_name] = julia
             return "julia"
         if RequirementsData.from_url(package):
-            # claimed, but no table yet: a `[[requirements]]` entry has to carry
-            # `requires_qiskit` to be a valid member file, and only reading the file says
-            # what that is. `update_requirements` builds the tables from this declaration,
-            # which is also the only way a pattern can work — it stands for files rather
-            # than being one
             return "requirements"
         if PythonData.from_url(package):
             # claimed, but no table yet, as for a requirements file: a `[python.*]` entry
