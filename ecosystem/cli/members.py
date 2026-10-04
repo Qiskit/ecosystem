@@ -22,7 +22,7 @@ from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.check import ChecksToml, parse_exclusions
-from ecosystem.docs import anchor, plural, write_if_changed
+from ecosystem.docs import anchor, command_block, plural, write_if_changed
 from ecosystem.docs.project_table import (
     CATEGORY,
     CHECKUPS,
@@ -437,7 +437,9 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                 '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main'
                 f'/resources/members/{name_id}.toml">{name}</a></td>'
                 f'<td><a href="{badge}"><img src="{badge}" /></a><br/>'
-                f"\n\n```markdown\n{badge_md}   \n```\n\n</td>"
+                + "\n\n"
+                + "\n".join(command_block(badge_md, "markdown"))
+                + "\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")

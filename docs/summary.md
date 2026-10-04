@@ -1,4 +1,4 @@
-# The ecosystem at a glance
+# The Qiskit Ecosystem at a glance :simple-qiskit:
 
 <div class="grid" markdown>
 
@@ -62,7 +62,28 @@
         "radius": 0,
         "radius2": 45,
         "stroke": "white"
-      }
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "highlight",
+            "value": 1
+          },
+          "value": 0.25
+        }
+      },
+      "params": [
+        {
+          "name": "highlight",
+          "select": {
+            "type": "point",
+            "fields": [
+              "label"
+            ]
+          },
+          "bind": "legend"
+        }
+      ]
     },
     {
       "transform": [
@@ -85,10 +106,16 @@
           "value": "white"
         },
         "opacity": {
-          "condition": {
-            "test": "datum.share >= 0.06",
-            "value": 1
-          },
+          "condition": [
+            {
+              "test": "datum.share < 0.06",
+              "value": 0
+            },
+            {
+              "param": "highlight",
+              "value": 1
+            }
+          ],
           "value": 0
         }
       }
@@ -104,6 +131,15 @@
         "radius": 48,
         "radius2": 78,
         "stroke": "white"
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "highlight",
+            "value": 1
+          },
+          "value": 0.25
+        }
       }
     },
     {
@@ -127,10 +163,16 @@
           "value": "white"
         },
         "opacity": {
-          "condition": {
-            "test": "datum.share >= 0.06",
-            "value": 1
-          },
+          "condition": [
+            {
+              "test": "datum.share < 0.06",
+              "value": 0
+            },
+            {
+              "param": "highlight",
+              "value": 1
+            }
+          ],
           "value": 0
         }
       }
@@ -146,6 +188,15 @@
         "radius": 81,
         "radius2": 108,
         "stroke": "white"
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "highlight",
+            "value": 1
+          },
+          "value": 0.25
+        }
       }
     },
     {
@@ -169,10 +220,16 @@
           "value": "white"
         },
         "opacity": {
-          "condition": {
-            "test": "datum.share >= 0.06",
-            "value": 1
-          },
+          "condition": [
+            {
+              "test": "datum.share < 0.06",
+              "value": 0
+            },
+            {
+              "param": "highlight",
+              "value": 1
+            }
+          ],
           "value": 0
         }
       }
@@ -245,7 +302,28 @@
         "radius": 0,
         "radius2": 60,
         "stroke": "white"
-      }
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "highlight",
+            "value": 1
+          },
+          "value": 0.25
+        }
+      },
+      "params": [
+        {
+          "name": "highlight",
+          "select": {
+            "type": "point",
+            "fields": [
+              "label"
+            ]
+          },
+          "bind": "legend"
+        }
+      ]
     },
     {
       "transform": [
@@ -268,10 +346,16 @@
           "value": "white"
         },
         "opacity": {
-          "condition": {
-            "test": "datum.share >= 0.06",
-            "value": 1
-          },
+          "condition": [
+            {
+              "test": "datum.share < 0.06",
+              "value": 0
+            },
+            {
+              "param": "highlight",
+              "value": 1
+            }
+          ],
           "value": 0
         }
       }
@@ -287,6 +371,15 @@
         "radius": 63,
         "radius2": 108,
         "stroke": "white"
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "highlight",
+            "value": 1
+          },
+          "value": 0.25
+        }
       }
     },
     {
@@ -310,10 +403,16 @@
           "value": "white"
         },
         "opacity": {
-          "condition": {
-            "test": "datum.share >= 0.06",
-            "value": 1
-          },
+          "condition": [
+            {
+              "test": "datum.share < 0.06",
+              "value": 0
+            },
+            {
+              "param": "highlight",
+              "value": 1
+            }
+          ],
           "value": 0
         }
       }
@@ -386,7 +485,28 @@
         "radius": 0,
         "radius2": 60,
         "stroke": "white"
-      }
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "highlight",
+            "value": 1
+          },
+          "value": 0.25
+        }
+      },
+      "params": [
+        {
+          "name": "highlight",
+          "select": {
+            "type": "point",
+            "fields": [
+              "label"
+            ]
+          },
+          "bind": "legend"
+        }
+      ]
     },
     {
       "transform": [
@@ -409,10 +529,16 @@
           "value": "white"
         },
         "opacity": {
-          "condition": {
-            "test": "datum.share >= 0.06",
-            "value": 1
-          },
+          "condition": [
+            {
+              "test": "datum.share < 0.06",
+              "value": 0
+            },
+            {
+              "param": "highlight",
+              "value": 1
+            }
+          ],
           "value": 0
         }
       }
@@ -428,6 +554,15 @@
         "radius": 63,
         "radius2": 108,
         "stroke": "white"
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "highlight",
+            "value": 1
+          },
+          "value": 0.25
+        }
       }
     },
     {
@@ -451,10 +586,16 @@
           "value": "white"
         },
         "opacity": {
-          "condition": {
-            "test": "datum.share >= 0.06",
-            "value": 1
-          },
+          "condition": [
+            {
+              "test": "datum.share < 0.06",
+              "value": 0
+            },
+            {
+              "param": "highlight",
+              "value": 1
+            }
+          ],
           "value": 0
         }
       }
@@ -530,8 +671,27 @@
     "href": {
       "field": "url",
       "type": "nominal"
+    },
+    "opacity": {
+      "condition": {
+        "param": "highlight",
+        "value": 1
+      },
+      "value": 0.25
     }
-  }
+  },
+  "params": [
+    {
+      "name": "highlight",
+      "select": {
+        "type": "point",
+        "fields": [
+          "maturity"
+        ]
+      },
+      "bind": "legend"
+    }
+  ]
 }
 ```
 
