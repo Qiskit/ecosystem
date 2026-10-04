@@ -21,6 +21,7 @@ from pathlib import Path
 from unittest import TestCase
 from unittest.mock import DEFAULT, patch
 
+from tests.common import names
 from ecosystem.check import CheckData
 from ecosystem.cli import CliCI
 from ecosystem.dao import DAO
@@ -107,7 +108,7 @@ class TestCreateSections(CliCITestCase):
         member = self.add_member(packages=["https://pypi.org/project/banana/"])
         self.run_command(CliCI.create_sections)
         stored = self.dao[member.name_id]
-        self.assertIn("banana", stored.pypi)
+        self.assertIn("banana", names(stored.pypi))
         # the URL stays: it is what the project declared, and the section is what was read
         # from it. Deleting it loses the statement and makes a pattern expandable only once
         self.assertEqual(["https://pypi.org/project/banana/"], stored.packages)

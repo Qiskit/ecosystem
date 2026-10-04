@@ -56,7 +56,9 @@ def fake_request(*names, contents=REQUIREMENTS_TXT, requested=None):
     def request(url, **kwargs):
         if requested is not None:
             requested.append(str(url))
-        if str(url).endswith("/contents/"):
+        # a directory listing is what `_contents_url` asks for, and it ends with the
+        # slash of the directory — the root's or a member's own subdirectory
+        if str(url).endswith("/"):
             return listing(*names)
         text = (
             contents
@@ -308,7 +310,7 @@ class TestRequirementsAtSubmission(RequirementsTestCase):
         member = self.member(
             f"https://github.com/{OWNER}/{REPO}/blob/main/docs/requirements.txt"
         )
-        self.assertEqual({}, member.python)
+        self.assertEqual([], member.python)
 
 
 class TestRequirementsPatterns(RequirementsTestCase):
@@ -517,7 +519,7 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
 
     def test_a_published_distribution_is_not_what_decides(self):
         """The rule is about manifests in the repository, not about releases."""
-        member = self.member(pypi={"banana": PyPIData("banana")})
+        member = self.member(pypi=[PyPIData("banana")])
         self.assertIsNotNone(self.update(member, "requirements.txt"))
 
     def test_a_stale_section_is_dropped(self):
@@ -584,6 +586,27 @@ class TestMemberUpdateRequirements(RequirementsTestCase):
             ]
         )
         self.assertIsNone(self.update(member, "README.md", contents=NO_QISKIT_TXT))
+
+    def test_a_member_that_is_one_directory_searches_that_directory(self):
+        """And stores the whole path, so the link and the check up name the file a reader
+        would find"""
+        member = self.member()
+        member.github = GitHubData(owner=OWNER, repo=REPO, tree="main/physics/trotter")
+        with patch(
+            "ecosystem.github_contents.request_json",
+            side_effect=fake_request("requirements.txt"),
+        ) as request:
+            member.update_requirements()
+        self.assertEqual(
+            ["physics/trotter/requirements.txt"],
+            [section.file for section in member.requirements or []],
+        )
+        self.assertTrue(
+            any(
+                "contents/physics/trotter/" in str(call.args[0])
+                for call in request.call_args_list
+            )
+        )
 
     def test_a_member_without_a_github_section_is_skipped(self):
         """There is no repository to read, and no section to invent."""

@@ -67,11 +67,11 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         badge: str | BadgeData = None,
         checks: dict[str, CheckData] | None = None,
         github: GitHubData | None = None,
-        pypi: dict[str, PyPIData] | None = None,
-        crates: dict[str, CratesData] | None = None,
-        cargo: dict[str, CargoData] | None = None,
-        julia: dict[str, JuliaData] | None = None,
-        python: dict[str, PythonData] | None = None,
+        pypi: list[PyPIData] | None = None,
+        crates: list[CratesData] | None = None,
+        cargo: list[CargoData] | None = None,
+        julia: list[JuliaData] | None = None,
+        python: list[PythonData] | None = None,
         requirements: list[RequirementsData] | None = None,
         maturity: str | None = None,
         status: str | None = None,
@@ -105,11 +105,13 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         self.uuid = uuid
         self.github = github
         self.checks = checks or {}
-        self.pypi = pypi or {}
-        self.crates = crates or {}
-        self.cargo = cargo or {}
-        self.julia = julia or {}
-        self.python = python or {}
+        # arrays of tables, like `requirements`: what identifies an entry is its own
+        # `package_name`, which every one of them stores anyway
+        self.pypi = pypi or []
+        self.crates = crates or []
+        self.cargo = cargo or []
+        self.julia = julia or []
+        self.python = python or []
         self.requirements = requirements
         self.badge = badge
         self.maturity = maturity
@@ -155,8 +157,6 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 for requirements_dict in filtered_dict["requirements"]
             ]
 
-        # the sections keyed by the name of what they describe, which the key carries and
-        # the table does not
         for section, data_class in (
             ("pypi", PyPIData),
             ("crates", CratesData),
@@ -165,12 +165,9 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             ("python", PythonData),
         ):
             if section in filtered_dict:
-                filtered_dict[section] = {
-                    package_name: data_class.from_dict(
-                        {"package_name": package_name} | section_dict
-                    )
-                    for package_name, section_dict in filtered_dict[section].items()
-                }
+                filtered_dict[section] = [
+                    data_class.from_dict(table) for table in filtered_dict[section]
+                ]
         if "packages" in filtered_dict:
             filtered_dict["packages"] = [URL(p) for p in filtered_dict["packages"]]
         if "checks" in filtered_dict:
@@ -182,10 +179,19 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             filtered_dict["license"] = License(filtered_dict["license"], where="user")
         return Member(**filtered_dict)
 
+    #: The sections that are arrays of tables, keyed by nothing: an entry carries the name
+    #: of what it describes
+    ARRAY_SECTIONS = ("pypi", "crates", "cargo", "julia", "python", "requirements")
+
     def to_dict(self, keys=None) -> dict:
         base_dict = super().to_dict(keys=keys)
         if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
             del base_dict["ibm_maintained"]
+        # a member with no distributions has no `pypi = []` line: `to_dict` drops an empty
+        # dict but keeps an empty list, which only showed once these sections became arrays
+        for section in self.ARRAY_SECTIONS:
+            if section in base_dict and not base_dict[section]:
+                del base_dict[section]
         # move checks to the end of the dict
         if "checks" in base_dict:
             checks = base_dict.pop("checks")
@@ -254,23 +260,23 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         """
         Updates all the PyPI information in the project.
         """
-        for package_name in sorted(self.pypi.keys()):
-            self.pypi[package_name].all_qiskit_versions(force_update=True)
-            self.pypi[package_name].update_json()
+        for package in sorted(self.pypi, key=lambda p: p.package_name):
+            package.all_qiskit_versions(force_update=True)
+            package.update_json()
 
     def update_crates(self):
         """
         Updates all the crates.io information in the project.
         """
-        for package_name in sorted(self.crates.keys()):
-            self.crates[package_name].update_json()
+        for crate in sorted(self.crates, key=lambda c: c.package_name):
+            crate.update_json()
 
     def update_julia(self):
         """
         Updates all the Julia information in the project.
         """
-        for package_name in sorted(self.julia.keys()):
-            self.julia[package_name].update_json()
+        for package in sorted(self.julia, key=lambda p: p.package_name):
+            package.update_json()
 
     def update_python(self):
         """
@@ -296,10 +302,20 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         # was declared is kept, because declaring it was deliberate
         discovered = not self.python
 
+        # a member that is one directory of a repository is about what that directory
+        # declares: a stored section from anywhere else describes the repository, which is
+        # somebody else's business. Two templates of `qiskit-function-templates` each
+        # carried the distribution its root publishes, and overwrote each other's page
+        subdirectory = self.github.subdirectory
+        stored = [
+            section
+            for section in self.python
+            if not subdirectory or (section.path or "").startswith(subdirectory)
+        ]
         to_fetch = (
             self.declared_distributions()
-            or list(self.python.values())
-            or [PythonData.from_github(self.github)]
+            or stored
+            or [PythonData.from_github(self.github, path=subdirectory)]
         )
         refreshed = {}
         for python_data in to_fetch:
@@ -316,8 +332,12 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 # that could not be read raises instead of getting here, so a
                 # failed fetch never drops a good section.
                 continue
-            refreshed[python_data.package_name] = python_data
-        self.python = refreshed
+            # by name and directory: a monorepo can declare the same name twice, and the
+            # last fetch of a given one is the one that counts
+            refreshed[(python_data.package_name, python_data.path)] = python_data
+        self.python = sorted(
+            refreshed.values(), key=lambda p: (p.package_name, p.path or "")
+        )
 
     def update_cargo(self):
         """
@@ -344,8 +364,10 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 continue
             if crate.is_python_extension:
                 continue
-            sections[crate.package_name] = crate
-        self.cargo = sections
+            sections[(crate.package_name, crate.path)] = crate
+        self.cargo = sorted(
+            sections.values(), key=lambda c: (c.package_name, c.path or "")
+        )
 
     def update_requirements(self):
         """
@@ -393,11 +415,16 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         """
         declared, paths = [], set()
         for package in self.packages or []:
+            if RequirementsData.from_url(package):
+                # claimed before `PythonData.from_url` is asked, as `upsert_section_for`
+                # does: that one logs an error and raises for a blob URL that is not a
+                # manifest, which is the right answer for a submission and noise here
+                continue
             try:
                 section = PythonData.from_url(package)
             except EcosystemError:
-                # a blob URL that is not a manifest. `upsert_section_for` is where that is
-                # reported; here it is simply not a distribution
+                # a blob URL that is neither a manifest nor a requirements file. The
+                # submission path is where that is reported
                 continue
             if section is None:
                 continue
@@ -406,9 +433,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 paths.add(found.path)
         if not declared:
             return []
-        declared += [
-            section for section in self.python.values() if section.path not in paths
-        ]
+        declared += [section for section in self.python if section.path not in paths]
         return declared
 
     def declared_requirements(self):
@@ -435,7 +460,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         A `[cargo.*]` section is about a crate nobody can download, so a published one is
         left to `[crates.*]`, as `published_distributions` does for Python.
         """
-        return set(self.crates)
+        return {crate.package_name for crate in self.crates}
 
     @property
     def published_distributions(self):
@@ -446,7 +471,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         different registry, so it says nothing about whether this distribution is
         released.
         """
-        return {canonicalize_name(name) for name in self.pypi}
+        return {canonicalize_name(package.package_name) for package in self.pypi}
 
     def upsert_sections(self, github_url=None):
         """Create or update sections in a member.
@@ -492,19 +517,30 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         no section of its own, which is what the project page lists as "other registries".
         """
         if pypi := PyPIData.from_url(package):
-            self.pypi[pypi.package_name] = pypi
+            self.pypi = self._with(self.pypi, pypi)
             return "pypi"
         if crates := CratesData.from_url(package):
-            self.crates[crates.package_name] = crates
+            self.crates = self._with(self.crates, crates)
             return "crates"
         if julia := JuliaData.from_url(package):
-            self.julia[julia.package_name] = julia
+            self.julia = self._with(self.julia, julia)
             return "julia"
         if RequirementsData.from_url(package):
             return "requirements"
         if PythonData.from_url(package):
             return "python"
         return None
+
+    @staticmethod
+    def _with(sections, section):
+        """`sections` plus `section`, unless something of that name is already there.
+
+        A declaration read twice is one entry, which is what the key used to guarantee. The
+        stored one wins: it carries whatever the last fetch read, and this one is unfetched.
+        """
+        if any(stored.package_name == section.package_name for stored in sections):
+            return sections
+        return sorted(sections + [section], key=lambda s: s.package_name)
 
     def declares_a_section(self, package):
         """Whether a declared URL is read by a section of this member.

@@ -41,14 +41,14 @@ class PythonCheckupsTestCase(TestCase):
             maturity="experimental",
         )
         member.github = GitHubData(owner="qiskit-community", repo="banana-repo")
-        member.python = {
-            "banana-compiler": PythonData(
+        member.python = [
+            PythonData(
                 package_name="banana-compiler",
                 source=["pyproject.toml"],
                 deferred=[],
                 **section,
             )
-        }
+        ]
         return member
 
     def checkups_of(self, checker, **section):

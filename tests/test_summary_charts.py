@@ -149,8 +149,8 @@ class TestThePackagingRings(TestCase):
         """Otherwise the rings would add up to more than the number of members"""
         rings = self.rings(
             member(
-                pypi={"banana": PyPIData(package_name="banana")},
-                python={"banana": PythonData(package_name="banana")},
+                pypi=[PyPIData(package_name="banana")],
+                python=[PythonData(package_name="banana")],
             )
         )
         self.assertEqual({1: 1, 2: 1}, totals(rings))
@@ -166,7 +166,7 @@ class TestThePackagingRings(TestCase):
         """Which is the distinction the two pairs of sections are about"""
         rings = self.rings(
             member(requirements=[RequirementsData(file="requirements.txt")]),
-            member(pypi={"banana": PyPIData(package_name="banana")}),
+            member(pypi=[PyPIData(package_name="banana")]),
         )
         self.assertEqual(["Published", "Declared in the repository"], labels(rings, 1))
         self.assertEqual(["PyPI", "A requirements file"], labels(rings, 2))
@@ -269,7 +269,7 @@ class TestTheSharesAndTheLinks(TestCase):
     def test_a_packaging_sector_links_to_the_table_below_it(self):
         """The table is what lists the members the sector counts"""
         rings = summary_charts.packaging_rings(
-            [member(pypi={"banana": PyPIData(package_name="banana")})]
+            [member(pypi=[PyPIData(package_name="banana")])]
         )
         links = {row["label"]: row["url"] for row in rings}
         self.assertEqual("#active-pypi-packages", links["PyPI"])
@@ -277,7 +277,7 @@ class TestTheSharesAndTheLinks(TestCase):
     def test_a_sector_with_nothing_to_point_at_stays_on_the_page(self):
         """An empty `href` would make a click reload the page instead of doing nothing"""
         rings = summary_charts.packaging_rings(
-            [member(julia={"Banana": None})]  # a kind with no page of its own
+            [member(julia=[None])]  # a kind with no page of its own
         )
         self.assertEqual(
             summary_charts.HERE, {r["label"]: r["url"] for r in rings}["Julia"]

@@ -14,6 +14,7 @@
 
 from unittest import TestCase
 
+from tests.common import named
 from ecosystem.crates import CratesData
 from ecosystem.docs.card import CratesPackageCard
 from ecosystem.docs.crates_page import CratesPage
@@ -45,7 +46,7 @@ class CratesPageTestCase(TestCase):
 
     def project(self, **kwargs):
         """The member that publishes it"""
-        kwargs.setdefault("crates", {"banana_parser": self.crate()})
+        kwargs.setdefault("crates", [self.crate()])
         return Member(
             name="Banana Parser",
             url=f"https://github.com/{OWNER}/{REPO}",
@@ -58,7 +59,7 @@ class CratesPageTestCase(TestCase):
     def page(self, crate=None, **kwargs):
         """The page about that crate"""
         project = self.project(**kwargs)
-        crate = crate or project.crates["banana_parser"]
+        crate = crate or named(project.crates, "banana_parser")
         return CratesPage(crate, project, "crates/banana_parser.md")
 
     def rendered(self, crate=None, **kwargs):

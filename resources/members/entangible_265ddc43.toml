@@ -30,17 +30,7 @@ last_activity = 2026-09-30
 url = "https://qisk.it/e-265ddc43"
 style = "flat"
 
-[python.qamposer-hardware]
-package_name = "qamposer-hardware"
-version = "0.1.0"
-description = "3D-printable multi-color gate tiles for Entangible (Prusa Core One + MMU)."
-requires_python = ">=3.11"
-build_backend = "hatchling.build"
-path = "hardware"
-source = ["pyproject.toml"]
-deferred = []
-
-[python.qamposer-assets]
+[[python]]
 package_name = "qamposer-assets"
 version = "0.1.0"
 description = "Printable asset generator for Entangible — vector ArUco tiles and board mats (SVG -> PDF)."
@@ -50,7 +40,17 @@ path = "packages/qamposer-assets"
 source = ["pyproject.toml"]
 deferred = []
 
-[python.qamposer-physical-host]
+[[python]]
+package_name = "qamposer-hardware"
+version = "0.1.0"
+description = "3D-printable multi-color gate tiles for Entangible (Prusa Core One + MMU)."
+requires_python = ">=3.11"
+build_backend = "hatchling.build"
+path = "hardware"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
 package_name = "qamposer-physical-host"
 version = "0.1.0"
 description = "FastAPI kiosk host for Entangible (milestone M2) — HTTPS origin, WS broadcast hub, optional backend proxy."
@@ -60,7 +60,7 @@ path = "packages/qamposer-physical-host"
 source = ["pyproject.toml"]
 deferred = []
 
-[python.qamposer-vision]
+[[python]]
 package_name = "qamposer-vision"
 version = "0.1.0"
 description = "OpenCV/ArUco vision pipeline for Entangible — detects gate tiles and builds @qamposer/react circuits."

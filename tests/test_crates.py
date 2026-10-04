@@ -16,6 +16,7 @@ from datetime import date
 from unittest import TestCase
 from unittest.mock import patch
 
+from tests.common import named, names
 from ecosystem.crates import CratesData, HEADERS
 from ecosystem.error_handling import EcosystemError
 from ecosystem.license import License
@@ -272,7 +273,7 @@ class TestCratesOnTheMember(CratesTestCase):
             packages=[URL("https://crates.io/crates/banana_parser")],
         )
         member.upsert_sections()
-        self.assertEqual(["banana_parser"], list(member.crates))
+        self.assertEqual(["banana_parser"], names(member.crates))
         # the declaration stays: it is what the project said, and the section is what was
         # read from it
         self.assertEqual(
@@ -282,18 +283,18 @@ class TestCratesOnTheMember(CratesTestCase):
 
     def test_update_crates_refreshes_every_section(self):
         """The weekly run calls it for every member that has one"""
-        member = self.member(crates={"banana_parser": CratesData("banana_parser")})
+        member = self.member(crates=[CratesData("banana_parser")])
         with patch(
             "ecosystem.crates.request_json", side_effect=[CRATES_JSON, OWNERS_JSON]
         ):
             member.update_crates()
-        self.assertEqual("0.7.0", member.crates["banana_parser"].version)
+        self.assertEqual("0.7.0", named(member.crates, "banana_parser").version)
 
     def test_the_sections_round_trip_through_from_dict(self):
         """A member file is read back into the same sections it was written from"""
-        member = self.member(crates={"banana_parser": self.fetched()})
+        member = self.member(crates=[self.fetched()])
         read_back = Member.from_dict(member.to_dict())
         self.assertEqual(
-            member.crates["banana_parser"].to_dict(),
-            read_back.crates["banana_parser"].to_dict(),
+            named(member.crates, "banana_parser").to_dict(),
+            named(read_back.crates, "banana_parser").to_dict(),
         )

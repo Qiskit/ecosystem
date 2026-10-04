@@ -14,34 +14,10 @@ category = "Application"
 reference_paper = "https://dl.acm.org/doi/10.1145/3731251"
 documentation = "https://quantum.cloud.ibm.com/docs/en/guides/qiskit-function-templates"
 packages = [
-  "https://github.com/qiskit-community/qiskit-function-templates/blob/HEAD/*/*/requirements.txt",
+  "https://github.com/qiskit-community/qiskit-function-templates/blob/main/physics/hamiltonian_simulation/requirements.txt",
 ]
 uuid = "569f773e-34d9-4573-bbaf-1ca0268e7004"
 maturity = "production-ready"
-
-[[requirements]]
-file = "circuit_functions/executor/requirements.txt"
-requires_qiskit = ">=2.0.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
-
-[[requirements]]
-file = "circuit_functions/vanilla/requirements.txt"
-requires_qiskit = ">=2.0.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
-
-[[requirements]]
-file = "physics/aqc_trotter/requirements.txt"
-requires_qiskit = "~=2.5.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-function-templates"
@@ -61,9 +37,3 @@ last_activity = 2026-09-30
 [badge]
 url = "https://qisk.it/e-569f773e"
 style = "flat"
-
-[python.qiskit-function-templates]
-package_name = "qiskit-function-templates"
-version = "1.0.0"
-source = ["pyproject.toml"]
-deferred = []

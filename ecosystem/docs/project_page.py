@@ -80,7 +80,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
 
     def pypi_table(self):
         """The distributions published to PyPI, each linked to its own page"""
-        packages = (self.project.pypi or {}).values()
+        packages = self.project.pypi
         rows = [
             [
                 f"[`{cell(package.package_name)}`](../pypi/{package.package_name}.md)",
@@ -122,7 +122,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 self._count_cell(crate.total_downloads),
                 self._count_cell(crate.last_90_days_downloads),
             ]
-            for crate in (self.project.crates or {}).values()
+            for crate in self.project.crates
         ]
         columns = [
             ("crates.io crate", "---"),
@@ -145,7 +145,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         owner = getattr(github, "owner", None)
         repo = getattr(github, "repo", None)
         rows = []
-        for crate in (self.project.cargo or {}).values():
+        for crate in self.project.cargo:
             target = (
                 f"cargo add --git https://github.com/{owner}/{repo} "
                 f"{crate.package_name}"
@@ -188,7 +188,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         """
         github = self.project.github
         rows = []
-        for package in (self.project.python or {}).values():
+        for package in self.project.python:
             target = pip_install_target(
                 getattr(github, "owner", None),
                 getattr(github, "repo", None),
@@ -236,7 +236,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 or "N/A",
                 self._count_cell(package.estimated_unique_users),
             ]
-            for package in (self.project.julia or {}).values()
+            for package in self.project.julia
         ]
         columns = [
             ("Julia package", "---"),
@@ -294,7 +294,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         releases with none of the flags the other columns need behind it.
         """
         rows = []
-        for package in (self.project.pypi or {}).values():
+        for package in self.project.pypi:
             rows.append(
                 self._requirement_row(
                     f"PyPI [`{cell(package.package_name)}`]"
@@ -302,7 +302,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                     package,
                 )
             )
-        for package in (self.project.python or {}).values():
+        for package in self.project.python:
             rows.append(
                 self._requirement_row(
                     f"repo [`{cell(package.package_name)}`]"

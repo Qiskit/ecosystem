@@ -110,8 +110,16 @@ class CargoData(GitHubContentsMixin, JsonSerializable):
 
     @classmethod
     def from_github(cls, github_data):
-        """Builds a probe from a member's `[github]` section, to call `candidates` on"""
-        return cls(owner=github_data.owner, repo=github_data.repo)
+        """Builds a probe from a member's `[github]` section, to call `candidates` on.
+
+        A member that is one directory of a repository is read from that directory: see
+        `GitHubData.subdirectory`.
+        """
+        return cls(
+            owner=github_data.owner,
+            repo=github_data.repo,
+            path=github_data.subdirectory,
+        )
 
     def candidates(self):
         """The crates the repository declares, as sections that have not been read yet.
@@ -124,13 +132,18 @@ class CargoData(GitHubContentsMixin, JsonSerializable):
             return []
         sections = []
         if (root.get("package") or {}).get("name"):
-            sections.append(self._member(path=None, workspace=root))
+            sections.append(self._member(path=self.path, workspace=root))
         for member in (root.get("workspace") or {}).get("members") or []:
             # a glob would need a listing per pattern, and the two repositories that use
             # one declare no package at the root either, so there is nothing to anchor
             if any(wildcard in member for wildcard in "*?["):
                 continue
-            sections.append(self._member(path=member, workspace=root))
+            sections.append(
+                self._member(
+                    path=f"{self.path}/{member}" if self.path else member,
+                    workspace=root,
+                )
+            )
         return sections
 
     def _member(self, path, workspace):

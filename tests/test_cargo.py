@@ -15,6 +15,7 @@
 from unittest import TestCase
 from unittest.mock import patch
 
+from tests.common import named, names
 from ecosystem.cargo import CargoData
 from ecosystem.crates import CratesData
 from ecosystem.docs.cargo_page import CargoPage
@@ -130,45 +131,45 @@ class TestWhichManifestsGetASection(CargoTestCase):
     def test_the_root_crate_and_its_workspace_members(self):
         """`Qiskit/Qiskit-rs` declares one of each, and both are crates"""
         sections = self.sections(**{"": ROOT, "banana-sys/": MEMBER})
-        self.assertEqual(["banana", "banana-sys"], sorted(sections))
-        self.assertEqual("banana-sys", sections["banana-sys"].path)
-        self.assertIsNone(sections["banana"].path)
+        self.assertEqual(["banana", "banana-sys"], names(sections))
+        self.assertEqual("banana-sys", named(sections, "banana-sys").path)
+        self.assertIsNone(named(sections, "banana").path)
 
     def test_a_pyo3_extension_module_is_not_a_crate(self):
         """It is the Python package's compiled core, and that is already described"""
-        self.assertEqual({}, self.sections(**{"": EXTENSION}))
+        self.assertEqual([], self.sections(**{"": EXTENSION}))
 
     def test_a_crate_that_also_builds_an_rlib_stays(self):
         """Something can depend on it as a crate, pyo3 bindings or not"""
         manifest = EXTENSION.replace(
             'crate-type = ["cdylib"]', 'crate-type = ["cdylib", "rlib"]'
         )
-        self.assertEqual(["banana_accelerate"], list(self.sections(**{"": manifest})))
+        self.assertEqual(["banana_accelerate"], names(self.sections(**{"": manifest})))
 
     def test_a_published_crate_is_left_to_the_registry_section(self):
         """`[crates.*]` says more about it than a manifest can"""
-        member = self.member(crates={"banana": CratesData(package_name="banana")})
+        member = self.member(crates=[CratesData(package_name="banana")])
         sections = self.sections(member, **{"": ROOT, "banana-sys/": MEMBER})
-        self.assertEqual(["banana-sys"], list(sections))
+        self.assertEqual(["banana-sys"], names(sections))
 
     def test_a_workspace_with_only_a_glob_yields_nothing(self):
         """Expanding it would need a listing per pattern, which is a later step"""
-        self.assertEqual({}, self.sections(**{"": GLOB_ONLY}))
+        self.assertEqual([], self.sections(**{"": GLOB_ONLY}))
 
     def test_a_repository_with_no_manifest_declares_no_crate(self):
         """Which is most members"""
-        self.assertEqual({}, self.sections())
+        self.assertEqual([], self.sections())
 
     def test_a_section_that_is_gone_from_the_manifests_is_dropped(self):
         """The manifests are the source of truth, so a stale section says nothing"""
-        member = self.member(cargo={"banana": CargoData(package_name="banana")})
-        self.assertEqual({}, self.sections(member))
+        member = self.member(cargo=[CargoData(package_name="banana")])
+        self.assertEqual([], self.sections(member))
 
     def test_a_member_without_a_github_section_is_skipped(self):
         """There is nothing to read without a repository to read it from"""
         member = Member(name="Banana rs", url=f"https://github.com/{OWNER}/{REPO}")
         member.update_cargo()
-        self.assertEqual({}, member.cargo)
+        self.assertEqual([], member.cargo)
 
 
 class TestWhatTheSectionSays(CargoTestCase):
@@ -176,7 +177,7 @@ class TestWhatTheSectionSays(CargoTestCase):
 
     def section(self, name="banana"):
         """One section of such a repository"""
-        return self.sections(**{"": ROOT, "banana-sys/": MEMBER})[name]
+        return named(self.sections(**{"": ROOT, "banana-sys/": MEMBER}), name)
 
     def test_the_fields_the_manifest_declares(self):
         """Including the `crate_type` the scope rule turns on"""
@@ -202,7 +203,8 @@ class TestWhatTheSectionSays(CargoTestCase):
     def test_a_field_the_workspace_does_not_declare_either_is_nothing(self):
         """An inherited field is not a promise that anybody declared it"""
         root = ROOT.replace('rust-version = "1.85"\n', "")
-        self.assertIsNone(self.sections(**{"": root})["banana"].rust_version)
+        sections = self.sections(**{"": root})
+        self.assertIsNone(named(sections, "banana").rust_version)
 
     def test_the_manifest_path_is_where_the_crate_was_read(self):
         """Which is what the page and the table link"""
@@ -283,8 +285,8 @@ class TestTheStoredSection(CargoTestCase):
         self.sections(member, **{"": ROOT, "banana-sys/": MEMBER})
         read_back = Member.from_dict(member.to_dict())
         self.assertEqual(
-            {name: crate.to_dict() for name, crate in member.cargo.items()},
-            {name: crate.to_dict() for name, crate in read_back.cargo.items()},
+            [crate.to_dict() for crate in member.cargo],
+            [crate.to_dict() for crate in read_back.cargo],
         )
 
 
@@ -299,12 +301,12 @@ class TestTheCargoPage(CargoTestCase):
     def page(self, name="banana-sys"):
         """The page about that crate"""
         return CargoPage(
-            self.project.cargo[name], self.project, f"cargo-source/{name}.md"
+            named(self.project.cargo, name), self.project, f"cargo-source/{name}.md"
         )
 
     def test_without_a_repository_there_is_no_dependency_line(self):
         """Owner and repo live in `[github]`; without it there is no URL to guess"""
-        crate = self.project.cargo["banana-sys"]
+        crate = named(self.project.cargo, "banana-sys")
         page = CargoPage(crate, Member(name="Banana rs", url="x"), "cargo-source/x.md")
         self.assertIsNone(page.card.manifest_url)
         lines = "\n".join(page.description() + page.cargo_card())
