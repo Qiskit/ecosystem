@@ -710,3 +710,16 @@
 Distributions that are declared in a repository but not published to a package registry.
 
 {{ read_csv('docs/assets/pip_source.csv') }}
+
+# Active crates
+
+{{ read_csv('docs/assets/active_crates.csv') }}
+
+# Active cargo-installable repositories
+
+Crates that are declared in a repository but not published to crates.io. A project depends on
+one of these through its git URL.
+
+{{ read_csv('docs/assets/cargo_source.csv') }}
+
+

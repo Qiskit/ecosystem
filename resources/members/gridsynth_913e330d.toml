@@ -5,7 +5,7 @@ labels = ["unitary synthesis", "circuit optimization"]
 interfaces = ["Rust", "Command-line interface (CLI)"]
 ibm_maintained = true
 category = "Tooling"
-packages = ["https://crates.io/crates/rsgridsynth"]
+packages = []
 uuid = "913e330d-200c-4a42-990b-a4e615ac5a96"
 maturity = "experimental"
 status = "Early Project"
@@ -26,3 +26,16 @@ last_activity = 2026-09-29
 [badge]
 url = "https://qisk.it/e-913e330d"
 style = "flat"
+
+[crates.rsgridsynth]
+package_name = "rsgridsynth"
+version = "0.2.2"
+last_release_date = 2026-08-01
+license = "MIT"
+description = "Rust-based synthesizer that decomposes single-qubit Z-axis rotations into Clifford+T gate sequences"
+url = "https://crates.io/crates/rsgridsynth"
+maintainers = ["https://github.com/to24toro", "https://github.com/qiskit"]
+rust_version = "1.87"
+edition = "2021"
+total_downloads = 192893
+last_90_days_downloads = 79185

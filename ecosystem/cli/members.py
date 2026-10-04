@@ -479,6 +479,29 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             project.update_pypi()
             self.dao.update(project.name_id, pypi=project.pypi)
 
+    def update_crates(self, name=None):
+        """
+        Updates crates.io data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_crates()
+            self.dao.update(project.name_id, crates=project.crates)
+
+    def update_cargo(self, name=None):
+        """
+        Updates the crates the member's own repository declares.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_cargo()
+            self.dao.update(project.name_id, cargo=project.cargo)
+
     def update_julia(self, name=None):
         """
         Updates Julia data.

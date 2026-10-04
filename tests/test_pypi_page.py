@@ -67,7 +67,7 @@ class TestThePypiPage(PypiPageTestCase):
 
     def test_the_install_line_is_the_point_of_the_page(self):
         """Whatever else is on it, this is what a reader came for"""
-        self.assertIn(":simple-python: `pip install banana`", self.rendered())
+        self.assertIn("```bash\npip install banana\n```", self.rendered())
 
     def test_the_pypi_project_page_is_linked(self):
         """As the stored URL, which is what PyPI itself reported"""
