@@ -503,14 +503,6 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         if RequirementsData.from_url(package):
             return "requirements"
         if PythonData.from_url(package):
-            # claimed, but no table yet, as for a requirements file: a `[python.*]` entry
-            # has to carry `package_name`, and only the manifest says what it is, so a stub
-            # keyed by a stand-in is a member file the schema rejects. A pattern cannot even
-            # be keyed — `banana-packages-*` is not a distribution name.
-            #
-            # The stub used to be the only record of the declaration, because the URL was
-            # deleted from `packages` once read. It is not deleted any more, so
-            # `update_python` builds the table from the declaration instead.
             return "python"
         return None
 
