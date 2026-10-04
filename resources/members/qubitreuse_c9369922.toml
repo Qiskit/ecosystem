@@ -6,7 +6,7 @@ affiliations = "IBM"
 labels = ["research", "circuit optimization"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
-packages = []
+packages = ["https://pypi.org/project/qiskit-qubit-reuse/"]
 uuid = "c9369922-7e0d-4b77-b00a-329472b57a34"
 maturity = "production-ready"
 
@@ -28,7 +28,7 @@ last_activity = 2026-09-30
 url = "https://qisk.it/e-c9369922"
 style = "flat"
 
-[pypi.qiskit-qubit-reuse]
+[[pypi]]
 package_name = "qiskit-qubit-reuse"
 version = "0.0.2"
 last_release_date = 2024-02-05

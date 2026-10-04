@@ -8,7 +8,7 @@ labels = ["research", "circuit optimization", "cloud service"]
 interfaces = ["Python"]
 category = "Tooling"
 reference_paper = "https://www.worldscientific.com/doi/10.1142/S0218194024410018"
-packages = []
+packages = ["https://pypi.org/project/autoscheduler/"]
 uuid = "cec38ad8-9737-49e7-a177-3a6850784b6e"
 maturity = "experimental"
 status = "Under revision"
@@ -31,7 +31,7 @@ last_activity = 2026-07-14
 url = "https://qisk.it/e-cec38ad8"
 style = "flat"
 
-[pypi.autoscheduler]
+[[pypi]]
 package_name = "autoscheduler"
 version = "1.2.1"
 last_release_date = 2025-06-12

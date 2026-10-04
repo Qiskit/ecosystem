@@ -14,7 +14,7 @@ interfaces = ["Python", "Command-line interface (CLI)"]
 category = "SDK"
 reference_paper = "https://arxiv.org/abs/2606.19312"
 documentation = "https://qdsvquantum-afk.github.io/qdsv-bridge/how_to/logical_artifacts.html"
-packages = []
+packages = ["https://pypi.org/project/qdsv-bridge/"]
 uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
 maturity = "experimental"
 status = "Early Project"
@@ -34,7 +34,7 @@ last_activity = 2026-09-25
 url = "https://qisk.it/e-e8734f93"
 style = "flat"
 
-[pypi.qdsv-bridge]
+[[pypi]]
 package_name = "qdsv-bridge"
 version = "0.7.3"
 last_release_date = 2026-09-25

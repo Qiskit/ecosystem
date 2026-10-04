@@ -8,7 +8,10 @@ labels = []
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-algorithms/"
-packages = ["https://anaconda.org/conda-forge/qiskit-algorithms"]
+packages = [
+  "https://anaconda.org/conda-forge/qiskit-algorithms",
+  "https://pypi.org/project/qiskit-algorithms/",
+]
 uuid = "39fba621-edbb-485b-a723-8a0760ab4b85"
 maturity = "production-ready"
 
@@ -30,7 +33,7 @@ last_activity = 2026-09-29
 url = "https://qisk.it/e-39fba621"
 style = "flat"
 
-[pypi.qiskit-algorithms]
+[[pypi]]
 package_name = "qiskit-algorithms"
 version = "0.4.0"
 last_release_date = 2025-08-29

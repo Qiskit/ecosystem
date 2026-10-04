@@ -6,7 +6,7 @@ labels = ["tensor networks"]
 interfaces = ["Python"]
 category = "Circuit simulator"
 documentation = "https://qiskit-community.github.io/qiskit-quimb/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-quimb/"]
 uuid = "a304538c-feb7-47b2-a41f-f9fbe41de87b"
 maturity = "production-ready"
 
@@ -29,7 +29,7 @@ last_activity = 2026-07-10
 url = "https://qisk.it/e-a304538c"
 style = "flat"
 
-[pypi.qiskit-quimb]
+[[pypi]]
 package_name = "qiskit-quimb"
 version = "0.0.10"
 last_release_date = 2026-01-31

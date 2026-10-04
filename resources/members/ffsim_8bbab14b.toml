@@ -8,7 +8,7 @@ interfaces = ["Python"]
 website = "https://qiskit-community.github.io/ffsim/"
 category = "Circuit simulator"
 documentation = "https://qiskit-community.github.io/ffsim/"
-packages = []
+packages = ["https://pypi.org/project/ffsim/"]
 uuid = "8bbab14b-6cbb-4e09-8040-d5afd359deec"
 maturity = "production-ready"
 
@@ -31,7 +31,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-8bbab14b"
 style = "flat"
 
-[pypi.ffsim]
+[[pypi]]
 package_name = "ffsim"
 version = "0.0.84"
 last_release_date = 2026-08-19

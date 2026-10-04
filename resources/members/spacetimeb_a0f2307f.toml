@@ -7,7 +7,7 @@ labels = ["physics", "research", "quantum information", "error correction"]
 interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2304.05943"
-packages = []
+packages = ["https://pypi.org/project/qiskit-spacetime-bridge/"]
 uuid = "a0f2307f-3dcf-47e6-ba73-34790ba78901"
 maturity = "as-is"
 status = "Unmaintained"
@@ -27,7 +27,7 @@ last_activity = 2026-09-01
 url = "https://qisk.it/e-a0f2307f"
 style = "flat"
 
-[pypi.qiskit-spacetime-bridge]
+[[pypi]]
 package_name = "qiskit-spacetime-bridge"
 version = "0.1.0"
 last_release_date = 2026-09-01

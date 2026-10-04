@@ -9,7 +9,7 @@ interfaces = ["Python", "C++"]
 category = "Application"
 reference_paper = "https://arxiv.org/pdf/2210.14928"
 documentation = "https://mqt.readthedocs.io/projects/problemsolver/"
-packages = []
+packages = ["https://pypi.org/project/mqt.problemsolver/"]
 uuid = "4262945e-f1af-441a-ad38-c803a5c6df0b"
 maturity = "experimental"
 
@@ -31,7 +31,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-4262945e"
 style = "flat"
 
-[pypi."mqt.problemsolver"]
+[[pypi]]
 package_name = "mqt-problemsolver"
 version = "0.5.0"
 last_release_date = 2026-07-02

@@ -10,7 +10,7 @@ website = "https://www.cda.cit.tum.de/mqtbench/"
 category = "Application"
 reference_paper = "https://quantum-journal.org/papers/q-2023-07-20-1062/"
 documentation = "https://mqt.readthedocs.io/projects/bench/"
-packages = []
+packages = ["https://pypi.org/project/mqt-bench/"]
 uuid = "06f1e81e-e82a-4fc2-88b5-60b532248af1"
 maturity = "experimental"
 
@@ -32,7 +32,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-06f1e81e"
 style = "flat"
 
-[pypi."mqt.bench"]
+[[pypi]]
 package_name = "mqt-bench"
 version = "2.3.0"
 last_release_date = 2026-09-12

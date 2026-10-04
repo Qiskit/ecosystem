@@ -10,7 +10,7 @@ website = "https://qognitive.io"
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2301.00560"
 documentation = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
-packages = []
+packages = ["https://pypi.org/project/fast-pauli/"]
 uuid = "b4d78374-40eb-4118-bb22-45e97b2dc0c5"
 maturity = "production-ready"
 status = "Under revision"
@@ -34,7 +34,7 @@ last_activity = 2026-09-26
 url = "https://qisk.it/e-b4d78374"
 style = "flat"
 
-[pypi.fast-pauli]
+[[pypi]]
 package_name = "fast-pauli"
 version = "0.0.35"
 last_release_date = 2025-04-09

@@ -6,7 +6,7 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["demo", "circuit building", "quantum information"]
 interfaces = ["Python"]
 category = "Game/Educational"
-packages = []
+packages = ["https://pypi.org/project/qiskit-lean-verify-game/"]
 uuid = "26484722-ff86-4278-9eb6-02e61082dc48"
 maturity = "experimental"
 status = "Very Early Project"
@@ -26,7 +26,7 @@ last_activity = 2026-08-26
 url = "https://qisk.it/e-26484722"
 style = "flat"
 
-[pypi.qiskit-lean-verify-game]
+[[pypi]]
 package_name = "qiskit-lean-verify-game"
 version = "0.1.1"
 last_release_date = 2026-08-25

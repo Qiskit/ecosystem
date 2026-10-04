@@ -9,7 +9,11 @@ ibm_maintained = true
 created_at = 2022-12-07
 category = "SDK"
 documentation = "https://qiskit.github.io/qiskit-serverless/"
-packages = []
+packages = [
+  "https://pypi.org/project/qiskit-serverless/",
+  "https://github.com/Qiskit/qiskit-serverless/blob/HEAD/gateway/pyproject.toml",
+  "https://github.com/Qiskit/qiskit-serverless/blob/HEAD/tests/pyproject.toml",
+]
 uuid = "d463fcf2-9e98-4d16-af3b-25ec29b650f7"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -33,7 +37,7 @@ last_activity = 2026-10-02
 url = "https://qisk.it/e-d463fcf2"
 style = "flat"
 
-[pypi.qiskit-serverless]
+[[pypi]]
 package_name = "qiskit-serverless"
 version = "0.36.0"
 last_release_date = 2026-09-03
@@ -51,7 +55,7 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 9414
 last_180_days_downloads = 96564
 
-[python.qiskit-serverless-gateway]
+[[python]]
 package_name = "qiskit-serverless-gateway"
 version = "0.1.0"
 requires_python = ">=3.12"
@@ -64,7 +68,7 @@ path = "gateway"
 source = ["pyproject.toml", "setup.cfg", "requirements.txt"]
 deferred = []
 
-[python.qiskit-serverless-tests]
+[[python]]
 package_name = "qiskit-serverless-tests"
 version = "0.1.0"
 requires_python = ">=3.12"

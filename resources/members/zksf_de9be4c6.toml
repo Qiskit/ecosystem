@@ -15,7 +15,7 @@ website = "https://zksf.org"
 category = "Compute provider"
 reference_paper = "https://doi.org/10.5281/zenodo.21851381"
 documentation = "https://zksf.org/docs/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-zksf/"]
 uuid = "de9be4c6-7aba-4771-980b-306d8ae08ecd"
 maturity = "production-ready"
 status = "Very Early Project"
@@ -35,7 +35,7 @@ last_activity = 2026-10-01
 url = "https://qisk.it/e-de9be4c6"
 style = "flat"
 
-[pypi.qiskit-zksf]
+[[pypi]]
 package_name = "qiskit-zksf"
 version = "0.3.1"
 last_release_date = 2026-10-01

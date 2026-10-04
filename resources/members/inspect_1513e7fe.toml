@@ -7,7 +7,7 @@ labels = []
 interfaces = ["Python"]
 category = "Tooling"
 documentation = "https://github.com/neuralsorcerer/qiskit-inspect/tree/main/docs"
-packages = []
+packages = ["https://pypi.org/project/qiskit-inspect/"]
 uuid = "1513e7fe-9390-4014-9c2a-f6c600ddf6ca"
 maturity = "production-ready"
 status = "Alumni"
@@ -29,7 +29,7 @@ last_activity = 2025-11-11
 url = "https://qisk.it/e-1513e7fe"
 style = "flat"
 
-[pypi.qiskit-inspect]
+[[pypi]]
 package_name = "qiskit-inspect"
 
 [checks.G06]

@@ -6,7 +6,7 @@ labels = ["provider"]
 interfaces = ["Python"]
 category = "Compute provider"
 documentation = "https://qutech-delft.github.io/qiskit-quantuminspire/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-quantuminspire/"]
 uuid = "03d9dda4-38bd-41dd-b1cc-cb96f29f55dc"
 maturity = "experimental"
 
@@ -28,7 +28,7 @@ last_activity = 2026-10-02
 url = "https://qisk.it/e-03d9dda4"
 style = "flat"
 
-[pypi.qiskit-quantuminspire]
+[[pypi]]
 package_name = "qiskit-quantuminspire"
 version = "0.18.4"
 last_release_date = 2026-09-17

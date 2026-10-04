@@ -8,7 +8,7 @@ labels = ["chemistry", "research"]
 interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0342012"
-packages = []
+packages = ["https://pypi.org/project/qupepfold/"]
 uuid = "ab89baa7-39e9-482a-8157-a9bb834c5108"
 maturity = "production-ready"
 
@@ -30,7 +30,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-ab89baa7"
 style = "flat"
 
-[pypi.qupepfold]
+[[pypi]]
 package_name = "qupepfold"
 version = "0.9.0"
 last_release_date = 2026-04-27

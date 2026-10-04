@@ -6,7 +6,7 @@ interfaces = ["Python"]
 ibm_maintained = true
 category = "Circuit simulator"
 documentation = "https://qiskit.github.io/pauli-prop/"
-packages = []
+packages = ["https://pypi.org/project/pauli-prop/"]
 uuid = "3ae8c34d-7aa4-4759-84d5-e518c466a56c"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -28,7 +28,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-3ae8c34d"
 style = "flat"
 
-[pypi.pauli-prop]
+[[pypi]]
 package_name = "pauli-prop"
 version = "0.2.1"
 last_release_date = 2026-08-20

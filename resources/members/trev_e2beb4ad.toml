@@ -7,7 +7,7 @@ labels = ["QML", "HPC", "provider", "GPU", "tensor networks"]
 interfaces = ["Python"]
 category = "Circuit simulator"
 documentation = "https://github.com/keunjunpark/qiskit-trev/tree/main/tutorials"
-packages = []
+packages = ["https://pypi.org/project/qiskit-trev/"]
 uuid = "e2beb4ad-418d-4dca-b789-02567d385528"
 maturity = "experimental"
 status = "Under revision"
@@ -28,7 +28,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-e2beb4ad"
 style = "flat"
 
-[pypi.qiskit-trev]
+[[pypi]]
 package_name = "qiskit-trev"
 version = "0.2.1"
 last_release_date = 2026-04-24

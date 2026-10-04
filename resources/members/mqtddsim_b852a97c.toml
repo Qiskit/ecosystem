@@ -10,7 +10,7 @@ website = "https://mqt.readthedocs.io"
 category = "Circuit simulator"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/ddsim"
-packages = []
+packages = ["https://pypi.org/project/mqt-ddsim/"]
 uuid = "b852a97c-eef8-46aa-a635-9c56a66e6ee0"
 maturity = "production-ready"
 
@@ -32,7 +32,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-b852a97c"
 style = "flat"
 
-[pypi."mqt.ddsim"]
+[[pypi]]
 package_name = "mqt-ddsim"
 version = "2.6.0"
 last_release_date = 2026-09-12

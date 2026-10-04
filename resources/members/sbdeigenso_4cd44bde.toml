@@ -6,7 +6,7 @@ labels = ["chemistry", "HPC", "GPU", "utility-scale"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Application"
-packages = []
+packages = ["https://pypi.org/project/sbd-eigensolver/"]
 uuid = "4cd44bde-06f4-4900-b3c9-ab52b1ea35d6"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -26,7 +26,7 @@ last_activity = 2026-09-30
 url = "https://qisk.it/e-4cd44bde"
 style = "flat"
 
-[pypi.sbd-eigensolver]
+[[pypi]]
 package_name = "sbd-eigensolver"
 version = "1.6.1"
 last_release_date = 2026-08-20

@@ -7,7 +7,7 @@ interfaces = ["Python"]
 ibm_maintained = true
 category = "Transpiler plugin"
 documentation = "https://quantum.cloud.ibm.com/docs/en/guides/ai-transpiler-passes"
-packages = []
+packages = ["https://pypi.org/project/qiskit-ibm-transpiler/"]
 uuid = "97531755-7aaa-4c8d-813d-3a68c058abb4"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -30,7 +30,7 @@ last_activity = 2026-08-06
 url = "https://qisk.it/e-97531755"
 style = "flat"
 
-[pypi.qiskit-ibm-transpiler]
+[[pypi]]
 package_name = "qiskit-ibm-transpiler"
 version = "0.18.0"
 last_release_date = 2026-03-10

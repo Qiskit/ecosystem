@@ -7,7 +7,10 @@ interfaces = ["Python"]
 ibm_maintained = true
 category = "Noise Management"
 documentation = "https://qiskit.github.io/samplomatic/"
-packages = ["https://anaconda.org/conda-forge/samplomatic"]
+packages = [
+  "https://anaconda.org/conda-forge/samplomatic",
+  "https://pypi.org/project/samplomatic/",
+]
 uuid = "54222a2e-3d6b-4fdb-b21d-692eb0452a5e"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -30,7 +33,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-54222a2e"
 style = "flat"
 
-[pypi.samplomatic]
+[[pypi]]
 package_name = "samplomatic"
 version = "0.21.0"
 last_release_date = 2026-08-25

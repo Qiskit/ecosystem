@@ -8,7 +8,10 @@ created_at = 2021-11-08
 category = "Application"
 reference_paper = "https://arxiv.org/abs/2505.17756"
 documentation = "https://qiskit-community.github.io/qiskit-machine-learning/"
-packages = ["https://anaconda.org/conda-forge/qiskit-machine-learning"]
+packages = [
+  "https://anaconda.org/conda-forge/qiskit-machine-learning",
+  "https://pypi.org/project/qiskit-machine-learning/",
+]
 uuid = "18986ebc-e138-4998-8c52-16359961af0a"
 maturity = "production-ready"
 
@@ -30,7 +33,7 @@ last_activity = 2026-10-02
 url = "https://qisk.it/e-18986ebc"
 style = "flat"
 
-[pypi.qiskit-machine-learning]
+[[pypi]]
 package_name = "qiskit-machine-learning"
 version = "0.9.1"
 last_release_date = 2026-08-19

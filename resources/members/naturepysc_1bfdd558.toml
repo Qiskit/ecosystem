@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2023-03-14
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-nature-pyscf/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-nature-pyscf/"]
 uuid = "1bfdd558-ebef-446b-aad5-1be7ecce68cd"
 maturity = "production-ready"
 status = "Under revision"
@@ -30,7 +30,7 @@ last_activity = 2026-01-13
 url = "https://qisk.it/e-1bfdd558"
 style = "flat"
 
-[pypi.qiskit-nature-pyscf]
+[[pypi]]
 package_name = "qiskit-nature-pyscf"
 version = "0.4.0"
 last_release_date = 2024-02-23

@@ -27,7 +27,7 @@ def skip_pypi(member):
 
 def checkup_PQ1(member, subtests):
     """Be installable with qiskit>=1.0"""
-    for pypi_package in member.pypi.values():
+    for pypi_package in member.pypi:
         with subtests.test(pypi_package=pypi_package.package_name):
             if pypi_package.compatible_with_qiskit_v1 is None:
                 pytest.skip(
@@ -40,7 +40,7 @@ def checkup_PQ1(member, subtests):
 
 def checkup_PQ2(member, subtests):
     """Be installable with qiskit>=2.0"""
-    for pypi_package in member.pypi.values():
+    for pypi_package in member.pypi:
         with subtests.test(pypi_package=pypi_package.package_name):
             if pypi_package.compatible_with_qiskit_v2 is None:
                 pytest.skip(
@@ -52,7 +52,7 @@ def checkup_PQ2(member, subtests):
 
 
 def checkup_P10(member):
-    for pypi_package in member.pypi.values():
+    for pypi_package in member.pypi:
         assert not pypi_package.compatible_with_qiskit(3), (
             f"Python package {pypi_package.package_name} declared itself "
             "compatible to a not-yet-released major version of Qiskit"
@@ -66,7 +66,7 @@ def checkup_P11(member):
 
     experimental_packages = []
     stable_packages = []
-    for pypi_package in member.pypi.values():
+    for pypi_package in member.pypi:
         if getattr(pypi_package, "development_status", None) in [
             "1 - Planning",
             "2 - Pre-Alpha",
@@ -86,7 +86,7 @@ def checkup_P11(member):
 
 
 def checkup_P12(member):
-    for pypi_package in member.pypi.values():
+    for pypi_package in member.pypi:
         if pypi_package.license is None:
             assert (
                 pypi_package.license is not None
@@ -94,7 +94,7 @@ def checkup_P12(member):
 
 
 def checkup_P13(member):
-    for pypi_package in member.pypi.values():
+    for pypi_package in member.pypi:
         if pypi_package.license is not None:
             assert (
                 pypi_package.license.is_osi_approved()

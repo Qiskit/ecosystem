@@ -6,7 +6,7 @@ contact_info = "titaniumdavinci@gmail.com"
 labels = ["circuit building"]
 interfaces = ["Python"]
 category = "Converter"
-packages = []
+packages = ["https://pypi.org/project/Qiberis/"]
 uuid = "d33fccc1-4553-4314-8d94-95837a260fee"
 maturity = "experimental"
 status = "Very Early Project"
@@ -27,7 +27,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-d33fccc1"
 style = "flat"
 
-[pypi.qiberis]
+[[pypi]]
 package_name = "qiberis"
 version = "0.1.0"
 last_release_date = 2026-08-08

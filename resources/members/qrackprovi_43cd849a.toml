@@ -9,7 +9,7 @@ interfaces = ["Python"]
 category = "Compute provider"
 reference_paper = "https://arxiv.org/abs/2304.14969"
 documentation = "https://qrack.readthedocs.io/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-qrack-provider/"]
 uuid = "43cd849a-f5a7-4107-bca9-c19c6cbefc5f"
 maturity = "production-ready"
 
@@ -30,7 +30,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-43cd849a"
 style = "flat"
 
-[pypi.qiskit-qrack-provider]
+[[pypi]]
 package_name = "qiskit-qrack-provider"
 version = "1.22.0"
 last_release_date = 2026-10-03

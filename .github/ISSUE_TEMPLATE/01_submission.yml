@@ -192,13 +192,16 @@ body:
     label: Packages
     description: >
       List the links for all the packages that are built from the project, one per
-      line. This includes if the project is `pip install`-able from its repository.
+      line. This includes if the project is `pip install`-able from its repository, and
+      the requirements file the project declares its Qiskit dependency in.
     placeholder: |
       https://pypi.org/project/banana-compiler
       https://pypi.org/project/banana-compiler-hpc
       https://crates.io/crates/rusty-banana-compiler
       https://marketplace.visualstudio.com/items?itemName=banana-code-assistance
       https://github.com/banana-org/banana-compiler/blob/main/experiments/pyproject.toml
+      https://github.com/banana-org/banana-compiler/blob/main/docs/requirements.txt
+      https://github.com/banana-org/banana-compiler/blob/main/images/*/requirements*.txt
     render: text
 - id: paper_url
   type: input

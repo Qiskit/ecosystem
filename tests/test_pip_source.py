@@ -198,7 +198,7 @@ class TestProjectPagePackages(PipSourceTestCase):
 
     def test_the_distribution_is_a_row_of_the_packages_section(self):
         """What the manifests declare, with the install command as a tooltip."""
-        section = self.packages_section(python={"banana-compiler": self.package()})
+        section = self.packages_section(python=[self.package()])
         self.assertIn("### :material-package-variant: Packages", section)
         self.assertIn(
             "| pip-installable repo | Version | Requires Python | Declared in |",
@@ -214,16 +214,13 @@ class TestProjectPagePackages(PipSourceTestCase):
 
     def test_the_compatibility_is_left_to_the_requirements_table(self):
         """The same four values for every distribution, so they are collected there."""
-        section = self.packages_section(python={"banana-compiler": self.package()})
+        section = self.packages_section(python=[self.package()])
         self.assertNotIn("Qiskit compatibility", section)
 
     def test_one_row_per_declared_distribution(self):
         """A monorepo declares several, each with its own install target."""
         section = self.packages_section(
-            python={
-                "banana-compiler": self.package(),
-                "banana-vision": self.package(path="packages/vision"),
-            }
+            python=[self.package(), self.package(path="packages/vision")]
         )
         self.assertEqual(2, section.count("(../pip-source/"))
         self.assertIn("#subdirectory=packages/vision", section)
@@ -237,13 +234,13 @@ class TestProjectPagePackages(PipSourceTestCase):
             source=["pyproject.toml"],
             deferred=["version"],
         )
-        section = self.packages_section(python={"banana-compiler": package})
+        section = self.packages_section(python=[package])
         self.assertIn('*&mdash;*{ title="computed at build time" }', section)
 
     def test_a_value_the_manifests_never_mention_leaves_its_column_out(self):
         """Missing and computed-at-build-time are not the same thing"""
         section = self.packages_section(
-            python={"banana-compiler": PythonData(package_name="banana-compiler")}
+            python=[PythonData(package_name="banana-compiler")]
         )
         self.assertNotIn("Requires Python", section)
 

@@ -8,7 +8,7 @@ interfaces = ["Python"]
 website = "https://qubitboost.io/compiler"
 category = "Transpiler plugin"
 documentation = "https://mwpwalshe.github.io/qb-compiler/"
-packages = []
+packages = ["https://pypi.org/project/qb-compiler/"]
 uuid = "2334d2a1-93bc-4652-8e15-ac395b2d3dd9"
 maturity = "experimental"
 status = "Early Project"
@@ -31,7 +31,7 @@ last_activity = 2026-09-27
 url = "https://qisk.it/e-2334d2a1"
 style = "flat"
 
-[pypi.qb-compiler]
+[[pypi]]
 package_name = "qb-compiler"
 version = "0.13.2"
 last_release_date = 2026-09-18

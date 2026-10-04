@@ -16,6 +16,7 @@ from datetime import date
 from unittest import TestCase
 from unittest.mock import patch
 
+from tests.common import named, names as package_names
 from ecosystem.error_handling import EcosystemError
 from ecosystem.github import GitHubData
 from ecosystem.julia import JuliaData
@@ -593,77 +594,77 @@ class TestMemberUpdatePython(PythonDataTestCase):
             "ecosystem.github_contents.request_json", side_effect=self.fake_request()
         ):
             member.update_python()
-        self.assertEqual(["banana-compiler"], list(member.python))
-        self.assertEqual("0.3.1", member.python["banana-compiler"].version)
+        self.assertEqual(["banana-compiler"], package_names(member.python))
+        self.assertEqual("0.3.1", named(member.python, "banana-compiler").version)
 
     def test_no_section_for_a_distribution_that_is_published(self):
         """The release describes it already, so a section would just duplicate it."""
-        member = self.member(pypi={"banana-compiler": PyPIData("banana-compiler")})
+        member = self.member(pypi=[PyPIData("banana-compiler")])
         with patch(
             "ecosystem.github_contents.request_json", side_effect=self.fake_request()
         ):
             member.update_python()
-        self.assertEqual({}, member.python)
+        self.assertEqual([], member.python)
 
     def test_the_published_name_is_what_decides(self):
         """A repository can publish one distribution and declare another, unreleased
         one. Skipping on "publishes something" would lose the second."""
-        member = self.member(pypi={"banana-cli": PyPIData("banana-cli")})
+        member = self.member(pypi=[PyPIData("banana-cli")])
         with patch(
             "ecosystem.github_contents.request_json", side_effect=self.fake_request()
         ):
             member.update_python()
-        self.assertEqual(["banana-compiler"], list(member.python))
+        self.assertEqual(["banana-compiler"], package_names(member.python))
 
     def test_the_comparison_ignores_name_spelling(self):
         """`Banana_Compiler` in the manifest and `banana-compiler` on PyPI are one
         distribution, so the section is still not created."""
-        member = self.member(pypi={"Banana_Compiler": PyPIData("Banana_Compiler")})
+        member = self.member(pypi=[PyPIData("Banana_Compiler")])
         with patch(
             "ecosystem.github_contents.request_json", side_effect=self.fake_request()
         ):
             member.update_python()
-        self.assertEqual({}, member.python)
+        self.assertEqual([], member.python)
 
     def test_a_julia_release_of_the_same_name_does_not_count(self):
         """Only PyPI is consulted: a Julia package is a different artifact in a
         different registry, and says nothing about whether `pip` can find this one."""
-        member = self.member(julia={"banana-compiler": JuliaData("banana-compiler")})
+        member = self.member(julia=[JuliaData("banana-compiler")])
         with patch(
             "ecosystem.github_contents.request_json", side_effect=self.fake_request()
         ):
             member.update_python()
-        self.assertEqual(["banana-compiler"], list(member.python))
+        self.assertEqual(["banana-compiler"], package_names(member.python))
 
     def test_an_existing_section_is_refreshed_even_when_published(self):
         """A section added on purpose keeps being updated, to cross-check the release."""
         member = self.member(
-            pypi={"banana-compiler": PyPIData("banana-compiler")},
-            python={"banana-compiler": PythonData(package_name="banana-compiler")},
+            pypi=[PyPIData("banana-compiler")],
+            python=[PythonData(package_name="banana-compiler")],
         )
         with patch(
             "ecosystem.github_contents.request_json", side_effect=self.fake_request()
         ):
             member.update_python()
-        self.assertEqual("0.3.1", member.python["banana-compiler"].version)
+        self.assertEqual("0.3.1", named(member.python, "banana-compiler").version)
 
     def test_section_is_rekeyed_when_the_distribution_is_renamed(self):
         """The key follows the name the repository declares now."""
-        member = self.member(python={"old-name": PythonData(package_name="old-name")})
+        member = self.member(python=[PythonData(package_name="old-name")])
         with patch(
             "ecosystem.github_contents.request_json", side_effect=self.fake_request()
         ):
             member.update_python()
-        self.assertEqual(["banana-compiler"], list(member.python))
+        self.assertEqual(["banana-compiler"], package_names(member.python))
 
     def test_section_is_dropped_when_nothing_declares_a_distribution(self):
         """A repository that stopped being a Python package loses its section."""
-        member = self.member(python={"banana-compiler": PythonData(package_name="b")})
+        member = self.member(python=[PythonData(package_name="b")])
         with patch(
             "ecosystem.github_contents.request_json", return_value=listing("README.md")
         ):
             member.update_python()
-        self.assertEqual({}, member.python)
+        self.assertEqual([], member.python)
 
     def test_a_member_without_a_github_section_is_skipped(self):
         """There is nothing to fetch from, so nothing is attempted."""
@@ -675,14 +676,12 @@ class TestMemberUpdatePython(PythonDataTestCase):
         )
         with patch("ecosystem.github_contents.request_json") as request:
             member.update_python()
-        self.assertEqual({}, member.python)
+        self.assertEqual([], member.python)
         request.assert_not_called()
 
     def test_the_declared_path_is_kept_across_updates(self):
         """`path` cannot be discovered, so a refresh must not lose it."""
-        member = self.member(
-            python={"banana-compiler": PythonData(path="packages/compiler")}
-        )
+        member = self.member(python=[PythonData(path="packages/compiler")])
         requested = []
 
         def request(url, **kwargs):
@@ -692,7 +691,9 @@ class TestMemberUpdatePython(PythonDataTestCase):
         with patch("ecosystem.github_contents.request_json", side_effect=request):
             member.update_python()
         self.assertTrue(requested[0].endswith("/contents/packages/compiler/"))
-        self.assertEqual("packages/compiler", member.python["banana-compiler"].path)
+        self.assertEqual(
+            "packages/compiler", named(member.python, "banana-compiler").path
+        )
 
     def test_the_section_round_trips_through_from_dict(self):
         """A member read back from a toml file keeps its python section."""
@@ -703,8 +704,8 @@ class TestMemberUpdatePython(PythonDataTestCase):
             member.update_python()
         restored = Member.from_dict(member.to_dict())
         self.assertEqual(
-            member.python["banana-compiler"].to_dict(),
-            restored.python["banana-compiler"].to_dict(),
+            named(member.python, "banana-compiler").to_dict(),
+            named(restored.python, "banana-compiler").to_dict(),
         )
 
 
@@ -751,13 +752,6 @@ class TestPythonDataFromUrl(PythonDataTestCase):
         with self.assertRaises(EcosystemError):
             self.from_url(f"https://github.com/{OWNER}/{REPO}/blob/main/README.md")
 
-    def test_the_key_stands_in_until_the_name_is_known(self):
-        """The distribution name is inside the repository, not in the URL."""
-        data = self.from_url(
-            f"https://github.com/{OWNER}/Banana_Compiler/blob/main/pyproject.toml"
-        )
-        self.assertEqual("banana-compiler", data.key)
-
 
 class TestUpsertSectionsPython(PythonDataTestCase):
     """`upsert_sections` turns a submitted manifest URL into a `[python.*]` section."""
@@ -773,39 +767,97 @@ class TestUpsertSectionsPython(PythonDataTestCase):
             packages=[URL(package) for package in packages],
         )
 
-    def test_a_manifest_url_creates_the_section(self):
-        """No fetching: the section is created empty and an updater fills it in."""
+    def test_a_manifest_url_writes_no_table_before_it_is_read(self):
+        """A `[python.*]` table has to carry `package_name`, and only the manifest says what
+        it is. A stub keyed by a stand-in is a member file the schema rejects, and a pattern
+        cannot be keyed at all, so the declaration in `packages` is the whole record until
+        `update_python` reads the repository."""
         member = self.member(
             [f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml"]
         )
         member.upsert_sections()
-        key = f"{REPO}-chemistry"
-        self.assertEqual([key], list(member.python))
-        self.assertEqual("chemistry", member.python[key].path)
-        self.assertEqual([], member.packages)
+        self.assertEqual([], member.python)
+        self.assertEqual(
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml"],
+            [str(url) for url in member.packages],
+        )
 
-    def test_several_manifests_in_one_repository_keep_their_own_section(self):
-        """A monorepo declares one distribution per directory. The stand-in key has to
-        tell them apart, or all but the last are lost before anything is fetched."""
+    def test_a_declared_manifest_is_what_the_updater_reads(self):
+        """The section comes from the declaration rather than from a stub left behind."""
         member = self.member(
-            [
-                f"https://github.com/{OWNER}/{REPO}/blob/main/hardware/pyproject.toml",
-                f"https://github.com/{OWNER}/{REPO}/blob/main/packages/vision/setup.cfg",
-                f"https://github.com/{OWNER}/{REPO}/blob/main/pyproject.toml",
-            ]
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml"]
         )
         member.upsert_sections()
         self.assertEqual(
-            [f"{REPO}-hardware", f"{REPO}-packages-vision", REPO],
-            list(member.python),
-        )
-        self.assertEqual(
-            ["hardware", "packages/vision", None],
-            [section.path for section in member.python.values()],
+            ["chemistry"], [s.path for s in member.declared_distributions()]
         )
 
-    def test_the_section_is_rekeyed_by_the_first_update(self):
-        """The repository name only stands in until a manifest states the real one."""
+    def test_a_pattern_declares_a_directory_of_distributions(self):
+        """A monorepo says it in one line, resolved against the repository on every run."""
+        member = self.member(
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/packages/*/pyproject.toml"]
+        )
+        tree = [
+            "pyproject.toml",
+            "packages/one/pyproject.toml",
+            "packages/two/setup.cfg",
+            "packages/two/pyproject.toml",
+            "packages/three/README.md",
+            "other/four/pyproject.toml",
+        ]
+        with patch.object(PythonData, "_request_tree", return_value=tree):
+            declared = member.declared_distributions()
+        self.assertEqual(["packages/one", "packages/two"], [s.path for s in declared])
+
+    def test_a_pattern_does_not_claim_a_manifest_one_level_off(self):
+        """`*` does not cross `/`, so the depth of the pattern is the depth it matches."""
+        member = self.member(
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/packages/*/pyproject.toml"]
+        )
+        with patch.object(
+            PythonData,
+            "_request_tree",
+            return_value=["packages/pyproject.toml", "packages/a/b/pyproject.toml"],
+        ):
+            self.assertEqual([], member.declared_distributions())
+
+    def test_a_directory_added_later_is_picked_up(self):
+        """Which is why the pattern is kept rather than expanded once at submission."""
+        member = self.member(
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/packages/*/pyproject.toml"]
+        )
+        tree = ["packages/one/pyproject.toml"]
+        with patch.object(PythonData, "_request_tree", side_effect=lambda: tree):
+            self.assertEqual(1, len(member.declared_distributions()))
+            tree.append("packages/two/pyproject.toml")
+            self.assertEqual(2, len(member.declared_distributions()))
+
+    def test_a_manifest_name_is_never_a_pattern(self):
+        """The basename has to be a manifest, or the URL is not a manifest URL at all."""
+        with self.assertRaises(EcosystemError):
+            PythonData.from_url(
+                URL(f"https://github.com/{OWNER}/{REPO}/blob/main/packages/*/*.toml")
+            )
+
+    def test_several_manifests_in_one_repository_are_each_declared(self):
+        """A monorepo declares one distribution per directory, and each is read from its own
+        declaration: before the manifests are read there is nothing to tell them apart.
+        """
+        member = self.member(
+            [
+                f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml",
+                f"https://github.com/{OWNER}/{REPO}/blob/main/physics/setup.cfg",
+            ]
+        )
+        member.upsert_sections()
+        self.assertEqual([], member.python)
+        self.assertEqual(
+            ["chemistry", "physics"],
+            sorted(s.path for s in member.declared_distributions()),
+        )
+
+    def test_the_section_is_keyed_by_the_name_the_manifest_states(self):
+        """Which is only known once the repository has been read."""
         member = self.member(
             [f"https://github.com/{OWNER}/{REPO}/blob/main/pyproject.toml"]
         )
@@ -815,11 +867,51 @@ class TestUpsertSectionsPython(PythonDataTestCase):
             side_effect=TestMemberUpdatePython.fake_request(),
         ):
             member.update_python()
-        self.assertEqual(["banana-compiler"], list(member.python))
+        self.assertEqual(["banana-compiler"], package_names(member.python))
+
+    def test_a_member_that_is_one_directory_reads_only_that_directory(self):
+        """Two templates of one repository are two members, and neither of them is the
+        distribution the repository root publishes: that one overwrote the other's page.
+        """
+        member = self.member([])
+        member.github = GitHubData(
+            owner=OWNER, repo=REPO, tree="main/chemistry/sqd_pcm"
+        )
+        self.assertEqual("chemistry/sqd_pcm", member.github.subdirectory)
+        with patch(
+            "ecosystem.github_contents.request_json",
+            side_effect=TestMemberUpdatePython.fake_request(),
+        ) as request:
+            member.update_python()
+        asked = [str(call.args[0]) for call in request.call_args_list]
+        self.assertTrue(
+            all("contents/chemistry/sqd_pcm/" in url for url in asked), asked
+        )
+
+    def test_a_stored_section_from_elsewhere_in_the_repository_is_dropped(self):
+        """It describes the repository, which is somebody else's member"""
+        member = self.member([])
+        member.github = GitHubData(
+            owner=OWNER, repo=REPO, tree="main/chemistry/sqd_pcm"
+        )
+        member.python = [
+            PythonData(package_name="the-whole-repository", source=["pyproject.toml"])
+        ]
+        with patch(
+            "ecosystem.github_contents.request_json",
+            side_effect=lambda url, **kwargs: {"entries": []},
+        ):
+            member.update_python()
+        self.assertEqual([], member.python)
+
+    def test_a_branch_on_its_own_is_the_whole_repository(self):
+        """`/tree/main` says which branch, not which directory"""
+        self.assertIsNone(GitHubData(owner=OWNER, repo=REPO, tree="main").subdirectory)
+        self.assertIsNone(GitHubData(owner=OWNER, repo=REPO).subdirectory)
 
     def test_a_registry_url_still_wins(self):
         """A published distribution is described by its registry section."""
         member = self.member(["https://pypi.org/project/banana-compiler/"])
         member.upsert_sections()
-        self.assertEqual({}, member.python)
-        self.assertEqual(["banana-compiler"], list(member.pypi))
+        self.assertEqual([], member.python)
+        self.assertEqual(["banana-compiler"], package_names(member.pypi))

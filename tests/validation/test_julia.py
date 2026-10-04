@@ -27,9 +27,7 @@ class JuliaCheckupsTestCase(CheckupTestCase):
     def member(**section):
         """A member registering one Julia package"""
         member = Member(name="banana", url="https://github.com/banana-org/Banana.jl")
-        member.julia = {
-            "Banana": JuliaData(package_name="Banana", version="1.0.0", **section)
-        }
+        member.julia = [JuliaData(package_name="Banana", version="1.0.0", **section)]
         return member
 
 

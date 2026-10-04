@@ -95,7 +95,7 @@ class TestTheWholePage(ProjectPageTestCase):
         page = self.rendered(
             description="Compiles bananas",
             badge=BadgeData(url="https://bit.ly/banana", style="flat"),
-            pypi={"banana": banana_on_pypi()},
+            pypi=[banana_on_pypi()],
         )
         headings = [
             "# Banana [:material-file-edit-outline:]",
@@ -298,7 +298,7 @@ class TestThePackagesSection(ProjectPageTestCase):
 
     def test_a_pypi_package_is_a_row_with_its_release_and_its_downloads(self):
         """And a link to the page about the distribution itself"""
-        section = self.packages(pypi={"banana": banana_on_pypi()})
+        section = self.packages(pypi=[banana_on_pypi()])
         self.assertIn("### :material-package-variant: Packages", section)
         self.assertIn(
             "| PyPI package | Release | Last month | Last 180 days |", section
@@ -311,22 +311,20 @@ class TestThePackagesSection(ProjectPageTestCase):
 
     def test_the_compatibility_is_not_repeated_in_the_package_tables(self):
         """It is the Qiskit requirements table below that collects it"""
-        section = self.packages(pypi={"banana": banana_on_pypi()})
+        section = self.packages(pypi=[banana_on_pypi()])
         self.assertNotIn("Qiskit compatibility", section)
         self.assertNotIn("V1", section)
 
     def test_a_release_with_nowhere_to_link_is_still_the_version(self):
         """A stored section can name a release without naming the page it is on"""
-        section = self.packages(
-            pypi={"banana": PyPIData(package_name="banana", version="1.0.0")}
-        )
+        section = self.packages(pypi=[PyPIData(package_name="banana", version="1.0.0")])
         self.assertIn("| [`banana`](../pypi/banana.md) | 1.0.0 |", section)
 
     def test_a_crate_is_a_row_with_its_release_and_its_downloads(self):
         """The Rust columns the registry gives beside the download counts"""
         section = self.packages(
-            crates={
-                "banana_parser": CratesData(
+            crates=[
+                CratesData(
                     package_name="banana_parser",
                     version="0.7.0",
                     last_release_date="2024-10-30",
@@ -335,7 +333,7 @@ class TestThePackagesSection(ProjectPageTestCase):
                     total_downloads=939802,
                     last_90_days_downloads=166899,
                 )
-            }
+            ]
         )
         self.assertIn(
             "| crates.io crate | Release | Rust | Edition | "
@@ -352,22 +350,20 @@ class TestThePackagesSection(ProjectPageTestCase):
 
     def test_a_crate_is_not_in_the_qiskit_requirements_table(self):
         """Qiskit publishes no crate, so there is nothing on crates.io to require"""
-        page = self.page(
-            crates={"banana_parser": CratesData(package_name="banana_parser")}
-        )
+        page = self.page(crates=[CratesData(package_name="banana_parser")])
         self.assertEqual([], page.qiskit_requirements())
 
     def test_a_julia_package_names_its_registry_and_its_users(self):
         """JuliaHub is the only place to link to, and it is keyed by registry"""
         section = self.packages(
-            julia={
-                "Banana": JuliaData(
+            julia=[
+                JuliaData(
                     package_name="Banana",
                     version="1.2.3",
                     release_date="Jan 2026",
                     estimated_unique_users=4242,
                 )
-            }
+            ]
         )
         self.assertIn("| Julia package | Release | Estimated users |", section)
         self.assertIn("https://juliahub.com/ui/Packages/General/Banana", section)
@@ -376,7 +372,7 @@ class TestThePackagesSection(ProjectPageTestCase):
 
     def test_a_julia_package_with_nothing_fetched_says_so(self):
         """A section can be stored before any of it has been read"""
-        section = self.packages(julia={"Banana": JuliaData(package_name="Banana")})
+        section = self.packages(julia=[JuliaData(package_name="Banana")])
         self.assertIn("| `Banana` | N/A |", section)
         self.assertNotIn("Estimated users", section)
 
@@ -403,6 +399,21 @@ class TestThePackagesSection(ProjectPageTestCase):
             with self.subTest(package=url):
                 self.assertIn(expected, self.packages(packages=[URL(url)]))
 
+    def test_a_declared_url_a_section_describes_is_not_a_registry_row(self):
+        """`packages` keeps every declaration now, and the tables above already say what
+        was read from the claimed ones"""
+        section = self.packages(
+            pypi=[banana_on_pypi()],
+            packages=[
+                URL("https://pypi.org/project/banana/"),
+                URL("https://www.npmjs.com/package/banana"),
+            ],
+        )
+        # a row of the registry table, which an unclaimed URL is the only source of
+        rows = [line for line in section.splitlines() if "octicons-package-16" in line]
+        self.assertEqual(1, len(rows))
+        self.assertIn("www.npmjs.com", rows[0])
+
     def test_a_host_with_no_name_to_read_leaves_the_package_column_out(self):
         """The name is in a different part of the URL in every registry"""
         section = self.packages(packages=[URL("https://www.npmjs.com/package/banana")])
@@ -412,9 +423,11 @@ class TestThePackagesSection(ProjectPageTestCase):
     def test_every_kind_gets_a_table_of_its_own(self):
         """The columns of one kind say nothing about the others"""
         section = self.packages(
-            pypi={"banana": banana_on_pypi()},
-            julia={"Banana": JuliaData(package_name="Banana", version="1.2.3")},
-            packages=[URL("https://crates.io/crates/banana")],
+            pypi=[banana_on_pypi()],
+            julia=[JuliaData(package_name="Banana", version="1.2.3")],
+            # a registry with no section of its own: a crates.io URL would be claimed by
+            # `[crates.*]` and so would not be a row of the registry table
+            packages=[URL("https://www.npmjs.com/package/banana")],
         )
         self.assertEqual(1, section.count("### :material-package-variant: Packages"))
         dividers = [
@@ -462,7 +475,7 @@ class TestTheQiskitRequirementsTable(ProjectPageTestCase):
 
     def test_a_requirement_carries_the_specifier_the_marks_and_the_release(self):
         """The four values the compatibility block used to show in every tile"""
-        section = self.requirements(pypi={"banana": banana_on_pypi()})
+        section = self.requirements(pypi=[banana_on_pypi()])
         self.assertIn("### :simple-qiskit: Qiskit requirements", section)
         self.assertIn(
             "| Declared in | Requires | V1 | V2 | Highest supported |", section
@@ -484,8 +497,8 @@ class TestTheQiskitRequirementsTable(ProjectPageTestCase):
     def test_every_kind_of_declaration_is_a_row_of_the_same_table(self):
         """Comparing them is the reason the table is there"""
         section = self.requirements(
-            pypi={"banana": banana_on_pypi()},
-            python={"banana-compiler": self.declared_in_a_repository()},
+            pypi=[banana_on_pypi()],
+            python=[self.declared_in_a_repository()],
             requirements=[self.declared_in_a_file()],
         )
         self.assertEqual(1, section.count("| Declared in |"))
@@ -518,9 +531,7 @@ class TestTheQiskitRequirementsTable(ProjectPageTestCase):
 
     def test_a_distribution_that_asks_for_nothing_is_not_a_row(self):
         """A stored section with no specifier has nothing to compare"""
-        self.assertEqual(
-            "", self.requirements(pypi={"banana": PyPIData(package_name="banana")})
-        )
+        self.assertEqual("", self.requirements(pypi=[PyPIData(package_name="banana")]))
 
 
 class TestTheCheckupsTable(ProjectPageTestCase):

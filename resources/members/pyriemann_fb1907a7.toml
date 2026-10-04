@@ -8,7 +8,7 @@ labels = ["QML"]
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://pyriemann-qiskit.readthedocs.io/"
-packages = []
+packages = ["https://pypi.org/project/pyriemann-qiskit/"]
 uuid = "fb1907a7-9af8-4c23-be0c-48841a36f2df"
 maturity = "production-ready"
 
@@ -31,7 +31,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-fb1907a7"
 style = "flat"
 
-[pypi.pyriemann-qiskit]
+[[pypi]]
 package_name = "pyriemann-qiskit"
 version = "0.6.0"
 last_release_date = 2026-07-04

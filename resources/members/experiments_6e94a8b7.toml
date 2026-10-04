@@ -9,7 +9,10 @@ created_at = 2022-08-29
 category = "Other"
 reference_paper = "https://doi.org/10.21105/joss.05329"
 documentation = "https://qiskit-community.github.io/qiskit-experiments/"
-packages = ["https://anaconda.org/conda-forge/qiskit-experiments"]
+packages = [
+  "https://anaconda.org/conda-forge/qiskit-experiments",
+  "https://pypi.org/project/qiskit-experiments/",
+]
 uuid = "6e94a8b7-65a7-4fee-b71e-25191203fa49"
 maturity = "production-ready"
 
@@ -31,7 +34,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-6e94a8b7"
 style = "flat"
 
-[pypi.qiskit-experiments]
+[[pypi]]
 package_name = "qiskit-experiments"
 version = "0.14.2"
 last_release_date = 2026-08-25

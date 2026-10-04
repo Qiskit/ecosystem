@@ -7,7 +7,7 @@ labels = ["circuit building"]
 interfaces = ["Python"]
 category = "SDK"
 documentation = "https://frankharkins.github.io/quPython/"
-packages = []
+packages = ["https://pypi.org/project/qupython/"]
 uuid = "bad95659-420a-4529-97d0-80e52532fc90"
 maturity = "bugfixing only"
 
@@ -30,7 +30,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-bad95659"
 style = "flat"
 
-[pypi.qupython]
+[[pypi]]
 package_name = "qupython"
 version = "0.2.0"
 last_release_date = 2024-04-07

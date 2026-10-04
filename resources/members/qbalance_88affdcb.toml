@@ -6,7 +6,7 @@ labels = ["error mitigation", "circuit optimization", "benchmarking"]
 interfaces = ["Python"]
 category = "Noise Management"
 reference_paper = "https://arxiv.org/abs/2605.02966"
-packages = []
+packages = ["https://pypi.org/project/qbalance/"]
 uuid = "88affdcb-ea75-47ad-956a-bd24f7af1f20"
 maturity = "experimental"
 status = "Early Project"
@@ -29,7 +29,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-88affdcb"
 style = "flat"
 
-[pypi.qbalance]
+[[pypi]]
 package_name = "qbalance"
 version = "0.2.0"
 last_release_date = 2026-09-30

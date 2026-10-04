@@ -5,7 +5,7 @@ labels = ["cloud service"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
-packages = []
+packages = ["https://pypi.org/project/prefect-qiskit/"]
 uuid = "5bf681f5-d366-4d32-982c-d10153df211c"
 maturity = "experimental"
 
@@ -28,7 +28,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-5bf681f5"
 style = "flat"
 
-[pypi.prefect-qiskit]
+[[pypi]]
 package_name = "prefect-qiskit"
 version = "0.2.1"
 last_release_date = 2026-08-12

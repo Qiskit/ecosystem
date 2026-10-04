@@ -5,7 +5,10 @@ labels = ["HPC", "provider", "cloud service"]
 interfaces = ["Rust", "C", "Python", "Other language"]
 ibm_maintained = true
 category = "Tooling"
-packages = []
+packages = [
+  "https://pypi.org/project/qrmi/",
+  "https://github.com/qiskit-community/qrmi/blob/HEAD/examples/**/requirements.txt",
+]
 uuid = "7234f2b9-a787-4186-bad7-50ed2be3b92b"
 maturity = "experimental"
 
@@ -27,7 +30,7 @@ last_activity = 2026-10-02
 url = "https://qisk.it/e-7234f2b9"
 style = "flat"
 
-[pypi.qrmi]
+[[pypi]]
 package_name = "qrmi"
 version = "0.26.0"
 last_release_date = 2026-10-03
@@ -39,35 +42,16 @@ maintainers = ["https://pypi.org/user/ohtanim/"]
 last_month_downloads = 2355
 last_180_days_downloads = 8238
 
-[cargo.qrmi]
-package_name = "qrmi"
-version = "0.25.1"
+[[cargo]]
+package_name = "alice-bob-felis"
+version = "0.1.0"
 license = "Apache-2.0"
-description = "Quantum Resource Management Interface(QRMI)"
-edition = "2021"
-crate_type = ["staticlib", "rlib", "cdylib"]
-
-[cargo.quantum-system-api]
-package_name = "quantum-system-api"
-version = "0.15.0"
-license = "Apache-2.0"
-description = "Quantum System API client library for Rust"
+description = "The Felis Cloud API lets you execute quantum circuits on emulators and real quantum hardware made by Alice & Bob."
 rust_version = "1.85.1"
 edition = "2021"
 crate_type = ["rlib"]
-path = "dependencies/quantum_system_client"
-
-[cargo.quantum_compute_client]
-package_name = "quantum_compute_client"
-version = "0.31.10"
-license = "Apache-2.0"
-description = "The Quantum Compute Service (Qiskit Runtime) API library for Rust"
-rust_version = "1.85.1"
-edition = "2021"
-crate_type = ["rlib"]
-path = "dependencies/quantum_compute_client"
-
-[cargo.pasqal-cloud-api]
+path = "dependencies/alice_bob_felis_client"
+[[cargo]]
 package_name = "pasqal-cloud-api"
 version = "0.1.0"
 license = "Apache-2.0"
@@ -77,12 +61,47 @@ edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/pasqal_cloud_client"
 
-[cargo.alice-bob-felis]
-package_name = "alice-bob-felis"
-version = "0.1.0"
+[[cargo]]
+package_name = "qrmi"
+version = "0.25.1"
 license = "Apache-2.0"
-description = "The Felis Cloud API lets you execute quantum circuits on emulators and real quantum hardware made by Alice & Bob."
+description = "Quantum Resource Management Interface(QRMI)"
+edition = "2021"
+crate_type = ["staticlib", "rlib", "cdylib"]
+
+[[cargo]]
+package_name = "quantum-system-api"
+version = "0.15.0"
+license = "Apache-2.0"
+description = "Quantum System API client library for Rust"
 rust_version = "1.85.1"
 edition = "2021"
 crate_type = ["rlib"]
-path = "dependencies/alice_bob_felis_client"
+path = "dependencies/quantum_system_client"
+
+[[cargo]]
+package_name = "quantum_compute_client"
+version = "0.31.10"
+license = "Apache-2.0"
+description = "The Quantum Compute Service (Qiskit Runtime) API library for Rust"
+rust_version = "1.85.1"
+edition = "2021"
+crate_type = ["rlib"]
+path = "dependencies/quantum_compute_client"
+
+[[requirements]]
+file = "examples/task_runner/oqtopus/requirements.txt"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+
+[[requirements]]
+file = "examples/task_runner/qpp/requirements.txt"
+requires_qiskit = ">=1.4.2"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+

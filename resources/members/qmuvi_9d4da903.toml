@@ -8,7 +8,7 @@ labels = ["demo"]
 interfaces = ["Python"]
 category = "Converter"
 documentation = "https://garymooney.github.io/qmuvi/"
-packages = []
+packages = ["https://pypi.org/project/qmuvi/"]
 uuid = "9d4da903-9823-4ae3-a80c-22821b62931e"
 maturity = "experimental"
 
@@ -31,7 +31,7 @@ last_activity = 2026-06-09
 url = "https://qisk.it/e-9d4da903"
 style = "flat"
 
-[pypi.qmuvi]
+[[pypi]]
 package_name = "qmuvi"
 version = "0.3.0"
 last_release_date = 2025-09-04

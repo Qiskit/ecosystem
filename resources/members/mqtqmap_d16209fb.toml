@@ -10,7 +10,7 @@ website = "https://mqt.readthedocs.io"
 category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/abs/2405.17543"
 documentation = "https://mqt.readthedocs.io/projects/qmap"
-packages = []
+packages = ["https://pypi.org/project/mqt-qmap/"]
 uuid = "d16209fb-443e-47ad-8090-9396a0cc592d"
 maturity = "production-ready"
 
@@ -32,7 +32,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-d16209fb"
 style = "flat"
 
-[pypi."mqt.qmap"]
+[[pypi]]
 package_name = "mqt-qmap"
 version = "3.10.0"
 last_release_date = 2026-09-12

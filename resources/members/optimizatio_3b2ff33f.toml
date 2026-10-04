@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2021-11-08
 category = "Application"
 documentation = "https://qiskit-community.github.io/qiskit-optimization/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-optimization/"]
 uuid = "3b2ff33f-b4a3-49cd-ab32-563d282cc3bf"
 maturity = "production-ready"
 status = "Alumni"
@@ -30,7 +30,7 @@ last_activity = 2026-07-16
 url = "https://qisk.it/e-3b2ff33f"
 style = "flat"
 
-[pypi.qiskit-optimization]
+[[pypi]]
 package_name = "qiskit-optimization"
 version = "0.7.0"
 last_release_date = 2025-08-20

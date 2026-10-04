@@ -33,9 +33,7 @@ class PyPICheckupsTestCase(CheckupTestCase):
             url="https://github.com/banana-org/banana-repo",
             maturity=maturity,
         )
-        member.pypi = {
-            "banana": PyPIData(package_name="banana", version="1.0.0", **section)
-        }
+        member.pypi = [PyPIData(package_name="banana", version="1.0.0", **section)]
         return member
 
 

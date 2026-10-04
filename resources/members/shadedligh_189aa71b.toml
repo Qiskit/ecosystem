@@ -7,7 +7,7 @@ ibm_maintained = true
 category = "Noise Management"
 reference_paper = "https://arxiv.org/abs/2409.04401"
 documentation = "https://qiskit.github.io/qiskit-addon-slc/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-addon-slc/"]
 uuid = "189aa71b-6ad7-4c23-8ae5-81c369e415b3"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -31,7 +31,7 @@ last_activity = 2026-10-02
 url = "https://qisk.it/e-189aa71b"
 style = "flat"
 
-[pypi.qiskit-addon-slc]
+[[pypi]]
 package_name = "qiskit-addon-slc"
 version = "0.1.0"
 last_release_date = 2025-11-06

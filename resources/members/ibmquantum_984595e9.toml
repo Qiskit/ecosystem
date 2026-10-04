@@ -6,7 +6,10 @@ labels = ["provider", "cloud service"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Compute provider"
-packages = ["https://anaconda.org/conda-forge/qiskit-ibm-runtime"]
+packages = [
+  "https://anaconda.org/conda-forge/qiskit-ibm-runtime",
+  "https://pypi.org/project/qiskit-ibm-runtime/",
+]
 uuid = "984595e9-de1c-4db3-aa3b-7a6b712d2dbc"
 maturity = "production-ready"
 status = "Qiskit Project"
@@ -29,7 +32,7 @@ last_activity = 2026-10-02
 url = "https://qisk.it/e-984595e9"
 style = "flat"
 
-[pypi.qiskit-ibm-runtime]
+[[pypi]]
 package_name = "qiskit-ibm-runtime"
 version = "0.50.0"
 last_release_date = 2026-09-24

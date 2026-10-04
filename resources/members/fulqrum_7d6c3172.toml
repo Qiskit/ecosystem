@@ -5,7 +5,7 @@ labels = ["research", "physics"]
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://qiskit-community.github.io/fulqrum/"
-packages = []
+packages = ["https://pypi.org/project/fulqrum/"]
 uuid = "7d6c3172-7bb5-4c5a-b0a3-87aa378ee356"
 maturity = "experimental"
 status = "Early Project"
@@ -29,7 +29,7 @@ last_activity = 2026-10-03
 url = "https://qisk.it/e-7d6c3172"
 style = "flat"
 
-[pypi.fulqrum]
+[[pypi]]
 package_name = "fulqrum"
 version = "0.4.5"
 last_release_date = 2026-09-30

@@ -5,7 +5,13 @@ labels = ["openqasm"]
 interfaces = ["Python", "Rust"]
 ibm_maintained = true
 category = "Converter"
-packages = []
+packages = [
+  "https://crates.io/crates/oq3_parser",
+  "https://crates.io/crates/oq3_lexer",
+  "https://crates.io/crates/oq3_semantics",
+  "https://crates.io/crates/oq3_source_file",
+  "https://crates.io/crates/oq3_syntax",
+]
 uuid = "a0a95540-84dd-43c8-b28b-9133028f2924"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -27,24 +33,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-a0a95540"
 style = "flat"
 
-[crates.oq3_parser]
-package_name = "oq3_parser"
-version = "0.7.0"
-last_release_date = 2024-10-30
-license = "Apache-2.0"
-description = "Parser for OpenQASM 3 parser/analyzer"
-url = "https://crates.io/crates/oq3_parser"
-maintainers = [
-  "https://github.com/jlapeyre",
-  "https://github.com/1ucian0",
-  "https://github.com/qiskit",
-]
-rust_version = "1.70"
-edition = "2021"
-total_downloads = 944530
-last_90_days_downloads = 167652
-
-[crates.oq3_lexer]
+[[crates]]
 package_name = "oq3_lexer"
 version = "0.7.0"
 last_release_date = 2024-10-30
@@ -61,7 +50,24 @@ edition = "2021"
 total_downloads = 944925
 last_90_days_downloads = 167632
 
-[crates.oq3_semantics]
+[[crates]]
+package_name = "oq3_parser"
+version = "0.7.0"
+last_release_date = 2024-10-30
+license = "Apache-2.0"
+description = "Parser for OpenQASM 3 parser/analyzer"
+url = "https://crates.io/crates/oq3_parser"
+maintainers = [
+  "https://github.com/jlapeyre",
+  "https://github.com/1ucian0",
+  "https://github.com/qiskit",
+]
+rust_version = "1.70"
+edition = "2021"
+total_downloads = 944530
+last_90_days_downloads = 167652
+
+[[crates]]
 package_name = "oq3_semantics"
 version = "0.7.0"
 last_release_date = 2024-10-30
@@ -74,7 +80,7 @@ edition = "2021"
 total_downloads = 939802
 last_90_days_downloads = 166899
 
-[crates.oq3_source_file]
+[[crates]]
 package_name = "oq3_source_file"
 version = "0.7.0"
 last_release_date = 2024-10-30
@@ -87,7 +93,7 @@ edition = "2021"
 total_downloads = 943091
 last_90_days_downloads = 166932
 
-[crates.oq3_syntax]
+[[crates]]
 package_name = "oq3_syntax"
 version = "0.7.0"
 last_release_date = 2024-10-30

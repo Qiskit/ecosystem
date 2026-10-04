@@ -8,7 +8,7 @@ labels = ["optimization"]
 interfaces = ["Python"]
 category = "SDK"
 documentation = "https://jij-inc.github.io/Qamomile/"
-packages = []
+packages = ["https://pypi.org/project/qamomile/"]
 uuid = "50cd2126-dc2c-45f8-b3e7-fb1d132f7d02"
 maturity = "production-ready"
 
@@ -29,7 +29,7 @@ last_activity = 2026-09-30
 url = "https://qisk.it/e-50cd2126"
 style = "flat"
 
-[pypi.qamomile]
+[[pypi]]
 package_name = "qamomile"
 version = "0.15.1"
 last_release_date = 2026-09-11

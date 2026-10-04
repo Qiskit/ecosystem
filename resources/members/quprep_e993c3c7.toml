@@ -8,7 +8,7 @@ interfaces = ["Python", "Command-line interface (CLI)"]
 website = "https://quprep.org"
 category = "Tooling"
 documentation = "https://docs.quprep.org"
-packages = []
+packages = ["https://pypi.org/project/quprep/"]
 uuid = "e993c3c7-09e9-4916-a3eb-fb4e9266bedf"
 maturity = "experimental"
 status = "Early Project"
@@ -32,7 +32,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-e993c3c7"
 style = "flat"
 
-[pypi.quprep]
+[[pypi]]
 package_name = "quprep"
 version = "0.10.0"
 last_release_date = 2026-05-30
