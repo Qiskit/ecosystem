@@ -107,9 +107,10 @@ def qiskit_declarations(member):
     A project can say which Qiskit it needs in three places, and the check ups below ask the
     same question of each: a published distribution (`[[pypi]]`), a packaging manifest in the
     repository (`[[python]]`), and a requirements file (`[[requirements]]`). They used to be
-    one check up per place -- `[PQ2]`/`[S01]`/`[R01]` for the compatibility and
-    `[P10]`/`[S02]`/`[R02]` for the cap -- which was three copies of one assertion, grown one
-    section at a time. The place is a subtest instead, so a failure still names what to edit.
+    one check up per place, `[PQ2]`/`[S01]`/`[R01]` for the compatibility and
+    `[P10]`/`[S02]`/`[R02]` for the cap (all six removed with this): three copies of one
+    assertion, grown one section at a time. The place is a subtest instead, so a failure still
+    names what to edit.
 
     A member may store several of each, and every one of them is read: a qiskit requirement
     the project asks for is one somebody ends up installing, whichever file it is in.

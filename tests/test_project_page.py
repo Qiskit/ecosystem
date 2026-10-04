@@ -488,7 +488,7 @@ class TestTheQiskitRequirementsTable(ProjectPageTestCase):
         )
 
     def test_an_unsupported_major_version_is_marked_as_one(self):
-        """Which is what the [S01] and [R01] check ups are about"""
+        """Which is what the [Q02] check up is about"""
         section = self.requirements(requirements=[self.declared_in_a_file()])
         self.assertIn(
             ":material-check-circle-outline: | :material-close-circle-outline:", section
