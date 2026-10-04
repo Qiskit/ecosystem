@@ -214,11 +214,6 @@ class JuliaData(JsonSerializable):
             f"'{type(self).__name__}' object has no attribute '{item}'"
         )
 
-    @property
-    def juliahub_json(self):
-        """if the JSON was not fetch from juliahub.com, return empty dict"""
-        return self._juliahub_json or {}
-
     def get_general_registry_url(self):
         """updates general_registry_url if exists and returns 2xx. Otherwise, nothing"""
         if self.registry == "General":

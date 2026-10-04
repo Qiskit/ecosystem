@@ -283,15 +283,6 @@ class DAO:
         """Forces dumping the DAO to files"""
         self.storage().refresh_files()
 
-    def upsert_project(self, project: Member):
-        """Giving a Member, updates it if exists or inserts it.
-        The key to check existance is get_by_url(p["url"])"""
-        if existing_member := self.get_by_url(project.url):
-            self.update(existing_member.name_id, member=project)
-        else:
-            logger.info("New project %s (%s) ", project.name_id, project.name)
-            self.write(project)
-
     @classmethod
     def log_update(cls, current_value, new_value, arg, project):
         """Logs the update in the DAO"""
