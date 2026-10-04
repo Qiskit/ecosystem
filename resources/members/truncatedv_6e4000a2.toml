@@ -36,8 +36,8 @@ requires_python = ">=3.12"
 requires_qiskit = ">=1.4"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-06-12
-highest_supported_qiskit_version = "1.4.6"
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = ["version"]

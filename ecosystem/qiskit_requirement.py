@@ -163,8 +163,13 @@ class QiskitRequirementMixin:
         """Returns the highest supported Qiskit version and when it was released"""
         if self.requires_qiskit is None:
             return None
+        # Nothing was read, so there is nothing to resolve against: a stored section answers
+        # from what the member file says, which is what makes it readable with no network.
+        # Keyed on `fetched` rather than on whether the release table happens to be loaded:
+        # that only ever became true in `update_pypi`, which force-updates the table, so the
+        # other updaters re-read a repository and still handed back the stored version.
         if (
-            self._all_qiskit_versions is None
+            not self.fetched
             and "highest_supported_qiskit_release_date" in self._kwargs
             and "highest_supported_qiskit_version" in self._kwargs
         ):
@@ -174,12 +179,15 @@ class QiskitRequirementMixin:
             )
 
         qiskit_specifier = SpecifierSet(self.requires_qiskit)
+        prereleases = bool(qiskit_specifier.prereleases)
         all_qiskit_versions = sorted(
             self.all_qiskit_versions().items(),
             key=lambda x: Version(x[0]),
             reverse=True,
         )
         for qiskit_version, version_data in all_qiskit_versions:
-            if qiskit_specifier.contains(qiskit_version):
+            if not prereleases and Version(qiskit_version).is_prerelease:
+                continue
+            if qiskit_specifier.contains(qiskit_version, prereleases=prereleases):
                 return qiskit_version, version_data["upload_at"]
         return None

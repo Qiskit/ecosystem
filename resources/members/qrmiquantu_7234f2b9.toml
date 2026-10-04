@@ -29,7 +29,6 @@ last_activity = 2026-10-02
 [badge]
 url = "https://qisk.it/e-7234f2b9"
 style = "flat"
-
 [[pypi]]
 package_name = "qrmi"
 version = "0.26.0"
@@ -51,6 +50,7 @@ rust_version = "1.85.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/alice_bob_felis_client"
+
 [[cargo]]
 package_name = "pasqal-cloud-api"
 version = "0.1.0"
@@ -104,4 +104,3 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-

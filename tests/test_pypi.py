@@ -260,6 +260,39 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
                 pypi_data.highest_supported_qiskit_version_and_release_date,
             )
 
+    def test_highest_supported_version_skips_release_candidates(self):
+        """A prerelease is not a release a project supports, so it is not reported."""
+        pypi_data = PyPIData("banana-compiler", requires_qiskit=">=1")
+        qiskit_versions = {
+            "2.0.0": {"upload_at": date(2025, 1, 1)},
+            "2.1.0": {"upload_at": date(2025, 5, 1)},
+            "2.2.0rc1": {"upload_at": date(2025, 8, 1)},
+        }
+
+        with patch.object(
+            PyPIData, "all_qiskit_versions", return_value=qiskit_versions
+        ):
+            self.assertEqual(
+                ("2.1.0", date(2025, 5, 1)),
+                pypi_data.highest_supported_qiskit_version_and_release_date,
+            )
+
+    def test_a_requirement_asking_for_a_prerelease_still_gets_one(self):
+        """A specifier naming a release candidate is asking for them (`qiskit>=1.3.0rc1`)."""
+        pypi_data = PyPIData("banana-compiler", requires_qiskit=">=2.2.0rc1")
+        qiskit_versions = {
+            "2.1.0": {"upload_at": date(2025, 5, 1)},
+            "2.2.0rc1": {"upload_at": date(2025, 8, 1)},
+        }
+
+        with patch.object(
+            PyPIData, "all_qiskit_versions", return_value=qiskit_versions
+        ):
+            self.assertEqual(
+                ("2.2.0rc1", date(2025, 8, 1)),
+                pypi_data.highest_supported_qiskit_version_and_release_date,
+            )
+
     def test_qiskit_compatibility_returns_none_without_requirement(self):
         """Compatibility is unknown when no qiskit requirement exists."""
         pypi_data = PyPIData("banana-compiler")
