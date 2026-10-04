@@ -70,7 +70,7 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
             }
         )
     if project.pypi:
-        for package in project.pypi.values():
+        for package in project.pypi:
             pypi_page = PypiPage(package, project, f"pypi/{package.package_name}.md")
             pypi_page.write_page()
             pypi_nav[package.package_name] = f"{package.package_name}.md"
@@ -87,7 +87,7 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
         (project.crates, CratesPage, crates_nav, active_crates, "crates"),
         (project.cargo, CargoPage, cargo_nav, active_cargo, "cargo-source"),
     ]:
-        for crate in section.values():
+        for crate in section:
             page = pages(crate, project, f"{directory}/{crate.package_name}.md")
             page.write_page()
             nav[crate.package_name] = f"{crate.package_name}.md"
@@ -102,7 +102,7 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
                 )
 
     if project.python:
-        for package in project.python.values():
+        for package in project.python:
             pip_source_page = PipSourcePage(
                 package, project, f"pip-source/{package.package_name}.md"
             )

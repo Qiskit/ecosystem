@@ -14,14 +14,6 @@ uuid = "f3f07e5f-b09e-4180-b8eb-da78dafe76d3"
 maturity = "production-ready"
 status = "Qiskit Project"
 
-[[requirements]]
-file = "docs_guide/requirements-extra.txt"
-requires_qiskit = "~=2.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
-
 [github]
 url = "https://github.com/Qiskit/qiskit_sphinx_theme"
 owner = "Qiskit"
@@ -40,7 +32,7 @@ last_activity = 2026-07-31
 url = "https://qisk.it/e-f3f07e5f"
 style = "flat"
 
-[pypi.qiskit-sphinx-theme]
+[[pypi]]
 package_name = "qiskit-sphinx-theme"
 version = "2.1.0"
 last_release_date = 2026-05-19
@@ -55,3 +47,11 @@ maintainers = [
 ]
 last_month_downloads = 64145
 last_180_days_downloads = 319563
+[[requirements]]
+file = "docs_guide/requirements-extra.txt"
+requires_qiskit = "~=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+

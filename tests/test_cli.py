@@ -775,26 +775,20 @@ class TestUpdateSections(UpdateStatusTestCase):
             "[github]",
         ),
         "pypi": (
-            lambda member: member.pypi.update(
-                {"banana": PyPIData(package_name="banana")}
-            ),
-            "[pypi.banana]",
+            lambda member: member.pypi.append(PyPIData(package_name="banana")),
+            "[[pypi]]",
         ),
         "julia": (
-            lambda member: member.julia.update(
-                {"Banana": JuliaData(package_name="Banana")}
-            ),
-            "[julia.Banana]",
+            lambda member: member.julia.append(JuliaData(package_name="Banana")),
+            "[[julia]]",
         ),
         "python": (
-            lambda member: member.python.update(
-                {
-                    "banana": PythonData(
-                        package_name="banana", source=["pyproject.toml"], deferred=[]
-                    )
-                }
+            lambda member: member.python.append(
+                PythonData(
+                    package_name="banana", source=["pyproject.toml"], deferred=[]
+                )
             ),
-            "[python.banana]",
+            "[[python]]",
         ),
         "requirements": (
             lambda member: setattr(

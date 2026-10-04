@@ -25,7 +25,7 @@ last_activity = 2026-10-02
 url = "https://qisk.it/e-25fea67d"
 style = "flat"
 
-[python.qiskit-noise-learning]
+[[python]]
 package_name = "qiskit-noise-learning"
 description = "A toolkit for randomization-based quantum noise characterization."
 requires_python = ">=3.11"

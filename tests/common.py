@@ -17,6 +17,26 @@ import shutil
 import unittest
 
 
+def names(sections):
+    """The names of a package section, which is an array of tables.
+
+    What `list(member.pypi)` used to give when the sections were keyed by name.
+    """
+    return [section.package_name for section in sections]
+
+
+def named(sections, package_name):
+    """The entry of a package section that carries `package_name`.
+
+    What `member.pypi[name]` used to be. Raises rather than returning None: a test asking
+    for an entry by name is asserting that it is there.
+    """
+    for section in sections:
+        if section.package_name == package_name:
+            return section
+    raise KeyError(f"{package_name} is not among {names(sections)}")
+
+
 class TestCaseWithResources(unittest.TestCase):
     """Test case with additional resources folder."""
 

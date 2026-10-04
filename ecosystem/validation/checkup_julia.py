@@ -26,7 +26,7 @@ def skip_pypi(member):
 
 
 def checkup_J00(member):
-    for julia_package in member.julia.values():
+    for julia_package in member.julia:
         if julia_package.license is None:
             assert (
                 julia_package.license is not None
@@ -34,7 +34,7 @@ def checkup_J00(member):
 
 
 def checkup_J01(member):
-    for julia_package in member.julia.values():
+    for julia_package in member.julia:
         if julia_package.license is not None:
             assert (
                 julia_package.license.is_osi_approved()

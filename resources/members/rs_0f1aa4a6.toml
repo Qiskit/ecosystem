@@ -28,7 +28,7 @@ last_activity = 2026-08-16
 url = "https://qisk.it/e-0f1aa4a6"
 style = "flat"
 
-[cargo.qiskit]
+[[cargo]]
 package_name = "qiskit"
 version = "0.0.0"
 license = "Apache-2.0"
@@ -37,7 +37,7 @@ rust_version = "1.85"
 edition = "2024"
 crate_type = ["rlib"]
 
-[cargo.qiskit-sys]
+[[cargo]]
 package_name = "qiskit-sys"
 version = "2.5.1"
 license = "Apache-2.0"
