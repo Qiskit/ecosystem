@@ -48,6 +48,7 @@ read, so a maintainer knows which one to edit.
 """
 
 from fnmatch import fnmatchcase
+from pathlib import PurePath
 
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError
@@ -105,6 +106,55 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
     def from_github(cls, github_data):
         """Builds a probe from a member's `[github]` section, to call `candidates` on."""
         return cls(owner=github_data.owner, repo=github_data.repo)
+
+    @classmethod
+    def from_url(cls, requirements_url):
+        """Builds an (unfetched) section from the URL of a requirements file, like
+        - https://github.com/<owner>/<repo>/blob/<ref>/requirements.txt
+        - https://github.com/<owner>/<repo>/blob/<ref>/docs/requirements.txt
+
+        This is how a file outside the repository root gets recorded: `candidates` lists the
+        root only, so a `docs/requirements.txt` is never discovered, and whether such a file
+        is what the project declares is a judgement a person makes rather than a rule.
+
+        The path may be a pattern (`versions/*/requirements.txt`), which
+        `Member.update_requirements` expands against the repository on every run. The `<ref>`
+        is dropped: files are read from the default branch.
+
+        Returns None for any other URL, so that a link to a registry stays for something
+        else to claim.
+        """
+        if "github.com" not in (requirements_url.hostname or ""):
+            return None
+
+        parts = [part for part in requirements_url.path.split("/") if part]
+        if len(parts) < 5 or parts[2] != "blob":
+            return None
+
+        path = "/".join(parts[4:])
+        if not fnmatchcase(parts[-1].lower(), REQUIREMENTS_PATTERN):
+            return None
+
+        return cls(file=path, owner=parts[0], repo=parts[1])
+
+    @property
+    def is_pattern(self):
+        """Whether `file` is a pattern standing for the files it matches, not a file."""
+        return any(wildcard in (self.file or "") for wildcard in "*?[")
+
+    def matches(self):
+        """The files of the repository this pattern stands for, as unfetched sections.
+
+        `PurePath.full_match` rather than `fnmatch`: there `*` crosses `/`, so
+        `*requirements*.txt` would also claim `binder/jupyter-requirements-security.txt`.
+        Here a pattern matches what it looks like it matches, and `**/` is how you ask for
+        any depth.
+        """
+        return [
+            type(self)(file=path, owner=self.owner, repo=self.repo)
+            for path in sorted(self._request_tree())
+            if PurePath(path).full_match(self.file)
+        ]
 
     @property
     def dependencies(self):

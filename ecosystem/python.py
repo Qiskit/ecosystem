@@ -40,6 +40,7 @@ from ast import literal_eval
 from configparser import ConfigParser, Error as ConfigParserError
 from io import StringIO
 import tomllib
+from pathlib import PurePath
 
 from packaging.utils import canonicalize_name
 
@@ -222,24 +223,36 @@ class PythonData(
         return cls(owner=parts[0], repo=parts[1], path="/".join(parts[4:-1]) or None)
 
     @property
-    def key(self):
-        """The `[python.<key>]` key this section belongs under.
+    def is_pattern(self):
+        """Whether `path` stands for the directories it matches, not for one of them.
 
-        The distribution name, once it is known. A section built from a URL does not
-        know it yet: it is declared inside the repository, not in the URL. The
-        repository name stands in until `update_json` reads a manifest, and
-        `Member.update_python` re-keys the section then.
-
-        The stand-in carries `path`, because a monorepo can declare several
-        distributions and they would otherwise share one key and overwrite each
-        other before any of them is fetched.
+        A monorepo declares a distribution per directory, and `packages/*/pyproject.toml`
+        says so in one line. The manifest name itself is never a pattern: it has to be one
+        of `MANIFESTS` for the URL to be a manifest URL at all.
         """
-        if self.package_name:
-            return self.package_name
-        if not self.repo:
-            return None
-        stem = f"{self.repo}-{self.path}" if self.path else self.repo
-        return canonicalize_name(stem.replace("/", "-"))
+        return any(wildcard in (self.path or "") for wildcard in "*?[")
+
+    def matches(self):
+        """The directories this pattern stands for, as unfetched sections.
+
+        Resolved against the repository on every run, so a directory added later is picked
+        up. `PurePath.full_match` rather than `fnmatch`, which would let `*` cross `/` and
+        claim every manifest in the tree.
+        """
+        directories = []
+        for path in sorted(self._request_tree()):
+            manifest = PurePath(path)
+            if manifest.name not in MANIFESTS:
+                continue
+            if (
+                any(manifest.full_match(f"{self.path}/{name}") for name in MANIFESTS)
+                and str(manifest.parent) not in directories
+            ):
+                directories.append(str(manifest.parent))
+        return [
+            type(self)(owner=self.owner, repo=self.repo, path=directory)
+            for directory in directories
+        ]
 
     # ---------------------------------------------------------------- fetching
 

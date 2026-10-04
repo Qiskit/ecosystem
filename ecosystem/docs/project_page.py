@@ -164,8 +164,17 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         return self._table(columns, rows)
 
     def other_registries_table(self):
-        """The registries with no section of their own, recognized by their host"""
-        rows = [self._registry_row(package) for package in self.project.packages or []]
+        """The registries with no section of their own, recognized by their host.
+
+        A declared URL that a section reads is left out: the table above already says what
+        was read from it. The URLs used to be deleted from `packages` once read, which is
+        what this filter replaces.
+        """
+        rows = [
+            self._registry_row(package)
+            for package in self.project.packages or []
+            if not self.project.declares_a_section(package)
+        ]
         columns = [("Registry", "---"), ("Package", "---")]
         return self._table(columns, rows)
 

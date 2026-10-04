@@ -6,9 +6,7 @@ labels = ["chemistry"]
 interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2404.18737"
-packages = [
-  "https://github.com/mrossinek/qiskit-nature-cp2k/blob/HEAD/pyproject.toml",
-]
+packages = []
 uuid = "a08d66f6-0ee7-446c-a121-c9c692bc0ae9"
 maturity = "as-is"
 status = "Unmaintained"

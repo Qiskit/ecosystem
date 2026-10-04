@@ -10,7 +10,6 @@ category = "Application"
 reference_paper = "https://pubs.acs.org/doi/10.1021/acs.jpcb.5c01030"
 documentation = "https://quantum.cloud.ibm.com/docs/en/guides/qiskit-function-templates"
 packages = [
-  "https://github.com/qiskit-community/qiskit-function-templates/blob/HEAD/pyproject.toml",
   "https://github.com/qiskit-community/qiskit-function-templates/blob/HEAD/*/*/requirements.txt",
 ]
 uuid = "fac11d8c-c0f4-426e-8c20-ac009726d417"

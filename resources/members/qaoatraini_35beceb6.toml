@@ -5,9 +5,7 @@ description = "A pipeline and methods to generate good parameters for QAOA ansat
 labels = ["optimization", "tensor networks", "research"]
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "Application"
-packages = [
-  "https://github.com/qiskit-community/qaoa_training_pipeline/blob/HEAD/pyproject.toml",
-]
+packages = []
 uuid = "35beceb6-7380-4d21-bae1-24bcb523262a"
 maturity = "experimental"
 

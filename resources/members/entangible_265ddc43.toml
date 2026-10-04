@@ -9,9 +9,7 @@ category = "Game/Educational"
 documentation = "https://entangible.org/"
 packages = [
   "https://github.com/JanLahmann/entangible/blob/HEAD/hardware/pyproject.toml",
-  "https://github.com/JanLahmann/entangible/blob/HEAD/packages/qamposer-assets/pyproject.toml",
-  "https://github.com/JanLahmann/entangible/blob/HEAD/packages/qamposer-physical-host/pyproject.toml",
-  "https://github.com/JanLahmann/entangible/blob/HEAD/packages/qamposer-vision/pyproject.toml",
+  "https://github.com/JanLahmann/entangible/blob/HEAD/packages/*/pyproject.toml",
 ]
 uuid = "265ddc43-2376-43e0-90f3-fa27eade6021"
 maturity = "experimental"
