@@ -53,7 +53,7 @@ highest_supported_qiskit_version = "1.4.6"
 last_month_downloads = 452
 last_180_days_downloads = 2078
 
-[checks.PQ2]
+[checks.Q02]
 since = 2026-04-30
 details = "Python package qiskit-alice-bob-provider is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider/issues/80"

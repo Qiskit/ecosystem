@@ -52,7 +52,7 @@ highest_supported_qiskit_version = "1.4.6"
 last_month_downloads = 785
 last_180_days_downloads = 6687
 
-[checks.PQ2]
+[checks.Q02]
 since = 2026-04-30
 details = "Python package qiskit-aqt-provider is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/qiskit-community/qiskit-aqt-provider/issues/286"

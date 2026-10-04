@@ -50,7 +50,7 @@ since = 2026-09-24
 details = "Unmaintained project should have an archived GitHub repository"
 importance = "NICE-TO-HAVE"
 
-[checks.S02]
+[checks.Q03]
 xfailed = "Check-up was introduced after the project was set as unmaintained."
 since = 2026-10-01
 details = "The distribution cala-quantum-library declared in the repository allows a not-yet-released major version of Qiskit"

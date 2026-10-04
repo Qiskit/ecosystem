@@ -38,27 +38,6 @@ def checkup_PQ1(member, subtests):
             ), f"Python package {pypi_package.package_name} is not compatible with Qiskit SDK v1"
 
 
-def checkup_PQ2(member, subtests):
-    """Be installable with qiskit>=2.0"""
-    for pypi_package in member.pypi:
-        with subtests.test(pypi_package=pypi_package.package_name):
-            if pypi_package.compatible_with_qiskit_v2 is None:
-                pytest.skip(
-                    f"No member.pypi.{pypi_package.package_name}.compatible_with_qiskit_v2"
-                )
-            assert (
-                pypi_package.compatible_with_qiskit_v2
-            ), f"Python package {pypi_package.package_name} is not compatible with Qiskit SDK v2"
-
-
-def checkup_P10(member):
-    for pypi_package in member.pypi:
-        assert not pypi_package.compatible_with_qiskit(3), (
-            f"Python package {pypi_package.package_name} declared itself "
-            "compatible to a not-yet-released major version of Qiskit"
-        )
-
-
 def checkup_P11(member):
     """Production-ready projects should have, at least, one stable Python package"""
     if member.maturity not in ["production-ready", "bugfixing only"]:

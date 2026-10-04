@@ -515,7 +515,7 @@ class TestUpdateStatusExclusions(UpdateStatusTestCase):
     See `CliMembers.update_status`"""
 
     # [G07] is a STRONG-RECOMMENDATION in the ACTIVITY category
-    # [P10] is a RECOMMENDATION in the BEST-PRACTICE category
+    # [Q03] is a RECOMMENDATION in the BEST-PRACTICE category
     def member_failing(self, checkup_id):
         """A member failing `checkup_id` since yesterday"""
         member = self.add_member()
@@ -572,14 +572,14 @@ class TestUpdateStatusExclusions(UpdateStatusTestCase):
     def test_several_values_at_once(self):
         """What Fire hands over for `-e "a, b, c"`"""
         self.assertIsNone(
-            self.status_with("P10", ("activity", "best-practice", "alumni"))
+            self.status_with("Q03", ("activity", "best-practice", "alumni"))
         )
 
     def test_the_values_are_slugified(self):
         """`-e "Best Practice"`, `-e best_practice` and `-e BEST-PRACTICE` are the same"""
         for spelling in ["Best Practice", "best_practice", "BEST-PRACTICE"]:
             with self.subTest(exclude=spelling):
-                self.assertIsNone(self.status_with("P10", spelling))
+                self.assertIsNone(self.status_with("Q03", spelling))
 
     def test_an_unknown_value_excludes_nothing(self):
         """A value that names no importance, category or status is simply not a match"""

@@ -56,7 +56,7 @@ since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.PQ2]
+[checks.Q02]
 since = 2026-04-30
 details = "Python package antinature is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/mk0dz/antinature/issues/1"

@@ -52,7 +52,7 @@ since = 2026-07-14
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
 
-[checks.S02]
+[checks.Q03]
 xfailed = "Issue asking for the cap submitted https://github.com/JoelHBierman/QSP-SQD/issues/1, waiting for the fix"
 xfailed_until = 2027-03-31
 since = 2026-09-28

@@ -11,7 +11,7 @@
 # that they have been altered from the originals.
 """Tests for ecosystem/validation/checkup_pypi.py"""
 
-# the test methods are named after the check up they cover, like [PQ2], and a name
+# the test methods are named after the check up they cover, like [P11], and a name
 # that states what the case asserts needs no docstring saying it again
 # pylint: disable=invalid-name,missing-function-docstring
 
@@ -35,39 +35,6 @@ class PyPICheckupsTestCase(CheckupTestCase):
         )
         member.pypi = [PyPIData(package_name="banana", version="1.0.0", **section)]
         return member
-
-
-class TestPQ2(PyPICheckupsTestCase):
-    """[PQ2] wants the release to be installable beside Qiskit v2"""
-
-    checker = "checkup_pypi.py::checkup_PQ2"
-
-    def test_a_v2_compatible_requirement_passes(self):
-        self.assert_records(
-            self.checker, set(), self.member(requires_qiskit=">=1.4,<3")
-        )
-
-    def test_a_v1_only_requirement_fails(self):
-        self.assert_records(self.checker, {"PQ2"}, self.member(requires_qiskit="==1.4"))
-
-    def test_a_release_that_does_not_depend_on_qiskit_is_skipped(self):
-        """No requirement is not an incompatible requirement"""
-        self.assert_records(self.checker, set(), self.member())
-
-
-class TestP10(PyPICheckupsTestCase):
-    """[P10] wants a cap on the qiskit major version"""
-
-    checker = "checkup_pypi.py::checkup_P10"
-
-    def test_a_capped_requirement_passes(self):
-        self.assert_records(
-            self.checker, set(), self.member(requires_qiskit=">=2.0,<3")
-        )
-
-    def test_an_uncapped_requirement_fails(self):
-        """An uncapped requirement lets the next major version in untested"""
-        self.assert_records(self.checker, {"P10"}, self.member(requires_qiskit=">=2.0"))
 
 
 class TestP11(PyPICheckupsTestCase):

@@ -57,7 +57,7 @@ since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.P10]
+[checks.Q03]
 since = 2026-07-09
 details = "Python package vqls-prototype declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"

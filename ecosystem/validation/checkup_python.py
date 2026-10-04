@@ -12,10 +12,10 @@
 
 """Validations involving section member.python
 
-The counterparts of the `member.pypi` check ups, for a distribution the repository
-declares but does not publish. What they look at is the manifests, so a project can
-pass the PyPI check up with its release and fail the one here with its source, which
-is the point: the source is what somebody installing from the repository gets.
+What is left here is about the license a manifest declares. The qiskit dependency a
+manifest declares is read by the `[Q0*]` check ups in `checkup_general.py`, which ask the
+same questions of a published release and of a requirements file: three copies of one
+assertion is what they replaced.
 """
 
 # pylint: disable=invalid-name,missing-function-docstring
@@ -39,26 +39,3 @@ def checkup_S00(member, subtests):
             assert (
                 package.license.is_osi_approved()
             ), f"member.python.{package.package_name}.license is not OSI-approved"
-
-
-def checkup_S01(member, subtests):
-    """Be installable with qiskit>=2.0"""
-    for package in member.python:
-        with subtests.test(python_package=package.package_name):
-            if package.compatible_with_qiskit_v2 is None:
-                pytest.skip(
-                    f"No member.python.{package.package_name}.compatible_with_qiskit_v2"
-                )
-            assert package.compatible_with_qiskit_v2, (
-                f"The distribution {package.package_name} declared in the repository "
-                "is not compatible with Qiskit SDK v2"
-            )
-
-
-def checkup_S02(member, subtests):
-    for package in member.python:
-        with subtests.test(python_package=package.package_name):
-            assert not package.compatible_with_qiskit(3), (
-                f"The distribution {package.package_name} declared in the repository "
-                "allows a not-yet-released major version of Qiskit"
-            )

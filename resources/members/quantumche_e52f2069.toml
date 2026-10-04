@@ -33,7 +33,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 
-[checks.R02]
+[checks.Q03]
 xfailed = "Issue asking for the cap submitted https://github.com/Venkatallu11/quantum-chemistry-vqe/issues/1, waiting for the fix"
 xfailed_until = 2027-03-31
 since = 2026-10-02

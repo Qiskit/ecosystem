@@ -68,7 +68,7 @@ since = 2026-09-20
 details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"
 
-[checks.S02]
+[checks.Q03]
 since = 2026-10-01
 details = "The distribution qiskit-qec declared in the repository allows a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"

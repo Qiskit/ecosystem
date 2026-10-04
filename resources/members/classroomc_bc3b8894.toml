@@ -58,7 +58,7 @@ since = 2026-09-24
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
 
-[checks.PQ2]
+[checks.Q02]
 since = 2026-04-30
 details = "Python package qiskit-classroom-converter is not compatible with Qiskit SDK v2"
 importance = "IMPORTANT"

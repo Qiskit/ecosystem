@@ -101,9 +101,9 @@ Each member is a TOML file under
 A check up that does not pass is stored there as a `[checks.<ID>]` table:
 
 ```toml
-[checks.P10]
+[checks.Q03]
 since = 2026-07-09
-details = "Python package qiskit-algorithms declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qiskit-algorithms release on PyPI allows a not-yet-released major version of Qiskit"
 ```
 
 - `since` is the date the check up started failing. It is **not** reset while the check up keeps failing, so `since` + cure period is the deadline.
