@@ -34,16 +34,16 @@ file = "requirements-dev.txt"
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-02
-highest_supported_qiskit_version = "2.6.0rc1"
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 
 [[requirements]]
 file = "requirements.txt"
 requires_qiskit = ">=2.1.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-02
-highest_supported_qiskit_version = "2.6.0rc1"
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 
 [checks.R02]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-cpp/issues/167, waiting for the fix"

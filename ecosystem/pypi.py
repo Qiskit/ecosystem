@@ -177,6 +177,15 @@ class PyPIData(
         return self._pypi_json or {}
 
     @property
+    def fetched(self):
+        """True once `update_json` has read the PyPI JSON.
+
+        `requires_qiskit` is overridden here and reads `pypi_json` directly, so this is
+        only what the mixin asks: whether a stored value is all this section has.
+        """
+        return self._pypi_json is not None
+
+    @property
     def requires_qiskit(self):
         """String with the specifier for "qiskit" dependency"""
         requires_dist = self.pypi_json.get("info", {}).get("requires_dist") or []
