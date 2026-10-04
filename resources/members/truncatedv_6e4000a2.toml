@@ -46,6 +46,8 @@ deferred = ["version"]
 xfailed = "Issue asking for the cap submitted https://github.com/clemens-sauer-possel/tvha/issues/3, waiting for the fix"
 xfailed_until = 2027-03-31
 since = 2026-10-01
-details = "The distribution tvha declared in the repository allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the tvha manifest in the repository allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/clemens-sauer-possel/tvha/issues/3"
+subtest = "python:tvha"
 importance = "RECOMMENDATION"
+

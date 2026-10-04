@@ -57,8 +57,9 @@ last_180_days_downloads = 1636
 xfailed = "Issue asking for the cap submitted https://github.com/qognitive/fast-pauli/issues/98, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-09
-details = "Python package fast-pauli declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the fast-pauli release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/qognitive/fast-pauli/issues/98"
+subtest = "pypi:fast-pauli"
 importance = "RECOMMENDATION"
 
 [[checks.P12]]
@@ -73,3 +74,4 @@ importance = "RECOMMENDATION"
 since = 2026-09-17
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
+

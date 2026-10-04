@@ -48,8 +48,9 @@ last_180_days_downloads = 11185
 xfailed = "Issue asking for the cap submitted https://github.com/AI4quantum/qiskit-gym/issues/17, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-09-10
-details = "Python package qiskit-gym declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qiskit-gym release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/AI4quantum/qiskit-gym/issues/17"
+subtest = "pypi:qiskit-gym"
 importance = "RECOMMENDATION"
 
 [[checks.P12]]
@@ -59,3 +60,4 @@ since = 2026-09-10
 details = "The PyPI package qiskit-gym does not have a declared license"
 discussion = "https://github.com/AI4quantum/qiskit-gym/issues/18"
 importance = "RECOMMENDATION"
+

@@ -29,6 +29,7 @@ last_activity = 2026-10-02
 [badge]
 url = "https://qisk.it/e-7234f2b9"
 style = "flat"
+
 [[pypi]]
 package_name = "qrmi"
 version = "0.26.0"
@@ -104,3 +105,16 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
+
+[[checks.Q03]]
+since = 2026-10-05
+details = "The qiskit requirement in examples/task_runner/oqtopus/requirements.txt allows a not-yet-released major version of Qiskit"
+subtest = "requirements:examples/task_runner/oqtopus/requirements.txt"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+since = 2026-10-05
+details = "The qiskit requirement in examples/task_runner/qpp/requirements.txt allows a not-yet-released major version of Qiskit"
+subtest = "requirements:examples/task_runner/qpp/requirements.txt"
+importance = "RECOMMENDATION"
+

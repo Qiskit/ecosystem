@@ -42,4 +42,12 @@ xfailed_until = 2027-03-31
 since = 2026-10-02
 details = "The qiskit requirement in requirements-qiskit.txt allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/Qiskit/benchpress/issues/116"
+subtest = "requirements:requirements-qiskit.txt"
 importance = "RECOMMENDATION"
+
+[[checks.Q04]]
+since = 2026-10-05
+details = "The qiskit requirement in requirements-qiskit.txt is written against a pre-release (>=1.3.0rc1)"
+subtest = "requirements:requirements-qiskit.txt"
+importance = "RECOMMENDATION"
+

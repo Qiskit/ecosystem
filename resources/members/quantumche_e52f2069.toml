@@ -39,4 +39,6 @@ xfailed_until = 2027-03-31
 since = 2026-10-02
 details = "The qiskit requirement in requirements.txt allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/Venkatallu11/quantum-chemistry-vqe/issues/1"
+subtest = "requirements:requirements.txt"
 importance = "RECOMMENDATION"
+
