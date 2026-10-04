@@ -5,7 +5,7 @@ labels = ["cloud service"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
-packages = []
+packages = ["https://pypi.org/project/prefect-qiskit/"]
 uuid = "5bf681f5-d366-4d32-982c-d10153df211c"
 maturity = "experimental"
 

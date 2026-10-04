@@ -108,7 +108,9 @@ class TestCreateSections(CliCITestCase):
         self.run_command(CliCI.create_sections)
         stored = self.dao[member.name_id]
         self.assertIn("banana", stored.pypi)
-        self.assertEqual([], stored.packages)
+        # the URL stays: it is what the project declared, and the section is what was read
+        # from it. Deleting it loses the statement and makes a pattern expandable only once
+        self.assertEqual(["https://pypi.org/project/banana/"], stored.packages)
 
     def test_a_url_of_no_known_registry_stays_in_packages(self):
         """There is no section to unfold it into, and dropping it would lose it"""

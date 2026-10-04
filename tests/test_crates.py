@@ -267,13 +267,18 @@ class TestCratesOnTheMember(CratesTestCase):
         )
 
     def test_a_submitted_url_becomes_a_section(self):
-        """Which is what keeps it out of the generic `packages` list"""
+        """And the URL stays, so a later run reads the same declaration"""
         member = self.member(
             packages=[URL("https://crates.io/crates/banana_parser")],
         )
         member.upsert_sections()
         self.assertEqual(["banana_parser"], list(member.crates))
-        self.assertEqual([], member.packages)
+        # the declaration stays: it is what the project said, and the section is what was
+        # read from it
+        self.assertEqual(
+            ["https://crates.io/crates/banana_parser"],
+            [str(url) for url in member.packages],
+        )
 
     def test_update_crates_refreshes_every_section(self):
         """The weekly run calls it for every member that has one"""

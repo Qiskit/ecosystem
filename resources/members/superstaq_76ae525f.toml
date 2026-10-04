@@ -8,7 +8,13 @@ interfaces = ["Python"]
 created_at = 2023-03-14
 category = "Compute provider"
 documentation = "https://superstaq.readthedocs.io/"
-packages = []
+packages = [
+  "https://pypi.org/project/qiskit-superstaq/",
+  "https://pypi.org/project/checks-superstaq/",
+  "https://pypi.org/project/cirq-superstaq/",
+  "https://pypi.org/project/general-superstaq/",
+  "https://pypi.org/project/Supermarq/",
+]
 uuid = "76ae525f-0734-405b-b4b8-421f74125fa2"
 maturity = "production-ready"
 

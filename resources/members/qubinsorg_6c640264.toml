@@ -7,10 +7,125 @@ labels = ["cloud service"]
 interfaces = ["Web interface", "Command-line interface (CLI)"]
 website = "https://qubins.org"
 category = "Tooling"
-packages = ["https://github.com/QuBins/qiskit-images/pkgs/container/images"]
+packages = [
+  "https://github.com/QuBins/qiskit-images/pkgs/container/images",
+  "https://github.com/QuBins/qiskit-images/blob/main/versions/*/requirements.txt",
+]
 uuid = "6c640264-6c64-4163-921a-fbaeaa553f53"
 maturity = "production-ready"
 status = "Early Project"
+
+[[requirements]]
+file = "versions/1.4-small/requirements.txt"
+requires_qiskit = "~=1.4.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2026-06-12
+highest_supported_qiskit_version = "1.4.6"
+
+[[requirements]]
+file = "versions/1.4-xl/requirements.txt"
+requires_qiskit = "~=1.4.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2026-06-12
+highest_supported_qiskit_version = "1.4.6"
+
+[[requirements]]
+file = "versions/2.0-small/requirements.txt"
+requires_qiskit = "~=2.0.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-06-17
+highest_supported_qiskit_version = "2.0.3"
+
+[[requirements]]
+file = "versions/2.0-xl/requirements.txt"
+requires_qiskit = "~=2.0.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-06-17
+highest_supported_qiskit_version = "2.0.3"
+
+[[requirements]]
+file = "versions/2.1-small/requirements.txt"
+requires_qiskit = "~=2.1.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-08-19
+highest_supported_qiskit_version = "2.1.2"
+
+[[requirements]]
+file = "versions/2.1-xl/requirements.txt"
+requires_qiskit = "~=2.1.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-08-19
+highest_supported_qiskit_version = "2.1.2"
+
+[[requirements]]
+file = "versions/2.2-small/requirements.txt"
+requires_qiskit = "~=2.2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-30
+highest_supported_qiskit_version = "2.2.3"
+
+[[requirements]]
+file = "versions/2.2-xl/requirements.txt"
+requires_qiskit = "~=2.2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-10-30
+highest_supported_qiskit_version = "2.2.3"
+
+[[requirements]]
+file = "versions/2.3-small/requirements.txt"
+requires_qiskit = "~=2.3.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-03-13
+highest_supported_qiskit_version = "2.3.1"
+
+[[requirements]]
+file = "versions/2.3-xl/requirements.txt"
+requires_qiskit = "~=2.3.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-03-13
+highest_supported_qiskit_version = "2.3.1"
+
+[[requirements]]
+file = "versions/2.4-small/requirements.txt"
+requires_qiskit = "~=2.4.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-06-14
+highest_supported_qiskit_version = "2.4.2"
+
+[[requirements]]
+file = "versions/2.4-xl/requirements.txt"
+requires_qiskit = "~=2.4.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-06-14
+highest_supported_qiskit_version = "2.4.2"
+
+[[requirements]]
+file = "versions/2.5-small/requirements.txt"
+requires_qiskit = "~=2.5.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+
+[[requirements]]
+file = "versions/2.5-xl/requirements.txt"
+requires_qiskit = "~=2.5.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 
 [github]
 url = "https://github.com/QuBins/qiskit-images"

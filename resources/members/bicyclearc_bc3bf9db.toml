@@ -5,7 +5,14 @@ labels = ["error correction", "research", "circuit optimization"]
 interfaces = ["Rust"]
 category = "Noise Management"
 reference_paper = "https://arxiv.org/abs/2506.03094"
-packages = []
+packages = [
+  "https://crates.io/crates/bicycle_benchmark",
+  "https://crates.io/crates/bicycle_cliffords",
+  "https://crates.io/crates/bicycle_common",
+  "https://crates.io/crates/bicycle_numerics",
+  "https://crates.io/crates/bicycle_random_numerics",
+  "https://crates.io/crates/bicycle_compiler",
+]
 uuid = "bc3bf9db-9ea3-4621-a70a-bd862b85cad4"
 maturity = "experimental"
 

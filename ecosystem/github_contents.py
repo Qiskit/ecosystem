@@ -20,6 +20,7 @@ of those files contains. Mix this into a class that provides `owner` and `repo`.
 from os import getenv
 from json import loads as json_loads
 
+from .error_handling import logger
 from .request import request_json
 
 
@@ -70,3 +71,31 @@ class GitHubContentsMixin:  # pylint: disable=too-few-public-methods
             parser=parser,
             token=getenv("GH_TOKEN"),
         )
+
+    def _request_tree(self):
+        """Every file of the repository's default branch, as repository-relative paths.
+
+        One request, unlike the per-directory `_request_listing`, which is what makes a
+        pattern like `versions/*/requirements.txt` affordable: it is resolved against this
+        list on every run, so a file added to the repository later is picked up.
+
+        A repository too big for one response comes back truncated. The paths that did
+        arrive are still usable, so they are returned, with a warning saying the match may
+        be short.
+        """
+        tree = request_json(
+            f"api.github.com/repos/{self.owner}/{self.repo}/git/trees/HEAD?recursive=1",
+            token=getenv("GH_TOKEN"),
+        )
+        if tree.get("truncated"):
+            logger.warning(
+                "the file list of %s/%s is truncated, so a pattern may match less than it "
+                "should",
+                self.owner,
+                self.repo,
+            )
+        return [
+            entry["path"]
+            for entry in tree.get("tree", [])
+            if entry.get("type") == "blob"
+        ]

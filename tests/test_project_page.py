@@ -403,6 +403,21 @@ class TestThePackagesSection(ProjectPageTestCase):
             with self.subTest(package=url):
                 self.assertIn(expected, self.packages(packages=[URL(url)]))
 
+    def test_a_declared_url_a_section_describes_is_not_a_registry_row(self):
+        """`packages` keeps every declaration now, and the tables above already say what
+        was read from the claimed ones"""
+        section = self.packages(
+            pypi={"banana": banana_on_pypi()},
+            packages=[
+                URL("https://pypi.org/project/banana/"),
+                URL("https://www.npmjs.com/package/banana"),
+            ],
+        )
+        # a row of the registry table, which an unclaimed URL is the only source of
+        rows = [line for line in section.splitlines() if "octicons-package-16" in line]
+        self.assertEqual(1, len(rows))
+        self.assertIn("www.npmjs.com", rows[0])
+
     def test_a_host_with_no_name_to_read_leaves_the_package_column_out(self):
         """The name is in a different part of the URL in every registry"""
         section = self.packages(packages=[URL("https://www.npmjs.com/package/banana")])
@@ -414,7 +429,9 @@ class TestThePackagesSection(ProjectPageTestCase):
         section = self.packages(
             pypi={"banana": banana_on_pypi()},
             julia={"Banana": JuliaData(package_name="Banana", version="1.2.3")},
-            packages=[URL("https://crates.io/crates/banana")],
+            # a registry with no section of its own: a crates.io URL would be claimed by
+            # `[crates.*]` and so would not be a row of the registry table
+            packages=[URL("https://www.npmjs.com/package/banana")],
         )
         self.assertEqual(1, section.count("### :material-package-variant: Packages"))
         dividers = [

@@ -6,7 +6,7 @@ affiliations = "IBM"
 labels = ["research", "circuit optimization"]
 interfaces = ["Python"]
 category = "Transpiler plugin"
-packages = []
+packages = ["https://pypi.org/project/qiskit-qubit-reuse/"]
 uuid = "c9369922-7e0d-4b77-b00a-329472b57a34"
 maturity = "production-ready"
 

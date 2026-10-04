@@ -751,13 +751,6 @@ class TestPythonDataFromUrl(PythonDataTestCase):
         with self.assertRaises(EcosystemError):
             self.from_url(f"https://github.com/{OWNER}/{REPO}/blob/main/README.md")
 
-    def test_the_key_stands_in_until_the_name_is_known(self):
-        """The distribution name is inside the repository, not in the URL."""
-        data = self.from_url(
-            f"https://github.com/{OWNER}/Banana_Compiler/blob/main/pyproject.toml"
-        )
-        self.assertEqual("banana-compiler", data.key)
-
 
 class TestUpsertSectionsPython(PythonDataTestCase):
     """`upsert_sections` turns a submitted manifest URL into a `[python.*]` section."""
@@ -773,39 +766,97 @@ class TestUpsertSectionsPython(PythonDataTestCase):
             packages=[URL(package) for package in packages],
         )
 
-    def test_a_manifest_url_creates_the_section(self):
-        """No fetching: the section is created empty and an updater fills it in."""
+    def test_a_manifest_url_writes_no_table_before_it_is_read(self):
+        """A `[python.*]` table has to carry `package_name`, and only the manifest says what
+        it is. A stub keyed by a stand-in is a member file the schema rejects, and a pattern
+        cannot be keyed at all, so the declaration in `packages` is the whole record until
+        `update_python` reads the repository."""
         member = self.member(
             [f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml"]
         )
         member.upsert_sections()
-        key = f"{REPO}-chemistry"
-        self.assertEqual([key], list(member.python))
-        self.assertEqual("chemistry", member.python[key].path)
-        self.assertEqual([], member.packages)
+        self.assertEqual({}, member.python)
+        self.assertEqual(
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml"],
+            [str(url) for url in member.packages],
+        )
 
-    def test_several_manifests_in_one_repository_keep_their_own_section(self):
-        """A monorepo declares one distribution per directory. The stand-in key has to
-        tell them apart, or all but the last are lost before anything is fetched."""
+    def test_a_declared_manifest_is_what_the_updater_reads(self):
+        """The section comes from the declaration rather than from a stub left behind."""
         member = self.member(
-            [
-                f"https://github.com/{OWNER}/{REPO}/blob/main/hardware/pyproject.toml",
-                f"https://github.com/{OWNER}/{REPO}/blob/main/packages/vision/setup.cfg",
-                f"https://github.com/{OWNER}/{REPO}/blob/main/pyproject.toml",
-            ]
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml"]
         )
         member.upsert_sections()
         self.assertEqual(
-            [f"{REPO}-hardware", f"{REPO}-packages-vision", REPO],
-            list(member.python),
-        )
-        self.assertEqual(
-            ["hardware", "packages/vision", None],
-            [section.path for section in member.python.values()],
+            ["chemistry"], [s.path for s in member.declared_distributions()]
         )
 
-    def test_the_section_is_rekeyed_by_the_first_update(self):
-        """The repository name only stands in until a manifest states the real one."""
+    def test_a_pattern_declares_a_directory_of_distributions(self):
+        """A monorepo says it in one line, resolved against the repository on every run."""
+        member = self.member(
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/packages/*/pyproject.toml"]
+        )
+        tree = [
+            "pyproject.toml",
+            "packages/one/pyproject.toml",
+            "packages/two/setup.cfg",
+            "packages/two/pyproject.toml",
+            "packages/three/README.md",
+            "other/four/pyproject.toml",
+        ]
+        with patch.object(PythonData, "_request_tree", return_value=tree):
+            declared = member.declared_distributions()
+        self.assertEqual(["packages/one", "packages/two"], [s.path for s in declared])
+
+    def test_a_pattern_does_not_claim_a_manifest_one_level_off(self):
+        """`*` does not cross `/`, so the depth of the pattern is the depth it matches."""
+        member = self.member(
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/packages/*/pyproject.toml"]
+        )
+        with patch.object(
+            PythonData,
+            "_request_tree",
+            return_value=["packages/pyproject.toml", "packages/a/b/pyproject.toml"],
+        ):
+            self.assertEqual([], member.declared_distributions())
+
+    def test_a_directory_added_later_is_picked_up(self):
+        """Which is why the pattern is kept rather than expanded once at submission."""
+        member = self.member(
+            [f"https://github.com/{OWNER}/{REPO}/blob/main/packages/*/pyproject.toml"]
+        )
+        tree = ["packages/one/pyproject.toml"]
+        with patch.object(PythonData, "_request_tree", side_effect=lambda: tree):
+            self.assertEqual(1, len(member.declared_distributions()))
+            tree.append("packages/two/pyproject.toml")
+            self.assertEqual(2, len(member.declared_distributions()))
+
+    def test_a_manifest_name_is_never_a_pattern(self):
+        """The basename has to be a manifest, or the URL is not a manifest URL at all."""
+        with self.assertRaises(EcosystemError):
+            PythonData.from_url(
+                URL(f"https://github.com/{OWNER}/{REPO}/blob/main/packages/*/*.toml")
+            )
+
+    def test_several_manifests_in_one_repository_are_each_declared(self):
+        """A monorepo declares one distribution per directory, and each is read from its own
+        declaration: before the manifests are read there is nothing to tell them apart.
+        """
+        member = self.member(
+            [
+                f"https://github.com/{OWNER}/{REPO}/blob/main/chemistry/pyproject.toml",
+                f"https://github.com/{OWNER}/{REPO}/blob/main/physics/setup.cfg",
+            ]
+        )
+        member.upsert_sections()
+        self.assertEqual({}, member.python)
+        self.assertEqual(
+            ["chemistry", "physics"],
+            sorted(s.path for s in member.declared_distributions()),
+        )
+
+    def test_the_section_is_keyed_by_the_name_the_manifest_states(self):
+        """Which is only known once the repository has been read."""
         member = self.member(
             [f"https://github.com/{OWNER}/{REPO}/blob/main/pyproject.toml"]
         )

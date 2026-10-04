@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2022-08-30
 category = "Converter"
 documentation = "https://docs.quantinuum.com/tket/extensions/pytket-qiskit/"
-packages = []
+packages = ["https://pypi.org/project/pytket-qiskit/"]
 uuid = "7c80aef4-96b8-4273-8d36-7d75ca209bcd"
 maturity = "production-ready"
 

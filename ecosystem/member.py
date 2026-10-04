@@ -296,7 +296,11 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         # was declared is kept, because declaring it was deliberate
         discovered = not self.python
 
-        to_fetch = list(self.python.values()) or [PythonData.from_github(self.github)]
+        to_fetch = (
+            self.declared_distributions()
+            or list(self.python.values())
+            or [PythonData.from_github(self.github)]
+        )
         refreshed = {}
         for python_data in to_fetch:
             python_data.owner = self.github.owner
@@ -353,16 +357,76 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         `RequirementsData.candidates` is what applies that rule.
 
         A file is dropped unless it names qiskit.
+
+        The files a member *declares* are read too, wherever they are: `candidates` looks at
+        the root only, and a `docs/requirements.txt` is a judgement rather than a rule, so it
+        is declared as a URL in `packages`. A declaration may be a pattern, which is expanded
+        against the repository here rather than once at submission time, so a file the project
+        adds later is picked up.
         """
         if not self.github or not self.github.owner or not self.github.repo:
             return
 
-        sections = []
-        for requirements in RequirementsData.from_github(self.github).candidates():
+        sections = {}
+        for requirements in (
+            self.declared_requirements()
+            + RequirementsData.from_github(self.github).candidates()
+        ):
+            if requirements.file in sections:
+                continue
             requirements.update_json()
             if requirements.fetched and requirements.requires_qiskit:
-                sections.append(requirements)
-        self.requirements = sections or None
+                sections[requirements.file] = requirements
+        self.requirements = list(sections.values()) or None
+
+    def declared_distributions(self):
+        """The distributions this member declares, patterns expanded.
+
+        A declaration names the directory a manifest is in, which is the one thing
+        discovery cannot find: it reads the repository root only. A pattern
+        (`packages/*/pyproject.toml`) is expanded here rather than once at submission time,
+        so a directory the project adds later is picked up.
+
+        The stored sections are added too, keyed by the directory they were read from: one
+        of them may have been declared before patterns existed, and a section whose
+        directory a pattern no longer matches is left to the stale-section rule below.
+        """
+        declared, paths = [], set()
+        for package in self.packages or []:
+            try:
+                section = PythonData.from_url(package)
+            except EcosystemError:
+                # a blob URL that is not a manifest. `upsert_section_for` is where that is
+                # reported; here it is simply not a distribution
+                continue
+            if section is None:
+                continue
+            for found in section.matches() if section.is_pattern else [section]:
+                declared.append(found)
+                paths.add(found.path)
+        if not declared:
+            return []
+        declared += [
+            section for section in self.python.values() if section.path not in paths
+        ]
+        return declared
+
+    def declared_requirements(self):
+        """The requirements files this member declares, patterns expanded.
+
+        Only the URLs in `packages` count. The `[[requirements]]` tables are derived from
+        them and from the discovery, and reading them back as declarations would keep a
+        section the repository no longer justifies: a stored table answers `requires_qiskit`
+        from the member file when nothing was fetched, which is what makes a file readable
+        offline and exactly what must not decide here.
+        """
+        declared = []
+        for package in self.packages or []:
+            section = RequirementsData.from_url(package)
+            if section is None:
+                continue
+            declared += section.matches() if section.is_pattern else [section]
+        return declared
 
     @property
     def published_crates(self):
@@ -391,6 +455,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
          * pypi
          * crates
          * julia
+         * requirements
          * python
          * badge
         """
@@ -406,29 +471,59 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         if not self.packages:
             self.packages = []
 
-        keep_in_packages = []
-        while len(self.packages) > 0:
-            package = self.packages.pop(0)
-            if pypi := PyPIData.from_url(package):
-                self.pypi[pypi.package_name] = pypi
-            elif crates := CratesData.from_url(package):
-                self.crates[crates.package_name] = crates
-            elif julia := JuliaData.from_url(package):
-                self.julia[julia.package_name] = julia
-            elif python := PythonData.from_url(package):
-                # keyed by the repository name for now; `update_python` re-keys the
-                # section once it reads the distribution name out of the manifest
-                self.python[python.key] = python
-            else:
-                keep_in_packages.append(package)
-
-        self.packages = keep_in_packages
+        for package in self.packages:
+            self.upsert_section_for(package)
 
         # badge section. Only the style, so it can be reviewed (and changed) in the submission
         # PR. The url needs Bitly and is created when the submission is accepted, see
         # .github/workflows/welcome-new-member.yml
         if not self.badge:
             self.badge = BadgeData()
+
+    def upsert_section_for(self, package):
+        """Puts a declared URL under the section it belongs to, and says which one that is.
+
+        The order is what resolves a URL that more than one section could read:
+        `RequirementsData.from_url` claims a requirements file before `PythonData.from_url`
+        sees it, because that one *raises* for a blob URL that is not a manifest, which is
+        what tells a submitter they linked the wrong file.
+
+        Returns the name of the section, or None for a URL no section reads: a registry with
+        no section of its own, which is what the project page lists as "other registries".
+        """
+        if pypi := PyPIData.from_url(package):
+            self.pypi[pypi.package_name] = pypi
+            return "pypi"
+        if crates := CratesData.from_url(package):
+            self.crates[crates.package_name] = crates
+            return "crates"
+        if julia := JuliaData.from_url(package):
+            self.julia[julia.package_name] = julia
+            return "julia"
+        if RequirementsData.from_url(package):
+            return "requirements"
+        if PythonData.from_url(package):
+            return "python"
+        return None
+
+    def declares_a_section(self, package):
+        """Whether a declared URL is read by a section of this member.
+
+        The project page asks this to leave the URLs it already describes out of the list of
+        other registries. It builds nothing: `upsert_section_for` is what does that.
+        """
+        if PyPIData.from_url(package) or JuliaData.from_url(package):
+            return True
+        if CratesData.from_url(package):
+            return True
+        if RequirementsData.from_url(package):
+            return True
+        try:
+            return bool(PythonData.from_url(package))
+        except EcosystemError:
+            # a blob URL that is not a manifest and not a requirements file: not a registry
+            # either, so the page has nothing to say about it
+            return True
 
     @classmethod
     def from_submission(cls, submission, issue_number: str = None):

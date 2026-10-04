@@ -4,7 +4,7 @@ description = "Qiskit provider to build and run analog programs on Pasqal's neut
 labels = ["provider", "cloud service"]
 interfaces = ["Python"]
 category = "Compute provider"
-packages = []
+packages = ["https://pypi.org/project/qiskit-pasqal-provider/"]
 uuid = "35e0ebf4-48c9-4611-9286-84d6ad5571e3"
 maturity = "experimental"
 
