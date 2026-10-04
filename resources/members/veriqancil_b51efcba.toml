@@ -7,7 +7,7 @@ labels = ["quantum information", "research", "openqasm"]
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "Tooling"
 reference_paper = "https://arxiv.org/abs/2608.13099"
-packages = []
+packages = ["https://pypi.org/project/veriq-ancillaguard/"]
 uuid = "b51efcba-5d5b-45a4-8b78-01fee5d9aa8e"
 maturity = "experimental"
 status = "Early Project"
@@ -26,7 +26,7 @@ last_activity = 2026-08-27
 url = "https://qisk.it/e-b51efcba"
 style = "flat"
 
-[pypi.veriq-ancillaguard]
+[[pypi]]
 package_name = "veriq-ancillaguard"
 version = "0.1.0"
 last_release_date = 2026-08-21
@@ -42,4 +42,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 19
-last_180_days_downloads = 138
+last_180_days_downloads = 141

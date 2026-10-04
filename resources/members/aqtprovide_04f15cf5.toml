@@ -9,7 +9,7 @@ interfaces = ["Python"]
 website = "https://www.aqt.eu/qc-systems/"
 category = "Compute provider"
 documentation = "https://qiskit-community.github.io/qiskit-aqt-provider/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-aqt-provider/"]
 uuid = "04f15cf5-ee50-4c77-b254-8907ed3ba407"
 maturity = "production-ready"
 status = "Alumni"
@@ -32,7 +32,7 @@ last_activity = 2026-07-29
 url = "https://qisk.it/e-04f15cf5"
 style = "flat"
 
-[pypi.qiskit-aqt-provider]
+[[pypi]]
 package_name = "qiskit-aqt-provider"
 version = "1.15.0"
 last_release_date = 2026-04-22

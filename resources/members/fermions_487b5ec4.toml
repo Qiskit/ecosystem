@@ -7,7 +7,7 @@ interfaces = ["C", "Python"]
 ibm_maintained = true
 category = "Application"
 documentation = "https://qiskit.github.io/qiskit-fermions/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-fermions/"]
 uuid = "487b5ec4-3ea3-453f-89a4-870341181e73"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -23,14 +23,14 @@ description = "A toolkit for working with fermionic systems"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-01-21
-last_commit = 2026-10-01
-last_activity = 2026-10-01
+last_commit = 2026-10-02
+last_activity = 2026-10-02
 
 [badge]
 url = "https://qisk.it/e-487b5ec4"
 style = "flat"
 
-[pypi.qiskit-fermions]
+[[pypi]]
 package_name = "qiskit-fermions"
 version = "0.2.0"
 last_release_date = 2026-09-11
@@ -48,5 +48,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 54577
-last_180_days_downloads = 58179
+last_month_downloads = 47172
+last_180_days_downloads = 58369

@@ -7,7 +7,7 @@ labels = ["finance", "optimization", "HPC"]
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://github.com/11D-Beyonder/double-quant/tree/main/docs"
-packages = []
+packages = ["https://pypi.org/project/double-quant/"]
 uuid = "6e4e5010-7f25-4f03-9724-c9088b4ce0e0"
 maturity = "experimental"
 status = "Alumni"
@@ -28,7 +28,7 @@ last_activity = 2026-07-03
 url = "https://qisk.it/e-6e4e5010"
 style = "flat"
 
-[pypi.double-quant]
+[[pypi]]
 package_name = "double-quant"
 version = "0.0.1a3"
 last_release_date = 2026-04-15

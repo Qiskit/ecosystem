@@ -3,7 +3,7 @@ url = "https://github.com/cda-tum/mqt-qubomaker"
 license = "MIT"
 labels = ["optimization"]
 category = "Application"
-packages = []
+packages = ["https://pypi.org/project/mqt.qubomaker/"]
 uuid = "026213b3-a2cd-4281-b49d-8516c6cd73ae"
 maturity = "deprecated"
 status = "Alumni"
@@ -26,7 +26,7 @@ last_activity = 2026-07-03
 url = "https://qisk.it/e-026213b3"
 style = "flat"
 
-[pypi."mqt.qubomaker"]
+[[pypi]]
 package_name = "mqt-qubomaker"
 version = "1.0.2"
 last_release_date = 2026-07-03

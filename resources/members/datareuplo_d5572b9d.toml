@@ -15,7 +15,7 @@ website = "https://casiriorg.github.io/projects/qiskit-data-reuploading/"
 category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2605.19233"
 documentation = "https://casiriorg.github.io/projects/qiskit-data-reuploading/api/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-data-reuploading/"]
 uuid = "d5572b9d-91eb-46e1-94ac-7515fb753b1f"
 maturity = "experimental"
 status = "Under revision"
@@ -35,7 +35,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-d5572b9d"
 style = "flat"
 
-[pypi.qiskit-data-reuploading]
+[[pypi]]
 package_name = "qiskit-data-reuploading"
 version = "0.1.0"
 last_release_date = 2026-05-29
@@ -50,7 +50,7 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 10
+last_month_downloads = 4
 last_180_days_downloads = 292
 
 [checks.P10]

@@ -7,7 +7,7 @@ labels = ["provider"]
 interfaces = ["Python"]
 category = "Compute provider"
 documentation = "https://qiskit-qulacs.netlify.app/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-qulacs/"]
 uuid = "ebd47aa6-4dda-4318-a822-dbd1597ed37a"
 maturity = "production-ready"
 
@@ -30,7 +30,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-ebd47aa6"
 style = "flat"
 
-[pypi.qiskit-qulacs]
+[[pypi]]
 package_name = "qiskit-qulacs"
 version = "0.1.0"
 last_release_date = 2024-04-02
@@ -44,8 +44,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 118
-last_180_days_downloads = 811
+last_month_downloads = 129
+last_180_days_downloads = 824
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/Gopal-Dahale/qiskit-qulacs/issues/11, waiting for a release with the fix"

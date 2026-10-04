@@ -8,7 +8,7 @@ labels = ["optimization"]
 interfaces = ["Julia"]
 created_at = 2023-01-13
 category = "Application"
-packages = []
+packages = ["https://juliahub.com/ui/Packages/General/QiskitOpt"]
 uuid = "fd796b7d-2775-4ece-89f0-778066552014"
 maturity = "production-ready"
 
@@ -30,7 +30,7 @@ last_activity = 2026-08-01
 url = "https://qisk.it/e-fd796b7d"
 style = "flat"
 
-[julia.QiskitOpt]
+[[julia]]
 package_name = "QiskitOpt"
 registry = "General"
 version = "0.7.1"
@@ -41,5 +41,5 @@ requires_julia = ["1.10.0 - 1"]
 juliahub_url = "https://juliahub.com/ui/Packages/General/QiskitOpt"
 uuid = "81b20daf-e62b-4502-a0d1-aa084de80e33"
 estimated_unique_users = 20
-monthly_downloads = 119
-total_downloads = 192
+monthly_downloads = 128
+total_downloads = 201

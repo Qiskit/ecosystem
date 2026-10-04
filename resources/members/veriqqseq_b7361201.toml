@@ -8,7 +8,7 @@ website = "https://www.veri-q.com/"
 category = "Circuit simulator"
 reference_paper = "https://doi.org/10.1007/978-3-032-26204-2_30"
 documentation = "https://github.com/veriq-toolkit/QSeqSim/blob/main/docs/USER_GUIDE.md"
-packages = []
+packages = ["https://pypi.org/project/qseqsim/"]
 uuid = "b7361201-ab9b-4488-ab7d-1a11941064c9"
 maturity = "experimental"
 status = "Early Project"
@@ -29,7 +29,7 @@ last_activity = 2026-08-19
 url = "https://qisk.it/e-b7361201"
 style = "flat"
 
-[pypi.qseqsim]
+[[pypi]]
 package_name = "qseqsim"
 version = "0.1.2"
 last_release_date = 2026-08-19
@@ -45,4 +45,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
 last_month_downloads = 51
-last_180_days_downloads = 392
+last_180_days_downloads = 393

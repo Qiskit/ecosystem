@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2024-05-07
 category = "Compute provider"
 documentation = "https://docs.quantinuum.com/systems/trainings/alternate_pathways/qiskit_h2.html"
-packages = []
+packages = ["https://pypi.org/project/qiskit-quantinuum-provider/"]
 uuid = "d5d174ee-cbe5-48a3-82ac-66d4cf2579c1"
 maturity = "deprecated"
 status = "Alumni"
@@ -30,7 +30,7 @@ last_activity = 2026-04-11
 url = "https://qisk.it/e-d5d174ee"
 style = "flat"
 
-[pypi.qiskit-quantinuum-provider]
+[[pypi]]
 package_name = "qiskit-quantinuum-provider"
 version = "0.4.1"
 last_release_date = 2024-07-22

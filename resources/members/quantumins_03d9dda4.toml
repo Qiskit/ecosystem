@@ -6,7 +6,7 @@ labels = ["provider"]
 interfaces = ["Python"]
 category = "Compute provider"
 documentation = "https://qutech-delft.github.io/qiskit-quantuminspire/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-quantuminspire/"]
 uuid = "03d9dda4-38bd-41dd-b1cc-cb96f29f55dc"
 maturity = "experimental"
 
@@ -21,14 +21,14 @@ description = "Qiskit provider for Quantum Inspire backends "
 total_dependent_repositories = 2
 total_dependent_packages = 3
 created_at = 2024-08-28
-last_commit = 2026-10-01
-last_activity = 2026-10-01
+last_commit = 2026-10-02
+last_activity = 2026-10-02
 
 [badge]
 url = "https://qisk.it/e-03d9dda4"
 style = "flat"
 
-[pypi.qiskit-quantuminspire]
+[[pypi]]
 package_name = "qiskit-quantuminspire"
 version = "0.18.4"
 last_release_date = 2026-09-17
@@ -46,5 +46,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-03-13
 highest_supported_qiskit_version = "2.3.1"
-last_month_downloads = 1715
-last_180_days_downloads = 45723
+last_month_downloads = 1409
+last_180_days_downloads = 42798

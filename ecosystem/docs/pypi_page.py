@@ -13,6 +13,7 @@
 
 """Pages in https://qiskit.github.io/ecosystem/pypi/<package-name>"""
 
+from ecosystem.docs import command_block
 from ecosystem.docs.card import ProjectSummaryCard, PypiPackageCard
 from .project_page import ProjectPage
 
@@ -48,7 +49,7 @@ class PypiPage(ProjectPage):
         lines = []
         if self.package.description:
             lines += [f"> {self.package.description}", ""]
-        lines.append(f":simple-python: `pip install {self.package.package_name}`")
+        lines += command_block(f"pip install {self.package.package_name}")
         lines += ["", f":simple-pypi: [{self.pypi_url}]({self.pypi_url})"]
         return lines
 

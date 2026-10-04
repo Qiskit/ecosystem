@@ -6,7 +6,7 @@ interfaces = ["Python"]
 created_at = 2023-03-14
 category = "Application"
 documentation = "https://c2qa.github.io/bosonic-qiskit/"
-packages = []
+packages = ["https://pypi.org/project/bosonic-qiskit/"]
 uuid = "3d8fe04d-8ac0-4282-9eb6-cb458550945a"
 maturity = "production-ready"
 
@@ -28,7 +28,7 @@ last_activity = 2026-07-22
 url = "https://qisk.it/e-3d8fe04d"
 style = "flat"
 
-[pypi.bosonic-qiskit]
+[[pypi]]
 package_name = "bosonic-qiskit"
 version = "15.1"
 last_release_date = 2025-12-09
@@ -45,8 +45,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-04-01
 highest_supported_qiskit_version = "2.0.0"
-last_month_downloads = 164
-last_180_days_downloads = 2087
+last_month_downloads = 218
+last_180_days_downloads = 2091
 
 [checks.P12]
 xfailed = "The license declaration is already in the repository (https://github.com/C2QA/bosonic-qiskit/commit/b4fc994189d3b4772edc36405b45ae6970fa87f3), waiting for a release with the fix"

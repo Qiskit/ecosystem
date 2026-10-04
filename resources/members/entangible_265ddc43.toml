@@ -7,7 +7,10 @@ interfaces = ["Web interface"]
 website = "https://entangible.org"
 category = "Game/Educational"
 documentation = "https://entangible.org/"
-packages = []
+packages = [
+  "https://github.com/JanLahmann/entangible/blob/HEAD/hardware/pyproject.toml",
+  "https://github.com/JanLahmann/entangible/blob/HEAD/packages/*/pyproject.toml",
+]
 uuid = "265ddc43-2376-43e0-90f3-fa27eade6021"
 maturity = "experimental"
 status = "Very Early Project"
@@ -21,23 +24,13 @@ homepage = "https://entangible.org/"
 license = "Apache-2.0"
 created_at = 2026-07-11
 last_commit = 2026-10-01
-last_activity = 2026-10-01
+last_activity = 2026-09-30
 
 [badge]
 url = "https://qisk.it/e-265ddc43"
 style = "flat"
 
-[python.qamposer-hardware]
-package_name = "qamposer-hardware"
-version = "0.1.0"
-description = "3D-printable multi-color gate tiles for Entangible (Prusa Core One + MMU)."
-requires_python = ">=3.11"
-build_backend = "hatchling.build"
-path = "hardware"
-source = ["pyproject.toml"]
-deferred = []
-
-[python.qamposer-assets]
+[[python]]
 package_name = "qamposer-assets"
 version = "0.1.0"
 description = "Printable asset generator for Entangible — vector ArUco tiles and board mats (SVG -> PDF)."
@@ -47,7 +40,17 @@ path = "packages/qamposer-assets"
 source = ["pyproject.toml"]
 deferred = []
 
-[python.qamposer-physical-host]
+[[python]]
+package_name = "qamposer-hardware"
+version = "0.1.0"
+description = "3D-printable multi-color gate tiles for Entangible (Prusa Core One + MMU)."
+requires_python = ">=3.11"
+build_backend = "hatchling.build"
+path = "hardware"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
 package_name = "qamposer-physical-host"
 version = "0.1.0"
 description = "FastAPI kiosk host for Entangible (milestone M2) — HTTPS origin, WS broadcast hub, optional backend proxy."
@@ -57,7 +60,7 @@ path = "packages/qamposer-physical-host"
 source = ["pyproject.toml"]
 deferred = []
 
-[python.qamposer-vision]
+[[python]]
 package_name = "qamposer-vision"
 version = "0.1.0"
 description = "OpenCV/ArUco vision pipeline for Entangible — detects gate tiles and builds @qamposer/react circuits."

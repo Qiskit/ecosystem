@@ -8,7 +8,7 @@ interfaces = ["Python"]
 website = "https://dakk.github.io/qlasskit/"
 category = "Converter"
 documentation = "https://dakk.github.io/qlasskit/"
-packages = []
+packages = ["https://pypi.org/project/qlasskit/"]
 uuid = "42b0f0f5-bdbd-4008-8749-955b496dab08"
 maturity = "production-ready"
 
@@ -31,7 +31,7 @@ last_activity = 2026-08-25
 url = "https://qisk.it/e-42b0f0f5"
 style = "flat"
 
-[pypi.qlasskit]
+[[pypi]]
 package_name = "qlasskit"
 version = "0.1.39"
 last_release_date = 2026-01-03
@@ -41,5 +41,5 @@ url = "https://pypi.org/project/qlasskit/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/dakk/"]
-last_month_downloads = 22
-last_180_days_downloads = 641
+last_month_downloads = 17
+last_180_days_downloads = 602

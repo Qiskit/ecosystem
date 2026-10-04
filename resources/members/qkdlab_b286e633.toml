@@ -7,7 +7,7 @@ labels = ["quantum information", "circuit building"]
 interfaces = ["Python"]
 category = "Application"
 documentation = "https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/docs/api.md"
-packages = []
+packages = ["https://pypi.org/project/qiskit-qkd-lab/"]
 uuid = "b286e633-de44-4416-b62d-00a7aed36ac8"
 maturity = "experimental"
 status = "Very Early Project"
@@ -28,7 +28,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-b286e633"
 style = "flat"
 
-[pypi.qiskit-qkd-lab]
+[[pypi]]
 package_name = "qiskit-qkd-lab"
 version = "0.2.0"
 last_release_date = 2026-08-08
@@ -43,7 +43,7 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
-last_month_downloads = 22
+last_month_downloads = 12
 last_180_days_downloads = 177
 
 [checks.P10]

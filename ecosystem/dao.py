@@ -70,6 +70,61 @@ class TomlEncoder(TomlEncoderUpstream):
         return oneline
 
 
+#: The order the tables of a member file are written in: what the submission said, then the
+#: repository and its badge, then what each registry and manifest says, then the check ups.
+#: `toml` would put every `[[array]]` above every `[table]` instead, which reads backwards
+#: and would reshuffle every file on the next write.
+SECTION_ORDER = (
+    "github",
+    "badge",
+    "pypi",
+    "crates",
+    "julia",
+    "cargo",
+    "python",
+    "requirements",
+    "checks",
+)
+
+
+def dumps(member_dict):
+    """A member as TOML text, with its tables in the order the dict has them.
+
+    `toml` collects the arrays of tables into a string of their own and hands the plain
+    sub-tables back to the caller, so whatever the dict says the output is always scalars,
+    then every `[[array]]`, then every `[table]`. That puts `[[pypi]]` above `[github]`,
+    which is not where a reader of a member file looks for it, and it would reshuffle every
+    file the next time an updater writes one.
+
+    So the blocks are put back in the order of the keys of `Member.to_dict`: the submission's
+    own values, then `[github]` and `[badge]`, then the package sections, then `[checks.*]`.
+    """
+    text = toml.dumps(member_dict, encoder=TomlEncoder(preserve=True))
+    blocks, current = [], []
+    for line in text.splitlines(keepends=True):
+        if line.startswith("[") and current:
+            blocks.append(current)
+            current = []
+        current.append(line)
+    blocks.append(current)
+
+    def position(block):
+        """Where the section this block belongs to goes in a member file"""
+        header = block[0]
+        if not header.startswith("["):
+            return -1  # the scalars of the submission, which stay at the top
+        section = header.strip().strip("[]").split(".", 1)[0].strip('"')
+        if section not in SECTION_ORDER:
+            # an unknown section lands with the packaging ones rather than past `[checks]`
+            return SECTION_ORDER.index("requirements")
+        return SECTION_ORDER.index(section)
+
+    arranged = sorted(
+        range(len(blocks)), key=lambda index: (position(blocks[index]), index)
+    )
+    return "".join("".join(blocks[index]) for index in arranged)
+
+
 class TomlStorage:
     """Read / write TOML files from a dict where keys are repo URLs, and values are Member objects.
 
@@ -131,16 +186,10 @@ class TomlStorage:
             self.toml_dir.mkdir()
 
         # Write to human-readable TOML
-        if self.name_id:
-            submission = data[self.name_id]
-            submission_dict = submission.to_dict()
+        members = [data[self.name_id]] if self.name_id else list(data.values())
+        for submission in members:
             with open(self._name_id_to_path(submission.name_id), "w") as file:
-                toml.dump(submission_dict, file, encoder=TomlEncoder(preserve=True))
-        else:
-            for submission in data.values():
-                submission_dict = submission.to_dict()
-                with open(self._name_id_to_path(submission.name_id), "w") as file:
-                    toml.dump(submission_dict, file, encoder=TomlEncoder(preserve=True))
+                file.write(dumps(submission.to_dict()))
 
     def __enter__(self) -> dict:
         if self._data is None:

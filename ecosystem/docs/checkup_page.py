@@ -67,6 +67,15 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
                 where.setdefault(checkup_id, []).append(project)
         return pending, explained
 
+    def failing(self, checkup_id):
+        """The current members a check up is pending on"""
+        return [p for p in self.pending[checkup_id] if not p.is_alumni]
+
+    def alumni(self, checkup_id):
+        """The alumni a check up is recorded on. They are not failing it: the check up they
+        kept failing is why they are no longer members."""
+        return [p for p in self.pending[checkup_id] if p.is_alumni]
+
     # ---------------------------------------------------------------- small helpers
 
     @staticmethod
@@ -146,7 +155,8 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
                 "Importance": f"{self.icon_of(checkup.get('importance'))} "
                 f"{self.cell(checkup.get('importance'))}",
                 "Cure period": self.cure_period_of(id_),
-                "Failing": len([p for p in self.pending[id_] if not p.is_alumni]),
+                "Failing": len(self.failing(id_)),
+                "Alumni": len(self.alumni(id_)),
             }
             for id_, checkup in self.checkups.items()
         ]
@@ -197,8 +207,8 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
 
     def pending_block(self, id_):
         """The projects a check up is pending on, the alumni among them listed apart"""
-        alumni = [p for p in self.pending[id_] if p.is_alumni]
-        members = [p for p in self.pending[id_] if not p.is_alumni]
+        alumni = self.alumni(id_)
+        members = self.failing(id_)
         if not members:
             if not alumni:
                 return ["**No project is failing this check up**"]

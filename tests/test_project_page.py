@@ -20,11 +20,14 @@ from mkdocs_gen_files.editor import FilesEditor
 
 from ecosystem.badge import BadgeData
 from ecosystem.check import CheckData
+from ecosystem.crates import CratesData
 from ecosystem.docs.project_page import ProjectPage
 from ecosystem.github import GitHubData
 from ecosystem.julia import JuliaData
 from ecosystem.member import Member
+from ecosystem.python import PythonData
 from ecosystem.pypi import PyPIData
+from ecosystem.requirements import RequirementsData
 from ecosystem.request import URL
 
 OWNER = "banana-org"
@@ -92,7 +95,7 @@ class TestTheWholePage(ProjectPageTestCase):
         page = self.rendered(
             description="Compiles bananas",
             badge=BadgeData(url="https://bit.ly/banana", style="flat"),
-            pypi={"banana": banana_on_pypi()},
+            pypi=[banana_on_pypi()],
         )
         headings = [
             "# Banana [:material-file-edit-outline:]",
@@ -101,6 +104,7 @@ class TestTheWholePage(ProjectPageTestCase):
             "### :simple-shieldsdotio: Badge",
             "### :material-list-status: Checkups",
             "### :material-package-variant: Packages",
+            "### :simple-qiskit: Qiskit requirements",
         ]
         found = [page.index(heading) for heading in headings]
         self.assertEqual(sorted(found), found)
@@ -282,7 +286,7 @@ class TestTheURLsCard(ProjectPageTestCase):
 
 
 class TestThePackagesSection(ProjectPageTestCase):
-    """One card per distribution, whatever registry it is published in"""
+    """One table per kind of registry, each with the columns that kind has values for"""
 
     def packages(self, **kwargs):
         """The packages section of such a member, as one string"""
@@ -292,54 +296,101 @@ class TestThePackagesSection(ProjectPageTestCase):
         """Which is the case for a repository that publishes nothing"""
         self.assertEqual("", self.packages())
 
-    def test_a_pypi_package_gets_its_card(self):
-        """The release, the downloads and the qiskit compatibility table"""
-        section = self.packages(pypi={"banana": banana_on_pypi()})
+    def test_a_pypi_package_is_a_row_with_its_release_and_its_downloads(self):
+        """And a link to the page about the distribution itself"""
+        section = self.packages(pypi=[banana_on_pypi()])
         self.assertIn("### :material-package-variant: Packages", section)
-        self.assertIn("#### :simple-python: PyPI `banana`", section)
-        self.assertIn("**last month** 1,234", section)
-        self.assertIn("Qiskit Compatibility", section)
+        self.assertIn(
+            "| PyPI package | Release | Last month | Last 180 days |", section
+        )
+        self.assertIn("[`banana`](../pypi/banana.md)", section)
+        self.assertIn(
+            '[1.0.0](https://pypi.org/project/banana/ "Released: 2026-01-15")', section
+        )
+        self.assertIn("| 1,234 | 56,789 |", section)
+
+    def test_the_compatibility_is_not_repeated_in_the_package_tables(self):
+        """It is the Qiskit requirements table below that collects it"""
+        section = self.packages(pypi=[banana_on_pypi()])
+        self.assertNotIn("Qiskit compatibility", section)
+        self.assertNotIn("V1", section)
+
+    def test_a_release_with_nowhere_to_link_is_still_the_version(self):
+        """A stored section can name a release without naming the page it is on"""
+        section = self.packages(pypi=[PyPIData(package_name="banana", version="1.0.0")])
+        self.assertIn("| [`banana`](../pypi/banana.md) | 1.0.0 |", section)
+
+    def test_a_crate_is_a_row_with_its_release_and_its_downloads(self):
+        """The Rust columns the registry gives beside the download counts"""
+        section = self.packages(
+            crates=[
+                CratesData(
+                    package_name="banana_parser",
+                    version="0.7.0",
+                    last_release_date="2024-10-30",
+                    rust_version="1.70",
+                    edition="2021",
+                    total_downloads=939802,
+                    last_90_days_downloads=166899,
+                )
+            ]
+        )
+        self.assertIn(
+            "| crates.io crate | Release | Rust | Edition | "
+            "Total downloads | Last 90 days |",
+            section,
+        )
+        self.assertIn("[`banana_parser`](../crates/banana_parser.md)", section)
+        self.assertIn(
+            "[0.7.0](https://crates.io/crates/banana_parser/0.7.0 "
+            '"Released: 2024-10-30")',
+            section,
+        )
+        self.assertIn("| 1.70 | 2021 | 939,802 | 166,899 |", section)
+
+    def test_a_crate_is_not_in_the_qiskit_requirements_table(self):
+        """Qiskit publishes no crate, so there is nothing on crates.io to require"""
+        page = self.page(crates=[CratesData(package_name="banana_parser")])
+        self.assertEqual([], page.qiskit_requirements())
 
     def test_a_julia_package_names_its_registry_and_its_users(self):
         """JuliaHub is the only place to link to, and it is keyed by registry"""
         section = self.packages(
-            julia={
-                "Banana": JuliaData(
+            julia=[
+                JuliaData(
                     package_name="Banana",
                     version="1.2.3",
                     release_date="Jan 2026",
                     estimated_unique_users=4242,
                 )
-            }
+            ]
         )
-        self.assertIn("#### :simple-julia: Julia `Banana`", section)
+        self.assertIn("| Julia package | Release | Estimated users |", section)
         self.assertIn("https://juliahub.com/ui/Packages/General/Banana", section)
         self.assertIn('"Released: Jan 2026"', section)
-        self.assertIn("**estimated unique users** 4,242", section)
+        self.assertIn("| 4,242 |", section)
 
     def test_a_julia_package_with_nothing_fetched_says_so(self):
         """A section can be stored before any of it has been read"""
-        section = self.packages(julia={"Banana": JuliaData(package_name="Banana")})
-        self.assertIn("[N/A]", section)
-        self.assertIn('"Released: N/A"', section)
-        self.assertNotIn("estimated unique users", section)
+        section = self.packages(julia=[JuliaData(package_name="Banana")])
+        self.assertIn("| `Banana` | N/A |", section)
+        self.assertNotIn("Estimated users", section)
 
     def test_each_other_registry_is_recognized_by_its_host(self):
         """`member.packages` is a list of URLs, so the host is all there is to go by"""
         for url, expected in [
             (
                 "https://marketplace.visualstudio.com/items?itemName=banana",
-                ":material-microsoft-visual-studio: [Visual Studio Marketplace: banana]",
+                ":material-microsoft-visual-studio: Visual Studio Marketplace | [banana]",
             ),
             (
                 "https://ocaml.org/p/banana/latest",
-                ":simple-ocaml: [opam (OCaml Package Manager): banana]",
+                ":simple-ocaml: opam (OCaml Package Manager) | [banana]",
             ),
             (
                 "https://github.com/banana-org/banana-repo/pkgs/container/banana",
-                ":simple-github: [GitHub Package: banana]",
+                ":simple-github: GitHub Packages | [banana]",
             ),
-            ("https://crates.io/crates/banana", ":simple-rust: [Crate: banana]"),
             (
                 "https://www.npmjs.com/package/banana",
                 ":octicons-package-16: [www.npmjs.com]",
@@ -347,6 +398,140 @@ class TestThePackagesSection(ProjectPageTestCase):
         ]:
             with self.subTest(package=url):
                 self.assertIn(expected, self.packages(packages=[URL(url)]))
+
+    def test_a_declared_url_a_section_describes_is_not_a_registry_row(self):
+        """`packages` keeps every declaration now, and the tables above already say what
+        was read from the claimed ones"""
+        section = self.packages(
+            pypi=[banana_on_pypi()],
+            packages=[
+                URL("https://pypi.org/project/banana/"),
+                URL("https://www.npmjs.com/package/banana"),
+            ],
+        )
+        # a row of the registry table, which an unclaimed URL is the only source of
+        rows = [line for line in section.splitlines() if "octicons-package-16" in line]
+        self.assertEqual(1, len(rows))
+        self.assertIn("www.npmjs.com", rows[0])
+
+    def test_a_host_with_no_name_to_read_leaves_the_package_column_out(self):
+        """The name is in a different part of the URL in every registry"""
+        section = self.packages(packages=[URL("https://www.npmjs.com/package/banana")])
+        self.assertIn("| Registry |", section)
+        self.assertNotIn("Package |", section)
+
+    def test_every_kind_gets_a_table_of_its_own(self):
+        """The columns of one kind say nothing about the others"""
+        section = self.packages(
+            pypi=[banana_on_pypi()],
+            julia=[JuliaData(package_name="Banana", version="1.2.3")],
+            # a registry with no section of its own: a crates.io URL would be claimed by
+            # `[crates.*]` and so would not be a row of the registry table
+            packages=[URL("https://www.npmjs.com/package/banana")],
+        )
+        self.assertEqual(1, section.count("### :material-package-variant: Packages"))
+        dividers = [
+            line
+            for line in section.splitlines()
+            if set(line) <= set("| -:") and line.startswith("|")
+        ]
+        self.assertEqual(3, len(dividers))
+
+
+class TestTheQiskitRequirementsTable(ProjectPageTestCase):
+    """What the project asks of Qiskit, wherever it declares it"""
+
+    def requirements(self, **kwargs):
+        """The Qiskit requirements section of such a member, as one string"""
+        return "\n".join(self.page(**kwargs).qiskit_requirements())
+
+    @staticmethod
+    def declared_in_a_repository():
+        """A distribution the repository declares without publishing it"""
+        return PythonData(
+            package_name="banana-compiler",
+            requires_qiskit=">=1.2,<3",
+            compatible_with_qiskit_v1=True,
+            compatible_with_qiskit_v2=True,
+            highest_supported_qiskit_version="2.1.0",
+            highest_supported_qiskit_release_date="2026-06-10",
+        )
+
+    @staticmethod
+    def declared_in_a_file(file="requirements.txt"):
+        """A qiskit requirement a repository declares in a requirements file"""
+        return RequirementsData(
+            file=file,
+            requires_qiskit="==1.4",
+            compatible_with_qiskit_v1=True,
+            compatible_with_qiskit_v2=False,
+            highest_supported_qiskit_version="1.4.4",
+            highest_supported_qiskit_release_date="2026-01-14",
+        )
+
+    def test_there_is_no_section_without_a_requirement(self):
+        """Most members declare none, and an empty table says nothing"""
+        self.assertEqual("", self.requirements())
+
+    def test_a_requirement_carries_the_specifier_the_marks_and_the_release(self):
+        """The four values the compatibility block used to show in every tile"""
+        section = self.requirements(pypi=[banana_on_pypi()])
+        self.assertIn("### :simple-qiskit: Qiskit requirements", section)
+        self.assertIn(
+            "| Declared in | Requires | V1 | V2 | Highest supported |", section
+        )
+        self.assertIn("PyPI [`banana`](../pypi/banana.md) | `>=1.4,<3` |", section)
+        self.assertIn(":material-check-circle-outline:", section)
+        self.assertIn(
+            '[2.1.0](https://pypi.org/project/qiskit/2.1.0/ "Released: 2026-06-10")',
+            section,
+        )
+
+    def test_an_unsupported_major_version_is_marked_as_one(self):
+        """Which is what the [S01] and [R01] check ups are about"""
+        section = self.requirements(requirements=[self.declared_in_a_file()])
+        self.assertIn(
+            ":material-check-circle-outline: | :material-close-circle-outline:", section
+        )
+
+    def test_every_kind_of_declaration_is_a_row_of_the_same_table(self):
+        """Comparing them is the reason the table is there"""
+        section = self.requirements(
+            pypi=[banana_on_pypi()],
+            python=[self.declared_in_a_repository()],
+            requirements=[self.declared_in_a_file()],
+        )
+        self.assertEqual(1, section.count("| Declared in |"))
+        rows = [line for line in section.splitlines() if line.startswith("| ")]
+        self.assertEqual(5, len(rows))
+        self.assertIn("PyPI [`banana`]", rows[2])
+        self.assertIn(
+            "repo [`banana-compiler`](../pip-source/banana-compiler.md)", rows[3]
+        )
+        self.assertIn("`requirements.txt`", rows[4])
+
+    def test_a_requirements_file_is_linked_on_the_default_branch(self):
+        """The branch is not stored anywhere, so the link goes through HEAD"""
+        self.assertIn(
+            f"[`requirements.txt`](https://github.com/{OWNER}/{REPO}"
+            "/blob/HEAD/requirements.txt)",
+            self.requirements(requirements=[self.declared_in_a_file()]),
+        )
+
+    def test_one_row_per_file(self):
+        """A repository can declare qiskit in more than one of them"""
+        section = self.requirements(
+            requirements=[
+                self.declared_in_a_file("requirements.txt"),
+                self.declared_in_a_file("requirements-dev.txt"),
+            ]
+        )
+        self.assertIn("`requirements.txt`", section)
+        self.assertIn("`requirements-dev.txt`", section)
+
+    def test_a_distribution_that_asks_for_nothing_is_not_a_row(self):
+        """A stored section with no specifier has nothing to compare"""
+        self.assertEqual("", self.requirements(pypi=[PyPIData(package_name="banana")]))
 
 
 class TestTheCheckupsTable(ProjectPageTestCase):
@@ -482,4 +667,4 @@ class TestTheBadgeSection(ProjectPageTestCase):
         self.assertIn(
             "[![Qiskit Ecosystem](https://bit.ly/banana)](https://qisk.it/e)", section
         )
-        self.assertIn("**style** `flat`", section)
+        self.assertIn("**Style** `flat`", section)

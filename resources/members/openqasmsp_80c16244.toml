@@ -5,7 +5,7 @@ labels = ["openqasm"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
-packages = []
+packages = ["https://pypi.org/project/openqasm-sphinx/"]
 uuid = "80c16244-6475-4c5c-9ae6-cfd9fbb93482"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -28,7 +28,7 @@ last_activity = 2026-07-20
 url = "https://qisk.it/e-80c16244"
 style = "flat"
 
-[pypi.openqasm-sphinx]
+[[pypi]]
 package_name = "openqasm-sphinx"
 version = "0.1.0"
 last_release_date = 2024-04-09
@@ -40,5 +40,5 @@ maintainers = [
   "https://pypi.org/user/jakelishman/",
   "https://pypi.org/user/openqasm-bot/",
 ]
-last_month_downloads = 248
-last_180_days_downloads = 1909
+last_month_downloads = 195
+last_180_days_downloads = 1765

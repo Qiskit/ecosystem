@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2024-05-07
 category = "Compute provider"
 documentation = "https://qiskit-braket-provider.readthedocs.io/"
-packages = []
+packages = ["https://pypi.org/project/qiskit-braket-provider/"]
 uuid = "de20c734-6ee9-4ba0-a4f0-3e4d62ec3c2a"
 maturity = "production-ready"
 
@@ -23,14 +23,14 @@ estimated_contributors = 41
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-02-22
-last_commit = 2026-10-01
-last_activity = 2026-10-01
+last_commit = 2026-10-03
+last_activity = 2026-10-02
 
 [badge]
 url = "https://qisk.it/e-de20c734"
 style = "flat"
 
-[pypi.qiskit-braket-provider]
+[[pypi]]
 package_name = "qiskit-braket-provider"
 version = "0.25.0"
 last_release_date = 2026-09-10
@@ -45,4 +45,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 5670
-last_180_days_downloads = 66465
+last_180_days_downloads = 66930

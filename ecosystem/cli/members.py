@@ -22,7 +22,7 @@ from jsonpath import findall, query
 from slugify import slugify
 
 from ecosystem.check import ChecksToml, parse_exclusions
-from ecosystem.docs import anchor, plural, write_if_changed
+from ecosystem.docs import anchor, command_block, plural, write_if_changed
 from ecosystem.docs.project_table import (
     CATEGORY,
     CHECKUPS,
@@ -33,6 +33,7 @@ from ecosystem.docs.project_table import (
     classification_columns,
     classification_table,
 )
+from ecosystem.docs import summary_charts
 from ecosystem.docs.checkup_page import CheckupAssets
 from ecosystem.dao import DAO
 from ecosystem.classifications import ClassificationsToml
@@ -187,6 +188,16 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         self.update_assets_interfaces(projects_per_classification["interfaces"])
         self.update_assets_ibm_maintained()
         self.update_assets_checkups()
+        self.update_assets_summary_charts()
+
+    def update_assets_summary_charts(self):
+        """Updates the chart data of the summary page in docs/assets/.
+
+        See `ecosystem.docs.summary_charts`: the charts used to carry hardcoded numbers.
+        """
+        summary_charts.write_all(
+            self.dao.get_all(), str(Path(self.current_dir, "docs", "assets"))
+        )
 
     def update_assets_checkups(self):
         """Updates the check up fragments in docs/assets/, from resources/checks.toml and the
@@ -426,7 +437,9 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                 '<tr><td><a href="https://github.com/Qiskit/ecosystem/tree/main'
                 f'/resources/members/{name_id}.toml">{name}</a></td>'
                 f'<td><a href="{badge}"><img src="{badge}" /></a><br/>'
-                f"\n\n```markdown\n{badge_md}   \n```\n\n</td>"
+                + "\n\n"
+                + "\n".join(command_block(badge_md, "markdown"))
+                + "\n\n</td>"
                 "</tr>"
             )
         lines.append("</table>\n")
@@ -465,6 +478,29 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         for project in self.dao.get_all(name):
             project.update_pypi()
             self.dao.update(project.name_id, pypi=project.pypi)
+
+    def update_crates(self, name=None):
+        """
+        Updates crates.io data.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_crates()
+            self.dao.update(project.name_id, crates=project.crates)
+
+    def update_cargo(self, name=None):
+        """
+        Updates the crates the member's own repository declares.
+
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+        """
+        for project in self.dao.get_all(name):
+            project.update_cargo()
+            self.dao.update(project.name_id, cargo=project.cargo)
 
     def update_julia(self, name=None):
         """
@@ -681,8 +717,6 @@ class CliMembers:  # pylint: disable=too-many-public-methods
         data_map will be added, even if they are empty"""
         filtered_data = {}
         for key, alias in data_map.items():
-            # reset per key: a priority list that resolves to nothing leaves `data` alone,
-            # and the value of the previous key would be exported under this one
             data = None
             if isinstance(alias, dict):
                 data = CliMembers.filter_data(member_dict, alias)

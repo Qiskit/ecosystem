@@ -15,14 +15,6 @@ uuid = "79b52453-af83-4d4e-8d9b-e54a5ec7e326"
 maturity = "production-ready"
 status = "Under revision"
 
-[[requirements]]
-file = "requirements.txt"
-requires_qiskit = "==1.4"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-02-21
-highest_supported_qiskit_version = "1.4.0"
-
 [github]
 url = "https://github.com/GabrieleMessina/qutes_lang"
 owner = "GabrieleMessina"
@@ -36,13 +28,29 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2023-10-23
 last_commit = 2026-02-15
-last_activity = 2026-02-15
+last_activity = 2026-10-02
 
 [badge]
 url = "https://qisk.it/e-79b52453"
 style = "flat"
 
+[[requirements]]
+file = "requirements.txt"
+requires_qiskit = "==1.4"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-02-21
+highest_supported_qiskit_version = "1.4.0"
+
 [checks.G06]
 since = 2026-09-17
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
+
+[checks.R01]
+xfailed = "Issue asking for Qiskit v2 support submitted https://github.com/GabrieleMessina/qutes_lang/issues/99, waiting for the fix"
+xfailed_until = 2026-11-30
+since = 2026-10-02
+details = "The qiskit requirement in requirements.txt is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/GabrieleMessina/qutes_lang/issues/99"
+importance = "IMPORTANT"

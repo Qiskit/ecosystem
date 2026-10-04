@@ -7,7 +7,7 @@ interfaces = ["Python", "Command-line interface (CLI)"]
 created_at = 2023-03-14
 category = "SDK"
 documentation = "https://quantuminspire.readthedocs.io/"
-packages = []
+packages = ["https://pypi.org/project/quantuminspire/"]
 uuid = "fb1cd889-961a-4029-bb8f-229e4c4e12a4"
 maturity = "experimental"
 
@@ -29,7 +29,7 @@ last_activity = 2026-09-25
 url = "https://qisk.it/e-fb1cd889"
 style = "flat"
 
-[pypi.quantuminspire]
+[[pypi]]
 package_name = "quantuminspire"
 version = "4.1.0"
 last_release_date = 2026-09-25
@@ -47,5 +47,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-08-19
 highest_supported_qiskit_version = "2.1.2"
-last_month_downloads = 592
-last_180_days_downloads = 9752
+last_month_downloads = 556
+last_180_days_downloads = 9422

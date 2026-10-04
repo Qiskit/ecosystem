@@ -9,7 +9,7 @@ interfaces = ["Python"]
 category = "Transpiler plugin"
 reference_paper = "https://arxiv.org/pdf/2310.06889"
 documentation = "https://mqt.readthedocs.io/projects/predictor/"
-packages = []
+packages = ["https://pypi.org/project/mqt.predictor/"]
 uuid = "9d5e2ef2-cac6-479e-a2f9-8014d54403e4"
 maturity = "experimental"
 
@@ -17,21 +17,21 @@ maturity = "experimental"
 url = "https://github.com/munich-quantum-toolkit/predictor"
 owner = "munich-quantum-toolkit"
 repo = "predictor"
-stars = 88
+stars = 89
 homepage = "https://mqt.readthedocs.io/projects/predictor"
 license = "MIT"
 description = "MQT Predictor - A Tool for Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-03-08
-last_commit = 2026-09-28
-last_activity = 2026-09-30
+last_commit = 2026-10-03
+last_activity = 2026-10-03
 
 [badge]
 url = "https://qisk.it/e-9d5e2ef2"
 style = "flat"
 
-[pypi."mqt.predictor"]
+[[pypi]]
 package_name = "mqt-predictor"
 version = "2.4.0"
 last_release_date = 2026-07-13
@@ -46,8 +46,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
-last_month_downloads = 100
-last_180_days_downloads = 1001
+last_month_downloads = 81
+last_180_days_downloads = 972
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/predictor/issues/832, waiting for a release with the fix"

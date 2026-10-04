@@ -17,12 +17,12 @@ Pages inhttps://qiskit.github.io/ecosystem/p/<short uuid>
 import mkdocs_gen_files
 
 from ecosystem.classifications import ClassificationsToml
+from ecosystem.docs import cell, markdown_table, tooltip
 from ecosystem.docs.card import (
     ProjectSummaryCard,
     URLsCard,
-    PypiPackageCard,
-    PipSourcePackageCard,
-    RequirementsCard,
+    compatibility_mark,
+    pip_install_target,
 )
 from ecosystem.docs.checkup_page import CheckupAssets
 
@@ -47,7 +47,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         lines += self.badge()
         lines += self.checkups()
         lines += self.packages()
-        lines += self.requirements()
+        lines += self.qiskit_requirements()
         return lines
 
     def general_summary(self):
@@ -59,118 +59,359 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             + ["</div>"]
         )
 
-    def packages(self):  # pylint: disable = too-many-branches
-        """Package section"""
-        packages = {}
-        if self.project.packages:
-            sites = []
-            for package in self.project.packages:
-                if "visualstudio.com" in package.hostname:
-                    sites.append(
-                        (
-                            "material-microsoft-visual-studio",
-                            "[Visual Studio Marketplace: "
-                            f"{package.query.split('=')[1]}]({package})",
-                        )
-                    )
-                elif "ocaml.org" in package.hostname:
-                    sites.append(
-                        (
-                            "simple-ocaml",
-                            "[opam (OCaml Package Manager): "
-                            f"{package.path.split('/')[2]}]({package})",
-                        )
-                    )
-                elif "github.com" in package.hostname:
-                    sites.append(
-                        (
-                            "simple-github",
-                            "[GitHub Package: "
-                            f"{package.path.split('/')[5]}]({package})",
-                        )
-                    )
-                elif "crates.io" in package.hostname:
-                    sites.append(
-                        (
-                            "simple-rust",
-                            f"[Crate: {package.path.split('/')[-1]}]({package})",
-                        )
-                    )
-                else:
-                    sites.append(
-                        ("octicons-package-16", f"[{package.hostname}]({package})")
-                    )
-            packages[None] = ['<div class="grid cards" markdown>', " * \n"]
-            packages[None] += [f"    - :{icon}: {p}" for icon, p in sites]
-            packages[None] += ["</div>"]
+    def packages(self):
+        """Packages section: one table per kind of registry, in the order they are stored.
 
-        if self.project.pypi:
-            packages["pypi"] = ['<div class="grid cards" markdown>']
-            for pkg in self.project.pypi.values():
-                packages["pypi"] += PypiPackageCard.from_pypi_data(pkg).generate()
-            packages["pypi"] += ["</div>"]
-
-        if self.project.python:
-            packages["python"] = ['<div class="grid cards" markdown>']
-            for pkg in self.project.python.values():
-                packages["python"] += PipSourcePackageCard.from_python_data(
-                    pkg, self.project
-                ).generate()
-            packages["python"] += ["</div>"]
-
-        if self.project.julia:
-            packages["julia"] = ['<div class="grid cards" markdown>']
-            for pkg in self.project.julia.values():
-                packages["julia"].append(
-                    f" - #### :simple-julia: Julia `{pkg.package_name}`\n    ---\n"
-                )
-                version = pkg.version or "N/A"
-                release_date = pkg.release_date or "N/A"
-                packages["julia"] += [
-                    "    :fontawesome-regular-paper-plane: **current release** "
-                    f"[{version}](https://juliahub.com/ui/Packages/"
-                    f'{pkg.registry}/{pkg.package_name} "Released: {release_date}")',
-                    "",
-                ]
-                if pkg.estimated_unique_users:
-                    packages["julia"] += [
-                        "    :fontawesome-solid-users: "
-                        f"**estimated unique users** {pkg.estimated_unique_users:,} "
-                    ]
-            packages["julia"] += ["</div>"]
-
-        if not packages:
-            return []
-        ret = ["\n---\n### :material-package-variant: Packages\n"]
-        ret += packages.get("pypi", [])
-        ret += packages.get("python", [])
-        ret += packages.get("julia", [])
-        ret += packages.get(None, [])
-        return ret
-
-    def requirements(self):
-        """Requirements section: what the repository asks for, when it packages nothing.
-
-        Its own section rather than a card under Packages: a requirements file is not a
-        package, and a member only has this section when it declares no packaging
-        manifest, so for most of them the Packages heading above is absent entirely.
-
-        One card per file, in the order they are stored, which is by filename.
+        Qiskit compatibility is not here. It is the same four columns wherever the
+        constraint was read from, so the `Qiskit requirements` table below collects it for
+        the whole project instead of repeating it in every row of every table.
         """
-        sections = self.project.requirements
-        if not sections:
-            return []
-        cards = []
-        for requirements in sections:
-            cards += RequirementsCard.from_requirements_data(
-                requirements, self.project
-            ).generate()
-        return (
-            ["\n---\n### :material-file-document-outline: Requirements\n"]
-            + ['<div class="grid cards" markdown>']
-            + cards
-            + ["</div>"]
+        tables = (
+            self.pypi_table()
+            + self.crates_table()
+            + self.cargo_table()
+            + self.pip_source_table()
+            + self.julia_table()
+            + self.other_registries_table()
         )
+        if not tables:
+            return []
+        return ["\n---\n### :material-package-variant: Packages\n"] + tables
+
+    def pypi_table(self):
+        """The distributions published to PyPI, each linked to its own page"""
+        packages = self.project.pypi
+        rows = [
+            [
+                f"[`{cell(package.package_name)}`](../pypi/{package.package_name}.md)",
+                self._release_cell(
+                    package.version, package.url, package.last_release_date
+                ),
+                self._count_cell(package.last_month_downloads),
+                self._count_cell(package.last_180_days_downloads),
+            ]
+            for package in packages
+        ]
+        columns = [
+            ("PyPI package", "---"),
+            ("Release", ":---:"),
+            ("Last month", "---:"),
+            ("Last 180 days", "---:"),
+        ]
+        return self._table(columns, rows)
+
+    def crates_table(self):
+        """The crates published to crates.io.
+
+        No Qiskit column, and no `Qiskit requirements` row either: Qiskit publishes no crate,
+        so there is nothing on that registry for a crate to depend on.
+        """
+        rows = [
+            [
+                self._link_cell(
+                    f"`{cell(crate.package_name)}`",
+                    f"../crates/{crate.package_name}.md",
+                ),
+                self._release_cell(
+                    crate.version,
+                    f"{crate.url}/{crate.version}" if crate.version else None,
+                    crate.last_release_date,
+                ),
+                cell(crate.rust_version) if crate.rust_version else "",
+                cell(crate.edition) if crate.edition else "",
+                self._count_cell(crate.total_downloads),
+                self._count_cell(crate.last_90_days_downloads),
+            ]
+            for crate in self.project.crates
+        ]
+        columns = [
+            ("crates.io crate", "---"),
+            ("Release", ":---:"),
+            ("Rust", ":---:"),
+            ("Edition", ":---:"),
+            ("Total downloads", "---:"),
+            ("Last 90 days", "---:"),
+        ]
+        return self._table(columns, rows)
+
+    def cargo_table(self):
+        """The crates a repository declares without publishing them.
+
+        `cargo add` is a tooltip rather than a column, as the `pip install` of the table
+        below is: it is the longest value in the row and the shortest thing to say about
+        the crate.
+        """
+        github = self.project.github
+        owner = getattr(github, "owner", None)
+        repo = getattr(github, "repo", None)
+        rows = []
+        for crate in self.project.cargo:
+            target = (
+                f"cargo add --git https://github.com/{owner}/{repo} "
+                f"{crate.package_name}"
+                if owner and repo
+                else None
+            )
+            manifest = (
+                f"[`{cell(crate.manifest_path)}`](https://github.com/{owner}/{repo}"
+                f"/blob/HEAD/{crate.manifest_path})"
+                if owner and repo
+                else f"`{cell(crate.manifest_path)}`"
+            )
+            rows.append(
+                [
+                    self._link_cell(
+                        f"`{cell(crate.package_name)}`",
+                        f"../cargo-source/{crate.package_name}.md",
+                        target,
+                    ),
+                    cell(crate.version) if crate.version else "",
+                    cell(crate.rust_version) if crate.rust_version else "",
+                    cell(crate.edition) if crate.edition else "",
+                    manifest,
+                ]
+            )
+        columns = [
+            ("cargo-installable repo", "---"),
+            ("Version", ":---:"),
+            ("Rust", ":---:"),
+            ("Edition", ":---:"),
+            ("Declared in", "---"),
+        ]
+        return self._table(columns, rows)
+
+    def pip_source_table(self):
+        """The distributions a repository declares without publishing them anywhere.
+
+        `pip install` is a tooltip rather than a column: it is the longest value in the
+        table and it says nothing a reader cannot already see in the other columns.
+        """
+        github = self.project.github
+        rows = []
+        for package in self.project.python:
+            target = pip_install_target(
+                getattr(github, "owner", None),
+                getattr(github, "repo", None),
+                package.path,
+            )
+            rows.append(
+                [
+                    self._link_cell(
+                        f"`{cell(package.package_name)}`",
+                        f"../pip-source/{package.package_name}.md",
+                        f"pip install {target}" if target else None,
+                    ),
+                    self._deferred_cell(package.version, package.deferred, "version"),
+                    self._deferred_cell(
+                        package.requires_python, package.deferred, "python_requires"
+                    ),
+                    ", ".join(
+                        f"`{cell(manifest)}`" for manifest in package.source or []
+                    ),
+                ]
+            )
+        columns = [
+            ("pip-installable repo", "---"),
+            ("Version", ":---:"),
+            ("Requires Python", ":---:"),
+            ("Declared in", "---"),
+        ]
+        return self._table(columns, rows)
+
+    def julia_table(self):
+        """The packages registered in a Julia registry.
+
+        A package nothing was fetched for keeps saying so in as many words: unlike the
+        other registries, the row is only there because the registry was asked.
+        """
+        rows = [
+            [
+                f"`{cell(package.package_name)}`",
+                self._release_cell(
+                    package.version,
+                    "https://juliahub.com/ui/Packages/"
+                    f"{package.registry}/{package.package_name}",
+                    package.release_date,
+                )
+                or "N/A",
+                self._count_cell(package.estimated_unique_users),
+            ]
+            for package in self.project.julia
+        ]
+        columns = [
+            ("Julia package", "---"),
+            ("Release", ":---:"),
+            ("Estimated users", "---:"),
+        ]
+        return self._table(columns, rows)
+
+    def other_registries_table(self):
+        """The registries with no section of their own, recognized by their host.
+
+        A declared URL that a section reads is left out: the table above already says what
+        was read from it. The URLs used to be deleted from `packages` once read, which is
+        what this filter replaces.
+        """
+        rows = [
+            self._registry_row(package)
+            for package in self.project.packages or []
+            if not self.project.declares_a_section(package)
+        ]
+        columns = [("Registry", "---"), ("Package", "---")]
+        return self._table(columns, rows)
+
+    @staticmethod
+    def _registry_row(package):
+        """A package URL as a row: the registry it is in, and what it is called there.
+
+        The name is in a different part of the URL in every registry, so a host that is not
+        recognized puts the link itself in the Registry column and names nothing.
+        """
+        if "visualstudio.com" in package.hostname:
+            return [
+                ":material-microsoft-visual-studio: Visual Studio Marketplace",
+                f"[{cell(package.query.split('=')[1])}]({package})",
+            ]
+        if "ocaml.org" in package.hostname:
+            return [
+                ":simple-ocaml: opam (OCaml Package Manager)",
+                f"[{cell(package.path.split('/')[2])}]({package})",
+            ]
+        if "github.com" in package.hostname:
+            return [
+                ":simple-github: GitHub Packages",
+                f"[{cell(package.path.split('/')[5])}]({package})",
+            ]
+        return [f":octicons-package-16: [{cell(package.hostname)}]({package})", ""]
+
+    def qiskit_requirements(self):
+        """Qiskit requirements section: every qiskit constraint the project declares.
+
+        One table rather than a block per package: the columns are the same wherever the
+        constraint was read from, which is what makes them worth reading side by side.
+
+        The Julia packages are not in it. Their `requires_qiskit` is a range of `Qiskit.jl`
+        releases with none of the flags the other columns need behind it.
+        """
+        rows = []
+        for package in self.project.pypi:
+            rows.append(
+                self._requirement_row(
+                    f"PyPI [`{cell(package.package_name)}`]"
+                    f"(../pypi/{package.package_name}.md)",
+                    package,
+                )
+            )
+        for package in self.project.python:
+            rows.append(
+                self._requirement_row(
+                    f"repo [`{cell(package.package_name)}`]"
+                    f"(../pip-source/{package.package_name}.md)",
+                    package,
+                )
+            )
+        for requirements in self.project.requirements or []:
+            rows.append(
+                self._requirement_row(
+                    self._requirements_file_cell(requirements), requirements
+                )
+            )
+        rows = [row for row in rows if row]
+        if not rows:
+            return []
+        columns = [
+            ("Declared in", "---"),
+            ("Requires", ":---:"),
+            ("V1", ":---:"),
+            ("V2", ":---:"),
+            ("Highest supported", ":---:"),
+        ]
+        return ["\n---\n### :simple-qiskit: Qiskit requirements\n"] + markdown_table(
+            columns, rows
+        )
+
+    @classmethod
+    def _requirement_row(cls, declared_in, package):
+        """What a declaration asks of Qiskit, or None when it asks nothing"""
+        if not package.requires_qiskit:
+            return None
+        version = package.highest_supported_qiskit_version
+        return [
+            declared_in,
+            f"`{cell(package.requires_qiskit)}`",
+            compatibility_mark(package.compatible_with_qiskit_v1),
+            compatibility_mark(package.compatible_with_qiskit_v2),
+            cls._release_cell(
+                version,
+                f"https://pypi.org/project/qiskit/{version}/",
+                package.highest_supported_qiskit_release_date,
+            ),
+        ]
+
+    def _requirements_file_cell(self, requirements):
+        """A requirements file, linked on the default branch when the repository is known.
+
+        The branch is not stored anywhere, so the link goes through HEAD.
+        """
+        github = self.project.github
+        name = f"`{cell(requirements.file)}`"
+        owner = getattr(github, "owner", None)
+        repo = getattr(github, "repo", None)
+        if not owner or not repo or not requirements.file:
+            return name
+        return (
+            f"[{name}](https://github.com/{owner}/{repo}/blob/HEAD/{requirements.file})"
+        )
+
+    @staticmethod
+    def _table(columns, rows):
+        """A table of the Packages section, followed by the blank line that closes it"""
+        lines = markdown_table(columns, rows)
+        return lines + [""] if lines else []
+
+    @staticmethod
+    def _link_cell(text, url, title=None):
+        """A link, with a tooltip in the title of the link itself.
+
+        An `attr_list` tooltip is what the rest of the page uses, but it does not survive a
+        value with a URL in it: `magiclink` turns that URL into a link inside the attribute
+        list, and what is left is no longer one, so it renders as the braces it is written
+        as. The title of the link has no such trouble, as long as the quotes a value
+        carries of its own are escaped, which is what `tooltip` is for.
+        """
+        if not title:
+            return f"[{text}]({url})"
+        return f'[{text}]({url} "{tooltip(title)}")'
+
+    @classmethod
+    def _release_cell(cls, version, url, release_date=None):
+        """A release as a table cell: the version, linked, with the date in its tooltip"""
+        if not version:
+            return ""
+        if not url:
+            return cell(version)
+        return cls._link_cell(
+            cell(version), url, f"Released: {release_date}" if release_date else None
+        )
+
+    @staticmethod
+    def _count_cell(count):
+        """A number of downloads or of users, as a table cell"""
+        return f"{count:,}" if count else ""
+
+    @staticmethod
+    def _deferred_cell(value, deferred, field):
+        """A manifest value, or a dash for the ones a manifest leaves to build time.
+
+        `field` is what the manifest calls it, which is not what the section does: a
+        `requires_python` comes from a `python_requires` keyword or a `requires-python`
+        entry, and either of those is what `deferred` would name.
+        """
+        if value:
+            return cell(value)
+        if field.replace("_", "-") in (deferred or []) or field in (deferred or []):
+            return '*&mdash;*{ title="computed at build time" }'
+        return ""
 
     def write_page(self):
         """takes the lines and writes them down"""
@@ -258,13 +499,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         if all(row[3] == "&mdash;" for row in rows):
             for row in rows:
                 row[3] = ""
-        keep = [i for i in range(len(columns)) if any(row[i] for row in rows)]
-        lines += [
-            "| " + " | ".join(columns[i][0] for i in keep) + " |",
-            "| " + " | ".join(columns[i][1] for i in keep) + " |",
-        ]
-        lines += ["| " + " | ".join(row[i] for i in keep) + " |" for row in rows]
-        return lines
+        return lines + markdown_table(columns, rows)
 
     @staticmethod
     def days_left(project, checkup):
@@ -326,7 +561,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             f'<img src="{self.project.badge.url}">',
             '</button><pre style="width:600px; margin:0px" id="__code_0">'
             f'<code tabindex="0">{self.project.badge_md}</code></pre></div>',
-            f"\n**style** `{self.project.badge.style}`  \n Check out [Badges section]"
+            f"\n**Style** `{self.project.badge.style}`  \n Check out [Badges section]"
             "(../badges.md) to learn more about how badges are used for status communicaiton "
             "or on how to change the badge style.",
         ]

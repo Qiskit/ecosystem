@@ -19,6 +19,9 @@ See [how the check ups work](overview.md#check-ups) for the mechanism, and
 project.
 
 ??? note "All the check ups"
+    **Failing** counts current members only. **Alumni** counts the projects that were retired
+    with the check up recorded on them &mdash; for those, it is why they stopped being members.
+
     {{ read_json('docs/assets/checkup.json') }}
 
 {{ read_raw('docs/assets/checkup.md') }}

@@ -5,7 +5,7 @@ labels = ["circuit optimization"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Transpiler plugin"
-packages = []
+packages = ["https://pypi.org/project/qiskit-basis-constructor/"]
 uuid = "f9f6f41e-0d19-4446-b465-39c3db971bd0"
 maturity = "experimental"
 status = "Qiskit Project"
@@ -27,7 +27,7 @@ last_activity = 2026-09-24
 url = "https://qisk.it/e-f9f6f41e"
 style = "flat"
 
-[pypi.qiskit-basis-constructor]
+[[pypi]]
 package_name = "qiskit-basis-constructor"
 version = "0.1.0"
 last_release_date = 2025-03-27
@@ -45,7 +45,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 506
-last_180_days_downloads = 902
+last_180_days_downloads = 1057
 
 [checks.G07]
 xfailed = "The project is maintained, it is just having a slow moment"

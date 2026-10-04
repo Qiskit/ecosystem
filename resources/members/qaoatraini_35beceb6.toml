@@ -18,13 +18,13 @@ license = "Apache-2.0"
 description = " A pipeline and methods to generate good parameters for QAOA Ansatz circuits. "
 created_at = 2025-04-16
 last_commit = 2026-10-01
-last_activity = 2026-09-30
+last_activity = 2026-10-01
 
 [badge]
 url = "https://qisk.it/e-35beceb6"
 style = "flat"
 
-[python.qaoa-training-pipeline]
+[[python]]
 package_name = "qaoa-training-pipeline"
 license = "Apache-2.0"
 description = "QAOA training pipeline"

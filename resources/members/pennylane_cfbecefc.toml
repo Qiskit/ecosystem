@@ -7,7 +7,7 @@ interfaces = ["Python"]
 created_at = 2023-03-14
 category = "Converter"
 documentation = "https://docs.pennylane.ai/projects/qiskit"
-packages = []
+packages = ["https://pypi.org/project/PennyLane-qiskit/"]
 uuid = "cfbecefc-6cf7-49a6-99c5-049dae76fdcc"
 maturity = "experimental"
 
@@ -29,7 +29,7 @@ last_activity = 2026-07-16
 url = "https://qisk.it/e-cfbecefc"
 style = "flat"
 
-[pypi.pennylane-qiskit]
+[[pypi]]
 package_name = "pennylane-qiskit"
 version = "0.45.0"
 last_release_date = 2026-05-12
@@ -48,5 +48,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-01-08
 highest_supported_qiskit_version = "2.3.0"
-last_month_downloads = 10053
-last_180_days_downloads = 133717
+last_month_downloads = 10400
+last_180_days_downloads = 130700

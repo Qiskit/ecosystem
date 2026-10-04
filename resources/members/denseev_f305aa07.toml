@@ -8,7 +8,7 @@ labels = ["research"]
 interfaces = ["Python"]
 category = "Paper artifact"
 reference_paper = "https://arxiv.org/abs/2305.11847"
-packages = []
+packages = ["https://pypi.org/project/dense-ev/"]
 uuid = "f305aa07-74a6-4af4-bb80-e0a75672f16f"
 maturity = "production-ready"
 status = "Alumni"
@@ -31,7 +31,7 @@ last_activity = 2026-07-02
 url = "https://qisk.it/e-f305aa07"
 style = "flat"
 
-[pypi.dense-ev]
+[[pypi]]
 package_name = "dense-ev"
 version = "2023.5.22"
 last_release_date = 2023-05-21

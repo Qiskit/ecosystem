@@ -30,7 +30,7 @@ last_commit = 2024-03-10
 url = "https://qisk.it/e-d94095eb"
 style = "flat"
 
-[python.qoptkit]
+[[python]]
 package_name = "qoptkit"
 version = "1.0"
 description = "Quantum Optical KIT (QoptKit) library adds to QISKIT the capability of simulating and compiling quantum optical circuis"
