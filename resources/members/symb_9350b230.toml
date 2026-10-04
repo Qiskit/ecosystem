@@ -44,8 +44,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-10-13
 highest_supported_qiskit_version = "1.4.5"
-last_month_downloads = 156
-last_180_days_downloads = 1337
+last_month_downloads = 161
+last_180_days_downloads = 1323
 
 [checks.P10]
 xfailed = "Issue asking for the cap submitted https://github.com/SimoneGasperini/qiskit-symb/issues/11, waiting for a release with the fix"
