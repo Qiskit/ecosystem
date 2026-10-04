@@ -313,6 +313,47 @@ class TestTheFragments(TestCase):
             ["ring", "order", "label", "count", "share", "url"], list(rows[0])
         )
 
+    @staticmethod
+    def highlight_param(spec):
+        """The legend selection of a chart, wherever the spec is allowed to declare it.
+
+        A layered spec declares it in a unit spec, which is one of its layers: declared at
+        the top level, Vega-Lite emits the selection once per layer and Vega then refuses
+        the whole chart with `Duplicate signal name: "highlight_tuple"` — three of the four
+        charts rendered as nothing.
+        """
+        if "layer" in spec:
+            declared = [layer for layer in spec["layer"] if "params" in layer]
+            assert len(declared) == 1, "exactly one layer declares the selection"
+            return declared[0]["params"][0]
+        return spec["params"][0]
+
+    def test_every_chart_highlights_what_the_legend_selects(self):
+        """A point param bound to the legend, and the conditional opacity that shows it.
+
+        An empty selection matches every mark, so nothing is dimmed until the first click.
+        """
+        for spec in re.findall(
+            r"```vegalite\n(.*?)\n```", SUMMARY_PAGE.read_text(), re.S
+        ):
+            parsed = json.loads(spec)
+            with self.subTest(chart=parsed["title"]["text"]):
+                self.assertNotIn(
+                    "params", parsed if "layer" in parsed else {}, "see highlight_param"
+                )
+                param = self.highlight_param(parsed)
+                self.assertEqual("legend", param["bind"])
+                self.assertEqual("point", param["select"]["type"])
+                # the field the legend is keyed by, or clicking an entry selects nothing
+                self.assertEqual(
+                    [parsed["encoding"]["color"]["field"]], param["select"]["fields"]
+                )
+                encodings = [
+                    layer.get("encoding", {}) for layer in parsed.get("layer", [])
+                ] or [parsed["encoding"]]
+                for encoding in encodings:
+                    self.assertIn(param["name"], str(encoding["opacity"]))
+
     def test_a_label_layer_sees_the_same_rows_as_its_arcs(self):
         """A filter in a stacked layer re-stacks what is left, which moves every label.
 
