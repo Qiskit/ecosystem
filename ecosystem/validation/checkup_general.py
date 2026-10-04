@@ -21,7 +21,14 @@
 [P20] New projects should be compatible with the V2 primitives.
 [Q02] Be installable with qiskit>=2.0.
 [Q03] Have a cap on the major version for the qiskit dependency.
-[Q04] Not depend on a pre-release of Qiskit.
+"""General criteria
+
+[000] Build on, interface with, or extend the Qiskit SDK in a meaningful way.
+[Q20] Be compatible with the Qiskit SDK v2.0 (or newer).
+[001] Have an OSI-approved open-source license (preferably Apache 2.0 or MIT).
+[COC] Adhere to the Qiskit code of conduct.
+[G00] Have maintainer activity within the last 6 months, such as a commit.
+[P20] New projects should be compatible with the V2 primitives.
 
 """
 
