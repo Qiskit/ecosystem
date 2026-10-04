@@ -414,6 +414,15 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         )
 
     @property
+    def failing_checkups(self):
+        """The check ups of this member that nothing explains away.
+
+        The counterpart of `xfails`: between the two, every recorded check up is counted
+        once, which is the split the check up page makes (`docs/checkup_page.py`).
+        """
+        return [check for check in self.checks.values() if not check.xfail_applies]
+
+    @property
     def xfails(self):
         """list of xfails for a self member.
 

@@ -31,6 +31,18 @@ project_nav = mkdocs_gen_files.Nav()
 pypi_nav = mkdocs_gen_files.Nav()
 pip_source_nav = mkdocs_gen_files.Nav()
 
+#: The columns of each table of the summary page. The project one says how many check ups
+#: it is failing and how many it has an explanation for, which no other page says per
+#: project: the check up page lists the projects per check up instead.
+PROJECT_FIELDS = [
+    "name",
+    "status",
+    "maturity",
+    "failing check ups",
+    "xfailed check ups",
+]
+PACKAGE_FIELDS = ["name", "status", "maturity"]
+
 active_projects = []
 active_pypi = []
 active_pip_source = []
@@ -45,6 +57,8 @@ for project in CliMembers().dao.get_all(sort_key=lambda x: x.name_id):
                 "name": f"<a href='../p/{project.short_uuid}'>{project.name}</a>",
                 "status": project.status or "Active project",
                 "maturity": project.maturity,
+                "failing check ups": len(project.failing_checkups),
+                "xfailed check ups": len(project.xfails),
             }
         )
     if project.pypi:
@@ -88,12 +102,16 @@ with mkdocs_gen_files.open("pip-source/SUMMARY.md", "w") as nav_file:
     nav_file.writelines(pip_source_nav.build_literate_nav())
 
 
-def as_csv(rows):
-    """The rows as CSV text, with a name/status/maturity header"""
+def as_csv(rows, fieldnames=None):
+    """The rows as CSV text, with the header the table of that page wants.
+
+    `fieldnames` is given rather than read off the first row: a table can legitimately have
+    no rows at all, and the file still has to be a CSV `read_csv` can render.
+    """
     buffer = io.StringIO()
     # \n, not the csv default \r\n, so the content compares equal on the next build
     writer = csv.DictWriter(
-        buffer, fieldnames=["name", "status", "maturity"], lineterminator="\n"
+        buffer, fieldnames=fieldnames or PACKAGE_FIELDS, lineterminator="\n"
     )
     writer.writeheader()
     writer.writerows(rows)
@@ -101,6 +119,8 @@ def as_csv(rows):
 
 
 # written only when the content changed, so a build does not trigger the next one
-write_if_changed("docs/assets/active_projects.csv", as_csv(active_projects))
+write_if_changed(
+    "docs/assets/active_projects.csv", as_csv(active_projects, PROJECT_FIELDS)
+)
 write_if_changed("docs/assets/active_pypi.csv", as_csv(active_pypi))
 write_if_changed("docs/assets/pip_source.csv", as_csv(active_pip_source))
