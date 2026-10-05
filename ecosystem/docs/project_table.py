@@ -56,7 +56,6 @@ MATURITY = Column("Maturity", ":---:", lambda p: p.maturity)
 STATUS = Column("Status", ":---:", lambda p: p.status or "Member")
 CATEGORY = Column("Category", "---", lambda p: p.category)
 LABELS = Column("Labels", "---", lambda p: code_list(p.labels))
-INTERFACES = Column("Interfaces", "---", lambda p: code_list(p.interfaces))
 LAST_COMMIT = Column(
     "Last commit", ":---:", lambda p: getattr(p.github, "last_commit", None)
 )

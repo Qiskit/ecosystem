@@ -115,8 +115,6 @@ class CliCI:
                     print("::endgroup::")
             else:
                 for test in report.failed:
-                    if test.passed:
-                        continue
                     if (
                         slugify(report.checktoml.category_by_pytest_node(test.nodeid))
                         in exclude_set
