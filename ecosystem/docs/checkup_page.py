@@ -113,6 +113,34 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
             seen.setdefault(project.short_uuid, project)
         return list(seen.values())
 
+    @staticmethod
+    def per_project(rows):
+        """`[(project, record)]` grouped as `[(project, [records])]`, in order.
+
+        This page is about projects: which ones a check up is pending on. Which places of a
+        project are failing it is what its own page says, one row each, so the records of a
+        project are one row here.
+        """
+        grouped = {}
+        for project, checkup in rows:
+            grouped.setdefault(project.short_uuid, (project, []))[1].append(checkup)
+        return list(grouped.values())
+
+    @staticmethod
+    def soonest(records):
+        """The record whose cure period runs out first, which is the deadline that counts.
+
+        A record with no deadline to count towards (an infinite cure period, or no `since`)
+        is the last resort: there is always something more urgent than no deadline at all.
+        """
+        return min(
+            records,
+            key=lambda record: (
+                record.days_left_in_cure_period is None,
+                record.days_left_in_cure_period or 0,
+            ),
+        )
+
     @classmethod
     def link(cls, project):
         """A project, linked to its page"""
@@ -242,15 +270,40 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
                 (
                     project,
                     [
-                        self.days_left(project, checkup),
-                        self.discussion_link(checkup),
+                        self.days_left(project, self.soonest(records)),
+                        # whichever of the places says where it is being discussed
+                        next(
+                            (
+                                link
+                                for link in map(self.discussion_link, records)
+                                if link
+                            ),
+                            "",
+                        ),
                     ],
                 )
-                for project, checkup in members
+                for project, records in self.per_project(members)
             ],
             [("Days left in the cure period", "---:"), ("Discussion", ":---:")],
             nested=self.alumni_list(alumni, indent="    ") if alumni else (),
         )
+
+    @staticmethod
+    def distinct_explanations(rows):
+        """`[(project, record)]` with the records a project explains the same way collapsed"""
+        seen, kept = set(), []
+        for project, checkup in rows:
+            key = (
+                project.short_uuid,
+                checkup.xfailed,
+                checkup.xfailed_until,
+                str(checkup.discussion),
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            kept.append((project, checkup))
+        return kept
 
     def explained_block(self, id_):
         """The projects with a valid explanation for a check up"""
@@ -267,7 +320,10 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
                         self.discussion_link(checkup),
                     ],
                 )
-                for project, checkup in self.explained[id_]
+                # one row per explanation rather than per place: the three distributions of
+                # `Qiskit/qiskit-aer` are waiting on one pull request, and saying so three
+                # times says nothing more. Two places explained differently are two rows
+                for project, checkup in self.distinct_explanations(self.explained[id_])
             ],
             [
                 ("Explanation", "---"),
