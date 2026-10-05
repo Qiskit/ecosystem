@@ -738,10 +738,10 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                 # a list of alias in priority in case they do not exist
                 for candidate_alias in alias:
                     candidate_value = CliMembers.filter_data(
-                        member_dict, {key: candidate_alias}
+                        member_dict, {key: candidate_alias}, forced_addition=True
                     )
-                    if len(candidate_value) == 1:
-                        data = list(candidate_value.values())[0]
+                    if candidate_value[key] is not None:
+                        data = candidate_value[key]
                         break
             else:
                 found_all = findall(alias, member_dict)
@@ -754,7 +754,14 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                         f"I dont know who to hangle multiple results for {found_all}. "
                         "Maybe functools.reduce?"
                     )
-            if forced_addition or data:
+            # A `false` or a `0` is an answer: `stars = 0`, `archived = false` and
+            # `compatible_with_qiskit_v2 = false` used to be dropped as if they were falsy,
+            # which left a consumer unable to tell "no" from "not known". An empty list,
+            # dict or string still says nothing, and an unset field is absent from
+            # `member_dict` already, so neither is invented here
+            if forced_addition or (
+                data is not None and (data or isinstance(data, (bool, int, float)))
+            ):
                 filtered_data[key] = data
         return filtered_data
 
@@ -765,7 +772,11 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             "name": "name",
             "url": ["github.url", "url"],
             "description": ["description", "github.description"],
-            "licence": ["licence", "github.license"],
+            # `licence` is the key the consumer reads; `license` is the field a member
+            # declares. Both aliases used to be spelled the British way, so the first never
+            # resolved and the value always came from GitHub's detection, which is a guess
+            # from the repository contents and can contradict what the project says
+            "licence": ["license", "github.license"],
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",

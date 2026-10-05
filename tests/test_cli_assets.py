@@ -22,6 +22,7 @@ from unittest import TestCase
 
 from ecosystem.badge import BadgeData
 from ecosystem.check import CheckData
+from ecosystem.github import GitHubData
 from ecosystem.cli import CliMembers, build_website
 from tests.test_cli import UpdateStatusTestCase
 
@@ -489,6 +490,44 @@ class TestCompileJson(UpdateStatusTestCase):
             "https://github.com/MockQiskit/mock-qiskit",
             json.loads(output.read_text())["members"][0]["url"],
         )
+
+    def test_the_declared_license_is_what_the_feed_carries(self):
+        """GitHub's is a guess from the repository contents, the member file is a statement"""
+        member = self.add_member(months_old=1)
+        member.license = "Apache-2.0"
+        member.github = GitHubData(owner="MockQiskit", repo="m", license="GPL-3.0")
+        self.cli_members.dao.write(member)
+        output = self.path / "ecosystem.json"
+        self.cli_members.compile_json(str(output))
+
+        exported = json.loads(output.read_text())["members"][0]
+        self.assertEqual("Apache-2.0", exported["licence"])
+
+    def test_the_license_github_detected_is_the_fallback(self):
+        """Most members declare none, so the feed would be empty without it"""
+        member = self.add_member(months_old=1)
+        member.license = None
+        member.github = GitHubData(owner="MockQiskit", repo="m", license="GPL-3.0")
+        self.cli_members.dao.write(member)
+        output = self.path / "ecosystem.json"
+        self.cli_members.compile_json(str(output))
+
+        exported = json.loads(output.read_text())["members"][0]
+        self.assertEqual("GPL-3.0", exported["licence"])
+
+    def test_a_falsy_value_is_exported_rather_than_dropped(self):
+        """A zero and a false are answers, and dropping them reads as unknown"""
+        member = self.add_member(months_old=1)
+        member.github = GitHubData(
+            owner="MockQiskit", repo="m", stars=0, archived=False
+        )
+        self.cli_members.dao.write(member)
+        output = self.path / "ecosystem.json"
+        self.cli_members.compile_json(str(output))
+
+        github = json.loads(output.read_text())["members"][0]["github"]
+        self.assertEqual(0, github["stars"])
+        self.assertIs(False, github["archived"])
 
     def test_a_field_no_alias_resolves_is_left_out(self):
         """And not filled in with the value of the field before it"""
