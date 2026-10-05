@@ -302,6 +302,29 @@ class TestARecordPerPlace(QiskitDependencyTestCase):
             [stored.subtest for stored in member.checks["Q03"]],
         )
 
+    def test_a_specific_explanation_wins_over_a_blanket_one(self):
+        """Both can be stored at once: the blanket one is what a migrated record looks like"""
+        member = self.two_files()
+        member.checks["Q03"] = [
+            CheckData("Q03", since=date(2026, 1, 5), xfailed="about the repository"),
+            CheckData(
+                "Q03",
+                subtest="requirements:requirements-dev.txt",
+                since=date(2026, 1, 5),
+                xfailed=self.EXPLANATION,
+            ),
+        ]
+        self.records(Q03, member)
+
+        self.assertEqual(
+            self.EXPLANATION,
+            record(member, "Q03", "requirements:requirements-dev.txt").xfailed,
+        )
+        self.assertEqual(
+            "about the repository",
+            record(member, "Q03", "requirements:requirements.txt").xfailed,
+        )
+
     def test_a_record_that_names_no_place_explains_all_of_them(self):
         """What a record written before the places were recorded looks like"""
         member = self.stored(

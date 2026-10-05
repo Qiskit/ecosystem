@@ -15,6 +15,7 @@
 See https://docs.pytest.org/en/stable/reference/fixtures.html#conftest-py-sharing-fixtures-across-multiple-files  # pylint: disable=line-too-long
 """
 
+import re
 from contextlib import contextmanager
 
 import pytest
@@ -66,12 +67,15 @@ class ValidationReport:
     def previous_failures(self):
         """When each check up started failing, for the `previously_failed` marker.
 
-        The earliest of a check up's records: it is the one whose cure period runs out first,
-        and it is what the aggregating check ups ([Q20], [G00], [001]) have to see, since they
-        ask whether the cure period of what they wait on has expired.
+        The earliest of the records **nothing explains away**: it is the one whose cure
+        period runs out first, and it is what the aggregating check ups ([Q20], [G00], [001])
+        have to see, since they ask whether the cure period of what they wait on has expired.
+        An explained place is left out on purpose: its date is not one anybody is counting,
+        and taking it would let an old explained place expire the cure period of a place that
+        started failing last week.
         """
         since_by_checker = {}
-        for checkdata in self._member.failing_checkups + self._member.xfails:
+        for checkdata in self._member.failing_checkups:
             checker = getattr(checkdata, "checker", None)
             if not checkdata.since or not checker:
                 # a source-based check up has no checker: it is not the result of a test
@@ -119,9 +123,15 @@ class ValidationReport:
             report.subtest = context.msg
             self._subtested.add(report.nodeid)
         elif report.nodeid in self._subtested:
-            # the function-level report of a check up that ran subtests, which says
-            # `contains N failed subtests` and is not about any one place
-            return
+            # The function-level report of a check up that ran subtests. `pytest-subtests`
+            # rewrites it to say `contains N failed subtests`, which is about no one place and
+            # which `CheckData.from_report` cannot read. Anything else is the check up itself
+            # failing, outside the subtest blocks, and is recorded like any other failure
+            summary = str(getattr(report, "longrepr", "") or "")
+            if not report.failed or re.fullmatch(
+                r"contains \d+ failed subtests?", summary
+            ):
+                return
         if hasattr(report, "wasxfail") and report.wasxfail:
             # an xfail that passed anyway is nothing to record, as before
             if not report.passed:

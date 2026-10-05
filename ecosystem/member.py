@@ -651,8 +651,14 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         written before the places were recorded looks like, and what a check up with one
         answer per member always looks like.
         """
-        for record in self.checks.get(checkup_id, []):
-            if record.subtest in (subtest, None) and record.xfail_applies:
+        live = [
+            record for record in self.checks.get(checkup_id, []) if record.xfail_applies
+        ]
+        for record in live:
+            if record.subtest == subtest:
+                return record.xfailed
+        for record in live:
+            if record.subtest is None:
                 return record.xfailed
         return None
 
