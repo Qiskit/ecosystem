@@ -567,7 +567,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             '</button><pre style="width:600px; margin:0px" id="__code_0">'
             f'<code tabindex="0">{self.project.badge_md}</code></pre></div>',
             f"\n**Style** `{self.project.badge.style}`  \n Check out [Badges section]"
-            "(../badges.md) to learn more about how badges are used for status communicaiton "
+            "(../badges.md) to learn more about how badges are used for status communication "
             "or on how to change the badge style.",
         ]
         return lines

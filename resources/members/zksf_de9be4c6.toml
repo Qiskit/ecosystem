@@ -24,12 +24,12 @@ status = "Very Early Project"
 url = "https://github.com/official-dvl/qiskit-zksf"
 owner = "official-dvl"
 repo = "qiskit-zksf"
-stars = 6
+stars = 7
 license = "MIT"
 description = "Zero Kelvin | qiskit-zksf"
 created_at = 2026-08-13
 last_commit = 2026-10-01
-last_activity = 2026-10-01
+last_activity = 2026-10-04
 
 [badge]
 url = "https://qisk.it/e-de9be4c6"
@@ -52,3 +52,11 @@ highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 172
 last_180_days_downloads = 710
+
+[checks.Q03]
+xfailed = "Issue asking for the cap submitted https://github.com/official-dvl/qiskit-zksf/issues/1, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-08-18
+details = "Python package qiskit-zksf declared itself compatible to a not-yet-released major version of Qiskit"
+discussion = "https://github.com/official-dvl/qiskit-zksf/issues/1"
+importance = "RECOMMENDATION"
