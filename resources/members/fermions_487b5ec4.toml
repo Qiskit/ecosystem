@@ -2,7 +2,12 @@ name = "Qiskit Fermions"
 submission_number = 1150
 url = "https://github.com/Qiskit/qiskit-fermions"
 description = "Tools for working on fermionic systems."
-labels = ["physics", "high-level synthesis", "quantum information", "chemistry"]
+labels = [
+  "physics",
+  "high-level synthesis",
+  "quantum information",
+  "chemistry",
+]
 interfaces = ["C", "Python"]
 ibm_maintained = true
 category = "Application"
@@ -29,6 +34,7 @@ last_activity = 2026-10-02
 [badge]
 url = "https://qisk.it/e-487b5ec4"
 style = "flat"
+
 [[pypi]]
 package_name = "qiskit-fermions"
 version = "0.2.0"
@@ -49,4 +55,3 @@ highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 47172
 last_180_days_downloads = 58369
-
