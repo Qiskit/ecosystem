@@ -98,19 +98,42 @@ All the automation run by [GitHub Actions](https://github.com/Qiskit/ecosystem/t
 
 Each member is a TOML file under
 [`resources/members`](https://github.com/Qiskit/ecosystem/tree/main/resources/members).
-A check up that does not pass is stored there as a `[checks.<ID>]` table:
+A check up that does not pass is stored there as a `[[checks.<ID>]]` table:
 
 ```toml
-[checks.P10]
+[[checks.Q03]]
 since = 2026-07-09
-details = "Python package qiskit-algorithms declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qiskit-algorithms release on PyPI allows a not-yet-released major version of Qiskit"
+subtest = "pypi:qiskit-algorithms"
 ```
 
 - `since` is the date the check up started failing. It is **not** reset while the check up keeps failing, so `since` + cure period is the deadline.
 - `details` is the assertion message of the checker: the concrete reason, with the offending package, URL or date.
+- `subtest` is the place of the project the record is about, for a check up that reads several of them (see below).
 - `discussion` and `source` may point to the issue where the situation is being discussed or tracked.
 
-A passing check up leaves no trace: if the failure is fixed, the whole `[checks.<ID>]` table disappears on the next weekly run, and with it the deadline.
+A passing check up leaves no trace: if the failure is fixed, the whole `[[checks.<ID>]]` table disappears on the next weekly run, and with it the deadline.
+
+### One record per failing place
+
+Some check ups ask the same question of every place a project declares something. [`[Q03]`](checkups.md#Q03), for instance, wants a cap on the major version of the qiskit dependency, and a project can declare that dependency in a published distribution, in a packaging manifest of its repository and in any number of requirements files.
+Each of those is a `subtest` of the check up, and each failing one gets **its own table**, which is why `[[checks.<ID>]]` is an array:
+
+```toml
+[[checks.Q03]]
+since = 2026-10-02
+details = "The qiskit requirement in requirements-dev.txt allows a not-yet-released major version of Qiskit"
+subtest = "requirements:requirements-dev.txt"
+xfailed = "A lint environment, pinned on purpose"
+
+[[checks.Q03]]
+since = 2026-04-01
+details = "The qiskit requirement in requirements.txt allows a not-yet-released major version of Qiskit"
+subtest = "requirements:requirements.txt"
+```
+
+Each record is on its own: the explanation above applies to the lint file only, so the other one keeps counting, and each one counts from its own `since`, so a file that starts failing later gets the full cure period rather than inheriting a deadline.
+A record with no `subtest` is about the project as a whole, which is what a check up with one answer per member records, and what an explanation written before the places were recorded still means.
 
 ### Check ups that are not tests
 
@@ -119,7 +142,7 @@ Those check ups have no `checker`.
 Instead, they are created by a human and carry a `source`, the URL of the GitHub issue where the problem is tracked, usually in the project's own repository:
 
 ```toml
-[checks.Q20]
+[[checks.Q20]]
 since = 2026-09-15
 source = "https://github.com/rigetti/qiskit-rigetti/issues/53"
 ```
@@ -134,7 +157,7 @@ A check up can be failing for a good reason.
 In that case, a maintainer of the Qiskit Ecosystem adds an `xfailed` entry with the explanation, and the failure stops counting towards the membership status:
 
 ```toml
-[checks.G07]
+[[checks.G07]]
 xfailed = "The project is feature-complete and the maintainers still answer issues"
 xfailed_until = 2027-01-31
 ```

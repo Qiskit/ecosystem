@@ -50,3 +50,20 @@ class TestCaseWithResources(unittest.TestCase):
     def tearDown(self) -> None:
         if os.path.exists(self.path):
             shutil.rmtree(self.path)
+
+
+def record(member, checkup_id, subtest=None):
+    """The record a check up holds on a member, when there is only one of it.
+
+    What `member.checks[id]` used to be, before a check up that reads several places kept a
+    record per place. `subtest` picks one of several by the place it is about.
+    """
+    records = member.checks[checkup_id]
+    if subtest is not None:
+        for stored in records:
+            if stored.subtest == subtest:
+                return stored
+        raise KeyError(f"{checkup_id} has no record about {subtest}")
+    if len(records) != 1:
+        raise KeyError(f"{checkup_id} has {len(records)} records, not one")
+    return records[0]

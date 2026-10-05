@@ -44,7 +44,7 @@ estimated_unique_users = 6
 monthly_downloads = 4
 total_downloads = 6
 
-[checks.J00]
+[[checks.J00]]
 since = 2026-07-09
 details = "The Julia package QiskitIBMRuntime does not have a declared license"
 importance = "RECOMMENDATION"

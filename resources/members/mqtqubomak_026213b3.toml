@@ -44,22 +44,22 @@ highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 228
 last_180_days_downloads = 674
 
-[checks.007]
+[[checks.007]]
 since = 2026-09-24
 details = "the entry `member.interfaces` does not exist and it is mandatory"
 importance = "IMPORTANT"
 
-[checks.G05]
+[[checks.G05]]
 since = 2026-09-24
 details = "GitHub repository https://github.com/cda-tum/mqt-qubomaker archived and project is not `as-is`"
 importance = "CRITICAL"
 
-[checks.P10]
+[[checks.Q03]]
 since = 2026-09-24
 details = "Python package mqt-qubomaker declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
 
-[checks.G00]
+[[checks.G00]]
 since = 2026-09-26
 details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"

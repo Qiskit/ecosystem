@@ -31,22 +31,22 @@ last_activity = 2026-02-03
 url = "https://qisk.it/e-a68e9142"
 style = "flat"
 
-[checks.G06]
+[[checks.G06]]
 since = 2026-09-24
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-05-14
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.G00]
+[[checks.G00]]
 since = 2026-08-13
 details = "The project is probably abandoned: `[G07]`"
 importance = "CRITICAL"
 
-[checks.027]
+[[checks.027]]
 since = 2026-07-23
 details = "The field `member.website` should not be the GitHub repository."
 importance = "STRONG-RECOMMENDATION"

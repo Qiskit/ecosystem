@@ -39,7 +39,9 @@ cargo_nav = mkdocs_gen_files.Nav()
 
 #: The columns of each table of the summary page. The project one says how many check ups
 #: it is failing and how many it has an explanation for, which no other page says per
-#: project: the check up page lists the projects per check up instead.
+#: project: the check up page lists the projects per check up instead. Counted per record,
+#: so a check up failing in two places of one project counts twice, as it does in the two
+#: rows of its project page.
 PROJECT_FIELDS = [
     "name",
     "status",

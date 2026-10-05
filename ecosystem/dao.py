@@ -39,35 +39,14 @@ class TomlEncoder(TomlEncoderUpstream):
     otherwise.
     """
 
-    def dump_sections(self, o, sup):
-        """Override to put a blank line before an array of tables.
-
-        Upstream appends the `[[section]]` blocks straight after the scalars of the
-        enclosing table, with no blank line, although it does separate the entries from
-        each other. Every other table in a member file is preceded by one, so without
-        this the first `[[requirements]]` butts against `status = "..."`.
-        """
-        retstr, retdict = super().dump_sections(o, sup)
-        scalars, found, tables = retstr.partition("\n[[")
-        if found and not scalars.endswith("\n"):
-            # the scalars end in a newline of their own, so this is the blank line
-            retstr = f"{scalars}\n\n[[{tables}"
-        return retstr, retdict
-
     def dump_list(self, v):
-        """Override to dump empty lists without trailing comma"""
-        oneline = f"[{', '.join( str(self.dump_value(u)) for u in v )}]"
-        multiline = (
-            f"[\n{'\n'.join( '  ' + str(self.dump_value(u)) + ',' for u in v )}\n]"
-        )
-        if len(oneline) < 60:
-            return oneline
-        if len(oneline) > 65:
-            max_element = max(len(str(self.dump_value(u))) for u in v if u is not None)
-            if max_element <= 10:
-                return oneline
-            return multiline
-        return oneline
+        """Override to keep a list on one line, as `taplo fmt` does.
+
+        Whether it fits cannot be decided here: that depends on the length of the whole
+        line, key included, and this only sees the values. `wrap_long_arrays` does it
+        afterwards, on the text, which is how `taplo` decides too.
+        """
+        return f"[{', '.join( str(self.dump_value(u)) for u in v )}]"
 
 
 #: The order the tables of a member file are written in: what the submission said, then the
@@ -87,6 +66,36 @@ SECTION_ORDER = (
 )
 
 
+#: Where `taplo fmt` wraps a line, which is its `column_width` default. Measured against
+#: taplo 0.10: an 81 character line is wrapped, an 80 character one is left alone.
+COLUMN_WIDTH = 80
+
+
+def wrap_long_arrays(text):
+    """Wraps an array that does not fit on a line, the way `taplo fmt` would.
+
+    Several workflows run `taplo fmt` over the member files, so a line it would reflow is a
+    line that gets rewritten behind the updater's back: written in one shape by an updater
+    and formatted into another by the next job that touches the file. One element per line,
+    two spaces, trailing comma, which is what `taplo` writes.
+    """
+    lines = []
+    for line in text.splitlines(keepends=True):
+        key, separator, values = line.partition(" = [")
+        if (
+            not separator
+            or len(line.rstrip("\n")) <= COLUMN_WIDTH
+            or not values.rstrip("\n").endswith("]")
+        ):
+            lines.append(line)
+            continue
+        items = values.rstrip("\n").removesuffix("]")
+        lines.append(f"{key} = [\n")
+        lines += [f"  {item.strip()},\n" for item in items.split(", ") if item.strip()]
+        lines.append("]\n")
+    return "".join(lines)
+
+
 def dumps(member_dict):
     """A member as TOML text, with its tables in the order the dict has them.
 
@@ -97,7 +106,7 @@ def dumps(member_dict):
     file the next time an updater writes one.
 
     So the blocks are put back in the order of the keys of `Member.to_dict`: the submission's
-    own values, then `[github]` and `[badge]`, then the package sections, then `[checks.*]`.
+    own values, then `[github]` and `[badge]`, then the package sections, then `[[checks.*]]`.
     """
     text = toml.dumps(member_dict, encoder=TomlEncoder(preserve=True))
     blocks, current = [], []
@@ -107,6 +116,9 @@ def dumps(member_dict):
             current = []
         current.append(line)
     blocks.append(current)
+    # `toml` writes the parent table of a keyed array of tables, so `[checks]` appears above
+    # the first `[[checks.<ID>]]` with nothing in it. The array creates it implicitly
+    blocks = [block for block in blocks if "".join(block).strip() not in ("[checks]",)]
 
     def position(block):
         """Where the section this block belongs to goes in a member file"""
@@ -122,7 +134,14 @@ def dumps(member_dict):
     arranged = sorted(
         range(len(blocks)), key=lambda index: (position(blocks[index]), index)
     )
-    return "".join("".join(blocks[index]) for index in arranged)
+    # One blank line between blocks, whatever order they ended up in, and none at the end.
+    # The separation cannot be decided while the text is being written: `toml` emits an
+    # array of tables right after the scalars of its table, so a blank line written there
+    # stays with the scalars when the arranging above moves the array past `[badge]`, and
+    # the array then butts against the last value of whatever block precedes it.
+    return wrap_long_arrays(
+        "\n\n".join("".join(blocks[index]).strip("\n") for index in arranged) + "\n"
+    )
 
 
 class TomlStorage:

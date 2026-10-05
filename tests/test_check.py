@@ -295,7 +295,7 @@ class TestTheCheckupsOfAMember(TestCase):
             name="Banana",
             url="https://github.com/banana-org/banana",
             checks={
-                id_: CheckData(id_, xfailed=xfailed, xfailed_until=until)
+                id_: [CheckData(id_, xfailed=xfailed, xfailed_until=until)]
                 for id_, (xfailed, until) in checks.items()
             },
         )
@@ -305,10 +305,10 @@ class TestTheCheckupsOfAMember(TestCase):
         member = self.member(
             G00=(None, None),
             G07=("waiting for the fix", date.today() + timedelta(days=30)),
-            P10=("no deadline", None),
+            Q03=("no deadline", None),
         )
         self.assertEqual(["G00"], [check.id for check in member.failing_checkups])
-        self.assertEqual(["G07", "P10"], sorted(check.id for check in member.xfails))
+        self.assertEqual(["G07", "Q03"], sorted(check.id for check in member.xfails))
         self.assertEqual(
             len(member.checks), len(member.failing_checkups) + len(member.xfails)
         )
@@ -331,8 +331,8 @@ class TestCurePeriod(TestCase):
 
     # [001] is CRITICAL, so its cure period is 0 days
     critical = "001"
-    # [PQ2] is IMPORTANT, so its cure period is the 90 days of that importance level
-    important = "PQ2"
+    # [Q02] is IMPORTANT, so its cure period is the 90 days of that importance level
+    important = "Q02"
     # [PQ1] is LEGACY, so its cure period is the -1 of that importance level
     infinite = "PQ1"
 
@@ -388,10 +388,10 @@ class TestImportanceRank(TestCase):
         )
 
     def test_a_checkup_knows_its_rank(self):
-        """[G05] is CRITICAL, [P10] a RECOMMENDATION"""
+        """[G05] is CRITICAL, [Q03] a RECOMMENDATION"""
         self.assertEqual(CheckData("G05").importance_rank, 0)
         self.assertLess(
-            CheckData("G05").importance_rank, CheckData("P10").importance_rank
+            CheckData("G05").importance_rank, CheckData("Q03").importance_rank
         )
 
     def test_an_unknown_importance_sorts_last(self):

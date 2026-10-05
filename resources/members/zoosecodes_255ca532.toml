@@ -32,12 +32,12 @@ last_activity = 2026-09-14
 url = "https://qisk.it/e-255ca532"
 style = "flat"
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-09-17
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.Q20]
+[[checks.Q20]]
 since = 2026-07-09
 source = "https://github.com/ianreppel/zoose-codespace/issues/2"
 details = "The codespace created by zoose-codespace has a version of Qiskit that is not longer maintained."

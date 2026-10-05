@@ -51,23 +51,23 @@ highest_supported_qiskit_version = "1.4.2"
 last_month_downloads = 43
 last_180_days_downloads = 401
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.PQ2]
+[[checks.Q02]]
 since = 2026-04-30
 details = "Python package antinature is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/mk0dz/antinature/issues/1"
 importance = "IMPORTANT"
 
-[checks.Q20]
+[[checks.Q20]]
 since = 2026-07-30
-details = "Not compatible with the Qiskit SDK v2 or newer: `[PQ2]`"
+details = "Not compatible with the Qiskit SDK v2 or newer: `[Q02]`"
 importance = "CRITICAL"
 
-[checks.G00]
+[[checks.G00]]
 since = 2026-09-24
 details = "The project is probably abandoned: `[Q20]`"
 importance = "CRITICAL"

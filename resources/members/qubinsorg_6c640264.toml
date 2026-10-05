@@ -33,6 +33,7 @@ last_activity = 2026-10-03
 [badge]
 url = "https://qisk.it/e-6c640264"
 style = "flat"
+
 [[requirements]]
 file = "versions/1.4-small/requirements.txt"
 requires_qiskit = "~=1.4.0"
@@ -144,3 +145,15 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
+
+[[checks.Q02]]
+since = 2026-10-05
+details = "The qiskit requirement in versions/1.4-small/requirements.txt is not compatible with Qiskit SDK v2"
+subtest = "requirements:versions/1.4-small/requirements.txt"
+importance = "IMPORTANT"
+
+[[checks.Q02]]
+since = 2026-10-05
+details = "The qiskit requirement in versions/1.4-xl/requirements.txt is not compatible with Qiskit SDK v2"
+subtest = "requirements:versions/1.4-xl/requirements.txt"
+importance = "IMPORTANT"

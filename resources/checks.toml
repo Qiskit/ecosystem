@@ -35,8 +35,8 @@ importance = "CRITICAL"
 title = "Be compatible with the Qiskit SDK v2 or newer"
 applies_to = "all"
 category = "GENERAL"
-related_to = ["PQ2", "S01", "R01"]
-description = "If the software depends on Qiskit SDK in some way, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies. A project that publishes no release answers this with the distribution its repository declares, which is [S01], or with its requirements file, which is [R01]."
+related_to = ["Q02"]
+description = "If the software depends on Qiskit SDK in some way, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer. This applies to Python packages and to other forms of dependencies. A project that publishes no release answers this with the distribution its repository declares or with its requirements file; [Q02] reads all three."
 importance = "CRITICAL"
 checker = "checkup_general.py::checkup_Q20"
 
@@ -277,15 +277,6 @@ description = "Python packages that depend on Qiskit SDK, there should exist a s
 discussion = "https://github.com/Qiskit/ecosystem/issues/1144"
 importance = "LEGACY"
 
-[PQ2]
-title = "Be installable with qiskit>=2.0"
-applies_to = "Python packages"
-affects = ['member.pypi.*.compatible_with_qiskit_v2']
-checker = "checkup_pypi.py::checkup_PQ2"
-category = "OUT-OF-DATE"
-description = "Python packages that depend on Qiskit SDK, there should exist a supported release that is compatible with the Qiskit SDK v2.0 or newer."
-importance = "IMPORTANT"
-
 [P00]
 title = "Python package license-related metadata should refer to an OSI-approved license"
 applies_to = "Python packages"
@@ -293,15 +284,6 @@ affects = ['member.pypi.*.license']
 category = "OSS"
 description = "The license-related metadata in PyPA should be an OSI-approved open-source license."
 importance = "CRITICAL"
-
-[P10]
-title = "Have a cap on the major version for the qiskit dependency"
-applies_to = "Python packages"
-affects = ['member.pypi.*.requires_qiskit']
-category = "BEST-PRACTICE"
-description = "As Qiskit follows semantic versioning, not having a cap for the eventual next major version, there is no guarantee that the package will continue working as expected after a major release."
-checker = "checkup_pypi.py::checkup_P10"
-importance = "RECOMMENDATION"
 
 [P11]
 title = "Production-ready projects should have, at least, one stable Python package"
@@ -357,40 +339,46 @@ description = "The license every distribution declares in its packaging manifest
 checker = "checkup_python.py::checkup_S00"
 importance = "IMPORTANT"
 
-[S01]
-title = "Be installable with qiskit>=2.0 from the repository"
-applies_to = "pip-installable repositories"
-affects = ['member.python.*.compatible_with_qiskit_v2']
-checker = "checkup_python.py::checkup_S01"
+[Q02]
+title = "Be installable with qiskit>=2.0"
+applies_to = "projects that declare a qiskit dependency"
+affects = [
+  'member.pypi.*.compatible_with_qiskit_v2',
+  'member.python.*.compatible_with_qiskit_v2',
+  'member.requirements.*.compatible_with_qiskit_v2',
+]
 category = "OUT-OF-DATE"
-description = "The counterpart of [PQ2] for a distribution that the repository declares but does not publish: what the manifests require of Qiskit SDK should allow v2.0 or newer. A project can pass [PQ2] with its latest release and fail this one with its source, which is what anybody installing from the repository gets."
+related_to = ["Q20", "Q03"]
+description = "If the project depends on Qiskit SDK, what it requires should allow v2.0 or newer. This is asked of every place a project can declare its qiskit dependency: a published distribution, a packaging manifest in the repository, and a requirements file. A project can be compatible in its latest release and not in its source, which is what anybody installing from the repository gets, so each one is read on its own. It replaces [PQ2], [S01] and [R01], one per section, which were the same question asked three times."
+checker = "checkup_general.py::checkup_Q02"
 importance = "IMPORTANT"
 
-[S02]
-title = "Have a cap on the major version for the qiskit dependency in the repository"
-applies_to = "pip-installable repositories"
-affects = ['member.python.*.requires_qiskit']
+[Q03]
+title = "Have a cap on the major version for the qiskit dependency"
+applies_to = "projects that declare a qiskit dependency"
+affects = [
+  'member.pypi.*.requires_qiskit',
+  'member.python.*.requires_qiskit',
+  'member.requirements.*.requires_qiskit',
+]
 category = "BEST-PRACTICE"
-description = "The counterpart of [P10] for a distribution declared in the repository. As Qiskit follows semantic versioning, a dependency with no cap for the eventual next major version gives no guarantee that the distribution will keep working after a major release."
-checker = "checkup_python.py::checkup_S02"
+related_to = ["Q04", "Q20"]
+description = "As Qiskit follows semantic versioning, a dependency with no cap for the eventual next major version gives no guarantee that the project will keep working after a major release. This is asked of every place a project can declare its qiskit dependency: a published distribution, a packaging manifest in the repository, and a requirements file. It replaces [P10], [S02] and [R02], one per section, which were the same question asked three times."
+checker = "checkup_general.py::checkup_Q03"
 importance = "RECOMMENDATION"
 
-[R01]
-title = "Be installable with qiskit>=2.0 from the requirements file"
-applies_to = "repositories with a requirements file"
-affects = ['member.requirements.compatible_with_qiskit_v2']
-checker = "checkup_requirements.py::checkup_R01"
-category = "OUT-OF-DATE"
-description = "The counterpart of [S01] for a repository that declares no packaging manifest at all. There is no distribution to describe, so the requirements file is the only place the project says which Qiskit it runs against, and what it says should allow v2.0 or newer."
-importance = "IMPORTANT"
-
-[R02]
-title = "Have a cap on the major version for the qiskit dependency in the requirements file"
-applies_to = "repositories with a requirements file"
-affects = ['member.requirements.requires_qiskit']
-checker = "checkup_requirements.py::checkup_R02"
+[Q04]
+title = "Not depend on a pre-release of Qiskit"
+applies_to = "projects that declare a qiskit dependency"
+affects = [
+  'member.pypi.*.requires_qiskit',
+  'member.python.*.requires_qiskit',
+  'member.requirements.*.requires_qiskit',
+]
 category = "BEST-PRACTICE"
-description = "The counterpart of [S02] for a repository that declares no packaging manifest at all. As Qiskit follows semantic versioning, a dependency with no cap for the eventual next major version gives no guarantee that the code will keep working after a major release."
+related_to = ["Q03"]
+description = "A qiskit dependency should be written against released stable versions. A specifier that names a pre-release, like `qiskit>=1.3.0rc1`, enables pre-releases for that dependency: an installation gets the next release candidate as soon as it is published, which is a Qiskit nobody has tested the project against, and a release candidate becomes what the project reports as the highest Qiskit it supports. Depending on a release candidate is a reasonable thing to do while it is the only version with the feature the project needs; once the final version is out, the specifier should point at it."
+checker = "checkup_general.py::checkup_Q04"
 importance = "RECOMMENDATION"
 
 [O02]
