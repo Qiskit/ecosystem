@@ -32,7 +32,6 @@ last_activity = 2026-10-03
 [badge]
 url = "https://qisk.it/e-bc3bf9db"
 style = "flat"
-
 [[crates]]
 package_name = "bicycle_benchmark"
 version = "0.2.1"
@@ -43,8 +42,8 @@ url = "https://crates.io/crates/bicycle_benchmark"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 970
-last_90_days_downloads = 93
+total_downloads = 972
+last_90_days_downloads = 91
 
 [[crates]]
 package_name = "bicycle_cliffords"
@@ -56,8 +55,8 @@ url = "https://crates.io/crates/bicycle_cliffords"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3850
-last_90_days_downloads = 999
+total_downloads = 3856
+last_90_days_downloads = 987
 
 [[crates]]
 package_name = "bicycle_common"
@@ -69,8 +68,8 @@ url = "https://crates.io/crates/bicycle_common"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 4038
-last_90_days_downloads = 1030
+total_downloads = 4046
+last_90_days_downloads = 1020
 
 [[crates]]
 package_name = "bicycle_compiler"
@@ -82,8 +81,9 @@ url = "https://crates.io/crates/bicycle_compiler"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3647
-last_90_days_downloads = 962
+total_downloads = 3652
+last_90_days_downloads = 951
+
 [[crates]]
 package_name = "bicycle_numerics"
 version = "0.2.1"
@@ -94,8 +94,8 @@ url = "https://crates.io/crates/bicycle_numerics"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 744
-last_90_days_downloads = 55
+total_downloads = 745
+last_90_days_downloads = 54
 
 [[crates]]
 package_name = "bicycle_random_numerics"
@@ -108,4 +108,4 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 495
-last_90_days_downloads = 16
+last_90_days_downloads = 15

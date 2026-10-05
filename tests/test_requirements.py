@@ -436,6 +436,32 @@ class TestRequirementsDataRoundTrip(RequirementsTestCase):
         ):
             self.assertEqual(section, data.to_dict())
 
+    def test_a_stored_version_is_recomputed_once_the_file_is_read(self):
+        """A section the updater re-read resolves again, rather than repeating the file.
+
+        The stored value is what a member file says, and it can be stale: a Qiskit released
+        since it was written, or a rule that changed (release candidates are skipped now).
+        """
+        data = RequirementsData.from_dict(
+            {
+                "file": "requirements.txt",
+                "requires_qiskit": ">=1.0.0",
+                "highest_supported_qiskit_version": "9.9.9",
+                "highest_supported_qiskit_release_date": date(2020, 1, 1),
+            }
+        )
+        data.owner, data.repo = OWNER, REPO
+        with patch(
+            "ecosystem.github_contents.request_json",
+            side_effect=fake_request("requirements.txt", contents="qiskit>=1.0.0\n"),
+        ):
+            data.update_json()
+
+        self.assertEqual(
+            ("2.1.0", date(2026, 6, 10)),
+            data.highest_supported_qiskit_version_and_release_date,
+        )
+
     def test_stored_flags_survive_a_missing_specifier(self):
         """The mixin falls back to what was stored, as it does for the other sections."""
         data = RequirementsData.from_dict(

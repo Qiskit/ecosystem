@@ -31,7 +31,6 @@ last_activity = 2026-07-31
 [badge]
 url = "https://qisk.it/e-f3f07e5f"
 style = "flat"
-
 [[pypi]]
 package_name = "qiskit-sphinx-theme"
 version = "2.1.0"
@@ -45,8 +44,9 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/nonhermitian/",
 ]
-last_month_downloads = 64145
-last_180_days_downloads = 319563
+last_month_downloads = 32811
+last_180_days_downloads = 305856
+
 [[requirements]]
 file = "docs_guide/requirements-extra.txt"
 requires_qiskit = "~=2.0"
