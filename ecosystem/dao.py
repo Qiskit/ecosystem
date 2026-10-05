@@ -39,21 +39,6 @@ class TomlEncoder(TomlEncoderUpstream):
     otherwise.
     """
 
-    def dump_sections(self, o, sup):
-        """Override to put a blank line before an array of tables.
-
-        Upstream appends the `[[section]]` blocks straight after the scalars of the
-        enclosing table, with no blank line, although it does separate the entries from
-        each other. Every other table in a member file is preceded by one, so without
-        this the first `[[requirements]]` butts against `status = "..."`.
-        """
-        retstr, retdict = super().dump_sections(o, sup)
-        scalars, found, tables = retstr.partition("\n[[")
-        if found and not scalars.endswith("\n"):
-            # the scalars end in a newline of their own, so this is the blank line
-            retstr = f"{scalars}\n\n[[{tables}"
-        return retstr, retdict
-
     def dump_list(self, v):
         """Override to dump empty lists without trailing comma"""
         oneline = f"[{', '.join( str(self.dump_value(u)) for u in v )}]"
@@ -125,7 +110,12 @@ def dumps(member_dict):
     arranged = sorted(
         range(len(blocks)), key=lambda index: (position(blocks[index]), index)
     )
-    return "".join("".join(blocks[index]) for index in arranged)
+    # One blank line between blocks, whatever order they ended up in, and none at the end.
+    # The separation cannot be decided while the text is being written: `toml` emits an
+    # array of tables right after the scalars of its table, so a blank line written there
+    # stays with the scalars when the arranging above moves the array past `[badge]`, and
+    # the array then butts against the last value of whatever block precedes it.
+    return "\n\n".join("".join(blocks[index]).strip("\n") for index in arranged) + "\n"
 
 
 class TomlStorage:
