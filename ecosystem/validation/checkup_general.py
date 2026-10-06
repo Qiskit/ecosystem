@@ -19,9 +19,6 @@
 [COC] Adhere to the Qiskit code of conduct.
 [G00] Have maintainer activity within the last 6 months, such as a commit.
 [P20] New projects should be compatible with the V2 primitives.
-[Q02] Be installable with qiskit>=2.0.
-[Q03] Have a cap on the major version for the qiskit dependency.
-[Q04] Not depend on a pre-release of Qiskit.
 """
 
 # pylint: disable=invalid-name
