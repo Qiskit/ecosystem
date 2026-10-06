@@ -29,7 +29,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-09-05
 last_commit = 2026-09-25
-last_activity = 2026-09-30
+last_activity = 2026-10-06
 
 [badge]
 url = "https://qisk.it/e-4174663a"
@@ -49,7 +49,7 @@ maintainers = [
   "https://pypi.org/user/AIforQuantum/",
 ]
 last_month_downloads = 310
-last_180_days_downloads = 2806
+last_180_days_downloads = 2807
 
 [[pypi]]
 package_name = "qiskit-gym-mcp-server"
@@ -68,8 +68,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 403
-last_180_days_downloads = 3405
+last_month_downloads = 401
+last_180_days_downloads = 3411
 
 [[pypi]]
 package_name = "qiskit-ibm-runtime-mcp-server"
@@ -83,7 +83,7 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 847
+last_month_downloads = 833
 last_180_days_downloads = 6033
 
 [[pypi]]
@@ -98,8 +98,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 410
-last_180_days_downloads = 3682
+last_month_downloads = 406
+last_180_days_downloads = 3688
 
 [[pypi]]
 package_name = "qiskit-mcp-server"
@@ -118,8 +118,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 1513
-last_180_days_downloads = 11257
+last_month_downloads = 1514
+last_180_days_downloads = 11284
 
 [[pypi]]
 package_name = "qiskit-mcp-servers"
@@ -134,13 +134,23 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 679
-last_180_days_downloads = 4211
+last_month_downloads = 668
+last_180_days_downloads = 4217
 
-[checks.P10]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/mcp-servers/issues/221, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-08-18
-details = "Python package qiskit-mcp-server declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qiskit-gym-mcp-server release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/Qiskit/mcp-servers/issues/221"
+subtest = "pypi:qiskit-gym-mcp-server"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/mcp-servers/issues/221, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-08-18
+details = "The qiskit requirement in the qiskit-mcp-server release on PyPI allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Qiskit/mcp-servers/issues/221"
+subtest = "pypi:qiskit-mcp-server"
 importance = "RECOMMENDATION"

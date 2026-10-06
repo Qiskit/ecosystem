@@ -23,12 +23,13 @@ description = "Thin and vendor agnostic layer to access, control and monitor und
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-08-05
-last_commit = 2026-10-03
-last_activity = 2026-10-02
+last_commit = 2026-10-05
+last_activity = 2026-10-05
 
 [badge]
 url = "https://qisk.it/e-7234f2b9"
 style = "flat"
+
 [[pypi]]
 package_name = "qrmi"
 version = "0.26.0"
@@ -38,8 +39,8 @@ description = "Quantum Resource Management Interface(QRMI)"
 url = "https://pypi.org/project/qrmi/"
 status = "active"
 maintainers = ["https://pypi.org/user/ohtanim/"]
-last_month_downloads = 2355
-last_180_days_downloads = 8238
+last_month_downloads = 2396
+last_180_days_downloads = 8330
 
 [[cargo]]
 package_name = "alice-bob-felis"
@@ -63,7 +64,7 @@ path = "dependencies/pasqal_cloud_client"
 
 [[cargo]]
 package_name = "qrmi"
-version = "0.25.1"
+version = "0.26.0"
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 edition = "2021"
@@ -104,3 +105,15 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
+
+[[checks.Q03]]
+since = 2026-10-05
+details = "The qiskit requirement in examples/task_runner/oqtopus/requirements.txt allows a not-yet-released major version of Qiskit"
+subtest = "requirements:examples/task_runner/oqtopus/requirements.txt"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+since = 2026-10-05
+details = "The qiskit requirement in examples/task_runner/qpp/requirements.txt allows a not-yet-released major version of Qiskit"
+subtest = "requirements:examples/task_runner/qpp/requirements.txt"
+importance = "RECOMMENDATION"

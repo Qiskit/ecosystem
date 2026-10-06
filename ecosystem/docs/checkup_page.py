@@ -55,26 +55,33 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
         )
 
     def _projects_per_checkup(self, projects):
-        """Two dicts checkup_id -> [Member], for the projects that have the check up
-        recorded: the ones it is pending on, and the ones with a valid explanation for it.
+        """Two dicts checkup_id -> [(Member, CheckData)], for the check ups a project has
+        recorded: the places it is pending on, and the places with a valid explanation.
+
+        One entry per record rather than per project: a check up that reads several places
+        can be explained in one of them and pending in another, so the same project appears
+        in both, once for each place.
         """
         pending = {id_: [] for id_ in self.checkups}
         explained = {id_: [] for id_ in self.checkups}
         for project in projects:
-            for checkup_id, checkup in project.checks.items():
-                where = explained if checkup.xfail_applies else pending
-                # setdefault: a member file may name a check up checks.toml no longer has
-                where.setdefault(checkup_id, []).append(project)
+            for checkup_id, records in project.checks.items():
+                for checkup in records:
+                    where = explained if checkup.xfail_applies else pending
+                    # setdefault: a member file may name a check up checks.toml no longer has
+                    where.setdefault(checkup_id, []).append((project, checkup))
         return pending, explained
 
     def failing(self, checkup_id):
-        """The current members a check up is pending on"""
-        return [p for p in self.pending[checkup_id] if not p.is_alumni]
+        """The current members a check up is pending on, each with the record it is about"""
+        return [
+            (p, checkup) for p, checkup in self.pending[checkup_id] if not p.is_alumni
+        ]
 
     def alumni(self, checkup_id):
         """The alumni a check up is recorded on. They are not failing it: the check up they
         kept failing is why they are no longer members."""
-        return [p for p in self.pending[checkup_id] if p.is_alumni]
+        return [(p, checkup) for p, checkup in self.pending[checkup_id] if p.is_alumni]
 
     # ---------------------------------------------------------------- small helpers
 
@@ -90,8 +97,49 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
 
     @classmethod
     def plural(cls, projects, word="project"):
-        """How many projects there are, as `1 project` or `2 projects`"""
-        return f"{len(projects)} {word}{'' if len(projects) == 1 else 's'}"
+        """How many projects there are, as `1 project` or `2 projects`.
+
+        Counted by project: a check up recorded on two places of one project is one project
+        failing it, which is what the page says it counts (see docs/checkups.md).
+        """
+        total = len(cls.projects_of(projects))
+        return f"{total} {word}{'' if total == 1 else 's'}"
+
+    @staticmethod
+    def projects_of(rows):
+        """The distinct projects of `[(project, record)]`, in order"""
+        seen = {}
+        for project, _ in rows:
+            seen.setdefault(project.short_uuid, project)
+        return list(seen.values())
+
+    @staticmethod
+    def per_project(rows):
+        """`[(project, record)]` grouped as `[(project, [records])]`, in order.
+
+        This page is about projects: which ones a check up is pending on. Which places of a
+        project are failing it is what its own page says, one row each, so the records of a
+        project are one row here.
+        """
+        grouped = {}
+        for project, checkup in rows:
+            grouped.setdefault(project.short_uuid, (project, []))[1].append(checkup)
+        return list(grouped.values())
+
+    @staticmethod
+    def soonest(records):
+        """The record whose cure period runs out first, which is the deadline that counts.
+
+        A record with no deadline to count towards (an infinite cure period, or no `since`)
+        is the last resort: there is always something more urgent than no deadline at all.
+        """
+        return min(
+            records,
+            key=lambda record: (
+                record.days_left_in_cure_period is None,
+                record.days_left_in_cure_period or 0,
+            ),
+        )
 
     @classmethod
     def link(cls, project):
@@ -155,8 +203,8 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
                 "Importance": f"{self.icon_of(checkup.get('importance'))} "
                 f"{self.cell(checkup.get('importance'))}",
                 "Cure period": self.cure_period_of(id_),
-                "Failing": len(self.failing(id_)),
-                "Alumni": len(self.alumni(id_)),
+                "Failing": len(self.projects_of(self.failing(id_))),
+                "Alumni": len(self.projects_of(self.alumni(id_))),
             }
             for id_, checkup in self.checkups.items()
         ]
@@ -216,21 +264,46 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
                 "**No current member is failing this check up**"
             ] + self.alumni_list(alumni)
         return self.project_table(
-            f"There {'is' if len(members) == 1 else 'are'} {self.plural(members)} "
-            "failing this check up",
+            f"There {'is' if len(self.projects_of(members)) == 1 else 'are'} "
+            f"{self.plural(members)} failing this check up",
             [
                 (
                     project,
                     [
-                        self.days_left(project, project.checks[id_]),
-                        self.discussion_link(project.checks[id_]),
+                        self.days_left(project, self.soonest(records)),
+                        # whichever of the places says where it is being discussed
+                        next(
+                            (
+                                link
+                                for link in map(self.discussion_link, records)
+                                if link
+                            ),
+                            "",
+                        ),
                     ],
                 )
-                for project in members
+                for project, records in self.per_project(members)
             ],
             [("Days left in the cure period", "---:"), ("Discussion", ":---:")],
             nested=self.alumni_list(alumni, indent="    ") if alumni else (),
         )
+
+    @staticmethod
+    def distinct_explanations(rows):
+        """`[(project, record)]` with the records a project explains the same way collapsed"""
+        seen, kept = set(), []
+        for project, checkup in rows:
+            key = (
+                project.short_uuid,
+                checkup.xfailed,
+                checkup.xfailed_until,
+                str(checkup.discussion),
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            kept.append((project, checkup))
+        return kept
 
     def explained_block(self, id_):
         """The projects with a valid explanation for a check up"""
@@ -242,12 +315,15 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
                 (
                     project,
                     [
-                        self.cell(project.checks[id_].xfailed),
-                        self.expires_in(project.checks[id_]),
-                        self.discussion_link(project.checks[id_]),
+                        self.cell(checkup.xfailed),
+                        self.expires_in(checkup),
+                        self.discussion_link(checkup),
                     ],
                 )
-                for project in self.explained[id_]
+                # one row per explanation rather than per place: the three distributions of
+                # `Qiskit/qiskit-aer` are waiting on one pull request, and saying so three
+                # times says nothing more. Two places explained differently are two rows
+                for project, checkup in self.distinct_explanations(self.explained[id_])
             ],
             [
                 ("Explanation", "---"),
@@ -289,7 +365,10 @@ class CheckupAssets:  # pylint: disable=too-many-public-methods
             f'{indent}??? info "{self.plural(projects, "Alumni project")} '
             f'also failed this check up"',
             "",
-        ] + [f"{indent}    - {self.link(project)}" for project in projects]
+        ] + [
+            f"{indent}    - {self.link(project)}"
+            for project in self.projects_of(projects)
+        ]
 
     def importance_table(self):
         """The importance levels and the cure period each one defaults to"""

@@ -157,9 +157,11 @@ class TestValidateMember(CliCITestCase):
         """The check up still fails; the explanation is why it is not a block"""
         member = self.add_member(interfaces=None)
         member.checks = {
-            "007": CheckData(
-                "007", since=date.today(), xfailed="bananas have no interface"
-            )
+            "007": [
+                CheckData(
+                    "007", since=date.today(), xfailed="bananas have no interface"
+                )
+            ]
         }
         self.dao.write(member)
         code, lines = self.actions_lines(CliCI.validate_member, member.short_uuid)

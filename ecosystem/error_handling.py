@@ -17,21 +17,6 @@ import logging
 from typing import Tuple, List, Union
 import coloredlogs
 
-
-class OneLineExceptionFormatter(logging.Formatter):
-    """Exception formatter"""
-
-    def formatException(self, ei):
-        result = super().formatException(ei)
-        return repr(result)
-
-    def format(self, record):
-        result = super().format(record)
-        if record.exc_text:
-            result = result.replace("\n", "")
-        return result
-
-
 logger = logging.getLogger("ecosystem")
 coloredlogs.DEFAULT_FIELD_STYLES = {
     "name": {"color": "magenta"},

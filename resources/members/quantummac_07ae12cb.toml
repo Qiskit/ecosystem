@@ -23,8 +23,8 @@ estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-05-02
-last_commit = 2026-10-02
-last_activity = 2026-10-02
+last_commit = 2026-10-05
+last_activity = 2026-10-05
 
 [badge]
 url = "https://qisk.it/e-07ae12cb"
@@ -44,13 +44,14 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 126
-last_180_days_downloads = 1044
+last_month_downloads = 91
+last_180_days_downloads = 1048
 
-[checks.P10]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/arthurostrauss/qiskit-qm-provider/issues/12, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-09
-details = "Python package qiskit-qm-provider declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qiskit-qm-provider release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/arthurostrauss/qiskit-qm-provider/issues/12"
+subtest = "pypi:qiskit-qm-provider"
 importance = "RECOMMENDATION"

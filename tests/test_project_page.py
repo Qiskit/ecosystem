@@ -81,10 +81,14 @@ class ProjectPageTestCase(TestCase):
 
     @staticmethod
     def checkup(id_, since=0, **kwargs):
-        """A failing check up that started `since` days ago"""
-        return CheckData(
-            id_, since=str(CheckData.today - timedelta(days=since)), **kwargs
-        )
+        """The records of a failing check up that started `since` days ago.
+
+        A list, as a member file stores it: one record per failing place, and most check ups
+        have just the one.
+        """
+        return [
+            CheckData(id_, since=str(CheckData.today - timedelta(days=since)), **kwargs)
+        ]
 
 
 class TestTheWholePage(ProjectPageTestCase):
@@ -488,7 +492,7 @@ class TestTheQiskitRequirementsTable(ProjectPageTestCase):
         )
 
     def test_an_unsupported_major_version_is_marked_as_one(self):
-        """Which is what the [S01] and [R01] check ups are about"""
+        """Which is what the [Q02] check up is about"""
         section = self.requirements(requirements=[self.declared_in_a_file()])
         self.assertIn(
             ":material-check-circle-outline: | :material-close-circle-outline:", section
@@ -577,8 +581,10 @@ class TestTheDaysLeftCell(ProjectPageTestCase):
     """How long a check up can stay as it is, which is the larger of two clocks"""
 
     def days_left(self, checkup, **kwargs):
-        """The cell for such a check up on such a project"""
-        return ProjectPage.days_left(self.project(**kwargs), checkup)
+        """The cell for such a check up on such a project. Takes what `self.checkup`
+        returns, which is the list a member file stores, or a record on its own."""
+        record = checkup[0] if isinstance(checkup, list) else checkup
+        return ProjectPage.days_left(self.project(**kwargs), record)
 
     def test_an_alumni_project_has_nothing_left_to_count(self):
         """Its cure period is what retired it in the first place"""
@@ -624,7 +630,7 @@ class TestTheDiscussionCell(ProjectPageTestCase):
     def test_an_explanation_that_applies_is_shown(self):
         """As the Markdown it was written as, so a link in a member file is a link"""
         cell = ProjectPage.discussion_cell(
-            self.checkup("010", xfailed="[agreed](http://x)")
+            self.checkup("010", xfailed="[agreed](http://x)")[0]
         )
         self.assertEqual("[agreed](http://x)", cell)
 
@@ -632,7 +638,7 @@ class TestTheDiscussionCell(ProjectPageTestCase):
         """It does not excuse the check up anymore, so it does not excuse it here"""
         yesterday = str(CheckData.today - timedelta(days=1))
         cell = ProjectPage.discussion_cell(
-            self.checkup("010", xfailed="was agreed", xfailed_until=yesterday)
+            self.checkup("010", xfailed="was agreed", xfailed_until=yesterday)[0]
         )
         self.assertEqual("", cell)
 
@@ -641,7 +647,7 @@ class TestTheDiscussionCell(ProjectPageTestCase):
         cell = ProjectPage.discussion_cell(
             self.checkup(
                 "010", xfailed="agreed", discussion="https://github.com/x/y/issues/1"
-            )
+            )[0]
         )
         self.assertEqual(
             "agreed &middot; [discussion](https://github.com/x/y/issues/1)", cell

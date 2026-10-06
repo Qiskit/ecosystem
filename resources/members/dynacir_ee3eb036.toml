@@ -40,18 +40,18 @@ maintainers = ["https://pypi.org/user/drekwang/"]
 last_month_downloads = 20
 last_180_days_downloads = 226
 
-[checks.G06]
+[[checks.G06]]
 since = 2026-07-14
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-05-14
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 discussion = "https://github.com/orgs/Qiskit/discussions/49"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.G00]
+[[checks.G00]]
 since = 2026-08-13
 details = "The project is probably abandoned: `[G07]`"
 importance = "CRITICAL"

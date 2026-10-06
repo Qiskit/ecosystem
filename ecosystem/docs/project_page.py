@@ -454,7 +454,8 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         return ProjectSummaryCard.from_project(self.project).generate()
 
     def checkups(self):
-        """Checkups table: one row per check up the project is not passing.
+        """Checkups table: one row per check up the project is not passing, and one per
+        place for a check up that reads several (a requirements file, a distribution).
 
         The columns are what the check up itself knows. The project, its maturity and its
         status are on this page already, so they are not repeated here the way the tables in
@@ -488,10 +489,14 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
                 self.days_left(self.project, checkup),
                 self.discussion_cell(checkup),
             ]
-            # the most severe first
+            # the most severe first, and within a check up the places in a stable order
             for checkup in sorted(
-                self.project.checks.values(),
-                key=lambda checkup: checkup.importance_rank,
+                (
+                    checkup
+                    for records in self.project.checks.values()
+                    for checkup in records
+                ),
+                key=lambda checkup: (checkup.importance_rank, checkup.subtest or ""),
             )
         ]
         # a column with nothing to say is left out, as in the check up page tables. For an
@@ -562,7 +567,7 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
             '</button><pre style="width:600px; margin:0px" id="__code_0">'
             f'<code tabindex="0">{self.project.badge_md}</code></pre></div>',
             f"\n**Style** `{self.project.badge.style}`  \n Check out [Badges section]"
-            "(../badges.md) to learn more about how badges are used for status communicaiton "
+            "(../badges.md) to learn more about how badges are used for status communication "
             "or on how to change the badge style.",
         ]
         return lines

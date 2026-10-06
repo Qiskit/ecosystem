@@ -24,8 +24,8 @@ description = "MQT Predictor - A Tool for Automatic Device Selection with Device
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-03-08
-last_commit = 2026-10-03
-last_activity = 2026-10-03
+last_commit = 2026-10-05
+last_activity = 2026-10-05
 
 [badge]
 url = "https://qisk.it/e-9d5e2ef2"
@@ -46,13 +46,14 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
-last_month_downloads = 81
-last_180_days_downloads = 972
+last_month_downloads = 84
+last_180_days_downloads = 976
 
-[checks.P10]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/predictor/issues/832, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-14
-details = "Python package mqt-predictor declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the mqt-predictor release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/munich-quantum-toolkit/predictor/issues/832"
+subtest = "pypi:mqt-predictor"
 importance = "RECOMMENDATION"

@@ -11,7 +11,7 @@
 # that they have been altered from the originals.
 
 
-"""TODO General criteria
+"""General criteria
 
 [000] Build on, interface with, or extend the Qiskit SDK in a meaningful way.
 [Q20] Be compatible with the Qiskit SDK v2.0 (or newer).
@@ -19,12 +19,16 @@
 [COC] Adhere to the Qiskit code of conduct.
 [G00] Have maintainer activity within the last 6 months, such as a commit.
 [P20] New projects should be compatible with the V2 primitives.
-
+[Q02] Be installable with qiskit>=2.0.
+[Q03] Have a cap on the major version for the qiskit dependency.
+[Q04] Not depend on a pre-release of Qiskit.
 """
 
 # pylint: disable=invalid-name
 
 import pytest
+from packaging.specifiers import SpecifierSet
+
 from ecosystem.check import CheckData
 
 
@@ -46,13 +50,7 @@ def must_pass_all_requierements(requierements, failed_checkups, msg):
         pytest.skip("Still in the cure period: " + " ".join([c.id for c in fail]))
 
 
-@pytest.mark.order(
-    after=[
-        "checkup_pypi.py::checkup_PQ2",
-        "checkup_python.py::checkup_S01",
-        "checkup_requirements.py::checkup_R01",
-    ]
-)
+@pytest.mark.order(after=["checkup_general.py::checkup_Q02"])
 def checkup_Q20(request, pytestconfig):
     """Be compatible with the Qiskit SDK v2 or newer"""
     requierements = request.node.get_closest_marker("order").kwargs["after"]
@@ -100,3 +98,91 @@ def checkup_015(member):
         pytest.skip(f"{member.url} is not a GitHub URL")
     owner_repo = [i for i in member.url.path.split("/") if i]
     assert len(owner_repo) >= 2, f"{member.url} is a GitHub organization URL"
+
+
+def qiskit_declarations(member):
+    """Every qiskit dependency the member declares: its place, its label and the section.
+
+    The place is the stable key a record stores as `subtest`, so that an explanation can be
+    about one of them (`requirements:docs/requirements.txt`). The label is the same thing in
+    the words of the failure message.
+
+    A project can say which Qiskit it needs in three places, and the check ups below ask the
+    same question of each: a published distribution (`[[pypi]]`), a packaging manifest in the
+    repository (`[[python]]`), and a requirements file (`[[requirements]]`). They used to be
+    one check up per place, `[PQ2]`/`[S01]`/`[R01]` for the compatibility and
+    `[P10]`/`[S02]`/`[R02]` for the cap (all six removed with this): three copies of one
+    assertion, grown one section at a time. The place is a subtest instead, so a failure still
+    names what to edit.
+
+    A member may store several of each, and every one of them is read: a qiskit requirement
+    the project asks for is one somebody ends up installing, whichever file it is in.
+
+    The Julia sections are left out, as they are in the `Qiskit requirements` table of a
+    project page: their `requires_qiskit` is a range of `Qiskit.jl` releases rather than a
+    PEP 440 specifier.
+    """
+    for package in member.pypi or []:
+        if package.requires_qiskit:
+            yield (
+                f"pypi:{package.package_name}",
+                f"the {package.package_name} release on PyPI",
+                package,
+            )
+    for package in member.python or []:
+        if package.requires_qiskit:
+            yield (
+                f"python:{package.package_name}",
+                f"the {package.package_name} manifest in the repository",
+                package,
+            )
+    for requirements in member.requirements or []:
+        if requirements.requires_qiskit:
+            yield (
+                f"requirements:{requirements.file}",
+                requirements.file,
+                requirements,
+            )
+
+
+def qiskit_dependencies(member):
+    """`qiskit_declarations`, or a skip when the member declares no qiskit dependency"""
+    declarations = list(qiskit_declarations(member))
+    if not declarations:
+        pytest.skip("The member declares no qiskit dependency")
+    return declarations
+
+
+def checkup_Q02(member, subtests, explained):
+    """Be installable with qiskit>=2.0"""
+    for place, declared_in, section in qiskit_dependencies(member):
+        with subtests.test(msg=place), explained(place):
+            if section.compatible_with_qiskit_v2 is None:
+                # a stored table with no flag is not a failure to be compatible
+                pytest.skip(f"No compatible_with_qiskit_v2 for {declared_in}")
+            assert section.compatible_with_qiskit_v2, (
+                f"The qiskit requirement in {declared_in} is not compatible with "
+                "Qiskit SDK v2"
+            )
+
+
+def checkup_Q03(member, subtests, explained):
+    """Have a cap on the major version for the qiskit dependency"""
+    for place, declared_in, section in qiskit_dependencies(member):
+        with subtests.test(msg=place), explained(place):
+            assert not section.compatible_with_qiskit(3), (
+                f"The qiskit requirement in {declared_in} allows a not-yet-released "
+                "major version of Qiskit"
+            )
+
+
+def checkup_Q04(member, subtests, explained):
+    """Not depend on a pre-release of Qiskit"""
+    for place, declared_in, section in qiskit_dependencies(member):
+        with subtests.test(msg=place), explained(place):
+            # `prereleases` is what the resolver reads: it is true only when one of the
+            # specifiers names a pre-release, which is what turns them on for the dependency
+            assert not SpecifierSet(section.requires_qiskit).prereleases, (
+                f"The qiskit requirement in {declared_in} is written against a "
+                f"pre-release ({section.requires_qiskit})"
+            )

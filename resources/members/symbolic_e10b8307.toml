@@ -44,18 +44,19 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
-last_month_downloads = 8
-last_180_days_downloads = 100
+last_month_downloads = 9
+last_180_days_downloads = 101
 
-[checks.P10]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/ianchung621/symbolic-qiskit/issues/1, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-09
-details = "Python package symbolic-qiskit declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the symbolic-qiskit release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/ianchung621/symbolic-qiskit/issues/1"
+subtest = "pypi:symbolic-qiskit"
 importance = "RECOMMENDATION"
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-09-17
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"

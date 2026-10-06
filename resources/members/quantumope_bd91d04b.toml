@@ -33,7 +33,7 @@ last_activity = 2026-06-26
 url = "https://qisk.it/e-bd91d04b"
 style = "flat"
 
-[checks.G12]
+[[checks.G12]]
 since = 2026-09-26
 details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
 importance = "IMPORTANT"

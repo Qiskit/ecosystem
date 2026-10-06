@@ -25,12 +25,13 @@ description = "Client for IBM Quantum Compute (formerly known as Qiskit Runtime)
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2021-11-05
-last_commit = 2026-10-02
-last_activity = 2026-10-02
+last_commit = 2026-10-05
+last_activity = 2026-10-05
 
 [badge]
 url = "https://qisk.it/e-984595e9"
 style = "flat"
+
 [[pypi]]
 package_name = "qiskit-ibm-runtime"
 version = "0.50.0"
@@ -45,5 +46,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 365253
-last_180_days_downloads = 3174123
+last_month_downloads = 364833
+last_180_days_downloads = 3172028

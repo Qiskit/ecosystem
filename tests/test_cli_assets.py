@@ -47,7 +47,7 @@ class TestCheckupAssets(UpdateStatusTestCase):
         """A member failing `checkup_id`, optionally with an explanation for it"""
         member = self.add_member()
         member.checks = {
-            checkup_id: CheckData(checkup_id, since=date.today(), xfailed=xfailed)
+            checkup_id: [CheckData(checkup_id, since=date.today(), xfailed=xfailed)]
         }
         self.cli_members.dao.write(member)
         return member
@@ -117,13 +117,15 @@ class TestCheckupProjectTable(UpdateStatusTestCase):
         member = self.add_member(**member_kwargs)
         member.status = member_kwargs.get("status")
         member.checks = {
-            checkup_id: CheckData(
-                checkup_id,
-                since=date.today() - timedelta(days=days_ago),
-                xfailed=xfailed,
-                xfailed_until=xfailed_until,
-                discussion=discussion,
-            )
+            checkup_id: [
+                CheckData(
+                    checkup_id,
+                    since=date.today() - timedelta(days=days_ago),
+                    xfailed=xfailed,
+                    xfailed_until=xfailed_until,
+                    discussion=discussion,
+                )
+            ]
         }
         self.cli_members.dao.write(member)
         self.cli_members.update_assets_checkups()
@@ -221,7 +223,7 @@ class TestCheckupAlumniList(UpdateStatusTestCase):
         for status in members:
             member = self.add_member()
             member.status = status
-            member.checks = {"G07": CheckData("G07", since=date.today())}
+            member.checks = {"G07": [CheckData("G07", since=date.today())]}
             self.cli_members.dao.write(member)
         self.cli_members.update_assets_checkups()
         body = (self.path / "docs" / "assets" / "checkup.md").read_text()

@@ -24,7 +24,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-07-03
 last_commit = 2026-09-30
-last_activity = 2026-09-30
+last_activity = 2026-10-04
 
 [badge]
 url = "https://qisk.it/e-6e4000a2"
@@ -42,10 +42,11 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = ["version"]
 
-[checks.S02]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/clemens-sauer-possel/tvha/issues/3, waiting for the fix"
 xfailed_until = 2027-03-31
 since = 2026-10-01
-details = "The distribution tvha declared in the repository allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the tvha manifest in the repository allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/clemens-sauer-possel/tvha/issues/3"
+subtest = "python:tvha"
 importance = "RECOMMENDATION"

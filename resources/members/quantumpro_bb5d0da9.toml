@@ -42,22 +42,22 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml", "setup.py"]
 deferred = ["version"]
 
-[checks.G05]
+[[checks.G05]]
 since = 2026-09-24
 details = "GitHub repository https://github.com/qiskit-community/quantum-prototype-template archived and project is not `as-is`"
 importance = "CRITICAL"
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
-[checks.S01]
+[[checks.Q02]]
 since = 2026-10-01
 details = "The distribution prototype-template declared in the repository is not compatible with Qiskit SDK v2"
 importance = "IMPORTANT"
 
-[checks.G00]
+[[checks.G00]]
 since = 2026-09-26
 details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"

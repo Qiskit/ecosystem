@@ -1,0 +1,39 @@
+name = "Qiskit DJ Booth"
+submission_number = 1405
+url = "https://github.com/vivganes/qiskit-dj"
+description = "Interactive 2-qubit DJ booth: build circuits, hear superposition as mixed tracks, and measure to drop one."
+contact_info = "caliberoviv@gmail.com"
+labels = ["demo"]
+interfaces = ["Web interface"]
+category = "Game/Educational"
+packages = ["https://github.com/vivganes/qiskit-dj/blob/main/pyproject.toml"]
+uuid = "68c949f3-8fd5-4d9a-8918-f69de28c2eaf"
+maturity = "experimental"
+status = "Very Early Project"
+
+[github]
+url = "https://github.com/vivganes/qiskit-dj"
+owner = "vivganes"
+repo = "qiskit-dj"
+stars = 0
+license = "MIT"
+created_at = 2026-10-03
+last_commit = 2026-10-05
+last_activity = 2026-10-05
+
+[badge]
+url = "https://qisk.it/e-68c949f3"
+style = "flat"
+
+[[python]]
+package_name = "qiskit-dj"
+version = "0.1.0"
+description = "Quantum DJ Booth: 2-qubit classroom simulator (Flask + Qiskit)"
+requires_python = ">=3.10"
+requires_qiskit = "<3,>=2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+source = ["pyproject.toml"]
+deferred = []

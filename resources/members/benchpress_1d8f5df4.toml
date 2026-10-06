@@ -36,10 +36,18 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-02
 highest_supported_qiskit_version = "2.6.0rc1"
 
-[checks.R02]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/benchpress/issues/116, waiting for the fix"
 xfailed_until = 2027-03-31
 since = 2026-10-02
 details = "The qiskit requirement in requirements-qiskit.txt allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/Qiskit/benchpress/issues/116"
+subtest = "requirements:requirements-qiskit.txt"
+importance = "RECOMMENDATION"
+
+[[checks.Q04]]
+since = 2026-10-05
+details = "The qiskit requirement in requirements-qiskit.txt is written against a pre-release (>=1.3.0rc1)"
+discussion = "https://github.com/Qiskit/benchpress/issues/116#issuecomment-5957520264"
+subtest = "requirements:requirements-qiskit.txt"
 importance = "RECOMMENDATION"

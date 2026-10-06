@@ -49,13 +49,14 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 27058
-last_180_days_downloads = 196455
+last_month_downloads = 26823
+last_180_days_downloads = 196832
 
-[checks.P10]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-addon-mthree/issues/287, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-09
-details = "Python package mthree declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the mthree release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/Qiskit/qiskit-addon-mthree/issues/287"
+subtest = "pypi:mthree"
 importance = "RECOMMENDATION"

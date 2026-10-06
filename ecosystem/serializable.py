@@ -62,7 +62,17 @@ class JsonSerializable(ABC):
             elif isinstance(val, dict):
                 dict_element = {}
                 for k, v in val.items():
-                    dict_element[k] = v.to_dict() if hasattr(v, "to_dict") else v
+                    if isinstance(v, list):
+                        # a keyed array of tables, which `member.checks` is: one entry per
+                        # failing place. Without this the entries reach the toml writer as
+                        # objects and are written as their `repr`, with no error anywhere
+                        dict_element[k] = [
+                            item.to_dict() if hasattr(item, "to_dict") else item
+                            for item in v
+                        ]
+                    else:
+                        dict_element[k] = v.to_dict() if hasattr(v, "to_dict") else v
+                dict_element = {k: v for k, v in dict_element.items() if v or v == 0}
                 if dict_element:
                     element = dict_element
                 else:

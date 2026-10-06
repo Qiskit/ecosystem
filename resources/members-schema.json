@@ -137,51 +137,60 @@
       "type": "object",
       "patternProperties": {
         "^[A-Z0-9]{3}$": {
-          "type": "object",
-          "properties": {
-            "xfailed": {
-              "type": "string"
-            },
-            "xfailed_until": {
-              "type": "string",
-              "format": "date"
-            },
-            "since": {
-              "type": "string",
-              "format": "date"
-            },
-            "source": {
-              "type": "string"
-            },
-            "details": {
-              "type": "string"
-            },
-            "discussion": {
-              "type": "string"
-            },
-            "importance": {
-              "type": "string"
-            }
-          },
-          "anyOf": [
-            {
-              "$comment": "xfailed_until is the expiration of the xfailed explanation, so it is meaningless on its own",
-              "required": [
-                "xfailed"
-              ]
-            },
-            {
-              "not": {
-                "required": [
-                  "xfailed_until"
-                ]
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "xfailed": {
+                "type": "string"
+              },
+              "xfailed_until": {
+                "type": "string",
+                "format": "date"
+              },
+              "since": {
+                "type": "string",
+                "format": "date"
+              },
+              "source": {
+                "type": "string"
+              },
+              "details": {
+                "type": "string"
+              },
+              "discussion": {
+                "type": "string"
+              },
+              "importance": {
+                "type": "string"
+              },
+              "subtest": {
+                "$comment": "Which place of the member this record is about, for a check up that reads several: `requirements:docs/requirements.txt`, `pypi:qiskit-aer-gpu`. Absent on a check up with one answer per member",
+                "type": "string"
               }
-            }
-          ],
-          "additionalProperties": false
+            },
+            "anyOf": [
+              {
+                "$comment": "xfailed_until is the expiration of the xfailed explanation, so it is meaningless on its own",
+                "required": [
+                  "xfailed"
+                ]
+              },
+              {
+                "not": {
+                  "required": [
+                    "xfailed_until"
+                  ]
+                }
+              }
+            ],
+            "additionalProperties": false
+          }
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "$comment": "The check ups this member is not passing, keyed by id. Each is an array with one entry per failing place: a check up that reads several (a distribution, a manifest, a requirements file) can be explained away in one of them and keep counting in another, and each entry carries its own `since`, so each place has its own cure period"
     },
     "pypi": {
       "$comment": "What PyPI says about each distribution this project publishes. An array: an entry is identified by its own `package_name`, which it stores anyway",
