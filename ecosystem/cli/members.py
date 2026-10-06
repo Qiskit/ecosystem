@@ -856,6 +856,10 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                     member.to_dict(),
                     member_data_to_export,
                 )
+                # the one field with no unknown state: a project either is maintained by IBM
+                # or is not, and only the `true` is ever written down. Saying it either way
+                # is what lets the consumer use it as a filter rather than guess from absence
+                | {"ibm_maintained": bool(member.ibm_maintained)}
                 for member in self.dao.get_all()
                 if member.status not in ["Alumni", "Very Early Project"]
             ],

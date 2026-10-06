@@ -529,6 +529,16 @@ class TestCompileJson(UpdateStatusTestCase):
         self.assertEqual(0, github["stars"])
         self.assertIs(False, github["archived"])
 
+    def test_ibm_maintained_is_stated_either_way(self):
+        """The one field with no unknown state, so absence would be a worse answer than false"""
+        self.assertIs(False, self.compile_json()["members"][0]["ibm_maintained"])
+
+    def test_an_ibm_maintained_project_says_so(self):
+        """The 44 members that carry the flag keep carrying it"""
+        self.assertIs(
+            True, self.compile_json(ibm_maintained=True)["members"][0]["ibm_maintained"]
+        )
+
     def test_a_field_no_alias_resolves_is_left_out(self):
         """And not filled in with the value of the field before it"""
         exported = self.compile_json()["members"][0]
