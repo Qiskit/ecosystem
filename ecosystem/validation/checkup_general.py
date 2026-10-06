@@ -11,7 +11,7 @@
 # that they have been altered from the originals.
 
 
-""" General criteria
+"""General criteria
 
 [000] Build on, interface with, or extend the Qiskit SDK in a meaningful way.
 [Q20] Be compatible with the Qiskit SDK v2.0 (or newer).
