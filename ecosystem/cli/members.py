@@ -738,10 +738,10 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                 # a list of alias in priority in case they do not exist
                 for candidate_alias in alias:
                     candidate_value = CliMembers.filter_data(
-                        member_dict, {key: candidate_alias}
+                        member_dict, {key: candidate_alias}, forced_addition=True
                     )
-                    if len(candidate_value) == 1:
-                        data = list(candidate_value.values())[0]
+                    if candidate_value[key] is not None:
+                        data = candidate_value[key]
                         break
             else:
                 found_all = findall(alias, member_dict)
@@ -754,7 +754,9 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                         f"I dont know who to hangle multiple results for {found_all}. "
                         "Maybe functools.reduce?"
                     )
-            if forced_addition or data:
+            if forced_addition or (
+                data is not None and (data or isinstance(data, (bool, int, float)))
+            ):
                 filtered_data[key] = data
         return filtered_data
 
@@ -765,7 +767,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             "name": "name",
             "url": ["github.url", "url"],
             "description": ["description", "github.description"],
-            "licence": ["licence", "github.license"],
+            "licence": ["license", "github.license"],
             "contact_info": "contact_info",
             "affiliations": "affiliations",
             "labels": "labels",
@@ -845,6 +847,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
                     member.to_dict(),
                     member_data_to_export,
                 )
+                | {"ibm_maintained": bool(member.ibm_maintained)}
                 for member in self.dao.get_all()
                 if member.status not in ["Alumni", "Very Early Project"]
             ],
