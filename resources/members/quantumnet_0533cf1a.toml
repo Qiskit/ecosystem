@@ -39,7 +39,13 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 
-[checks.G06]
+[[checks.Q03]]
+since = 2026-10-05
+details = "The qiskit requirement in docs/requirements.txt allows a not-yet-released major version of Qiskit"
+subtest = "requirements:docs/requirements.txt"
+importance = "RECOMMENDATION"
+
+[[checks.G06]]
 since = 2026-07-14
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"

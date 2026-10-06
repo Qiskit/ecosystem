@@ -20,6 +20,7 @@ from io import StringIO
 
 from ecosystem.check import CheckData
 from ecosystem.member import Member
+from tests.common import record
 
 
 class ClassificationsTestCase(TestCase):
@@ -52,12 +53,14 @@ class SourceBasedCheckupTestCase(TestCase):
             url="https://github.com/BananaOrg/banana-repo",
             description="Banana short description.",
             checks={
-                "014": CheckData(
-                    "014",
-                    since="2026-07-09",
-                    source="https://github.com/BananaOrg/banana-repo/issues/1",
-                    details="the description is not describing anything",
-                )
+                "014": [
+                    CheckData(
+                        "014",
+                        since="2026-07-09",
+                        source="https://github.com/BananaOrg/banana-repo/issues/1",
+                        details="the description is not describing anything",
+                    )
+                ]
             },
         )
         return member
@@ -71,9 +74,9 @@ class SourceBasedCheckupTestCase(TestCase):
         ), redirect_stdout(StringIO()):
             member.update_checkups("checkup_description.py::checkup_014")
         self.assertIn("014", member.checks)
-        self.assertEqual(member.checks["014"].since, date(2026, 7, 9))
+        self.assertEqual(record(member, "014").since, date(2026, 7, 9))
         self.assertEqual(
-            member.checks["014"].details, "the description is not describing anything"
+            record(member, "014").details, "the description is not describing anything"
         )
 
     def test_closed_source_is_annotated(self):
@@ -86,7 +89,7 @@ class SourceBasedCheckupTestCase(TestCase):
             member.update_checkups("checkup_description.py::checkup_014")
         self.assertIn("014", member.checks)
         self.assertEqual(
-            member.checks["014"].details,
+            record(member, "014").details,
             "the description is not describing anything "
             "(the source issue is closed as completed)",
         )
@@ -108,12 +111,14 @@ class XfailedExpirationTestCase(TestCase):
             " long long long long long long long long long long"
             " long long long long long long long long long long description.",
             checks={
-                "014": CheckData(
-                    "014",
-                    xfailed=self.reason,
-                    xfailed_until=xfailed_until,
-                    **check_kwargs,
-                )
+                "014": [
+                    CheckData(
+                        "014",
+                        xfailed=self.reason,
+                        xfailed_until=xfailed_until,
+                        **check_kwargs,
+                    )
+                ]
             },
         )
 
@@ -130,16 +135,16 @@ class XfailedExpirationTestCase(TestCase):
         member = self.member_with_xfail(expires)
         output = self.update(member)
         self.assertIn("XFAIL", output)
-        self.assertEqual(member.checks["014"].xfailed, self.reason)
-        self.assertEqual(member.checks["014"].xfailed_until, expires)
+        self.assertEqual(record(member, "014").xfailed, self.reason)
+        self.assertEqual(record(member, "014").xfailed_until, expires)
 
     def test_explanation_without_expiration_is_kept(self):
         """An explanation without an expiration date keeps working as before"""
         member = self.member_with_xfail()
         output = self.update(member)
         self.assertIn("XFAIL", output)
-        self.assertEqual(member.checks["014"].xfailed, self.reason)
-        self.assertIsNone(member.checks["014"].xfailed_until)
+        self.assertEqual(record(member, "014").xfailed, self.reason)
+        self.assertIsNone(record(member, "014").xfailed_until)
 
     def test_expired_explanation_is_dropped(self):
         """Once the explanation expired, the check up fails as a regular one and the
@@ -148,9 +153,9 @@ class XfailedExpirationTestCase(TestCase):
         output = self.update(member)
         self.assertIn("FAILED", output)
         self.assertIn("014", member.checks)
-        self.assertIsNone(member.checks["014"].xfailed)
-        self.assertIsNone(member.checks["014"].xfailed_until)
-        self.assertEqual(member.checks["014"].since, date.today())
+        self.assertIsNone(record(member, "014").xfailed)
+        self.assertIsNone(record(member, "014").xfailed_until)
+        self.assertEqual(record(member, "014").since, date.today())
 
     def test_expired_explanation_on_a_passing_checkup(self):
         """An expired explanation on a check up that passes removes the check up"""
@@ -163,10 +168,10 @@ class XfailedExpirationTestCase(TestCase):
         """A check up that has no checker (so it can only be source-based) cannot be
         translated into an xfail mark, and it does not block the ones that can"""
         member = self.member_with_xfail()
-        member.checks["COC"] = CheckData("COC", xfailed="no CoC needed")
+        member.checks["COC"] = [CheckData("COC", xfailed="no CoC needed")]
         output = self.update(member)
         self.assertIn("XFAIL", output)
-        self.assertEqual(member.checks["014"].xfailed, self.reason)
+        self.assertEqual(record(member, "014").xfailed, self.reason)
 
 
 class SourceBasedXfailExpirationTestCase(TestCase):
@@ -183,14 +188,16 @@ class SourceBasedXfailExpirationTestCase(TestCase):
             url="https://github.com/BananaOrg/banana-repo",
             description="Banana short description.",
             checks={
-                "014": CheckData(
-                    "014",
-                    since="2026-07-09",
-                    source=self.issue,
-                    details="the description is not describing anything",
-                    xfailed=self.reason,
-                    xfailed_until=xfailed_until,
-                )
+                "014": [
+                    CheckData(
+                        "014",
+                        since="2026-07-09",
+                        source=self.issue,
+                        details="the description is not describing anything",
+                        xfailed=self.reason,
+                        xfailed_until=xfailed_until,
+                    )
+                ]
             },
         )
 
@@ -207,9 +214,9 @@ class SourceBasedXfailExpirationTestCase(TestCase):
         expires = date.today() + timedelta(days=30)
         member = self.member_with_source_xfail(expires)
         self.update(member)
-        self.assertEqual(member.checks["014"].xfailed, self.reason)
-        self.assertEqual(member.checks["014"].xfailed_until, expires)
-        self.assertEqual(member.checks["014"].since, date(2026, 7, 9))
+        self.assertEqual(record(member, "014").xfailed, self.reason)
+        self.assertEqual(record(member, "014").xfailed_until, expires)
+        self.assertEqual(record(member, "014").since, date(2026, 7, 9))
 
     def test_expired_explanation_is_dropped(self):
         """An expired explanation is removed, so the check up counts again.
@@ -217,7 +224,7 @@ class SourceBasedXfailExpirationTestCase(TestCase):
         member = self.member_with_source_xfail(date.today() - timedelta(days=1))
         self.update(member)
         self.assertIn("014", member.checks)
-        self.assertIsNone(member.checks["014"].xfailed)
-        self.assertIsNone(member.checks["014"].xfailed_until)
-        self.assertEqual(member.checks["014"].source, self.issue)
-        self.assertEqual(member.checks["014"].since, date(2026, 7, 9))
+        self.assertIsNone(record(member, "014").xfailed)
+        self.assertIsNone(record(member, "014").xfailed_until)
+        self.assertEqual(record(member, "014").source, self.issue)
+        self.assertEqual(record(member, "014").since, date(2026, 7, 9))

@@ -39,11 +39,11 @@ no reason the file has to carry the conventional name: of the members measured,
 `Qiskit/benchpress` declares its Qiskit only in `requirements-qiskit.txt` (one of eight
 such files, the rest for other SDKs) and `quantumcat` only in `requirements-review.txt`.
 
-Every file that names qiskit gets a section, and `[R01]`/`[R02]` read all of them: a
+Every file that names qiskit gets a section, and the `[Q0*]` check ups read all of them: a
 qiskit requirement the repository asks for is one somebody ends up installing, whichever
 file it is in. `Qiskit/qiskit-cpp` asks for `qiskit>=2.1.0` in `requirements.txt` and a
 bare `qiskit` above its black/ruff/pylint pins in `requirements-dev.txt`, and both are
-uncapped, so `[R02]` has something to say about either. The check ups name the file they
+uncapped, so `[Q03]` has something to say about either. The check ups name the file they
 read, so a maintainer knows which one to edit.
 """
 

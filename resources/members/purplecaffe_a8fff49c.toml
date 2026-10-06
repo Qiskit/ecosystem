@@ -16,7 +16,7 @@ maturity = "production-ready"
 url = "https://github.com/IceKhan13/purplecaffeine"
 owner = "IceKhan13"
 repo = "purplecaffeine"
-stars = 7
+stars = 8
 homepage = "https://icekhan13.github.io/purplecaffeine/"
 license = "Apache-2.0"
 description = "Project is aimed to create simple general interface to track quantum experiments, store and search them in an easy way."
@@ -25,7 +25,7 @@ total_dependent_repositories = 4
 total_dependent_packages = 0
 created_at = 2023-02-28
 last_commit = 2025-09-15
-last_activity = 2026-09-24
+last_activity = 2026-10-05
 
 [badge]
 url = "https://qisk.it/e-a8fff49c"
@@ -48,10 +48,11 @@ highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 6
 last_180_days_downloads = 273
 
-[checks.P10]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/IceKhan13/purplecaffeine/issues/174, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-14
-details = "Python package purplecaffeine declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the purplecaffeine release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/IceKhan13/purplecaffeine/issues/174"
+subtest = "pypi:purplecaffeine"
 importance = "RECOMMENDATION"

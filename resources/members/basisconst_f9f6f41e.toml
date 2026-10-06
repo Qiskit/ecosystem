@@ -44,20 +44,21 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 772
-last_180_days_downloads = 1063
+last_month_downloads = 778
+last_180_days_downloads = 1071
 
-[checks.G07]
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-basis-constructor/issues/9, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-08-18
+details = "The qiskit requirement in the qiskit-basis-constructor release on PyPI allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/Qiskit/qiskit-basis-constructor/issues/9"
+subtest = "pypi:qiskit-basis-constructor"
+importance = "RECOMMENDATION"
+
+[[checks.G07]]
 xfailed = "The project is maintained, it is just having a slow moment"
 xfailed_until = 2026-12-31
 since = 2026-09-17
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
-
-[checks.P10]
-xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-basis-constructor/issues/9, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-08-18
-details = "Python package qiskit-basis-constructor declared itself compatible to a not-yet-released major version of Qiskit"
-discussion = "https://github.com/Qiskit/qiskit-basis-constructor/issues/9"
-importance = "RECOMMENDATION"

@@ -36,6 +36,7 @@ last_activity = 2026-09-30
 [badge]
 url = "https://qisk.it/e-76ae525f"
 style = "flat"
+
 [[pypi]]
 package_name = "checks-superstaq"
 version = "0.5.70"
@@ -45,8 +46,8 @@ description = "Check script tools for Superstaq."
 url = "https://pypi.org/project/checks-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
-last_month_downloads = 6615
-last_180_days_downloads = 57466
+last_month_downloads = 6587
+last_180_days_downloads = 57486
 
 [[pypi]]
 package_name = "cirq-superstaq"
@@ -61,8 +62,8 @@ maintainers = [
   "https://pypi.org/user/richrines/",
   "https://pypi.org/user/vtomole/",
 ]
-last_month_downloads = 5477
-last_180_days_downloads = 57178
+last_month_downloads = 5339
+last_180_days_downloads = 57137
 
 [[pypi]]
 package_name = "general-superstaq"
@@ -73,8 +74,8 @@ description = "The general module that provides tools and access to Superstaq."
 url = "https://pypi.org/project/general-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
-last_month_downloads = 5781
-last_180_days_downloads = 59158
+last_month_downloads = 5553
+last_180_days_downloads = 59065
 
 [[pypi]]
 package_name = "qiskit-superstaq"
@@ -94,8 +95,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 3758
-last_180_days_downloads = 38710
+last_month_downloads = 3593
+last_180_days_downloads = 38656
 
 [[pypi]]
 package_name = "supermarq"
@@ -106,5 +107,5 @@ description = "Supermarq is a scalable, application-centric quantum benchmarking
 url = "https://pypi.org/project/Supermarq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
-last_month_downloads = 837
-last_180_days_downloads = 7081
+last_month_downloads = 835
+last_180_days_downloads = 7095

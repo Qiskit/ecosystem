@@ -16,7 +16,7 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/ffsim"
 owner = "qiskit-community"
 repo = "ffsim"
-stars = 108
+stars = 109
 homepage = "https://qiskit-community.github.io/ffsim/"
 license = "Apache-2.0"
 description = "Faster simulation of fermionic quantum circuits."
@@ -48,13 +48,14 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-23
 highest_supported_qiskit_version = "2.5.1"
-last_month_downloads = 59761
-last_180_days_downloads = 195507
+last_month_downloads = 58900
+last_180_days_downloads = 195335
 
-[checks.P10]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/ffsim/issues/712, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-09
-details = "Python package ffsim declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the ffsim release on PyPI allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/qiskit-community/ffsim/issues/712"
+subtest = "pypi:ffsim"
 importance = "RECOMMENDATION"

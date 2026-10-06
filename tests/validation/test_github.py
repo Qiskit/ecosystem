@@ -69,7 +69,7 @@ class GitHubCheckupsTestCase(TestCase):
         member = self.member(**member_kwargs)
         with redirect_stdout(StringIO()):
             member.update_checkups(checker)
-        return {id_: checkup.details for id_, checkup in member.checks.items()}
+        return {id_: records[0].details for id_, records in member.checks.items()}
 
     def assert_same_for_every_status(self, checker, expected, **member_kwargs):
         """The check up records `expected` whatever `member.status` says"""

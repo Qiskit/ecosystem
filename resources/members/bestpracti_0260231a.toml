@@ -37,10 +37,11 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml", "setup.py", "requirements.txt"]
 deferred = ["install_requires", "long_description", "packages", "version"]
 
-[checks.S02]
+[[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qopt-best-practices/issues/66, waiting for the fix"
 xfailed_until = 2027-03-31
 since = 2026-10-01
-details = "The distribution qopt-best-practices declared in the repository allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qopt-best-practices manifest in the repository allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/qiskit-community/qopt-best-practices/issues/66"
+subtest = "python:qopt-best-practices"
 importance = "RECOMMENDATION"

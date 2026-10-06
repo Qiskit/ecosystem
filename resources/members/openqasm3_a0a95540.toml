@@ -32,6 +32,7 @@ last_activity = 2026-09-24
 [badge]
 url = "https://qisk.it/e-a0a95540"
 style = "flat"
+
 [[crates]]
 package_name = "oq3_lexer"
 version = "0.7.0"
@@ -46,8 +47,8 @@ maintainers = [
 ]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 947905
-last_90_days_downloads = 168556
+total_downloads = 948803
+last_90_days_downloads = 168049
 
 [[crates]]
 package_name = "oq3_parser"
@@ -63,8 +64,8 @@ maintainers = [
 ]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 947511
-last_90_days_downloads = 168579
+total_downloads = 948409
+last_90_days_downloads = 168072
 
 [[crates]]
 package_name = "oq3_semantics"
@@ -76,8 +77,8 @@ url = "https://crates.io/crates/oq3_semantics"
 maintainers = ["https://github.com/jlapeyre", "https://github.com/qiskit"]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 942777
-last_90_days_downloads = 167822
+total_downloads = 943672
+last_90_days_downloads = 167310
 
 [[crates]]
 package_name = "oq3_source_file"
@@ -89,8 +90,8 @@ url = "https://crates.io/crates/oq3_source_file"
 maintainers = ["https://github.com/jlapeyre", "https://github.com/qiskit"]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 946065
-last_90_days_downloads = 167858
+total_downloads = 946960
+last_90_days_downloads = 167347
 
 [[crates]]
 package_name = "oq3_syntax"
@@ -106,5 +107,5 @@ maintainers = [
 ]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 946712
-last_90_days_downloads = 168422
+total_downloads = 947612
+last_90_days_downloads = 167916

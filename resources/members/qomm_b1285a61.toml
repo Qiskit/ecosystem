@@ -27,7 +27,7 @@ last_commit = 2024-09-21
 url = "https://qisk.it/e-b1285a61"
 style = "flat"
 
-[checks.G07]
+[[checks.G07]]
 since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
