@@ -145,6 +145,14 @@ description = "Supports GPU acceleration."
 name = "AI/LLM"
 description = "Uses or integrates AI/LLM capabilities (e.g. LLM-powered tooling, AI-driven transpilation, or other AI-assisted functionality)."
 
+[[labels]]
+name = "documentation"
+description = "Documentation tooling or a project concerning reading content."
+
+[[labels]]
+name = "environment setup"
+description = "Installs, packages or provisions a ready-to-use Qiskit environment."
+
 [[interfaces]]
 name = "Python"
 description = "API callable from Python programming language"

@@ -1,7 +1,7 @@
 name = "OpenQASM sphinx plugin"
 url = "https://github.com/openqasm/openqasm-sphinx"
 description = "Sphinx extension to document OpenQASM code as a supported language."
-labels = ["openqasm"]
+labels = ["openqasm", "documentation"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
