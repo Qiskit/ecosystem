@@ -15,8 +15,12 @@
 # that states what the case asserts needs no docstring saying it again
 # pylint: disable=invalid-name,missing-function-docstring
 
+from contextlib import redirect_stdout
+from io import StringIO
+
 from ecosystem.julia import JuliaData
 from ecosystem.member import Member
+from ecosystem.validation import validate_member
 from tests.validation import CheckupTestCase
 
 
@@ -67,3 +71,17 @@ class TestAMemberWithNoJuliaPackage(JuliaCheckupsTestCase):
     def test_nothing_is_recorded(self):
         member = Member(name="banana", url="https://github.com/banana-org/banana-repo")
         self.assert_records("checkup_julia.py", set(), member)
+
+    def test_the_check_ups_are_skipped_rather_than_passed(self):
+        """`member.julia` defaults to `[]`, so the fixture has to test for empty.
+
+        Testing for None let every check up run over nothing and report a pass, which said
+        a project that publishes nothing had passed the checks on what it publishes.
+        """
+        member = Member(name="banana", url="https://github.com/banana-org/banana-repo")
+        with redirect_stdout(StringIO()):
+            report = validate_member(
+                member, tests_to_run="checkup_julia.py", verbose_level="-q"
+            )
+
+        self.assertEqual([], report.passed)

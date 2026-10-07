@@ -24,7 +24,10 @@ ups reported, so they belong to a run rather than to a member and are not covere
 # that states what the case asserts needs no docstring saying it again
 # pylint: disable=invalid-name,missing-function-docstring
 
-from datetime import date
+from datetime import date, timedelta
+from unittest import TestCase
+
+import pytest
 
 from ecosystem.check import CheckData
 from ecosystem.github import GitHubData
@@ -33,6 +36,7 @@ from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
 from ecosystem.python import PythonData
 from ecosystem.requirements import RequirementsData
+from ecosystem.validation.checkup_general import must_pass_all_requierements
 from tests.common import record
 from tests.validation import CheckupTestCase
 
@@ -335,3 +339,54 @@ class TestARecordPerPlace(QiskitDependencyTestCase):
         self.assertEqual(2, len(member.checks["Q03"]))
         self.assertTrue(all(stored.xfail_applies for stored in member.checks["Q03"]))
         self.assertEqual([], member.failing_checkups)
+
+
+class TestTheAggregatorsMessage(TestCase):
+    """What [Q20], [G00] and [001] say when what they wait on is failing.
+
+    `must_pass_all_requierements` reads the reports of the check ups named in the
+    `order(after=...)` marker, so these call it directly rather than staging a run.
+    """
+
+    #: a prerequisite with a finite cure period, so that it can both be running and have
+    #: expired. [PQ1] cannot: it is LEGACY, which means an infinite one
+    CHECKER = "checkup_pypi.py::checkup_P12"
+
+    @staticmethod
+    def report(days_ago):
+        """A failed report of that checker, as the plugin hands it over"""
+
+        class Marker:  # pylint: disable=too-few-public-methods
+            """the `previously_failed` marker, which carries when it started failing"""
+
+            kwargs = {"since": date.today() - timedelta(days=days_ago)}
+
+        class Report:  # pylint: disable=too-few-public-methods
+            """only what `CheckData.from_report` reads"""
+
+            nodeid = TestTheAggregatorsMessage.CHECKER
+            longreprtext = "AssertionError: a distribution is not compatible"
+            previously_failed = Marker()
+
+        return Report()
+
+    def aggregate(self, days_ago):
+        """`must_pass_all_requierements` over one failing prerequisite"""
+        return must_pass_all_requierements(
+            [self.CHECKER], {self.CHECKER: self.report(days_ago)}, "Not compatible"
+        )
+
+    def test_a_cure_period_still_running_names_the_check_up_it_waits_on(self):
+        """It used to list the failures instead, which is empty on this branch"""
+        with self.assertRaises(pytest.skip.Exception) as caught:
+            self.aggregate(days_ago=1)
+
+        self.assertIn("Still in the cure period", str(caught.exception))
+        self.assertIn("P12", str(caught.exception))
+
+    def test_an_expired_cure_period_fails_and_names_the_check_up(self):
+        with self.assertRaises(pytest.fail.Exception) as caught:
+            self.aggregate(days_ago=10_000)
+
+        self.assertIn("Not compatible", str(caught.exception))
+        self.assertIn("[P12]", str(caught.exception))
