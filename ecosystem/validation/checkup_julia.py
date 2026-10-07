@@ -18,9 +18,10 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def skip_pypi(member):
-    """Skip if no julia seciton"""
-    if member.julia is None:
+def skip_julia(member):
+    """Skip if there is no julia section to look at. Empty rather than None, see
+    `checkup_pypi.skip_pypi`"""
+    if not member.julia:
         pytest.skip("No julia section")
     yield member
 

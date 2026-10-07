@@ -44,7 +44,8 @@ def must_pass_all_requierements(requierements, failed_checkups, msg):
     if fail:
         pytest.fail(msg + ": " + " ".join([f"`[{c.id}]`" for c in fail]))
     if skip:
-        pytest.skip("Still in the cure period: " + " ".join([c.id for c in fail]))
+        # `skip`, not `fail`: the fail branch has returned by now, so this listed nothing
+        pytest.skip("Still in the cure period: " + " ".join([c.id for c in skip]))
 
 
 @pytest.mark.order(after=["checkup_general.py::checkup_Q02"])
