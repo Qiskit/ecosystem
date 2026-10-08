@@ -28,7 +28,7 @@ description = "A collection of MCP servers to allow LLMs to use the qiskit,qiski
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-09-05
-last_commit = 2026-09-25
+last_commit = 2026-10-07
 last_activity = 2026-10-06
 
 [badge]
@@ -49,7 +49,7 @@ maintainers = [
   "https://pypi.org/user/AIforQuantum/",
 ]
 last_month_downloads = 308
-last_180_days_downloads = 2810
+last_180_days_downloads = 2849
 
 [[pypi]]
 package_name = "qiskit-gym-mcp-server"
@@ -69,7 +69,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 400
-last_180_days_downloads = 3417
+last_180_days_downloads = 3455
 
 [[pypi]]
 package_name = "qiskit-ibm-runtime-mcp-server"
@@ -84,7 +84,7 @@ maintainers = [
   "https://pypi.org/user/AIforQuantum/",
 ]
 last_month_downloads = 863
-last_180_days_downloads = 6065
+last_180_days_downloads = 6109
 
 [[pypi]]
 package_name = "qiskit-ibm-transpiler-mcp-server"
@@ -99,7 +99,7 @@ maintainers = [
   "https://pypi.org/user/AIforQuantum/",
 ]
 last_month_downloads = 412
-last_180_days_downloads = 3696
+last_180_days_downloads = 3734
 
 [[pypi]]
 package_name = "qiskit-mcp-server"
@@ -119,7 +119,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 1552
-last_180_days_downloads = 11333
+last_180_days_downloads = 11390
 
 [[pypi]]
 package_name = "qiskit-mcp-servers"
@@ -135,7 +135,7 @@ maintainers = [
   "https://pypi.org/user/AIforQuantum/",
 ]
 last_month_downloads = 704
-last_180_days_downloads = 4252
+last_180_days_downloads = 4282
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/mcp-servers/issues/221, waiting for a release with the fix"

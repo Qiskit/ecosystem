@@ -23,8 +23,8 @@ description = "Qrack provider for Qiskit"
 total_dependent_repositories = 6
 total_dependent_packages = 1
 created_at = 2019-05-14
-last_commit = 2026-10-06
-last_activity = 2026-10-03
+last_commit = 2026-10-07
+last_activity = 2026-10-07
 
 [badge]
 url = "https://qisk.it/e-43cd849a"
@@ -32,8 +32,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-qrack-provider"
-version = "1.22.0"
-last_release_date = 2026-10-03
+version = "1.23.0"
+last_release_date = 2026-10-07
 license = "Apache-2.0"
 description = "Qiskit Qrack Provider - Qrack High-Performance GPU simulation for Qiskit"
 url = "https://pypi.org/project/qiskit-qrack-provider/"
@@ -45,4 +45,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 1833
-last_180_days_downloads = 7625
+last_180_days_downloads = 7633
