@@ -61,3 +61,8 @@ details = "The qiskit requirement in the qiskit-data-reuploading release on PyPI
 discussion = "https://github.com/Carlosandp/qiskit-data-reuploading/issues/4"
 subtest = "pypi:qiskit-data-reuploading"
 importance = "RECOMMENDATION"
+
+[[checks.G12]]
+since = 2026-10-08
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"

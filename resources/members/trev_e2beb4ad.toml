@@ -10,7 +10,7 @@ documentation = "https://github.com/keunjunpark/qiskit-trev/tree/main/tutorials"
 packages = ["https://pypi.org/project/qiskit-trev/"]
 uuid = "e2beb4ad-418d-4dca-b789-02567d385528"
 maturity = "experimental"
-status = "Under revision"
+status = "Early Project"
 
 [github]
 url = "https://github.com/keunjunpark/qiskit-trev"
@@ -54,8 +54,3 @@ details = "The qiskit requirement in the qiskit-trev release on PyPI allows a no
 discussion = "https://github.com/keunjunpark/qiskit-trev/issues/7"
 subtest = "pypi:qiskit-trev"
 importance = "RECOMMENDATION"
-
-[[checks.G12]]
-since = 2026-09-24
-details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
-importance = "IMPORTANT"
