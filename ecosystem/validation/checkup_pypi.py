@@ -19,8 +19,13 @@ import pytest
 
 @pytest.fixture(autouse=True)
 def skip_pypi(member):
-    """Skip if no pypi seciton"""
-    if member.pypi is None:
+    """Skip if there is no pypi section to look at.
+
+    Empty rather than None: the section defaults to `[]` (#1408), so testing for None let
+    every check up here run over nothing and report a pass, saying a project that publishes
+    no distribution has passed the checks on its distributions.
+    """
+    if not member.pypi:
         pytest.skip("No pypi section")
     yield member
 

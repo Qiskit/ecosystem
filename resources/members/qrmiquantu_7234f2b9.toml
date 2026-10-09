@@ -11,20 +11,21 @@ packages = [
 ]
 uuid = "7234f2b9-a787-4186-bad7-50ed2be3b92b"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qrmi"
 owner = "qiskit-community"
 repo = "qrmi"
-stars = 62
+stars = 64
 homepage = "https://qiskit-community.github.io/qrmi/"
 license = "Apache-2.0"
 description = "Thin and vendor agnostic layer to access, control and monitor underlying on-prem or cloud quantum computers"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-08-05
-last_commit = 2026-10-05
-last_activity = 2026-10-05
+last_commit = 2026-10-08
+last_activity = 2026-10-08
 
 [badge]
 url = "https://qisk.it/e-7234f2b9"
@@ -39,8 +40,8 @@ description = "Quantum Resource Management Interface(QRMI)"
 url = "https://pypi.org/project/qrmi/"
 status = "active"
 maintainers = ["https://pypi.org/user/ohtanim/"]
-last_month_downloads = 2396
-last_180_days_downloads = 8330
+last_month_downloads = 2353
+last_180_days_downloads = 8778
 
 [[cargo]]
 package_name = "alice-bob-felis"
@@ -61,6 +62,16 @@ rust_version = "1.85.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/pasqal_cloud_client"
+
+[[cargo]]
+package_name = "pasqal-local-api"
+version = "0.0.1"
+license = "Apache-2.0"
+description = "Pasqal Local API client library for Rust"
+rust_version = "1.85.1"
+edition = "2021"
+crate_type = ["rlib"]
+path = "dependencies/pasqal_local_client"
 
 [[cargo]]
 package_name = "qrmi"

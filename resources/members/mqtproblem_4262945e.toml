@@ -17,7 +17,7 @@ maturity = "experimental"
 url = "https://github.com/munich-quantum-toolkit/problemsolver"
 owner = "munich-quantum-toolkit"
 repo = "problemsolver"
-stars = 55
+stars = 56
 homepage = "https://munich-quantum-toolkit.github.io/problemsolver/"
 license = "MIT"
 description = "MQT ProblemSolver - A Tool for Solving Problems Using Quantum Computing"
@@ -25,7 +25,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-06-18
 last_commit = 2026-10-05
-last_activity = 2026-10-05
+last_activity = 2026-10-06
 
 [badge]
 url = "https://qisk.it/e-4262945e"
@@ -47,7 +47,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 31
-last_180_days_downloads = 521
+last_180_days_downloads = 447
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/problemsolver/issues/560, waiting for a release with the fix"

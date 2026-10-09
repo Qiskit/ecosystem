@@ -16,15 +16,15 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/qiskit-fermions"
 owner = "Qiskit"
 repo = "qiskit-fermions"
-stars = 24
+stars = 25
 homepage = "https://quantum.cloud.ibm.com/docs/en/addons/qiskit-fermions"
 license = "Apache-2.0"
 description = "A toolkit for working with fermionic systems"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-01-21
-last_commit = 2026-10-02
-last_activity = 2026-10-02
+last_commit = 2026-10-07
+last_activity = 2026-10-07
 
 [badge]
 url = "https://qisk.it/e-487b5ec4"
@@ -48,5 +48,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 46418
-last_180_days_downloads = 58399
+last_month_downloads = 45696
+last_180_days_downloads = 58655

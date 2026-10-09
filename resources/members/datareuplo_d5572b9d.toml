@@ -51,7 +51,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 4
-last_180_days_downloads = 292
+last_180_days_downloads = 295
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Carlosandp/qiskit-data-reuploading/issues/4, waiting for a release with the fix"
@@ -61,3 +61,8 @@ details = "The qiskit requirement in the qiskit-data-reuploading release on PyPI
 discussion = "https://github.com/Carlosandp/qiskit-data-reuploading/issues/4"
 subtest = "pypi:qiskit-data-reuploading"
 importance = "RECOMMENDATION"
+
+[[checks.G12]]
+since = 2026-10-08
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"

@@ -1,5 +1,5 @@
 name = "BasisConstructor plugin for Qiskit transpiler"
-url = "https://github.com/Qiskit/qiskit-basis-constructor"
+url = "https://github.com/qiskit-community/qiskit-basis-constructor"
 description = "Beta of a new translation stage for the Qiskit transpiler, mapping circuits onto a target basis gate set."
 labels = ["circuit optimization"]
 interfaces = ["Python"]
@@ -8,11 +8,10 @@ category = "Transpiler plugin"
 packages = ["https://pypi.org/project/qiskit-basis-constructor/"]
 uuid = "f9f6f41e-0d19-4446-b465-39c3db971bd0"
 maturity = "experimental"
-status = "Qiskit Project"
 
 [github]
-url = "https://github.com/Qiskit/qiskit-basis-constructor"
-owner = "Qiskit"
+url = "https://github.com/qiskit-community/qiskit-basis-constructor"
+owner = "qiskit-community"
 repo = "qiskit-basis-constructor"
 stars = 3
 license = "Apache-2.0"
@@ -21,7 +20,7 @@ total_dependent_repositories = 1
 total_dependent_packages = 0
 created_at = 2025-03-27
 last_commit = 2025-03-27
-last_activity = 2026-09-24
+last_activity = 2026-10-07
 
 [badge]
 url = "https://qisk.it/e-f9f6f41e"
@@ -44,15 +43,15 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 778
-last_180_days_downloads = 1071
+last_month_downloads = 859
+last_180_days_downloads = 1237
 
 [[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-basis-constructor/issues/9, waiting for a release with the fix"
+xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-basis-constructor/issues/9, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-08-18
 details = "The qiskit requirement in the qiskit-basis-constructor release on PyPI allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/Qiskit/qiskit-basis-constructor/issues/9"
+discussion = "https://github.com/qiskit-community/qiskit-basis-constructor/issues/9"
 subtest = "pypi:qiskit-basis-constructor"
 importance = "RECOMMENDATION"
 

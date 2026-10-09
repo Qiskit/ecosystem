@@ -28,8 +28,8 @@ description = "A collection of MCP servers to allow LLMs to use the qiskit,qiski
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-09-05
-last_commit = 2026-09-25
-last_activity = 2026-10-06
+last_commit = 2026-10-08
+last_activity = 2026-10-08
 
 [badge]
 url = "https://qisk.it/e-4174663a"
@@ -48,13 +48,13 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 310
-last_180_days_downloads = 2807
+last_month_downloads = 308
+last_180_days_downloads = 2906
 
 [[pypi]]
 package_name = "qiskit-gym-mcp-server"
-version = "0.4.1"
-last_release_date = 2026-07-13
+version = "0.4.2"
+last_release_date = 2026-10-08
 license = "Apache-2.0"
 description = "MCP server for qiskit-gym reinforcement learning quantum circuit synthesis"
 url = "https://pypi.org/project/qiskit-gym-mcp-server/"
@@ -63,18 +63,18 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-requires_qiskit = ">=1.3.0"
+requires_qiskit = "<3,>=1.3.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 401
-last_180_days_downloads = 3411
+last_month_downloads = 400
+last_180_days_downloads = 3514
 
 [[pypi]]
 package_name = "qiskit-ibm-runtime-mcp-server"
-version = "0.6.1"
-last_release_date = 2026-07-13
+version = "0.6.2"
+last_release_date = 2026-10-08
 license = "Apache-2.0"
 description = "MCP server for IBM Quantum computing services through Qiskit IBM Runtime"
 url = "https://pypi.org/project/qiskit-ibm-runtime-mcp-server/"
@@ -83,8 +83,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 833
-last_180_days_downloads = 6033
+last_month_downloads = 863
+last_180_days_downloads = 6165
 
 [[pypi]]
 package_name = "qiskit-ibm-transpiler-mcp-server"
@@ -98,13 +98,13 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 406
-last_180_days_downloads = 3688
+last_month_downloads = 412
+last_180_days_downloads = 3794
 
 [[pypi]]
 package_name = "qiskit-mcp-server"
-version = "0.3.1"
-last_release_date = 2026-07-13
+version = "0.3.2"
+last_release_date = 2026-10-08
 license = "Apache-2.0"
 description = "MCP server for Qiskit quantum computing capabilities with circuit serialization utilities"
 url = "https://pypi.org/project/qiskit-mcp-server/"
@@ -113,18 +113,18 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-requires_qiskit = ">=1.3.0"
+requires_qiskit = "<3,>=1.3.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-last_month_downloads = 1514
-last_180_days_downloads = 11284
+last_month_downloads = 1552
+last_180_days_downloads = 11457
 
 [[pypi]]
 package_name = "qiskit-mcp-servers"
-version = "0.12.0"
-last_release_date = 2026-07-13
+version = "0.12.1"
+last_release_date = 2026-10-08
 license = "Apache-2.0"
 description = "Model Context Protocol servers for IBM Quantum services and Qiskit"
 url = "https://pypi.org/project/qiskit-mcp-servers/"
@@ -134,8 +134,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 668
-last_180_days_downloads = 4217
+last_month_downloads = 704
+last_180_days_downloads = 4334
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/mcp-servers/issues/221, waiting for a release with the fix"
