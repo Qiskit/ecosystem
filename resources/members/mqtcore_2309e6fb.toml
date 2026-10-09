@@ -25,8 +25,8 @@ description = "MQT Core - Reusable C++20 and Python libraries for quantum comput
 total_dependent_repositories = 56
 total_dependent_packages = 7
 created_at = 2020-01-02
-last_commit = 2026-10-07
-last_activity = 2026-10-07
+last_commit = 2026-10-08
+last_activity = 2026-10-08
 
 [badge]
 url = "https://qisk.it/e-2309e6fb"
@@ -48,7 +48,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-04-24
 highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 13129
-last_180_days_downloads = 152744
+last_180_days_downloads = 153015
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/core/issues/2622, waiting for a release with the fix"
