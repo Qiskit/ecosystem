@@ -271,12 +271,8 @@ class PyPIData(
     def _license_from_pypi(self):
         """The license the fetched JSON states, from its most explicit field down.
 
-        A `License:` field short enough to be a name, then a license expression, then the
-        version a published license text names in its own heading, and last the trove
-        classifier. The text comes before the classifier because
-        `license = { file = "LICENSE" }` publishes the whole file as the license, and that
-        file says which Apache version it is where `License :: OSI Approved :: Apache
-        Software License` covers 1.0, 1.1 and 2.0 alike.
+        A `License:` field short enough to be a name, then a license expression, and last the trove
+        classifier.
         """
         info = self._pypi_json.get("info", {})
         text = info.get("license")
@@ -285,9 +281,7 @@ class PyPIData(
         expression = info.get("license_expression")
         if expression:
             return License(expression, "pypi")
-        from_text = License.from_text(text, "pypi")
-        if from_text:
-            return from_text
+
         for classifier in info.get("classifiers") or []:
             parts = [part.strip() for part in classifier.split("::")]
             if classifier.startswith("License :: ") and len(parts) == 3:

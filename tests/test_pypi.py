@@ -130,62 +130,6 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
 
         self.assertFalse(pypi_data.pypi_json)
 
-    def test_a_published_license_text_beats_the_classifier(self):
-        """`license = { file = "LICENSE" }` publishes the file, and the file names the version.
-
-        The classifier that would be read instead says only "Apache Software License", which
-        covers 1.0, 1.1 and 2.0. Ten of the distributions in the corpus arrive this way.
-        """
-        pypi_data = PyPIData("banana-compiler")
-        self._update_with_pypi_json(
-            pypi_data,
-            {
-                "info": {
-                    "license": "                                 Apache License\n"
-                    "                           Version 2.0, January 2004\n"
-                    + "boilerplate " * 500,
-                    "classifiers": [
-                        "License :: OSI Approved :: Apache Software License"
-                    ],
-                }
-            },
-        )
-
-        self.assertEqual("Apache-2.0", str(pypi_data.license))
-
-    def test_a_license_expression_beats_the_text(self):
-        """The expression is what the project states, the text is what it ships"""
-        pypi_data = PyPIData("banana-compiler")
-        self._update_with_pypi_json(
-            pypi_data,
-            {
-                "info": {
-                    "license": "Apache License\nVersion 2.0, January 2004\n"
-                    + "boilerplate " * 500,
-                    "license_expression": "MIT",
-                    "classifiers": [],
-                }
-            },
-        )
-
-        self.assertEqual("MIT", str(pypi_data.license))
-
-    def test_the_generic_apache_classifier_is_the_last_resort(self):
-        """Half of the misread distributions have nothing else: no expression, no text"""
-        pypi_data = PyPIData("banana-compiler")
-        self._update_with_pypi_json(
-            pypi_data,
-            {
-                "info": {
-                    "classifiers": [
-                        "License :: OSI Approved :: Apache Software License"
-                    ]
-                }
-            },
-        )
-
-        self.assertEqual("Apache-2.0", str(pypi_data.license))
-
     def test_getattr_reads_aliases_from_pypi_json(self):
         """Aliased attributes are read from fetched PyPI JSON."""
         pypi_data = PyPIData("banana-compiler")

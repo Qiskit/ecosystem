@@ -12,8 +12,6 @@
 
 """License class for name normalization to SPDX ids."""
 
-import re
-
 
 class License:
     """
@@ -56,27 +54,6 @@ class License:
         "MIT License": "MIT",
         "MIT license": "MIT",
     }
-
-    #: What the heading of a license text says its version is. Only Apache is listed: it is
-    #: the license whose PyPI classifier drops the version, so the text is the only place
-    #: the version appears. Everything else is recognised by name.
-    text_headings = (
-        (re.compile(r"Apache License\s*,?\s*\n?\s*Version (\d+\.\d+)"), "Apache-{}"),
-    )
-
-    @classmethod
-    def from_text(cls, text, where: str = None):
-        """The license a full license text names itself as, or None if it names none.
-
-        `license = { file = "LICENSE" }` in a `pyproject.toml` publishes the whole file as
-        the license, which is how a 12,000-character Apache text ends up where a name was
-        expected. The version is in there, and it beats guessing from the classifier.
-        """
-        for pattern, template in cls.text_headings:
-            found = pattern.search(text or "")
-            if found:
-                return cls(template.format(found.group(1)), where)
-        return None
 
     def __init__(self, license_name: str, where: str = None):
         if "@" in license_name:
