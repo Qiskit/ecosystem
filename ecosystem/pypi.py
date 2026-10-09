@@ -259,26 +259,39 @@ class PyPIData(
 
     @property
     def license(self):
-        """Package license"""
-        if self._pypi_json:
-            info_license = self._pypi_json.get("info", {}).get("license")
-            if info_license and len(info_license) < 50:
-                return License(info_license, "pypi")
-            info_license_expression = self._pypi_json.get("info", {}).get(
-                "license_expression"
-            )
-            if info_license_expression:
-                return License(info_license_expression, "pypi")
-            for classifier in self._pypi_json.get("info", {}).get("classifiers"):
-                if classifier.startswith("License :: "):
-                    parts = [part.strip() for part in classifier.split("::")]
-                    if len(parts) == 3:
-                        return License(parts[2], "pypi")
-                    continue
-        if "license" in self._kwargs:
-            if isinstance(self._kwargs["license"], License):
-                return self._kwargs["license"]
-            return License(self._kwargs["license"], "pypi")
+        """Package license: what PyPI says, or the stored value when nothing was fetched"""
+        from_pypi = self._license_from_pypi() if self._pypi_json else None
+        if from_pypi:
+            return from_pypi
+        stored = self._kwargs.get("license")
+        if stored is None:
+            return None
+        return stored if isinstance(stored, License) else License(stored, "pypi")
+
+    def _license_from_pypi(self):
+        """The license the fetched JSON states, from its most explicit field down.
+
+        A `License:` field short enough to be a name, then a license expression, then the
+        version a published license text names in its own heading, and last the trove
+        classifier. The text comes before the classifier because
+        `license = { file = "LICENSE" }` publishes the whole file as the license, and that
+        file says which Apache version it is where `License :: OSI Approved :: Apache
+        Software License` covers 1.0, 1.1 and 2.0 alike.
+        """
+        info = self._pypi_json.get("info", {})
+        text = info.get("license")
+        if text and len(text) < 50:
+            return License(text, "pypi")
+        expression = info.get("license_expression")
+        if expression:
+            return License(expression, "pypi")
+        from_text = License.from_text(text, "pypi")
+        if from_text:
+            return from_text
+        for classifier in info.get("classifiers") or []:
+            parts = [part.strip() for part in classifier.split("::")]
+            if classifier.startswith("License :: ") and len(parts) == 3:
+                return License(parts[2], "pypi")
         return None
 
     @property

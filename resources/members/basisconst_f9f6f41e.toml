@@ -30,7 +30,7 @@ style = "flat"
 package_name = "qiskit-basis-constructor"
 version = "0.1.0"
 last_release_date = 2025-03-27
-license = "Apache-1.1"
+license = "Apache-2.0"
 description = "Translation plugin for the Qiskit transpiler based on a graph-search construction of the source basis from the target."
 url = "https://pypi.org/project/qiskit-basis-constructor/"
 status = "active"
@@ -44,7 +44,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 859
-last_180_days_downloads = 1237
+last_180_days_downloads = 1276
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-basis-constructor/issues/9, waiting for a release with the fix"

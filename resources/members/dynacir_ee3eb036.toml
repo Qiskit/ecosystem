@@ -32,13 +32,13 @@ style = "flat"
 package_name = "dynacir"
 version = "0.1.4"
 last_release_date = 2024-03-22
-license = "Apache-1.1"
+license = "Apache-2.0"
 description = "A Qiskit transpilation plugin for `dyna`mic `cir`cuits."
 url = "https://pypi.org/project/dynacir/"
 status = "active"
 maintainers = ["https://pypi.org/user/drekwang/"]
-last_month_downloads = 20
-last_180_days_downloads = 226
+last_month_downloads = 29
+last_180_days_downloads = 225
 
 [[checks.G06]]
 since = 2026-07-14

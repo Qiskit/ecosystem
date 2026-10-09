@@ -35,7 +35,7 @@ style = "flat"
 package_name = "qiskit-iqm"
 version = "18.2"
 last_release_date = 2025-09-16
-license = "Apache-1.1"
+license = "Apache-2.0"
 description = "Qiskit adapter for IQM's quantum architectures"
 url = "https://pypi.org/project/qiskit-iqm/"
 development_status = "4 - Beta"
@@ -46,8 +46,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-10-03
 highest_supported_qiskit_version = "1.2.4"
-last_month_downloads = 3728
-last_180_days_downloads = 22703
+last_month_downloads = 717
+last_180_days_downloads = 18017
 
 [[checks.G05]]
 since = 2026-04-23

@@ -42,7 +42,43 @@ class TestLicense(TestCase):
     def test_spdx_id_with_where(self):
         """License normalization should consider the source when resolving SPDX."""
         license = License("Apache Software License@pypi")
-        self.assertEqual(license.spdx_id, "Apache-1.1")
+        self.assertEqual(license.spdx_id, "Apache-2.0")
+
+    def test_the_generic_apache_classifier_is_read_as_version_2(self):
+        """`License :: OSI Approved :: Apache Software License` carries no version.
+
+        It used to resolve to Apache-1.1, which is what OSI called version 1.1 in 2000, and
+        it misreported 20 distributions including Qiskit's own addons.
+        """
+        self.assertEqual("Apache-2.0", str(License("Apache Software License", "pypi")))
+        self.assertTrue(License("Apache Software License", "pypi").is_osi_approved())
+
+    def test_a_spelled_out_apache_2_is_normalized(self):
+        """It used to pass through unmapped, so it read as not OSI-approved"""
+        license = License("Apache License, Version 2.0")
+        self.assertEqual("Apache-2.0", str(license))
+        self.assertTrue(license.is_osi_approved())
+
+    def test_a_license_text_names_its_own_version(self):
+        """What `license = { file = "LICENSE" }` publishes: the whole file"""
+        self.assertEqual(
+            "Apache-2.0",
+            str(
+                License.from_text(
+                    "                                 Apache License\n"
+                    "                           Version 2.0, January 2004\n"
+                    "                        http://www.apache.org/licenses/\n"
+                )
+            ),
+        )
+
+    def test_a_text_that_names_no_version_resolves_to_nothing(self):
+        """Better than a wrong version: the classifier is tried next"""
+        self.assertIsNone(
+            License.from_text("Permission is hereby granted, free of charge")
+        )
+        self.assertIsNone(License.from_text(""))
+        self.assertIsNone(License.from_text(None))
 
     def test_spdx_id_with_spdxid(self):
         """An SPDX-formatted license name should be preserved."""
