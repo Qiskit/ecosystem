@@ -22,7 +22,13 @@ class License:
         "GNU Affero General Public License v3.0": "AGPL-3.0",
         "AGPL-3.0-only": "AGPL-3.0",
         "AGPL-3.0-or-later": "AGPL-3.0",
-        "Apache Software License@pypi": "Apache-1.1",
+        # the trove classifier `License :: OSI Approved :: Apache Software License` carries
+        # no version: 1.0, 1.1 and 2.0 all use it. "Apache Software License" is what OSI
+        # called version 1.1 in 2000, which is how this used to read as Apache-1.1, and
+        # version 2.0 is what a project using the classifier means in practice. A license
+        # text that names its own version is read from the text instead, see `from_text`
+        "Apache Software License@pypi": "Apache-2.0",
+        "Apache License, Version 2.0": "Apache-2.0",
         "Apache 2": "Apache-2.0",
         "Apache 2.0": "Apache-2.0",
         "Apache License 2.0": "Apache-2.0",

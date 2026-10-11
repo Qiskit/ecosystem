@@ -25,8 +25,8 @@ description = "A Sphinx theme and documentation guidelines for Qiskit and Qiskit
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2020-11-05
-last_commit = 2026-05-19
-last_activity = 2026-10-08
+last_commit = 2026-10-09
+last_activity = 2026-10-09
 
 [badge]
 url = "https://qisk.it/e-f3f07e5f"
@@ -36,7 +36,7 @@ style = "flat"
 package_name = "qiskit-sphinx-theme"
 version = "2.1.0"
 last_release_date = 2026-05-19
-license = "Apache-1.1"
+license = "Apache-2.0"
 description = "A Sphinx theme for Qiskit and Qiskit Ecosystem projects"
 url = "https://pypi.org/project/qiskit-sphinx-theme/"
 development_status = "5 - Production/Stable"
@@ -46,7 +46,7 @@ maintainers = [
   "https://pypi.org/user/nonhermitian/",
 ]
 last_month_downloads = 31806
-last_180_days_downloads = 304736
+last_180_days_downloads = 305832
 
 [[requirements]]
 file = "docs_guide/requirements-extra.txt"
