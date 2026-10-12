@@ -1,0 +1,22 @@
+name = "qang"
+submission_number = 1418
+url = "https://github.com/Viny2030/qang"
+description = "Angular unit (qg) for reading quantum states: Qiskit gates and V2-primitive read-outs with Hamming-weight filtering and error bars."
+labels = [
+  "error mitigation",
+  "QML",
+  "quantum information",
+  "research",
+  "circuit building",
+]
+interfaces = ["Python"]
+category = "Tooling"
+reference_paper = "https://doi.org/10.5281/zenodo.22832150"
+documentation = "https://github.com/Viny2030/qang"
+packages = [
+  "https://pypi.org/project/qang",
+  "https://github.com/Viny2030/qang/blob/main/pyproject.toml",
+  "None",
+]
+uuid = "16c304f9-179f-419e-b6ad-1e6437729a08"
+maturity = "experimental"
