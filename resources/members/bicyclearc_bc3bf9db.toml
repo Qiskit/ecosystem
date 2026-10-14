@@ -26,8 +26,8 @@ description = "A compiler prototype targeting a bicycle architecture from PBC ci
 total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
-last_commit = 2026-04-09
-last_activity = 2026-10-10
+last_commit = 2026-10-13
+last_activity = 2026-10-13
 
 [badge]
 url = "https://qisk.it/e-bc3bf9db"
@@ -44,7 +44,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 976
-last_90_days_downloads = 89
+last_90_days_downloads = 88
 
 [[crates]]
 package_name = "bicycle_cliffords"
@@ -57,7 +57,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 3900
-last_90_days_downloads = 912
+last_90_days_downloads = 907
 
 [[crates]]
 package_name = "bicycle_common"
@@ -70,7 +70,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 4093
-last_90_days_downloads = 947
+last_90_days_downloads = 941
 
 [[crates]]
 package_name = "bicycle_compiler"
@@ -83,7 +83,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 3694
-last_90_days_downloads = 877
+last_90_days_downloads = 873
 
 [[crates]]
 package_name = "bicycle_numerics"
@@ -96,7 +96,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 747
-last_90_days_downloads = 53
+last_90_days_downloads = 52
 
 [[crates]]
 package_name = "bicycle_random_numerics"

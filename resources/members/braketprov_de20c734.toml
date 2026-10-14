@@ -32,8 +32,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-braket-provider"
-version = "0.25.0"
-last_release_date = 2026-09-10
+version = "0.26.0"
+last_release_date = 2026-10-13
 license = "Apache-2.0"
 description = "Qiskit-Braket provider to execute Qiskit programs on devices via Amazon Braket."
 url = "https://pypi.org/project/qiskit-braket-provider/"
@@ -45,4 +45,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 4883
-last_180_days_downloads = 67717
+last_180_days_downloads = 68111
