@@ -1,0 +1,15 @@
+name = "qcdiff"
+submission_number = 1420
+url = "https://github.com/navneet83/qcdiff"
+description = "Semantic diff for OpenQASM 3 circuits: see what changed between two QASM files, gate by gate, in CI or code review."
+labels = ["openqasm", "circuit optimization"]
+interfaces = ["Python", "Rust", "Command-line interface (CLI)"]
+category = "Tooling"
+documentation = "https://docs.rs/qcdiff-core"
+packages = [
+  "https://pypi.org/project/qcdiff",
+  "https://crates.io/crates/qcdiff",
+  "https://crates.io/crates/qcdiff-core",
+]
+uuid = "77f33a45-ce1f-4d5f-96e2-ba939bbf1e1c"
+maturity = "experimental"
