@@ -1,0 +1,16 @@
+name = "eigenkit"
+submission_number = 1422
+url = "https://github.com/eigenorbit/eigenkit"
+description = "Write quantum algorithms once and run them on Qiskit, Aer, IBM Quantum hardware and other backends."
+contact_info = "info@eigenorbit.com"
+labels = ["QML", "chemistry", "finance", "optimization"]
+interfaces = ["Python"]
+website = "https://eigenorbit.com"
+category = "SDK"
+documentation = "https://docs.kit.eigenorbit.com"
+packages = [
+  "https://pypi.org/project/eigenkit/",
+  "https://github.com/eigenorbit/eigenkit/blob/main/pyproject.toml",
+]
+uuid = "df43ee68-b00e-41b5-91a8-2b02cc3bfd32"
+maturity = "production-ready"
