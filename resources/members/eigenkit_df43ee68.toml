@@ -14,3 +14,13 @@ packages = [
 ]
 uuid = "df43ee68-b00e-41b5-91a8-2b02cc3bfd32"
 maturity = "production-ready"
+
+[github]
+owner = "eigenorbit"
+repo = "eigenkit"
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "eigenkit"
