@@ -13,3 +13,21 @@ packages = [
 ]
 uuid = "77f33a45-ce1f-4d5f-96e2-ba939bbf1e1c"
 maturity = "experimental"
+
+[github]
+owner = "navneet83"
+repo = "qcdiff"
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "qcdiff"
+
+[[crates]]
+package_name = "qcdiff"
+url = "https://crates.io/crates/qcdiff"
+
+[[crates]]
+package_name = "qcdiff-core"
+url = "https://crates.io/crates/qcdiff-core"
