@@ -18,7 +18,7 @@ maturity = "production-ready"
 url = "https://github.com/munich-quantum-toolkit/qmap"
 owner = "munich-quantum-toolkit"
 repo = "qmap"
-stars = 145
+stars = 144
 homepage = "https://mqt.readthedocs.io/projects/qmap"
 license = "MIT"
 description = "MQT QMAP - A Tool for Quantum Circuit Mapping"
@@ -48,7 +48,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 7957
-last_180_days_downloads = 24170
+last_180_days_downloads = 24260
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/qmap/issues/1174, waiting for a release with the fix"
