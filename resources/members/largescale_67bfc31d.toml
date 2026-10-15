@@ -43,11 +43,6 @@ details = "The qiskit requirement in docs/requirements.txt allows a not-yet-rele
 subtest = "requirements:docs/requirements.txt"
 importance = "RECOMMENDATION"
 
-[[checks.G06]]
-since = 2026-07-14
-details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
-importance = "RECOMMENDATION"
-
 [[checks.G12]]
 since = 2026-09-24
 details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
