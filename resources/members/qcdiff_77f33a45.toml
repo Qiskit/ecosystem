@@ -13,21 +13,54 @@ packages = [
 ]
 uuid = "77f33a45-ce1f-4d5f-96e2-ba939bbf1e1c"
 maturity = "experimental"
+status = "Very Early Project"
 
 [github]
+url = "https://github.com/navneet83/qcdiff"
 owner = "navneet83"
 repo = "qcdiff"
+stars = 1
+license = "Apache-2.0"
+description = "Semantic diff for OpenQASM 3 quantum circuits. See what changed between two QASM files, gate by gate, in CI or code review."
+created_at = 2026-10-10
+last_commit = 2026-10-12
+last_activity = 2026-10-12
 
 [badge]
 style = "flat"
 
 [[pypi]]
 package_name = "qcdiff"
+version = "0.2.0"
+last_release_date = 2026-10-12
+description = "Semantic diff for OpenQASM 3 quantum circuits: compare two QASM programs at the gate level, for CI and code review"
+url = "https://pypi.org/project/qcdiff/"
+development_status = "4 - Beta"
+status = "active"
+maintainers = ["https://pypi.org/user/navneet.bits/"]
+last_month_downloads = 0
+last_180_days_downloads = 207
 
 [[crates]]
 package_name = "qcdiff"
+version = "0.2.0"
+last_release_date = 2026-10-12
+license = "Apache-2.0"
+description = "Command-line semantic diff for OpenQASM 3 quantum circuits: compare two QASM files at the gate level, for CI and code review"
 url = "https://crates.io/crates/qcdiff"
+maintainers = ["https://github.com/navneet83"]
+edition = "2021"
+total_downloads = 32
+last_90_days_downloads = 32
 
 [[crates]]
 package_name = "qcdiff-core"
+version = "0.1.0"
+last_release_date = 2026-10-12
+license = "Apache-2.0"
+description = "Semantic diff for OpenQASM 3 quantum circuits: parse, normalize, and diff operation streams (library behind the qcdiff CLI)"
 url = "https://crates.io/crates/qcdiff-core"
+maintainers = ["https://github.com/navneet83"]
+edition = "2021"
+total_downloads = 13
+last_90_days_downloads = 13
