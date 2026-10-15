@@ -14,13 +14,39 @@ packages = [
 ]
 uuid = "df43ee68-b00e-41b5-91a8-2b02cc3bfd32"
 maturity = "production-ready"
+status = "Very Early Project"
 
 [github]
+url = "https://github.com/eigenorbit/eigenkit"
 owner = "eigenorbit"
 repo = "eigenkit"
+stars = 17
+homepage = "https://eigenorbit.com/kit/"
+license = "Apache-2.0"
+description = "Open-source Python library for quantum computing. Build quantum algorithms once, run them on simulators such as Qiskit Aer, PennyLa..."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+created_at = 2026-10-06
+last_commit = 2026-10-13
+last_activity = 2026-10-15
 
 [badge]
 style = "flat"
 
 [[pypi]]
 package_name = "eigenkit"
+version = "1.0.1"
+last_release_date = 2026-10-13
+license = "Apache-2.0"
+description = "Open-source Python library for quantum computing. Build quantum algorithms once, run them on any simulator or quantum computer."
+url = "https://pypi.org/project/eigenkit/"
+development_status = "5 - Production/Stable"
+status = "active"
+maintainers = ["https://pypi.org/user/eigenorbit/"]
+requires_qiskit = "<3,>=1.4.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
+last_month_downloads = 0
+last_180_days_downloads = 322
