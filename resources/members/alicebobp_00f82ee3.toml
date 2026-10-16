@@ -10,21 +10,21 @@ documentation = "https://felis.alice-bob.com/docs/"
 packages = ["https://pypi.org/project/qiskit-alice-bob-provider/"]
 uuid = "00f82ee3-ab46-44fc-afbb-32cb34a72339"
 maturity = "production-ready"
-status = "Alumni"
 
 [github]
 url = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider"
 owner = "Alice-Bob-SW"
 repo = "qiskit-alice-bob-provider"
-stars = 45
+stars = 47
 homepage = "https://felis.alice-bob.com/docs/"
 license = "Apache-2.0"
 description = "Qiskit provider to execute quantum circuits on Alice & Bob cat qubits"
 estimated_contributors = 8
 total_dependent_repositories = 0
 total_dependent_packages = 0
-last_commit = 2026-07-06
-last_activity = 2026-07-06
+created_at = 2023-05-16
+last_commit = 2026-10-16
+last_activity = 2026-10-16
 
 [badge]
 url = "https://qisk.it/e-00f82ee3"
@@ -32,8 +32,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-alice-bob-provider"
-version = "1.2.0"
-last_release_date = 2025-03-27
+version = "3.0.0"
+last_release_date = 2026-10-16
 license = "Apache-2.0"
 description = "Provider for running Qiskit circuits on Alice & Bob QPUs and simulators"
 url = "https://pypi.org/project/qiskit-alice-bob-provider/"
@@ -43,28 +43,14 @@ maintainers = [
   "https://pypi.org/user/athomas_ab/",
   "https://pypi.org/user/brieuc_ab/",
   "https://pypi.org/user/gschurck_ab/",
+  "https://pypi.org/user/jbardaji-ab/",
   "https://pypi.org/user/lprost_ab/",
+  "https://pypi.org/user/sbader-ab/",
 ]
-requires_qiskit = "<2.0,>=1.3.1"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
+requires_qiskit = "<3.0,>=2.5"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-12
 highest_supported_qiskit_version = "1.4.6"
-last_month_downloads = 452
-last_180_days_downloads = 2078
-
-[[checks.Q02]]
-since = 2026-04-30
-details = "Python package qiskit-alice-bob-provider is not compatible with Qiskit SDK v2"
-discussion = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider/issues/80"
-importance = "IMPORTANT"
-
-[[checks.Q20]]
-since = 2026-07-30
-details = "Not compatible with the Qiskit SDK v2 or newer: `[Q02]`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[Q20]`"
-importance = "CRITICAL"
+last_month_downloads = 560
+last_180_days_downloads = 2328
