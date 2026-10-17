@@ -39,10 +39,14 @@ maintainers = ["https://pypi.org/user/jijpypi/"]
 requires_qiskit = ">=2.3.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-07-02
-highest_supported_qiskit_version = "2.5.0"
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
 last_month_downloads = 397
-last_180_days_downloads = 4793
+last_180_days_downloads = 4802
+
+[[pypi.requires]]
+specifier = ">=2.3.0"
+extra = "qiskit"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Jij-Inc/Qamomile/issues/653, waiting for a release with the fix"
