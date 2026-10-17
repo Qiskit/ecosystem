@@ -42,14 +42,13 @@ url = "https://pypi.org/project/mqt-core/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
-requires_qiskit = "<3,>=2.1"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-16
-highest_supported_qiskit_version = "2.6.0"
 last_month_downloads = 13129
 last_180_days_downloads = 157483
 
 [[pypi.requires]]
 specifier = "<3,>=2.1"
 extra = "qiskit"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
