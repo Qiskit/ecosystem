@@ -13,9 +13,9 @@
 """PyPI section."""
 
 from functools import reduce
-from re import match
+from re import match, sub
 
-from packaging.requirements import Requirement
+from packaging.requirements import InvalidRequirement, Requirement
 from packaging.utils import canonicalize_name
 
 from jsonpath import findall
@@ -45,6 +45,7 @@ class PyPIData(
         "status",
         "maintainers",
         "requires_qiskit",
+        "requires",
         "compatible_with_qiskit_v1",
         "compatible_with_qiskit_v2",
         "highest_supported_qiskit_release_date",
@@ -184,6 +185,61 @@ class PyPIData(
         only what the mixin asks: whether a stored value is all this section has.
         """
         return self._pypi_json is not None
+
+    @property
+    def requires(self):
+        """Every qiskit requirement the release declares, and the condition each is under.
+
+        A release can ask for qiskit more than once: behind an extra (`pip install
+        pkg[qiskit]`), under an environment marker (`python_version >= "3.14"`), or both,
+        and `requires_qiskit` above is only the effective one. The distribution stays a
+        single section, so its release and download fields are stated once; what varies is
+        the condition, not the distribution.
+
+        `via` is not derived here. It names the dependency a requirement is reached
+        through, which is a statement about another project's metadata rather than this
+        one's, so it is written by hand until something resolves the chain.
+        """
+        conditions = []
+        for requirement in self._qiskit_requirements():
+            marker = str(requirement.marker or "")
+            condition = {"specifier": str(requirement.specifier) or ">=0"}
+            extra = match(r'.*extra == "([^"]+)"', marker)
+            if extra:
+                condition["extra"] = extra.group(1)
+                # what is left once the extra is taken out, which is the environment
+                marker = sub(
+                    r'\s*and\s*extra == "[^"]+"|extra == "[^"]+"\s*and\s*|extra == "[^"]+"',
+                    "",
+                    marker,
+                ).strip()
+            if marker:
+                condition["environment"] = marker
+            if condition not in conditions:
+                conditions.append(condition)
+        stored = self._kwargs.get("requires")
+        if conditions:
+            # a `via` written by hand survives a refresh: it says what this release is
+            # reached through, which the release's own metadata cannot contradict
+            return conditions + [row for row in stored or [] if row.get("via")]
+        return stored
+
+    def _qiskit_requirements(self):
+        """The parsed `requires_dist` entries that name qiskit, in the order PyPI lists them"""
+        for requirement_str in (
+            self.pypi_json.get("info", {}).get("requires_dist") or []
+        ):
+            try:
+                requirement = Requirement(requirement_str)
+            except InvalidRequirement:
+                logger.warning(
+                    "%s declares an unparseable requirement: %r",
+                    self.package_name,
+                    requirement_str,
+                )
+                continue
+            if canonicalize_name(requirement.name) == "qiskit":
+                yield requirement
 
     @property
     def requires_qiskit(self):
