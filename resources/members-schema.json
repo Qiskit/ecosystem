@@ -274,12 +274,26 @@
                 "via": {
                   "$comment": "The dependency this requirement is reached through, as the release declares it: `qiskit-ibm-runtime>=0.30.0`. Absent means the release requires qiskit itself",
                   "type": "string"
+                },
+                "compatible_with_qiskit_v1": {
+                  "type": "boolean"
+                },
+                "compatible_with_qiskit_v2": {
+                  "type": "boolean"
+                },
+                "highest_supported_qiskit_release_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "highest_supported_qiskit_version": {
+                  "type": "string"
                 }
               },
               "required": [
                 "specifier"
               ],
-              "additionalProperties": false
+              "additionalProperties": false,
+              "$comment": "One qiskit requirement and the condition it is under, with what the specifier resolves to. The resolved fields live here rather than on the distribution: a specifier that only applies on a newer interpreter resolves differently from the one below it, and a distribution whose qiskit is entirely conditional requires no qiskit at all"
             }
           }
         },
