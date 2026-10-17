@@ -42,18 +42,21 @@ url = "https://pypi.org/project/qbraid/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/qBraid/"]
-requires_qiskit = "<3.0,>=1.0"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 15086
 last_180_days_downloads = 130660
 
 [[pypi.requires]]
 specifier = "<3.0,>=1.0"
 extra = "aqt"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
 
 [[pypi.requires]]
 specifier = "<3.0,>=1.0"
 extra = "qiskit"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
