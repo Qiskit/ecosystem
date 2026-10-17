@@ -27,6 +27,93 @@ from .qiskit_requirement import QiskitRequirementMixin
 from .request import request_json
 
 
+class QiskitRequirement(QiskitRequirementMixin, JsonSerializable):
+    """One qiskit requirement a release declares, and the condition it is under.
+
+    A release can ask for qiskit several times: behind an extra (`pip install
+    pkg[qiskit]`), under an environment marker, or through another dependency. Each of
+    those is its own requirement with its own resolved compatibility, which is why the
+    four derived fields live here rather than on the distribution: a specifier that only
+    applies on Python 3.14 resolves differently from the one that applies below it.
+
+    The shape `[[requirements]]` has, for the same reason: a specifier plus what the
+    mixin derives from it, with no name of its own to be keyed by.
+    """
+
+    dict_keys = [
+        "specifier",
+        "extra",
+        "environment",
+        "via",
+        "compatible_with_qiskit_v1",
+        "compatible_with_qiskit_v2",
+        "highest_supported_qiskit_release_date",
+        "highest_supported_qiskit_version",
+    ]
+
+    def __init__(
+        self,
+        specifier: str = None,
+        extra: str = None,
+        environment: str = None,
+        via: str = None,
+        **kwargs,
+    ):
+        """
+        Args:
+            specifier: the PEP 440 specifier, `>=0` for a bare `qiskit`.
+            extra: the extra that has to be requested for this to apply. None means a
+                plain install gets it.
+            environment: the rest of the PEP 508 marker, once the `extra ==` part is
+                taken out. None means it always applies.
+            via: the dependency this is reached through, as the release declares it.
+                None means the release requires qiskit itself.
+        """
+        self.specifier = specifier
+        self.extra = extra
+        self.environment = environment
+        self.via = via
+        self._kwargs = kwargs or {}
+        self._all_qiskit_versions = None
+
+    def __repr__(self):
+        return str(self.to_dict())
+
+    def to_dict(self, keys=None) -> dict:
+        return super().to_dict(keys=keys or QiskitRequirement.dict_keys)
+
+    @property
+    def requires_qiskit(self):
+        """What the mixin resolves, which here is the specifier itself"""
+        return self.specifier
+
+    @property
+    def fetched(self):
+        """Always true: the specifier is the requirement, so there is nothing to fetch.
+
+        What the mixin asks with this is whether a stored value is all it has to go on,
+        and here it never is.
+        """
+        return True
+
+    @property
+    def declared_by(self):
+        """What the warnings name"""
+        return f"qiskit{self.specifier}" + (
+            f" (extra {self.extra})" if self.extra else ""
+        )
+
+    @property
+    def conditional(self):
+        """True when something has to be true beyond installing the release.
+
+        An extra has to be requested, an environment has to match, or another dependency
+        is what brings qiskit in. A requirement with none of those is what a plain
+        `pip install` creates.
+        """
+        return bool(self.extra or self.environment or self.via)
+
+
 class PyPIData(
     QiskitRequirementMixin, JsonSerializable
 ):  # pylint: disable=too-many-public-methods
@@ -76,11 +163,12 @@ class PyPIData(
     def __repr__(self):
         return str(self.to_dict())
 
-    def to_dict(self, keys=None) -> dict:
-        return super().to_dict(keys=keys or PyPIData.dict_keys)
-
     @classmethod
     def from_dict(cls, dictionary: dict):
+        if dictionary.get("requires"):
+            dictionary["requires"] = [
+                QiskitRequirement(**row) for row in dictionary["requires"]
+            ]
         if "license" in dictionary and dictionary["license"] is not None:
             dictionary["license"] = License(dictionary["license"], where="pypi")
         return super().from_dict(dictionary)
@@ -200,13 +288,13 @@ class PyPIData(
         through, which is a statement about another project's metadata rather than this
         one's, so it is written by hand until something resolves the chain.
         """
-        conditions = []
+        conditions, seen = [], set()
         for requirement in self._qiskit_requirements():
             marker = str(requirement.marker or "")
-            condition = {"specifier": str(requirement.specifier) or ">=0"}
+            found = {"specifier": str(requirement.specifier) or ">=0"}
             extra = match(r'.*extra == "([^"]+)"', marker)
             if extra:
-                condition["extra"] = extra.group(1)
+                found["extra"] = extra.group(1)
                 # what is left once the extra is taken out, which is the environment
                 marker = sub(
                     r'\s*and\s*extra == "[^"]+"|extra == "[^"]+"\s*and\s*|extra == "[^"]+"',
@@ -214,15 +302,20 @@ class PyPIData(
                     marker,
                 ).strip()
             if marker:
-                condition["environment"] = marker
-            if condition not in conditions:
-                conditions.append(condition)
-        stored = self._kwargs.get("requires")
+                found["environment"] = marker
+            key = tuple(sorted(found.items()))
+            if key not in seen:
+                seen.add(key)
+                conditions.append(QiskitRequirement(**found))
+        stored = [
+            row if isinstance(row, QiskitRequirement) else QiskitRequirement(**row)
+            for row in self._kwargs.get("requires") or []
+        ]
         if conditions:
             # a `via` written by hand survives a refresh: it says what this release is
             # reached through, which the release's own metadata cannot contradict
-            return conditions + [row for row in stored or [] if row.get("via")]
-        return stored
+            return conditions + [row for row in stored if row.via]
+        return stored or None
 
     def _qiskit_requirements(self):
         """The parsed `requires_dist` entries that name qiskit, in the order PyPI lists them"""
@@ -240,6 +333,28 @@ class PyPIData(
                 continue
             if canonicalize_name(requirement.name) == "qiskit":
                 yield requirement
+
+    def to_dict(self, keys=None) -> dict:
+        """The section as a member file stores it.
+
+        The qiskit fields are dropped when every requirement is conditional: a release
+        whose qiskit lives behind an extra does not require qiskit, and saying so at this
+        level asserts a dependency a plain `pip install` does not create. The entries in
+        `requires` carry the specifier and what it resolves to, each under its own
+        condition.
+        """
+        section = super().to_dict(keys=keys or PyPIData.dict_keys)
+        requires = self.requires
+        if requires and all(row.conditional for row in requires):
+            for field in (
+                "requires_qiskit",
+                "compatible_with_qiskit_v1",
+                "compatible_with_qiskit_v2",
+                "highest_supported_qiskit_release_date",
+                "highest_supported_qiskit_version",
+            ):
+                section.pop(field, None)
+        return section
 
     @property
     def requires_qiskit(self):

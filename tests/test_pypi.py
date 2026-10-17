@@ -27,6 +27,19 @@ QISKIT_VERSIONS_DIRNAME = "ecosystem.qiskit_requirement.path.dirname"
 QISKIT_VERSIONS_REQUEST = "ecosystem.qiskit_requirement.request_json"
 
 
+def conditions(requirement):
+    """The condition fields of a `QiskitRequirement`, without what it derives.
+
+    The derived four are `QiskitRequirement`'s own business and are covered where that
+    class is tested; these cases are about which condition was read off the marker.
+    """
+    return {
+        key: value
+        for key, value in requirement.to_dict().items()
+        if key in ("specifier", "extra", "environment", "via")
+    }
+
+
 class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-methods
     """Tests for PyPIData."""
 
@@ -159,7 +172,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
                     "environment": 'python_version >= "3.14"',
                 },
             ],
-            pypi_data.requires,
+            [conditions(row) for row in pypi_data.requires],
         )
 
     def test_an_unconditional_requirement_carries_no_condition(self):
@@ -169,7 +182,9 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             pypi_data, {"info": {"requires_dist": ["qiskit>=1.1.0"]}}
         )
 
-        self.assertEqual([{"specifier": ">=1.1.0"}], pypi_data.requires)
+        self.assertEqual(
+            [{"specifier": ">=1.1.0"}], [conditions(row) for row in pypi_data.requires]
+        )
 
     def test_an_environment_marker_without_an_extra_is_kept(self):
         """`qiskit-superstaq` asks a different qiskit of a newer interpreter"""
@@ -191,7 +206,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
                 {"specifier": "<3,>=1.3.0", "environment": 'python_version < "3.14"'},
                 {"specifier": "<3,>=2.1.0", "environment": 'python_version >= "3.14"'},
             ],
-            pypi_data.requires,
+            [conditions(row) for row in pypi_data.requires],
         )
 
     def test_a_requirement_named_in_any_case_is_recognized(self):
@@ -201,7 +216,9 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             pypi_data, {"info": {"requires_dist": ["Qiskit>=2.0"]}}
         )
 
-        self.assertEqual([{"specifier": ">=2.0"}], pypi_data.requires)
+        self.assertEqual(
+            [{"specifier": ">=2.0"}], [conditions(row) for row in pypi_data.requires]
+        )
 
     def test_a_bare_qiskit_is_recorded_as_any_version(self):
         """`hlquantum` and `quantum-learn` declare qiskit with no specifier at all"""
@@ -210,7 +227,10 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             pypi_data, {"info": {"requires_dist": ['qiskit; extra == "all"']}}
         )
 
-        self.assertEqual([{"specifier": ">=0", "extra": "all"}], pypi_data.requires)
+        self.assertEqual(
+            [{"specifier": ">=0", "extra": "all"}],
+            [conditions(row) for row in pypi_data.requires],
+        )
 
     def test_a_hand_written_via_survives_a_refresh(self):
         """It says what the release is reached through, which PyPI cannot contradict"""
@@ -227,7 +247,7 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
                 {"specifier": ">=1.1.0"},
                 {"specifier": "<3,>=2.3.0", "via": "qiskit-ibm-runtime>=0.30.0"},
             ],
-            pypi_data.requires,
+            [conditions(row) for row in pypi_data.requires],
         )
 
     def test_a_release_with_no_qiskit_keeps_what_was_stored(self):
@@ -238,6 +258,88 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
         )
 
         self.assertIsNone(pypi_data.requires)
+
+    def test_a_conditional_dependency_is_not_claimed_by_the_distribution(self):
+        """`pip install mitiq` installs no qiskit, so the section must not say it does.
+
+        The specifier and what it resolves to move to the entries, each under its own
+        condition, so nothing at this level asserts an unconditional dependency.
+        """
+        pypi_data = PyPIData("banana-compiler")
+        self._update_with_pypi_json(
+            pypi_data,
+            {
+                "info": {
+                    "requires_dist": [
+                        'qiskit<3,>=2.0; extra == "qiskit"',
+                        'qiskit<3,>=2.0; extra == "benchmarking"',
+                    ]
+                }
+            },
+        )
+        section = pypi_data.to_dict()
+
+        for field in (
+            "requires_qiskit",
+            "compatible_with_qiskit_v1",
+            "compatible_with_qiskit_v2",
+            "highest_supported_qiskit_release_date",
+            "highest_supported_qiskit_version",
+        ):
+            with self.subTest(field=field):
+                self.assertNotIn(field, section)
+        self.assertEqual(2, len(section["requires"]))
+        self.assertTrue(
+            all("compatible_with_qiskit_v2" in row for row in section["requires"])
+        )
+
+    def test_an_unconditional_dependency_is_still_claimed(self):
+        """A plain install does require qiskit, so the section keeps saying so"""
+        pypi_data = PyPIData("banana-compiler")
+        self._update_with_pypi_json(
+            pypi_data, {"info": {"requires_dist": ["qiskit>=1.1.0"]}}
+        )
+        section = pypi_data.to_dict()
+
+        self.assertEqual(">=1.1.0", section["requires_qiskit"])
+        self.assertTrue(section["compatible_with_qiskit_v1"])
+
+    def test_one_unconditional_line_keeps_the_claim(self):
+        """A release asking for qiskit outright and again under an extra still requires it"""
+        pypi_data = PyPIData("banana-compiler")
+        self._update_with_pypi_json(
+            pypi_data,
+            {
+                "info": {
+                    "requires_dist": [
+                        "qiskit>=1.1.0",
+                        'qiskit<3,>=2.0; extra == "qiskit"',
+                    ]
+                }
+            },
+        )
+
+        self.assertEqual(">=1.1.0", pypi_data.to_dict()["requires_qiskit"])
+
+    def test_each_entry_resolves_its_own_specifier(self):
+        """eigenkit asks a different qiskit of a newer interpreter, so v1 differs by entry"""
+        pypi_data = PyPIData("banana-compiler")
+        self._update_with_pypi_json(
+            pypi_data,
+            {
+                "info": {
+                    "requires_dist": [
+                        'qiskit<3,>=1.4.1; extra == "qiskit"',
+                        'qiskit>=2; python_version >= "3.14" and extra == "qiskit"',
+                    ]
+                }
+            },
+        )
+
+        self.assertEqual(
+            [True, False],
+            [row.compatible_with_qiskit_v1 for row in pypi_data.requires],
+        )
 
     def test_getattr_reads_aliases_from_pypi_json(self):
         """Aliased attributes are read from fetched PyPI JSON."""
