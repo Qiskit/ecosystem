@@ -44,6 +44,18 @@ highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 20
 last_180_days_downloads = 397
 
+[[pypi.requires]]
+specifier = ">=0"
+extra = "all"
+
+[[pypi.requires]]
+specifier = ">=0"
+extra = "ionq"
+
+[[pypi.requires]]
+specifier = ">=0"
+extra = "qiskit"
+
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/AlinDanielFerenczi/HLQuantum/issues/1, waiting for a release with the fix"
 xfailed_until = 2027-03-31
