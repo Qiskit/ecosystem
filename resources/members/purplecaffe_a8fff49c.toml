@@ -11,6 +11,7 @@ documentation = "https://icekhan13.github.io/purplecaffeine/index.html"
 packages = ["https://pypi.org/project/purplecaffeine/"]
 uuid = "a8fff49c-d8ee-4386-87b1-b28d31005823"
 maturity = "production-ready"
+status = "Under revision"
 
 [github]
 url = "https://github.com/IceKhan13/purplecaffeine"
@@ -46,7 +47,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 7
-last_180_days_downloads = 292
+last_180_days_downloads = 298
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/IceKhan13/purplecaffeine/issues/174, waiting for a release with the fix"
@@ -56,3 +57,8 @@ details = "The qiskit requirement in the purplecaffeine release on PyPI allows a
 discussion = "https://github.com/IceKhan13/purplecaffeine/issues/174"
 subtest = "pypi:purplecaffeine"
 importance = "RECOMMENDATION"
+
+[[checks.G07]]
+since = 2026-10-15
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+importance = "STRONG-RECOMMENDATION"

@@ -10,7 +10,7 @@ category = "Tooling"
 packages = []
 uuid = "76d7a9f5-7e98-42bb-94c8-280652d45287"
 maturity = "experimental"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Ziadt160/qiskit-migration-assistant"
@@ -36,3 +36,8 @@ requires_python = ">=3.11"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
+
+[[checks.G12]]
+since = 2026-10-15
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
