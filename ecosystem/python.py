@@ -42,13 +42,14 @@ from io import StringIO
 import tomllib
 from pathlib import PurePath
 
+from packaging.requirements import InvalidRequirement, Requirement
 from packaging.utils import canonicalize_name
 
 from .license import License
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
 from .github_contents import GitHubContentsMixin
-from .qiskit_requirement import QiskitRequirementMixin
+from .qiskit_requirement import QiskitRequirement, QiskitRequirementMixin
 
 #: Manifests that can carry packaging metadata, in precedence order.
 MANIFESTS = ("pyproject.toml", "setup.cfg", "setup.py")
@@ -144,6 +145,7 @@ class PythonData(
         "description",
         "requires_python",
         "requires_qiskit",
+        "requires",
         "compatible_with_qiskit_v1",
         "compatible_with_qiskit_v2",
         "highest_supported_qiskit_release_date",
@@ -465,10 +467,87 @@ class PythonData(
             if line.strip()
         ]
 
+    #: Extras whose qiskit is a tool of the build rather than a dependency of the
+    #: project: a docs build pulling in whatever qiskit is around says nothing about
+    #: what the project runs against, so recording it would assert a compatibility
+    #: nobody tested. `qiskit-noise-learning` has a bare `qiskit` in `docs`.
+    TOOLING_EXTRAS = ("docs", "doc", "documentation")
+
     @property
     def dependencies(self) -> list:
         """Declared runtime dependencies as PEP 508 strings."""
         return self._declared_dependencies()[0]
+
+    @property
+    def requires(self):
+        """Every qiskit requirement the manifest declares, and the condition it is under.
+
+        The counterpart of `PyPIData.requires`, for a repository rather than a release.
+        A manifest can put its qiskit in `[project.optional-dependencies]`, so a project
+        that only needs it for one feature looks qiskit-free without this:
+        `qem-auditor` declares `qiskit>=2.0` in its `adapters` extra and was recorded as
+        declaring nothing at all.
+
+        An environment marker is kept as `PyPIData` keeps it, and `via` is not derived
+        here either: it names what another project's metadata says.
+        """
+        conditions, seen = [], []
+        for extra, dependencies in (
+            None,
+            self.dependencies,
+        ), *self._optional_dependencies():
+            for specifier, environment in self._qiskit_specifiers(dependencies):
+                found = {"specifier": specifier}
+                if extra:
+                    found["extra"] = extra
+                if environment:
+                    found["environment"] = environment
+                if found not in seen:
+                    seen.append(found)
+                    conditions.append(QiskitRequirement(**found))
+        stored = [
+            row if isinstance(row, QiskitRequirement) else QiskitRequirement(**row)
+            for row in self._kwargs.get("requires") or []
+        ]
+        if conditions:
+            return conditions + [row for row in stored if row.via]
+        return stored or None
+
+    def _optional_dependencies(self):
+        """The extras a manifest declares, as `(name, [PEP 508 strings])` pairs.
+
+        The tooling extras are left out: see `TOOLING_EXTRAS`. setup.cfg keeps each
+        extra as an indented multi-line string, the shape `install_requires` has.
+        """
+        from_cfg = {
+            extra: [line.strip() for line in (value or "").splitlines() if line.strip()]
+            for extra, value in (
+                (self._setup_cfg or {}).get("options.extras_require") or {}
+            ).items()
+        }
+        declared = (
+            self.project.get("optional-dependencies")
+            or self.setup_kwargs.get("extras_require")
+            or from_cfg
+            or {}
+        )
+        return [
+            (extra, dependencies)
+            for extra, dependencies in declared.items()
+            if extra.lower() not in self.TOOLING_EXTRAS
+        ]
+
+    @staticmethod
+    def _qiskit_specifiers(dependencies):
+        """`(specifier, environment)` for every qiskit requirement among `dependencies`"""
+        for dependency in dependencies or []:
+            try:
+                requirement = Requirement(dependency)
+            except InvalidRequirement:
+                # `find_requires_qiskit` reports this for the dependencies it reads
+                continue
+            if canonicalize_name(requirement.name) == "qiskit":
+                yield str(requirement.specifier) or ">=0", str(requirement.marker or "")
 
     def _declared_dependencies(self):
         """The dependencies, and the name of the file they were declared in.
