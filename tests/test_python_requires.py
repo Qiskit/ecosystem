@@ -57,10 +57,13 @@ class TestTheDeclaredQiskitRequirements(PythonDataTestCase):
         self.assertNotIn("requires_qiskit", data.to_dict())
         self.assertNotIn("compatible_with_qiskit_v2", data.to_dict())
 
-    def test_a_docs_extra_is_not_a_declaration(self):
-        """A docs build pulling in whatever qiskit is around tests nothing.
+    def test_every_extra_is_declared_including_a_docs_one(self):
+        """A `docs` extra asking for qiskit is still a declaration the manifest makes.
 
-        `qiskit-noise-learning` has a bare `qiskit` in `docs` beside a real dependency.
+        `qiskit-noise-learning` wants `qiskit[visualization]` so Sphinx can render a
+        circuit, with no specifier at all. Which extras are worth acting on is a
+        judgement for a reader of the records, and the `extra` on each entry is what
+        lets one be made.
         """
         data = self.fetched(
             pyproject={
@@ -68,7 +71,7 @@ class TestTheDeclaredQiskitRequirements(PythonDataTestCase):
                     "name": "banana-compiler",
                     "dependencies": ["qiskit<3,>=2.5.0"],
                     "optional-dependencies": {
-                        "docs": ["qiskit"],
+                        "docs": ["qiskit[visualization]"],
                         "adapters": ["qiskit>=2"],
                     },
                 }
@@ -76,7 +79,11 @@ class TestTheDeclaredQiskitRequirements(PythonDataTestCase):
         )
 
         self.assertEqual(
-            [{"specifier": "<3,>=2.5.0"}, {"specifier": ">=2", "extra": "adapters"}],
+            [
+                {"specifier": "<3,>=2.5.0"},
+                {"specifier": ">=0", "extra": "docs"},
+                {"specifier": ">=2", "extra": "adapters"},
+            ],
             [conditions(row) for row in data.requires],
         )
 

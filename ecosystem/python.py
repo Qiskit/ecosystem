@@ -467,12 +467,6 @@ class PythonData(
             if line.strip()
         ]
 
-    #: Extras whose qiskit is a tool of the build rather than a dependency of the
-    #: project: a docs build pulling in whatever qiskit is around says nothing about
-    #: what the project runs against, so recording it would assert a compatibility
-    #: nobody tested. `qiskit-noise-learning` has a bare `qiskit` in `docs`.
-    TOOLING_EXTRAS = ("docs", "doc", "documentation")
-
     @property
     def dependencies(self) -> list:
         """Declared runtime dependencies as PEP 508 strings."""
@@ -516,8 +510,14 @@ class PythonData(
     def _optional_dependencies(self):
         """The extras a manifest declares, as `(name, [PEP 508 strings])` pairs.
 
-        The tooling extras are left out: see `TOOLING_EXTRAS`. setup.cfg keeps each
-        extra as an indented multi-line string, the shape `install_requires` has.
+        Every extra, including the ones whose qiskit is a tool rather than a dependency:
+        a `docs` extra asking for `qiskit[visualization]` so Sphinx can draw a circuit is
+        still a declaration the manifest makes, and which extras mean what is a judgement
+        for a reader of the records rather than one to make while writing them. The
+        `extra` on each entry is what says which is which.
+
+        setup.cfg keeps each extra as an indented multi-line string, the shape
+        `install_requires` has.
         """
         from_cfg = {
             extra: [line.strip() for line in (value or "").splitlines() if line.strip()]
@@ -531,11 +531,7 @@ class PythonData(
             or from_cfg
             or {}
         )
-        return [
-            (extra, dependencies)
-            for extra, dependencies in declared.items()
-            if extra.lower() not in self.TOOLING_EXTRAS
-        ]
+        return list(declared.items())
 
     @staticmethod
     def _qiskit_specifiers(dependencies):
