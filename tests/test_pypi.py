@@ -20,6 +20,7 @@ from unittest.mock import mock_open, patch
 
 from ecosystem.error_handling import EcosystemError
 from ecosystem.pypi import PyPIData
+from ecosystem.qiskit_requirement import QiskitRequirement
 from ecosystem.request import URL
 
 # all_qiskit_versions() lives in the QiskitRequirementMixin
@@ -340,6 +341,17 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             [True, False],
             [row.compatible_with_qiskit_v1 for row in pypi_data.requires],
         )
+
+    def test_a_specifier_no_release_satisfies_resolves_to_nothing(self):
+        """`>=99` is a question the release history cannot answer yet.
+
+        It used to raise a TypeError instead, which nothing hit while every stored
+        specifier was satisfiable.
+        """
+        requirement = QiskitRequirement(specifier=">=99")
+
+        self.assertIsNone(requirement.highest_supported_qiskit_version)
+        self.assertIsNone(requirement.highest_supported_qiskit_release_date)
 
     def test_getattr_reads_aliases_from_pypi_json(self):
         """Aliased attributes are read from fetched PyPI JSON."""
