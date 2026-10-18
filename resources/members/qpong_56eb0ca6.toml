@@ -43,6 +43,13 @@ highest_supported_qiskit_version = "1.4.6"
 source = ["setup.cfg", "setup.py", "requirements.txt"]
 deferred = ["install_requires", "long_description", "packages"]
 
+[[python.requires]]
+specifier = "~=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2026-06-12
+highest_supported_qiskit_version = "1.4.6"
+
 [[checks.G05]]
 since = 2026-09-24
 details = "GitHub repository https://github.com/QPong/QPong archived and project is not `as-is`"
