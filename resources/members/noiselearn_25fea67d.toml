@@ -45,6 +45,14 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-16
 highest_supported_qiskit_version = "2.6.0"
 
+[[python.requires]]
+specifier = ">=0"
+extra = "docs"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
+
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-noise-learning/issues/146, waiting for the fix"
 xfailed_until = 2027-03-31
