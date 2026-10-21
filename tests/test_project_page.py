@@ -27,6 +27,7 @@ from ecosystem.julia import JuliaData
 from ecosystem.member import Member
 from ecosystem.python import PythonData
 from ecosystem.pypi import PyPIData
+from ecosystem.qiskit_requirement import QiskitRequirement
 from ecosystem.requirements import RequirementsData
 from ecosystem.request import URL
 
@@ -287,6 +288,64 @@ class TestTheURLsCard(ProjectPageTestCase):
                 self.assertIn(
                     f"{icon} [Reference paper]({host})", self.card(reference_paper=host)
                 )
+
+
+class TestTheQiskitRequirementsOfAConditionalDependency(ProjectPageTestCase):
+    """A distribution whose qiskit is behind an extra still belongs in the table.
+
+    It has no section-level `requires_qiskit` to read, so a page built from that alone
+    showed nothing at all about a dependency the project really has.
+    """
+
+    def table(self, **kwargs):
+        """The Qiskit requirements table of such a member, as one string"""
+        return "\n".join(self.page(**kwargs).qiskit_requirements())
+
+    def test_a_row_per_condition_names_the_extra(self):
+        """Each extra is its own declaration, so each is its own row"""
+        table = self.table(
+            pypi=[
+                PyPIData(
+                    package_name="banana-compiler",
+                    requires=[
+                        QiskitRequirement(specifier="<3,>=2.0", extra="qiskit"),
+                        QiskitRequirement(specifier="<3,>=2.0", extra="benchmarking"),
+                    ],
+                )
+            ]
+        )
+
+        self.assertIn("`[qiskit]`", table)
+        self.assertIn("`[benchmarking]`", table)
+        self.assertEqual(2, table.count("`<3,>=2.0`"))
+
+    def test_an_environment_is_named_too(self):
+        """Two rows of one distribution need something to tell them apart"""
+        table = self.table(
+            pypi=[
+                PyPIData(
+                    package_name="banana-compiler",
+                    requires=[
+                        QiskitRequirement(
+                            specifier=">=2",
+                            extra="qiskit",
+                            environment='python_version >= "3.14"',
+                        )
+                    ],
+                )
+            ]
+        )
+
+        self.assertIn('python_version >= "3.14"', table)
+
+    def test_an_unconditional_dependency_is_one_row_as_before(self):
+        """The common case is untouched: no condition, so nothing to name"""
+        table = self.table(
+            pypi=[PyPIData(package_name="banana-compiler", requires_qiskit="<3,>=2.0")]
+        )
+
+        self.assertIn("`<3,>=2.0`", table)
+        self.assertNotIn("`[", table)
 
 
 class TestThePackagesSection(ProjectPageTestCase):

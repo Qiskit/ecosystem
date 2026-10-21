@@ -151,6 +151,22 @@ class QiskitRequirementMixin:
 
         return self._memo("requires_qiskit", resolve)
 
+    @property
+    def qiskit_declarations(self):
+        """What this section says about qiskit, as the things worth rendering.
+
+        Itself when a plain install requires qiskit, and its conditional requirements
+        when they are the only ones there are: a distribution whose qiskit lives behind
+        an extra has no section-level specifier, and a page that reads only that would
+        show nothing at all about a dependency the project really has.
+
+        Each is something with a `requires_qiskit` and the four resolved fields, so a
+        caller renders them the same way.
+        """
+        if self.requires_qiskit:
+            return [self]
+        return list(getattr(self, "requires", None) or [])
+
     def compatible_with_qiskit(self, major: int):
         """Boolean if the package is compatible with any Qiskit of the v<major> series"""
         if self.requires_qiskit is None:
