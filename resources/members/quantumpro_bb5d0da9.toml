@@ -42,13 +42,6 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml", "setup.py"]
 deferred = ["version"]
 
-[[python.requires]]
-specifier = "<2,>=1.0"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2026-06-12
-highest_supported_qiskit_version = "1.4.6"
-
 [[checks.G05]]
 since = 2026-09-24
 details = "GitHub repository https://github.com/qiskit-community/quantum-prototype-template archived and project is not `as-is`"

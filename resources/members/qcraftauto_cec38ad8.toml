@@ -44,17 +44,10 @@ maintainers = ["https://pypi.org/user/jorgecs/"]
 requires_qiskit = "<3.0.0,>=1.1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-16
-highest_supported_qiskit_version = "2.6.0"
+highest_supported_qiskit_release_date = 2026-04-24
+highest_supported_qiskit_version = "2.4.1"
 last_month_downloads = 59
 last_180_days_downloads = 401
-
-[[pypi.requires]]
-specifier = "<3.0.0,>=1.1.0"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-16
-highest_supported_qiskit_version = "2.6.0"
 
 [[checks.G09]]
 since = 2026-07-06

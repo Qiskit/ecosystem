@@ -39,14 +39,7 @@ maintainers = ["https://pypi.org/user/MeanMachineRex/"]
 requires_qiskit = "<3,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-16
-highest_supported_qiskit_version = "2.6.0"
+highest_supported_qiskit_release_date = 2026-08-13
+highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 34
 last_180_days_downloads = 319
-
-[[pypi.requires]]
-specifier = "<3,>=2.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-16
-highest_supported_qiskit_version = "2.6.0"
