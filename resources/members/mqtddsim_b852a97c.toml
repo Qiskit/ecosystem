@@ -45,7 +45,14 @@ maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = "<3,>=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
 last_month_downloads = 8514
-last_180_days_downloads = 27382
+last_180_days_downloads = 27461
+
+[[pypi.requires]]
+specifier = "<3,>=2.1"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"

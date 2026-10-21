@@ -48,10 +48,17 @@ maintainers = [
 requires_qiskit = ">=0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-07-02
-highest_supported_qiskit_version = "2.5.0"
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
 last_month_downloads = 114
 last_180_days_downloads = 1587
+
+[[pypi.requires]]
+specifier = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qognitive/fast-pauli/issues/98, waiting for a release with the fix"

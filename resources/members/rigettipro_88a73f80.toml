@@ -43,10 +43,17 @@ maintainers = ["https://pypi.org/user/rigetti/"]
 requires_qiskit = ">=0.38.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 83
-last_180_days_downloads = 401
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
+last_month_downloads = 34
+last_180_days_downloads = 375
+
+[[pypi.requires]]
+specifier = ">=0.38.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
 
 [[checks.Q03]]
 xfailed = "The cap is already in the repository (https://github.com/rigetti/qiskit-rigetti/pull/55, July 2024), but there has been no release since February 2024"
