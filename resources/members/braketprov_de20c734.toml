@@ -23,8 +23,8 @@ estimated_contributors = 41
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-02-22
-last_commit = 2026-10-19
-last_activity = 2026-10-19
+last_commit = 2026-10-20
+last_activity = 2026-10-20
 
 [badge]
 url = "https://qisk.it/e-de20c734"
@@ -32,8 +32,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-braket-provider"
-version = "0.26.2"
-last_release_date = 2026-10-19
+version = "0.27.0"
+last_release_date = 2026-10-20
 license = "Apache-2.0"
 description = "Qiskit-Braket provider to execute Qiskit programs on devices via Amazon Braket."
 url = "https://pypi.org/project/qiskit-braket-provider/"
@@ -45,4 +45,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
 last_month_downloads = 4883
-last_180_days_downloads = 69853
+last_180_days_downloads = 70209
