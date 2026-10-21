@@ -225,7 +225,7 @@ class ProjectSummaryCard(Card):
             case "Under revision":
                 return ":material-account-alert:"
             case "Unmaintained":
-                return ":material-heart-broken:"
+                return ":material-archive:"
             case "Early Project":
                 return ":material-sprout:"
             case "Very Early Project":
@@ -438,12 +438,14 @@ def pip_install_target(owner, repo, path=None):
     return target
 
 
-def qiskit_compatibility(package):
-    """The Qiskit compatibility table, for a card about a Python distribution.
+def qiskit_compatibility(package, heading=False):
+    """The Qiskit compatibility table of a Python distribution.
 
-    Both `PypiPackageCard` and `PipSourcePackageCard` show it, and both get the values
-    from `QiskitRequirementMixin`, so it is a function of that vocabulary rather than a
-    method on either card.
+    A section of the `pypi/` and `pip-source/` pages rather than a bullet inside their
+    card: the card is one column of a grid, and a table of up to five columns does not
+    fit in one. Both pages render it the same way, and both read the values from
+    `QiskitRequirementMixin`, so it is a function of that vocabulary rather than a method
+    on either card.
     """
     # a card carries the values flattened onto itself, a section answers with what it
     # declares, which for a conditional distribution is its `requires` entries
@@ -457,13 +459,17 @@ def qiskit_compatibility(package):
     return (
         [
             "",
-            ":simple-qiskit: **Qiskit compatibility**\n\n",
+            (
+                "\n---\n### :simple-qiskit: Qiskit compatibility\n"
+                if heading
+                else ":simple-qiskit: **Qiskit compatibility**\n\n"
+            ),
             # the column only earns its place when something is conditional, which is
             # also the case where the distribution itself requires no qiskit
             (
-                "| **Requires** | Needed by | V1 | V2 | Highest supported |"
+                "| Requires | Needed by | V1 | V2 | Highest supported |"
                 if conditional
-                else "| **Requires** | V1 | V2 | Highest supported |"
+                else "| Requires | V1 | V2 | Highest supported |"
             ),
             ("| -- | -- | -- | -- | -- |" if conditional else "| -- | -- | -- | -- |"),
         ]
@@ -571,8 +577,6 @@ class PypiPackageCard(Card):
                 f"**Last month** {self.last_month_downloads:,} "
                 f"**Last 180 days** {self.last_180_days_downloads:,}"
             ]
-        ret += qiskit_compatibility(self)
-
         return ret
 
 
@@ -708,7 +712,6 @@ class PipSourcePackageCard(Card):
                 "**Computed at build time** "
                 + ", ".join(f"`{field}`" for field in self.deferred),
             ) + [""]
-        ret += qiskit_compatibility(self)
         return ret
 
 
