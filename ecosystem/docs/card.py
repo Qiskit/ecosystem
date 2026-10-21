@@ -74,8 +74,16 @@ class Card:
         )
 
     def generate(self):
-        """Generates the text for the card by combining lines"""
-        return self.title_lines() + [f"    {l}" for l in self.body_lines]
+        """Generates the text for the card by combining lines.
+
+        A card ends with a blank line, which is what separates it from the next one in a
+        `grid cards` list: without it the next card's `-` is read as a continuation and
+        the two render as a single card.
+        """
+        lines = self.title_lines() + [f"    {l}" for l in self.body_lines]
+        if lines and lines[-1].strip():
+            lines.append("")
+        return lines
 
     def bullet(self, icon, value, annotation=None):
         """
