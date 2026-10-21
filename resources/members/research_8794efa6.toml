@@ -46,7 +46,22 @@ compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2024-06-20
 highest_supported_qiskit_version = "1.1.1"
 last_month_downloads = 9
-last_180_days_downloads = 378
+last_180_days_downloads = 384
+
+[[pypi.requires]]
+specifier = "==1.1.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2024-06-20
+highest_supported_qiskit_version = "1.1.1"
+
+[[pypi.requires]]
+specifier = ">=0"
+extra = "dev"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
 
 [[checks.G05]]
 since = 2026-04-23
