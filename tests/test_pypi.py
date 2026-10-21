@@ -176,16 +176,19 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             [conditions(row) for row in pypi_data.requires],
         )
 
-    def test_an_unconditional_requirement_carries_no_condition(self):
-        """The common case: one entry, just the specifier"""
+    def test_an_unconditional_requirement_is_not_recorded(self):
+        """The common case, where the section itself already says it
+
+        An entry with no condition would restate `requires_qiskit` and its four derived
+        fields, so the presence of an entry is what means something: a condition.
+        """
         pypi_data = PyPIData("banana-compiler")
         self._update_with_pypi_json(
             pypi_data, {"info": {"requires_dist": ["qiskit>=1.1.0"]}}
         )
 
-        self.assertEqual(
-            [{"specifier": ">=1.1.0"}], [conditions(row) for row in pypi_data.requires]
-        )
+        self.assertIsNone(pypi_data.requires)
+        self.assertEqual(">=1.1.0", pypi_data.requires_qiskit)
 
     def test_an_environment_marker_without_an_extra_is_kept(self):
         """`qiskit-superstaq` asks a different qiskit of a newer interpreter"""
@@ -217,8 +220,18 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             pypi_data, {"info": {"requires_dist": ["Qiskit>=2.0"]}}
         )
 
+        self.assertEqual(">=2.0", pypi_data.requires_qiskit)
+
+    def test_a_requirement_named_in_any_case_is_recognized_in_an_extra(self):
+        """The same canonicalization, on the path that records the condition"""
+        pypi_data = PyPIData("banana-compiler")
+        self._update_with_pypi_json(
+            pypi_data, {"info": {"requires_dist": ['Qiskit>=2.0; extra == "all"']}}
+        )
+
         self.assertEqual(
-            [{"specifier": ">=2.0"}], [conditions(row) for row in pypi_data.requires]
+            [{"specifier": ">=2.0", "extra": "all"}],
+            [conditions(row) for row in pypi_data.requires],
         )
 
     def test_a_bare_qiskit_is_recorded_as_any_version(self):
@@ -243,13 +256,12 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
             pypi_data, {"info": {"requires_dist": ["qiskit>=1.1.0"]}}
         )
 
+        # the unconditional `>=1.1.0` PyPI declares stays on the section, not in an entry
         self.assertEqual(
-            [
-                {"specifier": ">=1.1.0"},
-                {"specifier": "<3,>=2.3.0", "via": "qiskit-ibm-runtime>=0.30.0"},
-            ],
+            [{"specifier": "<3,>=2.3.0", "via": "qiskit-ibm-runtime>=0.30.0"}],
             [conditions(row) for row in pypi_data.requires],
         )
+        self.assertEqual(">=1.1.0", pypi_data.requires_qiskit)
 
     def test_a_release_with_no_qiskit_keeps_what_was_stored(self):
         """A release that never mentioned qiskit, or an indirect one declared by hand"""

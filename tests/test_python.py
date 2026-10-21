@@ -211,17 +211,8 @@ class TestPythonDataFields(PythonDataTestCase):
                 "description": "Compiles bananas",
                 "requires_python": ">=3.9",
                 "requires_qiskit": "<3,>=1.2",
-                # the declaration, with the condition it is under: none here, so the
-                # section keeps saying the manifest requires qiskit outright
-                "requires": [
-                    {
-                        "specifier": "<3,>=1.2",
-                        "compatible_with_qiskit_v1": True,
-                        "compatible_with_qiskit_v2": True,
-                        "highest_supported_qiskit_release_date": date(2025, 4, 1),
-                        "highest_supported_qiskit_version": "2.0.0",
-                    }
-                ],
+                # no `requires`: the requirement is under no condition, so the section
+                # itself is the whole statement
                 "compatible_with_qiskit_v1": True,
                 "compatible_with_qiskit_v2": True,
                 "highest_supported_qiskit_release_date": date(2025, 4, 1),

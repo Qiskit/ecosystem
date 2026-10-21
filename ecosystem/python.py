@@ -474,16 +474,22 @@ class PythonData(
 
     @property
     def requires(self):
+        """The conditional qiskit requirements, as in `PyPIData.requires`: an entry under
+        no condition says what `requires_qiskit` already says."""
+        return [row for row in self.declared_requires if row.conditional] or None
+
+    @property
+    def declared_requires(self):
         """Every qiskit requirement the manifest declares, and the condition it is under.
 
-        The counterpart of `PyPIData.requires`, for a repository rather than a release.
-        A manifest can put its qiskit in `[project.optional-dependencies]`, so a project
-        that only needs it for one feature looks qiskit-free without this:
+        The counterpart of `PyPIData.declared_requires`, for a repository rather than a
+        release. A manifest can put its qiskit in `[project.optional-dependencies]`, so a
+        project that only needs it for one feature looks qiskit-free without this:
         `qem-auditor` declares `qiskit>=2.0` in its `adapters` extra and was recorded as
         declaring nothing at all.
 
         An environment marker is kept as `PyPIData` keeps it, and `via` is not derived
-        here either: it names what another project's metadata says.
+        here either, since it names what another project's metadata says.
         """
         conditions, seen = [], []
         for extra, dependencies in (
@@ -505,7 +511,7 @@ class PythonData(
         ]
         if conditions:
             return conditions + [row for row in stored if row.via]
-        return stored or None
+        return stored
 
     def _optional_dependencies(self):
         """The extras a manifest declares, as `(name, [PEP 508 strings])` pairs.
