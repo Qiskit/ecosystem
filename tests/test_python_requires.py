@@ -80,12 +80,13 @@ class TestTheDeclaredQiskitRequirements(PythonDataTestCase):
 
         self.assertEqual(
             [
-                {"specifier": "<3,>=2.5.0"},
                 {"specifier": ">=0", "extra": "docs"},
                 {"specifier": ">=2", "extra": "adapters"},
             ],
             [conditions(row) for row in data.requires],
         )
+        # the unconditional one is the section's own `requires_qiskit`
+        self.assertEqual("<3,>=2.5.0", data.requires_qiskit)
 
     def test_setup_cfg_extras_are_read(self):
         """setup.cfg keeps each extra as an indented multi-line string"""

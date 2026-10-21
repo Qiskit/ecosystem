@@ -189,13 +189,25 @@ class PyPIData(
 
     @property
     def requires(self):
+        """The *conditional* qiskit requirements, which are the ones worth storing.
+
+        An entry under no condition says what `requires_qiskit` above already says, that
+        a plain install requires qiskit, so writing it would restate the section in five
+        lines. The presence of an entry therefore means something: a condition.
+
+        `declared_requires` is the unfiltered list, for anything that needs to know what
+        was declared rather than what is stored.
+        """
+        return [row for row in self.declared_requires if row.conditional] or None
+
+    @property
+    def declared_requires(self):
         """Every qiskit requirement the release declares, and the condition each is under.
 
         A release can ask for qiskit more than once: behind an extra (`pip install
-        pkg[qiskit]`), under an environment marker (`python_version >= "3.14"`), or both,
-        and `requires_qiskit` above is only the effective one. The distribution stays a
-        single section, so its release and download fields are stated once; what varies is
-        the condition, not the distribution.
+        pkg[qiskit]`), under an environment marker (`python_version >= "3.14"`), or both.
+        The distribution stays a single section, so its release and download fields are
+        stated once; what varies is the condition, not the distribution.
 
         `via` is not derived here. It names the dependency a requirement is reached
         through, which is a statement about another project's metadata rather than this
@@ -224,11 +236,11 @@ class PyPIData(
             row if isinstance(row, QiskitRequirement) else QiskitRequirement(**row)
             for row in self._kwargs.get("requires") or []
         ]
+        # a `via` written by hand survives a refresh: it says what this release is
+        # reached through, which the release's own metadata cannot contradict
         if conditions:
-            # a `via` written by hand survives a refresh: it says what this release is
-            # reached through, which the release's own metadata cannot contradict
             return conditions + [row for row in stored if row.via]
-        return stored or None
+        return stored
 
     def _qiskit_requirements(self):
         """The parsed `requires_dist` entries that name qiskit, in the order PyPI lists them"""
@@ -257,8 +269,8 @@ class PyPIData(
         condition.
         """
         section = super().to_dict(keys=keys or PyPIData.dict_keys)
-        requires = self.requires
-        if requires and all(row.conditional for row in requires):
+        declared = self.declared_requires
+        if declared and all(row.conditional for row in declared):
             for field in (
                 "requires_qiskit",
                 "compatible_with_qiskit_v1",
@@ -275,7 +287,8 @@ class PyPIData(
         requires_dist = self.pypi_json.get("info", {}).get("requires_dist") or []
         for requirement_str in requires_dist:
             requirement = Requirement(requirement_str)
-            if requirement.name == "qiskit":
+            # `Qiskit>=2` and `qiskit>=2` are the same dependency
+            if canonicalize_name(requirement.name) == "qiskit":
                 if len(requirement.specifier):
                     self._kwargs["requires_qiskit"] = str(requirement.specifier)
                 elif (
