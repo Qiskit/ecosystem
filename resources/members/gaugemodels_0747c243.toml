@@ -39,10 +39,3 @@ highest_supported_qiskit_version = "2.3.0"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml", "requirements.txt"]
 deferred = []
-
-[[python.requires]]
-specifier = "==2.3.0"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-01-08
-highest_supported_qiskit_version = "2.3.0"
