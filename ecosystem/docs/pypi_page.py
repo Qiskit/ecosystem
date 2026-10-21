@@ -14,7 +14,11 @@
 """Pages in https://qiskit.github.io/ecosystem/pypi/<package-name>"""
 
 from ecosystem.docs import command_block
-from ecosystem.docs.card import ProjectSummaryCard, PypiPackageCard
+from ecosystem.docs.card import (
+    ProjectSummaryCard,
+    PypiPackageCard,
+    qiskit_compatibility,
+)
 from .project_page import ProjectPage
 
 
@@ -33,6 +37,7 @@ class PypiPage(ProjectPage):
         lines += self.title(self.package.package_name) + [""]
         lines += self.description() + [""]
         lines += self.general_summary()
+        lines += qiskit_compatibility(self.package, heading=True)
         # lines += self.checkups()
         return lines
 

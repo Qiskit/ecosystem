@@ -18,6 +18,7 @@ from ecosystem.docs.pypi_page import PypiPage
 from ecosystem.github import GitHubData
 from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
+from ecosystem.qiskit_requirement import QiskitRequirement
 
 OWNER = "banana-org"
 REPO = "banana-repo"
@@ -49,6 +50,50 @@ class PypiPageTestCase(TestCase):
     def rendered(self, package=None, **kwargs):
         """The whole page, as one string"""
         return "\n".join(self.page(package, **kwargs).generate_all_lines())
+
+
+class TestTheQiskitCompatibilitySection(PypiPageTestCase):
+    """The table is a section of the page, not a bullet inside the card.
+
+    A card is one column of a grid and the table has up to five columns of its own, so
+    it never fitted; `pip-source/` renders it the same way.
+    """
+
+    def test_the_table_is_a_section_with_a_heading(self):
+        """Its own heading, like the other sections of a page"""
+        rendered = self.rendered(self.package(requires_qiskit="<3,>=2.0"))
+
+        self.assertIn("### :simple-qiskit: Qiskit compatibility", rendered)
+        self.assertIn("| Requires | V1 | V2 | Highest supported |", rendered)
+
+    def test_the_section_sits_after_the_cards(self):
+        """A reader meets the distribution before what it requires"""
+        rendered = self.rendered(self.package(requires_qiskit="<3,>=2.0"))
+
+        self.assertLess(
+            rendered.index("</div>"), rendered.index("Qiskit compatibility")
+        )
+
+    def test_a_conditional_requirement_gets_a_row_naming_its_extra(self):
+        """Two rows of one distribution need the extra to tell them apart"""
+        rendered = self.rendered(
+            self.package(
+                requires=[
+                    QiskitRequirement(specifier="<3,>=2.0", extra="qiskit"),
+                    QiskitRequirement(specifier="<3,>=2.0", extra="benchmarking"),
+                ]
+            )
+        )
+
+        self.assertIn(
+            "| Requires | Needed by | V1 | V2 | Highest supported |", rendered
+        )
+        self.assertIn("`[qiskit]`", rendered)
+        self.assertIn("`[benchmarking]`", rendered)
+
+    def test_a_package_requiring_no_qiskit_has_no_section(self):
+        """Most distributions: nothing to say, so nothing is said"""
+        self.assertNotIn("Qiskit compatibility", self.rendered())
 
 
 class TestThePypiPage(PypiPageTestCase):
