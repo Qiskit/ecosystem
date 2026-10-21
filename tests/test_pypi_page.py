@@ -52,6 +52,33 @@ class PypiPageTestCase(TestCase):
         return "\n".join(self.page(package, **kwargs).generate_all_lines())
 
 
+class TestTheCardsStaySeparate(PypiPageTestCase):
+    """Two cards in a `grid cards` list, not one.
+
+    A card is a `-` list item and a blank line is what ends it, so a card whose last
+    line is content swallows the next one. The compatibility table used to supply that
+    blank line, and moving it out of the card merged the two.
+    """
+
+    def test_a_card_ends_with_a_blank_line(self):
+        """Two list items in the grid, so two cards"""
+        rendered = self.rendered(
+            self.package(last_month_downloads=5, last_180_days_downloads=9)
+        )
+        cards = rendered[rendered.index("grid cards") :]
+
+        self.assertEqual(2, cards.count("\n-   "))
+
+    def test_the_cards_are_separated_without_the_table(self):
+        """The distribution requires no qiskit, so nothing follows the downloads"""
+        rendered = self.rendered(
+            self.package(last_month_downloads=5, last_180_days_downloads=9)
+        )
+
+        self.assertNotIn("Qiskit compatibility", rendered)
+        self.assertIn("\n\n-   ", rendered[rendered.index("grid cards") :])
+
+
 class TestTheQiskitCompatibilitySection(PypiPageTestCase):
     """The table is a section of the page, not a bullet inside the card.
 
