@@ -295,27 +295,23 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
         """
         rows = []
         for package in self.project.pypi:
-            rows.append(
-                self._requirement_row(
-                    f"PyPI [`{cell(package.package_name)}`]"
-                    f"(../pypi/{package.package_name}.md)",
-                    package,
-                )
+            label = (
+                f"PyPI [`{cell(package.package_name)}`]"
+                f"(../pypi/{package.package_name}.md)"
             )
+            for declaration in package.qiskit_declarations:
+                rows.append(self._requirement_row(label, declaration))
         for package in self.project.python:
-            rows.append(
-                self._requirement_row(
-                    f"repo [`{cell(package.package_name)}`]"
-                    f"(../pip-source/{package.package_name}.md)",
-                    package,
-                )
+            label = (
+                f"repo [`{cell(package.package_name)}`]"
+                f"(../pip-source/{package.package_name}.md)"
             )
+            for declaration in package.qiskit_declarations:
+                rows.append(self._requirement_row(label, declaration))
         for requirements in self.project.requirements or []:
-            rows.append(
-                self._requirement_row(
-                    self._requirements_file_cell(requirements), requirements
-                )
-            )
+            label = self._requirements_file_cell(requirements)
+            for declaration in requirements.qiskit_declarations:
+                rows.append(self._requirement_row(label, declaration))
         rows = [row for row in rows if row]
         if not rows:
             return []
@@ -332,9 +328,20 @@ class ProjectPage:  # pylint: disable=redefined-outer-name
 
     @classmethod
     def _requirement_row(cls, declared_in, package):
-        """What a declaration asks of Qiskit, or None when it asks nothing"""
+        """What a declaration asks of Qiskit, or None when it asks nothing.
+
+        `declared_in` names where it was read; a requirement that only applies under a
+        condition says so there too, since a reader comparing rows of one distribution
+        has nothing else to tell them apart.
+        """
         if not package.requires_qiskit:
             return None
+        extra = getattr(package, "extra", None)
+        environment = getattr(package, "environment", None)
+        if extra:
+            declared_in += f" `[{cell(extra)}]`"
+        if environment:
+            declared_in += f" ({cell(environment)})"
         version = package.highest_supported_qiskit_version
         return [
             declared_in,
