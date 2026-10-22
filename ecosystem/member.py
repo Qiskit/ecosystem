@@ -639,6 +639,12 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         for record in records:
             if record.subtest == subtest:
                 return record
+        # a place that got more specific, `pypi:mitiq` becoming
+        # `pypi:mitiq (extra qiskit)`: the explanation and the clock were written about
+        # this distribution, so they carry over rather than restarting
+        for record in records:
+            if record.subtest and subtest and subtest.startswith(f"{record.subtest} ("):
+                return record
         for record in records:
             if record.subtest is None:
                 return record
@@ -656,6 +662,11 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         ]
         for record in live:
             if record.subtest == subtest:
+                return record.xfailed
+        # as `stored_record`: an explanation written for `pypi:mitiq` still answers for
+        # `pypi:mitiq (extra qiskit)`, which is the same place said more precisely
+        for record in live:
+            if record.subtest and subtest and subtest.startswith(f"{record.subtest} ("):
                 return record.xfailed
         for record in live:
             if record.subtest is None:

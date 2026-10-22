@@ -27,8 +27,8 @@ stars = 0
 license = "MIT"
 description = "QDSV Bridge SDK: controlled semantic-to-IR, oracle and circuit-blueprint compilation for supported quantum problem families."
 created_at = 2026-06-01
-last_commit = 2026-10-18
-last_activity = 2026-10-18
+last_commit = 2026-10-09
+last_activity = 2026-10-09
 
 [badge]
 url = "https://qisk.it/e-e8734f93"
@@ -44,10 +44,13 @@ url = "https://pypi.org/project/qdsv-bridge/"
 development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/jalexanderjlozano/"]
-requires_qiskit = "<3,>=2.3"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-07-02
-highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 491
 last_180_days_downloads = 4767
+
+[[pypi.requires]]
+specifier = "<3,>=2.3"
+extra = "qiskit"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"

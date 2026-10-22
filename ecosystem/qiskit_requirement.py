@@ -30,7 +30,7 @@ from packaging.version import Version
 
 from jsonpath import findall
 
-from .serializable import parse_date
+from .serializable import JsonSerializable, parse_date
 from .error_handling import EcosystemError, logger
 from .request import request_json
 
@@ -127,6 +127,22 @@ class QiskitRequirementMixin:
             return self._kwargs.get("requires_qiskit")
         return find_requires_qiskit(self.dependencies, self.declared_by)
 
+    @property
+    def qiskit_declarations(self):
+        """What this section says about qiskit, as the things worth rendering.
+
+        Itself when a plain install requires qiskit, and its conditional requirements
+        when they are the only ones there are: a distribution whose qiskit lives behind
+        an extra has no section-level specifier, and a page that reads only that would
+        show nothing at all about a dependency the project really has.
+
+        Each is something with a `requires_qiskit` and the four resolved fields, so a
+        caller renders them the same way.
+        """
+        if self.requires_qiskit:
+            return [self]
+        return list(getattr(self, "requires", None) or [])
+
     def compatible_with_qiskit(self, major: int):
         """Boolean if the package is compatible with any Qiskit of the v<major> series"""
         if self.requires_qiskit is None:
@@ -147,16 +163,16 @@ class QiskitRequirementMixin:
     @property
     def highest_supported_qiskit_version(self):
         """Returns the highest supported Qiskit version"""
-        if self.requires_qiskit is None:
-            return None
-        return self.highest_supported_qiskit_version_and_release_date[0]
+        resolved = self.highest_supported_qiskit_version_and_release_date
+        # None when nothing is required, and also when no release satisfies what is:
+        # `>=99` is a specifier the release history cannot answer yet
+        return resolved[0] if resolved else None
 
     @property
     def highest_supported_qiskit_release_date(self):
         """Returns when was released the highest supported Qiskit version"""
-        if self.requires_qiskit is None:
-            return None
-        return parse_date(self.highest_supported_qiskit_version_and_release_date[1])
+        resolved = self.highest_supported_qiskit_version_and_release_date
+        return parse_date(resolved[1]) if resolved else None
 
     @cached_property
     def highest_supported_qiskit_version_and_release_date(self):
@@ -191,3 +207,90 @@ class QiskitRequirementMixin:
             if qiskit_specifier.contains(qiskit_version, prereleases=prereleases):
                 return qiskit_version, version_data["upload_at"]
         return None
+
+
+class QiskitRequirement(QiskitRequirementMixin, JsonSerializable):
+    """One qiskit requirement a release declares, and the condition it is under.
+
+    A release can ask for qiskit several times: behind an extra (`pip install
+    pkg[qiskit]`), under an environment marker, or through another dependency. Each of
+    those is its own requirement with its own resolved compatibility, which is why the
+    four derived fields live here rather than on the distribution: a specifier that only
+    applies on Python 3.14 resolves differently from the one that applies below it.
+
+    The shape `[[requirements]]` has, for the same reason: a specifier plus what the
+    mixin derives from it, with no name of its own to be keyed by.
+    """
+
+    dict_keys = [
+        "specifier",
+        "extra",
+        "environment",
+        "via",
+        "compatible_with_qiskit_v1",
+        "compatible_with_qiskit_v2",
+        "highest_supported_qiskit_release_date",
+        "highest_supported_qiskit_version",
+    ]
+
+    def __init__(
+        self,
+        specifier: str = None,
+        extra: str = None,
+        environment: str = None,
+        via: str = None,
+        **kwargs,
+    ):
+        """
+        Args:
+            specifier: the PEP 440 specifier, `>=0` for a bare `qiskit`.
+            extra: the extra that has to be requested for this to apply. None means a
+                plain install gets it.
+            environment: the rest of the PEP 508 marker, once the `extra ==` part is
+                taken out. None means it always applies.
+            via: the dependency this is reached through, as the release declares it.
+                None means the release requires qiskit itself.
+        """
+        self.specifier = specifier
+        self.extra = extra
+        self.environment = environment
+        self.via = via
+        self._kwargs = kwargs or {}
+        self._all_qiskit_versions = None
+
+    def __repr__(self):
+        return str(self.to_dict())
+
+    def to_dict(self, keys=None) -> dict:
+        return super().to_dict(keys=keys or QiskitRequirement.dict_keys)
+
+    @property
+    def requires_qiskit(self):
+        """What the mixin resolves, which here is the specifier itself"""
+        return self.specifier
+
+    @property
+    def fetched(self):
+        """Always true: the specifier is the requirement, so there is nothing to fetch.
+
+        What the mixin asks with this is whether a stored value is all it has to go on,
+        and here it never is.
+        """
+        return True
+
+    @property
+    def declared_by(self):
+        """What the warnings name"""
+        return f"qiskit{self.specifier}" + (
+            f" (extra {self.extra})" if self.extra else ""
+        )
+
+    @property
+    def conditional(self):
+        """True when something has to be true beyond installing the release.
+
+        An extra has to be requested, an environment has to match, or another dependency
+        is what brings qiskit in. A requirement with none of those is what a plain
+        `pip install` creates.
+        """
+        return bool(self.extra or self.environment or self.via)
