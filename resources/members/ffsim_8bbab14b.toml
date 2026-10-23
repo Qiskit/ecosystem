@@ -46,10 +46,10 @@ maintainers = [
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 58482
-last_180_days_downloads = 208871
+last_180_days_downloads = 209700
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/ffsim/issues/712, waiting for a release with the fix"
