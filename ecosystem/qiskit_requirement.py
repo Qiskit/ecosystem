@@ -19,7 +19,6 @@ package data class that provides `_kwargs`, plus either its own `requires_qiskit
 or the `fetched` and `dependencies` the default one reads.
 """
 
-from functools import cached_property
 from os import path
 import json
 
@@ -75,6 +74,27 @@ class QiskitRequirementMixin:
     # for classes that never fetch.
     _all_qiskit_versions = None
 
+    def _memo(self, name, resolve):
+        """`resolve()` once per value per fetch state.
+
+        Keyed on `fetched`, which is the point: `ci.py` serializes a member after every
+        updater and serializing reads these properties, so a `cached_property` filled in
+        while the section was still unfetched outlived the fetch and the stored value was
+        written back unchanged (a `requires_qiskit` whose ceiling had moved never resolved
+        again). Re-resolving on the transition is what fixes that.
+
+        The memoization itself is only about the warnings: `find_requires_qiskit` logs for
+        an empty or unparseable specifier, and `to_dict` reads the specifier through four
+        compat fields, so without it one bare `qiskit` is reported four times. It buys no
+        measurable time — a stored section answers from `_kwargs` without touching the
+        release table, which is every section outside an update run.
+        """
+        memo = self.__dict__.setdefault("_qiskit_memo", {})
+        fetched = self.fetched
+        if name not in memo or memo[name][0] != fetched:
+            memo[name] = (fetched, resolve())
+        return memo[name][1]
+
     def all_qiskit_versions(self, force_update=False):
         """Returns a dictionary with all the Qiskit releases,
         with version numbers as key and extra data"""
@@ -115,17 +135,21 @@ class QiskitRequirementMixin:
         """What the warnings name, for a subclass that has a distribution to name."""
         return self.package_name
 
-    @cached_property
+    @property
     def requires_qiskit(self):
         """String with the specifier for the "qiskit" dependency, or None.
 
-        Cached because every property below reads it and a miss logs a warning, which
-        belongs once per object rather than once per read. `PyPIData` overrides it;
-        `PythonData.deferred` tells its "no qiskit" from its "could not tell".
+        Memoized so that a miss warns once per object rather than once per read; every
+        property below reads it. `PyPIData` overrides it; `PythonData.deferred` tells its
+        "no qiskit" from its "could not tell".
         """
-        if not self.fetched:
-            return self._kwargs.get("requires_qiskit")
-        return find_requires_qiskit(self.dependencies, self.declared_by)
+
+        def resolve():
+            if not self.fetched:
+                return self._kwargs.get("requires_qiskit")
+            return find_requires_qiskit(self.dependencies, self.declared_by)
+
+        return self._memo("requires_qiskit", resolve)
 
     def compatible_with_qiskit(self, major: int):
         """Boolean if the package is compatible with any Qiskit of the v<major> series"""
@@ -158,9 +182,13 @@ class QiskitRequirementMixin:
             return None
         return parse_date(self.highest_supported_qiskit_version_and_release_date[1])
 
-    @cached_property
+    @property
     def highest_supported_qiskit_version_and_release_date(self):
         """Returns the highest supported Qiskit version and when it was released"""
+        return self._memo("highest_supported", self._resolve_highest_supported)
+
+    def _resolve_highest_supported(self):
+        """The resolution itself, split out so the property stays one line."""
         if self.requires_qiskit is None:
             return None
         # Nothing was read, so there is nothing to resolve against: a stored section answers

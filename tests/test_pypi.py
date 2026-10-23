@@ -293,6 +293,40 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
                 pypi_data.highest_supported_qiskit_version_and_release_date,
             )
 
+    def test_a_serialized_section_still_resolves_fresh_once_fetched(self):
+        """The order `ci.py` uses: `dao.update` serializes after every updater, and
+        serializing reads these properties, so a read before `update_pypi` must not
+        freeze the stored answer (a specifier whose ceiling moved never resolved again).
+        """
+        pypi_data = PyPIData(
+            "banana-compiler",
+            requires_qiskit=">=2.4,<3",
+            highest_supported_qiskit_version="2.4.2",
+            highest_supported_qiskit_release_date=date(2026, 4, 24),
+        )
+        qiskit_versions = {
+            "2.4.2": {"upload_at": date(2026, 4, 24)},
+            "2.6.0": {"upload_at": date(2026, 10, 1)},
+        }
+
+        with patch.object(
+            PyPIData, "all_qiskit_versions", return_value=qiskit_versions
+        ):
+            # the serialize an earlier updater triggers
+            self.assertEqual(
+                "2.4.2", pypi_data.to_dict()["highest_supported_qiskit_version"]
+            )
+            self._update_with_pypi_json(
+                pypi_data, {"info": {"requires_dist": ["qiskit>=2.4,<3"]}}
+            )
+            self.assertEqual(
+                ("2.6.0", date(2026, 10, 1)),
+                pypi_data.highest_supported_qiskit_version_and_release_date,
+            )
+            self.assertEqual(
+                "2.6.0", pypi_data.to_dict()["highest_supported_qiskit_version"]
+            )
+
     def test_qiskit_compatibility_returns_none_without_requirement(self):
         """Compatibility is unknown when no qiskit requirement exists."""
         pypi_data = PyPIData("banana-compiler")
