@@ -1,0 +1,15 @@
+name = "Quantum Agent Gate"
+submission_number = 1426
+url = "https://github.com/kaulastudies/ai-evaluation-lab/tree/main/integrations/quantum-agent-gate"
+description = "Preflight safety tests for AI agents using Qiskit: guard local V2 circuit execution, shot budgets, backend access and duplicate jobs."
+contact_info = "ramachandra.health@gmail.com"
+labels = ["AI/LLM", "benchmarking", "research", "demo"]
+interfaces = ["Python"]
+website = "https://github.com/kaulastudies/ai-evaluation-lab/tree/main/integrations/quantum-agent-gate"
+category = "Tooling"
+documentation = "https://github.com/kaulastudies/ai-evaluation-lab/blob/main/integrations/quantum-agent-gate/README.md"
+packages = [
+  "https://github.com/kaulastudies/ai-evaluation-lab/blob/main/integrations/quantum-agent-gate/pyproject.toml",
+]
+uuid = "7fac1a8e-f44c-4796-a08c-4ac7a4a0cd7e"
+maturity = "experimental"
