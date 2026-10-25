@@ -19,7 +19,7 @@ description = "Qclib is a quantum computing library implemented using qiskit. Th
 total_dependent_repositories = 14
 total_dependent_packages = 1
 created_at = 2020-03-12
-last_commit = 2026-10-03
+last_commit = 2026-10-24
 last_activity = 2026-10-03
 
 [badge]
@@ -40,7 +40,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 501
-last_180_days_downloads = 2732
+last_180_days_downloads = 2760
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qclib/qclib/issues/214, waiting for a release with the fix"
