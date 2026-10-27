@@ -1,0 +1,15 @@
+name = "Enhanced Quantum Backend Selector"
+submission_number = 1434
+url = "https://github.com/sevetseh28/enhanced_quantum_backend_selector"
+description = "Picks the best Qiskit backend for your circuit by transpiling it to each device and estimating its success probability."
+contact_info = "hernaner28@gmail.com"
+labels = ["benchmarking"]
+interfaces = ["Python"]
+category = "Tooling"
+documentation = "https://sevetseh28.github.io/enhanced_quantum_backend_selector/"
+packages = [
+  "https://pypi.org/project/enhanced-quantum-backend-selector",
+  "https://github.com/sevetseh28/enhanced_quantum_backend_selector/blob/main/enhanced-quantum-backend-selector/pyproject.toml",
+]
+uuid = "3d4e5357-75e8-45bb-85c5-3477081b2c0c"
+maturity = "production-ready"
