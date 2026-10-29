@@ -74,8 +74,16 @@ class Card:
         )
 
     def generate(self):
-        """Generates the text for the card by combining lines"""
-        return self.title_lines() + [f"    {l}" for l in self.body_lines]
+        """Generates the text for the card by combining lines.
+
+        A card ends with a blank line, which is what separates it from the next one in a
+        `grid cards` list: without it the next card's `-` is read as a continuation and
+        the two render as a single card.
+        """
+        lines = self.title_lines() + [f"    {l}" for l in self.body_lines]
+        if lines and lines[-1].strip():
+            lines.append("")
+        return lines
 
     def bullet(self, icon, value, annotation=None):
         """
@@ -225,7 +233,7 @@ class ProjectSummaryCard(Card):
             case "Under revision":
                 return ":material-account-alert:"
             case "Unmaintained":
-                return ":material-heart-broken:"
+                return ":material-archive:"
             case "Early Project":
                 return ":material-sprout:"
             case "Very Early Project":
@@ -438,30 +446,69 @@ def pip_install_target(owner, repo, path=None):
     return target
 
 
-def qiskit_compatibility(package):
-    """The Qiskit compatibility table, for a card about a Python distribution.
+def qiskit_compatibility(package, heading=False):
+    """The Qiskit compatibility table of a Python distribution.
 
-    Both `PypiPackageCard` and `PipSourcePackageCard` show it, and both get the values
-    from `QiskitRequirementMixin`, so it is a function of that vocabulary rather than a
-    method on either card.
+    A section of the `pypi/` and `pip-source/` pages rather than a bullet inside their
+    card: the card is one column of a grid, and a table of up to five columns does not
+    fit in one. Both pages render it the same way, and both read the values from
+    `QiskitRequirementMixin`, so it is a function of that vocabulary rather than a method
+    on either card.
     """
-    if not package.requires_qiskit:
+    # a card carries the values flattened onto itself, a section answers with what it
+    # declares, which for a conditional distribution is its `requires` entries
+    declarations = getattr(package, "qiskit_declarations", None)
+    if declarations is None:
+        declarations = [package] if package.requires_qiskit else []
+    if not declarations:
         return []
 
-    return [
-        "",
-        ":simple-qiskit: **Qiskit compatibility**\n\n",
-        "| **Requires** | V1 | V2 | Highest supported |",
-        "| -- | -- | -- | -- |",
-        f"| {package.requires_qiskit} | "
-        + compatibility_mark(package.compatible_with_qiskit_v1)
-        + " | "
-        + compatibility_mark(package.compatible_with_qiskit_v2)
-        + f" | [{package.highest_supported_qiskit_version}](https://pypi.org/project/qiskit/"
-        f"{package.highest_supported_qiskit_version}/ "
-        f'"Released: {package.highest_supported_qiskit_release_date}") |',
-        "",
+    conditional = any(getattr(row, "conditional", False) for row in declarations)
+    return (
+        [
+            "",
+            (
+                "\n---\n### :simple-qiskit: Qiskit compatibility\n"
+                if heading
+                else ":simple-qiskit: **Qiskit compatibility**\n\n"
+            ),
+            # the column only earns its place when something is conditional, which is
+            # also the case where the distribution itself requires no qiskit
+            (
+                "| Requires | Needed by | V1 | V2 | Highest supported |"
+                if conditional
+                else "| Requires | V1 | V2 | Highest supported |"
+            ),
+            ("| -- | -- | -- | -- | -- |" if conditional else "| -- | -- | -- | -- |"),
+        ]
+        + [_compatibility_row(row, conditional) for row in declarations]
+        + [""]
+    )
+
+
+def _compatibility_row(declaration, conditional):
+    """One row of the compatibility table: what it asks, and what that resolves to"""
+    version = declaration.highest_supported_qiskit_version
+    cells = [declaration.requires_qiskit]
+    if conditional:
+        cells.append(_needed_by(declaration))
+    cells += [
+        compatibility_mark(declaration.compatible_with_qiskit_v1),
+        compatibility_mark(declaration.compatible_with_qiskit_v2),
+        f"[{version}](https://pypi.org/project/qiskit/{version}/ "
+        f'"Released: {declaration.highest_supported_qiskit_release_date}")',
     ]
+    return "| " + " | ".join(cells) + " |"
+
+
+def _needed_by(declaration):
+    """What has to be true for a requirement to apply, as a table cell"""
+    extra = getattr(declaration, "extra", None)
+    environment = getattr(declaration, "environment", None)
+    parts = [f"`[{extra}]`" for extra in (extra,) if extra]
+    if environment:
+        parts.append(environment)
+    return ", ".join(parts) or "the package itself"
 
 
 class PypiPackageCard(Card):
@@ -480,6 +527,7 @@ class PypiPackageCard(Card):
         highest_supported_qiskit_version=None,
         compatible_with_qiskit_v1=None,
         compatible_with_qiskit_v2=None,
+        qiskit_declarations=None,
     ):
         self.package_name = package_name
         self.version = version
@@ -494,6 +542,9 @@ class PypiPackageCard(Card):
         self.highest_supported_qiskit_version = highest_supported_qiskit_version
         self.compatible_with_qiskit_v1 = compatible_with_qiskit_v1
         self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
+        #: what the section declares, which for a conditional distribution is its
+        #: `requires` entries rather than the flattened values above
+        self.qiskit_declarations = qiskit_declarations or []
 
         super().__init__(
             title=f"PyPI `{self.package_name}`",
@@ -516,6 +567,7 @@ class PypiPackageCard(Card):
             highest_supported_qiskit_version=package.highest_supported_qiskit_version,
             compatible_with_qiskit_v1=package.compatible_with_qiskit_v1,
             compatible_with_qiskit_v2=package.compatible_with_qiskit_v2,
+            qiskit_declarations=package.qiskit_declarations,
         )
 
     def body(self):
@@ -533,8 +585,6 @@ class PypiPackageCard(Card):
                 f"**Last month** {self.last_month_downloads:,} "
                 f"**Last 180 days** {self.last_180_days_downloads:,}"
             ]
-        ret += qiskit_compatibility(self)
-
         return ret
 
 
@@ -557,6 +607,7 @@ class PipSourcePackageCard(Card):
         highest_supported_qiskit_version=None,
         compatible_with_qiskit_v1=None,
         compatible_with_qiskit_v2=None,
+        qiskit_declarations=None,
     ):
         self.package_name = package_name
         self.owner = owner
@@ -574,6 +625,9 @@ class PipSourcePackageCard(Card):
         self.highest_supported_qiskit_version = highest_supported_qiskit_version
         self.compatible_with_qiskit_v1 = compatible_with_qiskit_v1
         self.compatible_with_qiskit_v2 = compatible_with_qiskit_v2
+        #: what the section declares, which for a conditional distribution is its
+        #: `requires` entries rather than the flattened values above
+        self.qiskit_declarations = qiskit_declarations or []
 
         super().__init__(
             title=f"pip-installable repo `{self.package_name}`",
@@ -605,6 +659,7 @@ class PipSourcePackageCard(Card):
             highest_supported_qiskit_version=package.highest_supported_qiskit_version,
             compatible_with_qiskit_v1=package.compatible_with_qiskit_v1,
             compatible_with_qiskit_v2=package.compatible_with_qiskit_v2,
+            qiskit_declarations=package.qiskit_declarations,
         )
 
     @property
@@ -665,7 +720,6 @@ class PipSourcePackageCard(Card):
                 "**Computed at build time** "
                 + ", ".join(f"`{field}`" for field in self.deferred),
             ) + [""]
-        ret += qiskit_compatibility(self)
         return ret
 
 

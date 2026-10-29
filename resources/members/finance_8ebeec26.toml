@@ -26,6 +26,20 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-finance"
+version = "0.4.1"
+last_release_date = 2024-02-29
+license = "Apache-2.0"
+description = "Qiskit Finance: A library of quantum computing finance experiments"
+url = "https://pypi.org/project/qiskit-finance/"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
+requires_qiskit = ">=0.45"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-07-02
+highest_supported_qiskit_version = "2.5.0"
+last_month_downloads = 12292
+last_180_days_downloads = 80209
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-finance/issues/363, waiting for a release with the fix"

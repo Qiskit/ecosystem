@@ -329,6 +329,38 @@ class TestARecordPerPlace(QiskitDependencyTestCase):
             record(member, "Q03", "requirements:requirements.txt").xfailed,
         )
 
+    def test_an_explanation_survives_a_place_getting_more_specific(self):
+        """`pypi:mitiq` became `pypi:mitiq (extra qiskit)` when extras were recorded.
+
+        It is the same place said more precisely, so the explanation and the clock carry
+        over rather than the cure period restarting at today.
+        """
+        member = self.member()
+        member.checks["Q03"] = [
+            CheckData(
+                "Q03",
+                subtest="pypi:banana-compiler",
+                since=date(2026, 1, 5),
+                xfailed=self.EXPLANATION,
+            )
+        ]
+
+        self.assertEqual(
+            self.EXPLANATION,
+            member.explanation_for("Q03", "pypi:banana-compiler (extra qiskit)"),
+        )
+        stored = member.stored_record("Q03", "pypi:banana-compiler (extra qiskit)")
+        self.assertEqual(date(2026, 1, 5), stored.since)
+
+    def test_a_different_place_does_not_borrow_the_explanation(self):
+        """The prefix has to be the whole place, not any string that starts the same way"""
+        member = self.member()
+        member.checks["Q03"] = [
+            CheckData("Q03", subtest="pypi:banana", xfailed=self.EXPLANATION)
+        ]
+
+        self.assertIsNone(member.explanation_for("Q03", "pypi:banana-compiler"))
+
     def test_a_record_that_names_no_place_explains_all_of_them(self):
         """What a record written before the places were recorded looks like"""
         member = self.stored(

@@ -44,10 +44,13 @@ url = "https://pypi.org/project/qdsv-bridge/"
 development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/jalexanderjlozano/"]
-requires_qiskit = "<3,>=2.3"
+last_month_downloads = 491
+last_180_days_downloads = 4859
+
+[[pypi.requires]]
+specifier = "<3,>=2.3"
+extra = "qiskit"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
-last_month_downloads = 491
-last_180_days_downloads = 4859
