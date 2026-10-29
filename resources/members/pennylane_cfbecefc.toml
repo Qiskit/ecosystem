@@ -22,7 +22,7 @@ description = "The PennyLane-Qiskit plugin integrates the Qiskit quantum computi
 total_dependent_repositories = 257
 total_dependent_packages = 21
 created_at = 2018-11-29
-last_commit = 2026-10-27
+last_commit = 2026-10-28
 last_activity = 2026-07-16
 
 [badge]
@@ -41,7 +41,6 @@ status = "active"
 maintainers = [
   "https://pypi.org/user/PennyLaneAI/",
   "https://pypi.org/user/XanaduAI/",
-  "https://pypi.org/user/josh146/",
 ]
 requires_qiskit = "<=2.3.0,>=2.0.0"
 compatible_with_qiskit_v1 = false
@@ -49,4 +48,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-01-08
 highest_supported_qiskit_version = "2.3.0"
 last_month_downloads = 10310
-last_180_days_downloads = 139443
+last_180_days_downloads = 140023
