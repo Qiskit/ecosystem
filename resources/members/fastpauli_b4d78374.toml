@@ -13,7 +13,6 @@ documentation = "https://qognitive-fast-pauli.readthedocs-hosted.com/en/latest/"
 packages = ["https://pypi.org/project/fast-pauli/"]
 uuid = "b4d78374-40eb-4118-bb22-45e97b2dc0c5"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/qognitive/fast-pauli"
@@ -52,25 +51,3 @@ highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 114
 last_180_days_downloads = 1696
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/qognitive/fast-pauli/issues/98, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-07-09
-details = "The qiskit requirement in the fast-pauli release on PyPI allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/qognitive/fast-pauli/issues/98"
-subtest = "pypi:fast-pauli"
-importance = "RECOMMENDATION"
-
-[[checks.P12]]
-xfailed = "Issue asking for the license declaration submitted https://github.com/qognitive/fast-pauli/issues/97, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-07-06
-details = "The PyPI package fast-pauli does not have a declared license"
-discussion = "https://github.com/qognitive/fast-pauli/issues/97"
-importance = "RECOMMENDATION"
-
-[[checks.G07]]
-since = 2026-09-17
-details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
-importance = "STRONG-RECOMMENDATION"

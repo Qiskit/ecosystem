@@ -45,12 +45,3 @@ highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 source = ["setup.py"]
 deferred = ["packages"]
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/JoelHBierman/QSP-SQD/issues/1, waiting for the fix"
-xfailed_until = 2027-03-31
-since = 2026-09-28
-details = "The qiskit requirement in the adaptive-qsci manifest in the repository allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/JoelHBierman/QSP-SQD/issues/1"
-subtest = "python:adaptive-qsci"
-importance = "RECOMMENDATION"

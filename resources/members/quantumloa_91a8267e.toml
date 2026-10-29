@@ -9,7 +9,7 @@ category = "Tooling"
 packages = ["https://pypi.org/project/qiskit-quantum-backend-selector/"]
 uuid = "91a8267e-0df9-406c-af66-a2df20d7d98e"
 maturity = "experimental"
-status = "Under revision"
+status = "Very Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-Quantum-Backend-Selector"
@@ -41,9 +41,3 @@ highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 136
 last_180_days_downloads = 157
-
-[[checks.P12]]
-since = 2026-09-24
-details = "The PyPI package qiskit-quantum-backend-selector does not have a declared license"
-discussion = "https://github.com/RexRowan/Qiskit-Quantum-Backend-Selector/issues/1"
-importance = "RECOMMENDATION"

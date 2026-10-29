@@ -13,7 +13,6 @@ packages = [
 ]
 uuid = "7352f04f-0223-4082-bdd9-9e3e207a35da"
 maturity = "production-ready"
-status = "Under revision"
 
 [github]
 url = "https://github.com/ket-q/qiskit_windows_installer"
@@ -88,9 +87,3 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-08-13
 highest_supported_qiskit_version = "2.5.2"
-
-[[checks.Q02]]
-since = 2026-10-05
-details = "The qiskit requirement in resources/config/requirements_qiskit_1_4_6.txt is not compatible with Qiskit SDK v2"
-subtest = "requirements:resources/config/requirements_qiskit_1_4_6.txt"
-importance = "IMPORTANT"

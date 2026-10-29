@@ -11,7 +11,7 @@ packages = [
 ]
 uuid = "67bfc31d-8b98-4c10-8ac2-fba3c59e2732"
 maturity = "production-ready"
-status = "Under revision"
+status = "Early Project"
 
 [github]
 url = "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding"
@@ -36,14 +36,3 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
-
-[[checks.Q03]]
-since = 2026-10-05
-details = "The qiskit requirement in docs/requirements.txt allows a not-yet-released major version of Qiskit"
-subtest = "requirements:docs/requirements.txt"
-importance = "RECOMMENDATION"
-
-[[checks.G12]]
-since = 2026-09-24
-details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
-importance = "IMPORTANT"

@@ -48,12 +48,3 @@ highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 93
 last_180_days_downloads = 1049
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/munich-quantum-toolkit/predictor/issues/832, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-07-14
-details = "The qiskit requirement in the mqt-predictor release on PyPI allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/munich-quantum-toolkit/predictor/issues/832"
-subtest = "pypi:mqt-predictor"
-importance = "RECOMMENDATION"
