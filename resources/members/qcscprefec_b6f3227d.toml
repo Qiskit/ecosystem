@@ -9,10 +9,28 @@ documentation = "https://qiskit-community.github.io/qcsc-prefect/"
 packages = []
 uuid = "b6f3227d-c981-463f-91a9-d08b729051d7"
 maturity = "production-ready"
+status = "Early Project"
 
 [github]
+url = "https://github.com/qiskit-community/qcsc-prefect"
 owner = "qiskit-community"
 repo = "qcsc-prefect"
+stars = 5
+homepage = "https://qiskit-community.github.io/qcsc-prefect"
+license = "Apache-2.0"
+description = "A modular workspace for portable HPC workflow orchestration with Prefect."
+created_at = 2026-04-10
+last_commit = 2026-10-29
+last_activity = 2026-10-29
 
 [badge]
 style = "flat"
+
+[[python]]
+package_name = "qcsc-prefect-workspace"
+version = "0.0.0"
+description = "Monorepo workspace for HPC + Prefect integration"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []
