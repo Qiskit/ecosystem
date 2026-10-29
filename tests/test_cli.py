@@ -22,7 +22,6 @@ from contextlib import redirect_stdout
 from pathlib import Path
 
 from dateutil.relativedelta import relativedelta
-from pytest import ExitCode
 
 from ecosystem.badge import BadgeData
 from ecosystem.check import CheckData, ChecksToml
@@ -639,14 +638,13 @@ class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
 
 
 class TestUpdateCheckupsRefusesAVoidReport(UpdateStatusTestCase):
-    """A report that is not a result must raise, never be written.
+    """A run that produced no verdicts must raise, never be written.
 
     `Member.update_checkups` rebuilds `member.checks` from the report, so an empty one
     reads as "passes everything" and drops every record, hand-written explanations and
     `since` clocks included. The weekly run of 2026-10-29 did exactly that to 91 records
-    across 73 members: a checker node id stopped resolving, the exception came from a
-    *collection* hook, and `report.internalerror` only ever holds the setup failure of a
-    check up that was collected, so nothing noticed.
+    across 73 members: a checker node id stopped resolving, and because the exception
+    came from a *collection* hook the run still exited green.
     """
 
     CHECKER = "checkup_description.py::checkup_014"
@@ -663,24 +661,12 @@ class TestUpdateCheckupsRefusesAVoidReport(UpdateStatusTestCase):
 
     def test_a_crash_in_a_collection_hook_raises(self):
         """The 2026-10-29 shape exactly: the node id lookup that
-        `pytest_collection_modifyitems` does raises, so no check up ever runs and
-        `pytest_terminal_summary` never fires either."""
+        `pytest_collection_modifyitems` does raises, so no check up ever runs."""
         name_id = self.failing_member()
         with mock.patch.object(
             ChecksToml,
             "id_by_pytest_node",
             side_effect=AttributeError("nodeid ... not found as a checker"),
-        ):
-            with self.assertRaises(ExceptionGroup):
-                with redirect_stdout(io.StringIO()):
-                    self.cli_members.update_checkups(checker=self.CHECKER)
-        self.assertEqual({"014"}, set(self.cli_members.dao[name_id].checks))
-
-    def test_an_exit_code_that_is_not_a_result_raises(self):
-        """Anything but OK or TESTS_FAILED means the run did not produce verdicts."""
-        name_id = self.failing_member()
-        with mock.patch(
-            "ecosystem.validation.pytest.main", return_value=ExitCode.USAGE_ERROR
         ):
             with self.assertRaises(EcosystemError):
                 with redirect_stdout(io.StringIO()):

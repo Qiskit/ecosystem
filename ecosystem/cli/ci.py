@@ -118,23 +118,23 @@ class CliCI:
                     print("::endgroup::")
             else:
                 for test in report.failed:
-                    # the name a maintainer has to act on, which is the one checks.toml
-                    # uses: pytest spells it with the directories it was invoked from
-                    nodeid = checker_nodeid(test.nodeid)
                     if (
-                        slugify(report.checktoml.category_by_pytest_node(nodeid))
+                        slugify(report.checktoml.category_by_pytest_node(test.nodeid))
                         in exclude_set
-                        or slugify(report.checktoml.importance_by_pytest_node(nodeid))
+                        or slugify(
+                            report.checktoml.importance_by_pytest_node(test.nodeid)
+                        )
                         in exclude_set
                     ):
                         print(
                             f"::warning:: {member.name} ({member.name_id}) - "
-                            f"{nodeid} failed ❎️ (but not hard block) \n"
+                            f"{checker_nodeid(test.nodeid)} failed ❎️ "
+                            "(but not hard block) \n"
                         )
                         continue
                     print(
                         f"::error:: {member.name} ({member.name_id}) - "
-                        f"{nodeid} failed ❌\n"
+                        f"{checker_nodeid(test.nodeid)} failed ❌\n"
                     )
                     exit_failed = True
                     print(f"::group:: {test.longreprtext}")

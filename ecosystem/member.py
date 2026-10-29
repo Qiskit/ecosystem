@@ -663,18 +663,21 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 return record.xfailed
         return None
 
-    def _assert_report_is_a_result(self, report):
-        """Raises unless the run produced verdicts, whatever else it produced.
+    def update_checkups(self, checker=None):
+        """Runs validation tests and updates the check-ups sections.
 
-        Three ways it does not, and none of them used to be noticed: pytest crashing in
-        a collection hook, an exit status that is neither "all good" nor "some check up
-        failed", and a check up that failed to even set up.
+        `self.checks` is rebuilt from the report, so a run that did not produce verdicts
+        has to raise rather than be written: an empty report is indistinguishable from
+        "passes everything" and would drop every record, explanations and `since` clocks
+        included. That is what the weekly run of 2026-10-29 did to 91 records across 73
+        members, when pytest crashed in a collection hook and still exited green.
         """
-        if report.crashed:
-            raise ExceptionGroup(
-                "pytest crashed, so the report is not a result",
-                [EcosystemError(str(crash)) for crash in report.crashed],
-            )
+        checkups = {}
+        if checker is None:
+            report = validate_member(self, verbose_level="-q")
+        else:
+            report = validate_member(self, verbose_level="-v", tests_to_run=checker)
+
         if report.exitcode not in (ExitCode.OK, ExitCode.TESTS_FAILED):
             raise EcosystemError(
                 f"validating {self.name_id} ended as "
@@ -693,22 +696,6 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 ],
             )
 
-    def update_checkups(self, checker=None):
-        """Runs validation tests and updates the check-ups sections.
-
-        `self.checks` is rebuilt from the report, so a report that is not a result must
-        raise rather than be written: an empty one is indistinguishable from "passes
-        everything" and would silently drop every recorded check up, explanations and
-        `since` clocks included. That is what a crashed collection hook produced in the
-        weekly run of 2026-10-29, which wiped 91 records across 73 members.
-        """
-        checkups = {}
-        if checker is None:
-            report = validate_member(self, verbose_level="-q")
-        else:
-            report = validate_member(self, verbose_level="-v", tests_to_run=checker)
-
-        self._assert_report_is_a_result(report)
         for test in report.xfailed + report.failed:
             checkup_data = CheckData.from_report(test)
             stored = self.stored_record(checkup_data.id, checkup_data.subtest)

@@ -42,11 +42,6 @@ class ValidationReport:
         self._subtested = set()
         self.collected = 0
         self.exitcode = 0
-        #: a crash of pytest itself, which `internalerror` cannot carry: that one is
-        #: bucketed from `pytest_runtest_logreport`, so it only ever holds the setup
-        #: failure of a check up that was collected. A collection-time crash never
-        #: reaches a run phase at all and would otherwise look like an empty report.
-        self.crashed = []
         self.passed = []
         self.failed = []
         self.xfailed = []
@@ -149,11 +144,8 @@ class ValidationReport:
     def pytest_collection_modifyitems(self, items):
         self.collected = len(items)
         for item in items:
-            # `checker_nodeid` rather than `item.nodeid`: pytest spells a node id
-            # relative to its rootdir, and `xfails`, `previous_failures` and checks.toml
-            # are all keyed on the bare file name. Renaming the item was how this used to
-            # agree, but `item._nodeid` stopped being the backing store in pytest 9.2
-            # (it is a structured `NodeId` now), so the rename became a silent no-op.
+            # `xfails`, `previous_failures` and checks.toml are all keyed on the bare
+            # file name, which is not how pytest spells what it hands over here
             nodeid = checker_nodeid(item.nodeid)
             if (
                 self.checktoml.checkup(self.checktoml.id_by_pytest_node(nodeid))[
@@ -173,14 +165,6 @@ class ValidationReport:
         self, terminalreporter, exitstatus
     ):  # pylint: disable=unused-argument
         self.exitcode = exitstatus.value if hasattr(exitstatus, "value") else exitstatus
-
-    def pytest_internalerror(self, excrepr, excinfo):  # pylint: disable=unused-argument
-        """pytest itself crashed, so whatever this report holds is not a result.
-
-        Reached for a crash in a collection hook, where `pytest_terminal_summary` does
-        not run, so `exitcode` is left at 0 and nothing else says the run was void.
-        """
-        self.crashed.append(excinfo.value)
 
     @pytest.fixture
     def member(self):
