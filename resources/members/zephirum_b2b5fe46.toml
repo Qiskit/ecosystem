@@ -1,0 +1,45 @@
+name = "Zephirum"
+submission_number = 1432
+url = "https://github.com/SerenaSolutions/zephirum-lang"
+description = "Trivalent quantum decision language (Lisp syntax): verdicts are 1, 0, or REFUSED with sealed, traceable receipts. Built on Qiskit."
+contact_info = "serena.aigronovatech@gmail.com"
+labels = [
+  "error mitigation",
+  "QML",
+  "quantum information",
+  "tensor networks",
+  "research",
+]
+interfaces = ["Python", "Command-line interface (CLI)"]
+category = "SDK"
+documentation = "https://github.com/SerenaSolutions/zephirum-lang/tree/main/docs"
+packages = []
+uuid = "b2b5fe46-ba1e-4279-8276-02277bbbe1e3"
+maturity = "experimental"
+status = "Very Early Project"
+
+[github]
+url = "https://github.com/SerenaSolutions/zephirum-lang"
+owner = "SerenaSolutions"
+repo = "zephirum-lang"
+stars = 1
+homepage = "https://doi.org/10.5281/zenodo.23632019"
+license = "MIT"
+description = "ZEPHIRUM is the quantum programming language. ZYQL is its trivalent decision core (1 / 0 / REFUSED) with sealed SHA3-256 receipts; ..."
+estimated_contributors = 3
+created_at = 2026-10-12
+last_commit = 2026-10-29
+last_activity = 2026-10-29
+
+[badge]
+style = "flat"
+
+[[python]]
+package_name = "zephirum"
+version = "2.1.0"
+license = "MIT"
+description = "ZEPHIRUM: Lisp-style quantum programming language with the ZYQL trivalent decision core (1/0/REFUSED)"
+requires_python = ">=3.10"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []
