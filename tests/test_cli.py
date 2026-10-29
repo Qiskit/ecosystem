@@ -22,11 +22,13 @@ from contextlib import redirect_stdout
 from pathlib import Path
 
 from dateutil.relativedelta import relativedelta
+from pytest import ExitCode
 
 from ecosystem.badge import BadgeData
-from ecosystem.check import CheckData
+from ecosystem.check import CheckData, ChecksToml
 from ecosystem.cli import CliCI, CliMembers
 from ecosystem.dao import DAO
+from ecosystem.error_handling import EcosystemError
 from ecosystem.github import GitHubData
 from ecosystem.julia import JuliaData
 from ecosystem.member import Member
@@ -634,6 +636,66 @@ class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
                 self.assertEqual(
                     self.checks_after_update("Qiskit Project", spelling), set()
                 )
+
+
+class TestUpdateCheckupsRefusesAVoidReport(UpdateStatusTestCase):
+    """A report that is not a result must raise, never be written.
+
+    `Member.update_checkups` rebuilds `member.checks` from the report, so an empty one
+    reads as "passes everything" and drops every record, hand-written explanations and
+    `since` clocks included. The weekly run of 2026-10-29 did exactly that to 91 records
+    across 73 members: a checker node id stopped resolving, the exception came from a
+    *collection* hook, and `report.internalerror` only ever holds the setup failure of a
+    check up that was collected, so nothing noticed.
+    """
+
+    CHECKER = "checkup_description.py::checkup_014"
+
+    def failing_member(self):
+        """A member with [014] recorded, the thing a void report would drop"""
+        member = self.add_member()
+        member.description = "banana " * 30
+        self.cli_members.dao.write(member)
+        with redirect_stdout(io.StringIO()):
+            self.cli_members.update_checkups(checker=self.CHECKER)
+        self.assertEqual({"014"}, set(self.cli_members.dao[member.name_id].checks))
+        return member.name_id
+
+    def test_a_crash_in_a_collection_hook_raises(self):
+        """The 2026-10-29 shape exactly: the node id lookup that
+        `pytest_collection_modifyitems` does raises, so no check up ever runs and
+        `pytest_terminal_summary` never fires either."""
+        name_id = self.failing_member()
+        with mock.patch.object(
+            ChecksToml,
+            "id_by_pytest_node",
+            side_effect=AttributeError("nodeid ... not found as a checker"),
+        ):
+            with self.assertRaises(ExceptionGroup):
+                with redirect_stdout(io.StringIO()):
+                    self.cli_members.update_checkups(checker=self.CHECKER)
+        self.assertEqual({"014"}, set(self.cli_members.dao[name_id].checks))
+
+    def test_an_exit_code_that_is_not_a_result_raises(self):
+        """Anything but OK or TESTS_FAILED means the run did not produce verdicts."""
+        name_id = self.failing_member()
+        with mock.patch(
+            "ecosystem.validation.pytest.main", return_value=ExitCode.USAGE_ERROR
+        ):
+            with self.assertRaises(EcosystemError):
+                with redirect_stdout(io.StringIO()):
+                    self.cli_members.update_checkups(checker=self.CHECKER)
+        self.assertEqual({"014"}, set(self.cli_members.dao[name_id].checks))
+
+    def test_no_tests_collected_raises(self):
+        """A checker name that collects nothing is a typo, not a clean bill of health."""
+        name_id = self.failing_member()
+        with self.assertRaises(EcosystemError):
+            with redirect_stdout(io.StringIO()):
+                self.cli_members.update_checkups(
+                    checker="checkup_description.py::checkup_does_not_exist"
+                )
+        self.assertEqual({"014"}, set(self.cli_members.dao[name_id].checks))
 
 
 class TestUpdateCheckupsKeepsSince(UpdateStatusTestCase):

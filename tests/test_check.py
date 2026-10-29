@@ -19,7 +19,7 @@ from unittest import TestCase
 from unittest.mock import patch
 import pytest
 
-from ecosystem.check import CheckData, parse_exclusions
+from ecosystem.check import CheckData, ChecksToml, parse_exclusions
 from ecosystem.error_handling import EcosystemError
 from ecosystem.member import Member
 from ecosystem.validation import CHECKUP_COLLECTION
@@ -102,9 +102,8 @@ class TestChecksTOML(TestCase):
     def test_checkers_are_named_after_their_id(self):
         """Tests the naming convention: the checker of `[XYZ]` is `checkup_XYZ`.
 
-        `ChecksToml.id_by_pytest_node` matches the node id exactly, but it is only
-        consulted when a check up *fails*, so a checker renamed out of the convention
-        goes unnoticed until the weekly run hits it.
+        `ChecksToml.id_by_pytest_node` is only consulted when a check up *fails*, so a
+        checker renamed out of the convention goes unnoticed until the weekly run hits it.
         """
         for id_, entry in self.checks_toml.items():
             if id_ in self.meta_categories or "checker" not in entry:
@@ -115,6 +114,45 @@ class TestChecksTOML(TestCase):
                     msg=f"the checker of [{id_}] is {entry['checker']}, "
                     f"not a checkup_{id_}",
                 )
+
+    def test_a_node_id_resolves_with_or_without_its_directories(self):
+        """pytest spells a node id relative to its rootdir, and which spelling reaches
+        `id_by_pytest_node` depends on the hook: since pytest 9.2
+        `pytest_itemcollected` runs *after* `pytest_collection_modifyitems`, so the
+        normalization in `conftest.py` arrives too late and the full path is what the
+        lookup sees. Both have to resolve, or collection raises and the report comes back
+        empty (what wiped 91 records in the weekly run of 2026-10-29).
+        """
+        checks_toml = ChecksToml()
+        for id_, entry in self.checks_toml.items():
+            if id_ in self.meta_categories or "checker" not in entry:
+                continue
+            with self.subTest(id=id_):
+                bare = entry["checker"]
+                self.assertEqual(id_, checks_toml.id_by_pytest_node(bare))
+                self.assertEqual(
+                    id_, checks_toml.id_by_pytest_node(f"ecosystem/validation/{bare}")
+                )
+
+    def test_the_lookup_does_not_depend_on_renaming_the_item(self):
+        """What broke in pytest 9.2: `conftest.py` used to shorten a node id by assigning
+        `item._nodeid`, and that stopped being the backing store of `item.nodeid` (it is
+        a structured `NodeId` now), so the rename became a silent no-op. Nothing may rely
+        on it, which is what this asserts: the raw spelling pytest hands over resolves.
+        """
+        checks_toml = ChecksToml()
+        for raw, expected in [
+            ("ecosystem/validation/checkup_general.py::checkup_Q03", "Q03"),
+            ("ecosystem/validation/checkup_url.py::CheckupURLs::checkup_027", "027"),
+            ("checkup_url.py::CheckupURLs::checkup_027", "027"),
+        ]:
+            with self.subTest(raw):
+                self.assertEqual(expected, checks_toml.id_by_pytest_node(raw))
+
+    def test_an_unknown_node_id_still_raises(self):
+        """The lookup is more tolerant about the path, not about the name."""
+        with self.assertRaises(AttributeError):
+            ChecksToml().id_by_pytest_node("checkup_nope.py::checkup_999")
 
     def assertHasNoDuplicates(self, iterable, msg=None):  # pylint: disable=invalid-name
         """Check for duplicated elements in iterable"""

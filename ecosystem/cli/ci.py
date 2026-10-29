@@ -19,7 +19,7 @@ from pathlib import Path
 
 from slugify import slugify
 
-from ecosystem.check import parse_exclusions
+from ecosystem.check import checker_nodeid, parse_exclusions
 from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
@@ -111,26 +111,30 @@ class CliCI:
                 if report.xfailed:
                     print("::group:: some expected fail ☑️")
                     for xfailed in report.xfailed:
-                        print(f"::notice:: {xfailed.nodeid} - {xfailed.wasxfail}️")
+                        print(
+                            f"::notice:: {checker_nodeid(xfailed.nodeid)} - "
+                            f"{xfailed.wasxfail}️"
+                        )
                     print("::endgroup::")
             else:
                 for test in report.failed:
+                    # the name a maintainer has to act on, which is the one checks.toml
+                    # uses: pytest spells it with the directories it was invoked from
+                    nodeid = checker_nodeid(test.nodeid)
                     if (
-                        slugify(report.checktoml.category_by_pytest_node(test.nodeid))
+                        slugify(report.checktoml.category_by_pytest_node(nodeid))
                         in exclude_set
-                        or slugify(
-                            report.checktoml.importance_by_pytest_node(test.nodeid)
-                        )
+                        or slugify(report.checktoml.importance_by_pytest_node(nodeid))
                         in exclude_set
                     ):
                         print(
                             f"::warning:: {member.name} ({member.name_id}) - "
-                            f"{test.nodeid} failed ❎️ (but not hard block) \n"
+                            f"{nodeid} failed ❎️ (but not hard block) \n"
                         )
                         continue
                     print(
                         f"::error:: {member.name} ({member.name_id}) - "
-                        f"{test.nodeid} failed ❌\n"
+                        f"{nodeid} failed ❌\n"
                     )
                     exit_failed = True
                     print(f"::group:: {test.longreprtext}")

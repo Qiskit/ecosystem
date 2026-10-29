@@ -35,6 +35,21 @@ def parse_exclusions(exclude) -> set[str]:
     return {slug for value in exclude if (slug := slugify(str(value)))}
 
 
+def checker_nodeid(node_id):
+    """A pytest node id as checks.toml spells a `checker`: file name, no directories.
+
+    pytest reports a node id relative to its rootdir, so the same check up is
+    `checkup_general.py::checkup_Q03` from the repository root and
+    `ecosystem/validation/checkup_general.py::checkup_Q03` from anywhere else. Every
+    `checker` in checks.toml, and the keys of the explanations a member carries, use the
+    bare form. `conftest.py` used to make them agree by renaming the item, which stopped
+    working in pytest 9.2: `item._nodeid` is no longer the backing store of
+    `item.nodeid`, so the assignment became a silent no-op and every lookup missed.
+    """
+    file_part, sep, rest = node_id.partition("::")
+    return f"{file_part.rsplit('/', 1)[-1]}{sep}{rest}"
+
+
 class ChecksToml:
     """handles checks.toml"""
 
@@ -103,8 +118,10 @@ class ChecksToml:
 
     def id_by_pytest_node(self, node_id):
         """Given a PyTest node ID, find the test ID"""
+        wanted = checker_nodeid(node_id)
         for id_, checkup in self.checkups.items():
-            if checkup.get("checker") == node_id:
+            checker = checkup.get("checker")
+            if checker and checker_nodeid(checker) == wanted:
                 return id_
         raise AttributeError(f"nodeid {node_id} not found as a checker")
 
