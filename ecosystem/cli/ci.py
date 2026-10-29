@@ -19,7 +19,7 @@ from pathlib import Path
 
 from slugify import slugify
 
-from ecosystem.check import parse_exclusions
+from ecosystem.check import checker_nodeid, parse_exclusions
 from ecosystem.dao import DAO
 from ecosystem.submission_parser import parse_submission_issue
 from ecosystem.error_handling import set_actions_output
@@ -111,7 +111,10 @@ class CliCI:
                 if report.xfailed:
                     print("::group:: some expected fail ☑️")
                     for xfailed in report.xfailed:
-                        print(f"::notice:: {xfailed.nodeid} - {xfailed.wasxfail}️")
+                        print(
+                            f"::notice:: {checker_nodeid(xfailed.nodeid)} - "
+                            f"{xfailed.wasxfail}️"
+                        )
                     print("::endgroup::")
             else:
                 for test in report.failed:
@@ -125,12 +128,13 @@ class CliCI:
                     ):
                         print(
                             f"::warning:: {member.name} ({member.name_id}) - "
-                            f"{test.nodeid} failed ❎️ (but not hard block) \n"
+                            f"{checker_nodeid(test.nodeid)} failed ❎️ "
+                            "(but not hard block) \n"
                         )
                         continue
                     print(
                         f"::error:: {member.name} ({member.name_id}) - "
-                        f"{test.nodeid} failed ❌\n"
+                        f"{checker_nodeid(test.nodeid)} failed ❌\n"
                     )
                     exit_failed = True
                     print(f"::group:: {test.longreprtext}")
