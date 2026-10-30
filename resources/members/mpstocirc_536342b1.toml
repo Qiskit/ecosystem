@@ -47,6 +47,7 @@ since = 2026-10-30
 details = "The qiskit requirement in the mps-to-circuit release on PyPI allows a not-yet-released major version of Qiskit"
 subtest = "pypi:mps-to-circuit"
 importance = "RECOMMENDATION"
+discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/9"
 
 [[checks.G07]]
 xfailed = "The project is maintained, it is just having a slow moment"
