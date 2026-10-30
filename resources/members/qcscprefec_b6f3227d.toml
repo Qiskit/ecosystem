@@ -14,6 +14,7 @@ packages = [
   "https://pypi.org/project/qcsc-prefect-dice/",
   "https://pypi.org/project/qcsc-prefect-executor/",
   "https://pypi.org/project/qcsc-prefect-qiskit/",
+  "https://github.com/qiskit-community/qcsc-prefect/blob/HEAD/packages/*/pyproject.toml",
 ]
 uuid = "b6f3227d-c981-463f-91a9-d08b729051d7"
 maturity = "production-ready"
