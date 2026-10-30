@@ -1,0 +1,44 @@
+name = "qiskit-tnqs"
+url = "https://github.com/qiskit-community/qiskit-tnqs"
+description = "Simulates Qiskit circuits with the Julia tensor-network simulator TensorNetworkQuantumSimulator.jl, without leaving Python."
+labels = ["tensor networks", "research"]
+interfaces = ["Python", "Julia"]
+ibm_maintained = true
+category = "Circuit simulator"
+reference_paper = "https://doi.org/10.5281/zenodo.16926968"
+packages = []
+uuid = "077db58f-132a-4acf-8495-3fd6233e2660"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qiskit-community/qiskit-tnqs"
+owner = "qiskit-community"
+repo = "qiskit-tnqs"
+stars = 13
+license = "Apache-2.0"
+description = "Simulate Qiskit circuits using TensorNetworkQuantumSimulator.jl without leaving Python"
+created_at = 2025-04-16
+last_commit = 2026-01-22
+
+[badge]
+style = "flat"
+
+[[python]]
+package_name = "qiskit-tnqs"
+version = "1.0.3"
+license = "Apache V2"
+description = "A library for simulating Qiskit circuits using TensorNetworkQuantumSimulator.jl whilst staying in Python."
+requires_qiskit = "~=2.1"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
+source = ["setup.py"]
+deferred = ["packages"]
+
+[[checks.S00]]
+since = 2026-10-30
+details = "member.python.qiskit-tnqs.license is not OSI-approved"
+subtest = "python:qiskit-tnqs"
+importance = "IMPORTANT"
+discussion = "https://github.com/qiskit-community/qiskit-tnqs/issues/21"
