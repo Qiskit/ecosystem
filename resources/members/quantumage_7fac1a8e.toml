@@ -11,11 +11,38 @@ packages = [
 ]
 uuid = "7fac1a8e-f44c-4796-a08c-4ac7a4a0cd7e"
 maturity = "experimental"
+status = "Very Early Project"
 
 [github]
+url = "https://github.com/kaulastudies/ai-evaluation-lab"
 owner = "kaulastudies"
 repo = "ai-evaluation-lab"
 tree = "main/integrations/quantum-agent-gate"
+stars = 1
+license = "Apache-2.0"
+description = "The evidence layer for AI systems and agents - reproducible evaluation, verification, regression and release evidence."
+created_at = 2026-09-13
+last_commit = 2026-10-30
+last_activity = 2026-10-30
 
 [badge]
 style = "flat"
+
+[[python]]
+package_name = "quantum-agent-gate"
+version = "0.1.0"
+license = "Apache-2.0"
+description = "Experimental Qiskit V2 local-execution policy guard for quantum coding agents"
+requires_python = ">=3.10"
+build_backend = "setuptools.build_meta"
+path = "integrations/quantum-agent-gate"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python.requires]]
+specifier = "<3,>=2.0"
+extra = "qiskit"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
