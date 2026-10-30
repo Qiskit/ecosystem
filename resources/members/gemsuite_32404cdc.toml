@@ -1,0 +1,45 @@
+name = "gem-suite"
+url = "https://github.com/qiskit-community/gem-suite"
+description = "Qiskit Experiments library for GEM, which prepares entanglement by measurement to locate the Nishimori transition."
+labels = ["error correction", "benchmarking", "quantum information", "research"]
+interfaces = ["Python", "Rust"]
+ibm_maintained = true
+category = "Noise Management"
+reference_paper = "https://arxiv.org/abs/2309.02863"
+documentation = "https://quantum.cloud.ibm.com/docs/en/tutorials/nishimori-phase-transition"
+packages = ["https://pypi.org/project/gem-suite/"]
+uuid = "32404cdc-9c79-4b77-b5fe-bfff87346fee"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qiskit-community/gem-suite"
+owner = "qiskit-community"
+repo = "gem-suite"
+stars = 7
+homepage = "https://arxiv.org/abs/2309.02863"
+license = "Apache-2.0"
+description = "Qiskit Experiments library for GEM experiments"
+total_dependent_repositories = 3
+total_dependent_packages = 0
+created_at = 2024-09-06
+last_commit = 2026-09-11
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "gem-suite"
+version = "0.2.0"
+last_release_date = 2026-09-11
+license = "Apache-2.0"
+description = "Qiskit Experiments suite for generation of entanglement using measurements."
+url = "https://pypi.org/project/gem-suite/"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
+requires_qiskit = "<3,>=2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
+last_month_downloads = 1631
+last_180_days_downloads = 9377
