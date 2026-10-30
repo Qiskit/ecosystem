@@ -1,0 +1,16 @@
+name = "asdf-qiskit"
+url = "https://github.com/conradhaupt/asdf-qiskit"
+description = "An ASDF extension that serializes Qiskit objects, so old data still loads under a new version of Qiskit."
+labels = []
+interfaces = ["Python"]
+category = "Converter"
+packages = ["https://pypi.org/project/asdf-qiskit/"]
+uuid = "d0bd6cf8-23f7-49bd-a12f-85a8e5a81dba"
+maturity = "experimental"
+
+[github]
+owner = "conradhaupt"
+repo = "asdf-qiskit"
+
+[badge]
+style = "flat"

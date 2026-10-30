@@ -1,0 +1,17 @@
+name = "flake8-qiskit-migration"
+url = "https://github.com/qiskit-community/flake8-qiskit-migration"
+description = "A flake8 plugin that flags imports removed in Qiskit 1.0 and 2.0, and suggests what to use instead."
+labels = ["environment setup"]
+interfaces = ["Python", "Command-line interface (CLI)"]
+ibm_maintained = true
+category = "Tooling"
+packages = ["https://pypi.org/project/flake8-qiskit-migration/"]
+uuid = "ec9b1b9c-7f25-4387-9dd5-ae182ae358af"
+maturity = "experimental"
+
+[github]
+owner = "qiskit-community"
+repo = "flake8-qiskit-migration"
+
+[badge]
+style = "flat"

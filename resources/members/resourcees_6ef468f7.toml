@@ -1,0 +1,18 @@
+name = "Qiskit Resource Estimation"
+url = "https://github.com/Qiskit/qiskit-resource-estimation"
+description = "Estimates the resources a fault-tolerant quantum program needs, with a runtime-accuracy tradeoff for very large circuits."
+labels = ["quantum information", "error correction", "research"]
+interfaces = ["Python"]
+ibm_maintained = true
+category = "Tooling"
+packages = []
+uuid = "6ef468f7-c300-45c0-a7d8-744f79588bda"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+owner = "Qiskit"
+repo = "qiskit-resource-estimation"
+
+[badge]
+style = "flat"

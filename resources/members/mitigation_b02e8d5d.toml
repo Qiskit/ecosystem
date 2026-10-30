@@ -1,0 +1,19 @@
+name = "Qiskit Mitigation"
+url = "https://github.com/Qiskit/qiskit-mitigation"
+description = "Building blocks for error mitigation pipelines: PEC, TREX, ZNE by gate folding or PEA, and postselection."
+labels = ["error mitigation", "utility-scale"]
+interfaces = ["Python"]
+ibm_maintained = true
+category = "Noise Management"
+documentation = "https://quantum.cloud.ibm.com/docs/addons/qiskit-mitigation"
+packages = ["https://pypi.org/project/qiskit-mitigation/"]
+uuid = "b02e8d5d-310d-43d5-9124-fcd73bb9b072"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+owner = "Qiskit"
+repo = "qiskit-mitigation"
+
+[badge]
+style = "flat"

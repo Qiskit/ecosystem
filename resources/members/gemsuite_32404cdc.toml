@@ -1,0 +1,19 @@
+name = "gem-suite"
+url = "https://github.com/qiskit-community/gem-suite"
+description = "Qiskit Experiments library for GEM, which prepares entanglement by measurement to locate the Nishimori transition."
+labels = ["error correction", "benchmarking", "quantum information", "research"]
+interfaces = ["Python", "Rust"]
+ibm_maintained = true
+category = "Noise Management"
+reference_paper = "https://arxiv.org/abs/2309.02863"
+documentation = "https://quantum.cloud.ibm.com/docs/en/tutorials/nishimori-phase-transition"
+packages = ["https://pypi.org/project/gem-suite/"]
+uuid = "32404cdc-9c79-4b77-b5fe-bfff87346fee"
+maturity = "experimental"
+
+[github]
+owner = "qiskit-community"
+repo = "gem-suite"
+
+[badge]
+style = "flat"

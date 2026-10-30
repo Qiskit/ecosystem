@@ -1,0 +1,18 @@
+name = "BowtieQGT"
+url = "https://github.com/MarcDrudis/BowtieQGT"
+description = "Computes quantum geometric tensors and gradients of parameterized circuits, using light cones to skip idle qubits."
+labels = ["quantum information", "GPU", "research"]
+interfaces = ["Python"]
+category = "Tooling"
+reference_paper = "https://arxiv.org/abs/2605.20331"
+documentation = "https://marcdrudis.github.io/BowtieQGT/"
+packages = []
+uuid = "14715941-a964-45b3-b78c-580e2aee155a"
+maturity = "experimental"
+
+[github]
+owner = "MarcDrudis"
+repo = "BowtieQGT"
+
+[badge]
+style = "flat"

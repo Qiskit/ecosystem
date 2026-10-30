@@ -1,0 +1,17 @@
+name = "vib-sqd"
+url = "https://github.com/qiskit-community/vib-sqd"
+description = "Simulates molecular vibrational states with sample-based quantum diagonalization, bridged to MidasCpp baselines."
+labels = ["chemistry", "utility-scale", "research"]
+interfaces = ["Python"]
+ibm_maintained = true
+category = "Application"
+packages = []
+uuid = "b8503609-a794-464e-bd04-cf1b366888c0"
+maturity = "experimental"
+
+[github]
+owner = "qiskit-community"
+repo = "vib-sqd"
+
+[badge]
+style = "flat"
