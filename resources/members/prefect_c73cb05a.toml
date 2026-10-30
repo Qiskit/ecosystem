@@ -9,3 +9,10 @@ documentation = "https://qiskit-community.github.io/prefect-qiskit/"
 packages = []
 uuid = "c73cb05a-c5d4-4084-b4fd-3c8dc4238633"
 maturity = "experimental"
+
+[github]
+owner = "qiskit-community"
+repo = "prefect-qiskit"
+
+[badge]
+style = "flat"
