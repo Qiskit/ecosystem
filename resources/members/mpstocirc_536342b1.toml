@@ -8,10 +8,55 @@ reference_paper = "https://doi.org/10.5281/zenodo.14920028"
 packages = ["https://pypi.org/project/mps-to-circuit/"]
 uuid = "536342b1-932c-4ae6-b4c5-b33b60b9390c"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
+url = "https://github.com/qiskit-community/mps-to-circuit"
 owner = "qiskit-community"
 repo = "mps-to-circuit"
+stars = 17
+license = "Apache-2.0"
+description = "Convert a matrix product state of arbitrary bond dimension to a Qiskit circuit."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+created_at = 2024-08-09
+last_commit = 2025-04-01
+last_activity = 2026-10-22
 
 [badge]
 style = "flat"
+
+[[pypi]]
+package_name = "mps-to-circuit"
+version = "0.1.2"
+last_release_date = 2025-03-10
+description = "Tool to convert a matrix product state to a Qiskit quantum circuit."
+url = "https://pypi.org/project/mps-to-circuit/"
+status = "active"
+maintainers = ["https://pypi.org/user/declanmillar/"]
+requires_qiskit = ">=1.0.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
+last_month_downloads = 40
+last_180_days_downloads = 409
+
+[[checks.Q03]]
+since = 2026-10-30
+details = "The qiskit requirement in the mps-to-circuit release on PyPI allows a not-yet-released major version of Qiskit"
+subtest = "pypi:mps-to-circuit"
+importance = "RECOMMENDATION"
+
+[[checks.G07]]
+xfailed = "The project is maintained, it is just having a slow moment"
+xfailed_until = 2027-04-30
+since = 2026-10-30
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+importance = "STRONG-RECOMMENDATION"
+
+[[checks.P12]]
+since = 2026-10-30
+details = "The PyPI package mps-to-circuit does not have a declared license"
+importance = "RECOMMENDATION"
+discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/8"

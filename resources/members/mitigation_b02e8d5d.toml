@@ -12,8 +12,33 @@ maturity = "experimental"
 status = "Qiskit Project"
 
 [github]
+url = "https://github.com/Qiskit/qiskit-mitigation"
 owner = "Qiskit"
 repo = "qiskit-mitigation"
+stars = 5
+homepage = "https://quantum.cloud.ibm.com/docs/addons/qiskit-mitigation"
+license = "Apache-2.0"
+description = "A toolbox for handling noise in quantum computations"
+created_at = 2026-08-26
+last_commit = 2026-10-29
+last_activity = 2026-10-30
 
 [badge]
 style = "flat"
+
+[[pypi]]
+package_name = "qiskit-mitigation"
+version = "0.1.1"
+last_release_date = 2026-09-24
+license = "Apache-2.0"
+description = "Tools for handling errors during quantum computation."
+url = "https://pypi.org/project/qiskit-mitigation/"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/"]
+requires_qiskit = "<3,>=2.3.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
+last_month_downloads = 68155
+last_180_days_downloads = 271365

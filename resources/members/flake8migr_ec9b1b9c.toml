@@ -10,8 +10,29 @@ uuid = "ec9b1b9c-7f25-4387-9dd5-ae182ae358af"
 maturity = "experimental"
 
 [github]
+url = "https://github.com/qiskit-community/flake8-qiskit-migration"
 owner = "qiskit-community"
 repo = "flake8-qiskit-migration"
+stars = 2
+license = "Apache-2.0"
+description = "A flake8 plugin to detect deprecated Qiskit imports for the 1.0 release"
+estimated_contributors = 3
+total_dependent_repositories = 2
+total_dependent_packages = 0
+created_at = 2024-02-09
+last_commit = 2026-02-24
 
 [badge]
 style = "flat"
+
+[[pypi]]
+package_name = "flake8-qiskit-migration"
+version = "0.5.0"
+last_release_date = 2026-02-24
+license = "Apache-2.0"
+description = "Detect deprecated/removed imports, methods, and arguments in Qiskit 1.0 and 2.0"
+url = "https://pypi.org/project/flake8-qiskit-migration/"
+status = "active"
+maintainers = ["https://pypi.org/user/frankharkins/"]
+last_month_downloads = 28
+last_180_days_downloads = 534
