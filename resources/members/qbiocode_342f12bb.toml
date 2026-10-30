@@ -1,0 +1,46 @@
+name = "QBioCode"
+url = "https://github.com/qiskit-community/QBioCode"
+description = "Benchmarks quantum and classical machine learning models on healthcare and life science data, and helps pick one."
+labels = ["QML", "benchmarking"]
+interfaces = ["Python", "Command-line interface (CLI)"]
+ibm_maintained = true
+category = "Application"
+documentation = "https://qiskit-community.github.io/QBioCode/"
+packages = ["https://pypi.org/project/qbiocode/"]
+uuid = "342f12bb-22bd-4cc3-8318-e4d7175fe4c7"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qiskit-community/QBioCode"
+owner = "qiskit-community"
+repo = "QBioCode"
+stars = 48
+homepage = "https://qiskit-community.github.io/QBioCode/"
+license = "Apache-2.0"
+description = "QBioCode is a suite of computational resources to support quantum applications in healthcare and life science data."
+total_dependent_repositories = 0
+total_dependent_packages = 1
+created_at = 2024-06-07
+last_commit = 2026-09-18
+last_activity = 2026-10-27
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "qbiocode"
+version = "0.2.0"
+last_release_date = 2026-09-10
+license = "Apache-2.0"
+description = "A comprehensive suite of computational resources for quantum computing applications in healthcare and life science data analysis"
+url = "https://pypi.org/project/qbiocode/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/org/qiskit/", "https://pypi.org/user/futro/"]
+requires_qiskit = "==2.2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-09-19
+highest_supported_qiskit_version = "2.2.0"
+last_month_downloads = 131
+last_180_days_downloads = 510
