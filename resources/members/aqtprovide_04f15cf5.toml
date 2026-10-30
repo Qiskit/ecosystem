@@ -34,8 +34,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-aqt-provider"
-version = "1.15.0"
-last_release_date = 2026-04-22
+version = "2.0.0"
+last_release_date = 2026-10-08
 license = "Apache-2.0"
 description = "Qiskit provider for AQT backends"
 url = "https://pypi.org/project/qiskit-aqt-provider/"
@@ -44,9 +44,9 @@ maintainers = [
   "https://pypi.org/user/aqt-admin/",
   "https://pypi.org/user/qiskit/",
 ]
-requires_qiskit = "<2,>=1"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
+requires_qiskit = "<=2.4.1,>=2.3"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-12
 highest_supported_qiskit_version = "1.4.6"
 last_month_downloads = 785

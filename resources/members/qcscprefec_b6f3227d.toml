@@ -1,0 +1,142 @@
+name = "QCSC Prefect"
+submission_number = 1440
+url = "https://github.com/qiskit-community/qcsc-prefect/"
+description = "Modular workspace for portable HPC workflow orchestration with Prefect."
+labels = ["HPC"]
+interfaces = ["Python"]
+category = "Tooling"
+documentation = "https://qiskit-community.github.io/qcsc-prefect/"
+packages = [
+  "https://pypi.org/project/qcsc-prefect/",
+  "https://pypi.org/project/qcsc-prefect-adapters/",
+  "https://pypi.org/project/qcsc-prefect-blocks/",
+  "https://pypi.org/project/qcsc-prefect-core/",
+  "https://pypi.org/project/qcsc-prefect-dice/",
+  "https://pypi.org/project/qcsc-prefect-executor/",
+  "https://pypi.org/project/qcsc-prefect-qiskit/",
+  "https://github.com/qiskit-community/qcsc-prefect/blob/HEAD/packages/*/pyproject.toml",
+]
+uuid = "b6f3227d-c981-463f-91a9-d08b729051d7"
+maturity = "production-ready"
+status = "Early Project"
+
+[github]
+url = "https://github.com/qiskit-community/qcsc-prefect"
+owner = "qiskit-community"
+repo = "qcsc-prefect"
+stars = 5
+homepage = "https://qiskit-community.github.io/qcsc-prefect"
+license = "Apache-2.0"
+description = "A modular workspace for portable HPC workflow orchestration with Prefect."
+created_at = 2026-04-10
+last_commit = 2026-10-30
+last_activity = 2026-10-29
+
+[badge]
+url = "https://qisk.it/e-b6f3227d"
+style = "flat"
+
+[[pypi]]
+package_name = "qcsc-prefect"
+version = "0.3.0"
+last_release_date = 2026-10-23
+license = "Apache-2.0"
+description = "Meta-package for installing QCSC Prefect core packages"
+url = "https://pypi.org/project/qcsc-prefect/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
+last_month_downloads = 27
+last_180_days_downloads = 1402
+
+[[pypi]]
+package_name = "qcsc-prefect-adapters"
+version = "0.3.0"
+last_release_date = 2026-10-23
+license = "Apache-2.0"
+description = "HPC adapters (Miyabi, Fugaku, Slurm) for QCSC Prefect workflows"
+url = "https://pypi.org/project/qcsc-prefect-adapters/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
+last_month_downloads = 29
+last_180_days_downloads = 1768
+
+[[pypi]]
+package_name = "qcsc-prefect-blocks"
+version = "0.3.0"
+last_release_date = 2026-10-23
+license = "Apache-2.0"
+description = "Prefect block definitions for HPC + Miyabi execution"
+url = "https://pypi.org/project/qcsc-prefect-blocks/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
+last_month_downloads = 27
+last_180_days_downloads = 1816
+
+[[pypi]]
+package_name = "qcsc-prefect-core"
+version = "0.3.0"
+last_release_date = 2026-10-23
+license = "Apache-2.0"
+description = "Core models and resolution logic for QCSC Prefect workflows"
+url = "https://pypi.org/project/qcsc-prefect-core/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
+last_month_downloads = 31
+last_180_days_downloads = 1969
+
+[[pypi]]
+package_name = "qcsc-prefect-dice"
+version = "0.3.0"
+last_release_date = 2026-10-23
+license = "Apache-2.0"
+description = "DICE SHCI solver integration for qcsc-prefect"
+url = "https://pypi.org/project/qcsc-prefect-dice/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
+last_month_downloads = 27
+last_180_days_downloads = 1323
+
+[[pypi]]
+package_name = "qcsc-prefect-executor"
+version = "0.3.0"
+last_release_date = 2026-10-23
+license = "Apache-2.0"
+description = "Prefect executor integrations for HPC schedulers"
+url = "https://pypi.org/project/qcsc-prefect-executor/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
+last_month_downloads = 29
+last_180_days_downloads = 1711
+
+[[pypi]]
+package_name = "qcsc-prefect-qiskit"
+version = "0.3.0"
+last_release_date = 2026-10-23
+license = "Apache-2.0"
+description = "Native Qiskit integration utilities for QCSC Prefect workflows"
+url = "https://pypi.org/project/qcsc-prefect-qiskit/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
+last_month_downloads = 27
+last_180_days_downloads = 1320

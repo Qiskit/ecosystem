@@ -35,6 +35,16 @@ def parse_exclusions(exclude) -> set[str]:
     return {slug for value in exclude if (slug := slugify(str(value)))}
 
 
+def checker_nodeid(node_id):
+    """A pytest node id as checks.toml spells a `checker`: file name, no directories.
+
+    pytest spells it relative to its rootdir instead, so which spelling arrives depends
+    on where pytest was invoked from.
+    """
+    file_part, sep, rest = node_id.partition("::")
+    return f"{file_part.rsplit('/', 1)[-1]}{sep}{rest}"
+
+
 class ChecksToml:
     """handles checks.toml"""
 
@@ -103,8 +113,9 @@ class ChecksToml:
 
     def id_by_pytest_node(self, node_id):
         """Given a PyTest node ID, find the test ID"""
+        wanted = checker_nodeid(node_id)
         for id_, checkup in self.checkups.items():
-            if checkup.get("checker") == node_id:
+            if checkup.get("checker") == wanted:
                 return id_
         raise AttributeError(f"nodeid {node_id} not found as a checker")
 

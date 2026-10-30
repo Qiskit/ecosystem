@@ -16,12 +16,13 @@ status = "Very Early Project"
 url = "https://github.com/PratulDeshpande/qiskit-waveform-sim"
 owner = "PratulDeshpande"
 repo = "qiskit-waveform-sim"
-stars = 1
+stars = 4
 license = "Apache-2.0"
 description = "Zero bloat Classical Control system waveform Simulator and Interactive Pulse Sheet Viewer for Qiskit 2.5+"
+estimated_contributors = 3
 created_at = 2026-10-04
-last_commit = 2026-10-17
-last_activity = 2026-10-18
+last_commit = 2026-10-24
+last_activity = 2026-10-24
 
 [badge]
 url = "https://qisk.it/e-7a4f4fa4"
@@ -29,10 +30,10 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-waveform-sim"
-version = "0.1.8"
-last_release_date = 2026-10-11
+version = "0.3.0"
+last_release_date = 2026-10-24
 license = "Apache-2.0"
-description = "Zero-bloat Classical Control Waveform Simulator and Interactive Pulse Sheet Viewer"
+description = "Control-waveform synthesizer and pulse-schedule viewer for Qiskit 2.x"
 url = "https://pypi.org/project/qiskit-waveform-sim/"
 development_status = "3 - Alpha"
 status = "active"
@@ -40,7 +41,7 @@ maintainers = ["https://pypi.org/user/PratulDeshpande/"]
 requires_qiskit = "<3,>=2.5.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 191
-last_180_days_downloads = 626
+last_180_days_downloads = 866

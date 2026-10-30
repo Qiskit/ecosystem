@@ -18,8 +18,8 @@ stars = 10
 license = "Apache-2.0"
 description = "A toolkit for randomization-based quantum noise characterization."
 created_at = 2026-04-13
-last_commit = 2026-10-16
-last_activity = 2026-10-16
+last_commit = 2026-10-28
+last_activity = 2026-10-28
 
 [badge]
 url = "https://qisk.it/e-25fea67d"
@@ -29,14 +29,22 @@ style = "flat"
 package_name = "qiskit-noise-learning"
 description = "A toolkit for randomization-based quantum noise characterization."
 requires_python = ">=3.11"
-requires_qiskit = ">=2.5.0"
+requires_qiskit = "<3,>=2.5.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = ["version"]
+
+[[python.requires]]
+specifier = ">=0"
+extra = "docs"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-noise-learning/issues/146, waiting for the fix"

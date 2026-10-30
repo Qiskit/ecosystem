@@ -16,6 +16,7 @@ import pprint
 from datetime import date
 from uuid import uuid4
 from dateutil.relativedelta import relativedelta
+from pytest import ExitCode
 from packaging.utils import canonicalize_name
 from slugify import slugify
 
@@ -639,6 +640,12 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         for record in records:
             if record.subtest == subtest:
                 return record
+        # a place that got more specific, `pypi:mitiq` becoming
+        # `pypi:mitiq (extra qiskit)`: the explanation and the clock were written about
+        # this distribution, so they carry over rather than restarting
+        for record in records:
+            if record.subtest and subtest and subtest.startswith(f"{record.subtest} ("):
+                return record
         for record in records:
             if record.subtest is None:
                 return record
@@ -657,19 +664,36 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         for record in live:
             if record.subtest == subtest:
                 return record.xfailed
+        # as `stored_record`: an explanation written for `pypi:mitiq` still answers for
+        # `pypi:mitiq (extra qiskit)`, which is the same place said more precisely
+        for record in live:
+            if record.subtest and subtest and subtest.startswith(f"{record.subtest} ("):
+                return record.xfailed
         for record in live:
             if record.subtest is None:
                 return record.xfailed
         return None
 
     def update_checkups(self, checker=None):
-        """Runs validation tests and updates the check-ups sections"""
+        """Runs validation tests and updates the check-ups sections.
+
+        `self.checks` is rebuilt from the report, so a run that did not produce verdicts
+        has to raise rather than be written: an empty report is indistinguishable from
+        "passes everything" and would drop every record, explanations and `since` clocks
+        included. That is what the weekly run of 2026-10-29 did to 91 records across 73
+        members, when pytest crashed in a collection hook and still exited green.
+        """
         checkups = {}
         if checker is None:
             report = validate_member(self, verbose_level="-q")
         else:
             report = validate_member(self, verbose_level="-v", tests_to_run=checker)
 
+        if report.exitcode not in (ExitCode.OK, ExitCode.TESTS_FAILED):
+            raise EcosystemError(
+                f"validating {self.name_id} ended as "
+                f"{ExitCode(report.exitcode).name}, so the report is not a result"
+            )
         if report.internalerror:
             raise ExceptionGroup(
                 "internal error",
@@ -682,6 +706,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                     for internalerror in report.internalerror
                 ],
             )
+
         for test in report.xfailed + report.failed:
             checkup_data = CheckData.from_report(test)
             stored = self.stored_record(checkup_data.id, checkup_data.subtest)

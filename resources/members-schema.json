@@ -234,11 +234,73 @@
           },
           "last_180_days_downloads": {
             "type": "integer"
+          },
+          "license": {
+            "type": "string"
+          },
+          "development_status": {
+            "$comment": "The `Development Status` trove classifier, as PyPI serves it: `3 - Alpha`, `5 - Production/Stable`. Read by [P11]",
+            "type": "string"
+          },
+          "status": {
+            "$comment": "What PyPI says about the project itself, `active` or `archived`, not about a release",
+            "type": "string"
+          },
+          "maintainers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requires": {
+            "$comment": "Every qiskit requirement the release declares, with the condition each one is under. A distribution stays one entry, so the release and download fields are stated once: what varies is the condition, not the distribution. `requires_qiskit` above remains the effective specifier, which is what the check ups read",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "specifier": {
+                  "$comment": "The PEP 440 specifier, as `requires_qiskit` states it. `>=0` for a bare `qiskit`",
+                  "type": "string"
+                },
+                "extra": {
+                  "$comment": "The extra that has to be requested for this requirement to apply, `pip install pkg[qiskit]`. Absent means a plain install gets it",
+                  "type": "string"
+                },
+                "environment": {
+                  "$comment": "The rest of the PEP 508 marker, once the `extra ==` part is taken out: `python_version >= \"3.14\"`. Absent means the requirement always applies",
+                  "type": "string"
+                },
+                "via": {
+                  "$comment": "The dependency this requirement is reached through, as the release declares it: `qiskit-ibm-runtime>=0.30.0`. Absent means the release requires qiskit itself",
+                  "type": "string"
+                },
+                "compatible_with_qiskit_v1": {
+                  "type": "boolean"
+                },
+                "compatible_with_qiskit_v2": {
+                  "type": "boolean"
+                },
+                "highest_supported_qiskit_release_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "highest_supported_qiskit_version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "specifier"
+              ],
+              "additionalProperties": false,
+              "$comment": "One qiskit requirement and the condition it is under, with what the specifier resolves to. The resolved fields live here rather than on the distribution: a specifier that only applies on a newer interpreter resolves differently from the one below it, and a distribution whose qiskit is entirely conditional requires no qiskit at all"
+            }
           }
         },
         "required": [
           "package_name"
-        ]
+        ],
+        "additionalProperties": false
       }
     },
     "crates": {
@@ -460,6 +522,50 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          },
+          "requires": {
+            "$comment": "Every qiskit requirement the manifest declares, with the condition each one is under. A manifest can put its qiskit in `[project.optional-dependencies]`, so a project that only needs it for one feature declares none outside that extra",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "specifier": {
+                  "$comment": "The PEP 440 specifier, as `requires_qiskit` states it. `>=0` for a bare `qiskit`",
+                  "type": "string"
+                },
+                "extra": {
+                  "$comment": "The extra that has to be requested for this requirement to apply, `pip install pkg[qiskit]`. Absent means a plain install gets it",
+                  "type": "string"
+                },
+                "environment": {
+                  "$comment": "The rest of the PEP 508 marker, once the `extra ==` part is taken out: `python_version >= \"3.14\"`. Absent means the requirement always applies",
+                  "type": "string"
+                },
+                "via": {
+                  "$comment": "The dependency this requirement is reached through, as the release declares it: `qiskit-ibm-runtime>=0.30.0`. Absent means the release requires qiskit itself",
+                  "type": "string"
+                },
+                "compatible_with_qiskit_v1": {
+                  "type": "boolean"
+                },
+                "compatible_with_qiskit_v2": {
+                  "type": "boolean"
+                },
+                "highest_supported_qiskit_release_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "highest_supported_qiskit_version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "specifier"
+              ],
+              "additionalProperties": false,
+              "$comment": "One qiskit requirement and the condition it is under, with what the specifier resolves to. The resolved fields live here rather than on the distribution: a specifier that only applies on a newer interpreter resolves differently from the one below it, and a distribution whose qiskit is entirely conditional requires no qiskit at all"
             }
           }
         },

@@ -25,8 +25,8 @@ description = "MQT QMAP - A Tool for Quantum Circuit Mapping"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2020-10-10
-last_commit = 2026-10-19
-last_activity = 2026-10-19
+last_commit = 2026-10-26
+last_activity = 2026-10-26
 
 [badge]
 url = "https://qisk.it/e-d16209fb"
@@ -45,7 +45,7 @@ maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 requires_qiskit = "<3,>=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-07-02
-highest_supported_qiskit_version = "2.5.0"
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 7957
-last_180_days_downloads = 24497
+last_180_days_downloads = 25516

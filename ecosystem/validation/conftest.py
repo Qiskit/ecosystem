@@ -20,6 +20,8 @@ from contextlib import contextmanager
 
 import pytest
 
+from ecosystem.check import checker_nodeid
+
 
 def pytest_configure(config):
     """Add a test mark called previously_failed(since)"""
@@ -86,10 +88,6 @@ class ValidationReport:
             )
         return since_by_checker
 
-    def pytest_itemcollected(self, item):
-        # pylint: disable=protected-access
-        item._nodeid = "/".join(item.nodeid.split("/")[2:])
-
     @pytest.hookimpl(hookwrapper=True)
     def pytest_runtest_makereport(self, item, call):  # pylint: disable=unused-argument
         """Annotates a report with what only the item knows, and collects setup failures.
@@ -146,20 +144,21 @@ class ValidationReport:
     def pytest_collection_modifyitems(self, items):
         self.collected = len(items)
         for item in items:
+            # `xfails`, `previous_failures` and checks.toml are all keyed on the bare
+            # file name, which is not how pytest spells what it hands over here
+            nodeid = checker_nodeid(item.nodeid)
             if (
-                self.checktoml.checkup(self.checktoml.id_by_pytest_node(item.nodeid))[
+                self.checktoml.checkup(self.checktoml.id_by_pytest_node(nodeid))[
                     "importance"
                 ]
                 == "LEGACY"
             ):
                 item.add_marker(pytest.mark.skip(reason="legacy check"))
-            if item.nodeid in self.xfails:
-                item.add_marker(pytest.mark.xfail(reason=self.xfails[item.nodeid]))
-            if item.nodeid in self.previous_failures:
+            if nodeid in self.xfails:
+                item.add_marker(pytest.mark.xfail(reason=self.xfails[nodeid]))
+            if nodeid in self.previous_failures:
                 item.add_marker(
-                    pytest.mark.previously_failed(
-                        since=self.previous_failures[item.nodeid]
-                    )
+                    pytest.mark.previously_failed(since=self.previous_failures[nodeid])
                 )
 
     def pytest_terminal_summary(
