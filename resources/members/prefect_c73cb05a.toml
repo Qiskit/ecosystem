@@ -1,0 +1,49 @@
+name = "Prefect Qiskit"
+submission_number = 1442
+url = "https://github.com/qiskit-community/prefect-qiskit"
+description = "Prefect workflow integration for Qiskit Primitives."
+labels = ["HPC"]
+interfaces = ["Rust", "Python"]
+category = "Tooling"
+documentation = "https://qiskit-community.github.io/prefect-qiskit/"
+packages = ["https://pypi.org/project/prefect-qiskit/"]
+uuid = "c73cb05a-c5d4-4084-b4fd-3c8dc4238633"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/qiskit-community/prefect-qiskit"
+owner = "qiskit-community"
+repo = "prefect-qiskit"
+stars = 9
+homepage = "https://qiskit-community.github.io/prefect-qiskit/"
+license = "Apache-2.0"
+description = "Prefect workflow integration for Qiskit Primitives."
+estimated_contributors = 3
+total_dependent_repositories = 0
+total_dependent_packages = 0
+created_at = 2025-04-30
+last_commit = 2026-08-12
+last_activity = 2026-10-30
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "prefect-qiskit"
+version = "0.2.1"
+last_release_date = 2026-08-12
+license = "Apache-2.0"
+description = "Prefect workflow integration for Qiskit Primitives."
+url = "https://pypi.org/project/prefect-qiskit/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
+requires_qiskit = ">=2.1"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
+last_month_downloads = 36
+last_180_days_downloads = 488
