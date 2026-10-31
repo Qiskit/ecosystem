@@ -25,8 +25,8 @@ description = "MQT Core - Reusable C++20 and Python libraries for quantum comput
 total_dependent_repositories = 56
 total_dependent_packages = 11
 created_at = 2020-01-02
-last_commit = 2026-10-29
-last_activity = 2026-10-28
+last_commit = 2026-10-30
+last_activity = 2026-10-30
 
 [badge]
 url = "https://qisk.it/e-2309e6fb"
@@ -43,7 +43,7 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 last_month_downloads = 13129
-last_180_days_downloads = 163621
+last_180_days_downloads = 164014
 
 [[pypi.requires]]
 specifier = "<3,>=2.1"

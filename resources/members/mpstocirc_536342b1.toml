@@ -20,7 +20,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2024-08-09
 last_commit = 2025-04-01
-last_activity = 2026-10-22
+last_activity = 2026-10-30
 
 [badge]
 style = "flat"
@@ -44,9 +44,9 @@ last_180_days_downloads = 409
 [[checks.Q03]]
 since = 2026-10-30
 details = "The qiskit requirement in the mps-to-circuit release on PyPI allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/9"
 subtest = "pypi:mps-to-circuit"
 importance = "RECOMMENDATION"
-discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/9"
 
 [[checks.G07]]
 xfailed = "The project is maintained, it is just having a slow moment"
@@ -58,5 +58,5 @@ importance = "STRONG-RECOMMENDATION"
 [[checks.P12]]
 since = 2026-10-30
 details = "The PyPI package mps-to-circuit does not have a declared license"
-importance = "RECOMMENDATION"
 discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/8"
+importance = "RECOMMENDATION"
