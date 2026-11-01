@@ -569,7 +569,7 @@ class TestPythonDataFetching(PythonDataTestCase):
 
     def test_from_github_takes_owner_and_repo_from_the_member(self):
         """The GitHub section is where owner and repo come from."""
-        github = type("FakeGitHub", (), {"owner": OWNER, "repo": REPO})()
+        github = type("FakeGitHub", (), {"owner": OWNER, "repo": REPO, "ref": None})()
         data = PythonData.from_github(github, path="packages/compiler")
         self.assertEqual(OWNER, data.owner)
         self.assertEqual(REPO, data.repo)
@@ -596,7 +596,8 @@ class TestMemberUpdatePython(PythonDataTestCase):
         """Serves a directory listing holding `name`, then that manifest."""
 
         def request(url, **kwargs):
-            if str(url).endswith(("/contents/", "/")):
+            # the directory listing, whose URL may carry a `?ref=` for a pinned member
+            if str(url).split("?", 1)[0].endswith(("/contents/", "/")):
                 return listing(name)
             return kwargs["parser"](manifest)
 

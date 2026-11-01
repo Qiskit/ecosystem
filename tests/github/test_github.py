@@ -403,3 +403,34 @@ class TestGitHubDataTopics(TestCase):
         """`topics = []` already in a member file round-trips, rather than being dropped."""
         gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler", topics=[])
         self.assertEqual(gh.to_dict()["topics"], [])
+
+
+class TestGitHubDataRef(TestCase):
+    """`ref` and `subdirectory`, the two halves of `tree`"""
+
+    @staticmethod
+    def of(tree):
+        """The ref and the subdirectory such a `tree` stands for"""
+        github = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler", tree=tree)
+        return github.ref, github.subdirectory
+
+    def test_a_branch_and_a_directory(self):
+        """`main/chemistry/sqd_pcm` is a directory of the default branch"""
+        self.assertEqual(
+            ("main", "chemistry/sqd_pcm"), self.of("main/chemistry/sqd_pcm")
+        )
+
+    def test_a_branch_on_its_own(self):
+        """A URL that names a branch and nothing else is the whole of that branch"""
+        self.assertEqual(("migration-to-csharp", None), self.of("migration-to-csharp"))
+
+    def test_a_branch_and_a_directory_below_it(self):
+        """Both halves are read, which is what issue #1428 asks for"""
+        self.assertEqual(
+            ("migration-to-csharp", "src/QutesLang/PythonCode"),
+            self.of("migration-to-csharp/src/QutesLang/PythonCode"),
+        )
+
+    def test_no_tree_is_the_default_branch(self):
+        """A member that names no branch reads the default one, as before `ref` existed"""
+        self.assertEqual((None, None), self.of(None))
