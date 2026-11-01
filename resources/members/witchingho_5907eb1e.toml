@@ -36,3 +36,10 @@ requires_python = ">=3.10"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/Witching-Hour-Music/witching-hour-qiskit/issues/1"
+importance = "NICE-TO-HAVE"

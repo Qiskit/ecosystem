@@ -41,3 +41,10 @@ details = "The qiskit requirement in requirements.txt allows a not-yet-released 
 discussion = "https://github.com/Venkatallu11/quantum-chemistry-vqe/issues/1"
 subtest = "requirements:requirements.txt"
 importance = "RECOMMENDATION"
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/Venkatallu11/quantum-chemistry-vqe/issues/2"
+importance = "NICE-TO-HAVE"

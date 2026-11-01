@@ -120,3 +120,9 @@ status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 663
 last_180_days_downloads = 7850
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

@@ -54,3 +54,9 @@ details = "The qiskit requirement in the qiskit-qkd-lab release on PyPI allows a
 discussion = "https://github.com/RexRowan/Qiskit-QKD-Lab/issues/1"
 subtest = "pypi:qiskit-qkd-lab"
 importance = "RECOMMENDATION"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

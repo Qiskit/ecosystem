@@ -52,6 +52,7 @@ class GitHubData(JsonSerializable):
         "created_at",
         "last_commit",
         "last_activity",
+        "topics",
     ]
     aliases = {
         "stars": "stargazers_count",
@@ -63,6 +64,7 @@ class GitHubData(JsonSerializable):
         "private": lambda x: x or None,
         "archived": lambda x: x or None,
         "disabled": lambda x: x or None,
+        "topics": lambda x: x or None,
         "description": lambda x: x[:131] + "..." if len(str(x)) > 135 else x,
         "pushed_at": parse_date,
         "created_at": parse_date,

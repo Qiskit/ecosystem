@@ -49,3 +49,9 @@ details = "The qiskit requirement in the qiskit-lean-bridge manifest in the repo
 discussion = "https://github.com/RexRowan/Qiskit-LEAN-Bridge/issues/1"
 subtest = "python:qiskit-lean-bridge"
 importance = "RECOMMENDATION"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

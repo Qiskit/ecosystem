@@ -55,3 +55,10 @@ details = "The qiskit requirement in the qiskit-trev release on PyPI allows a no
 discussion = "https://github.com/keunjunpark/qiskit-trev/issues/7"
 subtest = "pypi:qiskit-trev"
 importance = "RECOMMENDATION"
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/keunjunpark/qiskit-trev/issues/10"
+importance = "NICE-TO-HAVE"
