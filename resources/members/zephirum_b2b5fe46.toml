@@ -2,7 +2,6 @@ name = "Zephirum"
 submission_number = 1432
 url = "https://github.com/SerenaSolutions/zephirum-lang"
 description = "Trivalent quantum decision language (Lisp syntax): verdicts are 1, 0, or REFUSED with sealed, traceable receipts. Built on Qiskit."
-website = "https://serenasolutions.github.io/zephirum-lang/"
 labels = [
   "error mitigation",
   "QML",
@@ -11,6 +10,7 @@ labels = [
   "openqasm",
 ]
 interfaces = ["Python", "Command-line interface (CLI)"]
+website = "https://serenasolutions.github.io/zephirum-lang/"
 category = "SDK"
 documentation = "https://github.com/SerenaSolutions/zephirum-lang/tree/main/docs"
 packages = ["https://pypi.org/project/zephirum/"]
