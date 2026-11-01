@@ -62,3 +62,9 @@ importance = "IMPORTANT"
 since = 2026-09-26
 details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

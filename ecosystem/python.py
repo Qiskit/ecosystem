@@ -162,6 +162,7 @@ class PythonData(
         owner: str = None,
         repo: str = None,
         path: str = None,
+        ref: str = None,
         **kwargs,
     ):
         """
@@ -173,11 +174,14 @@ class PythonData(
             repo: GitHub repository name. Not serialized, as above.
             path: Directory holding the manifests, when they are not at the repo
                 root. Serialized, because it cannot be discovered.
+            ref: The branch to read, for a member pinned to one (`GitHubData.ref`). Not
+                serialized: it lives in the member's `[github]` section.
         """
         self._given_package_name = package_name
         self.owner = owner
         self.repo = repo
         self.path = path
+        self.ref = ref
         self._kwargs = kwargs or {}
         self._pyproject = None
         self._setup_cfg = None
@@ -194,7 +198,12 @@ class PythonData(
     @classmethod
     def from_github(cls, github_data, path: str = None):
         """Builds an (unfetched) section from a member's `[github]` section."""
-        return cls(owner=github_data.owner, repo=github_data.repo, path=path)
+        return cls(
+            owner=github_data.owner,
+            repo=github_data.repo,
+            path=path,
+            ref=github_data.ref,
+        )
 
     @classmethod
     def from_url(cls, manifest_url):
@@ -208,7 +217,9 @@ class PythonData(
 
         Returns None for any other URL, GitHub ones included, so that a link to a
         repository or a release stays in `packages` for something else to claim. The
-        `<ref>` is dropped: manifests are read from the default branch.
+        `<ref>` is dropped here, because the branch is the member's rather than the link's:
+        `GitHubData.tree` is where it is declared, and `Member.declared_distributions` is
+        what applies it.
         """
         if "github.com" not in (manifest_url.hostname or ""):
             return None
@@ -252,7 +263,7 @@ class PythonData(
             ):
                 directories.append(str(manifest.parent))
         return [
-            type(self)(owner=self.owner, repo=self.repo, path=directory)
+            type(self)(owner=self.owner, repo=self.repo, path=directory, ref=self.ref)
             for directory in directories
         ]
 

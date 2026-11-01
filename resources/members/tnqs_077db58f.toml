@@ -19,6 +19,7 @@ license = "Apache-2.0"
 description = "Simulate Qiskit circuits using TensorNetworkQuantumSimulator.jl without leaving Python"
 created_at = 2025-04-16
 last_commit = 2026-01-22
+last_activity = 2026-10-30
 
 [badge]
 style = "flat"
@@ -39,6 +40,6 @@ deferred = ["packages"]
 [[checks.S00]]
 since = 2026-10-30
 details = "member.python.qiskit-tnqs.license is not OSI-approved"
+discussion = "https://github.com/qiskit-community/qiskit-tnqs/issues/21"
 subtest = "python:qiskit-tnqs"
 importance = "IMPORTANT"
-discussion = "https://github.com/qiskit-community/qiskit-tnqs/issues/21"

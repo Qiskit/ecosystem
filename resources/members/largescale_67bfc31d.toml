@@ -47,3 +47,10 @@ importance = "RECOMMENDATION"
 since = 2026-09-24
 details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
 importance = "IMPORTANT"
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding/issues/1"
+importance = "NICE-TO-HAVE"

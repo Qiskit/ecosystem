@@ -44,3 +44,9 @@ highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 25
 last_180_days_downloads = 291
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

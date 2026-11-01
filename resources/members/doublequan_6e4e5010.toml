@@ -50,3 +50,9 @@ last_180_days_downloads = 621
 since = 2026-09-24
 details = "Python package double-quant declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

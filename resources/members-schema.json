@@ -112,6 +112,12 @@
         "last_activity": {
           "type": "string",
           "format": "date"
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [

@@ -436,7 +436,11 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 continue
             if section is None:
                 continue
+            # the `<ref>` of a blob URL is dropped by `from_url` on purpose, so the branch
+            # is the member's own: `[github] tree` is where a pinned member declares it
+            section.ref = self.github.ref if self.github else None
             for found in section.matches() if section.is_pattern else [section]:
+                found.ref = section.ref
                 declared.append(found)
                 paths.add(found.path)
         if not declared:
@@ -458,7 +462,12 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             section = RequirementsData.from_url(package)
             if section is None:
                 continue
-            declared += section.matches() if section.is_pattern else [section]
+            # as `declared_distributions`: the branch is the member's, not the URL's
+            section.ref = self.github.ref if self.github else None
+            expanded = section.matches() if section.is_pattern else [section]
+            for found in expanded:
+                found.ref = section.ref
+            declared += expanded
         return declared
 
     @property

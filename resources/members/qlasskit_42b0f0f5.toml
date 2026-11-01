@@ -42,4 +42,10 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/dakk/"]
 last_month_downloads = 57
-last_180_days_downloads = 682
+last_180_days_downloads = 698
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
