@@ -107,3 +107,22 @@ class MemberFilesTestCase(TestCase):
                     for error in errors
                 ]
                 self.assertFalse(messages, f"{path.name}\n" + "\n".join(messages))
+
+    def test_no_two_members_are_the_same_project(self):
+        """One project is one member.
+
+        The submitted `url` should be unique.
+        """
+        members = {}
+        for path in self.member_files:
+            url = str(tomllib.loads(path.read_text()).get("url", ""))
+            members.setdefault(url.rstrip("/").casefold(), []).append(path.name)
+
+        shared = {url: names for url, names in members.items() if len(names) > 1}
+        self.assertFalse(
+            shared,
+            "\n".join(
+                f"{url} is declared by {', '.join(sorted(names))}"
+                for url, names in sorted(shared.items())
+            ),
+        )
