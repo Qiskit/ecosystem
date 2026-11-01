@@ -57,13 +57,13 @@ def fake_request(*names, contents=REQUIREMENTS_TXT, requested=None):
         if requested is not None:
             requested.append(str(url))
         # a directory listing is what `_contents_url` asks for, and it ends with the
-        # slash of the directory — the root's or a member's own subdirectory
-        if str(url).endswith("/"):
+        # slash of the directory — the root's or a member's own subdirectory. A pinned
+        # member carries a `?ref=` after it, which names neither
+        path = str(url).split("?", 1)[0]
+        if path.endswith("/"):
             return listing(*names)
         text = (
-            contents
-            if isinstance(contents, str)
-            else contents[str(url).rsplit("/", 1)[-1]]
+            contents if isinstance(contents, str) else contents[path.rsplit("/", 1)[-1]]
         )
         return kwargs["parser"](text)
 
@@ -727,3 +727,91 @@ class TestRequirementsOnTheProjectPage(RequirementsTestCase):
     def test_no_section_without_a_requirements_table(self):
         """Which is every member but a handful."""
         self.assertEqual("", self.page())
+
+
+class TestPinnedToABranch(RequirementsTestCase):
+    """A member pinned to a branch is read from that branch, not the default one.
+
+    A project can keep a rewrite on a branch while the default one stays on the old
+    implementation, and then the default branch is not what the member is about: the
+    Qutes rewrite carries `qiskit==2.2` at a path that does not exist on `development`
+    (issue #1428).
+    """
+
+    def asked(self, tree):
+        """The URLs a member with such a `tree` requests, and the member afterwards"""
+        member = Member(
+            name="Banana Notebooks",
+            url=f"https://github.com/{OWNER}/{REPO}",
+            uuid="banana-uuid-0000-0000-000000000000",
+            maturity="experimental",
+            github=GitHubData(owner=OWNER, repo=REPO, tree=tree),
+        )
+        requested = []
+        with patch(
+            "ecosystem.github_contents.request_json",
+            side_effect=fake_request(
+                "requirements.txt", contents="qiskit==2.2", requested=requested
+            ),
+        ):
+            member.update_requirements()
+        return requested, member
+
+    def test_the_branch_reaches_every_request(self):
+        """The listing and the file alike carry the ref"""
+        requested, _ = self.asked("migration-to-csharp")
+        self.assertTrue(requested)
+        for url in requested:
+            self.assertIn("ref=migration-to-csharp", url)
+
+    def test_the_default_branch_asks_for_no_ref(self):
+        """A member naming no branch builds the request it built before `ref` existed"""
+        requested, _ = self.asked(None)
+        self.assertTrue(requested)
+        for url in requested:
+            self.assertNotIn("ref=", url)
+
+    def test_what_the_branch_says_is_what_is_recorded(self):
+        """The section holds the branch's own requirement"""
+        _, member = self.asked("migration-to-csharp")
+        (section,) = member.requirements
+        self.assertEqual("==2.2", section.requires_qiskit)
+
+    def test_a_branch_and_a_directory_reach_the_request_together(self):
+        """`<branch>/<directory>` pins the branch and searches the directory"""
+        requested, _ = self.asked("migration-to-csharp/src/QutesLang/PythonCode")
+        self.assertTrue(requested)
+        for url in requested:
+            self.assertIn("contents/src/QutesLang/PythonCode/", url)
+            self.assertIn("ref=migration-to-csharp", url)
+
+    def test_a_declared_file_is_read_from_the_branch(self):
+        """`from_url` drops the `<ref>` of a blob URL, so the branch is the member's own.
+
+        This is the shape issue #1428 asks for: the file the project moved to lives only
+        on the branch, so a declaration read from the default branch 404s.
+        """
+        member = Member(
+            name="Banana Notebooks",
+            url=f"https://github.com/{OWNER}/{REPO}",
+            uuid="banana-uuid-0000-0000-000000000000",
+            maturity="experimental",
+            github=GitHubData(owner=OWNER, repo=REPO, tree="migration-to-csharp"),
+            packages=[
+                URL(
+                    f"https://github.com/{OWNER}/{REPO}/blob/HEAD/"
+                    "src/PythonCode/requirements.txt"
+                )
+            ],
+        )
+        requested = []
+        with patch(
+            "ecosystem.github_contents.request_json",
+            side_effect=fake_request(contents="qiskit==2.2", requested=requested),
+        ):
+            member.update_requirements()
+        (section,) = member.requirements
+        self.assertEqual("src/PythonCode/requirements.txt", section.file)
+        self.assertEqual("==2.2", section.requires_qiskit)
+        for url in requested:
+            self.assertIn("ref=migration-to-csharp", url)

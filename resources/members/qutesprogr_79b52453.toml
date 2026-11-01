@@ -10,6 +10,7 @@ category = "SDK"
 documentation = "https://github.com/GabrieleMessina/qutes_lang/wiki"
 packages = [
   "https://marketplace.visualstudio.com/items?itemName=GabrieleMessina.qutes",
+  "https://github.com/GabrieleMessina/qutes_lang/blob/HEAD/src/QutesLang/PythonCode/requirements.txt",
 ]
 uuid = "79b52453-af83-4d4e-8d9b-e54a5ec7e326"
 maturity = "production-ready"
@@ -18,6 +19,7 @@ maturity = "production-ready"
 url = "https://github.com/GabrieleMessina/qutes_lang"
 owner = "GabrieleMessina"
 repo = "qutes_lang"
+tree = "migration-to-csharp"
 stars = 13
 homepage = "https://gabrielemessina.github.io/qutes_lang/"
 license = "MIT"
@@ -28,24 +30,27 @@ total_dependent_packages = 0
 created_at = 2023-10-23
 last_commit = 2026-02-15
 last_activity = 2026-10-02
+topics = [
+  "antlr",
+  "python",
+  "qasm",
+  "qiskit",
+  "quantum",
+  "quantum-algorithms",
+  "quantum-circuits",
+  "quantum-computing",
+  "quantum-programming-language",
+  "unict",
+]
 
 [badge]
 url = "https://qisk.it/e-79b52453"
 style = "flat"
 
 [[requirements]]
-file = "requirements.txt"
-requires_qiskit = "==1.4"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2025-02-21
-highest_supported_qiskit_version = "1.4.0"
-
-[[checks.Q02]]
-xfailed = "Issue asking for Qiskit v2 support submitted https://github.com/GabrieleMessina/qutes_lang/issues/99, waiting for the fix"
-xfailed_until = 2026-11-30
-since = 2026-10-02
-details = "The qiskit requirement in requirements.txt is not compatible with Qiskit SDK v2"
-discussion = "https://github.com/GabrieleMessina/qutes_lang/issues/99"
-subtest = "requirements:requirements.txt"
-importance = "IMPORTANT"
+file = "src/QutesLang/PythonCode/requirements.txt"
+requires_qiskit = "==2.2"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2025-09-19
+highest_supported_qiskit_version = "2.2.0"

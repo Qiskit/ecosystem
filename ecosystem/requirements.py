@@ -80,6 +80,7 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
         owner: str = None,
         repo: str = None,
         directory: str = None,
+        ref: str = None,
         **kwargs,
     ):
         """
@@ -92,11 +93,14 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
             directory: The directory `candidates` searches, for a member that is one
                 directory of a repository (`GitHubData.subdirectory`). Not serialized:
                 it is derived from `[github]`, and `file` keeps the whole path anyway.
+            ref: The branch to read, for a member pinned to one (`GitHubData.ref`). Not
+                serialized, as above.
         """
         self.file = file
         self.owner = owner
         self.repo = repo
         self.directory = directory
+        self.ref = ref
         self._kwargs = kwargs or {}
         self._requirements = None
         self._all_qiskit_versions = None
@@ -111,13 +115,15 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
     def from_github(cls, github_data):
         """Builds a probe from a member's `[github]` section, to call `candidates` on.
 
-        A member that is one directory of a repository is read from that directory: see
-        `GitHubData.subdirectory`.
+        A member that is one directory of a repository is read from that directory, and one
+        pinned to a branch from that branch: see `GitHubData.subdirectory` and
+        `GitHubData.ref`.
         """
         return cls(
             owner=github_data.owner,
             repo=github_data.repo,
             directory=github_data.subdirectory,
+            ref=github_data.ref,
         )
 
     @classmethod
@@ -131,8 +137,10 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
         is what the project declares is a judgement a person makes rather than a rule.
 
         The path may be a pattern (`versions/*/requirements.txt`), which
-        `Member.update_requirements` expands against the repository on every run. The `<ref>`
-        is dropped: files are read from the default branch.
+        `Member.update_requirements` expands against the repository on every run. The
+        `<ref>` is dropped here, because the branch is the member's rather than the link's:
+        `GitHubData.tree` is where it is declared, and `Member.declared_requirements` is
+        what applies it.
 
         Returns None for any other URL, so that a link to a registry stays for something
         else to claim.
@@ -164,7 +172,7 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
         any depth.
         """
         return [
-            type(self)(file=path, owner=self.owner, repo=self.repo)
+            type(self)(file=path, owner=self.owner, repo=self.repo, ref=self.ref)
             for path in sorted(self._request_tree())
             if PurePath(path).full_match(self.file)
         ]
@@ -193,7 +201,7 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
         all but three members. Nothing below it is searched: the listing reports files
         only, and a file further down is a judgement, so it is declared as a URL instead.
         """
-        probe = type(self)(owner=self.owner, repo=self.repo)
+        probe = type(self)(owner=self.owner, repo=self.repo, ref=self.ref)
         probe.path = self.directory
         present = probe._request_listing()  # pylint: disable=protected-access
         if set(MANIFESTS) & present:
@@ -203,6 +211,7 @@ class RequirementsData(GitHubContentsMixin, QiskitRequirementMixin, JsonSerializ
                 file=f"{self.directory}/{name}" if self.directory else name,
                 owner=self.owner,
                 repo=self.repo,
+                ref=self.ref,
             )
             for name in sorted(present)
             if fnmatchcase(name.lower(), REQUIREMENTS_PATTERN)
