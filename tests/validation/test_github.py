@@ -45,15 +45,14 @@ class GitHubCheckupsTestCase(TestCase):
     ):
         """A member with a GitHub repository of the given age and activity.
 
-        A falsy `archived` or `topics` builds no entry at all, which is how a repository
-        that is neither archived nor tagged looks in a member file (see
-        `GitHubData.json_types`). Passing the key with a `None` value would leave it out of
-        `to_dict` just the same, but `hasattr(member.github, ...)` would be true, and a
-        check up written in the `[G09]` style reads exactly that.
+        A falsy `archived`, `topics` or `github_description` builds no entry at all, which
+        is how a repository that is neither archived nor tagged nor described looks in a
+        member file. Passing the key with a `None` value would leave it out of `to_dict`
+        just the same, but `hasattr(member.github, ...)` would be true, and a check up
+        written in the `[G09]` style reads exactly that.
 
-        `github_description` is the repository's own description, which is not
-        `member.description`: pass None for a repository that declares none, and `""` for
-        the empty string GitHub stores as it comes."""
+        `github_description` is the repository's own description, not
+        `member.description`."""
         member = Member(
             name="banana",
             url="https://github.com/qiskit-community/banana-repo",
@@ -70,9 +69,7 @@ class GitHubCheckupsTestCase(TestCase):
             last_activity=date.today() - relativedelta(months=months_since_commit),
             **({"archived": True} if archived else {}),
             **({"topics": topics} if topics else {}),
-            # unlike the two above, this one is passed even when it is None: that is what
-            # GitHub answers for a repository with no description, so the attribute exists
-            description=github_description,
+            **({"description": github_description} if github_description else {}),
         )
         return member
 
