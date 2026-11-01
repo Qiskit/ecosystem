@@ -69,3 +69,10 @@ build_backend = "hatchling.build"
 path = "packages/qamposer-vision"
 source = ["pyproject.toml"]
 deferred = []
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/JanLahmann/entangible/issues/22"
+importance = "NICE-TO-HAVE"

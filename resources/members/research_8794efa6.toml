@@ -40,13 +40,16 @@ description = "Research using Qiskit, demonstrating best practices for running q
 url = "https://pypi.org/project/qiskit-research/"
 status = "archived"
 maintainers = ["https://pypi.org/org/qiskit/", "https://pypi.org/user/nbronn/"]
-requires_qiskit = "==1.1.1"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
-highest_supported_qiskit_release_date = 2024-06-20
-highest_supported_qiskit_version = "1.1.1"
 last_month_downloads = 9
 last_180_days_downloads = 378
+
+[[pypi.requires]]
+specifier = ">=0"
+extra = "dev"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
 
 [[checks.G05]]
 since = 2026-04-23

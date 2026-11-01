@@ -43,13 +43,24 @@ url = "https://pypi.org/project/antinature/"
 development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/mk0dz/"]
-requires_qiskit = "==1.4.2"
+last_month_downloads = 43
+last_180_days_downloads = 401
+
+[[pypi.requires]]
+specifier = "==1.4.2"
+extra = "qiskit"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-03-14
 highest_supported_qiskit_version = "1.4.2"
-last_month_downloads = 43
-last_180_days_downloads = 401
+
+[[pypi.requires]]
+specifier = "==1.4.2"
+extra = "all"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-03-14
+highest_supported_qiskit_version = "1.4.2"
 
 [[checks.G07]]
 since = 2026-09-24
@@ -71,3 +82,9 @@ importance = "CRITICAL"
 since = 2026-09-24
 details = "The project is probably abandoned: `[Q20]`"
 importance = "CRITICAL"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

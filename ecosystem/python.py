@@ -42,13 +42,14 @@ from io import StringIO
 import tomllib
 from pathlib import PurePath
 
+from packaging.requirements import InvalidRequirement, Requirement
 from packaging.utils import canonicalize_name
 
 from .license import License
 from .serializable import JsonSerializable
 from .error_handling import EcosystemError, logger
 from .github_contents import GitHubContentsMixin
-from .qiskit_requirement import QiskitRequirementMixin
+from .qiskit_requirement import QiskitRequirement, QiskitRequirementMixin
 
 #: Manifests that can carry packaging metadata, in precedence order.
 MANIFESTS = ("pyproject.toml", "setup.cfg", "setup.py")
@@ -144,6 +145,7 @@ class PythonData(
         "description",
         "requires_python",
         "requires_qiskit",
+        "requires",
         "compatible_with_qiskit_v1",
         "compatible_with_qiskit_v2",
         "highest_supported_qiskit_release_date",
@@ -160,6 +162,7 @@ class PythonData(
         owner: str = None,
         repo: str = None,
         path: str = None,
+        ref: str = None,
         **kwargs,
     ):
         """
@@ -171,11 +174,14 @@ class PythonData(
             repo: GitHub repository name. Not serialized, as above.
             path: Directory holding the manifests, when they are not at the repo
                 root. Serialized, because it cannot be discovered.
+            ref: The branch to read, for a member pinned to one (`GitHubData.ref`). Not
+                serialized: it lives in the member's `[github]` section.
         """
         self._given_package_name = package_name
         self.owner = owner
         self.repo = repo
         self.path = path
+        self.ref = ref
         self._kwargs = kwargs or {}
         self._pyproject = None
         self._setup_cfg = None
@@ -192,7 +198,12 @@ class PythonData(
     @classmethod
     def from_github(cls, github_data, path: str = None):
         """Builds an (unfetched) section from a member's `[github]` section."""
-        return cls(owner=github_data.owner, repo=github_data.repo, path=path)
+        return cls(
+            owner=github_data.owner,
+            repo=github_data.repo,
+            path=path,
+            ref=github_data.ref,
+        )
 
     @classmethod
     def from_url(cls, manifest_url):
@@ -206,7 +217,9 @@ class PythonData(
 
         Returns None for any other URL, GitHub ones included, so that a link to a
         repository or a release stays in `packages` for something else to claim. The
-        `<ref>` is dropped: manifests are read from the default branch.
+        `<ref>` is dropped here, because the branch is the member's rather than the link's:
+        `GitHubData.tree` is where it is declared, and `Member.declared_distributions` is
+        what applies it.
         """
         if "github.com" not in (manifest_url.hostname or ""):
             return None
@@ -250,7 +263,7 @@ class PythonData(
             ):
                 directories.append(str(manifest.parent))
         return [
-            type(self)(owner=self.owner, repo=self.repo, path=directory)
+            type(self)(owner=self.owner, repo=self.repo, path=directory, ref=self.ref)
             for directory in directories
         ]
 
@@ -469,6 +482,85 @@ class PythonData(
     def dependencies(self) -> list:
         """Declared runtime dependencies as PEP 508 strings."""
         return self._declared_dependencies()[0]
+
+    @property
+    def requires(self):
+        """The conditional qiskit requirements, as in `PyPIData.requires`: an entry under
+        no condition says what `requires_qiskit` already says."""
+        return [row for row in self.declared_requires if row.conditional] or None
+
+    @property
+    def declared_requires(self):
+        """Every qiskit requirement the manifest declares, and the condition it is under.
+
+        The counterpart of `PyPIData.declared_requires`, for a repository rather than a
+        release. A manifest can put its qiskit in `[project.optional-dependencies]`, so a
+        project that only needs it for one feature looks qiskit-free without this:
+        `qem-auditor` declares `qiskit>=2.0` in its `adapters` extra and was recorded as
+        declaring nothing at all.
+
+        An environment marker is kept as `PyPIData` keeps it, and `via` is not derived
+        here either, since it names what another project's metadata says.
+        """
+        conditions, seen = [], []
+        for extra, dependencies in (
+            None,
+            self.dependencies,
+        ), *self._optional_dependencies():
+            for specifier, environment in self._qiskit_specifiers(dependencies):
+                found = {"specifier": specifier}
+                if extra:
+                    found["extra"] = extra
+                if environment:
+                    found["environment"] = environment
+                if found not in seen:
+                    seen.append(found)
+                    conditions.append(QiskitRequirement(**found))
+        stored = [
+            row if isinstance(row, QiskitRequirement) else QiskitRequirement(**row)
+            for row in self._kwargs.get("requires") or []
+        ]
+        if conditions:
+            return conditions + [row for row in stored if row.via]
+        return stored
+
+    def _optional_dependencies(self):
+        """The extras a manifest declares, as `(name, [PEP 508 strings])` pairs.
+
+        Every extra, including the ones whose qiskit is a tool rather than a dependency:
+        a `docs` extra asking for `qiskit[visualization]` so Sphinx can draw a circuit is
+        still a declaration the manifest makes, and which extras mean what is a judgement
+        for a reader of the records rather than one to make while writing them. The
+        `extra` on each entry is what says which is which.
+
+        setup.cfg keeps each extra as an indented multi-line string, the shape
+        `install_requires` has.
+        """
+        from_cfg = {
+            extra: [line.strip() for line in (value or "").splitlines() if line.strip()]
+            for extra, value in (
+                (self._setup_cfg or {}).get("options.extras_require") or {}
+            ).items()
+        }
+        declared = (
+            self.project.get("optional-dependencies")
+            or self.setup_kwargs.get("extras_require")
+            or from_cfg
+            or {}
+        )
+        return list(declared.items())
+
+    @staticmethod
+    def _qiskit_specifiers(dependencies):
+        """`(specifier, environment)` for every qiskit requirement among `dependencies`"""
+        for dependency in dependencies or []:
+            try:
+                requirement = Requirement(dependency)
+            except InvalidRequirement:
+                # `find_requires_qiskit` reports this for the dependencies it reads
+                continue
+            if canonicalize_name(requirement.name) == "qiskit":
+                yield str(requirement.specifier) or ">=0", str(requirement.marker or "")
 
     def _declared_dependencies(self):
         """The dependencies, and the name of the file they were declared in.

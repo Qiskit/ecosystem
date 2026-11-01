@@ -12,9 +12,11 @@
 
 """Reading files out of a GitHub repository, for the sections built from a source tree.
 
-Both `PythonData` and `RequirementsData` describe what a repository's default branch
-says today, so both need the same two requests: what is in the directory, and what one
-of those files contains. Mix this into a class that provides `owner` and `repo`.
+Both `PythonData` and `RequirementsData` describe what a repository says today, so both
+need the same two requests: what is in the directory, and what one of those files
+contains. Mix this into a class that provides `owner` and `repo`.
+
+"Today" is the default branch unless the member is pinned to one, which `ref` carries.
 """
 
 from os import getenv
@@ -26,17 +28,27 @@ from .request import request_json
 
 # Mixed into a data class that has the public surface; everything here is a helper.
 class GitHubContentsMixin:  # pylint: disable=too-few-public-methods
-    """Fetches a directory listing and single files from a repository's default branch."""
+    """Fetches a directory listing and single files from a repository branch."""
 
     #: Subdirectory holding the files, when they are not at the repository root.
     #: A class that cannot be pointed at a subdirectory leaves this alone.
     path = None
+
+    #: Branch the files are read from, when it is not the default one. A member pinned to
+    #: a branch is about what that branch says, which can be a rewrite the default branch
+    #: does not have yet (issue #1428). None reads the default branch, as before.
+    ref = None
 
     @property
     def _contents_url(self):
         """Contents API endpoint for the directory the files are read from."""
         directory = f"{self.path.strip('/')}/" if self.path else ""
         return f"api.github.com/repos/{self.owner}/{self.repo}/contents/{directory}"
+
+    @property
+    def _ref_query(self):
+        """`?ref=<branch>` for a pinned member, and nothing for the default branch."""
+        return f"?ref={self.ref}" if self.ref else ""
 
     def _request_listing(self):
         """Names of the files in the directory.
@@ -47,7 +59,7 @@ class GitHubContentsMixin:  # pylint: disable=too-few-public-methods
         a repository to be.
         """
         listing = request_json(
-            self._contents_url,
+            f"{self._contents_url}{self._ref_query}",
             parser=lambda text: {"entries": json_loads(text)},
             token=getenv("GH_TOKEN"),
         )
@@ -65,7 +77,7 @@ class GitHubContentsMixin:  # pylint: disable=too-few-public-methods
         text parser. `request_json` caches for a day via requests_cache.
         """
         return request_json(
-            f"{self._contents_url}{filename}",
+            f"{self._contents_url}{filename}{self._ref_query}",
             headers={"Accept": "application/vnd.github.raw"},
             content_handler=lambda content: content.decode("utf-8"),
             parser=parser,
@@ -84,7 +96,8 @@ class GitHubContentsMixin:  # pylint: disable=too-few-public-methods
         be short.
         """
         tree = request_json(
-            f"api.github.com/repos/{self.owner}/{self.repo}/git/trees/HEAD?recursive=1",
+            f"api.github.com/repos/{self.owner}/{self.repo}/git/trees/"
+            f"{self.ref or 'HEAD'}?recursive=1",
             token=getenv("GH_TOKEN"),
         )
         if tree.get("truncated"):

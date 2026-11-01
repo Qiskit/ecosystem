@@ -127,6 +127,17 @@ def qiskit_declarations(member):
                 f"the {package.package_name} release on PyPI",
                 package,
             )
+            continue
+        # a release whose qiskit is conditional declares no `requires_qiskit` of its own:
+        # a plain install does not create the dependency. Each condition is still a
+        # declaration, and the one that gets installed is whoever asks for the extra
+        for requirement in package.requires or []:
+            where = f" (extra {requirement.extra})" if requirement.extra else ""
+            yield (
+                f"pypi:{package.package_name}{where}",
+                f"the {package.package_name} release on PyPI{where}",
+                requirement,
+            )
     for package in member.python or []:
         if package.requires_qiskit:
             yield (
