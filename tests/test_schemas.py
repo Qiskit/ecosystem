@@ -107,3 +107,34 @@ class MemberFilesTestCase(TestCase):
                     for error in errors
                 ]
                 self.assertFalse(messages, f"{path.name}\n" + "\n".join(messages))
+
+    def test_no_two_members_are_the_same_project(self):
+        """One project is one member.
+
+        A second file for the same repository is two cards on the site, two badges, and
+        the same check ups reported twice, each with its own `since` clock and only one of
+        them carrying the explanation the other earned. The schema cannot say this:
+        `taplo check --schema` reads one member file at a time (see
+        `.github/workflows/tests.yml`), and `uniqueItems` compares whole members rather
+        than one field of them, so two members that differ only in `name` and `uuid` pass
+        it. It is a repository-wide question, which is why it lives here.
+
+        The submitted `url` is the only key needed: `[github]` is built from it, and it
+        carries the subdirectory a member is about, so the two `qiskit-function-templates`
+        members differ here while their owner and repository do not. It is compared
+        without a trailing slash and case-folded, a member declaring `.../qcsc-prefect/`
+        being the one declaring `.../qcsc-prefect`.
+        """
+        members = {}
+        for path in self.member_files:
+            url = str(tomllib.loads(path.read_text()).get("url", ""))
+            members.setdefault(url.rstrip("/").casefold(), []).append(path.name)
+
+        shared = {url: names for url, names in members.items() if len(names) > 1}
+        self.assertFalse(
+            shared,
+            "\n".join(
+                f"{url} is declared by {', '.join(sorted(names))}"
+                for url, names in sorted(shared.items())
+            ),
+        )

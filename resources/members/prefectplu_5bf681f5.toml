@@ -1,10 +1,11 @@
-name = "Prefect Qiskit Plugin"
+name = "Prefect Qiskit"
 url = "https://github.com/qiskit-community/prefect-qiskit"
 description = "Prefect plugin to orchestrate Qiskit workloads on quantum backends as managed, reusable workflow tasks."
 labels = ["cloud service"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
+documentation = "https://qiskit-community.github.io/prefect-qiskit/"
 packages = ["https://pypi.org/project/prefect-qiskit/"]
 uuid = "5bf681f5-d366-4d32-982c-d10153df211c"
 maturity = "experimental"
