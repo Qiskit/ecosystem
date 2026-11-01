@@ -64,3 +64,10 @@ since = 2026-07-06
 details = "The PyPI package qamomile does not have a declared license"
 discussion = "https://github.com/Jij-Inc/Qamomile/issues/655"
 importance = "RECOMMENDATION"
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/Jij-Inc/Qamomile/issues/666"
+importance = "NICE-TO-HAVE"

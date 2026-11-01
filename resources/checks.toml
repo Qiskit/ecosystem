@@ -249,6 +249,25 @@ importance = "IMPORTANT"
 checker = "checkup_github.py::checkup_G12"
 
 
+[G14]
+title = "Have `qiskit` among the GitHub repository topics"
+applies_to = "GitHub projects"
+affects = ['member.github.topics']
+category = "BEST-PRACTICE"
+description = "The GitHub repository should carry `qiskit` among its topics, so that it is listed in [github.com/topics/qiskit](https://github.com/topics/qiskit). That page is where somebody browsing GitHub rather than this catalog finds the project, and a repository that does not declare the topic is missing from it. [000] asks a project to be related to Qiskit; this one asks the repository to say so where GitHub can index it. A repository that declares no topic at all is not reported until its topics are recorded. This check up does not apply to projects that declare no maintenance expectations (`member.maturity` is `as-is` or `deprecated`)."
+importance = "NICE-TO-HAVE"
+checker = "checkup_github.py::checkup_G14"
+
+[G15]
+title = "Have a description on the GitHub repository"
+applies_to = "GitHub projects"
+affects = ['member.github.description']
+category = "BEST-PRACTICE"
+related_to = ['G14']
+description = "The GitHub repository should have a description, the \"About\" line that introduces the project on its repository page and in every GitHub search result, topic page and organization listing it appears in. A repository without one shows a blank where every other project has a sentence. This is about the description the repository declares, not `member.description`, which [014] checks the length of. This check up does not apply to projects that declare no maintenance expectations (`member.maturity` is `as-is` or `deprecated`)."
+importance = "NICE-TO-HAVE"
+checker = "checkup_github.py::checkup_G15"
+
 [O01]
 title = "Have a license"
 applies_to = "all"

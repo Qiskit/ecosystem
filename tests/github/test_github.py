@@ -338,3 +338,68 @@ class TestGitHubDataProperties(TestCase):
             ]
             gh.update_json()
         self.assertEqual(gh.total_dependent_packages, 10)
+
+
+class TestGitHubDataTopics(TestCase):
+    """Tests for the `topics` field, the repository topics `update_github` records"""
+
+    @staticmethod
+    def fetched(repo_json):
+        """A GitHubData that has fetched `repo_json` as its repository response."""
+        gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler")
+        with patch("ecosystem.github.request_json") as mock_request:
+            mock_request.side_effect = [
+                dict(repo_json, _requested_at_="2024-01-01"),
+                {"data": [], "_requested_at_": "2024-01-01"},
+                None,
+                {},
+            ]
+            gh.update_json()
+        return gh
+
+    def test_topics_are_read_from_the_repository_json(self):
+        """gh.topics is the list the repository declares"""
+        gh = self.fetched({"topics": ["qiskit", "quantum-computing"]})
+        self.assertEqual(gh.topics, ["qiskit", "quantum-computing"])
+
+    def test_topics_are_written_to_the_dict(self):
+        """topics reaches to_dict, so `update_github` stores it in the member file"""
+        gh = self.fetched({"topics": ["qiskit"]})
+        self.assertEqual(gh.to_dict()["topics"], ["qiskit"])
+
+    def test_a_repository_with_no_topics_reads_as_absent(self):
+        """GitHub answers `[]` for a repository with no topic, which is not a value."""
+        gh = self.fetched({"topics": []})
+        self.assertIsNone(gh.topics)
+        self.assertNotIn("topics", gh.to_dict())
+
+    def test_topics_missing_from_the_json_raises(self):
+        """A response with no `topics` key at all behaves like any other missing field"""
+        gh = self.fetched({"some_key": "value"})
+        with self.assertRaises(AttributeError):
+            _ = gh.topics
+
+    def test_topics_fall_back_to_the_stored_value(self):
+        """gh.topics is read from the member file when nothing was fetched"""
+        gh = GitHubData(
+            owner="Qiskit", repo="qiskit-banana-compiler", topics=["qiskit"]
+        )
+        self.assertEqual(gh.topics, ["qiskit"])
+        self.assertEqual(gh.to_dict()["topics"], ["qiskit"])
+
+    def test_topics_round_trip_through_a_dict(self):
+        """from_dict(to_dict()) keeps the topics, which is what a read-write cycle does"""
+        stored = GitHubData(
+            owner="Qiskit",
+            repo="qiskit-banana-compiler",
+            topics=["qiskit", "quantum-computing"],
+        ).to_dict()
+        self.assertEqual(
+            GitHubData.from_dict(stored).to_dict()["topics"],
+            ["qiskit", "quantum-computing"],
+        )
+
+    def test_a_stored_empty_list_is_kept_as_it_was_written(self):
+        """`topics = []` already in a member file round-trips, rather than being dropped."""
+        gh = GitHubData(owner="Qiskit", repo="qiskit-banana-compiler", topics=[])
+        self.assertEqual(gh.to_dict()["topics"], [])

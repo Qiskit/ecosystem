@@ -34,11 +34,26 @@ class GitHubCheckupsTestCase(TestCase):
     """Shared setup for the ecosystem/validation/checkup_github.py check ups"""
 
     @staticmethod
-    def member(status, months_old=60, months_since_commit=1, archived=False, **kwargs):
+    def member(
+        status,
+        months_old=60,
+        months_since_commit=1,
+        archived=False,
+        topics=None,
+        github_description="Banana repository description.",
+        **kwargs,
+    ):
         """A member with a GitHub repository of the given age and activity.
 
-        `archived=None` leaves the entry out altogether, which is how a repository that is
-        not archived looks in a member file (see `GitHubData.json_types`)."""
+        A falsy `archived` or `topics` builds no entry at all, which is how a repository
+        that is neither archived nor tagged looks in a member file (see
+        `GitHubData.json_types`). Passing the key with a `None` value would leave it out of
+        `to_dict` just the same, but `hasattr(member.github, ...)` would be true, and a
+        check up written in the `[G09]` style reads exactly that.
+
+        `github_description` is the repository's own description, which is not
+        `member.description`: pass None for a repository that declares none, and `""` for
+        the empty string GitHub stores as it comes."""
         member = Member(
             name="banana",
             url="https://github.com/qiskit-community/banana-repo",
@@ -50,10 +65,14 @@ class GitHubCheckupsTestCase(TestCase):
         member.github = GitHubData(
             owner="qiskit-community",
             repo="banana-repo",
-            archived=archived or None,
             created_at=date.today() - relativedelta(months=months_old),
             last_commit=date.today() - relativedelta(months=months_since_commit),
             last_activity=date.today() - relativedelta(months=months_since_commit),
+            **({"archived": True} if archived else {}),
+            **({"topics": topics} if topics else {}),
+            # unlike the two above, this one is passed even when it is None: that is what
+            # GitHub answers for a repository with no description, so the attribute exists
+            description=github_description,
         )
         return member
 
@@ -160,3 +179,145 @@ class TestAgeGatedCheckups(GitHubCheckupsTestCase):
             months_old=60,
             months_since_commit=24,
         )
+
+
+class TestTopicsReachTheMember(GitHubCheckupsTestCase):
+    """The repository topics are on the member, ready for a check up to read.
+
+    No check up asserts on them yet, so this covers the plumbing `update_github` fills in:
+    a topic list that reaches a member file is a topic list a checker can be written
+    against, and an empty one has to be absent rather than falsy-but-present."""
+
+    def test_topics_are_on_the_member(self):
+        """A member built with topics carries them on its GitHub section"""
+        member = self.member(None, topics=["qiskit", "quantum-computing"])
+        self.assertEqual(member.github.topics, ["qiskit", "quantum-computing"])
+
+    def test_no_topics_leaves_the_entry_out(self):
+        """A repository with no topic has no entry at all, the way `archived` does.
+
+        `to_dict` alone does not say so: a section built with `topics=None` leaves the key
+        out of it either way, and only `hasattr` tells that fixture apart from a member
+        file that never had the key."""
+        github = self.member(None).github
+        self.assertNotIn("topics", github.to_dict())
+        self.assertFalse(hasattr(github, "topics"))
+
+    def test_the_fixture_matches_a_member_file_with_no_topics(self):
+        """The section a member file with no `topics` builds, which is the real shape.
+
+        The fixture used to pass `topics=None` unconditionally, so `hasattr` was true
+        where a real member's is false. A check up asserting `hasattr(github, "topics")`
+        would have passed here and failed in production, which is the way round that
+        hides a bug."""
+        from_file = GitHubData.from_dict(
+            {"owner": "qiskit-community", "repo": "banana"}
+        )
+        self.assertEqual(
+            hasattr(self.member(None).github, "topics"), hasattr(from_file, "topics")
+        )
+
+
+class TestG14(GitHubCheckupsTestCase):
+    """[G14] Have `qiskit` among the GitHub repository topics"""
+
+    CHECKER = "checkup_github.py::checkup_G14"
+
+    def test_G14_reads_the_topic_list(self):
+        """A repository passes when `qiskit` is one of its topics, whatever else is"""
+        self.assert_same_for_every_status(
+            self.CHECKER, set(), topics=["qiskit", "python"]
+        )
+        self.assert_same_for_every_status(
+            self.CHECKER, {"G14"}, topics=["quantum-computing"]
+        )
+
+    def test_G14_wants_the_topic_itself_not_a_prefix_of_it(self):
+        """`qiskit-addon` is a different topic, and not on the `qiskit` page.
+
+        Two repositories in the corpus carry it and not `qiskit`, so this is the case that
+        decides whether the check up reads the list or a prefix of it."""
+        self.assert_same_for_every_status(
+            self.CHECKER, {"G14"}, topics=["qiskit-addon"]
+        )
+
+    def test_G14_says_nothing_about_a_repository_with_no_topics(self):
+        """No topic at all is a section that may simply predate `topics` being recorded.
+
+        It reads the same as a repository that declares none, so reporting it would report
+        this project's own data gap as the member's."""
+        self.assert_same_for_every_status(self.CHECKER, set())
+
+    def test_G14_exempts_declared_unmaintained(self):
+        """A project with no maintenance expectations owes no retagging"""
+        self.assert_same_for_every_status(
+            self.CHECKER, set(), maturity="as-is", topics=["quantum-computing"]
+        )
+        self.assert_same_for_every_status(
+            self.CHECKER, set(), maturity="deprecated", topics=["quantum-computing"]
+        )
+        self.assert_same_for_every_status(
+            self.CHECKER,
+            {"G14"},
+            maturity="production-ready",
+            topics=["quantum-computing"],
+        )
+
+    def test_G14_reports_where_the_repository_is_missing_from(self):
+        """The details name the page the repository does not show up on"""
+        details = self.details_of(
+            self.CHECKER, status=None, topics=["quantum-computing"]
+        )
+        self.assertIn("github.com/topics/qiskit", details["G14"])
+
+
+class TestG15(GitHubCheckupsTestCase):
+    """[G15] Have a description on the GitHub repository"""
+
+    CHECKER = "checkup_github.py::checkup_G15"
+
+    def test_G15_reads_the_repositorys_own_description(self):
+        """A repository that introduces itself passes"""
+        self.assert_same_for_every_status(
+            self.CHECKER, set(), github_description="A compiler for bananas."
+        )
+
+    def test_G15_covers_every_way_of_having_none(self):
+        """`null`, the empty string and whitespace all mean the same thing.
+
+        GitHub answers `null` for a repository with no description, so the attribute is
+        there holding None, and it stores an empty string as it comes."""
+        for empty in [None, "", "   "]:
+            with self.subTest(description=empty):
+                self.assert_same_for_every_status(
+                    self.CHECKER, {"G15"}, github_description=empty
+                )
+
+    def test_G15_exempts_declared_unmaintained(self):
+        """A project with no maintenance expectations owes no description"""
+        self.assert_same_for_every_status(
+            self.CHECKER, set(), maturity="as-is", github_description=None
+        )
+        self.assert_same_for_every_status(
+            self.CHECKER, set(), maturity="deprecated", github_description=None
+        )
+        self.assert_same_for_every_status(
+            self.CHECKER, {"G15"}, maturity="production-ready", github_description=None
+        )
+
+    def test_G15_is_not_about_the_submitted_description(self):
+        """`member.description` is a different field, which [014] checks.
+
+        The member always has one, so a repository with none has to fail even though the
+        catalog has a sentence to show."""
+        member = self.member(None, github_description=None)
+        self.assertTrue(member.description)
+        self.assertEqual(
+            self.checkups_of(self.CHECKER, status=None, github_description=None),
+            {"G15"},
+        )
+
+    def test_G15_reports_what_is_missing(self):
+        """The details name the repository's own line, not the member's"""
+        details = self.details_of(self.CHECKER, status=None, github_description=None)
+        self.assertIn("no description", details["G15"])

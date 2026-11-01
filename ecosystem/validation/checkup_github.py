@@ -139,3 +139,35 @@ def checkup_G11(member):
         pytest.skip("project repository is already archived")
     if member.unmaintained:
         assert archived, "Unmaintained project should live in an archived repository"
+
+
+def checkup_G14(member):
+    """Have `qiskit` among the GitHub repository topics"""
+    if member.unmaintained:
+        pytest.skip("projects with no maintenance expectations are exempt")
+    if not hasattr(member.github, "topics"):
+        # No topic at all is read as no entry (`GitHubData.json_types`), which is
+        # indistinguishable from a section written before `topics` was recorded. The
+        # second is this project's own data gap, so it is not reported as the first
+        pytest.skip("No member.github.topics")
+
+    assert "qiskit" in member.github.topics, (
+        "`qiskit` is not among the GitHub repository topics, so the repository does not "
+        "show up in github.com/topics/qiskit"
+    )
+
+
+def checkup_G15(member):
+    """Have a description on the GitHub repository"""
+    if member.unmaintained:
+        pytest.skip("projects with no maintenance expectations are exempt")
+
+    # unlike the topics, a repository with no description answers `null` rather than
+    # leaving the key out, so the attribute is there and holds None. An empty string is
+    # stored as it comes, so all three falsy shapes mean the same thing here
+    description = getattr(member.github, "description", None)
+
+    assert description and description.strip(), (
+        "The GitHub repository has no description, the one line that introduces the "
+        "project on its repository page and in every GitHub listing it appears in"
+    )
