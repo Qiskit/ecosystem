@@ -52,3 +52,9 @@ last_180_days_downloads = 215
 since = 2026-09-24
 details = "Python package qiskit-sat-synthesis declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+importance = "NICE-TO-HAVE"
