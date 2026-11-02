@@ -21,6 +21,7 @@ description = "Graph-theoretic initial layout and routing heuristics for mapping
 created_at = 2026-08-17
 last_commit = 2026-08-21
 last_activity = 2026-08-21
+topics = ["mapping-algorithms", "transpiler"]
 
 [badge]
 url = "https://qisk.it/e-4ab16aaa"
@@ -42,7 +43,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 34
-last_180_days_downloads = 331
+last_180_days_downloads = 334
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

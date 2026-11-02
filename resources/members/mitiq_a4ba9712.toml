@@ -23,6 +23,12 @@ total_dependent_packages = 0
 created_at = 2020-01-28
 last_commit = 2026-10-29
 last_activity = 2026-10-29
+topics = [
+  "error-mitigation",
+  "quantum-computing",
+  "quantum-error-mitigation",
+  "quantum-programming",
+]
 
 [badge]
 url = "https://qisk.it/e-a4ba9712"
@@ -44,7 +50,7 @@ maintainers = [
   "https://pypi.org/user/nathanshammah/",
 ]
 last_month_downloads = 4381
-last_180_days_downloads = 70138
+last_180_days_downloads = 70204
 
 [[pypi.requires]]
 specifier = "<3.0.0,>=2.0.0"

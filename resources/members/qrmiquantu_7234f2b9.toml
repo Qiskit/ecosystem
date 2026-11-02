@@ -26,6 +26,18 @@ total_dependent_packages = 0
 created_at = 2025-08-05
 last_commit = 2026-10-30
 last_activity = 2026-10-30
+topics = [
+  "c",
+  "hpc",
+  "lua",
+  "python3",
+  "qiskit",
+  "quantum",
+  "quantum-computing",
+  "resource-management",
+  "rust",
+  "workload-managers",
+]
 
 [badge]
 url = "https://qisk.it/e-7234f2b9"
@@ -41,7 +53,7 @@ url = "https://pypi.org/project/qrmi/"
 status = "active"
 maintainers = ["https://pypi.org/user/ohtanim/"]
 last_month_downloads = 2353
-last_180_days_downloads = 13354
+last_180_days_downloads = 13436
 
 [[cargo]]
 package_name = "alice-bob-felis"

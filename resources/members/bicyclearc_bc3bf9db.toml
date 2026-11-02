@@ -28,6 +28,7 @@ total_dependent_packages = 13
 created_at = 2025-07-30
 last_commit = 2026-10-29
 last_activity = 2026-10-29
+topics = ["compiler", "fault-tolerance", "qiskit", "quantum"]
 
 [badge]
 url = "https://qisk.it/e-bc3bf9db"
@@ -44,7 +45,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 1015
-last_90_days_downloads = 113
+last_90_days_downloads = 112
 
 [[crates]]
 package_name = "bicycle_cliffords"
@@ -57,7 +58,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 3968
-last_90_days_downloads = 670
+last_90_days_downloads = 656
 
 [[crates]]
 package_name = "bicycle_common"
@@ -70,7 +71,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 4171
-last_90_days_downloads = 708
+last_90_days_downloads = 694
 
 [[crates]]
 package_name = "bicycle_compiler"
@@ -83,7 +84,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 3747
-last_90_days_downloads = 627
+last_90_days_downloads = 613
 
 [[crates]]
 package_name = "bicycle_numerics"
@@ -96,7 +97,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 772
-last_90_days_downloads = 68
+last_90_days_downloads = 67
 
 [[crates]]
 package_name = "bicycle_random_numerics"
@@ -109,4 +110,4 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 504
-last_90_days_downloads = 21
+last_90_days_downloads = 20

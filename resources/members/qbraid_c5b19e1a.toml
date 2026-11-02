@@ -27,6 +27,17 @@ total_dependent_packages = 24
 created_at = 2019-09-11
 last_commit = 2026-10-29
 last_activity = 2026-10-29
+topics = [
+  "openqasm",
+  "python",
+  "qbraid",
+  "qir",
+  "quantum",
+  "quantum-computing",
+  "runtime",
+  "rustworkx",
+  "transpiler",
+]
 
 [badge]
 url = "https://qisk.it/e-c5b19e1a"
@@ -43,7 +54,7 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/qBraid/"]
 last_month_downloads = 15086
-last_180_days_downloads = 134375
+last_180_days_downloads = 134694
 
 [[pypi.requires]]
 specifier = "<3.0,>=1.0"

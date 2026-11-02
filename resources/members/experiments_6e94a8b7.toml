@@ -29,6 +29,7 @@ total_dependent_packages = 17
 created_at = 2021-02-24
 last_commit = 2026-09-10
 last_activity = 2026-10-25
+topics = ["qiskit"]
 
 [badge]
 url = "https://qisk.it/e-6e94a8b7"
@@ -49,7 +50,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 141474
-last_180_days_downloads = 883372
+last_180_days_downloads = 884145
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-experiments/issues/1656, waiting for a release with the fix"
