@@ -1,0 +1,16 @@
+name = "qiskit-maestro"
+submission_number = 1449
+url = "https://github.com/QoroQuantum/qiskit-maestro"
+description = "Run Qiskit circuits, Sampler and Estimator on the Maestro simulator: statevector, MPS, stabilizer and more, on CPU or GPU."
+contact_info = "stephen@qoroquantum.de"
+labels = ["tensor networks", "GPU", "HPC", "Hamiltonian simulation"]
+interfaces = ["Python"]
+website = "https://qoroquantum.github.io/maestro/"
+category = "Circuit simulator"
+documentation = "https://qoroquantum.github.io/maestro/getting-started/coming-from-qiskit.html"
+packages = [
+  "https://pypi.org/project/qiskit-maestro",
+  "https://github.com/QoroQuantum/qiskit-maestro/blob/main/pyproject.toml",
+]
+uuid = "326b1ab9-8d50-4142-abde-37eb9167c59b"
+maturity = "experimental"
