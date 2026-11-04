@@ -14,3 +14,13 @@ packages = [
 ]
 uuid = "326b1ab9-8d50-4142-abde-37eb9167c59b"
 maturity = "experimental"
+
+[github]
+owner = "QoroQuantum"
+repo = "qiskit-maestro"
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "qiskit-maestro"
