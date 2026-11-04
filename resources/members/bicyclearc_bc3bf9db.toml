@@ -27,7 +27,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
 last_commit = 2026-10-29
-last_activity = 2026-10-29
+last_activity = 2026-11-03
 topics = ["compiler", "fault-tolerance", "qiskit", "quantum"]
 
 [badge]
@@ -44,8 +44,8 @@ url = "https://crates.io/crates/bicycle_benchmark"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 1015
-last_90_days_downloads = 112
+total_downloads = 1019
+last_90_days_downloads = 110
 
 [[crates]]
 package_name = "bicycle_cliffords"
@@ -57,8 +57,8 @@ url = "https://crates.io/crates/bicycle_cliffords"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3968
-last_90_days_downloads = 656
+total_downloads = 3976
+last_90_days_downloads = 607
 
 [[crates]]
 package_name = "bicycle_common"
@@ -70,8 +70,8 @@ url = "https://crates.io/crates/bicycle_common"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 4171
-last_90_days_downloads = 694
+total_downloads = 4180
+last_90_days_downloads = 644
 
 [[crates]]
 package_name = "bicycle_compiler"
@@ -83,8 +83,8 @@ url = "https://crates.io/crates/bicycle_compiler"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3747
-last_90_days_downloads = 613
+total_downloads = 3755
+last_90_days_downloads = 566
 
 [[crates]]
 package_name = "bicycle_numerics"
@@ -96,8 +96,8 @@ url = "https://crates.io/crates/bicycle_numerics"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 772
-last_90_days_downloads = 67
+total_downloads = 775
+last_90_days_downloads = 66
 
 [[crates]]
 package_name = "bicycle_random_numerics"
@@ -109,5 +109,5 @@ url = "https://crates.io/crates/bicycle_random_numerics"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 504
-last_90_days_downloads = 20
+total_downloads = 505
+last_90_days_downloads = 19
