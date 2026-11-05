@@ -14,7 +14,7 @@ packages = [
 ]
 uuid = "df43ee68-b00e-41b5-91a8-2b02cc3bfd32"
 maturity = "production-ready"
-status = "Very Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/eigenorbit/eigenkit"
@@ -117,3 +117,21 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
+
+[[checks.Q03]]
+since = 2026-11-05
+details = "The qiskit requirement in the eigenkit release on PyPI (extra all) allows a not-yet-released major version of Qiskit"
+subtest = "pypi:eigenkit (extra all)"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+since = 2026-11-05
+details = "The qiskit requirement in the eigenkit release on PyPI (extra iqm) allows a not-yet-released major version of Qiskit"
+subtest = "pypi:eigenkit (extra iqm)"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+since = 2026-11-05
+details = "The qiskit requirement in the eigenkit release on PyPI (extra qiskit) allows a not-yet-released major version of Qiskit"
+subtest = "pypi:eigenkit (extra qiskit)"
+importance = "RECOMMENDATION"

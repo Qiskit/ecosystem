@@ -8,6 +8,7 @@ reference_paper = "https://doi.org/10.5281/zenodo.14920028"
 packages = ["https://pypi.org/project/mps-to-circuit/"]
 uuid = "536342b1-932c-4ae6-b4c5-b33b60b9390c"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/mps-to-circuit"
@@ -41,19 +42,19 @@ highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 40
 last_180_days_downloads = 418
 
-[[checks.Q03]]
-since = 2026-10-30
-details = "The qiskit requirement in the mps-to-circuit release on PyPI allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/9"
-subtest = "pypi:mps-to-circuit"
-importance = "RECOMMENDATION"
-
 [[checks.G07]]
 xfailed = "The project is maintained, it is just having a slow moment"
 xfailed_until = 2027-04-30
 since = 2026-10-30
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
+
+[[checks.Q03]]
+since = 2026-10-30
+details = "The qiskit requirement in the mps-to-circuit release on PyPI allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/9"
+subtest = "pypi:mps-to-circuit"
+importance = "RECOMMENDATION"
 
 [[checks.P12]]
 since = 2026-10-30
