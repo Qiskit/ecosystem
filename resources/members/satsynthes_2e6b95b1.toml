@@ -19,12 +19,12 @@ repo = "qiskit-sat-synthesis"
 stars = 12
 license = "Apache-2.0"
 description = "Collection of SAT-based synthesis methods for Qiskit"
-estimated_contributors = 2
+estimated_contributors = 3
 total_dependent_repositories = 2
 total_dependent_packages = 0
 created_at = 2024-03-14
-last_commit = 2026-03-29
-last_activity = 2026-11-01
+last_commit = 2026-11-04
+last_activity = 2026-11-04
 topics = ["qiskit"]
 
 [badge]
@@ -40,8 +40,8 @@ description = "Sat-based synthesis plugins for Qiskit"
 url = "https://pypi.org/project/qiskit-sat-synthesis/"
 status = "active"
 maintainers = [
+  "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/alexanderivrii/",
-  "https://pypi.org/user/luciano/",
 ]
 requires_qiskit = ">=1.2.0"
 compatible_with_qiskit_v1 = true
@@ -49,7 +49,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-10-22
 highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 13
-last_180_days_downloads = 217
+last_180_days_downloads = 221
 
 [[checks.Q03]]
 since = 2026-09-24

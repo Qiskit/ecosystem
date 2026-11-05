@@ -23,8 +23,8 @@ description = "A toolkit for working with fermionic systems"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-01-21
-last_commit = 2026-11-02
-last_activity = 2026-11-02
+last_commit = 2026-11-04
+last_activity = 2026-11-04
 topics = ["qiskit", "qiskit-addon"]
 
 [badge]
@@ -33,8 +33,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-fermions"
-version = "0.3.1"
-last_release_date = 2026-10-26
+version = "0.4.0"
+last_release_date = 2026-11-04
 license = "Apache-2.0"
 description = "A toolkit for working with fermionic systems"
 url = "https://pypi.org/project/qiskit-fermions/"
@@ -44,10 +44,10 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/mrossinek/",
 ]
-requires_qiskit = "~=2.5.0"
+requires_qiskit = "<2.7,>=2.5.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
+highest_supported_qiskit_release_date = 2026-10-22
+highest_supported_qiskit_version = "2.6.1"
 last_month_downloads = 45696
-last_180_days_downloads = 66415
+last_180_days_downloads = 67021
