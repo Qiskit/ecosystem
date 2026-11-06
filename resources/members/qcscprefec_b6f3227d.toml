@@ -29,8 +29,8 @@ homepage = "https://qiskit-community.github.io/qcsc-prefect"
 license = "Apache-2.0"
 description = "A modular workspace for portable HPC workflow orchestration with Prefect."
 created_at = 2026-04-10
-last_commit = 2026-11-04
-last_activity = 2026-11-02
+last_commit = 2026-11-05
+last_activity = 2026-11-05
 
 [badge]
 url = "https://qisk.it/e-b6f3227d"
@@ -49,7 +49,7 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 27
-last_180_days_downloads = 1422
+last_180_days_downloads = 1423
 
 [[pypi]]
 package_name = "qcsc-prefect-adapters"
@@ -64,7 +64,7 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 29
-last_180_days_downloads = 1783
+last_180_days_downloads = 1785
 
 [[pypi]]
 package_name = "qcsc-prefect-blocks"
@@ -79,7 +79,7 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 27
-last_180_days_downloads = 1831
+last_180_days_downloads = 1832
 
 [[pypi]]
 package_name = "qcsc-prefect-core"
@@ -94,7 +94,7 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 31
-last_180_days_downloads = 1981
+last_180_days_downloads = 1982
 
 [[pypi]]
 package_name = "qcsc-prefect-dice"
@@ -109,7 +109,7 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 27
-last_180_days_downloads = 1338
+last_180_days_downloads = 1339
 
 [[pypi]]
 package_name = "qcsc-prefect-executor"
@@ -124,7 +124,7 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 29
-last_180_days_downloads = 1722
+last_180_days_downloads = 1723
 
 [[pypi]]
 package_name = "qcsc-prefect-qiskit"
@@ -139,7 +139,84 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 27
-last_180_days_downloads = 1332
+last_180_days_downloads = 1333
+
+[[python]]
+package_name = "qcsc-prefect"
+version = "0.3.0"
+license = "Apache-2.0"
+description = "Meta-package for installing QCSC Prefect core packages"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+path = "packages/qcsc-prefect"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
+package_name = "qcsc-prefect-adapters"
+version = "0.3.0"
+license = "Apache-2.0"
+description = "HPC adapters (Miyabi, Fugaku, Slurm) for QCSC Prefect workflows"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+path = "packages/qcsc-prefect-adapters"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
+package_name = "qcsc-prefect-blocks"
+version = "0.3.0"
+license = "Apache-2.0"
+description = "Prefect block definitions for HPC + Miyabi execution"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+path = "packages/qcsc-prefect-blocks"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
+package_name = "qcsc-prefect-core"
+version = "0.3.0"
+license = "Apache-2.0"
+description = "Core models and resolution logic for QCSC Prefect workflows"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+path = "packages/qcsc-prefect-core"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
+package_name = "qcsc-prefect-dice"
+version = "0.3.0"
+license = "Apache-2.0"
+description = "DICE SHCI solver integration for qcsc-prefect"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+path = "packages/qcsc-prefect-dice"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
+package_name = "qcsc-prefect-executor"
+version = "0.3.0"
+license = "Apache-2.0"
+description = "Prefect executor integrations for HPC schedulers"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+path = "packages/qcsc-prefect-executor"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
+package_name = "qcsc-prefect-qiskit"
+version = "0.3.0"
+license = "Apache-2.0"
+description = "Native Qiskit integration utilities for QCSC Prefect workflows"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+path = "packages/qcsc-prefect-qiskit"
+source = ["pyproject.toml"]
+deferred = []
 
 [[python]]
 package_name = "qcsc-prefect-sbd"
