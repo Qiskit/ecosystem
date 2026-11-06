@@ -25,46 +25,57 @@ repo = "zephirum-lang"
 stars = 1
 homepage = "https://doi.org/10.5281/zenodo.23632019"
 license = "Apache-2.0"
-description = "ZEPHIRUM is the quantum programming language. ZYQL is its trivalent decision core (1 / 0 / REFUSED) with sealed SHA3-256 receipts; ..."
+description = "Trivalent quantum decision language (Lisp syntax): verdicts are 1, 0, or REFUSED with sealed, traceable receipts. Built on Qiskit."
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-10-12
-last_commit = 2026-11-01
-last_activity = 2026-11-01
+last_commit = 2026-11-06
+last_activity = 2026-11-06
+topics = [
+  "audit-receipts",
+  "openqasm",
+  "post-quantum",
+  "qiskit",
+  "quantum-computing",
+  "quantum-programming-language",
+  "research",
+  "trivalent-decision",
+  "zephirum",
+  "zyql",
+]
 
 [badge]
 style = "flat"
 
 [[pypi]]
 package_name = "zephirum"
-version = "2.1.2"
-last_release_date = 2026-10-30
-license = "MIT"
+version = "2.5.6"
+last_release_date = 2026-11-05
+license = "Apache-2.0"
 description = "ZEPHIRUM: Lisp-style quantum programming language with the ZYQL trivalent decision core (1/0/REFUSED)"
 url = "https://pypi.org/project/zephirum/"
-development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/ZEPHIRUM_010101010100001/"]
-requires_qiskit = ">=2.6"
+requires_qiskit = "<3,>=2.6"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 0
-last_180_days_downloads = 282
+last_180_days_downloads = 626
 
 [[python]]
 package_name = "zephirum"
-version = "2.3.1"
+version = "2.5.6"
 license = "Apache-2.0"
 description = "ZEPHIRUM: Lisp-style quantum programming language with the ZYQL trivalent decision core (1/0/REFUSED)"
 requires_python = ">=3.10"
 requires_qiskit = "<3,>=2.6"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
