@@ -52,6 +52,7 @@ class GitHubData(JsonSerializable):
         "created_at",
         "last_commit",
         "last_activity",
+        "topics",
     ]
     aliases = {
         "stars": "stargazers_count",
@@ -63,6 +64,7 @@ class GitHubData(JsonSerializable):
         "private": lambda x: x or None,
         "archived": lambda x: x or None,
         "disabled": lambda x: x or None,
+        "topics": lambda x: x or None,
         "description": lambda x: x[:131] + "..." if len(str(x)) > 135 else x,
         "pushed_at": parse_date,
         "created_at": parse_date,
@@ -70,6 +72,17 @@ class GitHubData(JsonSerializable):
     reduce = {}
 
     def __init__(self, owner: str, repo: str, tree: str = None, **kwargs):
+        """
+        Args:
+            owner: GitHub owner.
+            repo: GitHub repository name.
+            tree: What followed `/tree/` in the submitted URL, which GitHub writes as
+                `<ref>/<path>`: the branch first, then the directory of it this member is
+                about. Either part can stand alone, so `main/chemistry/sqd_pcm`, plain
+                `migration-to-csharp` and nothing at all are all valid. It is one field
+                because it is one thing the submitter wrote; `ref` and `subdirectory` read
+                the halves, and neither is stored.
+        """
         self.owner = owner
         self.repo = repo
         self.tree = tree
@@ -136,6 +149,23 @@ class GitHubData(JsonSerializable):
         if not self.tree or "/" not in self.tree:
             return None
         return self.tree.split("/", 1)[1].strip("/") or None
+
+    @property
+    def ref(self):
+        """The branch this member is about, or None for the default one.
+
+        The other half of `tree`, which carries the ref first: the `main` of
+        `main/chemistry/sqd_pcm`, and the whole of it for a URL that names a branch and
+        nothing else. A project can keep a rewrite on a branch while the default one stays
+        on the old implementation, and then the default branch is not what the member is
+        about (issue #1428).
+
+        None rather than `"HEAD"` for the common case, so that a member with no `tree`
+        builds the request it built before this existed.
+        """
+        if not self.tree:
+            return None
+        return self.tree.split("/", 1)[0].strip("/") or None
 
     def update_json(self):
         """

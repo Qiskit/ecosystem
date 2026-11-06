@@ -19,7 +19,11 @@ release to date, no download count, and often no version at all.
 """
 
 from ecosystem.docs import command_block
-from ecosystem.docs.card import ProjectSummaryCard, PipSourcePackageCard
+from ecosystem.docs.card import (
+    ProjectSummaryCard,
+    PipSourcePackageCard,
+    qiskit_compatibility,
+)
 from .project_page import ProjectPage
 
 
@@ -38,6 +42,7 @@ class PipSourcePage(ProjectPage):
         lines += self.title(self.package.package_name) + [""]
         lines += self.description() + [""]
         lines += self.general_summary()
+        lines += qiskit_compatibility(self.package, heading=True)
         return lines
 
     def general_summary(self):

@@ -23,7 +23,7 @@ repo = "openqasm3_parser"
 stars = 28
 license = "Apache-2.0"
 description = "Parser and semantic analyzer for the OpenQASM3 language "
-total_dependent_repositories = 281
+total_dependent_repositories = 286
 total_dependent_packages = 14
 created_at = 2024-01-05
 last_commit = 2026-09-24
@@ -47,8 +47,8 @@ maintainers = [
 ]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 973325
-last_90_days_downloads = 160905
+total_downloads = 989274
+last_90_days_downloads = 153407
 
 [[crates]]
 package_name = "oq3_parser"
@@ -64,8 +64,8 @@ maintainers = [
 ]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 972930
-last_90_days_downloads = 160947
+total_downloads = 988864
+last_90_days_downloads = 153404
 
 [[crates]]
 package_name = "oq3_semantics"
@@ -77,8 +77,8 @@ url = "https://crates.io/crates/oq3_semantics"
 maintainers = ["https://github.com/jlapeyre", "https://github.com/qiskit"]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 968067
-last_90_days_downloads = 160257
+total_downloads = 983905
+last_90_days_downloads = 152726
 
 [[crates]]
 package_name = "oq3_source_file"
@@ -90,8 +90,8 @@ url = "https://crates.io/crates/oq3_source_file"
 maintainers = ["https://github.com/jlapeyre", "https://github.com/qiskit"]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 971366
-last_90_days_downloads = 160291
+total_downloads = 987225
+last_90_days_downloads = 152807
 
 [[crates]]
 package_name = "oq3_syntax"
@@ -107,5 +107,5 @@ maintainers = [
 ]
 rust_version = "1.70"
 edition = "2021"
-total_downloads = 972116
-last_90_days_downloads = 160788
+total_downloads = 988041
+last_90_days_downloads = 153244

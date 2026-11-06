@@ -22,6 +22,7 @@ description = "Interactive, Plotly-based statevector visualizations for Qiskit"
 created_at = 2026-08-08
 last_commit = 2026-08-18
 last_activity = 2026-09-24
+topics = ["quantum-computing", "statevector-simulation"]
 
 [badge]
 url = "https://qisk.it/e-e9f6e045"
@@ -40,10 +41,10 @@ maintainers = ["https://pypi.org/user/MeanMachineRex/"]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 13
-last_180_days_downloads = 199
+last_180_days_downloads = 205
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiskit-StateViz/issues/2, waiting for a release with the fix"
@@ -53,3 +54,9 @@ details = "The qiskit requirement in the qiskit-stateviz release on PyPI allows 
 discussion = "https://github.com/RexRowan/Qiskit-StateViz/issues/2"
 subtest = "pypi:qiskit-stateviz"
 importance = "RECOMMENDATION"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

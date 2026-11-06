@@ -21,6 +21,7 @@ description = "Exact, stabilizer-accelerated magic and multipartite entanglement
 created_at = 2026-09-01
 last_commit = 2026-09-02
 last_activity = 2026-09-02
+topics = ["quantum-information"]
 
 [badge]
 url = "https://qisk.it/e-4a6945d4"
@@ -35,8 +36,14 @@ requires_python = ">=3.9"
 requires_qiskit = "<3,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

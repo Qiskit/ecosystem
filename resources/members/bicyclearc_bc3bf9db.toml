@@ -26,8 +26,9 @@ description = "A compiler prototype targeting a bicycle architecture from PBC ci
 total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
-last_commit = 2026-10-13
-last_activity = 2026-10-22
+last_commit = 2026-11-05
+last_activity = 2026-11-05
+topics = ["compiler", "fault-tolerance", "qiskit", "quantum"]
 
 [badge]
 url = "https://qisk.it/e-bc3bf9db"
@@ -35,78 +36,91 @@ style = "flat"
 
 [[crates]]
 package_name = "bicycle_benchmark"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Generates PBC circuits that can be used for benchmarking"
 url = "https://crates.io/crates/bicycle_benchmark"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 984
-last_90_days_downloads = 88
+total_downloads = 1023
+last_90_days_downloads = 110
 
 [[crates]]
 package_name = "bicycle_cliffords"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Synthesis of Clifford gates in a code module on the bicycle architecture"
 url = "https://crates.io/crates/bicycle_cliffords"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3917
-last_90_days_downloads = 739
+total_downloads = 3984
+last_90_days_downloads = 542
 
 [[crates]]
 package_name = "bicycle_common"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Common definitions for bicycle architecture compiler crates"
 url = "https://crates.io/crates/bicycle_common"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 4112
-last_90_days_downloads = 772
+total_downloads = 4190
+last_90_days_downloads = 580
 
 [[crates]]
 package_name = "bicycle_compiler"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "A compiler for Pauli-based compilation (PBC) circuits to bicycle instructions"
 url = "https://crates.io/crates/bicycle_compiler"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3706
-last_90_days_downloads = 703
+total_downloads = 3761
+last_90_days_downloads = 501
 
 [[crates]]
 package_name = "bicycle_numerics"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Compute numerics for bicycle circuits"
 url = "https://crates.io/crates/bicycle_numerics"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 751
-last_90_days_downloads = 50
+total_downloads = 777
+last_90_days_downloads = 66
 
 [[crates]]
 package_name = "bicycle_random_numerics"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Collect numerics for random Pauli-generated rotations run on the bicycle architecture"
 url = "https://crates.io/crates/bicycle_random_numerics"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 495
-last_90_days_downloads = 12
+total_downloads = 505
+last_90_days_downloads = 19
+
+[[python]]
+package_name = "bicycle-architecture-compiler"
+version = "0.3.0"
+description = "Resource estimation for the Tour de Gross fault-tolerant architecture"
+requires_qiskit = ">=2.4"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py"]
+deferred = ["rust_extensions"]

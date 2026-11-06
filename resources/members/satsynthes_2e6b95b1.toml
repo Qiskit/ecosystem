@@ -11,19 +11,21 @@ documentation = "https://github.com/qiskit-community/qiskit-sat-synthesis/blob/m
 packages = ["https://pypi.org/project/qiskit-sat-synthesis/"]
 uuid = "2e6b95b1-5046-4a83-8842-c0b6ea36ec12"
 maturity = "production-ready"
-status = "Alumni"
 
 [github]
 url = "https://github.com/qiskit-community/qiskit-sat-synthesis"
 owner = "qiskit-community"
 repo = "qiskit-sat-synthesis"
-stars = 10
+stars = 12
 license = "Apache-2.0"
-estimated_contributors = 2
+description = "Collection of SAT-based synthesis methods for Qiskit"
+estimated_contributors = 3
 total_dependent_repositories = 2
 total_dependent_packages = 0
-last_commit = 2026-03-29
-last_activity = 2026-06-23
+created_at = 2024-03-14
+last_commit = 2026-11-05
+last_activity = 2026-11-05
+topics = ["qiskit"]
 
 [badge]
 url = "https://qisk.it/e-2e6b95b1"
@@ -37,16 +39,25 @@ license = "Apache-2.0"
 description = "Sat-based synthesis plugins for Qiskit"
 url = "https://pypi.org/project/qiskit-sat-synthesis/"
 status = "active"
-maintainers = ["https://pypi.org/user/alexanderivrii/"]
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/alexanderivrii/",
+]
 requires_qiskit = ">=1.2.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 71
-last_180_days_downloads = 215
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+last_month_downloads = 13
+last_180_days_downloads = 226
 
 [[checks.Q03]]
 since = 2026-09-24
 details = "Python package qiskit-sat-synthesis declared itself compatible to a not-yet-released major version of Qiskit"
 importance = "RECOMMENDATION"
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+importance = "NICE-TO-HAVE"

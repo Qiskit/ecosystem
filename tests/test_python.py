@@ -22,6 +22,7 @@ from ecosystem.github import GitHubData
 from ecosystem.julia import JuliaData
 from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
+from ecosystem.qiskit_requirement import QiskitRequirementMixin
 from ecosystem.python import (
     PythonData,
     parse_requirements,
@@ -105,13 +106,25 @@ def listing(*names):
     return {"entries": [{"name": name, "type": "file"} for name in names]}
 
 
+def conditions(requirement):
+    """The condition fields of a `QiskitRequirement`, without what it derives"""
+    return {
+        key: value
+        for key, value in requirement.to_dict().items()
+        if key in ("specifier", "extra", "environment", "via")
+    }
+
+
 class PythonDataTestCase(TestCase):
     """Base with the Qiskit release table stubbed out."""
 
     def setUp(self):
         super().setUp()
+        # the mixin rather than `PythonData`: a `[[python.requires]]` entry resolves its
+        # own specifier through the same mixin, so stubbing only the host class would
+        # leave the entries reading the real release table
         patcher = patch.object(
-            PythonData,
+            QiskitRequirementMixin,
             "all_qiskit_versions",
             return_value={
                 "1.0.0": {"upload_at": date(2024, 2, 1)},
@@ -198,6 +211,8 @@ class TestPythonDataFields(PythonDataTestCase):
                 "description": "Compiles bananas",
                 "requires_python": ">=3.9",
                 "requires_qiskit": "<3,>=1.2",
+                # no `requires`: the requirement is under no condition, so the section
+                # itself is the whole statement
                 "compatible_with_qiskit_v1": True,
                 "compatible_with_qiskit_v2": True,
                 "highest_supported_qiskit_release_date": date(2025, 4, 1),
@@ -554,7 +569,7 @@ class TestPythonDataFetching(PythonDataTestCase):
 
     def test_from_github_takes_owner_and_repo_from_the_member(self):
         """The GitHub section is where owner and repo come from."""
-        github = type("FakeGitHub", (), {"owner": OWNER, "repo": REPO})()
+        github = type("FakeGitHub", (), {"owner": OWNER, "repo": REPO, "ref": None})()
         data = PythonData.from_github(github, path="packages/compiler")
         self.assertEqual(OWNER, data.owner)
         self.assertEqual(REPO, data.repo)
@@ -581,7 +596,8 @@ class TestMemberUpdatePython(PythonDataTestCase):
         """Serves a directory listing holding `name`, then that manifest."""
 
         def request(url, **kwargs):
-            if str(url).endswith(("/contents/", "/")):
+            # the directory listing, whose URL may carry a `?ref=` for a pinned member
+            if str(url).split("?", 1)[0].endswith(("/contents/", "/")):
                 return listing(name)
             return kwargs["parser"](manifest)
 
