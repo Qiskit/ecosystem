@@ -63,6 +63,12 @@ discussion = "https://github.com/qognitive/fast-pauli/issues/98"
 subtest = "pypi:fast-pauli"
 importance = "RECOMMENDATION"
 
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
+
 [[checks.P12]]
 xfailed = "Issue asking for the license declaration submitted https://github.com/qognitive/fast-pauli/issues/97, waiting for a release with the fix"
 xfailed_until = 2027-03-31
@@ -75,9 +81,3 @@ importance = "RECOMMENDATION"
 since = 2026-09-17
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

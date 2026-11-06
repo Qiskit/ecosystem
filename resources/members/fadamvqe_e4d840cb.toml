@@ -29,14 +29,14 @@ last_activity = 2026-11-01
 url = "https://qisk.it/e-e4d840cb"
 style = "flat"
 
-[[checks.G07]]
-since = 2026-09-17
-details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
-importance = "STRONG-RECOMMENDATION"
-
 [[checks.G15]]
 xfailed = "membership predates the checkup"
 since = 2026-11-01
 details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
 discussion = "https://github.com/dolf3131/qiskit_algorithms_V2/issues/1"
 importance = "NICE-TO-HAVE"
+
+[[checks.G07]]
+since = 2026-09-17
+details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
+importance = "STRONG-RECOMMENDATION"
