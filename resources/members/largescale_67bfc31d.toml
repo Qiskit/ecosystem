@@ -45,8 +45,11 @@ discussion = "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding/
 importance = "NICE-TO-HAVE"
 
 [[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding/issues/2, waiting for a release with the fix"
+xfailed_until = 2027-02-05
 since = 2026-10-05
 details = "The qiskit requirement in docs/requirements.txt allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding/issues/2"
 subtest = "requirements:docs/requirements.txt"
 importance = "RECOMMENDATION"
 

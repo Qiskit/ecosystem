@@ -40,7 +40,10 @@ source = ["pyproject.toml"]
 deferred = []
 
 [[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/vib-sqd/issues/7, waiting for a release with the fix"
+xfailed_until = 2027-02-05
 since = 2026-10-30
 details = "The qiskit requirement in the vib-sqd manifest in the repository allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qiskit-community/vib-sqd/issues/7"
 subtest = "python:vib-sqd"
 importance = "RECOMMENDATION"

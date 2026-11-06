@@ -40,7 +40,10 @@ source = ["pyproject.toml"]
 deferred = ["version"]
 
 [[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/MarcDrudis/BowtieQGT/issues/5, waiting for a release with the fix"
+xfailed_until = 2027-02-05
 since = 2026-10-30
 details = "The qiskit requirement in the bowtiequantumgeometrictensor manifest in the repository allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/MarcDrudis/BowtieQGT/issues/5"
 subtest = "python:bowtiequantumgeometrictensor"
 importance = "RECOMMENDATION"
