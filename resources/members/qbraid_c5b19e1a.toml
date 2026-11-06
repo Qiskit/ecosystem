@@ -25,8 +25,8 @@ estimated_contributors = 35
 total_dependent_repositories = 46
 total_dependent_packages = 24
 created_at = 2019-09-11
-last_commit = 2026-11-03
-last_activity = 2026-11-03
+last_commit = 2026-11-05
+last_activity = 2026-11-05
 topics = [
   "openqasm",
   "python",
@@ -54,23 +54,23 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/qBraid/"]
 last_month_downloads = 15086
-last_180_days_downloads = 136812
+last_180_days_downloads = 139106
 
 [[pypi.requires]]
 specifier = "<3.0,>=1.0"
 extra = "aqt"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
 specifier = "<3.0,>=1.0"
 extra = "qiskit"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

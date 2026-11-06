@@ -20,15 +20,16 @@ status = "Very Early Project"
 url = "https://github.com/eigenorbit/eigenkit"
 owner = "eigenorbit"
 repo = "eigenkit"
-stars = 21
+stars = 23
 homepage = "https://eigenorbit.com/kit/"
 license = "Apache-2.0"
 description = "Open-source Python library for quantum computing. Build quantum algorithms once, run them on simulators such as Qiskit Aer, PennyLa..."
+estimated_contributors = 3
 total_dependent_repositories = 1
 total_dependent_packages = 1
 created_at = 2026-10-06
-last_commit = 2026-11-02
-last_activity = 2026-11-02
+last_commit = 2026-11-05
+last_activity = 2026-11-05
 topics = [
   "amazon-braket",
   "cuda-quantum",
@@ -56,8 +57,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "eigenkit"
-version = "1.1.0"
-last_release_date = 2026-10-19
+version = "1.2.1"
+last_release_date = 2026-11-05
 license = "Apache-2.0"
 description = "Open-source Python library for quantum computing. Build quantum algorithms once, run them on any simulator or quantum computer."
 url = "https://pypi.org/project/eigenkit/"
@@ -65,15 +66,15 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/eigenorbit/"]
 last_month_downloads = 0
-last_180_days_downloads = 652
+last_180_days_downloads = 676
 
 [[pypi.requires]]
 specifier = "<3,>=1.4.1"
 extra = "all"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
 specifier = ">=2"
@@ -81,16 +82,16 @@ extra = "all"
 environment = "python_version >= \"3.14\""
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
 specifier = "<3,>=1.4.1"
 extra = "iqm"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
 specifier = ">=2"
@@ -98,16 +99,16 @@ extra = "iqm"
 environment = "python_version >= \"3.14\""
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
 specifier = "<3,>=1.4.1"
 extra = "qiskit"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
 specifier = ">=2"
@@ -115,5 +116,5 @@ extra = "qiskit"
 environment = "python_version >= \"3.14\""
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
