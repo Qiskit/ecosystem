@@ -16,7 +16,7 @@ maturity = "production-ready"
 url = "https://github.com/dakk/qlasskit"
 owner = "dakk"
 repo = "qlasskit"
-stars = 74
+stars = 75
 homepage = "https://dakk.github.io/qlasskit/"
 license = "Apache-2.0"
 description = "A python-to-quantum compiler"
@@ -24,8 +24,8 @@ estimated_contributors = 6
 total_dependent_repositories = 3
 total_dependent_packages = 0
 created_at = 2023-09-22
-last_commit = 2026-01-03
-last_activity = 2026-08-25
+last_commit = 2026-11-06
+last_activity = 2026-11-06
 topics = [
   "quantum",
   "quantum-algorithms",
@@ -49,7 +49,7 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/dakk/"]
 last_month_downloads = 57
-last_180_days_downloads = 724
+last_180_days_downloads = 731
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

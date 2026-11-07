@@ -13,9 +13,9 @@ maturity = "experimental"
 status = "Qiskit Project"
 
 [github]
-url = "https://github.com/Qiskit/qiskit-addon-slc"
+url = "https://github.com/Qiskit/qiskit-slc"
 owner = "Qiskit"
-repo = "qiskit-addon-slc"
+repo = "qiskit-slc"
 stars = 6
 homepage = "https://quantum.cloud.ibm.com/docs/en/addons/qiskit-addon-slc"
 license = "Apache-2.0"
@@ -50,4 +50,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 1496
-last_180_days_downloads = 13724
+last_180_days_downloads = 13876
