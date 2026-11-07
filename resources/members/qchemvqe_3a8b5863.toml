@@ -1,0 +1,20 @@
+name = "qchem-vqe"
+submission_number = 1451
+url = "https://github.com/yoonwoojeong/qchem-vqe"
+description = "C17 quantum chemistry engine (RHF, FCIDUMP, adjoint VQE, SQD) with OpenQASM 3 and IBM Quantum Estimator V2 support."
+contact_info = "154740938+yoonwoojeong@users.noreply.github.com"
+labels = [
+  "chemistry",
+  "Hamiltonian simulation",
+  "openqasm",
+  "circuit optimization",
+  "HPC",
+]
+interfaces = ["Python", "C", "Command-line interface (CLI)"]
+category = "Application"
+reference_paper = "https://github.com/yoonwoojeong/qchem-vqe/blob/main/paper/paper.md"
+packages = [
+  "https://github.com/yoonwoojeong/qchem-vqe/blob/main/pyproject.toml",
+]
+uuid = "3a8b5863-8cf1-48d4-9ea3-8f425718e33f"
+maturity = "production-ready"
