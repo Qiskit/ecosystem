@@ -31,7 +31,7 @@ total_dependent_repositories = 53
 total_dependent_packages = 8
 created_at = 2022-02-22
 last_commit = 2026-11-06
-last_activity = 2026-11-05
+last_activity = 2026-11-06
 topics = [
   "benchmark-framework",
   "benchmark-suite",
@@ -54,7 +54,7 @@ url = "https://pypi.org/project/checks-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 6524
-last_180_days_downloads = 61880
+last_180_days_downloads = 62193
 
 [[pypi]]
 package_name = "cirq-superstaq"
@@ -70,7 +70,7 @@ maintainers = [
   "https://pypi.org/user/vtomole/",
 ]
 last_month_downloads = 5385
-last_180_days_downloads = 61266
+last_180_days_downloads = 61301
 
 [[pypi]]
 package_name = "general-superstaq"
@@ -82,7 +82,7 @@ url = "https://pypi.org/project/general-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 5569
-last_180_days_downloads = 63490
+last_180_days_downloads = 63534
 
 [[pypi]]
 package_name = "qiskit-superstaq"
@@ -98,7 +98,7 @@ maintainers = [
   "https://pypi.org/user/vtomole/",
 ]
 last_month_downloads = 3430
-last_180_days_downloads = 41523
+last_180_days_downloads = 41549
 
 [[pypi.requires]]
 specifier = "<3,>=1.3.0"
@@ -126,7 +126,7 @@ url = "https://pypi.org/project/Supermarq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 663
-last_180_days_downloads = 8101
+last_180_days_downloads = 8132
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"
