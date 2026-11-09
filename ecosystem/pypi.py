@@ -267,9 +267,17 @@ class PyPIData(
         level asserts a dependency a plain `pip install` does not create. The entries in
         `requires` carry the specifier and what it resolves to, each under its own
         condition.
+
+        Only a fetched section can decide that. An unconditional requirement is recorded in
+        `requires_qiskit` and gets no `[[pypi.requires]]` row of its own, so a section read
+        back from a member file lists the conditional ones and nothing else: `all()` over
+        them is then true for a release that does require qiskit outright, and the fields
+        would be dropped on any write. `update_status` writes every member without fetching
+        anything, which is where that stripped five fields off `qseqsim`, `qiskit-ionq` and
+        their like on every run.
         """
         section = super().to_dict(keys=keys or PyPIData.dict_keys)
-        declared = self.declared_requires
+        declared = self.declared_requires if self.fetched else []
         if declared and all(row.conditional for row in declared):
             for field in (
                 "requires_qiskit",
