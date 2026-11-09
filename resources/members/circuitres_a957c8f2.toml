@@ -9,10 +9,25 @@ category = "Tooling"
 packages = []
 uuid = "a957c8f2-f8f8-4a8b-851e-a3659b60a358"
 maturity = "production-ready"
+status = "Very Early Project"
 
 [github]
+url = "https://github.com/troncos22/Qtester"
 owner = "troncos22"
 repo = "Qtester"
+stars = 1
+license = "MIT"
+created_at = 2026-10-29
+last_commit = 2026-10-30
+last_activity = 2026-10-30
 
 [badge]
 style = "flat"
+
+[[requirements]]
+file = "requirements.txt"
+requires_qiskit = ">=0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
