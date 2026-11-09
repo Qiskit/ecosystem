@@ -9,7 +9,7 @@ category = "Converter"
 packages = ["https://pypi.org/project/Qiberis/"]
 uuid = "d33fccc1-4553-4314-8d94-95837a260fee"
 maturity = "experimental"
-status = "Very Early Project"
+status = "Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiberis"
@@ -52,7 +52,7 @@ highest_supported_qiskit_version = "2.6.2"
 xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiberis/issues/1, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-08-18
-details = "The qiskit requirement in the qiberis release on PyPI allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qiberis release on PyPI (extra qiskit) allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/RexRowan/Qiberis/issues/1"
-subtest = "pypi:qiberis"
+subtest = "pypi:qiberis (extra qiskit)"
 importance = "RECOMMENDATION"

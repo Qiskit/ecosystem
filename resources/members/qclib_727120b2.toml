@@ -52,6 +52,12 @@ discussion = "https://github.com/qclib/qclib/issues/214"
 subtest = "pypi:qclib"
 importance = "RECOMMENDATION"
 
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
+
 [[checks.P12]]
 xfailed = "Issue asking for the license declaration submitted https://github.com/qclib/qclib/issues/215, waiting for a release with the fix"
 xfailed_until = 2027-03-31
@@ -59,9 +65,3 @@ since = 2026-07-06
 details = "The PyPI package qclib does not have a declared license"
 discussion = "https://github.com/qclib/qclib/issues/215"
 importance = "RECOMMENDATION"
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

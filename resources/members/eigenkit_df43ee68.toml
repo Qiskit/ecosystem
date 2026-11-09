@@ -118,3 +118,30 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/eigenorbit/eigenkit/issues/39, waiting for a release with the fix"
+xfailed_until = 2027-02-06
+since = 2026-11-05
+details = "The qiskit requirement in the eigenkit release on PyPI (extra all) allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/eigenorbit/eigenkit/issues/39"
+subtest = "pypi:eigenkit (extra all)"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/eigenorbit/eigenkit/issues/39, waiting for a release with the fix"
+xfailed_until = 2027-02-06
+since = 2026-11-05
+details = "The qiskit requirement in the eigenkit release on PyPI (extra iqm) allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/eigenorbit/eigenkit/issues/39"
+subtest = "pypi:eigenkit (extra iqm)"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/eigenorbit/eigenkit/issues/39, waiting for a release with the fix"
+xfailed_until = 2027-02-06
+since = 2026-11-05
+details = "The qiskit requirement in the eigenkit release on PyPI (extra qiskit) allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/eigenorbit/eigenkit/issues/39"
+subtest = "pypi:eigenkit (extra qiskit)"
+importance = "RECOMMENDATION"
