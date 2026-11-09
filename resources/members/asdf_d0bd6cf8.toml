@@ -7,6 +7,7 @@ category = "Converter"
 packages = ["https://pypi.org/project/asdf-qiskit/"]
 uuid = "d0bd6cf8-23f7-49bd-a12f-85a8e5a81dba"
 maturity = "experimental"
+status = "Early Project"
 
 [github]
 url = "https://github.com/conradhaupt/asdf-qiskit"
@@ -38,7 +39,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 34
-last_180_days_downloads = 394
+last_180_days_downloads = 397
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/conradhaupt/asdf-qiskit/issues/2, waiting for a release with the fix"

@@ -334,6 +334,52 @@ class TestPyPIData(unittest.TestCase):  # pylint: disable=too-many-public-method
 
         self.assertEqual(">=1.1.0", pypi_data.to_dict()["requires_qiskit"])
 
+    def test_a_stored_section_keeps_its_qiskit_fields(self):
+        """Writing a member file without fetching must not drop what it already says.
+
+        An unconditional requirement lives in `requires_qiskit` and gets no entry of its
+        own, so a section read back from a member file lists the conditional ones and
+        nothing else. `all()` over those is true, and the drop rule would fire on a release
+        that does require qiskit outright: `update_status` writes every member without
+        fetching, and that is how five fields went missing from `qseqsim` and
+        `qiskit-ionq` on every run.
+        """
+        stored = {
+            "package_name": "banana-compiler",
+            "requires_qiskit": "<3,>=2.4",
+            "compatible_with_qiskit_v1": False,
+            "compatible_with_qiskit_v2": True,
+            "highest_supported_qiskit_release_date": "2026-11-05",
+            "highest_supported_qiskit_version": "2.6.2",
+            "requires": [{"specifier": "==2.4.2", "extra": "benchmark"}],
+        }
+        section = PyPIData.from_dict(dict(stored)).to_dict()
+
+        self.assertEqual("<3,>=2.4", section["requires_qiskit"])
+        for field in (
+            "compatible_with_qiskit_v1",
+            "compatible_with_qiskit_v2",
+            "highest_supported_qiskit_release_date",
+            "highest_supported_qiskit_version",
+        ):
+            with self.subTest(field=field):
+                self.assertIn(field, section)
+
+    def test_a_stored_all_conditional_section_stays_without_the_fields(self):
+        """The other direction: a release whose qiskit is only behind an extra has no such
+        fields to keep, and an unfetched write does not invent them."""
+        stored = {
+            "package_name": "banana-compiler",
+            "requires": [
+                {"specifier": "<3,>=1.4.1", "extra": "all"},
+                {"specifier": ">=2", "extra": "all"},
+            ],
+        }
+        section = PyPIData.from_dict(dict(stored)).to_dict()
+
+        self.assertNotIn("requires_qiskit", section)
+        self.assertEqual(2, len(section["requires"]))
+
     def test_each_entry_resolves_its_own_specifier(self):
         """eigenkit asks a different qiskit of a newer interpreter, so v1 differs by entry"""
         pypi_data = PyPIData("banana-compiler")

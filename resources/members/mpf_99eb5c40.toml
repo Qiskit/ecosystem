@@ -20,11 +20,11 @@ maturity = "experimental"
 status = "Qiskit Project"
 
 [github]
-url = "https://github.com/Qiskit/qiskit-addon-mpf"
+url = "https://github.com/Qiskit/qiskit-mpf"
 owner = "Qiskit"
-repo = "qiskit-addon-mpf"
+repo = "qiskit-mpf"
 stars = 36
-homepage = "https://qiskit.github.io/qiskit-addon-mpf/"
+homepage = "https://qiskit.github.io/qiskit-mpf/"
 license = "Apache-2.0"
 description = "Reducing the Trotter error of Hamiltonian dynamics with multi-product formulas"
 estimated_contributors = 13
@@ -58,4 +58,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 2786
-last_180_days_downloads = 33552
+last_180_days_downloads = 33798

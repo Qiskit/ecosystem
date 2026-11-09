@@ -19,11 +19,12 @@ owner = "kaulastudies"
 repo = "ai-evaluation-lab"
 tree = "main/integrations/quantum-agent-gate"
 stars = 1
+homepage = "https://proofpay-evaluation-lab.vercel.app"
 license = "Apache-2.0"
 description = "The evidence layer for AI systems and agents - reproducible evaluation, verification, regression and release evidence."
 created_at = 2026-09-13
-last_commit = 2026-11-05
-last_activity = 2026-11-05
+last_commit = 2026-11-08
+last_activity = 2026-11-08
 topics = [
   "agent-evaluation",
   "ai-evaluation",
@@ -59,3 +60,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
+
+[[checks.G14]]
+since = 2026-11-05
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

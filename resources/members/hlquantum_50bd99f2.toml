@@ -37,7 +37,7 @@ url = "https://pypi.org/project/hlquantum/"
 status = "active"
 maintainers = ["https://pypi.org/user/AlinDFerenczi/"]
 last_month_downloads = 20
-last_180_days_downloads = 406
+last_180_days_downloads = 407
 
 [[pypi.requires]]
 specifier = ">=0"
@@ -67,9 +67,27 @@ highest_supported_qiskit_version = "2.6.2"
 xfailed = "Issue asking for the cap submitted https://github.com/AlinDanielFerenczi/HLQuantum/issues/1, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-07-09
-details = "The qiskit requirement in the hlquantum release on PyPI allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the hlquantum release on PyPI (extra all) allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/AlinDanielFerenczi/HLQuantum/issues/1"
-subtest = "pypi:hlquantum"
+subtest = "pypi:hlquantum (extra all)"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/AlinDanielFerenczi/HLQuantum/issues/1, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-07-09
+details = "The qiskit requirement in the hlquantum release on PyPI (extra ionq) allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/AlinDanielFerenczi/HLQuantum/issues/1"
+subtest = "pypi:hlquantum (extra ionq)"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/AlinDanielFerenczi/HLQuantum/issues/1, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-07-09
+details = "The qiskit requirement in the hlquantum release on PyPI (extra qiskit) allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/AlinDanielFerenczi/HLQuantum/issues/1"
+subtest = "pypi:hlquantum (extra qiskit)"
 importance = "RECOMMENDATION"
 
 [[checks.G12]]

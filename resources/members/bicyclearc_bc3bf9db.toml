@@ -26,8 +26,8 @@ description = "A compiler prototype targeting a bicycle architecture from PBC ci
 total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
-last_commit = 2026-11-05
-last_activity = 2026-11-05
+last_commit = 2026-11-06
+last_activity = 2026-11-06
 topics = ["compiler", "fault-tolerance", "qiskit", "quantum"]
 
 [badge]
@@ -44,8 +44,8 @@ url = "https://crates.io/crates/bicycle_benchmark"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 1023
-last_90_days_downloads = 110
+total_downloads = 1035
+last_90_days_downloads = 118
 
 [[crates]]
 package_name = "bicycle_cliffords"
@@ -57,8 +57,8 @@ url = "https://crates.io/crates/bicycle_cliffords"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3984
-last_90_days_downloads = 542
+total_downloads = 4001
+last_90_days_downloads = 532
 
 [[crates]]
 package_name = "bicycle_common"
@@ -70,8 +70,8 @@ url = "https://crates.io/crates/bicycle_common"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 4190
-last_90_days_downloads = 580
+total_downloads = 4208
+last_90_days_downloads = 570
 
 [[crates]]
 package_name = "bicycle_compiler"
@@ -83,8 +83,8 @@ url = "https://crates.io/crates/bicycle_compiler"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3761
-last_90_days_downloads = 501
+total_downloads = 3776
+last_90_days_downloads = 491
 
 [[crates]]
 package_name = "bicycle_numerics"
@@ -96,8 +96,8 @@ url = "https://crates.io/crates/bicycle_numerics"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 777
-last_90_days_downloads = 66
+total_downloads = 788
+last_90_days_downloads = 75
 
 [[crates]]
 package_name = "bicycle_random_numerics"
