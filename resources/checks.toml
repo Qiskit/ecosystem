@@ -1,7 +1,7 @@
 #:schema ./checks-schema.json
 [000]
-title = "Build on, interface with, or extend Qiskit in a meaningful way"
-description = "Software in the Qiskit Ecosystem should be related to Qiskit projects in some meaningful way. Software that manipulates Qiskit data structures (such as transpiler plugins) are good examples of that. If the connection with Qiskit is not that obvious, consider having a tutorial or how-to guide explaining a use-case for Qiskit users."
+title = "Build on, interface with, or extend Qiskit or the IBM Quantum services in a meaningful way"
+description = "Software in the Qiskit Ecosystem should be related to Qiskit projects or to the IBM Quantum services in some meaningful way. Software that manipulates Qiskit data structures (such as transpiler plugins) are good examples of that. So is software that talks to the IBM Quantum Platform through one of its clients: a project that depends on one of those, and not on the `qiskit` package itself, still builds on Qiskit, since those clients submit Qiskit primitives and circuits. The relation does not have to be a dependency in either direction; a project that interoperates with the services (for example by orchestrating jobs that run on them) counts as well. If the connection with Qiskit is not that obvious, consider having a tutorial or how-to guide explaining a use-case for Qiskit users."
 applies_to = "all"
 category = "SUBMISSION"
 importance = "CRITICAL"
@@ -254,7 +254,7 @@ title = "Have `qiskit` among the GitHub repository topics"
 applies_to = "GitHub projects"
 affects = ['member.github.topics']
 category = "BEST-PRACTICE"
-description = "The GitHub repository should carry `qiskit` among its topics, so that it is listed in [github.com/topics/qiskit](https://github.com/topics/qiskit). That page is where somebody browsing GitHub rather than this catalog finds the project, and a repository that does not declare the topic is missing from it. [000] asks a project to be related to Qiskit; this one asks the repository to say so where GitHub can index it. A repository that declares no topic at all is not reported until its topics are recorded. This check up does not apply to projects that declare no maintenance expectations (`member.maturity` is `as-is` or `deprecated`)."
+description = "The GitHub repository should carry `qiskit` among its topics, so that it is listed in [github.com/topics/qiskit](https://github.com/topics/qiskit). That page is where somebody browsing GitHub rather than this catalog finds the project, and a repository that does not declare the topic is missing from it. [000] asks a project to be related to Qiskit or to the IBM Quantum services; this one asks the repository to say so where GitHub can index it. A repository that declares no topic at all is not reported until its topics are recorded. This check up does not apply to projects that declare no maintenance expectations (`member.maturity` is `as-is` or `deprecated`)."
 importance = "NICE-TO-HAVE"
 checker = "checkup_github.py::checkup_G14"
 
