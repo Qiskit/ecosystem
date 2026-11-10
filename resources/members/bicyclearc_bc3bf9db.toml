@@ -26,8 +26,8 @@ description = "A compiler prototype targeting a bicycle architecture from PBC ci
 total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
-last_commit = 2026-11-06
-last_activity = 2026-11-06
+last_commit = 2026-11-09
+last_activity = 2026-11-09
 topics = ["compiler", "fault-tolerance", "qiskit", "quantum"]
 
 [badge]
@@ -57,8 +57,8 @@ url = "https://crates.io/crates/bicycle_cliffords"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 4001
-last_90_days_downloads = 532
+total_downloads = 4002
+last_90_days_downloads = 520
 
 [[crates]]
 package_name = "bicycle_common"
@@ -70,8 +70,8 @@ url = "https://crates.io/crates/bicycle_common"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 4208
-last_90_days_downloads = 570
+total_downloads = 4209
+last_90_days_downloads = 558
 
 [[crates]]
 package_name = "bicycle_compiler"
@@ -83,8 +83,8 @@ url = "https://crates.io/crates/bicycle_compiler"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3776
-last_90_days_downloads = 491
+total_downloads = 3778
+last_90_days_downloads = 480
 
 [[crates]]
 package_name = "bicycle_numerics"
@@ -111,6 +111,14 @@ rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 505
 last_90_days_downloads = 19
+
+[[cargo]]
+package_name = "bicycle_pyext"
+version = "0.3.0"
+rust_version = "1.93.0"
+edition = "2024"
+crate_type = ["cdylib", "rlib"]
+path = "crates/pyext"
 
 [[python]]
 package_name = "bicycle-architecture-compiler"

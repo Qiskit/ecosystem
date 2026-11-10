@@ -16,7 +16,7 @@ maturity = "production-ready"
 url = "https://github.com/qiskit-community/qiskit-ionq"
 owner = "qiskit-community"
 repo = "qiskit-ionq"
-stars = 65
+stars = 64
 homepage = "https://qiskit-community.github.io/qiskit-ionq/"
 license = "Apache-2.0"
 description = "Qiskit provider for IonQ backends"
@@ -24,8 +24,8 @@ estimated_contributors = 16
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2020-10-08
-last_commit = 2026-11-05
-last_activity = 2026-11-06
+last_commit = 2026-11-09
+last_activity = 2026-11-09
 topics = ["qiskit", "unitaryhack"]
 
 [badge]
@@ -47,7 +47,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 63222
-last_180_days_downloads = 546755
+last_180_days_downloads = 553949
 
 [[pypi.requires]]
 specifier = ">=2.0.0"
