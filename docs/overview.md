@@ -137,7 +137,7 @@ A record with no `subtest` is about the project as a whole, which is what a chec
 
 ### Check ups that are not tests
 
-Some criteria cannot be tested automatically: whether a project [interfaces with Qiskit in a meaningful way](checkups.md#000), for example, or whether a primitive implementation is [V2-compatible](checkups.md#020).
+Some criteria cannot be tested automatically: whether a project [interfaces with Qiskit or the IBM Quantum services in a meaningful way](checkups.md#000), for example, or whether a primitive implementation is [V2-compatible](checkups.md#020).
 Those check ups have no `checker`.
 Instead, they are created by a human and carry a `source`, the URL of the GitHub issue where the problem is tracked, usually in the project's own repository:
 
