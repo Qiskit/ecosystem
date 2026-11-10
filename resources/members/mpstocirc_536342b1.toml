@@ -24,6 +24,7 @@ last_commit = 2025-04-01
 last_activity = 2026-10-30
 
 [badge]
+url = "https://qisk.it/e-536342b1"
 style = "flat"
 
 [[pypi]]
@@ -40,7 +41,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 40
-last_180_days_downloads = 431
+last_180_days_downloads = 433
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/mps-to-circuit/issues/9, waiting for a release with the fix"
