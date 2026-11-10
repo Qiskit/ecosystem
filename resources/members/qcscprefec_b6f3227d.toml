@@ -13,7 +13,9 @@ packages = [
   "https://pypi.org/project/qcsc-prefect-core/",
   "https://pypi.org/project/qcsc-prefect-dice/",
   "https://pypi.org/project/qcsc-prefect-executor/",
+  "https://pypi.org/project/qcsc-prefect-fulqrum/",
   "https://pypi.org/project/qcsc-prefect-qiskit/",
+  "https://pypi.org/project/qcsc-prefect-sbd/",
   "https://github.com/qiskit-community/qcsc-prefect/blob/HEAD/packages/*/pyproject.toml",
 ]
 uuid = "b6f3227d-c981-463f-91a9-d08b729051d7"
@@ -29,8 +31,8 @@ homepage = "https://qiskit-community.github.io/qcsc-prefect"
 license = "Apache-2.0"
 description = "A modular workspace for portable HPC workflow orchestration with Prefect."
 created_at = 2026-04-10
-last_commit = 2026-11-09
-last_activity = 2026-11-09
+last_commit = 2026-11-10
+last_activity = 2026-11-10
 
 [badge]
 url = "https://qisk.it/e-b6f3227d"
@@ -38,8 +40,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qcsc-prefect"
-version = "0.3.0"
-last_release_date = 2026-10-23
+version = "0.3.1"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "Meta-package for installing QCSC Prefect core packages"
 url = "https://pypi.org/project/qcsc-prefect/"
@@ -49,12 +51,12 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 27
-last_180_days_downloads = 1427
+last_180_days_downloads = 1465
 
 [[pypi]]
 package_name = "qcsc-prefect-adapters"
-version = "0.3.0"
-last_release_date = 2026-10-23
+version = "0.3.1"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "HPC adapters (Miyabi, Fugaku, Slurm) for QCSC Prefect workflows"
 url = "https://pypi.org/project/qcsc-prefect-adapters/"
@@ -64,12 +66,12 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 29
-last_180_days_downloads = 1787
+last_180_days_downloads = 1824
 
 [[pypi]]
 package_name = "qcsc-prefect-blocks"
-version = "0.3.0"
-last_release_date = 2026-10-23
+version = "0.3.1"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "Prefect block definitions for HPC + Miyabi execution"
 url = "https://pypi.org/project/qcsc-prefect-blocks/"
@@ -79,12 +81,12 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 27
-last_180_days_downloads = 1834
+last_180_days_downloads = 1873
 
 [[pypi]]
 package_name = "qcsc-prefect-core"
-version = "0.3.0"
-last_release_date = 2026-10-23
+version = "0.3.1"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "Core models and resolution logic for QCSC Prefect workflows"
 url = "https://pypi.org/project/qcsc-prefect-core/"
@@ -94,12 +96,12 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 31
-last_180_days_downloads = 1984
+last_180_days_downloads = 2022
 
 [[pypi]]
 package_name = "qcsc-prefect-dice"
-version = "0.3.0"
-last_release_date = 2026-10-23
+version = "0.3.1"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "DICE SHCI solver integration for qcsc-prefect"
 url = "https://pypi.org/project/qcsc-prefect-dice/"
@@ -109,12 +111,12 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 27
-last_180_days_downloads = 1341
+last_180_days_downloads = 1380
 
 [[pypi]]
 package_name = "qcsc-prefect-executor"
-version = "0.3.0"
-last_release_date = 2026-10-23
+version = "0.3.1"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "Prefect executor integrations for HPC schedulers"
 url = "https://pypi.org/project/qcsc-prefect-executor/"
@@ -124,12 +126,25 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 29
-last_180_days_downloads = 1726
+last_180_days_downloads = 1771
+
+[[pypi]]
+package_name = "qcsc-prefect-fulqrum"
+version = "0.3.1"
+last_release_date = 2026-11-10
+license = "Apache-2.0"
+description = "Fulqrum subspace eigensolver integration for qcsc-prefect"
+url = "https://pypi.org/project/qcsc-prefect-fulqrum/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
 
 [[pypi]]
 package_name = "qcsc-prefect-qiskit"
-version = "0.3.0"
-last_release_date = 2026-10-23
+version = "0.3.1"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "Native Qiskit integration utilities for QCSC Prefect workflows"
 url = "https://pypi.org/project/qcsc-prefect-qiskit/"
@@ -139,11 +154,24 @@ maintainers = [
   "https://pypi.org/user/hitomitak/",
 ]
 last_month_downloads = 27
-last_180_days_downloads = 1335
+last_180_days_downloads = 1374
+
+[[pypi]]
+package_name = "qcsc-prefect-sbd"
+version = "0.3.1"
+last_release_date = 2026-11-10
+license = "Apache-2.0"
+description = "SBD Davidson solver integration for qcsc-prefect"
+url = "https://pypi.org/project/qcsc-prefect-sbd/"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
 
 [[python]]
 package_name = "qcsc-prefect"
-version = "0.3.0"
+version = "0.3.1"
 license = "Apache-2.0"
 description = "Meta-package for installing QCSC Prefect core packages"
 requires_python = ">=3.11"
@@ -154,7 +182,7 @@ deferred = []
 
 [[python]]
 package_name = "qcsc-prefect-adapters"
-version = "0.3.0"
+version = "0.3.1"
 license = "Apache-2.0"
 description = "HPC adapters (Miyabi, Fugaku, Slurm) for QCSC Prefect workflows"
 requires_python = ">=3.11"
@@ -165,7 +193,7 @@ deferred = []
 
 [[python]]
 package_name = "qcsc-prefect-blocks"
-version = "0.3.0"
+version = "0.3.1"
 license = "Apache-2.0"
 description = "Prefect block definitions for HPC + Miyabi execution"
 requires_python = ">=3.11"
@@ -176,7 +204,7 @@ deferred = []
 
 [[python]]
 package_name = "qcsc-prefect-core"
-version = "0.3.0"
+version = "0.3.1"
 license = "Apache-2.0"
 description = "Core models and resolution logic for QCSC Prefect workflows"
 requires_python = ">=3.11"
@@ -187,7 +215,7 @@ deferred = []
 
 [[python]]
 package_name = "qcsc-prefect-dice"
-version = "0.3.0"
+version = "0.3.1"
 license = "Apache-2.0"
 description = "DICE SHCI solver integration for qcsc-prefect"
 requires_python = ">=3.11"
@@ -198,7 +226,7 @@ deferred = []
 
 [[python]]
 package_name = "qcsc-prefect-executor"
-version = "0.3.0"
+version = "0.3.1"
 license = "Apache-2.0"
 description = "Prefect executor integrations for HPC schedulers"
 requires_python = ">=3.11"
@@ -208,8 +236,19 @@ source = ["pyproject.toml"]
 deferred = []
 
 [[python]]
+package_name = "qcsc-prefect-fulqrum"
+version = "0.3.1"
+license = "Apache-2.0"
+description = "Fulqrum subspace eigensolver integration for qcsc-prefect"
+requires_python = ">=3.11"
+build_backend = "setuptools.build_meta"
+path = "packages/qcsc-prefect-fulqrum"
+source = ["pyproject.toml"]
+deferred = []
+
+[[python]]
 package_name = "qcsc-prefect-qiskit"
-version = "0.3.0"
+version = "0.3.1"
 license = "Apache-2.0"
 description = "Native Qiskit integration utilities for QCSC Prefect workflows"
 requires_python = ">=3.11"
@@ -220,7 +259,7 @@ deferred = []
 
 [[python]]
 package_name = "qcsc-prefect-sbd"
-version = "0.3.0"
+version = "0.3.1"
 license = "Apache-2.0"
 description = "SBD Davidson solver integration for qcsc-prefect"
 requires_python = ">=3.11"
