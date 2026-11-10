@@ -752,7 +752,10 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 checkup.update_from_source()
             checkups[checkup_id] = source_based
 
-        self.checks = checkups
+        self.checks = {
+            checkup_id: sorted(records, key=lambda record: record.subtest or "")
+            for checkup_id, records in sorted(checkups.items())
+        }
 
     @property
     def age_in_months(self):
