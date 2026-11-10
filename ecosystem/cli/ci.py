@@ -159,6 +159,7 @@ class CliCI:
             "julia",
             "python",
             "requirements",
+            "badge",
         ]
         dao = DAO(path=resources_dir)
         for member in dao.get_all(member_id):
