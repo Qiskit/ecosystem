@@ -1,5 +1,4 @@
-astroid~=3.2.2
-pylint~=3.2.3
+pylint~=4.0.9
 coverage==6.2
 tox~=4.30.0
 black[jupyter]~=26.3
@@ -9,7 +8,7 @@ jsonschema~=4.26
 # For website and docs
 properdocs~=1.6
 mkdocs-material
-# comes with mkdocs-material, which only asks for >=10.2. Older versions crash in
+# comes with mkdocs-material, which only asks for >=10.2. Older version.pylintrcs crash in
 # pymdownx.highlight with Pygments 2.20 and silently leave every code block unformatted
 pymdown-extensions>=11.0.2
 mkdocs-table-reader-plugin
