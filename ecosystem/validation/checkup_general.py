@@ -13,7 +13,7 @@
 
 """General criteria
 
-[000] Build on, interface with, or extend the Qiskit or the IBM Quantum services, in a
+[000] Build on, interface with, or extend Qiskit or the IBM Quantum services, in a
       meaningful way.
 [Q20] Be compatible with the Qiskit SDK v2.0 (or newer).
 [001] Have an OSI-approved open-source license (preferably Apache 2.0 or MIT).

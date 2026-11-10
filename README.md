@@ -28,7 +28,7 @@ We'll review the pull request and get back to you within a few days.
 
 To join the ecosystem, your project must:
 
-  - [`[000]`](qisk.it/ecosystem-checkups#000) Build on, interface with, or extend the [Qiskit SDK](https://github.com/Qiskit/qiskit) or the [IBM Quantum services](https://quantum.cloud.ibm.com/) in a meaningful way. 
+  - [`[000]`](qisk.it/ecosystem-checkups#000) Build on, interface with, or extend [Qiskit](https://www.ibm.com/quantum/qiskit) or the [IBM Quantum services](https://quantum.cloud.ibm.com/) in a meaningful way. 
   - [`[Q20]`](qisk.it/ecosystem-checkups#Q20) Be compatible with the Qiskit SDK v2.0 (or newer).
   - [`[001]`](qisk.it/ecosystem-checkups#001) Have an [OSI-approved](https://opensource.org/license?categories=popular-strong-community) open-source license (preferably Apache 2.0 or MIT).
   - [`[COC]`](qisk.it/ecosystem-checkups#COC)Adhere to our [code of conduct](./CODE_OF_CONDUCT.md) (you can enforce your own code of conduct in addition to this).
