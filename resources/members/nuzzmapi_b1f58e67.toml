@@ -10,7 +10,7 @@ reference_paper = "https://doi.org/10.5281/zenodo.19367565"
 packages = []
 uuid = "b1f58e67-ab64-4d3c-96dd-0fc6fbba854b"
 maturity = "bugfixing only"
-status = "Very Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/okudat9/nu-zz-map-iqm"
@@ -34,3 +34,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-08-19
 highest_supported_qiskit_version = "2.1.2"
+
+[[checks.G12]]
+since = 2026-11-05
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"

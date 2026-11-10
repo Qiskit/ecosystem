@@ -19,19 +19,20 @@ maturity = "experimental"
 status = "Qiskit Project"
 
 [github]
-url = "https://github.com/Qiskit/qiskit-addon-aqc-tensor"
+url = "https://github.com/Qiskit/qiskit-aqc-tensor"
 owner = "Qiskit"
-repo = "qiskit-addon-aqc-tensor"
-stars = 32
-homepage = "https://qiskit.github.io/qiskit-addon-aqc-tensor/"
+repo = "qiskit-aqc-tensor"
+stars = 34
+homepage = "https://qiskit.github.io/qiskit-aqc-tensor/"
 license = "Apache-2.0"
 description = "Reduce circuit depth by compressing initial layers via approximate quantum compilation with tensor networks (AQC-Tensor)"
 estimated_contributors = 9
-total_dependent_repositories = 12
+total_dependent_repositories = 13
 total_dependent_packages = 0
 created_at = 2024-10-31
-last_commit = 2026-10-01
-last_activity = 2026-10-06
+last_commit = 2026-11-01
+last_activity = 2026-11-01
+topics = ["qiskit", "qiskit-addon"]
 
 [badge]
 url = "https://qisk.it/e-5ad8eedc"
@@ -49,7 +50,7 @@ maintainers = ["https://pypi.org/org/qiskit/"]
 requires_qiskit = "<3,>=1.3.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 3755
-last_180_days_downloads = 31625
+last_180_days_downloads = 38721

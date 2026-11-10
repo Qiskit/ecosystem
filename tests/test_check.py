@@ -14,12 +14,14 @@
 
 import os
 import tomllib
+from contextlib import redirect_stdout
 from datetime import date, timedelta
+from io import StringIO
 from unittest import TestCase
 from unittest.mock import patch
 import pytest
 
-from ecosystem.check import CheckData, parse_exclusions
+from ecosystem.check import CheckData, ChecksToml, parse_exclusions
 from ecosystem.error_handling import EcosystemError
 from ecosystem.member import Member
 from ecosystem.validation import CHECKUP_COLLECTION
@@ -102,9 +104,8 @@ class TestChecksTOML(TestCase):
     def test_checkers_are_named_after_their_id(self):
         """Tests the naming convention: the checker of `[XYZ]` is `checkup_XYZ`.
 
-        `ChecksToml.id_by_pytest_node` matches the node id exactly, but it is only
-        consulted when a check up *fails*, so a checker renamed out of the convention
-        goes unnoticed until the weekly run hits it.
+        `ChecksToml.id_by_pytest_node` is only consulted when a check up *fails*, so a
+        checker renamed out of the convention goes unnoticed until the weekly run hits it.
         """
         for id_, entry in self.checks_toml.items():
             if id_ in self.meta_categories or "checker" not in entry:
@@ -115,6 +116,28 @@ class TestChecksTOML(TestCase):
                     msg=f"the checker of [{id_}] is {entry['checker']}, "
                     f"not a checkup_{id_}",
                 )
+
+    def test_a_node_id_resolves_with_or_without_its_directories(self):
+        """Which spelling reaches `id_by_pytest_node` depends on where pytest was
+        invoked from, and checks.toml only ever uses the bare one. Both have to resolve,
+        or collection raises and the report comes back empty (what wiped 91 records in
+        the weekly run of 2026-10-29).
+        """
+        checks_toml = ChecksToml()
+        for id_, entry in self.checks_toml.items():
+            if id_ in self.meta_categories or "checker" not in entry:
+                continue
+            with self.subTest(id=id_):
+                bare = entry["checker"]
+                self.assertEqual(id_, checks_toml.id_by_pytest_node(bare))
+                self.assertEqual(
+                    id_, checks_toml.id_by_pytest_node(f"ecosystem/validation/{bare}")
+                )
+
+    def test_an_unknown_node_id_still_raises(self):
+        """The lookup is more tolerant about the path, not about the name."""
+        with self.assertRaises(AttributeError):
+            ChecksToml().id_by_pytest_node("checkup_nope.py::checkup_999")
 
     def assertHasNoDuplicates(self, iterable, msg=None):  # pylint: disable=invalid-name
         """Check for duplicated elements in iterable"""
@@ -438,3 +461,62 @@ class TestParseExclusions(TestCase):
     def test_empty_values_are_dropped(self):
         """A trailing comma does not add an exclusion that matches nothing"""
         self.assertEqual(parse_exclusions("alumni, "), {"alumni"})
+
+
+class TestCheckupOrderInTheMemberFile(TestCase):
+    """`update_checkups` writes the `[[checks.*]]` tables sorted, not as reported
+
+    The order a run happens to report in is not stable, so an unsorted write moves the
+    tables about and makes a status PR's diff show records deleted and re-added. See the
+    [21] entry: resolving such a conflict by text once dropped a record (PR #1452).
+    """
+
+    source = "https://github.com/qiskit-community/banana-repo/issues/1"
+
+    def record(self, id_, subtest=None):
+        """A source-based record, which `update_checkups` keeps whatever the run reported"""
+        return CheckData(id_, since="2026-01-01", source=self.source, subtest=subtest)
+
+    def member_with(self, checks):
+        """A member carrying `checks`, after an `update_checkups` that reports nothing
+
+        The issue behind every `source` is stood in for as open, so each record survives
+        the run and the stored order is the only thing under test.
+        """
+        member = Member(
+            name="banana",
+            url="https://github.com/qiskit-community/banana-repo",
+            maturity="experimental",
+            checks=checks,
+        )
+        with patch("ecosystem.check.request_json", return_value={"state": "open"}):
+            with redirect_stdout(StringIO()):
+                member.update_checkups("checkup_general.py::checkup_001")
+        return member
+
+    def test_the_ids_are_sorted(self):
+        """Reported in one order, written in another: by ID"""
+        member = self.member_with(
+            {
+                "Q03": [self.record("Q03")],
+                "G00": [self.record("G00")],
+                "007": [self.record("007")],
+            }
+        )
+        self.assertEqual(["007", "G00", "Q03"], list(member.checks))
+
+    def test_the_subtests_of_one_id_are_sorted(self):
+        """A member with several places keeps those stable too"""
+        member = self.member_with(
+            {
+                "P12": [
+                    self.record("P12", subtest="pypi:zebra"),
+                    self.record("P12", subtest="pypi:apple"),
+                ]
+            }
+        )
+        self.assertEqual(
+            ["pypi:apple", "pypi:zebra"],
+            [record.subtest for record in member.checks["P12"]],
+        )
+

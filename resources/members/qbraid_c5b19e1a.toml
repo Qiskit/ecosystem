@@ -17,16 +17,27 @@ maturity = "production-ready"
 url = "https://github.com/qBraid/qBraid"
 owner = "qBraid"
 repo = "qBraid"
-stars = 118
+stars = 119
 homepage = "https://docs.qbraid.com/v2/sdk"
 license = "Apache-2.0"
 description = "A platform-agnostic quantum runtime framework"
 estimated_contributors = 35
-total_dependent_repositories = 45
-total_dependent_packages = 23
+total_dependent_repositories = 46
+total_dependent_packages = 25
 created_at = 2019-09-11
-last_commit = 2026-10-15
-last_activity = 2026-10-15
+last_commit = 2026-11-09
+last_activity = 2026-11-09
+topics = [
+  "openqasm",
+  "python",
+  "qbraid",
+  "qir",
+  "quantum",
+  "quantum-computing",
+  "runtime",
+  "rustworkx",
+  "transpiler",
+]
 
 [badge]
 url = "https://qisk.it/e-c5b19e1a"
@@ -42,10 +53,27 @@ url = "https://pypi.org/project/qbraid/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/qBraid/"]
-requires_qiskit = "<3.0,>=1.0"
+last_month_downloads = 15086
+last_180_days_downloads = 144349
+
+[[pypi.requires]]
+specifier = "<3.0,>=1.0"
+extra = "aqt"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-04-24
-highest_supported_qiskit_version = "2.4.1"
-last_month_downloads = 15086
-last_180_days_downloads = 116455
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[pypi.requires]]
+specifier = "<3.0,>=1.0"
+extra = "qiskit"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

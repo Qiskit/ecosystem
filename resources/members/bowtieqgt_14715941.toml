@@ -1,0 +1,50 @@
+name = "BowtieQGT"
+url = "https://github.com/MarcDrudis/BowtieQGT"
+description = "Computes quantum geometric tensors and gradients of parameterized circuits, using light cones to skip idle qubits."
+labels = ["quantum information", "GPU", "research"]
+interfaces = ["Python"]
+category = "Tooling"
+reference_paper = "https://arxiv.org/abs/2605.20331"
+documentation = "https://marcdrudis.github.io/BowtieQGT/"
+packages = []
+uuid = "14715941-a964-45b3-b78c-580e2aee155a"
+maturity = "experimental"
+status = "Early Project"
+
+[github]
+url = "https://github.com/MarcDrudis/BowtieQGT"
+owner = "MarcDrudis"
+repo = "BowtieQGT"
+stars = 3
+license = "Apache-2.0"
+description = "Efficient Quantum Geometric Tensor computation for parameterized quantum circuits using the bowtie method. Leverages light-cone str..."
+created_at = 2026-05-15
+last_commit = 2026-10-29
+last_activity = 2026-11-05
+
+[badge]
+url = "https://qisk.it/e-14715941"
+style = "flat"
+
+[[python]]
+package_name = "bowtiequantumgeometrictensor"
+license = "Apache-2.0"
+description = "Quantum Geometric Tensor, gradient and variance computation for parameterized circuits via light-cone bowties."
+requires_python = ">=3.11"
+requires_qiskit = ">=2.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = ["version"]
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/MarcDrudis/BowtieQGT/issues/5, waiting for a release with the fix"
+xfailed_until = 2027-02-05
+since = 2026-10-30
+details = "The qiskit requirement in the bowtiequantumgeometrictensor manifest in the repository allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/MarcDrudis/BowtieQGT/issues/5"
+subtest = "python:bowtiequantumgeometrictensor"
+importance = "RECOMMENDATION"

@@ -55,7 +55,7 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
         verbose_level = "-q"
     if tests_to_run is None:
         tests_to_run = ""
-    pytest.main(
+    exitcode = pytest.main(
         [
             f"ecosystem/validation/{tests_to_run}",
             *CHECKUP_COLLECTION,
@@ -66,4 +66,7 @@ def validate_member(member, tests_to_run=None, verbose_level=None):
         ],
         plugins=[report],
     )
+    # the exit status is the only thing a crash in a collection hook sets: no run phase
+    # happens, so `pytest_terminal_summary` does not fire and `report.exitcode` stays 0
+    report.exitcode = getattr(exitcode, "value", exitcode)
     return report

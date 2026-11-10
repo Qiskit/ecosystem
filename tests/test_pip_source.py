@@ -123,23 +123,19 @@ class TestPipSourcePackageCard(PipSourceTestCase):
             "**Computed at build time** `readme`", "\n".join(self.card().body())
         )
 
-    def test_the_body_carries_the_qiskit_compatibility_table(self):
-        """The same table the PyPI card shows, computed from the declared requirement."""
-        body = "\n".join(self.card().body())
-        self.assertIn("<3,>=1.2", body)
-        self.assertIn("2.1.0", body)
+    def test_the_card_does_not_carry_the_qiskit_compatibility_table(self):
+        """It is a section of the page now: a card is one column of a grid, and the
+        table has up to five of its own."""
+        self.assertNotIn("Qiskit compatibility", "\n".join(self.card().body()))
 
     def test_every_bullet_is_its_own_paragraph(self):
         """Consecutive lines would collapse into one, so bullets are blank-separated."""
         body = self.card().body()
-        # the compatibility table is shared with the PyPI card and spaces itself out
-        end = next(i for i, line in enumerate(body) if "Qiskit compatibility" in line)
-        declared = body[:end]
-        bullets = [index for index, line in enumerate(declared) if line.startswith(":")]
+        bullets = [index for index, line in enumerate(body) if line.startswith(":")]
         self.assertEqual(5, len(bullets))
         for index in bullets:
-            with self.subTest(bullet=declared[index]):
-                self.assertEqual("", declared[index + 1])
+            with self.subTest(bullet=body[index]):
+                self.assertEqual("", body[index + 1])
 
 
 class TestPipSourcePage(PipSourceTestCase):

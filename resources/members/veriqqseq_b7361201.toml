@@ -24,6 +24,16 @@ description = "Symbolic simulation of dynamic Qiskit circuits and measurement-dr
 created_at = 2026-03-02
 last_commit = 2026-08-19
 last_activity = 2026-08-19
+topics = [
+  "bdd",
+  "dynamic-circuits",
+  "formal-methods",
+  "qiskit",
+  "quantum-computing",
+  "quantum-simulation",
+  "symbolic-execution",
+  "weighted-model-counting",
+]
 
 [badge]
 url = "https://qisk.it/e-b7361201"
@@ -42,7 +52,15 @@ maintainers = ["https://pypi.org/user/13974811840/"]
 requires_qiskit = "<3,>=2.4"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+last_month_downloads = 34
+last_180_days_downloads = 434
+
+[[pypi.requires]]
+specifier = "==2.4.2"
+extra = "benchmark"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-14
 highest_supported_qiskit_version = "2.4.2"
-last_month_downloads = 34
-last_180_days_downloads = 412

@@ -1,10 +1,11 @@
-name = "Prefect Qiskit Plugin"
+name = "Prefect Qiskit"
 url = "https://github.com/qiskit-community/prefect-qiskit"
 description = "Prefect plugin to orchestrate Qiskit workloads on quantum backends as managed, reusable workflow tasks."
 labels = ["cloud service"]
 interfaces = ["Python"]
 ibm_maintained = true
 category = "Tooling"
+documentation = "https://qiskit-community.github.io/prefect-qiskit/"
 packages = ["https://pypi.org/project/prefect-qiskit/"]
 uuid = "5bf681f5-d366-4d32-982c-d10153df211c"
 maturity = "experimental"
@@ -13,7 +14,7 @@ maturity = "experimental"
 url = "https://github.com/qiskit-community/prefect-qiskit"
 owner = "qiskit-community"
 repo = "prefect-qiskit"
-stars = 8
+stars = 9
 homepage = "https://qiskit-community.github.io/prefect-qiskit/"
 license = "Apache-2.0"
 description = "Prefect workflow integration for Qiskit Primitives."
@@ -22,7 +23,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-04-30
 last_commit = 2026-08-12
-last_activity = 2026-09-24
+last_activity = 2026-10-30
 
 [badge]
 url = "https://qisk.it/e-5bf681f5"
@@ -36,14 +37,17 @@ license = "Apache-2.0"
 description = "Prefect workflow integration for Qiskit Primitives."
 url = "https://pypi.org/project/prefect-qiskit/"
 status = "active"
-maintainers = ["https://pypi.org/user/hitomitak/"]
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/hitomitak/",
+]
 requires_qiskit = ">=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 36
-last_180_days_downloads = 445
+last_180_days_downloads = 515
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/prefect-qiskit/issues/14, waiting for a release with the fix"

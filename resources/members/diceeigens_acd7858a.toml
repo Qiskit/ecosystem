@@ -12,9 +12,9 @@ maturity = "experimental"
 status = "Qiskit Project"
 
 [github]
-url = "https://github.com/Qiskit/qiskit-addon-dice-solver"
+url = "https://github.com/Qiskit/qiskit-dice-solver"
 owner = "Qiskit"
-repo = "qiskit-addon-dice-solver"
+repo = "qiskit-dice-solver"
 stars = 28
 homepage = "https://qiskit.github.io/qiskit-addon-dice-solver"
 license = "Apache-2.0"
@@ -23,7 +23,8 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2024-08-16
 last_commit = 2026-08-20
-last_activity = 2026-10-12
+last_activity = 2026-11-03
+topics = ["qiskit", "qiskit-addon"]
 
 [badge]
 url = "https://qisk.it/e-acd7858a"
@@ -41,7 +42,7 @@ maintainers = [
   "https://pypi.org/user/mrossinek/",
 ]
 last_month_downloads = 13
-last_180_days_downloads = 1037
+last_180_days_downloads = 1070
 
 [[checks.P12]]
 xfailed = "PR with fix was merged, but not yet released to PyPI"

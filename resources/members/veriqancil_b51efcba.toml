@@ -20,7 +20,7 @@ stars = 0
 license = "MIT"
 created_at = 2026-05-14
 last_commit = 2026-08-27
-last_activity = 2026-08-27
+last_activity = 2026-11-01
 
 [badge]
 url = "https://qisk.it/e-b51efcba"
@@ -39,7 +39,14 @@ maintainers = ["https://pypi.org/user/Matrix247/"]
 requires_qiskit = "<3,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-08-13
-highest_supported_qiskit_version = "2.5.2"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 17
-last_180_days_downloads = 153
+last_180_days_downloads = 164
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/veriq-toolkit/Ancilla-Safety/issues/1"
+importance = "NICE-TO-HAVE"

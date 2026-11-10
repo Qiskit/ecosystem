@@ -30,6 +30,16 @@ description = "Data re-uploading quantum classifier for Qiskit 2.x — pip-insta
 created_at = 2026-05-05
 last_commit = 2026-06-07
 last_activity = 2026-09-24
+topics = [
+  "classification",
+  "data-reuploading",
+  "python",
+  "qiskit",
+  "qml",
+  "quantum-computing",
+  "quantum-machine-learning",
+  "sklearn",
+]
 
 [badge]
 url = "https://qisk.it/e-d5572b9d"
@@ -48,10 +58,10 @@ maintainers = ["https://pypi.org/user/caduranpd/"]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-07-02
-highest_supported_qiskit_version = "2.5.0"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 4
-last_180_days_downloads = 296
+last_180_days_downloads = 307
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Carlosandp/qiskit-data-reuploading/issues/4, waiting for a release with the fix"
