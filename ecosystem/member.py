@@ -303,11 +303,6 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         asked = (target if target is not None else stored).unmarked
         status = asked.status()
         if status in (404, 410):
-            # a blob URL is only gone if it is missing from the branch the member is about
-            # as well, since that is the ref every consumer of it actually reads. Asked as
-            # submitted first, so a link that works is never second-guessed:
-            # `qutes_lang/blob/development/requirements.txt` answers 200 and stands, while
-            # `blob/HEAD/src/.../requirements.txt` 404s and is found on `migration-to-csharp`
             on_branch = self._on_member_branch(asked)
             if str(on_branch) != str(asked):
                 status = on_branch.status()
