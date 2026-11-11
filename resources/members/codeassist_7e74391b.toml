@@ -35,7 +35,7 @@ style = "flat"
 
 [[checks.016]]
 since = 2026-11-11
-details = "does not resolve: https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode"
+details = "does not resolve: member.packages (https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode)"
 importance = "CRITICAL"
 
 [[checks.G05]]

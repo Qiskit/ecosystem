@@ -160,5 +160,5 @@ highest_supported_qiskit_version = "2.6.2"
 
 [[checks.016]]
 since = 2026-11-11
-details = "does not resolve: https://github.com/QuBins/qiskit-images, https://qubins.org, https://github.com/QuBins/qiskit-images/pkgs/container/images, https://github.com/QuBins/qiskit-images/blob/main/versions/*/requirements.txt"
+details = "does not resolve: member.url (https://github.com/QuBins/qiskit-images), member.website (https://qubins.org), member.packages (https://github.com/QuBins/qiskit-images/pkgs/container/images), member.packages (https://github.com/QuBins/qiskit-images/blob/main/versions/*/requirements.txt)"
 importance = "CRITICAL"

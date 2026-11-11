@@ -43,6 +43,6 @@ style = "flat"
 
 [[checks.016]]
 since = 2026-11-11
-details = "does not resolve: https://marketplace.visualstudio.com/items?itemName=QuantagITSolutionsGmbH.openqasm-debug"
-importance = "CRITICAL"
+details = "does not resolve: member.packages (https://marketplace.visualstudio.com/items?itemName=QuantagITSolutionsGmbH.openqasm-debug)"
 discussion = "https://github.com/quantag/qdb-qscore/issues/12"
+importance = "CRITICAL"
