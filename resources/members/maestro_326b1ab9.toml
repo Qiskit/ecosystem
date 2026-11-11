@@ -1,7 +1,7 @@
 name = "qiskit-maestro"
 submission_number = 1449
 url = "https://github.com/QoroQuantum/qiskit-maestro"
-description = "Run Qiskit circuits, Sampler and Estimator on the Maestro simulator (qoro-maestro): statevector, MPS, stabilizer and more, on CPU or GPU."
+description = "Run Qiskit circuits, Sampler and Estimator on the Qoro simulator (qoro-maestro): statevector, MPS, stabilizer and more, on CPU or GPU."
 contact_info = "stephen@qoroquantum.de"
 labels = ["tensor networks", "GPU", "provider", "Hamiltonian simulation"]
 interfaces = ["Python"]
