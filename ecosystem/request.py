@@ -142,6 +142,8 @@ def request_json(
 class URL:
     """Wraps URLs"""
 
+    BROKEN_SCHEME_PREFIX = "status-"
+
     def __init__(self, original_url: str, logger_level=None):
         """
 
@@ -219,13 +221,10 @@ class URL:
     def __repr__(self):
         return f"URL('{self}')"
 
-    #: scheme prefix of a URL recorded as not resolving, as `status-404://<the url>`
-    BROKEN_SCHEME_PREFIX = "status-"
-
     @property
     def is_broken(self):
         """Whether this URL carries the `status-<status>://` marker"""
-        return str(self).startswith(self.BROKEN_SCHEME_PREFIX)
+        return str(self).startswith(URL.BROKEN_SCHEME_PREFIX)
 
     def _with_scheme(self, scheme):
         """This URL with its scheme swapped, and everything after it left alone.
@@ -249,7 +248,7 @@ class URL:
         preserves. `[013]` passes it only because `status-404://` does not start with
         `http:`, which is luck rather than design.
         """
-        return self._with_scheme(f"{self.BROKEN_SCHEME_PREFIX}{status}")
+        return self._with_scheme(f"{URL.BROKEN_SCHEME_PREFIX}{status}")
 
     @property
     def unmarked(self):

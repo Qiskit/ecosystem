@@ -270,32 +270,25 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             url = BadgeData.create_link(name=self.name, short_uuid=self.short_uuid)
             self.badge = BadgeData(url)
 
-    def _probe_ref(self, package):
-        """`package` with its `/blob/<ref>/` pointed at the branch the member is about.
+    def _on_member_branch(self, url):
+        """`url` with its `/blob/<ref>/` pointed at the branch the member is about, or
+        `url` itself when that does not apply.
 
         A submitted blob URL names whatever ref the submitter copied, and every consumer
-        of it drops that on purpose — `RequirementsData.from_url` and
-        `PythonData.from_url` say "the branch is the member's rather than the link's", and
-        `declared_requirements` re-attaches `[github] tree`. The probe has to agree, or a
-        file that lives only on the member's branch reads as gone:
-        `qutesprogr_79b52453` links `blob/HEAD/...requirements.txt` while its `tree` is
-        `migration-to-csharp`, and only the latter answers 200.
+        of it drops that on purpose — `RequirementsData.from_url` and `PythonData.from_url`
+        say "the branch is the member's rather than the link's", and `declared_requirements`
+        re-attaches `[github] tree`. So the ref in the link is not what gets read, and a
+        file missing from it is not necessarily missing from the project.
         """
         ref = getattr(self.github, "ref", None)
-        if not ref:
-            # no `tree`, so the member is about the default branch and whatever ref the
-            # link names is left alone: rewriting an explicit `main` to `HEAD` would churn
-            # a URL the submitter pinned on purpose
-            return package
-        parts = package.path.strip("/").split("/")
-        if len(parts) < 5 or parts[2] != "blob" or parts[3] == ref:
-            return package
+        parts = url.path.strip("/").split("/")
+        if not ref or len(parts) < 5 or parts[2] != "blob" or parts[3] == ref:
+            return url
         parts[3] = ref
-        query = f"?{package.query}" if package.query else ""
-        return URL(f"https://{package.hostname}/{'/'.join(parts)}{query}")
+        query = f"?{url.query}" if url.query else ""
+        return URL(f"https://{url.hostname}/{'/'.join(parts)}{query}")
 
-    @classmethod
-    def _dead_or_alive(cls, stored, target=None):
+    def _dead_or_alive(self, stored, target=None):
         """`stored` marked, unmarked, or None for nothing to change.
 
         `target` is what gets requested when it is not `stored` itself, which is how a
@@ -307,7 +300,17 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         touched. A marked one is re-asked at its own address every run, so a project that
         fixes its link has the marker cleared rather than needing a hand-edit.
         """
-        status = (target if target is not None else stored).unmarked.status()
+        asked = (target if target is not None else stored).unmarked
+        status = asked.status()
+        if status in (404, 410):
+            # a blob URL is only gone if it is missing from the branch the member is about
+            # as well, since that is the ref every consumer of it actually reads. Asked as
+            # submitted first, so a link that works is never second-guessed:
+            # `qutes_lang/blob/development/requirements.txt` answers 200 and stands, while
+            # `blob/HEAD/src/.../requirements.txt` 404s and is found on `migration-to-csharp`
+            on_branch = self._on_member_branch(asked)
+            if str(on_branch) != str(asked):
+                status = on_branch.status()
         if status in (404, 410):  # permanent dead status
             marked = stored.marked(status)
             # already marked, and still gone, is not a change: a daily run stays quiet
@@ -337,7 +340,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         `DAO.log_update`'s to report, and `git diff` is how a run is reviewed.
         """
         for index, package in enumerate(self.packages):
-            target = self._probe_ref(package).checkable_prefix
+            target = package.checkable_prefix
             if target is None:
                 # a pattern too shallow to name a directory: nothing to ask about
                 continue
@@ -596,17 +599,12 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         # the one caller that passes it explicitly may pass a string, as `__init__` allows
         github_url = URL(github_url) if isinstance(github_url, str) else github_url
 
-        # github section. A URL that `update_urls` marked as not resolving is not one to
-        # read a section out of: `from_url` only parses, so a `status-404://` link would
-        # seed an `owner`/`repo` as if it were live and every `[G*]` check up would then
-        # report on a repository that is not there
         if not self.github and not github_url.is_broken:
             self.github = GitHubData.from_url(github_url)
 
         # package sections
         for package in self.packages:
             if package.is_broken:
-                # same: the section would describe a distribution the URL says is gone
                 continue
             self.upsert_section_for(package)
 

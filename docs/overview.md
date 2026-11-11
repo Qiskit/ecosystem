@@ -17,7 +17,9 @@ The goal of the Ecosystem is to recognize, support and accelerate development of
   - [Categories](#categories)
   - [When automation runs](#when-automation-runs)
   - [How a failing check up is recorded](#how-a-failing-check-up-is-recorded)
+  - [One record per failing place](#one-record-per-failing-place)
   - [Check ups that are not tests](#check-ups-that-are-not-tests)
+  - [A URL that does not resolve](#a-url-that-does-not-resolve)
   - [Expected failures](#expected-failures)
   - [The whole list](#the-whole-list)
 - [For project maintainers](#for-project-maintainers)
@@ -81,6 +83,7 @@ The cure period each check up ends up with is in the [check up list](checkups.md
 All the automation run by [GitHub Actions](https://github.com/Qiskit/ecosystem/tree/main/.github/workflows):
 
 - **Daily**, `Daily | Update member data` refreshes the data that the check ups look at (GitHub repository activity, PyPI and Julia package metadata, ...) and commits it into the project files.
+  It also asks every submitted URL whether it still resolves, and records the ones that do not (see [A URL that does not resolve](#a-url-that-does-not-resolve)).
   This is why a fix in a project can take a day to be visible, and a release can take a day to be noticed.
 - **Weekly** (Thursdays), `Weekly | Update member status` runs `python manager.py members update_checkups` on every non-alumni member, and then recomputes the [membership status](classifications.md#status) with `python manager.py members update_status`.
   The result is not pushed directly: it opens a pull request labeled `member update`, so a human reviews any status change before it reaches the website.
@@ -151,6 +154,27 @@ For these, the weekly run does not execute a test: it looks at the state of that
 If the issue is closed, that is noted in `details` (`the source issue is closed as completed`, for instance) and a human decides what to do.
 A closed issue does not remove the check up by itself, because closing an issue does not necessarily mean the situation is solved.
 
+### A URL that does not resolve
+
+Most check ups read only the member file, which is what makes the weekly run fast and
+independent of two dozen external hosts being up. Asking whether a link still works cannot be
+answered that way, so it is split in two: the daily run asks, and the check up reads the answer.
+
+`python manager.py members update_urls` requests URL a project submitted (`url`,
+`website`, `documentation`, `reference_paper` and each entry of `packages`) and records a dead
+one **in the field itself**, by replacing the scheme:
+
+```toml
+url = "status-404://github.com/<non-existing>/<project>"
+website = "status-404://<broken-url>.org"
+```
+
+The scheme is `status-<code>://`, where the code is the HTTP status that was answered. 
+The rest of the URL is kept exactly as it was, which is
+deliberate: it is the only record of what the link was meant to be, and therefore the only clue
+for fixing it. [`[016]`](checkups.md#016) is the check up that reads the scheme, so it needs no
+network of its own.
+
 ### Expected failures
 
 A check up can be failing for a good reason.
@@ -196,6 +220,7 @@ Being _Alumni_ is reversible: a project can be reconsidered at any point by open
 
 1. **Fix it upstream.** Most check ups look at your repository or at your published packages, so the fix lives there: a release compatible with the latest Qiskit, a `LICENSE` file GitHub can recognize, a commit. The data is refreshed daily and the check ups run weekly, so give it a few days before worrying.
 2. **Fix the metadata.** Some check ups are about what the Qiskit Ecosystem knows about your project (a broken URL, a too-long description, a wrong category). Those are fixed in your project's TOML file, either with a pull request to [this repository](https://github.com/Qiskit/ecosystem) or by [opening an update issue](https://github.com/Qiskit/ecosystem/issues/new?template=02_update.yml).
+   One exception: a URL recorded as `status-404://...` is a link we found to be dead, and the record clears itself once the page answers again, so if the page has moved it is the address that needs updating, and if you have restored it there is nothing to do here.
 3. **Explain it.** If a check up genuinely does not apply to your project, say so in an issue. If we agree, it is recorded as an [expected failure](#expected-failures) and stops affecting your status.
 4. **Declare your support expectations.** A project that is intentionally not maintained anymore is not a problem, as long as it says so: setting the [maturity](classifications.md#maturity) to `as-is` or `deprecated` marks it as [_Unmaintained_](classifications.md#unmaintained) and exempts it from the activity check ups.
 
