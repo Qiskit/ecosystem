@@ -1,5 +1,4 @@
 name = "flake8-qiskit-migration"
-url = "https://github.com/qiskit-community/flake8-qiskit-migration"
 description = "A flake8 plugin that flags imports removed in Qiskit 1.0 and 2.0, and suggests what to use instead."
 labels = ["environment setup"]
 interfaces = ["Python", "Command-line interface (CLI)"]

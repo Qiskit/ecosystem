@@ -1,6 +1,5 @@
 name = "QAOA Training Pipeline"
 submission_number = 1345
-url = "https://github.com/qiskit-community/qaoa_training_pipeline"
 description = "A pipeline and methods to generate good parameters for QAOA ansatz circuits, training variational parameters on classical hardware."
 labels = ["optimization", "tensor networks", "research"]
 interfaces = ["Python", "Command-line interface (CLI)"]

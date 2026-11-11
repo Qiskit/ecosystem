@@ -844,7 +844,13 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             },
             "members": [
                 CliMembers.filter_data(
-                    member.to_dict(),
+                    # `url` is derived from `[github]` and `to_dict` writes it back only when
+                    # it could not be, so the key is absent for almost every member. Put the
+                    # derived one in for the map to read: `github.url` still wins, so nothing
+                    # exported changes, and the fallback stops being a dead branch for a
+                    # member whose section was built locally and not fetched yet, which has
+                    # `owner`/`repo` but no `github.url`
+                    member.to_dict() | {"url": str(member.url) if member.url else None},
                     member_data_to_export,
                 )
                 | {"ibm_maintained": bool(member.ibm_maintained)}
