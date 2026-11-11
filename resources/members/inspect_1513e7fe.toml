@@ -46,17 +46,18 @@ highest_supported_qiskit_version = "2.6.0"
 last_month_downloads = 11
 last_180_days_downloads = 174
 
+[[checks.013]]
+since = 2026-04-01
+details = "http://pypi.org/project/qiskit-inspect/ is not HTTPS"
+importance = "IMPORTANT"
+
 [[checks.G06]]
 since = 2026-09-24
 details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
 importance = "RECOMMENDATION"
 
-[[checks.P12]]
-since = 2026-10-01
-details = "The PyPI package qiskit-inspect does not have a declared license"
+[[checks.Q03]]
+since = 2026-11-11
+details = "The qiskit requirement in the qiskit-inspect release on PyPI allows a not-yet-released major version of Qiskit"
+subtest = "pypi:qiskit-inspect"
 importance = "RECOMMENDATION"
-
-[[checks.013]]
-since = 2026-04-01
-details = "http://pypi.org/project/qiskit-inspect/ is not HTTPS"
-importance = "IMPORTANT"

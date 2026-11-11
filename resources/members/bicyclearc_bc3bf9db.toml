@@ -134,3 +134,9 @@ highest_supported_qiskit_version = "2.6.2"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml", "setup.py"]
 deferred = ["rust_extensions"]
+
+[[checks.Q03]]
+since = 2026-11-11
+details = "The qiskit requirement in the bicycle-architecture-compiler manifest in the repository allows a not-yet-released major version of Qiskit"
+subtest = "python:bicycle-architecture-compiler"
+importance = "RECOMMENDATION"

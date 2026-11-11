@@ -6,7 +6,7 @@ labels = ["provider", "cloud service"]
 interfaces = ["Python"]
 created_at = 2024-05-07
 category = "Compute provider"
-documentation = "https://iqm-finland.github.io/qiskit-on-iqm/"
+documentation = "status-404://iqm-finland.github.io/qiskit-on-iqm/"
 packages = ["https://pypi.org/project/qiskit-iqm/"]
 uuid = "648ef199-ace1-4c6b-ae9c-2c0578cde0d5"
 maturity = "deprecated"
@@ -49,6 +49,11 @@ highest_supported_qiskit_version = "1.2.4"
 last_month_downloads = 717
 last_180_days_downloads = 18017
 
+[[checks.016]]
+since = 2026-11-11
+details = "does not resolve: https://iqm-finland.github.io/qiskit-on-iqm/"
+importance = "CRITICAL"
+
 [[checks.G05]]
 since = 2026-04-23
 details = "GitHub repository https://github.com/iqm-finland/qiskit-on-iqm archived and project is not `as-is`"
@@ -56,15 +61,6 @@ importance = "CRITICAL"
 
 [[checks.Q02]]
 since = 2026-04-30
-details = "Python package qiskit-iqm is not compatible with Qiskit SDK v2"
+details = "The qiskit requirement in the qiskit-iqm release on PyPI is not compatible with Qiskit SDK v2"
+subtest = "pypi:qiskit-iqm"
 importance = "IMPORTANT"
-
-[[checks.Q20]]
-since = 2026-09-24
-details = "Not compatible with the Qiskit SDK v2 or newer: `[Q02]`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[G05]` `[Q20]`"
-importance = "CRITICAL"

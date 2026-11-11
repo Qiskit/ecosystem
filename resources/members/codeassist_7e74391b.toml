@@ -7,7 +7,7 @@ ibm_maintained = true
 category = "Tooling"
 documentation = "https://quantum.cloud.ibm.com/docs/guides/qiskit-code-assistant"
 packages = [
-  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "status-404://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
   "https://open-vsx.org/extension/qiskit/qiskit-vscode",
 ]
 uuid = "7e74391b-0b86-46d6-bcd5-d2305c9e5338"
@@ -33,12 +33,12 @@ last_activity = 2026-05-29
 url = "https://qisk.it/e-7e74391b"
 style = "flat"
 
+[[checks.016]]
+since = 2026-11-11
+details = "does not resolve: https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode"
+importance = "CRITICAL"
+
 [[checks.G05]]
 since = 2026-07-02
 details = "GitHub repository https://github.com/Qiskit/qiskit-code-assistant-vscode archived and project is not `as-is`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"

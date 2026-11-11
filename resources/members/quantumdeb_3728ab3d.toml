@@ -9,7 +9,7 @@ interfaces = ["Python", "Graphical User Interface (GUI)"]
 website = "https://quantag-it.com/quantum/"
 category = "Tooling"
 packages = [
-  "https://marketplace.visualstudio.com/items?itemName=QuantagITSolutionsGmbH.openqasm-debug",
+  "status-404://marketplace.visualstudio.com/items?itemName=QuantagITSolutionsGmbH.openqasm-debug",
 ]
 uuid = "3728ab3d-5b7b-416d-ad73-8e55a41091ca"
 maturity = "production-ready"
@@ -40,3 +40,9 @@ topics = [
 [badge]
 url = "https://qisk.it/e-3728ab3d"
 style = "flat"
+
+[[checks.016]]
+since = 2026-11-11
+details = "does not resolve: https://marketplace.visualstudio.com/items?itemName=QuantagITSolutionsGmbH.openqasm-debug"
+importance = "CRITICAL"
+discussion = "https://github.com/quantag/qdb-qscore/issues/12"

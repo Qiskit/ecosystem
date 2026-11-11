@@ -13,7 +13,7 @@ labels = [
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "SDK"
 reference_paper = "https://arxiv.org/abs/2606.19312"
-documentation = "https://qdsvquantum-afk.github.io/qdsv-bridge/how_to/logical_artifacts.html"
+documentation = "https://qdsvquantum-afk.github.io/qdsv-bridge/"
 packages = ["https://pypi.org/project/qdsv-bridge/"]
 uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
 maturity = "experimental"
@@ -54,3 +54,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
+
+[[checks.016]]
+since = 2026-11-11
+details = "does not resolve: https://qdsvquantum-afk.github.io/qdsv-bridge/"
+importance = "CRITICAL"

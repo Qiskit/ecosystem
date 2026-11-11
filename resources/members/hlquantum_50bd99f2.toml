@@ -63,6 +63,11 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 
+[[checks.G12]]
+since = 2026-09-14
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
+
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/AlinDanielFerenczi/HLQuantum/issues/1, waiting for a release with the fix"
 xfailed_until = 2027-03-31
@@ -89,8 +94,3 @@ details = "The qiskit requirement in the hlquantum release on PyPI (extra qiskit
 discussion = "https://github.com/AlinDanielFerenczi/HLQuantum/issues/1"
 subtest = "pypi:hlquantum (extra qiskit)"
 importance = "RECOMMENDATION"
-
-[[checks.G12]]
-since = 2026-09-14
-details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
-importance = "IMPORTANT"

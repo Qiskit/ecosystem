@@ -182,7 +182,9 @@ class URL:
                     logger_level=self.logger_level,
                 )
 
-        scheme = "https"
+        scheme = (
+            url.scheme if url.scheme.startswith(URL.BROKEN_SCHEME_PREFIX) else "https"
+        )
         if url.netloc:
             netloc, path = url.hostname, url.path
         else:
@@ -216,6 +218,119 @@ class URL:
 
     def __repr__(self):
         return f"URL('{self}')"
+
+    #: scheme prefix of a URL recorded as not resolving, as `status-404://<the url>`
+    BROKEN_SCHEME_PREFIX = "status-"
+
+    @property
+    def is_broken(self):
+        """Whether this URL carries the `status-<status>://` marker"""
+        return str(self).startswith(self.BROKEN_SCHEME_PREFIX)
+
+    def _with_scheme(self, scheme):
+        """This URL with its scheme swapped, and everything after it left alone.
+
+        Swapped textually rather than reassembled from `hostname`, `path` and `query`:
+        that drops whatever component the reassembly forgets, and `path` in particular
+        excludes a `;params` segment, which a SICI-style DOI carries
+        (`...3.0.CO;2-2`). Marking and unmarking have to round trip exactly — the marker
+        is supposed to be the link the member file had — so this takes the normalized URL
+        as it stands and only replaces what is in front of the `://`.
+        """
+        return URL(f"{scheme}://{str(self).split('://', 1)[1]}")
+
+    def marked(self, status):
+        """This URL recorded as not resolving, as `status-<status>://<the url>`
+
+        The member file keeps the link it had — a 404 is for a human to fix, and the old
+        URL is the only clue to what it should be — while saying plainly that nothing is
+        there. `[016]` is what reads it; note the other URL check ups are *not* fooled into
+        skipping a marked link, because they match on hostname and path, which the marker
+        preserves. `[013]` passes it only because `status-404://` does not start with
+        `http:`, which is luck rather than design.
+        """
+        return self._with_scheme(f"{self.BROKEN_SCHEME_PREFIX}{status}")
+
+    @property
+    def unmarked(self):
+        """The live URL a `status-<status>://` marker was made from"""
+        return self._with_scheme("https")
+
+    @property
+    def checkable_prefix(self):
+        """What of a `packages` URL can be requested, or None if there is nothing to ask.
+
+        A pattern (`.../packages/*/pyproject.toml`) has no single target, so the part up to
+        the first wildcard is what gets checked — `.../packages/`, one directory of the
+        repository. A `?itemName=...` query is not a pattern even though `?` is a wildcard
+        character elsewhere, so the query is dropped before looking.
+        """
+        without_query = f"https://{self.hostname}{self.path}"
+        # `*` and `[` only: `urlparse` has already split everything after the first `?`
+        # into `query`, so a `?` can never reach `path`, and a `?itemName=...` on the VS
+        # Code marketplace is a real URL rather than a pattern. No corpus pattern uses `?`
+        # as a wildcard; one that did would read as a query and be asked verbatim
+        cut = min(
+            (without_query.index(w) for w in "*[" if w in without_query),
+            default=None,
+        )
+        if cut is None:
+            return self
+        prefix = without_query[:cut].rsplit("/", 1)[0]
+        return URL(prefix) if prefix.count("/") > 2 else None
+
+    def status(self):
+        """The HTTP status this URL answers, or None if nothing answered at all.
+
+        `HEAD` first, because the body is never wanted here and most hosts answer it, but
+        it is only ever an optimization: **any** failing `HEAD` is re-asked with `GET`,
+        which is the authoritative answer. Several hosts answer a perfectly good page with
+        404 or 405 to a `HEAD` — the VS Code marketplace replies 404 to `HEAD` and 200 to
+        `GET` for a published extension — and a 404 is the one status that gets written
+        into a member file, so it is the one that most deserves the second ask. The cost is
+        one extra request per failing URL, which is the minority of them.
+
+        Redirects *are* followed, so the status is the one at the end of the chain: a 301
+        onto a live page is not a dead link, and a 301 onto a missing one is. Where it
+        landed is not reported, because nothing here records it.
+
+        Nothing is raised for a 4xx or 5xx — a dead link is a result here, not an error —
+        so this does not go through `request_json`, which raises and also caches. None is
+        returned for a connection error or a timeout, which is not a verdict either way.
+
+        Note a redirect done in JavaScript is invisible here, and should be: a project can
+        serve a custom 404 page whose body carries the new address in a
+        `window.location.replace`, which a browser follows and this does not. The Qiskit
+        GitHub Pages site does exactly that for its renamed addons. The status is what the
+        server said, and a 404 with a redirect in its body is still a 404.
+        """
+        headers = {
+            # a plain python-requests UA is what several documentation hosts bot-wall
+            "User-Agent": "Mozilla/5.0 (compatible; github.com/Qiskit/ecosystem)",
+            "Accept": "text/html,application/xhtml+xml,application/xml,*/*",
+        }
+        try:
+            with requests_cache.disabled():
+                response = requests.head(
+                    str(self), headers=headers, timeout=60, allow_redirects=True
+                )
+                if not response.ok:
+                    # `stream` so the body is not downloaded: only the status is read
+                    response = requests.get(
+                        str(self),
+                        headers=headers,
+                        timeout=60,
+                        allow_redirects=True,
+                        stream=True,
+                    )
+                    response.close()
+        except (requests.RequestException, ValueError) as err:
+            # ValueError: `requests` re-parses a redirect target with a bare `urlparse`,
+            # so a malformed `Location` header raises out of the redirect chain. One bad
+            # host must not end a run over 217 members
+            logger.warning("Could not reach %s: %s", self, type(err).__name__)
+            return None
+        return response.status_code
 
 
 def parse_github_contributors_sidebar(html_text):

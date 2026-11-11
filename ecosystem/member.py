@@ -102,7 +102,13 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         self.documentation = (
             URL(documentation) if isinstance(documentation, str) else documentation
         )
-        self.packages = packages
+        # normalized here, not only in `from_dict`, so a member built in code and one read
+        # from a file carry the same type — like every other URL field above. Without this
+        # every reader has to write `URL(str(package))` defensively
+        self.packages = [
+            package if isinstance(package, URL) else URL(package)
+            for package in packages or []
+        ]
         self.uuid = uuid
         self.github = github
         self.checks = checks or {}
@@ -263,6 +269,89 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         else:
             url = BadgeData.create_link(name=self.name, short_uuid=self.short_uuid)
             self.badge = BadgeData(url)
+
+    def _probe_ref(self, package):
+        """`package` with its `/blob/<ref>/` pointed at the branch the member is about.
+
+        A submitted blob URL names whatever ref the submitter copied, and every consumer
+        of it drops that on purpose — `RequirementsData.from_url` and
+        `PythonData.from_url` say "the branch is the member's rather than the link's", and
+        `declared_requirements` re-attaches `[github] tree`. The probe has to agree, or a
+        file that lives only on the member's branch reads as gone:
+        `qutesprogr_79b52453` links `blob/HEAD/...requirements.txt` while its `tree` is
+        `migration-to-csharp`, and only the latter answers 200.
+        """
+        ref = getattr(self.github, "ref", None)
+        if not ref:
+            # no `tree`, so the member is about the default branch and whatever ref the
+            # link names is left alone: rewriting an explicit `main` to `HEAD` would churn
+            # a URL the submitter pinned on purpose
+            return package
+        parts = package.path.strip("/").split("/")
+        if len(parts) < 5 or parts[2] != "blob" or parts[3] == ref:
+            return package
+        parts[3] = ref
+        query = f"?{package.query}" if package.query else ""
+        return URL(f"https://{package.hostname}/{'/'.join(parts)}{query}")
+
+    @classmethod
+    def _dead_or_alive(cls, stored, target=None):
+        """`stored` marked, unmarked, or None for nothing to change.
+
+        `target` is what gets requested when it is not `stored` itself, which is how a
+        `packages` pattern is checked by the directory it names.
+
+        Redirects are followed to get the status but never recorded: this says whether a
+        link is gone, nothing more. So a project that renames a repository keeps the URL
+        it submitted, which still redirects, and only a URL that answers 404 or 410 is
+        touched. A marked one is re-asked at its own address every run, so a project that
+        fixes its link has the marker cleared rather than needing a hand-edit.
+        """
+        status = (target if target is not None else stored).unmarked.status()
+        if status in (404, 410):  # permanent dead status
+            marked = stored.marked(status)
+            # already marked, and still gone, is not a change: a daily run stays quiet
+            return marked if str(marked) != str(stored) else None
+        if stored.is_broken and status is not None and status < 400:
+            # it answers again, so the marker goes and the field is a plain URL once more
+            return stored.unmarked
+        return None
+
+    def update_urls(self):
+        """Marks the submitted URLs that no longer resolve, and unmarks the ones that do.
+
+        The four fields nothing else refreshes — `url`, `documentation`, `website`,
+        `reference_paper` — and `packages`. Everything in `[github]` comes back from the
+        API on every run, so it needs nothing from here.
+
+        A dead link is recorded in the field as `status-404://<the url>`: the member file
+        keeps the link it had, which is the only clue to what it should be, and says
+        plainly that nothing is there. `[016]` is the check up that reads it, which is what
+        lets that check up stay offline like every other one.
+
+        A `packages` pattern (`.../packages/*/pyproject.toml`) is checked by the part up to
+        its first wildcard, one directory of the repository, which is the only thing a
+        request can say about a pattern.
+
+        Like every other updater this mutates and returns nothing: what changed is
+        `DAO.log_update`'s to report, and `git diff` is how a run is reviewed.
+        """
+        for index, package in enumerate(self.packages):
+            target = self._probe_ref(package).checkable_prefix
+            if target is None:
+                # a pattern too shallow to name a directory: nothing to ask about
+                continue
+            changed = self._dead_or_alive(package, target)
+            if changed is not None:
+                self.packages[index] = changed
+
+        for field in ("url", "documentation", "website", "reference_paper"):
+            stored = getattr(self, field, None)
+            if stored is None:
+                continue
+            changed = self._dead_or_alive(stored)
+            if changed is not None:
+                setattr(self, field, changed)
 
     def update_pypi(self):
         """
@@ -504,16 +593,21 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
         if github_url is None:
             github_url = self.url
+        # the one caller that passes it explicitly may pass a string, as `__init__` allows
+        github_url = URL(github_url) if isinstance(github_url, str) else github_url
 
-        # github section
-        if not self.github:
+        # github section. A URL that `update_urls` marked as not resolving is not one to
+        # read a section out of: `from_url` only parses, so a `status-404://` link would
+        # seed an `owner`/`repo` as if it were live and every `[G*]` check up would then
+        # report on a repository that is not there
+        if not self.github and not github_url.is_broken:
             self.github = GitHubData.from_url(github_url)
 
         # package sections
-        if not self.packages:
-            self.packages = []
-
         for package in self.packages:
+            if package.is_broken:
+                # same: the section would describe a distribution the URL says is gone
+                continue
             self.upsert_section_for(package)
 
         # badge section. Only the style, so it can be reviewed (and changed) in the submission

@@ -145,6 +145,20 @@ description = "The `member.url` field should not point to a GitHub organization 
 importance = "IMPORTANT"
 checker = "checkup_general.py::checkup_015"
 
+[016]
+title = "URL should exist"
+applies_to = "all"
+affects = [
+  'member.url',
+  'member.website',
+  'member.documentation',
+  'member.packages.*',
+]
+category = "SUBMISSION"
+description = "The fields with URLs should not return 404s."
+importance = "CRITICAL"
+checker = "checkup_general.py::checkup_016"
+
 [025]
 title = "Documentation link has redundant suffix"
 description = "Links like https://qiskit-banana-compiler.readthedocs.io/en/latest/ do not need the /en/latest suffix."

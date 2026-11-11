@@ -59,10 +59,6 @@ importance = "CRITICAL"
 
 [[checks.Q03]]
 since = 2026-09-24
-details = "Python package mqt-qao declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the mqt-qao release on PyPI (extra docs) allows a not-yet-released major version of Qiskit"
+subtest = "pypi:mqt-qao (extra docs)"
 importance = "RECOMMENDATION"
-
-[[checks.G00]]
-since = 2026-09-26
-details = "The project is probably abandoned: `[G05]`"
-importance = "CRITICAL"

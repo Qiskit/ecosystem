@@ -40,23 +40,29 @@ highest_supported_qiskit_version = "2.6.0"
 last_month_downloads = 5
 last_180_days_downloads = 261
 
+[[checks.001]]
+since = 2026-07-30
+source = "https://github.com/Qiskit/ecosystem/issues/1381"
+details = "QELM license is not open-source. It is a proprietary license that restricts usage and distribution. (the source issue is closed as completed)"
+importance = "CRITICAL"
+
 [[checks.G09]]
 since = 2026-09-24
 details = "member.github.license does not exist"
 importance = "RECOMMENDATION"
+
+[[checks.G15]]
+since = 2026-11-11
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+importance = "NICE-TO-HAVE"
 
 [[checks.O02]]
 since = 2026-09-24
 details = "member.license is not OSI-approved"
 importance = "IMPORTANT"
 
-[[checks.P12]]
-since = 2026-09-24
-details = "The PyPI package qelm does not have a declared license"
+[[checks.Q03]]
+since = 2026-11-11
+details = "The qiskit requirement in the qelm release on PyPI allows a not-yet-released major version of Qiskit"
+subtest = "pypi:qelm"
 importance = "RECOMMENDATION"
-
-[[checks.001]]
-since = 2026-07-30
-source = "https://github.com/Qiskit/ecosystem/issues/1381"
-details = "QELM license is not open-source. It is a proprietary license that restricts usage and distribution. (the source issue is closed as completed)"
-importance = "CRITICAL"

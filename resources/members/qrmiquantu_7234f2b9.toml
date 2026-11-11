@@ -127,21 +127,3 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qrmi/issues/349, waiting for a release with the fix"
-xfailed_until = 2027-02-05
-since = 2026-10-05
-details = "The qiskit requirement in examples/task_runner/oqtopus/requirements.txt allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/qiskit-community/qrmi/issues/349"
-subtest = "requirements:examples/task_runner/oqtopus/requirements.txt"
-importance = "RECOMMENDATION"
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qrmi/issues/349, waiting for a release with the fix"
-xfailed_until = 2027-02-05
-since = 2026-10-05
-details = "The qiskit requirement in examples/task_runner/qpp/requirements.txt allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/qiskit-community/qrmi/issues/349"
-subtest = "requirements:examples/task_runner/qpp/requirements.txt"
-importance = "RECOMMENDATION"

@@ -50,12 +50,8 @@ details = "Last commit was more than 12 months ago. This might be a sign of a pr
 discussion = "https://github.com/orgs/Qiskit/discussions/53"
 importance = "STRONG-RECOMMENDATION"
 
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[G07]`"
-importance = "CRITICAL"
-
 [[checks.Q03]]
 since = 2026-10-01
-details = "The distribution qoptkit declared in the repository allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qoptkit manifest in the repository allows a not-yet-released major version of Qiskit"
+subtest = "python:qoptkit"
 importance = "RECOMMENDATION"
