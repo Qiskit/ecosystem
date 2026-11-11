@@ -1,0 +1,23 @@
+name = "Qiskit Qobol"
+url = "https://github.com/mtreinish/qiskit-qobol"
+description = "COBOL bindings for Qiskit's C API: build circuits and observables, transpile, and submit sampler and estimator jobs."
+labels = ["demo"]
+interfaces = ["COBOL"]
+category = "Language binding"
+packages = []
+uuid = "ba9f9f6a-e29e-4286-b2df-bd99bd8bd255"
+maturity = "experimental"
+
+[github]
+url = "https://github.com/mtreinish/qiskit-qobol"
+owner = "mtreinish"
+repo = "qiskit-qobol"
+stars = 0
+license = "Apache-2.0"
+description = "COBOL Bindings for Qiskit"
+created_at = 2025-05-18
+last_commit = 2026-11-09
+last_activity = 2026-11-09
+
+[badge]
+style = "flat"
