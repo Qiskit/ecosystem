@@ -23,15 +23,15 @@ url = "https://github.com/SerenaSolutions/zephirum-lang"
 owner = "SerenaSolutions"
 repo = "zephirum-lang"
 stars = 2
-homepage = "https://doi.org/10.5281/zenodo.23632019"
+homepage = "https://serenasolutions.github.io/zephirum/"
 license = "Apache-2.0"
-description = "Trivalent quantum decision language (Lisp syntax): verdicts are 1, 0, or REFUSED with sealed, traceable receipts. Built on Qiskit."
+description = "Quantum language for auditable decisions (Lisp s-expressions): verdicts 1, 0 or REFUSED with sealed receipts. Built on Qiskit."
 estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-10-12
 last_commit = 2026-11-10
-last_activity = 2026-11-09
+last_activity = 2026-11-10
 topics = [
   "auditability",
   "brazil",
@@ -53,10 +53,10 @@ style = "flat"
 
 [[pypi]]
 package_name = "zephirum"
-version = "2.5.7"
-last_release_date = 2026-11-07
+version = "2.5.8"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
-description = "ZEPHIRUM: Lisp-style quantum programming language with the ZYQL trivalent decision core (1/0/REFUSED)"
+description = "ZEPHIRUM: quantum programming language and runtime for auditable decisions, with the ZYQL trivalent core (1/0/REFUSED)"
 url = "https://pypi.org/project/zephirum/"
 status = "active"
 maintainers = ["https://pypi.org/user/ZEPHIRUM_010101010100001/"]
@@ -72,7 +72,7 @@ last_180_days_downloads = 835
 package_name = "zephirum"
 version = "2.5.8"
 license = "Apache-2.0"
-description = "ZEPHIRUM: Lisp-style quantum programming language with the ZYQL trivalent decision core (1/0/REFUSED)"
+description = "ZEPHIRUM: quantum programming language and runtime for auditable decisions, with the ZYQL trivalent core (1/0/REFUSED)"
 requires_python = ">=3.10"
 requires_qiskit = "<3,>=2.6"
 compatible_with_qiskit_v1 = false

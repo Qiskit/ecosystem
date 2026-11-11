@@ -44,8 +44,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qrmi"
-version = "0.26.6"
-last_release_date = 2026-11-05
+version = "0.27.0"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 url = "https://pypi.org/project/qrmi/"
@@ -63,6 +63,16 @@ rust_version = "1.91.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/alice_bob_felis_client"
+
+[[cargo]]
+package_name = "maestro-local-api"
+version = "0.1.0"
+license = "Apache-2.0"
+description = "Maestro Local API client library for Rust"
+rust_version = "1.91.1"
+edition = "2021"
+crate_type = ["rlib"]
+path = "dependencies/maestro_rust_library"
 
 [[cargo]]
 package_name = "pasqal-cloud-api"
@@ -86,7 +96,7 @@ path = "dependencies/pasqal_local_client"
 
 [[cargo]]
 package_name = "qrmi"
-version = "0.26.6"
+version = "0.27.0"
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 edition = "2021"
@@ -111,6 +121,22 @@ rust_version = "1.91.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/quantum_compute_client"
+
+[[requirements]]
+file = "examples/qiskit_primitives/maestro_local/requirements.txt"
+requires_qiskit = "<3"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[requirements]]
+file = "examples/task_runner/maestro_local/requirements.txt"
+requires_qiskit = "<3"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[requirements]]
 file = "examples/task_runner/oqtopus/requirements.txt"
