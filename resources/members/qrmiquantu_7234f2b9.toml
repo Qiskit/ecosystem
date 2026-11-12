@@ -1,5 +1,4 @@
 name = "QRMI (Quantum resource management interface)"
-url = "https://github.com/qiskit-community/qrmi"
 description = "Vendor-agnostic library for HPC systems to access, control and monitor quantum resources, with Rust, C and Python APIs."
 labels = ["HPC", "provider", "cloud service"]
 interfaces = ["Rust", "C", "Python", "Other language"]
@@ -23,7 +22,7 @@ description = "Thin and vendor agnostic layer to access, control and monitor und
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-08-05
-last_commit = 2026-11-10
+last_commit = 2026-11-11
 last_activity = 2026-11-10
 topics = [
   "c",
@@ -52,7 +51,7 @@ url = "https://pypi.org/project/qrmi/"
 status = "active"
 maintainers = ["https://pypi.org/user/ohtanim/"]
 last_month_downloads = 2353
-last_180_days_downloads = 14615
+last_180_days_downloads = 14847
 
 [[cargo]]
 package_name = "alice-bob-felis"

@@ -1,6 +1,5 @@
 name = "Dice eigensolver"
 submission_number = 1172
-url = "https://github.com/Qiskit/qiskit-dice-solver"
 labels = ["utility-scale", "chemistry"]
 interfaces = ["Python"]
 ibm_maintained = true
@@ -42,7 +41,7 @@ maintainers = [
   "https://pypi.org/user/mrossinek/",
 ]
 last_month_downloads = 13
-last_180_days_downloads = 1070
+last_180_days_downloads = 1071
 
 [[checks.P12]]
 xfailed = "PR with fix was merged, but not yet released to PyPI"

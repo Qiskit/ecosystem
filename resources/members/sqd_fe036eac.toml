@@ -1,5 +1,4 @@
 name = "Sample-based Quantum Diagonalization"
-url = "https://github.com/Qiskit/qiskit-sqd"
 description = "Sample-based quantum diagonalization. Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 labels = ["chemistry", "utility-scale"]
 interfaces = ["Python"]
@@ -58,7 +57,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 54028
-last_180_days_downloads = 198635
+last_180_days_downloads = 199955
 
 [[pypi.requires]]
 specifier = ">=0"

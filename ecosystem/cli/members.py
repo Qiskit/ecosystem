@@ -867,7 +867,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             },
             "members": [
                 CliMembers.filter_data(
-                    member.to_dict(),
+                    member.to_dict() | {"url": str(member.url) if member.url else None},
                     member_data_to_export,
                 )
                 | {"ibm_maintained": bool(member.ibm_maintained)}

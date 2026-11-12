@@ -1,6 +1,5 @@
 name = "Bicycle Architecture Compiler"
 submission_number = 1172
-url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
 labels = ["error correction", "research", "circuit optimization"]
 interfaces = ["Rust"]
 category = "Noise Management"
@@ -58,7 +57,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 4006
-last_90_days_downloads = 495
+last_90_days_downloads = 459
 
 [[crates]]
 package_name = "bicycle_common"
@@ -71,7 +70,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 4214
-last_90_days_downloads = 533
+last_90_days_downloads = 497
 
 [[crates]]
 package_name = "bicycle_compiler"
@@ -84,7 +83,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 3781
-last_90_days_downloads = 455
+last_90_days_downloads = 419
 
 [[crates]]
 package_name = "bicycle_numerics"
@@ -136,7 +135,10 @@ source = ["pyproject.toml", "setup.py"]
 deferred = ["rust_extensions"]
 
 [[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/bicycle-architecture-compiler/issues/42, waiting for the fix"
+xfailed_until = 2027-02-12
 since = 2026-11-11
 details = "The qiskit requirement in the bicycle-architecture-compiler manifest in the repository allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qiskit-community/bicycle-architecture-compiler/issues/42"
 subtest = "python:bicycle-architecture-compiler"
 importance = "RECOMMENDATION"

@@ -1,0 +1,50 @@
+name = "mapomatic"
+url = "https://github.com/qiskit-community/mapomatic"
+description = "Post-compilation tool that finds the lowest-noise subgraph, across one or more backends, for an already-transpiled circuit."
+labels = ["circuit optimization"]
+interfaces = ["Python"]
+category = "Tooling"
+packages = ["https://pypi.org/project/mapomatic/"]
+uuid = "a3af4f5a-ae6e-4a6a-8cd4-dd6516906bbc"
+maturity = "production-ready"
+status = "Under revision"
+
+[github]
+url = "https://github.com/qiskit-community/mapomatic"
+owner = "qiskit-community"
+repo = "mapomatic"
+stars = 64
+license = "Apache-2.0"
+description = "Automatic mapping of compiled circuits to low-noise sub-graphs"
+total_dependent_repositories = 50
+total_dependent_packages = 4
+created_at = 2022-02-03
+last_commit = 2026-09-12
+last_activity = 2026-11-09
+
+[badge]
+url = "https://qisk.it/e-a3af4f5a"
+style = "flat"
+
+[[pypi]]
+package_name = "mapomatic"
+version = "0.14.0"
+last_release_date = 2025-08-07
+license = "Apache-2.0"
+description = "Mapomatic"
+url = "https://pypi.org/project/mapomatic/"
+status = "active"
+maintainers = ["https://pypi.org/user/nonhermitian/"]
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+last_month_downloads = 1148
+last_180_days_downloads = 15065
+
+[[checks.Q03]]
+since = 2026-11-11
+details = "The qiskit requirement in the mapomatic release on PyPI allows a not-yet-released major version of Qiskit"
+subtest = "pypi:mapomatic"
+importance = "RECOMMENDATION"
