@@ -57,6 +57,12 @@ highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 116
 last_180_days_downloads = 1081
 
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
+
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/CERN-QTI/quantum-gates/issues/62, waiting for a release with the fix"
 xfailed_until = 2027-03-31
@@ -65,9 +71,3 @@ details = "The qiskit requirement in the quantum-gates release on PyPI allows a 
 discussion = "https://github.com/CERN-QTI/quantum-gates/issues/62"
 subtest = "pypi:quantum-gates"
 importance = "RECOMMENDATION"
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

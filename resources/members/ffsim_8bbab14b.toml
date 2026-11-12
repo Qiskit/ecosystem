@@ -5,7 +5,7 @@ license = "Apache-2.0"
 affiliations = "IBM"
 labels = ["chemistry", "physics"]
 interfaces = ["Python"]
-website = "https://qiskit-community.github.io/ffsim/"
+website = "https://qiskit.github.io/ffsim/"
 category = "Circuit simulator"
 documentation = "https://qiskit-community.github.io/ffsim/"
 packages = ["https://pypi.org/project/ffsim/"]
@@ -54,12 +54,3 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/ffsim/issues/712, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-07-09
-details = "The qiskit requirement in the ffsim release on PyPI allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/qiskit-community/ffsim/issues/712"
-subtest = "pypi:ffsim"
-importance = "RECOMMENDATION"
