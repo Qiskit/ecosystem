@@ -1,5 +1,4 @@
 name = "OpenQASM sphinx plugin"
-url = "https://github.com/openqasm/openqasm-sphinx"
 description = "Sphinx extension to document OpenQASM code as a supported language."
 labels = ["openqasm", "documentation"]
 interfaces = ["Python"]
@@ -42,7 +41,7 @@ maintainers = [
   "https://pypi.org/user/openqasm-bot/",
 ]
 last_month_downloads = 335
-last_180_days_downloads = 1947
+last_180_days_downloads = 1965
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

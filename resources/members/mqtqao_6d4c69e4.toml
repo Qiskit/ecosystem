@@ -1,5 +1,4 @@
 name = "MQT QAO"
-url = "https://github.com/cda-tum/mqt-qao"
 description = "Automatic Framework for Solving Optimization Problems with Quantum Computers"
 license = "MIT"
 labels = ["optimization"]
@@ -44,8 +43,8 @@ specifier = ">=0"
 extra = "docs"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[checks.007]]
 since = 2026-09-24
@@ -59,10 +58,6 @@ importance = "CRITICAL"
 
 [[checks.Q03]]
 since = 2026-09-24
-details = "Python package mqt-qao declared itself compatible to a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the mqt-qao release on PyPI (extra docs) allows a not-yet-released major version of Qiskit"
+subtest = "pypi:mqt-qao (extra docs)"
 importance = "RECOMMENDATION"
-
-[[checks.G00]]
-since = 2026-09-26
-details = "The project is probably abandoned: `[G05]`"
-importance = "CRITICAL"

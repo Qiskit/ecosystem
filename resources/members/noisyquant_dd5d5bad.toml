@@ -1,5 +1,4 @@
 name = "Noisy Quantum Gates"
-url = "https://github.com/CERN-IT-INNOVATION/quantum-gates"
 description = "Provider with a novel approach for simulating quantum circuits with a realistic noise integrated into gates and modular design."
 license = "MIT"
 contact_info = "roman.wixinger@gmail.com PAOLO.DAROLD@studenti.units.it michele.grossi@cern.ch vischimichele@gmail.com dibartolomeo.giov@gmail.com"
@@ -52,10 +51,22 @@ maintainers = ["https://pypi.org/user/roman.wixinger/"]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 116
-last_180_days_downloads = 1065
+last_180_days_downloads = 1081
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/CERN-QTI/quantum-gates/issues/62, waiting for a release with the fix"
@@ -65,9 +76,3 @@ details = "The qiskit requirement in the quantum-gates release on PyPI allows a 
 discussion = "https://github.com/CERN-QTI/quantum-gates/issues/62"
 subtest = "pypi:quantum-gates"
 importance = "RECOMMENDATION"
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

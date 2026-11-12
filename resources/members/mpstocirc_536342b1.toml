@@ -1,5 +1,4 @@
 name = "MPS to Qiskit circuit mapping"
-url = "https://github.com/qiskit-community/mps-to-circuit"
 description = "Converts a matrix product state of arbitrary bond dimension, from Quimb or TenPy, into a Qiskit circuit."
 labels = ["tensor networks", "circuit building", "research"]
 interfaces = ["Python"]
@@ -8,6 +7,7 @@ reference_paper = "https://doi.org/10.5281/zenodo.14920028"
 packages = ["https://pypi.org/project/mps-to-circuit/"]
 uuid = "536342b1-932c-4ae6-b4c5-b33b60b9390c"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/mps-to-circuit"
@@ -23,6 +23,7 @@ last_commit = 2025-04-01
 last_activity = 2026-10-30
 
 [badge]
+url = "https://qisk.it/e-536342b1"
 style = "flat"
 
 [[pypi]]
@@ -36,17 +37,10 @@ maintainers = ["https://pypi.org/user/declanmillar/"]
 requires_qiskit = ">=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 40
-last_180_days_downloads = 416
-
-[[checks.Q03]]
-since = 2026-10-30
-details = "The qiskit requirement in the mps-to-circuit release on PyPI allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/9"
-subtest = "pypi:mps-to-circuit"
-importance = "RECOMMENDATION"
+last_180_days_downloads = 433
 
 [[checks.G07]]
 xfailed = "The project is maintained, it is just having a slow moment"
@@ -59,4 +53,13 @@ importance = "STRONG-RECOMMENDATION"
 since = 2026-10-30
 details = "The PyPI package mps-to-circuit does not have a declared license"
 discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/8"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/mps-to-circuit/issues/9, waiting for a release with the fix"
+xfailed_until = 2027-02-05
+since = 2026-10-30
+details = "The qiskit requirement in the mps-to-circuit release on PyPI allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qiskit-community/mps-to-circuit/issues/9"
+subtest = "pypi:mps-to-circuit"
 importance = "RECOMMENDATION"

@@ -229,7 +229,16 @@ class TestValidateMember(CliCITestCase):
 class TestUpdateMemberData(CliCITestCase):
     """`update_member_data` is the weekly fetch: one section at a time, per member"""
 
-    FETCHES = ("github", "pypi", "crates", "cargo", "julia", "python", "requirements")
+    FETCHES = (
+        "github",
+        "pypi",
+        "crates",
+        "cargo",
+        "julia",
+        "python",
+        "requirements",
+        "badge",
+    )
 
     def update(self, member_id=None, **behaviour):
         """Runs the command with every fetch stubbed out, so nothing reaches the network

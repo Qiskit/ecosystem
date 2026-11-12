@@ -26,7 +26,9 @@ jobs:
     - name: Update data
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BITLY_TOKEN: ${{ secrets.BITLY_TOKEN }}
       run: |
+        python manager.py members update_urls
         python manager.py ci create_sections
         python manager.py ci update_member_data
     - name: Run taplo formatter on TOML files

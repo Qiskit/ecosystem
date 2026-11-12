@@ -1,0 +1,49 @@
+name = "Qiskit Bosons"
+description = "Extends Qiskit with bosonic operators, boson-to-qubit mappers, and synthesis of bosonic circuits into qubit ones."
+labels = ["physics", "quantum information", "high-level synthesis"]
+interfaces = ["Python", "Rust"]
+ibm_maintained = true
+category = "Application"
+documentation = "https://qiskit.github.io/qiskit-bosons/"
+packages = ["https://pypi.org/project/qiskit-bosons/"]
+uuid = "1447380d-21eb-4089-a3aa-e18bb265190f"
+maturity = "experimental"
+status = "Qiskit Project"
+
+[github]
+url = "https://github.com/Qiskit/qiskit-bosons"
+owner = "Qiskit"
+repo = "qiskit-bosons"
+stars = 3
+homepage = "https://qiskit.github.io/qiskit-bosons/"
+license = "Apache-2.0"
+description = "A toolkit for working with bosonic systems"
+created_at = 2026-10-28
+last_commit = 2026-11-05
+last_activity = 2026-11-05
+topics = ["qiskit", "qiskit-addon"]
+
+[badge]
+url = "https://qisk.it/e-1447380d"
+style = "flat"
+
+[[pypi]]
+package_name = "qiskit-bosons"
+version = "0.1.0a1"
+last_release_date = 2026-11-04
+license = "Apache-2.0"
+description = "A toolkit for working with bosonic systems"
+url = "https://pypi.org/project/qiskit-bosons/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = [
+  "https://pypi.org/org/qiskit/",
+  "https://pypi.org/user/mrossinek/",
+]
+requires_qiskit = "<2.7,>=2.5.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+last_month_downloads = 0
+last_180_days_downloads = 190

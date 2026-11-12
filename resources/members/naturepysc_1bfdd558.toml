@@ -1,5 +1,4 @@
 name = "Qiskit Nature PySCF"
-url = "https://github.com/qiskit-community/qiskit-nature-pyscf"
 description = "A third-party integration plugin of Qiskit Nature and PySCF."
 license = "Apache-2.0"
 labels = ["chemistry"]
@@ -16,7 +15,7 @@ status = "Under revision"
 url = "https://github.com/qiskit-community/qiskit-nature-pyscf"
 owner = "qiskit-community"
 repo = "qiskit-nature-pyscf"
-stars = 22
+stars = 23
 license = "Apache-2.0"
 description = "Documentation at https://qiskit-community.github.io/qiskit-nature-pyscf/"
 estimated_contributors = 7
@@ -24,7 +23,7 @@ total_dependent_repositories = 9
 total_dependent_packages = 0
 created_at = 2022-10-20
 last_commit = 2025-08-12
-last_activity = 2026-01-13
+last_activity = 2026-11-06
 
 [badge]
 url = "https://qisk.it/e-1bfdd558"
@@ -40,12 +39,7 @@ url = "https://pypi.org/project/qiskit-nature-pyscf/"
 status = "active"
 maintainers = ["https://pypi.org/org/qiskit/"]
 last_month_downloads = 290
-last_180_days_downloads = 4004
-
-[[checks.G06]]
-since = 2026-08-13
-details = "Last activity was more then 6 months ago, which probably means that the project is not actively maintained and/or used. Maybe `member.maturity` should be set as `as-is`?"
-importance = "RECOMMENDATION"
+last_180_days_downloads = 5041
 
 [[checks.G07]]
 since = 2026-09-17

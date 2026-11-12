@@ -1,5 +1,4 @@
 name = "Quantum Inspire SDK"
-url = "https://github.com/QuTech-Delft/quantuminspire"
 description = "This platform allows you to execute quantum algorithms using the cQASM language."
 license = "Apache-2.0"
 labels = ["provider", "cloud service"]
@@ -22,8 +21,8 @@ estimated_contributors = 9
 total_dependent_repositories = 26
 total_dependent_packages = 6
 created_at = 2018-10-12
-last_commit = 2026-10-26
-last_activity = 2026-10-26
+last_commit = 2026-11-09
+last_activity = 2026-11-09
 topics = ["qiskit", "quantum-inspire", "sdk"]
 
 [badge]
@@ -49,4 +48,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2025-08-19
 highest_supported_qiskit_version = "2.1.2"
 last_month_downloads = 574
-last_180_days_downloads = 10254
+last_180_days_downloads = 10440

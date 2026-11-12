@@ -1,6 +1,5 @@
 name = "Qiskit QKD Lab"
 submission_number = 1289
-url = "https://github.com/RexRowan/Qiskit-QKD-Lab"
 description = "A QKD protocol simulator built directly on Qiskit primitives."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["quantum information", "circuit building"]
@@ -10,7 +9,7 @@ documentation = "https://github.com/RexRowan/Qiskit-QKD-Lab/blob/main/docs/api.m
 packages = ["https://pypi.org/project/qiskit-qkd-lab/"]
 uuid = "b286e633-de44-4416-b62d-00a7aed36ac8"
 maturity = "experimental"
-status = "Very Early Project"
+status = "Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-QKD-Lab"
@@ -42,10 +41,16 @@ maintainers = ["https://pypi.org/user/MeanMachineRex/"]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 13
-last_180_days_downloads = 200
+last_180_days_downloads = 203
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiskit-QKD-Lab/issues/1, waiting for a release with the fix"
@@ -55,9 +60,3 @@ details = "The qiskit requirement in the qiskit-qkd-lab release on PyPI allows a
 discussion = "https://github.com/RexRowan/Qiskit-QKD-Lab/issues/1"
 subtest = "pypi:qiskit-qkd-lab"
 importance = "RECOMMENDATION"
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

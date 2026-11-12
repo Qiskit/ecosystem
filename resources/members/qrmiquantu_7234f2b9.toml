@@ -1,5 +1,4 @@
 name = "QRMI (Quantum resource management interface)"
-url = "https://github.com/qiskit-community/qrmi"
 description = "Vendor-agnostic library for HPC systems to access, control and monitor quantum resources, with Rust, C and Python APIs."
 labels = ["HPC", "provider", "cloud service"]
 interfaces = ["Rust", "C", "Python", "Other language"]
@@ -11,21 +10,20 @@ packages = [
 ]
 uuid = "7234f2b9-a787-4186-bad7-50ed2be3b92b"
 maturity = "experimental"
-status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/qrmi"
 owner = "qiskit-community"
 repo = "qrmi"
-stars = 65
+stars = 66
 homepage = "https://qiskit-community.github.io/qrmi/"
 license = "Apache-2.0"
 description = "Thin and vendor agnostic layer to access, control and monitor underlying on-prem or cloud quantum computers"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-08-05
-last_commit = 2026-11-03
-last_activity = 2026-11-03
+last_commit = 2026-11-11
+last_activity = 2026-11-10
 topics = [
   "c",
   "hpc",
@@ -45,32 +43,42 @@ style = "flat"
 
 [[pypi]]
 package_name = "qrmi"
-version = "0.26.5"
-last_release_date = 2026-10-30
+version = "0.27.0"
+last_release_date = 2026-11-10
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 url = "https://pypi.org/project/qrmi/"
 status = "active"
 maintainers = ["https://pypi.org/user/ohtanim/"]
 last_month_downloads = 2353
-last_180_days_downloads = 13720
+last_180_days_downloads = 14847
 
 [[cargo]]
 package_name = "alice-bob-felis"
 version = "0.1.0"
 license = "Apache-2.0"
 description = "The Felis Cloud API lets you execute quantum circuits on emulators and real quantum hardware made by Alice & Bob."
-rust_version = "1.85.1"
+rust_version = "1.91.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/alice_bob_felis_client"
+
+[[cargo]]
+package_name = "maestro-local-api"
+version = "0.1.0"
+license = "Apache-2.0"
+description = "Maestro Local API client library for Rust"
+rust_version = "1.91.1"
+edition = "2021"
+crate_type = ["rlib"]
+path = "dependencies/maestro_rust_library"
 
 [[cargo]]
 package_name = "pasqal-cloud-api"
 version = "0.1.0"
 license = "Apache-2.0"
 description = "Pasqal Cloud API client library for Rust"
-rust_version = "1.85.1"
+rust_version = "1.91.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/pasqal_cloud_client"
@@ -80,14 +88,14 @@ package_name = "pasqal-local-api"
 version = "0.0.1"
 license = "Apache-2.0"
 description = "Pasqal Local API client library for Rust"
-rust_version = "1.85.1"
+rust_version = "1.91.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/pasqal_local_client"
 
 [[cargo]]
 package_name = "qrmi"
-version = "0.26.5"
+version = "0.27.0"
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 edition = "2021"
@@ -98,7 +106,7 @@ package_name = "quantum-system-api"
 version = "0.15.0"
 license = "Apache-2.0"
 description = "Quantum System API client library for Rust"
-rust_version = "1.85.1"
+rust_version = "1.91.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/quantum_system_client"
@@ -108,35 +116,39 @@ package_name = "quantum_compute_client"
 version = "0.31.10"
 license = "Apache-2.0"
 description = "The Quantum Compute Service (Qiskit Runtime) API library for Rust"
-rust_version = "1.85.1"
+rust_version = "1.91.1"
 edition = "2021"
 crate_type = ["rlib"]
 path = "dependencies/quantum_compute_client"
 
 [[requirements]]
-file = "examples/task_runner/oqtopus/requirements.txt"
-requires_qiskit = ">=0"
+file = "examples/qiskit_primitives/maestro_local/requirements.txt"
+requires_qiskit = "<3"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[requirements]]
+file = "examples/task_runner/maestro_local/requirements.txt"
+requires_qiskit = "<3"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[requirements]]
+file = "examples/task_runner/oqtopus/requirements.txt"
+requires_qiskit = "<3"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[requirements]]
 file = "examples/task_runner/qpp/requirements.txt"
-requires_qiskit = ">=1.4.2"
+requires_qiskit = "<3,>=1.4.2"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
-
-[[checks.Q03]]
-since = 2026-10-05
-details = "The qiskit requirement in examples/task_runner/oqtopus/requirements.txt allows a not-yet-released major version of Qiskit"
-subtest = "requirements:examples/task_runner/oqtopus/requirements.txt"
-importance = "RECOMMENDATION"
-
-[[checks.Q03]]
-since = 2026-10-05
-details = "The qiskit requirement in examples/task_runner/qpp/requirements.txt allows a not-yet-released major version of Qiskit"
-subtest = "requirements:examples/task_runner/qpp/requirements.txt"
-importance = "RECOMMENDATION"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
