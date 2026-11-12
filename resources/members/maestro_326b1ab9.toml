@@ -1,5 +1,4 @@
 name = "qiskit-maestro"
-url = "https://github.com/QoroQuantum/qiskit-maestro"
 submission_number = 1449
 description = "Run Qiskit circuits, Sampler and Estimator on the Qoro simulator (qoro-maestro): statevector, MPS, stabilizer and more, on CPU or GPU."
 contact_info = "stephen@qoroquantum.de"
@@ -8,10 +7,6 @@ interfaces = ["Python"]
 website = "https://qoroquantum.github.io/maestro/"
 category = "Circuit simulator"
 documentation = "https://qoroquantum.github.io/maestro/getting-started/coming-from-qiskit.html"
-packages = [
-  "https://pypi.org/project/qiskit-maestro",
-  "https://github.com/QoroQuantum/qiskit-maestro/blob/main/pyproject.toml",
-]
 uuid = "326b1ab9-8d50-4142-abde-37eb9167c59b"
 maturity = "experimental"
 status = "Very Early Project"
