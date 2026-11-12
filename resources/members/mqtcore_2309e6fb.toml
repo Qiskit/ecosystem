@@ -21,7 +21,7 @@ stars = 136
 homepage = "https://mqt.readthedocs.io/projects/core"
 license = "MIT"
 description = "MQT Core - Reusable C++20 and Python libraries for quantum computing: the MQT Compiler Collection, built on MLIR and LLVM, together..."
-total_dependent_repositories = 56
+total_dependent_repositories = 57
 total_dependent_packages = 11
 created_at = 2020-01-02
 last_commit = 2026-11-10
@@ -51,7 +51,7 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 last_month_downloads = 13129
-last_180_days_downloads = 169416
+last_180_days_downloads = 170440
 
 [[pypi.requires]]
 specifier = "<3,>=2.5"

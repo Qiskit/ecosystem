@@ -1,0 +1,45 @@
+name = "monodromy"
+url = "https://github.com/qiskit-community/monodromy"
+description = "Computations in the monodromy polytope for quantum gate sets: whether a two-qubit unitary fits a fixed-depth circuit."
+labels = ["research", "unitary synthesis"]
+interfaces = ["Python"]
+category = "Paper artifact"
+reference_paper = "https://arxiv.org/abs/1904.10541"
+packages = []
+uuid = "0179b4e6-1f27-4f54-a013-2a38fa2530a7"
+maturity = "as-is"
+status = "Under revision"
+
+[github]
+url = "https://github.com/qiskit-community/monodromy"
+owner = "qiskit-community"
+repo = "monodromy"
+stars = 18
+license = "Apache-2.0"
+description = "Computations in the monodromy polytope for quantum gate sets"
+created_at = 2021-11-04
+last_commit = 2026-09-10
+last_activity = 2026-10-23
+
+[badge]
+url = "https://qisk.it/e-0179b4e6"
+style = "flat"
+
+[[python]]
+package_name = "monodromy"
+version = "0.0.1"
+description = "Computations in the monodromy polytope for quantum gate sets"
+requires_python = ">=3.6"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py", "requirements.txt"]
+deferred = ["long_description", "packages"]
+
+[[checks.G08]]
+since = 2026-11-11
+details = "Unmaintained project should have an archived GitHub repository"
+importance = "NICE-TO-HAVE"
+
+[[checks.G11]]
+since = 2026-11-11
+details = "Unmaintained project should live in an archived repository"
+importance = "STRONG-RECOMMENDATION"

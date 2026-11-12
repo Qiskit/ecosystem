@@ -39,16 +39,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 23
-last_180_days_downloads = 549
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/1, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-07-14
-details = "The qiskit requirement in the qiskit-omelyan release on PyPI allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/1"
-subtest = "pypi:qiskit-omelyan"
-importance = "RECOMMENDATION"
+last_180_days_downloads = 550
 
 [[checks.G15]]
 xfailed = "membership predates the checkup"
@@ -63,4 +54,13 @@ xfailed_until = 2027-03-31
 since = 2026-07-14
 details = "The PyPI package qiskit-omelyan does not have a declared license"
 discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/2"
+importance = "RECOMMENDATION"
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/1, waiting for a release with the fix"
+xfailed_until = 2027-03-31
+since = 2026-07-14
+details = "The qiskit requirement in the qiskit-omelyan release on PyPI allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/1"
+subtest = "pypi:qiskit-omelyan"
 importance = "RECOMMENDATION"
