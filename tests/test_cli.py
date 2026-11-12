@@ -291,7 +291,11 @@ class UpdateStatusTestCase(TestCase):
         shutil.rmtree(self.path)
 
     def add_member(
-        self, months_old=None, maturity="production-ready", **kwargs
+        self,
+        months_old=None,
+        no_activity_for_the_last_n_months=None,
+        maturity="production-ready",
+        **kwargs,
     ) -> Member:
         """Writes a member in the temporary DAO. If months_old is given,
         the GitHub repository was created that many months ago."""
@@ -303,12 +307,21 @@ class UpdateStatusTestCase(TestCase):
             maturity=maturity,
             **kwargs,
         )
+        created_at = None
+        last_activity = None
         if months_old is not None:
-            member.github = GitHubData(
-                owner="MockQiskit",
-                repo="mock-qiskit",
-                created_at=date.today() - relativedelta(months=months_old),
+            created_at = date.today() - relativedelta(months=months_old)
+        if no_activity_for_the_last_n_months is not None:
+            last_activity = date.today() - relativedelta(
+                months=no_activity_for_the_last_n_months
             )
+
+        member.github = GitHubData(
+            owner="MockQiskit",
+            repo="mock-qiskit",
+            created_at=created_at,
+            last_activity=last_activity,
+        )
         self.cli_members.dao.write(member)
         return member
 
@@ -332,11 +345,55 @@ class TestUpdateStatus(UpdateStatusTestCase):
 
     def test_early_project(self):
         """A repository between 3 and 12 months old is an "Early Project" """
-        self.assertEqual(self.status_after_update(months_old=10), "Early Project")
+        self.assertEqual(
+            self.status_after_update(
+                months_old=10, no_activity_for_the_last_n_months=0
+            ),
+            "Early Project",
+        )
+
+    def test_quiet_project_does_not_graduate_to_early(self):
+        """Six months without activity holds a young project at "Very Early Project" """
+        self.assertEqual(
+            self.status_after_update(
+                months_old=10, no_activity_for_the_last_n_months=6
+            ),
+            "Very Early Project",
+        )
+
+    def test_recent_activity_graduates_to_early(self):
+        """Just inside the six-month window the age is what decides again"""
+        self.assertEqual(
+            self.status_after_update(
+                months_old=10, no_activity_for_the_last_n_months=5
+            ),
+            "Early Project",
+        )
+
+    def test_activity_does_not_hold_back_a_repository_younger_than_3_months(self):
+        """Under 3 months there is no earlier status to be held at"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, no_activity_for_the_last_n_months=9),
+            "Very Early Project",
+        )
+
+    def test_a_quiet_old_project_has_no_age_status(self):
+        """The gate holds the young statuses back, it does not hand one out"""
+        self.assertIsNone(
+            self.status_after_update(months_old=20, no_activity_for_the_last_n_months=9)
+        )
+
+    def test_without_activity_data_a_young_project_stays_very_early(self):
+        """With neither last_activity nor last_commit a project cannot show it has
+        graduated, so it keeps the earlier status"""
+        self.assertEqual(self.status_after_update(months_old=10), "Very Early Project")
 
     def test_three_months_old_is_early_project(self):
         """The "Very Early Project" status ends at 3 months"""
-        self.assertEqual(self.status_after_update(months_old=3), "Early Project")
+        self.assertEqual(
+            self.status_after_update(months_old=3, no_activity_for_the_last_n_months=0),
+            "Early Project",
+        )
 
     def test_old_project_has_no_age_status(self):
         """A repository older than 12 months is a regular member (status None)"""
@@ -392,9 +449,9 @@ class TestUpdateStatus(UpdateStatusTestCase):
 
     def test_early_projects_share_one_table(self):
         """Both early statuses are listed in a single docs/assets/early-projects.md table"""
-        self.add_member(months_old=2)
-        self.add_member(months_old=10)
-        self.add_member(months_old=30)
+        self.add_member(months_old=2, no_activity_for_the_last_n_months=0)
+        self.add_member(months_old=10, no_activity_for_the_last_n_months=0)
+        self.add_member(months_old=30, no_activity_for_the_last_n_months=0)
         self.cli_members.update_status()
 
         # pylint: disable=protected-access

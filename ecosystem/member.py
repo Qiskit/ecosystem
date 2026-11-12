@@ -891,6 +891,30 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         return (relative.years * 12) + relative.months
 
     @property
+    def last_activity_in_months(self):
+        """Months since the GitHub repository was last active (either last_activity or last_commit).
+        None if there is no member.github.last_activity nor member.github.last_commit"""
+        last_activity = parse_date(getattr(self.github, "last_activity", None))
+        last_commit = parse_date(getattr(self.github, "last_commit", None))
+        today = date.today()
+
+        if last_activity is None and last_commit is None:
+            return None
+
+        last_activity_ago = float("inf")
+        last_commit_ago = float("inf")
+
+        if last_activity is not None:
+            relative = relativedelta(today, last_activity)
+            last_activity_ago = (relative.years * 12) + relative.months
+
+        if last_commit is not None:
+            relative = relativedelta(today, last_commit)
+            last_commit_ago = (relative.years * 12) + relative.months
+
+        return min(last_activity_ago, last_commit_ago)
+
+    @property
     def is_alumni(self):
         """True if the project has been retired from the ecosystem.
 
@@ -913,14 +937,22 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
     @property
     def early(self):
-        """True if the GitHub repository is younger than 12 months."""
-        if self.age_in_months is None:
+        """True if the GitHub repository is younger than 12 months and was active in
+        the last 6.
+
+        Only the derived status reads this. `[G12]` gates on `age_in_months` instead, so
+        that a young project that went quiet is not exempt from the check up written for it.
+        """
+        if self.age_in_months is None or self.last_activity_in_months is None:
             return False
-        return self.age_in_months < 12
+        return self.age_in_months < 12 and self.last_activity_in_months < 6
 
     @property
     def very_early(self):
-        """True if the GitHub repository is younger than 3 months"""
+        """True if the GitHub repository is younger than 3 months, or is younger than 12
+        and too quiet to have graduated out of the status (see `self.early`)."""
         if self.age_in_months is None:
             return False
-        return self.age_in_months < 3
+        if self.age_in_months < 3:
+            return True
+        return self.age_in_months < 12 and not self.early
