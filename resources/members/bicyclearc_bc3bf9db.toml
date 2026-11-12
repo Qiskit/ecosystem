@@ -15,6 +15,7 @@ packages = [
 ]
 uuid = "bc3bf9db-9ea3-4621-a70a-bd862b85cad4"
 maturity = "experimental"
+status = "Under revision"
 
 [github]
 url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
@@ -134,3 +135,9 @@ highest_supported_qiskit_version = "2.6.2"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml", "setup.py"]
 deferred = ["rust_extensions"]
+
+[[checks.Q03]]
+since = 2026-11-12
+details = "The qiskit requirement in the bicycle-architecture-compiler manifest in the repository allows a not-yet-released major version of Qiskit"
+subtest = "python:bicycle-architecture-compiler"
+importance = "RECOMMENDATION"
