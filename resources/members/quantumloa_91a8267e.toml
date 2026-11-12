@@ -1,6 +1,5 @@
 name = "Qiskit Quantum Backend Selector"
 submission_number = 1362
-url = "https://github.com/RexRowan/Qiskit-Quantum-Backend-Selector"
 description = "Queue- and noise-aware backend selection and routing for IBM Quantum backends."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["cloud service", "utility-scale", "benchmarking"]
@@ -41,7 +40,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 136
-last_180_days_downloads = 162
+last_180_days_downloads = 165
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

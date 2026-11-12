@@ -82,7 +82,9 @@ def checkup_G12(member):
     if member.age_in_months is None:
         pytest.skip("member.age_in_months is None")
 
-    if not member.early:
+    if member.age_in_months >= 12:
+        # the age, not `member.early`, which also asks whether the project is active:
+        # a young project that went quiet is exactly what this check up is for
         pytest.skip(
             f"the repository is {member.age_in_months} months old, not young anymore"
         )

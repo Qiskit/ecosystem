@@ -1,5 +1,4 @@
 name = "MQT Core"
-url = "https://github.com/cda-tum/mqt-core"
 description = "MQT Core forms the backbone of the software tools developed as part of the Munich Quantum Toolkit (MQT) and connects it to Qiskit."
 license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
@@ -22,11 +21,11 @@ stars = 136
 homepage = "https://mqt.readthedocs.io/projects/core"
 license = "MIT"
 description = "MQT Core - Reusable C++20 and Python libraries for quantum computing: the MQT Compiler Collection, built on MLIR and LLVM, together..."
-total_dependent_repositories = 56
+total_dependent_repositories = 57
 total_dependent_packages = 11
 created_at = 2020-01-02
-last_commit = 2026-11-08
-last_activity = 2026-11-08
+last_commit = 2026-11-10
+last_activity = 2026-11-09
 topics = [
   "cpp20",
   "mlir",
@@ -43,8 +42,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "mqt-core"
-version = "4.1.1"
-last_release_date = 2026-10-13
+version = "4.2.0"
+last_release_date = 2026-11-10
 license = "MIT"
 description = "The Backbone of the Munich Quantum Toolkit"
 url = "https://pypi.org/project/mqt-core/"
@@ -52,10 +51,10 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 last_month_downloads = 13129
-last_180_days_downloads = 168303
+last_180_days_downloads = 170440
 
 [[pypi.requires]]
-specifier = "<3,>=2.1"
+specifier = "<3,>=2.5"
 extra = "qiskit"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true

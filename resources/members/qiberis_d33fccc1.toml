@@ -1,6 +1,5 @@
 name = "Qiberis"
 submission_number = 1268
-url = "https://github.com/RexRowan/Qiberis"
 description = "A backend-agnostic quantum circuit API: write once, run on Qiskit, Cirq, and PennyLane simulators."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["circuit building"]
@@ -9,7 +8,7 @@ category = "Converter"
 packages = ["https://pypi.org/project/Qiberis/"]
 uuid = "d33fccc1-4553-4314-8d94-95837a260fee"
 maturity = "experimental"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/RexRowan/Qiberis"
@@ -38,7 +37,7 @@ url = "https://pypi.org/project/Qiberis/"
 status = "active"
 maintainers = ["https://pypi.org/user/MeanMachineRex/"]
 last_month_downloads = 17
-last_180_days_downloads = 182
+last_180_days_downloads = 183
 
 [[pypi.requires]]
 specifier = ">=2.0"
@@ -47,6 +46,11 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
+
+[[checks.G12]]
+since = 2026-11-11
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiberis/issues/1, waiting for a release with the fix"

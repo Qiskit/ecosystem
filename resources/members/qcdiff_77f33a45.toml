@@ -1,6 +1,5 @@
 name = "qcdiff"
 submission_number = 1420
-url = "https://github.com/navneet83/qcdiff"
 description = "Semantic diff for OpenQASM 3 circuits: see what changed between two QASM files, gate by gate, in CI or code review."
 labels = ["openqasm"]
 interfaces = ["Python", "Rust", "Command-line interface (CLI)"]
@@ -55,7 +54,7 @@ development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/navneet.bits/"]
 last_month_downloads = 0
-last_180_days_downloads = 523
+last_180_days_downloads = 525
 
 [[crates]]
 package_name = "qcdiff"
@@ -78,5 +77,5 @@ description = "Semantic diff for OpenQASM 3 quantum circuits: parse, normalize, 
 url = "https://crates.io/crates/qcdiff-core"
 maintainers = ["https://github.com/navneet83"]
 edition = "2021"
-total_downloads = 23
-last_90_days_downloads = 23
+total_downloads = 24
+last_90_days_downloads = 24

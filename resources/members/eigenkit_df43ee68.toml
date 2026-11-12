@@ -1,6 +1,5 @@
 name = "eigenkit"
 submission_number = 1422
-url = "https://github.com/eigenorbit/eigenkit"
 description = "Write quantum algorithms once and run them on Qiskit, Aer, IBM Quantum hardware and other backends."
 contact_info = "info@eigenorbit.com"
 labels = ["QML", "chemistry", "finance", "optimization"]
@@ -20,7 +19,7 @@ status = "Very Early Project"
 url = "https://github.com/eigenorbit/eigenkit"
 owner = "eigenorbit"
 repo = "eigenkit"
-stars = 23
+stars = 25
 homepage = "https://eigenorbit.com/kit/"
 license = "Apache-2.0"
 description = "Open-source Python library for quantum computing. Build quantum algorithms once, run them on simulators such as Qiskit Aer, PennyLa..."
@@ -28,8 +27,8 @@ estimated_contributors = 3
 total_dependent_repositories = 1
 total_dependent_packages = 1
 created_at = 2026-10-06
-last_commit = 2026-11-06
-last_activity = 2026-11-06
+last_commit = 2026-11-11
+last_activity = 2026-11-11
 topics = [
   "amazon-braket",
   "cuda-quantum",
@@ -57,8 +56,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "eigenkit"
-version = "1.2.1"
-last_release_date = 2026-11-05
+version = "1.2.2"
+last_release_date = 2026-11-09
 license = "Apache-2.0"
 description = "Open-source Python library for quantum computing. Build quantum algorithms once, run them on any simulator or quantum computer."
 url = "https://pypi.org/project/eigenkit/"
@@ -66,7 +65,7 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/eigenorbit/"]
 last_month_downloads = 0
-last_180_days_downloads = 924
+last_180_days_downloads = 1038
 
 [[pypi.requires]]
 specifier = "<3,>=1.4.1"
@@ -77,7 +76,7 @@ highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
-specifier = ">=2"
+specifier = "<3,>=2"
 extra = "all"
 environment = "python_version >= \"3.14\""
 compatible_with_qiskit_v1 = false
@@ -94,7 +93,7 @@ highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
-specifier = ">=2"
+specifier = "<3,>=2"
 extra = "iqm"
 environment = "python_version >= \"3.14\""
 compatible_with_qiskit_v1 = false
@@ -111,37 +110,10 @@ highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 
 [[pypi.requires]]
-specifier = ">=2"
+specifier = "<3,>=2"
 extra = "qiskit"
 environment = "python_version >= \"3.14\""
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/eigenorbit/eigenkit/issues/39, waiting for a release with the fix"
-xfailed_until = 2027-02-06
-since = 2026-11-05
-details = "The qiskit requirement in the eigenkit release on PyPI (extra all) allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/eigenorbit/eigenkit/issues/39"
-subtest = "pypi:eigenkit (extra all)"
-importance = "RECOMMENDATION"
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/eigenorbit/eigenkit/issues/39, waiting for a release with the fix"
-xfailed_until = 2027-02-06
-since = 2026-11-05
-details = "The qiskit requirement in the eigenkit release on PyPI (extra iqm) allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/eigenorbit/eigenkit/issues/39"
-subtest = "pypi:eigenkit (extra iqm)"
-importance = "RECOMMENDATION"
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/eigenorbit/eigenkit/issues/39, waiting for a release with the fix"
-xfailed_until = 2027-02-06
-since = 2026-11-05
-details = "The qiskit requirement in the eigenkit release on PyPI (extra qiskit) allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/eigenorbit/eigenkit/issues/39"
-subtest = "pypi:eigenkit (extra qiskit)"
-importance = "RECOMMENDATION"

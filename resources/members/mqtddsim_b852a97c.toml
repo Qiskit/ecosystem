@@ -1,5 +1,4 @@
 name = "MQT DDSIM"
-url = "https://github.com/cda-tum/mqt-ddsim"
 description = "A classical quantum circuit simulator based on decision diagrams developed as part of the Munich Quantum Toolkit (MQT)."
 license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
@@ -25,8 +24,8 @@ description = "MQT DDSIM - A Quantum Circuit Simulator Based on Decision Diagram
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2020-02-11
-last_commit = 2026-11-08
-last_activity = 2026-11-08
+last_commit = 2026-11-11
+last_activity = 2026-11-09
 topics = [
   "cpp20",
   "decision-diagrams",
@@ -56,4 +55,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 8514
-last_180_days_downloads = 29604
+last_180_days_downloads = 29731

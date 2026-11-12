@@ -1,5 +1,4 @@
 name = "dense-ev"
-url = "https://github.com/atlytle/dense-ev"
 description = "Expectation value measurements in Qiskit using optimal dense grouping, an improvement of (3/2)^m over qubit-wise commuting groups."
 license = "Apache-2.0"
 contact_info = "atlytle@gmail.com"
@@ -52,23 +51,14 @@ since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
-[[checks.Q02]]
-since = 2026-04-30
-details = "Python package dense-ev is not compatible with Qiskit SDK v2"
-discussion = "https://github.com/atlytle/dense-ev/issues/2"
-importance = "IMPORTANT"
-
 [[checks.P12]]
 since = 2026-09-24
 details = "The PyPI package dense-ev does not have a declared license"
 importance = "RECOMMENDATION"
 
-[[checks.Q20]]
-since = 2026-09-24
-details = "Not compatible with the Qiskit SDK v2 or newer: `[Q02]`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-26
-details = "The project is probably abandoned: `[Q20]`"
-importance = "CRITICAL"
+[[checks.Q02]]
+since = 2026-04-30
+details = "The qiskit requirement in the dense-ev release on PyPI is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/atlytle/dense-ev/issues/2"
+subtest = "pypi:dense-ev"
+importance = "IMPORTANT"

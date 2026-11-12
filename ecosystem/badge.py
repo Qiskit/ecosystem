@@ -56,7 +56,17 @@ class BadgeData(JsonSerializable):
             self.style = "flat"
 
     def update_url(self, name, short_uuid):
-        """If not there yet, creates a new Bitly link for the badge"""
+        """If not there yet, creates a new Bitly link for the badge
+
+        A stored `url` is taken as good and nothing is requested: the link is permanent by
+        construction (`create_link` tags it "do NOT remove"), and this runs once per member
+        per daily run, so re-checking all of them costs a request each and the
+        `requests_cache` TTL is too short to absorb it. The cost of trusting it is that a
+        link broken after it was recorded goes unnoticed here.
+        """
+        if self.url:
+            return
+
         short_url = f"https://qisk.it/e-{short_uuid}"
 
         try:

@@ -1,6 +1,5 @@
 name = "Qiskit LEAN bridge"
 submission_number = 1293
-url = "https://github.com/RexRowan/Qiskit-LEAN-Bridge"
 description = "Bridges Qiskit's StandardEquivalenceLibrary to formally verified proofs in inQWIRE/LeanQuantum."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["quantum information", "research"]
@@ -42,6 +41,12 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
 
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
+
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/RexRowan/Qiskit-LEAN-Bridge/issues/1, waiting for the fix"
 xfailed_until = 2026-11-30
@@ -50,9 +55,3 @@ details = "The qiskit requirement in the qiskit-lean-bridge manifest in the repo
 discussion = "https://github.com/RexRowan/Qiskit-LEAN-Bridge/issues/1"
 subtest = "python:qiskit-lean-bridge"
 importance = "RECOMMENDATION"
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

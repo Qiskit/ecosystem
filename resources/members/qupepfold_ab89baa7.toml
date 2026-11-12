@@ -1,5 +1,4 @@
 name = "QuPepFold"
-url = "https://github.com/akshayuttarkarc/QuPepFold"
 description = "Research-oriented toolkit for turning amino-acid sequences into quantum bitstring encodings. Peer-reviewed and published in PLOS ONE."
 license = "MIT"
 contact_info = "akshayuttarkar@gmail.com"
@@ -46,7 +45,13 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 43
-last_180_days_downloads = 1140
+last_180_days_downloads = 1144
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/akshayuttarkarc/QuPepFold/issues/8, waiting for a release with the fix"
@@ -56,9 +61,3 @@ details = "The qiskit requirement in the qupepfold release on PyPI allows a not-
 discussion = "https://github.com/akshayuttarkarc/QuPepFold/issues/8"
 subtest = "pypi:qupepfold"
 importance = "RECOMMENDATION"
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

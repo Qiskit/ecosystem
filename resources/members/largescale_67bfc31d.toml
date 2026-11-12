@@ -1,5 +1,4 @@
 name = "(Large-scale) Quantum Network Coding"
-url = "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding"
 description = "Simulate (Large-scale) Quantum Network Coding in Quantum Repeater Network environment."
 contact_info = "mikrobi.0122@gmail.com"
 labels = ["quantum information"]
@@ -37,6 +36,11 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 
+[[checks.G12]]
+since = 2026-09-24
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
+
 [[checks.G15]]
 xfailed = "membership predates the checkup"
 since = 2026-11-01
@@ -52,8 +56,3 @@ details = "The qiskit requirement in docs/requirements.txt allows a not-yet-rele
 discussion = "https://github.com/NagyTamas0122/Large-scale_QuantumNetworkCoding/issues/2"
 subtest = "requirements:docs/requirements.txt"
 importance = "RECOMMENDATION"
-
-[[checks.G12]]
-since = 2026-09-24
-details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
-importance = "IMPORTANT"

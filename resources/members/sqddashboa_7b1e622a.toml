@@ -1,6 +1,5 @@
 name = "Qiskit SQD Dashboard"
 submission_number = 1273
-url = "https://github.com/RexRowan/Qiskit-SQD-Dashboard"
 description = "Live convergence diagnostics for qiskit-addon-sqd's configuration recovery loop, as an in-notebook Plotly widget."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["chemistry", "research", "utility-scale"]
@@ -9,7 +8,7 @@ category = "Tooling"
 packages = ["https://pypi.org/project/qiskit-sqd-dashboard/"]
 uuid = "7b1e622a-9b88-4e9f-9ff9-db4d342f3ac3"
 maturity = "experimental"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-SQD-Dashboard"
@@ -39,4 +38,9 @@ development_status = "3 - Alpha"
 status = "active"
 maintainers = ["https://pypi.org/user/MeanMachineRex/"]
 last_month_downloads = 28
-last_180_days_downloads = 199
+last_180_days_downloads = 204
+
+[[checks.G12]]
+since = 2026-11-11
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"

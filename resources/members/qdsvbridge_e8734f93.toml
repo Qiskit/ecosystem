@@ -1,6 +1,5 @@
 name = "QDSV Bridge"
 submission_number = 1211
-url = "https://github.com/qdsvquantum-afk/qdsv-bridge"
 description = "A problem-first semantic-to-circuit SDK with canonical and exact optimized logical artifacts for Qiskit/OpenQASM workflows"
 contact_info = "jaimeajl@qruba.site"
 labels = [
@@ -13,7 +12,7 @@ labels = [
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "SDK"
 reference_paper = "https://arxiv.org/abs/2606.19312"
-documentation = "https://qdsvquantum-afk.github.io/qdsv-bridge/how_to/logical_artifacts.html"
+documentation = "https://qdsvquantum-afk.github.io/qdsv-bridge/"
 packages = ["https://pypi.org/project/qdsv-bridge/"]
 uuid = "e8734f93-a72a-47fe-a3f4-dc9b8e54a6fb"
 maturity = "experimental"
@@ -45,7 +44,7 @@ development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/jalexanderjlozano/"]
 last_month_downloads = 491
-last_180_days_downloads = 4897
+last_180_days_downloads = 4902
 
 [[pypi.requires]]
 specifier = "<3,>=2.3"

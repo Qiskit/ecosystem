@@ -1,5 +1,4 @@
 name = "qiskit-tnqs"
-url = "https://github.com/qiskit-community/qiskit-tnqs"
 description = "Simulates Qiskit circuits with the Julia tensor-network simulator TensorNetworkQuantumSimulator.jl, without leaving Python."
 labels = ["tensor networks", "research"]
 interfaces = ["Python", "Julia"]
@@ -23,6 +22,7 @@ last_commit = 2026-01-22
 last_activity = 2026-10-30
 
 [badge]
+url = "https://qisk.it/e-077db58f"
 style = "flat"
 
 [[python]]

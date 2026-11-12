@@ -1,19 +1,18 @@
 name = "QuBins.org"
 submission_number = 1155
-url = "https://github.com/QuBins/qiskit-images"
 description = "Qiskit images for Binder & Docker. One-click in-browser or docker pull; multi-arch, no local install. Prebuilt, signed, daily-rebuilt."
 contact_info = "jan@lahmann-online.de"
 labels = ["cloud service", "environment setup"]
 interfaces = ["Web interface", "Command-line interface (CLI)"]
-website = "https://qubins.org"
+website = "status-404://qubins.org"
 category = "Tooling"
 packages = [
-  "https://github.com/QuBins/qiskit-images/pkgs/container/images",
-  "https://github.com/QuBins/qiskit-images/blob/main/versions/*/requirements.txt",
+  "status-404://github.com/QuBins/qiskit-images/pkgs/container/images",
+  "status-404://github.com/QuBins/qiskit-images/blob/main/versions/*/requirements.txt",
 ]
 uuid = "6c640264-6c64-4163-921a-fbaeaa553f53"
 maturity = "production-ready"
-status = "Early Project"
+status = "Alumni"
 
 [github]
 url = "https://github.com/QuBins/qiskit-images"
@@ -157,3 +156,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
+
+[[checks.016]]
+since = 2026-11-11
+details = "does not resolve: member.url (https://github.com/QuBins/qiskit-images), member.website (https://qubins.org), member.packages (https://github.com/QuBins/qiskit-images/pkgs/container/images), member.packages (https://github.com/QuBins/qiskit-images/blob/main/versions/*/requirements.txt)"
+importance = "CRITICAL"

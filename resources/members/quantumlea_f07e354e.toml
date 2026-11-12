@@ -1,6 +1,5 @@
 name = "quantum-learn"
 submission_number = 1275
-url = "https://github.com/KUQCI/quantum-learn"
 description = "Making quantum machine learning easier through higher-level estimators and quantum circuit wrappers for common workflows."
 contact_info = "quantuminitiative.ku@gmail.com"
 labels = ["QML"]
@@ -40,7 +39,7 @@ development_status = "3 - Alpha"
 status = "active"
 maintainers = ["https://pypi.org/user/osamamit/"]
 last_month_downloads = 12
-last_180_days_downloads = 714
+last_180_days_downloads = 717
 
 [[pypi.requires]]
 specifier = ">=0"
@@ -62,16 +61,16 @@ highest_supported_qiskit_version = "2.6.2"
 xfailed = "Issue asking for the cap submitted https://github.com/KUQCI/quantum-learn/issues/10, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-08-06
-details = "The qiskit requirement in the quantum-learn release on PyPI (extra qiskit) allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the quantum-learn release on PyPI (extra all) allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/KUQCI/quantum-learn/issues/10"
-subtest = "pypi:quantum-learn (extra qiskit)"
+subtest = "pypi:quantum-learn (extra all)"
 importance = "RECOMMENDATION"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/KUQCI/quantum-learn/issues/10, waiting for a release with the fix"
 xfailed_until = 2027-03-31
 since = 2026-08-06
-details = "The qiskit requirement in the quantum-learn release on PyPI (extra all) allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the quantum-learn release on PyPI (extra qiskit) allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/KUQCI/quantum-learn/issues/10"
-subtest = "pypi:quantum-learn (extra all)"
+subtest = "pypi:quantum-learn (extra qiskit)"
 importance = "RECOMMENDATION"

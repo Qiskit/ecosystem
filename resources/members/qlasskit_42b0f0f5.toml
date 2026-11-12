@@ -1,5 +1,4 @@
 name = "qlasskit"
-url = "https://github.com/dakk/qlasskit"
 description = "Write classical algorithms in pure Python and translate them into quantum circuits."
 license = "Apache-2.0"
 contact_info = "gessadavide@gmail.com"
@@ -24,7 +23,7 @@ estimated_contributors = 6
 total_dependent_repositories = 3
 total_dependent_packages = 0
 created_at = 2023-09-22
-last_commit = 2026-11-07
+last_commit = 2026-11-11
 last_activity = 2026-11-06
 topics = [
   "quantum",
@@ -49,7 +48,7 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/dakk/"]
 last_month_downloads = 57
-last_180_days_downloads = 834
+last_180_days_downloads = 948
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

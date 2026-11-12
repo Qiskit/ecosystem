@@ -168,6 +168,16 @@ class TestAgeGatedCheckups(GitHubCheckupsTestCase):
             checker, {"G12"}, months_old=6, months_since_commit=5
         )
 
+    def test_G12_applies_to_a_young_project_that_went_quiet(self):
+        """A worse deceleration cannot be exempt: the window is `max(2, age * 2/3)`,
+        so 9 months without a commit at 6 months old is further past it, not nearer"""
+        self.assert_same_for_every_status(
+            "checkup_github.py::checkup_G12",
+            {"G12"},
+            months_old=6,
+            months_since_commit=9,
+        )
+
     def test_G12_does_not_apply_to_an_old_repository(self):
         """Older repositories are covered by the flat window of [G07] instead"""
         self.assert_same_for_every_status(
