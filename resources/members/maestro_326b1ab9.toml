@@ -1,0 +1,47 @@
+name = "qiskit-maestro"
+url = "https://github.com/QoroQuantum/qiskit-maestro"
+submission_number = 1449
+description = "Run Qiskit circuits, Sampler and Estimator on the Qoro simulator (qoro-maestro): statevector, MPS, stabilizer and more, on CPU or GPU."
+contact_info = "stephen@qoroquantum.de"
+labels = ["tensor networks", "GPU", "provider", "Hamiltonian simulation"]
+interfaces = ["Python"]
+website = "https://qoroquantum.github.io/maestro/"
+category = "Circuit simulator"
+documentation = "https://qoroquantum.github.io/maestro/getting-started/coming-from-qiskit.html"
+packages = []
+uuid = "326b1ab9-8d50-4142-abde-37eb9167c59b"
+maturity = "experimental"
+status = "Very Early Project"
+
+[github]
+url = "https://github.com/QoroQuantum/qiskit-maestro"
+owner = "QoroQuantum"
+repo = "qiskit-maestro"
+stars = 2
+license = "GPL-3.0"
+description = "A Maestro Provider for Qiskit."
+estimated_contributors = 3
+created_at = 2026-11-01
+last_commit = 2026-11-12
+last_activity = 2026-11-12
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "qiskit-maestro"
+version = "0.2.0"
+last_release_date = 2026-11-12
+license = "GPL-3.0"
+description = "Qiskit backend, Sampler and Estimator for the Maestro quantum simulator by Qoro Quantum"
+url = "https://pypi.org/project/qiskit-maestro/"
+development_status = "4 - Beta"
+status = "active"
+maintainers = ["https://pypi.org/user/stephen.diadamo/"]
+requires_qiskit = "<3,>=1.1"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+last_month_downloads = 0
+last_180_days_downloads = 214
