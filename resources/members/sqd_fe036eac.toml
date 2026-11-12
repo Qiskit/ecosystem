@@ -1,31 +1,37 @@
 name = "Sample-based Quantum Diagonalization"
-url = "https://github.com/Qiskit/qiskit-addon-sqd"
 description = "Sample-based quantum diagonalization. Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 labels = ["chemistry", "utility-scale"]
 interfaces = ["Python"]
 ibm_maintained = true
 created_at = 2025-09-24
 category = "Application"
-documentation = "https://qiskit.github.io/qiskit-addon-sqd/"
+documentation = "https://qiskit.github.io/qiskit-sqd/"
 packages = ["https://pypi.org/project/qiskit-addon-sqd/"]
 uuid = "fe036eac-635d-46db-931e-2965a8a138a5"
 maturity = "experimental"
 status = "Qiskit Project"
 
 [github]
-url = "https://github.com/Qiskit/qiskit-addon-sqd"
+url = "https://github.com/Qiskit/qiskit-sqd"
 owner = "Qiskit"
-repo = "qiskit-addon-sqd"
-stars = 102
+repo = "qiskit-sqd"
+stars = 104
 homepage = "https://quantum.cloud.ibm.com/docs/en/addons/qiskit-addon-sqd"
 license = "Apache-2.0"
 description = "Sample-based Quantum Diagonalization: Classically postprocess noisy quantum samples to yield more accurate eigenvalue estimations."
 estimated_contributors = 17
-total_dependent_repositories = 17
-total_dependent_packages = 7
+total_dependent_repositories = 19
+total_dependent_packages = 8
 created_at = 2024-08-16
-last_commit = 2026-10-28
-last_activity = 2026-10-27
+last_commit = 2026-11-06
+last_activity = 2026-11-10
+topics = [
+  "computational-chemistry",
+  "hpc",
+  "python",
+  "qiskit-addon",
+  "quantum-computing",
+]
 
 [badge]
 url = "https://qisk.it/e-fe036eac"
@@ -33,8 +39,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-addon-sqd"
-version = "0.14.0"
-last_release_date = 2026-10-08
+version = "0.14.1"
+last_release_date = 2026-11-06
 license = "Apache-2.0"
 description = "Classically postprocess noisy quantum samples to yield more accurate energy estimations"
 url = "https://pypi.org/project/qiskit-addon-sqd/"
@@ -48,7 +54,37 @@ maintainers = [
 requires_qiskit = "<3,>=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 54028
-last_180_days_downloads = 187187
+last_180_days_downloads = 199955
+
+[[pypi.requires]]
+specifier = ">=0"
+extra = "dev"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[pypi.requires]]
+specifier = ">=0"
+extra = "docs"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[pypi.requires]]
+specifier = ">=0"
+extra = "notebook-dependencies"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

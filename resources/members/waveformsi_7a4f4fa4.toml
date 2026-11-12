@@ -1,6 +1,5 @@
 name = "qiskit-waveform-sim"
 submission_number = 1409
-url = "https://github.com/PratulDeshpande/qiskit-waveform-sim"
 description = "Zero-bloat Classical Control Waveform Simulator and Interactive Pulse Sheet Viewer for Qiskit 2.5+"
 contact_info = "pratul.deshpande06@gmail.com"
 labels = ["openqasm"]
@@ -41,7 +40,7 @@ maintainers = ["https://pypi.org/user/PratulDeshpande/"]
 requires_qiskit = "<3,>=2.5.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 191
-last_180_days_downloads = 859
+last_180_days_downloads = 907

@@ -1,6 +1,5 @@
 name = "autoq-qec"
 submission_number = 1235
-url = "https://github.com/Ronaldoengenhariadacomputacao/autoq-qec"
 description = "Multi-code fault-tolerant QEC estimator for Qiskit circuits: Surface Code, Floquet Code, Bacon-Shor, Steane."
 contact_info = "Ronaldoengenhariadacomputacao@hotmail.com"
 labels = ["error correction", "quantum information", "benchmarking"]
@@ -23,6 +22,23 @@ description = "Multi-code QEC resource estimator for Qiskit circuits"
 created_at = 2026-07-12
 last_commit = 2026-09-26
 last_activity = 2026-09-26
+topics = [
+  "awesome-quantum-software",
+  "fault-tolerant-quantum-computing",
+  "floquet-code",
+  "hardware-agnostic",
+  "majorana",
+  "majorana-fermions",
+  "python",
+  "qec",
+  "qiskit",
+  "quantum-computing",
+  "quantum-error-correction",
+  "resource-estimation",
+  "topological-quantum-computation",
+  "topological-qubits",
+  "vendor-neutral",
+]
 
 [badge]
 url = "https://qisk.it/e-5c47e416"
@@ -41,7 +57,7 @@ maintainers = ["https://pypi.org/user/Ronaldoengenharia/"]
 requires_qiskit = "<3,>=1.0.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 241
-last_180_days_downloads = 2182
+last_180_days_downloads = 2209

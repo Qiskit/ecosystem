@@ -1,6 +1,5 @@
 name = "Witching Hour"
 submission_number = 1089
-url = "https://github.com/witchinghourartcollective/witching-hour-qiskit"
 description = "Minimal qBraid + Qiskit starter package for running circuits, discovering devices, and submitting first quantum jobs."
 contact_info = "fletchervaughn@witchinghourmac.com"
 labels = ["cloud service"]
@@ -9,7 +8,7 @@ category = "Tooling"
 packages = []
 uuid = "5907eb1e-6ecd-4d5b-9f28-f302b23ace0e"
 maturity = "production-ready"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/Witching-Hour-Music/witching-hour-qiskit"
@@ -21,7 +20,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-04-10
 last_commit = 2026-06-09
-last_activity = 2026-06-09
+last_activity = 2026-11-01
 
 [badge]
 url = "https://qisk.it/e-5907eb1e"
@@ -36,3 +35,15 @@ requires_python = ">=3.10"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
+
+[[checks.G12]]
+since = 2026-11-11
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/Witching-Hour-Music/witching-hour-qiskit/issues/1"
+importance = "NICE-TO-HAVE"

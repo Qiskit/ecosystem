@@ -1,5 +1,4 @@
 name = "Spank plugins for Slurm"
-url = "https://github.com/qiskit-community/spank-plugins"
 description = "Slurm SPANK plugins that make quantum devices schedulable resources inside HPC batch jobs."
 labels = ["HPC", "cloud service"]
 interfaces = ["Other interface", "Command-line interface (CLI)"]
@@ -16,8 +15,16 @@ stars = 59
 license = "GPL-3.0"
 description = "Slurm Spank plugins for Quantum resources and jobs support"
 created_at = 2025-01-24
-last_commit = 2026-10-28
-last_activity = 2026-10-28
+last_commit = 2026-11-03
+last_activity = 2026-11-03
+topics = [
+  "hpc",
+  "ibm-quantum",
+  "pasqal",
+  "qiskit",
+  "quantum-computing",
+  "slurm",
+]
 
 [badge]
 url = "https://qisk.it/e-d7ae5877"

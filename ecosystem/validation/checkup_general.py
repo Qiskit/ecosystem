@@ -13,7 +13,8 @@
 
 """General criteria
 
-[000] Build on, interface with, or extend the Qiskit SDK in a meaningful way.
+[000] Build on, interface with, or extend Qiskit or the IBM Quantum services, in a
+      meaningful way.
 [Q20] Be compatible with the Qiskit SDK v2.0 (or newer).
 [001] Have an OSI-approved open-source license (preferably Apache 2.0 or MIT).
 [COC] Adhere to the Qiskit code of conduct.
@@ -98,6 +99,26 @@ def checkup_015(member):
     assert len(owner_repo) >= 2, f"{member.url} is a GitHub organization URL"
 
 
+def checkup_016(member):
+    """URL should exist
+
+    `update_urls` has already asked: it records a URL that answered 404 or 410 by changing
+    its scheme to `status-<status>://`, so this reads the scheme and never the network,
+    which is what keeps the suite offline like every other check up.
+    """
+    places = [
+        (f"member.{field}", getattr(member, field))
+        for field in ("url", "website", "documentation")
+    ]
+    places += [("member.packages", package) for package in member.packages]
+    gone = [
+        f"{field} ({url.unmarked})"
+        for field, url in places
+        if url is not None and url.is_broken
+    ]
+    assert not gone, "does not resolve: " + ", ".join(gone)
+
+
 def qiskit_declarations(member):
     """Every qiskit dependency the member declares: its place, its label and the section.
 
@@ -126,6 +147,17 @@ def qiskit_declarations(member):
                 f"pypi:{package.package_name}",
                 f"the {package.package_name} release on PyPI",
                 package,
+            )
+            continue
+        # a release whose qiskit is conditional declares no `requires_qiskit` of its own:
+        # a plain install does not create the dependency. Each condition is still a
+        # declaration, and the one that gets installed is whoever asks for the extra
+        for requirement in package.requires or []:
+            where = f" (extra {requirement.extra})" if requirement.extra else ""
+            yield (
+                f"pypi:{package.package_name}{where}",
+                f"the {package.package_name} release on PyPI{where}",
+                requirement,
             )
     for package in member.python or []:
         if package.requires_qiskit:

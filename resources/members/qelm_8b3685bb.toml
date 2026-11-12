@@ -1,5 +1,4 @@
 name = "QELM"
-url = "https://github.com/R-D-BioTech-Alaska/Qelm"
 description = "A quantum-powered NLP project. Creates ultra-compact, efficient LLMs that run instantly on small devices without data centers."
 license = "PolyForm-Strict-1.0.0"
 contact_info = "contact@rdbiotechalaska.com"
@@ -25,24 +24,44 @@ style = "flat"
 
 [[pypi]]
 package_name = "qelm"
-
-[[checks.G09]]
-since = 2026-09-24
-details = "member.github.license does not exist"
-importance = "RECOMMENDATION"
-
-[[checks.O02]]
-since = 2026-09-24
-details = "member.license is not OSI-approved"
-importance = "IMPORTANT"
-
-[[checks.P12]]
-since = 2026-09-24
-details = "The PyPI package qelm does not have a declared license"
-importance = "RECOMMENDATION"
+version = "0.1.4"
+last_release_date = 2025-07-28
+license = "MIT"
+description = "Quantum-Enhanced Language Model"
+url = "https://pypi.org/project/qelm/"
+status = "active"
+maintainers = ["https://pypi.org/user/Inserian/"]
+requires_qiskit = ">=1.0"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-10-16
+highest_supported_qiskit_version = "2.6.0"
+last_month_downloads = 5
+last_180_days_downloads = 261
 
 [[checks.001]]
 since = 2026-07-30
 source = "https://github.com/Qiskit/ecosystem/issues/1381"
 details = "QELM license is not open-source. It is a proprietary license that restricts usage and distribution. (the source issue is closed as completed)"
 importance = "CRITICAL"
+
+[[checks.G09]]
+since = 2026-09-24
+details = "member.github.license does not exist"
+importance = "RECOMMENDATION"
+
+[[checks.G15]]
+since = 2026-11-11
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+importance = "NICE-TO-HAVE"
+
+[[checks.O02]]
+since = 2026-09-24
+details = "member.license is not OSI-approved"
+importance = "IMPORTANT"
+
+[[checks.Q03]]
+since = 2026-11-11
+details = "The qiskit requirement in the qelm release on PyPI allows a not-yet-released major version of Qiskit"
+subtest = "pypi:qelm"
+importance = "RECOMMENDATION"

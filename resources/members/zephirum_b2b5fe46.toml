@@ -1,0 +1,83 @@
+name = "Zephirum"
+submission_number = 1432
+description = "Trivalent quantum decision language (Lisp syntax): verdicts are 1, 0, or REFUSED with sealed, traceable receipts. Built on Qiskit."
+labels = [
+  "error mitigation",
+  "QML",
+  "quantum information",
+  "tensor networks",
+  "openqasm",
+]
+interfaces = ["Python", "Command-line interface (CLI)"]
+website = "https://serenasolutions.github.io/zephirum-lang/"
+category = "SDK"
+documentation = "https://github.com/SerenaSolutions/zephirum-lang/tree/main/docs"
+packages = ["https://pypi.org/project/zephirum/"]
+uuid = "b2b5fe46-ba1e-4279-8276-02277bbbe1e3"
+maturity = "experimental"
+status = "Very Early Project"
+
+[github]
+url = "https://github.com/SerenaSolutions/zephirum-lang"
+owner = "SerenaSolutions"
+repo = "zephirum-lang"
+stars = 2
+homepage = "https://serenasolutions.github.io/zephirum/"
+license = "Apache-2.0"
+description = "Quantum language for auditable decisions (Lisp s-expressions): verdicts 1, 0 or REFUSED with sealed receipts. Built on Qiskit."
+estimated_contributors = 3
+total_dependent_repositories = 0
+total_dependent_packages = 0
+created_at = 2026-10-12
+last_commit = 2026-11-11
+last_activity = 2026-11-10
+topics = [
+  "auditability",
+  "brazil",
+  "decision-making",
+  "openqasm",
+  "portuguese",
+  "python",
+  "qiskit",
+  "quantum",
+  "quantum-algorithms",
+  "quantum-computing",
+  "trivalent-logic",
+  "verification",
+]
+
+[badge]
+url = "https://qisk.it/e-b2b5fe46"
+style = "flat"
+
+[[pypi]]
+package_name = "zephirum"
+version = "2.5.8"
+last_release_date = 2026-11-10
+license = "Apache-2.0"
+description = "ZEPHIRUM: quantum programming language and runtime for auditable decisions, with the ZYQL trivalent core (1/0/REFUSED)"
+url = "https://pypi.org/project/zephirum/"
+status = "active"
+maintainers = ["https://pypi.org/user/ZEPHIRUM_010101010100001/"]
+requires_qiskit = "<3,>=2.6"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+last_month_downloads = 0
+last_180_days_downloads = 835
+
+[[python]]
+package_name = "zephirum"
+version = "2.5.8"
+license = "Apache-2.0"
+description = "ZEPHIRUM: quantum programming language and runtime for auditable decisions, with the ZYQL trivalent core (1/0/REFUSED)"
+requires_python = ">=3.10"
+requires_qiskit = "<3,>=2.6"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml"]
+deferred = []

@@ -1,6 +1,5 @@
 name = "Entangible"
 submission_number = 1251
-url = "https://github.com/JanLahmann/entangible"
 description = "Physical quantum circuit composer: build circuits from tangible gate tiles, see live results. OpenQASM 2 + optional Qiskit backend."
 labels = ["demo", "circuit building"]
 interfaces = ["Web interface"]
@@ -24,7 +23,7 @@ homepage = "https://entangible.org/"
 license = "Apache-2.0"
 created_at = 2026-07-11
 last_commit = 2026-10-23
-last_activity = 2026-10-23
+last_activity = 2026-11-01
 
 [badge]
 url = "https://qisk.it/e-265ddc43"
@@ -69,3 +68,10 @@ build_backend = "hatchling.build"
 path = "packages/qamposer-vision"
 source = ["pyproject.toml"]
 deferred = []
+
+[[checks.G15]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+discussion = "https://github.com/JanLahmann/entangible/issues/22"
+importance = "NICE-TO-HAVE"

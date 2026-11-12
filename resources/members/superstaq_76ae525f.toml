@@ -1,5 +1,4 @@
 name = "qiskit-superstaq"
-url = "https://github.com/Infleqtion/client-superstaq/tree/main/qiskit-superstaq"
 description = "Access the SuperstaQ web API through Qiskit for applications, pulse-level optimizations, and write-once-target-all features."
 license = "Apache-2.0"
 contact_info = ""
@@ -23,15 +22,22 @@ url = "https://github.com/Infleqtion/client-superstaq"
 owner = "Infleqtion"
 repo = "client-superstaq"
 tree = "main/qiskit-superstaq"
-stars = 131
+stars = 132
 license = "Apache-2.0"
 description = "https://superstaq.readthedocs.io"
 estimated_contributors = 38
 total_dependent_repositories = 53
 total_dependent_packages = 8
 created_at = 2022-02-22
-last_commit = 2026-10-14
-last_activity = 2026-10-28
+last_commit = 2026-11-11
+last_activity = 2026-11-11
+topics = [
+  "benchmark-framework",
+  "benchmark-suite",
+  "quantum-algorithms",
+  "quantum-computing",
+  "quantum-mechanics",
+]
 
 [badge]
 url = "https://qisk.it/e-76ae525f"
@@ -47,7 +53,7 @@ url = "https://pypi.org/project/checks-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 6524
-last_180_days_downloads = 60349
+last_180_days_downloads = 62646
 
 [[pypi]]
 package_name = "cirq-superstaq"
@@ -63,7 +69,7 @@ maintainers = [
   "https://pypi.org/user/vtomole/",
 ]
 last_month_downloads = 5385
-last_180_days_downloads = 60056
+last_180_days_downloads = 61580
 
 [[pypi]]
 package_name = "general-superstaq"
@@ -75,7 +81,7 @@ url = "https://pypi.org/project/general-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 5569
-last_180_days_downloads = 62144
+last_180_days_downloads = 63818
 
 [[pypi]]
 package_name = "qiskit-superstaq"
@@ -90,13 +96,24 @@ maintainers = [
   "https://pypi.org/user/richrines/",
   "https://pypi.org/user/vtomole/",
 ]
-requires_qiskit = "<3,>=1.3.0"
+last_month_downloads = 3430
+last_180_days_downloads = 41628
+
+[[pypi.requires]]
+specifier = "<3,>=1.3.0"
+environment = "python_version < \"3.14\""
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
-last_month_downloads = 3430
-last_180_days_downloads = 40502
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[pypi.requires]]
+specifier = "<3,>=2.1.0"
+environment = "python_version >= \"3.14\""
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[pypi]]
 package_name = "supermarq"
@@ -108,4 +125,10 @@ url = "https://pypi.org/project/Supermarq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 663
-last_180_days_downloads = 7697
+last_180_days_downloads = 8203
+
+[[checks.G14]]
+xfailed = "membership predates the checkup"
+since = 2026-11-01
+details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
+importance = "NICE-TO-HAVE"

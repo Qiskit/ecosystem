@@ -18,6 +18,7 @@ from ecosystem.docs.pypi_page import PypiPage
 from ecosystem.github import GitHubData
 from ecosystem.member import Member
 from ecosystem.pypi import PyPIData
+from ecosystem.qiskit_requirement import QiskitRequirement
 
 OWNER = "banana-org"
 REPO = "banana-repo"
@@ -49,6 +50,77 @@ class PypiPageTestCase(TestCase):
     def rendered(self, package=None, **kwargs):
         """The whole page, as one string"""
         return "\n".join(self.page(package, **kwargs).generate_all_lines())
+
+
+class TestTheCardsStaySeparate(PypiPageTestCase):
+    """Two cards in a `grid cards` list, not one.
+
+    A card is a `-` list item and a blank line is what ends it, so a card whose last
+    line is content swallows the next one. The compatibility table used to supply that
+    blank line, and moving it out of the card merged the two.
+    """
+
+    def test_a_card_ends_with_a_blank_line(self):
+        """Two list items in the grid, so two cards"""
+        rendered = self.rendered(
+            self.package(last_month_downloads=5, last_180_days_downloads=9)
+        )
+        cards = rendered[rendered.index("grid cards") :]
+
+        self.assertEqual(2, cards.count("\n-   "))
+
+    def test_the_cards_are_separated_without_the_table(self):
+        """The distribution requires no qiskit, so nothing follows the downloads"""
+        rendered = self.rendered(
+            self.package(last_month_downloads=5, last_180_days_downloads=9)
+        )
+
+        self.assertNotIn("Qiskit compatibility", rendered)
+        self.assertIn("\n\n-   ", rendered[rendered.index("grid cards") :])
+
+
+class TestTheQiskitCompatibilitySection(PypiPageTestCase):
+    """The table is a section of the page, not a bullet inside the card.
+
+    A card is one column of a grid and the table has up to five columns of its own, so
+    it never fitted; `pip-source/` renders it the same way.
+    """
+
+    def test_the_table_is_a_section_with_a_heading(self):
+        """Its own heading, like the other sections of a page"""
+        rendered = self.rendered(self.package(requires_qiskit="<3,>=2.0"))
+
+        self.assertIn("### :simple-qiskit: Qiskit compatibility", rendered)
+        self.assertIn("| Requires | V1 | V2 | Highest supported |", rendered)
+
+    def test_the_section_sits_after_the_cards(self):
+        """A reader meets the distribution before what it requires"""
+        rendered = self.rendered(self.package(requires_qiskit="<3,>=2.0"))
+
+        self.assertLess(
+            rendered.index("</div>"), rendered.index("Qiskit compatibility")
+        )
+
+    def test_a_conditional_requirement_gets_a_row_naming_its_extra(self):
+        """Two rows of one distribution need the extra to tell them apart"""
+        rendered = self.rendered(
+            self.package(
+                requires=[
+                    QiskitRequirement(specifier="<3,>=2.0", extra="qiskit"),
+                    QiskitRequirement(specifier="<3,>=2.0", extra="benchmarking"),
+                ]
+            )
+        )
+
+        self.assertIn(
+            "| Requires | Needed by | V1 | V2 | Highest supported |", rendered
+        )
+        self.assertIn("`[qiskit]`", rendered)
+        self.assertIn("`[benchmarking]`", rendered)
+
+    def test_a_package_requiring_no_qiskit_has_no_section(self):
+        """Most distributions: nothing to say, so nothing is said"""
+        self.assertNotIn("Qiskit compatibility", self.rendered())
 
 
 class TestThePypiPage(PypiPageTestCase):

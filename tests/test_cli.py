@@ -24,9 +24,10 @@ from pathlib import Path
 from dateutil.relativedelta import relativedelta
 
 from ecosystem.badge import BadgeData
-from ecosystem.check import CheckData
+from ecosystem.check import CheckData, ChecksToml
 from ecosystem.cli import CliCI, CliMembers
 from ecosystem.dao import DAO
+from ecosystem.error_handling import EcosystemError
 from ecosystem.github import GitHubData
 from ecosystem.julia import JuliaData
 from ecosystem.member import Member
@@ -290,7 +291,11 @@ class UpdateStatusTestCase(TestCase):
         shutil.rmtree(self.path)
 
     def add_member(
-        self, months_old=None, maturity="production-ready", **kwargs
+        self,
+        months_old=None,
+        no_activity_for_the_last_n_months=None,
+        maturity="production-ready",
+        **kwargs,
     ) -> Member:
         """Writes a member in the temporary DAO. If months_old is given,
         the GitHub repository was created that many months ago."""
@@ -302,12 +307,21 @@ class UpdateStatusTestCase(TestCase):
             maturity=maturity,
             **kwargs,
         )
+        created_at = None
+        last_activity = None
         if months_old is not None:
-            member.github = GitHubData(
-                owner="MockQiskit",
-                repo="mock-qiskit",
-                created_at=date.today() - relativedelta(months=months_old),
+            created_at = date.today() - relativedelta(months=months_old)
+        if no_activity_for_the_last_n_months is not None:
+            last_activity = date.today() - relativedelta(
+                months=no_activity_for_the_last_n_months
             )
+
+        member.github = GitHubData(
+            owner="MockQiskit",
+            repo="mock-qiskit",
+            created_at=created_at,
+            last_activity=last_activity,
+        )
         self.cli_members.dao.write(member)
         return member
 
@@ -331,11 +345,55 @@ class TestUpdateStatus(UpdateStatusTestCase):
 
     def test_early_project(self):
         """A repository between 3 and 12 months old is an "Early Project" """
-        self.assertEqual(self.status_after_update(months_old=10), "Early Project")
+        self.assertEqual(
+            self.status_after_update(
+                months_old=10, no_activity_for_the_last_n_months=0
+            ),
+            "Early Project",
+        )
+
+    def test_quiet_project_does_not_graduate_to_early(self):
+        """Six months without activity holds a young project at "Very Early Project" """
+        self.assertEqual(
+            self.status_after_update(
+                months_old=10, no_activity_for_the_last_n_months=6
+            ),
+            "Very Early Project",
+        )
+
+    def test_recent_activity_graduates_to_early(self):
+        """Just inside the six-month window the age is what decides again"""
+        self.assertEqual(
+            self.status_after_update(
+                months_old=10, no_activity_for_the_last_n_months=5
+            ),
+            "Early Project",
+        )
+
+    def test_activity_does_not_hold_back_a_repository_younger_than_3_months(self):
+        """Under 3 months there is no earlier status to be held at"""
+        self.assertEqual(
+            self.status_after_update(months_old=2, no_activity_for_the_last_n_months=9),
+            "Very Early Project",
+        )
+
+    def test_a_quiet_old_project_has_no_age_status(self):
+        """The gate holds the young statuses back, it does not hand one out"""
+        self.assertIsNone(
+            self.status_after_update(months_old=20, no_activity_for_the_last_n_months=9)
+        )
+
+    def test_without_activity_data_a_young_project_stays_very_early(self):
+        """With neither last_activity nor last_commit a project cannot show it has
+        graduated, so it keeps the earlier status"""
+        self.assertEqual(self.status_after_update(months_old=10), "Very Early Project")
 
     def test_three_months_old_is_early_project(self):
         """The "Very Early Project" status ends at 3 months"""
-        self.assertEqual(self.status_after_update(months_old=3), "Early Project")
+        self.assertEqual(
+            self.status_after_update(months_old=3, no_activity_for_the_last_n_months=0),
+            "Early Project",
+        )
 
     def test_old_project_has_no_age_status(self):
         """A repository older than 12 months is a regular member (status None)"""
@@ -391,9 +449,9 @@ class TestUpdateStatus(UpdateStatusTestCase):
 
     def test_early_projects_share_one_table(self):
         """Both early statuses are listed in a single docs/assets/early-projects.md table"""
-        self.add_member(months_old=2)
-        self.add_member(months_old=10)
-        self.add_member(months_old=30)
+        self.add_member(months_old=2, no_activity_for_the_last_n_months=0)
+        self.add_member(months_old=10, no_activity_for_the_last_n_months=0)
+        self.add_member(months_old=30, no_activity_for_the_last_n_months=0)
         self.cli_members.update_status()
 
         # pylint: disable=protected-access
@@ -634,6 +692,53 @@ class TestUpdateCheckupsExclusions(UpdateStatusTestCase):
                 self.assertEqual(
                     self.checks_after_update("Qiskit Project", spelling), set()
                 )
+
+
+class TestUpdateCheckupsRefusesAVoidReport(UpdateStatusTestCase):
+    """A run that produced no verdicts must raise, never be written.
+
+    `Member.update_checkups` rebuilds `member.checks` from the report, so an empty one
+    reads as "passes everything" and drops every record, hand-written explanations and
+    `since` clocks included. The weekly run of 2026-10-29 did exactly that to 91 records
+    across 73 members: a checker node id stopped resolving, and because the exception
+    came from a *collection* hook the run still exited green.
+    """
+
+    CHECKER = "checkup_description.py::checkup_014"
+
+    def failing_member(self):
+        """A member with [014] recorded, the thing a void report would drop"""
+        member = self.add_member()
+        member.description = "banana " * 30
+        self.cli_members.dao.write(member)
+        with redirect_stdout(io.StringIO()):
+            self.cli_members.update_checkups(checker=self.CHECKER)
+        self.assertEqual({"014"}, set(self.cli_members.dao[member.name_id].checks))
+        return member.name_id
+
+    def test_a_crash_in_a_collection_hook_raises(self):
+        """The 2026-10-29 shape exactly: the node id lookup that
+        `pytest_collection_modifyitems` does raises, so no check up ever runs."""
+        name_id = self.failing_member()
+        with mock.patch.object(
+            ChecksToml,
+            "id_by_pytest_node",
+            side_effect=AttributeError("nodeid ... not found as a checker"),
+        ):
+            with self.assertRaises(EcosystemError):
+                with redirect_stdout(io.StringIO()):
+                    self.cli_members.update_checkups(checker=self.CHECKER)
+        self.assertEqual({"014"}, set(self.cli_members.dao[name_id].checks))
+
+    def test_no_tests_collected_raises(self):
+        """A checker name that collects nothing is a typo, not a clean bill of health."""
+        name_id = self.failing_member()
+        with self.assertRaises(EcosystemError):
+            with redirect_stdout(io.StringIO()):
+                self.cli_members.update_checkups(
+                    checker="checkup_description.py::checkup_does_not_exist"
+                )
+        self.assertEqual({"014"}, set(self.cli_members.dao[name_id].checks))
 
 
 class TestUpdateCheckupsKeepsSince(UpdateStatusTestCase):

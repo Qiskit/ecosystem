@@ -1,5 +1,4 @@
 name = "antinature"
-url = "https://github.com/mk0dz/antinature"
 description = "A Python framework for studying antimatter systems through computational quantum chemistry approaches."
 license = "MIT"
 contact_info = "mukulpal108@hotmail.com"
@@ -43,13 +42,24 @@ url = "https://pypi.org/project/antinature/"
 development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/mk0dz/"]
-requires_qiskit = "==1.4.2"
+last_month_downloads = 43
+last_180_days_downloads = 401
+
+[[pypi.requires]]
+specifier = "==1.4.2"
+extra = "qiskit"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = false
 highest_supported_qiskit_release_date = 2025-03-14
 highest_supported_qiskit_version = "1.4.2"
-last_month_downloads = 43
-last_180_days_downloads = 401
+
+[[pypi.requires]]
+specifier = "==1.4.2"
+extra = "all"
+compatible_with_qiskit_v1 = true
+compatible_with_qiskit_v2 = false
+highest_supported_qiskit_release_date = 2025-03-14
+highest_supported_qiskit_version = "1.4.2"
 
 [[checks.G07]]
 since = 2026-09-24
@@ -58,16 +68,14 @@ importance = "STRONG-RECOMMENDATION"
 
 [[checks.Q02]]
 since = 2026-04-30
-details = "Python package antinature is not compatible with Qiskit SDK v2"
+details = "The qiskit requirement in the antinature release on PyPI (extra all) is not compatible with Qiskit SDK v2"
 discussion = "https://github.com/mk0dz/antinature/issues/1"
+subtest = "pypi:antinature (extra all)"
 importance = "IMPORTANT"
 
-[[checks.Q20]]
-since = 2026-07-30
-details = "Not compatible with the Qiskit SDK v2 or newer: `[Q02]`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[Q20]`"
-importance = "CRITICAL"
+[[checks.Q02]]
+since = 2026-04-30
+details = "The qiskit requirement in the antinature release on PyPI (extra qiskit) is not compatible with Qiskit SDK v2"
+discussion = "https://github.com/mk0dz/antinature/issues/1"
+subtest = "pypi:antinature (extra qiskit)"
+importance = "IMPORTANT"

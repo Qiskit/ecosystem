@@ -1,6 +1,5 @@
 name = "Quantum OpenQASM Assistant"
 submission_number = 1193
-url = "https://github.com/markusvankempen/quantum-openqasm-assistant"
 description = "VS Code + MCP: Qiskit Lab, AI transpilation, and OpenQASM 2.0 execution on IBM Quantum hardware from AI IDEs."
 contact_info = "markus.van.kempen@gmail.com"
 labels = ["openqasm", "circuit optimization", "AI/LLM"]
@@ -10,7 +9,6 @@ documentation = "https://github.com/markusvankempen/quantum-openqasm-assistant/b
 packages = [
   "https://www.npmjs.com/package/@markusvankempen/quantum-openqasm-mcp",
   "https://marketplace.visualstudio.com/items?itemName=markusvankempen.quantum-openqasm-assistant",
-  "https://registry.modelcontextprotocol.io/servers/io.github.markusvankempen/quantum-openqasm-mcp",
 ]
 uuid = "bd91d04b-4fa1-4791-abeb-f7c809475e63"
 maturity = "production-ready"
@@ -28,6 +26,28 @@ total_dependent_packages = 0
 created_at = 2026-06-08
 last_commit = 2026-06-26
 last_activity = 2026-06-26
+topics = [
+  "ai-assistant",
+  "antigravity",
+  "claude-desktop",
+  "cursor",
+  "developer-pack",
+  "ibm-quantum",
+  "mcp",
+  "model-context-protocol",
+  "npm-package",
+  "openqasm",
+  "qasm",
+  "qiskit",
+  "qiskit-developer-pack",
+  "quantum-circuit",
+  "quantum-computing",
+  "quantum-hardware",
+  "quantum-lab",
+  "quantum-mcp",
+  "quantum-programming",
+  "vscode-extension",
+]
 
 [badge]
 url = "https://qisk.it/e-bd91d04b"

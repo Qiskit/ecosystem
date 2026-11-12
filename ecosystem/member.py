@@ -16,6 +16,7 @@ import pprint
 from datetime import date
 from uuid import uuid4
 from dateutil.relativedelta import relativedelta
+from pytest import ExitCode
 from packaging.utils import canonicalize_name
 from slugify import slugify
 
@@ -79,7 +80,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         self._filename = None
         self.name = name
         self.submission_number = submission_number
-        self.url = URL(url) if isinstance(url, str) else url
+        self._url = URL(url) if isinstance(url, str) else url
         self.description = description
         self.license = (
             License(license, where="user") if isinstance(license, str) else license
@@ -101,7 +102,13 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         self.documentation = (
             URL(documentation) if isinstance(documentation, str) else documentation
         )
-        self.packages = packages
+        # normalized here, not only in `from_dict`, so a member built in code and one read
+        # from a file carry the same type — like every other URL field above. Without this
+        # every reader has to write `URL(str(package))` defensively
+        self.packages = [
+            package if isinstance(package, URL) else URL(package)
+            for package in packages or []
+        ]
         self.uuid = uuid
         self.github = github
         self.checks = checks or {}
@@ -138,7 +145,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
         Return: Member
         """
-        submission_fields = vars(Member)["__static_attributes__"]
+        submission_fields = set(vars(Member)["__static_attributes__"]) | {"url"}
         filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
 
         if "badge" in filtered_dict:
@@ -185,8 +192,42 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
     #: of what it describes
     ARRAY_SECTIONS = ("pypi", "crates", "cargo", "julia", "python", "requirements")
 
+    @property
+    def url(self):
+        """Where the source-code of the project lives."""
+        if self._url is not None or not self.github:
+            return self._url
+        owner = getattr(self.github, "owner", None)
+        repo = getattr(self.github, "repo", None)
+        if not owner or not repo:
+            return None
+        tree = getattr(self.github, "tree", None)
+        if not getattr(self.github, "subdirectory", None):
+            tree = None
+        return URL(
+            f"https://github.com/{owner}/{repo}" + (f"/tree/{tree}" if tree else "")
+        )
+
+    @url.setter
+    def url(self, value):
+        self._url = URL(value) if isinstance(value, str) else value
+
     def to_dict(self, keys=None) -> dict:
         base_dict = super().to_dict(keys=keys)
+        if self._url is not None:
+            after_name = {}
+            for key, value in base_dict.items():
+                after_name[key] = value
+                if key == "name":
+                    after_name["url"] = str(self._url)
+            base_dict = (
+                after_name
+                if "url" in after_name
+                else {
+                    "url": str(self._url),
+                    **base_dict,
+                }
+            )
         if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
             del base_dict["ibm_maintained"]
         # a member with no distributions has no `pypi = []` line: `to_dict` drops an empty
@@ -262,6 +303,87 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         else:
             url = BadgeData.create_link(name=self.name, short_uuid=self.short_uuid)
             self.badge = BadgeData(url)
+
+    def _on_member_branch(self, url):
+        """`url` with its `/blob/<ref>/` pointed at the branch the member is about, or
+        `url` itself when that does not apply.
+
+        A submitted blob URL names whatever ref the submitter copied, and every consumer
+        of it drops that on purpose — `RequirementsData.from_url` and `PythonData.from_url`
+        say "the branch is the member's rather than the link's", and `declared_requirements`
+        re-attaches `[github] tree`. So the ref in the link is not what gets read, and a
+        file missing from it is not necessarily missing from the project.
+        """
+        ref = getattr(self.github, "ref", None)
+        parts = url.path.strip("/").split("/")
+        if not ref or len(parts) < 5 or parts[2] != "blob" or parts[3] == ref:
+            return url
+        parts[3] = ref
+        query = f"?{url.query}" if url.query else ""
+        return URL(f"https://{url.hostname}/{'/'.join(parts)}{query}")
+
+    def _dead_or_alive(self, stored, target=None):
+        """`stored` marked, unmarked, or None for nothing to change.
+
+        `target` is what gets requested when it is not `stored` itself, which is how a
+        `packages` pattern is checked by the directory it names.
+
+        Redirects are followed to get the status but never recorded: this says whether a
+        link is gone, nothing more. So a project that renames a repository keeps the URL
+        it submitted, which still redirects, and only a URL that answers 404 or 410 is
+        touched. A marked one is re-asked at its own address every run, so a project that
+        fixes its link has the marker cleared rather than needing a hand-edit.
+        """
+        asked = (target if target is not None else stored).unmarked
+        status = asked.status()
+        if status in (404, 410):
+            on_branch = self._on_member_branch(asked)
+            if str(on_branch) != str(asked):
+                status = on_branch.status()
+        if status in (404, 410):  # permanent dead status
+            marked = stored.marked(status)
+            # already marked, and still gone, is not a change: a daily run stays quiet
+            return marked if str(marked) != str(stored) else None
+        if stored.is_broken and status is not None and status < 400:
+            # it answers again, so the marker goes and the field is a plain URL once more
+            return stored.unmarked
+        return None
+
+    def update_urls(self):
+        """Marks the submitted URLs that no longer resolve, and unmarks the ones that do.
+
+        The four fields nothing else refreshes — `url`, `documentation`, `website`,
+        `reference_paper` — and `packages`. Everything in `[github]` comes back from the
+        API on every run, so it needs nothing from here.
+
+        A dead link is recorded in the field as `status-404://<the url>`: the member file
+        keeps the link it had, which is the only clue to what it should be, and says
+        plainly that nothing is there. `[016]` is the check up that reads it, which is what
+        lets that check up stay offline like every other one.
+
+        A `packages` pattern (`.../packages/*/pyproject.toml`) is checked by the part up to
+        its first wildcard, one directory of the repository, which is the only thing a
+        request can say about a pattern.
+
+        Like every other updater this mutates and returns nothing: what changed is
+        `DAO.log_update`'s to report, and `git diff` is how a run is reviewed.
+        """
+        for index, package in enumerate(self.packages):
+            target = package.checkable_prefix
+            if target is None:
+                # a pattern too shallow to name a directory: nothing to ask about
+                continue
+            changed = self._dead_or_alive(package, target)
+            if changed is not None:
+                self.packages[index] = changed
+
+        for field in ("url", "documentation", "website", "reference_paper"):
+            stored = getattr(self, field, None)
+            if stored is None:
+                continue
+            changed = self._dead_or_alive(stored)
+            if changed is not None:
+                setattr(self, field, changed)
 
     def update_pypi(self):
         """
@@ -435,7 +557,11 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 continue
             if section is None:
                 continue
+            # the `<ref>` of a blob URL is dropped by `from_url` on purpose, so the branch
+            # is the member's own: `[github] tree` is where a pinned member declares it
+            section.ref = self.github.ref if self.github else None
             for found in section.matches() if section.is_pattern else [section]:
+                found.ref = section.ref
                 declared.append(found)
                 paths.add(found.path)
         if not declared:
@@ -457,7 +583,12 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             section = RequirementsData.from_url(package)
             if section is None:
                 continue
-            declared += section.matches() if section.is_pattern else [section]
+            # as `declared_distributions`: the branch is the member's, not the URL's
+            section.ref = self.github.ref if self.github else None
+            expanded = section.matches() if section.is_pattern else [section]
+            for found in expanded:
+                found.ref = section.ref
+            declared += expanded
         return declared
 
     @property
@@ -494,16 +625,18 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
         if github_url is None:
             github_url = self.url
+        # the one caller that passes it explicitly may pass a string, as `__init__` allows
+        github_url = URL(github_url) if isinstance(github_url, str) else github_url
 
-        # github section
-        if not self.github:
+        if not self.github and not github_url.is_broken:
             self.github = GitHubData.from_url(github_url)
+            if getattr(self.github, "repo", None):
+                self._url = None
 
         # package sections
-        if not self.packages:
-            self.packages = []
-
         for package in self.packages:
+            if package.is_broken:
+                continue
             self.upsert_section_for(package)
 
         # badge section. Only the style, so it can be reviewed (and changed) in the submission
@@ -639,6 +772,12 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         for record in records:
             if record.subtest == subtest:
                 return record
+        # a place that got more specific, `pypi:mitiq` becoming
+        # `pypi:mitiq (extra qiskit)`: the explanation and the clock were written about
+        # this distribution, so they carry over rather than restarting
+        for record in records:
+            if record.subtest and subtest and subtest.startswith(f"{record.subtest} ("):
+                return record
         for record in records:
             if record.subtest is None:
                 return record
@@ -657,19 +796,36 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         for record in live:
             if record.subtest == subtest:
                 return record.xfailed
+        # as `stored_record`: an explanation written for `pypi:mitiq` still answers for
+        # `pypi:mitiq (extra qiskit)`, which is the same place said more precisely
+        for record in live:
+            if record.subtest and subtest and subtest.startswith(f"{record.subtest} ("):
+                return record.xfailed
         for record in live:
             if record.subtest is None:
                 return record.xfailed
         return None
 
     def update_checkups(self, checker=None):
-        """Runs validation tests and updates the check-ups sections"""
+        """Runs validation tests and updates the check-ups sections.
+
+        `self.checks` is rebuilt from the report, so a run that did not produce verdicts
+        has to raise rather than be written: an empty report is indistinguishable from
+        "passes everything" and would drop every record, explanations and `since` clocks
+        included. That is what the weekly run of 2026-10-29 did to 91 records across 73
+        members, when pytest crashed in a collection hook and still exited green.
+        """
         checkups = {}
         if checker is None:
             report = validate_member(self, verbose_level="-q")
         else:
             report = validate_member(self, verbose_level="-v", tests_to_run=checker)
 
+        if report.exitcode not in (ExitCode.OK, ExitCode.TESTS_FAILED):
+            raise EcosystemError(
+                f"validating {self.name_id} ended as "
+                f"{ExitCode(report.exitcode).name}, so the report is not a result"
+            )
         if report.internalerror:
             raise ExceptionGroup(
                 "internal error",
@@ -682,6 +838,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                     for internalerror in report.internalerror
                 ],
             )
+
         for test in report.xfailed + report.failed:
             checkup_data = CheckData.from_report(test)
             stored = self.stored_record(checkup_data.id, checkup_data.subtest)
@@ -718,7 +875,10 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
                 checkup.update_from_source()
             checkups[checkup_id] = source_based
 
-        self.checks = checkups
+        self.checks = {
+            checkup_id: sorted(records, key=lambda record: record.subtest or "")
+            for checkup_id, records in sorted(checkups.items())
+        }
 
     @property
     def age_in_months(self):
@@ -729,6 +889,30 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
             return None
         relative = relativedelta(date.today(), created_at)
         return (relative.years * 12) + relative.months
+
+    @property
+    def last_activity_in_months(self):
+        """Months since the GitHub repository was last active (either last_activity or last_commit).
+        None if there is no member.github.last_activity nor member.github.last_commit"""
+        last_activity = parse_date(getattr(self.github, "last_activity", None))
+        last_commit = parse_date(getattr(self.github, "last_commit", None))
+        today = date.today()
+
+        if last_activity is None and last_commit is None:
+            return None
+
+        last_activity_ago = float("inf")
+        last_commit_ago = float("inf")
+
+        if last_activity is not None:
+            relative = relativedelta(today, last_activity)
+            last_activity_ago = (relative.years * 12) + relative.months
+
+        if last_commit is not None:
+            relative = relativedelta(today, last_commit)
+            last_commit_ago = (relative.years * 12) + relative.months
+
+        return min(last_activity_ago, last_commit_ago)
 
     @property
     def is_alumni(self):
@@ -753,14 +937,22 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
     @property
     def early(self):
-        """True if the GitHub repository is younger than 12 months."""
-        if self.age_in_months is None:
+        """True if the GitHub repository is younger than 12 months and was active in
+        the last 6.
+
+        Only the derived status reads this. `[G12]` gates on `age_in_months` instead, so
+        that a young project that went quiet is not exempt from the check up written for it.
+        """
+        if self.age_in_months is None or self.last_activity_in_months is None:
             return False
-        return self.age_in_months < 12
+        return self.age_in_months < 12 and self.last_activity_in_months < 6
 
     @property
     def very_early(self):
-        """True if the GitHub repository is younger than 3 months"""
+        """True if the GitHub repository is younger than 3 months, or is younger than 12
+        and too quiet to have graduated out of the status (see `self.early`)."""
         if self.age_in_months is None:
             return False
-        return self.age_in_months < 3
+        if self.age_in_months < 3:
+            return True
+        return self.age_in_months < 12 and not self.early

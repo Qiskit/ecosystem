@@ -1,6 +1,5 @@
 name = "qiskit-gym"
 submission_number = 1346
-url = "https://github.com/AI4quantum/qiskit-gym"
 description = "A collection of quantum information science problems formulated as reinforcement learning environments."
 labels = ["AI/LLM", "high-level synthesis", "circuit optimization", "research"]
 interfaces = ["Python"]
@@ -40,7 +39,7 @@ maintainers = [
 requires_qiskit = "<3,>=2.1"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 1454
-last_180_days_downloads = 15435
+last_180_days_downloads = 17552

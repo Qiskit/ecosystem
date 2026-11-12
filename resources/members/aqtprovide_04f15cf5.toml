@@ -1,5 +1,4 @@
 name = "Qiskit AQT Provider"
-url = "https://github.com/qiskit-community/qiskit-aqt-provider"
 description = "Qiskit provider for ion-trap quantum computers from Alpine Quantum Technologies (AQT)."
 license = "Apache-2.0"
 contact_info = "info@aqt.eu"
@@ -34,8 +33,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-aqt-provider"
-version = "1.15.0"
-last_release_date = 2026-04-22
+version = "2.0.0"
+last_release_date = 2026-10-08
 license = "Apache-2.0"
 description = "Qiskit provider for AQT backends"
 url = "https://pypi.org/project/qiskit-aqt-provider/"
@@ -44,26 +43,10 @@ maintainers = [
   "https://pypi.org/user/aqt-admin/",
   "https://pypi.org/user/qiskit/",
 ]
-requires_qiskit = "<2,>=1"
-compatible_with_qiskit_v1 = true
-compatible_with_qiskit_v2 = false
+requires_qiskit = "<=2.4.1,>=2.3"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-06-12
 highest_supported_qiskit_version = "1.4.6"
 last_month_downloads = 785
 last_180_days_downloads = 6687
-
-[[checks.Q02]]
-since = 2026-04-30
-details = "Python package qiskit-aqt-provider is not compatible with Qiskit SDK v2"
-discussion = "https://github.com/qiskit-community/qiskit-aqt-provider/issues/286"
-importance = "IMPORTANT"
-
-[[checks.Q20]]
-since = 2026-07-30
-details = "Not compatible with the Qiskit SDK v2 or newer: `[Q02]`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[Q20]`"
-importance = "CRITICAL"

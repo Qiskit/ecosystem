@@ -1,6 +1,5 @@
 name = "Bicycle Architecture Compiler"
 submission_number = 1172
-url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
 labels = ["error correction", "research", "circuit optimization"]
 interfaces = ["Rust"]
 category = "Noise Management"
@@ -26,8 +25,9 @@ description = "A compiler prototype targeting a bicycle architecture from PBC ci
 total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
-last_commit = 2026-10-13
-last_activity = 2026-10-26
+last_commit = 2026-11-10
+last_activity = 2026-11-10
+topics = ["compiler", "fault-tolerance", "qiskit", "quantum"]
 
 [badge]
 url = "https://qisk.it/e-bc3bf9db"
@@ -35,78 +35,110 @@ style = "flat"
 
 [[crates]]
 package_name = "bicycle_benchmark"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Generates PBC circuits that can be used for benchmarking"
 url = "https://crates.io/crates/bicycle_benchmark"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 989
-last_90_days_downloads = 89
+total_downloads = 1037
+last_90_days_downloads = 115
 
 [[crates]]
 package_name = "bicycle_cliffords"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Synthesis of Clifford gates in a code module on the bicycle architecture"
 url = "https://crates.io/crates/bicycle_cliffords"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3926
-last_90_days_downloads = 660
+total_downloads = 4006
+last_90_days_downloads = 459
 
 [[crates]]
 package_name = "bicycle_common"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Common definitions for bicycle architecture compiler crates"
 url = "https://crates.io/crates/bicycle_common"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 4122
-last_90_days_downloads = 692
+total_downloads = 4214
+last_90_days_downloads = 497
 
 [[crates]]
 package_name = "bicycle_compiler"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "A compiler for Pauli-based compilation (PBC) circuits to bicycle instructions"
 url = "https://crates.io/crates/bicycle_compiler"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 3713
-last_90_days_downloads = 623
+total_downloads = 3781
+last_90_days_downloads = 419
 
 [[crates]]
 package_name = "bicycle_numerics"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Compute numerics for bicycle circuits"
 url = "https://crates.io/crates/bicycle_numerics"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 754
-last_90_days_downloads = 51
+total_downloads = 789
+last_90_days_downloads = 72
 
 [[crates]]
 package_name = "bicycle_random_numerics"
-version = "0.2.1"
-last_release_date = 2026-03-30
+version = "0.3.0"
+last_release_date = 2026-10-29
 license = "Apache-2.0"
 description = "Collect numerics for random Pauli-generated rotations run on the bicycle architecture"
 url = "https://crates.io/crates/bicycle_random_numerics"
 maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
-total_downloads = 495
-last_90_days_downloads = 12
+total_downloads = 505
+last_90_days_downloads = 16
+
+[[cargo]]
+package_name = "bicycle_pyext"
+version = "0.3.0"
+rust_version = "1.93.0"
+edition = "2024"
+crate_type = ["cdylib", "rlib"]
+path = "crates/pyext"
+
+[[python]]
+package_name = "bicycle-architecture-compiler"
+version = "0.1.0"
+license = "Apache-2.0"
+description = "Resource estimation for the Tour de Gross fault-tolerant architecture"
+requires_python = ">=3.11"
+requires_qiskit = ">=2.5"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+build_backend = "setuptools.build_meta"
+source = ["pyproject.toml", "setup.py"]
+deferred = ["rust_extensions"]
+
+[[checks.Q03]]
+xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/bicycle-architecture-compiler/issues/42, waiting for the fix"
+xfailed_until = 2027-02-12
+since = 2026-11-11
+details = "The qiskit requirement in the bicycle-architecture-compiler manifest in the repository allows a not-yet-released major version of Qiskit"
+discussion = "https://github.com/qiskit-community/bicycle-architecture-compiler/issues/42"
+subtest = "python:bicycle-architecture-compiler"
+importance = "RECOMMENDATION"

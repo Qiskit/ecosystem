@@ -1,5 +1,4 @@
 name = "Quantum Kernel Training"
-url = "https://github.com/qiskit-community/prototype-quantum-kernel-training"
 description = "Train and use quantum kernels for machine learning. For researchers and practitioners looking to explore and apply these algorithms."
 license = "Apache-2.0"
 labels = ["QML"]
@@ -41,8 +40,3 @@ importance = "CRITICAL"
 since = 2026-09-24
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[G05]`"
-importance = "CRITICAL"

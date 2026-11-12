@@ -1,5 +1,4 @@
 name = "gridsynth"
-url = "https://github.com/qiskit-community/rsgridsynth"
 description = "High-precision Rust synthesizer decomposing single-qubit Z-rotations into Clifford+T gate sequences."
 labels = ["unitary synthesis", "circuit optimization"]
 interfaces = ["Rust", "Command-line interface (CLI)"]
@@ -13,14 +12,14 @@ maturity = "experimental"
 url = "https://github.com/qiskit-community/rsgridsynth"
 owner = "qiskit-community"
 repo = "rsgridsynth"
-stars = 15
+stars = 16
 license = "MIT"
 description = "high-precision Rust-based synthesizer that decomposes single-qubit Z-axis rotations into Clifford+T gate sequences, using number-th..."
-total_dependent_repositories = 22
+total_dependent_repositories = 23
 total_dependent_packages = 3
 created_at = 2025-10-21
 last_commit = 2026-08-01
-last_activity = 2026-10-28
+last_activity = 2026-11-02
 
 [badge]
 url = "https://qisk.it/e-913e330d"
@@ -36,5 +35,5 @@ url = "https://crates.io/crates/rsgridsynth"
 maintainers = ["https://github.com/to24toro", "https://github.com/qiskit"]
 rust_version = "1.87"
 edition = "2021"
-total_downloads = 217031
-last_90_days_downloads = 85864
+total_downloads = 232312
+last_90_days_downloads = 90503

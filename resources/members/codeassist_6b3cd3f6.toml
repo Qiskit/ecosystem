@@ -1,6 +1,5 @@
 name = "Qiskit Code Assistant Jupyterlab Extension"
 submission_number = 1172
-url = "https://github.com/Qiskit/qiskit-code-assistant-jupyterlab"
 description = "A Jupyterlab extension to use the Qiskit Code Assistant."
 labels = ["AI/LLM"]
 interfaces = ["Python"]
@@ -47,9 +46,4 @@ last_180_days_downloads = 647
 [[checks.G05]]
 since = 2026-07-02
 details = "GitHub repository https://github.com/Qiskit/qiskit-code-assistant-jupyterlab archived and project is not `as-is`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[G05]`"
 importance = "CRITICAL"
