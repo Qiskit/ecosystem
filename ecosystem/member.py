@@ -80,7 +80,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         self._filename = None
         self.name = name
         self.submission_number = submission_number
-        self.url = URL(url) if isinstance(url, str) else url
+        self._url = URL(url) if isinstance(url, str) else url
         self.description = description
         self.license = (
             License(license, where="user") if isinstance(license, str) else license
@@ -139,7 +139,7 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
         Return: Member
         """
-        submission_fields = vars(Member)["__static_attributes__"]
+        submission_fields = set(vars(Member)["__static_attributes__"]) | {"url"}
         filtered_dict = {k: v for k, v in dictionary.items() if k in submission_fields}
 
         if "badge" in filtered_dict:
@@ -186,8 +186,42 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
     #: of what it describes
     ARRAY_SECTIONS = ("pypi", "crates", "cargo", "julia", "python", "requirements")
 
+    @property
+    def url(self):
+        """Where the source-code of the project lives."""
+        if self._url is not None or not self.github:
+            return self._url
+        owner = getattr(self.github, "owner", None)
+        repo = getattr(self.github, "repo", None)
+        if not owner or not repo:
+            return None
+        tree = getattr(self.github, "tree", None)
+        if not getattr(self.github, "subdirectory", None):
+            tree = None
+        return URL(
+            f"https://github.com/{owner}/{repo}" + (f"/tree/{tree}" if tree else "")
+        )
+
+    @url.setter
+    def url(self, value):
+        self._url = URL(value) if isinstance(value, str) else value
+
     def to_dict(self, keys=None) -> dict:
         base_dict = super().to_dict(keys=keys)
+        if self._url is not None:
+            after_name = {}
+            for key, value in base_dict.items():
+                after_name[key] = value
+                if key == "name":
+                    after_name["url"] = str(self._url)
+            base_dict = (
+                after_name
+                if "url" in after_name
+                else {
+                    "url": str(self._url),
+                    **base_dict,
+                }
+            )
         if "ibm_maintained" in base_dict and base_dict["ibm_maintained"] is False:
             del base_dict["ibm_maintained"]
         # a member with no distributions has no `pypi = []` line: `to_dict` drops an empty
@@ -508,6 +542,8 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         # github section
         if not self.github:
             self.github = GitHubData.from_url(github_url)
+            if getattr(self.github, "repo", None):
+                self._url = None
 
         # package sections
         if not self.packages:

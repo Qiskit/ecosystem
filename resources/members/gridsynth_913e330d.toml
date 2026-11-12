@@ -1,5 +1,4 @@
 name = "gridsynth"
-url = "https://github.com/qiskit-community/rsgridsynth"
 description = "High-precision Rust synthesizer decomposing single-qubit Z-rotations into Clifford+T gate sequences."
 labels = ["unitary synthesis", "circuit optimization"]
 interfaces = ["Rust", "Command-line interface (CLI)"]
