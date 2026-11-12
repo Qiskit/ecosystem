@@ -165,7 +165,7 @@ answered that way, so it is split in two: the daily run asks, and the check up r
 one **in the field itself**, by replacing the scheme:
 
 ```toml
-url = "status-404://github.com/<non-existing>/<project>"
+url = "status-404://<domain>.com/<non-existing>/<project>"
 website = "status-404://<broken-url>.org"
 ```
 
