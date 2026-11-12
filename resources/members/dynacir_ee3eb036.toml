@@ -49,8 +49,3 @@ since = 2026-05-14
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 discussion = "https://github.com/orgs/Qiskit/discussions/49"
 importance = "STRONG-RECOMMENDATION"
-
-[[checks.G00]]
-since = 2026-08-13
-details = "The project is probably abandoned: `[G07]`"
-importance = "CRITICAL"

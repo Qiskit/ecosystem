@@ -137,7 +137,7 @@ deferred = ["rust_extensions"]
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/bicycle-architecture-compiler/issues/42, waiting for the fix"
 xfailed_until = 2027-02-12
-since = 2026-11-12
+since = 2026-11-11
 details = "The qiskit requirement in the bicycle-architecture-compiler manifest in the repository allows a not-yet-released major version of Qiskit"
 discussion = "https://github.com/qiskit-community/bicycle-architecture-compiler/issues/42"
 subtest = "python:bicycle-architecture-compiler"

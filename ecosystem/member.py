@@ -102,7 +102,13 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         self.documentation = (
             URL(documentation) if isinstance(documentation, str) else documentation
         )
-        self.packages = packages
+        # normalized here, not only in `from_dict`, so a member built in code and one read
+        # from a file carry the same type — like every other URL field above. Without this
+        # every reader has to write `URL(str(package))` defensively
+        self.packages = [
+            package if isinstance(package, URL) else URL(package)
+            for package in packages or []
+        ]
         self.uuid = uuid
         self.github = github
         self.checks = checks or {}
@@ -297,6 +303,87 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
         else:
             url = BadgeData.create_link(name=self.name, short_uuid=self.short_uuid)
             self.badge = BadgeData(url)
+
+    def _on_member_branch(self, url):
+        """`url` with its `/blob/<ref>/` pointed at the branch the member is about, or
+        `url` itself when that does not apply.
+
+        A submitted blob URL names whatever ref the submitter copied, and every consumer
+        of it drops that on purpose — `RequirementsData.from_url` and `PythonData.from_url`
+        say "the branch is the member's rather than the link's", and `declared_requirements`
+        re-attaches `[github] tree`. So the ref in the link is not what gets read, and a
+        file missing from it is not necessarily missing from the project.
+        """
+        ref = getattr(self.github, "ref", None)
+        parts = url.path.strip("/").split("/")
+        if not ref or len(parts) < 5 or parts[2] != "blob" or parts[3] == ref:
+            return url
+        parts[3] = ref
+        query = f"?{url.query}" if url.query else ""
+        return URL(f"https://{url.hostname}/{'/'.join(parts)}{query}")
+
+    def _dead_or_alive(self, stored, target=None):
+        """`stored` marked, unmarked, or None for nothing to change.
+
+        `target` is what gets requested when it is not `stored` itself, which is how a
+        `packages` pattern is checked by the directory it names.
+
+        Redirects are followed to get the status but never recorded: this says whether a
+        link is gone, nothing more. So a project that renames a repository keeps the URL
+        it submitted, which still redirects, and only a URL that answers 404 or 410 is
+        touched. A marked one is re-asked at its own address every run, so a project that
+        fixes its link has the marker cleared rather than needing a hand-edit.
+        """
+        asked = (target if target is not None else stored).unmarked
+        status = asked.status()
+        if status in (404, 410):
+            on_branch = self._on_member_branch(asked)
+            if str(on_branch) != str(asked):
+                status = on_branch.status()
+        if status in (404, 410):  # permanent dead status
+            marked = stored.marked(status)
+            # already marked, and still gone, is not a change: a daily run stays quiet
+            return marked if str(marked) != str(stored) else None
+        if stored.is_broken and status is not None and status < 400:
+            # it answers again, so the marker goes and the field is a plain URL once more
+            return stored.unmarked
+        return None
+
+    def update_urls(self):
+        """Marks the submitted URLs that no longer resolve, and unmarks the ones that do.
+
+        The four fields nothing else refreshes — `url`, `documentation`, `website`,
+        `reference_paper` — and `packages`. Everything in `[github]` comes back from the
+        API on every run, so it needs nothing from here.
+
+        A dead link is recorded in the field as `status-404://<the url>`: the member file
+        keeps the link it had, which is the only clue to what it should be, and says
+        plainly that nothing is there. `[016]` is the check up that reads it, which is what
+        lets that check up stay offline like every other one.
+
+        A `packages` pattern (`.../packages/*/pyproject.toml`) is checked by the part up to
+        its first wildcard, one directory of the repository, which is the only thing a
+        request can say about a pattern.
+
+        Like every other updater this mutates and returns nothing: what changed is
+        `DAO.log_update`'s to report, and `git diff` is how a run is reviewed.
+        """
+        for index, package in enumerate(self.packages):
+            target = package.checkable_prefix
+            if target is None:
+                # a pattern too shallow to name a directory: nothing to ask about
+                continue
+            changed = self._dead_or_alive(package, target)
+            if changed is not None:
+                self.packages[index] = changed
+
+        for field in ("url", "documentation", "website", "reference_paper"):
+            stored = getattr(self, field, None)
+            if stored is None:
+                continue
+            changed = self._dead_or_alive(stored)
+            if changed is not None:
+                setattr(self, field, changed)
 
     def update_pypi(self):
         """
@@ -538,18 +625,18 @@ class Member(  # pylint: disable=too-many-instance-attributes,too-many-public-me
 
         if github_url is None:
             github_url = self.url
+        # the one caller that passes it explicitly may pass a string, as `__init__` allows
+        github_url = URL(github_url) if isinstance(github_url, str) else github_url
 
-        # github section
-        if not self.github:
+        if not self.github and not github_url.is_broken:
             self.github = GitHubData.from_url(github_url)
             if getattr(self.github, "repo", None):
                 self._url = None
 
         # package sections
-        if not self.packages:
-            self.packages = []
-
         for package in self.packages:
+            if package.is_broken:
+                continue
             self.upsert_section_for(package)
 
         # badge section. Only the style, so it can be reviewed (and changed) in the submission

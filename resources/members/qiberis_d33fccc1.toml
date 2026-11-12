@@ -48,7 +48,7 @@ highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 
 [[checks.G12]]
-since = 2026-11-12
+since = 2026-11-11
 details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
 importance = "IMPORTANT"
 
