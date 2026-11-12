@@ -1,6 +1,5 @@
 name = "qb-compiler"
 submission_number = 1044
-url = "https://github.com/mwpwalshe/qb-compiler"
 description = "Calibration-aware quantum circuit compiler. Uses today's hardware noise data for smarter qubit mapping and routing."
 contact_info = "michael.walshe@qubitboost.io"
 labels = ["circuit optimization", "error mitigation"]
@@ -24,8 +23,8 @@ description = "Quantum execution intelligence toolkit for circuit preflight chec
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-03-13
-last_commit = 2026-09-27
-last_activity = 2026-09-27
+last_commit = 2026-11-07
+last_activity = 2026-11-07
 topics = [
   "qiskit",
   "qiskit-sdk",
@@ -40,8 +39,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qb-compiler"
-version = "0.13.2"
-last_release_date = 2026-09-18
+version = "0.14.0"
+last_release_date = 2026-11-07
 license = "Apache-2.0"
 description = "Quantum execution intelligence. Circuit viability, backend recommendation, cost estimation, and automatic optimizations for quantum computing."
 url = "https://pypi.org/project/qb-compiler/"
@@ -51,7 +50,7 @@ maintainers = ["https://pypi.org/user/mwpwalshe/"]
 requires_qiskit = "<3.0,>=1.0"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 265
-last_180_days_downloads = 2929
+last_180_days_downloads = 3032

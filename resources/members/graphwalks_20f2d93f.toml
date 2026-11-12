@@ -1,6 +1,5 @@
 name = "Qiskit Graph Walks"
 submission_number = 1295
-url = "https://github.com/RexRowan/Qiskit-Graph-Walks"
 description = "Quantum walk algorithms for graph problems, built on Qiskit."
 contact_info = "titaniumdavinci@gmail.com"
 labels = [
@@ -16,7 +15,7 @@ documentation = "https://github.com/RexRowan/Qiskit-Graph-Walks/blob/main/docs/a
 packages = ["https://pypi.org/project/qiskit-graph-walks/"]
 uuid = "20f2d93f-6480-4771-b844-ebb9ce3f4375"
 maturity = "experimental"
-status = "Very Early Project"
+status = "Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-Graph-Walks"
@@ -47,10 +46,10 @@ maintainers = ["https://pypi.org/user/MeanMachineRex/"]
 requires_qiskit = ">=2.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 12
-last_180_days_downloads = 175
+last_180_days_downloads = 180
 
 [[checks.Q03]]
 xfailed = "The cap is already in the repository (https://github.com/RexRowan/Qiskit-Graph-Walks/commit/4c5f72cd7d63748f8c36f4314fd44e7dcbd022a9), waiting for a release with the fix"

@@ -1,6 +1,5 @@
 name = "QEM Auditor"
 submission_number = 1355
-url = "https://github.com/Venkatallu11/qem-auditor"
 description = "Audits quantum error-mitigation claims: runs the methods, attacks each one, and reports what the evidence actually supports."
 contact_info = "alluvenkat11@gmail.com"
 labels = [
@@ -47,5 +46,5 @@ specifier = ">=2.0"
 extra = "adapters"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"

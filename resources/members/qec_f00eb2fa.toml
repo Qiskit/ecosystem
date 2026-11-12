@@ -1,5 +1,4 @@
 name = "Qiskit QEC"
-url = "https://github.com/qiskit-community/qiskit-qec"
 description = "For quantum error correction developers, experimentalists, and theorists."
 license = "Apache-2.0"
 labels = ["error correction"]
@@ -63,18 +62,8 @@ since = 2026-08-27
 details = "Last commit was more than 12 months ago. This might be a sign of a project that is not actively maintained. Maybe `member.maturity` should be set as `as-is`"
 importance = "STRONG-RECOMMENDATION"
 
-[[checks.G00]]
-since = 2026-09-20
-details = "The project is probably abandoned: `[G05]`"
-importance = "CRITICAL"
-
 [[checks.Q03]]
 since = 2026-10-01
-details = "The distribution qiskit-qec declared in the repository allows a not-yet-released major version of Qiskit"
+details = "The qiskit requirement in the qiskit-qec manifest in the repository allows a not-yet-released major version of Qiskit"
+subtest = "python:qiskit-qec"
 importance = "RECOMMENDATION"
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

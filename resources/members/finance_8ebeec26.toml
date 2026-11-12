@@ -1,5 +1,4 @@
 name = "Qiskit Finance"
-url = "https://github.com/qiskit-community/qiskit-finance"
 description = "Includes uncertainty components for stock/securities problems, Ising translators for portfolio optimizations, and data providers."
 license = "Apache-2.0"
 labels = ["finance"]
@@ -40,6 +39,21 @@ highest_supported_qiskit_release_date = 2026-07-02
 highest_supported_qiskit_version = "2.5.0"
 last_month_downloads = 12292
 last_180_days_downloads = 80209
+
+[[checks.G08]]
+since = 2026-11-11
+details = "Unmaintained project should have an archived GitHub repository"
+importance = "NICE-TO-HAVE"
+
+[[checks.G09]]
+since = 2026-11-11
+details = "member.github.license does not exist"
+importance = "RECOMMENDATION"
+
+[[checks.G11]]
+since = 2026-11-11
+details = "Unmaintained project should live in an archived repository"
+importance = "STRONG-RECOMMENDATION"
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-finance/issues/363, waiting for a release with the fix"

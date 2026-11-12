@@ -54,18 +54,35 @@ There are 6 kind of members: _Regular Members_ (the default), _Qiskit Projects_,
 
 ### (Very) Early Project
 
-A regular member whose source code repository is **less than 12 months old** (as reported by `member.github.created_at`). If the repository is less than 3 months old, the project is a _Very Early Project_ instead.
+A regular member whose source code repository is **less than 12 months old** (as reported by `member.github.created_at`) and that has been **active within the last 6 months**. If the repository is less than 3 months old, the project is a _Very Early Project_ instead.
+
+Activity here is the more recent of `member.github.last_activity` — the newest event on the repository, which a commit, an issue, a pull request or somebody starring it all refresh — and `member.github.last_commit`.
 
 This status is derived automatically and it is not a rejection: it is a hint for potential users that the project is still young, and that its momentum and long-term support are less demonstrated than in an established project.
 It is also a counterweight to the self-reported [maturity](#maturity): a submitter can declare a project as `production-ready`, but a repository created a few months ago carries this status next to that claim.
 
-The status disappears on its own: as soon as the repository turns 12 months old, the next status update moves the project to a [regular member](#regular-members).
+The status disappears on its own: once the repository is 12 months old **and** the project has been active in the last 6 months, the next status update moves it to a [regular member](#regular-members).
 Projects with a pending [check up](#under-revision) are _Under revision_ instead, since that status takes precedence.
 
+**The age opens the door and the activity is what walks through it.** Leaving these statuses behind is not only a matter of the calendar: a project that has gone quiet keeps the status it has rather than being promoted, so that becoming an established member is something a project does and not something that happens to it while nobody is looking.
+
+| Repository age | Active in the last 6 months | Status |
+| --- | --- | --- |
+| less than 3 months | either way | _Very Early Project_ |
+| 3 to 12 months | yes | _Early Project_ |
+| 3 to 12 months | no | _Very Early Project_, held back |
+| 12 months or more | yes | regular [member](#regular-members) |
+| 12 months or more | no | no age-derived status, and the activity check ups are what speak |
+
+A repository with **no recorded activity at all**, neither an event nor a last commit, cannot show that it has graduated, so it keeps the earlier status.
+
+Most quiet projects reach _Under revision_ before any of this applies: [`[G06]`](checkups.md#G06) asks for activity within the last 6 months, and _Under revision_ takes precedence over every age-derived status. The holding rule is what covers the two cases `[G06]` does not reach — a repository with a last commit but no recorded event at all, which `[G06]` skips outright, and the boundary itself, where the last activity is exactly 6 months old.
+
 While a project is young, the activity [check ups](#under-revision) use a tighter window: instead of the flat 12 months since the last commit, a commit is expected within two thirds of the age of the repository (with a floor of 2 months), since a young project that stops committing has little track record to fall back on.
+**That window is gated on the age of the repository and not on this status**: a young project that has gone quiet is precisely what it is there to notice, so being held at _Very Early Project_ never exempts a project from it.
 
 !!! tip
-    _Very Early Projects_ are automatically excluded from the Qiskit Ecosystem website until they are 3 months old.
+    _Very Early Projects_ are automatically excluded from the Qiskit Ecosystem website until they graduate to _Early Project_.
     Meanwhile, they are genuinely Qiskit Ecosystem members, so they can use their badge and have all the regular benefits.
 
 {{ read_raw('docs/assets/early-projects.md') }}

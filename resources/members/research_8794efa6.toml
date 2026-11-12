@@ -1,5 +1,4 @@
 name = "Qiskit Research"
-url = "https://github.com/qiskit-community/qiskit-research"
 description = "Software utilities for running quantum computing research experiments using Qiskit and the IBM Quantum Services."
 license = "Apache-2.0"
 labels = []
@@ -48,25 +47,16 @@ specifier = ">=0"
 extra = "dev"
 compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[checks.G05]]
 since = 2026-04-23
 details = "GitHub repository https://github.com/qiskit-community/qiskit-research archived and project is not `as-is`"
 importance = "CRITICAL"
 
-[[checks.Q02]]
-since = 2026-04-30
-details = "Python package qiskit-research is not compatible with Qiskit SDK v2"
-importance = "IMPORTANT"
-
-[[checks.Q20]]
-since = 2026-09-24
-details = "Not compatible with the Qiskit SDK v2 or newer: `[Q02]`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[G05]` `[Q20]`"
-importance = "CRITICAL"
+[[checks.Q03]]
+since = 2026-11-11
+details = "The qiskit requirement in the qiskit-research release on PyPI (extra dev) allows a not-yet-released major version of Qiskit"
+subtest = "pypi:qiskit-research (extra dev)"
+importance = "RECOMMENDATION"

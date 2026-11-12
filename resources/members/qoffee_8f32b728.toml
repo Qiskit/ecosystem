@@ -1,6 +1,5 @@
 name = "Qoffee"
 submission_number = 1323
-url = "https://github.com/saadbhattii/Qoffee"
 description = "A free and open-source IBM quantum job monitoring and notification tool that runs as a GitHub Action in your own GitHub account."
 contact_info = "bhatti150201@gmail.com"
 labels = ["cloud service"]
@@ -28,6 +27,7 @@ topics = [
   "ibm-quantum",
   "monitoring-tool",
   "notification-service",
+  "qiskit",
   "quantum-jobs",
 ]
 
@@ -44,9 +44,3 @@ requires_python = ">=3.11"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
-
-[[checks.G14]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "`qiskit` is not among the GitHub repository topics, so the repository does not show up in github.com/topics/qiskit"
-importance = "NICE-TO-HAVE"

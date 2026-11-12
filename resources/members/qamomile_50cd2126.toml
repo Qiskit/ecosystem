@@ -1,5 +1,4 @@
 name = "Qamomile"
-url = "https://github.com/Jij-Inc/Qamomile"
 description = "Model constrained optimization problems using an algebraic modeler and convert them for quantum optimization algorithms."
 license = "Apache-2.0"
 contact_info = "h.matsuyama@j-ij.com"
@@ -22,10 +21,10 @@ license = "Apache-2.0"
 description = "A type-safe, functional quantum programming language embedded in Python. Write a quantum program (qkernel), then estimate its qubit..."
 estimated_contributors = 15
 total_dependent_repositories = 4
-total_dependent_packages = 1
+total_dependent_packages = 2
 created_at = 2023-06-18
-last_commit = 2026-11-04
-last_activity = 2026-11-04
+last_commit = 2026-11-10
+last_activity = 2026-11-10
 topics = [
   "amazon-braket",
   "cirq",
@@ -53,15 +52,15 @@ url = "https://pypi.org/project/qamomile/"
 status = "active"
 maintainers = ["https://pypi.org/user/jijpypi/"]
 last_month_downloads = 397
-last_180_days_downloads = 5362
+last_180_days_downloads = 5790
 
 [[pypi.requires]]
 specifier = "<3,>=2.3.0"
 extra = "qiskit"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2026-10-22
-highest_supported_qiskit_version = "2.6.1"
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
 
 [[cargo]]
 package_name = "qamomile-compiler"
@@ -80,27 +79,3 @@ rust_version = "1.98"
 edition = "2024"
 crate_type = ["cdylib", "rlib"]
 path = "rust/qamomile-python"
-
-[[checks.Q03]]
-xfailed = "Issue asking for the cap submitted https://github.com/Jij-Inc/Qamomile/issues/653, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-07-09
-details = "The qiskit requirement in the qamomile release on PyPI allows a not-yet-released major version of Qiskit"
-discussion = "https://github.com/Jij-Inc/Qamomile/issues/653"
-subtest = "pypi:qamomile"
-importance = "RECOMMENDATION"
-
-[[checks.P12]]
-xfailed = "Issue asking for the license declaration submitted https://github.com/Jij-Inc/Qamomile/issues/655, waiting for a release with the fix"
-xfailed_until = 2027-03-31
-since = 2026-07-06
-details = "The PyPI package qamomile does not have a declared license"
-discussion = "https://github.com/Jij-Inc/Qamomile/issues/655"
-importance = "RECOMMENDATION"
-
-[[checks.G15]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
-discussion = "https://github.com/Jij-Inc/Qamomile/issues/666"
-importance = "NICE-TO-HAVE"
