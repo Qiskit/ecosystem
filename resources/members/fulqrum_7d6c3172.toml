@@ -1,4 +1,5 @@
 name = "Fulqrum"
+url = "https://github.com/Qiskit/qiskit-fulqrum"
 submission_number = 1172
 labels = ["research", "physics"]
 interfaces = ["Python"]
@@ -13,7 +14,7 @@ status = "Early Project"
 url = "https://github.com/Qiskit/qiskit-fulqrum"
 owner = "Qiskit"
 repo = "qiskit-fulqrum"
-stars = 17
+stars = 18
 homepage = "https://qiskit.github.io/qiskit-fulqrum/"
 license = "Apache-2.0"
 description = "A generalized framework for quantum subspace sparse linear algebra"
@@ -22,7 +23,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-03-04
 last_commit = 2026-11-11
-last_activity = 2026-11-10
+last_activity = 2026-11-11
 
 [badge]
 url = "https://qisk.it/e-7d6c3172"
@@ -41,4 +42,4 @@ maintainers = [
   "https://pypi.org/user/nonhermitian/",
 ]
 last_month_downloads = 1264
-last_180_days_downloads = 6735
+last_180_days_downloads = 6939

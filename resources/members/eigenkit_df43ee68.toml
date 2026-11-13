@@ -1,4 +1,5 @@
 name = "eigenkit"
+url = "https://github.com/eigenorbit/eigenkit"
 submission_number = 1422
 description = "Write quantum algorithms once and run them on Qiskit, Aer, IBM Quantum hardware and other backends."
 contact_info = "info@eigenorbit.com"
@@ -27,8 +28,8 @@ estimated_contributors = 3
 total_dependent_repositories = 1
 total_dependent_packages = 1
 created_at = 2026-10-06
-last_commit = 2026-11-11
-last_activity = 2026-11-11
+last_commit = 2026-11-12
+last_activity = 2026-11-12
 topics = [
   "amazon-braket",
   "cuda-quantum",
@@ -65,7 +66,7 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/eigenorbit/"]
 last_month_downloads = 0
-last_180_days_downloads = 1038
+last_180_days_downloads = 1050
 
 [[pypi.requires]]
 specifier = "<3,>=1.4.1"

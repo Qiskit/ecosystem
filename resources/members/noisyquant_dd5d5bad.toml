@@ -1,4 +1,5 @@
 name = "Noisy Quantum Gates"
+url = "https://github.com/CERN-QTI/quantum-gates"
 description = "Provider with a novel approach for simulating quantum circuits with a realistic noise integrated into gates and modular design."
 license = "MIT"
 contact_info = "roman.wixinger@gmail.com PAOLO.DAROLD@studenti.units.it michele.grossi@cern.ch vischimichele@gmail.com dibartolomeo.giov@gmail.com"
@@ -54,7 +55,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 116
-last_180_days_downloads = 1081
+last_180_days_downloads = 1082
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

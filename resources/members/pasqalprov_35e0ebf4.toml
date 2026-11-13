@@ -1,4 +1,5 @@
 name = "qiskit-pasqal-provider"
+url = "https://github.com/qiskit-community/qiskit-pasqal-provider"
 description = "Qiskit provider to build and run analog programs on Pasqal's neutral atom QPUs."
 labels = ["provider", "cloud service"]
 interfaces = ["Python"]
@@ -39,4 +40,4 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 926
-last_180_days_downloads = 4330
+last_180_days_downloads = 4343

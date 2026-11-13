@@ -1,4 +1,5 @@
 name = "MQT Core"
+url = "https://github.com/munich-quantum-toolkit/core"
 description = "MQT Core forms the backbone of the software tools developed as part of the Munich Quantum Toolkit (MQT) and connects it to Qiskit."
 license = "MIT"
 contact_info = "quantum.cda@xcit.tum.de"
@@ -24,8 +25,8 @@ description = "MQT Core - Reusable C++20 and Python libraries for quantum comput
 total_dependent_repositories = 57
 total_dependent_packages = 11
 created_at = 2020-01-02
-last_commit = 2026-11-10
-last_activity = 2026-11-09
+last_commit = 2026-11-12
+last_activity = 2026-11-12
 topics = [
   "cpp20",
   "mlir",
@@ -51,7 +52,7 @@ development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
 last_month_downloads = 13129
-last_180_days_downloads = 170440
+last_180_days_downloads = 170980
 
 [[pypi.requires]]
 specifier = "<3,>=2.5"

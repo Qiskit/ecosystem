@@ -1,4 +1,5 @@
 name = "Qclib"
+url = "https://github.com/qclib/qclib"
 description = "A quantum computing library implemented using Qiskit. The focus of Qclib is on preparing quantum states, but it is not limited to that."
 license = "Apache-2.0"
 labels = ["circuit optimization", "research", "circuit building"]
@@ -19,7 +20,7 @@ total_dependent_repositories = 14
 total_dependent_packages = 1
 created_at = 2020-03-12
 last_commit = 2026-10-29
-last_activity = 2026-11-09
+last_activity = 2026-11-12
 topics = ["python", "quantum", "quantum-computing"]
 
 [badge]
@@ -40,7 +41,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 501
-last_180_days_downloads = 3078
+last_180_days_downloads = 3124
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

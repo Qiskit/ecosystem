@@ -1,4 +1,5 @@
 name = "Qutes Programming Language"
+url = "https://github.com/GabrieleMessina/qutes_lang"
 description = "A high-level quantum language that doesn't require deep theoretical expertise. For diverse domains of research and application."
 license = "MIT"
 contact_info = "gabryelemessina99@gmail.com"
@@ -44,11 +45,3 @@ topics = [
 [badge]
 url = "https://qisk.it/e-79b52453"
 style = "flat"
-
-[[requirements]]
-file = "src/QutesLang/PythonCode/requirements.txt"
-requires_qiskit = "==2.2"
-compatible_with_qiskit_v1 = false
-compatible_with_qiskit_v2 = true
-highest_supported_qiskit_release_date = 2025-09-19
-highest_supported_qiskit_version = "2.2.0"
