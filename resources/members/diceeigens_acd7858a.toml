@@ -1,4 +1,5 @@
 name = "Dice eigensolver"
+url = "https://github.com/Qiskit/qiskit-dice-solver"
 submission_number = 1172
 labels = ["utility-scale", "chemistry"]
 interfaces = ["Python"]
@@ -15,7 +16,7 @@ url = "https://github.com/Qiskit/qiskit-dice-solver"
 owner = "Qiskit"
 repo = "qiskit-dice-solver"
 stars = 28
-homepage = "https://qiskit.github.io/qiskit-dice-solver"
+homepage = "https://qiskit.github.io/qiskit-addon-dice-solver"
 license = "Apache-2.0"
 description = "An eigensolver used to scale up SQD chemistry workflows past 30 orbitals"
 total_dependent_repositories = 0

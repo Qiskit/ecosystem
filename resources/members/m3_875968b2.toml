@@ -1,4 +1,5 @@
 name = "M3"
+url = "https://github.com/Qiskit/qiskit-mthree"
 description = "Matrix-free Measurement Mitigation (M3). Reduce the effects of readout errors from noisy quantum hardware."
 labels = ["error mitigation", "utility-scale"]
 interfaces = ["Python"]
@@ -21,7 +22,7 @@ homepage = "https://qiskit.github.io/qiskit-mthree/"
 license = "Apache-2.0"
 description = "Matrix-free Measurement Mitigation"
 estimated_contributors = 16
-total_dependent_repositories = 131
+total_dependent_repositories = 132
 total_dependent_packages = 15
 created_at = 2021-08-16
 last_commit = 2026-09-29
@@ -50,7 +51,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 28112
-last_180_days_downloads = 239400
+last_180_days_downloads = 240612
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Qiskit/qiskit-addon-mthree/issues/287, waiting for a release with the fix"

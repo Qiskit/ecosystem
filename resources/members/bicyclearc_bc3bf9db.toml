@@ -1,4 +1,5 @@
 name = "Bicycle Architecture Compiler"
+url = "https://github.com/qiskit-community/bicycle-architecture-compiler"
 submission_number = 1172
 labels = ["error correction", "research", "circuit optimization"]
 interfaces = ["Rust"]
@@ -26,7 +27,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 13
 created_at = 2025-07-30
 last_commit = 2026-11-10
-last_activity = 2026-11-10
+last_activity = 2026-11-12
 topics = ["compiler", "fault-tolerance", "qiskit", "quantum"]
 
 [badge]
@@ -44,7 +45,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 1037
-last_90_days_downloads = 115
+last_90_days_downloads = 113
 
 [[crates]]
 package_name = "bicycle_cliffords"
@@ -57,7 +58,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 4006
-last_90_days_downloads = 459
+last_90_days_downloads = 418
 
 [[crates]]
 package_name = "bicycle_common"
@@ -70,7 +71,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 4214
-last_90_days_downloads = 497
+last_90_days_downloads = 455
 
 [[crates]]
 package_name = "bicycle_compiler"
@@ -83,7 +84,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 3781
-last_90_days_downloads = 419
+last_90_days_downloads = 378
 
 [[crates]]
 package_name = "bicycle_numerics"
@@ -96,7 +97,7 @@ maintainers = ["https://github.com/eddieschoute", "https://github.com/qiskit"]
 rust_version = "1.86.0"
 edition = "2024"
 total_downloads = 789
-last_90_days_downloads = 72
+last_90_days_downloads = 71
 
 [[crates]]
 package_name = "bicycle_random_numerics"

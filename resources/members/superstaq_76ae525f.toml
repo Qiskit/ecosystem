@@ -1,4 +1,5 @@
 name = "qiskit-superstaq"
+url = "https://github.com/Infleqtion/client-superstaq/tree/main/qiskit-superstaq"
 description = "Access the SuperstaQ web API through Qiskit for applications, pulse-level optimizations, and write-once-target-all features."
 license = "Apache-2.0"
 contact_info = ""
@@ -53,7 +54,7 @@ url = "https://pypi.org/project/checks-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 6524
-last_180_days_downloads = 62646
+last_180_days_downloads = 63567
 
 [[pypi]]
 package_name = "cirq-superstaq"
@@ -69,7 +70,7 @@ maintainers = [
   "https://pypi.org/user/vtomole/",
 ]
 last_month_downloads = 5385
-last_180_days_downloads = 61580
+last_180_days_downloads = 61720
 
 [[pypi]]
 package_name = "general-superstaq"
@@ -81,7 +82,7 @@ url = "https://pypi.org/project/general-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 5569
-last_180_days_downloads = 63818
+last_180_days_downloads = 63967
 
 [[pypi]]
 package_name = "qiskit-superstaq"
@@ -97,7 +98,7 @@ maintainers = [
   "https://pypi.org/user/vtomole/",
 ]
 last_month_downloads = 3430
-last_180_days_downloads = 41628
+last_180_days_downloads = 41834
 
 [[pypi.requires]]
 specifier = "<3,>=1.3.0"
@@ -125,7 +126,7 @@ url = "https://pypi.org/project/Supermarq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 663
-last_180_days_downloads = 8203
+last_180_days_downloads = 8234
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

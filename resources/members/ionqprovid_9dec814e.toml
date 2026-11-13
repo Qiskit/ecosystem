@@ -1,4 +1,5 @@
 name = "Qiskit IonQ Provider"
+url = "https://github.com/qiskit-community/qiskit-ionq"
 description = "This project contains a provider that allows access to IonQ ion trap quantum systems."
 license = "Apache-2.0"
 contact_info = ""
@@ -24,7 +25,7 @@ total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2020-10-08
 last_commit = 2026-11-09
-last_activity = 2026-11-09
+last_activity = 2026-11-10
 topics = ["qiskit", "unitaryhack"]
 
 [badge]
@@ -46,7 +47,7 @@ compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 63222
-last_180_days_downloads = 559767
+last_180_days_downloads = 568751
 
 [[pypi.requires]]
 specifier = ">=2.0.0"
