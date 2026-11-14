@@ -42,6 +42,11 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
 
+[[checks.G12]]
+since = 2026-11-14
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
+
 [[checks.G14]]
 xfailed = "membership predates the checkup"
 since = 2026-11-01

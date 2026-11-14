@@ -32,3 +32,14 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
+
+[[checks.010]]
+since = 2026-11-14
+details = "Test projects are not allow"
+importance = "IMPORTANT"
+xfailed = "Name allowed."
+
+[[checks.G15]]
+since = 2026-11-14
+details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
+importance = "NICE-TO-HAVE"

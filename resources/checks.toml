@@ -83,7 +83,7 @@ applies_to = "all"
 affects = ["member.name"]
 category = "SUBMISSION"
 checker = "checkup_name.py::checkup_010"
-importance = "RECOMMENDATION"
+importance = "IMPORTANT"
 
 [011]
 title = "Do not repeat URLs in the submission"
