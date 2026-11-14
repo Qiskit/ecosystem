@@ -1,4 +1,5 @@
 name = "Qiskit Qulacs"
+url = "https://github.com/Gopal-Dahale/qiskit-qulacs"
 submission_number = 608
 description = "Qiskit-Qulacs allows users to execute Qiskit programs using Qulacs backend."
 license = "Apache-2.0"
@@ -45,8 +46,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 139
-last_180_days_downloads = 989
+last_month_downloads = 137
+last_180_days_downloads = 843
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/Gopal-Dahale/qiskit-qulacs/issues/11, waiting for a release with the fix"

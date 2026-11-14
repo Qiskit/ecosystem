@@ -1,4 +1,5 @@
 name = "qb-compiler"
+url = "https://github.com/mwpwalshe/qb-compiler"
 submission_number = 1044
 description = "Calibration-aware quantum circuit compiler. Uses today's hardware noise data for smarter qubit mapping and routing."
 contact_info = "michael.walshe@qubitboost.io"
@@ -52,5 +53,5 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 265
-last_180_days_downloads = 3037
+last_month_downloads = 164
+last_180_days_downloads = 2555

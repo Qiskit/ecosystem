@@ -1,4 +1,5 @@
 name = "MQT ProblemSolver"
+url = "https://github.com/munich-quantum-toolkit/problemsolver"
 submission_number = 829
 description = "A framework for users with little to no quantum computing knowledge to solve common problems. Part of the Munich Quantum Toolkit (MQT)."
 license = "MIT"
@@ -24,8 +25,8 @@ description = "MQT ProblemSolver - A Tool for Solving Problems Using Quantum Com
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-06-18
-last_commit = 2026-11-09
-last_activity = 2026-11-09
+last_commit = 2026-11-13
+last_activity = 2026-11-13
 topics = ["mqt", "qiskit", "quantum-computing", "tum"]
 
 [badge]
@@ -47,5 +48,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 31
-last_180_days_downloads = 670
+last_month_downloads = 211
+last_180_days_downloads = 539

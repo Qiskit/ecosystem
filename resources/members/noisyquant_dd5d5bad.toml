@@ -1,4 +1,5 @@
 name = "Noisy Quantum Gates"
+url = "https://github.com/CERN-QTI/quantum-gates"
 submission_number = 931
 description = "Provider with a novel approach for simulating quantum circuits with a realistic noise integrated into gates and modular design."
 license = "MIT"
@@ -54,8 +55,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 116
-last_180_days_downloads = 1082
+last_month_downloads = 93
+last_180_days_downloads = 838
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

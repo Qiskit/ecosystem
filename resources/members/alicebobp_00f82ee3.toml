@@ -1,4 +1,5 @@
 name = "Alice & Bob Qiskit provider"
+url = "https://github.com/Alice-Bob-SW/qiskit-alice-bob-provider"
 description = "Access Alice & Bob QPUs and emulators using Qiskit."
 license = "Apache-2.0"
 labels = ["cloud service", "provider"]
@@ -52,5 +53,5 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 560
-last_180_days_downloads = 3272
+last_month_downloads = 998
+last_180_days_downloads = 3191

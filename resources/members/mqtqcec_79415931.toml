@@ -1,4 +1,5 @@
 name = "MQT QCEC"
+url = "https://github.com/munich-quantum-toolkit/qcec"
 submission_number = 817
 description = "A tool for quantum circuit equivalence checking developed as part of the Munich Quantum Toolkit (MQT)."
 license = "MIT"
@@ -25,8 +26,8 @@ description = "MQT QCEC - A Tool for Quantum Circuit Equivalence Checking"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2020-01-02
-last_commit = 2026-11-10
-last_activity = 2026-11-10
+last_commit = 2026-11-13
+last_activity = 2026-11-13
 topics = [
   "cpp20",
   "equivalence-checker",
@@ -52,8 +53,8 @@ url = "https://pypi.org/project/mqt-qcec/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/org/munich-quantum-toolkit/"]
-last_month_downloads = 20365
-last_180_days_downloads = 80467
+last_month_downloads = 7627
+last_180_days_downloads = 72232
 
 [[pypi.requires]]
 specifier = "<3,>=2.1"

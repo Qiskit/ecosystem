@@ -1,4 +1,5 @@
 name = "Quantum Agent Gate"
+url = "https://github.com/kaulastudies/ai-evaluation-lab/tree/main/integrations/quantum-agent-gate"
 submission_number = 1426
 description = "Preflight safety tests for AI agents using Qiskit: guard local V2 circuit execution, shot budgets, backend access and duplicate jobs."
 contact_info = "ramachandra.health@gmail.com"
@@ -22,7 +23,7 @@ homepage = "https://proofpay-evaluation-lab.vercel.app"
 license = "Apache-2.0"
 description = "The evidence layer for AI systems and agents - reproducible evaluation, verification, regression and release evidence."
 created_at = 2026-09-13
-last_commit = 2026-11-12
+last_commit = 2026-11-13
 last_activity = 2026-11-12
 topics = [
   "agent-evaluation",

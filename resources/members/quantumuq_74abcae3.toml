@@ -1,4 +1,5 @@
 name = "QuantumUQ"
+url = "https://github.com/ocatak/QuantumUQ"
 submission_number = 1330
 description = "Uncertainty quantification for quantum machine learning on PennyLane and Qiskit: shot noise, calibration, and ensembles."
 contact_info = "f.ozgur.catak@uis.no"
@@ -52,8 +53,8 @@ url = "https://pypi.org/project/quantumuq/"
 development_status = "3 - Alpha"
 status = "active"
 maintainers = ["https://pypi.org/user/ocatak/"]
-last_month_downloads = 96
-last_180_days_downloads = 1039
+last_month_downloads = 63
+last_180_days_downloads = 969
 
 [[pypi.requires]]
 specifier = "<3,>=1.0.0"

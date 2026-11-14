@@ -1,4 +1,5 @@
 name = "qcdiff"
+url = "https://github.com/navneet83/qcdiff"
 submission_number = 1420
 description = "Semantic diff for OpenQASM 3 circuits: see what changed between two QASM files, gate by gate, in CI or code review."
 labels = ["openqasm"]
@@ -53,7 +54,7 @@ url = "https://pypi.org/project/qcdiff/"
 development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/user/navneet.bits/"]
-last_month_downloads = 0
+last_month_downloads = 337
 last_180_days_downloads = 529
 
 [[crates]]
