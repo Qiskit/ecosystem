@@ -21,6 +21,9 @@ from unittest import TestCase
 
 from dateutil.relativedelta import relativedelta
 
+from slugify import slugify
+
+from ecosystem.check import ChecksToml, parse_exclusions
 from ecosystem.github import GitHubData
 from ecosystem.member import Member
 
@@ -328,3 +331,104 @@ class TestG15(GitHubCheckupsTestCase):
         """The details name the repository's own line, not the member's"""
         details = self.details_of(self.CHECKER, status=None, github_description=None)
         self.assertIn("no description", details["G15"])
+
+
+class TestG16(GitHubCheckupsTestCase):
+    """[G16] An unmaintained project with no commit in two years should be removed"""
+
+    CHECKER = "checkup_github.py::checkup_G16"
+
+    def test_G16_applies_to_the_unmaintained_only(self):
+        """The inverse gate of its neighbours.
+
+        [G06], [G07] and [G12] all open with "projects with no maintenance expectations are
+        exempt"; this one is *for* them. A maintained project this stale already fails
+        [G07], so it would only be told the same thing twice."""
+        self.assert_same_for_every_status(
+            self.CHECKER, {"G16"}, maturity="as-is", months_since_commit=24
+        )
+        self.assert_same_for_every_status(
+            self.CHECKER, {"G16"}, maturity="deprecated", months_since_commit=24
+        )
+        self.assert_same_for_every_status(
+            self.CHECKER, set(), maturity="production-ready", months_since_commit=24
+        )
+
+    def test_G16_is_two_years_of_silence(self):
+        """23 months is still inside the window; 24 is not.
+
+        The boundary is the whole check up: at 23 months an unmaintained project has no
+        pending check up of this kind at all, and nothing retires it."""
+        self.assert_same_for_every_status(
+            self.CHECKER, set(), maturity="as-is", months_since_commit=23
+        )
+        self.assert_same_for_every_status(
+            self.CHECKER, {"G16"}, maturity="as-is", months_since_commit=24
+        )
+
+    def test_G16_does_not_depend_on_the_unmaintained_status(self):
+        """`member.unmaintained` is the maturity, not the status derived from it.
+
+        `Under revision` masks `Unmaintained` as soon as any check up is pending, so a
+        check up reading the status would stop applying the moment it started failing.
+        """
+        self.assertEqual(
+            self.checkups_of(
+                self.CHECKER,
+                status="Under revision",
+                maturity="as-is",
+                months_since_commit=24,
+            ),
+            {"G16"},
+        )
+
+    def test_G16_without_a_last_commit_date(self):
+        """A member whose repository was never read has no date to measure from.
+
+        Built the way a member file builds it, not with a keyword: `GitHubData` drops the
+        key, so `member.github.last_commit` raises rather than returning None, and reading
+        it directly the way [G07] does would be an error instead of a skip."""
+        member = self.member(None, maturity="as-is")
+        member.github = GitHubData.from_dict(
+            {"owner": "qiskit-community", "repo": "banana-repo"}
+        )
+        self.assertFalse(hasattr(member.github, "last_commit"))
+        with redirect_stdout(StringIO()):
+            member.update_checkups(self.CHECKER)
+        self.assertEqual(set(member.checks), set())
+
+    def test_G16_reports_how_long_it_has_been(self):
+        """The details carry the number, so the check ups page says why it fired"""
+        details = self.details_of(
+            self.CHECKER, status=None, maturity="as-is", months_since_commit=27
+        )
+        self.assertIn("The last commit was more than 2 years ago", details["G16"])
+
+
+class TestG16Importance(TestCase):
+    """[G16] has to be able to change a status, which is a property of checks.toml.
+
+    `[G08]` already asks those same four projects to archive their repository and has never
+    retired one: it is `NICE-TO-HAVE`, and the weekly run is
+    `update_status -e "alumni, qiskit-project, nice_to_have"`, so its importance is excluded
+    from the status calculation outright. A `NICE-TO-HAVE` [G16] would be decoration."""
+
+    WEEKLY_EXCLUSIONS = parse_exclusions("alumni, qiskit-project, nice_to_have")
+
+    def setUp(self):
+        self.checks = ChecksToml()
+
+    def test_G16_importance_is_not_excluded_by_the_weekly_status_run(self):
+        """Whatever the importance is, `update_status` has to be allowed to see it"""
+        checkup = self.checks.checkup("G16")
+        self.assertNotIn(slugify(checkup["importance"]), self.WEEKLY_EXCLUSIONS)
+        self.assertNotIn(slugify(checkup["category"]), self.WEEKLY_EXCLUSIONS)
+
+    def test_G16_retires_without_a_second_grace_period(self):
+        """Two years of silence has already been the grace period.
+
+        A cure period of 0 days means the deadline is the day the check up is first
+        recorded, so the project goes to `Under revision` on that run and to `Alumni` on
+        the next one."""
+        self.assertEqual(self.checks.checkup("G16")["importance"], "CRITICAL")
+        self.assertEqual(self.checks.cure_period("G16"), 0)

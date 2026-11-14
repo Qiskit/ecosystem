@@ -282,6 +282,16 @@ description = "The GitHub repository should have a description, the \"About\" li
 importance = "NICE-TO-HAVE"
 checker = "checkup_github.py::checkup_G15"
 
+[G16]
+title = "Unmaintained projects should have a commit within the last 2 years"
+applies_to = "GitHub projects that declare no maintenance expectations"
+affects = ['member.github.last_commit', 'member.maturity']
+category = "ACTIVITY"
+related_to = ['G07', 'G08', 'G11']
+description = "Declaring no maintenance expectations (`member.maturity` is `as-is` or `deprecated`) exempts a project from the activity check ups [G06], [G07] and [G12], which ask a maintained project for recent work. It does not exempt it from belonging to the ecosystem. After two years without a single commit, the project is retired to Alumni. This is the one activity check up that applies *only* to projects with no maintenance expectations, since [G07] already asks every other project for a commit within 12 months."
+importance = "CRITICAL"
+checker = "checkup_github.py::checkup_G16"
+
 [O01]
 title = "Have a license"
 applies_to = "all"
