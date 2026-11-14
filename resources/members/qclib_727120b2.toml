@@ -1,4 +1,5 @@
 name = "Qclib"
+url = "https://github.com/qclib/qclib"
 submission_number = 803
 description = "A quantum computing library implemented using Qiskit. The focus of Qclib is on preparing quantum states, but it is not limited to that."
 license = "Apache-2.0"
@@ -40,8 +41,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 501
-last_180_days_downloads = 3124
+last_month_downloads = 521
+last_180_days_downloads = 2734
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

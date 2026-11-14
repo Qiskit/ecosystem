@@ -1,4 +1,5 @@
 name = "QiskitIBMRuntime.jl"
+url = "https://github.com/Qiskit/QiskitIBMRuntime.jl"
 submission_number = 1172
 description = "Execute circuits on an IBM Quantum computer from the Julia programming language"
 labels = ["provider", "cloud service"]
@@ -40,9 +41,9 @@ requires_julia = ["1.10.0 - 1"]
 requires_qiskit = ["0.4 - 0.5"]
 juliahub_url = "https://juliahub.com/ui/Packages/General/QiskitIBMRuntime"
 uuid = "1f74880b-c9c8-4af4-a333-b5b4aaaec6f5"
-estimated_unique_users = 16
+estimated_unique_users = 17
 monthly_downloads = 10
-total_downloads = 20
+total_downloads = 21
 
 [[checks.J00]]
 since = 2026-07-09

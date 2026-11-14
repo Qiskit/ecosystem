@@ -1,4 +1,5 @@
 name = "QCSC Prefect"
+url = "https://github.com/qiskit-community/qcsc-prefect"
 submission_number = 1440
 description = "Modular workspace for portable HPC workflow orchestration with Prefect."
 labels = ["HPC"]
@@ -25,13 +26,13 @@ status = "Early Project"
 url = "https://github.com/qiskit-community/qcsc-prefect"
 owner = "qiskit-community"
 repo = "qcsc-prefect"
-stars = 6
+stars = 7
 homepage = "https://qiskit-community.github.io/qcsc-prefect"
 license = "Apache-2.0"
 description = "A modular workspace for portable HPC workflow orchestration with Prefect."
 created_at = 2026-04-10
 last_commit = 2026-11-11
-last_activity = 2026-11-12
+last_activity = 2026-11-13
 
 [badge]
 url = "https://qisk.it/e-b6f3227d"
@@ -49,8 +50,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 27
-last_180_days_downloads = 1560
+last_month_downloads = 291
+last_180_days_downloads = 1564
 
 [[pypi]]
 package_name = "qcsc-prefect-adapters"
@@ -64,8 +65,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 29
-last_180_days_downloads = 1976
+last_month_downloads = 383
+last_180_days_downloads = 1988
 
 [[pypi]]
 package_name = "qcsc-prefect-blocks"
@@ -79,8 +80,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 27
-last_180_days_downloads = 2028
+last_month_downloads = 381
+last_180_days_downloads = 2037
 
 [[pypi]]
 package_name = "qcsc-prefect-core"
@@ -94,8 +95,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 31
-last_180_days_downloads = 2200
+last_month_downloads = 414
+last_180_days_downloads = 2207
 
 [[pypi]]
 package_name = "qcsc-prefect-dice"
@@ -109,8 +110,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 27
-last_180_days_downloads = 1472
+last_month_downloads = 262
+last_180_days_downloads = 1476
 
 [[pypi]]
 package_name = "qcsc-prefect-executor"
@@ -124,8 +125,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 29
-last_180_days_downloads = 1919
+last_month_downloads = 366
+last_180_days_downloads = 1932
 
 [[pypi]]
 package_name = "qcsc-prefect-fulqrum"
@@ -139,8 +140,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 0
-last_180_days_downloads = 121
+last_month_downloads = 131
+last_180_days_downloads = 131
 
 [[pypi]]
 package_name = "qcsc-prefect-qiskit"
@@ -154,8 +155,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 27
-last_180_days_downloads = 1468
+last_month_downloads = 280
+last_180_days_downloads = 1482
 
 [[pypi]]
 package_name = "qcsc-prefect-sbd"
@@ -169,8 +170,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/hitomitak/",
 ]
-last_month_downloads = 0
-last_180_days_downloads = 114
+last_month_downloads = 122
+last_180_days_downloads = 122
 
 [[python]]
 package_name = "qcsc-prefect"

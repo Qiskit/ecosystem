@@ -1,4 +1,5 @@
 name = "Qiskit Omelyan"
+url = "https://github.com/MarkoMalezic/qiskit-omelyan"
 submission_number = 1202
 description = "Omelyan-type symmetric product formulas for PauliEvolutionGate synthesis in Qiskit"
 contact_info = "malezic15@gmail.com"
@@ -38,8 +39,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 23
-last_180_days_downloads = 553
+last_month_downloads = 25
+last_180_days_downloads = 415
 
 [[checks.G15]]
 xfailed = "membership predates the checkup"

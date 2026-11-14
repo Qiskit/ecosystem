@@ -1,4 +1,5 @@
 name = "quantum-learn"
+url = "https://github.com/KUQCI/quantum-learn"
 submission_number = 1275
 description = "Making quantum machine learning easier through higher-level estimators and quantum circuit wrappers for common workflows."
 contact_info = "quantuminitiative.ku@gmail.com"
@@ -38,8 +39,8 @@ url = "https://pypi.org/project/quantum-learn/"
 development_status = "3 - Alpha"
 status = "active"
 maintainers = ["https://pypi.org/user/osamamit/"]
-last_month_downloads = 12
-last_180_days_downloads = 718
+last_month_downloads = 24
+last_180_days_downloads = 494
 
 [[pypi.requires]]
 specifier = ">=0"

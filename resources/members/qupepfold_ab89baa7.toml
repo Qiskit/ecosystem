@@ -1,4 +1,5 @@
 name = "QuPepFold"
+url = "https://github.com/akshayuttarkarc/QuPepFold"
 submission_number = 935
 description = "Research-oriented toolkit for turning amino-acid sequences into quantum bitstring encodings. Peer-reviewed and published in PLOS ONE."
 license = "MIT"
@@ -45,8 +46,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 43
-last_180_days_downloads = 1144
+last_month_downloads = 31
+last_180_days_downloads = 636
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"
