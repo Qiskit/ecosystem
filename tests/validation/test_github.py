@@ -402,7 +402,7 @@ class TestG16(GitHubCheckupsTestCase):
         details = self.details_of(
             self.CHECKER, status=None, maturity="as-is", months_since_commit=27
         )
-        self.assertIn("27 months ago", details["G16"])
+        self.assertIn("The last commit was more than 2 years ago", details["G16"])
 
 
 class TestG16Importance(TestCase):

@@ -174,6 +174,7 @@ def checkup_G15(member):
         "project on its repository page and in every GitHub listing it appears in"
     )
 
+
 def checkup_G16(member):
     """An unmaintained project with no commit in the last two years should be removed"""
     if not member.unmaintained:
@@ -189,7 +190,7 @@ def checkup_G16(member):
     months_difference = (relative.years * 12) + relative.months
 
     assert months_difference < 24, (
-        f"The last commit was more than 2 years ago and the project declares no "
+        "The last commit was more than 2 years ago and the project declares no "
         "maintenance expectations. It is time to for the "
         "project to get retired to Alumni unless there is a reason to keep it."
     )
