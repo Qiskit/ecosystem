@@ -27,7 +27,7 @@ total_dependent_repositories = 147
 total_dependent_packages = 29
 created_at = 2021-01-05
 last_commit = 2026-10-13
-last_activity = 2026-11-10
+last_activity = 2026-11-14
 topics = ["azure", "azure-sdk-for-python", "microsoft", "python", "quantum"]
 
 [badge]
@@ -43,8 +43,8 @@ description = "Python client for Azure Quantum"
 url = "https://pypi.org/project/azure-quantum/"
 status = "active"
 maintainers = ["https://pypi.org/user/microsoft/"]
-last_month_downloads = 80728
-last_180_days_downloads = 204363
+last_month_downloads = 81090
+last_180_days_downloads = 205416
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"
