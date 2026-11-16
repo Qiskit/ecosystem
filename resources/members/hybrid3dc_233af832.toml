@@ -1,5 +1,4 @@
 name = "Hybrid 3D Container Loading Optimisation"
-url = "https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation"
 submission_number = 1465
 description = "Hybrid 3D container-loading research using QUBO optimization and QAOA experiments on IBM Quantum hardware."
 contact_info = "ahlad08@vt.edu"
@@ -18,3 +17,10 @@ packages = [
 ]
 uuid = "233af832-a02a-45fd-b1ce-5f95195be9ca"
 maturity = "experimental"
+
+[github]
+owner = "AhladM0di"
+repo = "Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation"
+
+[badge]
+style = "flat"
