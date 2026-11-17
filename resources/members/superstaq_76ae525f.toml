@@ -53,8 +53,8 @@ description = "Check script tools for Superstaq."
 url = "https://pypi.org/project/checks-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
-last_month_downloads = 6100
-last_180_days_downloads = 57077
+last_month_downloads = 6406
+last_180_days_downloads = 57154
 
 [[pypi]]
 package_name = "cirq-superstaq"
@@ -69,8 +69,8 @@ maintainers = [
   "https://pypi.org/user/richrines/",
   "https://pypi.org/user/vtomole/",
 ]
-last_month_downloads = 3369
-last_180_days_downloads = 47921
+last_month_downloads = 3255
+last_180_days_downloads = 47743
 
 [[pypi]]
 package_name = "general-superstaq"
@@ -81,8 +81,8 @@ description = "The general module that provides tools and access to Superstaq."
 url = "https://pypi.org/project/general-superstaq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
-last_month_downloads = 3679
-last_180_days_downloads = 50777
+last_month_downloads = 3564
+last_180_days_downloads = 50471
 
 [[pypi]]
 package_name = "qiskit-superstaq"
@@ -97,8 +97,8 @@ maintainers = [
   "https://pypi.org/user/richrines/",
   "https://pypi.org/user/vtomole/",
 ]
-last_month_downloads = 2500
-last_180_days_downloads = 33666
+last_month_downloads = 2438
+last_180_days_downloads = 33578
 
 [[pypi.requires]]
 specifier = "<3,>=1.3.0"
@@ -126,7 +126,7 @@ url = "https://pypi.org/project/Supermarq/"
 status = "active"
 maintainers = ["https://pypi.org/user/vtomole/"]
 last_month_downloads = 812
-last_180_days_downloads = 6683
+last_180_days_downloads = 6686
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"
