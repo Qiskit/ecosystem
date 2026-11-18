@@ -1,0 +1,14 @@
+name = "Isthmus"
+url = "https://github.com/SerenaSolutions/isthmus"
+submission_number = 1467
+description = "Declares quantum decisions before execution: verdicts 1, 0 or REFUSED, with sealed receipts and 18 refusal codes."
+license = "Apache-2.0"
+labels = ["quantum information", "openqasm", "benchmarking", "research"]
+interfaces = ["Python", "Command-line interface (CLI)"]
+category = "SDK"
+website = "https://github.com/SerenaSolutions/isthmus"
+documentation = "https://github.com/SerenaSolutions/isthmus/tree/main/docs"
+packages = ["https://pypi.org/project/isthmus"]
+uuid = "bc85514a-669e-4ff0-9dd9-7d72639f8eee"
+maturity = "experimental"
+status = "Early Project"
