@@ -1,6 +1,6 @@
 name = "QuPrep"
-submission_number = 1118
 url = "https://github.com/quprep/quprep"
+submission_number = 1118
 description = "Quantum data preparation — the missing preprocessing layer between classical datasets and quantum computing frameworks."
 contact_info = "hasarindu@quprep.org"
 labels = ["QML", "optimization", "circuit building", "openqasm"]
@@ -53,8 +53,8 @@ url = "https://pypi.org/project/quprep/"
 development_status = "4 - Beta"
 status = "active"
 maintainers = ["https://pypi.org/org/quprep/"]
-last_month_downloads = 32
-last_180_days_downloads = 956
+last_month_downloads = 28
+last_180_days_downloads = 485
 
 [[pypi.requires]]
 specifier = ">=1.0"

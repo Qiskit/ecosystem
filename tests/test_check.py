@@ -519,4 +519,3 @@ class TestCheckupOrderInTheMemberFile(TestCase):
             ["pypi:apple", "pypi:zebra"],
             [record.subtest for record in member.checks["P12"]],
         )
-

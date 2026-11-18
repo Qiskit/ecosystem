@@ -46,6 +46,9 @@ jobs:
       - name: Initial validatation
         run: python manager.py ci validate_member ${{ steps.get-id.outputs.id }} -e "activity, oss, recommendation, legacy, best_practice"  # There is no license yet
 
+      - name: Mark the URLs that do not resolve
+        if: github.event.pull_request.draft == false
+        run: python manager.py members update_urls ${{ steps.get-id.outputs.id }}
       - name: Create sections
         if: github.event.pull_request.draft == false
         run: python manager.py ci create_sections ${{ steps.get-id.outputs.id }}

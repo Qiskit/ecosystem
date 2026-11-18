@@ -82,7 +82,9 @@ def checkup_G12(member):
     if member.age_in_months is None:
         pytest.skip("member.age_in_months is None")
 
-    if not member.early:
+    if member.age_in_months >= 12:
+        # the age, not `member.early`, which also asks whether the project is active:
+        # a young project that went quiet is exactly what this check up is for
         pytest.skip(
             f"the repository is {member.age_in_months} months old, not young anymore"
         )
@@ -170,4 +172,25 @@ def checkup_G15(member):
     assert description and description.strip(), (
         "The GitHub repository has no description, the one line that introduces the "
         "project on its repository page and in every GitHub listing it appears in"
+    )
+
+
+def checkup_G16(member):
+    """An unmaintained project with no commit in the last two years should be removed"""
+    if not member.unmaintained:
+        pytest.skip(
+            "the project declares maintenance expectations, so [G07] covers its commits"
+        )
+
+    last_commit = getattr(member.github, "last_commit", None)
+    if last_commit is None:
+        pytest.skip("No member.github.last_commit date")
+
+    relative = relativedelta(date.today(), last_commit)
+    months_difference = (relative.years * 12) + relative.months
+
+    assert months_difference < 24, (
+        "The last commit was more than 2 years ago and the project declares no "
+        "maintenance expectations. It is time to for the "
+        "project to get retired to Alumni unless there is a reason to keep it."
     )

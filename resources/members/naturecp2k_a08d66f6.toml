@@ -1,5 +1,6 @@
 name = "Qiskit Nature + CP2K Embedding"
 url = "https://github.com/mrossinek/qiskit-nature-cp2k"
+submission_number = 709
 description = "This project contains the utilities that are required for the communication between Qiskit Nature and CP2K."
 license = "Apache-2.0"
 labels = ["chemistry"]
@@ -42,3 +43,8 @@ deferred = []
 since = 2026-09-24
 details = "Unmaintained project should have an archived GitHub repository"
 importance = "NICE-TO-HAVE"
+
+[[checks.G16]]
+since = 2026-11-14
+details = "The last commit was more than 2 years ago and the project declares no maintenance expectations. It is time to for the project to get retired to Alumni unless there is a reason to keep it."
+importance = "CRITICAL"

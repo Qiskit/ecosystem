@@ -457,6 +457,29 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             project.update_badge()
             self.dao.update(project.name_id, badge=project.badge)
 
+    def update_urls(self, name=None):
+        """
+        Updates the submitted URL fields: marks the ones that no longer resolve, and
+        unmarks the ones that answer again.
+        If <name> is not given, runs on all the members.
+        Otherwise, all the members with name_id that contains <name>
+        as substring are checked.
+
+        A dead link is recorded in place as `status-404://<the url>`, which is what the
+        `[016]` check up reads. Redirects are followed to get the status but never
+        recorded, so a URL that answers is left exactly as it was submitted.
+        """
+        for project in self.dao.get_all(name):
+            project.update_urls()
+            self.dao.update(
+                project.name_id,
+                url=project.url,
+                documentation=project.documentation,
+                website=project.website,
+                reference_paper=project.reference_paper,
+                packages=project.packages,
+            )
+
     def update_github(self, name=None):
         """
         Updates GitHub data.
@@ -844,7 +867,7 @@ class CliMembers:  # pylint: disable=too-many-public-methods
             },
             "members": [
                 CliMembers.filter_data(
-                    member.to_dict(),
+                    member.to_dict() | {"url": str(member.url) if member.url else None},
                     member_data_to_export,
                 )
                 | {"ibm_maintained": bool(member.ibm_maintained)}

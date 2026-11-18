@@ -55,15 +55,6 @@ importance = "CRITICAL"
 
 [[checks.Q02]]
 since = 2026-04-30
-details = "Python package qiskit-dynamics is not compatible with Qiskit SDK v2"
+details = "The qiskit requirement in the qiskit-dynamics release on PyPI is not compatible with Qiskit SDK v2"
+subtest = "pypi:qiskit-dynamics"
 importance = "IMPORTANT"
-
-[[checks.Q20]]
-since = 2026-09-24
-details = "Not compatible with the Qiskit SDK v2 or newer: `[Q02]`"
-importance = "CRITICAL"
-
-[[checks.G00]]
-since = 2026-09-24
-details = "The project is probably abandoned: `[G05]` `[Q20]`"
-importance = "CRITICAL"

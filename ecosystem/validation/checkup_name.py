@@ -17,4 +17,4 @@
 
 def checkup_010(member):
     """member.name should not include the substring 'test'"""
-    assert "test" not in member.name.lower()
+    assert "test" not in member.name.lower(), "Test projects are not allow"

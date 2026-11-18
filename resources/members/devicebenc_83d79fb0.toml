@@ -1,6 +1,6 @@
 name = "Device Benchmarking"
-submission_number = 1348
 url = "https://github.com/qiskit-community/qiskit-device-benchmarking"
+submission_number = 1348
 description = "Notebooks and libraries built on Qiskit Experiments for benchmarking device performance: layer fidelity, quantum volume, CLOPS."
 labels = ["benchmarking", "quantum information", "research"]
 interfaces = ["Python", "Command-line interface (CLI)"]
@@ -13,12 +13,12 @@ maturity = "experimental"
 url = "https://github.com/qiskit-community/qiskit-device-benchmarking"
 owner = "qiskit-community"
 repo = "qiskit-device-benchmarking"
-stars = 28
+stars = 29
 license = "Apache-2.0"
 description = "Device level benchmarks through Qiskit"
 created_at = 2024-03-20
 last_commit = 2026-10-27
-last_activity = 2026-11-05
+last_activity = 2026-11-17
 topics = ["qiskit"]
 
 [badge]
@@ -47,9 +47,3 @@ details = "The qiskit requirement in the qiskit-device-benchmarking manifest in 
 discussion = "https://github.com/qiskit-community/qiskit-device-benchmarking/issues/87"
 subtest = "python:qiskit-device-benchmarking"
 importance = "RECOMMENDATION"
-
-[[checks.G15]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
-importance = "NICE-TO-HAVE"

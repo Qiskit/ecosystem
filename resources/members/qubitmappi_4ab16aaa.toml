@@ -1,6 +1,6 @@
 name = "Qiskit Qubit Mapping Toolkit"
-submission_number = 1311
 url = "https://github.com/RexRowan/Qiskit-Qubit-Mapping-Toolkit"
+submission_number = 1311
 description = "Graph-theoretic initial layout and routing heuristics for mapping logical Qiskit circuits onto hardware coupling maps."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["circuit optimization", "research", "quantum information"]
@@ -42,8 +42,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 34
-last_180_days_downloads = 339
+last_month_downloads = 21
+last_180_days_downloads = 340
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

@@ -1,6 +1,6 @@
 name = "Qiskit ZX Verified"
-submission_number = 1297
 url = "https://github.com/RexRowan/Qiskit-ZX-Verified"
+submission_number = 1297
 description = "Clifford phase-gate fusion for Qiskit with the core ZX spider-fusion rule formally verified in Lean 4."
 contact_info = "titaniumdavinci@gmail.com"
 labels = ["quantum information", "research"]
@@ -9,7 +9,7 @@ category = "Tooling"
 packages = []
 uuid = "91f8bc77-c601-4538-b5ec-5149828f7b9c"
 maturity = "experimental"
-status = "Very Early Project"
+status = "Early Project"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-ZX-Verified"
@@ -41,6 +41,11 @@ highest_supported_qiskit_version = "2.6.2"
 build_backend = "setuptools.build_meta"
 source = ["pyproject.toml"]
 deferred = []
+
+[[checks.G12]]
+since = 2026-11-14
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"

@@ -20,6 +20,7 @@ import tomllib
 from jsonschema import Draft202012Validator, FormatChecker
 
 from ecosystem.classifications import ClassificationsToml
+from ecosystem.member import Member
 
 
 def toml_to_json(value):
@@ -108,14 +109,34 @@ class MemberFilesTestCase(TestCase):
                 ]
                 self.assertFalse(messages, f"{path.name}\n" + "\n".join(messages))
 
+    def test_every_member_has_an_address(self):
+        """A member says where the project lives, one way or the other.
+
+        `url` is no longer a required key, because `Member.url` derives it from `[github]`
+        and `upsert_sections` drops the stored copy once it has. Nothing in the schema
+        asks for either half, so this is what is left to say a member has an address at
+        all.
+        """
+        for path in self.member_files:
+            with self.subTest(member=path.name):
+                member = Member.from_dict(tomllib.loads(path.read_text()))
+                self.assertIsNotNone(
+                    member.url,
+                    f"{path.name} carries no `url` and no `[github]` to derive one from",
+                )
+
     def test_no_two_members_are_the_same_project(self):
         """One project is one member.
 
-        The submitted `url` should be unique.
+        Read through `Member.url`, not off the file: the address lives in `[github]` for
+        every member that has one, so comparing the stored key would compare 220 blanks.
+        A member that is one directory of a repository keeps its `/tree/<ref>/<path>`, so
+        the templates of `qiskit-function-templates` stay distinct here.
         """
         members = {}
         for path in self.member_files:
-            url = str(tomllib.loads(path.read_text()).get("url", ""))
+            member = Member.from_dict(tomllib.loads(path.read_text()))
+            url = str(member.url) if member.url else f"<no url: {path.name}>"
             members.setdefault(url.rstrip("/").casefold(), []).append(path.name)
 
         shared = {url: names for url, names in members.items() if len(names) > 1}

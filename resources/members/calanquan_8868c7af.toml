@@ -1,5 +1,6 @@
 name = "CALA-n Quantum Library"
 url = "https://github.com/albayaty/cala_quantum_library"
+submission_number = 780
 description = "A set of cost-effective n-bit gates based on Clifford+T gates, quantum layouts, and n neighboring physical qubits (2 <= n <= 5)."
 license = "Apache-2.0"
 contact_info = "albayaty@pdx.edu"
@@ -45,14 +46,19 @@ build_backend = "setuptools.build_meta"
 source = ["pyproject.toml", "setup.py", "requirements.txt"]
 deferred = ["dependencies"]
 
+[[checks.G08]]
+since = 2026-09-24
+details = "Unmaintained project should have an archived GitHub repository"
+importance = "NICE-TO-HAVE"
+
+[[checks.G16]]
+since = 2026-11-14
+details = "The last commit was more than 2 years ago and the project declares no maintenance expectations. It is time to for the project to get retired to Alumni unless there is a reason to keep it."
+importance = "CRITICAL"
+
 [[checks.Q03]]
 xfailed = "Check-up was introduced after the project was set as unmaintained."
 since = 2026-10-01
 details = "The qiskit requirement in the cala-quantum-library manifest in the repository allows a not-yet-released major version of Qiskit"
 subtest = "python:cala-quantum-library"
 importance = "RECOMMENDATION"
-
-[[checks.G08]]
-since = 2026-09-24
-details = "Unmaintained project should have an archived GitHub repository"
-importance = "NICE-TO-HAVE"

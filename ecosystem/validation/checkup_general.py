@@ -99,6 +99,26 @@ def checkup_015(member):
     assert len(owner_repo) >= 2, f"{member.url} is a GitHub organization URL"
 
 
+def checkup_016(member):
+    """URL should exist
+
+    `update_urls` has already asked: it records a URL that answered 404 or 410 by changing
+    its scheme to `status-<status>://`, so this reads the scheme and never the network,
+    which is what keeps the suite offline like every other check up.
+    """
+    places = [
+        (f"member.{field}", getattr(member, field))
+        for field in ("url", "website", "documentation")
+    ]
+    places += [("member.packages", package) for package in member.packages]
+    gone = [
+        f"{field} ({url.unmarked})"
+        for field, url in places
+        if url is not None and url.is_broken
+    ]
+    assert not gone, "does not resolve: " + ", ".join(gone)
+
+
 def qiskit_declarations(member):
     """Every qiskit dependency the member declares: its place, its label and the section.
 
