@@ -1,13 +1,12 @@
 name = "Zephirum"
 submission_number = 1432
 url = "https://github.com/SerenaSolutions/zephirum-lang"
-description = "Trivalent quantum decision language (Lisp syntax): verdicts are 1, 0, or REFUSED with sealed, traceable receipts. Built on Qiskit."
+description = "Trivalent quantum decision language: verdicts 1, 0 or REFUSED, each with a sealed, verifiable receipt."
 labels = [
-  "error mitigation",
-  "QML",
   "quantum information",
-  "tensor networks",
   "openqasm",
+  "benchmarking",
+  "research",
 ]
 interfaces = ["Python", "Command-line interface (CLI)"]
 website = "https://serenasolutions.github.io/zephirum-lang/"
