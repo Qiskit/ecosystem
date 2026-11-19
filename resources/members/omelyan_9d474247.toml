@@ -44,13 +44,6 @@ highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 24
 last_180_days_downloads = 409
 
-[[checks.G15]]
-xfailed = "membership predates the checkup"
-since = 2026-11-01
-details = "The GitHub repository has no description, the one line that introduces the project on its repository page and in every GitHub listing it appears in"
-discussion = "https://github.com/MarkoMalezic/qiskit-omelyan/issues/3"
-importance = "NICE-TO-HAVE"
-
 [[checks.P12]]
 xfailed = "Issue asking for the license declaration submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/2, waiting for a release with the fix"
 xfailed_until = 2027-03-31
