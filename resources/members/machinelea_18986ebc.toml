@@ -26,8 +26,8 @@ description = "An open-source library built on Qiskit for quantum machine learni
 total_dependent_repositories = 564
 total_dependent_packages = 30
 created_at = 2021-02-27
-last_commit = 2026-11-12
-last_activity = 2026-11-13
+last_commit = 2026-11-18
+last_activity = 2026-11-18
 topics = ["machine-learning", "qiskit", "quantum-computing"]
 
 [badge]
@@ -48,8 +48,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 82511
-last_180_days_downloads = 270659
+last_month_downloads = 83152
+last_180_days_downloads = 271367
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-machine-learning/issues/1072, waiting for a release with the fix"

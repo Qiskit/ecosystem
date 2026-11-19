@@ -16,15 +16,15 @@ maturity = "experimental"
 url = "https://github.com/qiskit-community/qrmi"
 owner = "qiskit-community"
 repo = "qrmi"
-stars = 68
+stars = 70
 homepage = "https://qiskit-community.github.io/qrmi/"
 license = "Apache-2.0"
 description = "Thin and vendor agnostic layer to access, control and monitor underlying on-prem or cloud quantum computers"
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-08-05
-last_commit = 2026-11-12
-last_activity = 2026-11-16
+last_commit = 2026-11-18
+last_activity = 2026-11-18
 topics = [
   "c",
   "hpc",
@@ -44,15 +44,15 @@ style = "flat"
 
 [[pypi]]
 package_name = "qrmi"
-version = "0.27.0"
-last_release_date = 2026-11-10
+version = "0.27.1"
+last_release_date = 2026-11-18
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 url = "https://pypi.org/project/qrmi/"
 status = "active"
 maintainers = ["https://pypi.org/user/ohtanim/"]
-last_month_downloads = 4695
-last_180_days_downloads = 14961
+last_month_downloads = 4664
+last_180_days_downloads = 15016
 
 [[cargo]]
 package_name = "alice-bob-felis"
@@ -96,7 +96,7 @@ path = "dependencies/pasqal_local_client"
 
 [[cargo]]
 package_name = "qrmi"
-version = "0.27.0"
+version = "0.27.1"
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 edition = "2021"
