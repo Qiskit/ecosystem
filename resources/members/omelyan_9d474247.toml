@@ -20,8 +20,8 @@ stars = 1
 license = "Apache-2.0"
 description = "Optimized Omelyan-type product formulas for Hamiltonian time evolution and circuit synthesis in Qiskit."
 created_at = 2026-04-22
-last_commit = 2026-11-17
-last_activity = 2026-11-17
+last_commit = 2026-11-19
+last_activity = 2026-11-19
 topics = ["product-formula", "qiskit", "time-evolution"]
 
 [badge]
@@ -30,13 +30,14 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-omelyan"
-version = "0.2.1"
-last_release_date = 2026-06-26
-description = "Omelyan-based product formulas for time evolution in Qiskit"
+version = "1.0.0"
+last_release_date = 2026-11-19
+license = "Apache-2.0"
+description = "Optimized Omelyan-type product formulas for Hamiltonian time evolution and circuit synthesis in Qiskit."
 url = "https://pypi.org/project/qiskit-omelyan/"
 status = "active"
 maintainers = ["https://pypi.org/user/MarkoMalezic/"]
-requires_qiskit = ">=2.0.0"
+requires_qiskit = "<3,>=2.0.0"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
