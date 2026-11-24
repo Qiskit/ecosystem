@@ -25,7 +25,7 @@ homepage = "https://qiskit-community.github.io/qiskit-experiments/"
 license = "Apache-2.0"
 description = "Qiskit Experiments"
 total_dependent_repositories = 189
-total_dependent_packages = 18
+total_dependent_packages = 19
 created_at = 2021-02-24
 last_commit = 2026-09-10
 last_activity = 2026-11-19
@@ -49,8 +49,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 154440
-last_180_days_downloads = 805180
+last_month_downloads = 154366
+last_180_days_downloads = 808974
 
 [[checks.Q03]]
 xfailed = "Issue asking for the cap submitted https://github.com/qiskit-community/qiskit-experiments/issues/1656, waiting for a release with the fix"
