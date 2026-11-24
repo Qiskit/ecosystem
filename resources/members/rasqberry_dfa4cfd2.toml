@@ -1,21 +1,22 @@
 name = "RasQberry"
-url = "https://github.com/JanLahmann/RasQberry"
-description = "RasQberry is a functional model of IBM Quantum System One, and can run Qiskit on the integrated Raspberry Pi"
+url = "https://github.com/JanLahmann/RasQberry-Two"
+description = "A 3D-printed model inspired by IBM Quantum System Two, with a Raspberry Pi running Qiskit demos and LED visualizations"
 license = "Apache-2.0"
 contact_info = "Jan.lahmann@de.ibm.com"
 labels = ["demo"]
 interfaces = ["Graphical User Interface (GUI)"]
 created_at = 2023-01-24
 category = "Game/Educational"
-documentation = "https://janlahmann.github.io/RasQberry/"
+documentation = "https://rasqberry.org/02-software/01-installation-overview/"
+website = "https://rasqberry.org"
 packages = []
 uuid = "dfa4cfd2-0ef5-4536-b7ec-47cc982ed0d9"
 maturity = "production-ready"
 
 [github]
-url = "https://github.com/JanLahmann/RasQberry"
+url = "https://github.com/JanLahmann/RasQberry-Two"
 owner = "JanLahmann"
-repo = "RasQberry"
+repo = "RasQberry-Two"
 stars = 162
 homepage = "https://rasqberry.one"
 license = "Apache-2.0"
