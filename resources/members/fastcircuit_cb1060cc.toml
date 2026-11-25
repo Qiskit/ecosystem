@@ -1,5 +1,4 @@
 name = "fastcircuit"
-url = "https://github.com/pdd23001/fastcircuit"
 submission_number = 1474
 description = "Compiles the Python code that builds your Qiskit circuits to native code: add one line, get up to 100× faster, identical circuits."
 contact_info = "parthdanve39@gmail.com"
@@ -14,3 +13,13 @@ packages = [
 ]
 uuid = "cb1060cc-a098-4481-a9bd-f315c7f1a802"
 maturity = "experimental"
+
+[github]
+owner = "pdd23001"
+repo = "fastcircuit"
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "fastcircuit"
