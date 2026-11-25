@@ -6,12 +6,10 @@ labels = [
   "optimization",
   "research",
   "benchmarking",
-  "demo",
   "circuit building",
 ]
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "Application"
-documentation = "https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation/blob/main/README.md"
 packages = [
   "https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation/blob/main/container_loading/requirements-hardware.txt",
 ]
