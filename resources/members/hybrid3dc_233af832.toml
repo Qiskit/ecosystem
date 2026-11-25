@@ -1,0 +1,43 @@
+name = "Hybrid 3D Container Loading Optimisation"
+url = "https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation"
+submission_number = 1465
+description = "Hybrid 3D container-loading research using QUBO optimization and QAOA experiments on IBM Quantum hardware."
+contact_info = "ahlad08@vt.edu"
+labels = ["optimization", "research", "benchmarking", "circuit building"]
+interfaces = ["Python", "Command-line interface (CLI)"]
+category = "Application"
+packages = [
+  "https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation/blob/main/container_loading/requirements-hardware.txt",
+]
+uuid = "233af832-a02a-45fd-b1ce-5f95195be9ca"
+maturity = "experimental"
+status = "Very Early Project"
+
+[github]
+url = "https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation"
+owner = "AhladM0di"
+repo = "Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation"
+stars = 1
+license = "MIT"
+description = "Hybrid quantum-classical research for 3D container loading using QUBO optimization, QAOA and IBM Quantum hardware experiments."
+created_at = 2026-11-09
+last_commit = 2026-11-17
+last_activity = 2026-11-17
+topics = [
+  "container-loading",
+  "optimization",
+  "qaoa",
+  "qiskit",
+  "quantum-computing",
+]
+
+[badge]
+style = "flat"
+
+[[requirements]]
+file = "container_loading/requirements-hardware.txt"
+requires_qiskit = "<3,>=2.4"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
