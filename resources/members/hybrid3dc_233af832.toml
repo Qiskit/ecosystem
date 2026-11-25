@@ -1,13 +1,9 @@
 name = "Hybrid 3D Container Loading Optimisation"
+url = "https://github.com/AhladM0di/Hybrid-Algorithm-Based-3D-Container-Loading-Optimisation"
 submission_number = 1465
 description = "Hybrid 3D container-loading research using QUBO optimization and QAOA experiments on IBM Quantum hardware."
 contact_info = "ahlad08@vt.edu"
-labels = [
-  "optimization",
-  "research",
-  "benchmarking",
-  "circuit building",
-]
+labels = ["optimization", "research", "benchmarking", "circuit building"]
 interfaces = ["Python", "Command-line interface (CLI)"]
 category = "Application"
 packages = [
