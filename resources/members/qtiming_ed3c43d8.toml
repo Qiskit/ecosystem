@@ -1,5 +1,4 @@
 name = "qtiming"
-url = "https://github.com/PratulDeshpande/qtiming"
 submission_number = 1472
 description = "Static timing checker for dynamic quantum circuits: PROVED / REFUTED / UNKNOWN against a hardware timing contract."
 contact_info = "pratul.deshpande06@gmail.com"
@@ -14,3 +13,13 @@ packages = [
 ]
 uuid = "ed3c43d8-3248-4783-b6de-95ec56f312f5"
 maturity = "experimental"
+
+[github]
+owner = "PratulDeshpande"
+repo = "qtiming"
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "qtiming"
