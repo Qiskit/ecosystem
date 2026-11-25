@@ -13,13 +13,47 @@ packages = [
 ]
 uuid = "ed3c43d8-3248-4783-b6de-95ec56f312f5"
 maturity = "experimental"
+status = "Very Early Project"
 
 [github]
+url = "https://github.com/PratulDeshpande/qtiming"
 owner = "PratulDeshpande"
 repo = "qtiming"
+stars = 0
+homepage = "https://pratuldeshpande.github.io/qtiming/"
+license = "Apache-2.0"
+description = "Static timing checker for dynamic quantum circuits: PROVED / REFUTED / UNKNOWN against a hardware timing contract"
+created_at = 2026-11-20
+last_commit = 2026-11-24
+last_activity = 2026-11-24
+topics = [
+  "dynamic-circuits",
+  "openqasm",
+  "qiskit",
+  "quantum-computing",
+  "static-analysis",
+]
 
 [badge]
 style = "flat"
 
 [[pypi]]
 package_name = "qtiming"
+version = "0.1.0"
+last_release_date = 2026-11-20
+license = "Apache-2.0"
+description = "A static timing checker for dynamic quantum circuits"
+url = "https://pypi.org/project/qtiming/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/PratulDeshpande/"]
+last_month_downloads = 122
+last_180_days_downloads = 122
+
+[[pypi.requires]]
+specifier = "<2.7,>=2.3"
+extra = "qiskit"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
