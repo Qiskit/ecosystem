@@ -21,11 +21,12 @@ stars = 3
 homepage = "https://quantumuq.readthedocs.io/en/latest/"
 license = "MIT"
 description = "Uncertainty quantification, calibration, and reliability benchmarking for quantum machine learning with Qiskit and PennyLane."
+estimated_contributors = 3
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2026-02-10
-last_commit = 2026-09-03
-last_activity = 2026-10-30
+last_commit = 2026-11-22
+last_activity = 2026-11-22
 topics = [
   "benchmarking",
   "calibration",
@@ -53,8 +54,8 @@ url = "https://pypi.org/project/quantumuq/"
 development_status = "3 - Alpha"
 status = "active"
 maintainers = ["https://pypi.org/user/ocatak/"]
-last_month_downloads = 33
-last_180_days_downloads = 968
+last_month_downloads = 55
+last_180_days_downloads = 966
 
 [[pypi.requires]]
 specifier = "<3,>=1.0.0"

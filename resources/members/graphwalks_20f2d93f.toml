@@ -16,7 +16,7 @@ documentation = "https://github.com/RexRowan/Qiskit-Graph-Walks/blob/main/docs/a
 packages = ["https://pypi.org/project/qiskit-graph-walks/"]
 uuid = "20f2d93f-6480-4771-b844-ebb9ce3f4375"
 maturity = "experimental"
-status = "Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-Graph-Walks"
@@ -49,8 +49,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 23
-last_180_days_downloads = 183
+last_month_downloads = 21
+last_180_days_downloads = 187
 
 [[checks.G12]]
 since = 2026-11-14

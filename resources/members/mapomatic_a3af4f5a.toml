@@ -16,7 +16,7 @@ repo = "mapomatic"
 stars = 64
 license = "Apache-2.0"
 description = "Automatic mapping of compiled circuits to low-noise sub-graphs"
-total_dependent_repositories = 50
+total_dependent_repositories = 51
 total_dependent_packages = 4
 created_at = 2022-02-03
 last_commit = 2026-09-12
@@ -40,8 +40,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 1847
-last_180_days_downloads = 11098
+last_month_downloads = 1779
+last_180_days_downloads = 10894
 
 [[checks.Q03]]
 since = 2026-11-11
