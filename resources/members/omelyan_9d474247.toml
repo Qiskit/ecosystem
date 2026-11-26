@@ -20,8 +20,8 @@ stars = 1
 license = "Apache-2.0"
 description = "Optimized Omelyan-type product formulas for Hamiltonian time evolution and circuit synthesis in Qiskit."
 created_at = 2026-04-22
-last_commit = 2026-11-19
-last_activity = 2026-11-19
+last_commit = 2026-11-25
+last_activity = 2026-11-25
 topics = ["product-formula", "qiskit", "time-evolution"]
 
 [badge]
@@ -42,8 +42,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 124
-last_180_days_downloads = 514
+last_month_downloads = 128
+last_180_days_downloads = 518
 
 [[checks.P12]]
 xfailed = "Issue asking for the license declaration submitted https://github.com/MarkoMalezic/qiskit-omelyan/issues/2, waiting for a release with the fix"

@@ -30,8 +30,8 @@ estimated_contributors = 31
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2022-09-15
-last_commit = 2026-11-24
-last_activity = 2026-11-24
+last_commit = 2026-11-25
+last_activity = 2026-11-25
 topics = ["cloud", "python", "qiskit", "qiskit-serverless", "quantum-computing"]
 
 [badge]
@@ -40,8 +40,8 @@ style = "flat"
 
 [[pypi]]
 package_name = "qiskit-serverless"
-version = "0.38.0"
-last_release_date = 2026-11-05
+version = "0.38.1"
+last_release_date = 2026-11-25
 license = "Apache-2.0"
 description = "An open-source SDK for resource management in quantum computing workflows."
 url = "https://pypi.org/project/qiskit-serverless/"
@@ -53,8 +53,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 14028
-last_180_days_downloads = 99062
+last_month_downloads = 13972
+last_180_days_downloads = 98823
 
 [[python]]
 package_name = "qiskit-serverless-gateway"

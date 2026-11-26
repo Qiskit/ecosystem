@@ -23,26 +23,26 @@ url = "https://github.com/SerenaSolutions/zephirum-lang"
 owner = "SerenaSolutions"
 repo = "zephirum-lang"
 stars = 2
-homepage = "https://serenasolutions.github.io/zephirum/"
+homepage = "https://doi.org/10.5281/zenodo.23302046"
 license = "Apache-2.0"
-description = "Quantum language for auditable decisions (Lisp s-expressions): verdicts 1, 0 or REFUSED with sealed receipts. Built on Qiskit."
+description = "Exact-decision language (ZYQL) with sealed, verifiable receipts. Scientific record: Zenodo."
 estimated_contributors = 3
 total_dependent_repositories = 1
 total_dependent_packages = 0
 created_at = 2026-10-12
-last_commit = 2026-11-24
-last_activity = 2026-11-24
+last_commit = 2026-11-25
+last_activity = 2026-11-25
 topics = [
-  "auditability",
-  "brazil",
-  "decision-making",
+  "compiler",
+  "cudaq",
+  "exact-decision",
+  "language",
+  "nvidia",
   "openqasm",
-  "portuguese",
-  "python",
   "qiskit",
-  "quantum",
-  "quantum-algorithms",
   "quantum-computing",
+  "quantum-programming",
+  "receipts",
   "trivalent-logic",
   "verification",
 ]
@@ -65,8 +65,8 @@ compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 1262
-last_180_days_downloads = 1262
+last_month_downloads = 1263
+last_180_days_downloads = 1263
 
 [[python]]
 package_name = "zephirum"
