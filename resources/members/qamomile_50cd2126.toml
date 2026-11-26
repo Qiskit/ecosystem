@@ -25,8 +25,8 @@ estimated_contributors = 15
 total_dependent_repositories = 4
 total_dependent_packages = 2
 created_at = 2023-06-18
-last_commit = 2026-11-13
-last_activity = 2026-11-13
+last_commit = 2026-11-25
+last_activity = 2026-11-25
 topics = [
   "amazon-braket",
   "cirq",
@@ -47,18 +47,27 @@ style = "flat"
 
 [[pypi]]
 package_name = "qamomile"
-version = "0.15.2"
-last_release_date = 2026-10-30
+version = "0.16.0"
+last_release_date = 2026-11-24
 license = "Apache-2.0"
+description = "A source-compiled, type-safe functional quantum programming language"
 url = "https://pypi.org/project/qamomile/"
 status = "active"
 maintainers = ["https://pypi.org/user/jijpypi/"]
-last_month_downloads = 3477
-last_180_days_downloads = 6793
+last_month_downloads = 3991
+last_180_days_downloads = 7284
 
 [[pypi.requires]]
 specifier = "<3,>=2.3.0"
 extra = "qiskit"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+
+[[pypi.requires]]
+specifier = "<3,>=2.3.0"
+extra = "qbraid"
 compatible_with_qiskit_v1 = false
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05

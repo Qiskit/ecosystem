@@ -18,7 +18,7 @@ maturity = "production-ready"
 url = "https://github.com/qBraid/qBraid"
 owner = "qBraid"
 repo = "qBraid"
-stars = 120
+stars = 121
 homepage = "https://docs.qbraid.com/v2/sdk"
 license = "Apache-2.0"
 description = "A platform-agnostic quantum runtime framework"
@@ -26,8 +26,8 @@ estimated_contributors = 35
 total_dependent_repositories = 46
 total_dependent_packages = 26
 created_at = 2019-09-11
-last_commit = 2026-11-20
-last_activity = 2026-11-20
+last_commit = 2026-11-25
+last_activity = 2026-11-25
 topics = [
   "openqasm",
   "python",
@@ -46,16 +46,16 @@ style = "flat"
 
 [[pypi]]
 package_name = "qbraid"
-version = "0.13.0"
-last_release_date = 2026-10-02
+version = "0.13.1"
+last_release_date = 2026-11-25
 license = "Apache-2.0"
 description = "Platform-agnostic quantum runtime framework."
 url = "https://pypi.org/project/qbraid/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/qBraid/"]
-last_month_downloads = 29447
-last_180_days_downloads = 128146
+last_month_downloads = 28506
+last_180_days_downloads = 127831
 
 [[pypi.requires]]
 specifier = "<3.0,>=1.0"
