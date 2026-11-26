@@ -5,8 +5,7 @@ description = "Static timing checker for dynamic quantum circuits: PROVED / REFU
 contact_info = "pratul.deshpande06@gmail.com"
 labels = ["openqasm", "research"]
 interfaces = ["Python", "Command-line interface (CLI)"]
-website = "https://pratuldeshpande.github.io/qtiming/"
-category = "Tooling"
+category = "Transpiler plugin"
 documentation = "https://pratuldeshpande.github.io/qtiming/"
 packages = [
   "https://pypi.org/project/qtiming",
