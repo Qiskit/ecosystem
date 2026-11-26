@@ -10,7 +10,7 @@ reference_paper = "https://arxiv.org/abs/1206.2656"
 packages = ["https://pypi.org/project/qiskit-cayley-codes/"]
 uuid = "ccc8f071-ad3d-47f9-af61-319e739a2c8f"
 maturity = "experimental"
-status = "Very Early Project"
+status = "Under revision"
 
 [github]
 url = "https://github.com/RexRowan/Qiskit-Cayley-Codes"
@@ -45,6 +45,11 @@ highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
 last_month_downloads = 23
 last_180_days_downloads = 313
+
+[[checks.G12]]
+since = 2026-11-26
+details = "Last commit was more than (project_age * 2/3) months ago. This might be a sign of a project with good initial momentum that is decelerating."
+importance = "IMPORTANT"
 
 [[checks.G14]]
 xfailed = "membership predates the checkup"
