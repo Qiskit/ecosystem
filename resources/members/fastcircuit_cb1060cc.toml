@@ -1,0 +1,60 @@
+name = "fastcircuit"
+submission_number = 1474
+description = "Compiles the Python code that builds your Qiskit circuits to native code: add one line, get up to 100× faster, identical circuits."
+contact_info = "parthdanve39@gmail.com"
+labels = ["circuit building", "HPC", "benchmarking"]
+interfaces = ["Python", "Command-line interface (CLI)"]
+website = "https://pdd23001.github.io/fastcircuit/"
+category = "Tooling"
+documentation = "https://pdd23001.github.io/fastcircuit/"
+packages = [
+  "https://pypi.org/project/fastcircuit/",
+  "https://github.com/pdd23001/fastcircuit/blob/main/pyproject.toml",
+]
+uuid = "cb1060cc-a098-4481-a9bd-f315c7f1a802"
+maturity = "experimental"
+status = "Very Early Project"
+
+[github]
+url = "https://github.com/pdd23001/fastcircuit"
+owner = "pdd23001"
+repo = "fastcircuit"
+stars = 6
+homepage = "https://pdd23001.github.io/fastcircuit/"
+license = "Apache-2.0"
+description = "Write Python. Run your Qiskit code at native speed: one 'with fastcircuit:' line, up to 100× faster, identical results."
+total_dependent_repositories = 0
+total_dependent_packages = 0
+created_at = 2026-11-23
+last_commit = 2026-11-24
+last_activity = 2026-11-25
+topics = [
+  "compiler",
+  "llvm",
+  "numpy",
+  "python",
+  "qiskit",
+  "quantum-circuits",
+  "quantum-computing",
+]
+
+[badge]
+style = "flat"
+
+[[pypi]]
+package_name = "fastcircuit"
+version = "0.1.0"
+last_release_date = 2026-11-23
+license = "Apache-2.0"
+description = "Write Python, run your Qiskit code at native speed: one 'with fastcircuit:' line compiles it to machine code"
+url = "https://pypi.org/project/fastcircuit/"
+development_status = "3 - Alpha"
+status = "active"
+maintainers = ["https://pypi.org/user/parthdanve39/"]
+requires_qiskit = "<2.7,>=2.6.0"
+compatible_with_qiskit_v1 = false
+compatible_with_qiskit_v2 = true
+highest_supported_qiskit_release_date = 2026-11-05
+highest_supported_qiskit_version = "2.6.2"
+last_month_downloads = 108
+last_180_days_downloads = 108
