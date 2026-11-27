@@ -22,14 +22,14 @@ status = "Qiskit Project"
 url = "https://github.com/Qiskit/mcp-servers"
 owner = "Qiskit"
 repo = "mcp-servers"
-stars = 46
+stars = 47
 license = "Apache-2.0"
 description = "A collection of MCP servers to allow LLMs to use the qiskit,qiskit-ibm-runtime library,  qiskit-ibm-transpiler, qiskit-code-assista..."
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-09-05
 last_commit = 2026-10-08
-last_activity = 2026-11-15
+last_activity = 2026-11-26
 
 [badge]
 url = "https://qisk.it/e-4174663a"
@@ -48,8 +48,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 1736
-last_180_days_downloads = 6230
+last_month_downloads = 1693
+last_180_days_downloads = 6232
 
 [[pypi]]
 package_name = "qiskit-gym-mcp-server"
@@ -68,8 +68,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 1909
-last_180_days_downloads = 7317
+last_month_downloads = 1875
+last_180_days_downloads = 7314
 
 [[pypi]]
 package_name = "qiskit-ibm-runtime-mcp-server"
@@ -83,8 +83,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 1737
-last_180_days_downloads = 8776
+last_month_downloads = 1697
+last_180_days_downloads = 8738
 
 [[pypi]]
 package_name = "qiskit-ibm-transpiler-mcp-server"
@@ -98,8 +98,8 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 1781
-last_180_days_downloads = 6917
+last_month_downloads = 1739
+last_180_days_downloads = 6890
 
 [[pypi]]
 package_name = "qiskit-mcp-server"
@@ -118,8 +118,8 @@ compatible_with_qiskit_v1 = true
 compatible_with_qiskit_v2 = true
 highest_supported_qiskit_release_date = 2026-11-05
 highest_supported_qiskit_version = "2.6.2"
-last_month_downloads = 2464
-last_180_days_downloads = 15007
+last_month_downloads = 2431
+last_180_days_downloads = 14905
 
 [[pypi]]
 package_name = "qiskit-mcp-servers"
@@ -134,5 +134,5 @@ maintainers = [
   "https://pypi.org/org/qiskit/",
   "https://pypi.org/user/AIforQuantum/",
 ]
-last_month_downloads = 1609
+last_month_downloads = 1569
 last_180_days_downloads = 7625

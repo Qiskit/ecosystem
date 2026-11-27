@@ -23,7 +23,7 @@ description = "Thin and vendor agnostic layer to access, control and monitor und
 total_dependent_repositories = 0
 total_dependent_packages = 0
 created_at = 2025-08-05
-last_commit = 2026-11-24
+last_commit = 2026-11-26
 last_activity = 2026-11-25
 topics = [
   "c",
@@ -44,15 +44,15 @@ style = "flat"
 
 [[pypi]]
 package_name = "qrmi"
-version = "0.28.0"
-last_release_date = 2026-11-24
+version = "0.28.1"
+last_release_date = 2026-11-26
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 url = "https://pypi.org/project/qrmi/"
 status = "active"
 maintainers = ["https://pypi.org/user/ohtanim/"]
-last_month_downloads = 3939
-last_180_days_downloads = 15132
+last_month_downloads = 3835
+last_180_days_downloads = 15036
 
 [[cargo]]
 package_name = "alice-bob-felis"
@@ -96,7 +96,7 @@ path = "dependencies/pasqal_local_client"
 
 [[cargo]]
 package_name = "qrmi"
-version = "0.28.0"
+version = "0.28.1"
 license = "Apache-2.0"
 description = "Quantum Resource Management Interface(QRMI)"
 edition = "2021"

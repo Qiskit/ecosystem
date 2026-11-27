@@ -20,7 +20,7 @@ status = "Very Early Project"
 url = "https://github.com/eigenorbit/eigenkit"
 owner = "eigenorbit"
 repo = "eigenkit"
-stars = 40
+stars = 41
 homepage = "https://eigenorbit.com/kit/"
 license = "Apache-2.0"
 description = "Open-source Python library for quantum computing. Build quantum algorithms once, run them on simulators such as Qiskit Aer, PennyLa..."
@@ -65,8 +65,8 @@ url = "https://pypi.org/project/eigenkit/"
 development_status = "5 - Production/Stable"
 status = "active"
 maintainers = ["https://pypi.org/user/eigenorbit/"]
-last_month_downloads = 958
-last_180_days_downloads = 1520
+last_month_downloads = 952
+last_180_days_downloads = 1550
 
 [[pypi.requires]]
 specifier = "<3,>=1.4.1"
