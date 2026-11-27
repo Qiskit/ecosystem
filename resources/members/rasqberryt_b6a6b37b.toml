@@ -1,5 +1,4 @@
 name = "RasQberry Two"
-url = "https://github.com/JanLahmann/RasQberry-Two"
 submission_number = 1481
 description = "A 3D-printed model inspired by IBM Quantum System Two, with a Raspberry Pi running Qiskit demos and LED visualizations"
 contact_info = "Jan.lahmann@de.ibm.com"
@@ -14,3 +13,10 @@ packages = [
 ]
 uuid = "b6a6b37b-991b-498d-a96a-24f967d3baff"
 maturity = "production-ready"
+
+[github]
+owner = "JanLahmann"
+repo = "RasQberry-Two"
+
+[badge]
+style = "flat"
