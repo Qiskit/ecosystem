@@ -24,7 +24,7 @@ homepage = "https://pratuldeshpande.github.io/qtiming/"
 license = "Apache-2.0"
 description = "Static timing checker for dynamic quantum circuits: PROVED / REFUTED / UNKNOWN against a hardware timing contract"
 created_at = 2026-11-20
-last_commit = 2026-11-24
+last_commit = 2026-11-27
 last_activity = 2026-11-24
 topics = [
   "dynamic-circuits",
@@ -48,8 +48,8 @@ url = "https://pypi.org/project/qtiming/"
 development_status = "3 - Alpha"
 status = "active"
 maintainers = ["https://pypi.org/user/PratulDeshpande/"]
-last_month_downloads = 124
-last_180_days_downloads = 124
+last_month_downloads = 126
+last_180_days_downloads = 126
 
 [[pypi.requires]]
 specifier = "<2.7,>=2.3"
