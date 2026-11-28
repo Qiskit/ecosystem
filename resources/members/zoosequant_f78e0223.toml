@@ -1,0 +1,15 @@
+name = "Zoose Quantum"
+url = "https://github.com/ianreppel/zoose-codespace"
+submission_number = 1483
+description = "Run quantum libraries directly in your browser inside Jupyter without installing or downloading anything, straight from GitHub."
+contact_info = "ian@ianreppel.org"
+labels = ["cloud service", "environment setup"]
+interfaces = ["Other language", "Web interface"]
+website = "https://ianreppel.org"
+category = "Tooling"
+documentation = "https://github.com/ianreppel/zoose-codespace/blob/master/README.md"
+packages = [
+  "https://github.com/ianreppel/zoose/blob/master/quantum/requirements.txt",
+]
+uuid = "f78e0223-0fe7-48cc-b635-f5feef0c7681"
+maturity = "production-ready"
